@@ -97,8 +97,8 @@ var_get(const char *fname, const char *variable)
 {
 	FILE   *fp;
 	char   *line;
-	size_t  len;
-	size_t  varlen;
+	ssize_t len;
+	size_t  siz, varlen;
 	char   *value;
 	size_t  valuelen;
 	size_t  thislen;
@@ -117,8 +117,9 @@ var_get(const char *fname, const char *variable)
 
 	value = NULL;
 	valuelen = 0;
-	
-	while ((line = fgetln(fp, &len)) != (char *) NULL) {
+
+	line = NULL;
+	while ((len = getline(&line, &siz, fp)) != -1) {
 		if (line[len - 1] == '\n')
 			--len;
 		if ((p=var_cmp(line, len, variable, varlen)) == NULL)
@@ -135,6 +136,7 @@ var_get(const char *fname, const char *variable)
 		sprintf(value+valuelen, "%.*s", (int)thislen, p);
 		valuelen += thislen;
 	}
+	free(line);
 	(void) fclose(fp);
 	return value;
 }
@@ -193,8 +195,8 @@ var_set(const char *fname, const char *variable, const char *value)
 	char   *tmpname;
 	int     fd;
 	char   *line;
-	size_t  len;
-	size_t  varlen;
+	ssize_t len;
+	size_t  siz, varlen;
 	Boolean done;
 	struct stat st;
 
@@ -244,7 +246,8 @@ var_set(const char *fname, const char *variable, const char *value)
 	done = FALSE;
 
 	if (fp) {
-		while ((line = fgetln(fp, &len)) != (char *) NULL) {
+		line = NULL;
+		while ((len = getline(&line, &siz, fp)) != -1) {
 			if (var_cmp(line, len, variable, varlen) == NULL)
 				fprintf(fout, "%.*s", (int)len, line);
 			else {
@@ -254,6 +257,7 @@ var_set(const char *fname, const char *variable, const char *value)
 				}
 			}
 		}
+		free(line);
 		(void) fclose(fp);
 	}
 
