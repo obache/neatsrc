@@ -430,7 +430,8 @@ static int
 check_other_installed(struct pkg_task *pkg)
 {
 	FILE *f, *f_pkg;
-	size_t len;
+	ssize_t len;
+	size_t siz;
 	char *pkgbase, *iter, *filename;
 	package_t plist;
 	plist_t *p;
@@ -476,15 +477,16 @@ check_other_installed(struct pkg_task *pkg)
 
 	status = 0;
 
-	while ((iter = fgetln(f, &len)) != NULL) {
+	iter = NULL;
+	while ((len = getline(&iter, &siz, f)) != -1) {
 		if (iter[len - 1] == '\n')
-			iter[len - 1] = '\0';
+			iter[--len] = '\0';
 		filename = pkgdb_pkg_file(iter, CONTENTS_FNAME);
 		if ((f_pkg = fopen(filename, "r")) == NULL) {
 			warnx("Can't open +CONTENTS of depending package %s",
 			    iter);
-			fclose(f);
-			return -1;
+			status = -1;
+			break;
 		}
 		read_plist(&plist, f_pkg);
 		fclose(f_pkg);
@@ -512,6 +514,7 @@ check_other_installed(struct pkg_task *pkg)
 		}
 		free_plist(&plist);		
 	}
+	free(iter);
 
 	fclose(f);
 
