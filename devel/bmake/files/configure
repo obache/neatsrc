@@ -4576,6 +4576,7 @@ for ac_header in \
 	paths.h \
 	poll.h \
 	ranlib.h \
+	spawn.h \
 	string.h \
 	sys/mman.h \
 	sys/select.h \
@@ -5434,6 +5435,7 @@ for ac_func in \
 	getwd \
 	killpg \
 	mmap \
+	posix_spawn \
 	putenv \
 	select \
 	setenv \

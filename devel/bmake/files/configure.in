@@ -108,6 +108,7 @@ AC_CHECK_HEADERS( \
 	paths.h \
 	poll.h \
 	ranlib.h \
+	spawn.h \
 	string.h \
 	sys/mman.h \
 	sys/select.h \
@@ -161,6 +162,7 @@ AC_CHECK_FUNCS( \
 	getwd \
 	killpg \
 	mmap \
+	posix_spawn \
 	putenv \
 	select \
 	setenv \

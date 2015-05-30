@@ -102,6 +102,11 @@ __RCSID("$NetBSD: compat.c,v 1.10 2015/05/19 22:01:19 joerg Exp $");
 #include    <sys/stat.h>
 #include    "wait.h"
 
+#ifdef HAVE_SPAWN_H
+#include    <spawn.h>
+extern char** environ;
+#endif
+
 #include    <ctype.h>
 #include    <errno.h>
 #include    <signal.h>
@@ -377,6 +382,22 @@ again:
     /*
      * Fork and execute the single command. If the fork fails, we abort.
      */
+#ifdef HAVE_POSIX_SPAWN
+    {
+	Var_ExportVars();
+#ifdef USE_META
+	if (useMeta) {
+	    meta_compat_child();
+	}
+#endif
+	if ((local ? 
+	    posix_spawnp(&cpid, av[0], NULL, NULL, (char *const *)UNCONST(av), environ) :
+	    posix_spawn(&cpid, av[0], NULL, NULL, (char *const *)UNCONST(av), environ)) != 0) {
+	    execError("Could not spawn", av[0]);
+	    cpid = -1;
+	}
+    }
+#else
     cpid = vFork();
     if (cpid < 0) {
 	Fatal("Could not fork");
@@ -395,6 +416,7 @@ again:
 	execError("exec", av[0]);
 	_exit(1);
     }
+#endif
     if (mav)
 	free(mav);
     if (bp)

@@ -74,6 +74,9 @@
 /* Define to 1 if you have the <poll.h> header file. */
 #undef HAVE_POLL_H
 
+/* Define to 1 if you have the `posix_spawn' function. */
+#undef HAVE_POSIX_SPAWN
+
 /* Define to 1 if you have the `putenv' function. */
 #undef HAVE_PUTENV
 
@@ -103,6 +106,9 @@
 
 /* Define to 1 if you have the `snprintf' function. */
 #undef HAVE_SNPRINTF
+
+/* Define to 1 if you have the <spawn.h> header file. */
+#undef HAVE_SPAWN_H
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H

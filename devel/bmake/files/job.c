@@ -162,6 +162,9 @@ __RCSID("$NetBSD: job.c,v 1.16 2015/05/19 22:01:19 joerg Exp $");
 #if defined(HAVE_SYS_SOCKET_H)
 # include <sys/socket.h>
 #endif
+#if HAVE_SPAWN_H
+# include <spawn.h>
+#endif
 
 #include "make.h"
 #include "hash.h"
@@ -1325,6 +1328,103 @@ JobExec(Job *job, char **argv)
     /* Pre-emptively mark job running, pid still zero though */
     job->job_state = JOB_ST_RUNNING;
 
+#ifdef POSIX_SPAWN
+    {
+	posix_spawn_file_actions_t file_actions;
+	posix_spawnattr_t attrp;
+	sigset_t tmask;
+	int newd;
+
+	posix_spawn_file_actions_init(&file_actions);
+	posix_spawnattr_init(&attrp);
+	posix_spawnattr_setflags(&attrp, POSIX_SPAWN_SETPGROUP | POSIX_SPAWN_SETSIGDEF | POSIX_SPAWN_SETSIGMASK);
+
+#ifdef USE_META
+	if (useMeta) {
+	    meta_job_child(job);
+	}
+#endif
+	/*
+	 * Reset all signal handlers; this is necessary because we also
+	 * need to unblock signals before we exec(2).
+	 */
+	posix_spawnattr_setsigdefault(&attrp, &caught_signals);
+
+	/* Now unblock signals */
+	sigemptyset(&tmask);
+	posix_spawnattr_setsigmask(&attrp, &tmask);
+
+	/*
+	 * Must duplicate the input stream down to the child's input and
+	 * reset it to the beginning (again). Since the stream was marked
+	 * close-on-exec, we must clear that bit in the new input.
+	 */
+	if ((newd = dup(FILENO(job->cmdFILE))) == -1) {
+	    execError("dup", "job->cmdFILE");
+	    exit(1);
+	}
+	(void)fcntl(newd, F_SETFD, 0);
+	(void)lseek(newd, (off_t)0, SEEK_SET);
+	if (posix_spawn_file_actions_adddup2(&file_actions, newd, 0) != 0) {
+	    execError("dup2", "job->cmdFILE");
+	    exit(1);
+	}
+	if (posix_spawn_file_actions_addclose(&file_actions, newd) != 0) {
+	    execError("close", "job->cmdFILE");
+	    exit(1);
+	}
+
+	if (job->node->type & OP_MAKE) {
+		/*
+		 * Pass job token pipe to submakes.
+		 */
+		fcntl(tokenWaitJob.inPipe, F_SETFD, 0);
+		fcntl(tokenWaitJob.outPipe, F_SETFD, 0);		
+	}
+	
+	/*
+	 * Set up the child's output to be routed through the pipe
+	 * we've created for it.
+	 */
+	if ((newd = dup(job->outPipe)) == -1) {
+	    execError("dup", "job->outPipe");
+	    exit(1);
+	}
+	if (posix_spawn_file_actions_adddup2(&file_actions, newd, 1) != 0) {
+	    execError("dup2", "job->outPipe");
+	    exit(1);
+	}
+	/*
+	 * The output channels are marked close on exec. This bit was
+	 * duplicated by the dup2(on some systems), so we have to clear
+	 * it before routing the shell's error output to the same place as
+	 * its standard output.
+	 */
+	(void)fcntl(newd, F_SETFD, 0);
+	if (posix_spawn_file_actions_adddup2(&file_actions, 1, 2) != 0) {
+	    execError("dup2", "1, 2");
+	    exit(1);
+	}
+	if (posix_spawn_file_actions_addclose(&file_actions, newd) != 0) {
+	}
+
+	/*
+	 * We want to switch the child into a different process family so
+	 * we can kill it and all its descendants in one fell swoop,
+	 * by killing its process family, but not commit suicide.
+	 */
+	(void)posix_spawnattr_setpgroup(&attrp, 0);
+
+	Var_ExportVars();
+
+	if(posix_spawn(&cpid, shellPath, &file_actions, &attrp, argv, NULL)) {
+	    execError("spawn", shellPath);
+	    exit(1);
+	}
+	posix_spawn_file_actions_destry(&file_actions);
+	posix_spawn_attr_destry(&attrp);
+    }
+#else
     cpid = vFork();
     if (cpid == -1)
 	Punt("Cannot vfork: %s", strerror(errno));
@@ -1410,6 +1510,7 @@ JobExec(Job *job, char **argv)
 	execError("exec", shellPath);
 	_exit(1);
     }
+#endif
 
     /* Parent, continuing after the child exec */
     job->pid = cpid;

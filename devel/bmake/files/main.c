@@ -144,6 +144,10 @@ __RCSID("$NetBSD: main.c,v 1.13 2015/05/19 22:01:19 joerg Exp $");
 #include <sys/uio.h>
 #endif
 
+#ifdef HAVE_SPAWN_H
+#include <spawn.h>
+#endif
+
 #ifndef	DEFMAXLOCAL
 #define	DEFMAXLOCAL DEFMAXJOBS
 #endif	/* DEFMAXLOCAL */
@@ -1524,6 +1528,10 @@ Cmd_Exec(const char *cmd, const char **errnum)
     char	*cp;
     int		cc;		/* bytes read, or -1 */
     int		savederr;	/* saved errno */
+#ifdef HAVE_POSIX_SPAWN
+    int		spawn_err = 0;
+    posix_spawn_file_actions_t fa;
+#endif
 
 
     *errnum = NULL;
@@ -1546,6 +1554,26 @@ Cmd_Exec(const char *cmd, const char **errnum)
 	goto bad;
     }
 
+#ifdef HAVE_POSIX_SPAWN
+    if(posix_spawn_file_actions_init(&fa) != 0) {
+	*errnum = "Couldn't spawn file actions init for \"%s\"";
+	goto bad;
+    }
+    if ((spawn_err = posix_spawn_file_actions_addclose(&fa, fds[0])) == 0 &&
+	(spawn_err = posix_spawn_file_actions_adddup2(&fa, fds[1], 1)) == 0 &&
+	(spawn_err = posix_spawn_file_actions_addclose(&fa, fds[1])) == 0) {
+	Var_ExportVars();
+	spawn_err = posix_spawn(&cpid, shellPath, &fa, NULL, UNCONST(args), NULL );
+    } else {
+	*errnum = "Couldn't spawn file actions for \"%s\"";
+    }
+
+    (void)posix_spawn_file_actions_destroy(&fa);
+    if (spawn_err != 0) {
+	*errnum = "Couldn't spawn for \"%s\"";
+	goto bad;
+    }
+#else
     /*
      * Fork
      */
@@ -1575,6 +1603,7 @@ Cmd_Exec(const char *cmd, const char **errnum)
 	goto bad;
 
     default:
+#endif
 	/*
 	 * No need for the writing half
 	 */
@@ -1635,8 +1664,10 @@ Cmd_Exec(const char *cmd, const char **errnum)
 	    }
 	    cp--;
 	}
+#ifndef HAVE_POSIX_SPAWN
 	break;
     }
+#endif
     return res;
 bad:
     res = bmake_malloc(1);
