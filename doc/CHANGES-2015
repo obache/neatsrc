@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.2376 2015/05/29 14:19:57 ryoon Exp $
+$NetBSD: CHANGES-2015,v 1.2387 2015/05/30 12:31:59 ryoon Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -4586,3 +4586,15 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated devel/xulrunner31 to 31.7.0 [ryoon 2015-05-29]
 	Updated devel/fossil to 1.33 [ryoon 2015-05-29]
 	Updated devel/nss to 3.19.1 [ryoon 2015-05-29]
+	Added textproc/p5-XML-Parser-Lite version 0.721 [wen 2015-05-30]
+	Added net/p5-IO-SessionData version 1.03 [wen 2015-05-30]
+	Updated net/p5-SOAP-Lite to 1.14 [wen 2015-05-30]
+	Updated net/p5-SNMP-Info to 3.27 [wen 2015-05-30]
+	Added geography/py-obspy version 0.10.2 [wen 2015-05-30]
+	Added lang/oracle-jre8 version 8.0.45 [ryoon 2015-05-30]
+	Added lang/oracle-jdk8 version 8.0.45 [ryoon 2015-05-30]
+	Updated math/R-RColorBrewer to 1.1.2 [wen 2015-05-30]
+	Updated math/R-zoo to 1.7.12 [wen 2015-05-30]
+	Updated math/R-statmod to 1.4.21 [wen 2015-05-30]
+	Updated math/R-sp to 1.1.0 [wen 2015-05-30]
+	Updated math/R to 3.2.0nb1 [ryoon 2015-05-30]
