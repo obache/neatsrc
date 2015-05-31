@@ -189,10 +189,19 @@ AC_ARG_ENABLE([bsd-getopt],
 	[AS_HELP_STRING([--enable-bsd-getopt],
 			[force use of BSDish getopt implementation])])
 
-AC_CHECK_DECLS([optarg, optind, optreset], [:], [:], [
+AC_CHECK_DECLS([optarg, optind], [:], [:], [
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <unistd.h>
+])
+
+AC_CHECK_DECLS([optreset], [:], [:], [
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <unistd.h>
+	#ifdef HAVE_GETOPT_H
+	#include <getopt.h>
+	#endif
 ])
 
 our_getopt_long=no

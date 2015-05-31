@@ -35,9 +35,14 @@
 #include <nbcompat/cdefs.h>
 #include <nbcompat/unistd.h>
 
+#if HAVE_GETOPT_H
+#include <getopt.h>
+#endif
+
 /*
  * Gnu like getopt_long() and BSD4.4 getsubopt()/optreset extensions
  */
+#if !HAVE_STRUCT_OPTION
 #define no_argument        0
 #define required_argument  1
 #define optional_argument  2
@@ -60,5 +65,6 @@ __BEGIN_DECLS
 int getopt_long (int, char * const *, const char *,
     const struct option *, int *);
 __END_DECLS
+#endif
  
 #endif /* !_NBCOMPAT_GETOPT_H_ */

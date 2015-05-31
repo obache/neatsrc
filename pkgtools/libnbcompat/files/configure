@@ -4854,10 +4854,15 @@ if test $ac_have_decl = 1; then :
 else
   :
 fi
+
+
 ac_fn_c_check_decl "$LINENO" "optreset" "ac_cv_have_decl_optreset" "
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <unistd.h>
+	#ifdef HAVE_GETOPT_H
+	#include <getopt.h>
+	#endif
 
 "
 if test "x$ac_cv_have_decl_optreset" = xyes; then :
