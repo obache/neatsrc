@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.14426 2015/05/30 09:53:04 ryoon Exp $
+$NetBSD: TODO,v 1.14438 2015/06/03 18:23:39 fhajny Exp $
 
 Suggested new packages
 ======================
@@ -358,6 +358,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o GMT-5.1.1
 	o GNUMail-1.2.2
 	o JBidwatcher-2.5.6 [wants launch4j]
+	o MesaLib-10.5.6
 	o OdfConverter-4.0
 	o PAM-0.99.7.1
 	o RBTools-0.7.2
@@ -651,7 +652,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gramps-4.1.0
 	o grilo-0.2.12
 	o grilo-plugins-0.2.14
-	o gsharutils-4.15.1
+	o gsharutils-4.15.2
 	o gss-1.0.3
 	o gthumb-3.4.0
 	o gtk-gnutella-0.98.4
@@ -786,7 +787,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mailutis-2.2 [wip]
 	o maketool-0.8.4
 	o makeztxt-1.60
-	o mame-0.161
+	o mame-0.162
 	o manedit-1.2.1
 	o maradns-2.0.11
 	o matchbox-panel-0.9.3
@@ -797,7 +798,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mediainfo-0.7.72
 	o mednafen-0.9.38.2
 	o mergeant-0.67
-	o mess-0.161
+	o mess-0.162
 	o mesure-0.7.2
 	o metacity-3.14.2
 	o metis-5.1.0
@@ -811,7 +812,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mknmz-wwwoffle-0.7.2
 	o mkvtoolnix-7.6.0
 	o molden-4.8 [after which PR 40252 can be closed]
-	o mono-4.0.1
 	o moserial-2.30.0 [GNOME 2.30]
 	o mousetweaks-3.12.0 [wip]
 	o mp3splt-2.6.2
@@ -842,7 +842,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o newmail-1.0.2
 	o nginx-1.8.0
 	o nikto-2.0.1
-	o nodejs-0.12.4
 	o ns-3.14.1
 	o ns-plugger-common-5.1.3
 	o nspluginwrapper-1.4.4 [pkg/47208]
@@ -908,7 +907,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o plasma-5.0.2
 	o ploticus-examples-230
 	o pngcrush-1.7.85
-	o pod2mdoc-0.2
 	o pokerth-1.0.1
 	o polsms-2.1.0
 	o poppass-4.0.14
