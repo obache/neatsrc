@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.550 2015/06/01 12:57:29 wiz Exp $
+# $NetBSD: Makefile,v 1.552 2015/06/04 20:12:45 youri Exp $
 #
 
 COMMENT=	Security tools
@@ -22,6 +22,7 @@ SUBDIR+=	ap-modsecurity
 SUBDIR+=	ap-modsecurity2
 SUBDIR+=	apg
 SUBDIR+=	arirang
+SUBDIR+=	asignify
 SUBDIR+=	avcheck
 SUBDIR+=	base
 SUBDIR+=	bcrypt
@@ -475,6 +476,7 @@ SUBDIR+=	tkpasman
 SUBDIR+=	tripwire
 SUBDIR+=	uvscan
 SUBDIR+=	validns
+SUBDIR+=	volatility
 SUBDIR+=	xml-security-c
 SUBDIR+=	xmlsec1
 SUBDIR+=	yafic
