@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.552 2015/06/04 20:12:45 youri Exp $
+# $NetBSD: Makefile,v 1.554 2015/06/06 09:15:01 pettai Exp $
 #
 
 COMMENT=	Security tools
@@ -389,6 +389,7 @@ SUBDIR+=	py-smbpasswd
 SUBDIR+=	py-stix
 SUBDIR+=	py-tlslite
 SUBDIR+=	py-xmlsec
+SUBDIR+=	py-yara
 SUBDIR+=	py-yubiauth
 SUBDIR+=	pyca
 SUBDIR+=	qca
@@ -480,6 +481,7 @@ SUBDIR+=	volatility
 SUBDIR+=	xml-security-c
 SUBDIR+=	xmlsec1
 SUBDIR+=	yafic
+SUBDIR+=	yara
 SUBDIR+=	ykclient
 SUBDIR+=	ykpers
 SUBDIR+=	zebedee

@@ -1,0 +1,13 @@
+# $NetBSD: Makefile.common,v 1.2 2015/06/06 09:15:50 pettai Exp $
+#
+# used by security/yara/Makefile
+# used by security/py-yara/Makefile
+
+DISTNAME=	v3.3.0
+YAVER=		${DISTNAME:S/v//}
+
+MASTER_SITES=	${MASTER_SITE_GITHUB:=plusvic/yara/archive/}
+
+MAINTAINER=	pettai@NetBSD.org
+HOMEPAGE=	https://plusvic.github.io/yara/
+LICENSE=	apache-2.0
