@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.14443 2015/06/05 13:43:42 gdt Exp $
+$NetBSD: TODO,v 1.14451 2015/06/07 09:13:21 wiz Exp $
 
 Suggested new packages
 ======================
@@ -840,6 +840,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o newmail-1.0.2
 	o nginx-1.8.0
 	o nikto-2.0.1
+	o notmuch-0.20.1
 	o ns-3.14.1
 	o ns-plugger-common-5.1.3
 	o nspluginwrapper-1.4.4 [pkg/47208]
@@ -848,7 +849,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o nxtvepg-2.8.1
 	o ocamlgraph-1.8.6
 	o ocrad-0.25
-	o octave-3.8.2
+	o octave-4.0.0
 	o olvwm-4.5
 	o oo2c-2.1.7
 	o opal-3.8.0 [pkg/42942]
@@ -934,6 +935,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-gmpy-1.17
 	o py-gnome-menus-3.8.0
 	o py-greenlet-0.4.2
+	o py-html2text-2015.6.6
 	o py-lasso-2.4.0
 	o py-markdown-2.3.1
 	o py-matplotlib-1.4.3

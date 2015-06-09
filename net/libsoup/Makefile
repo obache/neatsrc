@@ -1,10 +1,8 @@
-# $NetBSD: Makefile,v 1.68 2015/04/23 09:35:24 tnn Exp $
+# $NetBSD: Makefile,v 1.17 2015/06/07 14:03:20 youri Exp $
 
-DISTNAME=	libsoup-2.48.1
-PKGNAME=	${DISTNAME:S/libsoup/libsoup24/}
-PKGREVISION=	1
+DISTNAME=	libsoup-2.50.0
 CATEGORIES=	net gnome
-MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libsoup/2.48/}
+MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libsoup/2.50/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -30,7 +28,7 @@ TEST_TARGET=	check
 # gcc>=4.2 specific -Werror=XXX flags will be added unconditionally.
 .include "../../mk/compiler.mk"
 .if !empty(CC_VERSION:Mgcc-4.[01].*) || !empty(CC_VERSION:Mgcc-[1-3].*)
-CONFIGURE_ARGS+= 	--disable-more-warnings
+CONFIGURE_ARGS+=	--disable-more-warnings
 .endif
 
 .if !empty(PKGSRC_COMPILER:Mclang)

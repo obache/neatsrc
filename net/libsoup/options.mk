@@ -1,6 +1,6 @@
-# $NetBSD: options.mk,v 1.3 2013/05/27 11:57:19 drochner Exp $
+# $NetBSD: options.mk,v 1.1 2015/06/07 14:03:20 youri Exp $
 
-PKG_OPTIONS_VAR=	PKG_OPTIONS.libsoup24
+PKG_OPTIONS_VAR=	PKG_OPTIONS.libsoup
 PKG_SUPPORTED_OPTIONS=	gnome
 PKG_SUGGESTED_OPTIONS=	gnome
 
