@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.14451 2015/06/07 09:13:21 wiz Exp $
+$NetBSD: TODO,v 1.14456 2015/06/10 09:00:50 wiz Exp $
 
 Suggested new packages
 ======================
@@ -358,7 +358,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o GMT-5.1.1
 	o GNUMail-1.2.2
 	o JBidwatcher-2.5.6 [wants launch4j]
-	o MesaLib-10.5.6
 	o OdfConverter-4.0
 	o PAM-0.99.7.1
 	o RBTools-0.7.2
@@ -415,7 +414,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o bbsload-0.2.8
 	o bbweather-0.6.3
 	o benchfft-3.1
-	o binutils-2.25
 	o bitchx-1.2.1 [wip]
 	o blender-2.74
 	o bliz++-0.10
@@ -961,7 +959,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o qlandkartegt-1.8.1 [pkg/49910]
 	o qnetwalk-1.4
 	o qt4-creator-3.4.0
-	o rabbitmq-3.5.1
 	o radiance-4.1
 	o rails-4.1.5
 	o rainbowcrack-1.5
