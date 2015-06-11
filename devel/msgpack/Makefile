@@ -16,15 +16,6 @@ USE_LIBTOOL=	yes
 
 PKGCONFIG_OVERRIDE=	msgpack.pc.in
 
-GCC_REQD+=	4.1
-
-.include "../../mk/bsd.prefs.mk"
-
-.if ${MACHINE_ARCH} == "i386"
-CFLAGS+=	-march=i686
-CXXFLAGS+=	-march=i686
-.endif
-
 .include "options.mk"
 
 .include "../../mk/bsd.pkg.mk"
