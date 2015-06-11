@@ -10,7 +10,6 @@ HOMEPAGE=	http://groonga.org/
 COMMENT=	Fulltext search engine and column store
 LICENSE=	gnu-lgpl-v2.1
 
-RUBY_VERSION_SUPPORTED=	21 200 193
 .include "../../lang/ruby/rubyversion.mk"
 DEPENDS+=	${RUBY_BASE}>=${RUBY_VERSION}:${RUBY_SRCDIR}
 
