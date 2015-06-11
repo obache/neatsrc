@@ -11,12 +11,17 @@ include/groonga/groonga/groonga.h
 include/groonga/groonga/ii.h
 include/groonga/groonga/nfkc.h
 include/groonga/groonga/normalizer.h
+include/groonga/groonga/obj.h
+include/groonga/groonga/output.h
+include/groonga/groonga/portability.h
 include/groonga/groonga/plugin.h
 include/groonga/groonga/request_canceler.h
+include/groonga/groonga/scorer.h
 include/groonga/groonga/token.h
 include/groonga/groonga/token_filter.h
 include/groonga/groonga/tokenizer.h
 include/groonga/groonga/util.h
+lib/groonga/plugins/functions/vector.la
 lib/groonga/plugins/query_expanders/tsv.la
 lib/groonga/plugins/suggest/suggest.la
 lib/groonga/plugins/table/table.la
@@ -30,6 +35,8 @@ ${PLIST.httpd}sbin/groonga-httpd
 sbin/groonga-httpd-restart
 share/doc/groonga/en/html/.buildinfo
 share/doc/groonga/en/html/_images/geo-points.png
+share/doc/groonga/en/html/_images/used-when-indexing.png
+share/doc/groonga/en/html/_images/used-when-searching.png
 share/doc/groonga/en/html/_sources/characteristic.txt
 share/doc/groonga/en/html/_sources/client.txt
 share/doc/groonga/en/html/_sources/community.txt
@@ -67,6 +74,7 @@ share/doc/groonga/en/html/_sources/news/1.2.x.txt
 share/doc/groonga/en/html/_sources/news/1.3.x.txt
 share/doc/groonga/en/html/_sources/news/2.x.txt
 share/doc/groonga/en/html/_sources/news/3.x.txt
+share/doc/groonga/en/html/_sources/news/4.x.txt
 share/doc/groonga/en/html/_sources/news/senna.txt
 share/doc/groonga/en/html/_sources/reference.txt
 share/doc/groonga/en/html/_sources/reference/api.txt
@@ -92,6 +100,7 @@ share/doc/groonga/en/html/_sources/reference/api/grn_table.txt
 share/doc/groonga/en/html/_sources/reference/api/grn_table_cursor.txt
 share/doc/groonga/en/html/_sources/reference/api/grn_type.txt
 share/doc/groonga/en/html/_sources/reference/api/grn_user_data.txt
+share/doc/groonga/en/html/_sources/reference/api/overview.txt
 share/doc/groonga/en/html/_sources/reference/api/plugin.txt
 share/doc/groonga/en/html/_sources/reference/cast.txt
 share/doc/groonga/en/html/_sources/reference/column.txt
@@ -120,8 +129,12 @@ share/doc/groonga/en/html/_sources/reference/commands/lock_clear.txt
 share/doc/groonga/en/html/_sources/reference/commands/log_level.txt
 share/doc/groonga/en/html/_sources/reference/commands/log_put.txt
 share/doc/groonga/en/html/_sources/reference/commands/log_reopen.txt
+share/doc/groonga/en/html/_sources/reference/commands/logical_count.txt
+share/doc/groonga/en/html/_sources/reference/commands/logical_range_filter.txt
 share/doc/groonga/en/html/_sources/reference/commands/normalize.txt
 share/doc/groonga/en/html/_sources/reference/commands/normalizer_list.txt
+share/doc/groonga/en/html/_sources/reference/commands/plugin_register.txt
+share/doc/groonga/en/html/_sources/reference/commands/plugin_unregister.txt
 share/doc/groonga/en/html/_sources/reference/commands/quit.txt
 share/doc/groonga/en/html/_sources/reference/commands/range_filter.txt
 share/doc/groonga/en/html/_sources/reference/commands/register.txt
@@ -164,6 +177,7 @@ share/doc/groonga/en/html/_sources/reference/functions/query.txt
 share/doc/groonga/en/html/_sources/reference/functions/rand.txt
 share/doc/groonga/en/html/_sources/reference/functions/snippet_html.txt
 share/doc/groonga/en/html/_sources/reference/functions/sub_filter.txt
+share/doc/groonga/en/html/_sources/reference/functions/vector_size.txt
 share/doc/groonga/en/html/_sources/reference/grn_expr.txt
 share/doc/groonga/en/html/_sources/reference/grn_expr/query_syntax.txt
 share/doc/groonga/en/html/_sources/reference/grn_expr/script_syntax.txt
@@ -175,6 +189,11 @@ share/doc/groonga/en/html/_sources/reference/operations/geolocation_search.txt
 share/doc/groonga/en/html/_sources/reference/output.txt
 share/doc/groonga/en/html/_sources/reference/query_expanders.txt
 share/doc/groonga/en/html/_sources/reference/query_expanders/tsv.txt
+share/doc/groonga/en/html/_sources/reference/regular_expression.txt
+share/doc/groonga/en/html/_sources/reference/scorer.txt
+share/doc/groonga/en/html/_sources/reference/scorers/scorer_tf_at_most.txt
+share/doc/groonga/en/html/_sources/reference/scorers/scorer_tf_idf.txt
+share/doc/groonga/en/html/_sources/reference/scoring_note.txt
 share/doc/groonga/en/html/_sources/reference/suggest.txt
 share/doc/groonga/en/html/_sources/reference/suggest/completion.txt
 share/doc/groonga/en/html/_sources/reference/suggest/correction.txt
@@ -191,6 +210,7 @@ share/doc/groonga/en/html/_sources/server/http.txt
 share/doc/groonga/en/html/_sources/server/http/comparison.txt
 share/doc/groonga/en/html/_sources/server/http/groonga-httpd.txt
 share/doc/groonga/en/html/_sources/server/http/groonga.txt
+share/doc/groonga/en/html/_sources/server/memcached.txt
 share/doc/groonga/en/html/_sources/server/package.txt
 share/doc/groonga/en/html/_sources/spec.txt
 share/doc/groonga/en/html/_sources/spec/gqtp.txt
@@ -222,7 +242,6 @@ share/doc/groonga/en/html/_static/favicon.ico
 share/doc/groonga/en/html/_static/file.png
 share/doc/groonga/en/html/_static/groonga.css
 share/doc/groonga/en/html/_static/header-background.png
-share/doc/groonga/en/html/_static/jp.png
 share/doc/groonga/en/html/_static/jquery.js
 share/doc/groonga/en/html/_static/logo.png
 share/doc/groonga/en/html/_static/minus.png
@@ -233,7 +252,6 @@ share/doc/groonga/en/html/_static/searchtools.js
 share/doc/groonga/en/html/_static/underscore.js
 share/doc/groonga/en/html/_static/up-pressed.png
 share/doc/groonga/en/html/_static/up.png
-share/doc/groonga/en/html/_static/us.png
 share/doc/groonga/en/html/_static/websupport.js
 share/doc/groonga/en/html/characteristic.html
 share/doc/groonga/en/html/client.html
@@ -273,6 +291,7 @@ share/doc/groonga/en/html/news/1.2.x.html
 share/doc/groonga/en/html/news/1.3.x.html
 share/doc/groonga/en/html/news/2.x.html
 share/doc/groonga/en/html/news/3.x.html
+share/doc/groonga/en/html/news/4.x.html
 share/doc/groonga/en/html/news/senna.html
 share/doc/groonga/en/html/objects.inv
 share/doc/groonga/en/html/reference.html
@@ -299,6 +318,7 @@ share/doc/groonga/en/html/reference/api/grn_table.html
 share/doc/groonga/en/html/reference/api/grn_table_cursor.html
 share/doc/groonga/en/html/reference/api/grn_type.html
 share/doc/groonga/en/html/reference/api/grn_user_data.html
+share/doc/groonga/en/html/reference/api/overview.html
 share/doc/groonga/en/html/reference/api/plugin.html
 share/doc/groonga/en/html/reference/cast.html
 share/doc/groonga/en/html/reference/column.html
@@ -327,8 +347,12 @@ share/doc/groonga/en/html/reference/commands/lock_clear.html
 share/doc/groonga/en/html/reference/commands/log_level.html
 share/doc/groonga/en/html/reference/commands/log_put.html
 share/doc/groonga/en/html/reference/commands/log_reopen.html
+share/doc/groonga/en/html/reference/commands/logical_count.html
+share/doc/groonga/en/html/reference/commands/logical_range_filter.html
 share/doc/groonga/en/html/reference/commands/normalize.html
 share/doc/groonga/en/html/reference/commands/normalizer_list.html
+share/doc/groonga/en/html/reference/commands/plugin_register.html
+share/doc/groonga/en/html/reference/commands/plugin_unregister.html
 share/doc/groonga/en/html/reference/commands/quit.html
 share/doc/groonga/en/html/reference/commands/range_filter.html
 share/doc/groonga/en/html/reference/commands/register.html
@@ -371,6 +395,7 @@ share/doc/groonga/en/html/reference/functions/query.html
 share/doc/groonga/en/html/reference/functions/rand.html
 share/doc/groonga/en/html/reference/functions/snippet_html.html
 share/doc/groonga/en/html/reference/functions/sub_filter.html
+share/doc/groonga/en/html/reference/functions/vector_size.html
 share/doc/groonga/en/html/reference/grn_expr.html
 share/doc/groonga/en/html/reference/grn_expr/query_syntax.html
 share/doc/groonga/en/html/reference/grn_expr/script_syntax.html
@@ -382,6 +407,11 @@ share/doc/groonga/en/html/reference/operations/geolocation_search.html
 share/doc/groonga/en/html/reference/output.html
 share/doc/groonga/en/html/reference/query_expanders.html
 share/doc/groonga/en/html/reference/query_expanders/tsv.html
+share/doc/groonga/en/html/reference/regular_expression.html
+share/doc/groonga/en/html/reference/scorer.html
+share/doc/groonga/en/html/reference/scorers/scorer_tf_at_most.html
+share/doc/groonga/en/html/reference/scorers/scorer_tf_idf.html
+share/doc/groonga/en/html/reference/scoring_note.html
 share/doc/groonga/en/html/reference/suggest.html
 share/doc/groonga/en/html/reference/suggest/completion.html
 share/doc/groonga/en/html/reference/suggest/correction.html
@@ -400,6 +430,7 @@ share/doc/groonga/en/html/server/http.html
 share/doc/groonga/en/html/server/http/comparison.html
 share/doc/groonga/en/html/server/http/groonga-httpd.html
 share/doc/groonga/en/html/server/http/groonga.html
+share/doc/groonga/en/html/server/memcached.html
 share/doc/groonga/en/html/server/package.html
 share/doc/groonga/en/html/spec.html
 share/doc/groonga/en/html/spec/gqtp.html
@@ -421,6 +452,8 @@ share/doc/groonga/en/html/tutorial/query_expansion.html
 share/doc/groonga/en/html/tutorial/search.html
 share/doc/groonga/ja/html/.buildinfo
 share/doc/groonga/ja/html/_images/geo-points.png
+share/doc/groonga/ja/html/_images/used-when-indexing.png
+share/doc/groonga/ja/html/_images/used-when-searching.png
 share/doc/groonga/ja/html/_sources/characteristic.txt
 share/doc/groonga/ja/html/_sources/client.txt
 share/doc/groonga/ja/html/_sources/community.txt
@@ -458,6 +491,7 @@ share/doc/groonga/ja/html/_sources/news/1.2.x.txt
 share/doc/groonga/ja/html/_sources/news/1.3.x.txt
 share/doc/groonga/ja/html/_sources/news/2.x.txt
 share/doc/groonga/ja/html/_sources/news/3.x.txt
+share/doc/groonga/ja/html/_sources/news/4.x.txt
 share/doc/groonga/ja/html/_sources/news/senna.txt
 share/doc/groonga/ja/html/_sources/reference.txt
 share/doc/groonga/ja/html/_sources/reference/api.txt
@@ -483,6 +517,7 @@ share/doc/groonga/ja/html/_sources/reference/api/grn_table.txt
 share/doc/groonga/ja/html/_sources/reference/api/grn_table_cursor.txt
 share/doc/groonga/ja/html/_sources/reference/api/grn_type.txt
 share/doc/groonga/ja/html/_sources/reference/api/grn_user_data.txt
+share/doc/groonga/ja/html/_sources/reference/api/overview.txt
 share/doc/groonga/ja/html/_sources/reference/api/plugin.txt
 share/doc/groonga/ja/html/_sources/reference/cast.txt
 share/doc/groonga/ja/html/_sources/reference/column.txt
@@ -511,8 +546,12 @@ share/doc/groonga/ja/html/_sources/reference/commands/lock_clear.txt
 share/doc/groonga/ja/html/_sources/reference/commands/log_level.txt
 share/doc/groonga/ja/html/_sources/reference/commands/log_put.txt
 share/doc/groonga/ja/html/_sources/reference/commands/log_reopen.txt
+share/doc/groonga/ja/html/_sources/reference/commands/logical_count.txt
+share/doc/groonga/ja/html/_sources/reference/commands/logical_range_filter.txt
 share/doc/groonga/ja/html/_sources/reference/commands/normalize.txt
 share/doc/groonga/ja/html/_sources/reference/commands/normalizer_list.txt
+share/doc/groonga/ja/html/_sources/reference/commands/plugin_register.txt
+share/doc/groonga/ja/html/_sources/reference/commands/plugin_unregister.txt
 share/doc/groonga/ja/html/_sources/reference/commands/quit.txt
 share/doc/groonga/ja/html/_sources/reference/commands/range_filter.txt
 share/doc/groonga/ja/html/_sources/reference/commands/register.txt
@@ -555,6 +594,7 @@ share/doc/groonga/ja/html/_sources/reference/functions/query.txt
 share/doc/groonga/ja/html/_sources/reference/functions/rand.txt
 share/doc/groonga/ja/html/_sources/reference/functions/snippet_html.txt
 share/doc/groonga/ja/html/_sources/reference/functions/sub_filter.txt
+share/doc/groonga/ja/html/_sources/reference/functions/vector_size.txt
 share/doc/groonga/ja/html/_sources/reference/grn_expr.txt
 share/doc/groonga/ja/html/_sources/reference/grn_expr/query_syntax.txt
 share/doc/groonga/ja/html/_sources/reference/grn_expr/script_syntax.txt
@@ -566,6 +606,11 @@ share/doc/groonga/ja/html/_sources/reference/operations/geolocation_search.txt
 share/doc/groonga/ja/html/_sources/reference/output.txt
 share/doc/groonga/ja/html/_sources/reference/query_expanders.txt
 share/doc/groonga/ja/html/_sources/reference/query_expanders/tsv.txt
+share/doc/groonga/ja/html/_sources/reference/regular_expression.txt
+share/doc/groonga/ja/html/_sources/reference/scorer.txt
+share/doc/groonga/ja/html/_sources/reference/scorers/scorer_tf_at_most.txt
+share/doc/groonga/ja/html/_sources/reference/scorers/scorer_tf_idf.txt
+share/doc/groonga/ja/html/_sources/reference/scoring_note.txt
 share/doc/groonga/ja/html/_sources/reference/suggest.txt
 share/doc/groonga/ja/html/_sources/reference/suggest/completion.txt
 share/doc/groonga/ja/html/_sources/reference/suggest/correction.txt
@@ -582,6 +627,7 @@ share/doc/groonga/ja/html/_sources/server/http.txt
 share/doc/groonga/ja/html/_sources/server/http/comparison.txt
 share/doc/groonga/ja/html/_sources/server/http/groonga-httpd.txt
 share/doc/groonga/ja/html/_sources/server/http/groonga.txt
+share/doc/groonga/ja/html/_sources/server/memcached.txt
 share/doc/groonga/ja/html/_sources/server/package.txt
 share/doc/groonga/ja/html/_sources/spec.txt
 share/doc/groonga/ja/html/_sources/spec/gqtp.txt
@@ -613,7 +659,6 @@ share/doc/groonga/ja/html/_static/favicon.ico
 share/doc/groonga/ja/html/_static/file.png
 share/doc/groonga/ja/html/_static/groonga.css
 share/doc/groonga/ja/html/_static/header-background.png
-share/doc/groonga/ja/html/_static/jp.png
 share/doc/groonga/ja/html/_static/jquery.js
 share/doc/groonga/ja/html/_static/logo.png
 share/doc/groonga/ja/html/_static/minus.png
@@ -624,7 +669,6 @@ share/doc/groonga/ja/html/_static/searchtools.js
 share/doc/groonga/ja/html/_static/underscore.js
 share/doc/groonga/ja/html/_static/up-pressed.png
 share/doc/groonga/ja/html/_static/up.png
-share/doc/groonga/ja/html/_static/us.png
 share/doc/groonga/ja/html/_static/websupport.js
 share/doc/groonga/ja/html/characteristic.html
 share/doc/groonga/ja/html/client.html
@@ -664,6 +708,7 @@ share/doc/groonga/ja/html/news/1.2.x.html
 share/doc/groonga/ja/html/news/1.3.x.html
 share/doc/groonga/ja/html/news/2.x.html
 share/doc/groonga/ja/html/news/3.x.html
+share/doc/groonga/ja/html/news/4.x.html
 share/doc/groonga/ja/html/news/senna.html
 share/doc/groonga/ja/html/objects.inv
 share/doc/groonga/ja/html/reference.html
@@ -690,6 +735,7 @@ share/doc/groonga/ja/html/reference/api/grn_table.html
 share/doc/groonga/ja/html/reference/api/grn_table_cursor.html
 share/doc/groonga/ja/html/reference/api/grn_type.html
 share/doc/groonga/ja/html/reference/api/grn_user_data.html
+share/doc/groonga/ja/html/reference/api/overview.html
 share/doc/groonga/ja/html/reference/api/plugin.html
 share/doc/groonga/ja/html/reference/cast.html
 share/doc/groonga/ja/html/reference/column.html
@@ -718,8 +764,12 @@ share/doc/groonga/ja/html/reference/commands/lock_clear.html
 share/doc/groonga/ja/html/reference/commands/log_level.html
 share/doc/groonga/ja/html/reference/commands/log_put.html
 share/doc/groonga/ja/html/reference/commands/log_reopen.html
+share/doc/groonga/ja/html/reference/commands/logical_count.html
+share/doc/groonga/ja/html/reference/commands/logical_range_filter.html
 share/doc/groonga/ja/html/reference/commands/normalize.html
 share/doc/groonga/ja/html/reference/commands/normalizer_list.html
+share/doc/groonga/ja/html/reference/commands/plugin_register.html
+share/doc/groonga/ja/html/reference/commands/plugin_unregister.html
 share/doc/groonga/ja/html/reference/commands/quit.html
 share/doc/groonga/ja/html/reference/commands/range_filter.html
 share/doc/groonga/ja/html/reference/commands/register.html
@@ -762,6 +812,7 @@ share/doc/groonga/ja/html/reference/functions/query.html
 share/doc/groonga/ja/html/reference/functions/rand.html
 share/doc/groonga/ja/html/reference/functions/snippet_html.html
 share/doc/groonga/ja/html/reference/functions/sub_filter.html
+share/doc/groonga/ja/html/reference/functions/vector_size.html
 share/doc/groonga/ja/html/reference/grn_expr.html
 share/doc/groonga/ja/html/reference/grn_expr/query_syntax.html
 share/doc/groonga/ja/html/reference/grn_expr/script_syntax.html
@@ -773,6 +824,11 @@ share/doc/groonga/ja/html/reference/operations/geolocation_search.html
 share/doc/groonga/ja/html/reference/output.html
 share/doc/groonga/ja/html/reference/query_expanders.html
 share/doc/groonga/ja/html/reference/query_expanders/tsv.html
+share/doc/groonga/ja/html/reference/regular_expression.html
+share/doc/groonga/ja/html/reference/scorer.html
+share/doc/groonga/ja/html/reference/scorers/scorer_tf_at_most.html
+share/doc/groonga/ja/html/reference/scorers/scorer_tf_idf.html
+share/doc/groonga/ja/html/reference/scoring_note.html
 share/doc/groonga/ja/html/reference/suggest.html
 share/doc/groonga/ja/html/reference/suggest/completion.html
 share/doc/groonga/ja/html/reference/suggest/correction.html
@@ -791,6 +847,7 @@ share/doc/groonga/ja/html/server/http.html
 share/doc/groonga/ja/html/server/http/comparison.html
 share/doc/groonga/ja/html/server/http/groonga-httpd.html
 share/doc/groonga/ja/html/server/http/groonga.html
+share/doc/groonga/ja/html/server/memcached.html
 share/doc/groonga/ja/html/server/package.html
 share/doc/groonga/ja/html/spec.html
 share/doc/groonga/ja/html/spec/gqtp.html
