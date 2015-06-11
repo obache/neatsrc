@@ -13,7 +13,7 @@ $NetBSD: patch-src_platform.hpp.in,v 1.4 2014/03/01 08:38:12 obache Exp $
  #undef ZMQ_HAVE_FREEBSD
  
 +/* Have DragonFly OS */
-+#undef ZMQ_DRAGONFLY
++#undef ZMQ_HAVE_DRAGONFLY
 +
  /* Have HPUX OS */
  #undef ZMQ_HAVE_HPUX
