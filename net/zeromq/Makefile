@@ -11,7 +11,7 @@ LICENSE=	gnu-lgpl-v3
 
 USE_LANGUAGES=	c c++
 USE_LIBTOOL=	yes
-USE_TOOLS+=	gmake pkg-config
+USE_TOOLS+=	pkg-config
 GNU_CONFIGURE=	yes
 
 PKGCONFIG_OVERRIDE+=	src/libzmq.pc.in
