@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.14456 2015/06/10 09:00:50 wiz Exp $
+$NetBSD: TODO,v 1.14460 2015/06/11 17:47:33 taca Exp $
 
 Suggested new packages
 ======================
@@ -401,7 +401,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o aspell-nb-2.0.10
 	o asymptote-2.35
 	o aterm-1.0.1
-	o atk-2.16.0
 	o aubio-0.4.0
 	o autoconvert-0.3.16
 	o autogen-5.18.5
@@ -591,7 +590,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o glade3-3.18.3
 	o glade3-3.8.5 [GNOME 2.34]
 	o gle-4.2.4
-	o glib2-2.44.0
 	o glibmm-2.44.0
 	o glom-1.14.2 [GNOME 2.26]
 	o gnet1-1.1.9
@@ -758,8 +756,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libtool-2.4.6
 	o libusb-1.0.19
 	o libuuid-2.26.2
-	o libuv-1.0.1 [pkg/49442]
-	o libuv-1.4.2
 	o libv4l-0.8.5
 	o libvdpau-1.1
 	o libvpx-1.4.0
@@ -861,6 +857,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o openscad-2013.06
 	o openslp-2.0.0
 	o openssh-6.8p1 (Note: it drop tcp_wrappers support since 6.7p1!!)
+	o openssl-1.0.2b
 	o opera-26
 	o opus-1.1
 	o oroborus-2.0.18
@@ -983,8 +980,11 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o rp-pppoe-3.11
 	o rtcw-1.41.3
 	o rtty-4.0 [at ftp://ftp.isc.org/isc/rtty/]
+	o ruby-chef-12.3.0
+	o ruby-chef-zero-4.2.2
 	o ruby-ncurses-1.3.1
 	o ruby-review-1.4.0 [wip]
+	o ruby-selenium-webdriver-2.46.2
 	o sabayon-2.30.1 [GNOME 2.30]
 	o sablecc-3.7
 	o sane-1.0.24
