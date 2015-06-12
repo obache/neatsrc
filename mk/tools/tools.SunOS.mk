@@ -211,6 +211,7 @@ TOOLS_PLATFORM.tr?=		/usr/xpg4/bin/tr
 TOOLS_PLATFORM.true?=		true			# shell builtin
 TOOLS_PLATFORM.tsort?=		/usr/ccs/bin/tsort
 TOOLS_PLATFORM.uniq?=		/usr/bin/uniq
+TOOLS_PLATFORM.unlink?=		/usr/sbin/unlink
 .if exists(/usr/bin/unzip)
 TOOLS_PLATFORM.unzip?=		/usr/bin/unzip
 .endif

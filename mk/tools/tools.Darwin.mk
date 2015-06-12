@@ -117,6 +117,9 @@ TOOLS_PLATFORM.tr?=		/usr/bin/tr
 TOOLS_PLATFORM.true?=		true			# shell builtin
 TOOLS_PLATFORM.tsort?=		/usr/bin/tsort
 TOOLS_PLATFORM.uniq?=		/usr/bin/uniq
+.if exists(/bin/unlink)
+TOOLS_PLATFORM.unlink?=		/bin/unlink
+.endif
 TOOLS_PLATFORM.unzip?=		/usr/bin/unzip
 TOOLS_PLATFORM.wc?=		/usr/bin/wc
 .if exists(/usr/bin/wish)

@@ -92,6 +92,7 @@ TOOLS_PLATFORM.tr?=		/usr/bin/tr
 TOOLS_PLATFORM.true?=		/usr/bin/true
 TOOLS_PLATFORM.tsort?=		/usr/bin/tsort
 TOOLS_PLATFORM.uniq?=		/usr/bin/uniq
+TOOLS_PLATFORM.unlink?=		/bin/unlink
 TOOLS_PLATFORM.wc?=		/usr/bin/wc
 TOOLS_PLATFORM.xargs?=		/usr/bin/xargs
 TOOLS_PLATFORM.xz?=		/usr/bin/xz

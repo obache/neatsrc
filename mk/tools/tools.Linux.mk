@@ -255,6 +255,11 @@ TOOLS_PLATFORM.uniq?=		/bin/uniq
 .elif exists(/usr/bin/uniq)
 TOOLS_PLATFORM.uniq?=		/usr/bin/uniq
 .endif
+.if exists(/bin/unlink)
+TOOLS_PLATFORM.unlink?=		/bin/unlink
+.elif exists(/usr/bin/unlink)
+TOOLS_PLATFORM.unlink?=		/usr/bin/unlink
+.endif
 TOOLS_PLATFORM.wc?=		/usr/bin/wc
 .if exists(/usr/bin/wget)
 TOOLS_PLATFORM.wget?=		/usr/bin/wget

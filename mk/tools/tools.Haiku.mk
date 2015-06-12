@@ -150,6 +150,7 @@ TOOLS_PLATFORM.tr?=		/bin/tr
 TOOLS_PLATFORM.true?=		true			# shell builtin
 TOOLS_PLATFORM.tsort?=		/bin/tsort
 TOOLS_PLATFORM.uniq?=		/bin/uniq
+TOOLS_PLATFORM.unlink?=		/bin/unlink
 TOOLS_PLATFORM.unzip?=		/bin/unzip
 TOOLS_PLATFORM.wc?=		/bin/wc
 TOOLS_PLATFORM.wget?=		/bin/wget

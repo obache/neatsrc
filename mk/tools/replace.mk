@@ -1009,7 +1009,8 @@ TOOLS_PATH.${_t_}=		${TOOLS_PREFIX.${_t_}}/bin/${_t_}
 _TOOLS.coreutils=	basename cat chgrp chmod chown cp cut date	\
 		dirname echo env expr false head hostname id install	\
 		ln ls mkdir mv nice numfmt printf pwd readlink realpath \
-		rm rmdir sleep sort tail tee test touch tr true tsort wc
+		rm rmdir sleep sort tail tee test touch tr true tsort	\
+		unlink wc
 
 .for _t_ in ${_TOOLS.coreutils}
 .  if !defined(TOOLS_IGNORE.${_t_}) && !empty(_USE_TOOLS:M${_t_})
