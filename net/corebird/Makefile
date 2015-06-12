@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.7 2015/06/07 14:05:58 youri Exp $
 
-DISTNAME=	corebird-0.9
-PKGREVISION=	3
+DISTNAME=	corebird-1.0
 CATEGORIES=	net
 MASTER_SITES=	-https://github.com/baedert/corebird/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
