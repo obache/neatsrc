@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.20 2014/11/15 01:59:37 obache Exp $
 
-DISTNAME=	zeromq-4.0.5
+DISTNAME=	zeromq-4.0.6
 CATEGORIES=	net devel
 MASTER_SITES=	http://download.zeromq.org/
 
@@ -11,7 +11,7 @@ LICENSE=	gnu-lgpl-v3
 
 USE_LANGUAGES=	c c++
 USE_LIBTOOL=	yes
-USE_TOOLS+=	pkg-config
+USE_TOOLS+=	gmake pkg-config
 GNU_CONFIGURE=	yes
 
 PKGCONFIG_OVERRIDE+=	src/libzmq.pc.in
