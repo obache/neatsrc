@@ -336,6 +336,7 @@ SUBDIR+=	pkcs11-helper
 SUBDIR+=	pks
 SUBDIR+=	policykit
 SUBDIR+=	policykit-gnome
+SUBDIR+=	polkit
 SUBDIR+=	polkit-qt
 SUBDIR+=	portsentry
 SUBDIR+=	prelude-correlator
