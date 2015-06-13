@@ -51,6 +51,7 @@ CONFIGURE_ENV+=		ac_cv_path_CUPS_GHOSTSCRIPT=${TOOLS_PATH.gs}
 .if !empty(PKG_OPTIONS:Mkerberos)
 .include "../../mk/krb5.buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-gssapi
+CONFIGURE_ENV+=		KRB5CONFIG=${KRB5_CONFIG}
 .else
 CONFIGURE_ARGS+=	--disable-gssapi
 .endif
