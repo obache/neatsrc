@@ -1,9 +1,8 @@
 # $NetBSD: Makefile,v 1.26 2015/06/12 10:51:12 wiz Exp $
 
-CONSOLEKIT_VER=		0.4.5
-DISTNAME=		ConsoleKit-${CONSOLEKIT_VER}
-PKGNAME=		consolekit-${CONSOLEKIT_VER}
-PKGREVISION=		1
+DISTNAME=		ConsoleKit-0.4.5
+PKGNAME=		${DISTNAME:tl}
+PKGREVISION=		2
 CATEGORIES=		sysutils
 MASTER_SITES=		http://www.freedesktop.org/software/ConsoleKit/dist/
 EXTRACT_SUFX=		.tar.bz2
@@ -19,23 +18,24 @@ EGDIR=		${PREFIX}/share/examples/consolekit
 CONF_FILES+=	${EGDIR}/00-primary.seat ${PKG_SYSCONFDIR}/seats.d/00-primary.seat
 CONF_FILES+=	${EGDIR}/ConsoleKit.conf ${PKG_SYSCONFBASE}/dbus-1/system.d/ConsoleKit.conf
 
-MAKE_DIRS=	${PKG_SYSCONFDIR}/seats.d
+OWN_DIRS+=	${PREFIX}/lib/ConsoleKit/run-session.d
+OWN_DIRS+=	${PREFIX}/lib/ConsoleKit/run-seat.d
+OWN_DIRS+=	${PKG_SYSCONFDIR}/seats.d
+OWN_DIRS+=	${PKG_SYSCONFDIR}/run-seat.d
 
 BUILD_DEFS+=		VARBASE
 BUILD_DEFS+=		PKG_SYSCONFBASE
 
 GNU_CONFIGURE=		YES
 USE_PKGLOCALEDIR=	YES
-USE_TOOLS+=		gmake intltool msgfmt perl pkg-config
+USE_TOOLS+=		gmake intltool msgfmt perl pkg-config gettext-m4
 USE_TOOLS+=		autoconf automake autoreconf
 USE_LIBTOOL=		YES
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE:Q}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 
-# TODO
-#CONFIGURE_ARGS+=	--enable-pam-module
-#.include "../../mk/pam.buildlink3.mk"
+.include "options.mk"
 
 post-extract:
 	${CP} ${FILESDIR}/ck-sysdeps-netbsd.c ${WRKSRC}/src/
@@ -57,9 +57,13 @@ post-install:
 CONFIGURE_ARGS+=	--enable-rbac-shutdown=solaris.system.shutdown
 .endif
 
+OWN_DIRS+=	${VARBASE}/log/ConsoleKit
+CONF_FILES+=	/dev/null ${VARBASE}/log/ConsoleKit/history
+
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/policykit/buildlink3.mk"
+.include "../../security/polkit/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"
 .include "../../sysutils/dbus-glib/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
+.include "../../mk/pam.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

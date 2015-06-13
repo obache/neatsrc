@@ -5,6 +5,7 @@
  * Copyright (C) 2006 William Jon McCann <mccann@jhu.edu>
  * Copyright (C) 2007 Joe Marcus Clarke <marcus@FreeBSD.org>
  * Copyright (C) 2008 Jared D. McNeill <jmcneill@NetBSD.org>
+ * Copyright (C) 2009 Robert Nagy <robert@openbsd.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -123,21 +124,21 @@ static gboolean
 get_kinfo_proc (pid_t pid,
                 struct kinfo_proc2 *p)
 {
-	int name[6];
-	u_int namelen;
-	size_t sz;
+        int name[6];
+        u_int namelen;
+        size_t sz;
 
-	sz = sizeof(*p);
-	namelen = 0;
-	name[namelen++] = CTL_KERN;
-	name[namelen++] = KERN_PROC2;
-	name[namelen++] = KERN_PROC_PID;
-	name[namelen++] = pid;
-	name[namelen++] = sz;
-	name[namelen++] = 1;
+        sz = sizeof(*p);
+        namelen = 0;
+        name[namelen++] = CTL_KERN;
+        name[namelen++] = KERN_PROC2;
+        name[namelen++] = KERN_PROC_PID;
+        name[namelen++] = pid;
+        name[namelen++] = sz;
+        name[namelen++] = 1;
 
         if (sysctl (name, namelen, p, &sz, NULL, 0) == -1) {
-		perror("sysctl kern.proc2.pid");
+                perror("sysctl kern.proc2.pid");
                 return FALSE;
         }
 
@@ -160,8 +161,8 @@ stat2proc (pid_t        pid,
         }
 
         num = KI_MAXCOMLEN;
-        if (num >= sizeof P->cmd) {
-                num = sizeof P->cmd - 1;
+        if (num >= sizeof(P->cmd)) {
+                num = sizeof(P->cmd) - 1;
         }
 
         memcpy (P->cmd, p.p_comm, num);
@@ -187,15 +188,15 @@ stat2proc (pid_t        pid,
         tty_min = minor (p.p_tdev);
         P->tty = DEV_ENCODE (tty_maj,tty_min);
 
-        snprintf (P->tty_text, sizeof P->tty_text, "%3d,%-3d", tty_maj, tty_min);
+        snprintf (P->tty_text, sizeof(P->tty_text), "%3d,%-3d", tty_maj, tty_min);
 
         if (p.p_tdev != NODEV && (ttname = devname (p.p_tdev, S_IFCHR)) != NULL) {
-                memcpy (P->tty_text, ttname, sizeof P->tty_text);
+                memcpy (P->tty_text, ttname, sizeof(P->tty_text));
         }
 
         if (p.p_tdev == NODEV) {
-		/* XXXJDM nasty hack */
-                memcpy (P->tty_text, "/dev/ttyE4", sizeof P->tty_text);
+                /* XXXJDM nasty hack */
+                memcpy (P->tty_text, "/dev/ttyE4", sizeof(P->tty_text));
         }
 
         if (P->pid != pid) {
@@ -240,24 +241,28 @@ ck_process_stat_free (CkProcessStat *stat)
 GHashTable *
 ck_unix_pid_get_env_hash (pid_t pid)
 {
-        GHashTable       *hash;
+        GHashTable       *hash = NULL;
         char            **penv;
+        char              errbuf[_POSIX2_LINE_MAX];
         kvm_t            *kd;
         struct kinfo_proc2 p;
         int               i;
 
-        kd = kvm_openfiles (_PATH_DEVNULL, _PATH_DEVNULL, NULL, O_RDONLY, NULL);
+        kd = kvm_openfiles (_PATH_DEVNULL, _PATH_DEVNULL, NULL, O_RDONLY, errbuf);
         if (kd == NULL) {
+                g_warning ("kvm_openfiles failed: %s", errbuf);
                 return NULL;
         }
 
         if (! get_kinfo_proc (pid, &p)) {
-                return NULL;
+                g_warning ("get_kinfo_proc failed: %s", g_strerror (errno));
+                goto fail;
         }
 
         penv = kvm_getenvv2 (kd, &p, 0);
         if (penv == NULL) {
-                return NULL;
+                g_warning ("kvm_getenvv2 failed: %s", g_strerror (errno));
+                goto fail;
         }
 
         hash = g_hash_table_new_full (g_str_hash,
@@ -268,6 +273,8 @@ ck_unix_pid_get_env_hash (pid_t pid)
         for (i = 0; penv[i] != NULL; i++) {
                 char **vals;
 
+                if (!penv[i][0]) continue;
+
                 vals = g_strsplit (penv[i], "=", 2);
                 if (vals != NULL) {
                         g_hash_table_insert (hash,
@@ -277,6 +284,7 @@ ck_unix_pid_get_env_hash (pid_t pid)
                 }
         }
 
+fail:
         kvm_close (kd);
 
         return hash;
@@ -287,7 +295,7 @@ ck_unix_pid_get_env (pid_t       pid,
                      const char *var)
 {
         GHashTable *hash;
-        char       *val;
+        char       *val = NULL;
 
         /*
          * Would probably be more efficient to just loop through the
@@ -295,6 +303,8 @@ ck_unix_pid_get_env (pid_t       pid,
          * table, but this works for now.
          */
         hash = ck_unix_pid_get_env_hash (pid);
+        if (hash == NULL)
+            return val;
         val  = g_strdup (g_hash_table_lookup (hash, var));
         g_hash_table_destroy (hash);
 
@@ -333,11 +343,39 @@ ck_unix_pid_get_login_session_id (pid_t  pid,
 gboolean
 ck_get_max_num_consoles (guint *num)
 {
-	/* XXXJDM how can we find out how many are configured? */
-        if (num != NULL) {
-                *num = 8;
+        int      max_consoles;
+        int      res;
+        gboolean ret;
+        struct ttyent *t;
+
+        ret = FALSE;
+        max_consoles = 0;
+
+        res = setttyent ();
+        if (res == 0) {
+                goto done;
         }
 
+        while ((t = getttyent ()) != NULL) {
+                if (t->ty_status & TTY_ON && strncmp (t->ty_name, "ttyE", 4) == 0)
+                        max_consoles++;
+        }
+
+        ret = TRUE;
+
+        endttyent ();
+
+done:
+        if (num != NULL) {
+                *num = max_consoles;
+        }
+
+        return ret;
+}
+
+gboolean
+ck_supports_activatable_consoles (void)
+{
         return TRUE;
 }
 
