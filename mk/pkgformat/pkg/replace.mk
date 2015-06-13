@@ -137,9 +137,7 @@ replace-preserve-required-by: .PHONY
 
 # Fixes the +CONTENTS files of dependent packages to refer to the
 # replacement package, and puts the +REQUIRED_BY file back into place.
-# It also sets the unsafe_depends_strict tag on each dependent package,
-# and sets the unsafe_depends tag if the replaced package has a different
-# version.
+# It also sets the unsafe_depends_strict tag on each dependent package.
 #
 # XXX Only set unsafe_depends if there is an ABI change.
 #
@@ -164,9 +162,6 @@ replace-fixup-required-by: .PHONY
 			$$contents > $$newcontents;			\
 		${MV} -f $$newcontents $$contents;			\
 		${PKG_ADMIN} set unsafe_depends_strict=YES $$pkg;	\
-		if ${TEST} "$$oldname" != "$$newname"; then		\
-			${PKG_ADMIN} set unsafe_depends=YES $$pkg;	\
-		fi;							\
 	done;								\
 	${MV} ${_REQUIRED_BY_FILE} ${_PKG_DBDIR}/$$newname/+REQUIRED_BY
 
@@ -203,6 +198,7 @@ replace-clean: .PHONY
 # mode should behave the same way.  unsafe_depends will be set on
 # depending packages, and then those may be rebuilt via a manual
 # process or by pkg_rolling-replace.
+# XXX Only set unsafe_depends if there is an ABI change.
 replace-destdir: .PHONY
 	@${PHASE_MSG} "Updating using binary package of "${PKGNAME:Q}
 .if !empty(USE_CROSS_COMPILE:M[yY][eE][sS])
@@ -218,9 +214,6 @@ replace-destdir: .PHONY
 	${PKG_INFO} -qR ${PKGNAME:Q} | while read pkg; do \
 		[ -n "$$pkg" ] || continue; \
 		${PKG_ADMIN} set unsafe_depends_strict=YES "$$pkg"; \
-		if [ "$$oldname" != ${PKGNAME:Q} ]; then \
-			${PKG_ADMIN} set unsafe_depends=YES "$$pkg"; \
-		fi; \
 	done
 	${RUN}${PKG_ADMIN} unset unsafe_depends ${PKGNAME:Q}
 	${RUN}${PKG_ADMIN} unset unsafe_depends_strict ${PKGNAME:Q}
