@@ -14,6 +14,8 @@ LICENSE=	${PERL5_LICENSE}
 
 PERL5_PACKLIST=	auto/GSSAPI/.packlist
 
+MAKE_PARAMS+=	--gssapiimpl=${KRB5BASE}
+
 .include "../../lang/perl5/module.mk"
 .include "../../mk/krb5.buildlink3.mk"
 
