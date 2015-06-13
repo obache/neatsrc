@@ -3,3 +3,15 @@ $NetBSD: README,v 1.18 2005/05/07 22:18:28 wiz Exp $
 Please ignore doc/pkgsrc.txt for information, it's not maintained.
 
 This is just neat source tree for me, not for you.
+Feel free to fork this repository and create your neat source tree.
+But you MUST NOT apply diffs in this repository to your tree without
+understanding the full meaning of it, especially for TNF pkgsrc tree.
+It require PROPOSED AND DISCUSSED FIRST before commit and start to
+bikeshed discussion for several years.
+I would like to say "It's wrong" without particular reason to the
+propose, it's the TNF way.
+
+Above notes are neither LICENSE not COPYRIGHT restriction, it's just
+a manner, but it is clear that quite a bit of patches originally from
+pkgsrc have unclear LICENSE and/or COPYRIGHT, so you have to be very
+careful when you have a mind to send diffs to upstream developers.
