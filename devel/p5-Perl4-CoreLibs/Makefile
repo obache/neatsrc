@@ -11,6 +11,7 @@ HOMEPAGE=	http://search.cpan.org/dist/Perl4-CoreLibs/
 COMMENT=	Libraries historically supplied with Perl 4
 LICENSE=	${PERL5_LICENSE}
 
+PERL5_MODULE_TYPE=	Module::Build
 PERL5_PACKLIST=		auto/Perl4/CoreLibs/.packlist
 
 .include "../../lang/perl5/module.mk"
