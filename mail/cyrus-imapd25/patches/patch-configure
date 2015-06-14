@@ -1,0 +1,13 @@
+$NetBSD$
+
+--- configure.orig	2015-03-03 22:56:14.000000000 +0000
++++ configure
+@@ -21633,7 +21633,7 @@ fi
+ 
+ 
+     PERL="${PERL}"
+-    MAKE_MAKER_ARGS="PREFIX=${prefix}"
++    MAKE_MAKER_ARGS="INSTALLDIRS=vendor PREFIX=${prefix}"
+ 
+ 
+ _ACEOF

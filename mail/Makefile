@@ -55,6 +55,7 @@ SUBDIR+=	cue
 SUBDIR+=	cyrus-imapd
 SUBDIR+=	cyrus-imapd23
 SUBDIR+=	cyrus-imapd24
+SUBDIR+=	cyrus-imapd25
 SUBDIR+=	dbmail
 SUBDIR+=	dcc
 SUBDIR+=	deforaos-mailer

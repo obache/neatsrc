@@ -1,0 +1,17 @@
+$NetBSD: distinfo,v 1.20 2014/06/17 01:08:59 obache Exp $
+
+SHA1 (cyrus-imapd-2.5.2.tar.gz) = fdfed59f58ffd6734685bd1d77143fdff59780a8
+RMD160 (cyrus-imapd-2.5.2.tar.gz) = c88474add2a8eb0f82213a60ae6b45a3ee42a111
+Size (cyrus-imapd-2.5.2.tar.gz) = 2942122 bytes
+SHA1 (patch-configure) = 112cdcbab9d8e375486b59444727940fac523226
+SHA1 (patch-imap_http__caldav.c) = daa2c9baca97f02bc461dea2518d6bd8bed9f97f
+SHA1 (patch-imap_http__ischedule.c) = e63ccd48803b9cff8a69006c38c75ccf952d37d2
+SHA1 (patch-imap_http__rss.c) = 6ca994f2a3ed771150735448efbb04dd5ba63ae9
+SHA1 (patch-imap_http__timezone.c) = ef0d10a633710e911352aadc2e3b76b2ac147491
+SHA1 (patch-imap_httpd.c) = d024e85e5a933f40985587fe00bb64c791224149
+SHA1 (patch-imap_mailbox.c) = 089e0b167246dfdbf8d381332fdce9c42ad1e635
+SHA1 (patch-imap_mbexamine.c) = d413c7e0091215cf0572cf0510741cea168b7a68
+SHA1 (patch-imap_mboxevent.c) = 1dc9d2e483df66ed625ee19e6ed11cf7453f4021
+SHA1 (patch-imap_sync__client.c) = 801a934c94cd3a7884fdbb1860543cd84ceab3a0
+SHA1 (patch-imap_sync__support.c) = 63e86b759705411c652b117cf98bab5edf93520e
+SHA1 (patch-lib_util.h) = 1e1a377bcccd3b44449fbca0163b9380c3139e20
