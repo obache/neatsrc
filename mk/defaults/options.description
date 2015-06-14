@@ -561,6 +561,7 @@ pcsc			Enable PC/SC support.
 pdf			Enable PDF support.
 perl			Enable Perl support.
 pgadmin-db-designer	Enable pgAdmin database-designer functionality.
+pgm			Enable Pragmatic General Multicast support.
 pgsql			Enable PostgreSQL support.
 pim			Enable pim (personal information management) support.
 pinepwd			Enable $HOME/.pinepwd stored IMAP password file.

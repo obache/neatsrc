@@ -4,4 +4,5 @@ SHA1 (zeromq-4.0.6.tar.gz) = d8c4d3486506b4da5117db258cbe0396c62484b1
 RMD160 (zeromq-4.0.6.tar.gz) = 1e1aa44f90946c59561c57d55e8fbffc453614bf
 Size (zeromq-4.0.6.tar.gz) = 2190150 bytes
 SHA1 (patch-configure) = 83a274044136b373d0a486eed779b729b980502c
+SHA1 (patch-src_pgm__socket.hpp) = c89575871db8b6fff07958577b4e791a6f0cbeb4
 SHA1 (patch-src_platform.hpp.in) = dacfd484782a53ae626151a1136ff392ba33e881

@@ -28,6 +28,8 @@ CXXFLAGS+=	-std=gnu++0x
 CXXFLAGS+=	-std=gnu++11
 .endif
 
+.include "options.mk"
+
 .include "../../security/libsodium/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-libsodium=${BUILDLINK_PREFIX.libsodium}
 
