@@ -13,8 +13,8 @@ include/groonga/groonga/nfkc.h
 include/groonga/groonga/normalizer.h
 include/groonga/groonga/obj.h
 include/groonga/groonga/output.h
-include/groonga/groonga/portability.h
 include/groonga/groonga/plugin.h
+include/groonga/groonga/portability.h
 include/groonga/groonga/request_canceler.h
 include/groonga/groonga/scorer.h
 include/groonga/groonga/token.h
