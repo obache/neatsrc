@@ -8,4 +8,5 @@ PKG_SUGGESTED_OPTIONS+=	hal
 
 .if !empty(PKG_OPTIONS:Mhal)
 .include "../../sysutils/hal/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-hal
 .endif
