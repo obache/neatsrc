@@ -118,7 +118,6 @@ pre-configure:
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/libltdl/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
-.include "../../security/policykit/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"
 .include "../../textproc/json-c/buildlink3.mk"
 .include "../../mk/oss.buildlink3.mk"
