@@ -392,6 +392,7 @@ SUBDIR+=	openag
 SUBDIR+=	openconnect
 SUBDIR+=	openh323
 SUBDIR+=	openntpd
+SUBDIR+=	openpgm
 SUBDIR+=	openresolv
 SUBDIR+=	openslp
 SUBDIR+=	openvmps

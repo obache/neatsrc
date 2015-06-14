@@ -1,0 +1,8 @@
+$NetBSD$
+
+SHA1 (libpgm-5.2.122.tar.gz) = 13b014523fb53feb4e88e0560dd340862bc25ca8
+RMD160 (libpgm-5.2.122.tar.gz) = bbf52e84cd53d716ba46f0cc5450e29f4d3a73f5
+Size (libpgm-5.2.122.tar.gz) = 1026254 bytes
+SHA1 (patch-openpgm_pgm_include_impl_sockaddr.h) = 72a60e0ae4ffb0182f9c5e9f96856d9b7c6fac67
+SHA1 (patch-openpgm_pgm_time.c) = c4479ecdb7ab895cf66bb0b293ad4364e2f2203e
+SHA1 (patch-openpgm_pgm_version__generator.py) = 036afa13b836b5aefd4d135234ab0203ba2e1cca
