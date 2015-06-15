@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2015/06/12 10:49:38 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2015/06/14 13:02:54 ryoon Exp $
 
 DISTNAME=	Perl4-CoreLibs-0.003
 PKGNAME=	p5-${DISTNAME}
@@ -12,6 +12,7 @@ COMMENT=	Libraries historically supplied with Perl 4
 LICENSE=	${PERL5_LICENSE}
 
 PERL5_MODULE_TYPE=	Module::Build
+
 PERL5_PACKLIST=		auto/Perl4/CoreLibs/.packlist
 
 .include "../../lang/perl5/module.mk"
