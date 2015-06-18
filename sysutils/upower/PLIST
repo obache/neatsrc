@@ -11,10 +11,6 @@ include/libupower-glib/up-wakeups.h
 include/libupower-glib/upower.h
 ${PLIST.introspection}lib/girepository-1.0/UPowerGlib-1.0.typelib
 lib/libupower-glib.la
-lib/locale/fr/LC_MESSAGES/upower.mo
-lib/locale/it/LC_MESSAGES/upower.mo
-lib/locale/pl/LC_MESSAGES/upower.mo
-lib/locale/sv/LC_MESSAGES/upower.mo
 lib/pkgconfig/upower-glib.pc
 libexec/upowerd
 man/man1/upower.1
@@ -28,3 +24,7 @@ share/dbus-1/system-services/org.freedesktop.UPower.service
 share/examples/upower/UPower/UPower.conf
 share/examples/upower/dbus-1/system.d/org.freedesktop.UPower.conf
 ${PLIST.introspection}share/gir-1.0/UPowerGlib-1.0.gir
+share/locale/fr/LC_MESSAGES/upower.mo
+share/locale/it/LC_MESSAGES/upower.mo
+share/locale/pl/LC_MESSAGES/upower.mo
+share/locale/sv/LC_MESSAGES/upower.mo
