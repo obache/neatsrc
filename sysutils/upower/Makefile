@@ -10,6 +10,8 @@ HOMEPAGE=	http://upower.freedesktop.org
 COMMENT=	Power management system message bus service
 LICENSE=	gnu-gpl-v2
 
+TOOL_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt	# xsltproc
+
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	gmake pkg-config intltool xgettext msgmerge msgfmt
@@ -17,6 +19,7 @@ USE_PKGLOCALEDIR=	yes
 
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
+CONFIGURE_ARGS+=	--enable-man-pages
 
 INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples/${PKGBASE}
 CONF_FILES+=	${PREFIX}/share/examples/${PKGBASE}/UPower/UPower.conf \
