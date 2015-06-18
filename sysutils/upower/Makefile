@@ -11,6 +11,7 @@ COMMENT=	Power management system message bus service
 LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	yes
+USE_LIBTOOL=	yes
 USE_TOOLS+=	gmake pkg-config intltool xgettext msgmerge msgfmt
 
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
