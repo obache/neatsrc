@@ -15,14 +15,11 @@ CONFLICTS+=	gtkmm<2.22.0
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
-USE_TOOLS+=		autoconf gmake perl pkg-config
+USE_TOOLS+=		gmake perl pkg-config
 GNU_CONFIGURE=		yes
 
 PKGCONFIG_OVERRIDE+=	atk/atkmm.pc.in
 PKGCONFIG_OVERRIDE+=	atk/atkmm-uninstalled.pc.in
-
-pre-configure:
-	cd ${WRKSRC} && autoconf
 
 .include "../../devel/atk/buildlink3.mk"
 .include "../../devel/glibmm/buildlink3.mk"
