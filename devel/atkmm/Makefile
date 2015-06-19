@@ -18,8 +18,8 @@ USE_LIBTOOL=		yes
 USE_TOOLS+=		autoconf gmake perl pkg-config
 GNU_CONFIGURE=		yes
 
-PKGCONFIG_OVERRIDE+=	atkmm-2.22.1/atk/PaxHeaders.17805/atkmm.pc.in
-PKGCONFIG_OVERRIDE+=	atkmm-2.22.1/atk/atkmm.pc.in
+PKGCONFIG_OVERRIDE+=	atk/atkmm.pc.in
+PKGCONFIG_OVERRIDE+=	atk/atkmm-uninstalled.pc.in
 
 pre-configure:
 	cd ${WRKSRC} && autoconf
