@@ -402,6 +402,7 @@ SUBDIR+=	lemon
 SUBDIR+=	lettuce
 SUBDIR+=	libFoundation
 SUBDIR+=	libFoundation-examples
+SUBDIR+=	libappindicator
 SUBDIR+=	libarena
 SUBDIR+=	libargparse
 SUBDIR+=	libast
