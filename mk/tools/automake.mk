@@ -131,9 +131,11 @@ EVAL_PREFIX+=			_TOOLS_AM_PREFIX=automake
 
 _TOOLS_AM_TYPE.aclocal=		TOOLS_CREATE
 TOOLS_PATH.aclocal=		${_TOOLS_AM_PREFIX}/bin/aclocal
+TOOLS_ALIASES.aclocal=		aclocal-1.15
 
 _TOOLS_AM_TYPE.automake=	TOOLS_CREATE
 TOOLS_PATH.automake=		${_TOOLS_AM_PREFIX}/bin/automake
+TOOLS_ALIASES.automake=		automake-1.15
 .  endif
 .endif
 
