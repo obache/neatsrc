@@ -1,0 +1,7 @@
+$NetBSD$
+
+SHA1 (mate-session-manager-1.10.1.tar.xz) = e3b3a2a37d8b56c12a48c33522c198b24d90314d
+RMD160 (mate-session-manager-1.10.1.tar.xz) = 58a50020d51a8ecdf5ad838f241436d1a4089906
+Size (mate-session-manager-1.10.1.tar.xz) = 532472 bytes
+SHA1 (patch-mate-session_gsm-manager.c) = 2e446b9604d6bb8a883fa1f5c36d135df101d044
+SHA1 (patch-tools_mate-session-inhibit.c) = 03c0b58d8a6159de4aad56f00fbf55837e36f245

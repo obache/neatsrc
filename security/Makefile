@@ -172,6 +172,7 @@ SUBDIR+=	log2timeline
 SUBDIR+=	logcheck
 SUBDIR+=	lsh
 SUBDIR+=	lua-sec
+SUBDIR+=	mate-polkit
 SUBDIR+=	mbedtls
 SUBDIR+=	mcrypt
 SUBDIR+=	md4-collision

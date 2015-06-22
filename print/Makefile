@@ -16,6 +16,7 @@ SUBDIR+=	acroread9
 SUBDIR+=	adobeps-win
 SUBDIR+=	advi
 SUBDIR+=	apsfilter
+SUBDIR+=	atril
 SUBDIR+=	auctex
 SUBDIR+=	bg5pdf
 SUBDIR+=	bg5ps

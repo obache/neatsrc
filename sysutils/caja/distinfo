@@ -1,0 +1,6 @@
+$NetBSD$
+
+SHA1 (caja-1.10.1.tar.xz) = 559db3d17ea3dacccfba55b085be148687be94b1
+RMD160 (caja-1.10.1.tar.xz) = 3f356c2d067c96b29143e4c92820d19ef0751479
+Size (caja-1.10.1.tar.xz) = 3581948 bytes
+SHA1 (patch-libcaja-private_caja-undostack-manager.c) = 7d08f55c60c74da46bf44e3f3c870ef42840f952

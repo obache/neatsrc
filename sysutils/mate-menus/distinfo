@@ -1,0 +1,7 @@
+$NetBSD$
+
+SHA1 (mate-menus-1.10.0.tar.xz) = 04662fc22aec5c37755029b8f8d8c56390c49807
+RMD160 (mate-menus-1.10.0.tar.xz) = 9bdabdad430bdfced7314330e5fe2bb2e270dc0f
+Size (mate-menus-1.10.0.tar.xz) = 342796 bytes
+SHA1 (patch-configure) = a29fdf2873ebe39fe5d1c24ad9e378219aa8906f
+SHA1 (patch-m4_python.m4) = df739bd9c0d0972aa02a729d442b4e04a80f3908

@@ -1,0 +1,7 @@
+$NetBSD$
+
+SHA1 (mate-sensors-applet-1.10.1.tar.xz) = 2aff79a5c5b6e7ae7d8f9f4db876c475f47b5070
+RMD160 (mate-sensors-applet-1.10.1.tar.xz) = 0db89ed45b5126d120340b437484d2538da2add9
+Size (mate-sensors-applet-1.10.1.tar.xz) = 365284 bytes
+SHA1 (patch-configure) = da8dae1af1bebe9b04b30707789c1ae63834f4ce
+SHA1 (patch-configure.ac) = 3bf26f1b8b98763a1d9d598e2eacd62e6ed23b45

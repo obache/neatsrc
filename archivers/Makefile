@@ -17,6 +17,7 @@ SUBDIR+=	bzip2
 SUBDIR+=	cabextract
 SUBDIR+=	dact
 SUBDIR+=	dar
+SUBDIR+=	engrampa
 SUBDIR+=	fastjar
 SUBDIR+=	fcrackzip
 SUBDIR+=	file-roller

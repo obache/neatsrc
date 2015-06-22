@@ -1,0 +1,6 @@
+$NetBSD$
+
+SHA1 (mate-themes-gtk3.16-1.10.1.tar.xz) = 5260bc5841ac7a47695902de3741853eaf71f313
+RMD160 (mate-themes-gtk3.16-1.10.1.tar.xz) = 41ee2862a840d3443072a36db0e34310ffb6b9a4
+Size (mate-themes-gtk3.16-1.10.1.tar.xz) = 3228624 bytes
+SHA1 (patch-common_mkiconlinks.sh) = 0302959fb13ef09dbfb471568b4c39cb7307b420

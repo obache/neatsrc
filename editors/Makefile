@@ -110,6 +110,7 @@ SUBDIR+=	p5-Padre-Plugin-Vi
 SUBDIR+=	p5-Padre-Plugin-XS
 SUBDIR+=	p5-Wx-Scintilla
 SUBDIR+=	pico
+SUBDIR+=	pluma
 SUBDIR+=	poedit
 SUBDIR+=	qgoogletranslator
 SUBDIR+=	rox-edit

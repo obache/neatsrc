@@ -135,6 +135,7 @@ SUBDIR+=	libva-driver-vdpau
 SUBDIR+=	libvdpau
 SUBDIR+=	libvpx
 SUBDIR+=	lsdvd
+SUBDIR+=	mate-media
 SUBDIR+=	mediainfo
 SUBDIR+=	mediatomb
 SUBDIR+=	mencoder

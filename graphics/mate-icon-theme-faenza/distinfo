@@ -1,0 +1,6 @@
+$NetBSD$
+
+SHA1 (mate-icon-theme-faenza-1.10.0.tar.xz) = 155c6e3c5b6fd2d1b5dfcdb725598c0ba0121d9e
+RMD160 (mate-icon-theme-faenza-1.10.0.tar.xz) = b557fa9fd0ce42a34f804faf487cc02b40fe0631
+Size (mate-icon-theme-faenza-1.10.0.tar.xz) = 19081268 bytes
+SHA1 (patch-Makefile.am) = 4612f660117a9dacd276ed38693cd0ccee7c573d
