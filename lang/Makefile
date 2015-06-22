@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.412 2015/05/30 09:51:47 ryoon Exp $
+# $NetBSD: Makefile,v 1.414 2015/06/15 09:47:34 marino Exp $
 #
 
 COMMENT=	Programming languages
@@ -68,11 +68,11 @@ SUBDIR+=	gcc48
 SUBDIR+=	gcc48-libs
 SUBDIR+=	gcc49
 SUBDIR+=	gcc49-libs
+SUBDIR+=	gcc5-aux
 SUBDIR+=	gforth
 SUBDIR+=	ghc
 SUBDIR+=	ghc-bootstrap
 SUBDIR+=	ghc7
-SUBDIR+=	gnat-aux
 SUBDIR+=	gnat_util
 SUBDIR+=	go
 SUBDIR+=	gpc

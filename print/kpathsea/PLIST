@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.10 2015/06/14 11:12:37 markd Exp $
+@comment $NetBSD: PLIST,v 1.12 2015/06/15 09:50:36 markd Exp $
 bin/kpseaccess
 bin/kpsereadlink
 bin/kpsestat
