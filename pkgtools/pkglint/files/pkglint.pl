@@ -3863,7 +3863,7 @@ sub checkline_mk_vartype_basic($$$$$$$$) {
 				japanese java
 				kde korean
 				lang linux local
-				mail math mbone meta-pkgs misc multimedia
+				mail mate math mbone meta-pkgs misc multimedia
 				net news
 				packages parallel perl5 pkgtools plan9 print python
 				ruby
