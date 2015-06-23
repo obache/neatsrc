@@ -110,7 +110,7 @@ replace-interpreter:
 		elif [ -d "$$f" ]; then					\
 			${SHCOMMENT} "Ignore it, most probably comes from shell globs"; \
 		else							\
-			${WARNING_MSG} "[replace-interpreter] Skipping non-existent file \"$$f\"."; \
+			${ERROR_MSG} "[replace-interpreter] non-existent file \"$$f\"."; \
 		fi;							\
 	done
 .  else
