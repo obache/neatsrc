@@ -911,12 +911,7 @@ _BLNK_UNPROTECT_DIRS+=	${BUILDLINK_DIR}
 _BLNK_PHYSICAL_PATH_VARS?=	WRKDIR LOCALBASE
 .for _var_ in ${_BLNK_PHYSICAL_PATH_VARS}
 .  if !defined(_BLNK_PHYSICAL_PATH.${_var_})
-_BLNK_PHYSICAL_PATH.${_var_}!=						\
-	if [ -d ${${_var_}} ]; then					\
-		cd ${${_var_}}; ${PWD_CMD};				\
-	else								\
-		${ECHO} ${${_var_}};					\
-	fi
+_BLNK_PHYSICAL_PATH.${_var_}= 	${${_var_}:tA}
 .  endif
 MAKEVARS+=	_BLNK_PHYSICAL_PATH.${_var_}
 .endfor
