@@ -92,9 +92,8 @@ post-install:
 
 EVAL_PREFIX+=		PREFIX.hicolor=hicolor-icon-theme
 FILES_SUBST+=		GTK_UPDATE_ICON_CACHE="${PREFIX}/bin/gtk2-update-icon-cache"
-FILES_SUBST+=		ICON_THEME_DIR="${PREFIX.hicolor}/share/icons/hicolor"
+FILES_SUBST+=		ICON_THEME_DIR="${PREFIX.hicolor}/share/icons"
 INSTALL_TEMPLATES+=	../../x11/gtk2/files/icon-cache.tmpl
-PRINT_PLIST_AWK+=	/^share\/icons\/hicolor\/icon-theme.cache$$/ { next; }
 
 _BUILDING_GTK2=	yes
 .include "modules.mk"

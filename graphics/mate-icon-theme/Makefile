@@ -16,5 +16,7 @@ USE_LANGUAGES=	c
 
 PKGCONFIG_OVERRIDE+=	mate-icon-theme.pc.in
 
+ICON_THEMES=	yes
+
 .include "../../graphics/icon-naming-utils/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

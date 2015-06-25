@@ -27,12 +27,8 @@ PKGCONFIG_OVERRIDE+=	adwaita-icon-theme.pc.in
 INSTALLATION_DIRS+=	share/icons/Adwaita/96x96/places
 
 EVAL_PREFIX+=		PREFIX.svg=librsvg
-EVAL_PREFIX+=		PREFIX.gtk3=gtk3+
-FILES_SUBST+=		GTK_UPDATE_ICON_CACHE="${PREFIX.gtk3}/bin/gtk-update-icon-cache"
-FILES_SUBST+=		ICON_THEME_DIR="${PREFIX}/share/icons/Adwaita"
-INSTALL_TEMPLATES+=	../../graphics/adwaita-icon-theme/files/icon-cache.tmpl
-DEINSTALL_TEMPLATES+=	../../graphics/adwaita-icon-theme/files/icon-cache.tmpl
-PRINT_PLIST_AWK+=	/^share\/icons\/gnome\/icon-theme.cache$$/ { next; }
+
+ICON_THEMES=		yes
 
 post-install:
 .for s in 16 22 24 32 48 96 256

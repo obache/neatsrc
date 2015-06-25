@@ -20,4 +20,6 @@ CONFIGURE_SCRIPT=	autogen.sh
 
 EXTRACT_USING=	gtar
 
+ICON_THEMES=	yes
+
 .include "../../mk/bsd.pkg.mk"

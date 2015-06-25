@@ -47,6 +47,12 @@ POST-INSTALL)
 	${TEST} ! -x ./+FONTS ||
 		./+FONTS ${PKG_METADATA_DIR}
 
+	#
+	# Update any icon theme caches.
+	#
+	${TEST} ! -x ./+ICON_THEMES ||
+		./+ICON_THEMES UPDATE ${PKG_METADATA_DIR}
+
 	# Check for any missing bits after we're finished installing.
 	#
 	${TEST} ! -x ./+DIRS ||

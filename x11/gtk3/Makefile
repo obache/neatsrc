@@ -69,6 +69,11 @@ CPPFLAGS+=		-DPREFIX="\"${PREFIX}\""
 post-install:
 	${RM} -f ${DESTDIR}${GTK3_IMMODULES_DB}
 
+EVAL_PREFIX+=		PREFIX.hicolor=hicolor-icon-theme
+FILES_SUBST+=		GTK_UPDATE_ICON_CACHE="${PREFIX}/bin/gtk-update-icon-cache"
+FILES_SUBST+=		ICON_THEME_DIR="${PREFIX.hicolor}/share/icons"
+INSTALL_TEMPLATES+=	../../x11/gtk2/files/icon-cache.tmpl
+
 _BUILDING_GTK3=	yes
 .include "modules.mk"
 

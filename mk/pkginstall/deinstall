@@ -8,6 +8,11 @@ DEINSTALL)
 	${TEST} ! -x ./+INFO_FILES ||
 		./+INFO_FILES REMOVE ${PKG_METADATA_DIR}
 	#
+	# Remove any icon theme caches.
+	#
+	${TEST} ! -x ./+ICON_THEMES ||
+		./+ICON_THEMES REMOVE ${PKG_METADATA_DIR}
+	#
 	# Remove shells from /etc/shells.
 	#
 	${TEST} ! -x ./+SHELL ||
@@ -28,6 +33,11 @@ POST-DEINSTALL)
 	#
 	${TEST} ! -x ./+FONTS ||
 		./+FONTS ${PKG_METADATA_DIR}
+	#
+	# Update any icon theme caches.
+	#
+	${TEST} ! -x ./+ICON_THEMES ||
+		./+ICON_THEMES UPDATE ${PKG_METADATA_DIR}
 	#
 	# Rebuild the system run-time library search path database.
 	#

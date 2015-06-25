@@ -18,6 +18,8 @@ GNU_CONFIGURE=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake intltool msgfmt pkg-config
 
+ICON_THEMES=	yes
+
 BUILDLINK_DEPMETHOD.gdk-pixbuf2+=	build
 .include "../../graphics/gdk-pixbuf2/buildlink3.mk"
 BUILDLINK_DEPMETHOD.gtk2+=	build

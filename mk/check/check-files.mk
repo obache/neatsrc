@@ -97,6 +97,11 @@ CHECK_FILES_SKIP+=	${PREFIX}/.*/fonts.scale
 CHECK_FILES_SKIP+=	${PREFIX}/.*/fonts.cache-1
 .endif
 
+# Mutable icon theme cahce files
+.if !empty(ICON_THEMES:M[Yy][Ee][Ss])
+CHECK_FILES_SKIP+=	${PREFIX}/share/icons/.*/icon-theme.cache
+.endif
+
 # Mutable charset.alias file
 CHECK_FILES_SKIP+=	${PREFIX}/lib/charset.alias
 

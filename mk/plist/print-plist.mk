@@ -52,6 +52,9 @@ _PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^.*\/fonts\.scale/)
     (defined(FONTS_DIRS.x11) && !empty(FONTS_DIRS.x11:M*))
 _PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^.*\/fonts\.cache-1/)
 .endif
+.if defined(ICON_THEMES)
+_PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^share\/icons\/*\/icon-theme\.cache$$/)
+.endif
 
 # scan $PREFIX for any files/dirs modified since the package was extracted
 # will emit "@exec mkdir"-statements for empty directories

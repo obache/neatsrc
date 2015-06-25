@@ -26,12 +26,7 @@ PKGCONFIG_OVERRIDE=	gnome-icon-theme.pc.in
 # the current pkgsrc version.
 BUILDLINK_API_DEPENDS.icon-naming-utils+=	icon-naming-utils>=0.8.90
 
-EVAL_PREFIX+=		PREFIX.gtk2=gtk2+
-FILES_SUBST+=		GTK_UPDATE_ICON_CACHE="${PREFIX.gtk2}/bin/gtk-update-icon-cache"
-FILES_SUBST+=		ICON_THEME_DIR="${PREFIX}/share/icons/gnome"
-INSTALL_TEMPLATES+=	../../graphics/gnome-icon-theme/files/icon-cache.tmpl
-DEINSTALL_TEMPLATES+=	../../graphics/gnome-icon-theme/files/icon-cache.tmpl
-PRINT_PLIST_AWK+=	/^share\/icons\/gnome\/icon-theme.cache$$/ { next; }
+ICON_THEMES=	yes
 
 FIND_PREFIX:=	LIBRSVGDIR=librsvg
 .include "../../mk/find-prefix.mk"
