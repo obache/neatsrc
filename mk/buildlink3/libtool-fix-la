@@ -59,7 +59,7 @@ mv="@MV@"
 pwd="@PWD@"
 rm="@RM@"
 
-wrksrc_physical=`cd ${WRKSRC}; $pwd`
+wrksrc_physical=`cd ${WRKSRC}; $pwd -P`
 labase=`$basename $lafile .la`
 ladir=`$dirname $lafile`
 latimestamp=${ladir}/.${labase}.la.timestamp
