@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	libpinyin
 .if !defined(LIBPINYIN_BUILDLINK3_MK)
 LIBPINYIN_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.libpinyin+=	libpinyin>=1.0.0
+BUILDLINK_API_DEPENDS.libpinyin+=	libpinyin>=1.1.0
 BUILDLINK_PKGSRCDIR.libpinyin?=	../../textproc/libpinyin
 
 .include "../../devel/glib2/buildlink3.mk"

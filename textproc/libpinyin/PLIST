@@ -24,7 +24,4 @@ lib/libpinyin/data/society.bin
 lib/libpinyin/data/sport.bin
 lib/libpinyin/data/table.conf
 lib/pkgconfig/libpinyin.pc
-man/man1/gen_binary_files.1
-man/man1/gen_unigram.1
-man/man1/import_interpolation.1
 man/man1/libpinyin.1
