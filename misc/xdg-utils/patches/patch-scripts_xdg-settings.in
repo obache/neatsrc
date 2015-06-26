@@ -1,0 +1,38 @@
+$NetBSD$
+
+* add MATE desktop support in xdg-settings
+  https://bugs.freedesktop.org/show_bug.cgi?id=58861
+
+--- scripts/xdg-settings.in.orig	2014-10-09 14:44:34.000000000 +0000
++++ scripts/xdg-settings.in
+@@ -253,6 +253,21 @@ set_browser_kde()
+ }
+ 
+ # }}} KDE
++# {{{ MATE
++get_browser_mate()
++{
++	get_browser_gnome3 "$@"
++}
++check_browser_mate()
++{
++	check_browser_gnome3 "$@"
++}
++set_browser_mate()
++{
++	set_browser_gnome3 "$@"
++}
++
++# }}} MATE
+ # {{{ GNOME
+ 
+ get_browser_gnome()
+@@ -754,7 +769,7 @@ fi
+ detectDE
+ 
+ case "$DE" in
+-    kde|gnome*|xfce)
++    kde|gnome*|mate|xfce)
+     dispatch_specific "$@"
+     ;;
+ 
