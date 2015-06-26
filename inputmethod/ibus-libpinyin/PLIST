@@ -24,10 +24,16 @@ share/ibus-libpinyin/setup/dicttreeview.py
 share/ibus-libpinyin/setup/dicttreeview.pyc
 share/ibus-libpinyin/setup/dicttreeview.pyo
 share/ibus-libpinyin/setup/ibus-libpinyin-preferences.ui
+share/ibus-libpinyin/setup/keyboardshortcut.py
+share/ibus-libpinyin/setup/keyboardshortcut.pyc
+share/ibus-libpinyin/setup/keyboardshortcut.pyo
 share/ibus-libpinyin/setup/main2.py
 share/ibus-libpinyin/setup/main2.pyc
 share/ibus-libpinyin/setup/main2.pyo
 ${PLIST.lua}share/ibus-libpinyin/user.lua
+share/ibus-libpinyin/setup/shortcuteditor.py
+share/ibus-libpinyin/setup/shortcuteditor.pyc
+share/ibus-libpinyin/setup/shortcuteditor.pyo
 share/ibus/component/libpinyin.xml
 share/locale/fr/LC_MESSAGES/ibus-libpinyin.mo
 share/locale/ru/LC_MESSAGES/ibus-libpinyin.mo

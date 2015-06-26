@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.5 2015/04/06 08:17:29 adam Exp $
 
-DISTNAME=	ibus-libpinyin-1.6.92
-PKGREVISION=	3
+DISTNAME=	ibus-libpinyin-1.7.1
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libpinyin/}
 
@@ -36,5 +35,6 @@ CONFIGURE_ARGS+=	--with-boost=${BUILDLINK_PREFIX.boost-headers}
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../inputmethod/ibus/buildlink3.mk"
 .include "../../textproc/libpinyin/buildlink3.mk"
+.include "../../x11/gtk3/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"
