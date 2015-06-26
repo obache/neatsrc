@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.6 2015/06/17 17:31:38 tron Exp $
 
-DISTNAME=	xdg-user-dirs-0.10
-PKGREVISION=	1
+DISTNAME=	xdg-user-dirs-0.15
 CATEGORIES=	x11
 MASTER_SITES=	http://user-dirs.freedesktop.org/releases/
 
