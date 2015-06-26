@@ -11,6 +11,7 @@ COMMENT=	MATE user guide
 LICENSE=	cc-by-sa-v3.0
 
 TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
+DEPENDS+=	yelp-[0-9]*:../../misc/yelp
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
