@@ -27,6 +27,11 @@ MASTER_SITE_GITHUB+=    \
 MASTER_SITE_GNUSTEP+=   \
 	ftp://ftp.gnustep.org/pub/gnustep/
 
+MASTER_SITE_OSDN+=	\
+	http://jaist.dl.sourceforge.jp/ \
+	http://iij.dl.sourceforge.jp/ \
+	http://osdn.dl.osdn.jp/
+
 MASTER_SITE_PERL_CPAN+= \
 	ftp://cpan.pair.com/modules/by-module/ \
 	ftp://ftp.funet.fi/pub/languages/perl/CPAN/modules/by-module/ \

@@ -164,3 +164,6 @@ USE_GNU_READLINE	Include "../../devel/readline/buildlink3.mk" instead.
 # October 2014
 SVR4_PKGNAME		Just remove it.
 PKG_INSTALLATION_TYPES	Just remove it.
+
+# March 2015
+MASTER_SITE_SOURCEFORGE_JP	Use MASTER_SITE_OSDN instead.
