@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (mate-applets-1.10.0.tar.xz) = 953fcbb9865dbbfbb1a8ccfc85884b1f336b33b2
-RMD160 (mate-applets-1.10.0.tar.xz) = fdb64bb2ca1c33901f992805d6f88eb9f71ed80a
-Size (mate-applets-1.10.0.tar.xz) = 6901492 bytes
-SHA1 (patch-battstat_power-management.c) = ec58bb49e9625cfd6322f02046975c89b5149185
+SHA1 (mate-applets-1.10.1.tar.xz) = b3585b1f7e78f1dadcc97419cf60299291d52fab
+RMD160 (mate-applets-1.10.1.tar.xz) = 46e0840f63c49c2fa76cc9485683864c2428b76c
+Size (mate-applets-1.10.1.tar.xz) = 6884708 bytes
