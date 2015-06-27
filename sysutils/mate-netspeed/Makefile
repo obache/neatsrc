@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-netspeed-1.10.0
+DISTNAME=	mate-netspeed-1.10.1
 CATEGORIES=	net sysutils
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
