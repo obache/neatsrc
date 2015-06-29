@@ -124,6 +124,7 @@ share/doc/groonga/en/html/_sources/reference/commands/define_selector.txt
 share/doc/groonga/en/html/_sources/reference/commands/defrag.txt
 share/doc/groonga/en/html/_sources/reference/commands/delete.txt
 share/doc/groonga/en/html/_sources/reference/commands/dump.txt
+share/doc/groonga/en/html/_sources/reference/commands/io_flush.txt
 share/doc/groonga/en/html/_sources/reference/commands/load.txt
 share/doc/groonga/en/html/_sources/reference/commands/lock_clear.txt
 share/doc/groonga/en/html/_sources/reference/commands/log_level.txt
@@ -131,6 +132,8 @@ share/doc/groonga/en/html/_sources/reference/commands/log_put.txt
 share/doc/groonga/en/html/_sources/reference/commands/log_reopen.txt
 share/doc/groonga/en/html/_sources/reference/commands/logical_count.txt
 share/doc/groonga/en/html/_sources/reference/commands/logical_range_filter.txt
+share/doc/groonga/en/html/_sources/reference/commands/logical_select.txt
+share/doc/groonga/en/html/_sources/reference/commands/logical_table_remove.txt
 share/doc/groonga/en/html/_sources/reference/commands/normalize.txt
 share/doc/groonga/en/html/_sources/reference/commands/normalizer_list.txt
 share/doc/groonga/en/html/_sources/reference/commands/plugin_register.txt
@@ -342,6 +345,7 @@ share/doc/groonga/en/html/reference/commands/define_selector.html
 share/doc/groonga/en/html/reference/commands/defrag.html
 share/doc/groonga/en/html/reference/commands/delete.html
 share/doc/groonga/en/html/reference/commands/dump.html
+share/doc/groonga/en/html/reference/commands/io_flush.html
 share/doc/groonga/en/html/reference/commands/load.html
 share/doc/groonga/en/html/reference/commands/lock_clear.html
 share/doc/groonga/en/html/reference/commands/log_level.html
@@ -349,6 +353,8 @@ share/doc/groonga/en/html/reference/commands/log_put.html
 share/doc/groonga/en/html/reference/commands/log_reopen.html
 share/doc/groonga/en/html/reference/commands/logical_count.html
 share/doc/groonga/en/html/reference/commands/logical_range_filter.html
+share/doc/groonga/en/html/reference/commands/logical_select.html
+share/doc/groonga/en/html/reference/commands/logical_table_remove.html
 share/doc/groonga/en/html/reference/commands/normalize.html
 share/doc/groonga/en/html/reference/commands/normalizer_list.html
 share/doc/groonga/en/html/reference/commands/plugin_register.html
@@ -541,6 +547,7 @@ share/doc/groonga/ja/html/_sources/reference/commands/define_selector.txt
 share/doc/groonga/ja/html/_sources/reference/commands/defrag.txt
 share/doc/groonga/ja/html/_sources/reference/commands/delete.txt
 share/doc/groonga/ja/html/_sources/reference/commands/dump.txt
+share/doc/groonga/ja/html/_sources/reference/commands/io_flush.txt
 share/doc/groonga/ja/html/_sources/reference/commands/load.txt
 share/doc/groonga/ja/html/_sources/reference/commands/lock_clear.txt
 share/doc/groonga/ja/html/_sources/reference/commands/log_level.txt
@@ -548,6 +555,8 @@ share/doc/groonga/ja/html/_sources/reference/commands/log_put.txt
 share/doc/groonga/ja/html/_sources/reference/commands/log_reopen.txt
 share/doc/groonga/ja/html/_sources/reference/commands/logical_count.txt
 share/doc/groonga/ja/html/_sources/reference/commands/logical_range_filter.txt
+share/doc/groonga/ja/html/_sources/reference/commands/logical_select.txt
+share/doc/groonga/ja/html/_sources/reference/commands/logical_table_remove.txt
 share/doc/groonga/ja/html/_sources/reference/commands/normalize.txt
 share/doc/groonga/ja/html/_sources/reference/commands/normalizer_list.txt
 share/doc/groonga/ja/html/_sources/reference/commands/plugin_register.txt
@@ -759,6 +768,7 @@ share/doc/groonga/ja/html/reference/commands/define_selector.html
 share/doc/groonga/ja/html/reference/commands/defrag.html
 share/doc/groonga/ja/html/reference/commands/delete.html
 share/doc/groonga/ja/html/reference/commands/dump.html
+share/doc/groonga/ja/html/reference/commands/io_flush.html
 share/doc/groonga/ja/html/reference/commands/load.html
 share/doc/groonga/ja/html/reference/commands/lock_clear.html
 share/doc/groonga/ja/html/reference/commands/log_level.html
@@ -766,6 +776,8 @@ share/doc/groonga/ja/html/reference/commands/log_put.html
 share/doc/groonga/ja/html/reference/commands/log_reopen.html
 share/doc/groonga/ja/html/reference/commands/logical_count.html
 share/doc/groonga/ja/html/reference/commands/logical_range_filter.html
+share/doc/groonga/ja/html/reference/commands/logical_select.html
+share/doc/groonga/ja/html/reference/commands/logical_table_remove.html
 share/doc/groonga/ja/html/reference/commands/normalize.html
 share/doc/groonga/ja/html/reference/commands/normalizer_list.html
 share/doc/groonga/ja/html/reference/commands/plugin_register.html
