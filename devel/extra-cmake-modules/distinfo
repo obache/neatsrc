@@ -1,0 +1,6 @@
+$NetBSD$
+
+SHA1 (extra-cmake-modules-5.11.0.tar.xz) = 5c541b28d59de6ef29522282c23a0afc7356d3c7
+RMD160 (extra-cmake-modules-5.11.0.tar.xz) = f5df1f931934433cce0496630d7eca5e9efbe69c
+Size (extra-cmake-modules-5.11.0.tar.xz) = 132200 bytes
+SHA1 (patch-CMakeLists.txt) = eea2a7e9ff382066a87faa914a8736f106a1ea35

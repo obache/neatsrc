@@ -214,6 +214,7 @@ SUBDIR+=	ethos
 SUBDIR+=	etrace
 SUBDIR+=	exctags
 SUBDIR+=	exempi
+SUBDIR+=	extra-cmake-modules
 SUBDIR+=	fann
 SUBDIR+=	fastdep
 SUBDIR+=	ffcall
