@@ -1,2 +1,5 @@
-fctix is a collection of Simplified Chinese input methods based on XIM (X Input
-Method), including WuBi, PinYin and QuWei.
+Fctix is an input method framework with extension support.  Currently it
+supports Linux and Unix sysmtes like freebsd.  It has three built-in input
+Method Engine, Pinyin, QuWei and Table-based input methods.
+Fcitx tries to provide a native feeling under all desktop as well as a light
+weight code.  You can easily customize it to fit your requirements.
