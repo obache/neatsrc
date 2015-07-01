@@ -6,7 +6,7 @@ MASTER_SITES=	${MASTER_SITE_KDE:=frameworks/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 HOMEPAGE=	http://projects.kde.org/projects/kdesupport/extra-cmake-modules
-COMMENT=	Extrac CMake modules
+COMMENT=	Extra CMake modules
 LICENSE=	modified-bsd
 
 TOOL_DEPENDS+=	${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
