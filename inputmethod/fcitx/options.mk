@@ -11,6 +11,7 @@ PLIST_VARS+=		gtk2 gtk3 qt4 introspection
 .if !empty(PKG_OPTIONS:Mgtk2)
 PLIST.gtk2=		yes
 .include "../../x11/gtk2/buildlink3.mk"
+GTK2_IMMODULES=	YES
 .include "../../x11/gtk2/modules.mk"
 CMAKE_ARGS+=	-DENABLE_GTK2_IM_MODULE:BOOL=ON
 .else
@@ -20,6 +21,7 @@ CMAKE_ARGS+=	-DENABLE_GTK2_IM_MODULE:BOOL=OFF
 .if !empty(PKG_OPTIONS:Mgtk3)
 PLIST.gtk3=		yes
 .include "../../x11/gtk3/buildlink3.mk"
+GTK3_IMMODULES=	YES
 .include "../../x11/gtk3/modules.mk"
 CMAKE_ARGS+=	-DENABLE_GTK3_IM_MODULE:BOOL=ON
 .else
