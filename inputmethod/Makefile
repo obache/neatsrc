@@ -16,6 +16,7 @@ SUBDIR+=	dbskkd-cdb
 SUBDIR+=	fcitx
 SUBDIR+=	fcitx-anthy
 SUBDIR+=	fcitx-configtool
+SUBDIR+=	fcitx-kkc
 SUBDIR+=	gcin
 SUBDIR+=	gtk-im-libthai
 SUBDIR+=	ibus

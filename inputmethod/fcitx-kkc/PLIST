@@ -1,0 +1,15 @@
+@comment $NetBSD$
+include/fcitx/module/kkc/fcitx-kkc.h
+lib/fcitx/fcitx-kkc.so
+lib/fcitx/qt/libfcitx-kkc-config.so
+share/fcitx/addon/fcitx-kkc.conf
+share/fcitx/configdesc/fcitx-kkc.desc
+share/fcitx/imicon/kkc.png
+share/fcitx/inputmethod/kkc.conf
+share/fcitx/kkc/dictionary_list
+share/fcitx/kkc/rule
+share/icons/hicolor/64x64/apps/fcitx-kkc.png
+share/locale/de/LC_MESSAGES/fcitx-kkc.mo
+share/locale/ja/LC_MESSAGES/fcitx-kkc.mo
+share/locale/zh_CN/LC_MESSAGES/fcitx-kkc.mo
+share/locale/zh_TW/LC_MESSAGES/fcitx-kkc.mo

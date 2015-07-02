@@ -1,0 +1,6 @@
+$NetBSD$
+
+SHA1 (fcitx-kkc-0.1.2.tar.xz) = e0c56c99986de652235dee0e9c5d98c93b4a1bce
+RMD160 (fcitx-kkc-0.1.2.tar.xz) = d8091c7e9b7e19c5dbfd5746a54cb910d8779967
+Size (fcitx-kkc-0.1.2.tar.xz) = 34216 bytes
+SHA1 (patch-gui_shortcutmodel.h) = 4bfe46024c3a798fcd84a4984318abf53b05ce7e
