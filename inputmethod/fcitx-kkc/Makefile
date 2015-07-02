@@ -18,7 +18,7 @@ USE_TOOLS+=	msgfmt pkg-config
 
 FIND_PREFIX:=	SKK_JISYO_DIR=skk-jisyo
 .include "../../mk/find-prefix.mk"
-CMAKE_ARGS+=	-DSKK_DEFAULT_PATH:PATH==${SKK_JISYO_DIR}/share/skk
+CMAKE_ARGS+=	-DSKK_DEFAULT_PATH:PATH==${SKK_JISYO_DIR}/share/skk/
 
 BUILDLINK_TRANSFORM+=	rm:-std=c++11
 
