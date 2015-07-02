@@ -15,6 +15,7 @@ SUBDIR+=	canna-server
 SUBDIR+=	dbskkd-cdb
 SUBDIR+=	fcitx
 SUBDIR+=	fcitx-anthy
+SUBDIR+=	fcitx-configtool
 SUBDIR+=	gcin
 SUBDIR+=	gtk-im-libthai
 SUBDIR+=	ibus
