@@ -52,6 +52,13 @@ DYNAMIC_SITES_CMD?=	${PKGSRC_SETENV} PATH=${PATH:Q} ${SH} ${DYNAMIC_SITES_SCRIPT
 SITES.${fetchfile:T:S/=/--/}?= `${DYNAMIC_SITES_CMD} ${fetchfile:T}`
 .  endfor
 .endif
+.for d in ${DISTFILES_VARS}
+.  if !empty(SITES.${d})
+.    for fetchfile in ${DISTFILES.${d}}
+SITES.${fetchfile:T:S/=/--/}?= ${SITES.${d}}
+.    endfor
+.  endif
+.endfor
 .if !empty(_DISTFILES)
 .  for fetchfile in ${_DISTFILES}
 SITES.${fetchfile:T:S/=/--/}?= ${MASTER_SITES}

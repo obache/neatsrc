@@ -48,6 +48,13 @@ DEFAULT_DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 .endif
 DISTFILES?=		${DEFAULT_DISTFILES}
 
+DISTFILES_VARS?=	# empty
+.for d in ${DISTFILES_VARS}
+.  if empty(DISTFILES_USE.${d}:M[Nn][Oo])
+DISTFILES+=		${DISTFILES.$d}
+.  endif
+.endfor
+
 # File lists, defined early to allow tool dependencies.
 ALLFILES?=	${DISTFILES} ${PATCHFILES}
 ALLFILES:=	${ALLFILES:O:u}		# remove duplicates
