@@ -61,3 +61,4 @@ DEPENDS_suse-12.1.dbus=		${DEPENDS_suse-12.1.gtk2}
 DEPENDS_suse-12.1.dbus-glib=	${DEPENDS_suse-12.1.gtk2}
 DEPENDS_suse-12.1.libffi=	${DEPENDS_suse-12.1.gtk2}
 DEPENDS_suse-12.1.glib2=	${DEPENDS_suse-12.1.gtk2}
+DEPENDS_suse-12.1.pulseaudio=	${DEPENDS_suse-12.1.gtk2}
