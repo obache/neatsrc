@@ -11,10 +11,11 @@ BUILDLINK_PKGSRCDIR.lesstif?=	../../x11/lesstif
 
 _MOTIFBASE=	${BUILDLINK_PREFIX.lesstif}
 MOTIFLIB=	${COMPILER_RPATH_FLAG}${_MOTIFBASE}/lib \
-		-L${_MOTIFBASE}/lib -lXm -lXp
+		-L${_MOTIFBASE}/lib -lXm -lXp -lXft
 
 .include "../../fonts/fontconfig/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
+.include "../../x11/libXft/buildlink3.mk"
 .include "../../x11/libXp/buildlink3.mk"
 .include "../../x11/libXrender/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
