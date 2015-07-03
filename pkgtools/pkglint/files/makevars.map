@@ -384,7 +384,7 @@ GNU_CONFIGURE_PREFIX	Pathname [m:s]
 HAS_CONFIGURE		Yes [m:s,c:s]
 HEADER_TEMPLATES	List of Pathname [$package_list]
 HOMEPAGE		URL [$package]
-ICON_THEMES		Yes
+ICON_THEMES		Yes [$package]
 IGNORE_PKG.*		Yes [*:sp]
 INCOMPAT_CURSES		InternalList of PlatformTriple [m:as]
 INCOMPAT_ICONV		InternalList of PlatformTriple
