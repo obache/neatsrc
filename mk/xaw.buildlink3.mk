@@ -22,8 +22,15 @@ BUILD_DEFS+=		XAW_TYPE
 .  include "../../x11/Xaw-Xpm/buildlink3.mk"
 BUILDLINK_PREFIX.Xaw?=	${BUILDLINK_PREFIX.Xaw-Xpm}
 .elif ${XAW_TYPE} == "3d"
+.  if ${X11_TYPE} == "modular"
+.  include "../../x11/libXaw3d/buildlink3.mk"
+BUILDLINK_PREFIX.Xaw?=	${BUILDLINK_PREFIX.libXaw3d}
+BUILDLINK_FNAME_ALIASES.libXaw3d+=	include/X11/Xaw3d include/X11/Xaw
+.  else
 .  include "../../x11/Xaw3d/buildlink3.mk"
 BUILDLINK_PREFIX.Xaw?=	${BUILDLINK_PREFIX.Xaw3d}
+.  endif
+BUILDLINK_TRANSFORM+=	l:Xaw:Xaw3d	
 .elif ${XAW_TYPE} == "neXtaw"
 .  include "../../x11/neXtaw/buildlink3.mk"
 BUILDLINK_PREFIX.Xaw?=	${BUILDLINK_PREFIX.neXtaw}
