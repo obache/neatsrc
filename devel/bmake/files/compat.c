@@ -235,6 +235,7 @@ CompatRunCommand(void *cmdp, void *gnp)
 				 * using a shell */
     char	  * volatile cmd = (char *)cmdp;
     GNode	  *gn = (GNode *)gnp;
+    unsigned int  forksleep;
 
     silent = gn->type & OP_SILENT;
     errCheck = !(gn->type & OP_IGNORE);
@@ -398,7 +399,11 @@ again:
 	}
     }
 #else
-    cpid = vFork();
+    forksleep = 1;
+    while ((cpid = vFork()) < 0 && errno == EAGAIN && forksleep < 32) {
+        if (sleep(forksleep)) break;
+        forksleep <<= 1;
+    } 
     if (cpid < 0) {
 	Fatal("Could not fork");
     }

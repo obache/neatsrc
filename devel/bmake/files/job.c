@@ -1297,6 +1297,7 @@ JobExec(Job *job, char **argv)
 {
     int	    	  cpid;	    	/* ID of new child */
     sigset_t	  mask;
+    unsigned int  forksleep;
 
     job->flags &= ~JOB_TRACED;
 
@@ -1425,7 +1426,11 @@ JobExec(Job *job, char **argv)
 	posix_spawn_attr_destry(&attrp);
     }
 #else
-    cpid = vFork();
+    forksleep = 1;
+    while ((cpid = vFork()) < 0 && errno == EAGAIN && forksleep < 32) {
+        if (sleep(forksleep)) break;
+        forksleep <<= 1;
+    }
     if (cpid == -1)
 	Punt("Cannot vfork: %s", strerror(errno));
 

@@ -1531,6 +1531,8 @@ Cmd_Exec(const char *cmd, const char **errnum)
 #ifdef HAVE_POSIX_SPAWN
     int		spawn_err = 0;
     posix_spawn_file_actions_t fa;
+#else
+    unsigned int forksleep;
 #endif
 
 
@@ -1577,7 +1579,12 @@ Cmd_Exec(const char *cmd, const char **errnum)
     /*
      * Fork
      */
-    switch (cpid = vFork()) {
+    forksleep = 1;
+    while ((cpid = vFork()) < 0 && errno == EAGAIN && forksleep < 32) {
+        if (sleep(forksleep)) break;
+        forksleep <<= 1;
+    }
+    switch (cpid) {
     case 0:
 	/*
 	 * Close input side of pipe
