@@ -10,6 +10,7 @@ BUILDLINK_API_DEPENDS.cutter+=	cutter>=1.1.3
 BUILDLINK_DEPMETHOD.cutter?=	build
 BUILDLINK_ABI_DEPENDS.cutter+=	cutter>=1.2.1nb2
 BUILDLINK_PKGSRCDIR.cutter?=	../../devel/cutter
+BUILDLINK_CFLAGS.cutter+=	-fexceptions
 
 .include "../../devel/glib2/buildlink3.mk"
 .endif	# CUTTER_BUILDLINK3_MK
