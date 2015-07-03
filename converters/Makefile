@@ -6,6 +6,7 @@ COMMENT=	Document format and character code converters
 SUBDIR+=	2vcard
 SUBDIR+=	TECkit
 SUBDIR+=	ack
+SUBDIR+=	apr-iconv
 SUBDIR+=	autoconvert
 SUBDIR+=	base64
 SUBDIR+=	bbcim
