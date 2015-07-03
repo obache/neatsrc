@@ -38,6 +38,9 @@ PLIST_SUBST+=		HARCH=`${WRKSRC}/script/harch`
 INCOMPAT_CURSES=	NetBSD-1.5*-* NetBSD-1.6[-_.]*-*
 INCOMPAT_CURSES+=	NetBSD-1.6[A-Z]-* NetBSD-1.6Z[A-K]*-*
 
+OVERRIDE_GNU_CONFIG_SCRIPTS=	yes
+OVERRIDE_DIRDEPTH=	5
+
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mk/readline.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
