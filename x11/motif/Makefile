@@ -42,8 +42,6 @@ CONFIGURE_ARGS+= \
 		--with-libpng-lib=${BUILDLINK_PREFIX.png}/lib \
 		--x-libraries=${X11BASE}/lib
 
-CONFIGURE_ARGS+= --disable-printing
-
 BUILDLINK_TRANSFORM+=	l:Xft:Xft:fontconfig
 
 # Don't compress manual pages as they include each other.
@@ -110,5 +108,6 @@ post-build:
 .include "../../x11/libXmu/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../x11/libXft/buildlink3.mk"
+.include "../../x11/libXp/buildlink3.mk"
 .include "../../x11/xbitmaps/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

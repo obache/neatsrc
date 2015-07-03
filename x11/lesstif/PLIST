@@ -4,6 +4,7 @@ bin/mwm
 bin/mxmkmf
 bin/uil
 bin/xmbind
+include/Dt/Print.h
 include/Mrm/MrmAppl.h
 include/Mrm/MrmDecls.h
 include/Mrm/MrmPrivate.h
@@ -181,6 +182,7 @@ lib/X11/config/LessTif.tmpl
 lib/X11/mwm/README
 lib/X11/mwm/alt.map
 lib/X11/mwm/system.mwmrc
+lib/libDtPrint.la
 lib/libMrm.la
 lib/libUil.la
 lib/libXm.la
