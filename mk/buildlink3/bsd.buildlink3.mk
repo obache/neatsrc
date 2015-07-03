@@ -598,6 +598,9 @@ buildlink-directories:
 #	sed arguments used to transform the name of the source filename
 #	into a destination filename, e.g. -e "s|/curses.h|/ncurses.h|g"
 #
+# BUILDLINK_FNAME_ALIASES.<pkg>
+#	list of source and destination filename alias pairs.
+#
 .for _pkg_ in ${_BLNK_PACKAGES}
 _BLNK_COOKIE.${_pkg_}=		${BUILDLINK_DIR}/.buildlink_${_pkg_}_done
 
@@ -691,6 +694,15 @@ ${_BLNK_COOKIE.${_pkg_}}:
 			esac;						\
 		fi;							\
 		${ECHO} "$$msg" >> ${.TARGET};				\
+	done;								\
+	set -- dummy ${BUILDLINK_FNAME_ALIASES.${_pkg_}}; shift;	\
+	while [ $$# -gt 0 ]; do						\
+		[ $$# -ge 2 ] || ${FAIL_MSG} BUILDLINK_FNAME_ALIASES.${_pkg_} must be pairs; \
+		src=${BUILDLINK_DIR}/$$1;				\
+		[ -e "$$src" ] || ${FAIL_MSG} missing $$src;		\
+		dst=${BUILDLINK_DIR}/$$2;				\
+		shift 2;						\
+		[ -e "$$dst" ] || ${LN} -sf "$$src" "$$dst";		\
 	done
 
 # _BLNK_LT_ARCHIVE_FILTER.${_pkg_} is a command-line filter used in
