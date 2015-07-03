@@ -51,7 +51,7 @@ libnbcompat-build:
 		CPPFLAGS=${CPPFLAGS:M*:Q}				\
 		${CONFIGURE_ENV:NLIBS=*} ${CONFIG_SHELL}		\
 		${CONFIGURE_SCRIPT} ${NBCOMPAT_CONFIGURE_ARGS} &&	\
-		${SETENV} ${MAKE_ENV} ${MAKE} -j${MAKE_JOBS:U1:Q}
+		${SETENV} ${MAKE_ENV} ${MAKE} ${_MAKE_JOBS}
 .if !empty(LIBNBCOMPAT_USE_PIC:M[Yy][Ee][Ss])
 	@${STEP_MSG} "Configuring and building libnbcompat (PIC version)"
 	${RUN} ${_ULIMIT_CMD}						\
@@ -59,5 +59,5 @@ libnbcompat-build:
 		${CONFIGURE_ENV:NLIBS=*} CFLAGS=${CFLAGS:Q}" -fPIC"	\
 		${CONFIG_SHELL}						\
 		${CONFIGURE_SCRIPT} ${NBCOMPAT_CONFIGURE_ARGS} &&	\
-		${SETENV} ${MAKE_ENV} ${MAKE} -j${MAKE_JOBS:U1:Q}
+		${SETENV} ${MAKE_ENV} ${MAKE} ${_MAKE_JOBS}
 .endif
