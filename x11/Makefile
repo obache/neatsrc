@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.754 2015/07/02 12:38:32 rodent Exp $
+# $NetBSD: Makefile,v 1.757 2015/07/05 13:17:43 khorben Exp $
 #
 
 COMMENT=	Packages to support the X window system
@@ -265,6 +265,7 @@ SUBDIR+=	konsole
 SUBDIR+=	kterm
 SUBDIR+=	lablgtk1
 SUBDIR+=	labltk
+SUBDIR+=	lbxproxy
 SUBDIR+=	lesstif
 SUBDIR+=	libFS
 SUBDIR+=	libICE
@@ -342,6 +343,7 @@ SUBDIR+=	mlterm
 SUBDIR+=	modeline
 SUBDIR+=	modular-xorg-server
 SUBDIR+=	modular-xorg-server112
+SUBDIR+=	modular-xorg-xephyr
 SUBDIR+=	motif
 SUBDIR+=	mowitz
 SUBDIR+=	mozo
@@ -634,6 +636,7 @@ SUBDIR+=	xfishtank
 SUBDIR+=	xflame
 SUBDIR+=	xfontsel
 SUBDIR+=	xforms
+SUBDIR+=	xfsinfo
 SUBDIR+=	xfstt
 SUBDIR+=	xfwp
 SUBDIR+=	xgamma

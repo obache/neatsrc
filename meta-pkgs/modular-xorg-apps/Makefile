@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.31 2015/07/02 12:58:45 rodent Exp $
+# $NetBSD: Makefile,v 1.34 2015/07/05 15:08:03 khorben Exp $
 
 DISTNAME=	# empty
-PKGNAME=	modular-xorg-apps-1.14.1.4
+PKGNAME=	modular-xorg-apps-1.14.1.7
 CATEGORIES=	meta-pkgs x11
 MASTER_SITES=	${MASTER_SITE_XORG:=app/}
 DISTFILES=	# empty
@@ -26,7 +26,9 @@ DEPENDS+=	ico-[0-9]*:../../x11/ico
 DEPENDS+=	listres-[0-9]*:../../x11/listres
 DEPENDS+=	luit-[0-9]*:../../x11/luit
 DEPENDS+=	mkcomposecache-[0-9]*:../../x11/mkcomposecache
+DEPENDS+=	modular-xorg-xephyr-[0-9]*:../../x11/modular-xorg-xephyr
 DEPENDS+=	oclock-[0-9]*:../../time/oclock
+DEPENDS+=	lbxproxy-[0-9]*:../../x11/lbxproxy
 DEPENDS+=	proxymngr-[0-9]*:../../x11/proxymngr
 DEPENDS+=	rstart-[0-9]*:../../x11/rstart
 DEPENDS+=	setxkbmap-[0-9]*:../../x11/setxkbmap
@@ -52,6 +54,7 @@ DEPENDS+=	xf86dga-[0-9]*:../../x11/xf86dga
 DEPENDS+=	xfd-[0-9]*:../../x11/xfd
 DEPENDS+=	xfindproxy-[0-9]*:../../net/xfindproxy
 DEPENDS+=	xfontsel-[0-9]*:../../x11/xfontsel
+DEPENDS+=	xfsinfo-[0-9]*:../../x11/xfsinfo
 DEPENDS+=	xfwp-[0-9]*:../../x11/xfwp
 DEPENDS+=	xgamma-[0-9]*:../../x11/xgamma
 DEPENDS+=	xgc-[0-9]*:../../graphics/xgc

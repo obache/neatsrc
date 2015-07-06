@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.36 2015/06/12 10:50:03 wiz Exp $
+# $NetBSD: Makefile,v 1.38 2015/07/04 12:54:51 morr Exp $
 
 PKGNAME=		vim-share-${VIM_VERSION}.${VIM_PATCHLEVEL}
 PKGREVISION=		1

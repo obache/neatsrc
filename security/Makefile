@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.556 2015/06/14 07:28:43 pettai Exp $
+# $NetBSD: Makefile,v 1.558 2015/07/04 05:27:03 ryoon Exp $
 #
 
 COMMENT=	Security tools
@@ -88,6 +88,7 @@ SUBDIR+=	gnu-pw-mgr
 SUBDIR+=	gnupg
 SUBDIR+=	gnupg-pkcs11-scd
 SUBDIR+=	gnupg2
+SUBDIR+=	gnupg21
 SUBDIR+=	gnutls
 SUBDIR+=	go-oauth2
 SUBDIR+=	google-authenticator
@@ -126,6 +127,7 @@ SUBDIR+=	kwalletmanager
 SUBDIR+=	lasso
 SUBDIR+=	libassuan
 SUBDIR+=	libassuan2
+SUBDIR+=	libassuan22
 SUBDIR+=	libbf
 SUBDIR+=	libcrack
 SUBDIR+=	libcurvecpr
