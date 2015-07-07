@@ -25,6 +25,7 @@ SUBDIR+=	dvdbackup
 SUBDIR+=	dvdrip
 SUBDIR+=	dvdstyler
 SUBDIR+=	dvdview
+SUBDIR+=	dvts
 SUBDIR+=	farsight2
 SUBDIR+=	ffmpeg010
 SUBDIR+=	ffmpeg1

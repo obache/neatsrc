@@ -1,0 +1,15 @@
+$NetBSD$
+
+SHA1 (dvts1.0g.tar.bz2) = 97dd10349c269080d085a9d8ecb8a111505fe5e0
+RMD160 (dvts1.0g.tar.bz2) = 7622be46e54fccebcd0f9535ea285c4417c554cd
+Size (dvts1.0g.tar.bz2) = 186391 bytes
+SHA1 (patch-configure) = 6ec5154100341baa2c6c15dca0b61520ec18e60e
+SHA1 (patch-configure.in) = 1b90b51c732b5895ba2e53daf7da964123bfe87b
+SHA1 (patch-dvrecv_main.c) = 76dfb17da179a584c199c1c084f3ef1c19adaecf
+SHA1 (patch-dvrecv_multicast.c) = 3763d8ba088997a735920d7a8bf2c09c4bb0247b
+SHA1 (patch-dvrecv_read.c) = cdee4ad5026e6e70bd2ebf279b80aa7d7975ffd1
+SHA1 (patch-dvrecv_rtcp.c) = 11ad1a8964b2ac10f07c8b0a727421dc0e5653a6
+SHA1 (patch-dvrecv_udp.c) = c89b7cd5741821e0e1dfb8d26044b141f04139fc
+SHA1 (patch-dvsend_ieee1394-netbsd.c) = 0549aa6603792f866f5191e23045f436ff4ce296
+SHA1 (patch-dvsend_main.c) = e9d5981bd34b04719fbe9ae2543cb97ee700d594
+SHA1 (patch-dvsend_rtcp.c) = 6432e3f1e69441df6e58ab0ae538a24f80cf525e
