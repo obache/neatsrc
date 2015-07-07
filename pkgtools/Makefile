@@ -59,6 +59,7 @@ SUBDIR+=	pkgse
 SUBDIR+=	pkgsrc-todo
 SUBDIR+=	pkgsurvey
 SUBDIR+=	port2pkg
+SUBDIR+=	portmaster
 #SUBDIR+=	prereq-readme	# Only used by the README.html generation
 SUBDIR+=	rc.subr
 SUBDIR+=	rcorder
