@@ -1,0 +1,10 @@
+@comment $NetBSD$
+bin/compress
+bin/uncompress
+bin/zcat
+bin/zcmp
+bin/zdiff
+bin/zmore
+man/compress.1
+man/zcmp.1
+man/zmore.1

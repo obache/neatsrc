@@ -56,6 +56,7 @@ SUBDIR+=	macutil
 SUBDIR+=	makeself
 SUBDIR+=	mousetar
 SUBDIR+=	mscompress
+SUBDIR+=	ncompress
 SUBDIR+=	nomarch
 SUBDIR+=	nulib2
 SUBDIR+=	ocaml-bz2
