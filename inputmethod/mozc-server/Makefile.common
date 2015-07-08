@@ -1,4 +1,5 @@
 # $NetBSD: Makefile.common,v 1.18 2015/02/17 23:55:58 ryoon Exp $
+# used by inputmethod/fcitx-mozc/Makefile
 # used by inputmethod/ibus-mozc/Makefile
 # used by inputmethod/mozc-elisp/Makefile
 # used by inputmethod/mozc-server/Makefile

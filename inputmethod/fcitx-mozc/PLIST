@@ -1,0 +1,18 @@
+@comment $NetBSD$
+lib/fcitx/fcitx-mozc.so
+share/fcitx/addon/fcitx-mozc.conf
+share/fcitx/inputmethod/mozc.conf
+share/fcitx/mozc/icon/mozc-alpha_full.png
+share/fcitx/mozc/icon/mozc-alpha_half.png
+share/fcitx/mozc/icon/mozc-dictionary.png
+share/fcitx/mozc/icon/mozc-direct.png
+share/fcitx/mozc/icon/mozc-hiragana.png
+share/fcitx/mozc/icon/mozc-katakana_full.png
+share/fcitx/mozc/icon/mozc-katakana_half.png
+share/fcitx/mozc/icon/mozc-properties.png
+share/fcitx/mozc/icon/mozc-tool.png
+share/fcitx/mozc/icon/mozc.png
+share/locale/de/LC_MESSAGES/fcitx-mozc.mo
+share/locale/ja/LC_MESSAGES/fcitx-mozc.mo
+share/locale/zh_CN/LC_MESSAGES/fcitx-mozc.mo
+share/locale/zh_TW/LC_MESSAGES/fcitx-mozc.mo

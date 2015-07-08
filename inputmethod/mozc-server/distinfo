@@ -1,5 +1,11 @@
 $NetBSD: distinfo,v 1.13 2015/02/17 23:55:58 ryoon Exp $
 
+SHA1 (fcitx-mozc-2.16.2037.102.2.patch) = 73c20a05f8f5480049d54fe6c52eeffb176d7f5b
+RMD160 (fcitx-mozc-2.16.2037.102.2.patch) = d32210866d8fd10bf399cef6d70c205d02022ccf
+Size (fcitx-mozc-2.16.2037.102.2.patch) = 140421 bytes
+SHA1 (fcitx-mozc-icon.tar.gz) = 883f4fc489a9ed1c07d2d2ec37ca72509f04ea5d
+RMD160 (fcitx-mozc-icon.tar.gz) = ef8906f4d6a3575b7aa33aeb2ec3dd9b111c9818
+Size (fcitx-mozc-icon.tar.gz) = 18746 bytes
 SHA1 (mozc-2.16.2037.102.tar.xz) = 74c088a81572588d8e60aaf25d066cc74b6fc989
 RMD160 (mozc-2.16.2037.102.tar.xz) = b26f8f58ef2e2f27e5ce42804c6559cb59d33aa9
 Size (mozc-2.16.2037.102.tar.xz) = 37548784 bytes
