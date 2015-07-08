@@ -58,6 +58,7 @@ lib/uim/plugin/libuim-fileio.la
 lib/uim/plugin/libuim-lolevel.la
 lib/uim/plugin/libuim-look.la
 ${PLIST.m17nlib}lib/uim/plugin/libuim-m17nlib.la
+${PLIST.mana}lib/uim/plugin/libuim-mana.la
 ${PLIST.openssl}lib/uim/plugin/libuim-openssl.la
 ${PLIST.sqlite}lib/uim/plugin/libuim-sqlite3.la
 lib/uim/plugin/libuim-process.la

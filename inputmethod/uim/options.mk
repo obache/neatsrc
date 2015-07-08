@@ -1,12 +1,12 @@
 # $NetBSD: options.mk,v 1.32 2014/12/26 08:43:27 obache Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.uim
-PKG_SUPPORTED_OPTIONS=	anthy canna curl eb expat ffi gnome gnome3 gtk gtk3 m17nlib openssl prime sj3 sqlite uim-fep wnn4 xim
+PKG_SUPPORTED_OPTIONS=	anthy canna curl eb expat ffi gnome gnome3 gtk gtk3 m17nlib mana openssl prime sj3 sqlite uim-fep wnn4 xim
 PKG_SUPPORTED_OPTIONS+=	editline
 PKG_OPTIONS_OPTIONAL_GROUPS=	kde qt
 PKG_OPTIONS_GROUP.kde=	kde kde3
 PKG_OPTIONS_GROUP.qt=	qt qt3
-PKG_SUGGESTED_OPTIONS=	anthy expat gtk prime uim-fep xim
+PKG_SUGGESTED_OPTIONS=	anthy expat gtk mana prime uim-fep xim
 
 # Store installed modules
 UIM_MODULES=		skk tutcode byeoru latin elatin xmload pyload \
@@ -35,7 +35,7 @@ PKG_FAIL_REASON+=	"'qt3' conflict with 'qt' or 'kde' option"
 
 PLIST_VARS+=		helperdata uim-dict-gtk uim-dict-gtk3 uim-dict-helperdata fep
 PLIST_VARS+=		anthy curl eb expat ffi gnome gnome3 gtk gtk3 kde kde3 m17nlib openssl qt qt3 sqlite wnn xim
-PLIST_VARS+=		canna prime sj3
+PLIST_VARS+=		canna mana prime sj3
 PLIST_VARS+=		editline
 
 .if !empty(PKG_OPTIONS:Meditline)
@@ -190,6 +190,16 @@ CHECK_FILES_SKIP+=	${PREFIX}/share/uim/pixmaps/m17n-.*\.png
 UIM_MODULES+=		m17nlib
 .else
 CONFIGURE_ARGS+=	--without-m17nlib
+.endif
+
+.if !empty(PKG_OPTIONS:Mmana)
+DEPENDS+=		mana-[0-9]*:../../inputmethod/mana
+DEPENDS+=		manadic-[0-9]*:../../inputmethod/manadic
+CONFIGURE_ARGS+=	--with-mana
+PLIST.mana=		yes
+UIM_MODULES+=		mana
+.else
+CONFIGURE_ARGS+=	--without-mana
 .endif
 
 .if !empty(PKG_OPTIONS:Mqt3) || !empty(PKG_OPTIONS:Mkde3)
