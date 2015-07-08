@@ -1,0 +1,10 @@
+$NetBSD$
+
+SHA1 (mana-0.2.1.tar.bz2) = ad0ea663e87416163bd3d7ede136a699dd44f072
+RMD160 (mana-0.2.1.tar.bz2) = 111063cf936a9c9ccab72bbb5e456ba27510719c
+Size (mana-0.2.1.tar.bz2) = 600138 bytes
+SHA1 (patch-gdbm_cldbm.c) = 56ea6ff1ceaa652286e312b2f1d14841818582cc
+SHA1 (patch-lib_romaji.c) = 3c4fb0084fbfca4dc3ce8cc908223865d60ff64d
+SHA1 (patch-mana_Makefile) = 0f9cfd6d12d9d8a9f40800c4f6a4f4fdcbee270c
+SHA1 (patch-mana_tools.c) = 170a259d17837319e9468930ce58e38821bed349
+SHA1 (patch-schoca_OCaml.mk) = a84c6c3dd5b6448c20039d631d42ed4e13ebf088

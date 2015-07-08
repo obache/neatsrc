@@ -1,0 +1,25 @@
+$NetBSD$
+
+* prevent to use gdbm_compat
+* staged installatin support
+
+--- mana/Makefile.orig	2006-06-11 17:29:21.000000000 +0000
++++ mana/Makefile
+@@ -7,7 +7,7 @@ RESULT = mana
+ LIBDIRS = ../gdbm ../schoca/lib ../lib 
+ INCDIRS = ../gdbm ../schoca/lib ../lib ..
+ LIBS = gdbm schoca
+-CLIBS = gdbm gdbm_compat chasen
++CLIBS = gdbm chasen
+ PACKS = unix
+ LINK = $(LIBTOOL) --mode=link \
+ $(CXX) $(AM_CXXFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@
+@@ -17,7 +17,7 @@ OCAMLBCFLAGS = -g
+ 
+ all : nc
+ install : mana
+-	$(INSTALL_PROGRAM) mana $(bindir)
++	$(INSTALL_PROGRAM) mana $(DESTDIR)$(bindir)
+ 
+ export OCAMLMAKEFILE = ../OCamlMakefile
+ include OCamlMakefile

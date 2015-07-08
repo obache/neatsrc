@@ -1,0 +1,7 @@
+Japanese Kana-to-Kanji conversion engine that used the Hidden Markov Model.
+A considerable part of the code originates in the ChaSen. It is possible to use
+it on Emacs through Egg. Moreover, it is possible to use it with uim.
+It aims to input the long sentence in accuracy.
+
+Besides this, it is extensible with Scheme, written by functional programming
+language OCaml and C are features.
