@@ -1,0 +1,6 @@
+Japanese Kana-to-Kanji conversion engine that used the Hidden Markov Model.
+A considerable part of the code originates in the ChaSen. It is possible to use
+it on Emacs through Egg. Moreover, it is possible to use it with uim.
+It aims to input the long sentence in accuracy.
+
+This package contains a dictionary for Mana.

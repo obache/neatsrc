@@ -1,0 +1,13 @@
+@comment $NetBSD$
+lib/mana/dic/ipadic/Makefile.bat
+lib/mana/dic/ipadic/cforms.cha
+lib/mana/dic/ipadic/chadic.da
+lib/mana/dic/ipadic/chadic.dat
+lib/mana/dic/ipadic/chadic.lex
+lib/mana/dic/ipadic/connect.cha
+lib/mana/dic/ipadic/ctypes.cha
+lib/mana/dic/ipadic/grammar.cha
+lib/mana/dic/ipadic/manarc
+lib/mana/dic/ipadic/matrix.cha
+lib/mana/dic/ipadic/table.cha
+share/examples/manadic/manarc

@@ -62,6 +62,7 @@ SUBDIR+=	libskk
 SUBDIR+=	libtabe
 SUBDIR+=	m17n-im-config
 SUBDIR+=	mana
+SUBDIR+=	manadic
 SUBDIR+=	mozc-elisp
 SUBDIR+=	mozc-renderer
 SUBDIR+=	mozc-server
