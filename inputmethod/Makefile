@@ -16,6 +16,7 @@ SUBDIR+=	dbskkd-cdb
 SUBDIR+=	fcitx
 SUBDIR+=	fcitx-anthy
 SUBDIR+=	fcitx-chewing
+SUBDIR+=	fcitx-cloudpinyin
 SUBDIR+=	fcitx-configtool
 SUBDIR+=	fcitx-kkc
 SUBDIR+=	fcitx-mozc
