@@ -214,6 +214,12 @@ replace-destdir: .PHONY
 	${PKG_INFO} -qR ${PKGNAME:Q} | while read pkg; do \
 		[ -n "$$pkg" ] || continue; \
 		${PKG_ADMIN} set unsafe_depends_strict=YES "$$pkg"; \
+		${PKG_INFO} -qQ REQUIRES "$$pkg" | while read req; do \
+			if [ ! -e "$$req" ]; then \
+				${PKG_ADMIN} set unsafe_depends=YES "$$pkg"; \
+				break; \
+			fi; \
+		done;	\
 	done
 	${RUN}${PKG_ADMIN} unset unsafe_depends ${PKGNAME:Q}
 	${RUN}${PKG_ADMIN} unset unsafe_depends_strict ${PKGNAME:Q}
