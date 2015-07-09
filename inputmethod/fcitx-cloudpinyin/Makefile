@@ -13,8 +13,6 @@ USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	msgfmt pkg-config
 
-ICON_THEMES=	yes
-
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../inputmethod/fcitx/buildlink3.mk"
