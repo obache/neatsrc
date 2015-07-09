@@ -59,6 +59,7 @@ SUBDIR+=	kimera-tomoe-gtk
 SUBDIR+=	kinput2
 SUBDIR+=	libchewing
 SUBDIR+=	libchewing02
+SUBDIR+=	libgooglepinyin
 SUBDIR+=	libhangul
 SUBDIR+=	librime
 SUBDIR+=	libskk
