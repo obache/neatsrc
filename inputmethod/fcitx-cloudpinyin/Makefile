@@ -6,7 +6,7 @@ MASTER_SITES=	http://download.fcitx-im.org/fcitx-cloudpinyin/
 EXTRACT_SUFX=	.tar.xz
 
 HOMEPAGE=	http://fcitx-im.org/
-COMMENT=	Add Cloud Pinyin Support to Pinyin Input Method
+COMMENT=	Add Cloud Pinyin Support to Pinyin Input Method for Fcitx
 LICENSE=	gnu-gpl-v2
 
 USE_CMAKE=	yes
