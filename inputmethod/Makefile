@@ -19,6 +19,7 @@ SUBDIR+=	fcitx-chewing
 SUBDIR+=	fcitx-cloudpinyin
 SUBDIR+=	fcitx-configtool
 SUBDIR+=	fcitx-googlepinyin
+SUBDIR+=	fcitx-handwriting
 SUBDIR+=	fcitx-kkc
 SUBDIR+=	fcitx-mozc
 SUBDIR+=	gcin
