@@ -1,0 +1,12 @@
+$NetBSD$
+
+* Fix missing linkage with libintl
+
+--- hangul/Makefile.am.orig	2010-12-19 04:56:38.000000000 +0000
++++ hangul/Makefile.am
+@@ -19,4 +19,4 @@ libhangul_la_CFLAGS = \
+     -DLIBHANGUL_DEFAULT_HANJA_DIC=\"$(datadir)/libhangul/hanja/hanja.txt\"
+ 
+ libhangul_la_LDFLAGS = -version-info $(LIBHANGUL_CURRENT):$(LIBHANGUL_REVISION):$(LIBHANGUL_AGE)
+-libhangul_la_LIBADD =
++libhangul_la_LIBADD = $(LTLIBINTL)
