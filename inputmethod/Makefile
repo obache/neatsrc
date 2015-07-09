@@ -27,6 +27,7 @@ SUBDIR+=	ibus-anthy
 SUBDIR+=	ibus-array
 SUBDIR+=	ibus-chewing
 SUBDIR+=	ibus-el
+SUBDIR+=	ibus-googlepinyin
 SUBDIR+=	ibus-handwrite
 SUBDIR+=	ibus-hangul
 SUBDIR+=	ibus-input-pad
