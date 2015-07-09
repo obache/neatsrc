@@ -1,5 +1,5 @@
 $NetBSD: distinfo,v 1.2 2014/08/10 02:30:00 obache Exp $
 
-SHA1 (ibus-kkc-1.5.21.tar.gz) = 238c7003415a672d0578b5b8044c6bf2aa3f8cec
-RMD160 (ibus-kkc-1.5.21.tar.gz) = f393377670bcf36a5d165c80d90103b51ca3c36b
-Size (ibus-kkc-1.5.21.tar.gz) = 493129 bytes
+SHA1 (ibus-kkc-1.5.22.tar.gz) = e48fcdfbb2d729a081e3a0aaa1fbdadce4546e35
+RMD160 (ibus-kkc-1.5.22.tar.gz) = 7a7c0a5a3362195afea7d89ae28f371da0c0eeb5
+Size (ibus-kkc-1.5.22.tar.gz) = 518844 bytes
