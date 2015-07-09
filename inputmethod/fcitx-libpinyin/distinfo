@@ -1,0 +1,6 @@
+$NetBSD$
+
+SHA1 (fcitx-libpinyin-0.3.1_dict.tar.xz) = 3845238a6b0fa60afa3e84649981e57a9bde999f
+RMD160 (fcitx-libpinyin-0.3.1_dict.tar.xz) = ce46990a20f2618a30b2ea19d29daf042a034daf
+Size (fcitx-libpinyin-0.3.1_dict.tar.xz) = 15143832 bytes
+SHA1 (patch-dictmanager_CMakeLists.txt) = 034be0f00875f86cee1016284b2aaa4134804c08

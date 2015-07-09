@@ -22,6 +22,7 @@ SUBDIR+=	fcitx-googlepinyin
 SUBDIR+=	fcitx-handwriting
 SUBDIR+=	fcitx-hangul
 SUBDIR+=	fcitx-kkc
+SUBDIR+=	fcitx-libpinyin
 SUBDIR+=	fcitx-mozc
 SUBDIR+=	gcin
 SUBDIR+=	gtk-im-libthai
