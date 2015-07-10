@@ -3,4 +3,16 @@ $NetBSD$
 SHA1 (fcitx-libpinyin-0.3.1_dict.tar.xz) = 3845238a6b0fa60afa3e84649981e57a9bde999f
 RMD160 (fcitx-libpinyin-0.3.1_dict.tar.xz) = ce46990a20f2618a30b2ea19d29daf042a034daf
 Size (fcitx-libpinyin-0.3.1_dict.tar.xz) = 15143832 bytes
+SHA1 (patch-CMakeLists.txt) = 52f517a53fbe760e6a5c1e150291e56a480573b6
+SHA1 (patch-cmake_FindLibpinyin.cmake) = 6db9e4b499ca028de27d8eb6cae87b955da25e11
+SHA1 (patch-config.h.in) = 0aa85225787b7bf1adce6b0f1a70c27efd96527a
+SHA1 (patch-data_CMakeLists.txt) = 583f8e60d7d15ef932ac8c709239641783287d14
+SHA1 (patch-data_table.conf) = 9133242f751c111e79db60c8ef42de7dd555541e
 SHA1 (patch-dictmanager_CMakeLists.txt) = 034be0f00875f86cee1016284b2aaa4134804c08
+SHA1 (patch-src_config.cpp) = 6df0e26f4dfe5985ac3d1156f1a76ae6acfdb68a
+SHA1 (patch-src_eim.cpp) = e0d1614c50c80599aaa10188a30c90079144b3b0
+SHA1 (patch-src_eim.h) = d8722461857b6bef621c83a43cb73a5fd5cd0c6d
+SHA1 (patch-src_enummap.cpp) = 3690ac4117781401df11903c748706749d403e08
+SHA1 (patch-src_enummap.h) = 88eeca8670865cf027e0802971be40bae009bb54
+SHA1 (patch-src_fcitx-libpinyin.desc) = a53c78288bc3cf69a12fb8942bfc180eddf88bd7
+SHA1 (patch-src_utils.cpp) = a17c2bd1289f37c137a4bff16dc390a169ee416b

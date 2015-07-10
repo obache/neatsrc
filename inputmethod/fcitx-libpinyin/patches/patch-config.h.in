@@ -1,0 +1,14 @@
+$NetBSD$
+
+* no matter libpinyin tools found or not, we can build it
+
+--- config.h.in.orig	2013-07-15 20:34:05.000000000 +0000
++++ config.h.in
+@@ -4,6 +4,7 @@
+ #define FCITX4_MAJOR_VERSION @FCITX4_MAJOR_VERSION@
+ #define FCITX4_MINOR_VERSION @FCITX4_MINOR_VERSION@
+ #define FCITX4_PATCH_VERSION @FCITX4_PATCH_VERSION@
++#cmakedefine LIBPINYIN_TOOLS_FOUND
+ 
+ #define FCITX_CHECK_VERSION(major,minor,micro)    \
+     (FCITX4_MAJOR_VERSION > (major) || \
