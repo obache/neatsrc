@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.4 2015/03/15 19:51:08 hiramatsu Exp $
 
-DISTNAME=	libpinyin-1.1.0
+DISTNAME=	libpinyin-1.1.91
 CATEGORIES=	textproc chinese
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libpinyin/}
 
@@ -20,7 +20,7 @@ OPSYSVARS+=	BUILDLINK_TRANSFORM
 
 BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--version-script=./libpinyin.ver
 
-.include "../../databases/db4/buildlink3.mk"
-BUILDLINK_TRANSFORM+=	l:db:db4
+.include "options.mk"
+
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
