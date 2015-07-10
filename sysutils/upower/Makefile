@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2015/03/15 16:48:17 tnn Exp $
+# $NetBSD: Makefile,v 1.3 2015/07/08 10:41:35 richard Exp $
 
-DISTNAME=	upower-0.99.2
+DISTNAME=	upower-0.99.3
 CATEGORIES=	sysutils
 MASTER_SITES=	http://upower.freedesktop.org/releases/
 EXTRACT_SUFX=	.tar.xz
@@ -32,6 +32,18 @@ OWN_DIRS+=	${PKG_SYSCONFDIR}/UPower
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/dbus-1/system.d
 
 PKGCONFIG_OVERRIDE+=	upower-glib.pc.in
+USE_PKGLOCALEDIR=	yes
+
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == "SunOS"
+BUILDLINK_TRANSFORM+=	opt:-Wl,--no-as-needed:-Wl,-zrecord
+BUILDLINK_TRANSFORM+=	opt:-Wl,--as-needed:-Wl,-zignore
+.endif
+
+TEST_TARGET=	check
+
+# with --nonet, xsltproc needs a helping hand finding some dtds
+XLSTPROC_PATH+=	${LOCALBASE}/share/doc/dbus
 
 BUILD_DEFS+=	VARBASE
 
@@ -43,4 +55,5 @@ BUILDLINK_API_DEPENDS.dbus+=	dbus>=1.0
 .include "../../sysutils/dbus/buildlink3.mk"
 BUILDLINK_API_DEPENDS.dbus-glib+=	dbus-glib>=0.76
 .include "../../sysutils/dbus-glib/buildlink3.mk"
+.include "../../textproc/libxslt/xsltproc-nonet.mk"
 .include "../../mk/bsd.pkg.mk"
