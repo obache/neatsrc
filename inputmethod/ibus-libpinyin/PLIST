@@ -1,6 +1,7 @@
 @comment $NetBSD: PLIST,v 1.1 2014/06/01 13:30:35 obache Exp $
 libexec/ibus-engine-libpinyin
 libexec/ibus-setup-libpinyin
+share/appdata/libpinyin.appdata.xml
 share/applications/ibus-setup-libbopomofo.desktop
 share/applications/ibus-setup-libpinyin.desktop
 ${PLIST.lua}share/ibus-libpinyin/base.lua
