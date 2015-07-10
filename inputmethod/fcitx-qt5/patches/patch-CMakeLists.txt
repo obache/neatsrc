@@ -1,0 +1,14 @@
+$NetBSD$
+
+* requilre libintl
+
+--- CMakeLists.txt.orig	2015-07-03 03:02:17.000000000 +0000
++++ CMakeLists.txt
+@@ -15,6 +15,7 @@ include(GenerateExportHeader)
+ include(ECMPackageConfigHelpers)
+ include(ECMSetupVersion)
+ include(ECMGenerateHeaders)
++include(FindIntl)
+ 
+ find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Core DBus Widgets)
+ find_package(Qt5Gui ${REQUIRED_QT_VERSION} REQUIRED Private)

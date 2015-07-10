@@ -25,6 +25,7 @@ SUBDIR+=	fcitx-kkc
 SUBDIR+=	fcitx-libpinyin
 SUBDIR+=	fcitx-m17n
 SUBDIR+=	fcitx-mozc
+SUBDIR+=	fcitx-qt5
 SUBDIR+=	gcin
 SUBDIR+=	gtk-im-libthai
 SUBDIR+=	ibus
