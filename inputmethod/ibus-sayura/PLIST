@@ -1,0 +1,5 @@
+@comment $NetBSD$
+libexec/ibus-engine-sayura
+share/ibus-sayura/icons/ibus-sayura.png
+share/ibus/component/sayura.xml
+share/locale/zh_CN/LC_MESSAGES/ibus-sayura.mo

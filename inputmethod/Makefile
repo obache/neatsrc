@@ -48,6 +48,7 @@ SUBDIR+=	ibus-pinyin
 SUBDIR+=	ibus-python
 SUBDIR+=	ibus-qt
 SUBDIR+=	ibus-rime
+SUBDIR+=	ibus-sayura
 SUBDIR+=	ibus-skk
 SUBDIR+=	ibus-t9
 SUBDIR+=	ibus-table
