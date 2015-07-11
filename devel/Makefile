@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2117 2015/07/07 22:21:50 rodent Exp $
+# $NetBSD: Makefile,v 1.2119 2015/07/10 17:27:53 khorben Exp $
 #
 
 COMMENT=	Development utilities
@@ -253,6 +253,7 @@ SUBDIR+=	giblib
 SUBDIR+=	gindent
 SUBDIR+=	git
 SUBDIR+=	git-base
+SUBDIR+=	git-contrib
 SUBDIR+=	git-docs
 SUBDIR+=	git-gitk
 SUBDIR+=	git-svn
@@ -1787,6 +1788,7 @@ SUBDIR+=	qore-uuid-module
 SUBDIR+=	qtscriptgenerator
 SUBDIR+=	quilt
 SUBDIR+=	radare2
+SUBDIR+=	radare2-valabind
 SUBDIR+=	ragel
 SUBDIR+=	rainbow-delimiters-el
 SUBDIR+=	rapidsvn

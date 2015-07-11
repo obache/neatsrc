@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1112 2015/06/13 14:37:40 taca Exp $
+# $NetBSD: Makefile,v 1.1115 2015/07/10 09:05:28 wiz Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -117,6 +117,8 @@ SUBDIR+=	firefox31
 SUBDIR+=	firefox31-l10n
 SUBDIR+=	firefox36
 SUBDIR+=	firefox36-l10n
+SUBDIR+=	firefox38
+SUBDIR+=	firefox38-l10n
 SUBDIR+=	gallery
 SUBDIR+=	gallery2
 SUBDIR+=	ganglia-webfrontend
@@ -785,6 +787,7 @@ SUBDIR+=	tinyproxy
 SUBDIR+=	trac
 SUBDIR+=	typo3_45
 SUBDIR+=	typo3_62
+SUBDIR+=	uhttpmock
 SUBDIR+=	urlget
 SUBDIR+=	urlgrabber
 SUBDIR+=	varnish
