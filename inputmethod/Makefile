@@ -104,6 +104,7 @@ SUBDIR+=	scim-m17n
 SUBDIR+=	scim-pinyin
 SUBDIR+=	scim-prime
 SUBDIR+=	scim-python
+SUBDIR+=	scim-sayura
 SUBDIR+=	scim-sinhala
 SUBDIR+=	scim-skk
 SUBDIR+=	scim-tables
