@@ -27,6 +27,7 @@ SUBDIR+=	fcitx-m17n
 SUBDIR+=	fcitx-mozc
 SUBDIR+=	fcitx-qt5
 SUBDIR+=	fcitx-rime
+SUBDIR+=	fcitx-sayura
 SUBDIR+=	gcin
 SUBDIR+=	gtk-im-libthai
 SUBDIR+=	ibus

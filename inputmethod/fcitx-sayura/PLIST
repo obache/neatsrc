@@ -1,0 +1,18 @@
+@comment $NetBSD$
+lib/fcitx/fcitx-sayura.so
+share/fcitx/addon/fcitx-sayura.conf
+share/fcitx/imicon/sayura.png
+share/fcitx/inputmethod/sayura.conf
+share/fcitx/skin/default/sayura.png
+share/icons/hicolor/128x128/apps/fcitx-sayura.png
+share/icons/hicolor/16x16/apps/fcitx-sayura.png
+share/icons/hicolor/192x192/apps/fcitx-sayura.png
+share/icons/hicolor/24x24/apps/fcitx-sayura.png
+share/icons/hicolor/32x32/apps/fcitx-sayura.png
+share/icons/hicolor/48x48/apps/fcitx-sayura.png
+share/icons/hicolor/64x64/apps/fcitx-sayura.png
+share/icons/hicolor/scalable/apps/sayura.svg
+share/locale/de/LC_MESSAGES/fcitx-sayura.mo
+share/locale/ja/LC_MESSAGES/fcitx-sayura.mo
+share/locale/zh_CN/LC_MESSAGES/fcitx-sayura.mo
+share/locale/zh_TW/LC_MESSAGES/fcitx-sayura.mo
