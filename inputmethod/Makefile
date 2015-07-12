@@ -29,6 +29,7 @@ SUBDIR+=	fcitx-qt5
 SUBDIR+=	fcitx-rime
 SUBDIR+=	fcitx-sayura
 SUBDIR+=	fcitx-skk
+SUBDIR+=	fcitx-table-extra
 SUBDIR+=	gcin
 SUBDIR+=	gtk-im-libthai
 SUBDIR+=	ibus
