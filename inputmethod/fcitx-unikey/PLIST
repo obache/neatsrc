@@ -1,0 +1,12 @@
+@comment $NetBSD$
+lib/fcitx/fcitx-unikey.so
+share/fcitx/addon/fcitx-unikey.conf
+share/fcitx/configdesc/fcitx-unikey.desc
+share/fcitx/imicon/unikey.png
+share/fcitx/inputmethod/unikey.conf
+share/icons/hicolor/256x256/apps/fcitx-unikey.png
+share/locale/de/LC_MESSAGES/fcitx-unikey.mo
+share/locale/ja/LC_MESSAGES/fcitx-unikey.mo
+share/locale/vi/LC_MESSAGES/fcitx-unikey.mo
+share/locale/zh_CN/LC_MESSAGES/fcitx-unikey.mo
+share/locale/zh_TW/LC_MESSAGES/fcitx-unikey.mo
