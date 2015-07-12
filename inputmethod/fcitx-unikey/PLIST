@@ -1,5 +1,6 @@
 @comment $NetBSD$
 lib/fcitx/fcitx-unikey.so
+${PLIST.qt}lib/fcitx/qt/libfcitx-unikey-macro-editor.so
 share/fcitx/addon/fcitx-unikey.conf
 share/fcitx/configdesc/fcitx-unikey.desc
 share/fcitx/imicon/unikey.png

@@ -15,6 +15,8 @@ USE_TOOLS+=	msgfmt pkg-config
 
 ICON_THEMES=	yes
 
+.include "options.mk"
+
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../inputmethod/fcitx/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,0 +1,14 @@
+$NetBSD$
+
+* libintl is required
+
+--- CMakeLists.txt.orig	2015-07-12 08:58:47.000000000 +0000
++++ CMakeLists.txt
+@@ -26,6 +26,7 @@ find_package(Gettext REQUIRED)
+ 
+ if (ENABLE_QT)
+ find_package(Qt4 4.8)
++find_package(Intl REQUIRED)
+ 
+ pkg_check_modules(FCITX_QT "fcitx-qt>=4.2.8")
+ endif (ENABLE_QT)

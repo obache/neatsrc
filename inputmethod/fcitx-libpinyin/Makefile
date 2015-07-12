@@ -18,10 +18,10 @@ WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
 
 ICON_THEMES=	yes
 
+.include "options.mk"
+
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../textproc/libpinyin/buildlink3.mk"
 .include "../../inputmethod/fcitx/buildlink3.mk"
-.include "../../x11/qt4-libs/buildlink3.mk"
-.include "../../x11/qt4-qdbus/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

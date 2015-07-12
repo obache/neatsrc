@@ -20,12 +20,12 @@ FIND_PREFIX:=	SKK_JISYO_DIR=skk-jisyo
 .include "../../mk/find-prefix.mk"
 CMAKE_ARGS+=	-DSKK_DEFAULT_PATH:PATH=${SKK_JISYO_DIR}/share/skk/
 
+.include "options.mk"
+
 BUILDLINK_TRANSFORM+=	rm:-std=c++11
 
 ICON_THEMES=	yes
 
 .include "../../inputmethod/fcitx/buildlink3.mk"
 .include "../../converters/libkkc/buildlink3.mk"
-.include "../../x11/qt4-libs/buildlink3.mk"
-.include "../../x11/qt4-qdbus/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

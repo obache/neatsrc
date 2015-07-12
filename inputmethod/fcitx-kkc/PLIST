@@ -1,7 +1,7 @@
 @comment $NetBSD$
 include/fcitx/module/kkc/fcitx-kkc.h
 lib/fcitx/fcitx-kkc.so
-lib/fcitx/qt/libfcitx-kkc-config.so
+${PLIST.qt}lib/fcitx/qt/libfcitx-kkc-config.so
 share/fcitx/addon/fcitx-kkc.conf
 share/fcitx/configdesc/fcitx-kkc.desc
 share/fcitx/imicon/kkc.png

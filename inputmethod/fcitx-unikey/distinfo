@@ -3,3 +3,5 @@ $NetBSD$
 SHA1 (fcitx-unikey-0.2.4.tar.xz) = e81bd220d680720eea022fcbb69b2bb1d81d4621
 RMD160 (fcitx-unikey-0.2.4.tar.xz) = 8c242abc19b57de513673fcba7e4ea9d152d877b
 Size (fcitx-unikey-0.2.4.tar.xz) = 72308 bytes
+SHA1 (patch-CMakeLists.txt) = 2b682b069a5b8929860a856a79a39e111bda9630
+SHA1 (patch-macro-editor_CMakeLists.txt) = 4709b8bd823ed39132a4ad6f2879837c3ec38252
