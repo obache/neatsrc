@@ -733,6 +733,20 @@ TOOLS_PATH.rpm2pkg=		${TOOLS_PREFIX.rpm2pkg}/sbin/rpm2pkg
 .  endif
 .endif
 
+_TOOLS.scons=	scons sconsign scons-time
+.for _t_ in ${_TOOLS.scons}
+.  if !defined(TOOLS_IGNORE.${_t_}) && !empty(_USE_TOOLS:M${_t_})
+.    if !empty(PKGPATH:Mdevel/scons)
+MAKEFLAGS+=			TOOLS_IGNORE.${_t_}=
+.    elif !empty(_TOOLS_USE_PKGSRC.${_t_}:M[yY][eE][sS])
+TOOLS_DEPENDS.${_t_}?=		scons>=1.1:../../devel/scons
+TOOLS_CREATE+=			${_t_}
+TOOLS_FIND_PREFIX+=		TOOLS_PREFIX.${_t_}=scons
+TOOLS_PATH.${_t_}=		${TOOLS_PREFIX.${_t_}}/bin/${_t_}
+.    endif
+.  endif
+.endfor
+
 .if !defined(TOOLS_IGNORE.sed) && !empty(_USE_TOOLS:Msed)
 .  if !empty(PKGPATH:Mtextproc/nbsed)
 MAKEFLAGS+=			TOOLS_IGNORE.sed=
