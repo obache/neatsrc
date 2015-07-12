@@ -31,6 +31,7 @@ SUBDIR+=	fcitx-sayura
 SUBDIR+=	fcitx-skk
 SUBDIR+=	fcitx-table-extra
 SUBDIR+=	fcitx-table-other
+SUBDIR+=	fcitx-ui-light
 SUBDIR+=	gcin
 SUBDIR+=	gtk-im-libthai
 SUBDIR+=	ibus
