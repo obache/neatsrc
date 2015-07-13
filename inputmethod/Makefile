@@ -55,6 +55,7 @@ SUBDIR+=	ibus-qt
 SUBDIR+=	ibus-rime
 SUBDIR+=	ibus-sayura
 SUBDIR+=	ibus-skk
+SUBDIR+=	ibus-sunpinyin
 SUBDIR+=	ibus-t9
 SUBDIR+=	ibus-table
 SUBDIR+=	ibus-table-chinese

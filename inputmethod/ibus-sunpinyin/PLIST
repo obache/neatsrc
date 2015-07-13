@@ -1,0 +1,16 @@
+@comment $NetBSD$
+lib/ibus-sunpinyin/ibus-engine-sunpinyin
+lib/ibus-sunpinyin/ibus-setup-sunpinyin
+share/ibus-sunpinyin/icons/cnpunc.svg
+share/ibus-sunpinyin/icons/eng.svg
+share/ibus-sunpinyin/icons/enpunc.svg
+share/ibus-sunpinyin/icons/fullwidth.svg
+share/ibus-sunpinyin/icons/halfwidth.svg
+share/ibus-sunpinyin/icons/han.svg
+share/ibus-sunpinyin/icons/setup.svg
+share/ibus-sunpinyin/icons/sunpinyin-logo.png
+share/ibus-sunpinyin/setup/config.py
+share/ibus-sunpinyin/setup/main.py
+share/ibus-sunpinyin/setup/setup.glade
+share/ibus/component/sunpinyin.xml
+share/locale/zh_CN/LC_MESSAGES/ibus-sunpinyin.mo
