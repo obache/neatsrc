@@ -113,6 +113,7 @@ SUBDIR+=	scim-python
 SUBDIR+=	scim-sayura
 SUBDIR+=	scim-sinhala
 SUBDIR+=	scim-skk
+SUBDIR+=	scim-sunpinyin
 SUBDIR+=	scim-tables
 SUBDIR+=	scim-tables-vietnamese-ext
 SUBDIR+=	scim-tegaki
