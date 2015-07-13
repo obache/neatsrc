@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.758 2015/07/10 17:48:31 youri Exp $
+# $NetBSD: Makefile,v 1.760 2015/07/11 11:55:33 kamil Exp $
 #
 
 COMMENT=	Packages to support the X window system
@@ -258,6 +258,7 @@ SUBDIR+=	kdebindings-ruby
 SUBDIR+=	kdelibdocs3
 SUBDIR+=	kdelibs3
 SUBDIR+=	kdelibs4
+SUBDIR+=	keybinder
 SUBDIR+=	keylaunch
 SUBDIR+=	kkbswitch
 SUBDIR+=	kmessage
@@ -323,6 +324,7 @@ SUBDIR+=	libxkbui
 SUBDIR+=	libxklavier
 SUBDIR+=	libxshmfence
 SUBDIR+=	listres
+SUBDIR+=	lua-keybinder
 SUBDIR+=	luit
 SUBDIR+=	lxsession
 SUBDIR+=	matchbox-common
@@ -379,12 +381,14 @@ SUBDIR+=	py-gnome2-extras
 SUBDIR+=	py-gtk2
 SUBDIR+=	py-gtksourceview
 SUBDIR+=	py-kde4
+SUBDIR+=	py-keybinder
 SUBDIR+=	py-kiwi
 SUBDIR+=	py-qt4
 SUBDIR+=	py-qt4-qscintilla
 SUBDIR+=	py-qt5
 SUBDIR+=	py-qwt-qt4
 SUBDIR+=	py-sip
+SUBDIR+=	py-terminator
 SUBDIR+=	py-vte
 SUBDIR+=	py-wxWidgets
 SUBDIR+=	py-xcbgen

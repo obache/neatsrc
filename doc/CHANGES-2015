@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.2965 2015/07/10 17:48:50 youri Exp $
+$NetBSD: CHANGES-2015,v 1.2975 2015/07/11 11:57:08 kamil Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -5598,5 +5598,20 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated security/openssh to 6.9.1 [taca 2015-07-09]
 	Updated lang/nodejs to 0.12.7 [fhajny 2015-07-10]
 	Added www/uhttpmock version 0.4.0 [wiz 2015-07-10]
+	Updated pkgtools/pkgdepgraph to 2.8nb5 [dholland 2015-07-10]
 	Added devel/git-contrib version 2.4.5 [khorben 2015-07-10]
 	Added x11/xfce4-dashboard version 0.5.0 [youri 2015-07-10]
+	Updated lang/tcl to 8.6.4nb2 [dholland 2015-07-10]
+	Updated lang/php54 to 5.4.43 [taca 2015-07-11]
+	Updated lang/php55 to 5.5.27 [taca 2015-07-11]
+	Updated lang/php56 to 5.6.11 [taca 2015-07-11]
+	Updated www/p5-Dancer to 1.3140 [wen 2015-07-11]
+	Updated devel/p5-CPAN-Changes to 0.400002 [wen 2015-07-11]
+	Updated www/p5-CGI-Fast to 2.10 [wen 2015-07-11]
+	Updated textproc/p5-Text-Xslate to 3.3.4 [wen 2015-07-11]
+	Updated mail/sendmail to 8.15.2 [jnemeth 2015-07-11]
+	Updated mail/sylpheed to 3.4.3 [szptvlfn 2015-07-11]
+	Added x11/keybinder version 0.3.0 [kamil 2015-07-11]
+	Added x11/lua-keybinder version 0.3.0 [kamil 2015-07-11]
+	Added x11/py-keybinder version 0.3.0 [kamil 2015-07-11]
+	Added x11/py-terminator version 0.97 [kamil 2015-07-11]
