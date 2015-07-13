@@ -130,6 +130,7 @@ SUBDIR+=	skkfep
 SUBDIR+=	skkinput
 SUBDIR+=	skkserv
 SUBDIR+=	skktools
+SUBDIR+=	sunpinyin
 SUBDIR+=	tc
 SUBDIR+=	tegaki-pygtk
 SUBDIR+=	tegaki-python

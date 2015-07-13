@@ -1,0 +1,3 @@
+SunPinyin is an SLM (Statistical Language Model) based input method
+engine. To model the Chinese language, it use a backoff bigram and
+trigram language model.
