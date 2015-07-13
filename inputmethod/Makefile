@@ -161,6 +161,7 @@ SUBDIR+=	uim-mozc
 SUBDIR+=	uim-tomoe-gtk
 SUBDIR+=	unicon-im
 SUBDIR+=	xcin
+SUBDIR+=	xsunpinyin
 SUBDIR+=	zinnia
 SUBDIR+=	zinnia-tomoe
 
