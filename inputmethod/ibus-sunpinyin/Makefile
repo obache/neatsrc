@@ -23,5 +23,4 @@ do-install:
 
 .include "../../inputmethod/ibus/buildlink3.mk"
 .include "../../inputmethod/sunpinyin/buildlink3.mk"
-.include "../../x11/gtk2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
