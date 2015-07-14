@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.2975 2015/07/11 11:57:08 kamil Exp $
+$NetBSD: CHANGES-2015,v 1.2991 2015/07/12 14:43:32 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -5615,3 +5615,19 @@ Changes to the packages collection and infrastructure in 2015:
 	Added x11/lua-keybinder version 0.3.0 [kamil 2015-07-11]
 	Added x11/py-keybinder version 0.3.0 [kamil 2015-07-11]
 	Added x11/py-terminator version 0.97 [kamil 2015-07-11]
+	Updated www/librest07 to 0.7.93 [wiz 2015-07-11]
+	Added net/libgdata0.6 version 0.6.6nb16 [wiz 2015-07-11]
+	Updated net/libgdata to 0.16.1 [wiz 2015-07-11]
+	Updated devel/netbeans-ide to 8.0.2 [asau 2015-07-11]
+	Added www/webkit24-gtk version 2.4.9nb1 [wiz 2015-07-12]
+	Updated www/webkit-gtk to 2.8.1 [wiz 2015-07-12]
+	Added net/gnome-online-accounts version 3.16.3 [wiz 2015-07-12]
+	Updated databases/p5-DBIx-Class to 0.082820 [wen 2015-07-12]
+	Updated databases/p5-DBIx-Class-Helpers to 2.030001 [wen 2015-07-12]
+	Updated math/p5-Number-Tolerant to 1.706 [wen 2015-07-12]
+	Updated net/dtcpclient to 20090812nb1 [dholland 2015-07-12]
+	Updated cad/py-simpy to 3.0.8 [wen 2015-07-12]
+	Updated www/p5-HTTP-Message to 6.08 [wiz 2015-07-12]
+	Updated games/lgogdownloader to 2.24 [wiz 2015-07-12]
+	Updated wm/ratpoison to 1.4.8 [wiz 2015-07-12]
+	Updated security/p5-Net-DNS-SEC to 0.22 [wiz 2015-07-12]

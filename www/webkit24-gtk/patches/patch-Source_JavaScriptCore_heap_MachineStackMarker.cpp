@@ -1,4 +1,4 @@
-$NetBSD: patch-Source_JavaScriptCore_heap_MachineStackMarker.cpp,v 1.3 2014/08/03 22:30:05 wiz Exp $
+$NetBSD: patch-Source_JavaScriptCore_heap_MachineStackMarker.cpp,v 1.1 2015/07/12 00:37:47 wiz Exp $
 
 --- Source/JavaScriptCore/heap/MachineStackMarker.cpp.orig	2014-04-14 06:40:44.000000000 +0000
 +++ Source/JavaScriptCore/heap/MachineStackMarker.cpp

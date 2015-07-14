@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1076 2015/06/16 16:16:20 abs Exp $
+# $NetBSD: Makefile,v 1.1078 2015/07/12 00:46:55 wiz Exp $
 #
 
 COMMENT=	Networking tools
@@ -166,6 +166,7 @@ SUBDIR+=	gnet1
 SUBDIR+=	gnetcat
 SUBDIR+=	gnome-netstatus
 SUBDIR+=	gnome-nettool
+SUBDIR+=	gnome-online-accounts
 SUBDIR+=	gnome-vfs-smb
 SUBDIR+=	gnugk
 SUBDIR+=	go-net
@@ -271,6 +272,7 @@ SUBDIR+=	libdnet
 SUBDIR+=	libexosip
 SUBDIR+=	libfetch
 SUBDIR+=	libgdata
+SUBDIR+=	libgdata0.6
 SUBDIR+=	libktorrent
 SUBDIR+=	liblive
 SUBDIR+=	libmms

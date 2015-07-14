@@ -1,4 +1,4 @@
-$NetBSD: patch-ak,v 1.4 2014/08/03 22:30:05 wiz Exp $
+$NetBSD: patch-ak,v 1.1 2015/07/12 00:37:47 wiz Exp $
 
 --- Source/ThirdParty/ANGLE/src/compiler/osinclude.h.orig	2014-04-14 06:40:44.000000000 +0000
 +++ Source/ThirdParty/ANGLE/src/compiler/osinclude.h

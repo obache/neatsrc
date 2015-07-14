@@ -1,4 +1,4 @@
-$NetBSD: patch-Source_JavaScriptCore_ForwardingHeaders_JavaScriptCore_JSCallbackFunction.h,v 1.1 2014/08/21 04:51:08 dbj Exp $
+$NetBSD: patch-Source_JavaScriptCore_ForwardingHeaders_JavaScriptCore_JSCallbackFunction.h,v 1.1 2015/07/12 00:37:47 wiz Exp $
 
 --- /dev/null
 +++ Source/JavaScriptCore/ForwardingHeaders/JavaScriptCore/JSCallbackFunction.h

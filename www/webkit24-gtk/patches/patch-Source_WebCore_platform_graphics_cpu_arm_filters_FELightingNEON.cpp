@@ -1,4 +1,4 @@
-$NetBSD: patch-Source_WebCore_platform_graphics_cpu_arm_filters_FELightingNEON.cpp,v 1.1 2015/03/24 14:30:29 joerg Exp $
+$NetBSD: patch-Source_WebCore_platform_graphics_cpu_arm_filters_FELightingNEON.cpp,v 1.1 2015/07/12 00:37:47 wiz Exp $
 
 --- Source/WebCore/platform/graphics/cpu/arm/filters/FELightingNEON.cpp.orig	2014-10-08 17:54:37.000000000 +0000
 +++ Source/WebCore/platform/graphics/cpu/arm/filters/FELightingNEON.cpp

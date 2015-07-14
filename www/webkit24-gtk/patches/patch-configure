@@ -1,4 +1,4 @@
-$NetBSD: patch-configure,v 1.8 2015/05/28 05:30:51 wiz Exp $
+$NetBSD: patch-configure,v 1.1 2015/07/12 00:37:47 wiz Exp $
 
 --- configure.orig	2015-05-20 09:29:21.000000000 +0000
 +++ configure
