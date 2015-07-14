@@ -51,6 +51,10 @@ PLIST_SUBST+=		BASEVER=${TCL_BASEVER}
 
 CONFIGURE_ARGS+=	--with-system-sqlite
 BUILDLINK_API_DEPENDS.sqlite3+=	sqlite3>=3.8.3
+SUBST_CLASSES+=			sqlite3-rpath
+SUBST_STAGE.sqlite3-rpath=	post-configure
+SUBST_FILES.sqlite3-rpath=	pkgs/sqlite*/configure
+SUBST_SED.sqlite3-rpath+=	-e "s|LIBS -lsqlite3|LIBS ${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.sqlite3}/lib -lsqlite3|"
 
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
