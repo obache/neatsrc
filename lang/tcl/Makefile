@@ -50,6 +50,7 @@ PLIST_SUBST+=		SONUM=${TCL_SONUM}
 PLIST_SUBST+=		BASEVER=${TCL_BASEVER}
 
 CONFIGURE_ARGS+=	--with-system-sqlite
+BUILDLINK_API_DEPENDS.sqlite3+=	sqlite3>=3.8.3
 
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
