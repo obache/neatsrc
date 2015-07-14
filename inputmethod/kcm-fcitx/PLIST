@@ -1,0 +1,10 @@
+@comment $NetBSD$
+bin/kbd-layout-viewer
+lib/kde4/kcm_fcitx.so
+share/applications/kde4/kbd-layout-viewer.desktop
+share/kde/config/fcitx-skin.knsrc
+share/kde4/services/kcm_fcitx.desktop
+share/locale/de/LC_MESSAGES/kcm_fcitx.mo
+share/locale/ja/LC_MESSAGES/kcm_fcitx.mo
+share/locale/zh_CN/LC_MESSAGES/kcm_fcitx.mo
+share/locale/zh_TW/LC_MESSAGES/kcm_fcitx.mo

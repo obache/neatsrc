@@ -70,6 +70,7 @@ SUBDIR+=	input-pad
 SUBDIR+=	ja-freewnn-lib
 SUBDIR+=	ja-freewnn-server
 SUBDIR+=	kasumi
+SUBDIR+=	kcm-fcitx
 SUBDIR+=	kimera
 SUBDIR+=	kimera-tomoe-gtk
 SUBDIR+=	kinput2
