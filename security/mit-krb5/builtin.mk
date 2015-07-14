@@ -109,6 +109,8 @@ fake-krb5-config:
 		${CHMOD} +x $${dst};					\
 	fi
 
+.    else
+BUILDLINK_FILES_CMD.mit-krb5+=	${ECHO} ${SH_KRB5_CONFIG:S,${BUILDLINK_PREFIX.mit-krb5}/,,}
 .    endif
 .  else
 KRB5_CONFIG?=	${BUILDLINK_PREFIX.mit-krb5}/bin/krb5-config
