@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.3 2015/07/06 10:35:58 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2015/07/12 22:37:13 wiz Exp $
 
 DISTNAME=	gnupg-2.1.6
 PKGNAME=	${DISTNAME:S/gnupg-/gnupg2-/}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/gnupg/
 EXTRACT_SUFX=	.tar.bz2
@@ -11,6 +11,8 @@ MAINTAINER=	ada@netbsdfr.org
 HOMEPAGE=	https://www.gnupg.org/
 COMMENT=	GNUpg with OpenPGP and S/MIME capabilities
 LICENSE=	gnu-gpl-v3
+
+DEPENDS+=	pinentry-[0-9]*:../../security/pinentry
 
 CONFLICTS=	dirmngr-[0-9]*
 
