@@ -38,6 +38,7 @@ SUBDIR+=	ap2-python
 SUBDIR+=	ap2-subversion
 SUBDIR+=	ap2-suphp
 SUBDIR+=	ap2-transform
+SUBDIR+=	ap2-wsgi
 SUBDIR+=	ap2-xsendfile
 SUBDIR+=	ap22-authn-sasl
 SUBDIR+=	ap22-authnz-external
