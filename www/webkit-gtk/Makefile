@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.93 2015/07/12 21:50:12 wiz Exp $
+# $NetBSD: Makefile,v 1.95 2015/07/14 18:46:07 wiz Exp $
 
 .include "Makefile.common"
 
 PKGNAME=	${DISTNAME:S/webkitgtk/webkit-gtk/}
+PKGREVISION=	1
 
 COMMENT=	GTK port of the WebKit browser engine
 
@@ -16,4 +17,5 @@ BUILDLINK_API_DEPENDS.gtk2+=	gtk2+>=2.24.17nb3
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../graphics/cairo-gobject/buildlink3.mk"
+.include "../../sysutils/libnotify/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

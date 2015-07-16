@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.3018 2015/07/14 12:26:29 bouyer Exp $
+$NetBSD: CHANGES-2015,v 1.3034 2015/07/15 19:01:52 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -5658,3 +5658,19 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated net/dnsmasq to 2.73 [fhajny 2015-07-14]
 	Updated chat/mcabber to 1.0.0 [degroote 2015-07-14]
 	Updated sysutils/mtx to 1.3.12nb1 [bouyer 2015-07-14]
+	Updated emulators/mame to 0.163 [wiz 2015-07-14]
+	Removed emulators/mess successor emulators/mame [wiz 2015-07-14]
+	Added devel/ruby-ref version 2.0.0 [fhajny 2015-07-14]
+	Updated www/ap2-perl to 2.0.9 [wiz 2015-07-14]
+	Updated textproc/py-html2text to 2015.6.21 [wiz 2015-07-14]
+	Updated devel/py-pbr to 1.3.0 [wiz 2015-07-15]
+	Updated filesystems/tahoe-lafs to 1.10.1nb1 [wiz 2015-07-15]
+	Updated x11/xorg-cf-files to 1.0.5nb4 [dholland 2015-07-15]
+	Updated devel/py-mako to 1.0.1 [wiz 2015-07-15]
+	Updated net/unbound to 1.5.4 [pettai 2015-07-15]
+	Added www/py-waitress version 0.8.9 [wiz 2015-07-15]
+	Added www/py-FormEncode version 1.3.0 [wiz 2015-07-15]
+	Added www/py-URLObject version 2.4.0 [wiz 2015-07-15]
+	Added devel/py-repoze.lru version 0.6 [wiz 2015-07-15]
+	Added www/py-Routes version 2.1 [wiz 2015-07-15]
+	Updated pkgtools/url2pkg to 2.24 [wiz 2015-07-15]
