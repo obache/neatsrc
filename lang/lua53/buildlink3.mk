@@ -16,7 +16,7 @@ BUILDLINK_DEPMETHOD.lua53?=	${BUILDLINK_DEPMETHOD.lua}
 BUILDLINK_TRANSFORM+=		l:lua:lua5.3
 BUILDLINK_INCDIRS.lua53+=	include/lua-5.3
 
-BUILDLINK_FNAME_TRANSFORM.lua53+=	-e 's|lib/pkgconfig/lua-5.3.pc|lib/pkgconfig/lua.pc|'
+BUILDLINK_FNAME_ALIASES.lua53+=	lib/pkgconfig/lua-5.3.pc lib/pkgconfig/lua.pc
 
 .include "../../mk/readline.buildlink3.mk"
 .endif # LUA53_BUILDLINK3_MK
