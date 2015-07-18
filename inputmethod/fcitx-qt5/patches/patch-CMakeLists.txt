@@ -4,11 +4,17 @@ $NetBSD$
 
 --- CMakeLists.txt.orig	2015-07-03 03:02:17.000000000 +0000
 +++ CMakeLists.txt
-@@ -15,6 +15,7 @@ include(GenerateExportHeader)
- include(ECMPackageConfigHelpers)
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 2.8.12)
++cmake_minimum_required(VERSION 3.2.0)
+ 
+ project(fcitx-qt5)
+ 
+@@ -16,6 +16,7 @@ include(ECMPackageConfigHelpers)
  include(ECMSetupVersion)
  include(ECMGenerateHeaders)
-+include(FindIntl)
  
++find_package(Intl REQUIRED)
  find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Core DBus Widgets)
  find_package(Qt5Gui ${REQUIRED_QT_VERSION} REQUIRED Private)
+ find_package(XKBCommon 0.5.0 REQUIRED COMPONENTS XKBCommon)
