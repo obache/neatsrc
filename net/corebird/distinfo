@@ -1,5 +1,5 @@
 $NetBSD: distinfo,v 1.1 2014/12/06 09:14:11 obache Exp $
 
-SHA1 (corebird-1.0.tar.gz) = eac706c75474704b4c4f321a7dfede13f45dbf71
-RMD160 (corebird-1.0.tar.gz) = fc242ebdf54a86477cec4e7110e4692738d5f91e
-Size (corebird-1.0.tar.gz) = 1697452 bytes
+SHA1 (corebird-1.0.1.tar.gz) = 430a6418eda3cc65b691d94ada16d1116ed03e36
+RMD160 (corebird-1.0.1.tar.gz) = 34248571e3acd31421b2cbc907db8df7f66c0cc0
+Size (corebird-1.0.1.tar.gz) = 1697506 bytes
