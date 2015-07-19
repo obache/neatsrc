@@ -4,17 +4,15 @@ $NetBSD: patch-lua_lmyoslib.c,v 1.1 2014/06/01 13:30:35 obache Exp $
 
 --- lua/lmyoslib.c.orig	2012-06-12 06:02:01.000000000 +0000
 +++ lua/lmyoslib.c
-@@ -20,6 +20,13 @@
- #include "lualib.h"
+@@ -157,7 +157,11 @@ static const luaL_Reg syslib[] = {
  
  
-+#ifdef LUA_VERSION_NUM
-+# if (LUA_VERSION_NUM >= 502)
-+#undef luaL_register
-+#define luaL_register(L,n,f) \
-+	{ if ((n) == NULL) luaL_setfuncs(L,f,0); else luaL_newlib(L,f); }
-+# endif
+ LUALIB_API int luaopen_myos (lua_State *L) {
++#if (LUA_VERSION_NUM >= 502)
++  luaL_newlib(L, syslib);
++#else
+   luaL_register(L, LUA_OSLIBNAME, syslib);
 +#endif
+   return 1;
+ }
  
- /*
- ** {======================================================
