@@ -9,7 +9,7 @@ $NetBSD: patch-src_lookup_pinyin__lookup2.cpp,v 1.1 2014/07/14 08:12:04 obache E
          phrase_token_t token = g_array_index(prefixes, phrase_token_t, i);
          lookup_key_t initial_key = token;
 -        lookup_value_t initial_value(log(1));
-+        lookup_value_t initial_value(log((gfloat)1));
++        lookup_value_t initial_value(log(1.f));
          initial_value.m_handles[1] = token;
  
          LookupStepContent initial_step_content = (LookupStepContent)

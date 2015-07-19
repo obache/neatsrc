@@ -9,7 +9,7 @@ $NetBSD: patch-src_lookup_phrase__lookup.cpp,v 1.1 2014/07/12 12:11:12 obache Ex
  
      lookup_key_t initial_key = sentence_start;
 -    lookup_value_t initial_value(log(1));
-+    lookup_value_t initial_value(log((gfloat)1));
++    lookup_value_t initial_value(log(1.f));
      initial_value.m_handles[1] = sentence_start;
  
      LookupStepContent initial_step_content = (LookupStepContent)
