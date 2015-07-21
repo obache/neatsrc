@@ -1,15 +1,15 @@
 # $NetBSD$
 
-DISTNAME=	ibus-sunpinyin-2.0.3
-CATEGORIES=	inputmethod chinese
-MASTER_SITES=	https://sunpinyin.googlecode.com/files/
+.include "../../inputmethod/sunpinyin/Makefile.common"
 
-HOMEPAGE=	http://sunpinyin.org/
+PKGNAME:=	ibus-${PKGNAME}
+
 COMMENT=	SunPinyin wrappr for IBus
-LICENSE=	gnu-lgpl-v2.1 OR cddl-1.0
 
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	msgfmt pkg-config scons
+
+BUILD_DIRS+=	wrapper/ibus
 
 do-build:
 	cd ${WRKSRC} && cd ${BUILD_DIRS} && \

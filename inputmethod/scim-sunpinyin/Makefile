@@ -1,15 +1,15 @@
 # $NetBSD$
 
-DISTNAME=	scim-sunpinyin-2.0.3
-CATEGORIES=	inputmethod chinese
-MASTER_SITES=	https://sunpinyin.googlecode.com/files/
+.include "../../inputmethod/sunpinyin/Makefile.common"
 
-HOMEPAGE=	http://sunpinyin.org/
+PKGNAME:=	scim-${PKGNAME}
+
 COMMENT=	SunPinyin wrappr for SCIM
-LICENSE=	gnu-lgpl-v2.1 OR cddl-1.0
 
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config scons
+
+BUILD_DIRS+=	wrapper/scim
 
 do-build:
 	cd ${WRKSRC} && cd ${BUILD_DIRS} && \

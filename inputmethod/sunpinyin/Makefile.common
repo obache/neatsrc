@@ -1,0 +1,17 @@
+# $NetBSD$
+# used by inputmethod/sunpinyin/Makefile
+# used by inputmethod/ibus-sunpinyin/Makefile
+# used by inputmethod/scim-sunpinyin/Makefile
+# used by inputmethod/xsunpinyin/Makefile
+
+DISTNAME=	sunpinyin-cf1810220bf3d3f5a8b990b0a9d3e9df21b1942c
+PKGNAME=	sunpinyin-2.0.4beta20150706
+CATEGORIES=	inputmethod chinese
+MASTER_SITES=	-https://github.com/sunpinyin/sunpinyin/archive/cf1810220bf3d3f5a8b990b0a9d3e9df21b1942c.tar.gz
+
+DISTINFO_FILE=		${.CURDIR}/../../inputmethod/sunpinyin/distinfo
+PATCHDIR=		${.CURDIR}/../../inputmethod/sunpinyin/patches
+
+HOMEPAGE=	http://sunpinyin.org/
+COMMENT=	SLM (Statistical Language Model) based input method engine
+LICENSE=	gnu-lgpl-v2.1 OR cddl-1.0

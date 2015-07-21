@@ -11,6 +11,6 @@ share/ibus-sunpinyin/icons/setup.svg
 share/ibus-sunpinyin/icons/sunpinyin-logo.png
 share/ibus-sunpinyin/setup/config.py
 share/ibus-sunpinyin/setup/main.py
-share/ibus-sunpinyin/setup/setup.glade
+share/ibus-sunpinyin/setup/setup.xml
 share/ibus/component/sunpinyin.xml
 share/locale/zh_CN/LC_MESSAGES/ibus-sunpinyin.mo

@@ -1,15 +1,15 @@
 # $NetBSD$
 
-DISTNAME=	xsunpinyin-2.0.3
-CATEGORIES=	inputmethod chinese
-MASTER_SITES=	https://sunpinyin.googlecode.com/files/
+.include "../../inputmethod/sunpinyin/Makefile.common"
 
-HOMEPAGE=	http://sunpinyin.org/
+PKGNAME:=	x${PKGNAME}
+
 COMMENT=	Standalone XIM server for SunPinyin input methord
-LICENSE=	gnu-lgpl-v2.1 OR cddl-1.0
 
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config scons
+
+BUILD_DIRS+=	wrapper/xim
 
 do-build:
 	cd ${WRKSRC} && cd ${BUILD_DIRS} && \

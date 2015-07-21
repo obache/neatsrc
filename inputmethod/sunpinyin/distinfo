@@ -1,12 +1,12 @@
 $NetBSD$
 
-SHA1 (dict.utf8-20131212.tar.bz2) = 8695bc6af6d992a81e2ac1db0830ea00bc7412cf
-RMD160 (dict.utf8-20131212.tar.bz2) = fc03aa1df1cc5243402a77dc54a54c58618a6152
-Size (dict.utf8-20131212.tar.bz2) = 649873 bytes
-SHA1 (lm_sc.t3g.arpa-20121025.tar.bz2) = 6c647bbe6ea02bf1e853a6e930980051cb99abf2
-RMD160 (lm_sc.t3g.arpa-20121025.tar.bz2) = 66bdf7ee83711b121344c17cc5f5567e6055bf54
-Size (lm_sc.t3g.arpa-20121025.tar.bz2) = 36262281 bytes
-SHA1 (sunpinyin-2.0.3.tar.gz) = 8fe8c1fe9a959baedd1e9ed0f63e3b91108c35a4
-RMD160 (sunpinyin-2.0.3.tar.gz) = b9ca794576dd71814a9b1cea33391dad3bffdc7e
-Size (sunpinyin-2.0.3.tar.gz) = 169394 bytes
+SHA1 (dict.utf8-20131214.tar.bz2) = 8acc16c4df027ab2e001e220329334c6e89aa21c
+RMD160 (dict.utf8-20131214.tar.bz2) = 7a650999eca38e5503aba28747a6436d513f4c5b
+Size (dict.utf8-20131214.tar.bz2) = 674512 bytes
+SHA1 (lm_sc.3gm.arpa-20140820.tar.bz2) = fb27b25a2a6242aadf0823004cb425eb8974acd4
+RMD160 (lm_sc.3gm.arpa-20140820.tar.bz2) = 9de76d890d6ee3f02db2845a4a9b32c96b5b3845
+Size (lm_sc.3gm.arpa-20140820.tar.bz2) = 36623028 bytes
+SHA1 (sunpinyin-cf1810220bf3d3f5a8b990b0a9d3e9df21b1942c.tar.gz) = 4848fa347f72b478e5e44dd6e6647ed76ed175b4
+RMD160 (sunpinyin-cf1810220bf3d3f5a8b990b0a9d3e9df21b1942c.tar.gz) = 974a20936028300f11d64e11aa182b9ccd6cc3d5
+Size (sunpinyin-cf1810220bf3d3f5a8b990b0a9d3e9df21b1942c.tar.gz) = 547240 bytes
 SHA1 (patch-src_portability.h) = e8a28edb0894eb6a3dfd10bd44825c1143785986
