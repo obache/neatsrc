@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.27 2015/07/12 18:56:33 wiz Exp $
+# $NetBSD: Makefile,v 1.29 2015/07/19 21:29:44 wiz Exp $
 
 .include "../../devel/git/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/git/gitweb/}
+PKGREVISION=	1
 CATEGORIES=	www
 
 COMMENT=	Web interface for GIT repositories
@@ -10,6 +11,7 @@ COMMENT=	Web interface for GIT repositories
 #DEPENDS+=	apache{,2,22}-[0-9]*:../../www/apache22
 DEPENDS+=	git-base>=${GIT_VERSION}:../../devel/git-base
 #DEPENDS+=	{perl>=5.15.8,p5-Time-HiRes>=1.9725}:../../time/p5-Time-HiRes
+DEPENDS+=	p5-CGI-[0-9]*:../../www/p5-CGI
 
 USE_TOOLS+=	perl:run
 

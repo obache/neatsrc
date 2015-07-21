@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.1.1.1 2015/01/17 17:50:23 alnsn Exp $
+# $NetBSD: buildlink3.mk,v 1.2 2015/07/20 11:30:54 wiz Exp $
 
 BUILDLINK_TREE+=	lua53
 
