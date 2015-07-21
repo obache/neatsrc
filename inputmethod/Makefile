@@ -29,6 +29,7 @@ SUBDIR+=	fcitx-qt5
 SUBDIR+=	fcitx-rime
 SUBDIR+=	fcitx-sayura
 SUBDIR+=	fcitx-skk
+SUBDIR+=	fcitx-sunpinyin
 SUBDIR+=	fcitx-table-extra
 SUBDIR+=	fcitx-table-other
 SUBDIR+=	fcitx-ui-light
