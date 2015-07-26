@@ -25,6 +25,7 @@ SUBDIR+=	bigreqsproto
 SUBDIR+=	bitmap
 SUBDIR+=	blt
 SUBDIR+=	c++-gtk-utils
+SUBDIR+=	cde
 SUBDIR+=	clipit
 SUBDIR+=	clisp-gtk2
 SUBDIR+=	clisp-mit-clx

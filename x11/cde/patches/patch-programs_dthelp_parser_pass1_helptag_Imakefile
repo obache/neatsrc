@@ -1,0 +1,15 @@
+$NetBSD$
+
+--- programs/dthelp/parser/pass1/helptag/Imakefile.orig	2015-05-09 23:09:11.000000000 +0000
++++ programs/dthelp/parser/pass1/helptag/Imakefile
+@@ -26,7 +26,9 @@ XLATEOBJS = LocaleXlate.o XlationSvc.o
+ INCLUDES =  -I. -I$(HELPUTILSRC) -I$(HELPPARSERSRC) \
+ 	    -I$(HELPELTDEFSRC) -I$(XLATESRC)
+ DEFINES =   -DOSMAJORVERSION=OSMajorVersion \
+-	    -DOSMINORVERSION=OSMinorVersion
++	    -DOSMINORVERSION=OSMinorVersion \
++	    -DCDE_INSTALLATION_TOP=\"$(CDE_INSTALLATION_TOP)\" \
++	    -DCDE_CONFIGURATION_TOP=\"$(CDE_CONFIGURATION_TOP)\"
+ 
+ 
+ ELTHDRS = $(HELPUTILSRC)/entdef.h $(HELPUTILSRC)/entext.h

@@ -1,0 +1,33 @@
+$NetBSD$
+
+SHA1 (cde-src-2.2.3.tar.gz) = f1868f21d6e9a13c7cf9bc9b557cb2d7487b3b67
+RMD160 (cde-src-2.2.3.tar.gz) = c2b59e6425b12c5b6df849d7b4d3a45ca3a596bb
+Size (cde-src-2.2.3.tar.gz) = 60738851 bytes
+SHA1 (patch-lib_DtHelp_FormatI.h) = 452ba54e5e09a149bbe76d4d3e3e32d96b445b10
+SHA1 (patch-lib_DtHelp_HelpXlate.c) = 225d9c31aacb316cc8f1241a60303a4fecd07e02
+SHA1 (patch-lib_DtSearch_mrclean.c) = 71f1d483382111635d3e26a7abfe4341872d43d0
+SHA1 (patch-lib_DtSearch_oekwic.c) = eaf20b2954a59df633784d3131c3abd2b3762cf0
+SHA1 (patch-lib_DtSvc_DtEncap_local.c) = 7bc74580bdd3cf19747a411fdd78b51cc1668782
+SHA1 (patch-lib_csa_Imakefile) = d0f94bc60076c7dd3bd481cbc5035c81fa442690
+SHA1 (patch-lib_csa_cmxdr.c) = 0d9ce5546cab494e3e9002a95a4ac26366724677
+SHA1 (patch-programs_dtappbuilder_src_libAButil_util__file.c) = a41f5671179fdb70cdbb76f69b6f8ea9054c1e06
+SHA1 (patch-programs_dtcm_libDtCmP_props.c) = 730dce9ed56e2428d38b7a67735eed326a533761
+SHA1 (patch-programs_dtcm_server_rtable4.c) = cbf8142e6f019797bd0263226da2adcdaff795b7
+SHA1 (patch-programs_dthelp_parser_canon1_helptag_Imakefile) = 1461c33f7ca5e1768767fef5f757c898ed157713
+SHA1 (patch-programs_dthelp_parser_pass1_helptag_Imakefile) = bec36f831fcf8106f4c14bf4246469a8d22942ca
+SHA1 (patch-programs_dthelp_parser_pass2_htag2_Imakefile) = edf6f2727fa84714b7f7da5782bf4420faf1d2ff
+SHA1 (patch-programs_dticon_constants.h) = e79a8c604f1b9f51355590a2d7759fffa5d69d9c
+SHA1 (patch-programs_dticon_process.c) = 7227190755da2c3ffa74abbf8eb35248958a7a76
+SHA1 (patch-programs_dtlogin_dm.c) = 173e46da1260937e3f435b49ffa4032f429e7553
+SHA1 (patch-programs_dtlogin_dm.h) = 20e228e652e61e898df57e4a3aff4021bcaa687f
+SHA1 (patch-programs_dtmail_include_utils_MemUtils.hh) = 9c8c826fcdfb93cec86e7e375ef1e72e623934eb
+SHA1 (patch-programs_dtmail_libDtMail_Common_Session.C) = 9806e5ed33c05923a72dcae8c86dbd687a8f54cc
+SHA1 (patch-programs_dtmail_libDtMail_RFC_RFCBodyPart.C) = c521649e21f8636184ef9e50a453036457e67a6c
+SHA1 (patch-programs_dtmail_libDtMail_RFC_RFCTransport.C) = 8f397b66dded165de5691f51e46bca93cf532db6
+SHA1 (patch-programs_dtpdmd_dtpdmd.c) = e0ff24e59410dc64f03a7e0d912f67b2c56d97bb
+SHA1 (patch-programs_dtpdmd_manager.c) = c8b58c76744499b604d45249925f45746b611838
+SHA1 (patch-programs_dtprintinfo_libUI_MotifUI_Debug.c) = 829d03b1854a8c88fb88f1fcde53f298e5850f1c
+SHA1 (patch-programs_dtprintinfo_objects_PrintObj_ParseJobs.C) = 228ea77af688b2326020838b40ff7eb059984be9
+SHA1 (patch-programs_dtsearchpath_libCliSrv_UnixEnv.C) = 6201314f1b092817124b9902632d6f7da9adbcac
+SHA1 (patch-programs_dtudcfonted_mtfgui.c) = d14f1b29c6d760dce8319608bf74cd899588f76e
+SHA1 (patch-programs_dtwm_WmOL.c) = 5c2f9df55f74dc2e14f20b9a12cb8fecbe2eb389
