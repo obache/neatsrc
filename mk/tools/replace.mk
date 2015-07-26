@@ -1337,6 +1337,21 @@ TOOLS_PATH.xmessage=		${TOOLS_PREFIX.xmessage}/bin/xmessage
 .  endif
 .endif
 
+.if !defined(TOOLS_IGNORE.xrdb) && !empty(_USE_TOOLS:Mxrdb)
+.  if !empty(PKGPATH:Mx11/xrdb)
+MAKEFLAGS+=		TOOLS_IGNORE.xrdb=
+.  elif !empty(_TOOLS_USE_PKGSRC.xrdb:M[yY][eE][sS])
+TOOLS_CREATE+=			xrdb
+.    if !empty(X11_TYPE:Mnative)
+TOOLS_PATH.xmessage=	${X11BASE}/bin/xrdb
+.    else
+TOOLS_DEPENDS.xrdb?=		xrdb-[0-9]*:../../x11/xrdb
+TOOLS_FIND_PREFIX+=		TOOLS_PREFIX.xrdb=xrdb
+TOOLS_PATH.xrdb=		${TOOLS_PREFIX.xrdb}/bin/xrdb
+.    endif
+.  endif
+.endif
+
 ######################################################################
 
 # These tools are all supplied by an X11 imake package if there is no
