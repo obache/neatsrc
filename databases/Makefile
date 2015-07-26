@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.490 2015/07/19 20:30:28 asau Exp $
+# $NetBSD: Makefile,v 1.493 2015/07/25 14:04:16 bsiegert Exp $
 
 COMMENT=	Databases
 
@@ -189,6 +189,7 @@ SUBDIR+=	p5-Net-MySQL
 SUBDIR+=	p5-ORLite
 SUBDIR+=	p5-ORLite-Migrate
 SUBDIR+=	p5-Palm
+SUBDIR+=	p5-Parse-Dia-SQL
 SUBDIR+=	p5-RRD-Simple
 SUBDIR+=	p5-Redis
 SUBDIR+=	p5-Rose-DB
@@ -475,6 +476,7 @@ SUBDIR+=	shared-mime-info
 SUBDIR+=	skytools
 SUBDIR+=	slony1
 SUBDIR+=	soci
+SUBDIR+=	sql-workbench
 SUBDIR+=	sqlite
 SUBDIR+=	sqlite3
 SUBDIR+=	sqlite3-docs

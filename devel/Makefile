@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2123 2015/07/20 10:43:11 wiz Exp $
+# $NetBSD: Makefile,v 1.2126 2015/07/23 07:02:02 jnemeth Exp $
 #
 
 COMMENT=	Development utilities
@@ -980,6 +980,7 @@ SUBDIR+=	p5-Glib-Object-Introspection
 SUBDIR+=	p5-Gnome2
 SUBDIR+=	p5-Gnome2-GConf
 SUBDIR+=	p5-Graph
+SUBDIR+=	p5-Graph-ReadWrite
 SUBDIR+=	p5-Gravatar-URL
 SUBDIR+=	p5-Gtk2-GladeXML
 SUBDIR+=	p5-Guard
@@ -1692,6 +1693,7 @@ SUBDIR+=	py-pbr
 SUBDIR+=	py-pep8
 SUBDIR+=	py-pexpect
 SUBDIR+=	py-pip
+SUBDIR+=	py-pkginfo
 SUBDIR+=	py-polib
 SUBDIR+=	py-pqueue
 SUBDIR+=	py-pretend

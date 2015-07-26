@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.80 2015/07/10 18:48:22 dholland Exp $
+# $NetBSD: Makefile,v 1.81 2015/07/22 04:54:23 dholland Exp $
 
 DISTNAME=	tcl${TCL_VERSION}-src
 PKGNAME=	tcl-${TCL_VERSION}
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=tcl/}
 
@@ -56,6 +56,7 @@ SUBST_STAGE.sqlite3-rpath=	post-configure
 SUBST_FILES.sqlite3-rpath=	pkgs/sqlite*/configure
 SUBST_SED.sqlite3-rpath+=	-e "s|LIBS -lsqlite3|LIBS ${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.sqlite3}/lib -lsqlite3|"
 
+BUILDLINK_API_DEPENDS.sqlite3+= sqlite3>=3.8.3
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
