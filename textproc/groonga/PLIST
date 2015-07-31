@@ -17,10 +17,12 @@ include/groonga/groonga/plugin.h
 include/groonga/groonga/portability.h
 include/groonga/groonga/request_canceler.h
 include/groonga/groonga/scorer.h
+include/groonga/groonga/thread.h
 include/groonga/groonga/token.h
 include/groonga/groonga/token_filter.h
 include/groonga/groonga/tokenizer.h
 include/groonga/groonga/util.h
+include/groonga/groonga/windows_event_logger.h
 lib/groonga/plugins/functions/vector.la
 lib/groonga/plugins/query_expanders/tsv.la
 lib/groonga/plugins/suggest/suggest.la
@@ -131,6 +133,7 @@ share/doc/groonga/en/html/_sources/reference/commands/log_level.txt
 share/doc/groonga/en/html/_sources/reference/commands/log_put.txt
 share/doc/groonga/en/html/_sources/reference/commands/log_reopen.txt
 share/doc/groonga/en/html/_sources/reference/commands/logical_count.txt
+share/doc/groonga/en/html/_sources/reference/commands/logical_parameters.txt
 share/doc/groonga/en/html/_sources/reference/commands/logical_range_filter.txt
 share/doc/groonga/en/html/_sources/reference/commands/logical_select.txt
 share/doc/groonga/en/html/_sources/reference/commands/logical_table_remove.txt
@@ -151,6 +154,7 @@ share/doc/groonga/en/html/_sources/reference/commands/suggest.txt
 share/doc/groonga/en/html/_sources/reference/commands/table_create.txt
 share/doc/groonga/en/html/_sources/reference/commands/table_list.txt
 share/doc/groonga/en/html/_sources/reference/commands/table_remove.txt
+share/doc/groonga/en/html/_sources/reference/commands/table_rename.txt
 share/doc/groonga/en/html/_sources/reference/commands/table_tokenize.txt
 share/doc/groonga/en/html/_sources/reference/commands/tokenize.txt
 share/doc/groonga/en/html/_sources/reference/commands/tokenizer_list.txt
@@ -352,6 +356,7 @@ share/doc/groonga/en/html/reference/commands/log_level.html
 share/doc/groonga/en/html/reference/commands/log_put.html
 share/doc/groonga/en/html/reference/commands/log_reopen.html
 share/doc/groonga/en/html/reference/commands/logical_count.html
+share/doc/groonga/en/html/reference/commands/logical_parameters.html
 share/doc/groonga/en/html/reference/commands/logical_range_filter.html
 share/doc/groonga/en/html/reference/commands/logical_select.html
 share/doc/groonga/en/html/reference/commands/logical_table_remove.html
@@ -372,6 +377,7 @@ share/doc/groonga/en/html/reference/commands/suggest.html
 share/doc/groonga/en/html/reference/commands/table_create.html
 share/doc/groonga/en/html/reference/commands/table_list.html
 share/doc/groonga/en/html/reference/commands/table_remove.html
+share/doc/groonga/en/html/reference/commands/table_rename.html
 share/doc/groonga/en/html/reference/commands/table_tokenize.html
 share/doc/groonga/en/html/reference/commands/tokenize.html
 share/doc/groonga/en/html/reference/commands/tokenizer_list.html
@@ -554,6 +560,7 @@ share/doc/groonga/ja/html/_sources/reference/commands/log_level.txt
 share/doc/groonga/ja/html/_sources/reference/commands/log_put.txt
 share/doc/groonga/ja/html/_sources/reference/commands/log_reopen.txt
 share/doc/groonga/ja/html/_sources/reference/commands/logical_count.txt
+share/doc/groonga/ja/html/_sources/reference/commands/logical_parameters.txt
 share/doc/groonga/ja/html/_sources/reference/commands/logical_range_filter.txt
 share/doc/groonga/ja/html/_sources/reference/commands/logical_select.txt
 share/doc/groonga/ja/html/_sources/reference/commands/logical_table_remove.txt
@@ -574,6 +581,7 @@ share/doc/groonga/ja/html/_sources/reference/commands/suggest.txt
 share/doc/groonga/ja/html/_sources/reference/commands/table_create.txt
 share/doc/groonga/ja/html/_sources/reference/commands/table_list.txt
 share/doc/groonga/ja/html/_sources/reference/commands/table_remove.txt
+share/doc/groonga/ja/html/_sources/reference/commands/table_rename.txt
 share/doc/groonga/ja/html/_sources/reference/commands/table_tokenize.txt
 share/doc/groonga/ja/html/_sources/reference/commands/tokenize.txt
 share/doc/groonga/ja/html/_sources/reference/commands/tokenizer_list.txt
@@ -775,6 +783,7 @@ share/doc/groonga/ja/html/reference/commands/log_level.html
 share/doc/groonga/ja/html/reference/commands/log_put.html
 share/doc/groonga/ja/html/reference/commands/log_reopen.html
 share/doc/groonga/ja/html/reference/commands/logical_count.html
+share/doc/groonga/ja/html/reference/commands/logical_parameters.html
 share/doc/groonga/ja/html/reference/commands/logical_range_filter.html
 share/doc/groonga/ja/html/reference/commands/logical_select.html
 share/doc/groonga/ja/html/reference/commands/logical_table_remove.html
@@ -795,6 +804,7 @@ share/doc/groonga/ja/html/reference/commands/suggest.html
 share/doc/groonga/ja/html/reference/commands/table_create.html
 share/doc/groonga/ja/html/reference/commands/table_list.html
 share/doc/groonga/ja/html/reference/commands/table_remove.html
+share/doc/groonga/ja/html/reference/commands/table_rename.html
 share/doc/groonga/ja/html/reference/commands/table_tokenize.html
 share/doc/groonga/ja/html/reference/commands/tokenize.html
 share/doc/groonga/ja/html/reference/commands/tokenizer_list.html
@@ -898,6 +908,7 @@ ${PLIST.httpd}share/examples/groonga/httpd/uwsgi_params
 ${PLIST.httpd}share/examples/groonga/httpd/uwsgi_params.default
 ${PLIST.httpd}share/examples/groonga/httpd/win-utf
 share/examples/groonga/synonyms.tsv
+share/examples/groonga/windows_event_log/provider.man
 share/groonga/examples/dictionary/edict/edict-import.sh
 share/groonga/examples/dictionary/edict/edict2grn.rb
 share/groonga/examples/dictionary/eijiro/eijiro-import.sh
