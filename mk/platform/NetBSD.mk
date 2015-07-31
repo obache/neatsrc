@@ -1,4 +1,4 @@
-# $NetBSD: NetBSD.mk,v 1.42 2015/05/26 10:08:37 joerg Exp $
+# $NetBSD: NetBSD.mk,v 1.44 2015/07/27 23:37:38 khorben Exp $
 #
 # Variable definitions for the NetBSD operating system.
 
@@ -126,6 +126,16 @@ FFLAGS+=	-mieee
 # check for kqueue(2) support, added in NetBSD-1.6J
 .if exists(/usr/include/sys/event.h)
 PKG_HAVE_KQUEUE=	# defined
+.endif
+
+.if ${PKGSRC_USE_SSP:Uno} != "no"
+. if (${MACHINE_ARCH} != "alpha") && \
+	(${MACHINE_ARCH} != "hppa") && \
+	(${MACHINE_ARCH} != "ia64") && \
+	(${MACHINE_ARCH} != "mips")
+# build with stack protection (with GCC)
+_GCC_CFLAGS+=	-fstack-protector
+. endif
 .endif
 
 _OPSYS_CAN_CHECK_SHLIBS=	yes # use readelf in check/bsd.check-vars.mk
