@@ -113,7 +113,7 @@ ${PLIST.gtk}lib/cutter/module/ui/gtk.la
 lib/cutter/module/report/xml.la
 lib/cutter/module/stream/xml.la
 lib/cutter/module/ui/console.la
-${PLIST.gst}lib/gstreamer-0.10/libgstcuttertest.la
+${PLIST.gst}lib/gstreamer-1.0/libgstcuttertest.la
 lib/libcppcutter.la
 lib/libcutter.la
 ${PLIST.gtk}lib/libgdkcutter-pixbuf.la
