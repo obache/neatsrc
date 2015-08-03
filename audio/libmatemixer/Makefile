@@ -5,7 +5,6 @@ CATEGORIES=	audio mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
 
-MAINTAINER=	obache@users.sourceforge.net
 HOMEPAGE=	http://www.mate-desktop.org/
 COMMENT=	MATE keyboard configuration library
 LICENSE=	gnu-lgpl-v2.1

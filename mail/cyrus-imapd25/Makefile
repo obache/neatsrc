@@ -4,7 +4,6 @@ DISTNAME=	cyrus-imapd-2.5.4
 CATEGORIES=	mail
 MASTER_SITES=	http://cyrusimap.org/releases/
 
-MAINTAINER=	obache@users.sourceforge.net
 HOMEPAGE=	http://www.cyrusimap.org/
 COMMENT=	Cyrus IMAP server
 #LICENSE=	original-bsd # like license

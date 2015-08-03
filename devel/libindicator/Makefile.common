@@ -6,7 +6,6 @@ DISTNAME=	libindicator-12.10.1
 CATEGORIES=	devel
 MASTER_SITES=	https://launchpad.net/libindicator/${PKGVERSION_NOREV:R}/${PKGVERSION_NOREV}/+download/
 
-MAINTAINER=	obache@users.sourceforge.net
 HOMEPAGE=	https://launchpad.net/libindicator
 COMMENT=	Symbols and convience functions for all indicators (GTK${USE_GTK_VERSION})
 LICENSE=	gnu-gpl-v3

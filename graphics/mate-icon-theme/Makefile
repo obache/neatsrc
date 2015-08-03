@@ -5,7 +5,6 @@ CATEGORIES=	graphics mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
 
-MAINTAINER=	obache@users.sourceforge.net
 HOMEPAGE=	http://www.mate-desktop.org/
 COMMENT=	Collection of icons used as the basis for MATE themes
 LICENSE=	gnu-lgpl-v3 OR cc-by-sa-v3.0

@@ -5,7 +5,6 @@ CATEGORIES=	editors mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
 
-MAINTAINER=	obache@users.sourceforge.net
 HOMEPAGE=	http://www.mate-desktop.org/
 COMMENT=	Small and lightweight UTF-8 text editor for the MATE
 LICENSE=	gnu-gpl-v2

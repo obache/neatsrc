@@ -5,7 +5,6 @@ CATEGORIES=	x11 mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
 
-MAINTAINER=	obache@users.sourceforge.net
 HOMEPAGE=	http://www.mate-desktop.org/
 COMMENT=	MATE indicator applet
 LICENSE=	gnu-gpl-v3 AND gnu-lgpl-v3
