@@ -11,7 +11,7 @@ HOMEPAGE=	http://bloghome.lovepeers.org/daymemo2/files/2005/0613/topless.html
 COMMENT=	Display command output on the whole screen like ``top''
 LICENSE=	2-clause-bsd
 
-USE_TOOLS+=	perl pod2man
+USE_TOOLS+=	pod2man
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
