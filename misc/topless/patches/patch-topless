@@ -1,0 +1,35 @@
+$NetBSD$
+
+--- topless.orig	2005-12-21 02:18:11.000000000 +0000
++++ topless
+@@ -157,7 +157,7 @@ mktemp()
+ readonly color_red=$($printes "\033[31m")
+ readonly color_blu=$($printes "\033[34m")
+ readonly color_org=$($printes "\033[0m")
+-readonly es_cur_hom=$(tput home) # cursor to home
++readonly es_cur_hom=$(tput home 2> /dev/null || tput ho) # cursor to home
+ readonly es_clr_eol=$(tput ce 2> /dev/null || tput el) # clear to end of line
+ readonly es_clr_eos=$(tput cd 2> /dev/null || tput ed) # clear to end of screen
+ 
+@@ -175,8 +175,8 @@ trapexit()
+ 
+ trapresz()
+ {
+-    term_rows=$(tput lines)
+-    term_cols=$(tput cols)
++    term_rows=$(tput lines 2> /dev/null || tput li)
++    term_cols=$(tput cols 2> /dev/null || tput co)
+     $print "$es_cur_hom$es_clr_eos"
+ }
+ 
+@@ -196,8 +196,8 @@ type ulimit > /dev/null && ulimit -c 0
+ 
+ # terminal status
+ #
+-term_rows=$(tput lines)
+-term_cols=$(tput cols)
++term_rows=$(tput lines 2> /dev/null || tput li)
++term_cols=$(tput cols 2> /dev/null || tput co)
+ 
+ # customize color buffer
+ #
