@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.3 2015/06/30 11:52:58 jaapb Exp $
+# $NetBSD: Makefile,v 1.5 2015/08/08 18:44:54 jaapb Exp $
 
 VERSION=	1.2.0
 PKGNAME=	ocaml-opam-${VERSION}
 DISTNAME=	${VERSION}
 DIST_SUBDIR=	ocaml-opam
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	misc
 MASTER_SITES=	https://github.com/ocaml/opam/archive/
 

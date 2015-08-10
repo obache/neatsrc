@@ -1,7 +1,8 @@
-# $NetBSD: Makefile.common,v 1.53 2015/07/26 13:59:24 youri Exp $
+# $NetBSD: Makefile.common,v 1.57 2015/07/31 09:03:36 youri Exp $
 #
 # used by archivers/xfce4-thunar-archive/Makefile
 # used by audio/xfce4-mixer/Makefile
+# used by audio/xfce4-pulseaudio-plugin/Makefile
 # used by audio/xfce4-xmms-plugin/Makefile
 # used by devel/xfce4-conf/Makefile
 # used by devel/xfce4-dev-tools/Makefile
@@ -21,6 +22,7 @@
 # used by sysutils/xfce4-diskperf-plugin/Makefile
 # used by sysutils/xfce4-fsguard-plugin/Makefile
 # used by sysutils/xfce4-genmon-plugin/Makefile
+# used by sysutils/xfce4-gvfs-mount-plugin/Makefile
 # used by sysutils/xfce4-mount-plugin/Makefile
 # used by sysutils/xfce4-netload-plugin/Makefile
 # used by sysutils/xfce4-quicklauncher-plugin/Makefile
@@ -47,6 +49,7 @@
 # used by x11/xfce4-exo/Makefile
 # used by x11/xfce4-eyes-plugin/Makefile
 # used by x11/xfce4-garcon/Makefile
+# used by x11/xfce4-kbdleds-plugin/Makefile
 # used by x11/xfce4-gtk2-engine/Makefile
 # used by x11/xfce4-notes-plugin/Makefile
 # used by x11/xfce4-notifyd/Makefile
@@ -58,6 +61,7 @@
 # used by x11/xfce4-terminal/Makefile
 # used by x11/xfce4-tumbler/Makefile
 # used by x11/xfce4-whiskermenu-plugin/Makefile
+# used by x11/xfce4-wmdock-plugin/Makefile
 
 MASTER_SITES=		http://archive.xfce.org/xfce/4.12/src/
 EXTRACT_SUFX=		.tar.bz2

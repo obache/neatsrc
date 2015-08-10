@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2127 2015/07/27 09:34:06 wiz Exp $
+# $NetBSD: Makefile,v 1.2133 2015/08/06 10:36:07 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -796,7 +796,6 @@ SUBDIR+=	p5-Const-Fast
 SUBDIR+=	p5-Context-Preserve
 SUBDIR+=	p5-Contextual-Return
 SUBDIR+=	p5-Convert-Binary-C
-SUBDIR+=	p5-Coro
 SUBDIR+=	p5-Curses
 SUBDIR+=	p5-Curses-UI
 SUBDIR+=	p5-Curses-UI-POE
@@ -868,6 +867,7 @@ SUBDIR+=	p5-Devel-Pragma
 SUBDIR+=	p5-Devel-Profile
 SUBDIR+=	p5-Devel-REPL
 SUBDIR+=	p5-Devel-Refactor
+SUBDIR+=	p5-Devel-Refcount
 SUBDIR+=	p5-Devel-Size
 SUBDIR+=	p5-Devel-SmallProf
 SUBDIR+=	p5-Devel-StackTrace
@@ -1443,6 +1443,7 @@ SUBDIR+=	p5-Test-Spelling
 SUBDIR+=	p5-Test-SubCalls
 SUBDIR+=	p5-Test-Taint
 SUBDIR+=	p5-Test-TempDir
+SUBDIR+=	p5-Test-TempDir-Tiny
 SUBDIR+=	p5-Test-TinyMocker
 SUBDIR+=	p5-Test-Trap
 SUBDIR+=	p5-Test-Unit
@@ -1511,6 +1512,8 @@ SUBDIR+=	p5-experimental
 SUBDIR+=	p5-forks
 SUBDIR+=	p5-gettext
 SUBDIR+=	p5-glib2
+SUBDIR+=	p5-inc
+SUBDIR+=	p5-inc-latest
 SUBDIR+=	p5-indirect
 SUBDIR+=	p5-lib-abs
 SUBDIR+=	p5-local-lib
@@ -1761,6 +1764,7 @@ SUBDIR+=	py-singledispatch
 SUBDIR+=	py-speaklater
 SUBDIR+=	py-spwd
 SUBDIR+=	py-stompclient
+SUBDIR+=	py-subprocess32
 SUBDIR+=	py-subversion
 SUBDIR+=	py-subvertpy
 SUBDIR+=	py-sysctl
