@@ -1,6 +1,6 @@
 # $NetBSD$
 
-PKGNAME=	fcitx-${DISTNAME}.2
+PKGNAME=	fcitx-mozc-2.17.2102.102.1
 
 DISTFILES_VARS+=	icon
 DISTFILES.icon=	${PKGBASE}-icon.tar.gz
@@ -18,7 +18,10 @@ DEPENDS+=	mozc-server-[0-9]*:../../inputmethod/mozc-server
 DEPENDS+=	mozc-tool-[0-9]*:../../inputmethod/mozc-tool
 
 do-build:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
+	${RUN}cd ${WRKSRC};${SETENV} ${MAKE_ENV} \
+		${PYTHONBIN} build_mozc.py build -c ${MOZC_BUILD_MODE} ${_MAKE_JOBS} \
+			protocol/protocol.gyp:commands_proto
+	${RUN}cd ${WRKSRC};${SETENV} ${MAKE_ENV} \
 		${PYTHONBIN} build_mozc.py build -c ${MOZC_BUILD_MODE} ${_MAKE_JOBS} \
 			unix/fcitx/fcitx.gyp:fcitx-mozc
 
