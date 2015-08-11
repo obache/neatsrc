@@ -1,11 +1,10 @@
 # $NetBSD: Makefile,v 1.26 2015/06/12 10:51:12 wiz Exp $
 
-DISTNAME=		ConsoleKit-0.4.5
+DISTNAME=		ConsoleKit-0.4.6
 PKGNAME=		${DISTNAME:tl}
-PKGREVISION=		2
 CATEGORIES=		sysutils
 MASTER_SITES=		http://www.freedesktop.org/software/ConsoleKit/dist/
-EXTRACT_SUFX=		.tar.bz2
+EXTRACT_SUFX=		.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.freedesktop.org/wiki/Software/ConsoleKit
