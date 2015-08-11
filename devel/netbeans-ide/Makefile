@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.15 2015/07/11 19:21:13 asau Exp $
+# $NetBSD: Makefile,v 1.17 2015/08/10 12:52:11 abs Exp $
 #
 
 DISTNAME=	netbeans-8.0.2-201411181905
 PKGNAME=	netbeans-ide-8.0.2
+PKGREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	http://download.netbeans.org/netbeans/8.0.2/final/zip/
 EXTRACT_SUFX=	.zip
@@ -14,13 +15,19 @@ COMMENT=	NetBeans Java IDE
 USE_TOOLS+=	pax
 USE_JAVA=	run
 PKG_JVMS_ACCEPTED=  sun-jdk15 sun-jdk6 sun-jdk7 openjdk7 openjdk8
-NO_CONFIGURE=	yes
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/netbeans
+
+USE_TOOLS+=	perl:run
+REPLACE_PERL=	extide/ant/bin/antRun.pl \
+		extide/ant/bin/complete-ant-cmd.pl \
+		extide/ant/bin/runant.pl
+REPLACE_PYTHON=	extide/ant/bin/runant.py
 
 SHAREDIR=	${PREFIX}/share/${PKGBASE}
 DOCDIR=		${PREFIX}/share/doc/html/${PKGBASE}
 
+CHECK_SHLIBS_SUPPORTED=	no
 INSTALLATION_DIRS=	bin
 
 do-install:
@@ -33,5 +40,6 @@ do-install:
 	cd ${WRKSRC} && pax -rwpm * ${DESTDIR}${SHAREDIR}
 	${LN} -sf ${SHAREDIR}/bin/netbeans ${DESTDIR}${PREFIX}/bin/netbeans
 
+.include "../../lang/python/application.mk"
 .include "../../mk/java-vm.mk"
 .include "../../mk/bsd.pkg.mk"
