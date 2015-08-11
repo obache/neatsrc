@@ -22,6 +22,7 @@ OWN_DIRS+=	${PREFIX}/lib/ConsoleKit/run-session.d
 OWN_DIRS+=	${PREFIX}/lib/ConsoleKit/run-seat.d
 OWN_DIRS+=	${PKG_SYSCONFDIR}/seats.d
 OWN_DIRS+=	${PKG_SYSCONFDIR}/run-seat.d
+OWN_DIRS+=	${PKG_SYSCONFDIR}/run-session.d
 
 BUILD_DEFS+=		VARBASE
 BUILD_DEFS+=		PKG_SYSCONFBASE
