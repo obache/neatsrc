@@ -1,6 +1,6 @@
 $NetBSD: patch-bu,v 1.1 2008/08/31 06:36:49 scottr Exp $
 
---- vmware-user-suid-wrapper/wrapper-netbsd.c.orig	2008-08-19 17:54:40.000000000 -0500
+--- vmware-user-suid-wrapper/wrapper-netbsd.c.orig	2015-08-18 09:18:36.000000000 +0000
 +++ vmware-user-suid-wrapper/wrapper-netbsd.c
 @@ -0,0 +1,140 @@
 +/*********************************************************

@@ -1,6 +1,6 @@
 $NetBSD: patch-bh,v 1.1 2008/08/31 06:36:48 scottr Exp $
 
---- lib/system/systemLinux.c.orig	2008-08-08 02:01:53.000000000 -0500
+--- lib/system/systemLinux.c.orig	2015-06-17 16:14:30.000000000 +0000
 +++ lib/system/systemLinux.c
 @@ -26,7 +26,7 @@
   *
@@ -11,21 +11,35 @@ $NetBSD: patch-bh,v 1.1 2008/08/31 06:36:48 scottr Exp $
  #   error This file should not be compiled
  #endif
  
-@@ -55,7 +55,7 @@
+@@ -55,11 +55,11 @@
  #include <net/if.h>
  #include <sys/ioctl.h>
+ 
+-#if defined sun || defined __APPLE__
++#if defined sun || defined __APPLE__ || defined __NetBSD__
+ #   include <utmpx.h>
+ #endif
  
 -#ifdef __FreeBSD__
 +#if defined(__FreeBSD__) || defined(__NetBSD__)
  #include "ifaddrs.h"
  #endif
  
-@@ -352,7 +352,7 @@ System_Shutdown(Bool reboot)  // IN: "re
-    if (reboot) {
-       cmd = "shutdown -r now";
+@@ -220,7 +220,7 @@ System_Uptime(void)
+          fclose(procStream);
+       }
+    }
+-#elif defined sun || defined __APPLE__
++#elif defined sun || defined __APPLE__ || defined __NetBSD__
+    {
+       struct utmpx *boot, tmp;
+ 
+@@ -366,7 +366,7 @@ System_Shutdown(Bool reboot)  // IN: "re
+       cmd = "/sbin/shutdown -r now";
+ #endif
     } else {
 -#if __FreeBSD__
 +#if defined(__FreeBSD__) || defined(__NetBSD__)
-       cmd = "shutdown -p now";
- #else
-       cmd = "shutdown -h now";
+       cmd = "/sbin/shutdown -p now";
+ #elif defined(sun)
+       cmd = "/usr/sbin/shutdown -g 0 -i 5 -y";

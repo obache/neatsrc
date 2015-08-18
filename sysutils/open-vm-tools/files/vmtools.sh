@@ -10,8 +10,8 @@ $_rc_subr_loaded . /etc/rc.subr
 
 name="vmtools"
 rcvar="vmtools"
-pidfile="/var/run/vmware-guestd.pid"
-command="@PREFIX@/sbin/vmware-guestd"
+pidfile="@VARBASE@/run/vmtoolsd.pid"
+command="@PREFIX@/bin/vmtoolsd"
 command_args="--background ${pidfile}"
 
 load_rc_config $name

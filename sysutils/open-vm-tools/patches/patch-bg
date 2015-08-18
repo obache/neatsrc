@@ -1,24 +1,12 @@
 $NetBSD: patch-bg,v 1.1 2008/08/31 06:36:48 scottr Exp $
 
---- lib/string/str.c.orig	2008-08-08 02:01:55.000000000 -0500
+--- lib/string/str.c.orig	2015-06-17 16:14:30.000000000 +0000
 +++ lib/string/str.c
-@@ -37,6 +37,10 @@
- #endif
- #include "codeset.h"
- 
-+#ifdef __NetBSD__
-+#include <wchar.h>
-+#endif
-+
- #if defined _WIN32 && !defined HAS_BSD_PRINTF
- #define vsnprintf _vsnprintf
- #endif
-@@ -604,7 +608,7 @@ Str_SafeVasprintf(size_t *length,       
-    return StrVasprintf_Internal(length, format, arguments, TRUE);
- }
- 
--#if defined(_WIN32) || defined(GLIBC_VERSION_22)
-+#if defined(_WIN32) || (defined(GLIBC_VERSION_22) && !defined(__NetBSD__))
- 
- /*
-  *----------------------------------------------------------------------
+@@ -69,6 +69,7 @@ extern int vasprintf(char **ptr, const c
+  */
+ #   if !(defined(__linux__) ||                                          \
+          (defined(__FreeBSD__) && (__FreeBSD_version >= 500000)) ||     \
++         defined(__NetBSD__) ||                                         \
+          defined(sun))
+ extern int vswprintf(wchar_t *wcs, size_t maxlen, const wchar_t *format, va_list args);
+ #   endif

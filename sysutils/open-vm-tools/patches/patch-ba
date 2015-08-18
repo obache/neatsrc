@@ -1,6 +1,6 @@
 $NetBSD: patch-ba,v 1.2 2008/08/31 06:36:48 scottr Exp $
 
---- lib/misc/codesetOld.c.orig	2008-08-08 02:01:54.000000000 -0500
+--- lib/misc/codesetOld.c.orig	2015-06-17 16:14:30.000000000 +0000
 +++ lib/misc/codesetOld.c
 @@ -70,7 +70,7 @@
  #endif
@@ -11,7 +11,7 @@ $NetBSD: patch-ba,v 1.2 2008/08/31 06:36:48 scottr Exp $
  static const char nul[] = {'\0', '\0'};
  #else
  static const wchar_t nul = L'\0';
-@@ -735,7 +735,7 @@ CodeSetOldGetCodeSetFromLocale(void)
+@@ -670,7 +670,7 @@ CodeSetOldGetCodeSetFromLocale(void)
     codeset = Util_SafeStrdup(nl_langinfo_l(CODESET, new));
     freelocale(new);
  
@@ -19,4 +19,4 @@ $NetBSD: patch-ba,v 1.2 2008/08/31 06:36:48 scottr Exp $
 +#elif defined(sun) || defined(__NetBSD__)
  
     char *locale = setlocale(LC_CTYPE, NULL);
-    if (!setlocale(LC_CTYPE, "")) {
+ 

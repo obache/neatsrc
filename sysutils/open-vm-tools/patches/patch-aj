@@ -1,6 +1,6 @@
 $NetBSD: patch-aj,v 1.2 2008/08/31 06:36:48 scottr Exp $
 
---- lib/file/fileLockPosix.c.orig	2008-08-08 02:01:53.000000000 -0500
+--- lib/file/fileLockPosix.c.orig	2015-06-17 16:14:30.000000000 +0000
 +++ lib/file/fileLockPosix.c
 @@ -26,7 +26,7 @@
  #include <stdlib.h>
@@ -11,12 +11,18 @@ $NetBSD: patch-aj,v 1.2 2008/08/31 06:36:48 scottr Exp $
  #if defined(__APPLE__)
  #include <sys/param.h> 
  #include <sys/mount.h> 
-@@ -121,7 +121,7 @@ FileLock_Init(int lockerPid,            
-    fileLockOptions.userWorld = userWorld;
- }
+@@ -76,7 +76,7 @@
+  * into the log file.
+  */
  
 -#if !defined(__FreeBSD__) && !defined(sun)
 +#if !defined(__FreeBSD__) && !defined(sun) && !defined(__NetBSD__)
  /*
   *----------------------------------------------------------------------
   *
+@@ -1256,4 +1256,4 @@ FileLockValidExecutionID(const char *exe
+ {
+    NOT_IMPLEMENTED();
+ }
+-#endif /* !__FreeBSD__ && !sun */
++#endif /* !__FreeBSD__ && !sun && !__NetBSD__ */

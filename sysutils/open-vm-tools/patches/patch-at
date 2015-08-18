@@ -1,22 +1,64 @@
 $NetBSD: patch-at,v 1.2 2008/08/31 06:36:48 scottr Exp $
 
---- lib/include/posix.h.orig	2008-08-08 02:01:52.000000000 -0500
+--- lib/include/posix.h.orig	2015-06-17 16:14:30.000000000 +0000
 +++ lib/include/posix.h
-@@ -151,7 +151,7 @@ int Posix_Getgrnam_r(ConstUnicode name, 
+@@ -53,7 +53,11 @@ struct stat;
+ #if defined(_WIN32)
+ typedef int mode_t;
+ #else
++#ifdef __NetBSD__
++struct statvfs;
++#else
+ struct statfs;
++#endif
+ struct utimbuf;
+ struct timeval;
+ struct passwd;
+@@ -94,7 +98,7 @@ Unicode Posix_MkTemp(ConstUnicode pathNa
+  * Make them NULL wrappers for all other platforms.
+  */
+ #define Posix_GetHostName gethostname
+-#if defined(__APPLE__)
++#if defined(__APPLE__) || defined(__NetBSD__)
+ #define Posix_GetHostByName gethostbyname
+ #endif
+ #define Posix_GetAddrInfo getaddrinfo
+@@ -148,7 +152,11 @@ int Posix_Getgrnam_r(ConstUnicode name, 
                   char *buf, size_t size, struct group **pgr);
  
  #if !defined(sun)
--#if !defined(__APPLE__) && !defined(__FreeBSD__)
-+#if !defined(__APPLE__) && !defined(__FreeBSD__) && !defined(__NetBSD__)
- int Posix_Mount(ConstUnicode source, ConstUnicode target,
-                 const char *filesystemtype, unsigned long mountflags,
- 		const void *data);
-@@ -161,7 +161,7 @@ struct mntent *Posix_Getmntent(FILE *fp)
- struct mntent *Posix_Getmntent_r(FILE *fp, struct mntent *m,
-                                  char *buf, int size);
++#if defined(__NetBSD__)
++int Posix_Statfs(ConstUnicode pathName, struct statvfs *statfsbuf);
++#else
+ int Posix_Statfs(ConstUnicode pathName, struct statfs *statfsbuf);
++#endif
  
--#endif // !defined(__APPLE__) && !defined(__FreeBSD__)
-+#endif // !defined(__APPLE__) && !defined(__FreeBSD__) && !defined(__NetBSD__)
- #else  // !defined(sun)
+ int Posix_GetGroupList(ConstUnicode user, gid_t group, gid_t *groups,
+                        int *ngroups);
+@@ -168,7 +176,7 @@ struct mntent *Posix_Getmntent_r(FILE *f
  int Posix_Getmntent(FILE *fp, struct mnttab *mp);
  
+ #endif // !defined(sun)
+-#if !defined(__APPLE__)
++#if !defined(__APPLE__) && !defined(__NetBSD__)
+ 
+ 
+ /*
+@@ -239,7 +247,7 @@ Posix_GetHostByName(ConstUnicode name)  
+    /* There has been an error */
+    return NULL;
+ }
+-#endif // !define(__APPLE__)
++#endif // !define(__APPLE__) && !defined(__NetBSD__)
+ 
+ 
+ /*
+@@ -262,7 +270,7 @@ Posix_GetHostByName(ConstUnicode name)  
+ static INLINE void
+ Posix_FreeHostent(struct hostent *he)
+ {
+-#if !defined(__APPLE__)
++#if !defined(__APPLE__) && !defined(__NetBSD__)
+    char **p;
+ 
+    if (he) {

@@ -1,8 +1,8 @@
 $NetBSD: patch-configure.ac,v 1.1 2013/04/01 12:25:17 joerg Exp $
 
---- configure.ac.orig	2008-08-08 07:01:58.000000000 +0000
+--- configure.ac.orig	2015-06-17 16:14:30.000000000 +0000
 +++ configure.ac
-@@ -111,6 +111,9 @@ case "$host_os" in
+@@ -127,6 +127,9 @@ case "$host_os" in
     [linux*])
        os="linux"
        ;;
@@ -12,12 +12,23 @@ $NetBSD: patch-configure.ac,v 1.1 2013/04/01 12:25:17 joerg Exp $
     [freebsd*])
        os="freebsd"
        ;;
-@@ -573,7 +576,7 @@ if test "$with_dnet" = "yes"; then
+@@ -1087,6 +1090,11 @@ if test "$os" = "freebsd" || test "$os" 
+    fi
+ fi
  
- 		GUESTD_LDADD="$GUESTD_LDADD $DNET_LIBS"
- 		VMWARE_USER_LDADD="$VMWARE_USER_LDADD $DNET_LIBS"
--		if test "$DNET_CONFIG" == dumbnet-config; then
-+		if test "$DNET_CONFIG" = dumbnet-config; then
- 		AC_DEFINE([DNET_IS_DUMBNET], 1, [Define to 1 if substituting Debian's libdumbnet for libdnet.])
- 		fi
- 	else
++if test "$os" = "netbsd"; then
++   CPPFLAGS="$CPPFLAGS -D_NETBSD_SOURCE"
++   LIBVMTOOLS_LIBADD="$LIBVMTOOLS_LIBADD -lkvm"
++fi
++
+ if test "$os" = "solaris"; then
+    LIB_IMPERSONATE_CPPFLAGS="$LIB_IMPERSONATE_CPPFLAGS -D_POSIX_PTHREAD_SEMANTICS"
+    LIB_USER_CPPFLAGS="$LIB_USER_CPPFLAGS -D_POSIX_PTHREAD_SEMANTICS"
+@@ -1136,6 +1144,7 @@ AM_CONDITIONAL(SOLARIS, test "$os" = "so
+ AM_CONDITIONAL(FREEBSD, test "$os" = "freebsd" -o "$os" = "kfreebsd-gnu")
+ AM_CONDITIONAL(FREEBSD_CUSTOM_SYSDIR,
+                test \( "$os" = "freebsd" -o "$os" = "kfreebsd-gnu" \) -a -n "$SYSDIR")
++AM_CONDITIONAL(NETBSD, test "$os" = "netbsd")
+ AM_CONDITIONAL(THIRTY_TWO_BIT_USERSPACE, test "$userSpaceBitness" = "32")
+ AM_CONDITIONAL(HAVE_X11, test "$have_x" = "yes")
+ AM_CONDITIONAL(HAVE_ICU, test "$with_icu" = "yes")

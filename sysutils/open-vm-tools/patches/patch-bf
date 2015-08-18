@@ -1,6 +1,6 @@
 $NetBSD: patch-bf,v 1.1 2008/08/31 06:36:48 scottr Exp $
 
---- lib/procMgr/procMgrPosix.c.orig	2008-08-08 02:01:53.000000000 -0500
+--- lib/procMgr/procMgrPosix.c.orig	2015-06-17 16:14:30.000000000 +0000
 +++ lib/procMgr/procMgrPosix.c
 @@ -31,7 +31,7 @@
  // pull in setresuid()/setresgid() if possible
@@ -9,23 +9,201 @@ $NetBSD: patch-bf,v 1.1 2008/08/31 06:36:48 scottr Exp $
 -#if !defined(__FreeBSD__) && !defined(sun) && !defined(__APPLE__)
 +#if !defined(__FreeBSD__) && !defined(sun) && !defined(__APPLE__) && !defined(__NetBSD__)
  #include <asm/param.h>
- #include <locale.h>
- #include <sys/stat.h>
-@@ -158,7 +158,7 @@ ProcMgr_ProcList *
+ #endif
+ #if !defined(sun) && !defined(__APPLE__)
+@@ -57,7 +57,7 @@
+ // Pull in PAGE_SIZE/PAGE_SHIFT defines ahead of vm_basic_defs.h
+ #   include <sys/user.h>
+ #endif
+-#if defined (__FreeBSD__)
++#if defined (__FreeBSD__) || defined(__NetBSD__)
+ #include <kvm.h>
+ #include <limits.h>
+ #include <paths.h>
+@@ -633,7 +633,7 @@ abort:
+  *----------------------------------------------------------------------
+  */
+ 
+-#if defined(__FreeBSD__)
++#if defined(__FreeBSD__) || defined(__NetBSD__)
+ ProcMgrProcInfoArray *
  ProcMgr_ListProcesses(void)
  {
-    ProcMgr_ProcList *procList = NULL;
--#if !defined(__FreeBSD__) && !defined(sun) && !defined(__APPLE__)
-+#if !defined(__FreeBSD__) && !defined(sun) && !defined(__APPLE__) && !defined(__NetBSD__)
-    Bool failed = FALSE;
-    DynBuf dbProcId;
-    DynBuf dbProcCmd;
-@@ -453,7 +453,7 @@ abort:
-       ProcMgr_FreeProcList(procList);
-       procList = NULL;
-    }
--#endif // !defined(__FreeBSD__) && !defined(sun) && !defined(__APPLE__)
-+#endif // !defined(__FreeBSD__) && !defined(sun) && !defined(__APPLE__) && !defined(__NetBSD__)
+@@ -641,7 +641,11 @@ ProcMgr_ListProcesses(void)
+    ProcMgrProcInfo procInfo;
+    Bool failed = TRUE;
+    static kvm_t *kd;
++#if defined(__NetBSD__)
++   struct kinfo_proc2 *kp;
++#else
+    struct kinfo_proc *kp;
++#endif
+    char errbuf[_POSIX2_LINE_MAX];
+    int i;
+    int nentries=-1;
+@@ -655,7 +659,11 @@ ProcMgr_ListProcesses(void)
+    /*
+     * Get the handle to the Kernel Virtual Memory
+     */
++#if defined(__NetBSD__)
++   kd = kvm_openfiles(NULL, NULL, NULL, KVM_NO_FILES, errbuf);
++#else
+    kd = kvm_openfiles(NULL, _PATH_DEVNULL, NULL, O_RDONLY, errbuf);
++#endif
+    if (kd == NULL) {
+       Warning("%s: failed to open kvm with error: %s\n", __FUNCTION__, errbuf);
+       goto abort;
+@@ -664,7 +672,11 @@ ProcMgr_ListProcesses(void)
+    /*
+     * Get the list of process info structs
+     */
++#if defined(__NetBSD__)
++   kp = kvm_getproc2(kd, KERN_PROC_ALL, flag, sizeof(struct kinfo_proc2), &nentries);
++#else
+    kp = kvm_getprocs(kd, KERN_PROC_PROC, flag, &nentries);
++#endif
+    if (kp == NULL || nentries <= 0) {
+       Warning("%s: failed to get proc infos with error: %s\n",
+               __FUNCTION__, kvm_geterr(kd));
+@@ -692,14 +704,26 @@ ProcMgr_ListProcesses(void)
+       /*
+        * Store the pid of the process.
+        */
++#if defined(__NetBSD__)
++      procInfo.procId = kp->p_pid;
++#else
+       procInfo.procId = kp->ki_pid;
++#endif
+ 
+       /*
+        * Store the owner of the process.
+        */
++#if defined(__NetBSD__)
++      pwd = getpwuid(kp->p_uid);
++#else
+       pwd = getpwuid(kp->ki_uid);
++#endif
+       procInfo.procOwner = (NULL == pwd)
++#if defined(__NetBSD__)
++                           ? Str_SafeAsprintf(NULL, "%d", (int) kp->p_uid)
++#else
+                            ? Str_SafeAsprintf(NULL, "%d", (int) kp->ki_uid)
++#endif
+                            : Unicode_Alloc(pwd->pw_name, STRING_ENCODING_DEFAULT);
+ 
+       /*
+@@ -707,15 +731,24 @@ ProcMgr_ListProcesses(void)
+        * maximum allowed size, then we can save it right now. Else we shall
+        * need to try and parse it from the entire command line.
+        */
++#if defined(__NetBSD__)
++      if (strlen(kp->p_comm) + 1 < sizeof kp->p_comm) {
++         procInfo.procCmdName = Unicode_Alloc(kp->p_comm, STRING_ENCODING_DEFAULT);
++#else
+       if (strlen(kp->ki_comm) + 1 < sizeof kp->ki_comm) {
+          procInfo.procCmdName = Unicode_Alloc(kp->ki_comm, STRING_ENCODING_DEFAULT);
++#endif
+          cmdNameLookup = FALSE;
+       }
+ 
+       /*
+        * Store the command line string of the process.
+        */
++#if defined(__NetBSD__)
++      cmdLineTemp = kvm_getargv2(kd, kp, 0);
++#else
+       cmdLineTemp = kvm_getargv(kd, kp, 0);
++#endif
+       if (cmdLineTemp != NULL) {
+          /*
+           * Flatten the argument list to get cmd & all params.
+@@ -771,9 +804,17 @@ ProcMgr_ListProcesses(void)
+          procInfo.procCmdLine = DynBuf_Detach(&dbuf);
+          DynBuf_Destroy(&dbuf);
+       } else {
++#if defined(__NetBSD__)
++         procInfo.procCmdLine = Unicode_Alloc(kp->p_comm, STRING_ENCODING_DEFAULT);
++#else
+          procInfo.procCmdLine = Unicode_Alloc(kp->ki_comm, STRING_ENCODING_DEFAULT);
++#endif
+          if (cmdNameLookup) {
++#if defined(__NetBSD__)
++            procInfo.procCmdName = Unicode_Alloc(kp->p_comm, STRING_ENCODING_DEFAULT);
++#else
+             procInfo.procCmdName = Unicode_Alloc(kp->ki_comm, STRING_ENCODING_DEFAULT);
++#endif
+             cmdNameLookup = FALSE;
+          }
+       }
+@@ -781,7 +822,11 @@ ProcMgr_ListProcesses(void)
+       /*
+        * Store the start time of the process
+        */
++#if defined(__NetBSD__)
++      procInfo.procStartTime = kp->p_ustart_sec;
++#else
+       procInfo.procStartTime = kp->ki_start.tv_sec;
++#endif
+ 
+       /*
+        * Store the process info pointer into a list buffer.
+@@ -811,7 +856,7 @@ abort:
  
     return procList;
  }
+-#endif // defined(__FreeBSD__)
++#endif /* defined(__FreeBSD__) || defined(__NetBSD__) */
+ 
+ 
+ #if defined(__APPLE__)
+@@ -2006,7 +2051,7 @@ ProcMgr_Free(ProcMgr_AsyncProc *asyncPro
+    free(asyncProc);
+ }
+ 
+-#if defined(linux) || defined(__FreeBSD__) || defined(__APPLE__)
++#if defined(linux) || defined(__FreeBSD__) || defined(__APPLE__) || defined(__NetBSD__)
+ 
+ /*
+  *----------------------------------------------------------------------
+@@ -2079,7 +2124,7 @@ ProcMgr_ImpersonateUserStart(const char 
+    // first change group
+ #if defined(USERWORLD)
+    ret = Id_SetREGid(ppw->pw_gid, ppw->pw_gid);
+-#elif defined(__APPLE__)
++#elif defined(__APPLE__) || defined(__NetBSD__)
+    ret = setregid(ppw->pw_gid, ppw->pw_gid);
+ #else
+    ret = setresgid(ppw->pw_gid, ppw->pw_gid, root_gid);
+@@ -2098,7 +2143,7 @@ ProcMgr_ImpersonateUserStart(const char 
+    // now user
+ #if defined(USERWORLD)
+    ret = Id_SetREUid(ppw->pw_uid, ppw->pw_uid);
+-#elif defined(__APPLE__)
++#elif defined(__APPLE__) || defined(__NetBSD__)
+    ret = setreuid(ppw->pw_uid, ppw->pw_uid);
+ #else
+    ret = setresuid(ppw->pw_uid, ppw->pw_uid, 0);
+@@ -2160,7 +2205,7 @@ ProcMgr_ImpersonateUserStop(void)
+    // first change back user
+ #if defined(USERWORLD)
+    ret = Id_SetREUid(ppw->pw_uid, ppw->pw_uid);
+-#elif defined(__APPLE__)
++#elif defined(__APPLE__) || defined(__NetBSD__)
+    ret = setreuid(ppw->pw_uid, ppw->pw_uid);
+ #else
+    ret = setresuid(ppw->pw_uid, ppw->pw_uid, 0);
+@@ -2173,7 +2218,7 @@ ProcMgr_ImpersonateUserStop(void)
+    // now group
+ #if defined(USERWORLD)
+    ret = Id_SetREGid(ppw->pw_gid, ppw->pw_gid);
+-#elif defined(__APPLE__)
++#elif defined(__APPLE__) || defined(__NetBSD__)
+    ret = setregid(ppw->pw_gid, ppw->pw_gid);
+ #else
+    ret = setresgid(ppw->pw_gid, ppw->pw_gid, ppw->pw_gid);
+@@ -2244,4 +2289,4 @@ ProcMgr_GetImpersonatedUserInfo(char **u
+    return TRUE;
+ }
+ 
+-#endif // linux || __FreeBSD__ || __APPLE__
++#endif /* linux || __FreeBSD__ || __APPLE__ || __NetBSD__ */
