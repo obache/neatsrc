@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.53 2015/04/06 08:17:36 adam Exp $
+# $NetBSD: Makefile,v 1.58 2015/08/17 16:05:26 jperkin Exp $
 
-GHCOMMIT=		2e1630265953c9c01836a4b62acfa8397579346a
+GHCOMMIT=		cc6d6cebe1a82fee372298a10576199797b8697f
 DISTNAME=		${GHCOMMIT}
-PKGNAME=		pkgin-0.8.0
-PKGREVISION=		1
+PKGNAME=		pkgin-0.9.2
 CATEGORIES=		pkgtools
-MASTER_SITES=		https://github.com/NetBSDfr/pkgin/archive/
+MASTER_SITES=		${MASTER_SITE_GITHUB:=NetBSDfr/pkgin/archive/}
 
 MAINTAINER=		imil@NetBSD.org
 HOMEPAGE=		http://pkgin.net/

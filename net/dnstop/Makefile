@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.22 2013/02/06 19:30:56 jperkin Exp $
+# $NetBSD: Makefile,v 1.24 2015/08/17 17:11:27 wiz Exp $
 #
 
-DISTNAME=	dnstop-20090128
+DISTNAME=	dnstop-20140915
 PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://dns.measurement-factory.com/tools/dnstop/src/
@@ -9,6 +9,7 @@ MASTER_SITES=	http://dns.measurement-factory.com/tools/dnstop/src/
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://dns.measurement-factory.com/tools/dnstop/
 COMMENT=	Diagnose tcpdump trace for DNS queries/replies
+LICENSE=	modified-bsd
 
 GNU_CONFIGURE=	yes
 
