@@ -27,7 +27,6 @@ CONFIGURE_ARGS+=	--disable-tests
 PLIST.x11=	yes
 MAKE_DIRS+=	${PKG_SYSCONFBASEDIR}/xdg/autostart
 CONF_FILES+=	${EGDIR}/xdg/autostart/vmware-user.desktop ${PKG_SYSCONFBASEDIR}/xdg/autostart/vmware-user.desktop
-.  include "../../devel/glib2/buildlink3.mk"
 .  include "../../graphics/gdk-pixbuf2-xlib/buildlink3.mk"
 .  include "../../x11/gtk2/buildlink3.mk"
 .  include "../../x11/gtkmm/buildlink3.mk"

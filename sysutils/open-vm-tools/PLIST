@@ -3,7 +3,7 @@ bin/vmtoolsd
 bin/vmware-checkvm
 bin/vmware-hgfsclient
 bin/vmware-rpctool
-${PLIST.x11}bin/vmware-toolbox-cmd
+bin/vmware-toolbox-cmd
 ${PLIST.x11}bin/vmware-user-suid-wrapper
 bin/vmware-vmblock-fuse
 bin/vmware-xferlogs

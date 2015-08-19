@@ -59,6 +59,7 @@ SUBST_FILES.confdir+=	vmware-user-suid-wrapper/wrapper.h
 .include "options.mk"
 
 .include "../../devel/gettext-lib/buildlink3.mk"
+.include "../../devel/glib2/buildlink3.mk"
 .include "../../mk/fuse.buildlink3.mk"
 PTHREAD_AUTO_VARS=	yes
 .include "../../mk/pthread.buildlink3.mk"
