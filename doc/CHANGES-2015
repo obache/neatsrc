@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.3463 2015/08/18 19:31:38 jperkin Exp $
+$NetBSD: CHANGES-2015,v 1.3469 2015/08/19 12:52:46 is Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -6263,3 +6263,9 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated databases/rrdtool to 1.5.4 [mef 2015-08-18]
 	Updated print/py-PDF2 to 1.25.1 [kleink 2015-08-18]
 	Updated pkgtools/pkgin to 0.9.3 [jperkin 2015-08-18]
+	Updated x11/libdrm to 2.4.64 [wiz 2015-08-18]
+	Added misc/libreoffice43 version 4.3.5.2 [he 2015-08-19]
+	Updated news/trn to 4.77 [leot 2015-08-19]
+	Updated www/firefox to 40.0.2 [ryoon 2015-08-19]
+	Updated www/firefox-l10n to 40.0.2 [ryoon 2015-08-19]
+	Updated www/webnew to 1.3nb5 [is 2015-08-19]
