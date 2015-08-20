@@ -3,7 +3,6 @@
 PKGNAME=	mate-core-1.10
 CATEGORIES=	meta-pkgs mate
 
-MAINTAINER=	obache@users.sourceforge.net
 HOMEPAGE=	http://www.mate-desktop.org/
 COMMENT=	Core packages for MATE desktop environment
 LICENSE=	public-domain
