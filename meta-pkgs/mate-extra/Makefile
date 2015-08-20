@@ -10,7 +10,7 @@ LICENSE=	public-domain
 
 META_PACKAGE=	yes
 
-# see http://wiki.mate-desktop.org/sgtatus:1.10
+# see http://wiki.mate-desktop.org/status:1.10
 
 DEPENDS+=	atril>=${PKGVERSION_NOREV}:../../print/atril
 DEPENDS+=	caja-dropbox>=${PKGVERSION_NOREV}:../../sysutils/caja-dropbox
