@@ -1,4 +1,4 @@
-# $NetBSD: rubyversion.mk,v 1.144 2015/07/06 01:15:22 rodent Exp $
+# $NetBSD: rubyversion.mk,v 1.147 2015/08/20 15:30:47 taca Exp $
 #
 
 # This file determines which Ruby version is used as a dependency for
@@ -229,15 +229,13 @@ RUBY_VERSION_REQD?= ${PKGNAME_REQD:C/ruby([0-9][0-9]+)-.*/\1/}
 RUBY18_VERSION=		1.8.7
 RUBY193_VERSION=	1.9.3
 RUBY200_VERSION=	2.0.0
-RUBY21_VERSION=		2.1.6
-RUBY22_VERSION=		2.2.2
+RUBY21_VERSION=		2.1.7
+RUBY22_VERSION=		2.2.3
 
 # patch
 RUBY18_PATCHLEVEL=	pl374
 RUBY193_PATCHLEVEL=	p551
-RUBY200_PATCHLEVEL=	p645
-#RUBY21_PATCHLEVEL=	p336
-#RUBY22_PATCHLEVEL=	p95
+RUBY200_PATCHLEVEL=	p647
 
 # current API compatible version; used for version of shared library
 RUBY18_API_VERSION=	1.8.7

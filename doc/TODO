@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.14743 2015/08/18 12:29:56 mef Exp $
+$NetBSD: TODO,v 1.14745 2015/08/20 17:13:57 wiz Exp $
 
 Suggested new packages
 ======================
@@ -1072,7 +1072,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libprelude-1.2.5
 	o libquantum-1.1.0 [pkg/43728, development release]
 	o libsodium-1.0.3
-	o libstatgrab-0.91
 	o libstree-0.4.3pre2 [pkg/43748]
 	o libtar-1.2.20
 	o libtcl-nothread-8.5.1
@@ -1301,7 +1300,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Digest-Hashcash-1.1
 	o p5-Email-MIME-ContentType-1.018
 	o p5-Encode-2.76
-	o p5-Event-1.24
 	o p5-Excel-Template-0.34
 	o p5-Excel-Template-Plus-0.06
 	o p5-ExtUtils-CBuilder-0.280223
