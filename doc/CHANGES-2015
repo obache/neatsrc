@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.3483 2015/08/20 17:13:56 wiz Exp $
+$NetBSD: CHANGES-2015,v 1.3511 2015/08/22 19:13:46 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -6296,3 +6296,29 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated devel/p5-Proc-ProcessTable to 0.51nb2 [wiz 2015-08-20]
 	Updated finance/magento to 1.9.2.1 [fhajny 2015-08-20]
 	Updated devel/libstatgrab to 0.91 [wiz 2015-08-20]
+	Updated textproc/p5-Text-Diff to 1.42 [mef 2015-08-20]
+	Updated www/p5-HTTP-Headers-Fast to 0.19 [mef 2015-08-20]
+	Updated chat/icbirc to 1.9 [mef 2015-08-20]
+	Updated net/p5-NetAddr-IP to 4.078 [mef 2015-08-20]
+	Updated security/openssh to 7.1.1 [wiz 2015-08-21]
+	Updated www/wordpress to 4.3 [jklos 2015-08-21]
+	Updated net/dhcpcd to 6.9.2 [roy 2015-08-21]
+	Updated sysutils/tarsnap to 1.0.36 [wiz 2015-08-21]
+	Updated security/gnu-pw-mgr to 1.5 [wiz 2015-08-21]
+	Updated misc/teseq to 1.1.1 [wiz 2015-08-21]
+	Updated graphics/p5-Image-ExifTool to 10.00 [wiz 2015-08-21]
+	Updated www/firefox38 to 38.2.0 [he 2015-08-21]
+	Updated sysutils/tarsnap to 1.0.36.1 [wiz 2015-08-21]
+	Updated devel/p5-Object-InsideOut to 3.99 [wen 2015-08-22]
+	Updated lang/go to 1.5 [bsiegert 2015-08-22]
+	Updated x11/gtk3 to 3.16.6 [prlw1 2015-08-22]
+	Added x11/xf86-video-xgi version 1.6.1 [wiz 2015-08-22]
+	Updated meta-pkgs/modular-xorg-drivers to 1.14.2nb5 [wiz 2015-08-22]
+	Added devel/p5-File-Find-Object version 0.2.13 [mef 2015-08-22]
+	Updated devel/py-msgpack to 0.4.6 [bsiegert 2015-08-22]
+	Added sysutils/py-borg version 0.24.0 [bsiegert 2015-08-22]
+	Updated devel/gputils to 1.4.0-1 [bouyer 2015-08-22]
+	Updated devel/sdcc3 to 3.5.0 [bouyer 2015-08-22]
+	Added geography/libmemphis02 version 0.2.3 [nros 2015-08-22]
+	Updated news/inn to 2.5.5 [wiz 2015-08-22]
+	Updated sysutils/wpi-firmware to 1.14.2 [wiz 2015-08-22]
