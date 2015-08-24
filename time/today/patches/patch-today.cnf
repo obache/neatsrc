@@ -1,0 +1,22 @@
+$NetBSD$
+
+--- today.cnf.orig	2003-07-10 03:06:13.000000000 +0000
++++ today.cnf
+@@ -203,7 +203,7 @@ schedule_limit = 4		# スケジュールの予告
+ #
+ # ページャー関連
+ #
+-pager = $PAGER			# 外部ページャーの指定
++pager = 			# 外部ページャーの指定
+ 				# 指定しなければ、標準出力
+ pause = no			# 内蔵ページャー(未実装) 表示一時停止制御
+ 				#   yes 一時停止
+@@ -411,7 +411,7 @@ extflags = 0x00000001		# b0:GRAYEDDAY, b
+ #
+ $common				# 以降 共通環境定義部
+ 
+-table_path = $ExecCmdPath/tbl	# 各テーブルの検索パス名
++table_path = @PREFIX@/share/today	# 各テーブルの検索パス名
+ 				# ':' で区切り複数指定可能
+ 				# 未定義の場合、環境変数 TODAYTBL の場所
+ 

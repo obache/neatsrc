@@ -150,6 +150,7 @@ SUBDIR+=	sunclock
 SUBDIR+=	swisswatch
 SUBDIR+=	tdl
 SUBDIR+=	titrax
+SUBDIR+=	today
 SUBDIR+=	vixie-cron
 SUBDIR+=	wmCalClock
 SUBDIR+=	wmclockmon
