@@ -19,10 +19,9 @@ USE_TOOLS+=	pkg-config
 
 CONFIGURE_ARGS+=		--disable-deploypkg
 CONFIGURE_ARGS+=		--disable-grabbitmqproxy
-CONFIGURE_ARGS+=		--disable-vgauth
 CONFIGURE_ARGS+=		--sysconfdir=${PKG_SYSCONFBASEDIR}
 
-#INSTALLATION_DIRS+=		${PKG_SYSCONFDIR} share/examples/vmware-tools
+INSTALLATION_DIRS+=		${PKG_SYSCONFDIR} share/examples/vmware-tools
 
 PKG_SYSCONFSUBDIR=		vmware-tools
 EGDIR=				${PREFIX}/share/examples/vmware-tools
@@ -34,6 +33,7 @@ CONF_FILES_PERMS+=		${EGDIR}/suspend-vm-default ${PKG_SYSCONFDIR}/suspend-vm-def
 CONF_FILES_PERMS+=		${EGDIR}/statechange.subr ${PKG_SYSCONFDIR}/statechange.subr ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 755
 CONF_FILES_PERMS+=		${EGDIR}/vm-support ${PKG_SYSCONFDIR}/vm-support ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 755
 CONF_FILES_PERMS+=		${EGDIR}/scripts/vmware/network ${PKG_SYSCONFDIR}/scripts/vmware/network ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 755
+CONF_FILESS+=		${EGDIR}/vgauth.conf ${PKG_SYSCONFDIR}/vgauth.conf
 RCD_SCRIPTS=			vmtools
 
 PKGCONFIG_OVERRIDE+=	libDeployPkg/libDeployPkg.pc.in
@@ -41,6 +41,7 @@ PKGCONFIG_OVERRIDE+=	libguestlib/vmguestlib.pc.in
 
 INSTALL_MAKE_FLAGS+=	sysconfdir=${EGDIR}
 INSTALL_MAKE_FLAGS+=	confdir=${EGDIR}
+INSTALL_MAKE_FLAGS+=	VGAuthServicedir=${PREFIX}/share/open-vm-tools/vgauth/schemas
 
 SUBST_CLASSES+=		confdir
 SUBST_STAGE.confdir=	pre-configure
@@ -49,12 +50,18 @@ SUBST_FILES.confdir+=	lib/guestApp/guestApp.c
 SUBST_FILES.confdir+=	scripts/Makefile.in
 SUBST_FILES.confdir+=	services/vmtoolsd/Makefile.in
 SUBST_FILES.confdir+=	vgauth/common/prefs.h
-SUBST_FILES.confdir+=	vgauth/service/Makefile.in
 SUBST_FILES.confdir+=	vmware-user-suid-wrapper/wrapper.h
+
+SUBST_CLASSES+=		vgconfdir
+SUBST_STAGE.vgconfdir=	pre-configure
+SUBST_SED.vgconfdir=	-e s,/etc/vmware-tools/vgauth.conf,${EGDIR}/vgauth.conf,
+SUBST_FILES.vgconfdir+=	vgauth/service/Makefile.in
 
 .include "../../net/libdnet/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
+.include "../../security/xml-security-c/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
+.include "../../textproc/xerces-c/buildlink3.mk"
 
 .include "options.mk"
 
