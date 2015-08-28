@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.31 2015/08/22 23:49:13 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2015/08/25 23:09:51 fhajny Exp $
 
 .include "version.mk"
 
 DISTNAME=	go${GO_VERSION}.src
 PKGNAME=	go-${GO_VERSION}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	https://storage.googleapis.com/golang/
 
@@ -75,6 +75,10 @@ CHECK_INTERPRETER_SKIP+=	go/src/run.rc
 BUILD_DEPENDS+=		go14-1.4*:../../lang/go14
 GOROOT_BOOTSTRAP=	${PREFIX}/go14
 
+pre-build:
+	cd ${WRKSRC}/src/syscall && ${PERL5} mksyscall_solaris.pl \
+		syscall_solaris.go syscall_solaris_amd64.go > zsyscall_solaris_amd64.go
+
 do-build:
 	cd ${WRKSRC}/src && env GOROOT_BOOTSTRAP=${GOROOT_BOOTSTRAP:Q} GOROOT_FINAL=${GOROOT_FINAL:Q} ${BASH} ./make.bash
 
@@ -85,5 +89,8 @@ do-install:
 .for cmd in go gofmt
 	cd ${DESTDIR}${PREFIX}/bin && ln -sf ../go/bin/${cmd} ${cmd}
 .endfor
+
+do-test:
+	cd ${WRKSRC}/src && GOROOT=${WRKSRC} PATH=${WRKSRC}/bin:${PATH} ${BASH} run.bash --no-rebuild --banner ""
 
 .include "../../mk/bsd.pkg.mk"

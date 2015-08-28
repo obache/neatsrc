@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2135 2015/08/22 22:40:41 wiz Exp $
+# $NetBSD: Makefile,v 1.2137 2015/08/26 10:59:35 tnn Exp $
 #
 
 COMMENT=	Development utilities
@@ -370,6 +370,7 @@ SUBDIR+=	jam
 SUBDIR+=	java-subversion
 SUBDIR+=	javacc
 SUBDIR+=	javadeps
+SUBDIR+=	jd-gui
 SUBDIR+=	jenkins
 SUBDIR+=	jflex
 SUBDIR+=	jq
@@ -1606,6 +1607,7 @@ SUBDIR+=	py-blinker
 SUBDIR+=	py-boost
 SUBDIR+=	py-buildbot
 SUBDIR+=	py-buildbot-slave
+SUBDIR+=	py-cached-property
 SUBDIR+=	py-cffi
 SUBDIR+=	py-characteristic
 SUBDIR+=	py-checker
