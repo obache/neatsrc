@@ -11,12 +11,7 @@ $NetBSD: patch-bh,v 1.1 2008/08/31 06:36:48 scottr Exp $
  #   error This file should not be compiled
  #endif
  
-@@ -55,11 +55,11 @@
- #include <net/if.h>
- #include <sys/ioctl.h>
- 
--#if defined sun || defined __APPLE__
-+#if defined sun || defined __APPLE__ || defined __NetBSD__
+@@ -59,7 +59,7 @@
  #   include <utmpx.h>
  #endif
  
@@ -24,15 +19,6 @@ $NetBSD: patch-bh,v 1.1 2008/08/31 06:36:48 scottr Exp $
 +#if defined(__FreeBSD__) || defined(__NetBSD__)
  #include "ifaddrs.h"
  #endif
- 
-@@ -220,7 +220,7 @@ System_Uptime(void)
-          fclose(procStream);
-       }
-    }
--#elif defined sun || defined __APPLE__
-+#elif defined sun || defined __APPLE__ || defined __NetBSD__
-    {
-       struct utmpx *boot, tmp;
  
 @@ -366,7 +366,7 @@ System_Shutdown(Bool reboot)  // IN: "re
        cmd = "/sbin/shutdown -r now";
