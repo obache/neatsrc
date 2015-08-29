@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.15 2014/11/15 01:59:37 obache Exp $
+$NetBSD: distinfo,v 1.16 2015/08/28 12:52:01 he Exp $
 
 SHA1 (zeromq-4.1.3.tar.gz) = b7185724f2fd56d0face50047757ac2a04d26ca4
 RMD160 (zeromq-4.1.3.tar.gz) = fbfe9c0fe9a141c9b4cf282b89019f9df47079de

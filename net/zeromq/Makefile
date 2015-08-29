@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2014/11/15 01:59:37 obache Exp $
+# $NetBSD: Makefile,v 1.21 2015/08/28 12:52:01 he Exp $
 
 DISTNAME=	zeromq-4.1.3
 CATEGORIES=	net devel

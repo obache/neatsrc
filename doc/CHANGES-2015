@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.3607 2015/08/27 07:27:31 tron Exp $
+$NetBSD: CHANGES-2015,v 1.3624 2015/08/28 13:25:41 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -6485,3 +6485,20 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated textproc/diffstat to 1.60 [shattered 2015-08-26]
 	Updated security/gpgme to 1.6.0 [mef 2015-08-27]
 	Updated security/p5-Mozilla-CA to 20150826 [tron 2015-08-27]
+	Updated x11/xdg-user-dirs to 0.15nb1 [wiz 2015-08-27]
+	Updated chat/bitlbee to 3.4.1 [wiz 2015-08-27]
+	Updated audio/deforaos-mixer to 0.1.2 [khorben 2015-08-28]
+	Updated meta-pkgs/deforaos-desktop to 0.0.6 [khorben 2015-08-28]
+	Updated sysutils/mc to 4.8.14 [wiz 2015-08-28]
+	Updated devel/jq to 1.5 [wiz 2015-08-28]
+	Added textproc/miller version 2.0.0 [wiz 2015-08-28]
+	Updated www/py-gunicorn to 19.3.0nb1 [wiz 2015-08-28]
+	Updated www/py-tornado to 4.2.1nb1 [wiz 2015-08-28]
+	Updated devel/py-google-apputils to 0.4.2nb1 [wiz 2015-08-28]
+	Updated filesystems/fuse-gphotofs to 0.5 [wiz 2015-08-28]
+	Removed net/p5-eBay-API [wiz 2015-08-28]
+	Updated www/p5-libapreq2 to 2.13 [wiz 2015-08-28]
+	Updated misc/calibre to 2.36.0 [wiz 2015-08-28]
+	Updated net/zeromq to 4.1.3 [he 2015-08-28]
+	Updated www/goaccess to 0.9.3 [wiedi 2015-08-28]
+	Updated security/libgnome-keyring to 3.12.0 [wiz 2015-08-28]

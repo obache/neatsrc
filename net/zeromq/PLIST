@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2014/11/15 01:59:37 obache Exp $
+@comment $NetBSD: PLIST,v 1.6 2015/08/28 12:52:01 he Exp $
 bin/curve_keygen
 include/zmq.h
 include/zmq_utils.h
