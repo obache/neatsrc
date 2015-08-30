@@ -151,7 +151,8 @@ print-PLIST:
 				{ sub("^${PKGINFODIR}/", "info/"); }	\
 				{ sub("^${PKGMANDIR}/", "man/"); }	\
 				/^${PKG_DBDIR:S|^${PREFIX}/||:S|/|\\/|g}(\/|$$)/ { next; } \
-				/^${PKGINFODIR:S|/|\\/|g}$$/ { next; }'` ;	\
+				/^${PKGINFODIR:S|/|\\/|g}$$/ { next; }	\
+				{ print $$0; }'` ; 			\
 	do								\
 		if [ `${LS} -la ${DESTDIR}${PREFIX}/$$i | ${WC} -l` = 3 ]; then	\
 			${ECHO} @pkgdir $$i | ${AWK} '			\
