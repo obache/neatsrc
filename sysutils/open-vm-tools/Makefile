@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.51 2015/04/25 14:24:54 tnn Exp $
+# $NetBSD: Makefile,v 1.52 2015/08/29 15:42:36 taca Exp $
 
 DISTNAME=	open-vm-tools-9.10.2-2822639
 PKGNAME=	${DISTNAME:C/-[0-9]+$//}
@@ -33,7 +33,7 @@ CONF_FILES_PERMS+=		${EGDIR}/suspend-vm-default ${PKG_SYSCONFDIR}/suspend-vm-def
 CONF_FILES_PERMS+=		${EGDIR}/statechange.subr ${PKG_SYSCONFDIR}/statechange.subr ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 755
 CONF_FILES_PERMS+=		${EGDIR}/vm-support ${PKG_SYSCONFDIR}/vm-support ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 755
 CONF_FILES_PERMS+=		${EGDIR}/scripts/vmware/network ${PKG_SYSCONFDIR}/scripts/vmware/network ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 755
-CONF_FILESS+=		${EGDIR}/vgauth.conf ${PKG_SYSCONFDIR}/vgauth.conf
+CONF_FILES+=		${EGDIR}/vgauth.conf ${PKG_SYSCONFDIR}/vgauth.conf
 RCD_SCRIPTS=			vmtools
 
 PKGCONFIG_OVERRIDE+=	libDeployPkg/libDeployPkg.pc.in

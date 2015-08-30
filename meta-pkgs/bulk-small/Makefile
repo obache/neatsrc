@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2015/06/12 10:50:32 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2015/08/29 23:53:44 dholland Exp $
 
 DISTNAME=	bulk-small-20140101
 PKGREVISION=	2
@@ -80,10 +80,10 @@ BUILD_DEPENDS+=	stunnel-[0-9]*:../../security/stunnel
 BUILD_DEPENDS+=	bash-[0-9]*:../../shells/bash
 BUILD_DEPENDS+=	tcsh-[0-9]*:../../shells/tcsh
 BUILD_DEPENDS+=	zsh-[0-9]*:../../shells/zsh
-BUILD_DEPENDS+=	icewm-[0-9]*:../../wm/icewm
+BUILD_DEPENDS+=	icewm>=1.2<1.3:../../wm/icewm
 BUILD_DEPENDS+=	fluxbox-[0-9]*:../../wm/fluxbox
 BUILD_DEPENDS+=	fvwm-[0-9]*:../../wm/fvwm
-BUILD_DEPENDS+=	apache>=2.2:../../www/apache22
+BUILD_DEPENDS+=	apache>=2.4:../../www/apache24
 BUILD_DEPENDS+=	bozohttpd-[0-9]*:../../www/bozohttpd
 BUILD_DEPENDS+=	curl-[0-9]*:../../www/curl
 BUILD_DEPENDS+=	xlockmore-lite-[0-9]*:../../x11/xlockmore-lite
