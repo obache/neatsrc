@@ -11,7 +11,7 @@ HOMEPAGE=	http://www.gnu.org/software/wget/wget.html
 COMMENT=	Retrieve files from the 'net via HTTP and FTP
 LICENSE=	gnu-gpl-v3
 
-USE_TOOLS+=		perl pod2man pkg-config
+USE_TOOLS+=		perl pod2man pkg-config makeinfo
 
 GNU_CONFIGURE=		YES
 USE_OLD_DES_API=	YES
