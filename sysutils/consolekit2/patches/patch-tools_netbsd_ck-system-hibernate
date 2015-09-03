@@ -1,0 +1,12 @@
+$NetBSD$
+
+* NetBSD support
+
+--- tools/netbsd/ck-system-hibernate.orig	2015-06-21 15:38:32.000000000 +0000
++++ tools/netbsd/ck-system-hibernate
+@@ -1,3 +1,4 @@
+ #!/bin/sh
+ 
+-/usr/sbin/ZZZ
++# Not implemented
++exit 1

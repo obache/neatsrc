@@ -1,0 +1,11 @@
+$NetBSD$
+
+* NetBSD support
+
+--- tools/netbsd/ck-system-stop.orig	2015-06-21 15:38:32.000000000 +0000
++++ tools/netbsd/ck-system-stop
+@@ -1,3 +1,3 @@
+ #!/bin/sh
+ 
+-/sbin/shutdown -hp now
++/sbin/shutdown -p now

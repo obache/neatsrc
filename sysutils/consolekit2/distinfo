@@ -1,0 +1,13 @@
+$NetBSD: distinfo,v 1.10 2014/08/17 15:59:07 wiz Exp $
+
+SHA1 (ConsoleKit2-1.0.0.tar.bz2) = bd4d8b90af5846fd35b187920ccd0aa9e0eb35e7
+RMD160 (ConsoleKit2-1.0.0.tar.bz2) = 68691d74010fe9c5b5af5d2d61f8f2cb8db68bd8
+Size (ConsoleKit2-1.0.0.tar.bz2) = 1288174 bytes
+SHA1 (patch-configure.ac) = 1e722dacce5294006b89b480ad8e7393eeb37644
+SHA1 (patch-data_Makefile.am) = 7d37d6c3b5c0bab2e1e4b7000bd23f72b646cf9c
+SHA1 (patch-src_Makefile.am) = 49a05bca61263c3579ec6038f51ae8624526b197
+SHA1 (patch-src_ck-sysdeps-unix.c) = 931b539cfaa6bf559065a770616fe80eab5f4451
+SHA1 (patch-tools_Makefile.am) = 109417c50e7a2303311b3934bed81639ae940e47
+SHA1 (patch-tools_netbsd_ck-system-hibernate) = 45ee1430f37765fbe739d38b55776e99a9f10145
+SHA1 (patch-tools_netbsd_ck-system-stop) = 8c4f3dfa62179ad3b2dc4ce7c9c1cd68715fb0ab
+SHA1 (patch-tools_netbsd_ck-system-suspend) = 5db633fd33cddf35543ad18565d60cd6d74146aa

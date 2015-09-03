@@ -1,0 +1,19 @@
+$NetBSD$
+
+NetBSD support
+
+--- tools/netbsd/ck-system-suspend.orig	2015-06-21 15:38:32.000000000 +0000
++++ tools/netbsd/ck-system-suspend
+@@ -1,3 +1,11 @@
+ #!/bin/sh
+ 
+-/usr/sbin/zzz
++if test -x /usr/sbin/apm; then
++	if  -a -f /etc/rc.d/apmd && /etc/rc.d/apmd onestatus > /dev/null; then
++		/usr/sbin/apm -z
++	else
++		/usr/sbin/apm -d -z
++	endif
++else
++	exit 1
++endif

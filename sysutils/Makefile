@@ -77,6 +77,7 @@ SUBDIR+=	collectd-rrdtool
 SUBDIR+=	collectd-snmp
 SUBDIR+=	conky
 SUBDIR+=	consolekit
+SUBDIR+=	consolekit2
 SUBDIR+=	coreutils
 SUBDIR+=	cpmtools
 SUBDIR+=	cpogm
