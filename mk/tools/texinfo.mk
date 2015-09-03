@@ -49,9 +49,7 @@ TEXINFO_REQD?=		3.12
 # the pkgsrc makeinfo.
 #
 .if empty(USE_TOOLS:C/:.*//:Mmakeinfo)
-TOOLS_CREATE+=		makeinfo
-TOOLS_PATH.makeinfo=	${PKGSRCDIR}/mk/gnu-config/missing
-TOOLS_SCRIPT.makeinfo=	for arg in "$$@"; do case "$$arg" in --version) exit 1 ;; esac; done; ${TOOLS_PATH.makeinfo} makeinfo "$$@"
+TOOLS_GNU_MISSING+=	makeinfo
 .elif defined(TOOLS_PLATFORM.makeinfo) && !empty(TOOLS_PLATFORM.makeinfo)
 .  if !defined(_TOOLS_USE_PKGSRC.makeinfo)
 _TOOLS_VERSION.makeinfo!=						\
