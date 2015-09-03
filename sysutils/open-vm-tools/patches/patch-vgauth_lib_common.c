@@ -2,15 +2,6 @@ $NetBSD$
 
 --- vgauth/lib/common.c.orig	2015-06-17 16:14:30.000000000 +0000
 +++ vgauth/lib/common.c
-@@ -302,7 +302,7 @@ VGAuth_InstallClient(VGAuthContext *ctx,
- 
- #ifdef _WIN32
-    return VGAUTH_E_OK;
--#elif defined(linux)
-+#elif defined(linux) || defined(__NetBSD__)
-    {
-    gchar *fileName;
-    gchar *lowAppName;
 @@ -374,7 +374,7 @@ done:
  
     return err;
