@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.713 2015/08/25 20:19:48 adam Exp $
+# $NetBSD: Makefile,v 1.715 2015/09/02 10:53:45 markd Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -529,6 +529,8 @@ SUBDIR+=	tex-hatching
 SUBDIR+=	tex-hatching-doc
 SUBDIR+=	tex-latexmp
 SUBDIR+=	tex-latexmp-doc
+SUBDIR+=	tex-mcf2graph
+SUBDIR+=	tex-mcf2graph-doc
 SUBDIR+=	tex-metago
 SUBDIR+=	tex-metago-doc
 SUBDIR+=	tex-metaobj
@@ -616,6 +618,10 @@ SUBDIR+=	tex-pstricks-doc
 SUBDIR+=	tex-repere
 SUBDIR+=	tex-repere-doc
 SUBDIR+=	tex-roex
+SUBDIR+=	tex-roundrect
+SUBDIR+=	tex-roundrect-doc
+SUBDIR+=	tex-shapes
+SUBDIR+=	tex-shapes-doc
 SUBDIR+=	tex-slideshow
 SUBDIR+=	tex-slideshow-doc
 SUBDIR+=	tex-splines
@@ -628,6 +634,8 @@ SUBDIR+=	tex-textpath
 SUBDIR+=	tex-textpath-doc
 SUBDIR+=	tex-threeddice
 SUBDIR+=	tex-threeddice-doc
+SUBDIR+=	tex-tikzposter
+SUBDIR+=	tex-tikzposter-doc
 SUBDIR+=	tex-xypic
 SUBDIR+=	tex-xypic-doc
 SUBDIR+=	tgif
