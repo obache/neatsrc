@@ -44,6 +44,10 @@ share/doc/groonga/en/html/_sources/client.txt
 share/doc/groonga/en/html/_sources/community.txt
 share/doc/groonga/en/html/_sources/contribution.txt
 share/doc/groonga/en/html/_sources/contribution/development.txt
+share/doc/groonga/en/html/_sources/contribution/development/build.txt
+share/doc/groonga/en/html/_sources/contribution/development/build/unix_autotools.txt
+share/doc/groonga/en/html/_sources/contribution/development/build/unix_cmake.txt
+share/doc/groonga/en/html/_sources/contribution/development/build/windows_cmake.txt
 share/doc/groonga/en/html/_sources/contribution/development/com.txt
 share/doc/groonga/en/html/_sources/contribution/development/cooperation.txt
 share/doc/groonga/en/html/_sources/contribution/development/query.txt
@@ -100,6 +104,7 @@ share/doc/groonga/en/html/_sources/reference/api/grn_proc.txt
 share/doc/groonga/en/html/_sources/reference/api/grn_search.txt
 share/doc/groonga/en/html/_sources/reference/api/grn_table.txt
 share/doc/groonga/en/html/_sources/reference/api/grn_table_cursor.txt
+share/doc/groonga/en/html/_sources/reference/api/grn_thread.txt
 share/doc/groonga/en/html/_sources/reference/api/grn_type.txt
 share/doc/groonga/en/html/_sources/reference/api/grn_user_data.txt
 share/doc/groonga/en/html/_sources/reference/api/overview.txt
@@ -118,10 +123,12 @@ share/doc/groonga/en/html/_sources/reference/command/return_code.txt
 share/doc/groonga/en/html/_sources/reference/commands/cache_limit.txt
 share/doc/groonga/en/html/_sources/reference/commands/check.txt
 share/doc/groonga/en/html/_sources/reference/commands/clearlock.txt
+share/doc/groonga/en/html/_sources/reference/commands/column_copy.txt
 share/doc/groonga/en/html/_sources/reference/commands/column_create.txt
 share/doc/groonga/en/html/_sources/reference/commands/column_list.txt
 share/doc/groonga/en/html/_sources/reference/commands/column_remove.txt
 share/doc/groonga/en/html/_sources/reference/commands/column_rename.txt
+share/doc/groonga/en/html/_sources/reference/commands/database_unmap.txt
 share/doc/groonga/en/html/_sources/reference/commands/define_selector.txt
 share/doc/groonga/en/html/_sources/reference/commands/defrag.txt
 share/doc/groonga/en/html/_sources/reference/commands/delete.txt
@@ -136,9 +143,11 @@ share/doc/groonga/en/html/_sources/reference/commands/logical_count.txt
 share/doc/groonga/en/html/_sources/reference/commands/logical_parameters.txt
 share/doc/groonga/en/html/_sources/reference/commands/logical_range_filter.txt
 share/doc/groonga/en/html/_sources/reference/commands/logical_select.txt
+share/doc/groonga/en/html/_sources/reference/commands/logical_shard_list.txt
 share/doc/groonga/en/html/_sources/reference/commands/logical_table_remove.txt
 share/doc/groonga/en/html/_sources/reference/commands/normalize.txt
 share/doc/groonga/en/html/_sources/reference/commands/normalizer_list.txt
+share/doc/groonga/en/html/_sources/reference/commands/object_exist.txt
 share/doc/groonga/en/html/_sources/reference/commands/plugin_register.txt
 share/doc/groonga/en/html/_sources/reference/commands/plugin_unregister.txt
 share/doc/groonga/en/html/_sources/reference/commands/quit.txt
@@ -156,6 +165,7 @@ share/doc/groonga/en/html/_sources/reference/commands/table_list.txt
 share/doc/groonga/en/html/_sources/reference/commands/table_remove.txt
 share/doc/groonga/en/html/_sources/reference/commands/table_rename.txt
 share/doc/groonga/en/html/_sources/reference/commands/table_tokenize.txt
+share/doc/groonga/en/html/_sources/reference/commands/thread_limit.txt
 share/doc/groonga/en/html/_sources/reference/commands/tokenize.txt
 share/doc/groonga/en/html/_sources/reference/commands/tokenizer_list.txt
 share/doc/groonga/en/html/_sources/reference/commands/truncate.txt
@@ -201,6 +211,7 @@ share/doc/groonga/en/html/_sources/reference/scorer.txt
 share/doc/groonga/en/html/_sources/reference/scorers/scorer_tf_at_most.txt
 share/doc/groonga/en/html/_sources/reference/scorers/scorer_tf_idf.txt
 share/doc/groonga/en/html/_sources/reference/scoring_note.txt
+share/doc/groonga/en/html/_sources/reference/sharding.txt
 share/doc/groonga/en/html/_sources/reference/suggest.txt
 share/doc/groonga/en/html/_sources/reference/suggest/completion.txt
 share/doc/groonga/en/html/_sources/reference/suggest/correction.txt
@@ -249,6 +260,7 @@ share/doc/groonga/en/html/_static/favicon.ico
 share/doc/groonga/en/html/_static/file.png
 share/doc/groonga/en/html/_static/groonga.css
 share/doc/groonga/en/html/_static/header-background.png
+share/doc/groonga/en/html/_static/jquery-1.11.1.js
 share/doc/groonga/en/html/_static/jquery.js
 share/doc/groonga/en/html/_static/logo.png
 share/doc/groonga/en/html/_static/minus.png
@@ -256,6 +268,7 @@ share/doc/groonga/en/html/_static/navigation-bar.png
 share/doc/groonga/en/html/_static/plus.png
 share/doc/groonga/en/html/_static/pygments.css
 share/doc/groonga/en/html/_static/searchtools.js
+share/doc/groonga/en/html/_static/underscore-1.3.1.js
 share/doc/groonga/en/html/_static/underscore.js
 share/doc/groonga/en/html/_static/up-pressed.png
 share/doc/groonga/en/html/_static/up.png
@@ -265,6 +278,10 @@ share/doc/groonga/en/html/client.html
 share/doc/groonga/en/html/community.html
 share/doc/groonga/en/html/contribution.html
 share/doc/groonga/en/html/contribution/development.html
+share/doc/groonga/en/html/contribution/development/build.html
+share/doc/groonga/en/html/contribution/development/build/unix_autotools.html
+share/doc/groonga/en/html/contribution/development/build/unix_cmake.html
+share/doc/groonga/en/html/contribution/development/build/windows_cmake.html
 share/doc/groonga/en/html/contribution/development/com.html
 share/doc/groonga/en/html/contribution/development/cooperation.html
 share/doc/groonga/en/html/contribution/development/query.html
@@ -323,6 +340,7 @@ share/doc/groonga/en/html/reference/api/grn_proc.html
 share/doc/groonga/en/html/reference/api/grn_search.html
 share/doc/groonga/en/html/reference/api/grn_table.html
 share/doc/groonga/en/html/reference/api/grn_table_cursor.html
+share/doc/groonga/en/html/reference/api/grn_thread.html
 share/doc/groonga/en/html/reference/api/grn_type.html
 share/doc/groonga/en/html/reference/api/grn_user_data.html
 share/doc/groonga/en/html/reference/api/overview.html
@@ -341,10 +359,12 @@ share/doc/groonga/en/html/reference/command/return_code.html
 share/doc/groonga/en/html/reference/commands/cache_limit.html
 share/doc/groonga/en/html/reference/commands/check.html
 share/doc/groonga/en/html/reference/commands/clearlock.html
+share/doc/groonga/en/html/reference/commands/column_copy.html
 share/doc/groonga/en/html/reference/commands/column_create.html
 share/doc/groonga/en/html/reference/commands/column_list.html
 share/doc/groonga/en/html/reference/commands/column_remove.html
 share/doc/groonga/en/html/reference/commands/column_rename.html
+share/doc/groonga/en/html/reference/commands/database_unmap.html
 share/doc/groonga/en/html/reference/commands/define_selector.html
 share/doc/groonga/en/html/reference/commands/defrag.html
 share/doc/groonga/en/html/reference/commands/delete.html
@@ -359,9 +379,11 @@ share/doc/groonga/en/html/reference/commands/logical_count.html
 share/doc/groonga/en/html/reference/commands/logical_parameters.html
 share/doc/groonga/en/html/reference/commands/logical_range_filter.html
 share/doc/groonga/en/html/reference/commands/logical_select.html
+share/doc/groonga/en/html/reference/commands/logical_shard_list.html
 share/doc/groonga/en/html/reference/commands/logical_table_remove.html
 share/doc/groonga/en/html/reference/commands/normalize.html
 share/doc/groonga/en/html/reference/commands/normalizer_list.html
+share/doc/groonga/en/html/reference/commands/object_exist.html
 share/doc/groonga/en/html/reference/commands/plugin_register.html
 share/doc/groonga/en/html/reference/commands/plugin_unregister.html
 share/doc/groonga/en/html/reference/commands/quit.html
@@ -379,6 +401,7 @@ share/doc/groonga/en/html/reference/commands/table_list.html
 share/doc/groonga/en/html/reference/commands/table_remove.html
 share/doc/groonga/en/html/reference/commands/table_rename.html
 share/doc/groonga/en/html/reference/commands/table_tokenize.html
+share/doc/groonga/en/html/reference/commands/thread_limit.html
 share/doc/groonga/en/html/reference/commands/tokenize.html
 share/doc/groonga/en/html/reference/commands/tokenizer_list.html
 share/doc/groonga/en/html/reference/commands/truncate.html
@@ -424,6 +447,7 @@ share/doc/groonga/en/html/reference/scorer.html
 share/doc/groonga/en/html/reference/scorers/scorer_tf_at_most.html
 share/doc/groonga/en/html/reference/scorers/scorer_tf_idf.html
 share/doc/groonga/en/html/reference/scoring_note.html
+share/doc/groonga/en/html/reference/sharding.html
 share/doc/groonga/en/html/reference/suggest.html
 share/doc/groonga/en/html/reference/suggest/completion.html
 share/doc/groonga/en/html/reference/suggest/correction.html
@@ -471,6 +495,10 @@ share/doc/groonga/ja/html/_sources/client.txt
 share/doc/groonga/ja/html/_sources/community.txt
 share/doc/groonga/ja/html/_sources/contribution.txt
 share/doc/groonga/ja/html/_sources/contribution/development.txt
+share/doc/groonga/ja/html/_sources/contribution/development/build.txt
+share/doc/groonga/ja/html/_sources/contribution/development/build/unix_autotools.txt
+share/doc/groonga/ja/html/_sources/contribution/development/build/unix_cmake.txt
+share/doc/groonga/ja/html/_sources/contribution/development/build/windows_cmake.txt
 share/doc/groonga/ja/html/_sources/contribution/development/com.txt
 share/doc/groonga/ja/html/_sources/contribution/development/cooperation.txt
 share/doc/groonga/ja/html/_sources/contribution/development/query.txt
@@ -527,6 +555,7 @@ share/doc/groonga/ja/html/_sources/reference/api/grn_proc.txt
 share/doc/groonga/ja/html/_sources/reference/api/grn_search.txt
 share/doc/groonga/ja/html/_sources/reference/api/grn_table.txt
 share/doc/groonga/ja/html/_sources/reference/api/grn_table_cursor.txt
+share/doc/groonga/ja/html/_sources/reference/api/grn_thread.txt
 share/doc/groonga/ja/html/_sources/reference/api/grn_type.txt
 share/doc/groonga/ja/html/_sources/reference/api/grn_user_data.txt
 share/doc/groonga/ja/html/_sources/reference/api/overview.txt
@@ -545,10 +574,12 @@ share/doc/groonga/ja/html/_sources/reference/command/return_code.txt
 share/doc/groonga/ja/html/_sources/reference/commands/cache_limit.txt
 share/doc/groonga/ja/html/_sources/reference/commands/check.txt
 share/doc/groonga/ja/html/_sources/reference/commands/clearlock.txt
+share/doc/groonga/ja/html/_sources/reference/commands/column_copy.txt
 share/doc/groonga/ja/html/_sources/reference/commands/column_create.txt
 share/doc/groonga/ja/html/_sources/reference/commands/column_list.txt
 share/doc/groonga/ja/html/_sources/reference/commands/column_remove.txt
 share/doc/groonga/ja/html/_sources/reference/commands/column_rename.txt
+share/doc/groonga/ja/html/_sources/reference/commands/database_unmap.txt
 share/doc/groonga/ja/html/_sources/reference/commands/define_selector.txt
 share/doc/groonga/ja/html/_sources/reference/commands/defrag.txt
 share/doc/groonga/ja/html/_sources/reference/commands/delete.txt
@@ -563,9 +594,11 @@ share/doc/groonga/ja/html/_sources/reference/commands/logical_count.txt
 share/doc/groonga/ja/html/_sources/reference/commands/logical_parameters.txt
 share/doc/groonga/ja/html/_sources/reference/commands/logical_range_filter.txt
 share/doc/groonga/ja/html/_sources/reference/commands/logical_select.txt
+share/doc/groonga/ja/html/_sources/reference/commands/logical_shard_list.txt
 share/doc/groonga/ja/html/_sources/reference/commands/logical_table_remove.txt
 share/doc/groonga/ja/html/_sources/reference/commands/normalize.txt
 share/doc/groonga/ja/html/_sources/reference/commands/normalizer_list.txt
+share/doc/groonga/ja/html/_sources/reference/commands/object_exist.txt
 share/doc/groonga/ja/html/_sources/reference/commands/plugin_register.txt
 share/doc/groonga/ja/html/_sources/reference/commands/plugin_unregister.txt
 share/doc/groonga/ja/html/_sources/reference/commands/quit.txt
@@ -583,6 +616,7 @@ share/doc/groonga/ja/html/_sources/reference/commands/table_list.txt
 share/doc/groonga/ja/html/_sources/reference/commands/table_remove.txt
 share/doc/groonga/ja/html/_sources/reference/commands/table_rename.txt
 share/doc/groonga/ja/html/_sources/reference/commands/table_tokenize.txt
+share/doc/groonga/ja/html/_sources/reference/commands/thread_limit.txt
 share/doc/groonga/ja/html/_sources/reference/commands/tokenize.txt
 share/doc/groonga/ja/html/_sources/reference/commands/tokenizer_list.txt
 share/doc/groonga/ja/html/_sources/reference/commands/truncate.txt
@@ -628,6 +662,7 @@ share/doc/groonga/ja/html/_sources/reference/scorer.txt
 share/doc/groonga/ja/html/_sources/reference/scorers/scorer_tf_at_most.txt
 share/doc/groonga/ja/html/_sources/reference/scorers/scorer_tf_idf.txt
 share/doc/groonga/ja/html/_sources/reference/scoring_note.txt
+share/doc/groonga/ja/html/_sources/reference/sharding.txt
 share/doc/groonga/ja/html/_sources/reference/suggest.txt
 share/doc/groonga/ja/html/_sources/reference/suggest/completion.txt
 share/doc/groonga/ja/html/_sources/reference/suggest/correction.txt
@@ -676,6 +711,7 @@ share/doc/groonga/ja/html/_static/favicon.ico
 share/doc/groonga/ja/html/_static/file.png
 share/doc/groonga/ja/html/_static/groonga.css
 share/doc/groonga/ja/html/_static/header-background.png
+share/doc/groonga/ja/html/_static/jquery-1.11.1.js
 share/doc/groonga/ja/html/_static/jquery.js
 share/doc/groonga/ja/html/_static/logo.png
 share/doc/groonga/ja/html/_static/minus.png
@@ -683,6 +719,7 @@ share/doc/groonga/ja/html/_static/navigation-bar.png
 share/doc/groonga/ja/html/_static/plus.png
 share/doc/groonga/ja/html/_static/pygments.css
 share/doc/groonga/ja/html/_static/searchtools.js
+share/doc/groonga/ja/html/_static/underscore-1.3.1.js
 share/doc/groonga/ja/html/_static/underscore.js
 share/doc/groonga/ja/html/_static/up-pressed.png
 share/doc/groonga/ja/html/_static/up.png
@@ -692,6 +729,10 @@ share/doc/groonga/ja/html/client.html
 share/doc/groonga/ja/html/community.html
 share/doc/groonga/ja/html/contribution.html
 share/doc/groonga/ja/html/contribution/development.html
+share/doc/groonga/ja/html/contribution/development/build.html
+share/doc/groonga/ja/html/contribution/development/build/unix_autotools.html
+share/doc/groonga/ja/html/contribution/development/build/unix_cmake.html
+share/doc/groonga/ja/html/contribution/development/build/windows_cmake.html
 share/doc/groonga/ja/html/contribution/development/com.html
 share/doc/groonga/ja/html/contribution/development/cooperation.html
 share/doc/groonga/ja/html/contribution/development/query.html
@@ -750,6 +791,7 @@ share/doc/groonga/ja/html/reference/api/grn_proc.html
 share/doc/groonga/ja/html/reference/api/grn_search.html
 share/doc/groonga/ja/html/reference/api/grn_table.html
 share/doc/groonga/ja/html/reference/api/grn_table_cursor.html
+share/doc/groonga/ja/html/reference/api/grn_thread.html
 share/doc/groonga/ja/html/reference/api/grn_type.html
 share/doc/groonga/ja/html/reference/api/grn_user_data.html
 share/doc/groonga/ja/html/reference/api/overview.html
@@ -768,10 +810,12 @@ share/doc/groonga/ja/html/reference/command/return_code.html
 share/doc/groonga/ja/html/reference/commands/cache_limit.html
 share/doc/groonga/ja/html/reference/commands/check.html
 share/doc/groonga/ja/html/reference/commands/clearlock.html
+share/doc/groonga/ja/html/reference/commands/column_copy.html
 share/doc/groonga/ja/html/reference/commands/column_create.html
 share/doc/groonga/ja/html/reference/commands/column_list.html
 share/doc/groonga/ja/html/reference/commands/column_remove.html
 share/doc/groonga/ja/html/reference/commands/column_rename.html
+share/doc/groonga/ja/html/reference/commands/database_unmap.html
 share/doc/groonga/ja/html/reference/commands/define_selector.html
 share/doc/groonga/ja/html/reference/commands/defrag.html
 share/doc/groonga/ja/html/reference/commands/delete.html
@@ -786,9 +830,11 @@ share/doc/groonga/ja/html/reference/commands/logical_count.html
 share/doc/groonga/ja/html/reference/commands/logical_parameters.html
 share/doc/groonga/ja/html/reference/commands/logical_range_filter.html
 share/doc/groonga/ja/html/reference/commands/logical_select.html
+share/doc/groonga/ja/html/reference/commands/logical_shard_list.html
 share/doc/groonga/ja/html/reference/commands/logical_table_remove.html
 share/doc/groonga/ja/html/reference/commands/normalize.html
 share/doc/groonga/ja/html/reference/commands/normalizer_list.html
+share/doc/groonga/ja/html/reference/commands/object_exist.html
 share/doc/groonga/ja/html/reference/commands/plugin_register.html
 share/doc/groonga/ja/html/reference/commands/plugin_unregister.html
 share/doc/groonga/ja/html/reference/commands/quit.html
@@ -806,6 +852,7 @@ share/doc/groonga/ja/html/reference/commands/table_list.html
 share/doc/groonga/ja/html/reference/commands/table_remove.html
 share/doc/groonga/ja/html/reference/commands/table_rename.html
 share/doc/groonga/ja/html/reference/commands/table_tokenize.html
+share/doc/groonga/ja/html/reference/commands/thread_limit.html
 share/doc/groonga/ja/html/reference/commands/tokenize.html
 share/doc/groonga/ja/html/reference/commands/tokenizer_list.html
 share/doc/groonga/ja/html/reference/commands/truncate.html
@@ -851,6 +898,7 @@ share/doc/groonga/ja/html/reference/scorer.html
 share/doc/groonga/ja/html/reference/scorers/scorer_tf_at_most.html
 share/doc/groonga/ja/html/reference/scorers/scorer_tf_idf.html
 share/doc/groonga/ja/html/reference/scoring_note.html
+share/doc/groonga/ja/html/reference/sharding.html
 share/doc/groonga/ja/html/reference/suggest.html
 share/doc/groonga/ja/html/reference/suggest/completion.html
 share/doc/groonga/ja/html/reference/suggest/correction.html
