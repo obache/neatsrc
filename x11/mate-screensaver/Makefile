@@ -9,7 +9,7 @@ HOMEPAGE=	http://www.mate-desktop.org/
 COMMENT=	Screen saver and locker for the MATE desktop
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2
 
-DEPENDS+=	consolekit-[0-9]*:../../sysutils/consolekit
+DEPENDS+=	consolekit2-[0-9]*:../../sysutils/consolekit2
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
