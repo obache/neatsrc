@@ -78,7 +78,7 @@ Send bug reports to <bug-automake@gnu.org>."
 esac
 
 # Run the given program, remember its exit status.
-"$@"; st=$?
+st=127
 
 # If it succeeded, we are done.
 test $st -eq 0 && exit 0
