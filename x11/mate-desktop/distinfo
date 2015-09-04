@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (mate-desktop-1.10.1.tar.xz) = 471adce0cb38610d41f2d69418feb84d4299f15a
-RMD160 (mate-desktop-1.10.1.tar.xz) = f7fb7de97f7054969c9dfe26613041290045f4e6
-Size (mate-desktop-1.10.1.tar.xz) = 9095172 bytes
+SHA1 (mate-desktop-1.10.2.tar.xz) = de6d2308cbe4399fd54de78849df5a23e21e78cb
+RMD160 (mate-desktop-1.10.2.tar.xz) = d8c7edfca3e291b2b4c8a7aae57566856ab5a8d9
+Size (mate-desktop-1.10.2.tar.xz) = 9100064 bytes
 SHA1 (patch-libmate-desktop_mate-desktop-thumbnail.c) = 44e418b88481e4cae4d01327a93d36dd04c25b7e
