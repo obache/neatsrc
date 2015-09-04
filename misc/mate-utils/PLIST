@@ -631,7 +631,6 @@ share/locale/zh_CN/LC_MESSAGES/mate-utils.mo
 share/locale/zh_HK/LC_MESSAGES/mate-utils.mo
 share/locale/zh_TW/LC_MESSAGES/mate-utils.mo
 share/mate-dict/sources/default.desktop
-share/mate-dict/sources/spanish.desktop
 share/mate-dict/sources/thai.desktop
 share/mate-dictionary/dictionary-applet-menu.xml
 share/mate-dictionary/mate-dictionary-preferences.ui
