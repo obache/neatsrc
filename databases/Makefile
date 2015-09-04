@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.496 2015/09/02 12:44:07 fhajny Exp $
+# $NetBSD: Makefile,v 1.498 2015/09/03 07:31:17 fhajny Exp $
 
 COMMENT=	Databases
 
@@ -248,6 +248,7 @@ SUBDIR+=	php-pdo_pgsql
 SUBDIR+=	php-pdo_sqlite
 SUBDIR+=	php-pgsql
 SUBDIR+=	php-redis
+SUBDIR+=	php-rrd
 SUBDIR+=	php-sqlrelay
 SUBDIR+=	phpldapadmin
 SUBDIR+=	phpmyadmin
@@ -487,8 +488,8 @@ SUBDIR+=	sqlitebrowser
 SUBDIR+=	sqlrelay
 SUBDIR+=	sqlrelay-freetds
 SUBDIR+=	sqlrelay-mysql
-SUBDIR+=	sqlrelay-odbc
 SUBDIR+=	sqlrelay-nodejs
+SUBDIR+=	sqlrelay-odbc
 SUBDIR+=	sqlrelay-pgsql
 SUBDIR+=	sqlrelay-sqlite
 SUBDIR+=	sqsh
