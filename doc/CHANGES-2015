@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.3765 2015/09/03 15:29:27 leot Exp $
+$NetBSD: CHANGES-2015,v 1.3783 2015/09/04 14:47:18 mef Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -6696,3 +6696,21 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated mail/mutt to 1.5.23nb7 [wiz 2015-09-03]
 	Removed mail/mutt-devel successor mail/mutt [wiz 2015-09-03]
 	Updated www/liferea to 1.10.16 [leot 2015-09-03]
+	Updated www/netsurf to 3.3 [leot 2015-09-03]
+	Updated mail/mutt to 1.5.24 [wiz 2015-09-03]
+	Updated print/cups to 2.1.0 [wiz 2015-09-03]
+	Updated meta-pkgs/bulk-medium to 20150904 [wiz 2015-09-04]
+	Updated devel/opengrok to 0.12.1.5 [wiz 2015-09-04]
+	Updated misc/libreoffice43 to 4.3.7.2 [he 2015-09-04]
+	Updated misc/calibre to 2.37.0 [wiz 2015-09-04]
+	Updated devel/p5-Log-Dispatch to 2.50 [mef 2015-09-04]
+	Updated misc/calibre to 2.37.1 [wiz 2015-09-04]
+	Updated devel/p5-Module-CoreList to 5.20150820 [mef 2015-09-04]
+	Updated devel/p5-Module-ScanDeps to 1.19 [mef 2015-09-04]
+	Updated net/dhcpcd to 6.9.3 [roy 2015-09-04]
+	Updated textproc/miller to 2.1.1 [wiz 2015-09-04]
+	Updated devel/p5-MooX-Cmd to 0.015 [mef 2015-09-04]
+	Updated devel/p5-MooseX-App-Cmd to 0.31 [mef 2015-09-04]
+	Updated devel/p5-MooX-Roles-Pluggable to 0.003 [mef 2015-09-04]
+	Updated devel/p5-MooseX-AttributeHelpers to 0.24 [mef 2015-09-04]
+	Updated devel/p5-MooseX-ConfigFromFile to 0.14 [mef 2015-09-04]
