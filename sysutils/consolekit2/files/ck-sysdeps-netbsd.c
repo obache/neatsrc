@@ -448,6 +448,32 @@ ck_get_active_console_num (int    console_fd,
 gboolean
 ck_system_can_suspend (void)
 {
+        static const char acpi_sleep_mibname[] = "hw.acpi.sleep.states";
+        static const char acpi_suspend_state[] = "S3";
+        size_t state_len = 0;
+	int apm_fd = -1;
+
+        if (sysctlbyname (acpi_sleep_mibname, NULL, &state_len, NULL, 0) == 0) {
+                gchar *sleep_states = g_new (char, state_len + 1);
+                if (sysctlbyname (acpi_sleep_mibname, sleep_states, &state_len, NULL, 0) == 0) {
+                        sleep_states[state_len] = 0;
+                        if (strstr (sleep_states, acpi_suspend_state) != NULL) {
+                                g_free (sleep_states);
+                                return TRUE;
+			}
+                } else {
+                        g_free (sleep_states);
+                }
+        }
+        if (sysctlbyname ("machdep.xen.suspend", NULL, NULL, NULL, 0) == 0) {
+                return TRUE;
+        }
+
+        apm_fd = open ("/dev/apmctl", O_RDWR);
+        if(apm_fd == -1) {
+                return FALSE;
+        }
+        close(apm_fd);
         return TRUE;
 }
 
