@@ -9,11 +9,11 @@ NetBSD support
  
 -/usr/sbin/zzz
 +if test -x /usr/sbin/apm; then
-+	if  -a -f /etc/rc.d/apmd && /etc/rc.d/apmd onestatus > /dev/null; then
++	if test -f /etc/rc.d/apmd && /etc/rc.d/apmd onestatus > /dev/null; then
 +		/usr/sbin/apm -z
 +	else
 +		/usr/sbin/apm -d -z
-+	endif
++	fi
 +else
 +	exit 1
-+endif
++fi

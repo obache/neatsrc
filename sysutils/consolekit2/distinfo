@@ -10,4 +10,4 @@ SHA1 (patch-src_ck-sysdeps-unix.c) = 931b539cfaa6bf559065a770616fe80eab5f4451
 SHA1 (patch-tools_Makefile.am) = 109417c50e7a2303311b3934bed81639ae940e47
 SHA1 (patch-tools_netbsd_ck-system-hibernate) = 45ee1430f37765fbe739d38b55776e99a9f10145
 SHA1 (patch-tools_netbsd_ck-system-stop) = 8c4f3dfa62179ad3b2dc4ce7c9c1cd68715fb0ab
-SHA1 (patch-tools_netbsd_ck-system-suspend) = 5db633fd33cddf35543ad18565d60cd6d74146aa
+SHA1 (patch-tools_netbsd_ck-system-suspend) = 9415705f91e6b87b1ccb9a661c10915ba66705fe
