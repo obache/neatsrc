@@ -17,7 +17,7 @@ CONFIGURE_ARGS+=	--disable-dbus
 .endif
 
 .if !empty(PKG_OPTIONS:Mepub)
-.include "../../www/webkit-gtk/buildlink3.mk"
+.include "../../www/webkit24-gtk/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-epub
 PLIST.epub=	yes
 .else
