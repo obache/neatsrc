@@ -51,6 +51,7 @@ include/atril/1.5.0/libview/ev-view-type-builtins.h
 include/atril/1.5.0/libview/ev-view.h
 include/atril/1.5.0/libview/ev-web-view.h
 lib/atril/3/backends/comicsdocument.atril-backend
+${PLIST.epub}lib/atril/3/backends/epub/MathJax/MathJax.js
 ${PLIST.epub}lib/atril/3/backends/epubdocument.atril-backend
 ${PLIST.djvu}lib/atril/3/backends/djvudocument.atril-backend
 ${PLIST.dvi}lib/atril/3/backends/dvidocument.atril-backend
