@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.209 2015/09/01 12:14:05 jperkin Exp $
+# $NetBSD: Makefile,v 1.211 2015/09/07 09:06:04 jperkin Exp $
 
 # Notes to package maintainers:
 #
@@ -221,11 +221,10 @@ pre-configure:
 			-f ${MAKE_FILE} depend all
 	cd ${WRKDIR}/netpgpverify &&					\
 	${SED} -e '/zlib/d' Makefile.lib.in >Makefile.in &&		\
-	${SETENV} ${_CONFIGURE_SCRIPT_ENV} ${CONFIG_SHELL}		\
-	${CONFIG_SHELL_FLAGS} 						\
-	./configure && ${SETENV} ${MAKE_ENV} ${BSD_MAKE_ENV}		\
-		${MAKE_PROGRAM} ${MAKE_FLAGS} ${BUILD_MAKE_FLAGS}	\
-			-f ${MAKE_FILE} all
+	${RM} -f bzlib.h zlib.h &&					\
+	${CONFIG_SHELL} ${CONFIG_SHELL_FLAGS} ./configure &&		\
+	${SETENV} ${MAKE_ENV} ${BSD_MAKE_ENV} ${MAKE_PROGRAM}		\
+		${MAKE_FLAGS} ${BUILD_MAKE_FLAGS} -f ${MAKE_FILE} all
 
 # XXX Reverse the order that update does things since
 # XXX we need pkg_delete built before we can deinstall.

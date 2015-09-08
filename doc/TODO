@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.14858 2015/09/06 10:45:57 mef Exp $
+$NetBSD: TODO,v 1.14871 2015/09/07 09:48:09 fhajny Exp $
 
 Suggested new packages
 ======================
@@ -407,7 +407,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o adocman-0.13
 	o adodb-5.19
 	o aewm++-1.0.27
-	o afl-1.92b
 	o afterstep-2.2.12
 	o aget-0.4.1
 	o alacarte-0.13.2
@@ -867,7 +866,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gtl-3.6
 	o gtodo-0.16.0rc2
 	o gtodo-applet-0.16.2
-	o guile-cairo-1.4.1
 	o guile-gnome-2.16.3
 	o guile-gtk-2.1
 	o gutenprint-lib-5.2.10
@@ -879,7 +877,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o hamster-applet-2.32.1 [GNOME 2.32]
 	o handbrake-0.10.2
 	o hanzim-3.5
-	o harfbuzz-1.0.3
 	o harminv-1.4
 	o haskell-mode-1.45
 	o hdevtools-0.1.1.9
@@ -1114,7 +1111,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mbuf-20141227
 	o mcollective-2.3.2
 	o mcsim-5.5.0
-	o mediainfo-0.7.75
 	o mednafen-0.9.38.2
 	o memcached-1.4.24
 	o menhir-20141215
@@ -1163,7 +1159,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mxml-2.9
 	o myodbc-5.3.4
 	o mysql-5.7.6
-	o mysql-cluster-7.4.7
 	o mysql-workbench-6.2.5
 	o nagios-base-4.1.1
 	o nagios-plugin-ldap-2.1.1
@@ -1278,11 +1273,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Device-XBee-API-0.8
 	o p5-Digest-Hashcash-1.1
 	o p5-Email-MIME-ContentType-1.018
-	o p5-Encode-2.76
 	o p5-Excel-Template-0.34
 	o p5-Excel-Template-Plus-0.06
 	o p5-File-Tail-1.2
-	o p5-Filter-1.55
 	o p5-Font-FreeType-0.06
 	o p5-Font-TTF-1.05
 	o p5-FormValidator-Simple-1.00
@@ -1306,9 +1299,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-IP-Country-3.03
 	o p5-JSON-Any-1.39
 	o p5-JavaScript-Value-Escape-0.07
-	o p5-Lingua-EN-FindNumber-1.31
-	o p5-Lingua-EN-Numbers-Ordinate-1.04
-	o p5-Lingua-EN-Sentence-0.29
 	o p5-List-Compare-0.53
 	o p5-Locale-Codes-3.35
 	o p5-Locale-Currency-Format-1.33
@@ -1405,7 +1395,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Time-Piece-1.30
 	o p5-Time-Warp-0.52
 	o p5-Tree-DAG_Node-1.27
-	o p5-UNIVERSAL-isa-1.20150614
 	o p5-URI-Escape-XS-0.13
 	o p5-URI-Fetch-0.11
 	o p5-Unicode-Collate-1.14
@@ -1491,7 +1480,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o poppass-4.0.14
 	o posh-0.12.5
 	o postal-0.72
-	o postfix-3.0.2
 	o postgresql-postgis-2.1.6
 	o pound-2.7f
 	o powerdns-3.7.3
@@ -1519,7 +1507,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-cassa-1.11.0
 	o py-colorama-0.3.3
 	o py-creole-1.1.1
-	o py-cryptography-1.0.1
 	o py-cups-1.9.73
 	o py-d2to1-0.2.12
 	o py-daemon-2.0.5
@@ -1551,7 +1538,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-notify-0.3.1
 	o py-oauthlib-1.0.1
 	o py-omniORBpy-3.7
-	o py-pbr-1.6.0
 	o py-pdf-parser-0.6.3
 	o py-pendrell-0.3.7
 	o py-proteus-3.6.1
@@ -1572,7 +1558,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-suds-0.4.1
 	o py-sybase-0.37
 	o py-tlslite-0.4.6
-	o py-twisted-15.4.0
 	o py-uliweb-0.4.1
 	o py-unittest2-1.1.0
 	o py-uwsgi-2.0.11.1
