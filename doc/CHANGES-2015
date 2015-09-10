@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.3857 2015/09/09 16:27:22 kleink Exp $
+$NetBSD: CHANGES-2015,v 1.3864 2015/09/10 00:10:57 gdt Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -6831,3 +6831,10 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated multimedia/ffplay2 to 2.8 [adam 2015-09-09]
 	Updated geography/opencpn-plugin-weather_routing to 20150829 [bouyer 2015-09-09]
 	Updated textproc/p5-XML-Atom-SimpleFeed to 0.862 [kleink 2015-09-09]
+	Updated x11/libxcb to 1.11.1 [wiz 2015-09-09]
+	Updated x11/libXi to 1.7.5 [wiz 2015-09-09]
+	Updated security/libgcrypt to 1.6.4 [wiz 2015-09-09]
+	Updated security/gnupg2 to 2.0.29 [wiz 2015-09-09]
+	Updated mail/spamassassin to 3.4.1 [tron 2015-09-09]
+	Added devel/libdevq version 0.0.2 [tnn 2015-09-09]
+	Updated print/gutenprint-lib to 5.2.10 [gdt 2015-09-10]
