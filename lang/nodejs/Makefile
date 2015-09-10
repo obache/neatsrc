@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.38 2015/07/10 06:29:44 fhajny Exp $
+# $NetBSD: Makefile,v 1.40 2015/09/09 15:59:31 fhajny Exp $
 
-DISTNAME=	node-v0.12.7
+DISTNAME=	node-v4.0.0
 CATEGORIES=	devel
 MASTER_SITES=	http://nodejs.org/dist/${DISTNAME:S/node-//}/
 PKGNAME=	${DISTNAME:S/-v/js-/}
@@ -18,6 +18,8 @@ PYTHON_VERSIONS_INCOMPATIBLE=	33 34 # not yet ported as of 0.10.24
 
 .include "../../mk/bsd.prefs.mk"
 .include "options.mk"
+
+GCC_REQD+=		4.8
 
 SUBST_CLASSES+=		python
 SUBST_STAGE.python=	pre-configure
