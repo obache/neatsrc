@@ -4,7 +4,7 @@
 # package is used as dependency, depending on the Python version
 # used.
 #
-# === User-settable variables ===
+# === Package-settable variables ===
 #
 # PYTHON_VERSIONED_DEPENDENCIES
 #       The Python package which should be added as a dependency.
