@@ -60,6 +60,7 @@ SUBST_MESSAGE.gyp=	Fix gyp defaults
 SUBST_FILES.gyp+=	base/base.gyp
 SUBST_FILES.gyp+=	base/process.cc
 SUBST_FILES.gyp+=	base/system_util.cc
+SUBST_FILES.gyp+=	handwriting/handwriting.gyp
 SUBST_FILES.gyp+=	handwriting/zinnia_handwriting.cc
 SUBST_FILES.gyp+=	unix/ibus/gen_mozc_xml.py
 SUBST_FILES.gyp+=	unix/ibus/ibus.gyp

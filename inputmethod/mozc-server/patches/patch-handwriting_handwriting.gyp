@@ -1,7 +1,16 @@
 $NetBSD: patch-handwriting_handwriting.gyp,v 1.3 2014/01/19 01:18:50 ryoon Exp $
 
---- handwriting/handwriting.gyp.orig	2014-01-06 07:10:31.000000000 +0000
+--- handwriting/handwriting.gyp.orig	2015-06-07 07:16:23.000000000 +0000
 +++ handwriting/handwriting.gyp
+@@ -29,7 +29,7 @@
+ 
+ {
+   'variables': {
+-    'zinnia_model_file%': '/usr/share/tegaki/models/zinnia/handwriting-ja.model',
++    'zinnia_model_file%': '@PREFIX@/share/tegaki/models/zinnia/handwriting-ja.model',
+   },
+   'targets': [
+     {
 @@ -43,12 +43,12 @@
          'zinnia.gyp:zinnia',
        ],
