@@ -15,4 +15,5 @@ USE_LANGUAGES=	c c++
 
 PKGCONFIG_OVERRIDE+=	data/googlepinyin.pc.in
 
+.include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
