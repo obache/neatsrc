@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.3864 2015/09/10 00:10:57 gdt Exp $
+$NetBSD: CHANGES-2015,v 1.3867 2015/09/10 19:07:08 gdt Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -6838,3 +6838,6 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated mail/spamassassin to 3.4.1 [tron 2015-09-09]
 	Added devel/libdevq version 0.0.2 [tnn 2015-09-09]
 	Updated print/gutenprint-lib to 5.2.10 [gdt 2015-09-10]
+	Updated devel/libgphoto2 to 2.5.8nb1 [dsainty 2015-09-10]
+	Updated textproc/qprint to 1.1 [wiz 2015-09-10]
+	Updated graphics/geeqie to 1.2.2 [gdt 2015-09-10]
