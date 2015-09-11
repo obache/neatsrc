@@ -13,6 +13,7 @@ BUILDLINK_PKGSRCDIR.heimdal?=	../../security/heimdal
 BUILDLINK_INCDIRS.heimdal?=	include/krb5
 
 BUILDLINK_FILES.heimdal+=	bin/krb5-config
+BUILDLINK_FILES.heimdal+=	bin/compile_et
 
 pkgbase := heimdal
 .include "../../mk/pkg-build-options.mk"
