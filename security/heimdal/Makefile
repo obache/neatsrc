@@ -19,7 +19,7 @@ CONFLICTS+=	kth-krb4-[0-9]*
 MAKE_JOBS_SAFE=	no
 
 USE_LIBTOOL=		yes
-USE_TOOLS+=		bison flex:run
+USE_TOOLS+=		bison flex:run makeinfo
 PKGCONFIG_OVERRIDE+=	tools/heimdal-gssapi.pc.in
 MAKE_ENV+=		INSTALL_CATPAGES=no
 
