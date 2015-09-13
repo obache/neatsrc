@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.3867 2015/09/10 19:07:08 gdt Exp $
+$NetBSD: CHANGES-2015,v 1.3877 2015/09/12 15:20:55 tnn Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -6841,3 +6841,16 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated devel/libgphoto2 to 2.5.8nb1 [dsainty 2015-09-10]
 	Updated textproc/qprint to 1.1 [wiz 2015-09-10]
 	Updated graphics/geeqie to 1.2.2 [gdt 2015-09-10]
+	Updated security/liboauth to 1.0.3 [prlw1 2015-09-10]
+	Updated graphics/MesaLib to 10.6.7 [tnn 2015-09-11]
+	Added audio/schismtracker version 20150911005204 [wiz 2015-09-11]
+	Added textproc/p5-XML-TokeParser version 0.05 [bouyer 2015-09-11]
+	Added textproc/p5-XML-Descent version 1.04 [bouyer 2015-09-11]
+	Added geography/p5-Geo-Gpx version 0.26 [bouyer 2015-09-11]
+	Added geography/p5-Geo-Ellipsoid version 1.12 [bouyer 2015-09-11]
+	Updated security/mozilla-rootcerts to 1.0.20150804 [tnn 2015-09-11]
+	Updated misc/calibre to 2.38.0 [wiz 2015-09-11]
+	Updated security/netpgpverify to 20150911 [agc 2015-09-11]
+	Updated security/libnetpgpverify to 20150911 [agc 2015-09-11]
+	Updated net/mikutter to 3.2.7 [tsutsui 2015-09-12]
+	Updated databases/libzdb to 3.1 [tnn 2015-09-12]
