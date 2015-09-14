@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.36 2015/09/12 16:50:24 tnn Exp $
+# $NetBSD: options.mk,v 1.38 2015/09/13 12:32:14 bouyer Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.MesaLib
 PKG_SUPPORTED_OPTIONS=		llvm dri
@@ -92,15 +92,18 @@ PLIST.i965_dri=		yes
 DRI_DRIVERS+=		i965
 .endif
 
-# AMD Radeon r600
-PLIST.r600=		yes
-GALLIUM_DRIVERS+=	r600
-
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-*arm*)
 # Qualcomm SnapDragon, libdrm_freedreno.pc
 # GALLIUM_DRIVERS+=	freedreno
 
 # Broadcom VideoCore 4
 # GALLIUM_DRIVERS+=	vc4
+
+.else
+
+# AMD Radeon r600
+PLIST.r600=		yes
+GALLIUM_DRIVERS+=	r600
 
 # nVidia
 PLIST.nouveau=		yes
@@ -117,6 +120,7 @@ DRI_DRIVERS+=		r200
 # classic DRI nouveau
 PLIST.nouveau_dri=	yes
 DRI_DRIVERS+=		nouveau
+.endif
 
 CONFIGURE_ARGS+=	--with-egl-platforms=x11,drm
 CONFIGURE_ARGS+=	--with-gallium-drivers=${GALLIUM_DRIVERS:ts,}
@@ -132,6 +136,7 @@ GALLIUM_DRIVERS+=	radeonsi
 CONFIGURE_ARGS+=	--enable-gallium-llvm
 CONFIGURE_ARGS+=	--enable-r600-llvm-compiler
 .include "../../devel/libelf/buildlink3.mk"
+CPPFLAGS+=		-I${BUILDLINK_PREFIX.libelf}/include/libelf
 .include "../../lang/libLLVM/buildlink3.mk"
 CONFIGURE_ENV+=		ac_cv_path_ac_pt_LLVM_CONFIG=${LLVM_CONFIG_PATH}
 .else # !llvm

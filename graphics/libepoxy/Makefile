@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.5 2015/06/14 21:50:07 prlw1 Exp $
+# $NetBSD: Makefile,v 1.7 2015/09/13 11:38:32 tron Exp $
 
-DISTNAME=	libepoxy-1.2
-PKGREVISION=	2
+DISTNAME=	libepoxy-1.3.1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=anholt/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -31,6 +30,11 @@ PLIST.egl=		yes
 CONFIGURE_ENV+=		PKGSRC_BUILD_EGL=yes
 .else
 CONFIGURE_ENV+=		PKGSRC_BUILD_EGL=no
+.endif
+
+PLIST_VARS+=		glx
+.if ${OPSYS} != "Darwin"
+PLIST.glx=		yes
 .endif
 
 .include "../../lang/python/tool.mk"

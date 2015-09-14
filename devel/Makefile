@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2143 2015/09/09 23:04:59 tnn Exp $
+# $NetBSD: Makefile,v 1.2148 2015/09/13 14:15:24 taca Exp $
 #
 
 COMMENT=	Development utilities
@@ -69,6 +69,7 @@ SUBDIR+=	automake14
 SUBDIR+=	automoc4
 SUBDIR+=	avl
 SUBDIR+=	avltree
+SUBDIR+=	bam
 SUBDIR+=	bcc
 SUBDIR+=	bglibs
 SUBDIR+=	bin86
@@ -1837,6 +1838,11 @@ SUBDIR+=	ruby-blankslate
 SUBDIR+=	ruby-bsearch
 SUBDIR+=	ruby-byaccr
 SUBDIR+=	ruby-celluloid
+SUBDIR+=	ruby-celluloid-essentials
+SUBDIR+=	ruby-celluloid-extras
+SUBDIR+=	ruby-celluloid-fsm
+SUBDIR+=	ruby-celluloid-pool
+SUBDIR+=	ruby-celluloid-supervision
 SUBDIR+=	ruby-cmd
 SUBDIR+=	ruby-curses
 SUBDIR+=	ruby-curses-gem
@@ -1848,6 +1854,7 @@ SUBDIR+=	ruby-delayer
 SUBDIR+=	ruby-deprecated
 SUBDIR+=	ruby-dhaka
 SUBDIR+=	ruby-docile
+SUBDIR+=	ruby-dotenv
 SUBDIR+=	ruby-eet
 SUBDIR+=	ruby-eventmachine
 SUBDIR+=	ruby-extlib
@@ -1902,6 +1909,7 @@ SUBDIR+=	ruby-mode
 SUBDIR+=	ruby-msgpack
 SUBDIR+=	ruby-ncurses
 SUBDIR+=	ruby-needle
+SUBDIR+=	ruby-nenv
 SUBDIR+=	ruby-ole
 SUBDIR+=	ruby-open4
 SUBDIR+=	ruby-parseconfig
@@ -1942,6 +1950,7 @@ SUBDIR+=	ruby-rgl
 SUBDIR+=	ruby-rspec
 SUBDIR+=	ruby-rspec-core
 SUBDIR+=	ruby-rspec-expectations
+SUBDIR+=	ruby-rspec-logsplit
 SUBDIR+=	ruby-rspec-mocks
 SUBDIR+=	ruby-rspec-rails
 SUBDIR+=	ruby-rspec-support
