@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-unikey-0.2.4
+DISTNAME=	fcitx-unikey-0.2.5
 CATEGORIES=	inputmethod
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-unikey/
 EXTRACT_SUFX=	.tar.xz
