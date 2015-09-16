@@ -3526,6 +3526,7 @@ share/themes/BlackMATE/gtk-3.0/assets/pane-separator-grip-hover.svg
 share/themes/BlackMATE/gtk-3.0/assets/pane-separator-grip-vertical-hover.svg
 share/themes/BlackMATE/gtk-3.0/assets/pane-separator-grip-vertical.svg
 share/themes/BlackMATE/gtk-3.0/assets/pane-separator-grip.svg
+share/themes/BlackMATE/gtk-3.0/assets/panel-grid.svg
 share/themes/BlackMATE/gtk-3.0/assets/primary-toolbar-button-active-border-dark.svg
 share/themes/BlackMATE/gtk-3.0/assets/primary-toolbar-raised-button-border-dark.svg
 share/themes/BlackMATE/gtk-3.0/assets/progressbar-border-dark.svg
@@ -3576,6 +3577,7 @@ share/themes/BlackMATE/gtk-3.0/assets/trough-border-horizontal-dark1.svg
 share/themes/BlackMATE/gtk-3.0/assets/trough-border-switch-dark.svg
 share/themes/BlackMATE/gtk-3.0/assets/trough-border-vertical-dark.svg
 share/themes/BlackMATE/gtk-3.0/assets/trough-border-vertical-dark1.svg
+share/themes/BlackMATE/gtk-3.0/gnome-applications.css
 share/themes/BlackMATE/gtk-3.0/gtk-dark.css
 share/themes/BlackMATE/gtk-3.0/gtk-main-dark.css
 share/themes/BlackMATE/gtk-3.0/gtk-main.css
@@ -3583,6 +3585,7 @@ share/themes/BlackMATE/gtk-3.0/gtk-widgets-assets-dark.css
 share/themes/BlackMATE/gtk-3.0/gtk-widgets.css
 share/themes/BlackMATE/gtk-3.0/gtk.css
 share/themes/BlackMATE/gtk-3.0/mate-applications.css
+share/themes/BlackMATE/gtk-3.0/other-applications.css
 share/themes/BlackMATE/gtk-3.0/settings.ini
 share/themes/BlackMATE/gtk-3.0/unity.css
 share/themes/BlackMATE/gtk-3.0/window-controls.css
@@ -3786,7 +3789,7 @@ share/themes/Blue-Submarine/gtk-3.0/assets/switch-off-disabled.svg
 share/themes/Blue-Submarine/gtk-3.0/assets/switch-off.svg
 share/themes/Blue-Submarine/gtk-3.0/assets/switch-on-disabled.svg
 share/themes/Blue-Submarine/gtk-3.0/assets/switch-on.svg
-share/themes/Blue-Submarine/gtk-3.0/gnome-mdi.css
+share/themes/Blue-Submarine/gtk-3.0/gnome-applications.css
 share/themes/Blue-Submarine/gtk-3.0/gtk-widgets-assets.css
 share/themes/Blue-Submarine/gtk-3.0/gtk-widgets.css
 share/themes/Blue-Submarine/gtk-3.0/gtk.css
@@ -4092,6 +4095,7 @@ share/themes/ContrastHigh/gtk-2.0/gtkrc
 share/themes/ContrastHigh/gtk-3.0/gtk-widgets.css
 share/themes/ContrastHigh/gtk-3.0/gtk.css
 share/themes/ContrastHigh/gtk-3.0/mate-applications.css
+share/themes/ContrastHigh/gtk-3.0/other-applications.css
 share/themes/ContrastHigh/gtk-3.0/resize-grip.svg
 share/themes/ContrastHigh/gtk-3.0/settings.ini
 share/themes/ContrastHigh/index.theme
@@ -4229,6 +4233,7 @@ share/themes/ContrastHighInverse/gtk-2.0/gtkrc
 share/themes/ContrastHighInverse/gtk-3.0/gtk-widgets.css
 share/themes/ContrastHighInverse/gtk-3.0/gtk.css
 share/themes/ContrastHighInverse/gtk-3.0/mate-applications.css
+share/themes/ContrastHighInverse/gtk-3.0/other-applications.css
 share/themes/ContrastHighInverse/gtk-3.0/resize-grip.svg
 share/themes/ContrastHighInverse/gtk-3.0/settings.ini
 share/themes/ContrastHighInverse/index.theme
@@ -4507,7 +4512,7 @@ share/themes/Green-Submarine/gtk-3.0/assets/switch-off-disabled.svg
 share/themes/Green-Submarine/gtk-3.0/assets/switch-off.svg
 share/themes/Green-Submarine/gtk-3.0/assets/switch-on-disabled.svg
 share/themes/Green-Submarine/gtk-3.0/assets/switch-on.svg
-share/themes/Green-Submarine/gtk-3.0/gnome-mdi.css
+share/themes/Green-Submarine/gtk-3.0/gnome-applications.css
 share/themes/Green-Submarine/gtk-3.0/gtk-widgets-assets.css
 share/themes/Green-Submarine/gtk-3.0/gtk-widgets.css
 share/themes/Green-Submarine/gtk-3.0/gtk.css
@@ -4591,6 +4596,7 @@ share/themes/GreenLaguna/gtk-3.0/assets/slider_fine_vertical.svg
 share/themes/GreenLaguna/gtk-3.0/assets/switch-slider-grip.svg
 share/themes/GreenLaguna/gtk-3.0/assets/switch-trough-border-active.svg
 share/themes/GreenLaguna/gtk-3.0/assets/toolbar-button-border.svg
+share/themes/GreenLaguna/gtk-3.0/gnome-applications.css
 share/themes/GreenLaguna/gtk-3.0/gtk-main.css
 share/themes/GreenLaguna/gtk-3.0/gtk-widgets-assets.css
 share/themes/GreenLaguna/gtk-3.0/gtk-widgets.css
