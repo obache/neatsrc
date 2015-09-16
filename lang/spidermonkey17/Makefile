@@ -6,7 +6,6 @@ PKGNAME=	${DISTNAME:S/mozjs17/spidermonkey17-17/}
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_MOZILLA:=js/}
 
-MAINTAINER=	obache@users.sourceforge.net
 HOMEPAGE=	https://developer.mozilla.org/en/SpiderMonkey
 COMMENT=	Standalone JavaScript implementation in C
 LICENSE=	mpl-2.0
