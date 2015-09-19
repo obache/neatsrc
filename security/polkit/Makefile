@@ -5,7 +5,6 @@ DISTNAME=	polkit-0.112
 CATEGORIES=	security
 MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/
 
-MAINTAINER=	obache@users.sourceforge.net
 HOMEPAGE=	http://www.freedesktop.org/wiki/Software/polkit
 COMMENT=	Authorization Manager
 LICENSE=	gnu-lgpl-v2
