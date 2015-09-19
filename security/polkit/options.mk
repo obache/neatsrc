@@ -1,7 +1,7 @@
 # $NetBSD$
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.polkit
-PKG_SUPPORTED_OPTIONS=	introspection pam
+PKG_SUPPORTED_OPTIONS=	introspection pam tests
 PKG_SUGGESTED_OPTIONS=	introspection pam
 
 .include "../../mk/bsd.options.mk"
@@ -32,4 +32,11 @@ CONF_FILES+=	${PREFIX}/share/examples/pam.d/polkit-1 \
 .else
 CONFIGURE_ARGS+=	--with-authfw=shadow
 CONFIGURE_ARGS+=	--disable-pam-module
+.endif
+
+.if !empty(PKG_OPTIONS:Mtests)
+CONFIGURE_ARGS+=	--enable-test
+TEST_TARGET=		check
+.else
+CONFIGURE_ARGS+=	--disable-test
 .endif
