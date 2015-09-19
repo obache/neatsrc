@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=	polkit-0.112
+DISTNAME=	polkit-0.113
 CATEGORIES=	security
 MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/
 

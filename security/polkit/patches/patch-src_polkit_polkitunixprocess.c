@@ -61,7 +61,7 @@ $NetBSD$
  {
    guint64 start_time;
 -#ifndef HAVE_FREEBSD
-+#if !defined(HAVE_FREEBSD) || !defined(__NetBSD__)
++#if !defined(HAVE_FREEBSD) && !defined(__NetBSD__)
    gchar *filename;
    gchar *contents;
    size_t length;
