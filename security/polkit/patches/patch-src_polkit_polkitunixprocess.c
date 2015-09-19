@@ -2,7 +2,7 @@ $NetBSD$
 
 * NetBSD support
 
---- src/polkit/polkitunixprocess.c.orig	2013-05-06 17:54:15.000000000 +0000
+--- src/polkit/polkitunixprocess.c.orig	2014-01-14 22:42:25.000000000 +0000
 +++ src/polkit/polkitunixprocess.c
 @@ -29,6 +29,10 @@
  #include <sys/sysctl.h>
@@ -65,34 +65,31 @@ $NetBSD$
    gchar *filename;
    gchar *contents;
    size_t length;
-@@ -631,6 +664,26 @@ get_start_time_for_pid (pid_t    pid,
-  out:
+@@ -632,7 +665,11 @@ get_start_time_for_pid (pid_t    pid,
    g_free (filename);
    g_free (contents);
-+#elif defined(__NetBSD__)
-+  struct kinfo_proc2 p;
-+
-+  start_time = 0;
-+
-+  if (! get_kinfo_proc (pid, &p))
-+    {
-+      g_set_error (error,
-+                   POLKIT_ERROR,
-+                   POLKIT_ERROR_FAILED,
-+                   "Error obtaining start time for %d (%s)",
-+                   (gint) pid,
-+                   g_strerror (errno));
-+      goto out;
-+    }
-+
-+  start_time = (guint64) p.p_ustart_sec;
-+
-+out:
-+
  #else
++#if defined(__NetBSD__)
++  struct kinfo_proc2 p;
++#else
    struct kinfo_proc p;
++#endif
  
-@@ -664,6 +717,8 @@ _polkit_unix_process_get_owner (PolkitUn
+   start_time = 0;
+ 
+@@ -647,7 +684,11 @@ get_start_time_for_pid (pid_t    pid,
+       goto out;
+     }
+ 
++#ifdef HAVE_FREEBSD
+   start_time = (guint64) p.ki_start.tv_sec;
++#else
++  start_time = (guint64) p.p_ustart_sec;
++#endif
+ 
+ out:
+ #endif
+@@ -664,6 +705,8 @@ _polkit_unix_process_get_owner (PolkitUn
    gchar **lines;
  #ifdef HAVE_FREEBSD
    struct kinfo_proc p;
@@ -101,7 +98,7 @@ $NetBSD$
  #else
    gchar filename[64];
    guint n;
-@@ -676,7 +731,7 @@ _polkit_unix_process_get_owner (PolkitUn
+@@ -676,7 +719,7 @@ _polkit_unix_process_get_owner (PolkitUn
    lines = NULL;
    contents = NULL;
  
@@ -110,15 +107,16 @@ $NetBSD$
    if (get_kinfo_proc (process->pid, &p) == 0)
      {
        g_set_error (error,
-@@ -688,7 +743,11 @@ _polkit_unix_process_get_owner (PolkitUn
+@@ -688,8 +731,12 @@ _polkit_unix_process_get_owner (PolkitUn
        goto out;
      }
  
-+#ifdef __NetBSD__
-+  result = p.p_uid;
-+#else
++#ifdef HAVE_FREEBSD
    result = p.ki_uid;
-+#endif
  #else
++  result = p.p_uid;
++#endif
++#else
  
    /* see 'man proc' for layout of the status file
+    *
