@@ -785,6 +785,7 @@ SUBDIR+=	thttpd
 SUBDIR+=	tidy
 SUBDIR+=	tinyproxy
 SUBDIR+=	trac
+SUBDIR+=	trac-plugins-AccountManager
 SUBDIR+=	typo3_62
 SUBDIR+=	uhttpmock
 SUBDIR+=	urlget
