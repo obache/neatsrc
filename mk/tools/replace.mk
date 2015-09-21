@@ -184,9 +184,17 @@ _TOOLS_DEPMETHOD.gsoelim=	${_TOOLS_DEPMETHOD.soelim}
 # _TOOLS_USE_PKGSRC.<tool> is "yes" or "no" depending on whether we're
 # using a pkgsrc-supplied tool to replace the system-supplied one.  We
 # use the system-supplied one if TOOLS_PLATFORM.<tool> is non-empty, or
-# otherwise if this is a particular ${MACHINE_PLATFORM} listed above.
+# otherwise if this is not a particular ${MACHINE_PLATFORM} listed in
+# TOOLS_INCOMPAT_PLATFORMS.<tool>.
 #
 .for _t_ in ${_USE_TOOLS}
+.  if defined(TOOLS_INCOMPAT_PLATFORMS.${_t_}) && !empty(TOOLS_INCOMPAT_PLATFORMS.${_t_})
+.    for _pattern_ in ${TOOLS_INCOMPAT_PLATFORMS.${_t_}
+.      if !empty(MACHINE_PLATFORM:M${_pattern_})
+_TOOLS_USE_PKGSRC.${_t_}?=	yes
+.      endif
+.    endfor
+.  endif
 .  if defined(TOOLS_PLATFORM.${_t_}) && !empty(TOOLS_PLATFORM.${_t_})
 _TOOLS_USE_PKGSRC.${_t_}?=	no
 .  endif
