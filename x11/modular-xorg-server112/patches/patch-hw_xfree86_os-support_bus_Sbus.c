@@ -1,8 +1,8 @@
-$NetBSD: patch-hw_xfree86_os-support_bus_Sbus.c,v 1.2 2015/09/20 15:32:38 tnn Exp $
+$NetBSD: patch-hw_xfree86_os-support_bus_Sbus.c,v 1.1 2015/09/20 16:39:18 tnn Exp $
 
 Merge most of netbsdSbus.c from xsrc.
 
---- hw/xfree86/os-support/bus/Sbus.c.orig	2015-06-16 13:55:48.000000000 +0000
+--- hw/xfree86/os-support/bus/Sbus.c.orig	2012-08-19 15:45:54.000000000 +0000
 +++ hw/xfree86/os-support/bus/Sbus.c
 @@ -34,6 +34,9 @@
  #ifdef sun
