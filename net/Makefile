@@ -294,6 +294,7 @@ SUBDIR+=	linc
 SUBDIR+=	lldpd
 SUBDIR+=	llnlxdir
 SUBDIR+=	llnlxftp
+SUBDIR+=	linuxigd
 SUBDIR+=	logjam
 SUBDIR+=	lopster
 SUBDIR+=	lua-socket

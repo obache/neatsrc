@@ -1,0 +1,14 @@
+$NetBSD$
+
+* string.h is missing for libupnp>=1.6
+
+--- main.c.orig	2006-07-25 20:45:13.000000000 +0000
++++ main.c
+@@ -3,6 +3,7 @@
+ #include <unistd.h>
+ #include <syslog.h>
+ #include <signal.h>
++#include <string.h>
+ #include <sys/types.h>
+ #include <unistd.h>
+ #include <sys/stat.h>
