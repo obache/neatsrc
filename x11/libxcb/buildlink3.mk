@@ -9,10 +9,7 @@ BUILDLINK_API_DEPENDS.libxcb+=	libxcb>=1.6
 BUILDLINK_ABI_DEPENDS.libxcb+=	libxcb>=1.6
 BUILDLINK_PKGSRCDIR.libxcb?=	../../x11/libxcb
 
-.include "../../mk/bsd.fast.prefs.mk"
-.if ${OPSYS} == "OpenBSD"
-.include "../../mk/pthread.buildlink3.mk"
-.endif
+.include "../../devel/libpthread-stubs/buildlink3.mk"
 .include "../../x11/xcb-proto/buildlink3.mk"
 .include "../../x11/libXdmcp/buildlink3.mk"
 .include "../../x11/libXau/buildlink3.mk"
