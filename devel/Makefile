@@ -500,6 +500,7 @@ SUBDIR+=	libpeas
 SUBDIR+=	libpgm
 SUBDIR+=	libportlib
 SUBDIR+=	libproplist
+SUBDIR+=	libpthred-stubs
 SUBDIR+=	librfuncs
 SUBDIR+=	librlog
 SUBDIR+=	librsync
