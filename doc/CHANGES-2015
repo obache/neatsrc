@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.3993 2015/09/22 13:39:58 taca Exp $
+$NetBSD: CHANGES-2015,v 1.4005 2015/09/23 16:39:30 rodent Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -6980,3 +6980,15 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated textproc/p5-XML-Atom-SimpleFeed to 0.863 [kleink 2015-09-22]
 	Updated www/py-flask-login to 0.3.0 [kleink 2015-09-22]
 	Updated www/squid3 to 3.5.9 [taca 2015-09-22]
+	Updated www/firefox to 41.0 [ryoon 2015-09-23]
+	Updated www/firefox-l10n to 41.0 [ryoon 2015-09-23]
+	Updated www/firefox38 to 38.3.0 [ryoon 2015-09-23]
+	Updated www/firefox38-l10n to 38.3.0 [ryoon 2015-09-23]
+	Updated sysutils/dbus to 1.10.0nb1 [ryoon 2015-09-23]
+	Updated print/ghostscript-gpl to 9.06nb7 [he 2015-09-23]
+	Updated devel/gdb to 7.9nb4 [wiz 2015-09-23]
+	Updated fonts/roboto-fonts to 20150923 [ryoon 2015-09-23]
+	Updated fonts/motoya-fonts to 20150923 [ryoon 2015-09-23]
+	Added devel/py-pkgconfig version 1.1.0 [joerg 2015-09-23]
+	Updated devel/py-h5py to 2.5.0 [joerg 2015-09-23]
+	Updated x11/xf86-video-newport to 0.2.4nb4 [rodent 2015-09-23]
