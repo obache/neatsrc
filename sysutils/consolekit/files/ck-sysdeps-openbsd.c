@@ -129,13 +129,17 @@ get_kinfo_proc (pid_t pid,
         size_t len;
 
         int mib[] = { CTL_KERN, KERN_PROC, KERN_PROC_PID, pid,
-                      sizeof(struct kinfo_proc), 1 };
+                      sizeof(struct kinfo_proc), 0 };
 
 #ifndef nitems
 #define nitems(_a)      (sizeof((_a)) / sizeof((_a)[0]))
 #endif
 
-	len = sizeof(*p);
+        if (sysctl(mib, nitems(mib), NULL, &len, NULL, 0) < 0)
+            return FALSE;
+
+        mib[5] = (len / sizeof(struct kinfo_proc));
+
         if (sysctl(mib, nitems(mib), p, &len, NULL, 0) < 0)
             return FALSE;
 
