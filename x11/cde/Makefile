@@ -82,6 +82,9 @@ SUBST_FILES.prefix+=	programs/dtinfo/dtinfo/src/Agents/AddLibraryAgentMotif.C
 SUBST_FILES.prefix+=	programs/dtinfo/dtinfo/src/Managers/EnvMgr.C
 SUBST_FILES.prefix+=	programs/dtimsstart/0020.dtims.src
 SUBST_FILES.prefix+=	programs/dtimsstart/conf/start.conf
+SUBST_FILES.prefix+=	programs/dtlogin/config/Xservers.src
+SUBST_FILES.prefix+=	programs/dtlogin/config/Xsetup.src
+SUBST_FILES.prefix+=	programs/dtlogin/config/Xfailsafe.src
 SUBST_FILES.prefix+=	programs/dtlogin/vg.h
 SUBST_FILES.prefix+=	programs/dtprintinfo/UI/DtApp.C
 SUBST_FILES.prefix+=	programs/dtprintinfo/UI/DtFindSet.C
@@ -120,6 +123,7 @@ SUBST_FILES.prefix+=	doc/*/help/common/Desktop.hf
 SUBST_SED.prefix+=	-e 's,/usr/dt,${PREFIX}/dt,g'
 SUBST_SED.prefix+=	-e 's,/etc/dt/,${PKG_SYSCONFDIR}/,g'
 SUBST_SED.prefix+=	-e 's,/etc/dt",${PKG_SYSCONFDIR}",g'
+SUBST_SED.prefix+=	-e 's,/usr/X11R7/,${X11BASE}/,g'
 
 SUBST_CLASSES+=		awk
 SUBST_STAGE.awk=	pre-configure
