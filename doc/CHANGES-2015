@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4015 2015/09/24 23:51:17 ryoon Exp $
+$NetBSD: CHANGES-2015,v 1.4028 2015/09/25 15:48:29 agc Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7005,3 +7005,28 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated security/gpgme to 1.6.0nb1 [ryoon 2015-09-24]
 	Updated security/qca2-gnupg to 2.0.0beta3nb17 [ryoon 2015-09-24]
 	Updated sysutils/consolekit to 0.4.6 [ryoon 2015-09-24]
+	Updated devel/SOPE to 2.3.2 [taca 2015-09-25]
+	Updated www/SOGo to 2.3.2 [taca 2015-09-25]
+	Updated databases/py-elasticsearch to 1.7.0 [fhajny 2015-09-25]
+	Updated net/rabbitmq to 3.5.5 [fhajny 2015-09-25]
+	Updated net/proftpd to 1.3.5anb2 [wiedi 2015-09-25]
+	Added net/proftpd-geoip version 1.3.5a [wiedi 2015-09-25]
+	Added net/proftpd-ldap version 1.3.5a [wiedi 2015-09-25]
+	Added net/proftpd-memcached version 1.3.5a [wiedi 2015-09-25]
+	Added net/proftpd-mysql version 1.3.5a [wiedi 2015-09-25]
+	Added net/proftpd-odbc version 1.3.5a [wiedi 2015-09-25]
+	Added net/proftpd-postgresql version 1.3.5a [wiedi 2015-09-25]
+	Added net/proftpd-sqlite version 1.3.5a [wiedi 2015-09-25]
+	Updated mail/fdm to 1.9 [leot 2015-09-25]
+	Added net/nagios-plugin-gfbricks version 0.2 [manu 2015-09-25]
+	Added net/nagios-plguin-mysqlslave version 0.1 [manu 2015-09-25]
+	Added net/syncffsd version 0.7 [manu 2015-09-25]
+	Updated audio/pulseaudio to 7.0 [ryoon 2015-09-25]
+	Updated emulators/qemu to 2.4.0.1 [ryoon 2015-09-25]
+	Updated lang/erlang to 18.1 [fhajny 2015-09-25]
+	Updated lang/erlang-doc to 18.1 [fhajny 2015-09-25]
+	Updated lang/erlang-man to 18.1 [fhajny 2015-09-25]
+	Updated textproc/p5-XML-Atom-SimpleFeed to 0.900 [kleink 2015-09-25]
+	Updated multimedia/adobe-flash-plugin11 to 11.2.202.521 [tsutsui 2015-09-25]
+	Updated security/netpgpverify to 20150919 [agc 2015-09-25]
+	Updated security/libnetpgpverify to 20150919 [agc 2015-09-25]

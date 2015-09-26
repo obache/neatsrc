@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1083 2015/09/12 22:54:29 joerg Exp $
+# $NetBSD: Makefile,v 1.1085 2015/09/25 13:27:44 manu Exp $
 #
 
 COMMENT=	Networking tools
@@ -337,9 +337,11 @@ SUBDIR+=	nagios-plugin-dnsrbl
 SUBDIR+=	nagios-plugin-dotpid
 SUBDIR+=	nagios-plugin-dumpdates
 SUBDIR+=	nagios-plugin-fstab
+SUBDIR+=	nagios-plugin-gfbricks
 SUBDIR+=	nagios-plugin-ldap
 SUBDIR+=	nagios-plugin-milter
 SUBDIR+=	nagios-plugin-mysql
+SUBDIR+=	nagios-plugin-mysqlslave
 SUBDIR+=	nagios-plugin-pgsql
 SUBDIR+=	nagios-plugin-radius
 SUBDIR+=	nagios-plugin-raidctl
@@ -555,6 +557,13 @@ SUBDIR+=	powerdns-recursor
 SUBDIR+=	pppd
 SUBDIR+=	pptp
 SUBDIR+=	proftpd
+SUBDIR+=	proftpd-geoip
+SUBDIR+=	proftpd-ldap
+SUBDIR+=	proftpd-memcached
+SUBDIR+=	proftpd-mysql
+SUBDIR+=	proftpd-odbc
+SUBDIR+=	proftpd-postgresql
+SUBDIR+=	proftpd-sqlite
 SUBDIR+=	proxycheck
 SUBDIR+=	proxytunnel
 SUBDIR+=	publicfile
@@ -698,6 +707,7 @@ SUBDIR+=	ssmping
 SUBDIR+=	ssync
 SUBDIR+=	stripes
 SUBDIR+=	sup
+SUBDIR+=	syncffsd
 SUBDIR+=	synergy
 SUBDIR+=	sysmon
 SUBDIR+=	tacacs

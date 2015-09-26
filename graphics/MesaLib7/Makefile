@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.1 2015/04/05 17:01:37 tnn Exp $
+# $NetBSD: Makefile,v 1.3 2015/09/25 00:58:18 tnn Exp $
 
 DISTNAME?=	${MESA_DISTNAME}
 PKGNAME=	MesaLib7-${MESA_PKGVERSION}
+PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MESA_SITES}
 EXTRACT_SUFX=	.tar.bz2
@@ -10,7 +11,7 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.mesa3d.org/
 COMMENT=	Graphics library similar to SGI's OpenGL
 
-INSTALLATION_PREFIX=	${LOCALBASE}/MesaLib7
+GNU_CONFIGURE_PREFIX=	${LOCALBASE}/MesaLib7
 
 DISTFILES+=		MesaLib-${MESA_VERSION}${EXTRACT_SUFX}
 MESA_DISTNAME= 		MesaLib-${MESA_VERSION}

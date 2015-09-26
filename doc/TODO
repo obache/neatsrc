@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.14909 2015/09/24 22:42:18 tnn Exp $
+$NetBSD: TODO,v 1.14911 2015/09/25 13:08:58 leot Exp $
 
 Suggested new packages
 ======================
@@ -394,8 +394,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o R-plyr-1.8.3
 	o R-stringr-1.0.0
 	o ROMInfo-28
-	o SOGo-2.3.1
-	o SOPE-2.3.1
 	o TeXmacs-devel-1.0.7.21
 	o TiffIO-140a
 	o YoSucker-81
@@ -681,7 +679,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o fakeroot-1.6.5
 	o fastjar-0.94 [wip]
 	o fcitx-3.6.2
-	o fdm-1.9 [leot]
 	o fdupes-1.51
 	o felt-3.07 [wip]
 	o festival-2.4
