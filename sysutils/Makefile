@@ -527,6 +527,7 @@ SUBDIR+=	tpb
 SUBDIR+=	tphdisk
 SUBDIR+=	tree
 SUBDIR+=	ts
+SUBDIR+=	tw_cli
 SUBDIR+=	upower
 SUBDIR+=	ups-nut
 SUBDIR+=	ups-nut-cgi
