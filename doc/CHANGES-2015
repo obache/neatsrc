@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4040 2015/09/26 14:57:41 bouyer Exp $
+$NetBSD: CHANGES-2015,v 1.4044 2015/09/26 20:59:15 bsiegert Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7056,3 +7056,7 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated devel/R-Rcpp to 0.12.1 [wen 2015-09-26]
 	Updated mail/p5-MIME-EncWords to 1.014.3 [bouyer 2015-09-26]
 	Updated mail/sympa to 6.2.7 [bouyer 2015-09-26]
+	Updated graphics/MesaLib to 11.0.1 [tnn 2015-09-26]
+	Updated lang/go14 to 1.4.3 [bsiegert 2015-09-26]
+	Updated security/pam-radius to 1.3.17 [bsiegert 2015-09-26]
+	Updated security/pam-radius to 1.4.0 [bsiegert 2015-09-26]
