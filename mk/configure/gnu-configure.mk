@@ -83,6 +83,11 @@ GNU_CONFIGURE_MANDIR?=	${GNU_CONFIGURE_PREFIX}/man
 CONFIGURE_ARGS+=	--mandir=${GNU_CONFIGURE_MANDIR:Q}
 .endif
 
+# prevent to invoke unwanted autoheader with patched configure.ac
+.if empty(USE_TOOLS:Mautoheader*)
+MAKE_FLAGS+=	am__configure_deps=
+.endif
+
 ######################################################################
 ### configure-scripts-override (PRIVATE)
 ######################################################################
