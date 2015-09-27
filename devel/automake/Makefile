@@ -15,9 +15,9 @@ HOMEPAGE=	http://www.gnu.org/software/automake/automake.html
 COMMENT=	GNU Standards-compliant Makefile generator
 LICENSE=	gnu-gpl-v2
 
-DEPENDS+=	autoconf>=2.62:../../devel/autoconf
+AUTOCONF_REQD=	2.62
 
-USE_TOOLS+=	gm4:run perl:run
+USE_TOOLS+=	gm4:run perl:run autoconf:run
 
 PLIST_SUBST+=		PKG_DIR_VERSION=1.15
 GNU_CONFIGURE=		YES
