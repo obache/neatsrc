@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4045 2015/09/27 04:12:17 taca Exp $
+$NetBSD: CHANGES-2015,v 1.4057 2015/09/27 21:05:05 kamil Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7061,3 +7061,21 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated security/pam-radius to 1.3.17 [bsiegert 2015-09-26]
 	Updated security/pam-radius to 1.4.0 [bsiegert 2015-09-26]
 	Updated net/ruby-userstream to 1.4.0nb3 [taca 2015-09-27]
+	Updated meta-pkgs/php54-extensions to 5.4.45nb1 [taca 2015-09-27]
+	Updated meta-pkgs/php55-extensions to 5.5.29nb1 [taca 2015-09-27]
+	Updated meta-pkgs/php56-extensions to 5.6.13nb1 [taca 2015-09-27]
+	Updated net/mikutter to 3.2.9 [tsutsui 2015-09-27]
+	Updated net/isc-dhcp4 to 4.3.3 [taca 2015-09-27]
+	Updated net/isc-dhclient4 to 4.3.3 [taca 2015-09-27]
+	Updated net/isc-dhcpd4 to 4.3.3 [taca 2015-09-27]
+	Updated net/isc-dhcrelay4 to 4.3.3 [taca 2015-09-27]
+	Updated www/fengoffice to 3.2.2.1 [taca 2015-09-27]
+	Updated www/geeklog to 2.1.0nb2 [taca 2015-09-27]
+	Removed devel/librsync successor net/librsync [joerg 2015-09-27]
+	Removed games/foobillard successor games/foobillardplus [tnn 2015-09-27]
+	Added games/foobillardplus version 3.42b [tnn 2015-09-27]
+	Added x11/xtrace version 1.3.1 [tnn 2015-09-27]
+	Updated multimedia/mpv to 0.11.0 [leot 2015-09-27]
+	Added x11/arandr version 0.1.8 [kamil 2015-09-27]
+	Updated chat/bitchx to 1.2.1 [kamil 2015-09-27]
+	Updated misc/ansiweather to 1.05 [kamil 2015-09-27]

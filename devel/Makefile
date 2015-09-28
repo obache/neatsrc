@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2149 2015/09/23 12:10:03 joerg Exp $
+# $NetBSD: Makefile,v 1.2150 2015/09/27 09:16:31 joerg Exp $
 #
 
 COMMENT=	Development utilities
@@ -503,7 +503,6 @@ SUBDIR+=	libproplist
 SUBDIR+=	libpthred-stubs
 SUBDIR+=	librfuncs
 SUBDIR+=	librlog
-SUBDIR+=	librsync
 SUBDIR+=	librxspencer
 SUBDIR+=	libsafec
 SUBDIR+=	libsexy
