@@ -10,8 +10,6 @@ HOMEPAGE=	http://upower.freedesktop.org
 COMMENT=	Power management system message bus service
 LICENSE=	gnu-gpl-v2
 
-TOOL_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt	# xsltproc
-
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	gmake pkg-config intltool xgettext msgmerge msgfmt
