@@ -17,7 +17,7 @@ USE_LIBTOOL=	yes
 USE_TOOLS+=	gmake pkg-config intltool xgettext msgmerge msgfmt
 USE_PKGLOCALEDIR=	yes
 
-BUILD_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
+TOOL_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
