@@ -7,6 +7,7 @@ SUBDIR+=	855resolution
 SUBDIR+=	915resolution
 SUBDIR+=	9base
 SUBDIR+=	WCMCommander
+SUBDIR+=	accountsservice
 SUBDIR+=	acpica-utils
 SUBDIR+=	acpidump
 SUBDIR+=	adtool
