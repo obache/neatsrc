@@ -210,7 +210,6 @@ share/doc/groonga/en/html/_sources/reference/regular_expression.txt
 share/doc/groonga/en/html/_sources/reference/scorer.txt
 share/doc/groonga/en/html/_sources/reference/scorers/scorer_tf_at_most.txt
 share/doc/groonga/en/html/_sources/reference/scorers/scorer_tf_idf.txt
-share/doc/groonga/en/html/_sources/reference/scoring_note.txt
 share/doc/groonga/en/html/_sources/reference/sharding.txt
 share/doc/groonga/en/html/_sources/reference/suggest.txt
 share/doc/groonga/en/html/_sources/reference/suggest/completion.txt
@@ -446,7 +445,6 @@ share/doc/groonga/en/html/reference/regular_expression.html
 share/doc/groonga/en/html/reference/scorer.html
 share/doc/groonga/en/html/reference/scorers/scorer_tf_at_most.html
 share/doc/groonga/en/html/reference/scorers/scorer_tf_idf.html
-share/doc/groonga/en/html/reference/scoring_note.html
 share/doc/groonga/en/html/reference/sharding.html
 share/doc/groonga/en/html/reference/suggest.html
 share/doc/groonga/en/html/reference/suggest/completion.html
@@ -661,7 +659,6 @@ share/doc/groonga/ja/html/_sources/reference/regular_expression.txt
 share/doc/groonga/ja/html/_sources/reference/scorer.txt
 share/doc/groonga/ja/html/_sources/reference/scorers/scorer_tf_at_most.txt
 share/doc/groonga/ja/html/_sources/reference/scorers/scorer_tf_idf.txt
-share/doc/groonga/ja/html/_sources/reference/scoring_note.txt
 share/doc/groonga/ja/html/_sources/reference/sharding.txt
 share/doc/groonga/ja/html/_sources/reference/suggest.txt
 share/doc/groonga/ja/html/_sources/reference/suggest/completion.txt
@@ -897,7 +894,6 @@ share/doc/groonga/ja/html/reference/regular_expression.html
 share/doc/groonga/ja/html/reference/scorer.html
 share/doc/groonga/ja/html/reference/scorers/scorer_tf_at_most.html
 share/doc/groonga/ja/html/reference/scorers/scorer_tf_idf.html
-share/doc/groonga/ja/html/reference/scoring_note.html
 share/doc/groonga/ja/html/reference/sharding.html
 share/doc/groonga/ja/html/reference/suggest.html
 share/doc/groonga/ja/html/reference/suggest/completion.html
@@ -956,7 +952,6 @@ ${PLIST.httpd}share/examples/groonga/httpd/uwsgi_params
 ${PLIST.httpd}share/examples/groonga/httpd/uwsgi_params.default
 ${PLIST.httpd}share/examples/groonga/httpd/win-utf
 share/examples/groonga/synonyms.tsv
-share/examples/groonga/windows_event_log/provider.man
 share/groonga/examples/dictionary/edict/edict-import.sh
 share/groonga/examples/dictionary/edict/edict2grn.rb
 share/groonga/examples/dictionary/eijiro/eijiro-import.sh
