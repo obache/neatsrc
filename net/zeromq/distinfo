@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.16 2015/08/28 12:52:01 he Exp $
+$NetBSD: distinfo,v 1.17 2015/09/30 10:45:10 fhajny Exp $
 
 SHA1 (zeromq-4.1.3.tar.gz) = b7185724f2fd56d0face50047757ac2a04d26ca4
 RMD160 (zeromq-4.1.3.tar.gz) = fbfe9c0fe9a141c9b4cf282b89019f9df47079de
@@ -7,3 +7,4 @@ SHA1 (patch-configure) = 83a274044136b373d0a486eed779b729b980502c
 SHA1 (patch-src_gssapi__mechanism__base.hpp) = f42e0b5c9acf232ad4c8b705b621d7da3c3ff1d0
 SHA1 (patch-src_pgm__socket.hpp) = c89575871db8b6fff07958577b4e791a6f0cbeb4
 SHA1 (patch-src_platform.hpp.in) = dacfd484782a53ae626151a1136ff392ba33e881
+SHA1 (patch-src_tcp__address.cpp) = ad1c1ec9b724c3bd7f0fae15c296e0ec33b4267a
