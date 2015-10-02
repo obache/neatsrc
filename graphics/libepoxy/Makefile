@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.10 2015/09/16 12:28:53 tnn Exp $
+# $NetBSD: Makefile,v 1.12 2015/10/01 13:50:05 tnn Exp $
 
 DISTNAME=	libepoxy-1.3.1
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=anholt/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -38,10 +38,14 @@ PLIST.glx=		yes
 PLIST.glx=		yes
 .endif
 
+.if ${OPSYS} == "Darwin" && ${X11_TYPE} == "modular"
+CPPFLAGS+=	-DGLX_LIB=\"${PREFIX}/lib/libGL.1.dylib\"
+.endif
+
 .include "../../lang/python/tool.mk"
 .include "../../devel/xorg-util-macros/buildlink3.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
-.if !empty(MESALIB_SUPPORTS_EGL:Myes)
+.if !empty(MESALIB_SUPPORTS_EGL:Myes) && ${OPSYS} != "Darwin"
 PLIST.egl=		yes
 .endif
 .include "../../x11/libX11/buildlink3.mk"
