@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4129 2015/10/01 23:11:55 rodent Exp $
+$NetBSD: CHANGES-2015,v 1.4134 2015/10/02 14:38:29 taca Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7099,7 +7099,7 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated textproc/po4a to 0.47 [ryoon 2015-09-29]
 	Updated filesystems/openafs to 1.6.14 [jakllsch 2015-09-29]
 	Updated devel/lua-lpeg to 1.0.0 [alnsn 2015-09-29]
-	Updated net-syncffsd to 0.8 [manu 2015-09-30]
+	Updated net/syncffsd to 0.8 [manu 2015-09-30]
 	Removed net/socks5 successor net/dante [tnn 2015-09-30]
 	Updated editors/xemacs-packages to 1.17 [hauke 2015-09-30]
 	Updated devel/p5-Graph to 0.9703 [wen 2015-09-30]
@@ -7151,3 +7151,8 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated www/logswan to 1.01 [kamil 2015-10-01]
 	Updated devel/openocd to 0.9.0 [rodent 2015-10-01]
 	Updated devel/py-pip to 7.1.2 [rodent 2015-10-01]
+	Updated security/p5-Crypt-GPG to 1.64 [wen 2015-10-02]
+	Updated emulators/mame to 0.166 [wiz 2015-10-02]
+	Updated www/squid3 to 3.5.10 [adam 2015-10-02]
+	Updated lang/php55 to 5.5.30 [taca 2015-10-02]
+	Updated lang/php56 to 5.6.14 [taca 2015-10-02]
