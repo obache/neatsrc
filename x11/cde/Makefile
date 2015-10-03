@@ -162,6 +162,11 @@ SPECIAL_PERMS+=	${PREFIX}/dt/bin/dtapppgather ${SETUID_ROOT_PERMS}
 SPECIAL_PERMS+=	${PREFIX}/dt/bin/dtmail ${REAL_ROOT_USER} mail 2511
 SPECIAL_PERMS+=	${PREFIX}/dt/bin/dtmailpr ${REAL_ROOT_USER} mail 2511
 
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == "NetBSD"
+BUILD_MAKE_FLAGS+=	ICONV_INBUF_DEFINE="-DICONV_INBUF_CONST=const"
+.endif
+
 .include "../../x11/libXinerama/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
