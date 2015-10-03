@@ -147,6 +147,8 @@ SUBST_STAGE.fontsdir=	pre-configure
 SUBST_FILES.fontsdir+=	programs/dtudcfonted/libfal/Imakefile
 SUBST_SED.fontsdir+=	-e 's,/lib/X11/fonts,/share/fonts/X11,g'
 
+FONTS_DIRS.x11+=	${PREFIX}/dt/config/xfonts/C
+
 RCD_SCRIPTS=		dtlogin
 
 do-install:

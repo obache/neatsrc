@@ -4266,7 +4266,6 @@ dt/config/svc/CDE.lcx
 dt/config/sys.dtprofile
 dt/config/xfonts/C/dtinfo.pcf.Z
 dt/config/xfonts/C/fonts.alias
-dt/config/xfonts/C/fonts.dir
 dt/copyright
 dt/dthelp/dtdocbook/C.ISO-8859-1/strings
 dt/dthelp/dtdocbook/SGML/catalog
