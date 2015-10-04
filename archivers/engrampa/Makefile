@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	engrampa-1.10.1
+DISTNAME=	engrampa-1.10.2
 CATEGORIES=	archivers mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
