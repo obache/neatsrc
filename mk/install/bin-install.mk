@@ -60,6 +60,7 @@ do-bin-install: su-target
 .  endif
 	@${PHASE_MSG} "Binary install for "${PKGNAME_REQD:Q}
 
+MAKEFLAGS.su-do-bin-install=	PKGNAME_REQD=${PKGNAME_REQD:Q}
 su-do-bin-install: \
 	acquire-bin-install-lock \
 	locked-su-do-bin-install \
