@@ -10,6 +10,7 @@ EXTRACT_SUFX=		.tar.bz2
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.gnome.org/
 COMMENT=		Editor for the GConf configuration system
+LICENSE=		gnu-gpl-v2
 
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
