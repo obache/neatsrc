@@ -97,5 +97,6 @@ share/locale/vi/LC_MESSAGES/xfce4-session.mo
 share/locale/zh_CN/LC_MESSAGES/xfce4-session.mo
 share/locale/zh_HK/LC_MESSAGES/xfce4-session.mo
 share/locale/zh_TW/LC_MESSAGES/xfce4-session.mo
+share/polkit-1/actions/org.xfce.session.policy
 share/themes/Default/balou/logo.png
 share/themes/Default/balou/themerc
