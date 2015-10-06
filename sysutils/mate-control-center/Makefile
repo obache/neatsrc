@@ -5,7 +5,7 @@ CATEGORIES=	sysutils mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
 
-HOMEPAGE=	http://www.mate-desktop.org/releases/
+HOMEPAGE=	http://www.mate-desktop.org/
 COMMENT=	MATE Control Center
 LICENSE=	gnu-gpl-v2
 
