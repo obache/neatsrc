@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	eom-1.10.3
+DISTNAME=	eom-1.10.4
 CATEGORIES=	graphics mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -28,7 +28,6 @@ PKGCONFIG_OVERRIDE+=	data/eom.pc.in
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/gdk-pixbuf2/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-.include "../../graphics/mate-icon-theme/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .if !empty(PKG_BUILD_OPTIONS.gtk2:Mx11)
