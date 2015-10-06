@@ -39,6 +39,7 @@ SUBDIR+=	gtk-im-libthai
 SUBDIR+=	ibus
 SUBDIR+=	ibus-anthy
 SUBDIR+=	ibus-array
+SUBDIR+=	ibus-bogo
 SUBDIR+=	ibus-chewing
 SUBDIR+=	ibus-el
 SUBDIR+=	ibus-googlepinyin
