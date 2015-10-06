@@ -164,6 +164,7 @@ SUBDIR+=	uim-elisp
 SUBDIR+=	uim-mozc
 SUBDIR+=	uim-tomoe-gtk
 SUBDIR+=	unicon-im
+SUBDIR+=	x-unikey
 SUBDIR+=	xcin
 SUBDIR+=	xsunpinyin
 SUBDIR+=	zinnia
