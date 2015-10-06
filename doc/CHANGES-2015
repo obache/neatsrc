@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4189 2015/10/05 01:15:47 wen Exp $
+$NetBSD: CHANGES-2015,v 1.4193 2015/10/05 16:25:52 leot Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7226,3 +7226,7 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated mail/postfix-pgsql to 3.0.2nb1 [taca 2015-10-05]
 	Updated mail/postfix-sqlite to 3.0.2nb1 [taca 2015-10-05]
 	Added math/R-minqa version 1.2.4 [wen 2015-10-05]
+	Updated time/globe to 20140814 [youri 2015-10-05]
+	Updated pkgtools/lintpkgsrc to 4.90 [tnn 2015-10-05]
+	Updated www/firefox to 41.0.1 [ryoon 2015-10-05]
+	Updated www/webkit-gtk to 2.10.0nb1 [leot 2015-10-05]
