@@ -15,6 +15,7 @@ SUBDIR+=	canna-server
 SUBDIR+=	dbskkd-cdb
 SUBDIR+=	fcitx
 SUBDIR+=	fcitx-anthy
+SUBDIR+=	fcitx-bogo
 SUBDIR+=	fcitx-chewing
 SUBDIR+=	fcitx-cloudpinyin
 SUBDIR+=	fcitx-configtool
