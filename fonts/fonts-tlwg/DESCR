@@ -1,0 +1,10 @@
+Fonts-TLWG is a collection of Thai scalable fonts available under free
+licenses.  Its goal is to provide fonts that conform to existing standards
+and recommendations, so that it can be a reference implementation.
+
+So, the fonts have been modified from their original versions as needed,
+according to following references:
+  - Recommendation for Thai font design, from the National Font Project
+  - Adobe Glyph naming convention
+  - Microsoft Typography
+  - Common practice for Thai Windows fonts

@@ -104,6 +104,7 @@ SUBDIR+=	font-winitzki-cyrillic
 SUBDIR+=	font-xfree86-type1
 SUBDIR+=	fontconfig
 SUBDIR+=	fontforge
+SUBDIR+=	fonts-tlwg
 SUBDIR+=	freefont-ttf
 SUBDIR+=	freefonts
 SUBDIR+=	gbdfed
