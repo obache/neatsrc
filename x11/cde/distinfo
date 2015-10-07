@@ -3,6 +3,7 @@ $NetBSD$
 SHA1 (cde-src-2.2.3.tar.gz) = f1868f21d6e9a13c7cf9bc9b557cb2d7487b3b67
 RMD160 (cde-src-2.2.3.tar.gz) = c2b59e6425b12c5b6df849d7b4d3a45ca3a596bb
 Size (cde-src-2.2.3.tar.gz) = 60738851 bytes
+SHA1 (patch-databases_CDE-FONTS.udb) = f7686e84d410c102c6c146227d7c81fe3994bce4
 SHA1 (patch-include_EUSCompat.h) = 45066c58200b8c342c2168ddaa44f5e643afbd60
 SHA1 (patch-lib_DtHelp_FormatI.h) = 452ba54e5e09a149bbe76d4d3e3e32d96b445b10
 SHA1 (patch-lib_DtHelp_HelpXlate.c) = 225d9c31aacb316cc8f1241a60303a4fecd07e02

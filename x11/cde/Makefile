@@ -167,6 +167,7 @@ SPECIAL_PERMS+=	${PREFIX}/dt/bin/dtmailpr ${REAL_ROOT_USER} mail 2511
 .include "../../mk/bsd.prefs.mk"
 .if ${OPSYS} == "NetBSD"
 BUILD_MAKE_FLAGS+=	ICONV_INBUF_DEFINE="-DICONV_INBUF_CONST=const"
+FONTS_DIRS.x11+=	${PREFIX}/dt/config/xfonts/ja
 .endif
 
 .include "../../x11/libXinerama/buildlink3.mk"
