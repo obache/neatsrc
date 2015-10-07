@@ -1,0 +1,6 @@
+$NetBSD$
+
+SHA1 (uvconv-1.1.3b.tar.gz) = 9e6bf498df624144f36765734eed4d39d2928b9c
+RMD160 (uvconv-1.1.3b.tar.gz) = d29aaa8ff69b978f123a4e237d9d68f368618bf3
+Size (uvconv-1.1.3b.tar.gz) = 36895 bytes
+SHA1 (patch-uvconvert_uvconvert.cpp) = 7e1989027863008a764da6fb8cec34a874f18638

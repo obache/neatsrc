@@ -124,6 +124,7 @@ SUBDIR+=	txt2pdbdoc
 SUBDIR+=	unix2dos
 SUBDIR+=	uudeview
 SUBDIR+=	uulib
+SUBDIR+=	uvconv
 SUBDIR+=	wv
 SUBDIR+=	wv2
 SUBDIR+=	xdeview
