@@ -1,0 +1,17 @@
+$NetBSD$
+
+* CSRG_BASED is not defined in CPP by default on NetBSD
+
+--- programs/dtlogin/config/Imakefile.orig	2015-05-09 23:09:11.000000000 +0000
++++ programs/dtlogin/config/Imakefile
+@@ -26,6 +26,10 @@ LOCAL_CPP_DEFINES = -DCDE_CONFIGURATION_
+ LOCAL_CPP_DEFINES += -DFREEBSD
+ #endif
+ 
++#ifdef NetBSDArchitecture
++LOCAL_CPP_DEFINES += -DCSRG_BASED
++#endif
++
+ #ifdef SunArchitecture
+ EXTRA_CPP_TARGETS = \
+ 	0015.sun.env \

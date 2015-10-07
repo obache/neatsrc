@@ -19,6 +19,7 @@ SHA1 (patch-programs_dthelp_parser_canon1_helptag_Imakefile) = 1461c33f7ca5e1768
 SHA1 (patch-programs_dthelp_parser_pass1_helptag_Imakefile) = bec36f831fcf8106f4c14bf4246469a8d22942ca
 SHA1 (patch-programs_dthelp_parser_pass2_htag2_Imakefile) = edf6f2727fa84714b7f7da5782bf4420faf1d2ff
 SHA1 (patch-programs_dticon_process.c) = c851b531e77426bab24bba6a179f7ccce72f4f81
+SHA1 (patch-programs_dtlogin_config_Imakefile) = ffd02665a279372e19d5315aaf2f145c2c516949
 SHA1 (patch-programs_dtlogin_dm.c) = 173e46da1260937e3f435b49ffa4032f429e7553
 SHA1 (patch-programs_dtlogin_dm.h) = 20e228e652e61e898df57e4a3aff4021bcaa687f
 SHA1 (patch-programs_dtmail_include_utils_MemUtils.hh) = 9c8c826fcdfb93cec86e7e375ef1e72e623934eb
