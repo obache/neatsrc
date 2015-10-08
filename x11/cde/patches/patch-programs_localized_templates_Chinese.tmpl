@@ -1,0 +1,14 @@
+$NetBSD$
+
+* NetBSD locales
+
+--- programs/localized/templates/Chinese.tmpl.orig	2015-05-09 23:09:11.000000000 +0000
++++ programs/localized/templates/Chinese.tmpl
+@@ -30,3 +30,7 @@ LANG=zh_CN
+ #ifdef UXPArchitecture
+ LANG=zh_CN
+ #endif
++
++#ifdef NetBSDArchitecture
++LANG=zh_CN.eucCN
++#endif
