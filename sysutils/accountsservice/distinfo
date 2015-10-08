@@ -5,4 +5,5 @@ RMD160 (accountsservice-0.6.40.tar.xz) = 83c148f750058039728397b5c8d058058557d51
 Size (accountsservice-0.6.40.tar.xz) = 367772 bytes
 SHA1 (patch-src_daemon.c) = a90afdd06ff616e570c3379c7ef25bf8cc4c55bb
 SHA1 (patch-src_user.c) = e50127a722fccb1881aed42ebd0f0cef6a6a38e0
+SHA1 (patch-src_util.c) = 6ace3951c0fac36150408330b6708628b57489af
 SHA1 (patch-src_wtmp-helper.c) = 4895757d798a5851b7e9a0f55bd7a135399681ff
