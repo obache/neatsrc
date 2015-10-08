@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2150 2015/09/27 09:16:31 joerg Exp $
+# $NetBSD: Makefile,v 1.2153 2015/10/07 14:28:20 wen Exp $
 #
 
 COMMENT=	Development utilities
@@ -1381,6 +1381,7 @@ SUBDIR+=	p5-Term-Size
 SUBDIR+=	p5-Term-Size-Any
 SUBDIR+=	p5-Term-Size-Perl
 SUBDIR+=	p5-Term-UI
+SUBDIR+=	p5-Test-API
 SUBDIR+=	p5-Test-Aggregate
 SUBDIR+=	p5-Test-Approx
 SUBDIR+=	p5-Test-Assertions
@@ -1425,6 +1426,7 @@ SUBDIR+=	p5-Test-MinimumVersion
 SUBDIR+=	p5-Test-Mock-LWP
 SUBDIR+=	p5-Test-MockModule
 SUBDIR+=	p5-Test-MockObject
+SUBDIR+=	p5-Test-Modern
 SUBDIR+=	p5-Test-More-Behaviour
 SUBDIR+=	p5-Test-Most
 SUBDIR+=	p5-Test-NoTabs
@@ -2073,6 +2075,7 @@ SUBDIR+=	umbrello
 SUBDIR+=	unidiff
 SUBDIR+=	uno
 SUBDIR+=	userspace-rcu
+SUBDIR+=	uthash
 SUBDIR+=	valgrind
 SUBDIR+=	vanessa_adt
 SUBDIR+=	vanessa_logger
