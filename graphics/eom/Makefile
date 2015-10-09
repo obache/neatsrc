@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	eom-1.10.4
+DISTNAME=	eom-1.10.5
 CATEGORIES=	graphics mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
