@@ -41,6 +41,7 @@ share/eom/eom-multiple-save-as-dialog.ui
 share/eom/eom-preferences-dialog.ui
 share/eom/eom-toolbar.xml
 share/eom/eom-ui.xml
+share/eom/eom.css
 share/eom/gtkrc
 share/eom/icons/hicolor/16x16/actions/eom-image-collection.png
 share/eom/icons/hicolor/16x16/actions/eom-plugin.png
