@@ -24,6 +24,7 @@ PKGCONFIG_OVERRIDE+=	data/eom.pc.in
 .include "../../devel/glib2/schemas.mk"
 
 .include "../../databases/shared-mime-info/buildlink3.mk"
+BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.36.0
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/gdk-pixbuf2/buildlink3.mk"
