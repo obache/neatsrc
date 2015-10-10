@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2153 2015/10/07 14:28:20 wen Exp $
+# $NetBSD: Makefile,v 1.2154 2015/10/09 14:01:23 fhajny Exp $
 #
 
 COMMENT=	Development utilities
@@ -540,6 +540,7 @@ SUBDIR+=	libwnck
 SUBDIR+=	libwnck3
 SUBDIR+=	libxenserver
 SUBDIR+=	libzen
+SUBDIR+=	libzookeeper
 SUBDIR+=	lincvs
 SUBDIR+=	lmdbg
 SUBDIR+=	locktests
@@ -2102,6 +2103,7 @@ SUBDIR+=	yajl
 SUBDIR+=	yasm
 SUBDIR+=	z80-asm
 SUBDIR+=	zlib
+SUBDIR+=	zookeeper
 SUBDIR+=	zzuf
 
 .include "../mk/misc/category.mk"
