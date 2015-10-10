@@ -173,7 +173,7 @@ stat2proc (pid_t        pid,
         P->wchan      = (unsigned long) p.p_wchan;
         P->state      = p.p_stat;
         P->nice       = p.p_nice;
-        P->flags      = p.p_flag;
+        P->flags      = p.p_realflag;
         P->tpgid      = p.p_tpgid;
         P->processor  = p.p_cpuid;
         P->nlwp       = p.p_nlwps;
