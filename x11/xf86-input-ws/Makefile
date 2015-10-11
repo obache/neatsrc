@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.9 2015/04/25 14:25:14 tnn Exp $
+# $NetBSD: Makefile,v 1.1 2015/10/10 20:02:52 tnn Exp $
 #
 
-DISTNAME=	openbsd-input-ws-1.2
-PKGREVISION=	6
+DISTNAME=	xf86-input-ws-1.3.0.20151010
 CATEGORIES=	x11
-MASTER_SITES=	http://xenocara.org/src/
+MASTER_SITES=	${MASTER_SITE_LOCAL}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://xenocara.org/
