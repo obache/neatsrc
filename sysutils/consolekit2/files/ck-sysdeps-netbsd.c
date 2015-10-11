@@ -315,9 +315,21 @@ gboolean
 ck_unix_pid_get_login_session_id (pid_t  pid,
                                   char **idp)
 {
+        pid_t sid;
+
         g_return_val_if_fail (pid > 1, FALSE);
 
-        return FALSE;
+        sid = getsid(pid);
+
+        if (sid < 0) {
+                return FALSE;
+        }
+
+        if (idp != NULL) {
+                *idp = g_strdup_printf ("%lu", (unsigned long int)sid);
+        }
+
+        return TRUE;
 }
 
 gboolean
