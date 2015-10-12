@@ -21,8 +21,10 @@ _USER_VARS.pkginstall= \
 	INFO_FILES_VERBOSE \
 	PKG_CREATE_USERGROUP \
 	PKG_CONFIG PKG_CONFIG_PERMS \
+	PKG_GID_RANGE \
 	PKG_RCD_SCRIPTS \
 	PKG_REGISTER_SHELLS \
+	PKG_UID_RANGE \
 	PKG_UPDATE_FONTS_DB
 _PKG_VARS.pkginstall= \
 	DEINSTALL_TEMPLATES INSTALL_TEMPLATES \
@@ -186,12 +188,22 @@ FILES_SUBST+=		PKGBASE=${PKGBASE:Q}
 #	of users and groups required by this package are hardcoded
 #	into the +INSTALL script.
 #
+# PKG_UID_RANGE specifies the uid boundaries for new users
+#	to create for packages.
+#
+# PKG_GID_RANGE specifies the gid boundaries for new groups
+#	to create for packages.
+#
 PKG_GROUPS?=		# empty
 PKG_USERS?=		# empty
 _PKG_USER_HOME?=	/nonexistent
 _PKG_USER_SHELL?=	${NOLOGIN}
+PKG_UID_RANGE?=		# empty
+PKG_GID_RANGE?=		# empty
 FILES_SUBST+=		PKG_USER_HOME=${_PKG_USER_HOME:Q}
 FILES_SUBST+=		PKG_USER_SHELL=${_PKG_USER_SHELL:Q}
+FILES_SUBST+=		PKG_UID_RANGE=${PKG_UID_RANGE:Q}
+FILES_SUBST+=		PKG_GID_RANGE=${PKG_GID_RANGE:Q}
 
 USE_GAMESGROUP?=	no
 SETGIDGAME?=            ${USE_GAMESGROUP}
