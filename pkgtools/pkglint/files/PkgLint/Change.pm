@@ -1,7 +1,11 @@
-package PkgLint::Change;
-#==========================================================================
+# $NetBSD: Change.pm,v 1.3 2015/10/11 21:23:34 rillig Exp $
+#
 # A change entry from doc/CHANGES-*
-#==========================================================================
+#
+package PkgLint::Change;
+
+use strict;
+use warnings;
 
 sub new($$$$$$) {
 	my ($class, $line, $action, $pkgpath, $version, $author, $date) = @_;
@@ -15,6 +19,3 @@ sub pkgpath($)			{ return shift()->[2]; }
 sub version($)			{ return shift()->[3]; }
 sub author($)			{ return shift()->[4]; }
 sub date($)			{ return shift()->[5]; }
-#== End of PkgLint::Change ================================================
-
-1;

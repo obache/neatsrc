@@ -1,4 +1,5 @@
-#==========================================================================
+# $NetBSD: Line.pm,v 1.5 2015/10/11 21:23:34 rillig Exp $
+#
 # When files are read in by pkglint, they are interpreted in terms of
 # lines. For Makefiles, line continuations are handled properly, allowing
 # multiple physical lines to end in a single logical line. For other files
@@ -18,8 +19,11 @@
 #
 # A line can have some "extra" fields that allow the results of parsing to
 # be saved under a name.
-#==========================================================================
+#
 package PkgLint::Line;
+
+use strict;
+use warnings;
 
 BEGIN {
 	import PkgLint::Util qw(
@@ -211,7 +215,3 @@ sub set_text($$) {
 	$self->[PHYSLINES] = [[0, "$text\n"]];
 	$self->[CHANGED] = true;
 }
-
-#== End of PkgLint::Line ==================================================
-
-1;

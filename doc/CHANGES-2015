@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4237 2015/10/11 11:38:02 rodent Exp $
+$NetBSD: CHANGES-2015,v 1.4240 2015/10/12 00:23:47 ryoon Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7298,3 +7298,11 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated databases/postgresql92 to 9.2.14 [adam 2015-10-10]
 	Updated databases/postgresql91 to 9.1.19 [adam 2015-10-10]
 	Added databases/mysqltuner version 1.6.0 [rodent 2015-10-11]
+	Updated mail/thunderbird to 38.3.0 [ryoon 2015-10-11]
+	Updated converters/dos2unix to 7.3.1 [ryoon 2015-10-12]
+	Updated inputmethod/mozc-server to 2.17.2116.102 [ryoon 2015-10-12]
+	Updated inputmethod/mozc-renderer to 2.17.2116.102 [ryoon 2015-10-12]
+	Updated inputmethod/mozc-tool to 2.17.2116.102 [ryoon 2015-10-12]
+	Updated inputmethod/mozc-elisp to 2.17.2116.102 [ryoon 2015-10-12]
+	Updated inputmethod/ibus-mozc to 2.17.2116.102 [ryoon 2015-10-12]
+	Updated inputmethod/uim-mozc to 2.17.2116.102 [ryoon 2015-10-12]

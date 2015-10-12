@@ -1,5 +1,5 @@
 #! @PERL@
-# $NetBSD: pkglint.pl,v 1.883 2015/10/11 14:31:36 rillig Exp $
+# $NetBSD: pkglint.pl,v 1.889 2015/10/11 21:23:34 rillig Exp $
 #
 
 # pkglint - static analyzer and checker for pkgsrc packages
@@ -34,16 +34,16 @@
 use v5.12;
 use warnings;
 
-use PkgLint::Util;
-use PkgLint::Logging;
-use PkgLint::SimpleMatch;
-use PkgLint::Line;
-use PkgLint::FileUtil;
-use PkgLint::Type;
-use PkgLint::VarUseContext;
-use PkgLint::SubstContext;
-use PkgLint::CVS_Entry;
-use PkgLint::Change;
+#include PkgLint/Util.pm
+#include PkgLint/Logging.pm
+#include PkgLint/SimpleMatch.pm
+#include PkgLint/Line.pm
+#include PkgLint/FileUtil.pm
+#include PkgLint/Type.pm
+#include PkgLint/VarUseContext.pm
+#include PkgLint/SubstContext.pm
+#include PkgLint/CVS_Entry.pm
+#include PkgLint/Change.pm
 
 package pkglint;
 #==========================================================================
@@ -611,7 +611,7 @@ sub parse_acls($$) {
 		) (?:\,\s*|$)"x;
 
 	if (!defined($acltext)) {
-		return undef;
+		return;
 	}
 
 	$acls = [];
@@ -1368,55 +1368,6 @@ sub is_emptydir($) {
 	return $rv;
 }
 
-# Guess the type of file based on the filename. This is used to select
-# the proper subroutine for detecting absolute pathnames.
-#
-# Returns one of "source", "shell", "make", "text", "configure",
-# "ignore", "unknown".
-#
-sub get_filetype($$) {
-	my ($line, $fname) = @_;
-	my $basename = basename($fname);
-
-	# The trailig .in part is not needed, since it does not
-	# influence the type of contents.
-	$basename =~ s,\.in$,,;
-
-	# Let's assume that everything else that looks like a Makefile
-	# is indeed a Makefile.
-	if ($basename =~ m"^I?[Mm]akefile(?:\..*|)?|.*\.ma?k$") {
-		return "make";
-	}
-
-	# Too many false positives for shell scripts, so configure
-	# scripts get their own category.
-	if ($basename =~ m"^configure(?:|\.ac)$") {
-		$opt_debug_unchecked and $line->log_debug("Skipped check for absolute pathnames.");
-		return "configure";
-	}
-
-	if ($basename =~ m"\.(?:sh|m4)$"i) {
-		return "shell";
-	}
-
-	if ($basename =~ m"\.(?:cc?|cpp|cxx|el|hh?|hpp|l|pl|pm|py|s|t|y)$"i) {
-		return "source";
-	}
-
-	if ($basename =~ m"^.+\.(?:\d+|conf|html|info|man|po|tex|texi|texinfo|txt|xml)$"i) {
-		return "text";
-	}
-
-	# Filenames without extension are hard to guess right. :(
-	if ($basename !~ m"\.") {
-		return "unknown";
-	}
-
-	$opt_debug_misc and $line->log_debug("Don't know the file type of ${fname}.");
-
-	return "unknown";
-}
-
 # Returns the list of subdirectories of a directory, except "CVS".
 sub get_subdirs($) {
 	my ($dir) = @_;
@@ -1883,7 +1834,7 @@ sub get_variable_type($$) {
 	}
 
 	$opt_debug_vartypes and $line->log_debug("No type definition found for ${varcanon}.");
-	return undef;
+	return;
 }
 
 sub get_variable_perms($$) {
@@ -2419,7 +2370,7 @@ sub checkword_absolute_pathname($$) {
 
 sub check_unused_licenses() {
 
-	for my $licensefile (<${cwd_pkgsrcdir}/licenses/*>) {
+	for my $licensefile (glob("${cwd_pkgsrcdir}/licenses/*")) {
 		if (-f $licensefile) {
 			my $licensename = basename($licensefile);
 			if (!exists($ipc_used_licenses{$licensename})) {
@@ -2476,7 +2427,7 @@ sub checkline_valid_characters($$) {
 
 	($rest = $line->text) =~ s/$re_validchars//g;
 	if ($rest ne "") {
-		my @chars = map { $_ = sprintf("0x%02x", ord($_)); } split(//, $rest);
+		my @chars = map { sprintf("0x%02x", ord($_)); } split(//, $rest);
 		$line->log_warning("Line contains invalid characters (" . join(", ", @chars) . ").");
 	}
 }
@@ -2490,7 +2441,7 @@ sub checkline_valid_characters_in_variable($$) {
 
 	$rest =~ s/$re_validchars//g;
 	if ($rest ne "") {
-		my @chars = map { $_ = sprintf("0x%02x", ord($_)); } split(//, $rest);
+		my @chars = map { sprintf("0x%02x", ord($_)); } split(//, $rest);
 		$line->log_warning("${varname} contains invalid characters (" . join(", ", @chars) . ").");
 	}
 }
@@ -2537,42 +2488,6 @@ sub checkline_rcsid($$) {
 	checkline_rcsid_regex($line, quotemeta($prefix), $prefix);
 }
 
-# Checks whether the line contains text that looks like absolute
-# pathnames, assuming that the file uses the common syntax with
-# single or double quotes to represent strings.
-#
-sub checkline_source_absolute_pathname($$) {
-	my ($line, $text) = @_;
-	my ($abspath);
-
-	$opt_debug_trace and $line->log_debug("checkline_source_absolute_pathname(${text})");
-
-	if ($text =~ m"(.*)([\"'])(/[^\"']*)\2") {
-		my ($before, $delim, $string) = ($1, $2, $3);
-
-		$opt_debug_misc and $line->log_debug("checkline_source_absolute_pathname(before=${before}, string=${string})");
-		if ($before =~ m"[A-Z_]+\s*$") {
-			# allowed: PREFIX "/bin/foo"
-
-		} elsif ($string =~ m"^/[*/]") {
-			# This is more likely to be a C or C++ comment.
-
-		} elsif ($string !~ m"^/\w") {
-			# Assume that pathnames start with a letter or digit.
-
-		} elsif ($before =~ m"\+\s*$") {
-			# Something like foodir + '/lib'
-
-		} else {
-			$abspath = $string;
-		}
-	}
-
-	if (defined($abspath)) {
-		checkword_absolute_pathname($line, $abspath);
-	}
-}
-
 sub checkline_mk_absolute_pathname($$) {
 	my ($line, $text) = @_;
 	my $abspath;
@@ -2595,44 +2510,6 @@ sub checkline_mk_absolute_pathname($$) {
 
 	if (defined($abspath)) {
 		checkword_absolute_pathname($line, $abspath);
-	}
-}
-
-# Last resort if the file does not look like a Makefile or typical
-# source code. All strings that look like pathnames and start with
-# one of the typical Unix prefixes are found.
-#
-sub checkline_other_absolute_pathname($$) {
-	my ($line, $text) = @_;
-
-	$opt_debug_trace and $line->log_debug("checkline_other_absolute_pathname(\"${text}\")");
-
-	if ($text =~ m"^#[^!]") {
-		# Don't warn for absolute pathnames in comments,
-		# except for shell interpreters.
-
-	} elsif ($text =~ m"^(.*?)((?:/[\w.]+)*/(?:bin|dev|etc|home|lib|mnt|opt|proc|sbin|tmp|usr|var)\b[\w./\-]*)(.*)$") {
-		my ($before, $path, $after) = ($1, $2, $3);
-
-		if ($before =~ m"\@$") {
-			# Something like @PREFIX@/bin
-
-		} elsif ($before =~ m"[)}]$") {
-			# Something like ${prefix}/bin or $(PREFIX)/bin
-
-		} elsif ($before =~ m"\+\s*[\"']$") {
-			# Something like foodir + '/lib'
-
-		} elsif ($before =~ m"\w$") {
-			# Something like $dir/lib
-
-		} elsif ($before =~ m"\.$") {
-			# ../foo is not an absolute pathname.
-
-		} else {
-			$opt_debug_misc and $line->log_debug("before=${before}");
-			checkword_absolute_pathname($line, $path);
-		}
 	}
 }
 
@@ -2686,71 +2563,6 @@ sub checkline_spellcheck($) {
 	if ($line->text =~ m"existant") {
 		$line->log_warning("The word \"existant\" is nonexistent in the m-w dictionary.");
 		$line->explain_warning("Please use \"existent\" instead.");
-	}
-}
-
-sub checkline_cpp_macro_names($$) {
-	my ($line, $text) = @_;
-	my ($rest);
-
-	use constant good_macros => PkgLint::Util::array_to_hash(qw(
-		__STDC__
-
-		__GNUC__ __GNUC_MINOR__
-		__SUNPRO_C
-
-		__i386
-		__mips
-		__sparc
-
-		__APPLE__
-		__bsdi__
-		__CYGWIN__
-		__DragonFly__
-		__FreeBSD__ __FreeBSD_version
-		__INTERIX
-		__linux__
-		__MINGW32__
-		__NetBSD__ __NetBSD_Version__
-		__OpenBSD__
-		__SVR4
-		__sgi
-		__sun
-
-		__GLIBC__
-	));
-	use constant bad_macros  => {
-		"__sgi__" => "__sgi",
-		"__sparc__" => "__sparc",
-		"__sparc_v9__" => "__sparcv9",
-		"__sun__" => "__sun",
-		"__svr4__" => "__SVR4",
-	};
-
-	$rest = $text;
-	while ($rest =~ s/defined\((__[\w_]+)\)// || $rest =~ s/\b(_\w+)\(//) {
-		my ($macro) = ($1);
-
-		if (exists(good_macros->{$macro})) {
-			$opt_debug_misc and $line->log_debug("Found good macro \"${macro}\".");
-		} elsif (exists(bad_macros->{$macro})) {
-			$line->log_warning("The macro \"${macro}\" is not portable enough. Please use \"".bad_macros->{$macro}."\" instead.");
-			$line->explain_warning("See the pkgsrc guide, section \"CPP defines\" for details.");
-
-		} elsif ($macro eq "__NetBSD_Prereq__") {
-			$line->log_warning("Please use __NetBSD_Version__ instead of __NetBSD_Prereq__.");
-			$line->explain_warning(
-"The __NetBSD_Prereq__ macro is pretty new. It was born in NetBSD",
-"4.99.3, and maybe it won't survive for long. A better (and compatible)",
-"way is to compare __NetBSD_Version__ directly to the required version",
-"number.");
-
-		} elsif ($macro =~ m"^_+NetBSD_+Version_+$"i && $macro ne "__NetBSD_Version__") {
-			$line->log_warning("Misspelled variant \"${macro}\" of \"__NetBSD_Version__\".");
-
-		} else {
-			$opt_debug_unchecked and $line->log_debug("Unchecked macro \"${macro}\".");
-		}
 	}
 }
 
@@ -2881,7 +2693,7 @@ sub checkline_mk_varuse($$$$) {
 		}
 	}
 
-	if ($opt_warn_quoting and $context->shellword != VUC_SHELLWORD_UNKNOWN && $needs_quoting != dont_know) {
+	if ($opt_warn_quoting && $context->shellword != VUC_SHELLWORD_UNKNOWN && $needs_quoting != dont_know) {
 
 		# In GNU configure scripts, a few variables need to be
 		# passed through the :M* operator before they reach the
@@ -3334,7 +3146,7 @@ sub checkline_mk_shelltext($$) {
 		INSTALL_DIR INSTALL_DIR2
 	);
 	use enum (":SCST_", scst);
-	use constant scst_statename => [ map { $_ = "SCST_$_"; } scst ];
+	use constant scst_statename => [ map { "SCST_$_" } scst ];
 
 	use constant forbidden_commands => array_to_hash(qw(
 		ktrace
@@ -5463,8 +5275,6 @@ sub checkfile_ALTERNATIVES($) {
 	}
 }
 
-sub checklines_buildlink3_mk_2009($$$);
-sub checklines_buildlink3_mk_pre2009($$);
 sub checkfile_buildlink3_mk($) {
 	my ($fname) = @_;
 	my ($lines, $lineno, $m);
@@ -5495,7 +5305,6 @@ sub checkfile_buildlink3_mk($) {
 	}
 	expect_empty_line($lines, \$lineno);
 
-	# This line does not belong here, but appears often.
 	if (expect($lines, \$lineno, qr"^BUILDLINK_DEPMETHOD\.(\S+)\?=.*$")) {
 		$lines->[$lineno - 1]->log_warning("This line belongs inside the .ifdef block.");
 		while ($lines->[$lineno]->text eq "") {
@@ -5503,222 +5312,15 @@ sub checkfile_buildlink3_mk($) {
 		}
 	}
 
-	if (($m = expect($lines, \$lineno, qr"^BUILDLINK_TREE\+=\s*(\S+)$"))) {
-		checklines_buildlink3_mk_2009($lines, $lineno, $m->text(1));
-	} else {
-		checklines_buildlink3_mk_pre2009($lines, $lineno);
+	if (!($m = expect($lines, \$lineno, qr"^BUILDLINK_TREE\+=\s*(\S+)$"))) {
+		$lines->[$lineno]->log_warning("Expected a BUILDLINK_TREE line.");
+		return;
 	}
+
+	checklines_buildlink3_mk($lines, $lineno, $m->text(1));
 }
 
-sub checklines_buildlink3_mk_pre2009($$) {
-	my ($lines, $lineno) = @_;
-	my ($m);
-	my ($bl_PKGBASE_line, $bl_PKGBASE);
-	my ($bl_pkgbase_line, $bl_pkgbase);
-	my ($abi_line, $abi_pkg, $abi_version);
-	my ($api_line, $api_pkg, $api_version);
-
-	# First paragraph: Reference counters.
-	if (!expect($lines, \$lineno, qr"^BUILDLINK_DEPTH:=\t+\$\{BUILDLINK_DEPTH\}\+$")) {
-		# When none of the formats has been found, prefer the 2009 format.
-		lines_log_warning($lines, $lineno, "Expected BUILDLINK_TREE line.");
-		return;
-	}
-	$lines->[$lineno - 1]->log_warning("Please switch to the new buildlink3.mk format.");
-	$lines->[$lineno - 1]->explain_warning(
-"The format for buildlink3.mk files has changed in 2009Q1. You can",
-"generate a new-style buildlink3.mk file with the createbuildlink>=3.14",
-"package and then adjust the variable's values manually.");
-
-	if (($m = expect($lines, \$lineno, qr"^(.*)_BUILDLINK3_MK:=\t*\$\{\1_BUILDLINK3_MK\}\+$"))) {
-		$bl_PKGBASE_line = $lines->[$lineno - 1];
-		$bl_PKGBASE = $m->text(1);
-		$opt_debug_misc and $bl_PKGBASE_line->log_debug("bl_PKGBASE=${bl_PKGBASE}");
-	} else {
-		lines_log_warning($lines, $lineno, "Expected {PKGNAME}_BUILDLINK3_MK:= \${{PKGNAME}_BUILDLINK3_MK}+.");
-		return;
-	}
-	expect_empty_line($lines, \$lineno);
-
-	# Second paragraph: Adding the dependency.
-	if (!expect($lines, \$lineno, qr"^\.if !empty\(BUILDLINK_DEPTH:M\+\)$")) {
-		if (!expect_text($lines, \$lineno, ".if \${BUILDLINK_DEPTH} == \"+\"")) {
-			return;
-		}
-	}
-	if (($m = expect($lines, \$lineno, qr"^BUILDLINK_DEPENDS\+=\t+(\S+)$"))) {
-		$bl_pkgbase_line = $lines->[$lineno - 1];
-		$bl_pkgbase = $m->text(1);
-		$opt_debug_misc and $bl_pkgbase_line->log_debug("bl_pkgbase=${bl_pkgbase}");
-	} else {
-		lines_log_warning($lines, $lineno, "BUILDLINK_DEPENDS line expected.");
-		return;
-	}
-
-	my $norm_bl_pkgbase = $bl_pkgbase;
-	$norm_bl_pkgbase =~ s/-/_/g;
-	$norm_bl_pkgbase = uc($norm_bl_pkgbase);
-	if ($norm_bl_pkgbase ne $bl_PKGBASE) {
-		$bl_PKGBASE_line->log_error("Package name mismatch between ${bl_PKGBASE} ...");
-		$bl_pkgbase_line->log_error("... and ${bl_pkgbase}.");
-	}
-	if (defined($effective_pkgbase) && $effective_pkgbase ne $bl_pkgbase) {
-		$bl_pkgbase_line->log_error("Package name mismatch between ${bl_pkgbase} ...");
-		$effective_pkgname_line->log_error("... and ${effective_pkgbase}.");
-	}
-
-	if (!expect_text($lines, \$lineno, ".endif")) {
-		return;
-	}
-	expect_empty_line($lines, \$lineno);
-
-	# Third paragraph: Duplicate elimination.
-	if (expect($lines, \$lineno, qr"^BUILDLINK_PACKAGES:=\t+\$\{BUILDLINK_PACKAGES:N\Q${bl_pkgbase}\E\}\s+\Q${bl_pkgbase}\E$")) {
-		# The compressed form of duplicate elimination.
-
-	} else {
-		if (!expect($lines, \$lineno, qr"^BUILDLINK_PACKAGES:=\t+\$\{BUILDLINK_PACKAGES:N\Q${bl_pkgbase}\E\}$")) {
-			lines_log_warning($lines, $lineno, "Expected BUILDLINK_PACKAGES:= \${BUILDLINK_PACKAGES:N${bl_pkgbase}} line.");
-			return;
-		}
-		if (!expect($lines, \$lineno, qr"^BUILDLINK_PACKAGES\+=\t+\Q${bl_pkgbase}\E$")) {
-			lines_log_warning($lines, $lineno, "Expected BUILDLINK_PACKAGES+= ${bl_pkgbase} line.");
-			return;
-		}
-	}
-	expect_text($lines, \$lineno, "BUILDLINK_ORDER:=\t\${BUILDLINK_ORDER} \${BUILDLINK_DEPTH}${bl_pkgbase}");
-	expect_empty_line($lines, \$lineno);
-
-	# Fourth paragraph: Package information.
-	if (!expect($lines, \$lineno, qr"^\.if !empty\(\Q${bl_PKGBASE}\E_BUILDLINK3_MK:M\+\)$")) {
-		if (!expect_text($lines, \$lineno, ".if \${${bl_PKGBASE}_BUILDLINK3_MK} == \"+\"")) {
-			return;
-		}
-	}
-	while (!expect($lines, \$lineno, qr"^\.endif.*$")) {
-
-		if ($lineno > $#{$lines}) {
-			lines_log_warning($lines, $lineno, "Expected .endif");
-			return;
-		}
-
-		my $line = $lines->[$lineno];
-
-		if (($m = expect($lines, \$lineno, regex_varassign))) {
-			my ($varname, $value) = ($m->text(1), $m->text(3));
-			my $do_check = false;
-
-			if ($varname eq "BUILDLINK_ABI_DEPENDS.${bl_pkgbase}") {
-				$abi_line = $line;
-				if ($value =~ regex_dependency_lge) {
-					($abi_pkg, $abi_version) = ($1, $2);
-				} elsif ($value =~ regex_dependency_wildcard) {
-					($abi_pkg) = ($1);
-				} else {
-					$opt_debug_unchecked and $line->log_debug("Unchecked dependency pattern \"${value}\".");
-				}
-				$do_check = true;
-			}
-			if ($varname eq "BUILDLINK_API_DEPENDS.${bl_pkgbase}") {
-				$api_line = $line;
-				if ($value =~ regex_dependency_lge) {
-					($api_pkg, $api_version) = ($1, $2);
-				} elsif ($value =~ regex_dependency_wildcard) {
-					($api_pkg) = ($1);
-				} else {
-					$opt_debug_unchecked and $line->log_debug("Unchecked dependency pattern \"${value}\".");
-				}
-				$do_check = true;
-			}
-			if ($do_check && defined($abi_pkg) && defined($api_pkg)) {
-				if ($abi_pkg ne $api_pkg) {
-					$abi_line->log_warning("Package name mismatch between ${abi_pkg} ...");
-					$api_line->log_warning("... and ${api_pkg}.");
-				}
-			}
-			if ($do_check && defined($abi_version) && defined($api_version)) {
-				if (!dewey_cmp($abi_version, ">=", $api_version)) {
-					$abi_line->log_warning("ABI version (${abi_version}) should be at least ...");
-					$api_line->log_warning("... API version (${api_version}).");
-				}
-			}
-
-			if ($varname =~ m"^BUILDLINK_[\w_]+\.(.*)$") {
-				my ($varparam) = ($1);
-
-				if ($varparam ne $bl_pkgbase) {
-					$line->log_warning("Only buildlink variables for ${bl_pkgbase}, not ${varparam} may be set in this file.");
-				}
-			}
-
-			# TODO: More checks.
-
-		} elsif (expect($lines, \$lineno, qr"^(?:#.*)?$")) {
-			# Comments and empty lines are fine here.
-
-		} else {
-			$opt_debug_unchecked and lines_log_warning($lines, $lineno, "Unchecked line in fourth paragraph.");
-			$lineno++;
-		}
-	}
-	if (!defined($api_line)) {
-		$lines->[$lineno - 1]->log_warning("Definition of BUILDLINK_API_DEPENDS is missing.");
-	}
-	expect_empty_line($lines, \$lineno);
-
-	# Before the fifth paragraph, it may be necessary to resolve the build
-	# options of other packages.
-	if (expect($lines, \$lineno, qr"^pkgbase\s*:=\s*(\S+)$")) {
-		do {
-			expect_text($lines, \$lineno, ".include \"../../mk/pkg-build-options.mk\"");
-		} while (expect($lines, \$lineno, qr"^pkgbase\s*:=\s*(\S+)$"));
-		expect_empty_line($lines, \$lineno);
-	}
-
-	# Fifth paragraph (optional): Dependencies.
-	my $have_dependencies = false;
-	my $need_empty_line = false;
-	while (true) {
-		if (expect($lines, \$lineno, qr"^\.\s*include \"\.\./\.\./([^/]+/[^/]+)/buildlink3\.mk\"$")
-		 || expect($lines, \$lineno, qr"^\.\s*include \"\.\./\.\./mk/(\S+)\.buildlink3\.mk\"$")
-		 || expect($lines, \$lineno, qr"^\.if !empty\(PKG_BUILD_OPTIONS\.\Q${bl_pkgbase}\E:M\S+\)$")
-		 || expect($lines, \$lineno, qr"^\.endif$")) {
-			$have_dependencies = true;
-			$need_empty_line = true;
-		} elsif ($have_dependencies && expect($lines, \$lineno, qr"^$")) {
-			$need_empty_line = false;
-		} else {
-			last;
-		}
-	}
-	if ($need_empty_line) {
-		expect_empty_line($lines, \$lineno);
-	}
-
-	# Sixth paragraph: Reference counter.
-	if (!expect($lines, \$lineno, qr"^BUILDLINK_DEPTH:=\t+\$\{BUILDLINK_DEPTH:S/\+\$//\}$")) {
-		lines_log_warning($lines, $lineno, "Expected BUILDLINK_DEPTH:= \${BUILDLINK_DEPTH:S/+\$//}.");
-		explain_warning($lines, $lineno,
-			"Everything besides the .include lines for the buildlink3.mk files of",
-			"dependencies should go between the .if !empty({PKGNAME}_BUILDLINK3_MK)",
-			"and the corresponding .endif.");
-		return;
-	}
-
-	if ($lineno <= $#{$lines}) {
-		$lines->[$lineno]->log_warning("The file should end here.");
-	}
-
-	checklines_buildlink3_inclusion($lines);
-}
-
-# This code is copy-pasted from checklines_buildlink3_mk_pre2009, which
-# will disappear after branching 2010Q1.
-#
-# In 2009, the format of the buildlink3.mk files has been revised to
-# improve the speed of pkgsrc. As a result, the file format has improved
-# in legibility and size.
-sub checklines_buildlink3_mk_2009($$$) {
+sub checklines_buildlink3_mk($$$) {
 	my ($lines, $lineno, $pkgid) = @_;
 	my ($m);
 	my ($bl_PKGBASE_line, $bl_PKGBASE);
@@ -5731,7 +5333,7 @@ sub checklines_buildlink3_mk_2009($$$) {
 	$bl_pkgbase = $pkgid;
 	$opt_debug_misc and $bl_pkgbase_line->log_debug("bl_pkgbase=${bl_pkgbase}");
 	expect_empty_line($lines, \$lineno);
-	
+
 	# Second paragraph: multiple inclusion protection and introduction
 	# of the uppercase package identifier.
 	return unless ($m = expect_re($lines, \$lineno, qr"^\.if !defined\((\S+)_BUILDLINK3_MK\)$"));
@@ -6010,17 +5612,17 @@ sub checkfile_distinfo($) {
 				$line->log_warning("${patches_dir}/${chksum_fname} is registered in distinfo but not added to CVS.");
 			}
 
-			if (open(PATCH, "<", $fname)) {
-				my $data = "";
-				foreach my $patchline (<PATCH>) {
-					$data .= $patchline unless $patchline =~ m"\$[N]etBSD";
+			if (open(my $patchfile, "<", $fname)) {
+				my $sha1 = Digest::SHA1->new();
+				while (defined(my $patchline = <$patchfile>)) {
+					$sha1->add($patchline) unless $patchline =~ m"\$[N]etBSD";
 				}
-				close(PATCH);
-				my $chksum = Digest::SHA1::sha1_hex($data);
+				close($patchfile);
+				my $chksum = $sha1->hexdigest();
 				if ($sum ne $chksum) {
 					$line->log_error("${alg} checksum of ${chksum_fname} differs (expected ${sum}, got ${chksum}). Rerun '".conf_make." makepatchsum'.");
 				}
-			} elsif (true) {
+			} else {
 				$line->log_warning("${chksum_fname} does not exist.");
 				$line->explain_warning(
 "All patches that are mentioned in a distinfo file should actually exist.",
@@ -6032,7 +5634,7 @@ sub checkfile_distinfo($) {
 	checklines_trailing_empty_lines($lines);
 
 	if (defined($patches_dir)) {
-		foreach my $patch (<${current_dir}/${patches_dir}/patch-*>) {
+		foreach my $patch (glob("${current_dir}/${patches_dir}/patch-*")) {
 			$patch = basename($patch);
 			if (!exists($in_distinfo{$patch})) {
 				log_error($fname, NO_LINE_NUMBER, "$patch is not recorded. Rerun '".conf_make." makepatchsum'.");
@@ -6265,449 +5867,7 @@ sub checkfile_package_Makefile($$) {
 	autofix($lines);
 }
 
-sub checkfile_patch($) {
-	my ($fname) = @_;
-	my ($lines);
-	my ($state, $redostate, $nextstate, $dellines, $addlines, $hunks);
-	my ($seen_comment, $current_fname, $current_ftype, $patched_files);
-	my ($leading_context_lines, $trailing_context_lines, $context_scanning_leading);
-
-	# Abbreviations used:
-	# style: [c] = context diff, [u] = unified diff
-	# scope: [f] = file, [h] = hunk, [l] = line
-	# action: [d] = delete, [m] = modify, [a] = add, [c] = context
-	use constant re_patch_rcsid	=> qr"^\$.*\$$";
-	use constant re_patch_text	=> qr"^(.+)$";
-	use constant re_patch_empty	=> qr"^$";
-	use constant re_patch_cfd	=> qr"^\*\*\*\s(\S+)(.*)$";
-	use constant re_patch_cfa	=> qr"^---\s(\S+)(.*)$";
-	use constant re_patch_ch	=> qr"^\*{15}(.*)$";
-	use constant re_patch_chd	=> qr"^\*{3}\s(\d+)(?:,(\d+))?\s\*{4}$";
-	use constant re_patch_cha	=> qr"^-{3}\s(\d+)(?:,(\d+))?\s-{4}$";
-	use constant re_patch_cld	=> qr"^(?:-\s(.*))?$";
-	use constant re_patch_clm	=> qr"^(?:!\s(.*))?$";
-	use constant re_patch_cla	=> qr"^(?:\+\s(.*))?$";
-	use constant re_patch_clc	=> qr"^(?:\s\s(.*))?$";
-	use constant re_patch_ufd	=> qr"^---\s(\S+)(?:\s+(.*))?$";
-	use constant re_patch_ufa	=> qr"^\+{3}\s(\S+)(?:\s+(.*))?$";
-	use constant re_patch_uh	=> qr"^\@\@\s-(?:(\d+),)?(\d+)\s\+(?:(\d+),)?(\d+)\s\@\@(.*)$";
-	use constant re_patch_uld	=> qr"^-(.*)$";
-	use constant re_patch_ula	=> qr"^\+(.*)$";
-	use constant re_patch_ulc	=> qr"^\s(.*)$";
-	use constant re_patch_ulnonl	=> qr"^\\ No newline at end of file$";
-
-	use enum qw(:PST_
-		START CENTER TEXT
-		CFA CH CHD CLD0 CLD CLA0 CLA
-		UFA UH UL
-	);
-
-	my @comment_explanation = (
-"Each patch must document why it is necessary. If it has been applied",
-"because of a security issue, a reference to the CVE should be mentioned",
-"as well.",
-"",
-"Since it is our goal to have as few patches as possible, all patches",
-"should be sent to the upstream maintainers of the package. After you",
-"have done so, you should add a reference to the bug report containing",
-"the patch.");
-
-	my ($line, $m);
-
-	my $check_text = sub($) {
-		my ($text) = @_;
-
-		if ($text =~ m"(\$(Author|Date|Header|Id|Locker|Log|Name|RCSfile|Revision|Source|State|$opt_rcsidstring)(?::[^\$]*)?\$)") {
-			my ($tag) = ($2);
-
-			if ($text =~ re_patch_uh) {
-				$line->log_warning("Found RCS tag \"\$${tag}\$\". Please remove it.");
-				$line->set_text($1);
-			} else {
-				$line->log_warning("Found RCS tag \"\$${tag}\$\". Please remove it by reducing the number of context lines using pkgdiff or \"diff -U[210]\".");
-			}
-		}
-	};
-
-	my $check_contents = sub() {
-
-		if ($m->has(1)) {
-			$check_text->($m->text(1));
-		}
-	};
-
-	my $check_added_contents = sub() {
-		my $text;
-
-		return unless $m->has(1);
-		$text = $m->text(1);
-		checkline_cpp_macro_names($line, $text);
-		checkline_spellcheck($line);
-
-		# XXX: This check is not as accurate as the similar one in
-		# checkline_mk_shelltext().
-		if (defined($current_fname)) {
-			if ($current_ftype eq "shell" || $current_ftype eq "make") {
-				my ($mm, $rest) = match_all($text, $regex_shellword);
-
-				foreach my $m (@{$mm}) {
-					my $shellword = $m->text(1);
-
-					if ($shellword =~ m"^#") {
-						last;
-					}
-					checkline_mk_absolute_pathname($line, $shellword);
-				}
-
-			} elsif ($current_ftype eq "source") {
-				checkline_source_absolute_pathname($line, $text);
-
-			} elsif ($current_ftype eq "configure") {
-				if ($text =~ m": Avoid regenerating within pkgsrc$") {
-					$line->log_error("This code must not be included in patches.");
-					$line->explain_error(
-"It is generated automatically by pkgsrc after the patch phase.",
-"",
-"For more details, look for \"configure-scripts-override\" in",
-"mk/configure/gnu-configure.mk.");
-				}
-
-			} elsif ($current_ftype eq "ignore") {
-				# Ignore it.
-
-			} else {
-				checkline_other_absolute_pathname($line, $text);
-			}
-		}
-	};
-
-	my $check_hunk_end = sub($$$) {
-		my ($deldelta, $adddelta, $newstate) = @_;
-
-		if ($deldelta > 0 && $dellines == 0) {
-			$redostate = $newstate;
-			if (defined($addlines) && $addlines > 0) {
-				$line->log_error("Expected ${addlines} more lines to be added.");
-			}
-		} elsif ($adddelta > 0 && $addlines == 0) {
-			$redostate = $newstate;
-			if (defined($dellines) && $dellines > 0) {
-				$line->log_error("Expected ${dellines} more lines to be deleted.");
-			}
-		} else {
-			if (defined($context_scanning_leading)) {
-				if ($deldelta != 0 && $adddelta != 0) {
-					if ($context_scanning_leading) {
-						$leading_context_lines++;
-					} else {
-						$trailing_context_lines++;
-					}
-				} else {
-					if ($context_scanning_leading) {
-						$context_scanning_leading = false;
-					} else {
-						$trailing_context_lines = 0;
-					}
-				}
-			}
-
-			if ($deldelta != 0) {
-				$dellines -= $deldelta;
-			}
-			if ($adddelta != 0) {
-				$addlines -= $adddelta;
-			}
-			if (!((defined($dellines) && $dellines > 0) ||
-			      (defined($addlines) && $addlines > 0))) {
-				if (defined($context_scanning_leading)) {
-					if ($leading_context_lines != $trailing_context_lines) {
-						$opt_debug_patches and $line->log_warning("The hunk that ends here does not have as many leading (${leading_context_lines}) as trailing (${trailing_context_lines}) lines of context.");
-					}
-				}
-				$nextstate = $newstate;
-			}
-		}
-	};
-
-	# @param deldelta
-	#	The number of lines that are deleted from the patched file.
-	# @param adddelta
-	#	The number of lines that are added to the patched file.
-	# @param newstate
-	#	The follow-up state when this line is the last line to be
-	#	added in this hunk of the patch.
-	#
-	my $check_hunk_line = sub($$$) {
-		my ($deldelta, $adddelta, $newstate) = @_;
-
-		$check_contents->();
-		$check_hunk_end->($deldelta, $adddelta, $newstate);
-
-		# If -Wextra is given, the context lines are checked for
-		# absolute paths and similar things. If it is not given,
-		# only those lines that really add something to the patched
-		# file are checked.
-		if ($adddelta != 0 && ($deldelta == 0 || $opt_warn_extra)) {
-			$check_added_contents->();
-		}
-	};
-
-	# [ regex, to state, action ]
-	my $transitions = {
-		PST_START() =>
-		[   [re_patch_rcsid, PST_CENTER, sub() {
-			checkline_rcsid($line, "");
-		}], [undef, PST_CENTER, sub() {
-			checkline_rcsid($line, "");
-		}]],
-		PST_CENTER() =>
-		[   [re_patch_empty, PST_TEXT, sub() {
-			#
-		}], [re_patch_cfd, PST_CFA, sub() {
-			if ($seen_comment) {
-				$opt_warn_space and $line->log_note("Empty line expected.");
-			} else {
-				$line->log_error("Comment expected.");
-				$line->explain_error(@comment_explanation);
-			}
-			$line->log_warning("Please use unified diffs (diff -u) for patches.");
-		}], [re_patch_ufd, PST_UFA, sub() {
-			if ($seen_comment) {
-				$opt_warn_space and $line->log_note("Empty line expected.");
-			} else {
-				$line->log_error("Comment expected.");
-				$line->explain_error(@comment_explanation);
-			}
-		}], [undef, PST_TEXT, sub() {
-			$opt_warn_space and $line->log_note("Empty line expected.");
-		}]],
-		PST_TEXT() =>
-		[   [re_patch_cfd, PST_CFA, sub() {
-			if (!$seen_comment) {
-				$line->log_error("Comment expected.");
-				$line->explain_error(@comment_explanation);
-			}
-			$line->log_warning("Please use unified diffs (diff -u) for patches.");
-		}], [re_patch_ufd, PST_UFA, sub() {
-			if (!$seen_comment) {
-				$line->log_error("Comment expected.");
-				$line->explain_error(@comment_explanation);
-			}
-		}], [re_patch_text, PST_TEXT, sub() {
-			$seen_comment = true;
-		}], [re_patch_empty, PST_TEXT, sub() {
-			#
-		}], [undef, PST_TEXT, sub() {
-			#
-		}]],
-		PST_CFA() =>
-		[   [re_patch_cfa, PST_CH, sub() {
-			$current_fname = $m->text(1);
-			$current_ftype = get_filetype($line, $current_fname);
-			$opt_debug_patches and $line->log_debug("fname=$current_fname ftype=$current_ftype");
-			$patched_files++;
-			$hunks = 0;
-		}]],
-		PST_CH() =>
-		[   [re_patch_ch, PST_CHD, sub() {
-			$hunks++;
-		}]],
-		PST_CHD() =>
-		[   [re_patch_chd, PST_CLD0, sub() {
-			$dellines = ($m->has(2))
-			    ? (1 + $m->text(2) - $m->text(1))
-			    : ($m->text(1));
-		}]],
-		PST_CLD0() =>
-		[   [re_patch_clc, PST_CLD, sub() {
-			$check_hunk_line->(1, 0, PST_CLD0);
-		}], [re_patch_cld, PST_CLD, sub() {
-			$check_hunk_line->(1, 0, PST_CLD0);
-		}], [re_patch_clm, PST_CLD, sub() {
-			$check_hunk_line->(1, 0, PST_CLD0);
-		}], [re_patch_cha, PST_CLA0, sub() {
-			$dellines = undef;
-			$addlines = ($m->has(2))
-			    ? (1 + $m->text(2) - $m->text(1))
-			    : ($m->text(1));
-		}]],
-		PST_CLD() =>
-		[   [re_patch_clc, PST_CLD, sub() {
-			$check_hunk_line->(1, 0, PST_CLD0);
-		}], [re_patch_cld, PST_CLD, sub() {
-			$check_hunk_line->(1, 0, PST_CLD0);
-		}], [re_patch_clm, PST_CLD, sub() {
-			$check_hunk_line->(1, 0, PST_CLD0);
-		}], [undef, PST_CLD0, sub() {
-			if ($dellines != 0) {
-				$line->log_warning("Invalid number of deleted lines (${dellines} missing).");
-			}
-		}]],
-		PST_CLA0() =>
-		[   [re_patch_clc, PST_CLA, sub() {
-			$check_hunk_line->(0, 1, PST_CH);
-		}], [re_patch_clm, PST_CLA, sub() {
-			$check_hunk_line->(0, 1, PST_CH);
-		}], [re_patch_cla, PST_CLA, sub() {
-			$check_hunk_line->(0, 1, PST_CH);
-		}], [undef, PST_CH, sub() {
-			#
-		}]],
-		PST_CLA() =>
-		[   [re_patch_clc, PST_CLA, sub() {
-			$check_hunk_line->(0, 1, PST_CH);
-		}], [re_patch_clm, PST_CLA, sub() {
-			$check_hunk_line->(0, 1, PST_CH);
-		}], [re_patch_cla, PST_CLA, sub() {
-			$check_hunk_line->(0, 1, PST_CH);
-		}], [undef, PST_CLA0, sub() {
-			if ($addlines != 0) {
-				$line->log_warning("Invalid number of added lines (${addlines} missing).");
-			}
-		}]],
-		PST_CH() =>
-		[   [undef, PST_TEXT, sub() {
-			#
-		}]],
-		PST_UFA() =>
-		[   [re_patch_ufa, PST_UH, sub() {
-			$current_fname = $m->text(1);
-			$current_ftype = get_filetype($line, $current_fname);
-			$opt_debug_patches and $line->log_debug("fname=$current_fname ftype=$current_ftype");
-			$patched_files++;
-			$hunks = 0;
-		}]],
-		PST_UH() =>
-		[   [re_patch_uh, PST_UL, sub() {
-			$dellines = ($m->has(1) ? $m->text(2) : 1);
-			$addlines = ($m->has(3) ? $m->text(4) : 1);
-			$check_text->($line->text);
-			if ($line->text =~ m"\r$") {
-				$line->log_error("The hunk header must not end with a CR character.");
-				$line->explain_error(
-"The MacOS X patch utility cannot handle these.");
-			}
-			$hunks++;
-			$context_scanning_leading = (($m->has(1) && $m->text(1) ne "1") ? true : undef);
-			$leading_context_lines = 0;
-			$trailing_context_lines = 0;
-		}], [undef, PST_TEXT, sub() {
-			($hunks != 0) || $line->log_warning("No hunks for file ${current_fname}.");
-		}]],
-		PST_UL() =>
-		[   [re_patch_uld, PST_UL, sub() {
-			$check_hunk_line->(1, 0, PST_UH);
-		}], [re_patch_ula, PST_UL, sub() {
-			$check_hunk_line->(0, 1, PST_UH);
-		}], [re_patch_ulc, PST_UL, sub() {
-			$check_hunk_line->(1, 1, PST_UH);
-		}], [re_patch_ulnonl, PST_UL, sub() {
-			#
-		}], [re_patch_empty, PST_UL, sub() {
-			$opt_warn_space and $line->log_note("Leading white-space missing in hunk.");
-			$check_hunk_line->(1, 1, PST_UH);
-		}], [undef, PST_UH, sub() {
-			if ($dellines != 0 || $addlines != 0) {
-				$line->log_warning("Unexpected end of hunk (-${dellines},+${addlines} expected).");
-			}
-		}]]};
-
-	$opt_debug_trace and log_debug($fname, NO_LINES, "checkfile_patch()");
-
-	checkperms($fname);
-	if (!($lines = load_lines($fname, false))) {
-		log_error($fname, NO_LINE_NUMBER, "Could not be read.");
-		return;
-	}
-	if (@{$lines} == 0) {
-		log_error($fname, NO_LINE_NUMBER, "Must not be empty.");
-		return;
-	}
-
-	$state = PST_START;
-	$dellines = undef;
-	$addlines = undef;
-	$patched_files = 0;
-	$seen_comment = false;
-	$current_fname = undef;
-	$current_ftype = undef;
-	$hunks = undef;
-
-	for (my $lineno = 0; $lineno <= $#{$lines}; ) {
-		$line = $lines->[$lineno];
-		my $text = $line->text;
-
-		$opt_debug_patches and $line->log_debug("[${state} ${patched_files}/".($hunks||0)."/-".($dellines||0)."+".($addlines||0)."] $text");
-
-		my $found = false;
-		foreach my $t (@{$transitions->{$state}}) {
-				if (!defined($t->[0])) {
-					$m = undef;
-				} elsif ($text =~ $t->[0]) {
-					$opt_debug_patches and $line->log_debug($t->[0]);
-					$m = PkgLint::SimpleMatch->new($text, \@-, \@+);
-				} else {
-					next;
-				}
-				$redostate = undef;
-				$nextstate = $t->[1];
-				$t->[2]->();
-				if (defined($redostate)) {
-					$state = $redostate;
-				} else {
-					$state = $nextstate;
-					if (defined($t->[0])) {
-						$lineno++;
-					}
-				}
-				$found = true;
-				last;
-		}
-
-		if (!$found) {
-			$line->log_error("Parse error: state=${state}");
-			$state = PST_TEXT;
-			$lineno++;
-		}
-	}
-
-	while ($state != PST_TEXT) {
-		$opt_debug_patches and log_debug($fname, "EOF", "[${state} ${patched_files}/".($hunks||0)."/-".($dellines||0)."+".($addlines||0)."]");
-
-		my $found = false;
-		foreach my $t (@{$transitions->{$state}}) {
-			if (!defined($t->[0])) {
-				my $newstate;
-
-				$m = undef;
-				$redostate = undef;
-				$nextstate = $t->[1];
-				$t->[2]->();
-				$newstate = (defined($redostate)) ? $redostate : $nextstate;
-				if ($newstate == $state) {
-					log_fatal($fname, "EOF", "Internal error in the patch transition table.");
-				}
-				$state = $newstate;
-				$found = true;
-				last;
-			}
-		}
-
-		if (!$found) {
-			log_error($fname, "EOF", "Parse error: state=${state}");
-			$state = PST_TEXT;
-		}
-	}
-
-	if ($patched_files > 1) {
-		log_warning($fname, NO_LINE_NUMBER, "Contains patches for $patched_files files, should be only one.");
-
-	} elsif ($patched_files == 0) {
-		log_error($fname, NO_LINE_NUMBER, "Contains no patch.");
-	}
-
-	checklines_trailing_empty_lines($lines);
-}
+#include PkgLint/Patches.pm
 
 sub checkfile_PLIST($) {
 	my ($fname) = @_;
@@ -6754,13 +5914,13 @@ sub checkfile_PLIST($) {
 	foreach my $line (@{$extra_lines}, @{$lines}) {
 		my $text = $line->text;
 
-		if ($text =~ m"\$\{([\w_]+)\}(.*)") {
+		if (index($text, '${') != -1 && $text =~ m"\$\{([\w_]+)\}(.*)") {
 			if (defined($pkgctx_plist_subst_cond) && exists($pkgctx_plist_subst_cond->{$1})) {
 				$opt_debug_misc and $line->log_debug("Removed PLIST_SUBST conditional $1.");
 				$text = $2;
 			}
 		}
-		
+
 		if ($text =~ m"^[\w\$]") {
 			$all_files->{$text} = $line;
 			my $dir = $text;
@@ -6768,7 +5928,7 @@ sub checkfile_PLIST($) {
 				$all_dirs->{$dir} = $line;
 			}
 		}
-		if ($text =~ m"^\@exec \$\{MKDIR\} %D/(.*)$") {
+		if (substr($text, 0, 1) eq '@' && $text =~ m"^\@exec \$\{MKDIR\} %D/(.*)$") {
 			my $dir = $1;
 			do {
 				$all_dirs->{$dir} = $line;
@@ -6786,7 +5946,7 @@ sub checkfile_PLIST($) {
 		}
 
 		# @foo directives.
-		if ($text =~ /^(?:\$\{[\w_]+\})?\@([a-z-]+)\s+(.*)/) {
+		if (index($text, '@') != -1 && $text =~ /^(?:\$\{[\w_]+\})?\@([a-z-]+)\s+(.*)/) {
 			my ($cmd, $arg) = ($1, $2);
 
 			if ($cmd eq "unexec" && $arg =~ m"^(rmdir|\$\{RMDIR\} \%D/)(.*)") {
@@ -6847,11 +6007,11 @@ sub checkfile_PLIST($) {
 				$last_file_seen = $text;
 			}
 
-			if ($basename =~ m"\$\{IMAKE_MANNEWSUFFIX\}") {
+			if (index($basename, '${IMAKE_MANNEWSUFFIX}') != -1) {
 				warn_about_PLIST_imake_mannewsuffix($line);
 			}
 
-			if ($dirname =~ m"^bin/") {
+			if (substr($dirname, 0, 4) eq "bin/") {
 				$line->log_warning("The bin/ directory should not have subdirectories.");
 
 			} elsif ($dirname eq "bin") {
@@ -6871,25 +6031,25 @@ sub checkfile_PLIST($) {
 "section 8.");
 				}
 
-			} elsif ($text =~ m"^doc/") {
+			} elsif (substr($text, 0, 4) eq "doc/") {
 				$line->log_error("Documentation must be installed under share/doc, not doc.");
 
-			} elsif ($text =~ m"^etc/rc\.d/") {
+			} elsif (substr($text, 0, 9) eq "etc/rc.d/") {
 				$line->log_error("RCD_SCRIPTS must not be registered in the PLIST. Please use the RCD_SCRIPTS framework.");
 
-			} elsif ($text =~ m"^etc/") {
+			} elsif (substr($text, 0, 4) eq "etc/") {
 				my $f = "mk/pkginstall/bsd.pkginstall.mk";
 
 				assert(-f "${cwd_pkgsrcdir}/${f}", "${cwd_pkgsrcdir}/${f} is not a regular file.");
 				$line->log_error("Configuration files must not be registered in the PLIST. Please use the CONF_FILES framework, which is described in ${f}.");
 
-			} elsif ($text =~ m"^include/.*\.(?:h|hpp)$") {
+			} elsif (substr($text, 0, 8) eq "include/" && $text =~ m"^include/.*\.(?:h|hpp)$") {
 				# Fine.
 
 			} elsif ($text eq "info/dir") {
 				$line->log_error("\"info/dir\" must not be listed. Use install-info to add/remove an entry.");
 
-			} elsif ($text =~ m"^info/.+$") {
+			} elsif (substr($text, 0, 5) eq "info/" && length($text) > 5) {
 				if (defined($pkgctx_vardef) && !exists($pkgctx_vardef->{"INFO_FILES"})) {
 					$line->log_warning("Packages that install info files should set INFO_FILES.");
 				}
@@ -6897,10 +6057,10 @@ sub checkfile_PLIST($) {
 			} elsif (defined($effective_pkgbase) && $text =~ m"^lib/\Q${effective_pkgbase}\E/") {
 				# Fine.
 
-			} elsif ($text =~ m"^lib/locale/") {
+			} elsif (substr($text, 0, 11) eq "lib/locale/") {
 				$line->log_error("\"lib/locale\" must not be listed. Use \${PKGLOCALEDIR}/locale and set USE_PKGLOCALEDIR instead.");
 
-			} elsif ($text =~ m"^(lib/(?:.*/)*)([^/]+)\.(so|a|la)$") {
+			} elsif (substr($text, 0, 4) eq "lib/" && $text =~ m"^(lib/(?:.*/)*)([^/]+)\.(so|a|la)$") {
 				my ($dir, $lib, $ext) = ($1, $2, $3);
 
 				if ($dir eq "lib/" && $lib !~ m"^lib") {
@@ -6912,7 +6072,7 @@ sub checkfile_PLIST($) {
 					}
 				}
 
-			} elsif ($text =~ m"^man/(cat|man)(\w+)/(.*?)\.(\w+)(\.gz)?$") {
+			} elsif (substr($text, 0, 4) eq "man/" && $text =~ m"^man/(cat|man)(\w+)/(.*?)\.(\w+)(\.gz)?$") {
 				my ($cat_or_man, $section, $manpage, $ext, $gz) = ($1, $2, $3, $4, $5);
 
 				if ($section !~ m"^[\dln]$") {
@@ -6942,14 +6102,14 @@ sub checkfile_PLIST($) {
 "or not.");
 				}
 
-			} elsif ($text =~ m"^man/cat") {
+			} elsif (substr($text, 0, 7) eq "man/cat") {
 				$line->log_warning("Invalid filename \"${text}\" for preformatted manual page.");
 
-			} elsif ($text =~ m"^man/man") {
+			} elsif (substr($text, 0, 7) eq "man/man") {
 				$line->log_warning("Invalid filename \"${text}\" for unformatted manual page.");
 
-			} elsif ($text =~ m"^sbin/(.*)") {
-				my ($binname) = ($1);
+			} elsif (substr($text, 0, 5) eq "sbin/") {
+				my $binname = substr($text, 5);
 
 				if (!exists($all_files->{"man/man8/${binname}.8"})) {
 					$opt_warn_extra and $line->log_warning("Manual page missing for sbin/${binname}.");
@@ -6960,7 +6120,7 @@ sub checkfile_PLIST($) {
 "section 1.");
 				}
 
-			} elsif ($text =~ m"^share/applications/.*\.desktop$") {
+			} elsif (substr($text, 0, 6) eq "share/" && $text =~ m"^share/applications/.*\.desktop$") {
 				my $f = "../../sysutils/desktop-file-utils/desktopdb.mk";
 				if (defined($pkgctx_included) && !exists($pkgctx_included->{$f})) {
 					$line->log_warning("Packages that install a .desktop entry may .include \"$f\".");
@@ -6975,7 +6135,7 @@ sub checkfile_PLIST($) {
 					$line->log_warning("Packages that install icon theme files should set ICON_THEMES.");
 				}
 
-			} elsif ($pkgpath ne "graphics/hicolor-icon-theme" && $text =~ m"^share/icons/hicolor(?:$|/)") {
+			} elsif (substr($text, 0, 6) eq "share/" && $pkgpath ne "graphics/hicolor-icon-theme" && $text =~ m"^share/icons/hicolor(?:$|/)") {
 				my $f = "../../graphics/hicolor-icon-theme/buildlink3.mk";
 				if (defined($pkgctx_included) && !exists($pkgctx_included->{$f})) {
 					$line->log_error("Please .include \"$f\" in the Makefile");
@@ -6984,7 +6144,7 @@ sub checkfile_PLIST($) {
 "maintained. The hicolor-icon-theme package takes care of that.");
 				}
 
-			} elsif ($pkgpath ne "graphics/gnome-icon-theme" && $text =~ m"^share/icons/gnome(?:$|/)") {
+			} elsif (substr($text, 0, 6) eq "share/" && $pkgpath ne "graphics/gnome-icon-theme" && $text =~ m"^share/icons/gnome(?:$|/)") {
 				my $f = "../../graphics/gnome-icon-theme/buildlink3.mk";
 				if (defined($pkgctx_included) && !exists($pkgctx_included->{$f})) {
 					$line->log_error("Please .include \"$f\"");
@@ -6994,30 +6154,24 @@ sub checkfile_PLIST($) {
 			} elsif ($dirname eq "share/aclocal" && $basename =~ m"\.m4$") {
 				# Fine.
 
-			} elsif ($text =~ m"^share/doc/html/") {
+			} elsif (substr($text, 0, 15) eq "share/doc/html/") {
 				$opt_warn_plist_depr and $line->log_warning("Use of \"share/doc/html\" is deprecated. Use \"share/doc/\${PKGBASE}\" instead.");
 
-			} elsif (defined($effective_pkgbase) && $text =~ m"^share/doc/\Q${effective_pkgbase}\E/") {
-				# Fine.
-
-			} elsif (defined($effective_pkgbase) && $text =~ m"^share/examples/\Q${effective_pkgbase}\E/") {
-				# Fine.
-
-			} elsif (defined($effective_pkgbase) && $text =~ m"^share/\Q${effective_pkgbase}\E/") {
+			} elsif (defined($effective_pkgbase) && $text =~ m"^share/(?:doc/|examples/|)\Q${effective_pkgbase}\E/") {
 				# Fine.
 
 			} elsif ($pkgpath ne "graphics/hicolor-icon-theme" && $text =~ m"^share/icons/hicolor/icon-theme\.cache") {
 				$line->log_error("Please .include \"../../graphics/hicolor-icon-theme/buildlink3.mk\" and remove this line.");
 
-			} elsif ($text =~ m"^share/info/") {
+			} elsif (substr($text, 0, 11) eq "share/info/") {
 				$line->log_warning("Info pages should be installed into info/, not share/info/.");
 				$line->explain_warning(
 "To fix this, you should add INFO_FILES=yes to the package Makefile.");
 
-			} elsif ($text =~ m"^share/locale/[\w\@_]+/LC_MESSAGES/[^/]+\.mo$") {
+			} elsif (substr($text, -3) eq ".mo" && $text =~ m"^share/locale/[\w\@_]+/LC_MESSAGES/[^/]+\.mo$") {
 				# Fine.
 
-			} elsif ($text =~ m"^share/man/") {
+			} elsif (substr($text, 0, 10) eq "share/man/") {
 				$line->log_warning("Man pages should be installed into man/, not share/man/.");
 
 			} else {
@@ -7028,13 +6182,13 @@ sub checkfile_PLIST($) {
 				$line->log_warning("PLIST contains \${PKGLOCALEDIR}, but USE_PKGLOCALEDIR was not found.");
 			}
 
-			if ($text =~ m"/CVS/") {
+			if (index($text, "/CVS/") != -1) {
 				$line->log_warning("CVS files should not be in the PLIST.");
 			}
-			if ($text =~ m"\.orig$") {
+			if (substr($text, -5) eq ".orig") {
 				$line->log_warning(".orig files should not be in the PLIST.");
 			}
-			if ($text =~ m"/perllocal\.pod$") {
+			if (substr($text, -14) eq "/perllocal.pod") {
 				$line->log_warning("perllocal.pod files should not be in the PLIST.");
 				$line->explain_warning(
 "This file is handled automatically by the INSTALL/DEINSTALL scripts,",
@@ -7444,14 +6598,14 @@ sub checkdir_package() {
 		goto cleanup;
 	}
 
-	my @files = <${current_dir}/*>;
+	my @files = glob("${current_dir}/*");
 	if ($pkgdir ne ".") {
-		push(@files, <${current_dir}/${pkgdir}/*>);
+		push(@files, glob("${current_dir}/${pkgdir}/*"));
 	}
 	if ($opt_check_extra) {
-		push(@files, <${current_dir}/${filesdir}/*>);
+		push(@files, glob("${current_dir}/${filesdir}/*"));
 	}
-	push(@files, <${current_dir}/${patchdir}/*>);
+	push(@files, glob("${current_dir}/${patchdir}/*"));
 	if ($distinfo_file !~ m"^(?:\./)?distinfo$") {
 		push(@files, "${current_dir}/${distinfo_file}");
 	}
@@ -7594,7 +6748,7 @@ sub checkitem($) {
 
 sub main() {
 
-	$| = true;
+	local $| = true;
 	parse_command_line();
 
 	@todo_items = (@ARGV != 0) ? @ARGV : (".");
