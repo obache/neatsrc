@@ -1,4 +1,4 @@
-$NetBSD: patch-os_io.c,v 1.2 2015/10/11 17:40:24 tnn Exp $
+$NetBSD: patch-os_io.c,v 1.1 2015/10/11 17:51:47 tnn Exp $
 
 move X11/Xpoll.h include earlier than sys/select.h to avoid missing
 out on setting FD_SETSIZE early enough.
