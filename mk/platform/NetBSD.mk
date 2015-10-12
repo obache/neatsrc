@@ -43,6 +43,13 @@ ULIMIT_CMD_cputime?=	ulimit -t `ulimit -H -t`
 X11_TYPE?=		native
 .endif
 
+# Builtin defaults which make sense for this platform.
+_OPSYS_PREFER.curses?=		native
+_OPSYS_PREFER.gettext-lib?=	native
+_OPSYS_PREFER.libiconv?=	native
+_OPSYS_PREFER.termcap?=		native
+_OPSYS_PREFER.terminfo?=	native
+
 _OPSYS_EMULDIR.aout=		/emul/aout
 _OPSYS_EMULDIR.darwin=		/emul/darwin
 _OPSYS_EMULDIR.freebsd=		/emul/freebsd
