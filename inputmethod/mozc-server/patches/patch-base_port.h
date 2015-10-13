@@ -1,6 +1,8 @@
---- base/port.h.orig	2015-06-07 16:16:23.000000000 +0900
+$NetBSD: patch-base_port.h,v 1.1 2015/10/12 07:24:51 ryoon Exp $
+
+--- base/port.h.orig	2015-09-05 17:32:12.000000000 +0000
 +++ base/port.h
-@@ -130,6 +130,10 @@
+@@ -130,6 +130,10 @@ static const  int64 kint64max  = (( int6
  #define AS_STRING(x)   AS_STRING_INTERNAL(x)
  #define AS_STRING_INTERNAL(x)   #x
  

@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4240 2015/10/12 00:23:47 ryoon Exp $
+$NetBSD: CHANGES-2015,v 1.4253 2015/10/12 18:25:18 agc Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7306,3 +7306,22 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated inputmethod/mozc-elisp to 2.17.2116.102 [ryoon 2015-10-12]
 	Updated inputmethod/ibus-mozc to 2.17.2116.102 [ryoon 2015-10-12]
 	Updated inputmethod/uim-mozc to 2.17.2116.102 [ryoon 2015-10-12]
+	Updated www/contao35 to 3.5.4 [taca 2015-10-12]
+	Updated time/ruby-tzinfo to 0.3.45 [taca 2015-10-12]
+	Updated devel/ruby-rugged to 0.23.3 [taca 2015-10-12]
+	Updated inputmethod/mozc-server to 2.17.2116.102nb1 [ryoon 2015-10-12]
+	Updated inputmethod/mozc-renderer to 2.17.2116.102nb1 [ryoon 2015-10-12]
+	Updated inputmethod/mozc-elisp to 2.17.2116.102nb1 [ryoon 2015-10-12]
+	Updated inputmethod/mozc-tool to 2.17.2116.102nb1 [ryoon 2015-10-12]
+	Updated inputmethod/ibus-mozc to 2.17.2116.102nb1 [ryoon 2015-10-12]
+	Updated inputmethod/uim-mozc to 2.17.2116.102nb1 [ryoon 2015-10-12]
+	Updated sysutils/liblognorm to 1.1.2 [fhajny 2015-10-12]
+	Updated www/matcha-sns to 1.3.7 [ryoon 2015-10-12]
+	Updated archivers/libunrar to 5.3.6 [adam 2015-10-12]
+	Updated archivers/unrar to 5.3.6 [adam 2015-10-12]
+	Updated databases/ruby-sqlite3 to 1.3.11 [taca 2015-10-12]
+	Updated devel/ruby-highline to 1.7.8 [taca 2015-10-12]
+	Updated devel/ruby-test-unit to 3.1.5 [taca 2015-10-12]
+	Updated graphics/enblend-enfuse to 4.1.4 [adam 2015-10-12]
+	Added biology/cdhit version 4.6.4 [leot 2015-10-12]
+	mk/bsd.pkg.mk: add SHA512 digests for distfiles [agc 2015-10-12]
