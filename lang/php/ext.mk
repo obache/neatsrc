@@ -57,6 +57,12 @@ USE_LIBTOOL=		YES
 LIBTOOL_OVERRIDE=	YES
 USE_TOOLS+=		automake
 
+.if !empty(PHP_ZEND_EXTENSION:U:M[Yy][Ye][Ss])
+PHP_EXTENSION_DIRECTIVE=zend_extension
+.else
+PHP_EXTENSION_DIRECTIVE=extension
+.endif
+
 # Ensure we export symbols in the linked shared object.
 LDFLAGS+=		${EXPORT_SYMBOLS_LDFLAGS}
 MAKE_ENV+=		EXPORT_SYMBOLS_LDFLAGS="${EXPORT_SYMBOLS_LDFLAGS}"
@@ -65,11 +71,7 @@ PLIST_SRC+=		${.CURDIR}/../../lang/php/PLIST.module
 MESSAGE_SRC=		${.CURDIR}/../../lang/php/MESSAGE.module
 MESSAGE_SUBST+=		MODNAME=${PKGMODNAME}
 MESSAGE_SUBST+=		PHP_EXTENSION_DIR=${PHP_EXTENSION_DIR}
-.if !empty(PHP_ZEND_EXTENSION:U:M[Yy][Ye][Ss])
-MESSAGE_SUBST+=		EXTENSION_DIRECTIVE=zend_extension
-.else
-MESSAGE_SUBST+=		EXTENSION_DIRECTIVE=extension
-.endif
+MESSAGE_SUBST+=		PHP_EXTENSION_DIRECTIVE=${PHP_EXTENSION_DIRECTIVE}
 
 # Also include extension-specific message
 .if exists(${.CURDIR}/MESSAGE)
