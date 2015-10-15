@@ -5,6 +5,28 @@
 # Just include this file, define MODNAME, define PKGREVISION if necessary,
 # add dependencies, and add the appropriate --with-configure-arg, then include
 # bsd.pkg.mk.
+#
+# === User-settable variables ===
+#
+# PHP_AUTO_REGISTER_EXT
+#	Indicates whether to automatically install php extension config
+#	file into ${PKG_SYSCONFDIR}/php.d.
+#
+#	Possible: YES or NO
+#	Default: YES
+#
+# === Infrastructure variables ===
+#
+# PHP_EXTENSION_DIRECTIVE
+#	PHP extension directive used for configuration file.
+#
+#	Possible: extension zend_extension
+#	Default:  extension
+#
+# === Package-settable variables ===
+#
+# PHP_ZEND_EXTENSION 
+#	Set for Zend extension
 
 .if !defined(PHPEXT_MK)
 PHPEXT_MK=	defined
