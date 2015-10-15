@@ -10,7 +10,7 @@
 PHPEXT_MK=	defined
 
 _VARGROUPS+=		phpext
-_USER_VARS.phpext=	# none
+_USER_VARS.phpext=	PHP_AUTO_REGISTER_EXT
 _PKG_VARS.phpext=	MODNAME PECL_VERSION PKGMODNAME MODULESDIR \
 			USE_PHP_EXT_PATCHES
 _SYS_VARS.phpext=	DISTINFO_FILE PATCHDIR
@@ -57,6 +57,8 @@ USE_LIBTOOL=		YES
 LIBTOOL_OVERRIDE=	YES
 USE_TOOLS+=		automake
 
+PHP_AUTO_REGISTER_EXT=	YES
+
 .if !empty(PHP_ZEND_EXTENSION:U:M[Yy][Ye][Ss])
 PHP_EXTENSION_DIRECTIVE=zend_extension
 .else
@@ -68,7 +70,9 @@ LDFLAGS+=		${EXPORT_SYMBOLS_LDFLAGS}
 MAKE_ENV+=		EXPORT_SYMBOLS_LDFLAGS="${EXPORT_SYMBOLS_LDFLAGS}"
 
 PLIST_SRC+=		${.CURDIR}/../../lang/php/PLIST.module
+.if empty(PHP_AUTO_REGISTER_EXT:M[Yy][Ee][Ss])
 MESSAGE_SRC=		${.CURDIR}/../../lang/php/MESSAGE.module
+.endif
 MESSAGE_SUBST+=		MODNAME=${PKGMODNAME}
 MESSAGE_SUBST+=		PHP_EXTENSION_DIR=${PHP_EXTENSION_DIR}
 MESSAGE_SUBST+=		PHP_EXTENSION_DIRECTIVE=${PHP_EXTENSION_DIRECTIVE}
@@ -114,6 +118,29 @@ do-patch:
 	for p in `${EGREP} -l '^\+\+\+ ext/${MODNAME}/' ${PATCHDIR}/patch-*`;do\
 		${SED} -e 's,^+++ ext/${MODNAME}/,+++ ,' $$p | ${PATCH} ${PATCH_ARGS}; \
 	done || ${TRUE}
+.endif
+
+.if !empty(PHP_AUTO_REGISTER_EXT:M[Yy][Ee][Ss])
+_PHP_EXT_INI_NAME=	10-pkg-${MODNAME}.ini
+
+post-build:	${WRKDIR}/${_PHP_EXT_INI_NAME}
+
+${WRKDIR}/${_PHP_EXT_INI_NAME}:
+	@${ECHO} ${PHP_EXTENSION_DIRECTIVE}=${PREFIX}/${PHP_EXTENSION_DIR}/${PKGMODNAME}.so > ${.TARGET}
+
+post-install: install-php-ext-ini
+
+.PHONY: install-php-ext-ini
+install-php-ext-ini: ${WRKDIR}/${_PHP_EXT_INI_NAME}
+	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/examples/php.d
+	${INSTALL_DATA} ${WRKDIR}/${_PHP_EXT_INI_NAME} ${DESTDIR}${PREFIX}/share/examples/php.d/
+
+MAKE_DIRS+=	${PKG_SYSCONFDIR}/php.d
+CONF_FILES+=	${PREFIX}/share/examples/php.d/${_PHP_EXT_INI_NAME} ${PKG_SYSCONFDIR}/php.d/${_PHP_EXT_INI_NAME}
+
+GENERATE_PLIST+=	${ECHO} share/examples/php.d/${_PHP_EXT_INI_NAME};
+PRINT_PLIST_AWK+=	/^share\/examples\/php.d\/${_PHP_EXT_INI_NAME}/ { next; }
+
 .endif
 
 .if defined(PHPPKGSRCDIR)
