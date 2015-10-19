@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.844 2015/09/11 15:16:08 bouyer Exp $
+# $NetBSD: Makefile,v 1.846 2015/10/18 09:15:03 ryoon Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -342,6 +342,7 @@ SUBDIR+=	lq-sp
 SUBDIR+=	lua-cjson
 SUBDIR+=	lua-expat
 SUBDIR+=	lua-slnunicode
+SUBDIR+=	lucene++
 SUBDIR+=	makeindexk
 SUBDIR+=	makeztxt
 SUBDIR+=	marisa
@@ -359,6 +360,7 @@ SUBDIR+=	migemo
 SUBDIR+=	migemo-elisp
 SUBDIR+=	miller
 SUBDIR+=	mxml
+SUBDIR+=	multimarkdown
 SUBDIR+=	mythes
 SUBDIR+=	namazu
 SUBDIR+=	nbsed
