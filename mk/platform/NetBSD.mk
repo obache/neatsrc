@@ -15,6 +15,8 @@ TYPE?=		type				# Shell builtin
 
 USERADD?=	/usr/sbin/useradd
 GROUPADD?=	/usr/sbin/groupadd
+_PKG_UID_RANGE?=	500..999
+_PKG_GID_RANGE?=	500..999
 
 CPP_PRECOMP_FLAGS?=	# unset
 DEF_UMASK?=		0022
