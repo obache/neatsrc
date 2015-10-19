@@ -28,6 +28,10 @@ TODO: Document all these variables.
     _PKG_USER_HOME is home directory for system accounts to match other system
 	accounts.
 
+    _PKG_UID_RANGE is uid range for system accounts to be created.
+
+    _PKG_GID_RANGE is gid range for system accounts to be created.
+
     _USER_DEPENDS is dependency pattern which USERADD/GROUPADD to be available.
 
     CPP_PRECOMP_FLAGS
