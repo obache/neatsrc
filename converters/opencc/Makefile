@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.3 2015/03/15 20:03:24 hiramatsu Exp $
 
-DISTNAME=	opencc-0.4.2
+DISTNAME=	opencc-0.4.3
 CATEGORIES=	converters chinese
 MASTER_SITES=	http://dl.bintray.com/byvoid/opencc/
 
