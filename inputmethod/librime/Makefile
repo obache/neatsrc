@@ -1,13 +1,11 @@
 # $NetBSD: Makefile,v 1.5 2015/04/17 15:52:57 adam Exp $
 
-DISTNAME=	librime-1.0
-PKGREVISION=	2
+DISTNAME=	librime-1.2
 CATEGORIES=	inputmethod chinese
-MASTER_SITES=	http://rimeime.googlecode.com/files/
-#MASTER_SITES=	http://dl.bintray.com/lotem/rime/
+MASTER_SITES=	http://dl.bintray.com/lotem/rime/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://code.google.com/p/rimeime/
+HOMEPAGE=	http://rime.im/
 COMMENT=	Rime input method engine
 LICENSE=	gnu-gpl-v3
 
@@ -26,5 +24,6 @@ PKGCONFIG_OVERRIDE+=	rime.pc.in
 .include "../../devel/google-glog/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../textproc/yaml-cpp/buildlink3.mk"
+.include "../../textproc/marisa/buildlink3.mk"
 .include "../../x11/xproto/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
