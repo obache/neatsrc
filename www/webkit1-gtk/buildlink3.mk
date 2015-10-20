@@ -1,13 +1,13 @@
 # $NetBSD: buildlink3.mk,v 1.6 2015/06/07 14:14:05 youri Exp $
 
-BUILDLINK_TREE+=	webkit-gtk
+BUILDLINK_TREE+=	webkit1-gtk
 
-.if !defined(WEBKIT_GTK_BUILDLINK3_MK)
-WEBKIT_GTK_BUILDLINK3_MK:=
+.if !defined(WEBKIT1_GTK_BUILDLINK3_MK)
+WEBKIT1_GTK_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.webkit-gtk+=	webkit-gtk>=1.1.3<2
-BUILDLINK_ABI_DEPENDS.webkit-gtk+=	webkit-gtk>=1.10.2nb20
-BUILDLINK_PKGSRCDIR.webkit-gtk?=	../../www/webkit1-gtk
+BUILDLINK_API_DEPENDS.webkit1-gtk+=	webkit1-gtk>=1.1.3<2
+BUILDLINK_ABI_DEPENDS.webkit1-gtk+=	webkit1-gtk>=1.10.2nb20
+BUILDLINK_PKGSRCDIR.webkit1-gtk?=	../../www/webkit1-gtk
 
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/gperf/buildlink3.mk"
@@ -23,6 +23,6 @@ BUILDLINK_PKGSRCDIR.webkit-gtk?=	../../www/webkit1-gtk
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../x11/libXdamage/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
-.endif # WEBKIT_GTK_BUILDLINK3_MK
+.endif # WEBKIT1_GTK_BUILDLINK3_MK
 
-BUILDLINK_TREE+=	-webkit-gtk
+BUILDLINK_TREE+=	-webkit1-gtk

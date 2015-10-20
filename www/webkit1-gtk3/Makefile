@@ -2,10 +2,10 @@
 
 .include "../../www/webkit1-gtk/Makefile.common"
 
-PKGNAME=	${DISTNAME:S/webkitgtk/webkit-gtk3/}
+PKGNAME=	${DISTNAME:S/webkitgtk/webkit1-gtk3/}
 PKGREVISION=	16
 
-COMMENT=	GTK3 port of the WebKit browser engine (v1)
+COMMENT=	GTK3 port of the WebKit1 browser engine
 
 CONFIGURE_ARGS+=	--with-gtk=3.0
 CONFIGURE_ARGS+=	--disable-webkit2
