@@ -18,16 +18,6 @@ PKGCONFIG_OVERRIDE+=	src/libzmq.pc.in
 
 TEST_TARGET=	check
 
-.include "../../mk/compiler.mk"
-
-.if !empty(CC_VERSION:Mgcc-*)
-CXXFLAGS+=	-std=gnu++0x
-.endif
-
-.if !empty(CC_VERSION:Mclang-*)
-CXXFLAGS+=	-std=gnu++11
-.endif
-
 .include "options.mk"
 
 .include "../../security/libsodium/buildlink3.mk"
