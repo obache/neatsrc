@@ -34,7 +34,7 @@ BUILD_DEFS+=		PKG_SYSCONFBASE
 GNU_CONFIGURE=		YES
 USE_PKGLOCALEDIR=	YES
 USE_TOOLS+=		gmake intltool msgfmt perl pkg-config gettext-m4
-USE_TOOLS+=		autoconf automake autoreconf
+USE_TOOLS+=		autoconf automake autoreconf autopoint
 USE_LIBTOOL=		YES
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE:Q}
