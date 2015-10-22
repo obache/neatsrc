@@ -30,6 +30,7 @@ bin/ps2ps2
 bin/unix-lpr.sh
 bin/wftopfa
 include/ghostscript/gdevdsp.h
+include/ghostscript/gserrors.h
 include/ghostscript/iapi.h
 include/ghostscript/ierrors.h
 lib/libgs.so
