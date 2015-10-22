@@ -97,6 +97,11 @@ GCC_REQD+=	2.8.0
 GCC_REQD+=	3.0
 .endif
 
+# gcc 4.7 has experimental C++11 support 
+.if !empty(USE_LANGUAGES:Mc++11)
+GCC_REQD+=	4.7
+.endif
+
 # Only one compiler defined here supports Ada: lang/gcc-aux
 # If the Ada language is requested, force lang/gcc-aux to be selected
 .if !empty(USE_LANGUAGES:Mada)
@@ -336,6 +341,11 @@ _LANGUAGES.gcc+=	${LANGUAGES.gcc:M${_lang_}}
 .if !empty(USE_LANGUAGES:Mc99)
 _WRAP_EXTRA_ARGS.CC+=	-std=gnu99
 CWRAPPERS_APPEND.cc+=	-std=gnu99
+.endif
+
+.if !empty(USE_LANGUAGES:Mc++11)
+_WRAP_EXTRA_ARGS.CXX+=	-std=c++11
+CWRAPPERS_APPEND.cxx+=	-std=c++11
 .endif
 
 # GCC has this annoying behaviour where it advocates in a multi-line
