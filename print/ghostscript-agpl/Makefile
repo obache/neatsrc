@@ -3,8 +3,7 @@
 DISTNAME=	ghostscript-${GS_VERSION}
 PKGNAME=	${DISTNAME:S/ghostscript/ghostscript-agpl/}
 CATEGORIES=	print
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=ghostscript/} \
-		http://downloads.ghostscript.com/public/
+MASTER_SITES=	http://downloads.ghostscript.com/public/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
