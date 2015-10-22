@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.500 2015/10/11 11:39:04 rodent Exp $
+# $NetBSD: Makefile,v 1.502 2015/10/21 16:39:23 fhajny Exp $
 
 COMMENT=	Databases
 
 SUBDIR+=	abook
 SUBDIR+=	adodb
 SUBDIR+=	apache-cassandra
+SUBDIR+=	apache-cassandra2
 SUBDIR+=	bdb-xml
 SUBDIR+=	cdb
 SUBDIR+=	clisp-bdb
@@ -81,6 +82,7 @@ SUBDIR+=	mariadb55-client
 SUBDIR+=	mariadb55-server
 SUBDIR+=	metakit-lib
 SUBDIR+=	mongo-c-driver
+SUBDIR+=	mongo-tools
 SUBDIR+=	mongodb
 SUBDIR+=	myodbc
 SUBDIR+=	mysql-cluster
