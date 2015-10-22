@@ -1,5 +1,6 @@
 $NetBSD: distinfo,v 1.7 2014/02/27 12:42:05 obache Exp $
 
-SHA1 (libdatrie-0.2.9.tar.xz) = d1e14729d950a0a2a484d768cf9eeebaa20f998e
-RMD160 (libdatrie-0.2.9.tar.xz) = 71c41803b95bf6d905f6e5b8a75c6a501ad2d81d
-Size (libdatrie-0.2.9.tar.xz) = 290940 bytes
+SHA1 (libdatrie-0.2.10.tar.xz) = 29162b5a63b75f54bb00f6b60fb8a9fb8502d89b
+RMD160 (libdatrie-0.2.10.tar.xz) = 7af9ebbd93a667a8db15a013d9bd75fc93bdd886
+SHA512 (libdatrie-0.2.10.tar.xz) = ee68ded9d6e06c562da462d42e7e56098a82478d7b8547506200c3018b72536c4037a4e518924f779dc77d3ab139d93216bdb29ab4116b9dc9efd1a5d1eb9e31
+Size (libdatrie-0.2.10.tar.xz) = 294380 bytes
