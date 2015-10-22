@@ -114,6 +114,7 @@ DEFAULT_ACCEPTABLE_LICENSES= \
 	epl-v1.0 \
 	eupl-v1.1 \
 	gfsl \
+	gnu-agpl-v3 \
 	gnu-fdl-v1.1 gnu-fdl-v1.2 gnu-fdl-v1.3 \
 	gnu-gpl-v1 \
 	gnu-gpl-v2 gnu-lgpl-v2 gnu-lgpl-v2.1 \
