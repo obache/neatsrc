@@ -17,7 +17,9 @@ PKG_SYSCONFSUBDIR=	ConsoleKit
 
 EGDIR=		${PREFIX}/share/examples/consolekit
 CONF_FILES+=	${EGDIR}/ConsoleKit/seats.d/00-primary.seat ${PKG_SYSCONFDIR}/seats.d/00-primary.seat
-CONF_FILES+=	${EGDIR}/X11/xinit/xinitrc.d/90-consolekit ${X11BASE}/etc/X11/xinit/xinitrc.d/90-consolekit
+CONF_FILES_PERMS+=	${EGDIR}/X11/xinit/xinitrc.d/90-consolekit \
+			${X11BASE}/etc/X11/xinit/xinitrc.d/90-consolekit.sh \
+			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0755
 CONF_FILES+=	${EGDIR}/dbus-1/system.d/ConsoleKit.conf ${PKG_SYSCONFBASE}/dbus-1/system.d/ConsoleKit.conf
 CONF_FILES+=	${EGDIR}/logrotate.d/consolekit ${PKG_SYSCONFBASE}/logrotate.d/consolekit
 
