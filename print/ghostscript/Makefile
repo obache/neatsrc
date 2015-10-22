@@ -13,7 +13,7 @@ COMMENT=	Meta-package for installing the preferred ghostscript version
 META_PACKAGE=	yes
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.gs_type
-PKG_OPTIONS_OPTIONAL_GROUPS=	ghostscript
+PKG_OPTIONS_REQUIRED_GROUPS=	ghostscript
 PKG_OPTIONS_GROUP.ghostscript+=	ghostscript-agpl ghostscript-gpl
 PKG_SUGGESTED_OPTIONS+=		ghostscript-gpl
 
