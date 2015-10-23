@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4347 2015/10/21 16:37:36 fhajny Exp $
+$NetBSD: CHANGES-2015,v 1.4354 2015/10/22 19:00:01 fhajny Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7277,7 +7277,7 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated textproc/icu to 56.1 [ryoon 2015-10-09]
 	Updated devel/ruby-redmine to 3.1.1 [ryoon 2015-10-10]
 	Removed sysutils/storage-manager [joerg 2015-10-10]
-	Updated filesystems/glustefs to 3.7.5 [manu 2015-10-10]
+	Updated filesystems/glusterfs to 3.7.5 [manu 2015-10-10]
 	Updated fonts/umefont-ttf to 0.550 [ryoon 2015-10-10]
 	Added x11/xf86-input-ws version 1.3.0.20151010 [tnn 2015-10-10]
 	Removed x11/openbsd-input-ws successor x11/xf86-input-ws [tnn 2015-10-10]
@@ -7450,3 +7450,12 @@ Changes to the packages collection and infrastructure in 2015:
 	Added databases/apache-cassandra2 version 2.1.11 [fhajny 2015-10-21]
 	Updated lang/nodejs to 4.2.1 [fhajny 2015-10-21]
 	Added databases/mongo-tools version 3.0.7 [fhajny 2015-10-21]
+	Updated www/drupal7 to 7.41 [taca 2015-10-22]
+	Added textproc/php-sphinx version 1.3.3 [fhajny 2015-10-22]
+	Added sysutils/sunxi-tools version 20150915 [bouyer 2015-10-22]
+	Updated net/nsd to 4.1.6 [pettai 2015-10-22]
+	Updated net/unbound to 1.5.6 [pettai 2015-10-22]
+	Updated net/powerdns to 3.4.6 [fhajny 2015-10-22]
+	Updated net/powerdns-ldap to 3.4.6 [fhajny 2015-10-22]
+	Updated net/powerdns-mysql to 3.4.6 [fhajny 2015-10-22]
+	Updated net/powerdns-pgsql to 3.4.6 [fhajny 2015-10-22]
