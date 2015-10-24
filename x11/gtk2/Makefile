@@ -116,6 +116,7 @@ BUILDLINK_API_DEPENDS.pango+=	pango>=1.20.0
 .include "../../fonts/fontconfig/buildlink3.mk"
 BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.6.0
 .include "../../graphics/cairo/buildlink3.mk"
+.include "../../graphics/cairo-gobject/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 #.include "../../mk/jpeg.buildlink3.mk"
 #.include "../../graphics/png/buildlink3.mk"

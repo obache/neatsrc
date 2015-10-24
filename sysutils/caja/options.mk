@@ -11,7 +11,6 @@ PLIST_VARS+=	introspection
 .if !empty(PKG_OPTIONS:Mintrospection)
 BUILDLINK_DEPMETHOD.gobject-introspection+=	build
 .include "../../devel/gobject-introspection/buildlink3.mk"
-.include "../../graphics/cairo-gobject/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-introspection
 PLIST.introspection=	yes
 .else
