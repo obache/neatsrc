@@ -1,4 +1,4 @@
-# $NetBSD: pgsql.buildlink3.mk,v 1.38 2015/01/14 21:01:18 adam Exp $
+# $NetBSD: pgsql.buildlink3.mk,v 1.40 2015/10/24 21:21:26 joerg Exp $
 #
 # User-settable variables:
 #
@@ -25,7 +25,7 @@ _SYS_VARS.pgsql=	PG_LIB_EXT PGSQL_TYPE PGPKGSRCDIR
 .include "../../mk/bsd.prefs.mk"
 
 PGSQL_VERSION_DEFAULT?=		93
-PGSQL_VERSIONS_ACCEPTED?=	94 93 92 91 90 84
+PGSQL_VERSIONS_ACCEPTED?=	94 93 92 91
 
 # transform the list into individual variables
 .for pv in ${PGSQL_VERSIONS_ACCEPTED}
@@ -126,12 +126,6 @@ PGPKGSRCDIR=	../../databases/postgresql92-client
 .elif ${_PGSQL_VERSION} == "91"
 PGSQL_TYPE=	postgresql91-client
 PGPKGSRCDIR=	../../databases/postgresql91-client
-.elif ${_PGSQL_VERSION} == "90"
-PGSQL_TYPE=	postgresql90-client
-PGPKGSRCDIR=	../../databases/postgresql90-client
-.elif ${_PGSQL_VERSION} == "84"
-PGSQL_TYPE=	postgresql84-client
-PGPKGSRCDIR=	../../databases/postgresql84-client
 .else
 # force an error
 PGSQL_TYPE=		none
