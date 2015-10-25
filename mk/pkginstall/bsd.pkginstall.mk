@@ -906,7 +906,7 @@ FONTS_DIRS.x11+=	${FONTS_DIRS.ttf}
 .if !empty(FONTS_DIRS.type1:M*)
 .if ${X11_TYPE} == "modular"
 USE_TOOLS+=		mkfontscale:run
-FILES_SUBST+=		TYPE1_INDEX_CMD=${TOOLS_PATH.type1inst:Q}
+FILES_SUBST+=		TYPE1_INDEX_CMD=${TOOLS_PATH.mkfontscale:Q}
 FILES_SUBST+=		TYPE1_POSTINDEX_CMD=
 .else
 USE_TOOLS+=		type1inst:run
