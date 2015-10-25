@@ -894,7 +894,8 @@ _INSTALL_DATA_TMPL+=		${_INSTALL_FONTS_DATAFILE}
 # list them as "x11" font directories as well.
 #
 .if !empty(FONTS_DIRS.ttf:M*)
-.if ${X11_TYPE} == "modular"
+.if ${X11_TYPE} == "modular" \
+	|| (${X11_TYPE} == "native" && exists(${X11BASE}/bin/mkfontscale))
 USE_TOOLS+=		mkfontscale:run
 FILES_SUBST+=		TTF_INDEX_CMD=${TOOLS_PATH.mkfontscale:Q}
 .else
@@ -904,7 +905,8 @@ FILES_SUBST+=		TTF_INDEX_CMD=${TOOLS_PATH.ttmkfdir:Q}
 FONTS_DIRS.x11+=	${FONTS_DIRS.ttf}
 .endif
 .if !empty(FONTS_DIRS.type1:M*)
-.if ${X11_TYPE} == "modular"
+.if ${X11_TYPE} == "modular" \
+	|| (${X11_TYPE} == "native" && exists(${X11BASE}/bin/mkfontscale))
 USE_TOOLS+=		mkfontscale:run
 FILES_SUBST+=		TYPE1_INDEX_CMD=${TOOLS_PATH.mkfontscale:Q}
 FILES_SUBST+=		TYPE1_POSTINDEX_CMD=
