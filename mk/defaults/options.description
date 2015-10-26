@@ -553,6 +553,7 @@ pcb-motif		Use Motif for the gui instead of GTK for cad/pcb.
 pcre			Enable Perl-compatible regular expressions.
 pcsc			Enable PC/SC support.
 pdf			Enable PDF support.
+gnuplot-pdf-doc		Install PDF document.
 perl			Enable Perl support.
 pgadmin-db-designer	Enable pgAdmin database-designer functionality.
 pgm			Enable Pragmatic General Multicast support.
@@ -757,6 +758,7 @@ vice-fullscreen		Enable full-screen support.
 vice-hwscaling		Enable hardware-assisted screen scaling.
 vidix			Enable VIDIX (Video Interface for *niX support).
 viewvc-php		Use php to colorize .php and .inc files.
+vlc-skins		Enable skins support in VLC.
 vorbis			Enable Ogg Vorbis support.
 w3m			Use and enable support for the w3m browser.
 w3m-image-gdk-pixbuf	Use gdk-pixbuf as imaging library for W3m.
@@ -772,6 +774,7 @@ wide-curses		Enable wide curses support.
 winbind			Enable name-service switch daemon support using Windows Servers.
 wmf			Enable WMF support.
 wnn4			Use wnn for Kana-to-Kanji conversion.
+wxwidgets		Enable wxWidgets support.
 x11			Enable X11 support.
 x264			Enable x264 support.
 x265			Enable x265 support.
