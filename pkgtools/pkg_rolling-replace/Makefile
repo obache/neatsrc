@@ -29,7 +29,7 @@ SUBST_VARS.tools=	PKG_INFO_CMD MAKE PKG_CHK AWK MKDIR SETENV
 SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	pre-configure
 SUBST_MESSAGE.prefix=	Substituting PREFIX location.
-SUBST_FILES.prefix=	pkg_rolling-replace.8
+SUBST_FILES.prefix=	pkg_rolling-replace.sh pkg_rolling-replace.8
 SUBST_VARS.prefix=	PREFIX
 
 SUBST_CLASSES+=		makeconf
