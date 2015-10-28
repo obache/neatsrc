@@ -3,7 +3,7 @@
 
 DISTNAME=	CRF++-0.58
 CATEGORIES=	textproc
-MASTER_SITES=	http://crfpp.googlecode.com/files/
+MASTER_SITES=	-https://drive.google.com/uc?id=0B4y35FiV1wh7QVR6VXJ5dWExSTQ&export=download
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://taku910.github.io/crfpp/
