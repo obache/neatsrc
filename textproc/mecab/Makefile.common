@@ -11,7 +11,6 @@
 MECAB_VERSION=	0.996
 
 CATEGORIES=	japanese textproc
-MASTER_SITES=	http://mecab.googlecode.com/files/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://mecab.sourceforge.net/
+HOMEPAGE=	http://taku910.github.io/mecab/
