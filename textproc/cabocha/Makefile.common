@@ -4,9 +4,9 @@
 # used by textproc/py-cabocha/Makefile
 # used by textproc/ruby-cabocha/Makefile
 
-DISTNAME=	cabocha-0.68
+DISTNAME=	cabocha-0.69
 CATEGORIES=	textproc
-MASTER_SITES=	http://cabocha.googlecode.com/files/
+MASTER_SITES=	-https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7SDd1Q1dUQkZQaUU
 EXTRACT_SUFX=	.tar.bz2
 
 DISTINFO_FILE=	${.CURDIR}/../../textproc/cabocha/distinfo
