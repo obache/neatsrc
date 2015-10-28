@@ -3,9 +3,9 @@
 
 .include "../../textproc/mecab/Makefile.common"
 
-DISTNAME=	mecab-jumandic-5.1-20070304
-PKGNAME=	mecab-jumandic-5.1.20070304
-PKGREVISION=	1
+DISTNAME=	mecab-jumandic-7.0-20130310
+PKGNAME=	mecab-jumandic-7.0.20130310
+MASTER_SITES=	-https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7X2pESGlLREpxdXM
 
 COMMENT=	Japanese Morphological Dictionary for MeCab
 LICENSE=	modified-bsd
