@@ -5,6 +5,7 @@
 
 DISTNAME=		mecab-${MECAB_VERSION}
 PKGNAME=		mecab-base-${MECAB_VERSION}
+MASTER_SITES=		-https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE
 
 COMMENT=		Yet Another Part-of-Speech and Morphological Analyzer
 LICENSE=		gnu-gpl-v2 OR gnu-lgpl-v2.1 OR modified-bsd
