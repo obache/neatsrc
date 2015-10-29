@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.647 2015/10/24 21:48:32 tnn Exp $
+# $NetBSD: Makefile,v 1.648 2015/10/28 11:45:34 jperkin Exp $
 #
 
 COMMENT=	System utilities
@@ -76,6 +76,7 @@ SUBDIR+=	collectd-mysql
 SUBDIR+=	collectd-network
 SUBDIR+=	collectd-notify-email
 SUBDIR+=	collectd-postgresql
+SUBDIR+=	collectd-riemann
 SUBDIR+=	collectd-rrdtool
 SUBDIR+=	collectd-snmp
 SUBDIR+=	conky
