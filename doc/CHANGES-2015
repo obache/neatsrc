@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4418 2015/10/29 12:33:23 jperkin Exp $
+$NetBSD: CHANGES-2015,v 1.4423 2015/10/29 20:42:37 bouyer Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7581,3 +7581,15 @@ Changes to the packages collection and infrastructure in 2015:
 	Added devel/libcerf version 1.4 [wiz 2015-10-28]
 	Updated filesystems/openafs to 1.6.15 [jakllsch 2015-10-28]
 	Updated sysutils/user_darwin to 20151029 [jperkin 2015-10-29]
+	Updated net/openresolv to 3.7.2 [roy 2015-10-29]
+	Updated mail/roundcube to 1.1.3 [prlw1 2015-10-29]
+	Updated sysutils/syslog-ng to 3.7.2 [fhajny 2015-10-29]
+	Added sysutils/syslog-ng-geoip version 3.7.2 [fhajny 2015-10-29]
+	Added sysutils/syslog-ng-json version 3.7.2 [fhajny 2015-10-29]
+	Added sysutils/syslog-ng-mongodb version 3.7.2 [fhajny 2015-10-29]
+	Added sysutils/syslog-ng-redis version 3.7.2 [fhajny 2015-10-29]
+	Added sysutils/syslog-ng-smtp version 3.7.2 [fhajny 2015-10-29]
+	Added sysutils/syslog-ng-sql version 3.7.2 [fhajny 2015-10-29]
+	Added sysutils/py-syslog-ng version 3.7.2 [fhajny 2015-10-29]
+	Updated sysutils/xenkernel41 to 4.1.6.1nb17 [bouyer 2015-10-29]
+	Updated sysutils/xenkernel45 to 4.5.1nb1 [bouyer 2015-10-29]

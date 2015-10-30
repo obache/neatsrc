@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.648 2015/10/28 11:45:34 jperkin Exp $
+# $NetBSD: Makefile,v 1.649 2015/10/29 16:35:47 fhajny Exp $
 #
 
 COMMENT=	System utilities
@@ -434,6 +434,7 @@ SUBDIR+=	py-pefile
 SUBDIR+=	py-psutil
 SUBDIR+=	py-setproctitle
 SUBDIR+=	py-structlog
+SUBDIR+=	py-syslog-ng
 SUBDIR+=	py-xattr
 SUBDIR+=	python-caja
 SUBDIR+=	qlogtools
@@ -510,6 +511,12 @@ SUBDIR+=	sysbuild-user
 SUBDIR+=	sysgen
 SUBDIR+=	sysinfo
 SUBDIR+=	syslog-ng
+SUBDIR+=	syslog-ng-geoip
+SUBDIR+=	syslog-ng-json
+SUBDIR+=	syslog-ng-mongodb
+SUBDIR+=	syslog-ng-redis
+SUBDIR+=	syslog-ng-smtp
+SUBDIR+=	syslog-ng-sql
 SUBDIR+=	system-tools-backends
 SUBDIR+=	systester
 SUBDIR+=	sysupgrade
