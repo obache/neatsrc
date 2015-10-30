@@ -6,7 +6,9 @@ ${PLIST.learner}bin/groonga-suggest-httpd
 ${PLIST.learner}bin/groonga-suggest-learner
 include/groonga/groonga.h
 include/groonga/groonga/command.h
+include/groonga/groonga/conf.h
 include/groonga/groonga/expr.h
+include/groonga/groonga/geo.h
 include/groonga/groonga/groonga.h
 include/groonga/groonga/ii.h
 include/groonga/groonga/nfkc.h
@@ -22,6 +24,7 @@ include/groonga/groonga/token.h
 include/groonga/groonga/token_filter.h
 include/groonga/groonga/tokenizer.h
 include/groonga/groonga/util.h
+include/groonga/groonga/windows.h
 include/groonga/groonga/windows_event_logger.h
 lib/groonga/plugins/functions/vector.la
 lib/groonga/plugins/query_expanders/tsv.la
