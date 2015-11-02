@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.129 2015/10/27 08:49:01 jnemeth Exp $
+# $NetBSD: Makefile,v 1.131 2015/11/02 00:34:04 tnn Exp $
 #
 # NOTE: when updating this package, there are two places that sound
 #       tarballs need to be checked
@@ -107,17 +107,23 @@ BUILDLINK_TRANSFORM+=	rm:-march=i386
 .endif
 
 PLIST_VARS+=	kqueue
-.if exists(/usr/include/sys/event.h)
+.for dir in ${COMPILER_INCLUDE_DIRS}
+.  if exists(${dir}/sys/event.h)
 PLIST.kqueue=	yes
-.endif
+.  endif
+.endfor
 
 PLIST_VARS+=	mgcp
 # NOSIGPIPE is a temp variable, since PLIST.mgcp MUST remain undefined
 # if the grep fails
-NOSIGPIPE!=	${GREP} SO_NOSIGPIPE /usr/include/sys/socket.h || echo ""
-.if ${NOSIGPIPE} != ""
+.for dir in ${COMPILER_INCLUDE_DIRS}
+.  if (exists(${dir}/sys/socket.h))
+NOSIGPIPE!=	${GREP} SO_NOSIGPIPE ${dir}/sys/socket.h || echo ""
+.    if ${NOSIGPIPE} != ""
 PLIST.mgcp= yes
-.endif
+.    endif
+.  endif
+.endfor
 
 .include "options.mk"
 
@@ -216,9 +222,13 @@ CONF_FILES_PERMS+=		${ASTEXAMPLEDIR}/${f:Q} ${PKG_SYSCONFDIR}/${f:Q} ${ASTERISK_
 
 PTHREAD_OPTS+=	require native
 
-.if (${OPSYS} == "Darwin" && exists(/usr/include/sys/poll.h))
 post-patch:
+.if ${OPSYS} == "Darwin"
+.  for dir in ${COMPILER_INCLUDE_DIRS}
+.    if exists(${dir}/sys/poll.h))
 	${ECHO} "#include <sys/poll.h>" > ${WRKSRC}/include/asterisk/poll-compat.h
+.    endif
+.  endfor
 .endif
 
 post-install:
