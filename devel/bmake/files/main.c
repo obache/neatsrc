@@ -146,6 +146,7 @@ __RCSID("$NetBSD: main.c,v 1.13 2015/05/19 22:01:19 joerg Exp $");
 
 #ifdef HAVE_SPAWN_H
 #include <spawn.h>
+extern char** environ;
 #endif
 
 #ifndef	DEFMAXLOCAL
@@ -1565,7 +1566,7 @@ Cmd_Exec(const char *cmd, const char **errnum)
 	(spawn_err = posix_spawn_file_actions_adddup2(&fa, fds[1], 1)) == 0 &&
 	(spawn_err = posix_spawn_file_actions_addclose(&fa, fds[1])) == 0) {
 	Var_ExportVars();
-	spawn_err = posix_spawn(&cpid, shellPath, &fa, NULL, UNCONST(args), NULL );
+	spawn_err = posix_spawn(&cpid, shellPath, &fa, NULL, UNCONST(args), environ);
     } else {
 	*errnum = "Couldn't spawn file actions for \"%s\"";
     }

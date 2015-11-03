@@ -164,6 +164,7 @@ __RCSID("$NetBSD: job.c,v 1.16 2015/05/19 22:01:19 joerg Exp $");
 #endif
 #if HAVE_SPAWN_H
 # include <spawn.h>
+extern char** environ;
 #endif
 
 #include "make.h"
@@ -1418,7 +1419,7 @@ JobExec(Job *job, char **argv)
 
 	Var_ExportVars();
 
-	if(posix_spawn(&cpid, shellPath, &file_actions, &attrp, argv, NULL)) {
+	if(posix_spawn(&cpid, shellPath, &file_actions, &attrp, argv, environ)) {
 	    execError("spawn", shellPath);
 	    exit(1);
 	}
