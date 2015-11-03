@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4444 2015/11/01 22:59:38 tnn Exp $
+$NetBSD: CHANGES-2015,v 1.4452 2015/11/02 16:05:19 ryoon Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7617,3 +7617,11 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated multimedia/mpv to 0.12.0 [leot 2015-11-01]
 	Updated x11/modular-xorg-server to 1.17.4 [tnn 2015-11-01]
 	Updated x11/modular-xorg-xephyr to 1.17.4 [tnn 2015-11-01]
+	Updated www/midori to 0.5.11nb1 [dholland 2015-11-02]
+	Updated devel/py-mercurial to 3.6 [wiz 2015-11-02]
+	Updated audio/pulseaudio to 7.1 [ryoon 2015-11-02]
+	Updated shells/zsh to 5.1.1 [ryoon 2015-11-02]
+	Updated devel/nspr to 4.10.10 [ryoon 2015-11-02]
+	Updated www/php-owncloud to 8.2.0 [ryoon 2015-11-02]
+	Updated net/owncloudclient to 2.0.2 [ryoon 2015-11-02]
+	Updated fonts/umefont-ttf to 0.560 [ryoon 2015-11-02]
