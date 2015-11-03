@@ -21,7 +21,9 @@ __RCSID("$NetBSD: util.c,v 1.14 2015/07/04 07:12:08 ryoon Exp $");
 
 #include <errno.h>
 #include <time.h>
+#if !defined(__MINT__) && !defined(__linux__)
 #include <signal.h>
+#endif
 
 #if !defined(HAVE_STRERROR)
 extern int errno, sys_nerr;

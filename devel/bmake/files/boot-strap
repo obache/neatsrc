@@ -395,8 +395,20 @@ Bmake() {
     )
 }
 
+find_prog () {
+	saved_IFS="$IFS"
+	IFS=":"
+	for p in $PATH; do
+		if [ -x "$p/$1" ]; then
+			echo "$p/$1"
+			break;
+		fi
+	done
+	IFS="$saved_IFS";
+}
+
 # make sure test below uses the same diff that configure did
-TOOL_DIFF=`type diff | sed 's,[()],,g;s,^[^/][^/]*,,;q'`
+TOOL_DIFF=`find_prog diff`
 export TOOL_DIFF
 
 op_configure() {
