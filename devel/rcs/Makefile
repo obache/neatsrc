@@ -11,7 +11,7 @@ COMMENT=		GNU Revision Control System - version control software
 LICENSE=		gnu-gpl-v3
 
 GNU_CONFIGURE=		yes
-USE_TOOLS+=		gmake gsoelim
+USE_TOOLS+=		gmake
 
 .include "../../mk/bsd.prefs.mk"
 .if ${OPSYS} == "SunOS" || ${OPSYS} == "OSF1" || ${OPSYS} == "AIX" || ${OPSYS} == "Minix"
