@@ -25,11 +25,6 @@ REPLACE_SH=		build-aux/extract-help
 
 INFO_FILES=	yes
 
-# configure will be modified by pkgsrc framework with timestamp update.
-# sync timestamp with man/REL to avoid regeneration of man.
-post-configure:
-	${TOUCH} -r ${WRKSRC}/man/REL ${WRKSRC}/configure
-
 post-install:
 	${LN} -s ${DESTDIR}${PREFIX}/bin/rlog ${DESTDIR}${PREFIX}/bin/rcslog
 	${LN} -s ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/rlog.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/rcslog.1
