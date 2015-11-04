@@ -11,15 +11,12 @@ COMMENT=		GNU Revision Control System - version control software
 LICENSE=		gnu-gpl-v3
 
 GNU_CONFIGURE=		yes
-USE_TOOLS+=		gmake
+USE_TOOLS+=		gmake diff:run diff3:run
 
-.include "../../mk/bsd.prefs.mk"
-.if ${OPSYS} == "SunOS" || ${OPSYS} == "OSF1" || ${OPSYS} == "AIX" || ${OPSYS} == "Minix"
-DEPENDS+=		diffutils>=2.7:../../devel/diffutils
-CONFIGURE_ARGS+=	--with-diffutils
-# the native diff/diff3 is not sufficient for rcs
-TOOLS_PLATFORM.diff=	${PREFIX}/bin/gdiff
-.endif
+TOOLS_INCOMPAT_PLATFORMS.diff=	SunOS-*-* OSF1-*-* AIX-*-* Minix-*-*
+TOOLS_INCOMPAT_PLATFORMS.diff3=	SunOS-*-* OSF1-*-* AIX-*-* Minix-*-*
+
+CONFIGURE_ENV+=		DIFF3=${TOOLS_PATH.diff3}
 
 REPLACE_SH=		build-aux/extract-help
 
