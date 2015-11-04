@@ -745,6 +745,24 @@ MirBSD)
 		eval export $var
 	done
 	;;
+MSYS_*)
+	is_root () {
+		if id -nG | grep -q 'Administrators'; then
+			return 0
+		fi
+		return 1
+	}
+	root_user=Administrator
+	root_group=Administrators
+	need_bsd_install=no
+	opsys=`uname -o`
+	need_awk=no
+	need_sed=no
+	need_xargs=no
+	# only used for unprivileged builds.
+	whoamiprog='id -un'
+	groupsprog='id -gn'
+	;;
 NetBSD)
 	root_group=wheel
 	need_bsd_install=no

@@ -197,6 +197,11 @@ CYGWIN_*)
 	i?86)	MACHINE_ARCH=i386;;
 	esac
 	;;
+MSYS_*)
+	case $MACHINE in
+	i?86)	MACHINE_ARCH=i386;;
+	esac
+	;;
 GNU/kFreeBSD)
 	MACHINE_ARCH=$MACHINE
 	;;

@@ -1,0 +1,10 @@
+Please read the general README file as well.
+
+bootstrap-pkgsrc has been tested on MSYS2 with gcc.
+
+You should install following MSYS2 native package groups:
+  - base-devel
+  - msys2-devel
+
+"noacl" on default mount, so you should bootstrap pkgsrc with the
+ --unprivileged option.

@@ -193,7 +193,7 @@ _PLIST_AWK+=		-f ${.CURDIR}/../../mk/plist/plist-gnu.awk
 _PLIST_AWK+=		-f ${.CURDIR}/../../mk/plist/plist-info.awk
 _PLIST_AWK+=		-f ${.CURDIR}/../../mk/plist/plist-man.awk
 _PLIST_AWK+=		-f ${.CURDIR}/../../mk/plist/plist-libtool.awk
-.if ${OPSYS} == "Cygwin"
+.if ${OPSYS} == "Cygwin" || ${OPSYS} == "Msys"
 _PLIST_AWK+=		-f ${.CURDIR}/../../mk/plist/plist-cygwin.awk
 .endif
 _PLIST_AWK+=		${PLIST_AWK}

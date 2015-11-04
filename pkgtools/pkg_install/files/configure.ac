@@ -144,7 +144,7 @@ case $host in
 esac
 
 case $host in
-*-*-cygwin*|*-*-dragonfly* |*-*-freebsd*|*-*-linux*)
+*-*-cygwin*|*-*-dragonfly* |*-*-freebsd*|*-*-linux*|*-*-msys*)
 	AC_DEFINE([NUMERIC_VERSION_ONLY], [1], [Defined when to retain only the numeric OS version])
 	;;
 esac

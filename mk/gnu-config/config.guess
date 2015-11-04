@@ -2,7 +2,7 @@
 # Attempt to guess a canonical system name.
 #   Copyright 1992-2015 Free Software Foundation, Inc.
 
-timestamp='2015-03-04'
+timestamp='2015-11-03'
 
 # This file is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by
@@ -880,6 +880,9 @@ EOF
 	exit ;;
     amd64:CYGWIN*:*:* | x86_64:CYGWIN*:*:*)
 	echo x86_64-unknown-cygwin
+	exit ;;
+    amd64:MSYS*:*:* | x86_64:MSYS*:*:*)
+	echo x86_64-unknown-msys
 	exit ;;
     p*:CYGWIN*:*)
 	echo powerpcle-unknown-cygwin

@@ -157,7 +157,7 @@ CONFIG_GUESS_OVERRIDE+=	${WRKDIR}/libarchive/build/autoconf/config.guess \
 CONFIG_SUB_OVERRIDE+=	${WRKDIR}/libarchive/build/autoconf/config.sub \
 			${WRKSRC}/config.sub
 
-.  if ${OPSYS} == "Cygwin"
+.  if ${OPSYS} == "Cygwin" || ${OPSYS} == "Msys"
 CPPFLAGS+=	-DLIBARCHIVE_STATIC
 .  endif
 

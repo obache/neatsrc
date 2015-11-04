@@ -70,7 +70,7 @@ UNAME=echo Unknown
 .endif
 
 .if !defined(OPSYS)
-OPSYS:=			${:!${UNAME} -s!:S/-//g:S/\///g:C/^CYGWIN_.*$/Cygwin/}
+OPSYS:=			${:!${UNAME} -s!:S/-//g:S/\///g:C/^CYGWIN_.*$/Cygwin/:C/^MSYS_.*$/Msys/}
 MAKEFLAGS+=		OPSYS=${OPSYS:Q}
 .endif
 
@@ -239,6 +239,16 @@ OS_VERSION=		3.1
 OS_VERSION=		3.0
 .    endif
 .  endif
+
+.elif ${OPSYS} == "Msys"
+LOWER_OPSYS?=		msys
+LOWER_VENDOR?=		pc
+.  if !defined(LOWER_ARCH)
+LOWER_ARCH!=		${UNAME} -m | sed -e 's/i.86/i386/'
+.  endif # !defined(LOWER_ARCH)
+_OS_VERSION!=		${UNAME} -r
+OS_VERSION=		${_OS_VERSION:C/\(.*\)//}
+OS_VARIANT!=		${UNAME} -s
 
 .elif ${OPSYS} == "MirBSD"
 LOWER_OPSYS?=		mirbsd
@@ -418,7 +428,7 @@ OBJECT_FMT=	SOM
 .  else # hppa
 OBJECT_FMT=	SOM
 .  endif
-.elif ${OPSYS} == "Cygwin"
+.elif ${OPSYS} == "Cygwin" || ${OPSYS} == "Msys"
 OBJECT_FMT=	PE
 .endif
 
