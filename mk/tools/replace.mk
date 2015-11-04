@@ -189,7 +189,7 @@ _TOOLS_DEPMETHOD.gsoelim=	${_TOOLS_DEPMETHOD.soelim}
 #
 .for _t_ in ${_USE_TOOLS}
 .  if defined(TOOLS_INCOMPAT_PLATFORMS.${_t_}) && !empty(TOOLS_INCOMPAT_PLATFORMS.${_t_})
-.    for _pattern_ in ${TOOLS_INCOMPAT_PLATFORMS.${_t_}
+.    for _pattern_ in ${TOOLS_INCOMPAT_PLATFORMS.${_t_}}
 .      if !empty(MACHINE_PLATFORM:M${_pattern_})
 _TOOLS_USE_PKGSRC.${_t_}?=	yes
 .      endif
