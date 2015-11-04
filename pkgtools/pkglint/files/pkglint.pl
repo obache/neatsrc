@@ -3299,7 +3299,7 @@ sub checkline_mk_vartype_basic($$$$$$$$) {
 			if ($value =~ m"^(${part})-(${part})-(${part})$") {
 				my ($opsys, $os_version, $arch) = ($1, $2, $3);
 
-				if ($opsys !~ m"^(?:\*|BSDOS|Cygwin|Darwin|DragonFly|FreeBSD|Haiku|HPUX|Interix|IRIX|Linux|NetBSD|OpenBSD|OSF1|QNX|SunOS)$") {
+				if ($opsys !~ m"^(?:\*|AIX|BSDOS|Bitrig|Cygwin|Darwin|DragonFly|FreeBSD|FreeMiNT|Haiku|HPUX|GNUkFreeBSD|Interix|IRIX|Linux|Minix|MirBSD|Msys|NetBSD|OpenBSD|OSF1|QNX|SCO_SV|SunOS|UnixWare)$") {
 					$line->log_warning("Unknown operating system: ${opsys}");
 				}
 				# no check for $os_version
