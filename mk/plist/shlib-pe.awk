@@ -43,6 +43,7 @@
 BEGIN {
 	LIBTOOL_EXPAND = ENVIRON["LIBTOOL_EXPAND"] ? ENVIRON["LIBTOOL_EXPAND"] : "/usr/pkgsrc/mk/plist/libtool-expand"
 	LIBTOOLIZE_PLIST = ENVIRON["LIBTOOLIZE_PLIST"] ? ENVIRON["LIBTOOLIZE_PLIST"] : "yes"
+	OPSYS_DLL_PREFIX = ENVIRON["OPSYS_DLL_PREFIX"] ? ENVIRON["OPSYS_DLL_PREFIX"] : "lib"
 	PREFIX = ENVIRON["PREFIX"] ? ENVIRON["PREFIX"] : "/usr/pkg"
 	TEST = ENVIRON["TEST"] ? ENVIRON["TEST"] : "test"
 	nentries = 0
@@ -51,7 +52,8 @@ BEGIN {
 ###
 ### add_dll(lib) adds the named "lib" to the PLIST entries list and
 ### to the dlls list if we haven't already seen it.
-### dll may be in "bin" or its name may be cygXXX.dll instead of libXXX.dll.
+### dll may be in "bin" and/or its name may have own prefix depeending on
+### OPSYS, say cygXXX.dll instead of libXXX.dll.
 ###
 function add_dll(lib) {
 	if (dlls[lib] == "") {
@@ -59,8 +61,10 @@ function add_dll(lib) {
 		entries[++nentries] = lib
 		if (sub("^lib/lib", "bin/lib", lib)) {
 			add_dll(lib)
-			sub("^bin/lib", "bin/cyg", lib)
-			add_dll(lib)
+			if (OPSYS_DLL_PREFIX != "lib") {
+				sub("^bin/lib", "bin/" OPSYS_DLL_PREFIX, lib)
+				add_dll(lib)
+			}
 		}
 	}
 }

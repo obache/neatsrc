@@ -45,6 +45,7 @@ _OPSYS_LIB_DIRS?=		/lib /usr/lib
 _OPSYS_INCLUDE_DIRS?=		/usr/include
 
 _OPSYS_EXE_SUFFIX=	.exe	# executables may have suffix
+_OPSYS_DLL_PREFIX=	cyg	# DLL may have own prefix
 _OPSYS_HAS_INET6=	yes	# IPv6 is standard
 _OPSYS_HAS_JAVA=	no	# Java is not standard
 _OPSYS_HAS_MANZ=	yes	# MANZ controls gzipping of man pages
