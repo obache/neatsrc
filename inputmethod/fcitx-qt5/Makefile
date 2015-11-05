@@ -19,7 +19,6 @@ PTHREAD_AUTO_VARS=	yes
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../inputmethod/fcitx/buildlink3.mk"
-.include "../../x11/qt5-dbus/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/libxkbcommon/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
