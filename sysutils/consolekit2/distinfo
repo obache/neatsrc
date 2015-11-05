@@ -2,6 +2,7 @@ $NetBSD: distinfo,v 1.10 2014/08/17 15:59:07 wiz Exp $
 
 SHA1 (ConsoleKit2-1.0.0.tar.bz2) = bd4d8b90af5846fd35b187920ccd0aa9e0eb35e7
 RMD160 (ConsoleKit2-1.0.0.tar.bz2) = 68691d74010fe9c5b5af5d2d61f8f2cb8db68bd8
+SHA512 (ConsoleKit2-1.0.0.tar.bz2) = 311cfc0aa945dcf50b4a98e1b19bd25cef84e89e4d849aa0b4b084b6cd8c52931a3af1c56243af00ff0a27b20230ab126de0cc0f08ea861f12a813399478bafa
 Size (ConsoleKit2-1.0.0.tar.bz2) = 1288174 bytes
 SHA1 (patch-configure.ac) = 1e722dacce5294006b89b480ad8e7393eeb37644
 SHA1 (patch-data_Makefile.am) = 7d37d6c3b5c0bab2e1e4b7000bd23f72b646cf9c

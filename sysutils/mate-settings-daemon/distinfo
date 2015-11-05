@@ -2,4 +2,5 @@ $NetBSD$
 
 SHA1 (mate-settings-daemon-1.10.2.tar.xz) = 9d2291f236ab72b1abdcdb19b878679774652c3a
 RMD160 (mate-settings-daemon-1.10.2.tar.xz) = fe27cf159917253d17457dd1078e9ed4a4aae27a
+SHA512 (mate-settings-daemon-1.10.2.tar.xz) = 7bfe1291529f4ddcd01dd3a0177a3fa1a8ad39ec1ba14db77825d88b43be9a1efa40c385f7e4e9fc8ace40c6c8962666cc74b4eff73dfa72aa873bc7e30cd9d2
 Size (mate-settings-daemon-1.10.2.tar.xz) = 788748 bytes

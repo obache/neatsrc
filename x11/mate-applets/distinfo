@@ -2,6 +2,7 @@ $NetBSD$
 
 SHA1 (mate-applets-1.10.3.tar.xz) = 6c566fc1aa682bdae71c3775a87d15637b166419
 RMD160 (mate-applets-1.10.3.tar.xz) = 0a18fb1f25917ef662b0d6d3815e83ad2b9c0495
+SHA512 (mate-applets-1.10.3.tar.xz) = a7f579026799022aa8a28e4f233dd83446e35378752e2cbf3f0b0c6b30fbc6c03df7faed3d21bbfc9d092edf610ee0b8903fc366aef750f06b6bd63eeca526a8
 Size (mate-applets-1.10.3.tar.xz) = 6895936 bytes
 SHA1 (patch-configure) = e08cefe879d89256420a165c5516505f809dd6a8
 SHA1 (patch-configure.ac) = 713e0b5859d61f9db32b3c5355917fbbd6585250

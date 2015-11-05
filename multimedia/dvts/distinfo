@@ -2,6 +2,7 @@ $NetBSD$
 
 SHA1 (dvts1.0g.tar.bz2) = 97dd10349c269080d085a9d8ecb8a111505fe5e0
 RMD160 (dvts1.0g.tar.bz2) = 7622be46e54fccebcd0f9535ea285c4417c554cd
+SHA512 (dvts1.0g.tar.bz2) = 18803b9e11c62b71f6f013509b082964eab3351c44237a6188f1e995eebb30b00c9059f3dc2a68752d8b462d062d83efb09290770f10440648552ffdfaa1a414
 Size (dvts1.0g.tar.bz2) = 186391 bytes
 SHA1 (patch-configure) = 6ec5154100341baa2c6c15dca0b61520ec18e60e
 SHA1 (patch-configure.in) = 1b90b51c732b5895ba2e53daf7da964123bfe87b
