@@ -453,7 +453,7 @@ BUILDLINK_LIBS+=	${_flag_}
      !empty(BUILDLINK_AUTO_DIRS.${_pkg_}:M[yY][eE][sS])
 .  if !empty(BUILDLINK_INCDIRS.${_pkg_})
 .    for _dir_ in ${BUILDLINK_INCDIRS.${_pkg_}:S/^/${BUILDLINK_PREFIX.${_pkg_}}\//}
-.      if exists(${_dir_})
+.      if exists(${_dir_}) && empty(COMPILER_INCLUDE_DIRS:M${_dir_})
 .        if empty(BUILDLINK_CPPFLAGS:M-I${_dir_})
 BUILDLINK_CPPFLAGS+=	-I${_dir_}
 .        endif
@@ -462,7 +462,7 @@ BUILDLINK_CPPFLAGS+=	-I${_dir_}
 .  endif
 .  if !empty(BUILDLINK_LIBDIRS.${_pkg_})
 .    for _dir_ in ${BUILDLINK_LIBDIRS.${_pkg_}:S/^/${BUILDLINK_PREFIX.${_pkg_}}\//}
-.      if exists(${_dir_})
+.      if exists(${_dir_}) && empty(COMPILER_LIB_DIRS:M${_dir_})
 .        if empty(BUILDLINK_LDFLAGS:M-L${_dir_})
 BUILDLINK_LDFLAGS+=	-L${_dir_}
 .        endif
@@ -471,7 +471,7 @@ BUILDLINK_LDFLAGS+=	-L${_dir_}
 .  endif
 .  if !empty(BUILDLINK_RPATHDIRS.${_pkg_})
 .    for _dir_ in ${BUILDLINK_RPATHDIRS.${_pkg_}:S/^/${BUILDLINK_PREFIX.${_pkg_}}\//}
-.      if exists(${_dir_})
+.      if exists(${_dir_}) && empty(SYSTEM_DEFAULT_RPATH:S/:/ /g:M${_dir_})
 .        if empty(BUILDLINK_LDFLAGS:M${COMPILER_RPATH_FLAG}${_dir_})
 BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${_dir_}
 .        endif
