@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.4 2015/10/17 09:55:28 wen Exp $
+$NetBSD: distinfo,v 1.6 2015/11/04 17:41:19 agc Exp $
 
 SHA1 (Email-MIME-ContentType-1.018.tar.gz) = 780e5614cabe8f6b2b62bc695eb9be7e2e2e99b0
 RMD160 (Email-MIME-ContentType-1.018.tar.gz) = 3356fa707aede07a721eeb7e3e4cbd39626d7578

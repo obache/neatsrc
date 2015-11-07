@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.8 2015/10/17 11:03:33 adam Exp $
+$NetBSD: distinfo,v 1.10 2015/11/04 17:41:17 agc Exp $
 
 SHA1 (pbr-1.8.1.tar.gz) = 26ad8e76497ff16d82a6c12424383322d66d50ca
 RMD160 (pbr-1.8.1.tar.gz) = 3cfdbbdbd43163a578467450acb8be26a33af306

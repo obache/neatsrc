@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.24 2015/10/21 08:31:03 wiz Exp $
+$NetBSD: distinfo,v 1.26 2015/11/04 17:41:20 agc Exp $
 
 SHA1 (anki-2.0.33.tgz) = 74bc8c6bd14781777c832ab677a9be11634177a3
 RMD160 (anki-2.0.33.tgz) = 182449f10e620f7e52c840d90ecea872b343bc35

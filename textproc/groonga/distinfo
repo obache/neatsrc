@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.40 2015/01/29 10:34:14 obache Exp $
+$NetBSD: distinfo,v 1.41 2015/11/04 01:59:30 agc Exp $
 
 SHA1 (groonga-5.0.9.tar.gz) = fbca6338bb023f750960828faafda08aed55d414
 RMD160 (groonga-5.0.9.tar.gz) = 61db8ebaf3562f3319d88f6545e46839960f4e3a

@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.9 2015/08/29 15:42:36 taca Exp $
+$NetBSD: distinfo,v 1.10 2015/11/04 01:32:23 agc Exp $
 
 SHA1 (open-vm-tools-9.10.2-2822639.tar.gz) = e77058f842120b0bc34cacc375757fa72c133518
 RMD160 (open-vm-tools-9.10.2-2822639.tar.gz) = 349fe7345c7a0dbe15a217083c2d2771f9b5953a

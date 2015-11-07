@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.1 2014/06/01 13:30:35 obache Exp $
+$NetBSD: distinfo,v 1.2 2015/11/03 22:13:35 agc Exp $
 
 SHA1 (ibus-libpinyin-1.7.2.tar.gz) = 5afb02a4bf304f308c39da7c83744ebdecb58fbb
 RMD160 (ibus-libpinyin-1.7.2.tar.gz) = 0613e8824e4cf86631cabb3559b68a4ae27ed5c6

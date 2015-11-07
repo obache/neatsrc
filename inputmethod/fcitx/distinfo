@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.1.1.1 2006/01/16 13:04:07 rxg Exp $
+$NetBSD: distinfo,v 1.2 2015/11/03 22:13:34 agc Exp $
 
 SHA1 (fcitx-4.2.9_dict.tar.xz) = e355ac14674fb0f4e163d9e7d0919ab471454055
 RMD160 (fcitx-4.2.9_dict.tar.xz) = 5a12ac17f5320f5835f42363b3d733e51af9d44e

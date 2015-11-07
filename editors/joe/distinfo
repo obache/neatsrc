@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.20 2015/10/19 09:15:54 adam Exp $
+$NetBSD: distinfo,v 1.22 2015/11/04 17:41:18 agc Exp $
 
 SHA1 (joe-4.1.tar.gz) = 18004847c9c8863872d81f0bc1242dd35c0a5826
 RMD160 (joe-4.1.tar.gz) = 74b91bb7c644114331930491d8646fe784bd1db3

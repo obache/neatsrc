@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.140 2015/10/24 19:16:25 joerg Exp $
+# $NetBSD: Makefile,v 1.141 2015/11/04 14:07:26 fhajny Exp $
 #
 
 COMMENT=	Document format and character code converters
@@ -22,6 +22,7 @@ SUBDIR+=	docx2txt
 SUBDIR+=	dos2unix
 SUBDIR+=	dvi2tty
 SUBDIR+=	enriched2html
+SUBDIR+=	erlang-p1_iconv
 SUBDIR+=	fondu
 SUBDIR+=	fribidi
 SUBDIR+=	gbase

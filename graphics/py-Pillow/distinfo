@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.13 2015/10/18 15:47:10 adam Exp $
+$NetBSD: distinfo,v 1.15 2015/11/04 17:41:19 agc Exp $
 
 SHA1 (Pillow-3.0.0.tar.gz) = ab6959e090848590e910aaf1521d4a49ca79be3d
 RMD160 (Pillow-3.0.0.tar.gz) = 4bb60362d90dbcc4821fa008d5b01370eaac7261

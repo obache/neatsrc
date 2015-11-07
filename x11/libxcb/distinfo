@@ -1,5 +1,6 @@
-$NetBSD: distinfo,v 1.15 2015/09/09 17:54:45 wiz Exp $
+$NetBSD: distinfo,v 1.16 2015/11/04 03:28:47 agc Exp $
 
 SHA1 (libxcb-1.11.1.tar.bz2) = 28e47aa699d2c2cffed31d1aa2473a9fefe77f17
 RMD160 (libxcb-1.11.1.tar.bz2) = a8ac86a0b68b08a1600ae63b0102704f4dfeb8b9
+SHA512 (libxcb-1.11.1.tar.bz2) = 30471b053097d68008142bada9ca3efd9121305f0180d28a5ca9b62821f711a3ad63a667bdfb31f8f97020ed7aa9509f8248effbd65c80e6cda7375135dc96eb
 Size (libxcb-1.11.1.tar.bz2) = 519517 bytes

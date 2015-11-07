@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.8 2015/10/25 01:25:50 schmonz Exp $
+$NetBSD: distinfo,v 1.10 2015/11/04 17:41:17 agc Exp $
 
 SHA1 (FindBin-libs-2.15.tar.gz) = 6f39b7d3d06a016b97695b2556508532ca0997d5
 RMD160 (FindBin-libs-2.15.tar.gz) = eb1a89a460a483116ba9ef0eb693363968d634ec

@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.1.1.1 2007/05/12 13:51:44 obache Exp $
+$NetBSD: distinfo,v 1.2 2015/11/04 01:59:40 agc Exp $
 
 SHA1 (mecab-jumandic-7.0-20130310.tar.gz) = db419d23b955bfaca1e2eea421e3ffa3a1fd3f72
 RMD160 (mecab-jumandic-7.0-20130310.tar.gz) = 3f5009263fcfa609c3f19f0e64b8c5f8a1b3afbe

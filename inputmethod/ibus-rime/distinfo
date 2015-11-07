@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.1 2014/12/04 12:59:26 obache Exp $
+$NetBSD: distinfo,v 1.2 2015/11/03 22:13:35 agc Exp $
 
 SHA1 (ibus-rime-1.2.tar.gz) = 9d0c7b55dbcd3388d20dbcaf1bd0b679d23ec404
 RMD160 (ibus-rime-1.2.tar.gz) = 212285abeac101389aa564011d77bba430ca218e

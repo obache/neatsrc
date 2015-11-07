@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.13 2015/10/31 14:23:04 schmonz Exp $
+$NetBSD: distinfo,v 1.15 2015/11/04 17:41:17 agc Exp $
 
 SHA1 (Test-BDD-Cucumber-0.39.tar.gz) = 8d0b8e5146c1d9a12df5c4931c81092e6bbba590
 RMD160 (Test-BDD-Cucumber-0.39.tar.gz) = 01644363bf4ac28e52c741437ca1d3ec3590782a

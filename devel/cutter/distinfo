@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.10 2014/05/31 08:10:48 obache Exp $
+$NetBSD: distinfo,v 1.11 2015/11/03 03:27:21 agc Exp $
 
 SHA1 (cutter-1.2.5.tar.gz) = 1b55df677a1b1918e0d4e44615e6234125be41f6
 RMD160 (cutter-1.2.5.tar.gz) = fcc5f783dbf62ea0836022e7b8d7573000920ff3

@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.16 2015/10/27 13:38:52 wiz Exp $
+$NetBSD: distinfo,v 1.18 2015/11/04 17:41:18 agc Exp $
 
 SHA1 (waf-1.8.16.tar.bz2) = 124b136e7575c4b747efd2b5bb952759e0022df4
 RMD160 (waf-1.8.16.tar.bz2) = 0e2ac759a453d20935921332f4e9e0e05e85f88f

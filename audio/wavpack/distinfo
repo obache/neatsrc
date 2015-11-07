@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.4 2015/10/18 15:19:30 adam Exp $
+$NetBSD: distinfo,v 1.6 2015/11/04 17:41:15 agc Exp $
 
 SHA1 (wavpack-4.75.2.tar.bz2) = 9025eab39f9db05f39f88db70891a2421d124435
 RMD160 (wavpack-4.75.2.tar.bz2) = 26a20a4f8184340deee0cf443522fb1f7ffe8742

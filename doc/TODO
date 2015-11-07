@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15046 2015/11/02 13:41:17 ryoon Exp $
+$NetBSD: TODO,v 1.15065 2015/11/06 11:33:57 wiz Exp $
 
 Suggested new packages
 ======================
@@ -489,7 +489,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o bliz++-0.10
 	o blur6ex-0.3.462
 	o bmkdep-20140112
-	o bmon-2.1.0
 	o boolean-7.1
 	o bos-2.5
 	o boson-0.13
@@ -509,8 +508,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o c4-1.10 [schmonz]
 	o cacti-0.8.8f
 	o cacti-spine-0.8.8f
-	o cairo-1.14.4
-	o cairo-gobject-1.14.4
 	o cal3d-0.11.0
 	o calcoo-2.1.0
 	o calibre-2.42.0
@@ -546,13 +543,11 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cmake-fedora-2.3.4
 	o cmocka-1.0.1
 	o cmus-2.7.1
-	o colordiff-1.0.16
 	o colorize-0.3.4
 	o colortail-0.3.3
 	o compiz-0.8.10
 	o concurrencykit-0.4.5
 	o cone-0.92
-	o confuse-2.8 (github.com/martinh/libconfuse)
 	o conserver8-8.2.1
 	o cook-2.31
 	o coreutils-8.24
@@ -590,7 +585,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o dasher-4.11
 	o dateutils-0.3.3
 	o davical-1.1.2
-	o dbus-1.10.2
 	o dd_rescue-1.46
 	o dd_rhelp-0.3.0
 	o ddrescue-1.20
@@ -604,7 +598,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o di-4.36
 	o digikam-4.12.0
 	o dinotrace-9.4d
-	o discount-2.1.8a
 	o dmg2img-1.6.5
 	o doclifter-2.15
 	o dojo-1.9.7
@@ -754,7 +747,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gdl-3.16.0
 	o gdm-2.32.2 [GNOME 2.32]
 	o gdm-3.0.3
-	o geany-1.25
 	o gedit-plugins-2.32.0 [GNOME 2.32]
 	o genius-1.0.20
 	o gentoo-0.20.4
@@ -828,7 +820,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gnu-pw-mgr-1.6
 	o gnuchess-6.2.2
 	o gnuchess-book-1.02
-	o gnupg21-2.1.9
 	o gnuradio-3.7.7.1
 	o gnustep-back-0.24.1
 	o gnustep-base-1.24.8
@@ -860,7 +851,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gromacs-5.0.6
 	o groonga-5.0.6
 	o gsharutils-4.15.2
-	o gsl-2.0
 	o gss-1.0.3
 	o gst-plugins0.10-fluendo-mp3-0.10.32
 	o gst-plugins1-base-1.6.1
@@ -1058,7 +1048,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libmusicbrainz5-5.1.0
 	o libntfs-2015.3.14
 	o liboobs-2.32.0 [GNOME 2.32]
-	o libopenmpt-0.2.5705beta15
 	o libowfat-0.29
 	o libpgm-5.2.122
 	o libplist-1.12
@@ -1161,7 +1150,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o munin-node-1.4.6
 	o munin-server-1.4.6
 	o muse-0.9.2
-	o musicpd-0.19.11
 	o mutagen-tools-1.29
 	o mxml-2.9
 	o myodbc-5.3.4
@@ -1260,10 +1248,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Chart-2.4.10
 	o p5-Config-Augeas-1.300
 	o p5-Cookie-Baker-0.06
-	o p5-Crypt-GeneratePassword-0.04
 	o p5-Crypt-OpenPGP-1.11
 	o p5-Crypt-RIPEMD160-0.06
-	o p5-Crypt-RandPasswd-0.06
 	o p5-DBD-DB2-1.85
 	o p5-DBD-ODBC-1.52
 	o p5-DBD-Oracle-1.74
@@ -1518,19 +1504,15 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-ipython-4.0
 	o py-jaraco_util-11.0
 	o py-junos-eznc-1.2.2
-	o py-libmc-1.5.0
-	o py-markdown-2.6.3
 	o py-matplotlib-1.4.3
 	o py-metar-0.20
 	o py-mezzanine-4.0.1
 	o py-munkres-1.0.7
 	o py-musicbrainz-0.7.4
-	o py-mutagen-1.29
 	o py-ncclient-0.4.3
 	o py-netaddr-0.7.15
 	o py-newt-0.52.18
 	o py-notify-0.3.1
-	o py-oauthlib-1.0.1
 	o py-omniORBpy-3.7
 	o py-pdf-parser-0.6.3
 	o py-pendrell-0.3.7
@@ -1555,7 +1537,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-uliweb-0.4.1
 	o py-unittest2-1.1.0
 	o py-uwsgi-2.0.11.1
-	o py-vdirsyncer-0.7.0
 	o py-wxWidgets-3.0.0
 	o py-yubiauth-0.3.10
 	o py-zconfig-3.0.3

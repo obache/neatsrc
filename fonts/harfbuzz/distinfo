@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.42 2015/10/21 08:29:02 wiz Exp $
+$NetBSD: distinfo,v 1.44 2015/11/04 17:41:18 agc Exp $
 
 SHA1 (harfbuzz-1.0.6.tar.bz2) = a5b7d071f106c928fda305edc9113bf936572968
 RMD160 (harfbuzz-1.0.6.tar.bz2) = 702738e7c831ddfe31dc67acda37f3ec7b086b3d

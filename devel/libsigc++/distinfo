@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.23 2015/10/15 11:04:37 wiz Exp $
+$NetBSD: distinfo,v 1.25 2015/11/04 17:41:16 agc Exp $
 
 SHA1 (libsigc++-2.6.1.tar.xz) = 63530df41514aa58796458c27f49569779e91f1a
 RMD160 (libsigc++-2.6.1.tar.xz) = 5929f02fde2b1d27b7a5646832d49f2b2bc6b4c2

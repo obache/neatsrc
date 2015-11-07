@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.5 2014/08/08 12:27:44 obache Exp $
+$NetBSD: distinfo,v 1.6 2015/11/03 03:27:50 agc Exp $
 
 SHA1 (msgpack-1.2.0.tar.gz) = 03c667f5982e4a106b45e1fbb3cd0ad12eae6d4f
 RMD160 (msgpack-1.2.0.tar.gz) = 3241be7e78ed704641cd78f78a50c4c20bb12e76

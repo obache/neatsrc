@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.14 2015/10/18 23:09:32 wiz Exp $
+$NetBSD: distinfo,v 1.16 2015/11/04 17:41:18 agc Exp $
 
 SHA1 (lgogdownloader-2.26.tar.gz) = da95d3bf78880c71776f91cc91a9584785004f23
 RMD160 (lgogdownloader-2.26.tar.gz) = 4c1095e1571fdb3fc53bd9b096b879ada1417c68

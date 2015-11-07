@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.39 2015/10/18 15:07:06 adam Exp $
+$NetBSD: distinfo,v 1.41 2015/11/04 17:41:15 agc Exp $
 
 SHA1 (mpg123-1.22.4.tar.bz2) = 6ca59baceeebe361cc508214ba725a56d4fea743
 RMD160 (mpg123-1.22.4.tar.bz2) = 0775dd28389ef27aafc9de4d261a9ddb24699563

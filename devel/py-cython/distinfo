@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.23 2015/10/19 09:42:22 wiz Exp $
+$NetBSD: distinfo,v 1.25 2015/11/04 17:41:17 agc Exp $
 
 SHA1 (Cython-0.23.4.tar.gz) = fc574c5050cd5a8e34435432e2a4a693353ed807
 RMD160 (Cython-0.23.4.tar.gz) = ac41bb0f649dd849c0da180acef3debe71c87ed7

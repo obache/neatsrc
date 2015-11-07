@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.2 2014/08/10 02:30:00 obache Exp $
+$NetBSD: distinfo,v 1.3 2015/11/03 22:13:35 agc Exp $
 
 SHA1 (ibus-kkc-1.5.22.tar.gz) = e48fcdfbb2d729a081e3a0aaa1fbdadce4546e35
 RMD160 (ibus-kkc-1.5.22.tar.gz) = 7a7c0a5a3362195afea7d89ae28f371da0c0eeb5

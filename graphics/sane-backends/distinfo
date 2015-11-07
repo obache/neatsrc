@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.39 2015/11/02 18:42:50 leot Exp $
+$NetBSD: distinfo,v 1.41 2015/11/04 17:41:19 agc Exp $
 
 SHA1 (sane-backends-1.0.25.tar.gz) = 05824922d91571e1fc2f5cdd270745783d593754
 RMD160 (sane-backends-1.0.25.tar.gz) = 1cfd81eeddf3ef3c2cea98f6ca7640522b249fab

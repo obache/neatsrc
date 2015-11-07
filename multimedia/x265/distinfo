@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.8 2015/10/25 13:51:09 adam Exp $
+$NetBSD: distinfo,v 1.10 2015/11/04 17:41:21 agc Exp $
 
 SHA1 (x265_1.8.tar.gz) = 97b86d065c36265a32756ac8d64d26278be6f9a0
 RMD160 (x265_1.8.tar.gz) = dab48b0cfca885ef6b29f3c88916af09e167b80e

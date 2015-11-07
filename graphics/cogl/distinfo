@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.11 2015/10/29 22:55:01 prlw1 Exp $
+$NetBSD: distinfo,v 1.13 2015/11/04 17:41:19 agc Exp $
 
 SHA1 (cogl-1.22.0.tar.xz) = 30bef68b5ccffb06df033c5f3f9758ef3e48dc01
 RMD160 (cogl-1.22.0.tar.xz) = 26ae4ec92f142902998343dfe8b93ab4ef00f7d3

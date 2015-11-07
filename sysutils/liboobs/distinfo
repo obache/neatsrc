@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.5 2009/10/31 02:52:45 wiz Exp $
+$NetBSD: distinfo,v 1.6 2015/11/04 01:32:19 agc Exp $
 
 SHA1 (liboobs-3.0.0.tar.bz2) = d7c6360c3b05876fe6967c068ee26e1b4b54ba0e
 RMD160 (liboobs-3.0.0.tar.bz2) = b20e080f361a9418f572e2283ebcf322d27ca24c

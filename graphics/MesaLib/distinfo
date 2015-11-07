@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.106 2015/10/25 21:18:54 tnn Exp $
+$NetBSD: distinfo,v 1.108 2015/11/04 17:41:18 agc Exp $
 
 SHA1 (mesa-11.0.4.tar.xz) = 3ca14958231a51576f3f96006df4d78da7669b84
 RMD160 (mesa-11.0.4.tar.xz) = e299943dc6eacb67e4cc55927a3cf3b4217d20a7

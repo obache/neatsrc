@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.13 2015/10/25 08:18:00 adam Exp $
+$NetBSD: distinfo,v 1.15 2015/11/04 17:41:16 agc Exp $
 
 SHA1 (unixODBC-2.3.4.tar.gz) = df3578b080fb67da544d4c83424a770729ef25fb
 RMD160 (unixODBC-2.3.4.tar.gz) = 4188d9ccfa849c569626af0e2686289ad830fd73

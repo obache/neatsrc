@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.38 2014/11/20 09:11:21 obache Exp $
+$NetBSD: distinfo,v 1.39 2015/11/03 01:43:55 agc Exp $
 
 SHA1 (skf_2.00.1.tar.gz) = 682606b8c71140bb3ded07d67276a332f494a2e9
 RMD160 (skf_2.00.1.tar.gz) = 6823774f97cb89b67b709ee790fd3132c1bd9f70

@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.8 2015/10/17 17:57:28 khorben Exp $
+$NetBSD: distinfo,v 1.10 2015/11/04 17:41:16 agc Exp $
 
 SHA1 (libSystem-0.2.3.tar.gz) = 8921aa07721e47b3b5ae5584432bdba3bed7c665
 RMD160 (libSystem-0.2.3.tar.gz) = 7df7078fc1f280c723a4db746f26dc2fdaa091f2

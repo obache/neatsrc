@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.6 2015/10/21 08:37:24 wiz Exp $
+$NetBSD: distinfo,v 1.8 2015/11/04 17:41:18 agc Exp $
 
 SHA1 (talloc-2.1.4.tar.gz) = 1c5383249efc3ff3ff44c27c1263eb08ca731a7c
 RMD160 (talloc-2.1.4.tar.gz) = 87e5f607073042d1aa67ad340284a7590d73e0e3

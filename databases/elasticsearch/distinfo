@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.11 2015/10/18 16:02:05 fhajny Exp $
+$NetBSD: distinfo,v 1.13 2015/11/04 17:41:15 agc Exp $
 
 SHA1 (elasticsearch-1.7.3.tar.gz) = 754b089ec0a1aae5b36b39391d5385ed7428d8f5
 RMD160 (elasticsearch-1.7.3.tar.gz) = f5f87c2b5ab9975a5649b310996c56fbe4eac436

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.561 2015/08/23 14:21:43 leot Exp $
+# $NetBSD: Makefile,v 1.563 2015/11/05 08:53:18 wiz Exp $
 #
 
 COMMENT=	Security tools
@@ -21,6 +21,7 @@ SUBDIR+=	antonym
 SUBDIR+=	ap-modsecurity
 SUBDIR+=	ap-modsecurity2
 SUBDIR+=	apg
+SUBDIR+=	argon2
 SUBDIR+=	arirang
 SUBDIR+=	asignify
 SUBDIR+=	avcheck
@@ -70,6 +71,9 @@ SUBDIR+=	dsniff-nox11
 SUBDIR+=	egd
 SUBDIR+=	engine-pkcs11
 SUBDIR+=	ent
+SUBDIR+=	erlang-oauth2
+SUBDIR+=	erlang-p1_pam
+SUBDIR+=	erlang-p1_tls
 #SUBDIR+=	f-prot-antivirus6		# only contains shared files
 SUBDIR+=	f-prot-antivirus6-fs-bin
 SUBDIR+=	f-prot-antivirus6-ms-bin

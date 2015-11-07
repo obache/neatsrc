@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.12 2015/10/15 11:07:53 wiz Exp $
+$NetBSD: distinfo,v 1.14 2015/11/04 17:41:18 agc Exp $
 
 SHA1 (cairomm-1.12.0.tar.gz) = 5a09a3f604cec2ddb4dfcace28dbe74a53585585
 RMD160 (cairomm-1.12.0.tar.gz) = 551be5f23cf694597aa6af8d1c60644d19cf13a9

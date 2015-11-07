@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.41 2015/11/01 14:24:45 tnn Exp $
+# $NetBSD: Makefile,v 1.42 2015/11/04 13:27:59 tnn Exp $
 
 DISTNAME=		rcs-5.9.4
 CATEGORIES=		devel scm
@@ -13,9 +13,11 @@ LICENSE=		gnu-gpl-v3
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake diff:run diff3:run
 
+# the native diff/diff3 is not sufficient for rcs
 TOOLS_INCOMPAT_PLATFORMS.diff=	SunOS-*-* OSF1-*-* AIX-*-* Minix-*-*
 TOOLS_INCOMPAT_PLATFORMS.diff3=	SunOS-*-* OSF1-*-* AIX-*-* Minix-*-*
 
+# DIFF is already in CONFIGURE_ENV
 CONFIGURE_ENV+=		DIFF3=${TOOLS_PATH.diff3}
 
 REPLACE_SH=		build-aux/extract-help

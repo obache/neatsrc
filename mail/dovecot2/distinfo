@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.58 2015/10/17 07:45:43 adam Exp $
+$NetBSD: distinfo,v 1.60 2015/11/04 17:41:19 agc Exp $
 
 SHA1 (dovecot-2.2.19.tar.gz) = cc748b72478d1670997ebb0796fd68f3f2d546be
 RMD160 (dovecot-2.2.19.tar.gz) = cb21bccf69c17e4188dc2834fb9ae11d42c638b8

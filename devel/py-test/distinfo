@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.11 2015/10/19 09:44:10 wiz Exp $
+$NetBSD: distinfo,v 1.13 2015/11/04 17:41:17 agc Exp $
 
 SHA1 (pytest-2.8.2.tar.gz) = 75a17205dad7b30e17871db7e2cff2125515fd2d
 RMD160 (pytest-2.8.2.tar.gz) = 1da55bf79a045235e0294d27363fedfbe8d90212

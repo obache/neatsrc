@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.40 2015/10/15 09:50:22 wiz Exp $
+$NetBSD: distinfo,v 1.42 2015/11/04 17:41:15 agc Exp $
 
 SHA1 (abcde-2.7.1.tar.gz) = 33c3e10f5b2b2063fa48bb094510ba59e868ad7c
 RMD160 (abcde-2.7.1.tar.gz) = 2540056428c5183c248d75e0d310e838e736f2a7
