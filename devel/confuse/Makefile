@@ -1,5 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2015/11/03 19:32:50 bsiegert Exp $
-#
+# $NetBSD: Makefile,v 1.15 2015/11/07 19:31:17 wiz Exp $
 
 DISTNAME=	confuse-2.8
 CATEGORIES=	devel
@@ -11,6 +10,9 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://github.org/martinh/libconfuse/
 COMMENT=	Configuration file parser library
 LICENSE=	isc
+
+BUILD_DEPENDS+=		gettext-m4-[0-9]*:../../devel/gettext-m4
+BUILD_DEPENDS+=		gettext-tools-[0-9]*:../../devel/gettext-tools
 
 GNU_CONFIGURE=		YES
 CONFIGURE_ARGS+=	--enable-shared

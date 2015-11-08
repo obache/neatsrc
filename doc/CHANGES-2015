@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4505 2015/11/06 13:50:25 wiz Exp $
+$NetBSD: CHANGES-2015,v 1.4517 2015/11/07 20:19:00 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7644,6 +7644,7 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated www/firefox38 to 38.4.0 [ryoon 2015-11-03]
 	Updated www/firefox38-l10n to 38.4.0 [ryoon 2015-11-03]
 	Updated textproc/discount to 2.1.8a [leot 2015-11-04]
+	Updated emulators/tme to 0.8nb28 [dholland 2015-11-04]
 	mk/bsd.pkg.mk: Add SHA512 digests for most package distfiles [agc 2015-11-03]
 	Updated databases/sqlite3 to 3.9.2 [adam 2015-11-04]
 	Updated databases/sqlite3-docs to 3.9.2 [adam 2015-11-04]
@@ -7705,6 +7706,23 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated devel/colordiff to 1.0.16 [wiz 2015-11-06]
 	Updated math/gsl to 2.0 [wiz 2015-11-06]
 	Updated audio/libopenmpt to 0.2.5705 [wiz 2015-11-06]
-	Added devel/py-requests-oauthlib version 0.5.0 [wiz 2015-11-06]
 	Updated finance/magento to 1.9.2.2 [fhajny 2015-11-06]
 	Added lang/clang-static-analyzer version 3.7.0 [wiz 2015-11-06]
+	Updated devel/git to 2.6.3 [adam 2015-11-06]
+	Updated devel/git-base to 2.6.3 [adam 2015-11-06]
+	Updated devel/git-docs to 2.6.3 [adam 2015-11-06]
+	Updated devel/git-svn to 2.6.3 [adam 2015-11-06]
+	Updated devel/git-gitk to 2.6.3 [adam 2015-11-06]
+	Updated devel/git-contrib to 2.6.3 [adam 2015-11-06]
+	Updated www/gitweb to 2.6.3 [adam 2015-11-06]
+	Updated devel/libsmi to 0.5.0 [adam 2015-11-06]
+	Updated devel/py-requests to 2.8.1 [wiz 2015-11-06]
+	Updated pkgtools/x11-links to 0.99 [tron 2015-11-07]
+	Updated archivers/libunrar to 5.3.7 [adam 2015-11-07]
+	Updated archivers/unrar to 5.3.7 [adam 2015-11-07]
+	Updated x11/gtk3 to 3.16.6nb1 [he 2015-11-07]
+	Updated devel/quilt to 0.64nb2 [dholland 2015-11-07]
+	Added devel/py-test-cov version 2.2.0 [wiz 2015-11-07]
+	Added devel/py-test-runner version 2.6.2 [wiz 2015-11-07]
+	Updated devel/py-coverage to 4.0.2 [wiz 2015-11-07]
+	Updated misc/less to 481 [wiz 2015-11-07]

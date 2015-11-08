@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.38 2014/02/12 23:17:35 tron Exp $
+# $NetBSD: Makefile,v 1.40 2015/11/07 21:36:57 dholland Exp $
 #
 
 DISTNAME=	epic4-2.10.2
@@ -23,6 +23,8 @@ GNU_CONFIGURE=	YES
 INSTALL_MAKE_FLAGS+=	IP=${DESTDIR}
 
 CFLAGS.OSF1+=	-D_SOCKADDR_LEN
+
+.include "options.mk"
 
 .include "../../mk/termcap.buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: bsd.prefs.mk,v 1.370 2015/10/17 01:50:46 sevan Exp $
+# $NetBSD: bsd.prefs.mk,v 1.373 2015/11/07 20:00:19 sevan Exp $
 #
 # This file includes the mk.conf file, which contains the user settings.
 #
@@ -150,9 +150,14 @@ LOWER_OPSYS?=		bsdi
 
 .elif ${OPSYS} == "Bitrig"
 LOWER_OPSYS?= 		bitrig
-LOWER_ARCH!= 		${UNAME} -p
+LOWER_ARCH!= 		arch -s
+.  if ${LOWER_ARCH} == "amd64"
+MACHINE_ARCH= 		x86_64
+.  else
 MACHINE_ARCH= 		${LOWER_ARCH}
+.  endif
 MAKEFLAGS+= 		LOWER_ARCH=${LOWER_ARCH:Q}
+MAKEFLAGS+= 		MACHINE_ARCH=${MACHINE_ARCH:Q}
 LOWER_VENDOR?= 		unknown
 
 .elif ${OPSYS} == "Cygwin"
@@ -287,6 +292,17 @@ LOWER_VENDOR?=		ssd
 LOWER_VENDOR?=          pc
 .  endif
 LOWER_VENDOR?=          unknown
+
+.elif ${OPSYS} == "OpenBSD"
+LOWER_OPSYS?= 		openbsd
+LOWER_ARCH!=		arch -s
+.  if ${LOWER_ARCH} == "amd64"
+MACHINE_ARCH=		x86_64
+.  else
+MACHINE_ARCH= 		${LOWER_ARCH}
+.  endif
+MAKEFLAGS+= 		LOWER_ARCH=${LOWER_ARCH:Q}
+MAKEFLAGS+=		MACHINE_ARCH=${MACHINE_ARCH:Q}
 
 .elif ${OPSYS} == "OSF1"
 LOWER_ARCH!=		${UNAME} -p
@@ -834,13 +850,13 @@ _SYS_VARS.dirs=		WRKDIR DESTDIR PKG_SYSCONFBASEDIR
 
 # List of 64bit operating systems with sizeof(int) != sizeof(void *).
 # This can be used with BROKEN_ON_PLATFORM for software that is not
-# 64bit clean. The "amd64" case is for OpenBSD.
+# 64bit clean.
 #
 # Keywords: BROKEN_ON_PLATFORM 64bit
 #
 LP64PLATFORMS=		*-*-aarch64 *-*-aarch64eb *-*-alpha *-*-ia64 \
 			*-*-mips64eb *-*-mips64el *-*-powerpc64 *-*-riscv64 \
-			*-*-sparc64 *-*-x86_64 *-*-amd64
+			*-*-sparc64 *-*-x86_64
 
 # Lists of big-endian and little-endian platforms, to be used with
 # BROKEN_ON_PLATFORM.
@@ -850,7 +866,7 @@ LP64PLATFORMS=		*-*-aarch64 *-*-aarch64eb *-*-alpha *-*-ia64 \
 _BIGENDIANCPUS=		coldfire hppa m68000 m68k mips64eb mipseb or1k \
 			powerpc powerpc64 sh3eb sparc sparc64
 _LITTLEENDIANCPUS=	alpha i386 ia64 mips64el mipsel riscv32 riscv64 \
-			sh3el vax x86_64 amd64
+			sh3el vax x86_64
 
 # piles of ARM variants
 _ARMCPUS+=		arm earm earmhf earmv4 earmv5 earmv6 earmv6hf
