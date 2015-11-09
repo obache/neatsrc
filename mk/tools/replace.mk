@@ -921,6 +921,17 @@ TOOLS_ARGS.xargs=		-r	# don't run command if stdin is empty
 .  endif
 .endif
 
+.if !defined(TOOLS_IGNORE.xmllint) && !empty(_USE_TOOLS:Mxmllint)
+.  if !empty(PKGPATH:Mtextproc/libxml2)
+MAKEFLAGS+=			TOOLS_IGNORE.xmllint=
+.  elif !empty(_TOOLS_USE_PKGSRC.xmllint:M[yY][eE][sS])
+TOOLS_DEPENDS.xmllint?=		libxml2>=2.0:../../textproc/libxml2
+TOOLS_CREATE+=			xmllint
+TOOLS_FIND_PREFIX+=		TOOLS_PREFIX.xmllint=libxml2
+TOOLS_PATH.xmllint=		${TOOLS_PREFIX.xmllint}/bin/xmllint
+.  endif
+.endif
+
 _TOOLS.xz=	xz xzcat
 .for _t_ in ${_TOOLS.xz}
 .  if !defined(TOOLS_IGNORE.${_t_}) && !empty(_USE_TOOLS:M${_t_})
