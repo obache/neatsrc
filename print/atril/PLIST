@@ -51,7 +51,6 @@ include/atril/1.5.0/libview/ev-view-type-builtins.h
 include/atril/1.5.0/libview/ev-view.h
 include/atril/1.5.0/libview/ev-web-view.h
 lib/atril/3/backends/comicsdocument.atril-backend
-${PLIST.epub}lib/atril/3/backends/epub/MathJax/MathJax.js
 ${PLIST.epub}lib/atril/3/backends/epubdocument.atril-backend
 ${PLIST.djvu}lib/atril/3/backends/djvudocument.atril-backend
 ${PLIST.dvi}lib/atril/3/backends/dvidocument.atril-backend
@@ -364,6 +363,7 @@ share/locale/he/LC_MESSAGES/atril.mo
 share/locale/hi/LC_MESSAGES/atril.mo
 share/locale/hr/LC_MESSAGES/atril.mo
 share/locale/hu/LC_MESSAGES/atril.mo
+share/locale/hy/LC_MESSAGES/atril.mo
 share/locale/id/LC_MESSAGES/atril.mo
 share/locale/it/LC_MESSAGES/atril.mo
 share/locale/ja/LC_MESSAGES/atril.mo
@@ -398,6 +398,7 @@ share/locale/pt_BR/LC_MESSAGES/atril.mo
 share/locale/ro/LC_MESSAGES/atril.mo
 share/locale/ru/LC_MESSAGES/atril.mo
 share/locale/rw/LC_MESSAGES/atril.mo
+share/locale/sc/LC_MESSAGES/atril.mo
 share/locale/si/LC_MESSAGES/atril.mo
 share/locale/sk/LC_MESSAGES/atril.mo
 share/locale/sl/LC_MESSAGES/atril.mo

@@ -3844,6 +3844,8 @@ share/themes/BlueMenta/cinnamon/switch-on.png
 share/themes/BlueMenta/cinnamon/thumbnail.png
 share/themes/BlueMenta/cinnamon/ws-switch-arrow-down.svg
 share/themes/BlueMenta/cinnamon/ws-switch-arrow-up.svg
+share/themes/BlueMenta/emerald/Menta.emerald
+share/themes/BlueMenta/emerald/README
 share/themes/BlueMenta/gtk-2.0/apps/Caja/breadcrumb_active.png
 share/themes/BlueMenta/gtk-2.0/apps/Caja/breadcrumb_normal.png
 share/themes/BlueMenta/gtk-2.0/apps/Caja/breadcrumb_prelight.png
@@ -4692,6 +4694,8 @@ share/themes/Menta/cinnamon/switch-on.png
 share/themes/Menta/cinnamon/thumbnail.png
 share/themes/Menta/cinnamon/ws-switch-arrow-down.svg
 share/themes/Menta/cinnamon/ws-switch-arrow-up.svg
+share/themes/Menta/emerald/Menta.emerald
+share/themes/Menta/emerald/README
 share/themes/Menta/gtk-2.0/apps/Caja/breadcrumb_active.png
 share/themes/Menta/gtk-2.0/apps/Caja/breadcrumb_normal.png
 share/themes/Menta/gtk-2.0/apps/Caja/breadcrumb_prelight.png

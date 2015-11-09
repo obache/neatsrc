@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	libmatekbd-1.10.0
+DISTNAME=	libmatekbd-1.12.0
 CATEGORIES=	x11 mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -16,6 +16,8 @@ USE_PKGLOCALEDIR=	yes
 
 PKGCONFIG_OVERRIDE+=	libmatekbd.pc.in
 PKGCONFIG_OVERRIDE+=	libmatekbdui.pc.in
+
+.include "options.mk"
 
 .include "../../devel/glib2/schemas.mk"
 

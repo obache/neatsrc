@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	libmatemixer-1.10.0
+DISTNAME=	libmatemixer-1.12.0
 CATEGORIES=	audio mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz

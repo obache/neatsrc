@@ -62,6 +62,7 @@ lib/pluma/plugins/libsort.la
 ${PLIST.enchant}lib/pluma/plugins/libspell.la
 lib/pluma/plugins/libtaglist.la
 lib/pluma/plugins/libtime.la
+lib/pluma/plugins/libtrailsave.la
 lib/pluma/plugins/modelines.pluma-plugin
 ${PLIST.python}lib/pluma/plugins/pythonconsole.pluma-plugin
 ${PLIST.python}lib/pluma/plugins/pythonconsole/__init__.py
@@ -133,6 +134,7 @@ lib/pluma/plugins/sort.pluma-plugin
 ${PLIST.enchant}lib/pluma/plugins/spell.pluma-plugin
 lib/pluma/plugins/taglist.pluma-plugin
 lib/pluma/plugins/time.pluma-plugin
+lib/pluma/plugins/trailsave.pluma-plugin
 libexec/pluma/pluma-bugreport.sh
 man/man1/pluma.1
 share/MateConf/gsettings/pluma.convert

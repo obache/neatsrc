@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-netbook-1.10.0
+DISTNAME=	mate-netbook-1.12.0
 CATEGORIES=	wm mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz

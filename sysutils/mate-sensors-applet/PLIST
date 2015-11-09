@@ -9,6 +9,7 @@ lib/mate-sensors-applet/plugins/libi2c-proc.la
 lib/mate-sensors-applet/plugins/libi2c-sys.la
 lib/mate-sensors-applet/plugins/libi8k.la
 lib/mate-sensors-applet/plugins/libibm-acpi.la
+lib/mate-sensors-applet/plugins/libmbmon.la
 lib/mate-sensors-applet/plugins/libomnibook.la
 lib/mate-sensors-applet/plugins/libpmu-sys.la
 lib/mate-sensors-applet/plugins/libsmu-sys.la

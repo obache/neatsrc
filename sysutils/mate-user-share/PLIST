@@ -178,7 +178,6 @@ share/locale/zh_CN/LC_MESSAGES/mate-user-share.mo
 share/locale/zh_HK/LC_MESSAGES/mate-user-share.mo
 share/locale/zh_TW/LC_MESSAGES/mate-user-share.mo
 share/mate-user-share/dav_groupfile
-share/mate-user-share/dav_user_2.0.conf
 share/mate-user-share/dav_user_2.2.conf
 share/mate-user-share/dav_user_2.4.conf
 share/mate-user-share/file-share-properties.ui

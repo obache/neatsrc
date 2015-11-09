@@ -1,7 +1,7 @@
 $NetBSD$
 
-SHA1 (engrampa-1.10.2.tar.xz) = 28321d373ebe270e4475ecb5a743d69a981a4d02
-RMD160 (engrampa-1.10.2.tar.xz) = d9c10bb3250d39c71cb601afb3bd8256ab5f39f9
-SHA512 (engrampa-1.10.2.tar.xz) = 86772801d80584c4020fce63cde11478a914372598f3c41774f4248817a05e37eb72842cd2f88be81c22969452f33806738d94a872ffe4ca8743fe8a9c115e1d
-Size (engrampa-1.10.2.tar.xz) = 1378888 bytes
+SHA1 (engrampa-1.12.0.tar.xz) = 76e2ac2806c6dcf6744766df6f9d0c056df5e301
+RMD160 (engrampa-1.12.0.tar.xz) = 3b1f9c2c8a4a45f08dfb75772ff11c3e6e776d3b
+SHA512 (engrampa-1.12.0.tar.xz) = 8c694b1f1baab099316f6e5d5ec67ae95171df3a988aee11b0527ae797717e7b3e57fa1ec53cb78e9aa397b1758f768736231ad1bd91c1bb8b2ba2f8f755cfec
+Size (engrampa-1.12.0.tar.xz) = 1380144 bytes
 SHA1 (patch-src_fr-command-lrzip.c) = 0409d41ab993ca67c71c6896083f848919fc8be8

@@ -1,7 +1,7 @@
 $NetBSD$
 
-SHA1 (mate-panel-1.10.1.tar.xz) = e82156c5b732c22779ffcb03bbbcd3c01e3ce146
-RMD160 (mate-panel-1.10.1.tar.xz) = b7186a869d75fb4bb37c0f35479af4ed49c42c7e
-SHA512 (mate-panel-1.10.1.tar.xz) = 4e8e2eddf2d9ae51b2b332dc6d96130afe90a767d1aca9cbc7a60b77f1e39d233c7a1c2490f5d68f33c6bc2fc834aee9f6cfb888c0cf3ab4b7886880865c9e95
-Size (mate-panel-1.10.1.tar.xz) = 1934576 bytes
-SHA1 (patch-libmate-panel-applet_mate-panel-applet.c) = 4c6e53d217afdb8a398531d1e302088512fbfed3
+SHA1 (mate-panel-1.12.0.tar.xz) = 2b69056df49d2516172ffb6907181d40f75cb375
+RMD160 (mate-panel-1.12.0.tar.xz) = 266a056018a0c5c03d852da351187879da50b5b8
+SHA512 (mate-panel-1.12.0.tar.xz) = e9cb84a730436deb25ef650adc14e20959e810f74d29e79ed191721e82bee5ce97820db2486f245f0cbbf6c41d87798c821db6ba039304cc4bd7bef193ad9f12
+Size (mate-panel-1.12.0.tar.xz) = 1937868 bytes
+SHA1 (patch-libmate-panel-applet_mate-panel-applet.c) = f2046d6d3177e3943dae204ee345525992a4332b

@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	libmatekbd
 .if !defined(LIBMATEKBD_BUILDLINK3_MK)
 LIBMATEKBD_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.libmatekbd+=	libmatekbd>=1.10.0
+BUILDLINK_API_DEPENDS.libmatekbd+=	libmatekbd>=1.12.0
 BUILDLINK_PKGSRCDIR.libmatekbd?=	../../x11/libmatekbd
 
 .include "../../devel/glib2/buildlink3.mk"

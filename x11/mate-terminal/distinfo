@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (mate-terminal-1.10.1.tar.xz) = 72794300b9815de0e861e535e3c5601c19441c54
-RMD160 (mate-terminal-1.10.1.tar.xz) = 7d1feb83eb18715ea222718d36a74ce60edc095b
-SHA512 (mate-terminal-1.10.1.tar.xz) = 252340ce2e25857ac0e9755d567a8bac9b16a6b990f4ce6ec2fe44b7b5aa928b05e4ff34973cd50c0d78adb29d0f0c26783aa69007dfc2b5ef2fc628702efb6e
-Size (mate-terminal-1.10.1.tar.xz) = 1184940 bytes
+SHA1 (mate-terminal-1.12.0.tar.xz) = 58d526e98a86653ddc49c88f03ad52b0cf907b7a
+RMD160 (mate-terminal-1.12.0.tar.xz) = 0660628dafd248ba2150da8e90cf8a20ef3f37f9
+SHA512 (mate-terminal-1.12.0.tar.xz) = f8d7ac45fbaaee93305f9f798d35927bf98d49cc11ec1401d154e7daf93363d88643bb73f96750ec0341fe56264a64389547eb13e298f51bb9e97ad2d73bc4f1
+Size (mate-terminal-1.12.0.tar.xz) = 1142848 bytes

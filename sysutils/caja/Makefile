@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	caja-1.10.4
+DISTNAME=	caja-1.12.0
 CATEGORIES=	sysutils mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -30,6 +30,7 @@ BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.36.0
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../x11/libunique/buildlink3.mk"
+.include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../x11/libXrender/buildlink3.mk"
 .include "../../x11/xproto/buildlink3.mk"

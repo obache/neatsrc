@@ -17,9 +17,16 @@ CONFIGURE_ARGS+=	--disable-dbus
 .endif
 
 .if !empty(PKG_OPTIONS:Mepub)
+DEPENDS+=	mathjax-[0-9]*:../../www/mathjax
 .include "../../www/webkit24-gtk/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-epub
 PLIST.epub=	yes
+FIND_PREFIX:=		MATHJAX_PREFIX=mathjax
+.include "../../mk/find-prefix.mk"
+SUBST_CLASSES+=		mathjax
+SUBST_STAGE.mathjax=	post-configure
+SUBST_FILES.mathjax=	backend/epub/epub-document.c
+SUBST_SED.mathjax=	-e 's,/usr/share/javascript,${MATHJAX_PREFIX}/share/javascript,'
 .else
 CONFIGURE_ARGS+=	--disable-epub
 .endif

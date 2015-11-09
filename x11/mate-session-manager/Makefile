@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-session-manager-1.10.2
+DISTNAME=	mate-session-manager-1.12.0
 CATEGORIES=	x11 mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz

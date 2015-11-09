@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-power-manager-1.10.2
+DISTNAME=	mate-power-manager-1.12.0
 CATEGORIES=	sysutils mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -37,6 +37,7 @@ BUILDLINK_API_DEPENDS.dbus+=	dbus>=1.0
 .include "../../sysutils/libnotify/buildlink3.mk"
 .include "../../sysutils/upower/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
+BUILDLINK_API_DEPENDS.libXrandr+=	libXrandr>=1.3.0
 .include "../../x11/libXrandr/buildlink3.mk"
 .include "../../x11/libXrender/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
@@ -44,5 +45,6 @@ BUILDLINK_API_DEPENDS.dbus+=	dbus>=1.0
 .include "../../x11/libunique/buildlink3.mk"
 .include "../../x11/mate-desktop/buildlink3.mk"
 .include "../../x11/mate-panel/buildlink3.mk"
+BUILDLINK_API_DEPENDS.xproto+=	xproto>=7.0.15
 .include "../../x11/xproto/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-panel-1.10.1
+DISTNAME=	mate-panel-1.12.0
 CATEGORIES=	x11 mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -42,7 +42,7 @@ BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.36.0
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../x11/libICE/buildlink3.mk"
 .include "../../x11/libSM/buildlink3.mk"
-BUILDLINK_API_DEPENDS.libXrandr+=	libXrandr>=1.2.0
+BUILDLINK_API_DEPENDS.libXrandr+=	libXrandr>=1.3.0
 .include "../../x11/libXrandr/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXau/buildlink3.mk"

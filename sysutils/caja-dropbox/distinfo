@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (caja-dropbox-1.10.0.tar.xz) = 4ecb08c7671a12bc8aee3f6df2e2cb70988e95b8
-RMD160 (caja-dropbox-1.10.0.tar.xz) = 5f12470779e80876ec7b631dbe922a663312941b
-SHA512 (caja-dropbox-1.10.0.tar.xz) = a1ae41741cf3da985302fed07dafe560751ef5eb43814ba4bd069b9eac487414d2058a1eb1532b20cae5a2dc72870a17d42fb6462ba3a8ef648230e1f8fc7c05
-Size (caja-dropbox-1.10.0.tar.xz) = 310904 bytes
+SHA1 (caja-dropbox-1.12.0.tar.xz) = db3131570fab30a8aba702a137ffbe9f60f1909e
+RMD160 (caja-dropbox-1.12.0.tar.xz) = 24829cd5c3d51d2365b048172bd7aa8d01bf3d6e
+SHA512 (caja-dropbox-1.12.0.tar.xz) = 32d8fcd2d2aa4a03a976c7848cd628e240558b802247ad6a36242ea95628aa97088aa55ae6d9c889616910e5fc36e2db6753c4f8854d6f9e626c990469d71223
+Size (caja-dropbox-1.12.0.tar.xz) = 311488 bytes

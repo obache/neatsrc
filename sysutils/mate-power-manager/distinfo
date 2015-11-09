@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (mate-power-manager-1.10.2.tar.xz) = dd609bc7ffc7cd481813371ba4b035fa2efa81bb
-RMD160 (mate-power-manager-1.10.2.tar.xz) = e7bbc15ce4cf647f371945144d6f5ed81c6bd6d7
-SHA512 (mate-power-manager-1.10.2.tar.xz) = 133745446536d21102ed318d2809209e46dcef7dd312219d9b716f7785cbcd5a47d477643e1c15dd6672d088640a583a63819b394dc96e4a3437affdbc389ae7
-Size (mate-power-manager-1.10.2.tar.xz) = 3350616 bytes
+SHA1 (mate-power-manager-1.12.0.tar.xz) = 2676d0dcd14ab6900c6a56e7ff99b4e84afa995e
+RMD160 (mate-power-manager-1.12.0.tar.xz) = 5aca0623eab175c27b4eed7f7593bae9adda8df7
+SHA512 (mate-power-manager-1.12.0.tar.xz) = fa88e7ecb8dba14d53c374a37a9c94fce4ccec7db6a7562e3bba2b8c491e810d106809661b3c98133c078e117d99edc4f5cd3f4d43d6c9e82c4b6782f658fc66
+Size (mate-power-manager-1.12.0.tar.xz) = 3306116 bytes

@@ -6,11 +6,13 @@ include/libmatekbd/matekbd-keyboard-config.h
 include/libmatekbd/matekbd-keyboard-drawing.h
 include/libmatekbd/matekbd-status.h
 include/libmatekbd/matekbd-util.h
+${PLIST.introspection}lib/girepository-1.0/Matekbd-1.0.typelib
 lib/libmatekbd.la
 lib/libmatekbdui.la
 lib/pkgconfig/libmatekbd.pc
 lib/pkgconfig/libmatekbdui.pc
 share/MateConf/gsettings/matekbd.convert
+${PLIST.introspection}share/gir-1.0/Matekbd-1.0.gir
 share/glib-2.0/schemas/org.mate.peripherals-keyboard-xkb.gschema.xml
 share/libmatekbd/ui/show-layout.ui
 share/locale/am/LC_MESSAGES/libmatekbd.mo
@@ -47,6 +49,7 @@ share/locale/he/LC_MESSAGES/libmatekbd.mo
 share/locale/hi/LC_MESSAGES/libmatekbd.mo
 share/locale/hr/LC_MESSAGES/libmatekbd.mo
 share/locale/hu/LC_MESSAGES/libmatekbd.mo
+share/locale/hy/LC_MESSAGES/libmatekbd.mo
 share/locale/id/LC_MESSAGES/libmatekbd.mo
 share/locale/it/LC_MESSAGES/libmatekbd.mo
 share/locale/ja/LC_MESSAGES/libmatekbd.mo

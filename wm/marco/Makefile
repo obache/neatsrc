@@ -1,22 +1,20 @@
 # $NetBSD$
 
-DISTNAME=	marco-1.10.3
+DISTNAME=	marco-1.12.0
 CATEGORIES=	wm mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
 
 HOMEPAGE=	http://www.mate-desktop.org/
-COMMENT=	MATE Marco is a fork of GNOME Metacity
+COMMENT=	MATE window manager
 LICENSE=	gnu-gpl-v2
 
 BUILD_DEPENDS+=		gdk-pixbuf2-[0-9]*:../../graphics/gdk-pixbuf2
 DEPENDS+=		zenity-[0-9]*:../../x11/zenity
-TOOL_DEPENDS+=		itstool-[0-9]*:../../textproc/itstool
-TOOL_DEPENDS+=		libxml2-[0-9]*:../../textproc/libxml2 # for xmllint
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
-USE_TOOLS+=		gmake intltool msgfmt pkg-config
+USE_TOOLS+=		gmake intltool itstool msgfmt pkg-config xmllint
 USE_PKGLOCALEDIR=	yes
 
 PKGCONFIG_OVERRIDE+=	src/libmarco-private.pc.in

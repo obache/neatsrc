@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	caja-dropbox-1.10.0
+DISTNAME=	caja-dropbox-1.12.0
 CATEGORIES=	sysutils mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -17,11 +17,12 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config
 
+ICON_THEMES=	yes
+
 REPLACE_PYTHON=	caja-dropbox.in
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/tool.mk"
 .include "../../devel/glib2/buildlink3.mk"
-.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../sysutils/caja/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

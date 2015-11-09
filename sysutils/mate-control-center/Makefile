@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-control-center-1.10.2
+DISTNAME=	mate-control-center-1.12.0
 CATEGORIES=	sysutils mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -11,7 +11,7 @@ LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
-USE_TOOLS+=	gmake intltool msgfmt pkg-config
+USE_TOOLS+=	gmake intltool itstool msgfmt pkg-config xmllint
 
 PKGCONFIG_OVERRIDE+=	capplets/keybindings/mate-keybindings.pc.in
 PKGCONFIG_OVERRIDE+=	capplets/default-applications/mate-default-applications.pc.in
@@ -28,11 +28,16 @@ CONF_FILES+=	${PREFIX}/share/examples/${PKGBASE}/xdg/menus/matecc.menu \
 
 .include "options.mk"
 
+ICON_THEMES=	yes
+
 .include "../../devel/glib2/schemas.mk"
 
+.include "../../audio/libcanberra/buildlink3.mk"
+.include "../../devel/dconf/buildlink3.mk"
+BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.36.0
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/pango/buildlink3.mk"
-.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
+.include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/librsvg/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"
 .include "../../sysutils/dbus-glib/buildlink3.mk"
@@ -42,6 +47,7 @@ CONF_FILES+=	${PREFIX}/share/examples/${PKGBASE}/xdg/menus/matecc.menu \
 .include "../../wm/marco/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../x11/libunique/buildlink3.mk"
+BUILDLINK_API_DEPENDS.libXi+=	libXi>=1.2
 .include "../../x11/libXi/buildlink3.mk"
 .include "../../x11/libXcursor/buildlink3.mk"
 .include "../../x11/libXft/buildlink3.mk"
@@ -49,6 +55,7 @@ CONF_FILES+=	${PREFIX}/share/examples/${PKGBASE}/xdg/menus/matecc.menu \
 .include "../../x11/libXScrnSaver/buildlink3.mk"
 .include "../../x11/libICE/buildlink3.mk"
 .include "../../x11/libmatekbd/buildlink3.mk"
+.include "../../x11/libxklavier/buildlink3.mk"
 .include "../../x11/mate-desktop/buildlink3.mk"
 .include "../../databases/shared-mime-info/mimedb.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"

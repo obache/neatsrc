@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (mate-system-monitor-1.10.1.tar.xz) = 7ea7571f59e6521c267b695fca4cd6fa8297fd96
-RMD160 (mate-system-monitor-1.10.1.tar.xz) = 7cb0ae14274d327bc83477a636d3501fe88c93f5
-SHA512 (mate-system-monitor-1.10.1.tar.xz) = a80922315d387eda99223ecc6f44a7608a3ef2d300ef80f10e35aede83783407f996935f7e106d342dcd91b8681158b587a5c1d1192724040e6bd99409cae6ec
-Size (mate-system-monitor-1.10.1.tar.xz) = 2129620 bytes
+SHA1 (mate-system-monitor-1.12.0.tar.xz) = 68e2f916ecf0818a2ff30e5081f05a19bc922a79
+RMD160 (mate-system-monitor-1.12.0.tar.xz) = 1f30653eea48a6063c6370e53e106c2be70bc7ff
+SHA512 (mate-system-monitor-1.12.0.tar.xz) = 1a218c93390028a5825835a345adea33c39f3522178e626bbde1206ba71cfa875253a85dc20b039b613e8fcf02adf167f276f5b5b8cfa738e2ec5c91b6a3d4ae
+Size (mate-system-monitor-1.12.0.tar.xz) = 2097828 bytes

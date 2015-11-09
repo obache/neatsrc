@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (pluma-1.10.2.tar.xz) = 096732a2d4b483f0e99658a95abf9d838f5dcfde
-RMD160 (pluma-1.10.2.tar.xz) = 0ee579cfbc48162d45ec1e1e9f5174c07748828f
-SHA512 (pluma-1.10.2.tar.xz) = bb41e18419fee07c812ebebb9802a77c325d876d05d37e1e9229e4228b0939ef8c80b1377922b94f02a7b7d02fbff62d4e4959815bd94d5b0da3bfa1afebae60
-Size (pluma-1.10.2.tar.xz) = 3442784 bytes
+SHA1 (pluma-1.12.0.tar.xz) = 06e2ca0251015b8f3e13b1d0cc1500f5af246cfb
+RMD160 (pluma-1.12.0.tar.xz) = d69f938625067483bd2746dd78d07f2179e0c68b
+SHA512 (pluma-1.12.0.tar.xz) = 62f9d3c9c0b8038cdc3ff8f8ea1f45301d1899d09aff3c66d025f415b854f8e37b3091eb9e2058ffe1383da6fd81cae0d5741c534e3144d18d01c962461b4aa2
+Size (pluma-1.12.0.tar.xz) = 3373964 bytes

@@ -75,6 +75,7 @@ share/applications/mate-theme-installer.desktop
 share/applications/mate-window-properties.desktop
 share/applications/matecc.desktop
 share/desktop-directories/matecc.directory
+share/examples/mate-control-center/xdg/menus/mate-preferences-categories.menu
 share/examples/mate-control-center/xdg/menus/matecc.menu
 share/glib-2.0/schemas/org.mate.control-center.gschema.xml
 share/glib-2.0/schemas/org.mate.control-center.keybinding.gschema.xml

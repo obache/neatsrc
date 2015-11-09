@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (mate-polkit-1.10.2.tar.xz) = ad275cdee813f38782ba9782df7ecbbd4e4ce7e0
-RMD160 (mate-polkit-1.10.2.tar.xz) = 5bb244018a0b9b6c3228dd8f4d740b7e3aa88ccc
-SHA512 (mate-polkit-1.10.2.tar.xz) = 159cc1baa1d4c58262c492e72509dea7eee18d338e81bf1bc3d7708b5097943ac463afb0c90fc939275fbf4818c67fe9b85cd0d993ef94e896783bcad1488188
-Size (mate-polkit-1.10.2.tar.xz) = 342800 bytes
+SHA1 (mate-polkit-1.12.0.tar.xz) = 26ec78dda925755f0c0b272c9b53fb77a78bfe98
+RMD160 (mate-polkit-1.12.0.tar.xz) = 2f43eb4b376c7f1b5a50657bd470553e3d2f938a
+SHA512 (mate-polkit-1.12.0.tar.xz) = b6e771062e29d2f4f2823638e39f5e5b349b98fcf8fd8d652d847d568eee919d37956089d7bef1463d96f801f852d10d9423bb8c20f8a54dfe8188d19ab6fb0c
+Size (mate-polkit-1.12.0.tar.xz) = 324708 bytes

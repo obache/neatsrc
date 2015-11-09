@@ -1,8 +1,11 @@
 $NetBSD$
 
---- libmate-panel-applet/mate-panel-applet.c.orig	2015-05-25 10:28:05.000000000 +0000
+* Fix missing gettext setup for panel applet common parts
+  https://github.com/mate-desktop/mate-panel/pull/339
+
+--- libmate-panel-applet/mate-panel-applet.c.orig	2015-10-09 23:34:33.000000000 +0000
 +++ libmate-panel-applet/mate-panel-applet.c
-@@ -2006,6 +2006,7 @@ mate_panel_applet_init (MatePanelApplet 
+@@ -2019,6 +2019,7 @@ mate_panel_applet_init (MatePanelApplet 
  	applet->priv->size   = 24;
  
  	applet->priv->panel_action_group = gtk_action_group_new ("PanelActions");

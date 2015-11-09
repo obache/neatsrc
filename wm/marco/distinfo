@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (marco-1.10.3.tar.xz) = 1e0dcf116f363f59ec080938e43548ea6653ddb4
-RMD160 (marco-1.10.3.tar.xz) = ed4d44d54b001624a5553b2c6e1c0c5dbba8220d
-SHA512 (marco-1.10.3.tar.xz) = 8bb3a3a1af15f07e092fb3e8d6dd7a61d65cdb78525ad4e39f07feda04cd37f5f81b8c142ca09a7a929a39eb84e16b9e61ee26cbae0f4c147750430052e4e878
-Size (marco-1.10.3.tar.xz) = 1119064 bytes
+SHA1 (marco-1.12.0.tar.xz) = 455658133e679b79961cbfd5d74097ccb39a659f
+RMD160 (marco-1.12.0.tar.xz) = 7bb70d16e9ff82b57b8db2b9d0c00e2c912ba74d
+SHA512 (marco-1.12.0.tar.xz) = db9844247359cca2823a3a9a341875baf810adcb4e15a8fd00531023db5c32762a28f69eb5a0fbd40f66185fded106b801bbaada2f7e00daa5a36376e7c27c4e
+Size (marco-1.12.0.tar.xz) = 1116664 bytes

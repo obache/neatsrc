@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (python-caja-1.10.0.tar.xz) = 6e9fa98bd3ee82106534dad3a464aebe436fa0a0
-RMD160 (python-caja-1.10.0.tar.xz) = 183a61c6eef8fc7f3b33ff883325420e831bdee5
-SHA512 (python-caja-1.10.0.tar.xz) = 98c3a163a7798c66b050b87076e83cd24afa7ffb0cb139333a075cb0283bb07a51f26e427bda6e1f15e6292f87f7b85e43cab09874fae756e07cbc2944d5f5ae
-Size (python-caja-1.10.0.tar.xz) = 265836 bytes
+SHA1 (python-caja-1.12.0.tar.xz) = a78157efddc37831414c055f574652e7f47599a5
+RMD160 (python-caja-1.12.0.tar.xz) = 551ec817c544e48c8b1114f34a12145b4ac06ac4
+SHA512 (python-caja-1.12.0.tar.xz) = fbec1a7f5e560cda2b3bba41dcd93c0484f2b7b7527577a2b2114c84019203df92c136fecbbe6c889785c610035a582f1912ad7da9bb1258ada661b56edf4be7
+Size (python-caja-1.12.0.tar.xz) = 265720 bytes

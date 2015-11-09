@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (mate-netspeed-1.10.2.tar.xz) = d140868282415f1bcf067b8d8116fc292aec840d
-RMD160 (mate-netspeed-1.10.2.tar.xz) = 1620b746c6028ad4c51b2108660ac871356c2619
-SHA512 (mate-netspeed-1.10.2.tar.xz) = 62c384a5da76165b6c6869b9e52879de09de87ce5a4353b85003a51b909cd61d94698b6e2670e592984ff3ff7b75489d8bfba03d2492a244094a7359491fceae
-Size (mate-netspeed-1.10.2.tar.xz) = 586896 bytes
+SHA1 (mate-netspeed-1.12.0.tar.xz) = b661c3118b16017ce3d0df84e322904a4c54da8a
+RMD160 (mate-netspeed-1.12.0.tar.xz) = b0f7813d70456cce3a2e796568ecb5d654f20c00
+SHA512 (mate-netspeed-1.12.0.tar.xz) = 1c6570ff4aac3b2e19c90e5805d8169a31a92289a39c6075b114a0c13e5d89f69b5fec48f549ce0c4d92b323034a18d4a26292c9a88a6995ccbf4d595e908e34
+Size (mate-netspeed-1.12.0.tar.xz) = 563888 bytes

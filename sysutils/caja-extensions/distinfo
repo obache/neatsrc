@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (caja-extensions-1.10.1.tar.xz) = 067930803196f767426b143a17d359634ae8f3db
-RMD160 (caja-extensions-1.10.1.tar.xz) = 8caf7e944c40ce102586fdacd0510eae6ddaa767
-SHA512 (caja-extensions-1.10.1.tar.xz) = 6720c279877207c123163e1d04e9d5b63319fe8b480ef9aaf6470c0f8e850b22dfea7999084ed8d320c152c053906461d1a526a70f64718cb1938d3baa39db0b
-Size (caja-extensions-1.10.1.tar.xz) = 378472 bytes
+SHA1 (caja-extensions-1.12.0.tar.xz) = 7478f73ac2cde5d3ab630bafb6f2b3cc9c291f84
+RMD160 (caja-extensions-1.12.0.tar.xz) = 9da5517b51587966ad0edc95e9150cce934fc73c
+SHA512 (caja-extensions-1.12.0.tar.xz) = b36f759f21a206d76dada61f9410135c393fea77eaaf387a81788c6c2757aed5536b8129add2b4469b8d18f17de115369d70ec9278e8a4b9b9a3cfbb24ac38fb
+Size (caja-extensions-1.12.0.tar.xz) = 370600 bytes

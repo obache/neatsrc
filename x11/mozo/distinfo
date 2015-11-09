@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (mozo-1.10.1.tar.xz) = b114a12b55a4af3d129ea0afac2031b946e079a1
-RMD160 (mozo-1.10.1.tar.xz) = 77a851eb9db1ec970a0d8477f41105a2cfe8fd3e
-SHA512 (mozo-1.10.1.tar.xz) = 767f81c84642f83ba7579fde5eceedb588d934e52f0dd8f8a405e596e445aa68d0e3828db909130d121298e4fc7822736b45af7eda8f2c01f809b9df294a4aea
-Size (mozo-1.10.1.tar.xz) = 163456 bytes
+SHA1 (mozo-1.12.0.tar.xz) = 7538b8e6e72a6ef6a7b146cdb807bc64e1453734
+RMD160 (mozo-1.12.0.tar.xz) = 9bb342c2de55bf3a869309a6bd5fd8de4e4f0dde
+SHA512 (mozo-1.12.0.tar.xz) = 93e760b791a74b6a6ca0377d5aaa060c8bf339dcfde91fcb146ef1e37cc25912b3c93fa2b4d612c0abf2bbd00597c80b58769bc88b57925ec4c465967f32c05b
+Size (mozo-1.12.0.tar.xz) = 163820 bytes

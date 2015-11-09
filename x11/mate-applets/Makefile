@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-applets-1.10.3
+DISTNAME=	mate-applets-1.12.0
 CATEGORIES=	x11 mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -9,13 +9,12 @@ HOMEPAGE=	http://www.mate-desktop.org/
 COMMENT=	MATE panel applets
 LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.1
 
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
-TOOL_DEPENDS+=	libxml2-[0-9]*:../../textproc/libxml2 # for xmllint
-
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
-USE_TOOLS+=		gmake intltool msgfmt pkg-config
+USE_TOOLS+=		gmake intltool itstool msgfmt pkg-config xmllint
 USE_PKGLOCALEDIR=	yes
+
+ICON_THEMES=		yes
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 
@@ -35,7 +34,6 @@ REPLACE_PYTHON+=	invest-applet/invest/mate-invest-chart
 .include "../../lang/python/application.mk"
 
 .include "../../x11/mate-panel/buildlink3.mk"
-.include "../../graphics/mate-icon-theme/buildlink3.mk"
 .include "../../x11/mate-desktop/buildlink3.mk"
 .include "../../sysutils/mate-settings-daemon/buildlink3.mk"
 .include "../../devel/libmateweather/buildlink3.mk"
@@ -45,7 +43,6 @@ BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.36.0
 .include "../../devel/libwnck/buildlink3.mk"
 .include "../../devel/py-gobject3/buildlink3.mk"
 .include "../../fonts/gucharmap/buildlink3.mk"
-.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 BUILDLINK_API_DEPENDS.dbus+=	dbus>=1.1.2
 .include "../../sysutils/dbus/buildlink3.mk"

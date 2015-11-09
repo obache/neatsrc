@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	libmateweather
 .if !defined(LIBMATEWEATHER_BUILDLINK3_MK)
 LIBMATEWEATHER_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.libmateweather+=	libmateweather>=1.10.0
+BUILDLINK_API_DEPENDS.libmateweather+=	libmateweather>=1.12.0
 BUILDLINK_PKGSRCDIR.libmateweather?=	../../devel/libmateweather
 
 .include "../../devel/glib2/buildlink3.mk"

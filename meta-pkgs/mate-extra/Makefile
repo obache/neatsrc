@@ -1,6 +1,6 @@
 # $NetBSD$
 
-PKGNAME=	mate-extra-1.10
+PKGNAME=	mate-extra-1.12
 CATEGORIES=	meta-pkgs mate
 
 HOMEPAGE=	http://www.mate-desktop.org/
@@ -9,8 +9,9 @@ LICENSE=	public-domain
 
 META_PACKAGE=	yes
 
-# see http://wiki.mate-desktop.org/status:1.10
+# see http://wiki.mate-desktop.org/status:1.12
 
+DEPENDS+=	mate-core>=${PKGVERSION_NOREV}:../../meta-pkgs/mate-core
 DEPENDS+=	atril>=${PKGVERSION_NOREV}:../../print/atril
 DEPENDS+=	caja-dropbox>=${PKGVERSION_NOREV}:../../sysutils/caja-dropbox
 DEPENDS+=	caja-extensions>=${PKGVERSION_NOREV}:../../sysutils/caja-extensions

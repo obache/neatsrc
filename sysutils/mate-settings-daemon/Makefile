@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-settings-daemon-1.10.2
+DISTNAME=	mate-settings-daemon-1.12.0
 CATEGORIES=	sysutils mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -31,6 +31,8 @@ CONF_FILES+=	${PREFIX}/share/examples/mate-settings-daemon/xrdb/${ad}.ad \
 		${PKG_SYSCONFDIR}/xrdb/${ad}.ad
 .endfor
 
+ICON_THEMES=	yes
+
 .include "../../devel/glib2/schemas.mk"
 
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.36.0
@@ -38,6 +40,8 @@ BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.36.0
 .include "../../devel/dconf/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"
 .include "../../sysutils/dbus-glib/buildlink3.mk"
+BUILDLINK_API_DEPENDS.dbus+=	dbus>=1.1.2
+.include "../../sysutils/dbus/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../x11/kbproto/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"

@@ -1,7 +1,7 @@
 # $NetBSD$
 
 DISTNAME=	${PKGBASE}-gtk3.16-${PKGVERSION_NOREV}
-PKGNAME=	mate-themes-1.10.5
+PKGNAME=	mate-themes-1.12.0
 CATEGORIES=	graphics mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz

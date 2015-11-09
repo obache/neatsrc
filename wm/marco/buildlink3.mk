@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	marco
 .if !defined(MARCO_BUILDLINK3_MK)
 MARCO_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.marco+=	marco>=1.10.0
+BUILDLINK_API_DEPENDS.marco+=	marco>=1.12.0
 BUILDLINK_PKGSRCDIR.marco?=	../../wm/marco
 
 .include "../../audio/libcanberra/buildlink3.mk"

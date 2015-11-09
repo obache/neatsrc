@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-utils-1.10.3
+DISTNAME=	mate-utils-1.12.0
 CATEGORIES=	misc mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -9,13 +9,11 @@ HOMEPAGE=	http://www.mate-desktop.org/
 COMMENT=	Utiltiles for MATE Desktop
 LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.1 AND gnu-lgpl-v2.1
 
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
-TOOL_DEPENDS+=	libxml2-[0-9]*:../../textproc/libxml2 # for xmllint
-
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
-USE_TOOLS+=		gmake intltool msgfmt pkg-config grep:run
+USE_TOOLS+=		gmake intltool itstool msgfmt pkg-config xmllint
+USE_TOOLS+=		grep:run
 
 PKGCONFIG_OVERRIDE+=	mate-dictionary/libgdict/mate-dict.pc.in
 

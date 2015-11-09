@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (mate-utils-1.10.3.tar.xz) = 30ce3198bfac97898129bcadc0266d2e5278dbbb
-RMD160 (mate-utils-1.10.3.tar.xz) = 752c8a67aae8d51f44259e64bf872797c8d11777
-SHA512 (mate-utils-1.10.3.tar.xz) = 0dcd9216dffa12a290ef39c0a121d781f9395c269d27f2cfaac728a9ffd899e65cd4d2c89213c4aa61807ea061e8ca344c6da88e3477b597084b8528dcd44d14
-Size (mate-utils-1.10.3.tar.xz) = 6321468 bytes
+SHA1 (mate-utils-1.12.0.tar.xz) = 577692e34fee8e79f59804bf314c5375a8482af1
+RMD160 (mate-utils-1.12.0.tar.xz) = f8e4f2492e451d50e932f6749c248cd785339833
+SHA512 (mate-utils-1.12.0.tar.xz) = fe1db5c04b3adc616fdd0f76ddfb1291bbbfb6fb7d2f9ab11c5ffc33e19e0487ba3581babdfe74dd64553fd07f7d986fbac08fe2b14bcb79fca315e365069e47
+Size (mate-utils-1.12.0.tar.xz) = 6482900 bytes

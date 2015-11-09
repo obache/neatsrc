@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-icon-theme-faenza-1.10.0
+DISTNAME=	mate-icon-theme-faenza-1.12.0
 CATEGORIES=	graphics mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
