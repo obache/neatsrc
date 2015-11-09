@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15066 2015/11/07 19:13:49 wiz Exp $
+$NetBSD: TODO,v 1.15070 2015/11/08 13:06:43 wen Exp $
 
 Suggested new packages
 ======================
@@ -403,6 +403,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o R-plyr-1.8.3
 	o R-stringr-1.0.0
 	o ROMInfo-28
+	o Sigil-0.9.0
 	o TeXmacs-devel-1.0.7.21
 	o TiffIO-140a
 	o YoSucker-81
@@ -1345,8 +1346,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-RT-Authen-ExternalAuth-0.25
 	o p5-Redis-1.979
 	o p5-Regexp-Common-net-CIDR-0.03
-	o p5-Rose-DB-0.777
-	o p5-Rose-DB-Object-0.815
 	o p5-Rose-DBx-Garden-0.193
 	o p5-Rose-HTML-Objects-0.623
 	o p5-Rose-URI-1.02
@@ -1501,7 +1500,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-flake8-2.4.1
 	o py-gmpy-1.17
 	o py-gnome-menus-3.8.0
-	o py-greenlet-0.4.2
 	o py-input-pad-1.4.2
 	o py-ipython-4.0
 	o py-jaraco_util-11.0

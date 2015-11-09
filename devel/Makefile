@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2162 2015/11/07 19:03:23 wiz Exp $
+# $NetBSD: Makefile,v 1.2164 2015/11/08 09:32:46 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -1616,6 +1616,7 @@ SUBDIR+=	py-at-spi
 SUBDIR+=	py-at-spi2
 SUBDIR+=	py-atomicwrites
 SUBDIR+=	py-babel
+SUBDIR+=	py-backports_abc
 SUBDIR+=	py-blinker
 SUBDIR+=	py-boost
 SUBDIR+=	py-buildbot
@@ -1714,6 +1715,7 @@ SUBDIR+=	py-pexpect
 SUBDIR+=	py-pip
 SUBDIR+=	py-pkgconfig
 SUBDIR+=	py-pkginfo
+SUBDIR+=	py-pluggy
 SUBDIR+=	py-polib
 SUBDIR+=	py-pqueue
 SUBDIR+=	py-pretend
@@ -1792,6 +1794,7 @@ SUBDIR+=	py-test-cov
 SUBDIR+=	py-test-runner
 SUBDIR+=	py-testtools
 SUBDIR+=	py-tortoisehg
+SUBDIR+=	py-tox
 SUBDIR+=	py-tryton
 SUBDIR+=	py-trytond
 SUBDIR+=	py-unit
