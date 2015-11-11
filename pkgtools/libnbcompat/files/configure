@@ -5569,31 +5569,6 @@ else
 fi
 
 
-ac_fn_c_check_decl "$LINENO" "optreset" "ac_cv_have_decl_optreset" "
-	#include <stdio.h>
-	#include <stdlib.h>
-	#include <unistd.h>
-	#ifdef HAVE_GETOPT_H
-	#include <getopt.h>
-	#endif
-
-"
-if test "x$ac_cv_have_decl_optreset" = xyes; then :
-  ac_have_decl=1
-else
-  ac_have_decl=0
-fi
-
-cat >>confdefs.h <<_ACEOF
-#define HAVE_DECL_OPTRESET $ac_have_decl
-_ACEOF
-if test $ac_have_decl = 1; then :
-  :
-else
-  :
-fi
-
-
 our_getopt_long=no
 for ac_header in getopt.h
 do :
@@ -5621,6 +5596,31 @@ else
 fi
 
 done
+
+
+ac_fn_c_check_decl "$LINENO" "optreset" "ac_cv_have_decl_optreset" "
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <unistd.h>
+	#ifdef HAVE_GETOPT_H
+	#include <getopt.h>
+	#endif
+
+"
+if test "x$ac_cv_have_decl_optreset" = xyes; then :
+  ac_have_decl=1
+else
+  ac_have_decl=0
+fi
+
+cat >>confdefs.h <<_ACEOF
+#define HAVE_DECL_OPTRESET $ac_have_decl
+_ACEOF
+if test $ac_have_decl = 1; then :
+  :
+else
+  :
+fi
 
 
 if test "$enable_bsd_getopt" = yes; then

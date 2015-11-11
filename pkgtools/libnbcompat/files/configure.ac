@@ -196,6 +196,13 @@ AC_CHECK_DECLS([optarg, optind], [:], [:], [
 	#include <unistd.h>
 ])
 
+our_getopt_long=no
+AC_CHECK_HEADERS([getopt.h],
+	[ AC_CHECK_TYPES([struct option], [:],
+	    [ our_getopt_long=yes ], [#include <getopt.h>])],
+	[ our_getopt_long=yes ]
+)
+
 AC_CHECK_DECLS([optreset], [:], [:], [
 	#include <stdio.h>
 	#include <stdlib.h>
@@ -204,13 +211,6 @@ AC_CHECK_DECLS([optreset], [:], [:], [
 	#include <getopt.h>
 	#endif
 ])
-
-our_getopt_long=no
-AC_CHECK_HEADERS([getopt.h],
-	[ AC_CHECK_TYPES([struct option], [:],
-	    [ our_getopt_long=yes ], [#include <getopt.h>])],
-	[ our_getopt_long=yes ]
-)
 
 if test "$enable_bsd_getopt" = yes; then
 	if test "$ac_cv_have_decl_optreset" = no; then
