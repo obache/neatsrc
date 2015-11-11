@@ -26,5 +26,4 @@ INSTALLATION_DIRS=	bin ${PKGMANDIR}/cat1 ${PKGMANDIR}/man1
 do-extract:
 	${CP} -r ${FILESDIR} ${WRKSRC}
 
-UAC_REQD_EXECS+=	bin/nbpatch
 .include "../../mk/bsd.pkg.mk"

@@ -806,12 +806,6 @@ ${_MAKEVARS_MK.${_phase_}}: ${WRKDIR}
 .include "pbulk/pbulk-index.mk"
 .endif
 
-.if defined(_OPSYS_REQUIRE_UAC_MANIFEST) && !empty(_OPSYS_REQUIRE_UAC_MANIFEST:M[Yy][Ee][Ss])
-.  if defined(UAC_REQD_EXECS) && !empty(UAC_REQD_EXECS)
-.include "misc/uac-manifest.mk"
-.  endif
-.endif
-
 .if ${PKG_DEVELOPER:Uno} != "no"
 .  include "misc/developer.mk"
 .endif
