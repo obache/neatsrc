@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4549 2015/11/10 17:47:37 adam Exp $
+$NetBSD: CHANGES-2015,v 1.4559 2015/11/11 17:37:44 leot Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7761,3 +7761,13 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated filesystems/libntfs to 2015.3.14 [adam 2015-11-10]
 	Updated filesystems/fuse-ntfs-3g to 2015.3.14 [adam 2015-11-10]
 	Updated sysutils/ntfsprogs to 2015.3.14 [adam 2015-11-10]
+	Updated devel/py-dulwich to 0.11.2 [wiz 2015-11-11]
+	Updated devel/py-hg-git to 0.8.3 [wiz 2015-11-11]
+	Updated archivers/unzip to 6.0nb5 [wiz 2015-11-11]
+	Updated graphics/MesaLib to 11.0.5 [tnn 2015-11-11]
+	Updated multimedia/adobe-flash-plugin11 to 11.2.202.548 [tsutsui 2015-11-11]
+	Updated wm/dwm to 6.1 [leot 2015-11-11]
+	Updated x11/dmenu to 4.6 [leot 2015-11-11]
+	Updated net/youtube-dl to 20151110 [leot 2015-11-11]
+	Updated print/mupdf to 1.8 [leot 2015-11-11]
+	Updated multimedia/mpv to 0.13.0 [leot 2015-11-11]
