@@ -39,7 +39,7 @@ ULIMIT_CMD_datasize?=	ulimit -d `ulimit -H -d`
 ULIMIT_CMD_stacksize?=	ulimit -s `ulimit -H -s`
 ULIMIT_CMD_memorysize?=	ulimit -v `ulimit -H -v`
 
-X11_TYPE?=		native
+X11_TYPE?=		modular
 
 _OPSYS_SYSTEM_RPATH?=		# /usr/bin
 _OPSYS_LIB_DIRS?=		/lib /usr/lib
