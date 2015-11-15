@@ -120,6 +120,9 @@ TOOLS_PLATFORM.openssl?=	/boot/common/bin/openssl
 #TOOLS_PLATFORM.patch?=		/bin/patch
 TOOLS_PLATFORM.printf?=		/bin/printf
 TOOLS_PLATFORM.pwd?=		/bin/pwd
+.if exists(/bin/readelf)
+TOOLS_PLATFORM.readelf?=	/bin/readelf
+.endif
 TOOLS_PLATFORM.readlink?=	/bin/readlink
 TOOLS_PLATFORM.rm?=		/bin/rm
 TOOLS_PLATFORM.rmdir?=		/bin/rmdir
