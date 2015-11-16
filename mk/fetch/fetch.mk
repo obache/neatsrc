@@ -207,6 +207,9 @@ fetch-check-interactive: .USEBEFORE
 # FETCH_USE_IPV4_ONLY, if defined, will cause the fetch command to force
 #	connecting to only IPv4 addresses.
 #
+# FETCH_CHECK_CERT, if defined, will cause the fetch command to force
+#	checking server certificate with secure connection.
+#
 
 # If this host is behind a filtering firewall, use passive ftp(1)
 _FETCH_BEFORE_ARGS.ftp=		${PASSIVE_FETCH:D-p} \
@@ -227,7 +230,7 @@ _FETCH_OUTPUT_ARGS.fetch=	-o
 _FETCH_CMD.fetch=		${TOOLS_PATH.fetch}
 
 _FETCH_BEFORE_ARGS.wget=	${PASSIVE_FETCH:D--passive-ftp} \
-				--no-check-certificate \
+				${FETCH_CHECK_CERT:U--no-check-certificate} \
 				${FETCH_TIMEOUT:D--timeout=${FETCH_TIMEOUT}} \
 				${FETCH_USE_IPV4_ONLY:D--inet4-only} \
 				${FETCH_VERBOSE:D--verbose}
@@ -237,7 +240,8 @@ _FETCH_OUTPUT_ARGS.wget=	-O
 _FETCH_CMD.wget=		${TOOLS_PATH.wget}
 
 _FETCH_BEFORE_ARGS.curl=	${PASSIVE_FETCH:D--ftp-pasv} \
-				--fail --insecure --location --remote-time \
+				${FETCH_CHECK_CERT:U--insecure} \
+				--fail --location --remote-time \
 				${FETCH_TIMEOUT:D--connect-timeout ${FETCH_TIMEOUT}} \
 				${FETCH_TIMEOUT:D--speed-time ${FETCH_TIMEOUT}} \
 				${FETCH_USE_IPV4_ONLY:D--ipv4} \
