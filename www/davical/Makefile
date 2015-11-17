@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.23 2015/11/13 12:13:13 hauke Exp $
+# $NetBSD: Makefile,v 1.25 2015/11/16 13:22:47 jperkin Exp $
 #
 
 DISTNAME=	davical-${DAVICAL_VERSION}
@@ -6,9 +6,6 @@ DAVICAL_VERSION=1.1.3.1
 #PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	-https://gitlab.com/davical-project/davical/repository/archive.tar.gz?ref=r${DAVICAL_VERSION}
-
-FETCH_USING=		wget
-FETCH_BEFORE_ARGS+=	--no-check-certificate
 
 MAINTAINER=	jym@NetBSD.org
 HOMEPAGE=	http://www.davical.org/

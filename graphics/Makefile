@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.720 2015/11/03 20:09:21 markd Exp $
+# $NetBSD: Makefile,v 1.722 2015/11/16 13:33:13 nros Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -168,6 +168,7 @@ SUBDIR+=	gimp-refocus-it
 SUBDIR+=	gimp-resynthesizer
 SUBDIR+=	gimp-ufraw
 SUBDIR+=	gimp-warp-sharp
+SUBDIR+=	gimp-webp
 SUBDIR+=	gimp2-wideangle
 SUBDIR+=	giram
 SUBDIR+=	gle
@@ -426,6 +427,7 @@ SUBDIR+=	py-nwdiag
 SUBDIR+=	py-piddle
 SUBDIR+=	py-pycha
 SUBDIR+=	py-pygal
+SUBDIR+=	py-pygraphviz
 SUBDIR+=	py-qrcode
 SUBDIR+=	py-seqdiag
 SUBDIR+=	py-sk1libs
