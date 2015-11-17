@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4612 2015/11/16 13:34:38 nros Exp $
+$NetBSD: CHANGES-2015,v 1.4616 2015/11/16 18:34:03 leot Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7824,3 +7824,7 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated security/gnupg to 1.4.19nb1 [wiz 2015-11-16]
 	Updated graphics/libwebp to 0.4.4 [nros 2015-11-16]
 	Added graphics/gimp-webp version 0.2 [nros 2015-11-16]
+	Updated sysutils/intel-microcode-netbsd to 20151106 [msaitoh 2015-11-17]
+	Added devel/py-construct version 2.5.2 [leot 2015-11-16]
+	Updated net/py-netlib to 0.14.0 [leot 2015-11-16]
+	Updated net/mitmproxy to 0.14.0 [leot 2015-11-16]
