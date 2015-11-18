@@ -36,6 +36,7 @@ share/ibus-libpinyin/setup/shortcuteditor.pyc
 share/ibus-libpinyin/setup/shortcuteditor.pyo
 ${PLIST.lua}share/ibus-libpinyin/user.lua
 share/ibus/component/libpinyin.xml
+share/locale/ca/LC_MESSAGES/ibus-libpinyin.mo
 share/locale/fr/LC_MESSAGES/ibus-libpinyin.mo
 share/locale/ru/LC_MESSAGES/ibus-libpinyin.mo
 share/locale/zh_CN/LC_MESSAGES/ibus-libpinyin.mo

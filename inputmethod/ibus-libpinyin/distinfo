@@ -1,8 +1,6 @@
 $NetBSD: distinfo,v 1.2 2015/11/03 22:13:35 agc Exp $
 
-SHA1 (ibus-libpinyin-1.7.2.tar.gz) = 5afb02a4bf304f308c39da7c83744ebdecb58fbb
-RMD160 (ibus-libpinyin-1.7.2.tar.gz) = 0613e8824e4cf86631cabb3559b68a4ae27ed5c6
-SHA512 (ibus-libpinyin-1.7.2.tar.gz) = 77066e926f6820c8af9ebba763ceffcd439d0712f5221f82351ef96d6a36bd096d1c63018a6635e0c495b1d25b7a82b0fb02ecb61ff184fa48c23c01f3c43acb
-Size (ibus-libpinyin-1.7.2.tar.gz) = 1044655 bytes
-SHA1 (patch-lua_lmyoslib.c) = a95b12362c8747d4d5d1adc7bd55b636de5efd7c
-SHA1 (patch-lua_lua-plugin-init.c) = fff497206390ca81ee3e43f55dfc09e7f8f5cd8b
+SHA1 (ibus-libpinyin-1.7.3.tar.gz) = 56ab15d7de6ad59194edd58421a62c469e09fa02
+RMD160 (ibus-libpinyin-1.7.3.tar.gz) = 05abfeaaa02b46db577010b641713ded05d6ea87
+SHA512 (ibus-libpinyin-1.7.3.tar.gz) = 040ef37b313261e20e46959e2eefbb96e2992ab2aaed6caf92100266fc7a218d4e959bdd8b51ba3143f4da10ee39ce7e87cd6f32cc3c18238e5162304316d17f
+Size (ibus-libpinyin-1.7.3.tar.gz) = 1069790 bytes
