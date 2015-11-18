@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.241 2015/10/25 11:01:13 wiz Exp $
+# $NetBSD: Makefile,v 1.242 2015/11/17 14:57:20 jmcneill Exp $
 #
 
 COMMENT=	Multimedia utilities
@@ -97,6 +97,7 @@ SUBDIR+=	kdenlive
 SUBDIR+=	kmix
 SUBDIR+=	kmplayer
 SUBDIR+=	kmplayer-kde3
+SUBDIR+=	kodi
 SUBDIR+=	kscd
 SUBDIR+=	libaacs
 SUBDIR+=	libass
