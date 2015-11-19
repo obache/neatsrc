@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2015/06/30 09:57:39 ryoon Exp $
+# $NetBSD: Makefile,v 1.5 2015/11/18 14:19:52 ryoon Exp $
 
 GST_PLUGINS1_NAME=	vpx
 GST_PLUGINS1_DIRS=	ext/vpx
