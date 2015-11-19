@@ -8,7 +8,7 @@ CATEGORIES=	inputmethod chinese
 MASTER_SITES=	https://github.com/definite/ibus-chewing/releases/download/${PKGVERSION_NOREV}/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://code.google.com/p/ibus/
+HOMEPAGE=	https://github.com/ibus/ibus/wiki
 COMMENT=	Chewing engine for IBus input platform
 LICENSE=	gnu-gpl-v2
 

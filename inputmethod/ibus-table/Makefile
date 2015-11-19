@@ -5,7 +5,7 @@ CATEGORIES=	inputmethod
 MASTER_SITES=	https://github.com/kaio/ibus-table/releases/download/${PKGVERSION_NOREV}/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://code.google.com/p/ibus/
+HOMEPAGE=	https://github.com/ibus/ibus/wiki
 COMMENT=	Table engine for IBus platform
 LICENSE=	gnu-lgpl-v2.1
 

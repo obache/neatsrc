@@ -5,7 +5,7 @@ CATEGORIES=	inputmethod japanese
 MASTER_SITES=	https://github.com/ibus/ibus-anthy/releases/download/${PKGVERSION_NOREV}/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://code.google.com/p/ibus/
+HOMEPAGE=	https://github.com/ibus/ibus/wiki
 COMMENT=	Anthy engine for IBus input platform
 LICENSE=	gnu-gpl-v2
 
