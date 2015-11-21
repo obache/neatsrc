@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4652 2015/11/19 07:47:42 wiz Exp $
+$NetBSD: CHANGES-2015,v 1.4655 2015/11/20 15:40:02 adam Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7868,3 +7868,7 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated www/p5-Mojolicious to 6.32 [wen 2015-11-19]
 	Updated www/moodle to 3.0 [wen 2015-11-19]
 	Renamed graphics/py-pygraphviz to graphics/py-graphviz [wiz 2015-11-19]
+	Updated net/mDNSResponder to 258.14nb2 [jperkin 2015-11-20]
+	Updated devel/ruby-parslet to 1.6.0 [jperkin 2015-11-20]
+	Updated math/liblinear to 2.1 [adam 2015-11-20]
+	Updated net/nmap to 7.00 [adam 2015-11-20]
