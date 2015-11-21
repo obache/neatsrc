@@ -503,6 +503,7 @@ SUBDIR+=	libosip
 SUBDIR+=	libowfat
 SUBDIR+=	libpeas
 SUBDIR+=	libpgm
+SUBDIR+=	libpipeline
 SUBDIR+=	libportlib
 SUBDIR+=	libproplist
 SUBDIR+=	libpthred-stubs
