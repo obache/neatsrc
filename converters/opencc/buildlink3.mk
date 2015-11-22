@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	opencc
 .if !defined(OPENCC_BUILDLINK3_MK)
 OPENCC_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.opencc+=	opencc>=0.4.2
+BUILDLINK_API_DEPENDS.opencc+=	opencc>=1.0.0
 BUILDLINK_PKGSRCDIR.opencc?=	../../converters/opencc
 .endif	# OPENCC_BUILDLINK3_MK
 

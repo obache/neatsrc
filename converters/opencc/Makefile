@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.3 2015/03/15 20:03:24 hiramatsu Exp $
 
-DISTNAME=	opencc-0.4.3
+DISTNAME=	opencc-1.0.3
 CATEGORIES=	converters chinese
 MASTER_SITES=	http://dl.bintray.com/byvoid/opencc/
 
@@ -11,7 +11,7 @@ LICENSE=	apache-2.0
 
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
-USE_LANGUAGES=	c
+USE_LANGUAGES=	c c++11
 
 PKGCONFIG_OVERRIDE+=	opencc.pc.in
 
@@ -26,5 +26,7 @@ SUBST_STAGE.mandir=	pre-configure
 SUBST_FILES.mandir=	doc/CMakeLists.txt
 SUBST_SED.mandir=	-e 's,$${DIR_SHARE}/man,${PKGMANDIR},'
 
+PYTHON_FOR_BUILD_ONLY=	yes
+.include "../../lang/python/tool.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
