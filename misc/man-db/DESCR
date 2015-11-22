@@ -1,0 +1,3 @@
+man-db is an implementation of the standard Unix documentation system accessed
+using the man command.  It users a Berkeley DB database in place of the
+traditional flat-text whatis databases.
