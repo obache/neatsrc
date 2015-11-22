@@ -1,10 +1,11 @@
 # $NetBSD: Makefile,v 1.4 2015/03/15 17:15:01 hiramatsu Exp $
 #
 
-DISTNAME=	swath-0.4.3
+DISTNAME=	swath-0.5.3
 CATEGORIES=	textproc
-MASTER_SITES=	ftp://linux.thai.net/pub/ThaiLinux/software/swath/ 	\
-		http://linux.thai.net/pub/ThaiLinux/software/swath/
+MASTER_SITES=	http://linux.thai.net/pub/ThaiLinux/software/swath/	\
+		ftp://linux.thai.net/pub/ThaiLinux/software/swath/
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://linux.thai.net/projects/thailatex
