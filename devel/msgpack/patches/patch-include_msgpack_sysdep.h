@@ -2,9 +2,9 @@ $NetBSD$
 
 * NetBSD support
 
---- include/msgpack/sysdep.h.orig	2015-09-04 09:43:47.000000000 +0000
+--- include/msgpack/sysdep.h.orig	2015-11-22 07:26:58.000000000 +0000
 +++ include/msgpack/sysdep.h
-@@ -49,6 +49,11 @@
+@@ -43,6 +43,11 @@
      typedef long _msgpack_atomic_counter_t;
  #   define _msgpack_sync_decr_and_fetch(ptr) InterlockedDecrement(ptr)
  #   define _msgpack_sync_incr_and_fetch(ptr) InterlockedIncrement(ptr)
@@ -16,7 +16,7 @@ $NetBSD$
  #elif defined(__GNUC__) && ((__GNUC__*10 + __GNUC_MINOR__) < 41)
  
  #   if defined(__cplusplus)
-@@ -81,6 +86,10 @@
+@@ -75,6 +80,10 @@
  #   if defined(linux)
  #       include <byteswap.h>
  #   endif
@@ -27,7 +27,7 @@ $NetBSD$
  
  #endif
  
-@@ -122,6 +131,8 @@
+@@ -116,6 +125,8 @@
  #        define _msgpack_be64(x) bswap_64(x)
  #   elif defined(__DARWIN_OSSwapInt64)
  #        define _msgpack_be64(x) __DARWIN_OSSwapInt64(x)
