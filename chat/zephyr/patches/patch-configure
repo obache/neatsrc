@@ -1,0 +1,22 @@
+$NetBSD$
+
+* regen
+
+--- configure.orig	2013-10-28 04:21:47.000000000 +0000
++++ configure
+@@ -13661,6 +13661,7 @@ fi
+ $as_echo "$ac_cv_lib_ss_ss_perror" >&6; }
+ if test "x$ac_cv_lib_ss_ss_perror" = xyes; then :
+   SS_LIBS="-lss"
++                     SS_OBJS='${SS_OBJS}'
+ 
+ $as_echo "#define HAVE_SS 1" >>confdefs.h
+ 
+@@ -13670,7 +13671,6 @@ else
+ fi
+ fi
+ 
+-        SS_OBJS='${SS_OBJS}'
+ fi
+ 
+ 

@@ -1,0 +1,10 @@
+$NetBSD$
+
+SHA1 (zephyr-3.1.2.tar.gz) = ad6fd11c81e2422696c46153dc1a63e5f8c0eb72
+RMD160 (zephyr-3.1.2.tar.gz) = 695e69608850ad7fbfad49e26922f2f7e6065b58
+Size (zephyr-3.1.2.tar.gz) = 740293 bytes
+SHA1 (patch-configure) = c446fa5b228c1fd207850d08706e11ab7b0b7808
+SHA1 (patch-configure.ac) = 78185099976ce01adff8e69590860e3fcf56dfac
+SHA1 (patch-lib_ZDumpSession.c) = 078e2ff5342cc41c683193b85dad2494c9305cf1
+SHA1 (patch-lib_ZGetSender.c) = 30e62b17496f674ec7f59dda81c5d907fd936f99
+SHA1 (patch-lib_ZMkAuth.c) = ac40ee11758a5eaa0a9fe82fe3f5ae7f8e1037c1
