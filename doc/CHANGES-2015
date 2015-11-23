@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4685 2015/11/22 15:39:22 martin Exp $
+$NetBSD: CHANGES-2015,v 1.4691 2015/11/22 23:11:17 wiedi Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7902,3 +7902,9 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated www/webkit-gtk to 2.10.4 [leot 2015-11-22]
 	Updated www/drupal7 to 7.41nb1 [wen 2015-11-22]
 	Updated multimedia/gmplayer to 1.2nb1 [martin 2015-11-22]
+	Updated graphics/xv to 3.10anb22 [tsutsui 2015-11-22]
+	Updated multimedia/gmplayer to 1.2nb2 [leot 2015-11-22]
+	Updated www/netsurf to 3.3nb2 [leot 2015-11-22]
+	Added pkgtools/gimme version 20151122 [agc 2015-11-22]
+	Updated editors/nano to 2.4.3 [wiedi 2015-11-22]
+	Updated www/goaccess to 0.9.6 [wiedi 2015-11-22]

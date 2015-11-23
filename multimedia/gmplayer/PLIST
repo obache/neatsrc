@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.10 2015/11/21 09:47:23 leot Exp $
+@comment $NetBSD: PLIST,v 1.12 2015/11/22 19:30:33 leot Exp $
 bin/gmplayer
 share/mplayer/skins/Abyss/README
 share/mplayer/skins/Abyss/VERSION
