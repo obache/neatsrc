@@ -2,7 +2,7 @@
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.cyrus-imapd
-PKG_SUPPORTED_OPTIONS=	gssapi http kerberos kerberos4 ldap pcre snmp
+PKG_SUPPORTED_OPTIONS=	gssapi http kerberos kerberos4 ldap pcre snmp zephyr
 PKG_SUPPORTED_OPTIONS+=	bdb mysql pgsql sqlite
 PKG_SUGGESTED_OPTIONS=	http ldap pcre
 
@@ -127,4 +127,11 @@ CONFIGURE_ARGS+=	--enable-http
 PLIST.http=		yes
 .else
 CONFIGURE_ARGS+=	--disable-http
+.endif
+
+.if !empty(PKG_OPTIONS:Mzephyr)
+.  include "../../chat/zephyr/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-zephyr=${BUILDLINK_PREFIX.zephyr}
+.else
+CONFIGURE_ARGS+=	--without-zephyr
 .endif

@@ -2,7 +2,7 @@
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.cyrus-imapd
-PKG_SUPPORTED_OPTIONS=	gssapi kerberos kerberos4 ldap snmp
+PKG_SUPPORTED_OPTIONS=	gssapi kerberos kerberos4 ldap snmp zephyr
 PKG_SUPPORTED_OPTIONS+=	bdb mysql pgsql sqlite
 PKG_SUGGESTED_OPTIONS=	bdb
 
@@ -95,4 +95,11 @@ CONFIGURE_ARGS+=	--without-pgsql
 CONFIGURE_ARGS+=	--with-sqlite=${BUILDLINK_PREFIX.sqlite3}
 .else
 CONFIGURE_ARGS+=	--without-sqlite
+.endif
+
+.if !empty(PKG_OPTIONS:Mzephyr)
+.  include "../../chat/zephyr/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-zephyr=${BUILDLINK_PREFIX.zephyr}
+.else
+CONFIGURE_ARGS+=	--without-zephyr
 .endif
