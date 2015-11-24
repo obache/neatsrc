@@ -5,3 +5,4 @@ RMD160 (librime-1.2.tar.gz) = 18c656a5c7f09754327054ab27fb5feb54684ceb
 SHA512 (librime-1.2.tar.gz) = 75a771916a58b1ab678dbf05ac074a651cea077e81d25e4dfd0ea839fabe6cf606135851e72c19d6a8a9c6ed66b89928b90785f282e8786c375bc1d393059227
 Size (librime-1.2.tar.gz) = 5199581 bytes
 SHA1 (patch-CMakeLists.txt) = f7dcb8b39f1ba0b7cf405dc8f3ccedaee1deb69c
+SHA1 (patch-src_gear_simplifier.cc) = f5aa97f914da882572c585fc2cd0cbfca1545ea5
