@@ -9,7 +9,10 @@ BUILDLINK_API_DEPENDS.libxklavier+=	libxklavier>=3.0
 BUILDLINK_ABI_DEPENDS.libxklavier+=	libxklavier>=5.0nb4
 BUILDLINK_PKGSRCDIR.libxklavier?=	../../x11/libxklavier
 
+.include "../../devel/glib2/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
+.include "../../x11/libX11/buildlink3.mk"
+.include "../../x11/libXi/buildlink3.mk"
 .include "../../x11/libxkbfile/buildlink3.mk"
 .endif # LIBXKLAVIER_BUILDLINK3_MK
 

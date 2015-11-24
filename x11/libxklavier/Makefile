@@ -1,11 +1,10 @@
 # $NetBSD: Makefile,v 1.38 2014/10/09 14:07:15 wiz Exp $
 #
 
-DISTNAME=	libxklavier-5.0
-PKGREVISION=	5
+DISTNAME=	libxklavier-5.3
 CATEGORIES=	x11
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=gswitchit/}
-EXTRACT_SUFX=	.tar.bz2
+MASTER_SITES=	${MASTER_SITE_GNOME:=sources/${PKGBASE}/${PKGVERSION_NOREV}/}
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://freedesktop.org/Software/LibXklavier
@@ -28,14 +27,13 @@ CONFIGURE_ARGS+=	--with-xkb-base=${X11BASE}/share/X11/xkb
 CONFIGURE_ARGS+=	--with-xkb-base=${X11BASE}/lib/X11/xkb
 .endif
 
-# Workaround for Upstream Bug#562310.
-# for more detail, see also PR#41475.
-TOOLS_NOOP+=	gtkdoc-rebase
-
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.6.0
 
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../textproc/iso-codes/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
+.include "../../x11/libX11/buildlink3.mk"
+BUILDLINK_API_DEPENDS.libXi+=	libXi>=1.1.3
+.include "../../x11/libXi/buildlink3.mk"
 .include "../../x11/libxkbfile/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

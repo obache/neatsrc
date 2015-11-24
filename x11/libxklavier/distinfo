@@ -1,8 +1,8 @@
 $NetBSD: distinfo,v 1.24 2015/11/04 03:28:48 agc Exp $
 
-SHA1 (libxklavier-5.0.tar.bz2) = e914adc00a7b1d39c5057aa415a5181856a697ae
-RMD160 (libxklavier-5.0.tar.bz2) = 771dffe92efa1b992ea6ee78535c81d859a2b090
-SHA512 (libxklavier-5.0.tar.bz2) = 2abeb5a85cf6808ffcd0e463a5b9b145803af6c66f95cb6dcb51afe7d8b4f7b71a2e6a1a8a965140ef2d3aa8c1777127fc23e431658056233fdeeb0001e98425
-Size (libxklavier-5.0.tar.bz2) = 357862 bytes
-SHA1 (patch-ab) = 02f3f5adf6ec9d4c6dd985ca0d9869f963f9e445
+SHA1 (libxklavier-5.3.tar.xz) = dc5e824c738520229174ba9481f0cab35be4870f
+RMD160 (libxklavier-5.3.tar.xz) = 1cff90fdf83af9c07ef832a52b3b4918ae35b5e2
+SHA512 (libxklavier-5.3.tar.xz) = 7bec94aeedbe80aec2c44c9e2a3b7ea170618970fff3c1b5e677f1b292241e208b74eabd825d477eeab25bb0ee1d27f9b55f986a19ea8aacb078651a0c83b289
+Size (libxklavier-5.3.tar.xz) = 315684 bytes
+SHA1 (patch-ab) = 8ebb77069e2fa8222fec95aedf4485715f321b61
 SHA1 (patch-ac) = 868223a0e551e6372d9e00c04324889a34f134cc
