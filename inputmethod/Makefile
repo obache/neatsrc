@@ -77,6 +77,7 @@ SUBDIR+=	kcm-fcitx
 SUBDIR+=	kimera
 SUBDIR+=	kimera-tomoe-gtk
 SUBDIR+=	kinput2
+SUBDIR+=	libcangjie
 SUBDIR+=	libchewing
 SUBDIR+=	libchewing02
 SUBDIR+=	libgooglepinyin
