@@ -4,10 +4,10 @@
 DISTNAME=	ibus-input-pad-1.4.2
 PKGREVISION=	2
 CATEGORIES=	inputmethod
-MASTER_SITES=	http://input-pad.googlecode.com/files/
+MASTER_SITES=	https://github.com/fujiwarat/ibus-input-pad/releases/download/${PKGVERSION_NOREV}/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://code.google.com/p/input-pad/
+HOMEPAGE=	https://github.com/fujiwarat/input-pad/wiki
 COMMENT=	Input Pad for IBus
 LICENSE=	gnu-gpl-v2
 
