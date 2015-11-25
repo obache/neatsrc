@@ -5,7 +5,7 @@
 
 DISTNAME=	input-pad-1.0.3
 CATEGORIES=	inputmethod
-MASTER_SITES=	http://input-pad.googlecode.com/files/
+MASTER_SITES=	https://github.com/fujiwarat/input-pad/releases/download/${PKGVERSION_NOREV}/
 
 HOMEPAGE=	https://github.com/fujiwarat/input-pad/wiki
 LICENSE=	gnu-lgpl-v2.1
