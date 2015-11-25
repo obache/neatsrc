@@ -1,0 +1,8 @@
+@comment $NetBSD$
+${PYSITELIB}/cangjie/__init__.py
+${PYSITELIB}/cangjie/__init__.pyc
+${PYSITELIB}/cangjie/__init__.pyo
+${PYSITELIB}/cangjie/_core.la
+${PYSITELIB}/cangjie/errors.la
+${PYSITELIB}/cangjie/filters.la
+${PYSITELIB}/cangjie/versions.la

@@ -99,6 +99,7 @@ SUBDIR+=	p5-zinnia
 SUBDIR+=	prime
 SUBDIR+=	prime-dict
 SUBDIR+=	prime-el
+SUBDIR+=	py-cangjie
 SUBDIR+=	py-input-pad
 SUBDIR+=	py-zinnia
 SUBDIR+=	qt5-uim
