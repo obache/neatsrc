@@ -41,6 +41,7 @@ SUBDIR+=	ibus
 SUBDIR+=	ibus-anthy
 SUBDIR+=	ibus-array
 SUBDIR+=	ibus-bogo
+SUBDIR+=	ibus-cangjie
 SUBDIR+=	ibus-chewing
 SUBDIR+=	ibus-el
 SUBDIR+=	ibus-googlepinyin
