@@ -7,7 +7,7 @@ DISTNAME=	input-pad-1.0.3
 CATEGORIES=	inputmethod
 MASTER_SITES=	http://input-pad.googlecode.com/files/
 
-HOMEPAGE=	http://code.google.com/p/input-pad/
+HOMEPAGE=	https://github.com/fujiwarat/input-pad/wiki
 LICENSE=	gnu-lgpl-v2.1
 
 DISTINFO_FILE=	${.CURDIR}/../../inputmethod/input-pad/distinfo
