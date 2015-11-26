@@ -17,19 +17,16 @@ WRKSRC=		${WRKDIR}/ibus-googlepinyin
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 
-FIND_PREFIX:=	IBUS_PREFIX=ibus LIBGOOGLEPINYIN_DIR=libgooglepinyin
-.include "../../mk/find-prefix.mk"
-
 SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	pre-configure
 SUBST_FILES.prefix=	CMakeLists.txt
-SUBST_SED.prefix=	-e 's,IBUS_PREFIX /usr,IBUS_PREFIX ${IBUS_PREFIX},'
+SUBST_SED.prefix=	-e 's,IBUS_PREFIX /usr,IBUS_PREFIX ${LOCALBASE},'
 
 SUBST_CLASSES+=		pinyindir
 SUBST_STAGE.pinyindir=	pre-configure
 SUBST_FILES.pinyindir=	googlepinyin.py
-SUBST_SED.pinyindir=	-e 's,/usr/share,${LIBGOOGLEPINYIN_DIR}/share,'
-SUBST_SED.pinyindir+=	-e 's,/usr/lib,${LIBGOOGLEPINYIN_DIR}/lib,'
+SUBST_SED.pinyindir=	-e 's,/usr/share,${LOCALBASE}/share,'
+SUBST_SED.pinyindir+=	-e 's,/usr/lib,${LOCALBASE}/lib,'
 
 REPLACE_PYTHON+=	googlepinyin.py opencc.py main.py
 

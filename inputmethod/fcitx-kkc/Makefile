@@ -16,9 +16,7 @@ USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	msgfmt pkg-config
 
-FIND_PREFIX:=	SKK_JISYO_DIR=skk-jisyo
-.include "../../mk/find-prefix.mk"
-CMAKE_ARGS+=	-DSKK_DEFAULT_PATH:PATH=${SKK_JISYO_DIR}/share/skk/
+CMAKE_ARGS+=	-DSKK_DEFAULT_PATH:PATH=${LOCALBASE}/share/skk/
 
 .include "options.mk"
 
