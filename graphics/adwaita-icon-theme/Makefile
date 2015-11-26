@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2015/06/14 22:19:00 prlw1 Exp $
+# $NetBSD: Makefile,v 1.5 2015/11/25 12:50:43 jperkin Exp $
 
 DISTNAME=		adwaita-icon-theme-3.16.2.1
 CATEGORIES=		graphics gnome
@@ -26,13 +26,11 @@ PKGCONFIG_OVERRIDE+=	adwaita-icon-theme.pc.in
 # but isn't
 INSTALLATION_DIRS+=	share/icons/Adwaita/96x96/places
 
-EVAL_PREFIX+=		PREFIX.svg=librsvg
-
 ICON_THEMES=		yes
 
 post-install:
 .for s in 16 22 24 32 48 96 256
-	 ${PREFIX.svg}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg \
+	 ${LOCALBASE}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg \
 	 -w ${s} -h ${s} -o \
 	 ${DESTDIR}${PREFIX}/share/icons/Adwaita/${s}x${s}/places/start-here.png
 .endfor

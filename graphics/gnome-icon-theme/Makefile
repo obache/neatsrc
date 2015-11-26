@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.98 2015/02/27 14:35:01 tnn Exp $
+# $NetBSD: Makefile,v 1.99 2015/11/25 12:50:43 jperkin Exp $
 
 DISTNAME=		gnome-icon-theme-3.12.0
 CATEGORIES=		graphics gnome
@@ -28,16 +28,13 @@ BUILDLINK_API_DEPENDS.icon-naming-utils+=	icon-naming-utils>=0.8.90
 
 ICON_THEMES=	yes
 
-FIND_PREFIX:=	LIBRSVGDIR=librsvg
-.include "../../mk/find-prefix.mk"
-
 post-install:
-	${LIBRSVGDIR}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 16 -h 16 -o ${DESTDIR}${PREFIX}/share/icons/gnome/16x16/places/start-here.png
-	${LIBRSVGDIR}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 22 -h 22 -o ${DESTDIR}${PREFIX}/share/icons/gnome/22x22/places/start-here.png
-	${LIBRSVGDIR}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 24 -h 24 -o ${DESTDIR}${PREFIX}/share/icons/gnome/24x24/places/start-here.png
-	${LIBRSVGDIR}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 32 -h 32 -o ${DESTDIR}${PREFIX}/share/icons/gnome/32x32/places/start-here.png
-	${LIBRSVGDIR}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 48 -h 48 -o ${DESTDIR}${PREFIX}/share/icons/gnome/48x48/places/start-here.png
-	${LIBRSVGDIR}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 256 -h 256 -o ${DESTDIR}${PREFIX}/share/icons/gnome/256x256/places/start-here.png
+	${LOCALBASE}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 16 -h 16 -o ${DESTDIR}${PREFIX}/share/icons/gnome/16x16/places/start-here.png
+	${LOCALBASE}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 22 -h 22 -o ${DESTDIR}${PREFIX}/share/icons/gnome/22x22/places/start-here.png
+	${LOCALBASE}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 24 -h 24 -o ${DESTDIR}${PREFIX}/share/icons/gnome/24x24/places/start-here.png
+	${LOCALBASE}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 32 -h 32 -o ${DESTDIR}${PREFIX}/share/icons/gnome/32x32/places/start-here.png
+	${LOCALBASE}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 48 -h 48 -o ${DESTDIR}${PREFIX}/share/icons/gnome/48x48/places/start-here.png
+	${LOCALBASE}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 256 -h 256 -o ${DESTDIR}${PREFIX}/share/icons/gnome/256x256/places/start-here.png
 
 BUILDLINK_DEPMETHOD.gettext-lib=	build
 .include "../../devel/gettext-lib/buildlink3.mk"

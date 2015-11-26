@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2014/10/09 14:06:35 wiz Exp $
+# $NetBSD: Makefile,v 1.22 2015/11/25 12:50:43 jperkin Exp $
 
 DISTNAME=	hicolor-icon-theme-0.13
 CATEGORIES=	graphics

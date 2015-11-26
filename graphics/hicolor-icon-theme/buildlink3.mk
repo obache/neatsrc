@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.18 2010/10/21 12:37:59 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.19 2015/11/25 12:50:43 jperkin Exp $
 
 BUILDLINK_TREE+=	hicolor-icon-theme
 

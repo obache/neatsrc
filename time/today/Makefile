@@ -12,8 +12,6 @@ COMMENT=	Tells you what day today is
 TOOL_DEPENDS+=	nkf>=2.0:../../converters/nkf
 USE_TOOLS+=	gmake
 
-TOOLS_FIND_PREFIX+=	NKF_PREFIX=nkf
-
 INSTALLATION_DIRS+=	bin share/examples/today share/today share/doc/today
 
 EXTRACT_DIR=		${WRKDIR}/${PKGNAME_NOREV}
@@ -38,7 +36,7 @@ SUBST_STAGE.cconv=	pre-patch
 SUBST_MESSAGE.cconv=	Converting kanji code
 SUBST_FILES.cconv=	*.c *.h *.doc *.rc *.rh makefile.* *.tbl
 SUBST_FILES.cconv+=	src/*.c src/makefile.*
-SUBST_FILTER_CMD.cconv=	${NKF_PREFIX}/bin/nkf -Sed
+SUBST_FILTER_CMD.cconv=	${LOCALBASE}/bin/nkf -Sed
 
 SUBST_CLASSES+=		version
 SUBST_STAGE.version=	post-configure

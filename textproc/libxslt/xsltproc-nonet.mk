@@ -6,6 +6,5 @@ TOOL_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 # XLSTPROC_PATH allows any necessary files (e.g. dtds) to be found
 # locally in the paths provided with the default being '--path .'
 TOOLS_CREATE+=		xsltproc
-TOOLS_FIND_PREFIX+=	TOOLS_PREFIX.xsltproc=libxslt
-TOOLS_PATH.xsltproc=	${TOOLS_PREFIX.xsltproc}/bin/xsltproc
+TOOLS_PATH.xsltproc=	${LOCALBASE}/bin/xsltproc
 TOOLS_ARGS.xsltproc=	--nonet --path ${XSLTPROC_PATH:U.:O:u:ts::Q}
