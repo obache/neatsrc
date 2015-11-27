@@ -7,9 +7,6 @@ MAINTAINER=	ngoffee@bbn.com
 COMMENT=	Replace/upgrade packages in-place
 LICENSE=	modified-bsd
 
-DEPENDS+=	pkg_chk>=1.76:../../pkgtools/pkg_chk
-DEPENDS+=	pkg_tarup>=1.6.6:../../pkgtools/pkg_tarup
-
 USE_TOOLS+=	patch
 
 WRKSRC=		${WRKDIR}
