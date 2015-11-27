@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2167 2015/11/16 17:36:47 leot Exp $
+# $NetBSD: Makefile,v 1.2170 2015/11/26 14:51:31 mef Exp $
 #
 
 COMMENT=	Development utilities
@@ -260,6 +260,7 @@ SUBDIR+=	git-base
 SUBDIR+=	git-contrib
 SUBDIR+=	git-docs
 SUBDIR+=	git-gitk
+SUBDIR+=	git-remote-hg
 SUBDIR+=	git-svn
 SUBDIR+=	gitolite
 SUBDIR+=	glade
@@ -847,6 +848,7 @@ SUBDIR+=	p5-Date-Calc-XS
 SUBDIR+=	p5-Date-Manip
 SUBDIR+=	p5-Date-Simple
 SUBDIR+=	p5-Debug-Client
+SUBDIR+=	p5-Debug-ShowStuff
 SUBDIR+=	p5-Declare-Constraints-Simple
 SUBDIR+=	p5-Devel-Autoflush
 SUBDIR+=	p5-Devel-BeginLift
@@ -1344,6 +1346,7 @@ SUBDIR+=	p5-String-Escape
 SUBDIR+=	p5-String-Format
 SUBDIR+=	p5-String-PerlIdentifier
 SUBDIR+=	p5-String-Print
+SUBDIR+=	p5-String-Util
 SUBDIR+=	p5-Struct-Dumb
 SUBDIR+=	p5-Sub-Exporter
 SUBDIR+=	p5-Sub-Exporter-ForMethods

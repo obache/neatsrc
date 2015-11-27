@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4735 2015/11/25 16:56:42 rillig Exp $
+$NetBSD: CHANGES-2015,v 1.4754 2015/11/26 16:36:10 jperkin Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7960,3 +7960,23 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated pkgtools/pkglint to 5.0 [rillig 2015-11-25]
 	Updated databases/py-cassandra-driver to 3.0.0 [fhajny 2015-11-25]
 	Added pkgtools/pkglint4 version 4.158 [rillig 2015-11-25]
+	Updated pkgtools/lintpkgsrc to 4.91 [leot 2015-11-25]
+	Updated sysutils/znapzend to 0.14.1 [wiedi 2015-11-25]
+	Updated net/syncthing to 0.12.4 [gdt 2015-11-26]
+	Updated misc/mbuffer to 20151002 [wiedi 2015-11-26]
+	Updated www/py-django to 1.8.7 [adam 2015-11-26]
+	Added devel/git-remote-hg version 20140603 [agc 2015-11-26]
+	Updated archivers/lz4 to 131nb1 [wiz 2015-11-26]
+	Updated x11/qwt-qt4 to 5.2.3 [adam 2015-11-26]
+	Updated devel/hdf5 to 1.8.16 [adam 2015-11-26]
+	Updated devel/hdf5-c++ to 1.8.16 [adam 2015-11-26]
+	Updated devel/p5-Test-DependentModules to 0.26 [mef 2015-11-26]
+	Updated devel/p5-namespace-autoclean to 0.28 [mef 2015-11-26]
+	Updated devel/p5-namespace-clean to 0.26 [mef 2015-11-26]
+	Updated www/p5-CGI-Emulate-PSGI to 0.21 [mef 2015-11-26]
+	Updated www/p5-CGI-Cookie-Splitter to 0.05 [mef 2015-11-26]
+	Updated geography/gdal-lib to 1.11.3 [adam 2015-11-26]
+	Updated www/p5-Catalyst-Manual to 5.9009 [mef 2015-11-26]
+	Added devel/p5-String-Util version 1.24 [mef 2015-11-26]
+	Added devel/p5-Debug-ShowStuff version 1.16 [mef 2015-11-26]
+	Updated chat/unrealircd to 3.2.10.5nb1 [jperkin 2015-11-26]
