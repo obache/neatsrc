@@ -130,34 +130,20 @@ ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 _BUILD_VERSION_FILE=	${PKG_DB_TMPDIR}/+BUILD_VERSION
 _METADATA_TARGETS+=	${_BUILD_VERSION_FILE}
 
-${_BUILD_VERSION_FILE}:
-	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}${RM} -f ${.TARGET}.tmp
+_BUILD_VERSION_FILE_cmd=	\
 	${RUN}								\
-	exec 1>>${.TARGET}.tmp;						\
+	(								\
 	for f in ${.CURDIR}/Makefile ${FILESDIR}/* ${PKGDIR}/*; do	\
 		${TEST} ! -f "$$f" || ${ECHO} "$$f";			\
-	done
-	${RUN}								\
-	exec 1>>${.TARGET}.tmp;						\
+	done;								\
 	${TEST} -f ${DISTINFO_FILE:Q} || exit 0;			\
 	${CAT} ${DISTINFO_FILE} |					\
 	${AWK} 'NF == 4 && $$3 == "=" { gsub("[()]", "", $$2); print $$2 }' | \
 	while read file; do						\
 		${TEST} ! -f "${PATCHDIR}/$$file" ||			\
 			${ECHO} "${PATCHDIR}/$$file";			\
-	done
-	${RUN}								\
-	exec 1>>${.TARGET}.tmp;						\
-	${TEST} -d ${PATCHDIR} || exit 0;				\
-	cd ${PATCHDIR}; for f in *; do					\
-		case "$$f" in						\
-		"*"|*.orig|*.rej|*~)	;;				\
-		patch-*)		${ECHO} "${PATCHDIR}/$$f" ;;	\
-		esac;							\
-	done
-	${RUN}								\
-	${CAT} ${.TARGET}.tmp |						\
+	done								\
+	) |								\
 	while read file; do						\
 		${GREP} '\$$NetBSD' $$file 2>/dev/null |		\
 		${SED} -e "s|^|$$file:|";				\
@@ -166,7 +152,16 @@ ${_BUILD_VERSION_FILE}:
 		  sub(":.*[$$]NetBSD", ":	$$NetBSD");		\
 		  sub("[$$][^$$]*$$", "$$");				\
 		  print; }' |						\
-	${SORT} -u > ${.TARGET} && ${RM} -f ${.TARGET}.tmp
+	${SORT} -u
+
+
+${_BUILD_VERSION_FILE}:
+	${RUN}${MKDIR} ${.TARGET:H}
+	${_BUILD_VERSION_FILE_cmd} > ${.TARGET}
+
+.PHONY: show-build-version
+show-build-version:
+	${_BUILD_VERSION_FILE_cmd}
 
 ######################################################################
 ###
