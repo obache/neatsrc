@@ -80,7 +80,10 @@ undo-replace-check: .PHONY
 
 # Generates a binary package for the (older) installed package using pkg_tarup.
 #
+_PKG_TARUP_CMD= ${LOCALBASE}/bin/pkg_tarup
+
 replace-tarup: .PHONY
+.if exists(${_PKG_TARUP_CMD})
 	${RUN} [ -x ${_PKG_TARUP_CMD:Q} ] \
 	|| ${FAIL_MSG} ${_PKG_TARUP_CMD:Q}" was not found.";		\
 	${_REPLACE_OLDNAME_CMD};					\
@@ -88,6 +91,9 @@ replace-tarup: .PHONY
 		PKGREPOSITORY=${WRKDIR}					\
 		${_PKG_TARUP_CMD} $${oldname} ||			\
 	${FAIL_MSG} "Could not pkg_tarup $${oldname}".
+.else
+	@${WARNING_MSG} "Please install pkgtools/pkg_tarup to create saved tar up package before replace."
+.endif
 
 # Re-installs the old package that has been saved by replace-tarup.
 #
