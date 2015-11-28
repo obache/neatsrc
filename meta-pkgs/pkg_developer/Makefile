@@ -17,7 +17,7 @@ DEPENDS+=	lintpkgsrc>=4.82:../../pkgtools/lintpkgsrc
 DEPENDS+=	pkg_chk>=1.77:../../pkgtools/pkg_chk
 DEPENDS+=	pkg_tarup>=1.6.5:../../pkgtools/pkg_tarup
 DEPENDS+=	pkgdiff>=0.119:../../pkgtools/pkgdiff
-DEPENDS+=	pkglint>=4.82:../../pkgtools/pkglint
+DEPENDS+=	{pkglint>=5.0,pkglint4>=4.82}:../../pkgtools/pkglint
 DEPENDS+=	revbump>=1.8:../../pkgtools/revbump
 DEPENDS+=	url2pkg>=1.34:../../pkgtools/url2pkg
 DEPENDS+=	verifypc>=1.3:../../pkgtools/verifypc
