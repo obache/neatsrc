@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1128 2015/10/11 18:38:57 joerg Exp $
+# $NetBSD: Makefile,v 1.1131 2015/11/27 16:57:04 nils Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -594,6 +594,7 @@ SUBDIR+=	py-djangocms-teaser
 SUBDIR+=	py-djangocms-text-ckeditor
 SUBDIR+=	py-djangocms-video
 SUBDIR+=	py-djangorestframework
+SUBDIR+=	py-feedgenerator
 SUBDIR+=	py-flask
 SUBDIR+=	py-flask-admin
 SUBDIR+=	py-flask-assets
@@ -637,6 +638,7 @@ SUBDIR+=	py-mod_wsgi-metrics
 SUBDIR+=	py-moin
 SUBDIR+=	py-nevow
 SUBDIR+=	py-paste
+SUBDIR+=	py-pelican
 SUBDIR+=	py-pendrell
 SUBDIR+=	py-python-digest
 SUBDIR+=	py-python-mimeparse
@@ -757,6 +759,7 @@ SUBDIR+=	seamonkey
 SUBDIR+=	seamonkey-l10n
 SUBDIR+=	serf
 SUBDIR+=	shibboleth-sp
+SUBDIR+=	siege
 SUBDIR+=	sitecopy
 SUBDIR+=	snarf
 SUBDIR+=	snownews
