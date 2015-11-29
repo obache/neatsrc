@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4767 2015/11/27 17:53:31 adam Exp $
+$NetBSD: CHANGES-2015,v 1.4778 2015/11/28 14:50:47 wen Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -7993,3 +7993,14 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated x11/qt4-qscintilla to 2.9.1 [adam 2015-11-27]
 	Updated x11/py-qt4-qscintilla to 2.9.1 [adam 2015-11-27]
 	Added geography/spatialindex version 1.8.5 [adam 2015-11-27]
+	Updated math/glpk to 4.57 [adam 2015-11-27]
+	Added www/p5-Plack-Middleware-MethodOverride version 0.15 [mef 2015-11-27]
+	Updated www/p5-Catalyst-Runtime to 5.90103 [mef 2015-11-27]
+	Updated www/contao35 to 3.5.6 [taca 2015-11-28]
+	Updated lang/php56 to 5.6.16 [taca 2015-11-28]
+	Added math/nlopt version 2.4.2 [wen 2015-11-28]
+	Updated devel/valgrind to 3.11.0 [alnsn 2015-11-28]
+	Updated devel/p5-Log-Report to 1.09 [wen 2015-11-28]
+	Updated multimedia/ffmpeg2 to 2.8.3 [adam 2015-11-28]
+	Updated textproc/p5-List-Compare to 0.53 [wen 2015-11-28]
+	Updated textproc/p5-PDF-Create to 1.22 [wen 2015-11-28]
