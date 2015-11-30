@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-media-1.12.0
+DISTNAME=	mate-media-1.12.1
 CATEGORIES=	multimedia mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
