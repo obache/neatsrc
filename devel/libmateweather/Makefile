@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	libmateweather-1.12.0
+DISTNAME=	libmateweather-1.12.1
 CATEGORIES=	devel mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz

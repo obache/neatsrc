@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (libmateweather-1.12.0.tar.xz) = 9ccbfa31a4c315138e61c6459e2c521ba1f96e63
-RMD160 (libmateweather-1.12.0.tar.xz) = c12e7dbe0270656bf3709bc2924b405fcf8873bb
-SHA512 (libmateweather-1.12.0.tar.xz) = a5e8c0ec9c10384bb3bdc802b5340bacdba7485cc782af3e0d8d26d82de60b756955c6a1c70d182a728c29c12920971b6c7f332346ce30710f365fedfe156e1c
-Size (libmateweather-1.12.0.tar.xz) = 3470800 bytes
+SHA1 (libmateweather-1.12.1.tar.xz) = dfd58b8fa7ec93e04773f61006b34b21a08e66d2
+RMD160 (libmateweather-1.12.1.tar.xz) = 06aacbadfbc9f8936b84b25dc931eee19caee4d9
+SHA512 (libmateweather-1.12.1.tar.xz) = 26352a722fc76b997ce3d30e1c144a612ebf27f18f5e4b4f1d7b725bd4de2657797542a21a334179f4c194529770e6bfcd92e435ff1d793441ac00bb7bdffdab
+Size (libmateweather-1.12.1.tar.xz) = 3526540 bytes
