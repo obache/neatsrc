@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (libmatekbd-1.12.0.tar.xz) = f623bd80f8d7dffd860ead94496198afc6ac8d3d
-RMD160 (libmatekbd-1.12.0.tar.xz) = c058d01e21357bad34e247be77d9e737e5e9383f
-SHA512 (libmatekbd-1.12.0.tar.xz) = a75470ba4ff79db01ebed910c886cc2417bb5212330118614731edc8879d546d6f900e5b7ef2b173e2fc680e4e26d902a5b89be254c6ff356f763692a61d47d7
-Size (libmatekbd-1.12.0.tar.xz) = 338828 bytes
+SHA1 (libmatekbd-1.12.1.tar.xz) = f2f3f272784961e20b97a5291ecc6465696d9154
+RMD160 (libmatekbd-1.12.1.tar.xz) = c092b4398fafda21ad3146c751b3413f5949b2de
+SHA512 (libmatekbd-1.12.1.tar.xz) = ef07e7b7ff35a17465eb427aafef4c0679ccecf0d96989a66eaf337791dd62d5e85ec72f2c58de5b09e7065eac6df16afb401975fcd727e924e8d3b34b19c0aa
+Size (libmatekbd-1.12.1.tar.xz) = 349492 bytes
