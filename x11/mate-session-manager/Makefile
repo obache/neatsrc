@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-session-manager-1.12.0
+DISTNAME=	mate-session-manager-1.12.1
 CATEGORIES=	x11 mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -34,6 +34,5 @@ BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.36.0
 .include "../../x11/libXau/buildlink3.mk"
 .include "../../x11/libXrender/buildlink3.mk"
 .include "../../x11/libXtst/buildlink3.mk"
-.include "../../x11/mate-desktop/buildlink3.mk"
 .include "../../x11/xtrans/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

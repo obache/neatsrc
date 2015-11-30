@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (mate-session-manager-1.12.0.tar.xz) = 379bc456ef30647da8211e15e34fa8452fad3c99
-RMD160 (mate-session-manager-1.12.0.tar.xz) = d1fc54532e1807f9eb44047a9d0336070550743e
-SHA512 (mate-session-manager-1.12.0.tar.xz) = 33e00d2fbfc8adba571fe801a2f77de2b36f6008eeeb95533500c8669c9f308c17b625b1c98e5f370f2fbdf3147b66adf8b725da19c819600e69321c0f2b616c
-Size (mate-session-manager-1.12.0.tar.xz) = 539224 bytes
+SHA1 (mate-session-manager-1.12.1.tar.xz) = 225e769bade9d4968c0df98695777478f5fbe055
+RMD160 (mate-session-manager-1.12.1.tar.xz) = e7a8024045406fac31ffd79b10a47d50dfeb409d
+SHA512 (mate-session-manager-1.12.1.tar.xz) = 9f871f22b59eff6f069ce82709c49897f7af00d295c2abd6c0bb7eb0a6aee26a3a2f6ed63e197f393890db524c50ddfbce6d031e381970fed94a9c1a632e52ae
+Size (mate-session-manager-1.12.1.tar.xz) = 538524 bytes
