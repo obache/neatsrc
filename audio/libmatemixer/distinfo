@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (libmatemixer-1.12.0.tar.xz) = cb83bf944716e6e3bc1f8f70ca7847a4ae2f21be
-RMD160 (libmatemixer-1.12.0.tar.xz) = 80263eade469545fea170ad799c97e0c6cc0aac0
-SHA512 (libmatemixer-1.12.0.tar.xz) = ed854911fa60fdf62b596b0caa1992363b78050c1506deb0470fd0b31fa9ff18a046923023a49204b015af356e472455241acc8d22bc0a7ee8ec7135d3fff145
-Size (libmatemixer-1.12.0.tar.xz) = 383620 bytes
+SHA1 (libmatemixer-1.12.1.tar.xz) = 37c5b081e80db36210834e123643e2f7a12f176d
+RMD160 (libmatemixer-1.12.1.tar.xz) = 6df0c601ee9aca777d3b8ff7919f668c329e9110
+SHA512 (libmatemixer-1.12.1.tar.xz) = 6aa0a9d7af254ef85051a8052b2f7ffb2a705e07636da1eea358667e8577aad0f459b21b45751f256a58cbcac33d3b6628227e70f55e9ff0cdfe211bdfa7b0da
+Size (libmatemixer-1.12.1.tar.xz) = 382444 bytes
