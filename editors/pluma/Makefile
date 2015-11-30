@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	pluma-1.12.0
+DISTNAME=	pluma-1.12.1
 CATEGORIES=	editors mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -29,6 +29,5 @@ BUILDLINK_API_DEPENDS.gtksourceview2+=	gtksourceview2>=2.9.7
 .include "../../x11/libX11/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libSM+=	libSM>=1.0.0
 .include "../../x11/libSM/buildlink3.mk"
-.include "../../x11/mate-desktop/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

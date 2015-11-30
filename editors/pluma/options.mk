@@ -1,12 +1,19 @@
 # $NetBSD$
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.pluma
-PKG_SUPPORTED_OPTIONS=	enchant python
-PKG_SUGGESTED_OPTIONS=	enchant python
+PKG_SUPPORTED_OPTIONS=	mate enchant python
+PKG_SUGGESTED_OPTIONS=	mate enchant python
 
 .include "../../mk/bsd.options.mk"
 
 PLIST_VARS+=	enchant python
+
+.if !empty(PKG_OPTIONS:Mmate)
+.include "../../x11/mate-desktop/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-matedesktop
+.else
+CONFIGURE_ARGS+=	--without-matedesktop
+.endif
 
 .if !empty(PKG_OPTIONS:Menchant)
 .include "../../textproc/enchant/buildlink3.mk"
