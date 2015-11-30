@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (mate-notification-daemon-1.12.0.tar.xz) = 688cb261b9938ef6946a70786f7bb67b19f77fe6
-RMD160 (mate-notification-daemon-1.12.0.tar.xz) = 581fac9ec41f230f35b03360438da90d706aee17
-SHA512 (mate-notification-daemon-1.12.0.tar.xz) = eb7a6eed05ed5468eb777f7d4dfaf7b203e845b338d5fb9cbc4039702facafbd22222dbf7c8a6552afbb9bef4e34d783f683e5b47db61c8cfd9bc1e6d86b1c54
-Size (mate-notification-daemon-1.12.0.tar.xz) = 304792 bytes
+SHA1 (mate-notification-daemon-1.12.1.tar.xz) = 6877d4b8e6b55192f66aa16103e216c851470072
+RMD160 (mate-notification-daemon-1.12.1.tar.xz) = 50baf77184b6b6456240ac8d5ca8e7b0930db318
+SHA512 (mate-notification-daemon-1.12.1.tar.xz) = ce9cd1737cc70b0e17fa856730b51747f78bb40639ff58e205a3f1432edf53aba38442d59b7a4fca6ff460cbdc6c611c0a05a46bbf5db92db0ce5e714e19daae
+Size (mate-notification-daemon-1.12.1.tar.xz) = 304752 bytes
