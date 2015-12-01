@@ -1,4 +1,4 @@
-/* $NetBSD: netaddr.c,v 1.8 2014/03/14 09:45:31 jperkin Exp $ */
+/* $NetBSD: netaddr.c,v 1.10 2015/11/30 22:38:16 joerg Exp $ */
 
 /*-
  * Copyright (c) 2007 Joerg Sonnenberger <joerg@NetBSD.org>.
