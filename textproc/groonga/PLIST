@@ -8,6 +8,7 @@ include/groonga/groonga.h
 include/groonga/groonga/command.h
 include/groonga/groonga/conf.h
 include/groonga/groonga/expr.h
+include/groonga/groonga/file_reader.h
 include/groonga/groonga/geo.h
 include/groonga/groonga/groonga.h
 include/groonga/groonga/ii.h
@@ -121,6 +122,7 @@ share/doc/groonga/en/html/_sources/reference/columns/vector.txt
 share/doc/groonga/en/html/_sources/reference/command.txt
 share/doc/groonga/en/html/_sources/reference/command/command_version.txt
 share/doc/groonga/en/html/_sources/reference/command/output_format.txt
+share/doc/groonga/en/html/_sources/reference/command/pretty_print.txt
 share/doc/groonga/en/html/_sources/reference/command/request_id.txt
 share/doc/groonga/en/html/_sources/reference/command/return_code.txt
 share/doc/groonga/en/html/_sources/reference/commands/cache_limit.txt
@@ -156,6 +158,7 @@ share/doc/groonga/en/html/_sources/reference/commands/plugin_unregister.txt
 share/doc/groonga/en/html/_sources/reference/commands/quit.txt
 share/doc/groonga/en/html/_sources/reference/commands/range_filter.txt
 share/doc/groonga/en/html/_sources/reference/commands/register.txt
+share/doc/groonga/en/html/_sources/reference/commands/reindex.txt
 share/doc/groonga/en/html/_sources/reference/commands/request_cancel.txt
 share/doc/groonga/en/html/_sources/reference/commands/ruby_eval.txt
 share/doc/groonga/en/html/_sources/reference/commands/ruby_load.txt
@@ -193,6 +196,7 @@ share/doc/groonga/en/html/_sources/reference/functions/highlight_html.txt
 share/doc/groonga/en/html/_sources/reference/functions/html_untag.txt
 share/doc/groonga/en/html/_sources/reference/functions/in_values.txt
 share/doc/groonga/en/html/_sources/reference/functions/now.txt
+share/doc/groonga/en/html/_sources/reference/functions/prefix_rk_search.txt
 share/doc/groonga/en/html/_sources/reference/functions/query.txt
 share/doc/groonga/en/html/_sources/reference/functions/rand.txt
 share/doc/groonga/en/html/_sources/reference/functions/snippet_html.txt
@@ -206,6 +210,7 @@ share/doc/groonga/en/html/_sources/reference/log.txt
 share/doc/groonga/en/html/_sources/reference/normalizers.txt
 share/doc/groonga/en/html/_sources/reference/operations.txt
 share/doc/groonga/en/html/_sources/reference/operations/geolocation_search.txt
+share/doc/groonga/en/html/_sources/reference/operations/prefix_rk_search.txt
 share/doc/groonga/en/html/_sources/reference/output.txt
 share/doc/groonga/en/html/_sources/reference/query_expanders.txt
 share/doc/groonga/en/html/_sources/reference/query_expanders/tsv.txt
@@ -356,6 +361,7 @@ share/doc/groonga/en/html/reference/columns/vector.html
 share/doc/groonga/en/html/reference/command.html
 share/doc/groonga/en/html/reference/command/command_version.html
 share/doc/groonga/en/html/reference/command/output_format.html
+share/doc/groonga/en/html/reference/command/pretty_print.html
 share/doc/groonga/en/html/reference/command/request_id.html
 share/doc/groonga/en/html/reference/command/return_code.html
 share/doc/groonga/en/html/reference/commands/cache_limit.html
@@ -391,6 +397,7 @@ share/doc/groonga/en/html/reference/commands/plugin_unregister.html
 share/doc/groonga/en/html/reference/commands/quit.html
 share/doc/groonga/en/html/reference/commands/range_filter.html
 share/doc/groonga/en/html/reference/commands/register.html
+share/doc/groonga/en/html/reference/commands/reindex.html
 share/doc/groonga/en/html/reference/commands/request_cancel.html
 share/doc/groonga/en/html/reference/commands/ruby_eval.html
 share/doc/groonga/en/html/reference/commands/ruby_load.html
@@ -428,6 +435,7 @@ share/doc/groonga/en/html/reference/functions/highlight_html.html
 share/doc/groonga/en/html/reference/functions/html_untag.html
 share/doc/groonga/en/html/reference/functions/in_values.html
 share/doc/groonga/en/html/reference/functions/now.html
+share/doc/groonga/en/html/reference/functions/prefix_rk_search.html
 share/doc/groonga/en/html/reference/functions/query.html
 share/doc/groonga/en/html/reference/functions/rand.html
 share/doc/groonga/en/html/reference/functions/snippet_html.html
@@ -441,6 +449,7 @@ share/doc/groonga/en/html/reference/log.html
 share/doc/groonga/en/html/reference/normalizers.html
 share/doc/groonga/en/html/reference/operations.html
 share/doc/groonga/en/html/reference/operations/geolocation_search.html
+share/doc/groonga/en/html/reference/operations/prefix_rk_search.html
 share/doc/groonga/en/html/reference/output.html
 share/doc/groonga/en/html/reference/query_expanders.html
 share/doc/groonga/en/html/reference/query_expanders/tsv.html
@@ -570,6 +579,7 @@ share/doc/groonga/ja/html/_sources/reference/columns/vector.txt
 share/doc/groonga/ja/html/_sources/reference/command.txt
 share/doc/groonga/ja/html/_sources/reference/command/command_version.txt
 share/doc/groonga/ja/html/_sources/reference/command/output_format.txt
+share/doc/groonga/ja/html/_sources/reference/command/pretty_print.txt
 share/doc/groonga/ja/html/_sources/reference/command/request_id.txt
 share/doc/groonga/ja/html/_sources/reference/command/return_code.txt
 share/doc/groonga/ja/html/_sources/reference/commands/cache_limit.txt
@@ -605,6 +615,7 @@ share/doc/groonga/ja/html/_sources/reference/commands/plugin_unregister.txt
 share/doc/groonga/ja/html/_sources/reference/commands/quit.txt
 share/doc/groonga/ja/html/_sources/reference/commands/range_filter.txt
 share/doc/groonga/ja/html/_sources/reference/commands/register.txt
+share/doc/groonga/ja/html/_sources/reference/commands/reindex.txt
 share/doc/groonga/ja/html/_sources/reference/commands/request_cancel.txt
 share/doc/groonga/ja/html/_sources/reference/commands/ruby_eval.txt
 share/doc/groonga/ja/html/_sources/reference/commands/ruby_load.txt
@@ -642,6 +653,7 @@ share/doc/groonga/ja/html/_sources/reference/functions/highlight_html.txt
 share/doc/groonga/ja/html/_sources/reference/functions/html_untag.txt
 share/doc/groonga/ja/html/_sources/reference/functions/in_values.txt
 share/doc/groonga/ja/html/_sources/reference/functions/now.txt
+share/doc/groonga/ja/html/_sources/reference/functions/prefix_rk_search.txt
 share/doc/groonga/ja/html/_sources/reference/functions/query.txt
 share/doc/groonga/ja/html/_sources/reference/functions/rand.txt
 share/doc/groonga/ja/html/_sources/reference/functions/snippet_html.txt
@@ -655,6 +667,7 @@ share/doc/groonga/ja/html/_sources/reference/log.txt
 share/doc/groonga/ja/html/_sources/reference/normalizers.txt
 share/doc/groonga/ja/html/_sources/reference/operations.txt
 share/doc/groonga/ja/html/_sources/reference/operations/geolocation_search.txt
+share/doc/groonga/ja/html/_sources/reference/operations/prefix_rk_search.txt
 share/doc/groonga/ja/html/_sources/reference/output.txt
 share/doc/groonga/ja/html/_sources/reference/query_expanders.txt
 share/doc/groonga/ja/html/_sources/reference/query_expanders/tsv.txt
@@ -805,6 +818,7 @@ share/doc/groonga/ja/html/reference/columns/vector.html
 share/doc/groonga/ja/html/reference/command.html
 share/doc/groonga/ja/html/reference/command/command_version.html
 share/doc/groonga/ja/html/reference/command/output_format.html
+share/doc/groonga/ja/html/reference/command/pretty_print.html
 share/doc/groonga/ja/html/reference/command/request_id.html
 share/doc/groonga/ja/html/reference/command/return_code.html
 share/doc/groonga/ja/html/reference/commands/cache_limit.html
@@ -840,6 +854,7 @@ share/doc/groonga/ja/html/reference/commands/plugin_unregister.html
 share/doc/groonga/ja/html/reference/commands/quit.html
 share/doc/groonga/ja/html/reference/commands/range_filter.html
 share/doc/groonga/ja/html/reference/commands/register.html
+share/doc/groonga/ja/html/reference/commands/reindex.html
 share/doc/groonga/ja/html/reference/commands/request_cancel.html
 share/doc/groonga/ja/html/reference/commands/ruby_eval.html
 share/doc/groonga/ja/html/reference/commands/ruby_load.html
@@ -877,6 +892,7 @@ share/doc/groonga/ja/html/reference/functions/highlight_html.html
 share/doc/groonga/ja/html/reference/functions/html_untag.html
 share/doc/groonga/ja/html/reference/functions/in_values.html
 share/doc/groonga/ja/html/reference/functions/now.html
+share/doc/groonga/ja/html/reference/functions/prefix_rk_search.html
 share/doc/groonga/ja/html/reference/functions/query.html
 share/doc/groonga/ja/html/reference/functions/rand.html
 share/doc/groonga/ja/html/reference/functions/snippet_html.html
@@ -890,6 +906,7 @@ share/doc/groonga/ja/html/reference/log.html
 share/doc/groonga/ja/html/reference/normalizers.html
 share/doc/groonga/ja/html/reference/operations.html
 share/doc/groonga/ja/html/reference/operations/geolocation_search.html
+share/doc/groonga/ja/html/reference/operations/prefix_rk_search.html
 share/doc/groonga/ja/html/reference/output.html
 share/doc/groonga/ja/html/reference/query_expanders.html
 share/doc/groonga/ja/html/reference/query_expanders/tsv.html
