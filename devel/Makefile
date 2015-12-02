@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2172 2015/11/30 14:10:15 mef Exp $
+# $NetBSD: Makefile,v 1.2175 2015/12/01 12:27:34 mef Exp $
 #
 
 COMMENT=	Development utilities
@@ -1461,6 +1461,7 @@ SUBDIR+=	p5-Test-SharedFork
 SUBDIR+=	p5-Test-Simple
 SUBDIR+=	p5-Test-Spec
 SUBDIR+=	p5-Test-Spelling
+SUBDIR+=	p5-Test-Stream
 SUBDIR+=	p5-Test-SubCalls
 SUBDIR+=	p5-Test-Taint
 SUBDIR+=	p5-Test-TempDir
@@ -1613,6 +1614,7 @@ SUBDIR+=	py-InlineEgg
 SUBDIR+=	py-Optik
 SUBDIR+=	py-Pyro
 SUBDIR+=	py-ZopeComponent
+SUBDIR+=	py-ZopeEvent
 SUBDIR+=	py-ZopeInterface
 SUBDIR+=	py-argcomplete
 SUBDIR+=	py-argh
@@ -1667,6 +1669,7 @@ SUBDIR+=	py-flake8
 SUBDIR+=	py-flakes
 SUBDIR+=	py-flexmock
 SUBDIR+=	py-funcparserlib
+SUBDIR+=	py-funcsigs
 SUBDIR+=	py-game
 SUBDIR+=	py-generate
 SUBDIR+=	py-gflags
