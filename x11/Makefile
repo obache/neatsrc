@@ -329,6 +329,7 @@ SUBDIR+=	libxkbui
 SUBDIR+=	libxklavier
 SUBDIR+=	libxshmfence
 SUBDIR+=	lightdm
+SUBDIR+=	lightdm-gtk-greeter
 SUBDIR+=	listres
 SUBDIR+=	lua-keybinder
 SUBDIR+=	luit
