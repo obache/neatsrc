@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.4 2015/03/15 19:51:08 hiramatsu Exp $
 
-DISTNAME=	libpinyin-1.2.91
+DISTNAME=	libpinyin-1.3.0
 CATEGORIES=	textproc chinese
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libpinyin/}
 
