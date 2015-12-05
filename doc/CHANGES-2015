@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4838 2015/12/03 17:35:09 leot Exp $
+$NetBSD: CHANGES-2015,v 1.4848 2015/12/04 20:45:02 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -8078,3 +8078,14 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated www/seamonkey-l10n to 2.39 [ryoon 2015-12-03]
 	Updated graphics/png to 1.6.20 [wiz 2015-12-03]
 	Updated print/gv to 3.7.4nb5 [leot 2015-12-03]
+	Updated sysutils/py-psutil to 3.3.0nb1 [ryoon 2015-12-04]
+	Updated emulators/suse131_gstreamer to 13.1nb3 [ryoon 2015-12-04]
+	Updated lang/nodejs to 5.1.1 [fhajny 2015-12-04]
+	Updated lang/nodejs4 to 4.2.3 [fhajny 2015-12-04]
+	Added devel/pkgconf version 0.9.12 [wiz 2015-12-04]
+	Updated www/py-djangocms-text-ckeditor to 2.8.0 [adam 2015-12-04]
+	Updated net/syncthing to 0.12.6 [gdt 2015-12-04]
+	Updated www/libmicrohttpd to 0.9.47 [wiz 2015-12-04]
+	Updated audio/libsndfile to 1.0.26 [wiz 2015-12-04]
+	Updated devel/py-click to 6.2 [wiz 2015-12-04]
+	Updated devel/py-decorator to 4.0.2 [wiz 2015-12-04]
