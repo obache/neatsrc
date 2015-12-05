@@ -3675,6 +3675,7 @@ share/themes/Blue-Submarine/cinnamon/switch-on.png
 share/themes/Blue-Submarine/cinnamon/thumbnail.png
 share/themes/Blue-Submarine/cinnamon/ws-switch-arrow-down.svg
 share/themes/Blue-Submarine/cinnamon/ws-switch-arrow-up.svg
+share/themes/Blue-Submarine/emerald/blue-submarine.emerald
 share/themes/Blue-Submarine/gtk-2.0/apps/Handles/handle-caja.png
 share/themes/Blue-Submarine/gtk-2.0/apps/Handles/resize-grip.png
 share/themes/Blue-Submarine/gtk-2.0/apps/Panel/arrow-blank.png
@@ -4400,6 +4401,7 @@ share/themes/Green-Submarine/cinnamon/switch-on.png
 share/themes/Green-Submarine/cinnamon/thumbnail.png
 share/themes/Green-Submarine/cinnamon/ws-switch-arrow-down.svg
 share/themes/Green-Submarine/cinnamon/ws-switch-arrow-up.svg
+share/themes/Green-Submarine/emerald/green-submarine.emerald
 share/themes/Green-Submarine/gtk-2.0/apps/Handles/handle-caja.png
 share/themes/Green-Submarine/gtk-2.0/apps/Handles/resize-grip.png
 share/themes/Green-Submarine/gtk-2.0/apps/Panel/arrow-blank.png
@@ -4564,6 +4566,7 @@ share/themes/GreenLaguna/gtk-3.0/assets/pane-separator-grip-hover.svg
 share/themes/GreenLaguna/gtk-3.0/assets/pane-separator-grip-vertical-hover.svg
 share/themes/GreenLaguna/gtk-3.0/assets/pane-separator-grip-vertical.svg
 share/themes/GreenLaguna/gtk-3.0/assets/pane-separator-grip.svg
+share/themes/GreenLaguna/gtk-3.0/assets/panel-grid.svg
 share/themes/GreenLaguna/gtk-3.0/assets/radio-menuitem-checked-insensitive.svg
 share/themes/GreenLaguna/gtk-3.0/assets/radio-menuitem-checked-prelight.svg
 share/themes/GreenLaguna/gtk-3.0/assets/radio-menuitem-checked.svg
