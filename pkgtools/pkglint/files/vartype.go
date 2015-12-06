@@ -17,9 +17,9 @@ type Vartype struct {
 type KindOfList int
 
 const (
-	LK_NONE  KindOfList = iota // Plain data type
-	LK_SPACE                   // List entries are separated by whitespace; used in .for loops.
-	LK_SHELL                   // List entries are shell words; used in the :M, :S modifiers.
+	lkNone  KindOfList = iota // Plain data type
+	lkSpace                   // List entries are separated by whitespace; used in .for loops.
+	lkShell                   // List entries are shell words; used in the :M, :S modifiers.
 )
 
 type AclEntry struct {
@@ -27,16 +27,18 @@ type AclEntry struct {
 	permissions string // Some of: "a"ppend, "d"efault, "s"et; "p"reprocessing, "u"se
 }
 
+// Guessed says whether the type definition is guessed (based on the
+// variable name) or explicitly defined (see vardefs.go).
 type Guessed bool
 
 const (
-	NOT_GUESSED Guessed = false
-	GUESSED     Guessed = true
+	guNotGuessed Guessed = false
+	guGuessed    Guessed = true
 )
 
 // The allowed actions in this file, or "?" if unknown.
-func (self *Vartype) effectivePermissions(fname string) string {
-	for _, aclEntry := range self.aclEntries {
+func (vt *Vartype) effectivePermissions(fname string) string {
+	for _, aclEntry := range vt.aclEntries {
 		if m, _ := path.Match(aclEntry.glob, path.Base(fname)); m {
 			return aclEntry.permissions
 		}
@@ -68,9 +70,9 @@ func ReadableVartypePermissions(perms string) string {
 // Returns the union of all possible permissions. This can be used to
 // check whether a variable may be defined or used at all, or if it is
 // read-only.
-func (self *Vartype) union() string {
+func (vt *Vartype) union() string {
 	var permissions string
-	for _, aclEntry := range self.aclEntries {
+	for _, aclEntry := range vt.aclEntries {
 		permissions += aclEntry.permissions
 	}
 	return permissions
@@ -79,34 +81,34 @@ func (self *Vartype) union() string {
 // Returns whether the type is considered a shell list.
 // This distinction between “real lists” and “considered a list” makes
 // the implementation of checklineMkVartype easier.
-func (self *Vartype) isConsideredList() bool {
-	switch self.kindOfList {
-	case LK_SHELL:
+func (vt *Vartype) isConsideredList() bool {
+	switch vt.kindOfList {
+	case lkShell:
 		return true
-	case LK_SPACE:
+	case lkSpace:
 		return false
 	}
-	switch self.checker {
+	switch vt.checker {
 	case CheckvarSedCommands, CheckvarShellCommand:
 		return true
 	}
 	return false
 }
 
-func (self *Vartype) mayBeAppendedTo() bool {
-	return self.kindOfList != LK_NONE ||
-		self.checker == CheckvarAwkCommand ||
-		self.checker == CheckvarSedCommands
+func (vt *Vartype) mayBeAppendedTo() bool {
+	return vt.kindOfList != lkNone ||
+		vt.checker == CheckvarAwkCommand ||
+		vt.checker == CheckvarSedCommands
 }
 
-func (self *Vartype) String() string {
-	switch self.kindOfList {
-	case LK_NONE:
-		return self.checker.name
-	case LK_SPACE:
-		return "SpaceList of " + self.checker.name
-	case LK_SHELL:
-		return "ShellList of " + self.checker.name
+func (vt *Vartype) String() string {
+	switch vt.kindOfList {
+	case lkNone:
+		return vt.checker.name
+	case lkSpace:
+		return "SpaceList of " + vt.checker.name
+	case lkShell:
+		return "ShellList of " + vt.checker.name
 	default:
 		panic("Unknown list type")
 	}
@@ -181,7 +183,7 @@ var (
 	CheckvarWrksrcSubdirectory     = &VarChecker{"WrksrcSubdirectory", (*VartypeCheck).WrksrcSubdirectory}
 	CheckvarYes                    = &VarChecker{"Yes", (*VartypeCheck).Yes}
 	CheckvarYesNo                  = &VarChecker{"YesNo", (*VartypeCheck).YesNo}
-	CheckvarYesNo_Indirectly       = &VarChecker{"YesNo_Indirectly", (*VartypeCheck).YesNo_Indirectly}
+	CheckvarYesNoIndirectly        = &VarChecker{"YesNoIndirectly", (*VartypeCheck).YesNoIndirectly}
 )
 
 func init() { // Necessary due to circular dependency

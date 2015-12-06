@@ -21,13 +21,6 @@ var (
 	hasSuffix = strings.HasSuffix
 )
 
-func intMax(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
 func ifelseStr(cond bool, a, b string) string {
 	if cond {
 		return a
@@ -63,7 +56,7 @@ func isEmptyDir(fname string) bool {
 func getSubdirs(fname string) []string {
 	dirents, err := ioutil.ReadDir(fname)
 	if err != nil {
-		fatalf(fname, NO_LINES, "Cannot be read: %s", err)
+		fatalf(fname, noLines, "Cannot be read: %s", err)
 	}
 
 	var subdirs []string
@@ -175,14 +168,6 @@ func dirExists(fname string) bool {
 	return err == nil && st.Mode().IsDir()
 }
 
-func stringset(s string) map[string]bool {
-	result := make(map[string]bool)
-	for _, m := range splitOnSpace(strings.TrimSpace(s)) {
-		result[m] = true
-	}
-	return result
-}
-
 var res = make(map[string]*regexp.Regexp)
 
 func regcomp(re string) *regexp.Regexp {
@@ -280,13 +265,6 @@ func replacePrefix(ps *string, pm *[]string, re string) bool {
 		return true
 	}
 	return false
-}
-
-func nilToZero(pi *int) int {
-	if pi != nil {
-		return *pi
-	}
-	return 0
 }
 
 // Useful in combination with regex.Find*Index
@@ -390,7 +368,7 @@ func stringStringMapKeys(m map[string]string) []string {
 func abspath(fname string) string {
 	abs, err := filepath.Abs(fname)
 	if err != nil {
-		fatalf(fname, NO_LINES, "Cannot determine absolute path.")
+		fatalf(fname, noLines, "Cannot determine absolute path.")
 	}
 	return filepath.ToSlash(abs)
 }

@@ -394,11 +394,11 @@ func ChecklinesMk(lines []*Line) {
 					line.notef("For efficiency reasons, please include bsd.fast.prefs.mk instead of bsd.prefs.mk.")
 				}
 				if G.pkgContext != nil {
-					G.pkgContext.seen_bsd_prefs_mk = true
+					G.pkgContext.seenBsdPrefsMk = true
 				}
 			} else if includefile == "../../mk/bsd.fast.prefs.mk" {
 				if G.pkgContext != nil {
-					G.pkgContext.seen_bsd_prefs_mk = true
+					G.pkgContext.seenBsdPrefsMk = true
 				}
 			}
 
@@ -450,7 +450,7 @@ func ChecklinesMk(lines []*Line) {
 				}
 
 			} else if directive == "if" || directive == "elif" {
-				checklineMkCondition(line, args)
+				checklineMkIf(line, args)
 
 			} else if directive == "ifdef" || directive == "ifndef" {
 				if matches(args, `\s`) {
@@ -479,22 +479,22 @@ func ChecklinesMk(lines []*Line) {
 					}
 
 					// Check if any of the value's types is not guessed.
-					guessed := GUESSED
+					guessed := guGuessed
 					for _, value := range splitOnSpace(values) {
 						if m, vname := match1(value, `^\$\{(.*)\}`); m {
 							vartype := getVariableType(line, vname)
 							if vartype != nil && !vartype.guessed {
-								guessed = NOT_GUESSED
+								guessed = guNotGuessed
 							}
 						}
 					}
 
-					forLoopType := &Vartype{LK_SPACE, CheckvarUnchecked, []AclEntry{{"*", "pu"}}, guessed}
+					forLoopType := &Vartype{lkSpace, CheckvarUnchecked, []AclEntry{{"*", "pu"}}, guessed}
 					forLoopContext := &VarUseContext{
-						VUC_TIME_LOAD,
+						vucTimeParse,
 						forLoopType,
-						VUC_SHW_FOR,
-						VUC_EXT_WORD,
+						vucQuotFor,
+						vucExtentWord,
 					}
 					for _, fvar := range extractUsedVariables(line, values) {
 						checklineMkVaruse(line, fvar, "", forLoopContext)
