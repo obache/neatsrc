@@ -56,9 +56,9 @@ func (ln *Line) printSource(out io.Writer) {
 	}
 }
 
-func (ln *Line) fatalf(format string, args ...interface{}) bool {
+func (ln *Line) fatalf(format string, args ...interface{}) {
 	ln.printSource(G.logErr)
-	return fatalf(ln.fname, ln.lines, format, args...)
+	fatalf(ln.fname, ln.lines, format, args...)
 }
 func (ln *Line) errorf(format string, args ...interface{}) bool {
 	ln.printSource(G.logOut)
@@ -143,4 +143,21 @@ func (ln *Line) noteAutofix(format string, args ...interface{}) {
 		ln.notef(format, args...)
 	}
 	G.autofixAvailable = true
+}
+
+func (ln *Line) checkAbsolutePathname(text string) {
+	defer tracecall("Line.checkAbsolutePathname", text)()
+
+	// In the GNU coding standards, DESTDIR is defined as a (usually
+	// empty) prefix that can be used to install files to a different
+	// location from what they have been built for. Therefore
+	// everything following it is considered an absolute pathname.
+	//
+	// Another context where absolute pathnames usually appear is in
+	// assignments like "bindir=/bin".
+	if m, path := match1(text, `(?:^|\$[{(]DESTDIR[)}]|[\w_]+\s*=\s*)(/(?:[^"'\s]|"[^"*]"|'[^']*')*)`); m {
+		if matches(path, `^/\w`) {
+			checkwordAbsolutePathname(ln, path)
+		}
+	}
 }

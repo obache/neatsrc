@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.9 2015/11/26 20:53:52 wiedi Exp $
+# $NetBSD: Makefile.common,v 1.11 2015/12/06 15:34:15 mef Exp $
 # This Makefile fragment is included in the package Makefiles for
 # GNU Radio distributed packages (they all share common configure and build
 # settings).
@@ -51,14 +51,14 @@ DEPENDS+=	${PYPKGPREFIX}-qwt-qt4-[0-9]*:../../x11/py-qwt-qt4
 DISTINFO_FILE=		${.CURDIR}/../../ham/gnuradio-core/distinfo
 PATCHDIR=		${.CURDIR}/../../ham/gnuradio-core/patches
 
-PYTHON_VERSIONS_INCOMPATIBLE=   33 34 # not yet ported as of 3.3.0
+PYTHON_VERSIONS_INCOMPATIBLE=   33 34 35 # not yet ported as of 3.3.0
 PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX}
 PLIST_SUBST+=	PYSITELIB=${PYSITELIB}
 PY_PATCHPLIST=	yes
 
 CONFIGURE_DIRS=	build
 
-EGDIR=			share/examples/gnuradio/conf.d
+EGDIR=			share/gnuradio/examples
 PKG_SYSCONFSUBDIR=	gnuradio/conf.d
 
 LDFLAGS.DragonFly+=	-lboost_system

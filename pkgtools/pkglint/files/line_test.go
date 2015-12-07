@@ -4,7 +4,7 @@ import (
 	check "gopkg.in/check.v1"
 )
 
-func (s *Suite) TestLineAppendPrepend(c *check.C) {
+func (s *Suite) TestLineModify(c *check.C) {
 	line := NewLine("fname", "1", "dummy", []*RawLine{{1, "original\n"}})
 
 	c.Check(line.changed, equals, false)
@@ -48,4 +48,13 @@ func (s *Suite) TestLineAppendPrepend(c *check.C) {
 		{0, "between before and middle\n"},
 		{0, "between middle and after\n"},
 		{0, "after\n"}})
+}
+
+func (s *Suite) TestLine_CheckAbsolutePathname(c *check.C) {
+	line := NewLine("Makefile", "1", "# dummy", nil)
+
+	line.checkAbsolutePathname("bindir=/bin")
+	line.checkAbsolutePathname("bindir=/../lib")
+
+	c.Check(s.Output(), equals, "WARN: Makefile:1: Found absolute pathname: /bin\n")
 }

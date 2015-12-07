@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.4858 2015/12/05 11:22:45 wiz Exp $
+$NetBSD: CHANGES-2015,v 1.4882 2015/12/06 15:23:01 taca Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -8099,3 +8099,30 @@ Changes to the packages collection and infrastructure in 2015:
 	Removed lang/php54 [taca 2015-12-05]
 	Updated pkgtools/pkglint to 5.2 [rillig 2015-12-05]
 	Updated devel/py-mercurial to 3.6.2 [wiz 2015-12-05]
+	Updated devel/hs-haskell-src-exts to 1.17.1 [szptvlfn 2015-12-05]
+	Updated textproc/the_silver_searcher to 0.31.0 [leot 2015-12-05]
+	Updated pkgtools/pkglint to 5.2.1 [rillig 2015-12-05]
+	Updated pkgtools/pkglint to 5.2.2 [rillig 2015-12-05]
+	Added lang/python35 version 3.5.0 [adam 2015-12-05]
+	Updated graphics/babl to 0.1.14 [adam 2015-12-05]
+	Updated graphics/gegl to 0.3.4 [adam 2015-12-05]
+	Updated graphics/gimp to 2.8.16 [adam 2015-12-05]
+	Updated lang/lua53 to 5.3.2 [alnsn 2015-12-05]
+	Added comms/asterisk13 version 13.6.0 [jnemeth 2015-12-05]
+	Updated www/py-django-tagging to 0.4 [riz 2015-12-05]
+	Updated www/p5-libwww to 6.15 [wiz 2015-12-06]
+	Updated devel/p5-File-Find-Rule to 0.34 [wiz 2015-12-06]
+	Updated security/p5-IO-Socket-SSL to 2.021 [wiz 2015-12-06]
+	Updated archivers/p5-Archive-Zip to 1.55 [wiz 2015-12-06]
+	Updated audio/libopenmpt to 0.2.5787 [wiz 2015-12-06]
+	Updated www/curl to 7.46.0 [wiz 2015-12-06]
+	Updated sysutils/dbus to 1.10.6 [wiz 2015-12-06]
+	Updated devel/py-enum34 to 1.1.1 [wiz 2015-12-06]
+	Updated devel/py-setuptools to 18.7.1 [wiz 2015-12-06]
+	Updated ham/fldigi to 3.23.06 [mef 2015-12-06]
+	Updated www/contao32 to 3.2.21nb1 [taca 2015-12-06]
+	Updated www/contao35 to 3.5.6nb1 [taca 2015-12-06]
+	Updated security/keepassx to 0.4.3nb9 [wiz 2015-12-06]
+	Added lang/php70 version 7.0.0 [taca 2015-12-06]
+	Added sysutils/findnewest version 0.3 [wiz 2015-12-06]
+	Added meta-pkgs/php70-extensions version 7.0.0 [taca 2015-12-06]

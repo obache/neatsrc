@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.421 2015/12/05 05:45:48 taca Exp $
+# $NetBSD: Makefile,v 1.423 2015/12/06 15:18:48 taca Exp $
 #
 
 COMMENT=	Programming languages
@@ -160,6 +160,7 @@ SUBDIR+=	pforth
 #SUBDIR+=	php		# only contains Makefile fragments
 SUBDIR+=	php55
 SUBDIR+=	php56
+SUBDIR+=	php70
 SUBDIR+=	picoc
 SUBDIR+=	pict
 SUBDIR+=	polyml
@@ -176,6 +177,7 @@ SUBDIR+=	py34-html-docs
 SUBDIR+=	python27
 SUBDIR+=	python33
 SUBDIR+=	python34
+SUBDIR+=	python35
 SUBDIR+=	qore
 SUBDIR+=	racket
 SUBDIR+=	racket-textual
