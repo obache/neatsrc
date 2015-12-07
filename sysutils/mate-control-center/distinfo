@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (mate-control-center-1.12.0.tar.xz) = 2a595173085cbe5f14f0552083db8ed18974d3c1
-RMD160 (mate-control-center-1.12.0.tar.xz) = 6e0e101decea1133e0bbc3c412dcfe03504f8ff1
-SHA512 (mate-control-center-1.12.0.tar.xz) = 603c2edaa6bac1ef38443d72a8f9ad3c5523c41a780be010dcdfca953e5ccf13c7a137c8b43567f5cd3b425bfbb2ef60257db864128325b5fa89531409d849e3
-Size (mate-control-center-1.12.0.tar.xz) = 1298620 bytes
+SHA1 (mate-control-center-1.12.1.tar.xz) = 7e69f411c44f15d9dce4bd85b7f88344f39a383b
+RMD160 (mate-control-center-1.12.1.tar.xz) = e7ad838ea2b7accfdfe94f308cbce8d8b28b3f74
+SHA512 (mate-control-center-1.12.1.tar.xz) = 4023511113c993b2420666803a273923b161cd3fff74b07e02f3dd9a80baea47278ca5c10a5baec673818390174a9f0b5c2d8db81c653f48c411cf5f53cc2dce
+Size (mate-control-center-1.12.1.tar.xz) = 1304732 bytes
