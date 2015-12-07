@@ -158,6 +158,8 @@ AC_CHECK_FUNC(SHA512_File, [:], [
 	AC_LIBOBJ(sha2hl)
 ])
 
+AC_CHECK_FUNCS([pread pwrite])
+
 case $host in
 *-*-hpux*)
 	AC_DEFINE(BROKEN_PREAD)

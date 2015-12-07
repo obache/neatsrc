@@ -69,10 +69,10 @@ static BKT *mpool_bkt(MPOOL *);
 static BKT *mpool_look(MPOOL *, pgno_t);
 static int  mpool_write(MPOOL *, BKT *);
 
-#ifdef BROKEN_PREAD
+#if !defined(HAVE_PREAD) || defined(BROKEN_PREAD)
 #include "../pread.c"
 #endif
-#ifdef BROKEN_PWRITE
+#if !defined(HAVE_PWRITE) || defined(BROKEN_PWRITE)
 #include "../pwrite.c"
 #endif
 

@@ -71,10 +71,10 @@ __RCSID("$NetBSD: hash_page.c,v 1.6 2010/04/20 00:32:23 joerg Exp $");
 #include "page.h"
 #include "extern.h"
 
-#ifdef BROKEN_PREAD
+#if !defined(HAVE_PREAD) || defined(BROKEN_PREAD)
 #include "../pread.c"
 #endif
-#ifdef BROKEN_PWRITE
+#if !defined(HAVE_PWRITE) || defined(BROKEN_PWRITE)
 #include "../pwrite.c"
 #endif
 
