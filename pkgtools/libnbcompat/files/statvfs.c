@@ -78,7 +78,7 @@ fs2vfs(struct statvfs *vfs, const struct statfs *sfs)
 	vfs->f_asyncwrites= 0;		/* XXX */
 
 	(void) memcpy(&vfs->f_fsidx, &sfs->f_fsid, sizeof(fsid_t));
-#if !defined(__MINT__)
+#if HAVE_STRUCT_STATFS_F_FSID_VAL
 	vfs->f_fsid = sfs->f_fsid.val[0];
 #else
 	vfs->f_fsid = sfs->f_fsid;

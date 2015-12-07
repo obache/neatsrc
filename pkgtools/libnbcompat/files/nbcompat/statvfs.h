@@ -60,10 +60,10 @@
 #define VFS_NAMELEN	32
 #define VFS_MNAMELEN	1024
 
-#if defined(fsblkcnt_t)
+#if !HAVE_FSBLKCNT_T
 typedef uint64_t	fsblkcnt_t;	/* fs block count (statvfs) */
 #endif
-#if defined(fsfilcnt_t)
+#if !HAVE_FSFILCNT_T
 typedef uint64_t	fsfilcnt_t;	/* fs file count */
 #endif
 

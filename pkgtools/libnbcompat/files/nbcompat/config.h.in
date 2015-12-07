@@ -107,6 +107,12 @@
 /* Define to 1 if you have the `fparseln' function. */
 #undef HAVE_FPARSELN
 
+/* Define to 1 if the system has the type `fsblkcnt_t'. */
+#undef HAVE_FSBLKCNT_T
+
+/* Define to 1 if the system has the type `fsfilcnt_t'. */
+#undef HAVE_FSFILCNT_T
+
 /* Define to 1 if the system has the type `fsid_t'. */
 #undef HAVE_FSID_T
 
@@ -377,6 +383,9 @@
 
 /* Define to 1 if `f_flags' is a member of `struct statfs'. */
 #undef HAVE_STRUCT_STATFS_F_FLAGS
+
+/* Define to 1 if `f_fsid.val' is a member of `struct statfs'. */
+#undef HAVE_STRUCT_STATFS_F_FSID_VAL
 
 /* Define to 1 if `f_fsize' is a member of `struct statfs'. */
 #undef HAVE_STRUCT_STATFS_F_FSIZE

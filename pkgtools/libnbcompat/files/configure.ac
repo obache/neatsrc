@@ -442,11 +442,29 @@ AC_CHECK_FUNCS([getpassphrase getpgrp select])
 
 AC_CHECK_FUNC(getpgrp, [AC_FUNC_GETPGRP])
 
+AC_CHECK_TYPES([fsblkcnt_t, fsfilcnt_t], [], [], [[#ifdef HAVE_SYS_TYPES_H
+# include <sys/types.h>
+#endif
+#ifdef HAVE_SYS_STATVFS_H
+#include <sys/statvfs.h>
+#endif
+#ifdef HAVE_SYS_MOUNT_H
+#include <sys/mount.h>
+#endif
+#ifdef HAVE_SYS_STATFS_H
+#include <sys/statfs.h>
+#endif
+#ifdef HAVE_SYS_VFS_H
+#include <sys/vfs.h>
+#endif
+]])
 AC_CHECK_MEMBERS([struct statfs.f_flags], [:], [:],
 	[ #include <sys/statfs.h> ])
 AC_CHECK_MEMBERS([struct statfs.f_fsize], [:], [:],
 	[ #include <sys/statfs.h> ])
 AC_CHECK_MEMBERS([struct statfs.f_iosize], [:], [:],
+	[ #include <sys/statfs.h> ])
+AC_CHECK_MEMBERS([struct statfs.f_fsid.val], [:], [:],
 	[ #include <sys/statfs.h> ])
 AC_CHECK_MEMBERS([struct dirent.d_namlen, DIR.dd_fd], [:], [:],
 	[ #include <sys/types.h>
