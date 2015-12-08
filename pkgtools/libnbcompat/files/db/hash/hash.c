@@ -54,7 +54,7 @@ __RCSID("$NetBSD: hash.c,v 1.4 2012/05/15 16:45:45 christos Exp $");
 #include "page.h"
 #include "extern.h"
 
-#ifdef BROKEN_PWRITE
+#if !defined(HAVE_PWRITE) || defined(BROKEN_PWRITE)
 #include "../pwrite.c"
 #endif
 
