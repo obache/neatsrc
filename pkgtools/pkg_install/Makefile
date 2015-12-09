@@ -152,6 +152,8 @@ LIBARCHIVE_LIBS=	${SED} -n -e 's/^Libs.private://p' \
     ${WRKDIR}/libarchive/build/pkgconfig/libarchive.pc 2>/dev/null || echo
 LIBS+=		${LIBARCHIVE_LIBS:sh}
 
+CONFIGURE_SCRIPTS_OVERRIDE+=	${WRKDIR}/libarchive/configure \
+				${WRKSRC}/configure
 CONFIG_GUESS_OVERRIDE+=	${WRKDIR}/libarchive/build/autoconf/config.guess \
 			${WRKSRC}/config.guess
 CONFIG_SUB_OVERRIDE+=	${WRKDIR}/libarchive/build/autoconf/config.sub \
