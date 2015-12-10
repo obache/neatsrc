@@ -10,7 +10,7 @@ CONFLICTS=	php-mysqli-[0-9]*
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.php-mysqli
 PKG_SUPPORTED_OPTIONS=	mysqlnd
-PKG_SUGGESTED_OPTIONS=	# empty
+PKG_SUGGESTED_OPTIONS=	mysqlnd
 
 .include "../../mk/bsd.options.mk"
 
