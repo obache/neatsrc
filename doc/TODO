@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15170 2015/12/08 17:43:36 adam Exp $
+$NetBSD: TODO,v 1.15173 2015/12/09 13:54:43 wiz Exp $
 
 Suggested new packages
 ======================
@@ -458,7 +458,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o augeas-1.4.0
 	o autoconf-archive-2015.09.25
 	o autoconvert-0.3.16
-	o autogen-5.18.6
+	o autogen-5.18.7
 	o avant-window-navigator-0.4.2
 	o avidemux-2.6
 	o avl-2.0.3 [2.x is not source and binary compatible with 1.x]
@@ -854,7 +854,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gtl-3.6
 	o gtodo-0.16.0rc2
 	o gtodo-applet-0.16.2
-	o guile-gnome-2.16.3
+	o guile-gnome-2.16.4
 	o guile-gtk-2.1
 	o gvfs-1.22.0
 	o gworkspace-0.9.3
@@ -985,6 +985,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o knock-0.7
 	o koffice-l10n-de-2.0.2
 	o konversation-1.6
+	o kpcli-3.0
 	o kphotobook-0.0.7
 	o kronolith-4.2.9
 	o krusader-2.0
@@ -1347,7 +1348,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Time-Warp-0.52
 	o p5-Tree-DAG_Node-1.27
 	o p5-URI-Escape-XS-0.13
-	o p5-URI-Fetch-0.11
 	o p5-Unicode-LineBreak-2015.07.16
 	o p5-Unicode-Normalize-1.19
 	o p5-User-Identity-0.94
