@@ -173,9 +173,6 @@ LDFLAGS+=	-Wl,-search_paths_first
 # workaround for pkg/45491
 CONFIGURE_ENV+=	ac_cv_header_ext2fs_ext2_fs_h=no
 .  endif
-
-# Hack to make sure that the libarchive version is replaced
-pre-configure: config-guess-override config-sub-override
 .endif
 CPPFLAGS+=	-I${WRKDIR}/libfetch
 LDFLAGS+=	-L${WRKDIR}/libfetch
@@ -200,7 +197,10 @@ do-extract:
 	@${CP} -R ${FILESDIR.libfetch} ${WRKDIR}/libfetch
 	@${CP} -R ${FILESDIR.netpgpverify} ${WRKDIR}/netpgpverify
 
-pre-configure:
+do-configure:	sub-inplace-build
+
+.PHONY: sub-inplace-build:
+sub-inplace-build:
 .if empty(USE_BUILTIN.bzip2:M[yY][eE][sS])
 	cd ${WRKDIR}/bzip2 && ${BUILD_MAKE_CMD} libbz2.a
 .endif
