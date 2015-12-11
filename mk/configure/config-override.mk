@@ -55,7 +55,23 @@ config-${_sub_}-override:
 ### phase, and "recheck" is often run during the build and install
 ### phases.
 ###
+### configure-scripts-osdep modifies the GNU configure scripts in
+### ${WRKSRC} to support operating systems without upstream support
+### in for example libtool.
 do-configure-pre-hook: configure-scripts-override
+
+_SCRIPT.configure-scripts-osdep.MirBSD=					\
+	| ${AWK} 'BEGIN { found = 0 }					\
+		/dynamic linker characteristics.../ { found = 1 }	\
+		/^netbsd/ {						\
+			if (found) {					\
+				sub("netbsd","mirbsd*|netbsd");		\
+				found = 0;				\
+			}						\
+		}							\
+		{ print $0 }'
+
+_SCRIPT.configure-scripts-osdep.${OPSYS}?=	# empty
 
 _SCRIPT.configure-scripts-override=					\
 	${AWK} '/ *-recheck *\| *--recheck.*\)/ {			\
@@ -64,7 +80,9 @@ _SCRIPT.configure-scripts-override=					\
 			print "	exit 0";				\
 			next;						\
 		}							\
-		{ print }' $$file > $$file.override;			\
+		{ print }' $$file 					\
+		${_SCRIPT.configure-scripts-osdep.${OPSYS}}		\
+		> $$file.override;					\
 	${CHMOD} +x $$file.override;					\
 	${TOUCH} -r $$file $$file.override;				\
 	${MV} -f $$file.override $$file
@@ -85,47 +103,6 @@ configure-scripts-override:
 .else
 	${RUN} \
 	cd ${WRKSRC};							\
-	depth=0; pattern=${CONFIGURE_SCRIPT:T};				\
-	while ${TEST} $$depth -le ${OVERRIDE_DIRDEPTH.configure}; do	\
-		for file in $$pattern; do				\
-			${TEST} -f "$$file" || continue;		\
-			${_SCRIPT.${.TARGET}};				\
-		done;							\
-		depth=`${EXPR} $$depth + 1`; pattern="*/$$pattern";	\
-	done
-.endif
-
-######################################################################
-### configure-scripts-osdep (PRIVATE)
-######################################################################
-### configure-scripts-osdep modifies the GNU configure scripts in
-### ${WRKSRC} to support operating systems without upstream support
-### in for example libtool.
-###
-do-configure-pre-hook: configure-scripts-osdep
-
-.if ${OPSYS} == "MirBSD"
-# awk script by Benny Siegert <bsiegert@mirbsd.de>
-_SCRIPT.configure-scripts-osdep=					\
-	${AWK} 'BEGIN { found = 0 }					\
-		/dynamic linker characteristics.../ { found = 1 }	\
-		/^netbsd/ {						\
-			if (found) {					\
-				sub("netbsd","mirbsd*|netbsd");		\
-				found = 0;				\
-			}						\
-		}							\
-		{ print $0 }' $$file >$$file.override;			\
-	${CHMOD} +x $$file.override;					\
-	${TOUCH} -r $$file $$file.override;				\
-	${MV} -f $$file.override $$file
-.endif
-
-.PHONY: configure-scripts-osdep
-configure-scripts-osdep:
-.if defined(_SCRIPT.configure-scripts-osdep) && !empty(_SCRIPT.configure-scripts-osdep)
-	@${STEP_MSG} "Modifying GNU configure scripts for OS dependent support"
-	${RUN} cd ${WRKSRC};						\
 	depth=0; pattern=${CONFIGURE_SCRIPT:T};				\
 	while ${TEST} $$depth -le ${OVERRIDE_DIRDEPTH.configure}; do	\
 		for file in $$pattern; do				\
