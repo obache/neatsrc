@@ -27,7 +27,7 @@
 #	otherwise.
 #
 # OVERRIDE_GNU_CONFIG_SCRIPTS
-#	Whether to override the GNU config.guess and config.sub scripts
+#	Whether to override the GNU config.{guess,sub} and configure scripts
 #	with the pkgsrc versions.
 #
 #	Possible values: defined, undefined.
