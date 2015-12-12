@@ -13,6 +13,9 @@ do-configure-pre-hook: config-sub-override
 _OVERRIDE_VAR.guess=	CONFIG_GUESS_OVERRIDE
 _OVERRIDE_VAR.sub=	CONFIG_SUB_OVERRIDE
 
+CONFIG_EXTRA_OVERRIDE_DIRS?=	# empty
+CONFIG_OVERRIDE_DIRS?=	${WRKSRC} ${CONFIG_EXTRA_OVERRIDE_DIRS}
+
 OVERRIDE_DIRDEPTH.config-guess?=	${OVERRIDE_DIRDEPTH}
 OVERRIDE_DIRDEPTH.config-sub?=		${OVERRIDE_DIRDEPTH}
 
@@ -32,8 +35,9 @@ config-${_sub_}-override:
 		${_SCRIPT.${.TARGET}};					\
 	done
 .  else
+.    for d in ${CONFIG_OVERRIDE_DIRS}
 	${RUN} \
-	cd ${WRKSRC};							\
+	cd ${d};							\
 	depth=0; pattern=config.${_sub_};				\
 	while [ $$depth -le ${OVERRIDE_DIRDEPTH.config-${_sub_}} ]; do	\
 		for file in $$pattern; do				\
@@ -42,6 +46,7 @@ config-${_sub_}-override:
 		done;							\
 		depth=`${EXPR} $$depth + 1`; pattern="*/$$pattern";	\
 	done
+.    endfor
 .  endif
 .endfor
 
@@ -101,8 +106,9 @@ configure-scripts-override:
 		${_SCRIPT.${.TARGET}};					\
 	done
 .else
+.    for d in ${CONFIG_OVERRIDE_DIRS}
 	${RUN} \
-	cd ${WRKSRC};							\
+	cd $d;								\
 	depth=0; pattern=${CONFIGURE_SCRIPT:T};				\
 	while ${TEST} $$depth -le ${OVERRIDE_DIRDEPTH.configure}; do	\
 		for file in $$pattern; do				\
@@ -111,4 +117,5 @@ configure-scripts-override:
 		done;							\
 		depth=`${EXPR} $$depth + 1`; pattern="*/$$pattern";	\
 	done
+.    endfor
 .endif
