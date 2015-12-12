@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.505 2015/11/04 14:07:27 fhajny Exp $
+# $NetBSD: Makefile,v 1.507 2015/12/11 21:41:21 riz Exp $
 
 COMMENT=	Databases
 
@@ -333,6 +333,7 @@ SUBDIR+=	py-apsw
 SUBDIR+=	py-barman
 SUBDIR+=	py-bdb-xml
 SUBDIR+=	py-bsddb3
+SUBDIR+=	py-carbon
 SUBDIR+=	py-cassa
 SUBDIR+=	py-cassandra-driver
 SUBDIR+=	py-cdb
@@ -372,6 +373,7 @@ SUBDIR+=	py-sqlsoup
 SUBDIR+=	py-sybase
 SUBDIR+=	py-table
 SUBDIR+=	py-tokyocabinet
+SUBDIR+=	py-whisper
 SUBDIR+=	qdbm
 SUBDIR+=	qdbm-cgi
 SUBDIR+=	qdbm-plus

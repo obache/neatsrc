@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15173 2015/12/09 13:54:43 wiz Exp $
+$NetBSD: TODO,v 1.15179 2015/12/11 22:58:30 wiz Exp $
 
 Suggested new packages
 ======================
@@ -450,7 +450,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o asunder-2.7
 	o asymptote-2.35
 	o aterm-1.0.1
-	o aubio-0.4.0
+	o aubio-0.4.2
 	o auctex-11.89
 	o audacious-3.6.2
 	o audacious-plugins-3.6.2
@@ -505,7 +505,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cacti-spine-0.8.8f
 	o cal3d-0.11.0
 	o calcoo-2.1.0
-	o calligra-2.4.3 [in wip; koffice successor]
+	o calligra-2.9.9 [in wip; koffice successor]
 	o cardboard-schedule-1.14c [at http://www.bright-green.com/downloads/]
 	o catdoc-1.1
 	o catdoc-tk-1.1
@@ -678,7 +678,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o fet-5.27.6
 	o fetchmail-6.3.26
 	o fetchyahoo-2.14.0
-	o fftwf-3.3.4
 	o file-5.24
 	o filerunner-14.06.18.10
 	o fillets-ng-0.7.4
@@ -728,7 +727,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gcal-4
 	o gcc-5.1
 	o gcc48-4.8.5
-	o gcc5-5.3
 	o gcin-1.5.5
 	o gcombust-0.1.55
 	o gcompris-15.02
@@ -985,7 +983,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o knock-0.7
 	o koffice-l10n-de-2.0.2
 	o konversation-1.6
-	o kpcli-3.0
 	o kphotobook-0.0.7
 	o kronolith-4.2.9
 	o krusader-2.0
@@ -1370,7 +1367,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o pam-yubico-2.19
 	o paragui-1.1.8
 	o parallel-20150722
-	o pari-2.7.4
+	o pari-2.7.5
 	o parrot-7.5.0
 	o patchutils-0.3.4
 	o pcal-4.8
@@ -1711,7 +1708,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o tk85-8.5.18
 	o tkhylafax-3.2
 	o tkpasman-2.2b
-	o tlsh-3.4.4
 	o tn5250-0.17.3 [at http://tn5250.sourceforge.net/]
 	o tob-0.26
 	o tomboy-1.10.2

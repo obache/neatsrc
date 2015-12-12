@@ -1,4 +1,4 @@
-$NetBSD: patch-src_crypto_aes__endian.h,v 1.1 2014/01/05 01:01:48 rumko Exp $
+$NetBSD: patch-src_crypto_aes__endian.h,v 1.1 2015/12/11 13:35:04 wiz Exp $
 
 Fix build on DragonFly.
 

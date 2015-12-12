@@ -1,4 +1,4 @@
-/*	$NetBSD: statvfs.h,v 1.5 2013/09/08 16:24:43 ryoon Exp $	*/
+/*	$NetBSD: statvfs.h,v 1.6 2015/12/11 23:28:10 ryoon Exp $	*/
 
 /*-
  * Copyright (c) 2004 The NetBSD Foundation, Inc.

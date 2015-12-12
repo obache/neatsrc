@@ -1,4 +1,4 @@
-$NetBSD: patch-src_lib_random.cpp,v 1.4 2015/12/06 14:20:34 wiz Exp $
+$NetBSD: patch-src_lib_random.cpp,v 1.1 2015/12/11 13:35:04 wiz Exp $
 
 Add a bunch of missing includes hidden by libstdc++ namespace pollution.
 
