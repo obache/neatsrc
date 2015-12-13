@@ -121,6 +121,15 @@ TODO: Document all these variables.
     _OPSYS_PREFER.<pkg> is builtin defaults which make sense for this platform.
 	see also: mk/buildlink3/bsd.builtin.mk.
 
+    _OPSYS_WHOAMI_CMD is command line to display effective user ID,
+	equivalent to "id -u -n".
+
+    _OPSYS_GROUP_CMD is command line to display different group ID,
+	equivalent to "id -g -n".
+
+    _OPSYS_GROUPS_CMD is cmmand line to display effective group ID
+	equivalent to "id -G -n".
+
 === Implementation notes ===
 
 Do not try to extract the definitions that are common to all files into
