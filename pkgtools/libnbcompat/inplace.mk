@@ -41,7 +41,7 @@ NBCOMPAT_CONFIGURE_ARGS+=	--build=${NATIVE_MACHINE_GNU_PLATFORM:Q}
 .endif
 NBCOMPAT_CONFIGURE_ARGS+=	--host=${MACHINE_GNU_PLATFORM:Q}
 
-pre-configure: libnbcompat-build
+_DO_CONFIGURE_TARGETS:=	libnbcompat-build ${_DO_CONFIGURE_TARGETS:Nlibnbcompat-build}
 .PHONY: libnbcompat-build
 libnbcompat-build:
 	@${STEP_MSG} "Configuring and building libnbcompat"
