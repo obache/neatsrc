@@ -192,7 +192,7 @@ do-extract:
 	@${CP} -R ${FILESDIR.libfetch} ${WRKDIR}/libfetch
 	@${CP} -R ${FILESDIR.netpgpverify} ${WRKDIR}/netpgpverify
 
-.ORDER:	sub-inplace-build do-configure
+_DO_CONFIGURE_TARGETS+=	sub-inplace-build
 
 .PHONY: sub-inplace-build:
 sub-inplace-build:
