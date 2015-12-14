@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.6 2015/12/06 12:20:39 taca Exp $
+# $NetBSD: Makefile,v 1.8 2015/12/13 14:37:08 taca Exp $
 #
 
 DISTNAME=	contao-${CT_PKGVER}
-PKGNAME=	contao${CT_VER}-${CT_PKGVER}
+PKGNAME=	${PHP_PKG_PREFIX}-contao${CT_VER}-${CT_PKGVER}
 PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=contao/}
@@ -27,6 +27,7 @@ DEPENDS+=	bash>=4.0:../../shells/bash
 CT_VERSION=	3.5.6
 USE_TOOLS=	bash pax
 NO_BUILD=	yes
+FILESDIR?=	${.CURDIR}/files
 
 EG_CONFIG=	ace.php agents.php constants.php countries.php \
 		languages.php mimetypes.php tcpdf.php timezones.php \
