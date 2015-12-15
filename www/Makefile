@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1140 2015/12/13 16:27:22 taca Exp $
+# $NetBSD: Makefile,v 1.1142 2015/12/14 13:54:32 taca Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -147,6 +147,7 @@ SUBDIR+=	ijb
 SUBDIR+=	ikiwiki
 SUBDIR+=	jalbum
 SUBDIR+=	jetty7
+SUBDIR+=	jetty9
 SUBDIR+=	kahua
 SUBDIR+=	kannel
 SUBDIR+=	kdewebdev3
@@ -749,6 +750,7 @@ SUBDIR+=	ruby-rest-client
 SUBDIR+=	ruby-rouge
 SUBDIR+=	ruby-sass
 SUBDIR+=	ruby-sass-rails32
+SUBDIR+=	ruby-sawyer
 SUBDIR+=	ruby-selenium-webdriver
 SUBDIR+=	ruby-sinatra
 SUBDIR+=	ruby-sinatra-contrib

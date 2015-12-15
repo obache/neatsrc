@@ -1,4 +1,4 @@
-# $NetBSD: Darwin.mk,v 1.74 2015/10/10 13:12:50 jperkin Exp $
+# $NetBSD: Darwin.mk,v 1.76 2015/12/14 14:14:33 jperkin Exp $
 #
 # Variable definitions for the Darwin operating system.
 
@@ -170,10 +170,17 @@ CONFIGURE_ENV+=		ac_cv_func_poll=no
 .  endif
 .endif
 
+# If the deployment target is not set explicitly, the linker in Tiger and prior
+# versions running on PowerPC hosts defaults to a target of 10.1.
+# Set the target for Tiger systems to be 10.4.
+.if !empty(MACHINE_PLATFORM:MDarwin-8.*-powerpc)
+MAKE_ENV+=	MACOSX_DEPLOYMENT_TARGET="10.4"
+.endif
+
 # El Capitan GM has a file system bug where a deep directory hierarchy can be
 # created but not removed.  Avoid running a test which does exactly this.
 # See https://openradar.appspot.com/radar?id=6160634819379200
-.if defined(GNU_CONFIGURE) && !empty(OS_VERSION:M15.0.0)
+.if defined(GNU_CONFIGURE) && !empty(OS_VERSION:M15.[01].0)
 CONFIGURE_ENV+=		gl_cv_func_getcwd_abort_bug=no
 .endif
 
