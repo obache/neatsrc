@@ -31,6 +31,7 @@
 #include <sys/stat.h>
 #include <stddef.h>  /* for wchar_t */
 #include <stdio.h> /* For FILE * */
+#include <time.h> /* for time_t */
 
 /*
  * Note: archive.h is for use outside of libarchive; the configuration
