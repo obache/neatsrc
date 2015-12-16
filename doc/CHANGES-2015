@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.5058 2015/12/14 16:45:35 wiz Exp $
+$NetBSD: CHANGES-2015,v 1.5063 2015/12/15 12:04:57 jperkin Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -8353,3 +8353,9 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated security/gnupg21 to 2.1.10 [ryoon 2015-12-14]
 	Added games/freecol version 0.11.6 [wiz 2015-12-14]
 	Updated devel/pkgconf to 0.9.12.20151211nb1 [wiz 2015-12-14]
+	Updated databases/postgresql-postgis2 to 2.2.0 [gdt 2015-12-15]
+	Updated print/cups-filters to 1.4.0 [wiz 2015-12-15]
+	Updated graphics/openimagio to 1.5.16 [markd 2015-12-15]
+	Updated graphics/blender to 2.74 [markd 2015-12-15]
+	Updated devel/py-ipython to 3.2.1 [markd 2015-12-15]
+	mk/bsd.pkg.mk: started freeze for pkgsrc-2015Q4 branch [jperkin 2015-12-15]
