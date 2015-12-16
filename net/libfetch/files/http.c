@@ -73,7 +73,9 @@
 #endif
 
 /* Needed for gmtime_r on Interix */
+#ifdef __INTERIX
 #define _REENTRANT
+#endif
 
 #if HAVE_CONFIG_H
 #include "config.h"
