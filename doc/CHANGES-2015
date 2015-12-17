@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.5067 2015/12/16 00:32:57 taca Exp $
+$NetBSD: CHANGES-2015,v 1.5072 2015/12/16 16:07:36 taca Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -8355,7 +8355,7 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated devel/pkgconf to 0.9.12.20151211nb1 [wiz 2015-12-14]
 	Updated databases/postgresql-postgis2 to 2.2.0 [gdt 2015-12-15]
 	Updated print/cups-filters to 1.4.0 [wiz 2015-12-15]
-	Updated graphics/openimagio to 1.5.16 [markd 2015-12-15]
+	Updated graphics/openimageio to 1.5.16 [markd 2015-12-15]
 	Updated graphics/blender to 2.74 [markd 2015-12-15]
 	Updated devel/py-ipython to 3.2.1 [markd 2015-12-15]
 	mk/bsd.pkg.mk: started freeze for pkgsrc-2015Q4 branch [jperkin 2015-12-15]
@@ -8364,3 +8364,12 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated www/py-werkzeug to 0.11.2nb1 [kleink 2015-12-15]
 	Updated net/bind910 to 9.10.3pl2 [taca 2015-12-16]
 	Updated net/bind99 to 9.9.8pl2 [taca 2015-12-16]
+	Updated www/contao41 to 4.1.0nb1 [taca 2015-12-16]
+	Updated www/firefox to 43.0 [ryoon 2015-12-16]
+	Updated www/firefox-l10n to 43.0 [ryoon 2015-12-16]
+	Updated lang/ruby200-base to 2.0.0p648 [taca 2015-12-16]
+	Updated lang/ruby200 to 2.0.0p648 [taca 2015-12-16]
+	Updated lang/ruby21-base to 2.1.8 [taca 2015-12-16]
+	Updated lang/ruby21 to 2.1.8 [taca 2015-12-16]
+	Updated lang/ruby22-base to 2.2.4 [taca 2015-12-16]
+	Updated lang/ruby22 to 2.2.4 [taca 2015-12-16]
