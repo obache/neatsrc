@@ -1599,7 +1599,7 @@ sub check_pkglint_version() {
 	return if $done;
 	$done = true;
 
-	my $lines = load_lines("${cwd_pkgsrcdir}/pkgtools/pkglint/Makefile", true);
+	my $lines = load_lines("${cwd_pkgsrcdir}/@PKGPATH@/Makefile", true);
 	return unless $lines;
 
 	my $pkglint_version = undef;
