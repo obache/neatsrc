@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	atril-1.12.1
+DISTNAME=	atril-1.12.2
 CATEGORIES=	print mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
