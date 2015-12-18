@@ -31,7 +31,7 @@ PRE-INSTALL)
 	HPUX)
 		OS_VERSION=`echo "${OS_VERSION}" | sed -e's/^B.//'`
 		;;
-	CYGWIN_*)
+	CYGWIN_*|MSYS_*)
 		OS_VERSION=`echo "${OS_VERSION}" | sed -e's/(.*)//'`
 		;;
 	esac
