@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.5074 2015/12/16 23:54:28 ryoon Exp $
+$NetBSD: CHANGES-2015,v 1.5079 2015/12/18 22:51:17 ryoon Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -8375,3 +8375,14 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated lang/ruby22 to 2.2.4 [taca 2015-12-16]
 	Updated www/firefox38 to 38.5.0 [ryoon 2015-12-16]
 	Updated www/firefox38-l10n to 38.5.0 [ryoon 2015-12-16]
+	Updated lang/php70 to 7.0.1 [taca 2015-12-18]
+	Updated devel/subversion to 1.9.3 [adam 2015-12-18]
+	Updated devel/subversion-base to 1.9.3 [adam 2015-12-18]
+	Updated devel/java-subversion to 1.9.3 [adam 2015-12-18]
+	Updated devel/p5-subversion to 1.9.3 [adam 2015-12-18]
+	Updated devel/py-subversion to 1.9.3 [adam 2015-12-18]
+	Updated devel/ruby-subversion to 1.9.3 [adam 2015-12-18]
+	Updated www/ap2-subversion to 1.9.3 [adam 2015-12-18]
+	Updated devel/xulrunner38 to 38.5.0 [ryoon 2015-12-18]
+	Updated emulators/qemu to 2.5.0 [ryoon 2015-12-18]
+	Updated misc/libreoffice to 5.0.4.2 [ryoon 2015-12-18]
