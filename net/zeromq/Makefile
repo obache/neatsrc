@@ -27,4 +27,5 @@ CONFIGURE_ARGS+=	--with-libsodium=${BUILDLINK_PREFIX.libsodium}
 .include "../../devel/libuuid/buildlink3.mk"
 .endif
 
+.include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

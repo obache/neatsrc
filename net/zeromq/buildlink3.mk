@@ -28,6 +28,7 @@ pkgbase := zeromq
 .include "../../devel/libuuid/buildlink3.mk"
 .endif
 
+.include "../../mk/pthread.buildlink3.mk"
 .endif	# ZEROMQ_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-zeromq
