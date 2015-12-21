@@ -487,12 +487,9 @@ fi
 if [ "$prefix" = "/usr" ]; then
 	[ -z "$pkginfodir" ] && pkginfodir=share/info
 	[ -z "$pkgmandir" ] && pkgmandir=share/man
-else
-	[ -z "$pkginfodir" ] && pkginfodir=info
-	[ -z "$pkgmandir" ] && pkgmandir=man
 fi
-infodir=${prefix}/${pkginfodir}
-mandir=${prefix}/${pkgmandir}
+infodir=${wrkdir}/info
+mandir=${wrkdir}/man
 [ -z "$sysconfdir" ] && sysconfdir=${prefix}/etc
 
 if [ "x$preserve_path" != "xyes" ]; then
@@ -1081,8 +1078,12 @@ if [ "${sysconfdir}" != "${prefix}/etc" ]; then
 	echo "PKG_SYSCONFBASE=	$sysconfdir" >> ${TARGET_MKCONF}
 fi
 echo "PKG_TOOLS_BIN=		$prefix/sbin" >> ${TARGET_MKCONF}
+if [ -n "${pkginfodir}" ]; then
 echo "PKGINFODIR=		$pkginfodir" >> ${TARGET_MKCONF}
+fi
+if [ -n "${pkgmandir}" ]; then
 echo "PKGMANDIR=		$pkgmandir" >> ${TARGET_MKCONF}
+fi
 echo "" >> ${TARGET_MKCONF}
 
 if [ -n "$prefer_pkgsrc" ]; then
