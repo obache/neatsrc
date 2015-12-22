@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-qt5-1.0.4
+DISTNAME=	fcitx-qt5-1.0.5
 CATEGORIES=	inputmethod
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-qt5/
 EXTRACT_SUFX=	.tar.xz
@@ -12,7 +12,7 @@ LICENSE=	gnu-gpl-v2
 TOOL_DEPENDS+=	extra-cmake-modules>=1.4.0:../../devel/extra-cmake-modules
 
 USE_CMAKE=	yes
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c c++11
 USE_TOOLS+=	pkg-config
 
 PTHREAD_AUTO_VARS=	yes

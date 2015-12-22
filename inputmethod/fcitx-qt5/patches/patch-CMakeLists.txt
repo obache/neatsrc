@@ -2,7 +2,7 @@ $NetBSD$
 
 * requilre libintl
 
---- CMakeLists.txt.orig	2015-07-03 03:02:17.000000000 +0000
+--- CMakeLists.txt.orig	2015-12-18 00:02:37.000000000 +0000
 +++ CMakeLists.txt
 @@ -1,4 +1,4 @@
 -cmake_minimum_required(VERSION 2.8.12)
@@ -10,9 +10,9 @@ $NetBSD$
  
  project(fcitx-qt5)
  
-@@ -16,6 +16,7 @@ include(ECMPackageConfigHelpers)
- include(ECMSetupVersion)
- include(ECMGenerateHeaders)
+@@ -26,6 +26,7 @@ endif()
+ 
+ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
  
 +find_package(Intl REQUIRED)
  find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Core DBus Widgets)
