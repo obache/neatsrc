@@ -1,7 +1,7 @@
 $NetBSD: distinfo,v 1.2 2015/11/03 22:13:34 agc Exp $
 
-SHA1 (fcitx-4.2.9_dict.tar.xz) = e355ac14674fb0f4e163d9e7d0919ab471454055
-RMD160 (fcitx-4.2.9_dict.tar.xz) = 5a12ac17f5320f5835f42363b3d733e51af9d44e
-SHA512 (fcitx-4.2.9_dict.tar.xz) = 4bad2efc283858bf9af7f7f283f7beefb210aa361ff034464ff97ea0e536f084c99d876f3595a5375114b68cd51714bd0b5c622a53efc57154a4e629fd416093
-Size (fcitx-4.2.9_dict.tar.xz) = 8675292 bytes
+SHA1 (fcitx-4.2.9.1_dict.tar.xz) = 1ed42b81bb402d8861c3bb57c4ed4c54ef27ce9e
+RMD160 (fcitx-4.2.9.1_dict.tar.xz) = f24c0f73ebf5481144cce6544f57eac16f88eca6
+SHA512 (fcitx-4.2.9.1_dict.tar.xz) = 5d3b669ed97423f976116385571d07f832e9e18007e6a3c2aef12957219739a81fbf2343825fea4a1b01a83a6bf9e40e9ffa88466c651876602517c6da1fb25d
+Size (fcitx-4.2.9.1_dict.tar.xz) = 8684772 bytes
 SHA1 (patch-src_lib_fcitx-utils_utils.c) = d756a73ba05ceab2262870bef5bc69a6a6671014
