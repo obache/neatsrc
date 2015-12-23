@@ -76,6 +76,9 @@ _SCRIPT.configure-scripts-osdep.MirBSD=					\
 		}							\
 		{ print $0 }'
 
+_SCRIPT.configure-scripts-osdep.skyos=					\
+	| ${SED} -e 's,test -x / ,test -x ./ ,g'
+
 _SCRIPT.configure-scripts-osdep.${OPSYS}?=	# empty
 
 _SCRIPT.configure-scripts-override=					\

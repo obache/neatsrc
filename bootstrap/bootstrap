@@ -265,11 +265,21 @@ opsys_finish()
 		need_extras=yes
 		echo "LDD=			$prefix/sbin/fakeldd" >> ${TARGET_MKCONF}
 		;;
+	skyos)
+		need_extras=yes
+		echo "ID=			$prefix/sbin/fakeid" >> ${TARGET_MKCONF}
+		;;
 	esac
 }
 
 is_root()
 {
+	if [ -n "$ID" ]; then
+		idprog="$ID"
+	else
+		check_prog idprog id
+	fi
+
 	if [ `uname -s` = "IRIX" ]; then
 		if [ `uname -r` -lt 6  -a -z "$ID" ]; then
 	# older version of IRIX have an id command with limited features
@@ -331,6 +341,12 @@ copy_src()
 	fi
 	if [ -f $wrkdir/$_dst/config.sub ]; then
 		$cpprog $pkgsrcdir/mk/gnu-config/config.sub $wrkdir/$_dst/
+	fi
+	if [ $opsys = "skyos" ]; then
+		if [ -f $wrkdir/$_dst/configure ]; then
+			mv $wrkdir/$_dst/configure $wrkdir/$_dst/configure.tmp
+			sed -e 's,test -x / ,test -x ./ ,g' < $wrkdir/$_dst/configure.tmp > $wrkdir/$_dst/configure
+		fi
 	fi
 }
 
@@ -835,6 +851,26 @@ SCO_SV)
 	# /bin/sh under OpenServer 5.0.7/3.2 breaks bmake tests.
 	#bmakexargs="$bmakexargs --with-defshell=/bin/ksh"
 	;;
+skyos)
+	is_root () {
+		if [ `${whoamiprog}` == "$root_user"; then
+			return 0
+		fi
+		return 1
+	}
+	root_user=admin
+	root_group=0
+	need_bsd_install=yes
+	need_awk=no
+	need_sed=no
+	need_xargs=no
+	# only used for unprivileged builds.
+	whoamiprog='/bin/whoami'
+	groupsprog='echo 0'
+	# ID=/bin/false
+	CHGRPPROG=/bin/true; export CHGRPPROG
+#	ac_cv_func_group_from_gid=no; export ac_cv_func_group_from_gid
+	;;
 SunOS)
 	root_group=root
 	need_bsd_install=yes
@@ -1107,6 +1143,12 @@ if [ "$opsys" = "GNUkFreeBSD" -a "$bootstrap_sh_set" != "set" ]; then
 	echo "TOOLS_PLATFORM.sh?=		/bin/bash	# instead of /bin/sh" >> ${TARGET_MKCONF}
 	echo "TOOLS_PLATFORM.sh?=		/bin/bash	# instead of /bin/sh" >> ${BOOTSTRAP_MKCONF}
 	echo $opsys
+fi
+
+if [ "$opsys" = "skyos" ]; then
+	echo_msg "Installing fake id script"
+	run_cmd "$install_sh -c -o $user -g $group -m 755 $pkgsrcdir/pkgtools/bootstrap-extras/files/fakeid-${opsys} $wrkdir/bin/id"
+	echo "TOOLS_PLATFORM.id?=		$wrkdir/bin/id" >> ${BOOTSTRAP_MKCONF}
 fi
 
 # sbin is used by pkg_install, share/mk by bootstrap-mk-files

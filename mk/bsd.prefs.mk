@@ -325,6 +325,11 @@ LOWER_OPSYS?=		hpux
 LOWER_OPSYS_VERSUFFIX?=	${OS_VERSION}
 LOWER_VENDOR?=		hp
 
+.elif ${OPSYS} == "skyos"
+LOWER_OPSYS?=		skyos
+LOWER_OPSYS_VERSUFFIX?=	${OS_VERSION}
+LOWER_VENDOR?=		pc
+
 .elif ${OPSYS} == "SunOS"
 ABI?=			32
 .  if ${MACHINE_ARCH} == "sparc"

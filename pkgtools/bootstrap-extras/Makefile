@@ -13,7 +13,7 @@ NO_BUILD=	yes
 
 .include "../../mk/bsd.prefs.mk"
 
-EXTRA_FILES=	fakeldd mkdir strip xargs
+EXTRA_FILES=	fakeid fakeldd mkdir strip xargs
 PLIST_VARS+=	${EXTRA_FILES}
 
 .PHONY: ${EXTRA_FILES:S/^/do-install-/}
@@ -22,6 +22,12 @@ NEED_FAKELDD=		Haiku IRIX
 .if !empty(NEED_FAKELDD:M${OPSYS})
 PLIST.fakeldd=		yes
 do-install:		do-install-fakeldd
+.endif
+
+NEED_FAKEID=		skyos
+.if !empty(NEED_FAKEID:M${OPSYS})
+PLIST.fakeid=		yes
+do-install:		do-install-fakeid
 .endif
 
 NEED_MKDIR=		UnixWare
@@ -55,6 +61,10 @@ do-install-fakeldd:
 .else
 	${INSTALL_SCRIPT} ${WRKSRC}/fakeldd ${DESTDIR}${PREFIX}/sbin/fakeldd
 .endif
+
+do-install-fakeid:
+	${INSTALL_SCRIPT_DIR} ${DESTDIR}${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKSRC}/fakeid-${OPSYS} ${DESTDIR}${PREFIX}/sbin/fakeid
 
 do-install-mkdir:
 	${INSTALL_SCRIPT_DIR} ${DESTDIR}${PREFIX}/bin
