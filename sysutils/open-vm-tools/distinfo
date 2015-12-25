@@ -37,6 +37,7 @@ SHA1 (patch-lib_dataMap_dataMap.c) = 8d5512c960a540dbecc648e3608f4108ac9f1f34
 SHA1 (patch-lib_file_file.c) = 7c56eb6be9f4da2e843b5a485218d93201a392c3
 SHA1 (patch-lib_hgfsHelper_hgfsHelperPosix.c) = 8965db783c9a354348724014fdbb04dc50b93753
 SHA1 (patch-lib_include_sigPosixRegs.h) = 7a531734aa9fef88adab087c29329bb82724105a
+SHA1 (patch-lib_include_vm__basic__types.h) = 712290993fcb8cc3c2bbb9b5aacd246e9062b9c9
 SHA1 (patch-lib_include_vmblock__user.h) = 4b6e12835b611a48caf0e79d3f86ac8a923ca71b
 SHA1 (patch-lib_include_vmci__sockets.h) = 95dbd8e292f312e3b33b1ec67f23bffd79ef2ef7
 SHA1 (patch-lib_lock_ulSema.c) = b5719d9441a1a17eb590994eff733b7a5df51f68
