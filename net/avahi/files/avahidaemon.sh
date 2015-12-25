@@ -3,7 +3,7 @@
 # $NetBSD: avahidaemon.sh,v 1.2 2008/12/20 23:51:39 ahoka Exp $
 #
 # PROVIDE: avahidaemon
-# REQUIRE: DAEMON
+# REQUIRE: DAEMON dbus
 # KEYWORD: shutdown
 #
 
