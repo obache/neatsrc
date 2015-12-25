@@ -1,9 +1,9 @@
 $NetBSD: distinfo,v 1.10 2015/11/04 01:32:23 agc Exp $
 
-SHA1 (open-vm-tools-9.10.2-2822639.tar.gz) = e77058f842120b0bc34cacc375757fa72c133518
-RMD160 (open-vm-tools-9.10.2-2822639.tar.gz) = 349fe7345c7a0dbe15a217083c2d2771f9b5953a
-SHA512 (open-vm-tools-9.10.2-2822639.tar.gz) = 0a0683b1d86ff1926517c882943c30267f04710bdd9a70bf7aa75534d64480c3cc2cf5eae5655ed228d4e140129f46efeb2cdbbb8191b142756ad359cec58b72
-Size (open-vm-tools-9.10.2-2822639.tar.gz) = 4044062 bytes
+SHA1 (open-vm-tools-9.10.3-3167576.tar.gz) = ab754696428c49bb0a7243fcb2feaff5edbb8c22
+RMD160 (open-vm-tools-9.10.3-3167576.tar.gz) = b06e7f7cd186165280fcd15a686474e699b59787
+SHA512 (open-vm-tools-9.10.3-3167576.tar.gz) = b379126357cad0784169e4b591fc49c6c97a57bd88b28555b4b29d40bfc86fc3c2496df34ddbfca863ee21ebcfddbdf1f8e932ed842b4bc5d8be359c5748cac3
+Size (open-vm-tools-9.10.3-3167576.tar.gz) = 3470032 bytes
 SHA1 (patch-ag) = 99c6a1a7e87e6e2277a586e62f9ddca969d04f8a
 SHA1 (patch-ah) = 267f96f1e8b707878242086b5dbc2d1e5d8b52aa
 SHA1 (patch-ai) = e87483ea121aae9c0767f7c87c3e6420b47245a8
