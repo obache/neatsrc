@@ -57,6 +57,13 @@ SUBST_STAGE.vgconfdir=	pre-configure
 SUBST_SED.vgconfdir=	-e s,/etc/vmware-tools/vgauth.conf,${EGDIR}/vgauth.conf,
 SUBST_FILES.vgconfdir+=	vgauth/service/Makefile.in
 
+SUBST_CLASSES+=		varbase
+SUBST_STAGE.varbase=	pre-configure
+SUBST_SED.varbase=	-e s,/var/run/,${VARBASE}/run/,
+SUBST_FILES.varbase+=	lib/include/vm_product.h lib/include/vmblock.h
+
+OWN_DIRS+=	${VARBASE}/run/vmblock
+
 .include "../../net/libdnet/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../security/xml-security-c/buildlink3.mk"
