@@ -33,7 +33,7 @@ OPERA_PKG_VERSION_DIR=	1216
 PLIST_VARS+=		ia32w linux
 
 .if ${EMUL_OPSYS} == "linux"
-EMUL_MODULES.linux=	base x11 fontconfig
+EMUL_MODULES.linux=	base x11 fontconfig locale
 EMUL_REQD=		suse>=11.3
 OPERA_ARCH.x86_64=	x86_64
 OPERA_OPSYS_SUBDIR=	linux
