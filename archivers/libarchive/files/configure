@@ -15713,6 +15713,37 @@ cat >>confdefs.h <<_ACEOF
 #define HAVE_DECL_UINT32_MAX $ac_have_decl
 _ACEOF
 
+ac_fn_c_check_decl "$LINENO" "INTMAX_MAX" "ac_cv_have_decl_INTMAX_MAX" "$ac_includes_default"
+if test "x$ac_cv_have_decl_INTMAX_MAX" = xyes; then :
+  ac_have_decl=1
+else
+  ac_have_decl=0
+fi
+
+cat >>confdefs.h <<_ACEOF
+#define HAVE_DECL_INTMAX_MAX $ac_have_decl
+_ACEOF
+ac_fn_c_check_decl "$LINENO" "INTMAX_MIN" "ac_cv_have_decl_INTMAX_MIN" "$ac_includes_default"
+if test "x$ac_cv_have_decl_INTMAX_MIN" = xyes; then :
+  ac_have_decl=1
+else
+  ac_have_decl=0
+fi
+
+cat >>confdefs.h <<_ACEOF
+#define HAVE_DECL_INTMAX_MIN $ac_have_decl
+_ACEOF
+ac_fn_c_check_decl "$LINENO" "UINTMAX_MAX" "ac_cv_have_decl_UINTMAX_MAX" "$ac_includes_default"
+if test "x$ac_cv_have_decl_UINTMAX_MAX" = xyes; then :
+  ac_have_decl=1
+else
+  ac_have_decl=0
+fi
+
+cat >>confdefs.h <<_ACEOF
+#define HAVE_DECL_UINTMAX_MAX $ac_have_decl
+_ACEOF
+
 
 ac_fn_c_check_decl "$LINENO" "SSIZE_MAX" "ac_cv_have_decl_SSIZE_MAX" "$ac_includes_default
 #include <limits.h>

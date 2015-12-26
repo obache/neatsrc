@@ -198,6 +198,14 @@
    don't. */
 #undef HAVE_DECL_INT64_MIN
 
+/* Define to 1 if you have the declaration of `INTMAX_MAX', and to 0 if you
+   don't. */
+#undef HAVE_DECL_INTMAX_MAX
+
+/* Define to 1 if you have the declaration of `INTMAX_MIN', and to 0 if you
+   don't. */
+#undef HAVE_DECL_INTMAX_MIN
+
 /* Define to 1 if you have the declaration of `SIZE_MAX', and to 0 if you
    don't. */
 #undef HAVE_DECL_SIZE_MAX
@@ -217,6 +225,10 @@
 /* Define to 1 if you have the declaration of `UINT64_MAX', and to 0 if you
    don't. */
 #undef HAVE_DECL_UINT64_MAX
+
+/* Define to 1 if you have the declaration of `UINTMAX_MAX', and to 0 if you
+   don't. */
+#undef HAVE_DECL_UINTMAX_MAX
 
 /* Define to 1 if you have the <dirent.h> header file, and it defines `DIR'.
    */
