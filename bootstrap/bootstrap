@@ -329,6 +329,22 @@ mkdir_p_early()
 	return 0
 }
 
+config_override()
+{
+	cd "$1"
+	override_dirdepth=2
+	for _sub_ in guess sub; do
+		depth=0; pattern=config.${_sub_}
+		while [ $depth -le $override_dirdepth ]; do
+			for file in $pattern; do
+				[ -f $file ] || [ -h $file ] || continue
+				$cpprog $pkgsrcdir/mk/gnu-config/config.${_sub_} $file
+			done
+			depth=`expr $depth + 1`; pattern="*/$pattern"
+		done
+	done
+}
+
 copy_src()
 {
 	_src="$1"; _dst="$2"
@@ -336,12 +352,9 @@ copy_src()
 		mkdir_p $wrkdir/$_dst
 	fi
 	$cpprog -r $_src/* $wrkdir/$_dst
-	if [ -f $wrkdir/$_dst/config.guess ]; then
-		$cpprog $pkgsrcdir/mk/gnu-config/config.guess $wrkdir/$_dst/
-	fi
-	if [ -f $wrkdir/$_dst/config.sub ]; then
-		$cpprog $pkgsrcdir/mk/gnu-config/config.sub $wrkdir/$_dst/
-	fi
+
+	config_override $wrkdir/$_dst/
+
 	if [ $opsys = "skyos" ]; then
 		if [ -f $wrkdir/$_dst/configure ]; then
 			mv $wrkdir/$_dst/configure $wrkdir/$_dst/configure.tmp
