@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.524 2015/09/11 12:35:35 wiz Exp $
+# $NetBSD: Makefile,v 1.526 2015/12/27 23:37:15 kamil Exp $
 #
 
 COMMENT=	Audio tools
@@ -191,6 +191,7 @@ SUBDIR+=	gst-plugins1-mad
 SUBDIR+=	gst-plugins1-oss
 SUBDIR+=	gst-plugins1-pulse
 SUBDIR+=	gst-plugins1-sid
+SUBDIR+=	gst-plugins1-soundtouch
 SUBDIR+=	gst-plugins1-spc
 SUBDIR+=	gst-plugins1-speex
 SUBDIR+=	gst-plugins1-twolame
@@ -457,6 +458,7 @@ SUBDIR+=	trm
 SUBDIR+=	tunapie
 SUBDIR+=	twolame
 SUBDIR+=	ubs
+SUBDIR+=	vamp-plugin-sdk
 SUBDIR+=	vcf
 SUBDIR+=	vorbis-tools
 SUBDIR+=	vorbisgain
