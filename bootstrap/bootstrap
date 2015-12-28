@@ -882,6 +882,7 @@ skyos)
 	need_awk=no
 	need_sed=no
 	need_xargs=no
+	set_opsys=no
 	machine_arch=`uname -m | sed -e 's/i.86/i386/'`
 	# only used for unprivileged builds.
 	whoamiprog='/bin/whoami'
