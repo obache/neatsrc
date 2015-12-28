@@ -566,6 +566,7 @@ CYGWIN_*)
 	root_group=Administrators
 	need_bsd_install=no
 	opsys=`uname -o`
+	machine_arch=`uname -m | sed -e 's/i.86/i386/'`
 	need_awk=no
 	need_sed=no
 	need_xargs=no
@@ -703,6 +704,7 @@ Interix)
 		need_xargs=no
 		;;
 	esac
+	machine_arch=i386
 	# only used for unprivileged builds
 	groupsprog="id -gn"
 	# for bootstrap only; pkgsrc uses CPPFLAGS
@@ -808,6 +810,7 @@ MSYS_*)
 	root_group=Administrators
 	need_bsd_install=no
 	opsys=`uname -o`
+	machine_arch=`uname -m | sed -e 's/i.86/i386/'`
 	need_awk=no
 	need_sed=no
 	need_xargs=no
@@ -842,6 +845,7 @@ OSF1)
 	need_sed=yes
 	need_ksh=yes
 	set_opsys=no
+	machine_arch=`uname -m`
 	;;
 QNX)
 	root_group=root
@@ -859,6 +863,7 @@ SCO_SV)
 	need_bsd_install=yes
 	need_sed=yes
 	set_opsys=no
+	machine_arch=`uname -m`
 	whoamiprog='id -u'
 	groupsprog='id -g'
 	# /bin/sh under OpenServer 5.0.7/3.2 breaks bmake tests.
@@ -877,6 +882,7 @@ skyos)
 	need_awk=no
 	need_sed=no
 	need_xargs=no
+	machine_arch=`uname -m | sed -e 's/i.86/i386/'`
 	# only used for unprivileged builds.
 	whoamiprog='/bin/whoami'
 	groupsprog='echo 0'
@@ -920,6 +926,7 @@ UnixWare)
 	need_sed=yes
 	whoamiprog=/usr/ucb/whoami
 	set_opsys=no
+	machine_arch=`uname -m`
 	CC="gcc -DUNIXWARE"; export CC
 	;;
 *)
