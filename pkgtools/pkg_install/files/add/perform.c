@@ -1,4 +1,4 @@
-/*	$NetBSD: perform.c,v 1.107 2015/10/20 08:18:12 jperkin Exp $	*/
+/*	$NetBSD: perform.c,v 1.108 2015/12/27 12:36:42 joerg Exp $	*/
 #if HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -6,7 +6,7 @@
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
-__RCSID("$NetBSD: perform.c,v 1.107 2015/10/20 08:18:12 jperkin Exp $");
+__RCSID("$NetBSD: perform.c,v 1.108 2015/12/27 12:36:42 joerg Exp $");
 
 /*-
  * Copyright (c) 2003 Grant Beattie <grant@NetBSD.org>
@@ -1260,6 +1260,9 @@ check_input(void)
 static int
 check_signature(struct pkg_task *pkg, int invalid_sig)
 {
+#ifdef BOOTSTRAP
+	return 0;
+#else
 	if (strcasecmp(verified_installation, "never") == 0)
 		return 0;
 	if (strcasecmp(verified_installation, "always") == 0) {
@@ -1291,11 +1294,15 @@ check_signature(struct pkg_task *pkg, int invalid_sig)
 	}
 	warnx("Unknown value of configuration variable VERIFIED_INSTALLATION");
 	return 1;
+#endif
 }
 
 static int
 check_vulnerable(struct pkg_task *pkg)
 {
+#ifdef BOOTSTRAP
+	return 0;
+#else
 	static struct pkg_vulnerabilities *pv;
 	int require_check;
 
@@ -1331,11 +1338,15 @@ check_vulnerable(struct pkg_task *pkg)
 		return 1;
 	}
 	return 0;
+#endif
 }
 
 static int
 check_license(struct pkg_task *pkg)
 {
+#ifdef BOOTSTRAP
+	return 0;
+#else
 	if (LicenseCheck == 0)
 		return 0;
 
@@ -1359,6 +1370,7 @@ check_license(struct pkg_task *pkg)
 		warnx("Invalid LICENSE for package `%s'", pkg->pkgname);
 		return 1;
 	}
+#endif
 }
 
 /*
@@ -1367,7 +1379,9 @@ check_license(struct pkg_task *pkg)
 static int
 pkg_do(const char *pkgpath, int mark_automatic, int top_level)
 {
+#ifndef BOOTSTRAP
 	char *archive_name;
+#endif
 	int status, invalid_sig;
 	struct pkg_task *pkg;
 
@@ -1375,6 +1389,16 @@ pkg_do(const char *pkgpath, int mark_automatic, int top_level)
 
 	status = -1;
 
+#ifdef BOOTSTRAP
+	pkg->archive = archive_read_new();
+	archive_read_support_compression_all(pkg->archive);
+	archive_read_support_format_all(pkg->archive);
+	if (archive_read_open_filename(pkg->archive, pkgpath, 1024)) {
+		warnx("no pkg found for '%s', sorry.", pkgpath);
+		archive_read_free(pkg->archive);
+		goto clean_find_archive;
+	}
+#else
 	pkg->archive = find_archive(pkgpath, top_level, &archive_name);
 	if (pkg->archive == NULL) {
 		warnx("no pkg found for '%s', sorry.", pkgpath);
@@ -1384,6 +1408,7 @@ pkg_do(const char *pkgpath, int mark_automatic, int top_level)
 	invalid_sig = pkg_verify_signature(archive_name, &pkg->archive, &pkg->entry,
 	    &pkg->pkgname);
 	free(archive_name);
+#endif
 
 	if (pkg->archive == NULL)
 		goto clean_memory;
