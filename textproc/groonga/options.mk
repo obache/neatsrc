@@ -24,6 +24,11 @@ CONFIGURE_ARGS+=	--with-cutter
 TEST_TARGET=		check
 BUILDLINK_API_DEPENDS.cutter+=		cutter>=1.1.6
 .include "../../devel/cutter/buildlink3.mk"
+USE_TOOLS+=	bash
+REPLACE_BASH=	test/command/run-test.sh
+BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-bundler-[0-9]*:../../misc/ruby-bundler
+BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-ffi-yajl-[0-9]*:../../devel/ruby-ffi-yajl
+BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-msgpack-[0-9]*:../../devel/ruby-msgpack
 .else
 CONFIGURE_ARGS+=	--without-cutter
 .endif
