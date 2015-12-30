@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.18 2013/01/15 16:21:35 morr Exp $
+# $NetBSD: buildlink3.mk,v 1.19 2015/12/29 04:54:38 dholland Exp $
 
 BUILDLINK_TREE+=	Xaw-Xpm
 

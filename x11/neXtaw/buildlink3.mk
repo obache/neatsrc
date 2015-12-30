@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.16 2013/01/15 16:21:36 morr Exp $
+# $NetBSD: buildlink3.mk,v 1.17 2015/12/29 04:54:39 dholland Exp $
 
 BUILDLINK_TREE+=	neXtaw
 
