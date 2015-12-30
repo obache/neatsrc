@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15234 2015/12/28 11:47:52 adam Exp $
+$NetBSD: TODO,v 1.15248 2015/12/30 01:34:33 wiz Exp $
 
 Suggested new packages
 ======================
@@ -361,7 +361,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o GMT-5.1.1
 	o GNUMail-1.2.2
 	o Gorm-1.2.22
-	o Hack-ttf-2.018
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
 	o MesaLib-11.1
@@ -506,7 +505,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cacti-spine-0.8.8f
 	o cal3d-0.11.0
 	o calcoo-2.1.0
-	o calibre-2.47.0
 	o calligra-2.9.9 [in wip; koffice successor]
 	o cardboard-schedule-1.14c [at http://www.bright-green.com/downloads/]
 	o catdoc-1.1
@@ -515,7 +513,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cddbd-1.5.2
 	o cdk-5.0.20120323
 	o cdrkit-1.1.10
-	o cdrtools-3.02a04
 	o cfengine3-3.7.0
 	o cflow-mode-1.4
 	o cgal-4.6.1
@@ -564,7 +561,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o crossfire-client-gtk2-1.60.0
 	o csharp-mysql-6.9.6
 	o cue-20150720
-	o cups-filters-1.5.0
 	o cvm-0.97
 	o cvs2p4-2.5.5 [schmonz]
 	o cvsgraph-1.7.0
@@ -1008,7 +1004,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libbpg-0.9.5
 	o libburn-1.4.0
 	o libcanberra-0.28 [drops support for GNOME2; don't update for now -- wiz]
-	o libcdr-0.1.2
 	o libchamplain08-0.12.10
 	o libdatrie-0.2.9
 	o libetonyek-0.1.5
@@ -1032,7 +1027,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libmatheval-1.1.11
 	o libmcs-0.7.2
 	o libmediawiki-4.12.0
-	o libmicrohttpd-0.9.48
 	o libmtag-0.3.6
 	o libmusicbrainz5-5.1.0
 	o liboobs-2.32.0 [GNOME 2.32]
@@ -1053,7 +1047,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libva-1.6.0
 	o libvdpau-1.1.1
 	o libvirt-1.2.17
-	o libvisio-0.1.4
 	o libxdg-basedir-1.2.0
 	o libxklavier-5.3
 	o libxml++-2.38.0
@@ -1107,7 +1100,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mg-20150323
 	o mgetty+sendfax-1.1.35
 	o micro_httpd-20140814
-	o miller-3.1.2
 	o milter-greylist-4.5.14
 	o milter-regex-2.0
 	o mime-construct-1.11
@@ -1288,7 +1280,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Math-BigInt-Pari-1.18
 	o p5-Math-Derivative-0.04
 	o p5-Math-MatrixReal-2.12
-	o p5-Math-Pari-2.01080800
 	o p5-Math-Permute-List-1.007
 	o p5-Math-Prime-Util-0.51
 	o p5-Math-Random-MT-Perl-1.13
@@ -1376,7 +1367,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-sqlrelay-0.62
 	o p5-sybperl-2.18
 	o p5-xmltv-0.5.66
-	o p7zip-15.09
 	o packagekit-0.5.3
 	o pam-krb5-4.7
 	o pam-passwdqc-1.3.0
@@ -1385,7 +1375,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o pam-yubico-2.19
 	o paragui-1.1.8
 	o parallel-20150722
-	o pari-2.7.5
+	o pari-2.7.5 [wip]
 	o parrot-7.5.0
 	o patchutils-0.3.4
 	o pcal-4.8
@@ -1478,12 +1468,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-d2to1-0.2.12
 	o py-daemon-2.0.5
 	o py-datapkg-0.9
-	o py-decorator-4.0.6
 	o py-django-photologue-2.7
 	o py-django-registration-1.0
 	o py-djangorestframework-2.3.12
 	o py-doctor-15.0.0
-	o py-enum34-1.1.2
 	o py-flake8-2.4.1
 	o py-gmpy-1.17
 	o py-gnome-menus-3.8.0
@@ -1598,7 +1586,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o rump-20131213
 	o sabayon-2.30.1 [GNOME 2.30]
 	o sablecc-3.7
-	o samba-4.3.3
 	o sarg-2.2.5
 	o scala-2.11.7
 	o scamper-20141211a [pkg/50138]
