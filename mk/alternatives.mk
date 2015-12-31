@@ -60,7 +60,7 @@ ${WRKDIR}/.altdeinstall: ${ALTERNATIVES_SRC}
 	${ECHO} 'fi'; \
 	} >${WRKDIR}/.altdeinstall
 
-PRINT_PLIST_AWK+=	/^libdata\/alternatives\// { next; }
+PRINT_PLIST_AWK+=	/^libdata\/pkg_alternatives\// { next; }
 
 PKG_ALTERNATIVES=	${LOCALBASE}/sbin/pkg_alternatives
 
