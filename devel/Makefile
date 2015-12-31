@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2182 2015/12/27 20:44:34 wiz Exp $
+# $NetBSD: Makefile,v 1.2184 2015/12/30 16:16:13 bsiegert Exp $
 #
 
 COMMENT=	Development utilities
@@ -285,6 +285,7 @@ SUBDIR+=	go-nbreader
 SUBDIR+=	go-tools
 SUBDIR+=	gob2
 SUBDIR+=	gobject-introspection
+SUBDIR+=	golint
 SUBDIR+=	google-api-go-client
 SUBDIR+=	google-glog
 SUBDIR+=	googletest
@@ -370,6 +371,7 @@ SUBDIR+=	idiff
 SUBDIR+=	idutils
 SUBDIR+=	imake
 SUBDIR+=	iniparser
+SUBDIR+=	include-what-you-use
 SUBDIR+=	intel2gas
 SUBDIR+=	intellij-idea-ce
 SUBDIR+=	isect

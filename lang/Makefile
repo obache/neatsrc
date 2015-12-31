@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.423 2015/12/06 15:18:48 taca Exp $
+# $NetBSD: Makefile,v 1.425 2015/12/30 15:08:24 taca Exp $
 #
 
 COMMENT=	Programming languages
@@ -198,6 +198,8 @@ SUBDIR+=	ruby21
 SUBDIR+=	ruby21-base
 SUBDIR+=	ruby22
 SUBDIR+=	ruby22-base
+SUBDIR+=	ruby23
+SUBDIR+=	ruby23-base
 SUBDIR+=	runawk
 SUBDIR+=	sablevm
 SUBDIR+=	sablevm-classpath
