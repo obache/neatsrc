@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2015,v 1.5206 2015/12/30 17:43:00 adam Exp $
+$NetBSD: CHANGES-2015,v 1.5225 2015/12/31 19:48:52 fhajny Exp $
 
 Changes to the packages collection and infrastructure in 2015:
 
@@ -8530,3 +8530,24 @@ Changes to the packages collection and infrastructure in 2015:
 	Updated devel/ruby-mode to 2.3.0 [taca 2015-12-30]
 	Added www/libsass version 3.3.2 [adam 2015-12-30]
 	Added www/sassc version 3.3.2 [adam 2015-12-30]
+	Added security/boringssl version 20151230 [agc 2015-12-30]
+	Updated databases/p5-DBD-mysql to 4.033 [wen 2015-12-31]
+	Updated textproc/p5-Text-Sass to 1.0.3 [wen 2015-12-31]
+	Updated textproc/p5-XML-XPath to 1.16 [wen 2015-12-31]
+	Updated misc/tmux to 2.1 [ryoon 2015-12-31]
+	Updated fonts/umefont-ttf to 0.580 [ryoon 2015-12-31]
+	Updated www/firefox to 43.0.3 [ryoon 2015-12-31]
+	Updated www/firefox-l10n to 43.0.3 [ryoon 2015-12-31]
+	Updated www/liferea to 1.10.17 [leot 2015-12-31]
+	Updated graphics/flickrnet to 3.17.0 [ryoon 2015-12-31]
+	Updated databases/redis to 3.0.6 [root 2015-12-31]
+	Updated databases/elasticsearch to 2.1.1 [root 2015-12-31]
+	Updated net/nmap to 7.01 [adam 2015-12-31]
+	Updated textproc/p5-Text-Xslate to 3.3.9 [wen 2015-12-31]
+	Updated sysutils/xentools45 to 4.5.1nb8 [jnemeth 2015-12-31]
+	Added misc/pkgng version 1.6.2 [agc 2015-12-31]
+	Updated games/openttd to 1.5.3 [leot 2015-12-31]
+	Removed misc/pkgng successor pkgtools/pkg [agc 2015-12-31]
+	Updated lang/erlang to 18.2.1 [fhajny 2015-12-31]
+	Updated lang/erlang-doc to 18.2.1 [fhajny 2015-12-31]
+	Updated lang/erlang-man to 18.2.1 [fhajny 2015-12-31]

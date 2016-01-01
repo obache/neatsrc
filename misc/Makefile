@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.461 2015/11/04 14:07:27 fhajny Exp $
+# $NetBSD: Makefile,v 1.463 2015/12/31 18:51:48 agc Exp $
 #
 
 COMMENT=	Miscellaneous utilities
