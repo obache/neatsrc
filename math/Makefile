@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.311 2015/12/29 02:04:08 agc Exp $
+# $NetBSD: Makefile,v 1.314 2016/01/01 11:48:32 wen Exp $
 
 COMMENT=	Mathematics
 
@@ -8,6 +8,7 @@ SUBDIR+=	R-DAAG
 SUBDIR+=	R-DBI
 SUBDIR+=	R-GRASS
 SUBDIR+=	R-ISwR
+SUBDIR+=	R-MatrixModels
 SUBDIR+=	R-PHYLOGR
 SUBDIR+=	R-R2HTML
 SUBDIR+=	R-RArcInfo
@@ -15,6 +16,7 @@ SUBDIR+=	R-RColorBrewer
 SUBDIR+=	R-RPostgreSQL
 SUBDIR+=	R-RandomFields
 SUBDIR+=	R-Rcmdr
+SUBDIR+=	R-SparseM
 SUBDIR+=	R-XML
 SUBDIR+=	R-abind
 SUBDIR+=	R-akima
@@ -44,6 +46,7 @@ SUBDIR+=	R-mvtnorm
 SUBDIR+=	R-ncdf
 SUBDIR+=	R-pixmap
 SUBDIR+=	R-plyr
+SUBDIR+=	R-quantreg
 SUBDIR+=	R-randomForest
 SUBDIR+=	R-sgeostat
 SUBDIR+=	R-shapefiles
