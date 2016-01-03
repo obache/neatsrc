@@ -1347,9 +1347,9 @@ ${_TOOLS_DEPMETHOD.${_t_}}+=	${_dep_}
 #####
 TOOLS_CREATE+=		${_t_}
 TOOLS_PATH.${_t_}?=	\
-	${TOOLS_PLATFORM.${_t_}:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//}
+	${TOOLS_PLATFORM.${_t_}:[1]}
 TOOLS_ARGS.${_t_}?=	\
-	${TOOLS_PLATFORM.${_t_}:C/^/_asdf_/1:N_asdf_*}
+	${TOOLS_PLATFORM.${_t_}:C/.*//1}
 .  endif
 ###
 ### For each tool, TOOLS_CMDLINE.<tool> is the full command (path and

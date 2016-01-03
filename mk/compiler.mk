@@ -155,11 +155,7 @@ PKG_LD?=       /usr/bin/ld
 # the PATH to use the correct executable.
 #
 .for _var_ in ${_COMPILER_STRIP_VARS}
-.  if empty(${_var_}:C/^/_asdf_/1:N_asdf_*)
-${_var_}:=	${${_var_}:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//:T}
-.  else
-${_var_}:=	${${_var_}:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//:T} ${${_var_}:C/^/_asdf_/1:N_asdf_*}
-.  endif
+${_var_}:=	${${_var_}:[1]:T} ${${_var_}:C/.*//1}
 .endfor
 
 .if defined(ABI) && !empty(ABI)

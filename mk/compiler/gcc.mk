@@ -151,14 +151,14 @@ _GCC_AUX_PATTERNS= 20[1-2][0-9][0-1][0-9][0-3][0-9]*
 
 # _CC is the full path to the compiler named by ${CC} if it can be found.
 .if !defined(_CC)
-_CC:=	${CC:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//}
+_CC:=	${CC:[1]}
 .  if !empty(GCCBASE) && exists(${GCCBASE}/bin)
 _EXTRA_CC_DIRS=	${GCCBASE}/bin
 .  endif
 .  for _dir_ in ${_EXTRA_CC_DIRS} ${PATH:C/\:/ /g}
 .    if empty(_CC:M/*)
-.      if exists(${_dir_}/${CC:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//})
-_CC:=	${_dir_}/${CC:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//}
+.      if exists(${_dir_}/${CC:[1]})
+_CC:=	${_dir_}/${CC:[1]}
 .      endif
 .    endif
 .  endfor
