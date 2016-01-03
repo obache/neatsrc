@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.15 2016/01/01 15:35:15 fhajny Exp $
+$NetBSD: CHANGES-2016,v 1.27 2016/01/02 16:45:14 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -17,3 +17,15 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated textproc/R-stringr to 1.0.0 [wen 2016-01-01]
 	Updated sysutils/rsyslog to 8.15.0 [fhajny 2016-01-01]
 	Added textproc/libfastjson version 0.99.0 [fhajny 2016-01-01]
+	Updated misc/ansiweather to 1.06 [kamil 2016-01-02]
+	Updated time/py-vdirsyncer to 0.7.5 [wiz 2016-01-02]
+	Added net/py-Socks version 1.5.6 [wiz 2016-01-02]
+	Updated www/py-urllib3 to 1.14 [wiz 2016-01-02]
+	Added www/py-httpbin version 0.4.0 [wiz 2016-01-02]
+	Added www/py-test-httpbin version 0.2.0 [wiz 2016-01-02]
+	Updated devel/py-requests to 2.9.1 [wiz 2016-01-02]
+	Added devel/py-nose-exclude version 0.4.1 [wiz 2016-01-02]
+	Updated net/wireshark to 1.12.9 [ryoon 2016-01-02]
+	Updated databases/p5-DBM-Deep to 2.0013 [wen 2016-01-02]
+	Updated devel/p5-Proc-Daemon to 0.23 [wen 2016-01-02]
+	Updated emulators/mame to 0.169 [wiz 2016-01-02]
