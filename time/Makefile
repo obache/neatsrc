@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.151 2015/12/01 08:38:11 fhajny Exp $
+# $NetBSD: Makefile,v 1.153 2016/01/03 10:04:17 taca Exp $
 #
 
 COMMENT=	Clocks, calendars, daily planners and other time related applications
@@ -147,6 +147,8 @@ SUBDIR+=	rsibreak-kde3
 SUBDIR+=	ruby-hitimes
 SUBDIR+=	ruby-timers
 SUBDIR+=	ruby-tzinfo
+SUBDIR+=	ruby-tzinfo-data
+SUBDIR+=	ruby-tzinfo03
 SUBDIR+=	saytime
 SUBDIR+=	sunclock
 SUBDIR+=	swisswatch
