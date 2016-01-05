@@ -889,6 +889,7 @@ skyos)
 	groupsprog='echo 0'
 	# ID=/bin/false
 	CHGRPPROG=/bin/true; export CHGRPPROG
+	ac_cv_have_decl_optreset=no; export ac_cv_have_decl_optreset
 #	ac_cv_func_group_from_gid=no; export ac_cv_func_group_from_gid
 	;;
 SunOS)

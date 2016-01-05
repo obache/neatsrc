@@ -58,6 +58,9 @@ _STRIPFLAG_INSTALL?=	${_INSTALL_UNSTRIPPED:D:U-s}	# install(1) option to strip
 
 _OPSYS_CAN_CHECK_SHLIBS=	no # can't use readelf in check/bsd.check-vars.mk
 
+# SkyOS has "extern int optreset" in sys/unistd.h, but not decleared in lib.
+CONFIGURE_ENV+=		${GNU_CONFIGURE:Dac_cv_have_decl_optreset=no}
+
 # check for maximum command line length and set it in configure's environment,
 # to avoid a test required by the libtool script that takes forever.
 # FIXME: Adjust to work on this system and enable the lines below.
