@@ -5630,63 +5630,14 @@ cat >>confdefs.h <<_ACEOF
 #define HAVE_DECL_OPTRESET $ac_have_decl
 _ACEOF
 if test $ac_have_decl = 1; then :
-
-
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether optrest is exported" >&5
-$as_echo_n "checking whether optrest is exported... " >&6; }
-if ${pkg_cv_have_optreset+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-
-		cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-		#include <stdio.h>
-		#include <stdlib.h>
-		#include <unistd.h>
-		#ifdef HAVE_GETOPT_H
-		#include <getopt.h>
-		#endif
-
-int
-main ()
-{
-
-		optreset=0;
-		return 0;
-	;
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-   pkg_cv_have_optreset=yes
-else
-   pkg_cv_have_optreset=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $pkg_cv_have_optreset" >&5
-$as_echo "$pkg_cv_have_optreset" >&6; }
-	if test "x$pkg_cv_have_optreset" = "xyes"; then
-		$as_echo "#define HAVE_EXPORTED_OPTRESET 1" >>confdefs.h
-
-
-
-	else
-
-		:
-	fi
-
+  :
 else
   :
 fi
 
 
 if test "$enable_bsd_getopt" = yes; then
-	if test "$pkg_cv_have_optreset" = no; then
+	if test "$pkg_cv_decl_optreset" = no; then
 		{ $as_echo "$as_me:${as_lineno-$LINENO}: Using included getopt and getopt_long" >&5
 $as_echo "$as_me: Using included getopt and getopt_long" >&6;}
 		case " $LIBOBJS " in

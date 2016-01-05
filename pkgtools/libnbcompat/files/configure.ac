@@ -205,21 +205,7 @@ AC_CHECK_HEADERS([getopt.h],
 	[ our_getopt_long=yes ]
 )
 
-AC_CHECK_DECLS([optreset], [
-	AC_MSG_TRY_LINK([whether optrest is exported], pkg_cv_have_optreset, [
-		#include <stdio.h>
-		#include <stdlib.h>
-		#include <unistd.h>
-		#ifdef HAVE_GETOPT_H
-		#include <getopt.h>
-		#endif
-	], [
-		optreset=0;
-		return 0;
-	],	AC_DEFINE(HAVE_EXPORTED_OPTRESET)
-		AH_TEMPLATE([HAVE_EXPORTED_OPTRESET], [
-			Define to 1 if `optreset' variable is exported.])
-	)], [:], [
+AC_CHECK_DECLS([optreset], [:], [:], [
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <unistd.h>
@@ -229,7 +215,7 @@ AC_CHECK_DECLS([optreset], [
 ])
 
 if test "$enable_bsd_getopt" = yes; then
-	if test "$pkg_cv_have_optreset" = no; then
+	if test "$pkg_cv_decl_optreset" = no; then
 		AC_MSG_NOTICE([Using included getopt and getopt_long])
 		AC_LIBOBJ(getopt)
 		our_getopt_long=yes

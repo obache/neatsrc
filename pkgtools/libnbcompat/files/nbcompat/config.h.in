@@ -89,9 +89,6 @@
 /* Define to 1 if you have the <err.h> header file. */
 #undef HAVE_ERR_H
 
-/* Define to 1 if `optreset' variable is exported. */
-#undef HAVE_EXPORTED_OPTRESET
-
 /* Define to 1 if you have the <fcntl.h> header file. */
 #undef HAVE_FCNTL_H
 

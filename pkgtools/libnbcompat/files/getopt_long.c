@@ -68,7 +68,7 @@ int	optind = 1;		/* index into parent argv vector */
 int	optopt = '?';		/* character checked for validity */
 char    *optarg;		/* argument associated with option */
 #endif
-#if !HAVE_EXPORTED_OPTRESET
+#if !HAVE_DECL_OPTRESET
 int	optreset;		/* reset getopt */
 #endif
 
