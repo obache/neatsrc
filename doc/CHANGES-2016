@@ -1,4 +1,4 @@
-
+$NetBSD: CHANGES-2016,v 1.104 2016/01/07 17:57:50 bouyer Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -118,3 +118,26 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated graphics/libwebp to 0.5.0 [adam 2016-01-06]
 	Updated devel/ruby-test-unit-notify to 1.0.4nb1 [taca 2016-01-06]
 	Updated devel/ruby-test-unit to 3.1.5nb1 [taca 2016-01-06]
+	Updated databases/ruby-sequel to 4.30.0 [taca 2016-01-06]
+	Updated devel/ruby-msgpack to 0.7.2 [taca 2016-01-06]
+	Updated devel/ruby-pkg-config to 1.1.7 [taca 2016-01-06]
+	Updated net/ruby-ipaddress to 0.8.2 [taca 2016-01-06]
+	Updated www/py-werkzeug to 0.11.3 [kleink 2016-01-06]
+	Updated www/py-werkzeug-docs to 0.11.3 [kleink 2016-01-06]
+	Updated lang/nodejs to 5.4.0 [fhajny 2016-01-07]
+	Updated security/p5-Mozilla-CA to 20160104 [wiz 2016-01-07]
+	Updated devel/p5-Sub-Identify to 0.12 [wiz 2016-01-07]
+	Updated devel/flex to 2.6.0 [wiz 2016-01-07]
+	Updated devel/py-unittest2 to 1.1.0 [wiz 2016-01-07]
+	Updated textproc/py-sphinx-theme-cloud to 1.7.1. [darcy 2016-01-07]
+	Updated mail/mutt to 1.5.24nb1 [wiz 2016-01-07]
+	Updated mail/mutt-kz to 1.5.23.1rc1nb2 [wiz 2016-01-07]
+	Updated textproc/py-xlsxwriter to 0.7.8 [fhajny 2016-01-07]
+	Updated databases/py-elasticsearch to 2.2.0 [fhajny 2016-01-07]
+	Updated net/dhcpcd to 6.10.0 [roy 2016-01-07]
+	Updated sysutils/xentools45 to 4.5.1nb9 [bouyer 2016-01-07]
+	Updated sysutils/xenkernel45 to 4.5.1nb2 [bouyer 2016-01-07]
+	Updated sysutils/xentools42 to 4.2.5nb14 [bouyer 2016-01-07]
+	Updated sysutils/xenkernel42 to 4.2.5nb10 [bouyer 2016-01-07]
+	Updated sysutils/xentools41 to 4.1.6.1nb14 [bouyer 2016-01-07]
+	Updated sysutils/xenkernel41 to 4.1.6.1nb13 [bouyer 2016-01-07]
