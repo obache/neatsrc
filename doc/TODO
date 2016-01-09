@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15281 2016/01/07 15:15:43 darcy Exp $
+$NetBSD: TODO,v 1.15287 2016/01/08 21:20:10 adam Exp $
 
 Suggested new packages
 ======================
@@ -631,7 +631,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o embryo-1.7.10
 	o emerillon-0.1.90
 	o enlightenment-0.20.1
-	o entr-3.2
 	o eog-plugins-3.6.1
 	o epiphany-3.16.0
 	o epiphany-extensions-3.2.0
@@ -762,7 +761,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gimp-docs-ru-2.8.2
 	o gimp-docs-sv-2.8.2
 	o gimp-docs-zh_CN-2.8.2
-	o git-2.7
 	o gkrellm-2.3.5
 	o gkrellm-multiping-2.0.13
 	o gkrellm-server-2.3.5
@@ -1337,7 +1335,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Sys-SigAction-0.21
 	o p5-Sys-Utmp-1.7
 	o p5-Term-Shell-0.06
-	o p5-Test-YAML-1.06
 	o p5-Text-MicroTemplate-0.24
 	o p5-Text-Reflow-1.10
 	o p5-Tie-DBI-1.06
@@ -1351,8 +1348,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-WWW-Curl-4.17
 	o p5-WebService-Google-Reader-0.23
 	o p5-Wx-0.9927
-	o p5-YAML-1.15
-	o p5-YAML-Tiny-1.69
 	o p5-eBay-API-0.29
 	o p5-gtk2-1.300
 	o p5-perl-ldap-0.65
@@ -1631,7 +1626,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o spidermonkey-1.8.5
 	o spin-643
 	o spl-1.0pre6
-	o sqlite3-3.10
 	o sqlrelay-freetds-0.62
 	o sqlrelay-mysql-0.62
 	o sqlrelay-odbc-0.62

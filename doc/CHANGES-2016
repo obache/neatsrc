@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.104 2016/01/07 17:57:50 bouyer Exp $
+$NetBSD: CHANGES-2016,v 1.127 2016/01/09 04:06:53 wen Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -141,3 +141,31 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated sysutils/xenkernel42 to 4.2.5nb10 [bouyer 2016-01-07]
 	Updated sysutils/xentools41 to 4.1.6.1nb14 [bouyer 2016-01-07]
 	Updated sysutils/xenkernel41 to 4.1.6.1nb13 [bouyer 2016-01-07]
+	Updated lang/php55 to 5.5.31 [taca 2016-01-08]
+	Updated lang/php56 to 5.6.17 [taca 2016-01-08]
+	Updated lang/php70 to 7.0.2 [taca 2016-01-08]
+	Updated print/py-weasyprint to 0.25 [kleink 2016-01-08]
+	Added devel/ruby-zookeeper version 1.4.11 [fhajny 2016-01-08]
+	Updated www/p5-URI to 1.71 [wen 2016-01-08]
+	Updated www/p5-Mojolicious to 6.39 [wen 2016-01-08]
+	Updated textproc/p5-YAML to 1.15 [wen 2016-01-08]
+	Updated textproc/p5-YAML-Tiny to 1.69 [wen 2016-01-08]
+	Updated textproc/p5-Test-YAML to 1.06 [wen 2016-01-08]
+	Updated devel/p5-CPAN-Meta-YAML to 0.018 [wen 2016-01-08]
+	Updated databases/sqlite3 to 3.10.0 [adam 2016-01-08]
+	Updated databases/sqlite3-docs to 3.10.0 [adam 2016-01-08]
+	Updated databases/sqlite3-tcl to 3.10.0 [adam 2016-01-08]
+	Updated sysutils/xentools45 to 4.5.2 [bouyer 2016-01-08]
+	Updated sysutils/xenkernel45 to 4.5.2 [bouyer 2016-01-08]
+	Updated devel/p5-MooX-Options to 4.022 [wen 2016-01-08]
+	Updated sysutils/bsdinstall to 20160108 [jperkin 2016-01-08]
+	Updated www/py-wtforms to 2.1 [kleink 2016-01-08]
+	Updated www/py-flask-admin to 1.4.0 [kleink 2016-01-08]
+	Updated www/py-flask-uploads to 0.2.0 [kleink 2016-01-08]
+	Updated www/py-flask-frozen to 0.12 [kleink 2016-01-08]
+	Updated www/py-flask-security to 1.7.5 [kleink 2016-01-08]
+	Updated sysutils/entr to 3.4 [leot 2016-01-08]
+	Updated devel/git to 2.7.0 [adam 2016-01-08]
+	Added misc/libreoffice5-bin version 5.0.4 [ryoon 2016-01-08]
+	Updated www/p5-Dancer2 to 0.165000 [wen 2016-01-09]
+	Updated www/p5-Dancer-Session-Cookie to 0.27 [wen 2016-01-09]
