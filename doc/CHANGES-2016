@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.130 2016/01/09 08:25:44 ryoon Exp $
+$NetBSD: CHANGES-2016,v 1.149 2016/01/10 01:21:37 gdt Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -185,3 +185,22 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated graphics/gimp-docs-sv to 2.8.2 [ryoon 2016-01-09]
 	Updated graphics/gimp-docs-zh_CN to 2.8.2 [ryoon 2016-01-09]
 	Updated meta-pkgs/gimp-docs to 2.8.2 [ryoon 2016-01-09]
+	Updated databases/p5-Dancer-Plugin-DBIC to 0.2104 [wen 2016-01-09]
+	Added devel/py-traceback2 version 1.4.0 [wiz 2016-01-09]
+	Added devel/py-linecache2 version 1.0.0 [wiz 2016-01-09]
+	Updated devel/p5-CPAN-Perl-Releases to 2.54 [wen 2016-01-09]
+	Updated devel/p5-CPAN-Uploader to 0.103012 [wen 2016-01-09]
+	Updated devel/p5-CPANPLUS to 0.9156 [wen 2016-01-09]
+	Updated textproc/R-highr to 0.5.1 [wen 2016-01-09]
+	Updated math/R-PHYLOGR to 1.0.8 [wen 2016-01-09]
+	Updated math/R-R2HTML to 2.3.1 [wen 2016-01-09]
+	Updated net/ntp4 to 4.2.8p5 [taca 2016-01-09]
+	Added devel/ruby-memoist version 0.14.0 [tsutsui 2016-01-09]
+	Added devel/ruby-delayer-deferred version 1.0.3 [tsutsui 2016-01-09]
+	Added devel/ruby-instance_storage version 1.0.0 [tsutsui 2016-01-09]
+	Added net/ruby-twitter-text version 1.13.0 [tsutsui 2016-01-09]
+	Added net/ruby-pluggaloid version 1.0.2 [tsutsui 2016-01-09]
+	Updated net/mikutter to 3.3.3 [tsutsui 2016-01-09]
+	Removed devel/ruby-memoize [tsutsui 2016-01-09]
+	Updated devel/py-linecache2 to 1.0.0nb1 [wiz 2016-01-09]
+	Updated databases/postgresql-postgis2 to 2.2.1nb1 [gdt 2016-01-10]
