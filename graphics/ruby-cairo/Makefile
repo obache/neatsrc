@@ -1,17 +1,12 @@
-# $NetBSD: Makefile,v 1.42 2015/04/25 14:23:19 tnn Exp $
+# $NetBSD: Makefile,v 1.1 2016/01/11 23:46:50 wiz Exp $
 
-DISTNAME=		rcairo-1.14.1
-PKGNAME=		${RUBY_PKGPREFIX}-${DISTNAME}
-PKGREVISION=		1
+DISTNAME=		cairo-1.14.3
 CATEGORIES=		graphics
-MASTER_SITES=		http://cairographics.org/releases/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://cairographics.org/rcairo/
+HOMEPAGE=		https://rcairo.github.io/
 COMMENT=		Ruby bindings for cairo
 LICENSE=		ruby-license OR gnu-gpl-v2
-
-USE_RUBY_EXTCONF=	yes
 
 #do-test:
 #	${RUN} cd ${WRKSRC}; \
@@ -19,6 +14,6 @@ USE_RUBY_EXTCONF=	yes
 
 BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.2.0
 .include "../../graphics/cairo/buildlink3.mk"
-.include "../../lang/ruby/modules.mk"
 .include "../../devel/ruby-pkg-config/tool.mk"
+.include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

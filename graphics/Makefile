@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.725 2016/01/04 01:44:14 markd Exp $
+# $NetBSD: Makefile,v 1.726 2016/01/11 23:50:27 wiz Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -447,6 +447,7 @@ SUBDIR+=	refocus-it
 SUBDIR+=	resize_image
 SUBDIR+=	ristretto
 SUBDIR+=	ruby-RMagick
+SUBDIR+=	ruby-cairo
 SUBDIR+=	ruby-chunky_png
 SUBDIR+=	ruby-color
 SUBDIR+=	ruby-color-japanese
@@ -463,7 +464,6 @@ SUBDIR+=	ruby-imlib2
 SUBDIR+=	ruby-mini-magick
 SUBDIR+=	ruby-oily_png
 SUBDIR+=	ruby-opengl
-SUBDIR+=	ruby-rcairo
 SUBDIR+=	s10sh
 SUBDIR+=	sane-backends
 SUBDIR+=	sane-frontends
