@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.164 2016/01/10 21:17:34 bsiegert Exp $
+$NetBSD: CHANGES-2016,v 1.177 2016/01/11 19:37:59 leot Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -272,3 +272,20 @@ Changes to the packages collection and infrastructure in 2016:
 	Added www/p5-WWW-Mechanize-Shell version 0.55 [bsiegert 2016-01-10]
 	Updated mail/exim to 4.86 [bsiegert 2016-01-10]
 	Updated graphics/freetype2 to 2.6.2 [bsiegert 2016-01-10]
+	Added net/py-google-cloud-sdk version 91.0.1 [ryoon 2016-01-11]
+	Updated www/logswan to 1.04 [kamil 2016-01-10]
+	Updated mail/exim-html to 4.86 [adam 2016-01-11]
+	Updated www/squid3 to 3.5.13 [adam 2016-01-11]
+	Updated net/youtube-dl to 20160109 [adam 2016-01-06]
+	Updated net/miniupnpd to 1.9.20151212 [adam 2016-01-11]
+	Added devel/visualvm version 1.3.8 [abs 2016-01-11]
+	Added net/restclient-ui version 3.5 [abs 2016-01-11]
+	Updated devel/ruby-ffi-yajl to 2.2.3 [taca 2016-01-11]
+	Updated devel/ruby-getopt to 1.4.3 [taca 2016-01-11]
+	Updated devel/ruby-msgpack to 0.7.4 [taca 2016-01-11]
+	Updated net/ruby-net-ldap to 0.13.0 [taca 2016-01-11]
+	Updated textproc/py-pyphen to 0.9.3 [kleink 2016-01-11]
+	Updated lang/clang to 3.7.1 [ryoon 2016-01-11]
+	Updated lang/clang-static-analyzer to 3.7.1 [ryoon 2016-01-11]
+	Updated lang/libLLVM to 3.7.1 [ryoon 2016-01-11]
+	Updated games/vms-empire to 1.14 [leot 2016-01-11]

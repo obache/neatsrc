@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1097 2016/01/09 19:02:24 tsutsui Exp $
+# $NetBSD: Makefile,v 1.1099 2016/01/11 13:47:22 abs Exp $
 #
 
 COMMENT=	Networking tools
@@ -595,6 +595,7 @@ SUBDIR+=	py-eventlib
 SUBDIR+=	py-foolscap
 SUBDIR+=	py-gevent
 SUBDIR+=	py-google
+SUBDIR+=	py-google-cloud-sdk
 SUBDIR+=	py-hatop
 SUBDIR+=	py-hpack
 SUBDIR+=	py-ipaddress
@@ -649,6 +650,7 @@ SUBDIR+=	rdesktop
 SUBDIR+=	rdist6
 SUBDIR+=	remmina
 SUBDIR+=	remmina-plugins
+SUBDIR+=	restclient-ui
 SUBDIR+=	rinetd
 SUBDIR+=	rootprobe
 SUBDIR+=	rp-l2tp
