@@ -1434,6 +1434,11 @@ struct http_index_cache {
 
 static struct http_index_cache *index_cache;
 
+#ifdef PATH_MAX
+#define FETCH_LIST_BUF_SIZE 2 * PATH_MAX
+#else
+#define FETCH_LIST_BUF_SIZE 4096
+#endif
 /*
  * List a directory
  */
@@ -1441,7 +1446,7 @@ int
 fetchListHTTP(struct url_list *ue, struct url *url, const char *pattern, const char *flags)
 {
 	fetchIO *f;
-	char buf[2 * PATH_MAX];
+	char buf[FETCH_LIST_BUF_SIZE];
 	size_t buf_len, sum_processed;
 	ssize_t read_len, processed;
 	struct index_parser state;

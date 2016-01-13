@@ -1257,6 +1257,11 @@ fetchStatFTP(struct url *url, struct url_stat *us, const char *flags)
 	return (0);
 }
 
+#ifdef PATH_MAX
+#define FETCH_LIST_BUF_SIZE 2 * PATH_MAX
+#else
+#define FETCH_LIST_BUF_SIZE 4096
+#endif
 /*
  * List a directory
  */
@@ -1264,7 +1269,7 @@ int
 fetchListFTP(struct url_list *ue, struct url *url, const char *pattern, const char *flags)
 {
 	fetchIO *f;
-	char buf[2 * PATH_MAX], *eol, *eos;
+	char buf[FETCH_LIST_BUF_SIZE], *eol, *eos;
 	ssize_t len;
 	size_t cur_off;
 	int ret;
