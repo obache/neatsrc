@@ -872,11 +872,7 @@ open_temp(HTAB *hashp)
 {
 	sigset_t set, oset;
 	char *envtmp;
-#ifdef PATH_MAX
-	char namestr[PATH_MAX];
-#else
-	char namestr[MAXPATHLEN];
-#endif
+	char *namestr;
 
 #if HAVE_ISSETUGID
 	if (issetugid())
@@ -884,8 +880,9 @@ open_temp(HTAB *hashp)
 	else
 #endif
 		envtmp = getenv("TMPDIR");
+	namestr = NULL;
 
-	if (-1 == snprintf(namestr, sizeof(namestr), "%s/_hashXXXXXX",
+	if (-1 == asprintf(&namestr, "%s/_hashXXXXXX",
 	    envtmp ? envtmp : _PATH_TMP))
 		return -1;
 
@@ -896,6 +893,7 @@ open_temp(HTAB *hashp)
 		(void)unlink(namestr);
 		(void)fcntl(hashp->fp, F_SETFD, FD_CLOEXEC);
 	}
+	free(namestr);
 	(void)sigprocmask(SIG_SETMASK, &oset, (sigset_t *)NULL);
 	return (hashp->fp != -1 ? 0 : -1);
 }

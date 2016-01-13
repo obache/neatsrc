@@ -60,7 +60,8 @@ DBM *
 dbm_open(const char *file, int flags, mode_t mode)
 {
 	HASHINFO info;
-	char path[MAXPATHLEN];
+	DBM* ret;
+	char *path;
 
 	info.bsize = 4096;
 	info.ffactor = 40;
@@ -68,13 +69,16 @@ dbm_open(const char *file, int flags, mode_t mode)
 	info.cachesize = 0;
 	info.hash = NULL;
 	info.lorder = 0;
-	(void)strncpy(path, file, sizeof(path) - 1);
-	(void)strncat(path, DBM_SUFFIX, sizeof(path) - strlen(path) - 1);
+	if ( -1 == asprintf(&path, "%s%s", file, DBM_SUFFIX)) {
+		return (DBM *)NULL;
+	}
 	if ((flags & O_ACCMODE) == O_WRONLY) {
 		flags &= ~O_WRONLY;
 		flags |= O_RDWR;
 	}
-	return ((DBM *)__hash_open(path, flags, mode, &info, 0));
+	ret = ((DBM *)__hash_open(path, flags, mode, &info, 0));
+	free(path);
+	return ret;
 }
 
 void
