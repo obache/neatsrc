@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.181 2016/01/12 01:03:03 rillig Exp $
+$NetBSD: CHANGES-2016,v 1.186 2016/01/12 14:57:59 reed Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -260,7 +260,7 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated graphics/kde-base-artwork to 15.08.3 [markd 2016-01-10]
 	Updated graphics/kcolorchooser to 15.12.0 [markd 2016-01-10]
 	Updated games/amor to 15.08.3 [markd 2016-01-10]
-	Updated devel/kdesdk-strigi-analyzer to 15.12.0 [markd 2016-01-10]
+	Updated devel/kdesdk-strigi-analyzers to 15.12.0 [markd 2016-01-10]
 	Updated devel/kde-dev-utils to 15.12.0 [markd 2016-01-10]
 	Updated devel/kcachegrind to 15.12.0 [markd 2016-01-10]
 	Updated devel/cervisia to 15.12.0 [markd 2016-01-10]
@@ -294,3 +294,7 @@ Changes to the packages collection and infrastructure in 2016:
 	Removed graphics/ruby-rcairo successor graphics/ruby-cairo [wiz 2016-01-11]
 	Updated net/Radicale to 1.1.1 [prlw1 2016-01-12]
 	Updated pkgtools/pkglint to 5.3 [rillig 2016-01-12]
+	Added math/ruby-roo version 2.3.1 [wiz 2016-01-12]
+	Updated finance/gnucash to 2.6.11 [wiz 2016-01-12]
+	Updated finance/gnucash-docs to 2.6.11 [wiz 2016-01-12]
+	Added print/pdf-redact-tools version 0.1 [leot 2016-01-12]
