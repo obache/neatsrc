@@ -5637,7 +5637,7 @@ fi
 
 
 if test "$enable_bsd_getopt" = yes; then
-	if test "$pkg_cv_decl_optreset" = no; then
+	if test "$ac_cv_have_decl_optreset" = no; then
 		{ $as_echo "$as_me:${as_lineno-$LINENO}: Using included getopt and getopt_long" >&5
 $as_echo "$as_me: Using included getopt and getopt_long" >&6;}
 		case " $LIBOBJS " in

@@ -215,7 +215,7 @@ AC_CHECK_DECLS([optreset], [:], [:], [
 ])
 
 if test "$enable_bsd_getopt" = yes; then
-	if test "$pkg_cv_decl_optreset" = no; then
+	if test "$ac_cv_have_decl_optreset" = no; then
 		AC_MSG_NOTICE([Using included getopt and getopt_long])
 		AC_LIBOBJ(getopt)
 		our_getopt_long=yes
