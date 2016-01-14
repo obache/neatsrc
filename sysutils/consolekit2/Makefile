@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=		ConsoleKit2-1.0.0
+DISTNAME=		ConsoleKit2-1.0.1
 PKGNAME=		${DISTNAME:tl}
 CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_GITHUB:=/ConsoleKit2/ConsoleKit2/releases/download/${PKGVERSION_NOREV}/}
@@ -35,8 +35,7 @@ BUILD_DEFS+=		PKG_SYSCONFBASE
 
 GNU_CONFIGURE=		YES
 USE_PKGLOCALEDIR=	YES
-USE_TOOLS+=		gmake intltool msgfmt perl pkg-config gettext-m4
-USE_TOOLS+=		autoconf automake autoreconf autopoint
+USE_TOOLS+=		gmake intltool msgfmt perl pkg-config
 USE_LIBTOOL=		YES
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE:Q}
@@ -47,13 +46,6 @@ INSTALL_MAKE_FLAGS+=	DBUS_SYS_DIR=${EGDIR}/dbus-1/system.d
 INSTALL_MAKE_FLAGS+=	XINITRC_DIR=${EGDIR}/X11/xinit/xinitrc.d
 
 .include "options.mk"
-
-post-extract:
-	${CP} ${FILESDIR}/ck-sysdeps-netbsd.c ${WRKSRC}/src/
-	${CP} -rp ${WRKSRC}/tools/openbsd ${WRKSRC}/tools/netbsd
-
-pre-configure:
-	cd ${WRKSRC} && autoreconf -vi ${AUTORECONF_ARGS}
 
 .if ${OPSYS} == "SunOS"
 CONFIGURE_ARGS+=	--enable-rbac-shutdown=solaris.system.shutdown
