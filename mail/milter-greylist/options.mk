@@ -66,26 +66,25 @@ CONFIGURE_ARGS+=	--enable-postfix
 
 POSTFIX_QUEUE_DIR?=	${VARBASE}/spool/postfix
 
-PKG_GROUPS?=		postfix
-PKG_USERS?=		postfix:postfix
 PKG_GECOS.postfix=	Postfix User
 PKG_HOME.postfix=	${POSTFIX_QUEUE_DIR}
 
-MILTER_USER=		postfix
-MILTER_GROUP=		postfix
+MILTER_USER?=		postfix
+MILTER_GROUP?=		postfix
 .endif
 
 ###
 ### Sendmail support
 ###
 .if !empty(PKG_OPTIONS:Msendmail-milter)
-PKG_GROUPS=		smmsp
-PKG_USERS=		smmsp:smmsp
 PKG_GECOS.smmsp=	Sendmail Message Submission Program
 
-MILTER_USER=		smmsp
-MILTER_GROUP=		smmsp
+MILTER_USER?=		smmsp
+MILTER_GROUP?=		smmsp
 .endif
+
+PKG_GROUPS+=		${MILTER_GROUP}
+PKG_USERS+=		${MILTER_USER}:${MILTER_GROUP}
 
 ###
 ### SpamAssassin support
