@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15316 2016/01/16 16:13:30 leot Exp $
+$NetBSD: TODO,v 1.15324 2016/01/17 21:09:18 wiz Exp $
 
 Suggested new packages
 ======================
@@ -513,6 +513,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cflow-mode-1.4
 	o cgal-4.6.1
 	o cgen-20150701
+	o cgit-0.12
 	o checkbot-1.80
 	o cheese-2.32.0 [GNOME 2.32]
 	o cheese-3.16.1
@@ -574,6 +575,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o darktable-2.0
 	o dasher-4.11
 	o dateutils-0.3.3
+	o dbus-glib-0.106
 	o dd_rescue-1.46
 	o dd_rhelp-0.3.0
 	o ddrescue-1.20
@@ -842,6 +844,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o hamster-applet-2.32.1 [GNOME 2.32]
 	o handbrake-0.10.2
 	o hanzim-3.5
+	o harfbuzz-1.1.3
 	o harminv-1.4
 	o haskell-mode-1.45
 	o hdf-4.2.8
@@ -975,7 +978,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libcanberra-0.28 [drops support for GNOME2; don't update for now -- wiz]
 	o libchamplain08-0.12.10
 	o libdatrie-0.2.9
-	o libetonyek-0.1.5
+	o libetonyek-0.1.6
 	o libextractor-1.2 [requires shm_open()]
 	o libflash-0.4.13
 	o libfolks-0.10.1
@@ -999,6 +1002,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libmtag-0.3.6
 	o libmusicbrainz5-5.1.0
 	o liboobs-2.32.0 [GNOME 2.32]
+	o libopus-1.1.2
 	o libowfat-0.29
 	o libpgm-5.2.122
 	o libplist-1.12
@@ -1086,6 +1090,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o modular-xorg-xquartz-1.18.0
 	o molden-4.8 [after which PR 40252 can be closed]
 	o molden-5.4
+	o moneyguru-2.9.4
 	o monit-5.14
 	o mono2-4.0.4.1
 	o monodevelop-5.9.5.6
@@ -1191,10 +1196,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Captcha-reCAPTCHA-0.97
 	o p5-Catalyst-DispatchType-Regex-5.90035
 	o p5-Catalyst-Engine-PSGI-0.14
-	o p5-Catalyst-Plugin-Session-0.40
-	o p5-Catalyst-Plugin-Session-Store-DBIC-0.14
 	o p5-Catalyst-View-Email-0.35
-	o p5-Catalyst-View-Excel-Template-Plus-0.04
 	o p5-Chart-2.4.10
 	o p5-Config-Augeas-1.300
 	o p5-Cookie-Baker-0.06
@@ -1228,7 +1230,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-GraphViz2-2.34
 	o p5-Gtk2-1.223
 	o p5-HTML-TreeBuilder-LibXML-0.25
-	o p5-HTTP-Lite-2.44
 	o p5-HTTP-Proxy-0.304
 	o p5-HTTP-Server-EV-0.69
 	o p5-IO-Interface-1.09
@@ -1390,6 +1391,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o policyd-weight-0.1.15.2
 	o polsms-2.1.0
 	o poppass-4.0.14
+	o poppler-0.40.0
 	o posh-0.12.5
 	o postal-0.72
 	o postfix-3.0.3
@@ -1422,6 +1424,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-buildbot-0.9.0b5
 	o py-buildbot-slave-0.9.0b5
 	o py-cassa-1.11.0
+	o py-cffi-1.5.0
 	o py-colorama-0.3.3
 	o py-creole-1.1.1
 	o py-cups-1.9.73
@@ -1433,6 +1436,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-djangorestframework-2.3.12
 	o py-doctor-15.0.0
 	o py-flake8-2.4.1
+	o py-foolscap-0.10.0
 	o py-gmpy-1.17
 	o py-gnome-menus-3.8.0
 	o py-html2text-2016.1.8
@@ -1459,6 +1463,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-reportlab-3.0
 	o py-rope-0.9.4
 	o py-serpent-1.11
+	o py-setuptools-19.4
 	o py-simpletal-5.1
 	o py-smb-1.1.16
 	o py-spf-2.0.11
@@ -1469,6 +1474,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-suds-0.4.1
 	o py-sybase-0.37
 	o py-tlslite-0.4.6
+	o py-tortoisehg-3.6.3
 	o py-uliweb-0.4.1
 	o py-uwsgi-2.0.11.1
 	o py-wxWidgets-3.0.0
@@ -1744,7 +1750,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o wpa_supplicant-2.4
 	o wwwoffle-2.9i
 	o wxRemind-101
-	o x264-devel-20160109
+	o x264-devel-20160116
 	o x2vnc-1.31
 	o xa65-2.3.7
 	o xenkernel46-4.6.0

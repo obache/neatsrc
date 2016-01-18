@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2202 2016/01/16 08:50:40 wen Exp $
+# $NetBSD: Makefile,v 1.2204 2016/01/17 14:08:03 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -21,7 +21,6 @@ SUBDIR+=	SDL
 SUBDIR+=	SDL-intro-en
 SUBDIR+=	SDL-intro-ko
 SUBDIR+=	SDL2
-SUBDIR+=	SDL2_ttf
 SUBDIR+=	SDL_Pango
 SUBDIR+=	SDL_gfx
 SUBDIR+=	SDL_ttf
@@ -282,6 +281,7 @@ SUBDIR+=	gnustep-examples
 SUBDIR+=	gnustep-make
 SUBDIR+=	gnustep-objc
 SUBDIR+=	gnustep-objc-lf2
+SUBDIR+=	go-check
 SUBDIR+=	go-flags-svent
 SUBDIR+=	go-nbreader
 SUBDIR+=	go-tools

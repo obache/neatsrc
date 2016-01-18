@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.861 2016/01/15 08:58:21 wiz Exp $
+# $NetBSD: Makefile,v 1.864 2016/01/17 13:45:57 wiz Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -668,6 +668,7 @@ SUBDIR+=	py-Whoosh
 SUBDIR+=	py-X
 SUBDIR+=	py-X2
 SUBDIR+=	py-acora
+SUBDIR+=	py-alabaster
 SUBDIR+=	py-anyjson
 SUBDIR+=	py-biplist
 SUBDIR+=	py-cElementTree
@@ -715,7 +716,9 @@ SUBDIR+=	py-pyphen
 SUBDIR+=	py-pyquery
 SUBDIR+=	py-rdflib
 SUBDIR+=	py-relatorio
+SUBDIR+=	py-snowballstemmer
 SUBDIR+=	py-sphinx
+SUBDIR+=	py-sphinx-rtd-theme
 SUBDIR+=	py-sphinx-theme-cloud
 SUBDIR+=	py-textile
 SUBDIR+=	py-tinycss

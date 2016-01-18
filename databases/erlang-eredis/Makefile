@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.1 2015/11/04 13:45:44 fhajny Exp $
+# $NetBSD: Makefile,v 1.3 2016/01/16 19:19:56 fhajny Exp $
 
-DISTNAME=	eredis-1.0.8.20150910
-PKGNAME=	erlang-${DISTNAME}
+DISTNAME=	eredis-1.0.8
+PKGNAME=	erlang-${DISTNAME}.20150910
+PKGREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GITHUB:=wooga/}
 
@@ -10,20 +11,11 @@ HOMEPAGE=	http://github.com/wooga/eredis/
 COMMENT=	Erlang Redis client
 LICENSE=	mit
 
-BUILD_DEPENDS+=	rebar-[0-9]*:../../devel/rebar
-
 GITHUB_PROJECT=	eredis
 GITHUB_TAG=	bf12ecb30253c84a2331f4f0d93fd68856fcb9f4
 WRKSRC=		${WRKDIR}/${GITHUB_PROJECT}-${GITHUB_TAG}
 
-NO_CONFIGURE=	yes
-USE_TOOLS+=	gmake pax
+ERL_MOD_DIR=	lib/erlang/lib/${DISTNAME}
 
-INSTALLATION_DIRS+=	lib/erlang/lib/eredis
-
-do-install:
-	cd ${WRKSRC} && ${PAX} -rw -pp ebin include \
-		${DESTDIR}${PREFIX}/lib/erlang/lib/eredis/
-
-.include "../../lang/erlang/buildlink3.mk"
+.include "../../lang/erlang/module.mk"
 .include "../../mk/bsd.pkg.mk"
