@@ -1567,13 +1567,15 @@ Cmd_Exec(const char *cmd, const char **errnum)
 	(spawn_err = posix_spawn_file_actions_addclose(&fa, fds[1])) == 0) {
 	Var_ExportVars();
 	spawn_err = posix_spawn(&cpid, shellPath, &fa, NULL, UNCONST(args), environ);
+	if (spawn_err != 0) {
+	    *errnum = "Couldn't spawn for \"%s\"";
+	}
     } else {
 	*errnum = "Couldn't spawn file actions for \"%s\"";
     }
 
     (void)posix_spawn_file_actions_destroy(&fa);
     if (spawn_err != 0) {
-	*errnum = "Couldn't spawn for \"%s\"";
 	goto bad;
     }
 #else
