@@ -10,7 +10,7 @@ $NetBSD$
          $query = "SORT ($sort_on[$sort]) ".strtoupper($default_charset).' ALL';
 -        $sort_test = sqimap_run_command_list ($imap_stream, $query, true, $response, $message, $uid_support);
 +        $sort_test = sqimap_run_command_list ($imap_stream, $query, false, $response, $message, $uid_support);
-+    	if (!preg_match("/NO/", $response)) {
++    	if (preg_match("/NO/", $response)) {
 +        	$query = "SORT ($sort_on[$sort]) UTF-8 ALL";
 +        	$sort_test = sqimap_run_command_list ($imap_stream, $query, false, $response, $message, $uid_support);
 +	}
