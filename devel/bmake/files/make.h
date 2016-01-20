@@ -523,4 +523,20 @@ int str2Lst_Append(Lst, char *, const char *);
 #define MAXPATHLEN BMAKE_PATH_MAX
 #endif
 
+#ifndef HAVE_DIRNAME
+char * dirname(char *);
+#endif
+
+#ifndef HAVE_REALPATH
+char * realpath(const char *, char *);
+#endif
+
+#ifndef HAVE_SETENV
+int setenv(const char *, const char *, int);
+#endif
+
+#ifndef HAVE_STRLCPY
+size_t strlcpy(char *, const char *, size_t);
+#endif
+
 #endif /* _MAKE_H_ */
