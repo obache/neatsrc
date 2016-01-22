@@ -465,6 +465,5 @@ include/msgpack/zbuffer.h
 include/msgpack/zbuffer.hpp
 include/msgpack/zone.h
 include/msgpack/zone.hpp
-lib/libmsgpack.la
 lib/libmsgpackc.la
 lib/pkgconfig/msgpack.pc
