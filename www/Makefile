@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1147 2016/01/10 20:32:44 bsiegert Exp $
+# $NetBSD: Makefile,v 1.1148 2016/01/21 20:27:37 jperkin Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -640,6 +640,7 @@ SUBDIR+=	py-httpie
 SUBDIR+=	py-httplib2
 SUBDIR+=	py-idna
 SUBDIR+=	py-jonpy
+SUBDIR+=	py-livereload
 SUBDIR+=	py-mechanize
 SUBDIR+=	py-mezzanine
 SUBDIR+=	py-mod_wsgi
