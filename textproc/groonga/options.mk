@@ -4,7 +4,7 @@
 PKG_OPTIONS_VAR=	PKG_OPTIONS.groonga
 PKG_SUPPORTED_OPTIONS=	mecab tests zlib lz4
 PKG_SUPPORTED_OPTIONS+=	groonga-suggest-learner groonga-httpd
-PKG_SUGGESTED_OPTIONS=	mecab groonga-suggest-learner groonga-httpd
+PKG_SUGGESTED_OPTIONS=	mecab zlib groonga-suggest-learner groonga-httpd
 
 .include "../../mk/bsd.options.mk"
 
