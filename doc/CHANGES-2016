@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.324 2016/01/22 15:26:45 prlw1 Exp $
+$NetBSD: CHANGES-2016,v 1.328 2016/01/22 21:57:58 dmcmahill Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -483,3 +483,8 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated lang/oracle-jdk8 to 8.0.72 [ryoon 2016-01-22]
 	Added math/ffts version 20140106 [gson 2016-01-22]
 	Updated benchmarks/glmark2 to 2014.03nb2 [prlw1 2016-01-22]
+	Updated audio/pulseaudio to 8.0 [ryoon 2016-01-22]
+	Updated graphics/imlib2 to 1.4.7 [leot 2016-01-22]
+	Added print/tex-babel-spanglish version 0.3 [markd 2016-01-22]
+	Updated meta-pkgs/texlive-collection-langspanish to 2015 [markd 2016-01-22]
+	Updated cad/pcb to 20140316 [dmcmahill 2016-01-22]
