@@ -135,6 +135,7 @@ function checkshlib(DSO, needed, rpath, found, dso_rpath, got_rpath, nrpath) {
 		}
 	}
 	for (lib in needed) {
+		found = 0
 		for (p = 1; p <= nrpath; p++) {
 			libfile = cross_destdir rpath[p] "/" lib
 			if (!(libfile in libcache)) {
