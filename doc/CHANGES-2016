@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.317 2016/01/21 22:19:35 darcy Exp $
+$NetBSD: CHANGES-2016,v 1.324 2016/01/22 15:26:45 prlw1 Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -472,3 +472,14 @@ Changes to the packages collection and infrastructure in 2016:
 	Added textproc/py-mkdocs-bootstrap version 0.1.1 [jperkin 2016-01-21]
 	Added textproc/py-mkdocs-bootswatch version 0.1.0 [jperkin 2016-01-21]
 	Updated databases/py-postgresql to 4.2 [darcy 2016-01-21]
+	Updated ham/uhd to 3.9.2 [mef 2016-01-22]
+	Updated fonts/Hack-ttf to 2.019 [leot 2016-01-22]
+	Updated net/isc-dhclient4 to 4.3.3p1nb1 [jperkin 2016-01-22]
+	Updated net/isc-dhcp4 to 4.3.3p1nb1 [jperkin 2016-01-22]
+	Updated net/isc-dhcpd4 to 4.3.3p1nb1 [jperkin 2016-01-22]
+	Updated net/isc-dhcrelay4 to 4.3.3p1nb1 [jperkin 2016-01-22]
+	Updated x11/xf86-video-r128 to 6.10.1 [wiz 2016-01-22]
+	Updated lang/oracle-jre8 to 8.0.72 [ryoon 2016-01-22]
+	Updated lang/oracle-jdk8 to 8.0.72 [ryoon 2016-01-22]
+	Added math/ffts version 20140106 [gson 2016-01-22]
+	Updated benchmarks/glmark2 to 2014.03nb2 [prlw1 2016-01-22]
