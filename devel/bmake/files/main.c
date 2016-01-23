@@ -889,7 +889,15 @@ main(int argc, char **argv)
 		struct rlimit rl;
 		if (getrlimit(RLIMIT_NOFILE, &rl) != -1 &&
 		    rl.rlim_cur != rl.rlim_max) {
+#if defined(__GLIBC__) && defined(HAVE_POSIX_SPAWN)
+		/* posix_spawn_file_actions_add{open,close,dup2} in glibc
+		 * don't expect that file descriptor number is unlimited
+		 */
+			rl.rlim_cur = (rl.rlim_max == RLIM_INFINITY)
+			    ? INT_MAX - 1 : rl.rlim_max;
+#else
 			rl.rlim_cur = rl.rlim_max;
+#endif
 			(void)setrlimit(RLIMIT_NOFILE, &rl);
 		}
 	}
