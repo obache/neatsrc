@@ -196,9 +196,6 @@ OS_VERSION=		3.0
 .elif ${OPSYS} == "Msys"
 LOWER_OPSYS?=		msys
 LOWER_VENDOR?=		pc
-.  if !defined(LOWER_ARCH)
-LOWER_ARCH!=		${UNAME} -m | sed -e 's/i.86/i386/'
-.  endif # !defined(LOWER_ARCH)
 _OS_VERSION!=		${UNAME} -r
 OS_VERSION=		${_OS_VERSION:C/\(.*\)//}
 OS_VARIANT!=		${UNAME} -s
