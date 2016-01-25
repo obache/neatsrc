@@ -3,7 +3,7 @@
 
 DISTNAME=	onig-5.9.2
 PKGNAME=	${DISTNAME:S/onig/oniguruma/}
-CATEGORIES=	devel
+CATEGORIES=	textproc
 MASTER_SITES=	http://www.geocities.jp/kosako3/oniguruma/archive/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
