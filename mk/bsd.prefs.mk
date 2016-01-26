@@ -171,6 +171,11 @@ LOWER_VENDOR?=		pc
 .  endif
 LOWER_VENDOR?=		unknown
 
+.elif ${OPSYS} == "GNU"
+LOWER_OPSYS?=		gnu
+LOWER_OPSYS_VERSUFFIX?=	${OS_VERSION}
+LOWER_VENDOR?=		unknown
+
 .elif ${OPSYS} == "Haiku"
 LOWER_OPSYS?=		haiku
 .  if ${MACHINE_ARCH} == "i386"
