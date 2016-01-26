@@ -384,6 +384,7 @@ SUBDIR+=	ocaml-jsonm
 SUBDIR+=	ocaml-text
 SUBDIR+=	ocaml-tyxml
 SUBDIR+=	ocaml-uutf
+SUBDIR+=	onigmo
 SUBDIR+=	oniguruma
 SUBDIR+=	openjade
 SUBDIR+=	opensp
