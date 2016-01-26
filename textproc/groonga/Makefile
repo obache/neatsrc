@@ -10,6 +10,7 @@ HOMEPAGE=	http://groonga.org/
 COMMENT=	Fulltext search engine and column store
 LICENSE=	gnu-lgpl-v2.1
 
+DEPENDS+=	onigmo>=5.15.0:../../textproc/onigmo
 .include "../../lang/ruby/rubyversion.mk"
 DEPENDS+=	${RUBY_BASE}>=${RUBY_VERSION}:${RUBY_SRCDIR}
 
