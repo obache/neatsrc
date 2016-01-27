@@ -684,14 +684,16 @@ pkg_auto()
 
 # generate_pkg_summary directory
 #
-#    Generates a pkg_summary.gz file in the specified directory.
+#    Generates a pkg_summary.{txt,gz} file in the specified directory.
 generate_pkg_summary()
 {
     local directory="${1}"; shift
 
-    echo "PKG_COMP ==> Generating pkg_summary.gz"
+    echo "PKG_COMP ==> Generating pkg_summary.txt"
     for pkg in "${directory}"/*.tgz; do pkg_info -X "${pkg}"; done \
-        | gzip -c >"${directory}"/pkg_summary.gz
+        >"${directory}"/pkg_summary.txt
+    echo "PKG_COMP ==> Generating pkg_summary.gz"
+    gzip -c <"${directory}"/pkg_summary.txt >"${directory}"/pkg_summary.gz
 }
 
 # ----------------------------------------------------------------------
