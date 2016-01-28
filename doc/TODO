@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15349 2016/01/25 15:09:30 ryoon Exp $
+$NetBSD: TODO,v 1.15354 2016/01/27 10:26:54 wiz Exp $
 
 Suggested new packages
 ======================
@@ -363,7 +363,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o Gorm-1.2.22
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
-	o MesaLib-11.1.1
 	o OdfConverter-4.0
 	o PACK-0.0.4
 	o PAM-0.99.7.1
@@ -1052,6 +1051,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o makeself-2.2.0
 	o maketool-0.8.4
 	o makeztxt-1.60
+	o mame-0.170
 	o man-pages-4.01
 	o manedit-1.2.1
 	o mantis-1.2.19
@@ -1098,6 +1098,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mp3splt-2.6.2
 	o mp3splt-gtk-0.9.0
 	o mpeg4ip-1.6.1
+	o mplayer-1.2.1
 	o mpop-1.0.29
 	o mr-1.20150503
 	o mserv-devel-0.41
@@ -1386,7 +1387,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o policyd-weight-0.1.15.2
 	o polsms-2.1.0
 	o poppass-4.0.14
-	o poppler-0.40.0
 	o postal-0.72
 	o postfix-3.0.3
 	o postgresql-9.5.0
@@ -1468,11 +1468,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-stdnum-1.1
 	o py-suds-0.4.1
 	o py-sybase-0.37
-	o py-test-2.8.6
 	o py-tlslite-0.4.6
 	o py-uliweb-0.4.1
 	o py-uwsgi-2.0.11.1
-	o py-virtualenv-14.0.1
 	o py-wxWidgets-3.0.0
 	o py-yubiauth-0.3.10
 	o py-zconfig-3.0.3
@@ -1688,7 +1686,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o totem-3.14.1
 	o totem-pl-parser-3.10.3
 	o tripwire-2.3.1 [see also pkg/22362]
-	o trojita-0.5
+	o trojita-0.6
 	o ts-0.7.5
 	o tsclient-0.140
 	o turba-4.2.8

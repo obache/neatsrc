@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.362 2016/01/26 17:54:31 joerg Exp $
+$NetBSD: CHANGES-2016,v 1.372 2016/01/27 10:26:54 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -550,3 +550,13 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated mail/nmh to 1.6nb4 [leot 2016-01-26]
 	Updated devel/cmake to 3.4.3 [adam 2016-01-26]
 	Updated www/nginx to 1.8.1 [joerg 2016-01-26]
+	Updated www/nginx-devel to 1.9.10 [joerg 2016-01-26]
+	Updated pkgtools/pkglint to 5.3.3 [rillig 2016-01-26]
+	Updated www/firefox to 44.0 [ryoon 2016-01-27]
+	Updated www/firefox-l10n to 44.0 [ryoon 2016-01-27]
+	Updated security/gnupg21 to 2.1.11 [wiz 2016-01-27]
+	Updated x11/xkeyboard-config to 2.17 [wiz 2016-01-27]
+	Updated graphics/MesaLib to 11.1.1 [wiz 2016-01-27]
+	Updated devel/py-test to 2.8.6 [wiz 2016-01-27]
+	Updated devel/py-virtualenv to 14.0.1 [wiz 2016-01-27]
+	Updated print/poppler to 0.40.0 [wiz 2016-01-27]
