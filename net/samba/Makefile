@@ -3,6 +3,9 @@
 DISTNAME=	samba-${VERSION}
 CATEGORIES=	net
 MASTER_SITES=	${SAMBA_MIRRORS:=stable/}
+PATCH_SITES=	${SAMBA_MIRRORS:=patches/security/}
+PATCHFILES=	${DISTNAME}-security-2015-12-16.patch
+PATCH_DIST_STRIP=	-p2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.samba.org/
