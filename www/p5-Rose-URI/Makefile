@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.11 2015/06/12 10:52:10 wiz Exp $
+# $NetBSD: Makefile,v 1.13 2016/01/31 12:45:17 mef Exp $
 
-DISTNAME=	Rose-URI-1.00
-PKGNAME=	p5-${DISTNAME}0
-PKGREVISION=	5
+DISTNAME=	Rose-URI-1.02
+PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Rose/}
+MASTER_SITES=	http://search.cpan.org/CPAN/authors/id/J/JS/JSIRACUSA/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://search.cpan.org/dist/Rose-URI/

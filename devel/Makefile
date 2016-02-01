@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2204 2016/01/17 14:08:03 wiz Exp $
+# $NetBSD: Makefile,v 1.2205 2016/01/31 06:46:16 markd Exp $
 #
 
 COMMENT=	Development utilities
@@ -443,6 +443,7 @@ SUBDIR+=	libdbusmenu-gtk3
 SUBDIR+=	libdbusmenu-jsonloader
 SUBDIR+=	libdbusmenu-qt
 SUBDIR+=	libdbusmenu-tools
+SUBDIR+=	libdbusmenu-qt5
 SUBDIR+=	libdevq
 SUBDIR+=	libdnsres
 SUBDIR+=	libdockapp
