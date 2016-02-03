@@ -8,4 +8,5 @@ SHA1 (patch-configure) = 25361315a4c9622bdf4b48dcc1477e7ff1a12599
 SHA1 (patch-src_gssapi__mechanism__base.hpp) = 53a77f2e5f24375faa7aec3c77eb6a71f46fb996
 SHA1 (patch-src_pgm__socket.hpp) = c89575871db8b6fff07958577b4e791a6f0cbeb4
 SHA1 (patch-src_platform.hpp.in) = e1d12ef0112ea0944a544c9402d08a5a65591e57
+SHA1 (patch-src_socket__base.cpp) = b0d33e17f0cb35ebd8e769fa22df635cb9411018
 SHA1 (patch-src_tcp__address.cpp) = 80427b9064691381e0a0a19f06ba00d8500db959
