@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.19 2015/06/30 11:52:58 jaapb Exp $
+# $NetBSD: Makefile,v 1.21 2016/02/03 13:16:31 jaapb Exp $
 
-DISTNAME=		pcre-ocaml-7.1.5
+DISTNAME=		pcre-ocaml-7.1.6
 PKGNAME=	${DISTNAME} # avoid prefixing with ocaml
-PKGREVISION=	1
 CATEGORIES=		devel
 MASTER_SITES=          ${MASTER_SITE_GITHUB:=mmottl/}
 GITHUB_RELEASE=                v${PKGVERSION_NOREV}
@@ -21,7 +20,6 @@ MAKE_JOBS_SAFE=	no
 
 EGDIR=			${PREFIX}/share/examples/pcre-ocaml
 INSTALLATION_DIRS+=	${EGDIR}
-WRAPPER_DEBUG=	yes
 
 post-install:
 	cd ${WRKSRC}/examples && pax -rw -pm . ${DESTDIR}${EGDIR}

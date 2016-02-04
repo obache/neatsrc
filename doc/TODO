@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15398 2016/02/02 18:22:07 leot Exp $
+$NetBSD: TODO,v 1.15402 2016/02/03 17:19:36 leot Exp $
 
 Suggested new packages
 ======================
@@ -915,7 +915,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ircservices-5.1.21
 	o iroffer-1.4b01
 	o isl-0.15
-	o ispell-de-20131206
 	o ispell-ga-4.6
 	o iwi-firmware3-3.1
 	o ja-grep-2.9
@@ -1155,7 +1154,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ocaml-oasis-0.4.5
 	o ocaml-uutf-0.9.4
 	o ocamlgraph-1.8.6
-	o ocamlnet-4.0.4
 	o ocrad-0.25
 	o octave-4.0.0
 	o odbc-postgresql-09.03.0400
@@ -1466,7 +1464,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o pythontidy-1.23
 	o qbzr-0.22.4
 	o qcad-3.7.5.0
-	o qhull-2009.1.3
 	o qlandkartegt-1.8.1 [pkg/49910]
 	o qnetwalk-1.4
 	o qpdfview-0.4.15
@@ -1717,7 +1714,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o wbm-virtual-server-4.152
 	o wcalc-2.4
 	o webalizer-2.23.05
-	o webkit-gtk-2.10.7
 	o webmin-1.780
 	o websvn-2.3.3
 	o weechat-1.4
