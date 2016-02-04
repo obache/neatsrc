@@ -9,7 +9,7 @@ $NetBSD$
  void zmq::thread_t::setSchedulingParameters(int priority_, int schedulingPolicy_)
  {
 -#if !defined ZMQ_HAVE_ZOS
-+#if defined _POSIX_THREAD_PRIORITY_SCHEDULING
++#if _POSIX_THREAD_PRIORITY_SCHEDULING > 0
      int policy = 0;
      struct sched_param param;
  
