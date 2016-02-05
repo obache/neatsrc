@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.726 2016/01/11 23:50:27 wiz Exp $
+# $NetBSD: Makefile,v 1.728 2016/02/04 13:49:50 leot Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -173,6 +173,7 @@ SUBDIR+=	gimp2-wideangle
 SUBDIR+=	giram
 SUBDIR+=	gle
 SUBDIR+=	glew
+SUBDIR+=	glfw
 SUBDIR+=	glitz
 SUBDIR+=	gliv
 SUBDIR+=	glm
@@ -479,6 +480,7 @@ SUBDIR+=	simage
 SUBDIR+=	skencil
 SUBDIR+=	spcaview
 SUBDIR+=	svgpart
+SUBDIR+=	sxiv
 SUBDIR+=	tango-icon-theme
 SUBDIR+=	tesseract
 SUBDIR+=	tex-a2ping
