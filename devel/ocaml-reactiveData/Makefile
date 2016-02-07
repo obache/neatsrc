@@ -1,19 +1,16 @@
-# $NetBSD: Makefile,v 1.2 2015/06/30 11:52:57 jaapb Exp $
+# $NetBSD: Makefile,v 1.4 2016/02/06 12:10:33 jaapb Exp $
 
-VERSION=	0.1
-PKGNAME=	ocaml-reactiveData-${VERSION}
-PKGREVISION=	1
-DISTNAME=	${VERSION}
+GITHUB_PROJECT=	reactiveData
+DISTNAME=	${GITHUB_PROJECT}-0.2
+PKGNAME=	ocaml-${DISTNAME}
 CATEGORIES=	devel
-MASTER_SITES=	http://github.com/hhugo/reactiveData/archive/
-DIST_SUBDIR=	ocaml-reactiveData
+MASTER_SITES=	${MASTER_SITE_GITHUB:=ocsigen/}
 
 MAINTAINER=	jaapb@NetBSD.org
-HOMEPAGE=	http://github.com/hhugo/reactiveData
+HOMEPAGE=	http://github.com/ocsigen/reactiveData
 COMMENT=	Functional reactive programming library
 LICENSE=	gnu-lgpl-v2.1
 
-WRKSRC=		${WRKDIR}/reactiveData-0.1
 OCAML_USE_FINDLIB=	yes
 
 .include "../../mk/ocaml.mk"

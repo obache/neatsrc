@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2205 2016/01/31 06:46:16 markd Exp $
+# $NetBSD: Makefile,v 1.2209 2016/02/06 13:40:47 jaapb Exp $
 #
 
 COMMENT=	Development utilities
@@ -634,8 +634,10 @@ SUBDIR+=	nsis
 SUBDIR+=	nspr
 SUBDIR+=	nspr-reference
 SUBDIR+=	nss
+SUBDIR+=	ocaml-base64
 SUBDIR+=	ocaml-batteries
 SUBDIR+=	ocaml-cmdliner
+SUBDIR+=	ocaml-cppo
 SUBDIR+=	ocaml-deriving-ocsigen
 SUBDIR+=	ocaml-extlib
 SUBDIR+=	ocaml-findlib
@@ -643,6 +645,7 @@ SUBDIR+=	ocaml-lwt
 SUBDIR+=	ocaml-oasis
 SUBDIR+=	ocaml-odn
 SUBDIR+=	ocaml-optcomp
+SUBDIR+=	ocaml-ppx_tools
 SUBDIR+=	ocaml-re
 SUBDIR+=	ocaml-react
 SUBDIR+=	ocaml-reactiveData
@@ -1599,6 +1602,7 @@ SUBDIR+=	php-sysvshm
 SUBDIR+=	php-xcache
 SUBDIR+=	php-xdebug
 SUBDIR+=	physfs
+SUBDIR+=	picopb
 SUBDIR+=	picp
 SUBDIR+=	picprg
 SUBDIR+=	pilrc

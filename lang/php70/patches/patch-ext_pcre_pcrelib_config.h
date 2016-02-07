@@ -1,9 +1,9 @@
-$NetBSD: patch-ext_pcre_pcrelib_config.h,v 1.1 2016/01/21 21:47:24 jklos Exp $
+$NetBSD: patch-ext_pcre_pcrelib_config.h,v 1.2 2016/02/06 07:14:44 taca Exp $
 
---- ext/pcre/pcrelib/config.h.orig	2016-01-06 10:05:25.000000000 +0000
+--- ext/pcre/pcrelib/config.h.orig	2016-02-02 16:32:32.000000000 +0000
 +++ ext/pcre/pcrelib/config.h
-@@ -322,7 +322,20 @@ sure both macros are undefined; an emula
- /* #undef STDC_HEADERS */
+@@ -397,7 +397,20 @@ them both to 0; an emulation function wi
+ #undef SUPPORT_GCOV
  
  /* Define to any value to enable support for Just-In-Time compiling. */
 -#define SUPPORT_JIT
