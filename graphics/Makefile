@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.728 2016/02/04 13:49:50 leot Exp $
+# $NetBSD: Makefile,v 1.730 2016/02/07 22:11:48 markd Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -313,6 +313,7 @@ SUBDIR+=	libwmf
 SUBDIR+=	libxmi
 SUBDIR+=	ljpeg
 SUBDIR+=	lprof
+SUBDIR+=	luminance-hdr
 SUBDIR+=	magicpoint
 SUBDIR+=	mandelbulber
 SUBDIR+=	mate-backgrounds
@@ -426,6 +427,7 @@ SUBDIR+=	py-matplotlib-gtk2
 SUBDIR+=	py-matplotlib-tk
 SUBDIR+=	py-mcomix
 SUBDIR+=	py-nwdiag
+SUBDIR+=	py-openexr
 SUBDIR+=	py-piddle
 SUBDIR+=	py-pycha
 SUBDIR+=	py-pygal
