@@ -1,10 +1,10 @@
 # $NetBSD: Makefile,v 1.53 2015/06/29 11:06:46 ryoon Exp $
 
-DISTNAME=	skf_${VERSION}.3
+DISTNAME=	skf_${VERSION}.4
 VERSION=	2.00
 PKGNAME=	${DISTNAME:S/_/-/}
 CATEGORIES=	japanese converters
-MASTER_SITES=	${MASTER_SITE_OSDN:=skf/64387/}
+MASTER_SITES=	${MASTER_SITE_OSDN:=skf/64426/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
