@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1150 2016/01/24 17:09:06 leot Exp $
+# $NetBSD: Makefile,v 1.1152 2016/02/08 02:32:15 markd Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -236,6 +236,7 @@ SUBDIR+=	p5-CGI-Ajax
 SUBDIR+=	p5-CGI-Application
 SUBDIR+=	p5-CGI-Application-PSGI
 SUBDIR+=	p5-CGI-Application-Plugin-DBH
+SUBDIR+=	p5-CGI-Application-Plugin-Session
 SUBDIR+=	p5-CGI-Application-Plugin-ValidateRM
 SUBDIR+=	p5-CGI-Compile
 SUBDIR+=	p5-CGI-Cookie-Splitter
@@ -319,6 +320,7 @@ SUBDIR+=	p5-FCGI
 SUBDIR+=	p5-FCGI-Client
 SUBDIR+=	p5-FCGI-ProcManager
 SUBDIR+=	p5-File-Mork
+SUBDIR+=	p5-HTML-CalendarMonthSimple
 SUBDIR+=	p5-HTML-Clean
 SUBDIR+=	p5-HTML-Display
 SUBDIR+=	p5-HTML-Element-Extended

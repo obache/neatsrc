@@ -1,4 +1,4 @@
-$NetBSD: patch-base_logging.c,v 1.2 2016/02/07 21:52:06 bouyer Exp $
+$NetBSD$
 
 64bit time_t workaround
 

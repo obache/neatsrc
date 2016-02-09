@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2209 2016/02/06 13:40:47 jaapb Exp $
+# $NetBSD: Makefile,v 1.2211 2016/02/08 05:48:07 agc Exp $
 #
 
 COMMENT=	Development utilities
@@ -144,6 +144,7 @@ SUBDIR+=	cppunit
 SUBDIR+=	cproto
 SUBDIR+=	cpuflags
 SUBDIR+=	cqual
+SUBDIR+=	cre2
 SUBDIR+=	cscope
 SUBDIR+=	cssc
 SUBDIR+=	ctemplate
@@ -1858,6 +1859,7 @@ SUBDIR+=	rapidsvn
 SUBDIR+=	ratfor
 SUBDIR+=	rcs
 SUBDIR+=	rdp
+SUBDIR+=	re2
 SUBDIR+=	re2c
 SUBDIR+=	readline
 SUBDIR+=	rebar

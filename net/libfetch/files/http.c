@@ -1,4 +1,4 @@
-/*	$NetBSD: http.c,v 1.37 2014/06/11 13:12:12 joerg Exp $	*/
+/*	$NetBSD: http.c,v 1.38 2016/02/08 13:27:42 jperkin Exp $	*/
 /*-
  * Copyright (c) 2000-2004 Dag-Erling Coïdan Smørgrav
  * Copyright (c) 2003 Thomas Klausner <wiz@NetBSD.org>
@@ -334,7 +334,7 @@ http_closefn(void *v)
 		setsockopt(io->conn->sd, IPPROTO_TCP, TCP_NODELAY, &val,
 			   sizeof(val));
 			  fetch_cache_put(io->conn, fetch_close);
-#ifdef TCP_NOPUSH
+#if defined(TCP_NOPUSH) && !defined(__APPLE__)
 		val = 1;
 		setsockopt(io->conn->sd, IPPROTO_TCP, TCP_NOPUSH, &val,
 		    sizeof(val));
@@ -717,7 +717,7 @@ http_connect(struct url *URL, struct url *purl, const char *flags, int *cached)
 {
 	conn_t *conn;
 	int af, verbose;
-#ifdef TCP_NOPUSH
+#if defined(TCP_NOPUSH) && !defined(__APPLE__)
 	int val;
 #endif
 
@@ -766,7 +766,7 @@ http_connect(struct url *URL, struct url *purl, const char *flags, int *cached)
 		return (NULL);
 	}
 
-#ifdef TCP_NOPUSH
+#if defined(TCP_NOPUSH) && !defined(__APPLE__)
 	val = 1;
 	setsockopt(conn->sd, IPPROTO_TCP, TCP_NOPUSH, &val, sizeof(val));
 #endif
@@ -963,7 +963,7 @@ http_request(struct url *URL, const char *op, struct url_stat *us,
 		 * be compatible with such configurations, fiddle with socket
 		 * options to force the pending data to be written.
 		 */
-#ifdef TCP_NOPUSH
+#if defined(TCP_NOPUSH) && !defined(__APPLE__)
 		val = 0;
 		setsockopt(conn->sd, IPPROTO_TCP, TCP_NOPUSH, &val,
 			   sizeof(val));
