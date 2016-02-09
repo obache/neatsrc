@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	MathJax-2.6.0
+DISTNAME=	MathJax-2.6.1
 PKGNAME=	${DISTNAME:tl}
 CATEGORIES=	www math
 MASTER_SITES=	-https://github.com/mathjax/MathJax/archive/${PKGVERSION_NOREV}.tar.gz

@@ -1,6 +1,7 @@
 @comment $NetBSD$
 share/javascript/mathjax/.gitignore
 share/javascript/mathjax/.npmignore
+share/javascript/mathjax/.travis.yml
 share/javascript/mathjax/CONTRIBUTING.md
 share/javascript/mathjax/LICENSE
 share/javascript/mathjax/MathJax.js
