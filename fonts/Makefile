@@ -109,6 +109,7 @@ SUBDIR+=	font-winitzki-cyrillic
 SUBDIR+=	font-xfree86-type1
 SUBDIR+=	fontconfig
 SUBDIR+=	fontforge
+SUBDIR+=	fonts-sipa-arundina-ttf
 SUBDIR+=	fonts-tlwg
 SUBDIR+=	freefont-ttf
 SUBDIR+=	freefonts
