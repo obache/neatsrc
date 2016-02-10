@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.599 2016/02/09 15:54:38 wiz Exp $
+$NetBSD: CHANGES-2016,v 1.603 2016/02/09 22:26:31 abs Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -824,3 +824,7 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated sysutils/salt to 2015.8.5nb1 [wiz 2016-02-09]
 	Updated sysutils/pstree to 2.39 [mef 2016-02-09]
 	Updated audio/SDL2_mixer to 2.0.1 [wiz 2016-02-09]
+	Updated mail/thunderbird to 38.5.1 [ryoon 2016-02-09]
+	Updated mail/thunderbird-l10n to 38.5.1 [ryoon 2016-02-09]
+	Updated devel/xulrunner38 to 38.6.0 [ryoon 2016-02-09]
+	Updated net/syncthing to 0.12.18 [abs 2016-02-09]
