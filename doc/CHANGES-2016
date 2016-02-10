@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.569 2016/02/08 17:36:18 adam Exp $
+$NetBSD: CHANGES-2016,v 1.599 2016/02/09 15:54:38 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -795,3 +795,32 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated devel/xdelta3 to 3.0.11 [wiz 2016-02-08]
 	Updated pkgtools/pkgin to 0.9.4 [jperkin 2016-02-08]
 	Updated www/curl to 7.47.1 [adam 2016-02-08]
+	Updated sysutils/salt to 2015.8.5 [sevan 2016-02-08]
+	Updated chat/jabberd2 to 2.3.5 [schnoebe 2016-02-09]
+	Updated x11/modular-xorg-server to 1.18.1 [wiz 2016-02-09]
+	Updated x11/xf86-video-ati to 7.6.1nb3 [wiz 2016-02-09]
+	Updated x11/modular-xorg-xephyr to 1.18.1 [wiz 2016-02-09]
+	Updated audio/icecast to 2.4.3 [adam 2016-02-09]
+	Updated net/nagios-base to 4.0.8nb5 [bouyer 2016-02-09]
+	Updated filesystems/glusterfs to 3.7.8 [manu 2015-02-09]
+	Updated net/libasyncns to 0.8 [mef 2016-02-09]
+	Updated net/lft to 3.73 [mef 2016-02-09]
+	Updated net/arping to 2.16 [mef 2016-02-09]
+	Updated multimedia/x265 to 1.9 [adam 2016-02-09]
+	Updated net/ddclient to 3.8.3 [mef 2016-02-09]
+	Updated www/firefox to 44.0.1 [ryoon 2016-02-09]
+	Updated www/firefox-l10n to 44.0.1 [ryoon 2016-02-09]
+	Updated sysutils/p5-GTop to 0.18 [mef 2016-02-09]
+	Updated sysutils/p5-File-Remove to 1.55 [mef 2016-02-09]
+	Updated sysutils/p5-File-chmod to 0.42 [mef 2016-02-09]
+	Updated www/firefox38 to 38.6.0nb1 [ryoon 2016-02-09]
+	Updated sysutils/p5-Quota to 1.7.2 [mef 2016-02-09]
+	Updated www/p5-Mojolicious to 6.44 [mef 2016-02-09]
+	Updated www/p5-URI-db to 0.17 [mef 2016-02-09]
+	Updated sysutils/p5-Sys-SigAction to 0.21 [mef 2016-02-09]
+	Updated sysutils/p5-SSH-Batch to 0.030 [mef 2016-02-09]
+	Updated sysutils/p5-Sys-Filesystem to 1.406 [mef 2016-02-09]
+	Updated sysutils/p5-Sys-Hostname-Long to 1.5 [mef 2016-02-09]
+	Updated sysutils/salt to 2015.8.5nb1 [wiz 2016-02-09]
+	Updated sysutils/pstree to 2.39 [mef 2016-02-09]
+	Updated audio/SDL2_mixer to 2.0.1 [wiz 2016-02-09]

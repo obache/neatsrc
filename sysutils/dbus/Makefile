@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.95 2016/01/13 07:54:31 jperkin Exp $
+# $NetBSD: Makefile,v 1.97 2016/02/09 15:24:07 mef Exp $
 
 DISTNAME=	dbus-1.10.6
 CATEGORIES=	sysutils

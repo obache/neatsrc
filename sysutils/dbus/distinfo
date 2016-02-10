@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.71 2015/12/06 11:35:55 wiz Exp $
+$NetBSD: distinfo,v 1.73 2016/02/09 15:24:07 mef Exp $
 
 SHA1 (dbus-1.10.6.tar.gz) = 4247d7f86a0164d7dd3eb18a74670eb863ac342c
 RMD160 (dbus-1.10.6.tar.gz) = afaac55b06050bd4b80f7557fe69029dc3a820b0
