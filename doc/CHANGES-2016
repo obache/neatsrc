@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.603 2016/02/09 22:26:31 abs Exp $
+$NetBSD: CHANGES-2016,v 1.616 2016/02/10 16:00:22 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -828,3 +828,16 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated mail/thunderbird-l10n to 38.5.1 [ryoon 2016-02-09]
 	Updated devel/xulrunner38 to 38.6.0 [ryoon 2016-02-09]
 	Updated net/syncthing to 0.12.18 [abs 2016-02-09]
+	Updated security/p5-Crypt-OpenSSL-DSA to 0.15 [wen 2016-02-10]
+	Updated security/p5-Crypt-OpenSSL-Random to 0.11 [wen 2016-02-10]
+	Updated security/p5-Crypt-RIPEMD160 to 0.06 [wen 2016-02-10]
+	Updated devel/p5-Scalar-List-Utils to 1.43 [wiz 2016-02-10]
+	Updated editors/obby to 0.4.8 [mef 2016-02-10]
+	Updated audio/jack to 0.124.1 [wiz 2016-02-10]
+	Updated www/py-flask-babelex to 0.9.3 [kleink 2016-02-10]
+	Updated lang/nodejs to 5.6.0 [fhajny 2016-02-10]
+	Updated lang/nodejs4 to 4.3.0 [fhajny 2016-02-10]
+	Updated geography/py-geojson to 1.3.2 [kleink 2016-02-10]
+	Updated geography/py-geojson to 1.3.2nb1 [kleink 2016-02-10]
+	Updated textproc/py-pyphen to 0.9.4 [kleink 2016-02-10]
+	Updated pkgtools/pkgdiff to 1.8 [wiz 2016-02-10]

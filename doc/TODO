@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15434 2016/02/09 14:28:41 mef Exp $
+$NetBSD: TODO,v 1.15438 2016/02/10 13:25:20 wiz Exp $
 
 Suggested new packages
 ======================
@@ -921,7 +921,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ja-vflib-utils-2.25.6
 	o ja-vfxdvik-22.40y1
 	o jabberd-1.6.1.1
-	o jack-0.124.1
 	o java-db3-3.87
 	o jcabc2ps-20070110
 	o jchkmail-2.6.0
@@ -1000,6 +999,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libplist-1.12
 	o libprelude-1.2.5
 	o libquantum-1.1.0 [pkg/43728, development release]
+	o libreoffice-5.1
 	o libstree-0.4.3pre2 [pkg/43748]
 	o libtar-1.2.20
 	o libtcl-nothread-8.5.1
@@ -1057,6 +1057,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mbuf-20141227
 	o mcollective-2.3.2
 	o mcsim-5.6.4
+	o mdds-1.0 [wip]
 	o mednafen-0.9.38.2
 	o megatools-1.9.96
 	o menhir-20141215
@@ -1139,7 +1140,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o nut-20.1
 	o nxtvepg-2.8.1
 	o oath-toolkit-2.6.1
-	o obby-0.4.8
 	o objc-3.2.13
 	o ocaml-cmdliner-0.9.7
 	o ocaml-graphics-4.02.3
@@ -1190,7 +1190,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Chart-2.4.10
 	o p5-Config-Augeas-1.300
 	o p5-Crypt-OpenPGP-1.11
-	o p5-Crypt-RIPEMD160-0.06
 	o p5-DBD-DB2-1.85
 	o p5-DBD-ODBC-1.52
 	o p5-DBD-Oracle-1.74
