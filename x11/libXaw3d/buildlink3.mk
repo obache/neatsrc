@@ -8,6 +8,20 @@ LIBXAW3D_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.libXaw3d+=	libXaw3d>=1.6.2
 BUILDLINK_PKGSRCDIR.libXaw3d?=	../../x11/libXaw3d
 
+BUILDLINK_TRANSFORM+=	l:Xaw:Xaw3d
+ 
+.include "../../mk/bsd.fast.prefs.mk"
+
+.if ${X11_TYPE} == "modular"
+.PHONY: buildlink-libXaw3d-inc-hack
+buildlink-libXaw3d-cookie: buildlink-libXaw3d-inc-hack
+ 
+buildlink-libXaw3d-inc-hack: buildlink-directories
+	[ ! -h ${BUILDLINK_DIR}/include/X11/Xaw ] && \
+		${MKDIR} ${BUILDLINK_DIR}/include/X11 && \
+		${LN} -s Xaw3d ${BUILDLINK_DIR}/include/X11/Xaw
+.endif
+
 .include "../../x11/libXmu/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"

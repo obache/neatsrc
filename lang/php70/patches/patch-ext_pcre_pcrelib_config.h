@@ -1,4 +1,4 @@
-$NetBSD: patch-ext_pcre_pcrelib_config.h,v 1.2 2016/02/06 07:14:44 taca Exp $
+$NetBSD$
 
 --- ext/pcre/pcrelib/config.h.orig	2016-02-02 16:32:32.000000000 +0000
 +++ ext/pcre/pcrelib/config.h

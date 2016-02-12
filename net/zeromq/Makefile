@@ -26,5 +26,4 @@ TEST_TARGET=	check
 .endif
 
 .include "../../security/libsodium/buildlink3.mk"
-.include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
