@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.624 2016/02/11 15:12:38 he Exp $
+$NetBSD: CHANGES-2016,v 1.630 2016/02/12 15:24:47 ryoon Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -849,3 +849,11 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated security/libgcrypt to 1.6.5 [wiz 2016-02-11]
 	Updated devel/p5-PathTools to 3.62 [he 2016-02-11]
 	Updated net/openslp to 1.2.1nb8 [he 2016-02-11]
+	Updated databases/mongodb to 3.2.1 [ryoon 2016-02-12]
+	Updated misc/libreoffice43 to 4.3.7.2nb6 [wiz 2016-02-12]
+	Updated sysutils/amtterm to 1.4 [mef 2016-02-12]
+	Updated devel/boost-headers to 1.60.0nb2 [ryoon 2016-02-12]
+	Updated devel/boost-libs to 1.60.0nb1 [ryoon 2016-02-12]
+	Updated meta-pkgs/boost to 1.60.0nb1 [ryoon 2016-02-12]
+	Updated www/firefox to 44.0.2 [ryoon 2016-02-12]
+	Updated www/firefox-l10n to 44.0.2 [ryoon 2016-02-12]
