@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.630 2016/02/12 15:24:47 ryoon Exp $
+$NetBSD: CHANGES-2016,v 1.643 2016/02/13 18:52:30 bsiegert Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -857,3 +857,16 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated meta-pkgs/boost to 1.60.0nb1 [ryoon 2016-02-12]
 	Updated www/firefox to 44.0.2 [ryoon 2016-02-12]
 	Updated www/firefox-l10n to 44.0.2 [ryoon 2016-02-12]
+	Updated textproc/grep to 2.23 [ryoon 2016-02-12]
+	Updated net/py-google-cloud-sdk to 96.0.0 [ryoon 2016-02-13]
+	Updated devel/gtexinfo to 6.1 [ryoon 2016-02-13]
+	Updated converters/libetonyek to 0.1.6 [wiz 2016-02-13]
+	Updated devel/mdds to 1.0.0 [wiz 2016-02-13]
+	Updated www/liferea to 1.10.18 [leot 2016-02-13]
+	Updated graphics/MesaLib to 11.1.2 [wiz 2016-02-13]
+	Removed sysutils/ruby-libnotify [tsutsui 2016-02-13]
+	Updated multimedia/adobe-flash-plugin11 to 11.2.202.569 [tsutsui 2016-02-13]
+	Updated www/ruby-http to 1.0.2 [tsutsui 2016-02-13]
+	Updated net/ruby-twitter 5.16.0 [tsutsui 2016-02-13]
+	Updated emulators/xnp2 to 0.85 [tsutsui 2016-02-13]
+	Added devel/go-review version 20160213 [bsiegert 2016-02-13]
