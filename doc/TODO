@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15446 2016/02/13 08:46:52 wiz Exp $
+$NetBSD: TODO,v 1.15460 2016/02/14 12:54:53 ryoon Exp $
 
 Suggested new packages
 ======================
@@ -579,7 +579,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o dega-1.12
 	o dejagnu-1.5.3
 	o delegate-9.9.13
-	o denemo-2.0
+	o denemo-2.0.2
 	o desklaunch-1.1.7
 	o deskmenu-1.4.5
 	o dhcpcd-dbus-0.6.1
@@ -1227,9 +1227,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Math-BigInt-GMP-1.38
 	o p5-Math-BigInt-Pari-1.18
 	o p5-Math-Derivative-0.04
-	o p5-Math-MatrixReal-2.12
-	o p5-Math-Permute-List-1.007
-	o p5-Math-Prime-Util-0.51
 	o p5-Math-Random-MT-Perl-1.13
 	o p5-Memoize-Memcached-0.11
 	o p5-Moose-Policy-0.05
@@ -1692,7 +1689,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o webalizer-2.23.05
 	o webmin-1.780
 	o websvn-2.3.3
-	o weechat-1.4
 	o whohas-0.29.1
 	o whowatch-1.8.5
 	o windowlab-1.40
@@ -1707,7 +1703,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o wpa_supplicant-2.4
 	o wwwoffle-2.9i
 	o wxRemind-101
-	o x264-devel-20160206
+	o x264-devel-20160213
 	o x2vnc-1.31
 	o xa65-2.3.7
 	o xbindkeys-1.8.6
@@ -1740,6 +1736,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o xmlstarlet-1.5.0
 	o xmms-crossfade-0.3.14
 	o xmms-musepack-1.8.0 [http://dl.slik.org/musepack/xmms-musepack-1.8.0.tar.gz]
+	o xmp-4.3.11
 	o xnap-2.5r3
 	o xorp-1.8.5
 	o xosview-1.16
