@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.675 2016/02/14 19:55:12 ryoon Exp $
+$NetBSD: CHANGES-2016,v 1.685 2016/02/15 16:34:49 jperkin Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -905,3 +905,14 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated net/mikutter to 3.3.6 [tsutsui 2016-02-14]
 	Updated games/onscripter to 20150820 [tsutsui 2016-02-14]
 	Updated misc/libreoffice5-bin to 5.1.0 [ryoon 2016-02-14]
+	Updated www/py-google-api-python-client to 1.4.2 [mef 2016-02-15]
+	Updated sysutils/pciutils to 3.4.1 [msaitoh 2016-02-15]
+	Updated print/zathura-pdf-mupdf to 0.3.0 [leot 2016-02-15]
+	Updated print/zathura to 0.3.5 [leot 2016-02-15]
+	Updated net/youtube-dl to 20160213 [adam 2016-02-15]
+	Updated security/py-oauth2client to 1.5.2 [wiz 2016-02-15]
+	Updated www/py-werkzeug to 0.11.4 [kleink 2016-02-15]
+	Updated www/py-werkzeug-docs to 0.11.4 [kleink 2016-02-15]
+	Updated devel/glib to 1.2.10nb11 [jperkin 2016-02-15]
+	Updated x11/gtk to 1.2.10nb15 [jperkin 2016-02-15]
+	Added www/ap-authnz-crowd version 2.2.2 [jperkin 2016-02-15]
