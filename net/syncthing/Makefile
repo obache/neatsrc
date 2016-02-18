@@ -1,16 +1,16 @@
-# $NetBSD: Makefile,v 1.10 2016/02/09 22:26:10 abs Exp $
+# $NetBSD: Makefile,v 1.12 2016/02/16 23:07:12 gdt Exp $
 
 # Upstream regularly breaks protocol compatibility.  While users of
-# pkgsrc syncthing on multiple systems can update synchronously, the
-# most important use case is with syncthing-android.  Therefore,
-# pkgsrc will update to a new major version (e.g. 0.12.x vs 0.11.x)
-# when a corresponding syncthing-android version becomes available in
-# the f-droid.org repository:
+# pkgsrc syncthing on multiple systems can update synchronously, an
+# important use case is interoperating with syncthing-android.
+# Therefore, pkgsrc will update to a new major version (e.g. 0.12.x vs
+# 0.11.x) when a corresponding syncthing-android version becomes
+# available in the f-droid.org repository:
 # https://f-droid.org/repository/browse/?fdid=com.nutomic.syncthingandroid
 # Updates to new major versions must be tested against the android
 # version from f-droid prior to commiting.  (This is an attempt to
 # avoid having to version syncthing in pkgsrc.)
-DISTNAME=	syncthing-0.12.18
+DISTNAME=	syncthing-0.12.19
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=syncthing/}
 
