@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2214 2016/02/17 16:49:13 jaapb Exp $
+# $NetBSD: Makefile,v 1.2216 2016/02/18 15:53:24 gson Exp $
 #
 
 COMMENT=	Development utilities
@@ -284,8 +284,8 @@ SUBDIR+=	gnustep-objc
 SUBDIR+=	gnustep-objc-lf2
 SUBDIR+=	go-check
 SUBDIR+=	go-flags-svent
-SUBDIR+=	go-review
 SUBDIR+=	go-nbreader
+SUBDIR+=	go-review
 SUBDIR+=	go-tools
 SUBDIR+=	gob2
 SUBDIR+=	gobject-introspection
@@ -387,6 +387,7 @@ SUBDIR+=	java-subversion
 SUBDIR+=	javacc
 SUBDIR+=	javadeps
 SUBDIR+=	jd-gui
+SUBDIR+=	jemalloc
 SUBDIR+=	jenkins
 SUBDIR+=	jflex
 SUBDIR+=	jq
