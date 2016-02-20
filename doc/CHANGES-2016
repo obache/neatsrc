@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.768 2016/02/18 15:55:12 gson Exp $
+$NetBSD: CHANGES-2016,v 1.778 2016/02/19 15:15:52 jperkin Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -1002,3 +1002,14 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated audio/alsa-plugins-oss to 1.1.0 [wiz 2016-02-18]
 	Updated audio/alsa-plugins-pulse to 1.1.0 [wiz 2016-02-18]
 	Added devel/jemalloc version 4.0.4 [gson 2016-02-18]
+	Updated print/py-weasyprint to 0.26 [kleink 2016-02-18]
+	Updated databases/py-postgresql to 4.2.1 [darcy 2016-02-18]
+	Updated multimedia/phonon to 4.8.3nb1 [jperkin 2016-02-18]
+	Updated net/php-baikal to 0.3.2 [wiz 2016-02-18]
+	Updated x11/xf86-video-amdgpu to 1.0.1 [wiz 2016-02-19]
+	Updated net/tigervnc to 1.6.0 [wiz 2016-02-19]
+	Updated archivers/libzip to 1.1.2 [wiz 2016-02-19]
+	Updated www/firefox38 to 38.6.1 [ryoon 2016-02-19]
+	Updated devel/xulrunner38 to 38.6.1 [ryoon 2016-02-19]
+	Updated www/firefox38-l10n to 38.6.1 [ryoon 2016-02-19]
+	Updated lang/tcl to 8.6.4nb6 [jperkin 2016-02-19]
