@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.803 2016/02/20 16:59:21 dholland Exp $
+$NetBSD: CHANGES-2016,v 1.818 2016/02/21 15:45:34 wiedi Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -1039,3 +1039,18 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated audio/deforaos-mixer to 0.2.0 [khorben 2016-02-20]
 	Updated x11/deforaos-notes to 0.1.0 [khorben 2016-02-20]
 	Updated games/xpat2 to 1.07nb4 [dholland 2016-02-20]
+	Updated time/deforaos-todo to 0.2.1 [khorben 2016-02-20]
+	Updated cad/gtkwave to 3.3.70 [mef 2016-02-20]
+	Updated net/mikutter to 3.3.7 [tsutsui 2016-02-21]
+	Updated www/p5-Mojolicious to 6.47 [wen 2016-02-21]
+	Updated math/p5-Math-Base36 to 0.14 [wen 2016-02-21]
+	Updated devel/z80-asm to 2.3.7nb1 [ryoon 2016-02-21]
+	Updated fonts/harfbuzz to 1.2.0 [wiz 2016-02-21]
+	Updated devel/afl to 2.03b [wiz 2016-02-21]
+	Updated devel/py-atomicwrites to 0.1.9 [wiz 2016-02-21]
+	Updated security/py-service_identity to 16.0.0 [wiz 2016-02-21]
+	Updated www/deforaos-surfer to 0.2.10 [khorben 2016-02-21]
+	Updated graphics/opencv to 3.1.0 [fhajny 2016-02-21]
+	Updated sysutils/znapzend to 0.15.2 [wiedi 2016-02-21]
+	Updated editors/nano to 2.5.2 [wiedi 2016-02-21]
+	Updated www/goaccess to 0.9.7 [wiedi 2016-02-21]
