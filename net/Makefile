@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1099 2016/01/11 13:47:22 abs Exp $
+# $NetBSD: Makefile,v 1.1101 2016/02/23 02:20:05 wen Exp $
 #
 
 COMMENT=	Networking tools
@@ -88,6 +88,7 @@ SUBDIR+=	dc_gui2
 SUBDIR+=	dcsharp
 SUBDIR+=	dctc
 SUBDIR+=	ddclient
+SUBDIR+=	deforaos-vncviewer
 SUBDIR+=	delegate
 SUBDIR+=	dgd
 SUBDIR+=	dhcpcd
@@ -426,6 +427,7 @@ SUBDIR+=	p5-IO-Interface
 SUBDIR+=	p5-IO-SessionData
 SUBDIR+=	p5-IO-Socket-INET6
 SUBDIR+=	p5-IO-Socket-Multicast
+SUBDIR+=	p5-IO-Socket-Timeout
 SUBDIR+=	p5-IP-Country
 SUBDIR+=	p5-Net
 SUBDIR+=	p5-Net-AMQP

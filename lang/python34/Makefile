@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.12 2015/12/05 17:12:13 adam Exp $
+# $NetBSD: Makefile,v 1.14 2016/02/23 15:07:36 joerg Exp $
 
 .include "dist.mk"
 
 PKGNAME=	python34-${PY_DISTVERSION}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	lang python
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -40,8 +40,8 @@ PTHREAD_OPTS+=	require
 # http://bugs.python.org/issue13241
 .if !empty(MACHINE_PLATFORM:MDarwin-10.*)
 PKGSRC_COMPILER=	clang
-CC=			clang
-CXX=			clang++
+PKG_CC=			clang
+PKG_CXX=		clang++
 .endif
 
 # fdatasync()
