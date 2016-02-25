@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15489 2016/02/23 17:12:51 taca Exp $
+$NetBSD: TODO,v 1.15493 2016/02/24 09:40:48 wiz Exp $
 
 Suggested new packages
 ======================
@@ -376,8 +376,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o R-formatR-1.2
 	o R-gdata-2.17.0
 	o R-genetics-1.3.8.1
-	o R-geoR-5.1
-	o R-geoRglm-8
 	o R-gstat-25
 	o R-gtools-3.5.0
 	o R-httpRequest-0.0.10
@@ -389,7 +387,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o R-mvtnorm-3
 	o R-ncdf-1.6.8
 	o R-plyr-1.8.3
-	o R-stringr-1.0.0
 	o ROMInfo-28
 	o Sigil-0.9.3
 	o TeXmacs-devel-1.0.7.21
@@ -1081,7 +1078,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o miredo-1.2.4
 	o mit-krb5-1.12.1
 	o mit-scheme-bin-9.2
-	o mkvtoolnix-8.7.0
+	o mkvtoolnix-8.9.0
 	o mlterm-3.6.2
 	o modular-xorg-xquartz-1.18.0
 	o molden-4.8 [after which PR 40252 can be closed]
@@ -1485,7 +1482,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o rp-l2tp-0.4
 	o rp-pppoe-3.11
 	o rsnapshot-1.4.0
-	o rspamd-1.1.1
+	o rspamd-1.1.4
 	o rtcw-1.41.3
 	o rtty-4.0 [at ftp://ftp.isc.org/isc/rtty/]
 	o rxvt-unicode-9.22
@@ -1749,6 +1746,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o xpaint-2.9.9
 	o xpmroot-2.7.0
 	o xpuyopuyo-0.9.8
+	o xrandr-1.5
 	o xrmap-base-2.33.1
 	o xrmap-factbook_html-2008
 	o xrmap-factbook_text-2008
@@ -1773,6 +1771,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o yaz-5.14.6
 	o yodl-2.14.3
 	o yorick-2.1.05
+	o youtube-dl-20160222
 	o yudit-2.9.6
 	o z26-2.14
 	o zenicb-1.31 (needs merge with lots of local changes)
