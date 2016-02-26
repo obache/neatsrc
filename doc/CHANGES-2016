@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.855 2016/02/25 02:01:35 wen Exp $
+$NetBSD: CHANGES-2016,v 1.866 2016/02/25 21:48:08 tnn Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -1152,3 +1152,27 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated databases/postgresql94-server to 9.4.6 [tnn 2016-02-25]
 	Updated databases/postgresql94-upgrade to 9.4.6 [tnn 2016-02-25]
 	Updated math/R-gstat to 1.1.2 [wen 2016-02-25]
+	Updated www/drupal6 to 6.38 [taca 2016-02-25]
+	Updated www/drupal7 to 7.43 [taca 2016-02-25]
+	Added mail/postsrsd version 1.4 [wiz 2016-02-25]
+	Updated devel/p5-Test-BDD-Cucumber to 0.48 [schmonz 2016-02-25]
+	Updated net/youtube-dl to 20160222 [leot 2016-02-25]
+	Updated math/R-chron to 2.3.47 [fhajny 2016-02-25]
+	Added devel/R-proto version 0.3.10 [fhajny 2016-02-25]
+	Added textproc/R-gsubfn version 0.6.6 [fhajny 2016-02-25]
+	Added databases/R-RSQLite version 1.0.0 [fhajny 2016-02-25]
+	Added databases/R-sqldf version 0.4.10 [fhajny 2016-02-25]
+	Added databases/postgresql95 version 9.5.1 [tnn 2016-02-25]
+	Added databases/postgresql95-adminpack version 9.5.1 [tnn 2016-02-25]
+	Added databases/postgresql95-client version 9.5.1 [tnn 2016-02-25]
+	Added databases/postgresql95-datatypes version 9.5.1 [tnn 2016-02-25]
+	Added databases/postgresql95-dblink version 9.5.1 [tnn 2016-02-25]
+	Added databases/postgresql95-docs version 9.5.1 [tnn 2016-02-25]
+	Added databases/postgresql95-fuzzystrmatch version 9.5.1 [tnn 2016-02-25]
+	Added databases/postgresql95-monitoring version 9.5.1 [tnn 2016-02-25]
+	Added databases/postgresql95-pgcrypto version 9.5.1 [tnn 2016-02-25]
+	Added databases/postgresql95-plperl version 9.5.1 [tnn 2016-02-25]
+	Added databases/postgresql95-plpython version 9.5.1 [tnn 2016-02-25]
+	Added databases/postgresql95-pltcl version 9.5.1 [tnn 2016-02-25]
+	Added databases/postgresql95-replicationtools version 9.5.1 [tnn 2016-02-25]
+	Added databases/postgresql95-server version 9.5.1 [tnn 2016-02-25]
