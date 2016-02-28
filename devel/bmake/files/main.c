@@ -889,9 +889,10 @@ main(int argc, char **argv)
 		struct rlimit rl;
 		if (getrlimit(RLIMIT_NOFILE, &rl) != -1 &&
 		    rl.rlim_cur != rl.rlim_max) {
-#if defined(__GLIBC__) && defined(HAVE_POSIX_SPAWN)
-		/* posix_spawn_file_actions_add{open,close,dup2} in glibc
+#if defined(__GLIBC__) && defined(HAVE_POSIX_SPAWN) && __GLIBC__ == 2 && __GLIBC_MINOR__ < 24
+		/* posix_spawn_file_actions_add{open,close,dup2} in glibc<2.24
 		 * don't expect that file descriptor number is unlimited
+		 * https://sourceware.org/bugzilla/show_bug.cgi?id=19505
 		 */
 			rl.rlim_cur = (rl.rlim_max == RLIM_INFINITY)
 			    ? INT_MAX - 1 : rl.rlim_max;
