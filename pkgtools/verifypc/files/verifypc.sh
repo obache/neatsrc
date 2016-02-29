@@ -112,7 +112,7 @@ check_match() {
 # Main program.
 #
 main() {
-    local dep error lines log pcname pcop pcver
+    local dep error log pcname pcop pcver
 
     [ -f Makefile -a -f ../../mk/bsd.pkg.mk ] ||
         err "must be run within a package directory"
@@ -132,11 +132,8 @@ main() {
 	"$(${MAKE} show-vars VARNAMES='BUILD_DEPENDS DEPENDS')")
 
     error=0
-    lines=$(cat ${log} | sort | uniq | tr ' ' '¬')
-    for l in ${lines}; do
-        pcname=$(echo ${l} | cut -d '¬' -f 1)
-        pcop=$(echo ${l} | cut -d '¬' -f 2)
-        pcver=$(echo ${l} | cut -d '¬' -f 3)
+    cat ${log} | sort | uniq | \
+    while read pcname pcop pcver; do
 
         dep=$(search_file_in_depends pkgconfig/${pcname}.pc)
         if [ -n "${dep}" -a "${pcop}" != "NOT-FOUND" ]; then
