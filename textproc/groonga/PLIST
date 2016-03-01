@@ -33,6 +33,7 @@ include/groonga/groonga/type.h
 include/groonga/groonga/util.h
 include/groonga/groonga/windows.h
 include/groonga/groonga/windows_event_logger.h
+lib/groonga/plugins/functions/string.la
 lib/groonga/plugins/functions/vector.la
 lib/groonga/plugins/query_expanders/tsv.la
 lib/groonga/plugins/suggest/suggest.la
@@ -165,6 +166,8 @@ share/doc/groonga/en/html/_sources/reference/commands/logical_table_remove.txt
 share/doc/groonga/en/html/_sources/reference/commands/normalize.txt
 share/doc/groonga/en/html/_sources/reference/commands/normalizer_list.txt
 share/doc/groonga/en/html/_sources/reference/commands/object_exist.txt
+share/doc/groonga/en/html/_sources/reference/commands/object_inspect.txt
+share/doc/groonga/en/html/_sources/reference/commands/object_remove.txt
 share/doc/groonga/en/html/_sources/reference/commands/plugin_register.txt
 share/doc/groonga/en/html/_sources/reference/commands/plugin_unregister.txt
 share/doc/groonga/en/html/_sources/reference/commands/quit.txt
@@ -412,6 +415,8 @@ share/doc/groonga/en/html/reference/commands/logical_table_remove.html
 share/doc/groonga/en/html/reference/commands/normalize.html
 share/doc/groonga/en/html/reference/commands/normalizer_list.html
 share/doc/groonga/en/html/reference/commands/object_exist.html
+share/doc/groonga/en/html/reference/commands/object_inspect.html
+share/doc/groonga/en/html/reference/commands/object_remove.html
 share/doc/groonga/en/html/reference/commands/plugin_register.html
 share/doc/groonga/en/html/reference/commands/plugin_unregister.html
 share/doc/groonga/en/html/reference/commands/quit.html
@@ -638,6 +643,8 @@ share/doc/groonga/ja/html/_sources/reference/commands/logical_table_remove.txt
 share/doc/groonga/ja/html/_sources/reference/commands/normalize.txt
 share/doc/groonga/ja/html/_sources/reference/commands/normalizer_list.txt
 share/doc/groonga/ja/html/_sources/reference/commands/object_exist.txt
+share/doc/groonga/ja/html/_sources/reference/commands/object_inspect.txt
+share/doc/groonga/ja/html/_sources/reference/commands/object_remove.txt
 share/doc/groonga/ja/html/_sources/reference/commands/plugin_register.txt
 share/doc/groonga/ja/html/_sources/reference/commands/plugin_unregister.txt
 share/doc/groonga/ja/html/_sources/reference/commands/quit.txt
@@ -885,6 +892,8 @@ share/doc/groonga/ja/html/reference/commands/logical_table_remove.html
 share/doc/groonga/ja/html/reference/commands/normalize.html
 share/doc/groonga/ja/html/reference/commands/normalizer_list.html
 share/doc/groonga/ja/html/reference/commands/object_exist.html
+share/doc/groonga/ja/html/reference/commands/object_inspect.html
+share/doc/groonga/ja/html/reference/commands/object_remove.html
 share/doc/groonga/ja/html/reference/commands/plugin_register.html
 share/doc/groonga/ja/html/reference/commands/plugin_unregister.html
 share/doc/groonga/ja/html/reference/commands/quit.html
@@ -1067,7 +1076,7 @@ share/groonga/html/admin/js/groonga-admin.ja.js
 share/groonga/html/admin/js/groonga-admin.js
 share/groonga/html/admin/js/jquery-1.7.2.js
 share/groonga/html/admin/js/jquery-ui-1.8.18.custom.js
-share/groonga/html/admin/js/jquery.flot-0.7.js
+share/groonga/html/admin/js/jquery.flot-0.8.3.js
 share/groonga/html/admin/js/jquery.flot.license.txt
 share/groonga/images/logo/groonga-icon-foreground-white.png
 share/groonga/images/logo/groonga-icon-foreground-white.svg

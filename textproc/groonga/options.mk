@@ -63,6 +63,7 @@ CONFIGURE_ARGS+=	--disable-zeromq
 
 .if !empty(PKG_OPTIONS:Mgroonga-httpd)
 .include "../../devel/pcre/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-groonga-httpd
 PLIST.httpd=	yes
 OWN_DIRS+=	${PKG_SYSCONFDIR}/httpd/html
@@ -96,7 +97,7 @@ CONF_FILES+=	share/examples/${PKGBASE}/httpd/win-utf \
 
 SUBST_CLASSES+=		confpath
 SUBST_STAGE.confpath=	post-configure
-SUBST_FILES.confpath=	vendor/nginx-1.9.10/objs/Makefile
+SUBST_FILES.confpath=	vendor/nginx-1.9.11/objs/Makefile
 SUBST_SED.confpath=	-e 's,\$$(DESTDIR)${PKG_SYSCONFDIR}/httpd,\$$(DESTDIR)${PREFIX}/share/examples/${PKGBASE}/httpd,g'
 .else
 CONFIGURE_ARGS+=	--disable-groonga-httpd
