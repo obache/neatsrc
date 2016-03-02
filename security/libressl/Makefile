@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2016/01/05 01:09:21 sevan Exp $
+# $NetBSD: Makefile,v 1.4 2016/03/01 02:07:48 sevan Exp $
 
-DISTNAME=	libressl-2.2.5
+DISTNAME=	libressl-2.2.6
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_OPENBSD:=LibreSSL/}
 
@@ -32,8 +32,16 @@ CONF_FILES+= 		${EGDIR}/${f} ${PKG_SYSCONFDIR}/${f}
 					
 # Handle subprefix
 LDFLAGS+=		${COMPILER_RPATH_FLAG}${LIBRESSL_PREFIX:Q}/lib
+BUILDLINK_PASSTHRU_RPATHDIRS+=	${LIBRESSL_PREFIX:Q}/lib
 
 TEST_TARGET=	check
+PLIST_VARS+=	man
+
+.include "../../mk/bsd.prefs.mk"
+
+.if ${OPSYS} != "Darwin"
+PLIST.man=	yes
+.endif
 
 post-install:
 	${INSTALL_DATA_DIR} ${DESTDIR}${EGDIR}
