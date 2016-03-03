@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.913 2016/03/01 20:46:51 jmmv Exp $
+$NetBSD: CHANGES-2016,v 1.918 2016/03/02 21:30:35 leot Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -1215,6 +1215,7 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated devel/git to 2.7.2 [adam 2016-02-29]
 	Updated editors/abiword to 3.0.1nb1 [jperkin 2016-02-29]
 	Updated lang/ocaml to 4.02.3nb3 [jperkin 2016-02-29]
+	Updated security/libressl to 2.2.6 [sevan 2016-03-01]
 	Updated www/py-google-api-python-client to 1.5.0 [mef 2016-03-01]
 	Added multimedia/phonon-qt5 version 4.8.3 [markd 2016-03-01]
 	Added multimedia/phonon-qt5-backend-vlc version 0.8.2 [markd 2016-03-01]
@@ -1229,3 +1230,8 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated lang/polyml to 5.6 [asau 2016-03-01]
 	Updated filesystems/fuse-sshfs to 2.7 [jmmv 2016-03-01]
 	Added devel/bazel version 0.2.0 [jmmv 2016-03-01]
+	Updated x11/gtk2 to 2.24.29nb1 [nros 2016-03-02]
+	Updated devel/py-mercurial to 3.7.2 [wiz 2016-03-02]
+	Updated mail/exim to 4.86.2 [wiedi 2016-03-02]
+	Updated mail/exim-html to 4.86.2 [wiedi 2016-03-02]
+	Updated multimedia/mpv to 0.16.0 [leot 2016-03-02]
