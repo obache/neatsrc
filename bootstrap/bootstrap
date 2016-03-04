@@ -260,8 +260,6 @@ opsys_finish()
 			echo "IMAKEOPTS+=		$imakeopts" >> ${TARGET_MKCONF}
 		fi
 		if [ `uname -r` -lt 6 ]; then
-		        echo_msg "Installing fake ldd script"
-        		run_cmd "$install_sh -c -o $user -g $group -m 755 $pkgsrcdir/pkgtools/bootstrap-extras/files/fakeldd $prefix/sbin"
 			need_extras=yes
 			echo "LDD=			$prefix/sbin/fakeldd" >> ${TARGET_MKCONF}
 		fi
