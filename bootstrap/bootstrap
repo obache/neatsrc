@@ -541,7 +541,6 @@ AIX)
 	need_sed=yes
 	need_ksh=yes
 	need_fixed_strip=yes
-	set_opsys=no
 	machine_arch=`get_machine_arch_aix`
 	;;
 Bitrig)
@@ -549,7 +548,6 @@ Bitrig)
 	need_bsd_install=no
 	need_awk=no
 	need_sed=no
-	set_opsys=no
 	machine_arch=`arch -s`
 	check_compiler=yes
 	;;
@@ -578,7 +576,6 @@ Darwin)
 	need_bsd_install=no
 	need_awk=no
 	need_sed=no
-	set_opsys=no
 	machine_arch=`get_machine_arch_darwin`
 	CC=${CC:-"cc -isystem /usr/include"}; export CC
 	check_compiler=yes
@@ -608,7 +605,6 @@ DragonFly)
 	need_bsd_install=no
 	need_awk=no
 	need_sed=no
-	set_opsys=no
 	check_prog tarprog tar
 	machine_arch=`uname -p`
 	;;
@@ -617,7 +613,6 @@ FreeBSD)
 	need_bsd_install=no
 	need_awk=no
 	need_sed=no
-	set_opsys=no
 	machine_arch=`uname -p`
 	check_compiler=yes
 	;;
@@ -626,7 +621,6 @@ FreeMiNT)
 	need_bsd_install=no
 	need_awk=no
 	need_sed=no
-	set_opsys=no
 	machine_arch=m68k
 	;;
 GNU)
@@ -634,7 +628,6 @@ GNU)
 	need_bsd_install=no
 	need_awk=no
 	need_sed=no
-	set_opsys=no
 	machine_arch=`uname -m | sed -e 's/i.86-AT386/i386/'`
 	;;
 GNUkFreeBSD)
@@ -642,7 +635,6 @@ GNUkFreeBSD)
 	need_bsd_install=no
 	need_awk=yes
 	need_sed=no
-	set_opsys=no
 	machine_arch=`uname -m`
 	;;
 Haiku)
@@ -651,7 +643,6 @@ Haiku)
 	need_bsd_install=no
 	need_awk=no
 	need_sed=no
-	set_opsys=no
 	case `uname -m` in
 	BeMac)
 		machine_arch=powerpc
@@ -669,7 +660,6 @@ HPUX)
 	need_bsd_install=yes
 	need_awk=yes
 	need_sed=yes
-	set_opsys=no
 	machine_arch=`uname -m | sed 's/^9000.*$/hppa/'`
 	;;
 Interix)
@@ -690,14 +680,12 @@ Interix)
 		need_bsd_install=yes
 		need_awk=yes
 		need_sed=yes
-		set_opsys=no
 		need_xargs=yes
 		;;
 	*)
 		need_bsd_install=no
 		need_awk=no
 		need_sed=no
-		set_opsys=no
 		need_xargs=no
 		;;
 	esac
@@ -725,7 +713,6 @@ IRIX*)
 	opsys=IRIX
 	need_awk=yes
 	need_sed=yes
-	set_opsys=yes
 	machine_arch=mipseb
 	check_compiler=yes
 	if [ `uname -r` -lt 6 ]; then
@@ -749,7 +736,6 @@ Linux)
 		need_awk=no
 	fi
 	need_sed=no
-	set_opsys=no
 	machine_arch=`uname -m | sed -e 's/i.86/i386/'`
 	;;
 Minix)
@@ -757,7 +743,6 @@ Minix)
 	need_bsd_install=yes
 	need_awk=no
 	need_sed=no
-	set_opsys=no
 	machine_arch=`uname -p`
 	LDFLAGS="-lcompat_minix -lminlib"
 	;;	
@@ -768,7 +753,6 @@ MirBSD)
 	need_bsd_install=no
 	need_awk=no
 	need_sed=no
-	set_opsys=no
 	check_prog mtreeprog mtree
 	machine_arch=`arch -s`
 	# there is no /usr/bin/cc, so use mgcc if unset
@@ -813,7 +797,6 @@ NetBSD)
 	need_bsd_install=no
 	need_awk=no
 	need_sed=no
-	set_opsys=no
 	machine_arch=`uname -p`
 	;;
 OpenBSD)
@@ -821,7 +804,6 @@ OpenBSD)
 	need_bsd_install=no
 	need_awk=no
 	need_sed=no
-	set_opsys=no
 	machine_arch=`arch -s`
 	;;
 OSF1)
@@ -830,7 +812,6 @@ OSF1)
 	need_awk=yes
 	need_sed=yes
 	need_ksh=yes
-	set_opsys=no
 	machine_arch=`uname -m`
 	;;
 QNX)
@@ -838,7 +819,6 @@ QNX)
 	need_bsd_install=yes
 	need_awk=yes
 	need_sed=yes
-	set_opsys=no
 	groupsprog="id -gn"
 	whoamiprog="id -un"
 	machine_arch=`uname -p | sed -e 's/x86/i386/'`
@@ -848,7 +828,6 @@ SCO_SV)
 	need_awk=yes
 	need_bsd_install=yes
 	need_sed=yes
-	set_opsys=no
 	machine_arch=`uname -m`
 	whoamiprog='id -u'
 	groupsprog='id -g'
@@ -868,7 +847,6 @@ skyos)
 	need_awk=no
 	need_sed=no
 	need_xargs=no
-	set_opsys=no
 	machine_arch=`uname -m | sed -e 's/i.86/i386/'`
 	# only used for unprivileged builds.
 	whoamiprog='/bin/whoami'
@@ -898,7 +876,6 @@ SunOS)
 	else
 		need_ksh=yes
 	fi
-	set_opsys=no
 	idprog="/usr/xpg4/bin/id"
 	groupsprog="${idprog} -gn"
 	whoamiprog="${idprog} -un"
@@ -913,7 +890,6 @@ UnixWare)
 	need_awk=yes
 	need_sed=yes
 	whoamiprog=/usr/ucb/whoami
-	set_opsys=no
 	machine_arch=`uname -m`
 	CC="gcc -DUNIXWARE"; export CC
 	;;
@@ -923,7 +899,6 @@ UnixWare)
 	need_bsd_install=yes
 	need_awk=yes
 	need_sed=yes
-	set_opsys=no
 	;;
 esac
 
@@ -1091,11 +1066,6 @@ echo "# `date`" >> ${TARGET_MKCONF}
 echo "" >> ${TARGET_MKCONF}
 echo ".ifdef BSD_PKG_MK	# begin pkgsrc settings" >> ${TARGET_MKCONF}
 echo "" >> ${TARGET_MKCONF}
-
-# IRIX64 needs to be set to IRIX, for example
-if [ "$set_opsys" = "yes" ]; then
-	echo "OPSYS=			$opsys" >> ${TARGET_MKCONF}
-fi
 
 if [ -n "$abi" ]; then
 	echo "ABI=			$abi" >> ${TARGET_MKCONF}
