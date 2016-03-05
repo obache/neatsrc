@@ -70,7 +70,10 @@ UNAME=echo Unknown
 .endif
 
 .if !defined(OPSYS)
-OPSYS:=			${:!${UNAME} -s!:S/-//g:S/\///g:C/^CYGWIN_.*$/Cygwin/:C/^MSYS_.*$/Msys/}
+OPSYS:=			${:!${UNAME} -s!:S/-//g:S/\///g}
+.  if !empty(OPSYS:MCYGWIN_*) || !empty(OPSYS:MMSYS_*)
+OPSYS:=			${:!${UNAME} -o!}
+.  endif
 MAKEFLAGS+=		OPSYS=${OPSYS:Q}
 .endif
 
