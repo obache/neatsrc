@@ -73,6 +73,8 @@ UNAME=echo Unknown
 OPSYS:=			${:!${UNAME} -s!:S/-//g:S/\///g}
 .  if !empty(OPSYS:MCYGWIN_*) || !empty(OPSYS:MMSYS_*)
 OPSYS:=			${:!${UNAME} -o!}
+.  elif !empty(OPSYS:MIRIX*)
+OPSYS:=			IRIX
 .  endif
 MAKEFLAGS+=		OPSYS=${OPSYS:Q}
 .endif
