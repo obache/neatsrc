@@ -151,9 +151,9 @@ check_packages_mismatched()
 {
     ${PKG_INFO} -aI | while read pkgname comment; do
         pkgdir=$(${PKG_INFO} -Q PKGPATH $pkgname)
-        if [ -d "$pkgdir" ]; then
+        if [ -d "$PKGSRCDIR/$pkgdir" ]; then
             pkg=$(echo $pkgname | sed 's/-[0-9][^-]*$//') 
-            newpkgname=$(cd $pkgdir && @SETENV@ PKGNAME_REQD="$pkg-*" ${MAKE} show-var VARNAME=PKGNAME)
+            newpkgname=$(cd $PKGSRCDIR/$pkgdir && @SETENV@ PKGNAME_REQD="$pkg-*" ${MAKE} show-var VARNAME=PKGNAME)
             if [ "$pkgname" != "$newpkgname" ]; then
                 echo "${OPC} $pkgdir - $pkgname < $newpkgname" 1>&2
                 echo "$pkg"
