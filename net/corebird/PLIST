@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2014/12/06 09:14:11 obache Exp $
+@comment $NetBSD: PLIST,v 1.2 2016/03/05 09:40:53 ryoon Exp $
 bin/corebird
 man/man1/corebird.1
 share/appdata/org.baedert.corebird.appdata.xml
