@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15535 2016/03/05 15:45:12 bsiegert Exp $
+$NetBSD: TODO,v 1.15538 2016/03/06 16:59:39 adam Exp $
 
 Suggested new packages
 ======================
@@ -1210,7 +1210,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Math-Random-MT-Perl-1.13
 	o p5-Memoize-Memcached-0.11
 	o p5-Moose-Policy-0.05
-	o p5-Net-Amazon-S3-0.80
 	o p5-Net-DBus-1.1.0
 	o p5-Net-DHCP-0.696
 	o p5-Net-GitHub-0.77
@@ -1371,7 +1370,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-daemon-2.0.5
 	o py-datapkg-0.9
 	o py-django-photologue-2.7
-	o py-django-registration-1.0
 	o py-djangorestframework-2.3.12
 	o py-doctor-15.0.0
 	o py-flake8-2.4.1
@@ -1388,7 +1386,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-munkres-1.0.7
 	o py-musicbrainz-0.7.4
 	o py-ncclient-0.4.3
-	o py-netaddr-0.7.15
 	o py-newt-0.52.18
 	o py-notify-0.3.1
 	o py-omniORBpy-3.7
