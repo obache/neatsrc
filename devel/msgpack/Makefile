@@ -11,7 +11,7 @@ COMMENT=	Binary-based efficient object serialization library
 LICENSE=	boost-license
 
 GNU_CONFIGURE=	yes
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c
 USE_LIBTOOL=	yes
 
 PKGCONFIG_OVERRIDE=	msgpack.pc.in
