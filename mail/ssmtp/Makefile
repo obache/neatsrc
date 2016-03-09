@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.30 2016/03/05 11:28:51 jperkin Exp $
+# $NetBSD: Makefile,v 1.32 2016/03/09 03:24:19 tnn Exp $
 #
 # TLS functionality needs testing. Please let me know the result,
 # and preferably info about your system.
