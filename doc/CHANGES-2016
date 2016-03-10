@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.1076 2016/03/08 21:55:51 tnn Exp $
+$NetBSD: CHANGES-2016,v 1.1094 2016/03/09 20:18:51 fhajny Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -1456,3 +1456,21 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated sysutils/facette to 0.4.0devnb2 [imil 2016-03-08]
 	Updated www/firefox to 45.0 [ryoon 2016-03-08]
 	Updated lang/libLLVM to 3.8.0 [tnn 2016-03-08]
+	Updated net/unbound to 1.5.8 [pettai 2016-03-09]
+	Updated sysutils/dbus to 1.10.8 [prlw1 2016-03-09]
+	Updated security/p5-Crypt-ECB to 2.05 [wiz 2016-03-09]
+	Updated time/p5-DateTime to 1.2500 [wiz 2016-03-09]
+	Updated net/p5-Net-DNS to 1.05 [wiz 2016-03-09]
+	Updated mail/p5-MIME-Types to 2.13 [wiz 2016-03-09]
+	Updated www/p5-Mojolicious to 6.55 [wen 2016-03-09]
+	Updated filesystems/p5-Path-Tiny to 0.084 [wen 2016-03-09]
+	Updated textproc/p5-XML-XPath to 1.34 [wen 2016-03-09]
+	Updated sysutils/facette to 0.4.0devnb5 [imil 2016-03-09]
+	Updated devel/ruby-rspec-core to 3.4.4 [taca 2016-03-09]
+	Updated math/ruby-narray to 0.6.1.2 [taca 2016-03-09]
+	Updated math/ruby-roo to 2.3.2 [taca 2016-03-09]
+	Updated print/qpdfview to 0.4.16 [nros 2016-03-09]
+	Updated chat/libotr to 4.1.1 [gdt 2016-03-09]
+	Updated databases/squirrelsql to 3.7 [asau 2016-03-09]
+	Updated lang/nodejs to 5.8.0 [fhajny 2016-03-09]
+	Updated lang/nodejs4 to 4.4.0 [fhajny 2016-03-09]
