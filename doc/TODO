@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15573 2016/03/09 17:48:50 nros Exp $
+$NetBSD: TODO,v 1.15576 2016/03/10 10:30:04 fhajny Exp $
 
 Suggested new packages
 ======================
@@ -403,7 +403,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o YoSucker-81
 	o abcl-1.3.2
 	o abcm2ps-8.11.1
-	o abcmidi-20150316
+	o abcmidi-20160303
 	o adocman-0.13
 	o adodb-5.20
 	o aewm++-1.0.27
@@ -465,7 +465,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o autoconvert-0.3.16
 	o autogen-5.18.7
 	o avant-window-navigator-0.4.2
-	o avidemux-2.6
+	o avidemux-2.6.12
 	o avl-2.0.3 [2.x is not source and binary compatible with 1.x]
 	o avr-binutils-2.26
 	o avr-libc-2.0.0
@@ -489,6 +489,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o bird-1.5.0
 	o bird6-1.5.0
 	o blas-3.6.0
+	o blender-2.77
 	o bliz++-0.10
 	o blur6ex-0.3.462
 	o bmkdep-20140112
@@ -1564,7 +1565,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o pear-DB-1.9.2
 	o pear-Mail-1.3.0
 	o pen-0.32.0
-	o percona-toolkit-2.2.16
 	o perlsh-1.8.1
 	o pessulus-2.30.3 [GNOME 2.28]
 	o pflogsumm-1.1.5
@@ -1654,6 +1654,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-acora-1.9
 	o py-apache-libcloud-0.20.1
 	o py-bleach-1.4.2
+	o py-borgbackup-1.0
 	o py-bsddb3-6.1.1
 	o py-buildbot-0.9.0b5
 	o py-buildbot-slave-0.9.0b5
@@ -1728,7 +1729,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o pythontidy-1.23
 	o qbzr-0.22.4
 	o qcad-3.7.5.0
-	o qconf-2.0
 	o qgis-2.14.0
 	o qlandkartegt-1.8.1 [pkg/49910]
 	o qnetwalk-1.4
@@ -2017,7 +2017,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o whowatch-1.8.5
 	o windowlab-1.40
 	o wine-1.8.1
-	o wine-devel-1.9.4
+	o wine-devel-1.9.5
 	o wmi-11
 	o wmii+ixp-3.9.2 [pkg/43459; wip (wmii-devel); see also libixp entry]
 	o wmx-8
