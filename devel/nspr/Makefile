@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.83 2016/02/25 12:12:49 jperkin Exp $
+# $NetBSD: Makefile,v 1.85 2016/03/10 18:15:51 jperkin Exp $
 
 DISTNAME=	nspr-${NSPR_RELEASE:S/.0$//}
 NSPR_RELEASE=	4.12.0
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA_ALL:=nspr/releases/v${NSPR_RELEASE:S/.0$//}/src/}
 
@@ -36,6 +37,11 @@ SUBST_STAGE.nspr-config=	pre-configure
 SUBST_MESSAGE.nspr-config=	Fixing nspr-config run path
 SUBST_FILES.nspr-config=	nspr/config/nspr-config.in
 SUBST_SED.nspr-config=		-e 's|-L$$libdir|"${COMPILER_RPATH_FLAG}$$libdir -L$$libdir"|g'
+
+SUBST_CLASSES+=			nspr-rpath
+SUBST_STAGE.nspr-rpath=		pre-configure
+SUBST_FILES.nspr-rpath=		nspr/lib/libc/src/Makefile.in nspr/lib/ds/Makefile.in
+SUBST_SED.nspr-rpath=		-e 's|$$$$ORIGIN|${PREFIX}/lib/nspr|g'
 
 .if ${OPSYS} == "OpenBSD"
 CHECK_SHLIBS_SUPPORTED= no

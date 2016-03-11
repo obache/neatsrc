@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.1104 2016/03/10 10:30:04 fhajny Exp $
+$NetBSD: CHANGES-2016,v 1.1110 2016/03/10 18:42:34 jperkin Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -1484,3 +1484,11 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated net/bind910 to 9.10.3pl4 [taca 2016-03-10]
 	Updated net/bind99 to 9.9.8pl4 [taca 2016-03-10]
 	Updated databases/percona-toolkit to 2.2.17 [fhajny 2016-03-10]
+	Updated textproc/heirloom-doctools to 160308 [leot 2016-03-10]
+	Updated textproc/mdoclint to 1.38 [wiz 2016-03-10]
+	Added lang/llvm version 3.8.0 [tnn 2016-03-10]
+	Updated lang/clang to 3.8.0 [tnn 2016-03-10]
+	Updated lang/clang-static-analyzer to 3.8.0 [tnn 2016-03-10]
+	Updated devel/nspr to 4.12nb1 [jperkin 2016-03-10]
+	Updated security/mit-krb5 to 1.10.7nb9 [jperkin 2016-03-10]
+	Updated archivers/lzmalib to 0.0.1nb1 [jperkin 2016-03-10]
