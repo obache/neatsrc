@@ -1,4 +1,4 @@
-# $NetBSD: bsd.prefs.mk,v 1.377 2016/03/10 16:58:19 jperkin Exp $
+# $NetBSD: bsd.prefs.mk,v 1.379 2016/03/11 05:42:35 tnn Exp $
 #
 # This file includes the mk.conf file, which contains the user settings.
 #
@@ -269,7 +269,10 @@ OS_VARIANT=		SmartOS
 LOWER_VARIANT_VERSION=	${_UNAME_V:C/joyent_//}
 .  elif !empty(_UNAME_V:Momnios-*)
 OS_VARIANT=		OmniOS
-LOWER_VARIANT_VERSION!=	/usr/bin/awk '{ if (!seen) { print $$3; seen=1 } }' /etc/release
+LOWER_VARIANT_VERSION!=	/usr/bin/awk '{ print $$3; exit 0; }' /etc/release
+.  else
+OS_VARIANT=		Solaris
+LOWER_VARIANT_VERSION=	${_UNAME_V}
 .  endif
 
 .elif ${OPSYS} == "SCO_SV"
