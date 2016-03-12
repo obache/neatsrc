@@ -1,0 +1,3 @@
+Dibbler is a portable DHCPv6 implementation.  It supports stateful (i.e. IPv6
+address granting and IPv6 prefix delegation) as well as stateless (i.e. option
+granting) autoconfiguration for IPv6.

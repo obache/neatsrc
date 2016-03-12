@@ -99,6 +99,7 @@ SUBDIR+=	dhcpcd-qt
 SUBDIR+=	dhcpd-pools
 SUBDIR+=	dhid
 SUBDIR+=	dhisd
+SUBDIR+=	dibbler
 SUBDIR+=	djbdns
 SUBDIR+=	djbdns-run
 SUBDIR+=	dlint

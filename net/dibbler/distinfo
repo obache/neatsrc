@@ -1,0 +1,9 @@
+$NetBSD$
+
+SHA1 (dibbler-1.0.1.tar.gz) = 9af3166d4201fcf4691a94d49d3ceb1686c5161a
+RMD160 (dibbler-1.0.1.tar.gz) = b517b0d48e8ab6fbfe6b492d5821bc3904db54c0
+SHA512 (dibbler-1.0.1.tar.gz) = 2369d4a3ca50a1c60bd5a47bf4168d4c113e2fdcb1ae4d937a3bf226c057142f2e81f6c46bf4e1dfa9ca0d2e92f7f857572a4bfb0d0dd721c35efe762e6c3ea0
+Size (dibbler-1.0.1.tar.gz) = 4375118 bytes
+SHA1 (patch-Port-bsd_dibbler-server.cpp) = e1dca7fa9462a4ab5e26be99bb6fdde1fcc528f9
+SHA1 (patch-configure) = 40300057d075455fbb8b7c9abc6bfde7003b61e4
+SHA1 (patch-configure.ac) = 4768081ed416ec7bd3a1e2c68e6bab5a09737f6e

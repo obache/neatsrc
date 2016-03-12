@@ -1,0 +1,15 @@
+$NetBSD$
+
+* test portability fix
+
+--- configure.orig	2015-08-09 13:27:55.000000000 +0000
++++ configure
+@@ -17071,7 +17071,7 @@ $as_echo_n "checking which port is appro
+       ARCH="BSD"
+       PORT_SUBDIR="Port-bsd"
+       PORT_CFLAGS=""
+-      if test "$NEED_RFC_3542" == "yes"; then
++      if test "$NEED_RFC_3542" = "yes"; then
+         PORT_CFLAGS="-D__APPLE_USE_RFC_3542"
+       fi
+       PORT_LDFLAGS=
