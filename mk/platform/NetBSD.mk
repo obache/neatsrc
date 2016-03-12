@@ -1,4 +1,4 @@
-# $NetBSD: NetBSD.mk,v 1.46 2016/03/10 16:58:19 jperkin Exp $
+# $NetBSD: NetBSD.mk,v 1.48 2016/03/11 23:54:09 khorben Exp $
 #
 # Variable definitions for the NetBSD operating system.
 
@@ -132,19 +132,27 @@ FFLAGS+=	-mieee
 PKG_HAVE_KQUEUE=	# defined
 .endif
 
-.if ${PKGSRC_USE_FORT:Uno} != "no"
-# build with fortify
-_GCC_CFLAGS+=	-D_FORTIFY_SOURCE=2
+# Register support for FORTIFY (with GCC)
+_OPSYS_SUPPORTS_FORTIFY=yes
+
+# Register support for PIE on supported architectures (with GCC)
+.if (${MACHINE_ARCH} == "i386") || \
+    (${MACHINE_ARCH} == "x86_64")
+_OPSYS_SUPPORTS_MKPIE=	yes
 .endif
 
-.if ${PKGSRC_USE_SSP:Uno} != "no"
-. if (${MACHINE_ARCH} != "alpha") && \
-	(${MACHINE_ARCH} != "hppa") && \
-	(${MACHINE_ARCH} != "ia64") && \
-	(${MACHINE_ARCH} != "mips")
-# build with stack protection (with GCC)
-_GCC_CFLAGS+=	-fstack-protector
-. endif
+# Register support for RELRO on supported architectures (with GCC)
+.if (${MACHINE_ARCH} == "i386") || \
+    (${MACHINE_ARCH} == "x86_64")
+_OPSYS_SUPPORTS_RELRO=	yes
+.endif
+
+# Register support for SSP on most architectures (with GCC)
+.if (${MACHINE_ARCH} != "alpha") && \
+    (${MACHINE_ARCH} != "hppa") && \
+    (${MACHINE_ARCH} != "ia64") && \
+    (${MACHINE_ARCH} != "mips")
+_OPSYS_SUPPORTS_SSP=	yes
 .endif
 
 _OPSYS_CAN_CHECK_SHLIBS=	yes # use readelf in check/bsd.check-vars.mk

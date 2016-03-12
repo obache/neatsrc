@@ -1,4 +1,4 @@
-# $NetBSD: SunOS.mk,v 1.68 2016/03/10 16:58:19 jperkin Exp $
+# $NetBSD: SunOS.mk,v 1.71 2016/03/11 23:54:09 khorben Exp $
 #
 # Variable definitions for the SunOS/Solaris operating system.
 
@@ -77,6 +77,8 @@ _USE_RPATH=		yes		# add rpath to LDFLAGS
 
 # Remove flags specific to GNU ld.
 BUILDLINK_TRANSFORM+=	rm:-Wl,--as-needed
+BUILDLINK_TRANSFORM+=	rm:-Wl,--disable-new-dtags
+BUILDLINK_TRANSFORM+=	rm:-Wl,--enable-new-dtags
 BUILDLINK_TRANSFORM+=	rm:-Wl,--export-dynamic
 BUILDLINK_TRANSFORM+=	rm:-Wl,--gc-sections
 BUILDLINK_TRANSFORM+=	rm:-Wl,--no-as-needed
@@ -108,6 +110,12 @@ LIBABISUFFIX=		/amd64
 _OPSYS_SYSTEM_RPATH?=	/lib${LIBABISUFFIX}:/usr/lib${LIBABISUFFIX}
 _OPSYS_LIB_DIRS?=	/lib${LIBABISUFFIX} /usr/lib${LIBABISUFFIX}
 _OPSYS_INCLUDE_DIRS?=	/usr/include
+
+# support FORTIFY (with GCC)
+_OPSYS_SUPPORTS_FORTIFY=yes
+
+# support stack protection (with GCC)
+_OPSYS_SUPPORTS_SSP=	yes
 
 _OPSYS_CAN_CHECK_SHLIBS=	yes # requires readelf
 

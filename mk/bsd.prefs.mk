@@ -1,4 +1,4 @@
-# $NetBSD: bsd.prefs.mk,v 1.379 2016/03/11 05:42:35 tnn Exp $
+# $NetBSD: bsd.prefs.mk,v 1.381 2016/03/11 23:54:08 khorben Exp $
 #
 # This file includes the mk.conf file, which contains the user settings.
 #
@@ -723,6 +723,30 @@ PREPEND_PATH+=		${LOCALBASE}/bin
 #
 INIT_SYSTEM?=		rc.d
 _BUILD_DEFS+=		INIT_SYSTEM
+
+_PKGSRC_MKPIE=	no
+.if (${PKGSRC_MKPIE:tl} == "yes") && \
+    (${_OPSYS_SUPPORTS_MKPIE:Uno} == "yes")
+_PKGSRC_MKPIE=	yes
+.endif
+
+_PKGSRC_USE_FORTIFY=	no
+.if (${PKGSRC_USE_FORTIFY:tl} == "yes") && \
+    (${_OPSYS_SUPPORTS_FORTIFY:Uno} == "yes")
+_PKGSRC_USE_FORTIFY=	yes
+.endif
+
+_PKGSRC_USE_RELRO=	no
+.if (${PKGSRC_USE_RELRO:tl} == "yes") && \
+    (${_OPSYS_SUPPORTS_RELRO:Uno} == "yes")
+_PKGSRC_USE_RELRO=	yes
+.endif
+
+_PKGSRC_USE_SSP=	no
+.if (${PKGSRC_USE_SSP:tl} == "yes") && \
+    (${_OPSYS_SUPPORTS_SSP:Uno} == "yes")
+_PKGSRC_USE_SSP=	yes
+.endif
 
 # Enable cwrappers if requested unless we're building the wrappers themselves.
 .if ${USE_CWRAPPERS:tl} != "no" && empty(PKGPATH:Mpkgtools/cwrappers)
