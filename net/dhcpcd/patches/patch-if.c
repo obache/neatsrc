@@ -27,45 +27,49 @@ $NetBSD$
  	if (ctx->pf_link_fd == -1)
  		return -1;
  #endif
-@@ -676,27 +676,30 @@ if_sortinterfaces(struct dhcpcd_ctx *ctx
+@@ -676,25 +676,35 @@ if_sortinterfaces(struct dhcpcd_ctx *ctx
  int
  xsocket(int domain, int type, int protocol, int flags)
  {
 -#ifdef SOCK_CLOEXEC
 -	if (flags & O_CLOEXEC)
--		type |= SOCK_CLOEXEC;
++	int s;
++#if !defined(HAVE_SOCK_CLOEXEC) || !defined(HAVE_SOCK_NONBLOCK)
++	int xflags;
++#endif
++
++#ifdef HAVE_SOCK_CLOEXEC
++	if (flags & SOCK_CLOEXEC)
+ 		type |= SOCK_CLOEXEC;
 -	if (flags & O_NONBLOCK)
--		type |= SOCK_NONBLOCK;
++#endif
++#ifdef HAVE_SOCK_NONBLOCK
++	if (flags & SOCK_NONBLOCK)
+ 		type |= SOCK_NONBLOCK;
 -
 -	return socket(domain, type, protocol);
 -#else
- 	int s, xflags;
- 
-+#if defined(HAVE_SOCK_CLOEXEC)
-+	if (flags & SOCK_CLOEXEC)
-+		type |= SOCK_CLOEXEC;
-+#endif
-+#if defined(HAVE_SOCK_NONBLOCK)
-+	if (flags & SOCK_NONBLOCK)
-+		type |= SOCK_NONBLOCK;
+-	int s, xflags;
+-
 +#endif
  	if ((s = socket(domain, type, protocol)) == -1)
  		return -1;
 -	if ((flags & O_CLOEXEC) && ((xflags = fcntl(s, F_GETFD, 0)) == -1 ||
-+#if !defined(HAVE_SOCK_CLOEXEC)
++
++#ifndef HAVE_SOCK_CLOEXEC
 +	if ((flags & SOCK_CLOEXEC) && ((xflags = fcntl(s, F_GETFD)) == -1 ||
  	    fcntl(s, F_SETFD, xflags | FD_CLOEXEC) == -1))
  		goto out;
 -	if ((flags & O_NONBLOCK) && ((xflags = fcntl(s, F_GETFL, 0)) == -1 ||
 +#endif
-+#if !defined(HAVE_SOCK_NONBLOCK)
++#ifndef HAVE_SOCK_NONBLOCK
 +	if ((flags & SOCK_NONBLOCK) && ((xflags = fcntl(s, F_GETFL)) == -1 ||
  	    fcntl(s, F_SETFL, xflags | O_NONBLOCK) == -1))
  		goto out;
 +#endif
++
  	return s;
++#if !defined(HAVE_SOCK_CLOEXEC) || !defined(HAVE_SOCK_NONBLOCK)
  out:
  	close(s);
  	return -1;
--#endif
- }
