@@ -1,4 +1,4 @@
-$NetBSD: patch-config.m4,v 1.1 2015/09/03 06:19:26 fhajny Exp $
+$NetBSD: patch-config.m4,v 1.1 2016/03/12 09:39:57 fhajny Exp $
 
 Make sure configure can find our curl.
 

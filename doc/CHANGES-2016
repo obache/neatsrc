@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.1121 2016/03/12 02:23:10 khorben Exp $
+$NetBSD: CHANGES-2016,v 1.1137 2016/03/12 13:38:42 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -1503,3 +1503,23 @@ Changes to the packages collection and infrastructure in 2016:
 	Added databases/pgpool2 version 3.5.0 [fhajny 2016-03-11]
 	Updated net/nsd to 4.1.8 [pettai 2016-03-11]
 	Updated x11/deforaos-keyboard to 0.3.0 [khorben 2016-03-12]
+	Updated www/firefox38 to 38.7.0 [ryoon 2016-03-12]
+	Updated www/firefox38-l10n to 38.7.0 [ryoon 2016-03-12]
+	Updated x11/videoproto to 2.3.3 [wiz 2016-03-12]
+	Updated devel/php-raphf to 1.1.2 [fhajny 2016-03-12]
+	Updated www/php-propro to 1.0.2 [fhajny 2016-03-12]
+	Updated www/php-http to 2.5.6nb1 [fhajny 2016-03-12]
+	Updated x11/modular-xorg-server to 1.18.2 [wiz 2016-03-12]
+	Updated x11/modular-xorg-xephyr to 1.18.2 [wiz 2016-03-12]
+	Updated pkgtools/lintpkgsrc to 4.92 [wiz 2016-03-12]
+	Added devel/php-raphf2 version 2.0.0 [fhajny 2016-03-12]
+	Added www/php-propro2 version 2.0.0 [fhajny 2016-03-12]
+	Added www/php-http3 version 3.0.1 [fhajny 2016-03-12]
+	Updated security/php-oauth to 2.0.1 [fhajny 2016-03-12]
+	Updated databases/py-cassandra-driver to 3.1.0 [fhajny 2016-03-12]
+	Updated x11/libxklavier to 5.4 [ryoon 2016-03-12]
+	Updated devel/git to 2.7.3 [adam 2016-03-12]
+	Added textproc/ansifilter version 1.15 [tnn 2016-03-12]
+	Updated sysutils/upower to 0.99.4 [ryoon 2016-03-12]
+	Added editors/hexcurse version 1.60.0 [tnn 2016-03-12]
+	Updated math/ruby-gsl to 2.1.0 [wiz 2016-03-12]

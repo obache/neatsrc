@@ -1,6 +1,6 @@
 #! @PERL@
 
-# $NetBSD: lintpkgsrc.pl,v 1.9 2015/11/25 20:46:28 leot Exp $
+# $NetBSD: lintpkgsrc.pl,v 1.11 2016/03/12 09:06:29 wiz Exp $
 
 # Written by David Brownlee <abs@netbsd.org>.
 #
@@ -32,7 +32,6 @@ my (
     $pkg_installver,              # installed version of pkg_install pseudo-pkg
     $default_vars,                # Set for Makefiles, inc PACKAGES & PKGSRCDIR
     %opt,                         # Command line options
-    %vuln,                        # vulnerability data
     @matched_prebuiltpackages,    # List of obsolete prebuilt package paths
     @prebuilt_pkgdirs,            # Use to follow symlinks in prebuilt pkgdirs
     %prebuilt_pkgdir_cache,       # To avoid symlink loops in prebuilt_pkgdirs
@@ -58,7 +57,6 @@ if (
         || defined $opt{R}
         || defined $opt{O}
         || defined $opt{S}
-        || defined $opt{V}
         || defined $opt{E}
         || defined $opt{y}
         || defined $opt{z}
@@ -253,26 +251,9 @@ sub main() {
 
     # List obsolete or NO_BIN_ON_FTP/RESTRICTED prebuilt packages
     #
-    if ( $opt{p} || $opt{O} || $opt{R} || $opt{V} ) {
-        if ( $opt{V} ) {
-            my ($vuln) = "$pkgdistdir/pkg-vulnerabilities";
+    if ( $opt{p} || $opt{O} || $opt{R} ) {
+	scan_pkgsrc_makefiles($pkgsrcdir);
 
-            if ( !open( VULN, $vuln ) ) {
-                fail("Unable to open '$vuln': $!");
-            }
-            while (<VULN>) {
-                s/#.*//;
-                if (/([^*?[]+)(<|>|<=|>=)(\d\S+)/) {
-                    my ( $pkg, $cmp, $ver ) = ( $1, $2, $3 );
-                    push( @{ $vuln{$pkg} }, "$cmp $ver" );
-                }
-            }
-            close(VULN);
-        }
-
-        if ( $opt{p} || $opt{O} || $opt{R} || $opt{V} ) {
-            scan_pkgsrc_makefiles($pkgsrcdir);
-        }
         @prebuilt_pkgdirs      = ( $default_vars->{PACKAGES} );
         %prebuilt_pkgdir_cache = ();
 
@@ -426,18 +407,6 @@ sub check_prebuilt_packages() {
         my ( $pkg, $ver ) = ( $1, $2 );
 
         $pkg = canonicalize_pkgname($pkg);
-
-        if ( $opt{V} && $vuln{$pkg} ) {
-            foreach my $chk ( @{ $vuln{$pkg} } ) {
-                my ( $test, $matchver ) = split( ' ', $chk );
-
-                if ( deweycmp( $ver, $test, $matchver ) ) {
-                    print "$File::Find::dir/$_\n";
-                    push( @matched_prebuiltpackages, "$File::Find::dir/$_" );
-                    last;
-                }
-            }
-        }
 
         my ($pkgs);
         if ( $pkgs = $pkglist->pkgs($pkg) ) {
@@ -1626,12 +1595,6 @@ sub scan_pkgsrc_distfiles_vs_distinfo($$$$) {
     }
     verbose(" ($numpkg packages)\n");
 
-    # Do not mark the vulnerabilities file as unknown
-    $distfiles{'pkg-vulnerabilities'} = {
-        path => 'pkg-vulnerabilities',
-        sum  => 'IGNORE'
-    };
-
 # check each file in $pkgdistdir
     find ( { wanted => sub {
             my ($dist);
@@ -1739,7 +1702,6 @@ Prebuilt package options:		Makefile options:
   -p : List old/obsolete		  -B : List packages marked as 'BROKEN'
   -O : List OSVERSION_SPECIFIC		  -d : Check 'DEPENDS' up to date
   -R : List NO_BIN_ON_FTP/RESTRICTED	  -S : List packages not in 'SUBDIRS'
-  -V : List known vulnerabilities
 
 Misc:
   -E file : Export the internal pkgsrc database to file
