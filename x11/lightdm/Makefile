@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	lightdm-1.17.2
+DISTNAME=	lightdm-1.17.5
 CATEGORIES=	x11
 MASTER_SITES=	https://launchpad.net/lightdm/${PKGVERSION_NOREV:R}/${PKGVERSION_NOREV}/+download/
 EXTRACT_SUFX=	.tar.xz
