@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15590 2016/03/13 18:33:11 schnoebe Exp $
+$NetBSD: TODO,v 1.15594 2016/03/14 14:31:13 ryoon Exp $
 
 Suggested new packages
 ======================
@@ -551,7 +551,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o clusterssh-4.05
 	o clutter-1.24
 	o clutter-gst-3.0.2
-	o cmake-3.5.0
 	o cmake-fedora-2.6.0
 	o cmocka-1.0.1
 	o cmus-2.7.1
@@ -854,7 +853,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gramps-4.1.0
 	o grantlee-5.0.0
 	o greed-4.1
-	o grep-2.24
 	o grilo-0.2.12
 	o grilo-plugins-0.2.14
 	o gromacs-5.1.2
@@ -1236,7 +1234,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ocamlgraph-1.8.6
 	o ocamlnet-4.1.1
 	o ocrad-0.25
-	o octave-4.0.0
 	o odbc-postgresql-09.03.0400
 	o olvwm-4.5
 	o oniguruma-5.9.6
@@ -1949,7 +1946,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o tomboy-1.10.2
 	o top-3.8beta1
 	o topgit-0.8
-	o tor-browser-5.5.3
 	o totem-3.14.1
 	o totem-pl-parser-3.10.3
 	o transmission-2.92

@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.1152 2016/03/13 18:32:49 schnoebe Exp $
+$NetBSD: CHANGES-2016,v 1.1169 2016/03/14 16:04:44 tsutsui Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -918,6 +918,7 @@ Changes to the packages collection and infrastructure in 2016:
 	Added www/ap-authnz-crowd version 2.2.2 [jperkin 2016-02-15]
 	Updated x11/libdrm to 2.4.67 [wiz 2016-02-15]
 	Updated net/php-baikal to 0.3.1 [wiz 2016-02-15]
+        Updated math/octave to 4.0.0 [dbj 2016-02-16]
 	Updated www/squid3 to 3.5.14 [taca 2016-02-16]
 	Updated audio/moc to 2.5.0 [leot 2016-02-16]
 	Removed audio/moc-devel successor audio/moc [leot 2016-02-16]
@@ -1527,6 +1528,8 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated security/p11-kit to 0.22.1 [ryoon 2016-03-13]
 	Updated lang/scala to 2.11.8 [ryoon 2016-03-13]
 	Updated devel/p5-App-cpanminus to 1.7040 [mef 2016-03-13]
+	Updated graphics/ivtools to 1.2.8nb4 [dholland 2016-03-13]
+	Updated net/nocol to 4.3.1nb12 [dholland 2016-03-13]
 	Updated games/lgogdownloader to 2.27 [wiz 2016-03-13]
 	Updated x11/rxvt-unicode to 9.22 [morr 2016-03-13]
 	Added devel/p5-Git-Version-Compare version 1.001 [wen 2016-03-13]
@@ -1541,3 +1544,18 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated net/php-baikal to 0.3.5 [wiz 2016-03-13]
 	Updated www/sassc to 3.3.3 [adam 2016-03-13]
 	Updated comms/conserver8 to 8.2.1 [schnoebe 2016-03-13]
+	Updated databases/mongodb to 3.2.4 [fhajny 2016-03-13]
+	Updated databases/mongo-tools to 3.2.4 [fhajny 2016-03-13]
+	Removed databases/postgresql-postgis successor databases/postgresql-postgis2 [gdt 2016-03-14]
+	Updated net/haproxy to 1.6.4 [fhajny 2016-03-14]
+	Updated security/lasso to 2.5.1 [manu 2016-03-14]
+	Updated www/ap-auth-mellon to 0.12.0 [manu 2016-03-14]
+	Updated devel/cmake to 3.5.0 [adam 2016-03-14]
+	Updated geography/opencpn to 4.2.0 [bouyer 2016-03-14]
+	Updated geography/opencpn-plugin-weather_routing to 20160208 [bouyer 2016-03-14]
+	Updated sysutils/facette to 0.4.0devnb6 [imil 2016-03-14]
+	Updated textproc/grep to 2.24 [ryoon 2016-03-14]
+	Updated security/putty to 0.67 [ryoon 2016-03-14]
+	Updated security/tor-browser to 5.5.3 [ryoon 2016-03-14]
+	Removed www/drupal6 [taca 2016-03-14]
+	Updated x11/mlterm to 3.7.0 [tsutsui 2016-03-14]
