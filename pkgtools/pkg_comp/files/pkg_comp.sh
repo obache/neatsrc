@@ -690,7 +690,7 @@ generate_pkg_summary()
     local directory="${1}"; shift
 
     echo "PKG_COMP ==> Generating pkg_summary.txt"
-    for pkg in "${directory}"/*.tgz; do pkg_info -X "${pkg}"; done \
+    for pkg in "${directory}"/*.tgz; do @PKG_INFO_CMD@ -X "${pkg}"; done \
         >"${directory}"/pkg_summary.txt
     echo "PKG_COMP ==> Generating pkg_summary.gz"
     gzip -c <"${directory}"/pkg_summary.txt >"${directory}"/pkg_summary.gz
@@ -736,11 +736,11 @@ pkg_build()
         init_script $script
         cat >> $script <<EOF
 cd /usr/pkgsrc/$p
-make $BUILD_PKG_COMP_TARGET
+@MAKE@ $BUILD_PKG_COMP_TARGET
 if [ \$? != 0 ]; then
     touch /pkg_comp/tmp/`basename $statfile`
 fi
-make clean
+@MAKE@ clean
 EOF
         chmod +x $script
         chroot $DESTDIR /pkg_comp/tmp/`basename $script`
@@ -807,13 +807,13 @@ build_and_install()
         init_script ${script}
         cat >>${script} <<EOF
 cd /usr/pkgsrc/${pkg}
-pkgname=\$(make show-var VARNAME=PKGNAME)
-if pkg_info -E \${pkgname} 2>/dev/null; then
+pkgname=\$(@MAKE@ show-var VARNAME=PKGNAME)
+if @PKG_INFO_CMD@ -E \${pkgname} 2>/dev/null; then
     :
 else
     echo "PKG_COMP ==> Forcing installation of \${pkgname}"
     cd /pkg_comp/packages/All
-    pkg_add \${pkgname}
+    @PKG_ADD_CMD@ \${pkgname}
 fi
 EOF
         chmod +x ${script}
@@ -850,7 +850,7 @@ pkg_install()
         init_script $stat
         cat >> $stat <<EOF
 cd /pkg_comp/packages/All
-pkg_add $p
+@PKG_ADD_CMD@ $p
 EOF
         chmod +x $stat
         chroot $DESTDIR /pkg_comp/tmp/install.sh || failed="$failed $p"
