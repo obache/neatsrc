@@ -5,6 +5,7 @@ RMD160 (dhcpcd-6.10.1.tar.xz) = 64abc259d2ffc3f4f198a1559b417f17506312c1
 SHA512 (dhcpcd-6.10.1.tar.xz) = f323c155cff47f21dde181c216408b79f10e6ed923aa3d1f3482feff47a1e88e02193ec82f831da4ef63d3703ca1837715c36a47cf3f5d09f117f6eb53bfcf67
 Size (dhcpcd-6.10.1.tar.xz) = 180112 bytes
 SHA1 (patch-common.c) = 5a7ec8de974d459aa04d73f28a446699fa553943
+SHA1 (patch-compat_dprintf.c) = 91d4575973e557c6257b95590e473dc5c34fdbd0
 SHA1 (patch-control.c) = 31d942bc62ae237209dadafd801ef5fd80e43881
 SHA1 (patch-dhcp.c) = 19c87cca120d023994e90bb780d2681413be7790
 SHA1 (patch-dhcp6.c) = b1993ff8ce50f2b3a0694ec82a199e15db839ac2
