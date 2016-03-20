@@ -14,7 +14,6 @@ BUILD_DEPENDS+=	libxslt>=1.1.0:../../textproc/libxslt
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.tidy
 PKG_SUPPORTED_OPTIONS=	doc
-PKG_SUGGESTED_OPTIONS=	doc
 
 .include "../../mk/bsd.options.mk"
 
