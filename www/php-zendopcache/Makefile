@@ -4,7 +4,6 @@ MODNAME=	zendopcache
 PKGMODNAME=	opcache
 CATEGORIES+=	www
 PECL_VERSION=	7.0.5
-PECL_LEGACY_VERSION_SCHEME=	yes
 
 HOMEPAGE=	https://github.com/zend-dev/ZendOptimizerPlus
 MAINTAINER=	imil@NetBSD.org

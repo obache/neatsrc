@@ -2,7 +2,6 @@
 
 MODNAME=		yaz
 PECL_VERSION=		1.1.9
-PECL_LEGACY_VERSION_SCHEME=	yes
 CATEGORIES+=		net
 
 MAINTAINER=		pkgsrc-users@NetBSD.org

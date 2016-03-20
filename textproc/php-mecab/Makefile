@@ -4,7 +4,6 @@
 PECL_DISTNAME=	${MODNAME}-${PECL_VERSION}
 MODNAME=	mecab
 PECL_VERSION=	0.6.0
-PECL_LEGACY_VERSION_SCHEME=	yes
 CATEGORIES=	textproc japanese
 MASTER_SITES=   http://pecl.opendogs.org/get/
 #EXTRACT_SUFX=	.tar.gz

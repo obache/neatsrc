@@ -4,7 +4,6 @@
 MODNAME=		suhosin
 DISTNAME=		suhosin-${PECL_VERSION}
 PECL_VERSION=		0.9.38
-PECL_LEGACY_VERSION_SCHEME=	yes
 CATEGORIES=		www
 MASTER_SITES=		https://download.suhosin.org/
 # Do not remove EXTRACT_SUFX.
