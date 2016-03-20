@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=		ConsoleKit2-1.0.1
+DISTNAME=		ConsoleKit2-1.0.2
 PKGNAME=		${DISTNAME:tl}
 CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_GITHUB:=/ConsoleKit2/ConsoleKit2/releases/download/${PKGVERSION_NOREV}/}

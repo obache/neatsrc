@@ -1,9 +1,9 @@
 $NetBSD: distinfo,v 1.10 2014/08/17 15:59:07 wiz Exp $
 
-SHA1 (ConsoleKit2-1.0.1.tar.bz2) = 49f0f12759bc1bfeb21d275c1a2beacfdd3a9f86
-RMD160 (ConsoleKit2-1.0.1.tar.bz2) = 1257f3ff14fab2e210f7fbcf2a6abcb808106ce5
-SHA512 (ConsoleKit2-1.0.1.tar.bz2) = 028e7347ff7293ebf3d08541d801e987cbc82fb31d98b67aa23e6dc28d00a422db9591c716c568320b6dde3fa01eb0b77b43c06d230f4bedd1085e078848a202
-Size (ConsoleKit2-1.0.1.tar.bz2) = 1192681 bytes
+SHA1 (ConsoleKit2-1.0.2.tar.bz2) = 57b5fc3eae0391105e4933e79e6aeda943e6da81
+RMD160 (ConsoleKit2-1.0.2.tar.bz2) = 7b151e8d25dedb6961d2d83b934d79d9411147ff
+SHA512 (ConsoleKit2-1.0.2.tar.bz2) = a6d1c876aafe3cb102d916c6b6086283eff77d2f35fbda460196cb71daf16d21a6713096bfc9e1b6ccef9719b2fcb25b6124024f3245f9410d0e503087c479f7
+Size (ConsoleKit2-1.0.2.tar.bz2) = 622723 bytes
 SHA1 (patch-data_Makefile.am) = 7d37d6c3b5c0bab2e1e4b7000bd23f72b646cf9c
 SHA1 (patch-data_Makefile.in) = e4da27d3817f1573b84cc9fcc93afc626b46d71a
 SHA1 (patch-pam-ck-connector_pam-ck-connector.c) = 7902d675927b1eed9d821d5bebb3dc2c9bbe0d11
