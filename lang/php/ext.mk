@@ -50,7 +50,6 @@ HOMEPAGE?=		http://pecl.php.net/package/${MODNAME}
 PKGMODNAME?=		${MODNAME:S/-/_/}
 PHPSETUPSUBDIR?=	#empty
 MODULESDIR?=		${WRKSRC}/modules
-PLIST_SUBST+=		MODNAME=${PKGMODNAME}
 
 .if !defined(PECL_VERSION)
 # bundled extension
@@ -91,7 +90,9 @@ PHP_EXTENSION_DIRECTIVE=extension
 LDFLAGS+=		${EXPORT_SYMBOLS_LDFLAGS}
 MAKE_ENV+=		EXPORT_SYMBOLS_LDFLAGS="${EXPORT_SYMBOLS_LDFLAGS}"
 
-PLIST_SRC+=		${.CURDIR}/../../lang/php/PLIST.module
+DESTDIR_VARNAME?=	INSTALL_ROOT
+GENERATE_PLIST+=	${ECHO} ${PHP_EXTENSION_DIR}/${PKGMODNAME}.${SHLIB_SUFFIX};
+PRINT_PLIST_AWK+=	/^${PHP_EXTENSION_DIR:S/\//\\\//g}\/${PKGMODNAME}/ { next; }
 .if empty(PHP_AUTO_REGISTER_EXT:M[Yy][Ee][Ss])
 MESSAGE_SRC=		${.CURDIR}/../../lang/php/MESSAGE.module
 .endif
@@ -124,13 +125,6 @@ phpize-module:
 			${PHPIZE} &&					\
 		${TOUCH} ${TOUCH_FLAGS} $${cookie};			\
 	fi
-
-do-install: do-module-install
-
-do-module-install:
-	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/${PHP_EXTENSION_DIR}
-	${INSTALL_LIB} ${MODULESDIR}/${PKGMODNAME}.${SHLIB_SUFFIX} \
-		${DESTDIR}${PREFIX}/${PHP_EXTENSION_DIR}
 
 .if defined(USE_PHP_EXT_PATCHES)
 PATCHDIR=		${.CURDIR}/${PHPPKGSRCDIR}/patches
