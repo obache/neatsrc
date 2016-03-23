@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.52 2016/02/04 12:13:31 wiz Exp $
+# $NetBSD: Makefile,v 1.54 2016/03/21 19:22:14 khorben Exp $
 
 DISTNAME=	gssdp-0.14.11
 PKGREVISION=	4
