@@ -74,11 +74,6 @@ CONFIGURE_ARGS+=	--disable-fast-malloc
 CPPFLAGS+=		-DUSE_SYSTEM_MALLOC
 .endif
 
-.if ${OPSYS} == "NetBSD" && !empty(MACHINE_ARCH:Mi386)
-GNU_ARCH.i386=		i586
-CFLAGS+=		-march=i586
-.endif
-
 BUILDLINK_API_DEPENDS.glib2+= glib2>=2.32.1
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_API_DEPENDS.gobject-introspection+=	gobject-introspection>=0.9.5
