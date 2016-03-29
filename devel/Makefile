@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2233 2016/03/13 15:26:51 taca Exp $
+# $NetBSD: Makefile,v 1.2234 2016/03/28 13:14:54 kamil Exp $
 #
 
 COMMENT=	Development utilities
@@ -568,6 +568,7 @@ SUBDIR+=	libxenserver
 SUBDIR+=	libzen
 SUBDIR+=	libzookeeper
 SUBDIR+=	lincvs
+SUBDIR+=	lldb
 SUBDIR+=	lmdbg
 SUBDIR+=	locktests
 SUBDIR+=	log4cplus
