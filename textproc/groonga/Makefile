@@ -11,8 +11,6 @@ COMMENT=	Fulltext search engine and column store
 LICENSE=	gnu-lgpl-v2.1
 
 DEPENDS+=	onigmo>=5.15.0:../../textproc/onigmo
-.include "../../lang/ruby/rubyversion.mk"
-DEPENDS+=	${RUBY_BASE}>=${RUBY_VERSION}:${RUBY_SRCDIR}
 
 GNU_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
@@ -25,7 +23,6 @@ EXTRACT_USING=	bsdtar
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASEDIR}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
-CONFIGURE_ARGS+=	--with-ruby=${RUBY}
 
 PKGCONFIG_OVERRIDE+=	groonga.pc.in
 
@@ -45,14 +42,6 @@ OWN_DIRS+=		${VARBASE}/log/${PKGBASE}
 CHECK_WRKREF_SKIP+=	bin/groonga
 CHECK_INTERPRETER_SKIP+=	share/groonga/examples/*
 
-REPLACE_RUBY+=	data/munin/groonga_cpu_time_
-REPLACE_RUBY+=	data/munin/groonga_disk_
-REPLACE_RUBY+=	data/munin/groonga_n_records_
-REPLACE_RUBY+=	data/munin/groonga_query_performance_
-REPLACE_RUBY+=	data/munin/groonga_status_
-REPLACE_RUBY+=	data/munin/groonga_throughput_
-
-.include "../../lang/ruby/replace.mk"
 .include "../../devel/editline/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
