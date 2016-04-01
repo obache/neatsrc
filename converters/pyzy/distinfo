@@ -9,4 +9,5 @@ RMD160 (pyzy-database-1.0.0.tar.bz2) = 1679567f31c20a235577f02175df38e16a05e7de
 SHA512 (pyzy-database-1.0.0.tar.bz2) = 5a7248870407f7f92c418ada49a275062325f2eb33a7eb4b91492e4b706ae70ba931b04377a758ce429fa64cd22e8bee2ac4279d4f205bbce406248eda1decf7
 Size (pyzy-database-1.0.0.tar.bz2) = 9977983 bytes
 SHA1 (patch-src_Database.h) = 93615161afee7614899a8a7248b46a355de75de2
+SHA1 (patch-src_SimpTradConverter.cc) = d83207bfd000d6b1090a3c1d0eb50fbebc3608ed
 SHA1 (patch-src_Types.h) = 18cbc643ad9640c2fb39d887a3018026806675e4
