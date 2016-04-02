@@ -158,7 +158,7 @@ check_packages_mismatched()
                 echo "${OPC} $pkgdir - $pkgname < $newpkgname" 1>&2
                 echo "$pkg"
             elif [ -n "$opt_B" ]; then
-                oldpkgversion=$(${PKG_INFO} -B "$pkgname")
+                oldpkgversion=$(${PKG_INFO} -q -b "$pkgname" | grep .)
 		newpkgversion=$(cd $PKGSRCDIR/$pkgdir && @SETENV@ PKGNAME_REQD="$pkg-*" ${MAKE} show-build-version)
                 if [ "$oldpkgversion" != "$newpkgversion" ]; then
                     echo "${OPC} $pkg - $pkgname build_version mismatch" 1>&2
