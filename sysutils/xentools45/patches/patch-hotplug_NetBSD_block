@@ -1,0 +1,33 @@
+$NetBSD: patch-hotplug_NetBSD_block,v 1.2 2016/04/04 14:47:19 bad Exp $
+
+Lock the block script to avoid races during vnd configuration.
+
+--- hotplug/NetBSD/block.orig	2015-11-03 09:11:18.000000000 +0000
++++ hotplug/NetBSD/block
+@@ -6,8 +6,9 @@
+ 
+ DIR=$(dirname "$0")
+ . "${DIR}/hotplugpath.sh"
++. "${DIR}/locking.sh"
+ 
+-PATH=${BINDIR}:${SBINDIR}:${LIBEXEC_BIN}:/bin:/usr/bin:/sbin:/usr/sbin
++PATH=${BINDIR}:${SBINDIR}:${LIBEXEC}:${PRIVATE_BINDIR}:/bin:/usr/bin:/sbin:/usr/sbin
+ export PATH
+ 
+ error() {
+@@ -62,6 +63,7 @@ case $xstatus in
+ 			available_disks="$available_disks $disk"
+ 			eval $disk=free
+ 		done
++		claim_lock block
+ 		# Mark the used vnd(4) devices as ``used''.
+ 		for disk in `sysctl hw.disknames`; do
+ 			case $disk in
+@@ -77,6 +79,7 @@ case $xstatus in
+ 				break	
+ 			fi
+ 		done
++		release_lock block
+ 		if [ x$device = x ] ; then
+ 			error "no available vnd device"
+ 		fi

@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.23 2016/03/19 00:32:10 rillig Exp $
+$NetBSD: distinfo,v 1.26 2016/04/04 15:16:03 bad Exp $
 
 SHA1 (ipxe-git-v1.0.0.tar.gz) = da052c8de5f3485fe0253c19cf52ed6d72528485
 RMD160 (ipxe-git-v1.0.0.tar.gz) = dcd9b6eaafa1ce05c1ebf2a15f2f73ad7a8c5547
@@ -26,6 +26,7 @@ SHA1 (patch-.._docs_man_xl.pod.1) = 740ad6f53e113b755bc6b04abce4ec9ba08eb815
 SHA1 (patch-.._docs_man_xlcpupool.cfg.pod.5) = a693a79a1f1c16548f62f7da1fa58fa28030990f
 SHA1 (patch-.._docs_man_xm.pod.1) = 975b7570da4bf9fd9cb79539fbd36b8dfbcbd571
 SHA1 (patch-.._docs_man_xmdomain.cfg.pod.5) = 5563a72e203e789a86f4166c71ddb3fcff5215c6
+SHA1 (patch-.._docs_misc_xl-disk-configuration.txt) = 2e6d363228fa050679db1016ca925c279c657490
 SHA1 (patch-CVE-2015-2152) = 676339abef9e79595f6c40de31ca740f8284c7a2
 SHA1 (patch-CVE-2015-2752) = 81c197a9adba59b1a1fe86a35f1edc55c27d2c2c
 SHA1 (patch-CVE-2015-3209) = abbfe580c03b5fd591d1fd893671f8d2b48f4123
@@ -47,7 +48,8 @@ SHA1 (patch-firmware_etherboot_patches_boot__prompt__option.patch) = 95d6e140643
 SHA1 (patch-firmware_etherboot_patches_series) = 2ced4e380f436a0287744e0a817ff24b91a43e7c
 SHA1 (patch-firmware_hvmloader_Makefile) = d4d9f34335a178f50e7fda52747cf6551ceeccc6
 SHA1 (patch-firmware_hvmloader_util.h) = 8ec0efdf56b9f2ea66cac7e90cba4abf727d4605
-SHA1 (patch-hotplug_NetBSD_Makefile) = 7b14179d0d00dc1b6f9a85fff706d82ce9b0cd66
+SHA1 (patch-hotplug_NetBSD_Makefile) = efc7c4d5b2f4aa5d3de2c7f77427db77fd95898a
+SHA1 (patch-hotplug_NetBSD_block) = 8e0f2afeb9e29ffb9cd51823ec5f4f2c80e457c7
 SHA1 (patch-hotplug_NetBSD_vif-bridge) = 7d01f15273c983c2cfe125e75800f9719961427c
 SHA1 (patch-hotplug_NetBSD_vif-ip) = d3b0555f5ba0bfcbf0f7027eb5f74a84d0cf7c80
 SHA1 (patch-hotplug_common_Makefile) = 3ee2fec5c4cb171c35c7e73379da4235b5ddca99

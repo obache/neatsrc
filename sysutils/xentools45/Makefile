@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.26 2016/02/26 10:24:14 jperkin Exp $
+# $NetBSD: Makefile,v 1.30 2016/04/04 14:51:59 bad Exp $
 
 VERSION=	4.5.2
-PKGREVISION=	1
+PKGREVISION=	2
 VERSION_IPXE=	9a93db3f0947484e30e753bbd61a10b17336e20e
 
 DISTNAME=		xen-${VERSION}
@@ -49,13 +49,11 @@ GNU_CONFIGURE=		YES
 #CONFIGURE_ARGS+=	--enable-xenapi
 CONFIGURE_ARGS+=	--disable-seabios
 
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE}
+
 MAKE_ENV+=		PREFIX=${prefix:Q} WRKSRC=${WRKSRC}
-MAKE_ENV+=		EGDIR=${EGDIR}
 MAKE_ENV+=		XEN_EXAMPLES_DIR=${EGDIR}
-MAKE_ENV+=		BASH_COMPLETION_DIR=${EGDIR}
 MAKE_ENV+=		MV=${MV:Q} PYTHON=${PYTHONBIN:Q} SED=${SED:Q}
-MAKE_ENV+=		VARBASE=${VARBASE}
-MAKE_ENV+=		XEN_CONFIG_DIR=${PKG_SYSCONFDIR}
 MAKE_ENV+=		V=YES
 MAKE_ENV+=		NO_WERROR=1
 
@@ -107,9 +105,11 @@ SUBST_SED.pathsvar=	-e "s|/var/lib|${VARBASE}/run|g"
 SUBST_CLASSES+=		conf
 SUBST_STAGE.conf=	pre-configure
 SUBST_FILES.conf+=	ocaml/xenstored/define.ml
+SUBST_FILES.conf+=	libxl/xl_cmdtable.c
+SUBST_FILES.conf+=	../docs/misc/xl-disk-configuration.txt
 SUBST_SED.conf=		-e "s,@XENDCONFDIR@,${PKG_SYSCONFDIR},g"
 
-XEND_SCRIPTS=		block vif-bridge vif-ip qemu-ifup hotplugpath.sh
+XEND_SCRIPTS=		block vif-bridge vif-ip qemu-ifup hotplugpath.sh locking.sh
 
 SUBST_CLASSES.NetBSD+=	proc
 SUBST_STAGE.proc=	pre-configure
@@ -159,6 +159,7 @@ pre-build:
 .for s in ${BLKTAP_FILES}
 	${CP} -f ${FILESDIR}/${s} ${WRKSRC}/blktap/drivers/
 .endfor
+	${CP} -f ${FILESDIR}/locking.sh  ${WRKSRC}/hotplug/NetBSD/
 	${SED} -e "s,@XENDCONFDIR@,${PKG_SYSCONFDIR},g" \
 		${XENTOP}/docs/man/xenstore-chmod.pod.1 |\
 	    pod2man >${WRKDIR}/xenstore-chmod.1

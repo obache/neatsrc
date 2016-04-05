@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.16 2016/01/08 13:24:29 bouyer Exp $
+$NetBSD: distinfo,v 1.21 2016/04/04 14:47:56 wiz Exp $
 
 SHA1 (ipxe-git-9a93db3f0947484e30e753bbd61a10b17336e20e.tar.gz) = fecadf952821e830ce1a1d19655288eef8488f88
 RMD160 (ipxe-git-9a93db3f0947484e30e753bbd61a10b17336e20e.tar.gz) = 539bfa12db7054228250d6dd380bbf96c1a040f8
@@ -17,19 +17,21 @@ SHA1 (patch-.._docs_man_xl.cfg.pod.5) = e2058495b6fe85af338e22560d46996d36aeedab
 SHA1 (patch-.._docs_man_xl.conf.pod.5) = 015da24a45388468d56f1ecfa60f6acf07bdfef8
 SHA1 (patch-.._docs_man_xl.pod.1) = b194f2c5608c6f0e80a4abd8655808cf91355cd5
 SHA1 (patch-.._docs_man_xlcpupool.cfg.pod.5) = b44813af965e4d9d0d51c18b22d286736a4663b2
+SHA1 (patch-.._docs_misc_xl-disk-configuration.txt) = 5b59cfc2569d1a4c10d6c0fcb98ed35278723b79
 SHA1 (patch-CVE-2015-8341) = 9d4cb191f023c6d6ff9de85028a19ca13aa69e1f
 SHA1 (patch-CVE-2015-8550) = 27f9214b9df78e04ec30e8ca56970c5b1d5dc50d
 SHA1 (patch-CVE-2015-8554) = 908783cf619fc130d5a107ba2c4997fca0f0da88
 SHA1 (patch-Makefile) = eb5d3211b26c5f10a24fcca658c83d5f60990d9f
 SHA1 (patch-Rules.mk) = e0dc4234c35dc2d78afad4a90b0af829a6a10b50
 SHA1 (patch-blktap_drivers_Makefile) = 7cc53b2a0dea1694a969046ab8542271ca63f9e7
-SHA1 (patch-configure) = d1a1b9c9e00dd79bb872190282006201510ce2c1
+SHA1 (patch-configure) = 97fa4274e425984d593cd93aea36edc681462b88
 SHA1 (patch-console_daemon_utils.c) = 915078ce6155a367e3e597fa7ab551f6afac083f
 SHA1 (patch-examples_Makefile) = 5fe7bb876d254cf0c4f774ed0f08dcaea5b355ff
 SHA1 (patch-firmware_etherboot_Makefile) = f55e14948b7191e533a82b8fc3575f1052f23c45
 SHA1 (patch-firmware_etherboot_patches_series) = 2fa1342c78094c6dd5d60a07c236c4a1c0599fc4
 SHA1 (patch-firmware_hvmloader_Makefile) = bc5e81ddfc5e95887c2af4bb32eced9c5748b3c6
-SHA1 (patch-hotplug_NetBSD_Makefile) = 5afbf8dc910c93fcc0904ba09164a441704e31a2
+SHA1 (patch-hotplug_NetBSD_Makefile) = 6f6ec768b595c332a8757437a64509c0370e52da
+SHA1 (patch-hotplug_NetBSD_block) = 243ec06924ba1b711203cb41620e0374dfd172ef
 SHA1 (patch-hotplug_NetBSD_vif-bridge) = ac4cc7446715330b504b8cce8cbd47c8035cf33c
 SHA1 (patch-hotplug_NetBSD_vif-ip) = ed23b0c16d87bd05230399d921e28860c5857b01
 SHA1 (patch-hotplug_common_Makefile) = 1c8af96a3d0d1d5e9c168b1eb75fabb3e2164a19
@@ -41,6 +43,7 @@ SHA1 (patch-libxl_Makefile) = 16abc9e74855dacbeff40ad1010876dd80230977
 SHA1 (patch-libxl_libxl__create.c) = d4c94e9a389e9a7601513460f31c82e4f4bf28c9
 SHA1 (patch-libxl_libxl__save__helper.c) = 70e5237e28bea1aa87486e080fc25aa81300a6d8
 SHA1 (patch-libxl_libxl_uuid.c) = d14286be8ccdbcb5fae544a1968e7b681b63e884
+SHA1 (patch-libxl_xl__cmdtable.c) = d149603cac13c996d7800cee94a9df3aaadf9625
 SHA1 (patch-ocaml_common.make) = 4d4bddca7b5d93489a3f6620af51d95bbe265abb
 SHA1 (patch-ocaml_xenstored_Makefile) = 8014db42b65ca9290013069d1f3cb816e3f023c2
 SHA1 (patch-ocaml_xenstored_define.ml) = 18d6878ae536554e8831f3732d2a8ea1b13a9b63
