@@ -9,5 +9,4 @@ PKGREVISION=	19
 CATEGORIES=	graphics
 COMMENT=	Xfce icon themes
 
-.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
