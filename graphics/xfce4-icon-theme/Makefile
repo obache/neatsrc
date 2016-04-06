@@ -9,4 +9,6 @@ PKGREVISION=	19
 CATEGORIES=	graphics
 COMMENT=	Xfce icon themes
 
+ICON_THEMES=	yes
+
 .include "../../mk/bsd.pkg.mk"
