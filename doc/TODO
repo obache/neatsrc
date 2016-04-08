@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15618 2016/04/04 12:18:47 wiz Exp $
+$NetBSD: TODO,v 1.15630 2016/04/07 18:08:39 prlw1 Exp $
 
 Suggested new packages
 ======================
@@ -397,7 +397,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o SDL2_image-2.0.1
 	o SDL2_net-2.0.1
 	o SOPE-3.0.2
-	o Sigil-0.9.5
 	o TeXmacs-1.99.4
 	o TeXmacs-devel-1.0.7.21
 	o TiffIO-140a
@@ -553,7 +552,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o clusterssh-4.05
 	o clutter-1.24
 	o clutter-gst-3.0.2
-	o cmake-3.5.1
 	o cmake-fedora-2.6.0
 	o cmocka-1.0.1
 	o cmus-2.7.1
@@ -708,8 +706,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o fet-5.28.6
 	o fetchmail-6.3.26
 	o fetchyahoo-2.14.0
-	o ffmpeg-3.0
-	o ffmpeg3-3.0.1
 	o filerunner-14.06.18.10
 	o fillets-ng-0.7.4
 	o fillets-ng-data-0.7.4
@@ -777,8 +773,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gfract-0.33
 	o ghc7-7.10.1
 	o gifsicle-1.88
-	o git-2.8.0
-	o git-base-2.8.0
 	o gkrellm-2.3.5
 	o gkrellm-multiping-2.0.13
 	o gkrellm-server-2.3.5
@@ -791,7 +785,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o global-6.5.4
 	o glom-1.14.2 [GNOME 2.26]
 	o gloox-1.0.14
-	o glpk-4.59
+	o glpk-4.60
 	o glx-utils-8.3.0
 	o gmock-1.7.0
 	o gnet1-1.1.9
@@ -836,6 +830,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gnucash-2.6.12
 	o gnuchess-6.2.2
 	o gnuchess-book-1.02
+	o gnupg2-2.0.30
 	o gnustep-back-0.24.1
 	o gnustep-base-1.24.8
 	o gnustep-examples-1.4.0
@@ -897,7 +892,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o hamster-applet-2.32.1 [GNOME 2.32]
 	o handbrake-0.10.2
 	o hanzim-3.5
-	o harfbuzz-1.2.4
 	o harminv-1.4
 	o haskell-mode-1.45
 	o hdevtools-0.1.3.0
@@ -1015,6 +1009,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o jools-1.0
 	o jove-4.16.0.73
 	o jpilot-syncmal-0.81
+	o jsoncpp-1.7.2
 	o kadu-0.11.1
 	o kaffe-1.1.9
 	o kapooka-0.3
@@ -1098,6 +1093,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libpgm-5.2.122
 	o libprelude-1.2.5
 	o libquantum-1.1.0 [pkg/43728, development release]
+	o librecad-2.0.9
 	o libressl-2.3.3
 	o libstree-0.4.2
 	o libtar-1.2.20
@@ -1147,6 +1143,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o makeself-2.2.0
 	o maketool-0.8.4
 	o makeztxt-1.60
+	o mame-0.172
 	o man-pages-4.04
 	o manedit-1.2.1
 	o mantis-1.2.19
@@ -1184,6 +1181,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mit-scheme-bin-9.2
 	o mksh-52b
 	o mkvtoolnix-5.9.0
+	o modular-xorg-server-1.18.3
 	o modular-xorg-xquartz-1.18.0
 	o molden-4.8 [after which PR 40252 can be closed]
 	o molden-5.5
@@ -1325,7 +1323,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Convert-Binary-C-0.78
 	o p5-Convert-NLS_DATE_FORMAT-0.06
 	o p5-Convert-UUlib-1.50
-	o p5-Crypt-ECB-2.15
 	o p5-Crypt-GeneratePassword-0.05
 	o p5-Crypt-OpenPGP-1.12
 	o p5-Crypt-PWSafe3-1.22
@@ -1354,7 +1351,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Digest-Hashcash-1.1
 	o p5-Dist-Zilla-5.043
 	o p5-EV-4.22
-	o p5-Email-Valid-1.200
 	o p5-Encode-2.82
 	o p5-Excel-Template-0.34
 	o p5-Excel-Template-Plus-0.06
@@ -1399,6 +1395,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-IO-Pager-0.36
 	o p5-IO-Prompt-0.997003
 	o p5-IO-Prompter-0.004014
+	o p5-IO-Socket-SSL-2.025
 	o p5-IO-TieCombine-1.005
 	o p5-IP-Country-3.03
 	o p5-IPC-Cmd-0.94
@@ -1417,7 +1414,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-MIME-EncWords-1.014.3
 	o p5-Mail-IMAPClient-3.38
 	o p5-Mail-Mbox-MessageParser-1.5105
-	o p5-Math-Base-Convert-0.11
 	o p5-Math-BigInt-GMP-1.49
 	o p5-Math-BigInt-Pari-1.25
 	o p5-Math-Derivative-0.04
@@ -1439,7 +1435,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-MooseX-MethodAttributes-0.31
 	o p5-MooseX-Role-WithOverloading-0.17
 	o p5-MooseX-Types-Structured-0.35
-	o p5-Net-3.08
 	o p5-Net-Amazon-S3-0.80
 	o p5-Net-DBus-1.1.0
 	o p5-Net-DHCP-0.696
@@ -1486,7 +1481,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Perl6-Export-0.009
 	o p5-PerlMagick-6.9.1.10
 	o p5-Pod-Markdown-3.005
-	o p5-Pod-Spell-1.19
 	o p5-PostScript-2.32
 	o p5-PostScript-Simple-1.02
 	o p5-Proc-Wait3-0.05
@@ -1670,7 +1664,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o privoxy-3.0.24
 	o profit-2.5.3
 	o psmisc-22.20
-	o pspp-0.10.0
+	o pspp-0.10.1
 	o pure-ftpd-1.0.40
 	o pvs-5.0
 	o pwlib-1.11.1
@@ -1773,7 +1767,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py34-html-docs-3.4.3
 	o pythontidy-1.23
 	o qbzr-0.22.4
-	o qcad-3.7.5.0
+	o qcad-3.13.1.3
 	o qemu-2.5.1
 	o qgis-2.14.0
 	o qlandkartegt-1.8.1 [pkg/49910]
