@@ -16,8 +16,8 @@ include/mate-mixer/libmatemixer/matemixer-types.h
 include/mate-mixer/libmatemixer/matemixer-version.h
 include/mate-mixer/libmatemixer/matemixer.h
 lib/libmatemixer.la
-lib/libmatemixer/libmatemixer-null.la
 ${PLIST.alsa}lib/libmatemixer/libmatemixer-alsa.la
+lib/libmatemixer/libmatemixer-null.la
 ${PLIST.oss}lib/libmatemixer/libmatemixer-oss.la
 ${PLIST.pulse}lib/libmatemixer/libmatemixer-pulse.la
 lib/pkgconfig/libmatemixer.pc
