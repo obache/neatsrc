@@ -426,6 +426,7 @@ libspiff		Use libspiff for XML shareable playlist support.
 libssh2			Use libssh2 for SSHv2 protocol support.
 libthai			Use libthai for Thai word segmentation.
 libusb			Enable USB access.
+libusb-1		Enable USB access via libusb-1.
 libvisual		Enable libvisual (audio visualisation) support.
 libvpx			Enable libvpx support.
 libwildmidi		Enable MIDI support using libwildmidi.
@@ -499,6 +500,7 @@ mplayer-ssse3		Enable SSSE3 support.
 mplayer-win32		Enable usage of Win32 DLLs (codecs).
 mrtg-snmpv3		Enable SNMPv3 support.
 mstats			Enable memory statistics.
+mtpz			Enable MTPZ support using libgcrypt.
 musepack		Enable the portable Musepack decoder library.
 musicbrainz		Enable musicbrainz support.
 musicpd-lastfm		Enable Last.FM support in musicpd.
@@ -512,6 +514,7 @@ mysqlmanager		Build mysqlmanager.
 mysqlnd			Support for MySQL Native Driver (mainly for php).
 nagios-nrpe-args	Enable argument passing via NRPE (possible security issues).
 nas			Enable usage of the Network Audio System.
+nautilus		Enable nautilus sub-menu option.
 ncurses			Enable ncurses support.
 ncursesw		Enable wide character ncurses support.
 ndb-cluster		Build NDB Cluster support.
