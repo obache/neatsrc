@@ -1,6 +1,6 @@
 # $NetBSD$
 
-PKGNAME=	mate-extra-1.12
+PKGNAME=	mate-extra-1.14
 CATEGORIES=	meta-pkgs mate
 
 HOMEPAGE=	http://www.mate-desktop.org/
@@ -9,7 +9,7 @@ LICENSE=	public-domain
 
 META_PACKAGE=	yes
 
-# see http://wiki.mate-desktop.org/status:1.12
+# see http://wiki.mate-desktop.org/status:1.14
 
 DEPENDS+=	mate-core>=${PKGVERSION_NOREV}:../../meta-pkgs/mate-core
 DEPENDS+=	atril>=${PKGVERSION_NOREV}:../../print/atril
@@ -21,10 +21,8 @@ DEPENDS+=	mate-applets>=${PKGVERSION_NOREV}:../../x11/mate-applets
 DEPENDS+=	mate-icon-theme-faenza>=${PKGVERSION_NOREV}:../../graphics/mate-icon-theme-faenza
 DEPENDS+=	mate-indicator-applet>=${PKGVERSION_NOREV}:../../x11/mate-indicator-applet
 DEPENDS+=	mate-netbook>=${PKGVERSION_NOREV}:../../wm/mate-netbook
-DEPENDS+=	mate-netspeed>=${PKGVERSION_NOREV}:../../sysutils/mate-netspeed
 DEPENDS+=	mate-sensors-applet>=${PKGVERSION_NOREV}:../../sysutils/mate-sensors-applet
 DEPENDS+=	mate-terminal>=${PKGVERSION_NOREV}:../../x11/mate-terminal
-DEPENDS+=	mate-user-guide>=${PKGVERSION_NOREV}:../../misc/mate-user-guide
 DEPENDS+=	mate-user-share>=${PKGVERSION_NOREV}:../../sysutils/mate-user-share
 DEPENDS+=	mate-utils>=${PKGVERSION_NOREV}:../../misc/mate-utils
 DEPENDS+=	mozo>=${PKGVERSION_NOREV}:../../x11/mozo

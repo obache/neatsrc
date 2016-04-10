@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-panel-1.12.2
+DISTNAME=	mate-panel-1.14.0
 CATEGORIES=	x11 mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz

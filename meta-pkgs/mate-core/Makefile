@@ -1,6 +1,6 @@
 # $NetBSD$
 
-PKGNAME=	mate-core-1.12
+PKGNAME=	mate-core-1.14
 CATEGORIES=	meta-pkgs mate
 
 HOMEPAGE=	http://www.mate-desktop.org/
@@ -9,10 +9,11 @@ LICENSE=	public-domain
 
 META_PACKAGE=	yes
 
-# see http://wiki.mate-desktop.org/status:1.12
+# see http://wiki.mate-desktop.org/status:1.14
 
 DEPENDS+=	mate-common>=${PKGVERSION_NOREV}:../../devel/mate-common
 DEPENDS+=	mate-desktop>=${PKGVERSION_NOREV}:../../x11/mate-desktop
+DEPENDS+=	mate-user-guide>=${PKGVERSION_NOREV}:../../misc/mate-user-guide
 DEPENDS+=	libmatekbd>=${PKGVERSION_NOREV}:../../x11/libmatekbd
 DEPENDS+=	libmatemixer>=${PKGVERSION_NOREV}:../../audio/libmatemixer
 DEPENDS+=	libmateweather>=${PKGVERSION_NOREV}:../../devel/libmateweather
@@ -25,7 +26,7 @@ DEPENDS+=	mate-session-manager>=${PKGVERSION_NOREV}:../../x11/mate-session-manag
 DEPENDS+=	mate-menus>=${PKGVERSION_NOREV}:../../sysutils/mate-menus
 DEPENDS+=	mate-panel>=${PKGVERSION_NOREV}:../../x11/mate-panel
 DEPENDS+=	mate-backgrounds>=${PKGVERSION_NOREV}:../../graphics/mate-backgrounds
-DEPENDS+=	mate-themes>=${PKGVERSION_NOREV}:../../graphics/mate-themes
+DEPENDS+=	mate-themes-[0-9]*:../../graphics/mate-themes
 DEPENDS+=	mate-notification-daemon>=${PKGVERSION_NOREV}:../../sysutils/mate-notification-daemon
 DEPENDS+=	mate-control-center>=${PKGVERSION_NOREV}:../../sysutils/mate-control-center
 DEPENDS+=	mate-screensaver>=${PKGVERSION_NOREV}:../../x11/mate-screensaver

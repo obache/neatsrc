@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	caja-1.12.7
+DISTNAME=	caja-1.14.0
 CATEGORIES=	sysutils mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz

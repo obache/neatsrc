@@ -321,7 +321,6 @@ SUBDIR+=	magicrescue
 SUBDIR+=	manifold
 SUBDIR+=	mate-control-center
 SUBDIR+=	mate-menus
-SUBDIR+=	mate-netspeed
 SUBDIR+=	mate-notification-daemon
 SUBDIR+=	mate-power-manager
 SUBDIR+=	mate-sensors-applet

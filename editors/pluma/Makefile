@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	pluma-1.12.2
+DISTNAME=	pluma-1.14.0
 CATEGORIES=	editors mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz

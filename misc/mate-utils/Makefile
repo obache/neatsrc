@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-utils-1.12.0
+DISTNAME=	mate-utils-1.14.0
 CATEGORIES=	misc mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz

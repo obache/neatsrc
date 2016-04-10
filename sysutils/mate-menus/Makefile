@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-menus-1.12.0
+DISTNAME=	mate-menus-1.14.0
 CATEGORIES=	sysutils mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -25,6 +25,8 @@ INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples/mate-menus
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg/menus
 CONF_FILES+=	${PREFIX}/share/examples/mate-menus/xdg/menus/mate-applications.menu \
 		${PKG_SYSCONFDIR}/xdg/menus/mate-applications.menu
+CONF_FILES+=	${PREFIX}/share/examples/mate-menus/xdg/menus/mate-preferences-categories.menu \
+		${PKG_SYSCONFDIR}/xdg/menus/mate-preferences-categories.menu
 CONF_FILES+=	${PREFIX}/share/examples/mate-menus/xdg/menus/mate-settings.menu \
 		${PKG_SYSCONFDIR}/xdg/menus/mate-settings.menu
 

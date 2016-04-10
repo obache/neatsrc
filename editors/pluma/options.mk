@@ -30,6 +30,10 @@ USE_TOOLS+=	bash:run
 REPLACE_PYTHON+=	plugins/externaltools/data/switch-c.tool.in
 REPLACE_BASH+=	plugins/externaltools/data/search-recursive.tool.in
 PLIST.python=	yes
+SUBST_CLASSES+=		plumapath
+SUBST_STAGE.plumapath=	pre-configure
+SUBST_FILES.plumapath=	plugins/externaltools/data/switch-c.tool.in
+SUBST_SED.plumapath=	-e s,/usr/bin/pluma,${PREFIX}/bin/pluma,
 .include "../../lang/python/application.mk"
 .include "../../devel/py-gobject/buildlink3.mk"
 .include "../../x11/py-gtk2/buildlink3.mk"

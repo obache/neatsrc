@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	mate-control-center
 .if !defined(MATE_CONTROL_CENTER_BUILDLINK3_MK)
 MATE_CONTROL_CENTER_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.mate-control-center+=	mate-control-center>=1.12.0
+BUILDLINK_API_DEPENDS.mate-control-center+=	mate-control-center>=1.14.0
 BUILDLINK_PKGSRCDIR.mate-control-center?=	../../sysutils/mate-control-center
 
 .include "../../x11/mate-desktop/buildlink3.mk"

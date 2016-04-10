@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (caja-1.12.7.tar.xz) = 851e5d60830ec910f9c15898ff364fd576c0f770
-RMD160 (caja-1.12.7.tar.xz) = ffe9a543a1b3217925b3ebae455f3d445b4c1703
-SHA512 (caja-1.12.7.tar.xz) = 32761370cc419ab8d8f815a291782d1ce380d04bf2450dbcea9d0f17d91a1c0b9a487a67a51a0c769a5fcb11091638a7b60e27b28f3148899ba44fb6feb313da
-Size (caja-1.12.7.tar.xz) = 3645820 bytes
+SHA1 (caja-1.14.0.tar.xz) = 9fd95c5295cdda84cfd16891bf4d6c90d3a69c92
+RMD160 (caja-1.14.0.tar.xz) = 9d64c5c2423c63b7ac14640fb8d11a6d4dde02ae
+SHA512 (caja-1.14.0.tar.xz) = 130aec4bdf39c9e59b3d536ec6690b5022e81fe4625dfb0eeac972e55f8e3d81572972b5b9c747c8c04fa7259a54ed128b4ff6c010d556e9a149b96bee6914ba
+Size (caja-1.14.0.tar.xz) = 3608364 bytes

@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	caja-dropbox-1.12.0
+DISTNAME=	caja-dropbox-1.14.0
 CATEGORIES=	sysutils mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz

@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mate-screensaver-1.12.0
+DISTNAME=	mate-screensaver-1.14.0
 CATEGORIES=	x11 mate
 MASTER_SITES=	http://pub.mate-desktop.org/releases/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -25,7 +25,7 @@ CONFIGURE_ARGS+=	--with-xscreensaverdir=${PREFIX}/libexec/xscreensaver/config
 CONFIGURE_ARGS+=	--with-xscreensaverhackdir=${PREFIX}/libexec/xscreensaver
 
 INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples/${PKGBASE}
-INSTALL_MAKE_FLAGS+=	PAM_PREFIX=${PREFIX}/share/examples/pam.d
+INSTALL_MAKE_FLAGS+=	PAM_PREFIX=${PREFIX}/share/examples
 
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg/autostart
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg/menus
@@ -35,7 +35,6 @@ CONF_FILES+=	${PREFIX}/share/examples/mate-screensaver/xdg/menus/mate-screensave
 		${PKG_SYSCONFDIR}/xdg/menus/mate-screensavers.menu
 
 DEPENDS+=	pam-pwauth_suid-[0-9]*:../../security/pam-pwauth_suid
-INSTALLATION_DIRS+=	${PREFIX}/share/examples/pam.d
 
 post-extract:
 	${CP} ${FILESDIR}/mate-screensaver.pam ${WRKDIR}
