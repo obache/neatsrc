@@ -1,4 +1,4 @@
-# $NetBSD: bsd.pkginstall.mk,v 1.64 2015/11/08 03:21:46 leot Exp $
+# $NetBSD: bsd.pkginstall.mk,v 1.66 2016/04/10 15:58:03 joerg Exp $
 #
 # This Makefile fragment is included by bsd.pkg.mk and implements the
 # common INSTALL/DEINSTALL scripts framework.  To use the pkginstall
@@ -182,11 +182,11 @@ FILES_SUBST+=		PKGBASE=${PKGBASE:Q}
 #
 # USERGROUP_PHASE is set to the phase just before which users and
 #	groups need to be created.  Valid values are "configure" and
-#	"build".  If not defined, then by default users and groups
-#	are created prior to installation by the pre-install-script
-#	target.  If this is defined, then the numeric UIDs and GIDs
-#	of users and groups required by this package are hardcoded
-#	into the +INSTALL script.
+#	"build" and "pre-install".
+#	If not defined, then by default users and groups are created
+#	as pare of the +INSTALL script.  If this is defined, then
+#	the numeric UIDs and GIDs of users and groups required by this
+#	package are hardcoded into the +INSTALL script.
 #
 # PKG_UID_RANGE specifies the uid boundaries for new users
 #	to create for packages.
@@ -339,7 +339,7 @@ ${_INSTALL_USERGROUP_UNPACKER}:						\
 pre-configure: create-usergroup
 .  elif !empty(USERGROUP_PHASE:M*build)
 pre-build: create-usergroup
-.  elif !empty(USERGROUP_PHASE:Mpre-install) && ${_USE_DESTDIR} != "no"
+.  elif !empty(USERGROUP_PHASE:Mpre-install)
 pre-install: create-usergroup
 .  endif
 .endif
@@ -386,9 +386,8 @@ su-create-usergroup: ${_INSTALL_USERGROUP_UNPACKER}
 #	make certain files set-uid or to change the ownership or a
 #	directory.
 #
-#	Note that when USE_DESTDIR is in effect, the special permissions
-#	are not directly recorded (as file attributes) in the binary
-#	package file.
+#	The special permissions may not directly recorded (as file
+#	attributes) in the binary package file.
 #
 # SETUID_ROOT_PERMS is a convenience definition to note an executable is
 # meant to be setuid-root, and should be used as follows:
@@ -1131,8 +1130,6 @@ INSTALL_SCRIPTS_ENV=	PKG_PREFIX=${PREFIX}
 INSTALL_SCRIPTS_ENV+=	PKG_METADATA_DIR=${_PKG_DBDIR}/${PKGNAME}
 INSTALL_SCRIPTS_ENV+=	PKG_REFCOUNT_DBDIR=${PKG_REFCOUNT_DBDIR}
 
-.PHONY: pre-install-script post-install-script
-
 DEINSTALL_FILE=		${PKG_DB_TMPDIR}/+DEINSTALL
 INSTALL_FILE=		${PKG_DB_TMPDIR}/+INSTALL
 _DEINSTALL_FILE=	${_PKGINSTALL_DIR}/DEINSTALL
@@ -1193,24 +1190,6 @@ ${_INSTALL_FILE}: ${INSTALL_SRC}
 	*)	${CAT} ${.ALLSRC} | ${SED} ${FILES_SUBST_SED} ;;	\
 	esac
 	${RUN}${CHMOD} +x ${.TARGET}
-
-pre-install-script:
-	${RUN}								\
-	if ${TEST} -x ${INSTALL_FILE}; then				\
-		${STEP_MSG} "Running PRE-INSTALL script actions";	\
-		cd ${PKG_DB_TMPDIR} && ${PKGSRC_SETENV} ${INSTALL_SCRIPTS_ENV} \
-		${_PKG_DEBUG_SCRIPT} ${INSTALL_FILE} ${PKGNAME}		\
-			PRE-INSTALL;					\
-	fi
-
-post-install-script:
-	${RUN}								\
-	if ${TEST} -x ${INSTALL_FILE}; then				\
-		${STEP_MSG} "Running POST-INSTALL script actions";	\
-		cd ${PKG_DB_TMPDIR} && ${PKGSRC_SETENV} ${INSTALL_SCRIPTS_ENV} \
-		${_PKG_DEBUG_SCRIPT} ${INSTALL_FILE} ${PKGNAME}		\
-			POST-INSTALL;					\
-	fi
 
 # rc.d scripts are automatically generated and installed into the rc.d
 # scripts example directory at the post-install step.  The following

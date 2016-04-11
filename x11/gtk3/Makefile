@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.73 2016/03/05 11:29:41 jperkin Exp $
+# $NetBSD: Makefile,v 1.75 2016/04/10 20:06:50 prlw1 Exp $
 
-DISTNAME=	gtk+-3.16.7
+DISTNAME=	gtk+-3.20.2
 PKGNAME=	${DISTNAME:S/gtk/gtk3/}
-PKGREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	ftp://ftp.gtk.org/pub/gtk/${PKGVERSION_NOREV:R}/ \
 		${MASTER_SITE_GNOME:=sources/gtk+/${PKGVERSION_NOREV:R}/}
@@ -79,7 +78,7 @@ _BUILDING_GTK3=	yes
 BUILDLINK_API_DEPENDS.atk+=	atk>=2.15.1
 .include "../../devel/atk/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
-BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.43.4
+BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.45.8
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_API_DEPENDS.gdk-pixbuf2+=	gdk-pixbuf2>=2.30.0
 .include "../../graphics/gdk-pixbuf2/buildlink3.mk"
@@ -91,7 +90,7 @@ BUILDLINK_API_DEPENDS.gobject-introspection+=	gobject-introspection>=1.39.0
 
 .include "../../devel/glib2/schemas.mk"
 
-BUILDLINK_API_DEPENDS.pango+=	pango>=1.36.7
+BUILDLINK_API_DEPENDS.pango+=	pango>=1.37.3
 .include "../../devel/pango/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"
 BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.14.0
