@@ -10,8 +10,6 @@ HOMEPAGE=	http://elementaryos.org/docs/packaging/themes/elementary-icons
 COMMENT=	Simple and appealing Tango-styled icon theme
 LICENSE=	gnu-gpl-v3
 
-PKG_DESTDIR_SUPPORT=	user-destdir
-
 WRKSRC=		${WRKDIR}/elementary
 NO_BUILD=	yes
 USE_LANGUAGES=	# none

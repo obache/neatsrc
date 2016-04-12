@@ -12,8 +12,6 @@ HOMEPAGE=	http://enlightenment.org/
 COMMENT=	Enlightenment Window Manager, Development Release
 LICENSE=	2-clause-bsd
 
-PKG_DESTDIR_SUPPORT=	user-destdir
-
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS=	gmake pkg-config automake autoconf

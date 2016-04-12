@@ -13,8 +13,6 @@ HOMEPAGE=		http://www.remlab.net/ndisc6/
 COMMENT=		Traceroute6 implementation using TCP packets
 LICENSE=		gnu-gpl-v2
 
-PKG_DESTDIR_SUPPORT=	user-destdir
-
 GNU_CONFIGURE=		yes
 
 #DOCDIR=			${PREFIX}/share/doc/tcptraceroute

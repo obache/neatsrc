@@ -12,8 +12,6 @@ HOMEPAGE=	https://pdsh.googlecode.com/
 COMMENT=	High-performance, parallel remote shell utility
 LICENSE=	gnu-gpl-v2
 
-PKG_DESTDIR_SUPPORT=	user-destdir
-
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	perl:run

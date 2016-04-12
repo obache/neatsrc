@@ -11,8 +11,6 @@ HOMEPAGE=	http://www.onyxbits.de/sites/default/files/upload_cck/node/526/
 COMMENT=	LDAP based mail autoresponder
 LICENSE=	gnu-gpl-v2
 
-PKG_DESTDIR_SUPPORT=	user-destdir
-
 # data/Makefile depends on legacy rule execution order
 MAKE_JOBS_SAFE=	no
 

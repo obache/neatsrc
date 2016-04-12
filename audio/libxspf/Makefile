@@ -10,8 +10,6 @@ HOMEPAGE=	http://libspiff.sourceforge.net/
 COMMENT=	XML Shareable Playlist Format (XSPF) library
 LICENSE=	modified-bsd
 
-PKG_DESTDIR_SUPPORT=	user-destdir
-
 USE_TOOLS+=	pkg-config
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes

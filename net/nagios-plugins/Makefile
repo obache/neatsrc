@@ -9,8 +9,6 @@ HOMEPAGE=	http://sourceforge.net/projects/nagiosplug/
 COMMENT=	Nagios plugins
 LICENSE=	gnu-gpl-v2
 
-PKG_DESTDIR_SUPPORT=	user-destdir
-
 .include "../../net/nagios-plugins/Makefile.common"
 
 .include "../../mk/bsd.prefs.mk"

@@ -12,8 +12,6 @@ LICENSE=	modified-bsd
 
 CONFLICTS=	kyua-atf-compat-[0-9]* kyua-cli-[0-9]* kyua-testers-[0-9]*
 
-PKG_DESTDIR_SUPPORT=	user-destdir
-
 GNU_CONFIGURE=		yes
 USE_LANGUAGES=		c c++
 USE_TOOLS=		pkg-config
