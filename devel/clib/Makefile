@@ -9,8 +9,6 @@ MAINTAINER=	tonnerre@NetBSD.org
 HOMEPAGE=	http://clib.ancient-solutions.com/
 COMMENT=	Enhanced language features for C
 
-PKG_DESTDIR_SUPPORT=	destdir
-
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
 
