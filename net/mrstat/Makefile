@@ -8,6 +8,7 @@ EXTRACT_SUFX=	.tbz
 MAINTAINER=	abs@absd.org
 HOMEPAGE=	http://code.google.com/p/mrstat/
 COMMENT=	Track load and number of users on specified hosts
+LICENSE=	modified-bsd
 
 MAKE_ENV+=	SYSCONFDIR=${PKG_SYSCONFDIR:Q}
 
