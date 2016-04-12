@@ -8,6 +8,7 @@ EXTRACT_SUFX=	.tbz
 MAINTAINER=	abs@NetBSD.org
 HOMEPAGE=	http://code.google.com/p/msu/
 COMMENT=	Mini passwordless su
+LICENSE=	modified-bsd
 
 MAKE_ENV+=	SYSCONFDIR=${PKG_SYSCONFDIR:Q}
 
