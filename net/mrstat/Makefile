@@ -11,6 +11,4 @@ COMMENT=	Track load and number of users on specified hosts
 
 MAKE_ENV+=	SYSCONFDIR=${PKG_SYSCONFDIR:Q}
 
-PKG_DESTDIR_SUPPORT=    destdir
-
 .include "../../mk/bsd.pkg.mk"
