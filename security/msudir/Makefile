@@ -8,6 +8,7 @@ EXTRACT_SUFX=	.tbz
 MAINTAINER=	abs@NetBSD.org
 HOMEPAGE=	http://code.google.com/p/msudir/
 COMMENT=	Easy setuid script management
+LICENSE=	modified-bsd
 
 MAKE_ENV+=	SYSCONFDIR=${PKG_SYSCONFDIR:Q}
 
