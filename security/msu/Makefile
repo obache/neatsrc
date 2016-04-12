@@ -11,6 +11,6 @@ COMMENT=	Mini passwordless su
 
 MAKE_ENV+=	SYSCONFDIR=${PKG_SYSCONFDIR:Q}
 
-PKG_DESTDIR_SUPPORT=    destdir
+SPECIAL_PERMS+=	bin/msu ${SETUID_ROOT_PERMS}
 
 .include "../../mk/bsd.pkg.mk"
