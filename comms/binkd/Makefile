@@ -12,8 +12,6 @@ MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://homepage.corbina.net/~maloff/binkd/
 COMMENT=		FidoNet-over-IP transport program utilizing BINKP protocol
 
-PKG_DESTDIR_SUPPORT=	destdir
-
 MAKE_JOBS_SAFE=		no
 
 WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
