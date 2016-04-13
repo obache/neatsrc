@@ -9,8 +9,6 @@ MASTER_SITES=	# ftp://ftp.kuis.kyoto-u.ac.jp/TeX/watanabe-jfonts/
 MAINTAINER=	tech-pkg-ja@jp.NetBSD.org
 COMMENT=	Watanabe-vector Japanese font
 
-PKG_DESTDIR_SUPPORT=	destdir
-
 EXTRACT_ONLY=	# empty
 NO_CONFIGURE=	yes
 NO_BUILD=	yes
