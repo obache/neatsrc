@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.1447 2016/04/12 08:50:54 fhajny Exp $
+$NetBSD: CHANGES-2016,v 1.1458 2016/04/12 23:59:20 prlw1 Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -1899,3 +1899,18 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated textproc/icu to 57.1 [ryoon 2016-04-11]
 	Updated www/webkit-gtk to 2.10.9 [leot 2016-04-12]
 	Updated net/rabbitmq-c to 0.8.0 [fhajny 2016-04-12]
+	Updated devel/libpeas to 1.18.0 [prlw1 2016-04-12]
+	Updated x11/gtksourceview3 to 3.20.1 [prlw1 2016-04-12]
+	Updated devel/dejagnu to 1.5.3 [mef 2016-04-12]
+	Updated devel/ocaml-type_conv to 113.00.02nb1 [jaapb 2016-04-12]
+	Added textproc/gspell version 1.0.1 [prlw1 2016-04-12]
+	Updated editors/gedit3 to 3.20.1 [prlw1 2016-04-12]
+	Updated graphics/py-Pillow to 3.1.2 [adam 2016-04-12]
+	Updated www/liferea to 1.10.19 [leot 2016-04-12]
+	Updated devel/libsigc++ to 2.8.0 [adam 2016-04-12]
+	Updated devel/glibmm to 2.48.1 [adam 2016-04-12]
+	Updated devel/pangomm to 2.40.0 [adam 2016-04-12]
+	Updated devel/atkmm to 2.24.2 [adam 2016-04-12]
+	Updated graphics/inkscape to 0.91nb13 [adam 2016-04-12]
+	Updated math/glpk to 4.60 [adam 2016-04-12]
+	Updated graphics/eog3 to 3.20.1 [prlw1 2016-04-12]

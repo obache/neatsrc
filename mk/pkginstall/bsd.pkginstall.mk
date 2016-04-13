@@ -1,4 +1,4 @@
-# $NetBSD: bsd.pkginstall.mk,v 1.66 2016/04/10 15:58:03 joerg Exp $
+# $NetBSD: bsd.pkginstall.mk,v 1.68 2016/04/12 16:01:06 jaapb Exp $
 #
 # This Makefile fragment is included by bsd.pkg.mk and implements the
 # common INSTALL/DEINSTALL scripts framework.  To use the pkginstall
@@ -19,6 +19,7 @@ _VARGROUPS+=		pkginstall
 _USER_VARS.pkginstall= \
 	FONTS_VERBOSE \
 	INFO_FILES_VERBOSE \
+	OCAML_FINDLIB_REGISTER_VERBOSE \
 	PKG_CREATE_USERGROUP \
 	PKG_CONFIG PKG_CONFIG_PERMS \
 	PKG_GID_RANGE \
@@ -798,6 +799,30 @@ install-script-data-info-files:
 	fi
 .endif
 
+# OCAML_FINDLIB_REGISTER
+_INSTALL_OFR_FILE=	${_PKGINSTALL_DIR}/ocaml-findlib-register
+_INSTALL_UNPACK_TMPL+=		${_INSTALL_OFR_FILE}
+
+${_INSTALL_OFR_FILE}: ../../mk/pkginstall/ocaml-findlib-register
+	${RUN}${MKDIR} ${.TARGET:H}
+.if defined(OCAML_FINDLIB_REGISTER)
+	${RUN}${SED} ${FILES_SUBST_SED} \
+		../../mk/pkginstall/ocaml-findlib-register > ${.TARGET}
+.else
+	${RUN} ${RM} -f ${.TARGET}; \
+	${TOUCH} ${TOUCH_ARGS} ${.TARGET}
+.endif
+
+.PHONY: install-script-data-ocaml-findlib-register
+install-script-data: install-script-data-ocaml-findlib-register
+install-script-data-ocaml-findlib-register:
+.if defined(OCAML_FINDLIB_REGISTER)
+		${RUN} \
+		cd ${PKG_DB_TMPDIR} && ${PKGSRC_SETENV} ${INSTALL_SCRIPTS_ENV} \
+		${_PKG_DEBUG_SCRIPT} ${INSTALL_FILE} ${PKGNAME} \
+			UNPACK +OCAML_FINDLIB_REGISTER
+.endif
+
 # PKG_SHELL contains the pathname of the shell that should be added or
 #	removed from the shell database, /etc/shells.  If a pathname
 #	is relative, then it is taken to be relative to ${PREFIX}.
@@ -1055,9 +1080,11 @@ ${_INSTALL_ICON_THEMES_FILE}: ../../mk/pkginstall/icon-themes
 .if ${PKG_DEVELOPER:Uno} != "no"
 FONTS_VERBOSE?=		YES
 INFO_FILES_VERBOSE?=	YES
+OCAML_FINDLIB_REGISTER_VERBOSE?=	YES
 .else
 FONTS_VERBOSE?=		NO
 INFO_FILES_VERBOSE?=	NO
+OCAML_FINDLIB_REGISTER_VERBOSE?=	NO
 .endif
 PKG_CREATE_USERGROUP?=	YES
 PKG_CONFIG?=		YES
@@ -1073,6 +1100,7 @@ FILES_SUBST+=		PKG_REGISTER_SHELLS=${PKG_REGISTER_SHELLS:Q}
 FILES_SUBST+=		PKG_UPDATE_FONTS_DB=${PKG_UPDATE_FONTS_DB:Q}
 FILES_SUBST+=		FONTS_VERBOSE=${FONTS_VERBOSE:Q}
 FILES_SUBST+=		INFO_FILES_VERBOSE=${INFO_FILES_VERBOSE:Q}
+FILES_SUBST+=		OCAML_FINDLIB_REGISTER_VERBOSE=${OCAML_FINDLIB_REGISTER_VERBOSE:Q}
 
 # Substitute for various programs used in the DEINSTALL/INSTALL scripts and
 # in the rc.d scripts.
@@ -1103,6 +1131,7 @@ FILES_SUBST+=		LN=${LN:Q}
 FILES_SUBST+=		LS=${LS:Q}
 FILES_SUBST+=		MKDIR=${MKDIR:Q}
 FILES_SUBST+=		MV=${MV:Q}
+FILES_SUBST+=		OCAML_FINDLIB_DIRS=${OCAML_FINDLIB_DIRS:Q}
 FILES_SUBST+=		PERL5=${PERL5:Q}
 FILES_SUBST+=		PKG_ADMIN=${PKG_ADMIN_CMD:Q}
 FILES_SUBST+=		PKG_INFO=${PKG_INFO_CMD:Q}
