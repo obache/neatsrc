@@ -5,7 +5,7 @@ CATEGORIES=	net
 MASTER_SITES=	${SAMBA_MIRRORS:=stable/}
 PATCH_SITES=	${SAMBA_MIRRORS:=patches/security/}
 PATCHFILES=	${DISTNAME}-security-2015-12-16.patch
-PATCH_DIST_STRIP=	-p2
+PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.samba.org/
@@ -22,7 +22,7 @@ USE_GCC_RUNTIME=	yes
 FILESDIR=		${PKGDIR}/../../net/samba/files
 DESCR_SRC=		${PKGDIR}/../../net/samba/DESCR
 MESSAGE_SRC=		${PKGDIR}/../../net/samba/MESSAGE
-WRKSRC=			${WRKDIR}/${DISTNAME}/source3
+CONFIGURE_DIRS=		source3
 BUILD_DEFS+=		VARBASE
 
 .include "../../mk/bsd.prefs.mk"
@@ -53,7 +53,7 @@ FILES_SUBST+=		WINBINDD_RCD_SCRIPT=${WINBINDD_RCD_SCRIPT:Q}
 # mktemp is useful for the replacement adduser script, but don't require
 # a full dependency since it's not actually needed by samba.
 USE_TOOLS+=		gmake mktemp perl:run pkg-config
-REPLACE_PERL=		script/findsmb.in
+REPLACE_PERL=		source3/script/findsmb.in
 
 BROKEN_GETTEXT_DETECTION=yes
 GNU_CONFIGURE=		yes
@@ -119,8 +119,8 @@ SUBST_VARS.def-cfg=	SAMBA_LOGDIR
 post-extract:
 	${CP} ${FILESDIR}/adduser.sh ${FILESDIR}/deluser.sh ${WRKDIR}
 	for n in tdbbackup.8 tdbdump.8 tdbtool.8; do \
-		${RM} ${WRKSRC}/../docs/manpages/$$n; \
-		${RM} ${WRKSRC}/../docs/htmldocs/manpages/$$n.html; \
+		${RM} ${WRKSRC}/docs/manpages/$$n; \
+		${RM} ${WRKSRC}/docs/htmldocs/manpages/$$n.html; \
 	done
 
 post-install:
@@ -145,13 +145,13 @@ post-install:
 		${DESTDIR}${PREFIX}/${EGDIR}
 	${INSTALL_DATA} ${WRKDIR}/${DISTNAME}/examples/smb.conf.default \
 		${DESTDIR}${PREFIX}/${EGDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/script/mknissmbpasswd.sh \
+	${INSTALL_SCRIPT} ${WRKSRC}/source3/script/mknissmbpasswd.sh \
 		${DESTDIR}${PREFIX}/${EGDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/script/mknissmbpwdtbl.sh \
+	${INSTALL_SCRIPT} ${WRKSRC}/source3/script/mknissmbpwdtbl.sh \
 		${DESTDIR}${PREFIX}/${EGDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/script/mksmbpasswd.sh \
+	${INSTALL_SCRIPT} ${WRKSRC}/source3/script/mksmbpasswd.sh \
 		${DESTDIR}${PREFIX}/${EGDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/script/updatesmbpasswd.sh \
+	${INSTALL_SCRIPT} ${WRKSRC}/source3/script/updatesmbpasswd.sh \
 		${DESTDIR}${PREFIX}/${EGDIR}
 	${CHMOD} ${SHAREMODE} ${DESTDIR}${PREFIX}/include/*.h
 .if ${_OPSYS_SHLIB_TYPE} == "dylib"

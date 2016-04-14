@@ -2,8 +2,8 @@ $NetBSD: patch-lib_crypto_sha256.h,v 1.1 2015/05/29 09:01:09 manu Exp $
 
 Workaroud a conflict between NetBSD libc's and Samva sha2 functions.
 
---- ../lib/crypto/sha256.h.orig	2015-05-29 10:05:16.000000000 +0200
-+++ ../lib/crypto/sha256.h	2015-05-29 10:13:36.000000000 +0200
+--- lib/crypto/sha256.h.orig	2015-05-29 10:05:16.000000000 +0200
++++ lib/crypto/sha256.h	2015-05-29 10:13:36.000000000 +0200
 @@ -41,9 +41,20 @@
     (tridge)
   */

@@ -1,7 +1,7 @@
 $NetBSD: patch-ai,v 1.7 2013/08/12 02:45:55 taca Exp $
 
---- include/local.h.orig	2013-07-29 18:55:18.000000000 +0000
-+++ include/local.h
+--- source3/include/local.h.orig	2013-07-29 18:55:18.000000000 +0000
++++ source3/include/local.h
 @@ -175,10 +175,10 @@
   * Default passwd chat script.
   */

@@ -1,7 +1,7 @@
 $NetBSD: patch-aj,v 1.7 2013/08/12 02:45:55 taca Exp $
 
---- smbd/dir.c.orig	2013-07-29 18:55:18.000000000 +0000
-+++ smbd/dir.c
+--- source3/smbd/dir.c.orig	2013-07-29 18:55:18.000000000 +0000
++++ source3/smbd/dir.c
 @@ -202,7 +202,7 @@ static struct dptr_struct *dptr_get(stru
  					      dptr->wcard, dptr->attr))) {
  					DEBUG(4,("dptr_get: Failed to open %s (%s)\n",dptr->path,

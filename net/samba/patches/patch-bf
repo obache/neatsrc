@@ -1,7 +1,7 @@
 $NetBSD: patch-bf,v 1.6 2013/07/03 20:00:48 adam Exp $
 
---- Makefile.in.orig	2013-06-19 07:35:24.000000000 +0000
-+++ Makefile.in
+--- source3/Makefile.in.orig	2013-06-19 07:35:24.000000000 +0000
++++ source3/Makefile.in
 @@ -2864,7 +2864,7 @@ bin/winbind_krb5_locator.@SHLIBEXT@: $(B
  bin/pam_winbind.@SHLIBEXT@: $(BINARY_PREREQS) $(PAM_WINBIND_OBJ) $(LIBTALLOC) $(LIBTEVENT) $(LIBWBCLIENT)
  	@echo "Linking shared library $@"

@@ -2,8 +2,8 @@ $NetBSD: patch-af,v 1.13 2016/02/29 17:13:06 jperkin Exp $
 
 Fix HAVE_COMPILER_WILL_OPTIMIZE_OUT_FNS test, from upstream.
 
---- configure.orig	2015-02-22 14:16:23.000000000 +0000
-+++ configure
+--- source3/configure.orig	2015-02-22 14:16:23.000000000 +0000
++++ source3/configure
 @@ -15277,20 +15277,24 @@ else
      cat confdefs.h - <<_ACEOF >conftest.$ac_ext
  /* end confdefs.h.  */

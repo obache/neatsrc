@@ -1,7 +1,7 @@
 $NetBSD: patch-aw,v 1.4 2013/08/12 02:45:55 taca Exp $
 
---- winbindd/winbindd_cache.c.orig	2013-07-29 18:55:18.000000000 +0000
-+++ winbindd/winbindd_cache.c
+--- source3/winbindd/winbindd_cache.c.orig	2013-07-29 18:55:18.000000000 +0000
++++ source3/winbindd/winbindd_cache.c
 @@ -4623,7 +4623,7 @@ struct winbindd_tdc_domain * wcache_tdc_
  	DEBUG(10,("wcache_tdc_fetch_domain: Searching for domain %s\n", name));
  

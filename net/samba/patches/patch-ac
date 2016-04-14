@@ -1,7 +1,7 @@
 $NetBSD: patch-ac,v 1.15 2013/08/12 02:45:55 taca Exp $
 
---- libads/kerberos.c.orig	2013-07-29 18:55:18.000000000 +0000
-+++ libads/kerberos.c
+--- source3/libads/kerberos.c.orig	2013-07-29 18:55:18.000000000 +0000
++++ source3/libads/kerberos.c
 @@ -411,7 +411,7 @@ char* kerberos_secrets_fetch_des_salt( v
  
  	if ( (key = des_salt_key()) == NULL ) {

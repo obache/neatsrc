@@ -1,7 +1,7 @@
 $NetBSD: patch-ab,v 1.29 2014/03/03 08:15:10 obache Exp $
 
---- ../examples/smb.conf.default.orig	2010-01-14 10:12:10.000000000 +0000
-+++ ../examples/smb.conf.default
+--- examples/smb.conf.default.orig	2010-01-14 10:12:10.000000000 +0000
++++ examples/smb.conf.default
 @@ -26,7 +26,7 @@
     workgroup = MYGROUP
  

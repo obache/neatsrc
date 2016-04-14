@@ -1,7 +1,7 @@
 $NetBSD: patch-an,v 1.4 2013/08/12 02:45:55 taca Exp $
 
---- smbd/ntquotas.c.orig	2013-07-29 18:55:18.000000000 +0000
-+++ smbd/ntquotas.c
+--- source3/smbd/ntquotas.c.orig	2013-07-29 18:55:18.000000000 +0000
++++ source3/smbd/ntquotas.c
 @@ -239,7 +239,7 @@ void *init_quota_handle(TALLOC_CTX *mem_
  	SMB_NTQUOTA_HANDLE *qt_handle;
  
