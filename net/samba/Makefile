@@ -6,6 +6,17 @@ MASTER_SITES=	${SAMBA_MIRRORS:=stable/}
 PATCH_SITES=	${SAMBA_MIRRORS:=patches/security/}
 PATCHFILES=	${DISTNAME}-security-2015-12-16.patch
 PATCH_DIST_STRIP=	-p1
+DISTFILES_VARS+=	badlockpatch
+DISTFILES.badlockpatch=	samba-v3-6-security-2016-04-12.tar.xz
+SITES.badlockpatch=	${PATCH_SITES}
+DIST_PATCHFILES+=	${PATCHFILES}
+DIST_PATCHFILES+=	CVE-preparation-v3-6.patch
+DIST_PATCHFILES+=	CVE-2015-5370-v3-6.patch
+DIST_PATCHFILES+=	CVE-2016-2110-v3-6.patch
+DIST_PATCHFILES+=	CVE-2016-2111-v3-6.patch
+DIST_PATCHFILES+=	CVE-2016-2112-v3-6.patch
+DIST_PATCHFILES+=	CVE-2016-2115-v3-6.patch
+DIST_PATCHFILES+=	CVE-2016-2118-v3-6.patch
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.samba.org/
@@ -13,7 +24,7 @@ COMMENT=	SMB/CIFS protocol server suite
 LICENSE=	gnu-gpl-v3
 
 VERSION=	3.6.25
-PKGREVISION=	3
+PKGREVISION=	4
 
 CONFLICTS+=	ja-samba-[0-9]* pam-smbpass-[0-9]* winbind-[0-9]*
 
@@ -122,6 +133,30 @@ post-extract:
 		${RM} ${WRKSRC}/docs/manpages/$$n; \
 		${RM} ${WRKSRC}/docs/htmldocs/manpages/$$n.html; \
 	done
+
+post-patch:
+	${TEST} -f ${WRKSRC}/lib/util/bitmap.c || ${MV} ${WRKSRC}/source3/lib/bitmap.c ${WRKSRC}/lib/util/bitmap.c
+
+SUBST_CLASSES+=		dpfix
+SUBST_MESSAGE.dpfix=	Fixing CVE-preparation patch miss
+SUBST_STAGE.dpfix=	post-patch
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_lsa.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_winreg.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_initshutdown.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_dssetup.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_wkssvc.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_svcctl.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_ntsvcs.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_netlogon.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_dfs.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_srvsvc.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_spoolss.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_eventlog.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_samr.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_echo.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_epmapper.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_wbint.c
+SUBST_SED.dpfix=	-e 's,->rng_fault_state,->fault_state,g'
 
 post-install:
 	${RMDIR} ${DESTDIR}${PREFIX}/share/samba/swat/js
