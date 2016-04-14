@@ -132,7 +132,8 @@ patch-cookie:
 ###
 .PHONY: pre-patch do-patch post-patch
 
-.if !empty(PATCHFILES)
+_DIST_PATCHFILES:=	${DIST_PATCHFILES}
+.if !empty(_DIST_PATCHFILES)
 _PKGSRC_PATCH_TARGETS+=	distribution-patch-message
 _PKGSRC_PATCH_TARGETS+=	do-distribution-patch
 .endif
@@ -195,7 +196,7 @@ fi; exit 1
 ### do-distribution-patch (PRIVATE)
 ######################################################################
 ### do-distribution-patch applies the distribution patches (specified
-### in PATCHFILES) to the extracted sources.
+### in DIST_PATCHFILES) to the extracted sources.
 ###
 .PHONY: distribution-patch-message do-distribution-patch
 
@@ -208,7 +209,7 @@ fi; exit 1
 # PATCH_DIST_CAT.<patch>.
 #
 PATCH_DIST_STRIP?=		-p0
-.for i in ${PATCHFILES}
+.for i in ${_DIST_PATCHFILES}
 PATCH_DIST_STRIP.${i:S/=/--/}?=	${PATCH_DIST_STRIP}
 .  if defined(PATCH_DIST_ARGS)
 PATCH_DIST_ARGS.${i:S/=/--/}?=	${PATCH_DIST_ARGS}
@@ -220,13 +221,13 @@ PATCH_DIST_ARGS.${i:S/=/--/}?=	-d ${WRKSRC} --forward --quiet -E ${PATCH_DIST_ST
 .endfor
 .if defined(BATCH)
 PATCH_DIST_ARGS+=		--batch
-.  for i in ${PATCHFILES}
+.  for i in ${_DIST_PATCHFILES}
 PATCH_DIST_ARGS.${i:S/=/--/}+=	--batch
 .  endfor
 .endif
 .if defined(_PATCH_CAN_BACKUP) && (${_PATCH_CAN_BACKUP} == "yes")
 PATCH_DIST_ARGS+=		${_PATCH_BACKUP_ARG} .orig_dist
-.  for i in ${PATCHFILES}
+.  for i in ${_DIST_PATCHFILES}
 PATCH_DIST_ARGS.${i:S/=/--/}+=	${_PATCH_BACKUP_ARG} .orig_dist
 .  endfor
 .endif
@@ -235,15 +236,27 @@ PATCH_DIST_CAT?=	{ case $$patchfile in				\
 			  *.bz2)    ${BZCAT} $$patchfile ;;		\
 			  *)	    ${CAT} $$patchfile ;;		\
 			  esac; }
-.for i in ${PATCHFILES}
-PATCH_DIST_CAT.${i:S/=/--/}?=	{ patchfile=${i}; ${PATCH_DIST_CAT}; }
+.for i in ${_DIST_PATCHFILES}
+PATCH_DIST_CAT.${i:S/=/--/}?=	{ \
+	case ${i} in							\
+	/*)	patchfile=${i} ;;					\
+	*)	if ${TEST} -f ${_DISTDIR}/${i}; then 			\
+			patchfile=${_DISTDIR}/${i};			\
+		elif ${TEST} -f ${WRKDIR}/${i}; then			\
+			patchfile=${WRKDIR}/${i};			\
+		else							\
+			patchfile=${i};					\
+		fi							\
+		;;							\
+	esac;								\
+	${PATCH_DIST_CAT}; }
 .endfor
 
 distribution-patch-message:
 	@${STEP_MSG} "Applying distribution patches for ${PKGNAME}"
 
 do-distribution-patch:
-.for i in ${PATCHFILES}
+.for i in ${_DIST_PATCHFILES}
 	@${ECHO_PATCH_MSG} "Applying distribution patch ${i}"
 	${RUN} cd ${_DISTDIR};						\
 	${PATCH_DIST_CAT.${i:S/=/--/}} |				\
