@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.24 2012/10/02 20:11:53 asau Exp $
+# $NetBSD: Makefile,v 1.26 2016/04/14 22:10:06 dholland Exp $
 #
 
 DISTNAME=	boot.${BOX}-unix
@@ -31,6 +31,7 @@ HOMEPAGE=	http://www.smlnj.org/index.html
 COMMENT=	Popular functional language from Bell Labs
 
 SML_VERSION=	110.73
+PKGREVISION=	1
 
 WRKSRC=		${WRKDIR}
 DIST_SUBDIR=	smlnj-${SML_VERSION}
@@ -65,12 +66,14 @@ post-extract:
 
 # resolve definition of SML_BASE, CFLAGS in patched files
 do-configure:
+	set -e;							\
 	if [ ${MACHINE_ARCH} = "powerpc" ]; then		\
-		${AWK} '(! /^request nlffi$$/) { print }' \
+		${AWK} '(! /^request nlffi$$/) { print }'	\
 		< ${WRKDIR}/config/targets			\
 		> ${WRKDIR}/temp;				\
 		${MV} ${WRKDIR}/temp ${WRKDIR}/config/targets;	\
 	fi
+	set -e;						\
 	cd ${WRKDIR}/config;				\
 	for f in ${SML_SCRIPTS}; do			\
 		${CP} "$${f}" "$${f}.tmp";		\
@@ -80,14 +83,14 @@ do-configure:
 	cd ${WRKDIR}/src/runtime/objs;			\
 	for f in *; do					\
 		${CP} "$${f}" "$${f}.tmp";		\
-		${SED} -e 's|@CFLAGS@|${CFLAGS}|g'	\
+		${SED} -e 's|@CFLAGS@|'${CFLAGS:Q}'|g'	\
 			< "$${f}.tmp" > "$${f}";	\
 	done
 
 # The build target needs to run $WRKDIR/config/install.sh
 do-build:
 	cd ${WRKDIR} && unset PWD && \
-	FILESDIR="${FILESDIR}" PATCH="${PATCH}" PATCH_ARGS="${PATCH_ARGS}" \
+	FILESDIR=${FILESDIR} PATCH=${PATCH:Q} PATCH_ARGS=${PATCH_ARGS:Q} \
 		SMLNJ_HOME="${WRKDIR}" ./config/install.sh
 
 # install target
