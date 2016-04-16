@@ -11,10 +11,6 @@ MAINTAINER=	hubertf@NetBSD.org
 HOMEPAGE=	http://www.clave.gr.jp/~eto/xbatt/	# Not really
 COMMENT=	Displays battery status of your notebook via APM
 
-.if !exists(/usr/include/machine/apmvar.h)
-PKG_FAIL_REASON+=	"APM is not available for ${MACHINE_PLATFORM}"
-.endif
-
 WRKSRC=		${WRKDIR}/xbatt-1.3
 USE_IMAKE=	YES
 BUILD_TARGET=	xbatt
@@ -33,6 +29,10 @@ SPECIAL_PERMS+=	bin/xbatt ${REAL_ROOT_USER} operator 2755
 .if ${OPSYS} == "Linux"
 SPECIAL_PERMS+=	bin/xbatt ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 2755
 .endif
+.if ${OPSYS} == "NetBSD" && !exists(/usr/include/machine/apmvar.h)
+PKG_FAIL_REASON+=	"APM is not available for ${MACHINE_PLATFORM}"
+.endif
+
 
 .include "../../x11/libXpm/buildlink3.mk"
 .include "../../x11/libXaw/buildlink3.mk"
