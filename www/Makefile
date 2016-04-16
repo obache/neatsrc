@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1161 2016/04/06 09:02:44 manu Exp $
+# $NetBSD: Makefile,v 1.1166 2016/04/15 12:17:38 wiz Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -342,6 +342,7 @@ SUBDIR+=	p5-HTML-PrettyPrinter
 SUBDIR+=	p5-HTML-Prototype
 SUBDIR+=	p5-HTML-Prototype-Useful
 SUBDIR+=	p5-HTML-Quoted
+SUBDIR+=	p5-HTML-Restrict
 SUBDIR+=	p5-HTML-RewriteAttributes
 SUBDIR+=	p5-HTML-Scrubber
 SUBDIR+=	p5-HTML-Selector-XPath
@@ -368,6 +369,7 @@ SUBDIR+=	p5-HTMLObject
 SUBDIR+=	p5-HTTP-Async
 SUBDIR+=	p5-HTTP-Body
 SUBDIR+=	p5-HTTP-Cache-Transparent
+SUBDIR+=	p5-HTTP-CookieMonster
 SUBDIR+=	p5-HTTP-Cookies
 SUBDIR+=	p5-HTTP-DAV
 SUBDIR+=	p5-HTTP-Daemon
@@ -428,6 +430,7 @@ SUBDIR+=	p5-Kwiki-Wikiwyg
 SUBDIR+=	p5-Kwiki-Zipcode
 SUBDIR+=	p5-LWP-Authen-Negotiate
 SUBDIR+=	p5-LWP-Authen-Wsse
+SUBDIR+=	p5-LWP-ConsoleLogger
 SUBDIR+=	p5-LWP-MediaTypes
 SUBDIR+=	p5-LWP-Online
 SUBDIR+=	p5-LWP-Protocol-PSGI
@@ -464,6 +467,7 @@ SUBDIR+=	p5-Plack-Middleware-RemoveRedundantBody
 SUBDIR+=	p5-Plack-Middleware-ReverseProxy
 SUBDIR+=	p5-Plack-Middleware-Session
 SUBDIR+=	p5-Plack-Middleware-Test-StashWarnings
+SUBDIR+=	p5-Plack-Test-Agent
 SUBDIR+=	p5-Plack-Test-ExternalServer
 SUBDIR+=	p5-Pod-POM-Web
 SUBDIR+=	p5-Reaction
@@ -507,6 +511,7 @@ SUBDIR+=	p5-URI-Fetch
 SUBDIR+=	p5-URI-Find
 SUBDIR+=	p5-URI-FromHash
 SUBDIR+=	p5-URI-Nested
+SUBDIR+=	p5-URI-Query
 SUBDIR+=	p5-URI-db
 SUBDIR+=	p5-VRML
 SUBDIR+=	p5-WWW-Amazon-Wishlist
