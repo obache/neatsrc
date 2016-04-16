@@ -19,7 +19,6 @@ PKG_DESTDIR_SUPPORT=	destdir
 MAKE_JOBS_SAFE=		no
 
 BUILD_TARGET=	World
-PLIST_SRC=	${WRKDIR}/PLIST
 
 X11_SUBDIR=	X11R6.3
 
@@ -32,8 +31,8 @@ do-configure:
 	  ${FILESDIR}/host.def >${WRKSRC}/config/cf/host.def
 	${ECHO} "#define NetBSDThreads NO" >>${WRKSRC}/config/cf/host.def
 
-post-install:
+GENERATE_PLIST+= \
 	cd ${DESTDIR}${PREFIX} && \
-	${FIND} ${X11_SUBDIR} \! -type d -print | ${SORT} >${PLIST_SRC}
+	${FIND} ${X11_SUBDIR} \! -type d -print | ${SORT} -d;
 
 .include "../../mk/bsd.pkg.mk"
