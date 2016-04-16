@@ -11,8 +11,6 @@ MAINTAINER=	hubertf@NetBSD.org
 HOMEPAGE=	http://www.clave.gr.jp/~eto/xbatt/	# Not really
 COMMENT=	Displays battery status of your notebook via APM
 
-PKG_DESTDIR_SUPPORT=	destdir
-
 .if !exists(/usr/include/machine/apmvar.h)
 PKG_FAIL_REASON+=	"APM is not available for ${MACHINE_PLATFORM}"
 .endif
@@ -27,6 +25,14 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/XBatt ${DESTDIR}${PREFIX}/lib/X11/app-defaults/XBatt
 	${INSTALL_MAN} ${WRKSRC}/README ${DESTDIR}${PREFIX}/share/doc/xbatt
 	${INSTALL_MAN} ${WRKSRC}/README.jp ${DESTDIR}${PREFIX}/share/doc/xbatt
+
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == "FreeBSD"
+SPECIAL_PERMS+=	bin/xbatt ${REAL_ROOT_USER} operator 2755
+.endif
+.if ${OPSYS} == "Linux"
+SPECIAL_PERMS+=	bin/xbatt ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 2755
+.endif
 
 .include "../../x11/libXpm/buildlink3.mk"
 .include "../../x11/libXaw/buildlink3.mk"
