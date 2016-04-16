@@ -412,7 +412,6 @@ PKGDIRMODE?=		755
 # Keywords: meta meta-package META_PACKAGE
 #
 .if defined(META_PACKAGE)
-PKG_DESTDIR_SUPPORT=	user-destdir
 NO_CONFIGURE=		yes
 NO_BUILD=		yes
 DISTFILES=		# none
