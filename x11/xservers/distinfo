@@ -10,3 +10,7 @@ SHA1 (patch-ad) = d2625138dba810be59a99e1ba8d28460f7edb789
 SHA1 (patch-ae) = 300e9c1afb7a77625f282e94611fa1494fe76b97
 SHA1 (patch-af) = ab5054d9374ca67ebbc5ffc1dedb29554040b225
 SHA1 (patch-ag) = a0add213c778b362612ba59cbf2ad45d6780cb93
+SHA1 (patch-config_makedepend_def.h) = e2d57c73b4b350b12119a441458fbf5965dcde52
+SHA1 (patch-config_makedepend_main.c) = c07bcc4f576e9fa3f3b838a5c4f1d3679b7e9425
+SHA1 (patch-config_makedepend_parse.c) = 45cb20ce4d76a66ade91ef97597888934cad5ffd
+SHA1 (patch-programs_Xserver_hw_xfree86_xf86config_cards.c) = b5cc8e6df1fe33c29900c44b5ccd15e94516e744
