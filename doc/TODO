@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15768 2016/04/15 14:36:39 wiz Exp $
+$NetBSD: TODO,v 1.15774 2016/04/16 15:08:32 wen Exp $
 
 Suggested new packages
 ======================
@@ -370,14 +370,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o R-RandomFields-3.1.8
 	o R-akima-11
 	o R-car-25
-	o R-digest-0.6.9
-	o R-evaluate-0.8.3
-	o R-formatR-1.3
 	o R-gdata-2.17.0
 	o R-gtools-3.5.0
 	o R-httpRequest-0.0.10
 	o R-intervals-0.15.1
-	o R-knitr-1.12.3
 	o R-mapproj-3
 	o R-maps-3.1.0
 	o R-ncdf-1.6.8
@@ -1272,7 +1268,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-DBD-SQLite2-0.37
 	o p5-DBIx-Class-Fixtures-1.001034
 	o p5-DBIx-Connector-0.55
-	o p5-DBIx-DBSchema-0.45
 	o p5-Data-AMF-0.02004
 	o p5-Data-SimplePassword-0.11
 	o p5-Device-XBee-API-0.8
@@ -1283,7 +1278,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-FCGI-1.3.3
 	o p5-Font-FreeType-0.07
 	o p5-FormValidator-Simple-1.00
-	o p5-Fsdb-2.58
 	o p5-GDGraph-1.52
 	o p5-GStreamer-0.20
 	o p5-Geo-IPfree-1.151940
@@ -1313,7 +1307,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Lingua-Stem-Ru-0.04
 	o p5-Locale-Codes-3.38
 	o p5-Locale-Currency-Format-1.35
-	o p5-Log-Agent-1.001
 	o p5-Log-Report-1.13
 	o p5-Log-Report-Optional-1.02
 	o p5-MIME-EncWords-1.014.3
@@ -1444,7 +1437,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-gtk2-1.300
 	o p5-pango-1.227
 	o p5-pcsc-1.4.14
-	o p5-perl-ldap-0.65
 	o p5-sqlrelay-0.64
 	o p5-sybperl-2.18
 	o p5-xmltv-0.5.66
