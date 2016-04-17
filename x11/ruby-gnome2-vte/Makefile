@@ -6,8 +6,6 @@ PKGNAME=		${RUBY_PKGPREFIX}-gnome2-${DISTNAME}
 COMMENT=		Ruby binding of vte
 CATEGORIES=		x11
 
-CONFLICTS+=		ruby[0-9][0-9]-gnome2-vte-[0-9]*
-
 DEPENDS+=		${RUBY_PKGPREFIX}-gnome2-gtk>=${VERSION}:../../x11/ruby-gnome2-gtk
 
 .include "../../devel/ruby-gnome2-glib/buildlink3.mk"

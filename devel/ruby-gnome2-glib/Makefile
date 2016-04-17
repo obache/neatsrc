@@ -6,9 +6,6 @@ PKGNAME=		${RUBY_PKGPREFIX}-gnome2-glib-${VERSION}
 COMMENT=		Ruby binding of GLib-2.x
 CATEGORIES=		devel
 
-CONFLICTS+=		ruby-gnome2-glib-[0-9]*
-CONFLICTS+=		ruby[0-9][0-9]-gnome2-glib-[0-9]*
-
 DEPENDS+=		${RUBY_PKGPREFIX}-pkg-config-[0-9]*:../../devel/ruby-pkg-config
 
 .include "../../devel/glib2/buildlink3.mk"

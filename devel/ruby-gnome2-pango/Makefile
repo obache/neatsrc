@@ -6,9 +6,6 @@ PKGNAME=		${RUBY_PKGPREFIX}-gnome2-${DISTNAME}
 COMMENT=		Ruby binding of pango-1.x
 CATEGORIES=		devel fonts
 
-CONFLICTS+=		ruby-gnome2-pango-[0-9]*
-CONFLICTS+=		ruby[0-9][0-9]-gnome2-pango-[0-9]*
-
 DEPENDS+=		${RUBY_PKGPREFIX}-gnome2-glib>=${VERSION}:../../devel/ruby-gnome2-glib
 DEPENDS+=		${RUBY_PKGPREFIX}-cairo>=1.14.3:../../graphics/ruby-cairo
 

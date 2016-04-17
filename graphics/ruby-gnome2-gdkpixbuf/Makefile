@@ -6,9 +6,6 @@ PKGNAME=		${RUBY_PKGPREFIX}-gnome2-gdkpixbuf-${VERSION}
 COMMENT=		Ruby binding of GdkPixbuf-2.x
 CATEGORIES=		graphics devel
 
-CONFLICTS+=		ruby-gnome2-gdkpixbuf-[0-9]*
-CONFLICTS+=		ruby[0-9][0-9]-gnome2-gdkpixbuf-[0-9]*
-
 DEPENDS+=		${RUBY_PKGPREFIX}-gnome2-glib>=${VERSION}:../../devel/ruby-gnome2-glib
 
 .include "../../devel/ruby-gnome2-glib/buildlink3.mk"
