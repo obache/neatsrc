@@ -23,7 +23,6 @@ SUBST_FILES.paths=	mud.dgd
 SUBST_SED.paths=	-e 's,/home/dworkin/,${PREFIX}/libdata/,g'
 
 INSTALLATION_DIRS=	libexec share/doc/dgd share/examples/dgd libdata/dgd/tmp
-PKG_DESTDIR_SUPPORT=	destdir
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/a.out ${DESTDIR}${PREFIX}/libexec/dgd
