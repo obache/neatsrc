@@ -11,8 +11,6 @@ HOMEPAGE=	http://www.fml.org/software/fml8/index.html.en
 COMMENT=	FML mailing list server development version
 LICENSE=	gnu-gpl-v2 OR artistic
 
-USERGROUP_PHASE=	pre-install
-
 # development version
 FML_STAMP=	20121230
 
