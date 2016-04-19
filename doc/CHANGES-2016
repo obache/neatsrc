@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.1616 2016/04/17 15:34:51 kamil Exp $
+$NetBSD: CHANGES-2016,v 1.1622 2016/04/17 20:50:31 adam Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -2102,3 +2102,9 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated archivers/p5-Compress-Bzip2 to 2.24 [wen 2016-04-17]
 	Updated devel/p5-IPC-Cmd to 0.94 [wen 2016-04-17]
 	Updated security/mit-krb5 to 1.14.1nb1 [kamil 2016-04-17]
+	Added mail/thunderbird38 version 38.7.2 [ryoon 2016-04-17]
+	Added mail/thunderbird38-l10n version 38.7.2 [ryoon 2016-04-17]
+	Updated mail/thunderbird to 45.0 [ryoon 2016-04-17]
+	Updated mail/thunderbird-l10n to 45.0 [ryoon 2016-04-17]
+	Updated devel/nss to 3.23 [ryoon 2016-04-17]
+	Updated net/youtube-dl to 20160413 [adam 2016-04-17]
