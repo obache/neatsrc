@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15791 2016/04/17 14:00:46 wen Exp $
+$NetBSD: TODO,v 1.15796 2016/04/19 11:16:47 wiz Exp $
 
 Suggested new packages
 ======================
@@ -583,8 +583,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o dd_rhelp-0.3.0
 	o ddrescue-1.21
 	o dega-1.12
+	o dejagnu-1.6
 	o delegate-9.9.13
-	o denemo-2.0.4
+	o denemo-2.0.6
 	o desklaunch-1.1.7
 	o deskmenu-1.4.5
 	o dhcpcd-dbus-0.6.1
@@ -601,7 +602,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o drivel-3.0.5
 	o dropbear-2016.72
 	o drupal-8.0.3
-	o duplicity-0.7.07 [pkg/51061]
 	o dvdisaster-0.79.5
 	o dvdstyler-2.9.3
 	o e2fsprogs-1.42.12 [wip]
@@ -764,7 +764,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gmock-1.7.0
 	o gnet1-1.1.9
 	o gnetman-20050429
-	o gnome-3.18.2
+	o gnome-3.20.1
 	o gnome-applets-3.14.0
 	o gnome-bluetooth-2.30.0 [GNOME 2.30]
 	o gnome-chemistry-utils-0.14.11
@@ -971,7 +971,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o jools-1.0
 	o jove-4.16.0.73
 	o jpilot-syncmal-0.81
-	o jsoncpp-1.7.2
 	o kadu-0.11.1
 	o kaffe-1.1.9
 	o kapooka-0.3
@@ -1886,8 +1885,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o whohas-0.29.1
 	o whowatch-1.8.5
 	o windowlab-1.40
-	o wine-1.8.1
-	o wine-devel-1.9.7
+	o wine-1.8.2
+	o wine-devel-1.9.8
 	o wmi-11
 	o wmii+ixp-3.9.2 [pkg/43459; wip (wmii-devel); see also libixp entry]
 	o wmx-8
