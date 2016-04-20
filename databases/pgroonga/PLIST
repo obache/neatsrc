@@ -1,0 +1,10 @@
+@comment $NetBSD$
+lib/postgresql/pgroonga.so
+share/postgresql/extension/pgroonga--1.0.0--1.0.1.sql
+share/postgresql/extension/pgroonga--1.0.1--1.0.2.sql
+share/postgresql/extension/pgroonga--1.0.2--1.0.3.sql
+share/postgresql/extension/pgroonga--1.0.3--1.0.4.sql
+share/postgresql/extension/pgroonga--1.0.4--1.0.5.sql
+share/postgresql/extension/pgroonga--1.0.5--1.0.6.sql
+share/postgresql/extension/pgroonga--${PKGVERSION}.sql
+share/postgresql/extension/pgroonga.control

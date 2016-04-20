@@ -241,6 +241,7 @@ SUBDIR+=	pgbuildfarm
 SUBDIR+=	pgocaml
 SUBDIR+=	pgpool
 SUBDIR+=	pgpool2
+SUBDIR+=	pgroonga
 SUBDIR+=	pgtcl
 SUBDIR+=	pgtclng
 SUBDIR+=	php-dba
