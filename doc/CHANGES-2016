@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.1658 2016/04/20 22:09:14 prlw1 Exp $
+$NetBSD: CHANGES-2016,v 1.1666 2016/04/21 11:25:47 fhajny Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -2149,3 +2149,13 @@ Changes to the packages collection and infrastructure in 2016:
 	Added textproc/p5-Text-Roman version 3.5 [markd 2016-04-20]
 	Updated devel/dconf to 0.26.0 [prlw1 2016-04-20]
 	Updated devel/dconf-editor to 3.20.1 [prlw1 2016-04-20]
+	Updated graphics/py-Pillow to 3.2.0 [leot 2016-04-21]
+	Updated net/mitmproxy to 0.17 [leot 2016-04-21]
+	Removed net/py-netlib [leot 2016-04-21]
+	Updated devel/atkmm to 2.24.2nb2 [wiz 2016-04-21]
+	Updated sysutils/rsyslog to 8.18.0 [fhajny 2016-04-21]
+	Updated databases/py-cassandra-driver to 3.2.2 [fhajny 2016-04-21]
+	Updated misc/calibre to 2.55.0 [wiz 2016-04-21]
+	Updated lang/erlang to 18.3 [fhajny 2016-04-21]
+	Updated lang/erlang-doc to 18.3 [fhajny 2016-04-21]
+	Updated lang/erlang-man to 18.3 [fhajny 2016-04-21]
