@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.1642 2016/04/20 09:03:01 roy Exp $
+$NetBSD: CHANGES-2016,v 1.1658 2016/04/20 22:09:14 prlw1 Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -2133,3 +2133,19 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated graphics/girara to 0.2.6 [leot 2016-04-20]
 	Updated print/zathura to 0.3.6 [leot 2016-04-20]
 	Updated net/dhcpcd to 6.10.3 [roy 2016-04-20]
+	Updated devel/p5-glib2 to 1.321 [mef 2016-04-20]
+	Updated devel/p5-Glib-Object-Introspection to 0.040 [mef 2016-04-20]
+	Updated devel/p5-Class-C3 to 0.31 [mef 2016-04-20]
+	Updated devel/p5-CPAN-Perl-Releases to 2.64 [mef 2016-04-20]
+	Updated devel/p5-Config-Grammar to 1.11 [mef 2016-04-20]
+	Updated devel/p5-ExtUtils-MakeMaker to 7.12 [mef 2016-04-20]
+	Updated security/py-OpenSSL to 16.0.0 [leot 2016-04-20]
+	Updated www/py-h2 to 2.2.3 [leot 2016-04-20]
+	Updated www/py-django-reversion to 1.10.2 [adam 2016-04-20]
+	Updated www/py-django-easy-thumbnails to 2.3 [adam 2016-04-20]
+	Added www/py-django-polymorphic version 0.9.1 [adam 2016-04-20]
+	Added www/py-django-filer version 1.1.1 [adam 2016-04-20]
+	Updated www/py-django-treebeard to 4.0 [adam 2016-04-20]
+	Added textproc/p5-Text-Roman version 3.5 [markd 2016-04-20]
+	Updated devel/dconf to 0.26.0 [prlw1 2016-04-20]
+	Updated devel/dconf-editor to 3.20.1 [prlw1 2016-04-20]
