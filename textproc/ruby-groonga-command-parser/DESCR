@@ -1,0 +1,3 @@
+Groonga-command-parser is a Ruby library to parses groonga's command syntax.
+You can write a program to process groonga's command by using
+groonga-command-parser.
