@@ -698,6 +698,17 @@ AUTORECONF_ARGS+=		-I ${TOOLS_PLATFORM.pkg-config:S/\/bin\/pkg-config//}/share/a
 .  endif
 .endif
 
+.if !defined(TOOLS_IGNORE.ruby) && !empty(_USE_TOOLS:Mruby)
+.  if !empty(PKGPATH:Mlang/ruby[0-9]*-base)
+MAKEFLAGS+=			TOOLS_IGNORE.ruby=
+.  elif !empty(_TOOLS_USE_PKGSRC.ruby:M[yY][eE][sS])
+.    include "../../lang/ruby/rubyversion.mk"
+TOOLS_DEPENDS.ruby?=		${RUBY_BASE}>=${RUBY_VERSION}:${RUBY_SRCDIR}
+TOOLS_CREATE+=			ruby
+TOOLS_PATH.ruby=		${RUBY}
+.  endif
+.endif
+
 .if !defined(TOOLS_IGNORE.rpm2pkg) && !empty(_USE_TOOLS:Mrpm2pkg)
 .  if !empty(PKGPATH:Mpkgtools/rpm2pkg)
 MAKEFLAGS+=			TOOLS_IGNORE.rpm2pkg=
