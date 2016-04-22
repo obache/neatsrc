@@ -1,0 +1,2 @@
+Groonga-command is a library that represents Groonga's command.
+You can write a program that handle Groonga's command by using groonga-command.

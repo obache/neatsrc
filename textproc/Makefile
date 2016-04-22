@@ -783,6 +783,7 @@ SUBDIR+=	ruby-fast-stemmer
 SUBDIR+=	ruby-fastercsv
 SUBDIR+=	ruby-feed-normalizer
 SUBDIR+=	ruby-ferret
+SUBDIR+=	ruby-groonga-command
 SUBDIR+=	ruby-haml
 SUBDIR+=	ruby-hikidoc
 SUBDIR+=	ruby-hpricot
