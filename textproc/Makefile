@@ -194,6 +194,7 @@ SUBDIR+=	grep
 SUBDIR+=	grepcidr
 SUBDIR+=	groff
 SUBDIR+=	groonga
+SUBDIR+=	groonga-normalizer-mysql
 SUBDIR+=	gsed
 SUBDIR+=	gspell
 SUBDIR+=	gtk-doc

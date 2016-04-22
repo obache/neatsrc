@@ -1,0 +1,6 @@
+@comment $NetBSD$
+lib/groonga/plugins/normalizers/mysql.la
+lib/pkgconfig/groonga-normalizer-mysql.pc
+share/doc/groonga-normalizer-mysql/README.md
+share/doc/groonga-normalizer-mysql/lgpl-2.0.txt
+share/doc/groonga-normalizer-mysql/news.md
