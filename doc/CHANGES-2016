@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.1666 2016/04/21 11:25:47 fhajny Exp $
+$NetBSD: CHANGES-2016,v 1.1675 2016/04/21 23:39:03 prlw1 Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -2159,3 +2159,12 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated lang/erlang to 18.3 [fhajny 2016-04-21]
 	Updated lang/erlang-doc to 18.3 [fhajny 2016-04-21]
 	Updated lang/erlang-man to 18.3 [fhajny 2016-04-21]
+	Updated mail/sid-milter to 1.0.0nb5 [jperkin 2016-04-21]
+	Updated net/sendfile to 2.1bnb3 [jperkin 2016-04-21]
+	Updated net/glib-networking to 2.48.0 [prlw1 2016-04-21]
+	Updated net/libsoup to 2.54.0.1 [prlw1 2016-04-21]
+	Updated x11/gtk3 to 3.20.3 [prlw1 2016-04-21]
+	Updated math/gnome-calculator to 3.20.0 [prlw1 2016-04-21]
+	Updated games/gnome-sudoku to 3.20.0 [prlw1 2016-04-21]
+	Updated games/hitori to 3.20.0 [prlw1 2016-04-21]
+	Updated devel/gnome-common to 3.18.0 [prlw1 2016-04-21]
