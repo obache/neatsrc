@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.1697 2016/04/23 22:54:41 markd Exp $
+$NetBSD: CHANGES-2016,v 1.1711 2016/04/24 23:18:28 szptvlfn Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -1992,6 +1992,7 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated devel/p5-ExtUtils-LibBuilder to 0.08 [mef 2016-04-14]
 	Updated emulators/mame to 0.172 [wiz 2016-04-14]
 	Updated devel/ruby-mercenary to 0.3.6 [wiz 2016-04-14]
+	Updated lang/smlnj to 110.73nb1 [dholland 2016-04-14]
 	Added net/tvnjviewer version 2.7.2 [abs 2016-04-14]
 	Updated sysutils/deforaos-browser to 0.5.1 [khorben 2016-04-15]
 	Updated devel/liblangtag to 0.6.0nb1 [wiz 2016-04-15]
@@ -2204,3 +2205,17 @@ Changes to the packages collection and infrastructure in 2016:
 	Added graphics/tex-tikz-cd version 0.9e [markd 2016-04-23]
 	Added graphics/tex-tikz-cd-doc version 0.9e [markd 2016-04-23]
 	Updated math/py-scipy to 0.17.0 [markd 2016-04-23]
+	Updated security/p5-IO-Socket-SSL to 2.027 [wiz 2016-04-24]
+	Updated devel/p5-Role-Tiny to 2.000003 [wiz 2016-04-24]
+	Updated graphics/p5-Image-ExifTool to 10.15 [wiz 2016-04-24]
+	Updated games/freeciv-share to 2.5.3 [prlw1 2016-04-24]
+	Updated games/freeciv-server to 2.5.3 [prlw1 2016-04-24]
+	Updated games/freeciv-client to 2.5.3 [prlw1 2016-04-24]
+	Updated devel/meld to 3.15.3 [wiz 2016-04-24]
+	Updated devel/py-cffi to 1.6.0 [wiz 2016-04-24]
+	Added devel/py-hypothesis version 3.1.0 [wiz 2016-04-24]
+	Updated time/py-vdirsyncer to 0.10.0 [wiz 2016-04-24]
+	Updated net/wireshark to 2.0.3 [wiz 2016-04-24]
+	Added geography/opencpn-plugin-draw version 20160415 [bouyer 2016-04-24]
+	Added geography/opencpn-plugin-watchdog version 20160415 [bouyer 2016-04-24]
+	Updated graphics/feh to 2.15.2 [szptvlfn 2016-04-24]
