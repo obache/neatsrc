@@ -1,0 +1,5 @@
+@comment $NetBSD$
+lib/postgresql/pg_bigm.so
+share/postgresql/extension/pg_bigm--1.0--1.1.sql
+share/postgresql/extension/pg_bigm--1.1.sql
+share/postgresql/extension/pg_bigm.control

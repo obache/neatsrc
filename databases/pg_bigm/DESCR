@@ -1,0 +1,2 @@
+The pg_bigm module provides full text search capability in PostgreSQL.  This
+module allows a user to create 2-gram (bigram) index for faster full text sarch.

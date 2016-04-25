@@ -235,6 +235,7 @@ SUBDIR+=	pear-MDB2_Driver_mysql
 SUBDIR+=	pear-MDB2_Driver_mysqli
 SUBDIR+=	pear-MDB2_Driver_pgsql
 SUBDIR+=	percona-toolkit
+SUBDIR+=	pg_bigm
 SUBDIR+=	pgadmin3
 SUBDIR+=	pgbouncer
 SUBDIR+=	pgbuildfarm
