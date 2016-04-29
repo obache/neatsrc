@@ -24,6 +24,7 @@ include/groonga/groonga/pat.h
 include/groonga/groonga/plugin.h
 include/groonga/groonga/portability.h
 include/groonga/groonga/request_canceler.h
+include/groonga/groonga/request_timer.h
 include/groonga/groonga/scorer.h
 include/groonga/groonga/thread.h
 include/groonga/groonga/token.h
@@ -42,8 +43,6 @@ lib/groonga/plugins/token_filters/stop_word.la
 ${PLIST.mecab}lib/groonga/plugins/tokenizers/mecab.la
 lib/libgroonga.la
 lib/pkgconfig/groonga.pc
-man/ja/man1/groonga.1
-man/man1/groonga.1
 ${PLIST.httpd}sbin/groonga-httpd
 sbin/groonga-httpd-restart
 share/doc/groonga/en/html/.buildinfo
@@ -132,6 +131,7 @@ share/doc/groonga/en/html/_sources/reference/command/command_version.txt
 share/doc/groonga/en/html/_sources/reference/command/output_format.txt
 share/doc/groonga/en/html/_sources/reference/command/pretty_print.txt
 share/doc/groonga/en/html/_sources/reference/command/request_id.txt
+share/doc/groonga/en/html/_sources/reference/command/request_timeout.txt
 share/doc/groonga/en/html/_sources/reference/command/return_code.txt
 share/doc/groonga/en/html/_sources/reference/commands/cache_limit.txt
 share/doc/groonga/en/html/_sources/reference/commands/check.txt
@@ -381,6 +381,7 @@ share/doc/groonga/en/html/reference/command/command_version.html
 share/doc/groonga/en/html/reference/command/output_format.html
 share/doc/groonga/en/html/reference/command/pretty_print.html
 share/doc/groonga/en/html/reference/command/request_id.html
+share/doc/groonga/en/html/reference/command/request_timeout.html
 share/doc/groonga/en/html/reference/command/return_code.html
 share/doc/groonga/en/html/reference/commands/cache_limit.html
 share/doc/groonga/en/html/reference/commands/check.html
@@ -609,6 +610,7 @@ share/doc/groonga/ja/html/_sources/reference/command/command_version.txt
 share/doc/groonga/ja/html/_sources/reference/command/output_format.txt
 share/doc/groonga/ja/html/_sources/reference/command/pretty_print.txt
 share/doc/groonga/ja/html/_sources/reference/command/request_id.txt
+share/doc/groonga/ja/html/_sources/reference/command/request_timeout.txt
 share/doc/groonga/ja/html/_sources/reference/command/return_code.txt
 share/doc/groonga/ja/html/_sources/reference/commands/cache_limit.txt
 share/doc/groonga/ja/html/_sources/reference/commands/check.txt
@@ -858,6 +860,7 @@ share/doc/groonga/ja/html/reference/command/command_version.html
 share/doc/groonga/ja/html/reference/command/output_format.html
 share/doc/groonga/ja/html/reference/command/pretty_print.html
 share/doc/groonga/ja/html/reference/command/request_id.html
+share/doc/groonga/ja/html/reference/command/request_timeout.html
 share/doc/groonga/ja/html/reference/command/return_code.html
 share/doc/groonga/ja/html/reference/commands/cache_limit.html
 share/doc/groonga/ja/html/reference/commands/check.html
