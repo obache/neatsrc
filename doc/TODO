@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15817 2016/04/29 08:56:21 wiz Exp $
+$NetBSD: TODO,v 1.15829 2016/04/29 14:08:58 mef Exp $
 
 Suggested new packages
 ======================
@@ -352,7 +352,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o GMT-5.1.1
 	o GNUMail-1.2.2
 	o Gorm-1.2.22
-	o ImageMagick-6.9.3.8
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
 	o MesaDemos-8.3.0
@@ -680,7 +679,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o fetchmail-6.3.26
 	o fetchyahoo-2.14.0
 	o filerunner-14.06.18.10
-	o filezilla-3.17
 	o fillets-ng-0.7.4
 	o fillets-ng-data-0.7.4
 	o fish-2.2.0
@@ -834,13 +832,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o groonga-6.0.0
 	o gsharutils-4.15.2
 	o gss-1.0.3
-	o gst-plugins1-bad-1.8.1
-	o gst-plugins1-base-1.8.1
-	o gst-plugins1-good-1.8.1
-	o gst-plugins1-libav-1.8.1
-	o gst-plugins1-ugly-1.8.1
 	o gst-rtsp-server-1.6.2
-	o gstreamer1-1.8.1
 	o gthumb-3.4.0
 	o gtk-gnutella-0.98.4
 	o gtk-systrace-20030623
@@ -1107,7 +1099,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o makeself-2.2.0
 	o maketool-0.8.4
 	o makeztxt-1.60
-	o man-pages-4.04
 	o manedit-1.2.1
 	o mantis-1.2.19
 	o mapserver-7.0.1
@@ -1290,24 +1281,16 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Heap-1.04
 	o p5-IO-AIO-4.33
 	o p5-IO-Async-0.70
-	o p5-IO-Compress-2.069
-	o p5-IO-Interactive-1.021
 	o p5-IO-Interface-1.09
-	o p5-IO-Pager-0.36
 	o p5-IO-Prompt-0.997003
-	o p5-IO-Prompter-0.004014
-	o p5-IO-TieCombine-1.005
 	o p5-IP-Country-3.03
 	o p5-IPC-Cmd-0.94
-	o p5-IPC-SysV-2.06
 	o p5-JSON-Any-1.39
 	o p5-LWP-Protocol-PSGI-0.09
 	o p5-Lingua-PT-Stemmer-0.02
 	o p5-Lingua-Stem-Ru-0.04
 	o p5-Locale-Codes-3.38
 	o p5-Locale-Currency-Format-1.35
-	o p5-Log-Report-1.13
-	o p5-Log-Report-Optional-1.02
 	o p5-MIME-EncWords-1.014.3
 	o p5-Mail-IMAPClient-3.38
 	o p5-Math-BigInt-GMP-1.49
@@ -1366,7 +1349,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Parse-ErrorString-Perl-0.22
 	o p5-Perl-APIReference-0.22
 	o p5-Perl6-Export-0.009
-	o p5-PerlMagick-6.9.1.10
 	o p5-Pod-Markdown-3.005
 	o p5-PostScript-2.32
 	o p5-PostScript-Simple-1.02
