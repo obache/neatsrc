@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.1775 2016/04/30 06:25:18 wiz Exp $
+$NetBSD: CHANGES-2016,v 1.1789 2016/05/01 00:49:46 ryoon Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -2325,7 +2325,7 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated devel/p5-Log-Report-Optional to 1.02 [mef 2016-04-29]
 	Updated textproc/p5-Text-CSV_XS to 1.23 [wen 2016-04-29]
 	Updated textproc/p5-Text-BibTeX to 0.72 [wen 2016-04-29]
-	Updated math/R-intervals to 0.15.1 [wen 2016-04-29] 
+	Updated math/R-intervals to 0.15.1 [wen 2016-04-29]
 	Updated sysutils/py-psutil to 4.1.0 [prlw1 2016-04-29]
 	Updated misc/erlang-p1_utils to 1.0.4 [fhajny 2016-04-29]
 	Updated security/erlang-fast_tls to 1.0.3 [fhajny 2016-04-29]
@@ -2341,3 +2341,22 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated www/php-ja-wordpress to 4.5.1 [ryoon 2016-04-30]
 	Updated geography/gama to 1.17 [gdt 2016-04-30]
 	Updated sysutils/py-borgbackup to 1.0.2 [wiz 2016-04-30]
+	Updated devel/p5-Module-CPANfile to 1.1002 [wen 2016-04-30]
+	Updated lang/go to 1.6.2 [bsiegert 2016-04-30]
+	Updated converters/p5-MIME-Base32 to 1.301 [schmonz 2016-04-30]
+	Updated devel/p5-Test-BDD-Cucumber to 0.50 [schmonz 2016-04-30]
+	Updated textproc/xapian to 1.2.23 [schmonz 2016-04-30]
+	Updated textproc/xapian-omega to 1.2.23 [schmonz 2016-04-30]
+	Updated textproc/p5-Search-Xapian to 1.2.23.0 [schmonz 2016-04-30]
+	Added security/codecrypt version 1.7.5 [agc 2016-04-30]
+	Updated devel/p5-File-Util to 4.161200 [mef 2016-04-30]
+	Updated geography/gama to 1.17 [gdt 2016-04-30]
+	Updated lang/perl5 to 5.22.2 [ryoon 2016-05-01]
+	Updated www/apache-tomcat7 to 7.0.69 [ryoon 2016-05-01]
+	Updated www/apache-tomcat8 to 8.0.33 [ryoon 2016-05-01]
+	Updated devel/subversion-base to 1.9.4 [ryoon 2016-05-01]
+	Updated devel/ruby-subversion to 1.9.4 [ryoon 2016-05-01]
+	Updated devel/p5-subversion to 1.9.4 [ryoon 2016-05-01]
+	Updated devel/py-subversion to 1.9.4 [ryoon 2016-05-01]
+	Updated devel/java-subversion to 1.9.4 [ryoon 2016-05-01]
+	Updated www/ap2-subversion to 1.9.4 [ryoon 2016-05-01]
