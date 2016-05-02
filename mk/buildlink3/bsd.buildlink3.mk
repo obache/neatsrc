@@ -497,12 +497,6 @@ BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${_dir_}
 .  endif
 .endfor
 #
-# Ensure that ${LOCALBASE}/lib is in the runtime library search path.
-#
-.if empty(BUILDLINK_LDFLAGS:M${COMPILER_RPATH_FLAG}${LOCALBASE}/lib)
-BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${LOCALBASE}/lib
-.endif
-#
 # Add the X11 library directory to the library search paths if the package
 # uses X11 and we are not using modular Xorg.
 #
