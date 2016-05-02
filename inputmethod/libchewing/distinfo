@@ -1,8 +1,6 @@
 $NetBSD: distinfo,v 1.9 2015/11/03 22:13:37 agc Exp $
 
-SHA1 (libchewing-0.4.0.tar.bz2) = 7409b0a6753e14510c96574714dcec86c7b10138
-RMD160 (libchewing-0.4.0.tar.bz2) = 7abc4191e0295d566b1409c12d593ee0e4b50637
-SHA512 (libchewing-0.4.0.tar.bz2) = 6a9b12816c13d7b4a0a3ca9e73560fcbb8d3e032aab3f5b90f40a6de9e7d81e934536242b4ac26db33739c7841185cc4aa10a8272cd26a76c27bdac6e75aa4a9
-Size (libchewing-0.4.0.tar.bz2) = 3014558 bytes
-SHA1 (patch-configure) = 2f855e174fa486932dea90d013e525c1c5ef24a1
-SHA1 (patch-configure.ac) = 2a47e597f14cf363055f5b8409289f6edbc544e2
+SHA1 (libchewing-0.5.0.tar.bz2) = 3e469d1b5782b4b43f4297db9490cf023d1bd16e
+RMD160 (libchewing-0.5.0.tar.bz2) = 8e15c637e6bfbfe069c68e7de7e45ad29e0afec9
+SHA512 (libchewing-0.5.0.tar.bz2) = 98062be9c218d6261c3796db760e3e6a8d45252d79c6c9bb9e539bcef37a23b05f6660327f4d73f0b3e957e011cb00351a236d7a7fa56147377ce00c82a56700
+Size (libchewing-0.5.0.tar.bz2) = 3155457 bytes
