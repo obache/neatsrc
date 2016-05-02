@@ -19,35 +19,30 @@ LICENSE=	epl-v1.0
 NOT_FOR_PLATFORM=	Interix-*-* # taking nearly a day to build and crash!
 
 CONFLICTS=	static-ast-ksh-[0-9]*
-KSH93_MAKEFLAGS=
 
 ASTKSH_VERSION=	2012-08-01
 
 WRKSRC=		${WRKDIR}
-MAKE_FLAGS+=	CC=${CC:Q} CCFLAGS=${CFLAGS:M*:Q}
+KSH93_MAKEFLAGS+=	CC=${CC:Q} CCFLAGS=${CFLAGS:M*:Q} LDFLAGS=${LDFLAGS:M*:Q}
 
 .include "../../mk/bsd.prefs.mk"
-
-.if ${OPSYS} == "NetBSD"
-PDKSH=		/bin/ksh
-.endif
 
 # Link with libm to fix sfcvt link error -
 # this is kind of a hack -
 # better would be to fix the 'meta makefile' to pass this
 # or to use the ksh-provided math routines.
 
-.if ${OPSYS} == "DragonFly"
-KSH93_MAKEFLAGS+=	CCFLAGS=-lm
-.endif
+LDFLAGS.NetBSD+=	-lm
+LDFLAGS.DragonFly+=	-lm
 
 .if ${OPSYS} == "SunOS"
 # need c99 and _XPG6 in order to avoid patching libast/features/standards
 # __EXTENSIONS__ is needed in case of __STDC__ == 1 (i.e. -std=c99 not gnu99)
 # for things like mamake, ratz and some others for now.
 USE_LANGUAGES+=	c99
-KSH93_MAKEFLAGS+=	LDFLAGS=-lm CCFLAGS="-D_XPG6 -D__EXTENSIONS__"
 .endif
+LDFLAGS.SunOS+=	-lm
+CFLAGS.SunOS+=	-D_XPG6 -D__EXTENSIONS__
 
 PKG_SHELL=	bin/ksh93
 
@@ -59,25 +54,21 @@ INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 # XXX Note that 'make' here is not an executable command name, but a target
 # name which the ./bin/package script uses.
 do-build:
-	@cd ${WRKSRC:Q} && \
-		${SETENV} SHELL=${PDKSH:Q} \
-			${PDKSH:Q} ./bin/package make ${KSH93_MAKEFLAGS}
+	${RUN}cd ${WRKSRC:Q}; \
+		${SETENV} ${MAKE_ENV} SHELL=${SH:Q} \
+			${SH:Q} ./bin/package flat make ${KSH93_MAKEFLAGS}
 
 do-install:
-	@set -e;							\
-	arch=`${WRKSRC}/bin/package host`;				\
-	${INSTALL_PROGRAM} ${WRKSRC}/arch/"$${arch}"/bin/ksh		\
-		${DESTDIR}${PREFIX}/bin/ksh93;				\
-	${INSTALL_MAN} ${WRKSRC}/arch/"$${arch}"/man/man1/sh.1	\
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/ksh				\
+		${DESTDIR}${PREFIX}/bin/ksh93
+	${INSTALL_MAN} ${WRKSRC}/man/man1/sh.1				\
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/ksh93.1
 
 # Part of regression test
 do-test:
-	@set -e;							\
-	arch=`${WRKSRC}/bin/package host`;				\
-	cd ${WRKSRC:Q}/src/cmd/ksh93/tests && 				\
-		${SETENV} SHELL=${WRKSRC}/arch/"$${arch}"/bin/ksh	\
-			${WRKSRC}/arch/"$${arch}"/bin/ksh shtests
+	${RUN}cd ${WRKSRC:Q}/src/cmd/ksh93/tests;				\
+		${SETENV} SHELL=${WRKSRC}/bin/ksh	\
+			${WRKSRC}/bin/ksh shtests
 # XXX Their 'test' target needs nmake (Korn's another tool)
-#	@cd ${WRKSRC}; \
-#		${SETENV} SHELL=${PDKSH} ${PDKSH} ./bin/package test
+#	${RUN}cd ${WRKSRC}; \
+#		${SETENV} SHELL=${SH:Q} ${SH:Q} ./bin/package test
