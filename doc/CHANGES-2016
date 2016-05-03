@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.1801 2016/05/02 09:03:52 tron Exp $
+$NetBSD: CHANGES-2016,v 1.1813 2016/05/03 08:47:28 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -2374,3 +2374,18 @@ Changes to the packages collection and infrastructure in 2016:
 	Added devel/bats version 0.4.0 [seb 2016-05-02]
 	Updated net/tkined to 1.4.11nb9 [dholland 2016-05-02]
 	Updated mail/mutt to 1.6.1 [tron 2016-05-02]
+	Updated lang/php55 to 5.5.35 [taca 2016-05-02]
+	Updated lang/php56 to 5.6.21 [taca 2016-05-02]
+	Updated lang/php70 to 7.0.6 [taca 2016-05-02]
+	Updated net/bind99 to 9.9.9 [taca 2016-05-02]
+	Updated net/bind910 to 9.10.4 [taca 2016-05-02]
+	Added fonts/ohruri-ttf version 20150606 [nonaka 2016-05-02]
+	Updated mail/dovecot2 to 2.2.24 [taca 2016-05-03]
+	Updated mail/dovecot2-pigeonhole to 0.4.14 [taca 2016-05-03]
+	Updated games/gnuchess to 6.2.2 [mef 2016-05-03]
+	Updated games/xboard to 4.8.0 [mef 2016-05-03]
+	Updated devel/p5-List-MoreUtils to 0.415 [mef 2016-05-03]
+	Updated devel/p5-IO-Async to 0.70 [mef 2016-05-03]
+	Updated devel/p5-Method-Signatures to 20160315 [mef 2016-05-03]
+	Updated sysutils/lastfss to 0.2 [manu 2016-05-03]
+	Updated sysutils/p5-Unix-Statgrab to 0.111 [wiz 2016-05-03]
