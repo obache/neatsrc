@@ -2,7 +2,6 @@
 #
 
 PKGNAME=	${EMACS_PKGNAME_PREFIX}${DISTNAME:S/mozc-/mozc-elisp-/}
-PKGREVISION=	2
 CATEGORIES=	inputmethod editors
 
 EMACS_MODULES=	base leim
@@ -13,7 +12,7 @@ INSTALLATION_DIRS=	${EMACS_LISPPREFIX} bin
 
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
-		${PYTHONBIN} build_mozc.py build -c Release ${_MAKE_JOBS} \
+		${PYTHONBIN} build_mozc.py build -c Release \
 			unix/emacs/emacs.gyp:mozc_emacs_helper
 	cd ${WRKSRC}/unix/emacs && \
 		${EMACS_BIN} -q -batch -no-site-file -no-init-file \

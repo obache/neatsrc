@@ -8,11 +8,11 @@
 # used by inputmethod/uim-mozc/Makefile
 #
 
-DISTNAME=	mozc-2.17.2116.102
+DISTNAME=	mozc-2.17.2313.102
 CATEGORIES=	inputmethod
 MASTER_SITES=	${MASTER_SITE_GITHUB:=google/}
 GITHUB_PROJECT=	mozc
-GITHUB_TAG=	fd0f5b347d35fe287f4cc9be49f650c87f82ba03
+GITHUB_TAG=	2628af6995dbbbb9ccdb52d1160db1dbd5ed3bae
 
 MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	https://github.com/google/mozc/
@@ -20,7 +20,7 @@ COMMENT=	Japanese inputmethod Mozc engine for IBus
 LICENSE=	modified-bsd
 
 USAGE_DICT=	usage_dict-rev10.txt
-UIM_MOZC=	uim-mozc-318.0562676
+UIM_MOZC=	uim-mozc-321.3ea28b1
 DISTFILES+=	${DISTNAME}-${GITHUB_TAG}${EXTRACT_SUFX} \
 		${USAGE_DICT} \
 		${UIM_MOZC}.tar.xz
@@ -79,7 +79,7 @@ pre-configure:
 
 do-configure:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
-		GYP_DEFINES="use_libprotobuf=1" \
+		GYP_DEFINES="use_libprotobuf=1 use_libzinnia=1" \
 		${PYTHONBIN} build_mozc.py \
 		gyp \
 		--gypdir=${LOCALBASE}/bin
