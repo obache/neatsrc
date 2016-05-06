@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15845 2016/05/05 08:17:01 jaapb Exp $
+$NetBSD: TODO,v 1.15866 2016/05/05 16:07:11 jaapb Exp $
 
 Suggested new packages
 ======================
@@ -371,7 +371,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o R-maps-3.1.0
 	o R-ncdf-1.6.8
 	o ROMInfo-28
-	o SDL2_image-2.0.1
 	o SDL2_net-2.0.1
 	o SOPE-3.0.2
 	o TeXmacs-1.99.4
@@ -384,7 +383,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o adocman-0.13
 	o adodb-5.20
 	o aewm++-1.0.27
-	o afl-2.11b
 	o afterstep-2.2.12
 	o aget-0.4.1
 	o alacarte-0.13.2
@@ -489,11 +487,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o c4-1.10 [schmonz]
 	o cacti-0.8.8g
 	o cacti-spine-0.8.8g
-	o caff-2.3
 	o cal3d-0.11.0
 	o calc-2.11.10.1
 	o calcoo-2.1.0
-	o calibre-2.56
 	o calligra-2.9.9 [in wip; koffice successor]
 	o camlp5-6.15
 	o cardboard-schedule-1.14c [at http://www.bright-green.com/downloads/]
@@ -586,7 +582,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o deskmenu-1.4.5
 	o dhcpcd-dbus-0.6.1
 	o di-4.42
-	o dialog-1.3.20160424
 	o digikam-4.14.0
 	o dinotrace-9.4d
 	o discount-2.2.0
@@ -1031,7 +1026,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libgiigic-1.1.2
 	o libgnomedb-3.1.2
 	o libgnomekbd-3.4.0.2
-	o libgpg-error-1.22
 	o libgroove-4.2.1
 	o libisoburn-1.4.0
 	o libisofs-1.4.2
@@ -1114,7 +1108,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mecab-ipadic-2.7.0.20070801
 	o mednafen-0.9.38.2
 	o megatools-1.9.97
-	o meld-3.16.0
 	o menhir-20160303
 	o mergeant-0.67
 	o merkaator-0.18.2
@@ -1161,7 +1154,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o munin-node-1.4.6
 	o munin-server-1.4.6
 	o muse-0.9.2
-	o musicpd-0.19.15
 	o mutagen-tools-1.31
 	o myodbc-5.3.4
 	o mysql-5.7.9
@@ -1190,7 +1182,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o nginx-1.10
 	o nginx-devel-1.9.12
 	o nikto-2.1.5
-	o notmuch-0.22
 	o nqp-2016.02
 	o ns-3.14.1
 	o ns-plugger-common-5.1.3
@@ -1204,13 +1195,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o oath-toolkit-2.6.1
 	o objc-3.3.1
 	o ocaml-cmdliner-0.9.8
-	o ocaml-findlib-1.6.2
 	o ocaml-graphics-4.02.3
 	o ocaml-lablgtk-2.18.4
 	o ocaml-mysql-1.2.0
-	o ocaml-oasis-0.4.5
 	o ocamlgraph-1.8.7
-	o ocamlnet-4.1.1
 	o ocrad-0.25
 	o octave-4.0.1
 	o odbc-postgresql-09.03.0400
@@ -1513,7 +1501,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-Unidecode-0.04.19
 	o py-acora-1.9
 	o py-apache-libcloud-0.20.1
-	o py-betamax-0.7.0
 	o py-bleach-1.4.2
 	o py-bsddb3-6.1.1
 	o py-buildbot-0.9.0b5
@@ -1530,7 +1517,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-django-tagging-0.4.1
 	o py-djangorestframework-2.3.12
 	o py-doctor-15.1.0
-	o py-enum34-1.1.4
 	o py-ephem3-3.7.6.0
 	o py-flake8-2.5.4
 	o py-gmpy-1.17
@@ -1558,7 +1544,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-newt-0.52.18
 	o py-notify-0.3.1
 	o py-numpydoc-0.6.0
-	o py-oauthlib-1.1.1
 	o py-omniORBpy-3.7
 	o py-pdf-parser-0.6.4
 	o py-pendrell-0.3.7
@@ -1567,11 +1552,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-quixote-2.9
 	o py-radare2-0.10.2
 	o py-reportlab-3.0
-	o py-requests-2.10.0
 	o py-rope-0.9.4
 	o py-scgi-1.15
 	o py-serpent-1.12
-	o py-setuptools-20.10.1
 	o py-simpletal-5.1
 	o py-smb-1.1.17
 	o py-spf-2.0.12t
@@ -1773,7 +1756,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o tacacs-4.0.4.29a
 	o tacacs-shrubbery-5.0.0a1
 	o tads-3.0.16
-	o taglib-1.11
 	o taskjuggler-3.3.0
 	o tc-hasida-table-0.8 [wip]
 	o tcpdpriv-0.9
@@ -1797,7 +1779,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o tfmxplay-1.1.6
 	o thaixfonts-1.2.7
 	o thttpd-2.27
-	o thunderbird-enigmail-1.9.2
 	o tidy-5.1.25 [wip]
 	o tig-2.1.1
 	o tightvnc-2.7.10
