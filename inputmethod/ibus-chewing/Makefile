@@ -1,9 +1,8 @@
 # $NetBSD: Makefile,v 1.45 2016/04/11 19:01:53 ryoon Exp $
 #
 
-DISTNAME=	ibus-chewing-1.4.12-Source
+DISTNAME=	ibus-chewing-1.5.0-Source
 PKGNAME=	${DISTNAME:S/-Source//}
-PKGREVISION=	4
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	https://github.com/definite/ibus-chewing/releases/download/${PKGVERSION_NOREV}/
 
@@ -20,12 +19,7 @@ USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		msgfmt pkg-config
 TOOLS_NOOP+=		msgmerge xgettext
 
-BUILD_TARGET=	all translations
-
-SUBST_CLASSES+=		libexecdir
-SUBST_STAGE.libexecdir=	post-configure
-SUBST_FILES.libexecdir=	data/ibus-setup-chewing.desktop
-SUBST_SED.libexecdir=	-e 's,/usr/libexec/,${PREFIX}/libexec/,g'
+#BUILD_TARGET=	all translations
 
 TEST_TARGET=	test
 
