@@ -74,7 +74,7 @@ release-bin-install-lock: \
 
 # Note: PKGREPOSITORY is usually ${PACKAGES}/All
 _BIN_INSTALL_PREPARE_CMD= \
-	found=`${PKG_BEST_EXISTS} "${PKGWILDCARD}" || ${TRUE}`;		\
+	found=`${_PKG_BEST_EXISTS} "${PKGWILDCARD}" || ${TRUE}`;	\
 	if [ "$$found" != "" ]; then					\
 		${ERROR_MSG} "$$found is already installed - perhaps an older version?"; \
 		${ERROR_MSG} "If so, you may wish to \`\`pkg_delete $$found'' and install"; \
