@@ -35,9 +35,6 @@ BINPKG_SITES?= \
 .elif ${OPSYS} == "Minix"
 BINPKG_SITES?= \
 	ftp://ftp.minix3.org/pub/minix/packages/$$(${UNAME} -r)/$${arch}
-.elif ${OPSYS} == "DragonFly"
-BINPKG_SITES?= \
-	http://mirror-master.dragonflybsd.org/packages/$${arch}/DragonFly-$${rel}/stable
 .else
 BINPKG_SITES?=
 .endif
