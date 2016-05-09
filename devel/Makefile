@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2251 2016/05/08 07:24:59 wen Exp $
+# $NetBSD: Makefile,v 1.2253 2016/05/08 14:15:41 wen Exp $
 #
 
 COMMENT=	Development utilities
@@ -309,6 +309,7 @@ SUBDIR+=	gprbuild-aux
 SUBDIR+=	gps
 SUBDIR+=	gputils
 SUBDIR+=	grantlee
+SUBDIR+=	grantlee-qt5
 SUBDIR+=	gsoap
 SUBDIR+=	gst-plugins0.10-pango
 SUBDIR+=	gst-plugins1-pango
@@ -1695,6 +1696,7 @@ SUBDIR+=	py-coverage
 SUBDIR+=	py-cparser
 SUBDIR+=	py-curses
 SUBDIR+=	py-cursespanel
+SUBDIR+=	py-cycler
 SUBDIR+=	py-cython
 SUBDIR+=	py-d2to1
 SUBDIR+=	py-daemon
