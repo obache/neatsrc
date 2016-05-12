@@ -64,6 +64,7 @@ usage="Usage: $0 "'
     [ --help ]
     [ --make-jobs <num> ]
     [ --mk-fragment <mk.conf> ]
+    [ --package-target <target> ]
     [ --pkgdbdir <pkgdbdir> ]
     [ --pkginfodir <pkginfodir> ]
     [ --pkgmandir <pkgmandir> ]
@@ -73,6 +74,7 @@ usage="Usage: $0 "'
     [ --quiet ]
     [ --sysconfdir <sysconfdir> ]
     [ --unprivileged | --ignore-user-check ]
+    [ --update ]
     [ --varbase <varbase> ]
     [ --workdir <workdir> ]
 '
@@ -441,6 +443,7 @@ full=no
 make_jobs=1
 mk_fragment=
 quiet=no
+package_target=install
 
 while [ $# -gt 0 ]; do
 	case $1 in
@@ -464,11 +467,14 @@ while [ $# -gt 0 ]; do
 	--abi)		abi="$2"; shift ;;
 	--cwrappers)	cwrappers=yes ;;
 	--unprivileged | --ignore-user-check) unprivileged=yes ;;
+	--package-target=*)
+			package_target=`get_optarg "$1"` ;;
 	--prefer-pkgsrc=*)
 			prefer_pkgsrc=`get_optarg "$1"` ;;
 	--prefer-pkgsrc)
 			prefer_pkgsrc="$2"; shift ;;
 	--preserve-path) preserve_path=yes ;;
+	--update)	package_target=update ;;
 	--mk-fragment=*)
 			mk_fragment=`get_optarg "$1"` ;;
 	--mk-fragment)
@@ -1346,7 +1352,7 @@ echo ".endif			# end pkgsrc settings" >> ${BOOTSTRAP_MKCONF}
 # build and register packages
 # usage: build_package <packagedirectory> [additional arguments]
 build_package() {
-	run_cmd "(cd $pkgsrcdir/$1 && $bmake $make_quiet_flags MAKE_JOBS=${make_jobs} PKG_COMPRESSION=none -DPKG_PRESERVE MAKECONF=${BOOTSTRAP_MKCONF} install)"
+	run_cmd "(cd $pkgsrcdir/$1 && $bmake $make_quiet_flags MAKE_JOBS=${make_jobs} PKG_COMPRESSION=none -DPKG_PRESERVE MAKECONF=${BOOTSTRAP_MKCONF} $package_target)"
 }
 
 #
