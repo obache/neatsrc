@@ -194,6 +194,7 @@ SUBDIR+=	grep
 SUBDIR+=	grepcidr
 SUBDIR+=	groff
 SUBDIR+=	groonga
+SUBDIR+=	groonga-gobject
 SUBDIR+=	groonga-normalizer-mysql
 SUBDIR+=	gsed
 SUBDIR+=	gspell
