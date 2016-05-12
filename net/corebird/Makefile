@@ -19,6 +19,8 @@ USE_TOOLS+=	autoconf automake intltool gettext-m4 pkg-config gmake msgfmt
 
 TEST_TARGET=	check
 
+ICON_THEMES=	yes
+
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../www/librest07/buildlink3.mk"
@@ -28,6 +30,5 @@ TEST_TARGET=	check
 .include "../../devel/libgee/buildlink3.mk"
 BUILDLINK_DEPMETHOD.vala=	build
 .include "../../lang/vala/buildlink3.mk"
-.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../devel/glib2/schemas.mk"
 .include "../../mk/bsd.pkg.mk"
