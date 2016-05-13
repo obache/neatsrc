@@ -2,7 +2,7 @@
 #
 
 DISTNAME=		scim-chewing-0.5.1
-CATEGORIES=		inputmethod
+CATEGORIES=		chinese inputmethod
 MASTER_SITES=		-https://github.com/chewing/scim-chewing/archive/v${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
