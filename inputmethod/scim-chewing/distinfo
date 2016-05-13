@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.4 2015/11/03 22:13:38 agc Exp $
 
-SHA1 (scim-chewing-0.5.0.tar.gz) = 8fd9fd973b0d09f106ba17e69a0a95d8cee86877
-RMD160 (scim-chewing-0.5.0.tar.gz) = 08a127750106b11666ecd54422328a253e03a415
-SHA512 (scim-chewing-0.5.0.tar.gz) = 8e1b1de33583cfcbdb5828e9041ffcb774d3e7d0c7036c99344e50242571f68ed32b37ed28de369a6bbec72831dbb8ef9c3f23f98deb6100c228041c9c39259a
-Size (scim-chewing-0.5.0.tar.gz) = 62948 bytes
+SHA1 (scim-chewing-0.5.1.tar.gz) = 0c46d085c88c24ae305b870f68ac8e9e8c6787b7
+RMD160 (scim-chewing-0.5.1.tar.gz) = 007b2455ac952e9f260e060fea2711c334edd788
+SHA512 (scim-chewing-0.5.1.tar.gz) = b6bdac1f9f1e412877a24761674bedb89134764c2b3aec70f2b395bac00bd3239c7feb6d0001943d9bbf857115af2cc7526e958d46feb2eda0fa5042359888ef
+Size (scim-chewing-0.5.1.tar.gz) = 62938 bytes

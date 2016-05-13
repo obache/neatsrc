@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.33 2016/04/11 19:01:54 ryoon Exp $
 #
 
-DISTNAME=		scim-chewing-0.5.0
+DISTNAME=		scim-chewing-0.5.1
 CATEGORIES=		inputmethod
 MASTER_SITES=		-https://github.com/chewing/scim-chewing/archive/v${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
