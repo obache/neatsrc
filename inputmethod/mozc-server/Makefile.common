@@ -81,6 +81,7 @@ do-configure:
 		GYP_DEFINES="use_libprotobuf=1 use_libzinnia=1" \
 		${PYTHONBIN} build_mozc.py \
 		gyp \
+		--server_dir=${LOCALBASE}/libexec \
 		--gypdir=${LOCALBASE}/bin
 
 .include "../../devel/glib2/buildlink3.mk"
