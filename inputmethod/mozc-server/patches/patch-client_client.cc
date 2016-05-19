@@ -1,4 +1,4 @@
-$NetBSD: patch-client_client.cc,v 1.1 2013/04/29 09:52:17 ryoon Exp $
+$NetBSD: patch-client_client.cc,v 1.2 2016/05/16 11:51:49 ryoon Exp $
 
 --- client/client.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ client/client.cc

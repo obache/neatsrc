@@ -1,4 +1,4 @@
-$NetBSD: patch-handwriting_zinnia.gyp,v 1.1 2014/01/19 01:18:50 ryoon Exp $
+$NetBSD: patch-handwriting_zinnia.gyp,v 1.2 2016/05/16 11:51:49 ryoon Exp $
 
 --- handwriting/zinnia.gyp.orig	2016-01-10 19:41:41.000000000 +0000
 +++ handwriting/zinnia.gyp

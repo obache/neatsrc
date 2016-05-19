@@ -1,4 +1,4 @@
-$NetBSD: patch-session_session__test.cc,v 1.1 2013/04/29 09:52:18 ryoon Exp $
+$NetBSD: patch-session_session__test.cc,v 1.2 2016/05/16 11:51:49 ryoon Exp $
 
 --- session/session_test.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ session/session_test.cc

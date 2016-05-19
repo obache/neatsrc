@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2254 2016/05/16 07:55:00 nils Exp $
+# $NetBSD: Makefile,v 1.2262 2016/05/18 12:22:27 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -611,6 +611,7 @@ SUBDIR+=	matio
 SUBDIR+=	mcpp
 SUBDIR+=	mdds
 SUBDIR+=	mdds0.12
+SUBDIR+=	mdds1.2
 SUBDIR+=	meld
 SUBDIR+=	mell
 SUBDIR+=	memcached
@@ -1102,6 +1103,8 @@ SUBDIR+=	p5-Lexical-SealRequireHints
 SUBDIR+=	p5-List-AllUtils
 SUBDIR+=	p5-List-MoreUtils
 SUBDIR+=	p5-List-Pairwise
+SUBDIR+=	p5-List-SomeUtils
+SUBDIR+=	p5-List-SomeUtils-XS
 SUBDIR+=	p5-List-UtilsBy
 SUBDIR+=	p5-Locale-Msgfmt
 SUBDIR+=	p5-Locale-PO
@@ -1675,6 +1678,7 @@ SUBDIR+=	py-atomicwrites
 SUBDIR+=	py-attrs
 SUBDIR+=	py-babel
 SUBDIR+=	py-backports_abc
+SUBDIR+=	py-binaryornot
 SUBDIR+=	py-blinker
 SUBDIR+=	py-boost
 SUBDIR+=	py-buildbot
@@ -1692,6 +1696,7 @@ SUBDIR+=	py-configargparse
 SUBDIR+=	py-configobj
 SUBDIR+=	py-constants
 SUBDIR+=	py-construct
+SUBDIR+=	py-cookiecutter
 SUBDIR+=	py-coverage
 SUBDIR+=	py-cparser
 SUBDIR+=	py-curses
@@ -1846,6 +1851,9 @@ SUBDIR+=	py-requests
 SUBDIR+=	py-requests-toolbelt
 SUBDIR+=	py-rope
 SUBDIR+=	py-rply
+SUBDIR+=	py-ruamel-base
+SUBDIR+=	py-ruamel-ordereddict
+SUBDIR+=	py-ruamel-yaml
 SUBDIR+=	py-serpent
 SUBDIR+=	py-setuptools
 SUBDIR+=	py-setuptools_scm
@@ -1878,6 +1886,7 @@ SUBDIR+=	py-urwid
 SUBDIR+=	py-usb
 SUBDIR+=	py-virtualenv
 SUBDIR+=	py-wheel
+SUBDIR+=	py-whichcraft
 SUBDIR+=	py-windbg
 SUBDIR+=	py-wrapt
 SUBDIR+=	py-xdg

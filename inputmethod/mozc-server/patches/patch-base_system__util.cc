@@ -1,4 +1,4 @@
-$NetBSD: patch-base_system__util.cc,v 1.3 2013/09/07 18:42:14 ryoon Exp $
+$NetBSD: patch-base_system__util.cc,v 1.4 2016/05/16 11:51:49 ryoon Exp $
 
 --- base/system_util.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ base/system_util.cc
@@ -12,7 +12,7 @@ $NetBSD: patch-base_system__util.cc,v 1.3 2013/09/07 18:42:14 ryoon Exp $
    return MOZC_SERVER_DIRECTORY;
  #else
 -  return "/usr/lib/mozc";
-+  return "@PREFIX@/libexec";
++  return "@PREFIX@/lib/mozc";
  #endif  // MOZC_SERVER_DIRECTORY
  
  #endif  // OS_WIN, OS_MACOSX, OS_LINUX, ...
@@ -67,3 +67,12 @@ $NetBSD: patch-base_system__util.cc,v 1.3 2013/09/07 18:42:14 ryoon Exp $
  #if defined(_SC_PAGESIZE) && defined(_SC_PHYS_PAGES)
    const long page_size = sysconf(_SC_PAGESIZE);
    const long number_of_phyisical_pages = sysconf(_SC_PHYS_PAGES);
+@@ -992,7 +995,7 @@ uint64 SystemUtil::GetTotalPhysicalMemor
+ #endif  // defined(_SC_PAGESIZE) && defined(_SC_PHYS_PAGES)
+ #else  // !(defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX))
+ #error "unknown platform"
+-#endif  // OS_WIN, OS_MACOSX, OS_LINUX
++#endif  // OS_WIN, OS_MACOSX, OS_LINUX, OS_NETBSD
+ }
+ 
+ bool SystemUtil::IsLittleEndian() {

@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.113 2016/05/03 11:40:04 prlw1 Exp $
+# $NetBSD: Makefile,v 1.117 2016/05/18 03:56:39 ryoon Exp $
 #
 
 .include "../../inputmethod/uim/Makefile.common"
 
-PKGREVISION=		29
+PKGREVISION=		30
 COMMENT=		Multilingual input method library
 #LICENSE=		See ${WRKSRC}/COPYING
 
@@ -18,6 +18,8 @@ GNU_CONFIGURE=		YES
 CONFIGURE_ARGS+=	--disable-emacs
 CONFIGURE_ARGS+=	--with-libgcroots=installed
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE}
+
+BUILDLINK_TRANSFORM+=	rm:-O2
 
 LDFLAGS.SunOS+=	-mimpure-text
 CFLAGS.SunOS+=	-std=c99 -D__EXTENSIONS__

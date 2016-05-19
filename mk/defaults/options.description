@@ -225,6 +225,7 @@ gdb6-tui		Build the tui application.
 gdbm			Use the GNU gdbm database library.
 gdk-pixbuf		Use gdk-pixbuf as imaging library.
 gdk-pixbuf2		Use gdk-pixbuf2 as imaging library.
+geoclue			Enable geoclue support.
 geoip			Enable IP-to-country-lookup using the GeoIP C library.
 ggi			Enable GGI support.
 ghostscript		Enable GhostScript support.
@@ -406,6 +407,7 @@ ldap			Enable LDAP support.
 lensfun			Enable lensfun (camera lens distortion rectifyer) support.
 libao			Enable the platform-independent 'ao' audio library.
 libchamplain		Enable libchamplain support (map widget).
+libdrm			Enable libdrm support.
 libgcrypt		Use GNU cryptographic library.
 libgme			Enable Game_Music_Emu video game music file library support.
 libgpod			Enable libgpod support.

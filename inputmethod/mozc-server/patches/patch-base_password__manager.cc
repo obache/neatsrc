@@ -1,4 +1,4 @@
-$NetBSD: patch-base_password__manager.cc,v 1.2 2014/01/19 01:18:50 ryoon Exp $
+$NetBSD: patch-base_password__manager.cc,v 1.3 2016/05/16 11:51:49 ryoon Exp $
 
 --- base/password_manager.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ base/password_manager.cc

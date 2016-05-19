@@ -1,4 +1,4 @@
-$NetBSD: patch-handwriting_zinnia__handwriting.cc,v 1.2 2013/07/20 04:34:53 ryoon Exp $
+$NetBSD: patch-handwriting_zinnia__handwriting.cc,v 1.3 2016/05/16 11:51:49 ryoon Exp $
 
 * Not confirmed yet.
 

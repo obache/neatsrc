@@ -1,4 +1,4 @@
-$NetBSD: patch-base_run__level.cc,v 1.3 2014/11/07 23:28:36 ryoon Exp $
+$NetBSD: patch-base_run__level.cc,v 1.4 2016/05/16 11:51:49 ryoon Exp $
 
 --- base/run_level.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ base/run_level.cc

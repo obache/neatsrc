@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.27 2016/03/05 11:28:42 jperkin Exp $
+# $NetBSD: Makefile,v 1.28 2016/05/16 11:51:49 ryoon Exp $
 
 PKGNAME=	ibus-${DISTNAME}
 

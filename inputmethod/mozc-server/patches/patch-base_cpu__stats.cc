@@ -1,4 +1,4 @@
-$NetBSD: patch-base_cpu__stats.cc,v 1.1 2013/04/29 09:52:16 ryoon Exp $
+$NetBSD: patch-base_cpu__stats.cc,v 1.2 2016/05/16 11:51:49 ryoon Exp $
 
 --- base/cpu_stats.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ base/cpu_stats.cc

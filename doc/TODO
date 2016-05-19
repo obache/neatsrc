@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.15895 2016/05/15 11:31:51 wen Exp $
+$NetBSD: TODO,v 1.15910 2016/05/18 16:30:05 wiz Exp $
 
 Suggested new packages
 ======================
@@ -499,6 +499,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cdrkit-1.1.10
 	o cfengine3-3.8.1
 	o cfitsio-3380
+	o cflow-1.5
 	o cflow-mode-1.4
 	o cgal-4.6.1
 	o cgen-20160301
@@ -575,7 +576,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o dega-1.12
 	o dejagnu-1.6
 	o delegate-9.9.13
-	o denemo-2.0.6
+	o denemo-2.0.8
 	o desklaunch-1.1.7
 	o deskmenu-1.4.5
 	o dhcpcd-dbus-0.6.1
@@ -725,6 +726,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gcpio-2.12
 	o gdal-lib-2.0.1
 	o gdb6-6.8a
+	o gdbm-1.12
 	o gdeskcal-1.01
 	o gdl-3.16.0
 	o gdm-2.32.2 [GNOME 2.32]
@@ -826,6 +828,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gsharutils-4.15.2
 	o gss-1.0.3
 	o gst-rtsp-server-1.6.2
+	o gtar-1.29
 	o gthumb-3.4.0
 	o gtk-gnutella-0.98.4
 	o gtk-systrace-20030623
@@ -1215,7 +1218,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o openslp-2.0.0
 	o openssh-7.2p2
 	o opera-26
-	o orcus-0.11.1
+	o orcus-0.11.2
 	o oroborus-2.0.18
 	o ortp-0.25.0
 	o oto-0.5
@@ -1360,12 +1363,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-TAP-Harness-Archive-0.18
 	o p5-Term-ANSIColor-4.04
 	o p5-Term-ReadLine-1.30
-	o p5-Test-Aggregate-0.373
-	o p5-Test-File-Contents-0.22
 	o p5-Test-MinimumVersion-0.101082
-	o p5-Test-SharedFork-0.35
-	o p5-Test-Stream-1.302027
-	o p5-Test-TempDir-Tiny-0.012
 	o p5-Text-FindIndent-0.11
 	o p5-Text-Hunspell-2.14
 	o p5-Tie-Cycle-1.221
@@ -1464,6 +1462,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o postfix-3.0.4
 	o postfix-3.1.0
 	o postgresql-postgis-2.1.6
+	o postgresql93-9.3.13
+	o postgresql94-9.4.8
+	o postgresql95-9.5.3
 	o powerdns-3.7.3
 	o powerdns-ldap-3.7.3
 	o powerdns-mysql-3.7.3
@@ -1841,7 +1842,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o whowatch-1.8.5
 	o windowlab-1.40
 	o wine-1.8.2
-	o wine-devel-1.9.8
+	o wine-devel-1.9.10
 	o wmi-11
 	o wmii+ixp-3.9.2 [pkg/43459; wip (wmii-devel); see also libixp entry]
 	o wmx-8
@@ -1852,7 +1853,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o wwwoffle-2.9i
 	o wxGTK-3.1.0
 	o wxRemind-101
-	o x264-devel-20160507
+	o x264-devel-20160514
 	o x2vnc-1.31
 	o xa65-2.3.7
 	o xaric-0.13.7

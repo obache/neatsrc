@@ -1,4 +1,4 @@
-$NetBSD: patch-base_port.h,v 1.2 2015/10/19 16:37:37 joerg Exp $
+$NetBSD: patch-base_port.h,v 1.3 2016/05/16 11:51:49 ryoon Exp $
 
 --- base/port.h.orig	2016-01-10 19:41:41.000000000 +0000
 +++ base/port.h

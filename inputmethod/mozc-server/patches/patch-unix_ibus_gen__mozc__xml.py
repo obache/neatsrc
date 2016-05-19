@@ -1,4 +1,4 @@
-$NetBSD: patch-unix_ibus_gen__mozc__xml.py,v 1.6 2014/06/15 13:08:34 ryoon Exp $
+$NetBSD: patch-unix_ibus_gen__mozc__xml.py,v 1.7 2016/05/16 11:51:49 ryoon Exp $
 
 * Fix for pkgsrc installation.
 

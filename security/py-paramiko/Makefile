@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.24 2015/10/03 22:54:17 rodent Exp $
+# $NetBSD: Makefile,v 1.26 2016/05/18 12:43:00 he Exp $
 
 DISTNAME=		paramiko-1.15.3
 PKGNAME=		${PYPKGPREFIX}-${DISTNAME}

@@ -1,4 +1,4 @@
-$NetBSD: patch-base_logging.cc,v 1.3 2013/09/15 12:30:23 joerg Exp $
+$NetBSD: patch-base_logging.cc,v 1.4 2016/05/16 11:51:49 ryoon Exp $
 
 --- base/logging.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ base/logging.cc
@@ -27,8 +27,8 @@ $NetBSD: patch-base_logging.cc,v 1.3 2013/09/15 12:30:23 joerg Exp $
             // pthread_self() returns __nc_basic_thread_data*.
             static_cast<void*>(pthread_self())
 +#elif defined(OS_NETBSD)
-+	   ::getpid(),
-+	   (unsigned long)_lwp_self()
++           ::getpid(),
++           (unsigned long)_lwp_self()
  #else  // = OS_LINUX
             ::getpid(),
             // It returns unsigned long.

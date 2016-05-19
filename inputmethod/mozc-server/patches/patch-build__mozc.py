@@ -1,4 +1,4 @@
-$NetBSD: patch-build__mozc.py,v 1.7 2015/01/06 10:30:54 ryoon Exp $
+$NetBSD: patch-build__mozc.py,v 1.8 2016/05/16 11:51:49 ryoon Exp $
 
 --- build_mozc.py.orig	2016-01-10 19:41:41.000000000 +0000
 +++ build_mozc.py

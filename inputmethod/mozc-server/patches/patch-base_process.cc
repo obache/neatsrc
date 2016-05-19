@@ -1,4 +1,4 @@
-$NetBSD: patch-base_process.cc,v 1.3 2013/09/07 18:42:14 ryoon Exp $
+$NetBSD: patch-base_process.cc,v 1.4 2016/05/16 11:51:49 ryoon Exp $
 
 --- base/process.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ base/process.cc

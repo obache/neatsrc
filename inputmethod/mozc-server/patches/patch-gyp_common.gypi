@@ -1,4 +1,4 @@
-$NetBSD: patch-gyp_common.gypi,v 1.7 2015/07/31 13:07:05 ryoon Exp $
+$NetBSD: patch-gyp_common.gypi,v 1.8 2016/05/16 11:51:49 ryoon Exp $
 
 --- gyp/common.gypi.orig	2016-01-10 19:41:41.000000000 +0000
 +++ gyp/common.gypi
