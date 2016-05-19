@@ -19,13 +19,12 @@ HOMEPAGE=	https://github.com/google/mozc/
 COMMENT=	Japanese inputmethod Mozc engine for IBus
 LICENSE=	modified-bsd
 
-USAGE_DICT=	usage_dict-rev10.txt
-UIM_MOZC=	uim-mozc-321.3ea28b1
-DISTFILES+=	${DISTNAME}-${GITHUB_TAG}${EXTRACT_SUFX} \
-		${USAGE_DICT} \
-		${UIM_MOZC}.tar.xz
-SITES.${USAGE_DICT}=		${MASTER_SITE_LOCAL}
-SITES.${UIM_MOZC}.tar.xz=	${MASTER_SITE_SOURCEFORGE:=pnsft-aur/}
+DISTFILES_VARS+=	usage_dict uim_mozc
+
+DISTFILES.usage_dict=	japanese-usage-dictionary-e5b3425575734c323e1d947009dd74709437b684.zip
+DISTFILES.uim_mozc=	uim-mozc-321.3ea28b1.tar.xz
+SITES.usage_dict=	-https://github.com/hiroyuki-komatsu/japanese-usage-dictionary/archive/e5b3425575734c323e1d947009dd74709437b684.zip
+SITES.uim_mozc=		${MASTER_SITE_SOURCEFORGE:=pnsft-aur/}
 
 EXTRACT_USING=	bsdtar
 WRKSRC=		${WRKDIR}/mozc-${GITHUB_TAG}/src
@@ -72,10 +71,10 @@ OSDEST.NetBSD=	bsd
 
 MOZC_BUILD_MODE=	Release # or Debug
 
-pre-configure:
-	mkdir -p ${WRKSRC}/third_party/japanese_usage_dictionary
-	cp ${WRKDIR}/${USAGE_DICT} \
-		${WRKSRC}/third_party/japanese_usage_dictionary/usage_dict.txt
+post-extract:
+	rmdir ${WRKSRC}/third_party/japanese_usage_dictionary
+	mv ${WRKDIR}/${DISTFILES.usage_dict:R} \
+		${WRKSRC}/third_party/japanese_usage_dictionary
 
 do-configure:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
