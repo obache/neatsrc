@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.2010 2016/05/18 22:19:36 snj Exp $
+$NetBSD: CHANGES-2016,v 1.2015 2016/05/19 22:22:13 joerg Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -2620,3 +2620,8 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated wm/openbox to 3.6.1 [snj 2016-05-18]
 	Updated pkgtools/x11-links to 1.02 [ryoon 2016-05-18]
 	Added x11/redshift version 1.11 [snj 2016-05-18]
+	Updated x11/xcb-proto to 1.12 [wiz 2016-05-19]
+	Updated x11/py-xcbgen to 1.12 [wiz 2016-05-19]
+	Updated x11/libxcb to 1.12 [wiz 2016-05-19]
+	Updated security/botan to 1.10.12 [joerg 2016-05-19]
+	Updated security/botan-devel to 1.11.29 [joerg 2016-05-19]
