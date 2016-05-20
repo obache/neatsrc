@@ -21,8 +21,10 @@ LICENSE=	modified-bsd
 
 DISTFILES_VARS+=	usage_dict uim_mozc
 
+UIM_MOZC=	uim-mozc-321.3ea28b1
+
 DISTFILES.usage_dict=	japanese-usage-dictionary-e5b3425575734c323e1d947009dd74709437b684.zip
-DISTFILES.uim_mozc=	uim-mozc-321.3ea28b1.tar.xz
+DISTFILES.uim_mozc=	${UIM_MOZC}.tar.xz
 SITES.usage_dict=	-https://github.com/hiroyuki-komatsu/japanese-usage-dictionary/archive/e5b3425575734c323e1d947009dd74709437b684.zip
 SITES.uim_mozc=		${MASTER_SITE_SOURCEFORGE:=pnsft-aur/}
 
@@ -70,11 +72,6 @@ OSDEST.Linux=	linux
 OSDEST.NetBSD=	bsd
 
 MOZC_BUILD_MODE=	Release # or Debug
-
-post-extract:
-	rmdir ${WRKSRC}/third_party/japanese_usage_dictionary
-	mv ${WRKDIR}/${DISTFILES.usage_dict:R} \
-		${WRKSRC}/third_party/japanese_usage_dictionary
 
 do-configure:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \

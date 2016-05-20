@@ -4,6 +4,11 @@ PKGNAME=	${DISTNAME:S/mozc-/mozc-server-/}
 
 INSTALLATION_DIRS+=	libexec
 
+post-extract:
+	rmdir ${WRKSRC}/third_party/japanese_usage_dictionary
+	mv ${WRKDIR}/${DISTFILES.usage_dict:R} \
+		${WRKSRC}/third_party/japanese_usage_dictionary
+
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
 		${PYTHONBIN} build_mozc.py build \
