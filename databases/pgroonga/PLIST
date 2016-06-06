@@ -6,5 +6,8 @@ share/postgresql/extension/pgroonga--1.0.2--1.0.3.sql
 share/postgresql/extension/pgroonga--1.0.3--1.0.4.sql
 share/postgresql/extension/pgroonga--1.0.4--1.0.5.sql
 share/postgresql/extension/pgroonga--1.0.5--1.0.6.sql
+share/postgresql/extension/pgroonga--1.0.6--1.0.7.sql
+share/postgresql/extension/pgroonga--1.0.7--1.0.8.sql
+share/postgresql/extension/pgroonga--1.0.8--1.0.9.sql
 share/postgresql/extension/pgroonga--${PKGVERSION}.sql
 share/postgresql/extension/pgroonga.control
