@@ -34,6 +34,7 @@ share/applications/mate-network-scheme.desktop
 share/caja/browser.xml
 share/caja/caja-extras.placeholder
 share/caja/caja-suggested.placeholder
+share/caja/caja.css
 share/caja/patterns/blue_gray_rough.png
 share/caja/patterns/blue_ridge.png
 share/caja/patterns/blue_type.png
