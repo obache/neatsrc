@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=	fonts-tlwg-0.6.2
+DISTNAME=	fonts-tlwg-0.6.3
 CATEGORIES=	fonts
 MASTER_SITES=	http://linux.thai.net/pub/thailinux/software/fonts-tlwg/
 EXTRACT_SUFX=	.tar.xz
@@ -24,8 +24,8 @@ FONTS_DIRS.ttf+=	${FONTDIR}
 FC_AVAILS+=	00-tlwg.conf
 FC_AVAILS+=	64-01-tlwg-kinnari.conf
 FC_AVAILS+=	64-02-tlwg-norasi.conf
+FC_AVAILS+=	64-10-tlwg-loma.conf
 FC_AVAILS+=	64-11-tlwg-waree.conf
-FC_AVAILS+=	64-12-tlwg-loma.conf
 FC_AVAILS+=	64-13-tlwg-garuda.conf
 FC_AVAILS+=	64-14-tlwg-umpush.conf
 FC_AVAILS+=	64-15-laksaman.conf
@@ -35,9 +35,7 @@ FC_AVAILS+=	64-23-tlwg-mono.conf
 FC_AVAILS+=	89-tlwg-garuda-synthetic.conf
 FC_AVAILS+=	89-tlwg-kinnari-synthetic.conf
 FC_AVAILS+=	89-tlwg-laksaman-synthetic.conf
-FC_AVAILS+=	89-tlwg-loma-synthetic.conf
 FC_AVAILS+=	89-tlwg-umpush-synthetic.conf
-FC_AVAILS+=	89-tlwg-waree-synthetic.conf
 
 .for f in ${FC_AVAILS}
 CONF_FILES+=	${PREFIX}/share/examples/${PKGBASE}/fonts/conf.avail/${f} \
