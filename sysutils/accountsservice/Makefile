@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	accountsservice-0.6.40
+DISTNAME=	accountsservice-0.6.42
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.freedesktop.org/software/accountsservice/
 EXTRACT_SUFX=	.tar.xz

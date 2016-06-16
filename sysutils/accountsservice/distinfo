@@ -1,9 +1,9 @@
 $NetBSD$
 
-SHA1 (accountsservice-0.6.40.tar.xz) = 2afbcddf6e1d1a97b4cc5c4c7897201f06378ec3
-RMD160 (accountsservice-0.6.40.tar.xz) = 83c148f750058039728397b5c8d058058557d519
-SHA512 (accountsservice-0.6.40.tar.xz) = da12a97ca9a2eb69d978fd3b5f46e8dd2e2f3e6f57db027e0b8c8c583c715d45f105c9ddcd1a2a1c4a2f4bfce672431e601a7cd0f063b31675fd6f13b6cb4ef8
-Size (accountsservice-0.6.40.tar.xz) = 367772 bytes
+SHA1 (accountsservice-0.6.42.tar.xz) = 4461347acf3878e100afcc2e3f960fb2c9fd87f4
+RMD160 (accountsservice-0.6.42.tar.xz) = 72b3025468b855d50517729530a92e5cb31ca82e
+SHA512 (accountsservice-0.6.42.tar.xz) = b31d77b88793a8264d32963a98ad446537292a134a3f80fabb4e2ce30f796e5f3066d02a27515c993133fa493b511a6abba6ff1a7827b5a54ea6a4f62a7b6fc9
+Size (accountsservice-0.6.42.tar.xz) = 380500 bytes
 SHA1 (patch-src_daemon.c) = a90afdd06ff616e570c3379c7ef25bf8cc4c55bb
 SHA1 (patch-src_user.c) = e50127a722fccb1881aed42ebd0f0cef6a6a38e0
 SHA1 (patch-src_util.c) = 6ace3951c0fac36150408330b6708628b57489af
