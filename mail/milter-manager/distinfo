@@ -5,4 +5,3 @@ RMD160 (milter-manager-2.0.7.tar.gz) = 62ff0f479f27210921664437506f6e42318f0476
 SHA512 (milter-manager-2.0.7.tar.gz) = b0d315b8695ea3032cab16a0ae1e85bb043bc9935bc35f0e636ebb8d182b336f4db6a96461e332a445e4bb83ff414a7a2218fe0049a0055416ff8b98c5015f26
 Size (milter-manager-2.0.7.tar.gz) = 6152049 bytes
 SHA1 (patch-configure) = ee1f31e83354c4c6b38ae1c0d4fda40f28ad92b6
-SHA1 (patch-libev-4.15_ev.c) = 8393cc727fda6a812931e42507e5db2fdf370c33
