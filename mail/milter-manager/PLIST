@@ -130,6 +130,7 @@ lib/milter-manager/binding/lib/milter/manager/postfix-regexp-table.rb
 lib/milter-manager/binding/lib/milter/manager/rcng-detector.rb
 lib/milter-manager/binding/lib/milter/manager/redhat-detector.rb
 lib/milter-manager/binding/lib/milter/manager/redhat-init-detector.rb
+lib/milter-manager/binding/lib/milter/manager/redhat-systemd-detector.rb
 lib/milter-manager/binding/lib/milter/manager/redhat-upstart-detector.rb
 lib/milter-manager/binding/lib/milter/server.rb
 lib/milter-manager/binding/lib/milter/server/testing.rb
@@ -166,13 +167,13 @@ share/doc/milter-manager/commands.html
 share/doc/milter-manager/configuration.html
 share/doc/milter-manager/home.png
 share/doc/milter-manager/index.html
-share/doc/milter-manager/index.sgml
 share/doc/milter-manager/install-options-to-centos.html
 share/doc/milter-manager/install-options-to-debian.html
 share/doc/milter-manager/install-options-to-freebsd.html
 share/doc/milter-manager/install-options-to-ubuntu.html
 share/doc/milter-manager/install-to-centos.html
 share/doc/milter-manager/install-to-centos5.html
+share/doc/milter-manager/install-to-centos6.html
 share/doc/milter-manager/install-to-debian.html
 share/doc/milter-manager/install-to-freebsd.html
 share/doc/milter-manager/install-to-others.html
@@ -189,13 +190,13 @@ share/doc/milter-manager/ja/configuration.html
 share/doc/milter-manager/ja/core.xml
 share/doc/milter-manager/ja/home.png
 share/doc/milter-manager/ja/index.html
-share/doc/milter-manager/ja/index.sgml
 share/doc/milter-manager/ja/install-options-to-centos.html
 share/doc/milter-manager/ja/install-options-to-debian.html
 share/doc/milter-manager/ja/install-options-to-freebsd.html
 share/doc/milter-manager/ja/install-options-to-ubuntu.html
 share/doc/milter-manager/ja/install-to-centos.html
 share/doc/milter-manager/ja/install-to-centos5.html
+share/doc/milter-manager/ja/install-to-centos6.html
 share/doc/milter-manager/ja/install-to-debian.html
 share/doc/milter-manager/ja/install-to-freebsd.html
 share/doc/milter-manager/ja/install-to-others.html

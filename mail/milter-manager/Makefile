@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.42 2016/03/13 09:36:58 taca Exp $
 #
 
-DISTNAME=	milter-manager-2.0.7
-PKGREVISION=	1
+DISTNAME=	milter-manager-2.0.9
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=milter-manager/}
 
