@@ -30,7 +30,7 @@ SUBST_CLASSES+=		libev_inc
 SUBST_STAGE.libev_inc=	pre-configure
 SUBST_MESSAGE.libev_inc=Adjust include path for libevent from pkgsrc.
 SUBST_FILES.libev_inc=	configure
-SUBST_SED.libev_inc=	's,/include/ev.h,/include/ev/ev.h,g'
+SUBST_SED.libev_inc=	-e 's,/include/ev.h,/include/ev/ev.h,g'
 
 PKG_SYSCONFSUBDIR=	${PKGBASE}
 
