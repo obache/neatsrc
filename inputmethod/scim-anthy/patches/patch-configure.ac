@@ -1,0 +1,48 @@
+$NetBSD$
+
+* add gtk3+ support
+* drop direct dependency on gtk2
+
+--- configure.ac.orig	2009-01-16 02:32:46.000000000 +0000
++++ configure.ac
+@@ -60,14 +60,18 @@ PKG_CHECK_MODULES(SCIM_GTKUTILS,[scim-gt
+ AC_SUBST(SCIM_VERSION)
+ 
+ AM_CONDITIONAL(SCIM_BUILD_SETUP, [test "$SCIM_HAS_GTKUTILS" = "yes"])
++AM_CONDITIONAL(SCIM_BUILD_HELPER, [test "$SCIM_HAS_GTKUTILS" = "yes"])
+ 
+ if test "$SCIM_HAS_GTKUTILS" = "yes"; then
+   SCIM_BUILD_SETUP=1
++  SCIM_BUILD_HELPER=1
+ else
+   SCIM_BUILD_SETUP=0
++  SCIM_BUILD_HELPER=0
+ fi
+ 
+ AC_SUBST(SCIM_BUILD_SETUP)
++AC_SUBST(SCIM_BUILD_HELPER)
+ 
+ # Checks for header files.
+ AC_HEADER_STDC
+@@ -84,21 +88,6 @@ ANTHY_CFLAGS=""
+ AC_SUBST(ANTHY_LIBS)
+ AC_SUBST(ANTHY_CFLAGS)
+ 
+-# Check gtk2
+-PKG_CHECK_MODULES(GTK2, [gtk+-2.0 >= 2.4.0],
+-                        [HAS_GTK=yes],
+-                        [HAS_GTK=no])
+-
+-AM_CONDITIONAL(SCIM_BUILD_HELPER, [test "$HAS_GTK" = "yes"])
+-
+-if test "$HAS_GTK" = "yes"; then
+-  SCIM_BUILD_HELPER=1
+-else
+-  SCIM_BUILD_HELPER=0
+-fi
+-
+-AC_SUBST(SCIM_BUILD_HELPER)
+-
+ # libtool option to control which symbols are exported
+ # right now, symbols starting with _ are not exported
+ LIBTOOL_EXPORT_OPTIONS='-export-symbols-regex "^[[^_]].*"'

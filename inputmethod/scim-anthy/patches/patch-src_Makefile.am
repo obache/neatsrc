@@ -1,0 +1,27 @@
+$NetBSD$
+
+* add gtk3+ support
+* drop direct dependency on gtk2
+
+--- src/Makefile.am.orig	2008-04-24 03:49:53.000000000 +0000
++++ src/Makefile.am
+@@ -129,16 +129,16 @@ helpermoduledir          = @SCIM_MODULED
+ helpermodule_LTLIBRARIES = $(HELPER_MODULE)
+ 
+ anthy_imengine_helper_la_SOURCES  = scim_anthy_helper.cpp
+-anthy_imengine_helper_la_CFLAGS   = @GTK2_CFLAGS@ \
++anthy_imengine_helper_la_CFLAGS   = @SCIM_GTKUTILS_CFLAGS@ \
+ 				    @SCIM_CFLAGS@ \
+ 				    @SCIM_DEBUG_FLAGS@
+-anthy_imengine_helper_la_CXXFLAGS = @GTK2_CFLAGS@ \
++anthy_imengine_helper_la_CXXFLAGS = @SCIM_GTKUTILS_CFLAGS@ \
+ 				    @SCIM_CFLAGS@ \
+ 				    @SCIM_DEBUG_FLAGS@
+ anthy_imengine_helper_la_LDFLAGS  = -avoid-version \
+                                     -rpath $(setupmoduledir) \
+                                     -module \
+ 				    @LIBTOOL_EXPORT_OPTIONS@ \
+-				    @GTK2_LIBS@ \
++				    @SCIM_GTKUTILS_LIBS@ \
+ 				    @INTLLIBS@ \
+ 				    @SCIM_LIBS@

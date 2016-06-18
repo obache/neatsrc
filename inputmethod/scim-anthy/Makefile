@@ -24,5 +24,4 @@ USE_SCIM_GTKUTILS=	yes
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../inputmethod/anthy/buildlink3.mk"
 .include "../../inputmethod/scim/buildlink3.mk"
-.include "../../x11/gtk2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

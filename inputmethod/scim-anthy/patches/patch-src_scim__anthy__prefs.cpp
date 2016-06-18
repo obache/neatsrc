@@ -16,7 +16,7 @@ $NetBSD$
          N_("_Entering the pseudo ASCII input mode with capital letters."),
          NULL,
          N_("If this check is enabled, capital letters will becomes a trigger to enter the pseudo ASCII input mode."),
-+        NULL,
++		NULL,
          false,
      },
      {
@@ -24,7 +24,7 @@ $NetBSD$
          N_("Insert a _blank with a blank key."),
          NULL,
          N_("If this check is enabled, a blank key will works to insert a blank when entering the pseudo ASCII input mode."),
-+        NULL,
++		NULL,
          false,
      },
      {
@@ -40,15 +40,26 @@ $NetBSD$
          N_("Use _direct select keys while predicting"),
          NULL,
          NULL,
-+        NULL,
++		NULL,
          false,
      },
      {
+@@ -215,8 +220,8 @@ BoolConfigData config_bool_common [] =
+     },
+     {
+         NULL,
+-        "",
+-        "",
++        false,
++        false,
+         NULL,
+         NULL,
+         NULL,
 @@ -273,6 +278,7 @@ IntConfigData config_int_common [] =
          NULL,
          NULL,
          NULL,
-+        NULL,
++		NULL,
          false,
      },
  };

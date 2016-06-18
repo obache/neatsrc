@@ -1,0 +1,197 @@
+$NetBSD$
+
+* regen
+
+--- configure.orig	2009-01-16 02:34:02.000000000 +0000
++++ configure
+@@ -919,15 +919,13 @@ SCIM_GTKUTILS_LIBS
+ SCIM_VERSION
+ SCIM_BUILD_SETUP_TRUE
+ SCIM_BUILD_SETUP_FALSE
++SCIM_BUILD_HELPER_TRUE
++SCIM_BUILD_HELPER_FALSE
+ SCIM_BUILD_SETUP
++SCIM_BUILD_HELPER
+ ac_aux_dir
+ ANTHY_LIBS
+ ANTHY_CFLAGS
+-GTK2_CFLAGS
+-GTK2_LIBS
+-SCIM_BUILD_HELPER_TRUE
+-SCIM_BUILD_HELPER_FALSE
+-SCIM_BUILD_HELPER
+ LIBTOOL_EXPORT_OPTIONS
+ SCIM_DEBUG_FLAGS
+ SCIM_DATADIR
+@@ -956,9 +954,7 @@ PKG_CONFIG
+ SCIM_CFLAGS
+ SCIM_LIBS
+ SCIM_GTKUTILS_CFLAGS
+-SCIM_GTKUTILS_LIBS
+-GTK2_CFLAGS
+-GTK2_LIBS'
++SCIM_GTKUTILS_LIBS'
+ 
+ 
+ # Initialize some variables set by options.
+@@ -1585,8 +1581,6 @@ Some influential environment variables:
+               C compiler flags for SCIM_GTKUTILS, overriding pkg-config
+   SCIM_GTKUTILS_LIBS
+               linker flags for SCIM_GTKUTILS, overriding pkg-config
+-  GTK2_CFLAGS C compiler flags for GTK2, overriding pkg-config
+-  GTK2_LIBS   linker flags for GTK2, overriding pkg-config
+ 
+ Use these variables to override the choices made by `configure' or to help
+ it to find libraries and programs with nonstandard names/locations.
+@@ -30410,15 +30404,26 @@ else
+   SCIM_BUILD_SETUP_FALSE=
+ fi
+ 
++ if test "$SCIM_HAS_GTKUTILS" = "yes"; then
++  SCIM_BUILD_HELPER_TRUE=
++  SCIM_BUILD_HELPER_FALSE='#'
++else
++  SCIM_BUILD_HELPER_TRUE='#'
++  SCIM_BUILD_HELPER_FALSE=
++fi
++
+ 
+ if test "$SCIM_HAS_GTKUTILS" = "yes"; then
+   SCIM_BUILD_SETUP=1
++  SCIM_BUILD_HELPER=1
+ else
+   SCIM_BUILD_SETUP=0
++  SCIM_BUILD_HELPER=0
+ fi
+ 
+ 
+ 
++
+ # Checks for header files.
+ 
+ { echo "$as_me:$LINENO: checking for ANSI C header files" >&5
+@@ -31265,96 +31270,6 @@ ANTHY_CFLAGS=""
+ 
+ 
+ 
+-# Check gtk2
+-
+-pkg_failed=no
+-{ echo "$as_me:$LINENO: checking for GTK2" >&5
+-echo $ECHO_N "checking for GTK2... $ECHO_C" >&6; }
+-
+-if test -n "$PKG_CONFIG"; then
+-    if test -n "$GTK2_CFLAGS"; then
+-        pkg_cv_GTK2_CFLAGS="$GTK2_CFLAGS"
+-    else
+-        if test -n "$PKG_CONFIG" && \
+-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.4.0\"") >&5
+-  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.4.0") 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; then
+-  pkg_cv_GTK2_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= 2.4.0" 2>/dev/null`
+-else
+-  pkg_failed=yes
+-fi
+-    fi
+-else
+-	pkg_failed=untried
+-fi
+-if test -n "$PKG_CONFIG"; then
+-    if test -n "$GTK2_LIBS"; then
+-        pkg_cv_GTK2_LIBS="$GTK2_LIBS"
+-    else
+-        if test -n "$PKG_CONFIG" && \
+-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.4.0\"") >&5
+-  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.4.0") 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; then
+-  pkg_cv_GTK2_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= 2.4.0" 2>/dev/null`
+-else
+-  pkg_failed=yes
+-fi
+-    fi
+-else
+-	pkg_failed=untried
+-fi
+-
+-
+-
+-if test $pkg_failed = yes; then
+-
+-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+-        _pkg_short_errors_supported=yes
+-else
+-        _pkg_short_errors_supported=no
+-fi
+-        if test $_pkg_short_errors_supported = yes; then
+-	        GTK2_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gtk+-2.0 >= 2.4.0"`
+-        else
+-	        GTK2_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0 >= 2.4.0"`
+-        fi
+-	# Put the nasty error message in config.log where it belongs
+-	echo "$GTK2_PKG_ERRORS" >&5
+-
+-	{ echo "$as_me:$LINENO: result: no" >&5
+-echo "${ECHO_T}no" >&6; }
+-                HAS_GTK=no
+-elif test $pkg_failed = untried; then
+-	HAS_GTK=no
+-else
+-	GTK2_CFLAGS=$pkg_cv_GTK2_CFLAGS
+-	GTK2_LIBS=$pkg_cv_GTK2_LIBS
+-        { echo "$as_me:$LINENO: result: yes" >&5
+-echo "${ECHO_T}yes" >&6; }
+-	HAS_GTK=yes
+-fi
+-
+- if test "$HAS_GTK" = "yes"; then
+-  SCIM_BUILD_HELPER_TRUE=
+-  SCIM_BUILD_HELPER_FALSE='#'
+-else
+-  SCIM_BUILD_HELPER_TRUE='#'
+-  SCIM_BUILD_HELPER_FALSE=
+-fi
+-
+-
+-if test "$HAS_GTK" = "yes"; then
+-  SCIM_BUILD_HELPER=1
+-else
+-  SCIM_BUILD_HELPER=0
+-fi
+-
+-
+-
+ # libtool option to control which symbols are exported
+ # right now, symbols starting with _ are not exported
+ LIBTOOL_EXPORT_OPTIONS='-export-symbols-regex "^[^_].*"'
+@@ -32305,15 +32220,13 @@ SCIM_GTKUTILS_LIBS!$SCIM_GTKUTILS_LIBS$a
+ SCIM_VERSION!$SCIM_VERSION$ac_delim
+ SCIM_BUILD_SETUP_TRUE!$SCIM_BUILD_SETUP_TRUE$ac_delim
+ SCIM_BUILD_SETUP_FALSE!$SCIM_BUILD_SETUP_FALSE$ac_delim
++SCIM_BUILD_HELPER_TRUE!$SCIM_BUILD_HELPER_TRUE$ac_delim
++SCIM_BUILD_HELPER_FALSE!$SCIM_BUILD_HELPER_FALSE$ac_delim
+ SCIM_BUILD_SETUP!$SCIM_BUILD_SETUP$ac_delim
++SCIM_BUILD_HELPER!$SCIM_BUILD_HELPER$ac_delim
+ ac_aux_dir!$ac_aux_dir$ac_delim
+ ANTHY_LIBS!$ANTHY_LIBS$ac_delim
+ ANTHY_CFLAGS!$ANTHY_CFLAGS$ac_delim
+-GTK2_CFLAGS!$GTK2_CFLAGS$ac_delim
+-GTK2_LIBS!$GTK2_LIBS$ac_delim
+-SCIM_BUILD_HELPER_TRUE!$SCIM_BUILD_HELPER_TRUE$ac_delim
+-SCIM_BUILD_HELPER_FALSE!$SCIM_BUILD_HELPER_FALSE$ac_delim
+-SCIM_BUILD_HELPER!$SCIM_BUILD_HELPER$ac_delim
+ LIBTOOL_EXPORT_OPTIONS!$LIBTOOL_EXPORT_OPTIONS$ac_delim
+ SCIM_DEBUG_FLAGS!$SCIM_DEBUG_FLAGS$ac_delim
+ SCIM_DATADIR!$SCIM_DATADIR$ac_delim
+@@ -32324,7 +32237,7 @@ LIBOBJS!$LIBOBJS$ac_delim
+ LTLIBOBJS!$LTLIBOBJS$ac_delim
+ _ACEOF
+ 
+-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 70; then
++  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 68; then
+     break
+   elif $ac_last_try; then
+     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5

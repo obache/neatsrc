@@ -1,0 +1,29 @@
+$NetBSD$
+
+* manually regen
+
+--- src/Makefile.in.orig	2009-01-16 02:33:59.000000000 +0000
++++ src/Makefile.in
+@@ -403,11 +403,11 @@ anthy_imengine_setup_la_LDFLAGS = -avoid
+ helpermoduledir = @SCIM_MODULEDIR@/Helper
+ helpermodule_LTLIBRARIES = $(HELPER_MODULE)
+ anthy_imengine_helper_la_SOURCES = scim_anthy_helper.cpp
+-anthy_imengine_helper_la_CFLAGS = @GTK2_CFLAGS@ \
++anthy_imengine_helper_la_CFLAGS = @SCIM_GTKUTILS_CFLAGS@ \
+ 				    @SCIM_CFLAGS@ \
+ 				    @SCIM_DEBUG_FLAGS@
+ 
+-anthy_imengine_helper_la_CXXFLAGS = @GTK2_CFLAGS@ \
++anthy_imengine_helper_la_CXXFLAGS = @SCIM_GTKUTILS_CFLAGS@ \
+ 				    @SCIM_CFLAGS@ \
+ 				    @SCIM_DEBUG_FLAGS@
+ 
+@@ -415,7 +415,7 @@ anthy_imengine_helper_la_LDFLAGS = -avoi
+                                     -rpath $(setupmoduledir) \
+                                     -module \
+ 				    @LIBTOOL_EXPORT_OPTIONS@ \
+-				    @GTK2_LIBS@ \
++				    @SCIM_GTKUTILS_LIBS@ \
+ 				    @INTLLIBS@ \
+ 				    @SCIM_LIBS@
+ 
