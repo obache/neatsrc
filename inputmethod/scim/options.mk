@@ -3,15 +3,15 @@
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.scim
 PKG_OPTIONS_REQUIRED_GROUPS=	gtk
-PKG_OPTIONS_GROUP.gtk=		gtk gtk3
-PKG_SUPPORTED_OPTIONS=		qt
-PKG_SUGGESTED_OPTIONS=		gtk
+PKG_OPTIONS_GROUP.gtk=		gtk2 gtk3
+PKG_SUPPORTED_OPTIONS=		qt4
+PKG_SUGGESTED_OPTIONS=		gtk3
 
-PLIST_VARS+=	gtk2 gtk3 qt
+PLIST_VARS+=	gtk2 gtk3 qt4
 
 .include "../../mk/bsd.options.mk"
 
-.if !empty(PKG_OPTIONS:Mgtk)
+.if !empty(PKG_OPTIONS:Mgtk2)
 GTK2_IMMODULES=		yes
 .include "../../x11/gtk2/modules.mk"
 CONFIGURE_ARGS+=	--enable-gtk2-immodule
@@ -37,7 +37,7 @@ CONFIGURE_ARGS+=	--enable-gtk3-immodule=no
 #CONFIGURE_ARGS+=	--disable-qt3-immodule
 #.endif
 
-.if !empty(PKG_OPTIONS:Mqt)
+.if !empty(PKG_OPTIONS:Mqt4)
 .include "../../x11/qt4-libs/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-qt4-immodule
 CONFIGURE_ARGS+=	--with-qt4-im-module-dir=${QTDIR}/plugins/inputmethods
