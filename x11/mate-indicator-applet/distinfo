@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (mate-indicator-applet-1.14.0.tar.xz) = bbeffe27a74f11f7e7d07be6d4066bc646424772
-RMD160 (mate-indicator-applet-1.14.0.tar.xz) = 9f21d36ffa321fb294ce6adb23348efca61279f4
-SHA512 (mate-indicator-applet-1.14.0.tar.xz) = 32b38a85921e3ed2f3c3e1daec05549b5c0354a259433a213aee1f123f75da9adb7a622b645868c0c639828d2cea88d2c5b0159fdd46728dcd9992298685c461
-Size (mate-indicator-applet-1.14.0.tar.xz) = 314564 bytes
+SHA1 (mate-indicator-applet-1.14.1.tar.xz) = 9315b978b56d65817b2a7aeb2efb24f0bee79594
+RMD160 (mate-indicator-applet-1.14.1.tar.xz) = 4296dc5cacb1926d6bf73de71c787c2282b104bc
+SHA512 (mate-indicator-applet-1.14.1.tar.xz) = 868f85546780d52aaadaa63ec14a8e92e673396653cebf7c5a9d0de459fc62d346fb10836298bf604eb50c63e5390cedd08576fb8903aeabdf2e2c4de5fc638f
+Size (mate-indicator-applet-1.14.1.tar.xz) = 315480 bytes
