@@ -110,7 +110,7 @@ pre-configure:
 	aclocal; autoheader; automake -a --foreign -i; autoconf
 
 .if ${OPSYS} != "Darwin"
-.include "../../sysutils/consolekit2/buildlink3.mk"
+.include "../../sysutils/consolekit/buildlink3.mk"
 .endif
 .include "../../audio/libsamplerate/buildlink3.mk"
 .include "../../audio/libsndfile/buildlink3.mk"

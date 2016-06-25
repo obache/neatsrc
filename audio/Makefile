@@ -245,7 +245,6 @@ SUBDIR+=	libid3tag
 SUBDIR+=	libifp
 SUBDIR+=	liblastfm
 SUBDIR+=	libmad
-SUBDIR+=	libmatemixer
 SUBDIR+=	libmikmod
 SUBDIR+=	libmodplug
 SUBDIR+=	libmp3splt

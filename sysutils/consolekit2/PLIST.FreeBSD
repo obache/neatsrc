@@ -1,3 +1,0 @@
-@comment $NetBSD$
-lib/ConsoleKit/scripts/ck-get-x11-display-device
-lib/ConsoleKit/scripts/ck-get-x11-server-pid

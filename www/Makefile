@@ -179,7 +179,6 @@ SUBDIR+=	lynx
 SUBDIR+=	mMosaic
 SUBDIR+=	make_album
 SUBDIR+=	matcha-sns
-SUBDIR+=	mathjax
 SUBDIR+=	mediawiki
 SUBDIR+=	micro_httpd
 SUBDIR+=	midori

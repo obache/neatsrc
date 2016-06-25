@@ -138,7 +138,6 @@ SUBDIR+=	libvdpau
 SUBDIR+=	libvpx
 SUBDIR+=	livestreamer
 SUBDIR+=	lsdvd
-SUBDIR+=	mate-media
 SUBDIR+=	mediainfo
 SUBDIR+=	mediatomb
 SUBDIR+=	mencoder

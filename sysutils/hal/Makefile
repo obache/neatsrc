@@ -118,7 +118,7 @@ pre-configure:
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../misc/usbids/buildlink3.mk"
 .include "../../security/policykit/buildlink3.mk"
-.include "../../sysutils/consolekit2/buildlink3.mk"
+.include "../../sysutils/consolekit/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"
 .include "../../sysutils/dbus-glib/buildlink3.mk"
 .include "../../sysutils/hal-info/buildlink3.mk"
