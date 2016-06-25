@@ -1,9 +1,10 @@
 # $NetBSD: Makefile,v 1.16 2015/06/12 10:51:14 wiz Exp $
 #
 
-DISTNAME=		liboobs-3.0.0
+DISTNAME=		liboobs-2.22.2
+PKGREVISION=		8
 CATEGORIES=		sysutils gnome
-MASTER_SITES=		${MASTER_SITE_GNOME:=sources/liboobs/3.0/}
+MASTER_SITES=		${MASTER_SITE_GNOME:=sources/liboobs/2.22/}
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
@@ -19,6 +20,4 @@ USE_TOOLS+=		gmake intltool msgfmt perl pkg-config
 USE_LIBTOOL=		YES
 
 .include "../../sysutils/system-tools-backends/buildlink3.mk"
-.include "../../sysutils/dbus-glib/buildlink3.mk"
-.include "../../devel/glib2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

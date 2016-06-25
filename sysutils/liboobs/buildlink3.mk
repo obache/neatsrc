@@ -5,16 +5,8 @@ BUILDLINK_TREE+=	liboobs
 .if !defined(LIBOOBS_BUILDLINK3_MK)
 LIBOOBS_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.liboobs+=	liboobs>=3.0.0
+BUILDLINK_API_DEPENDS.liboobs+=	liboobs>=2.22.0
 BUILDLINK_PKGSRCDIR.liboobs?=	../../sysutils/liboobs
-pkgbase := liboobs
-.include "../../mk/pkg-build-options.mk"
-
-.if !empty(PKG_BUILD_OPTIONS.liboobs:Mhal)
-.include "../../sysutils/hal/buildlink3.mk"
-.endif
-.include "../../sysutils/dbus-glib/buildlink3.mk"
-.include "../../devel/glib2/buildlink3.mk"
 .endif # LIBOOBS_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-liboobs

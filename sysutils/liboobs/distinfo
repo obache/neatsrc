@@ -1,9 +1,9 @@
 $NetBSD: distinfo,v 1.6 2015/11/04 01:32:19 agc Exp $
 
-SHA1 (liboobs-3.0.0.tar.bz2) = d7c6360c3b05876fe6967c068ee26e1b4b54ba0e
-RMD160 (liboobs-3.0.0.tar.bz2) = b20e080f361a9418f572e2283ebcf322d27ca24c
-SHA512 (liboobs-3.0.0.tar.bz2) = 67191294059fc6669bcad0d7e07669b1d9f1aa59e8a56ba8697051b901829bc8ef0ac9efe654160ad722884c9a0a80214e4bc989a8a77269bef0999b3fbaad9a
-Size (liboobs-3.0.0.tar.bz2) = 344118 bytes
-SHA1 (patch-ac) = f800df9e280e092d837e3c240b37b54aa4e410a6
-SHA1 (patch-oobs_oobs-timeconfig.c) = a78a652b779d0e37390db593c6741b5f1f27315b
-SHA1 (patch-oobs_oobs-timeconfig.h) = 32979a4e4595774f86310210cbdef16805727aae
+SHA1 (liboobs-2.22.2.tar.bz2) = 39a54fc11a7384e2d241518a4cdd61798472d77f
+RMD160 (liboobs-2.22.2.tar.bz2) = 900aa933c9f8da262de77dc30e6f116679cad07f
+SHA512 (liboobs-2.22.2.tar.bz2) = c979ecf878147dc11b71d2428db2b8c9c59b7afb1dbd3a7a26ef7203d42a084b81e379a678d647fd08d434f575ed8d53e341d0dacef1b6e431a5de659ed052f4
+Size (liboobs-2.22.2.tar.bz2) = 364260 bytes
+SHA1 (patch-aa) = 5c6b81f321eb86309ab8265ebb465ac69ac36ddf
+SHA1 (patch-ab) = add5f126fc3329966255db209cddf90c2ae924e9
+SHA1 (patch-ac) = 0d5ed64cfff454dab37745bf300ecb8ec5b02793
