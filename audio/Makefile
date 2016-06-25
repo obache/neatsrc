@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.530 2016/02/16 08:54:42 leot Exp $
+# $NetBSD: Makefile,v 1.537 2016/06/20 08:20:34 kamil Exp $
 #
 
 COMMENT=	Audio tools
@@ -31,6 +31,7 @@ SUBDIR+=	amarok-kde3
 SUBDIR+=	amp
 SUBDIR+=	ampache
 SUBDIR+=	applerecords
+SUBDIR+=	ardour
 SUBDIR+=	ario
 SUBDIR+=	arts
 SUBDIR+=	asunder
@@ -188,6 +189,7 @@ SUBDIR+=	gst-plugins1-jack
 SUBDIR+=	gst-plugins1-lame
 SUBDIR+=	gst-plugins1-libvisual
 SUBDIR+=	gst-plugins1-mad
+SUBDIR+=	gst-plugins1-opus
 SUBDIR+=	gst-plugins1-oss
 SUBDIR+=	gst-plugins1-pulse
 SUBDIR+=	gst-plugins1-sid
@@ -244,7 +246,9 @@ SUBDIR+=	libgroove
 SUBDIR+=	libid3tag
 SUBDIR+=	libifp
 SUBDIR+=	liblastfm
+SUBDIR+=	liblo
 SUBDIR+=	libmad
+SUBDIR+=	libmatemixer
 SUBDIR+=	libmikmod
 SUBDIR+=	libmodplug
 SUBDIR+=	libmp3splt
@@ -267,6 +271,7 @@ SUBDIR+=	libsidplay
 SUBDIR+=	libsidplay2
 SUBDIR+=	libsmf
 SUBDIR+=	libsndfile
+SUBDIR+=	libsoxr
 SUBDIR+=	libspiff
 SUBDIR+=	libtunepimp
 SUBDIR+=	libvisual
@@ -442,6 +447,7 @@ SUBDIR+=	sptk
 SUBDIR+=	squeezeboxserver
 SUBDIR+=	streamripper
 SUBDIR+=	streamtuner
+SUBDIR+=	suil
 SUBDIR+=	sweep
 SUBDIR+=	taglib
 SUBDIR+=	taglib-extras
@@ -480,6 +486,7 @@ SUBDIR+=	xhippo
 SUBDIR+=	xine-alsa
 SUBDIR+=	xine-esound
 SUBDIR+=	xine-pulse
+SUBDIR+=	xjadeo
 SUBDIR+=	xmcd
 SUBDIR+=	xmix
 SUBDIR+=	xmmix

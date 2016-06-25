@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.143 2016/05/08 18:40:04 jakllsch Exp $
+# $NetBSD: Makefile,v 1.145 2016/05/25 23:21:15 markd Exp $
 #
 
 COMMENT=	Archivers
@@ -18,6 +18,7 @@ SUBDIR+=	bzip2
 SUBDIR+=	cabextract
 SUBDIR+=	dact
 SUBDIR+=	dar
+SUBDIR+=	engrampa
 SUBDIR+=	fastjar
 SUBDIR+=	fcrackzip
 SUBDIR+=	file-roller
@@ -35,6 +36,7 @@ SUBDIR+=	hpack
 SUBDIR+=	hs-zlib
 SUBDIR+=	innoextract
 SUBDIR+=	jamjar
+SUBDIR+=	karchive
 SUBDIR+=	lbrate
 SUBDIR+=	lcab
 SUBDIR+=	lha

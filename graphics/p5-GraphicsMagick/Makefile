@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.26 2016/03/05 11:28:40 jperkin Exp $
+# $NetBSD: Makefile,v 1.28 2016/06/08 19:23:54 wiz Exp $
 
 PKGREVISION= 1
 .include "../../graphics/GraphicsMagick/Makefile.common"

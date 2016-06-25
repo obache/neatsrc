@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.17 2016/05/15 22:30:10 abs Exp $
+# $NetBSD: Makefile,v 1.22 2016/06/15 12:44:45 abs Exp $
 
 # Upstream regularly breaks protocol compatibility.  While users of
 # pkgsrc syncthing on multiple systems can update synchronously, an
@@ -10,7 +10,10 @@
 # Updates to new major versions must be tested against the android
 # version from f-droid prior to commiting.  (This is an attempt to
 # avoid having to version syncthing in pkgsrc.)
-DISTNAME=	syncthing-0.12.24
+# Note that the android versioning is disconnected from syncthing versioning;
+# see https://github.com/syncthing/syncthing-android/issues/652 for
+# a fuller explanation.
+DISTNAME=	syncthing-0.13.7
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=syncthing/}
 
@@ -20,6 +23,9 @@ COMMENT=	Keeps directories in sync across hosts
 HOMEPAGE=	http://syncthing.net/
 MAINTAINER=	gdt@NetBSD.org
 LICENSE=	mpl-2.0
+
+# System pax fails on NetBSD 6.  Just use gtar until this is understood.
+EXTRACT_USING=		gtar
 
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
@@ -40,9 +46,15 @@ SUBST_FILES.version=	build.go
 SUBST_SED.version=	-e 's|runError("git", "describe", "--always", "--dirty")|runError("echo","v${PKGVERSION_NOREV}")|'
 SUBST_SED.version+=	-e 's|runError("git", "show", "-s", "--format=%ct")|runError("false")|'
 
+# The following is more complicated than the build documenation says,
+# but appears necessary to link in both syncthing sources and the
+# included sources.
 post-extract:
 	${MKDIR} ${WRKDIR}/gopath/src/github.com/syncthing
+	${MKDIR} ${WRKDIR}/gopath/src/golang.org
 	${LN} -s ${WRKSRC} ${WRKDIR}/gopath/src/github.com/syncthing/syncthing
+	${LN} -s ${WRKSRC}/vendor/github.com/* ${WRKDIR}/gopath/src/github.com
+	${LN} -s ${WRKSRC}/vendor/golang.org/* ${WRKDIR}/gopath/src/golang.org
 
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${PREFIX}/bin/go run build.go

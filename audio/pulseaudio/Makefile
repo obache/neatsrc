@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.107 2016/03/05 11:28:05 jperkin Exp $
+# $NetBSD: Makefile,v 1.108 2016/06/04 16:25:04 youri Exp $
 
 DISTNAME=	pulseaudio-8.0
 PKGREVISION=	1

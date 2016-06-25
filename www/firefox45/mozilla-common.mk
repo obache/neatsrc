@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.1 2016/04/27 16:36:50 ryoon Exp $
+# $NetBSD: mozilla-common.mk,v 1.3 2016/05/31 11:45:10 wiz Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #

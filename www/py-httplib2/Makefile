@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2016/02/04 09:41:13 wiz Exp $
+# $NetBSD: Makefile,v 1.9 2016/05/22 13:16:50 wiz Exp $
 
 DISTNAME=	httplib2-0.9.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}

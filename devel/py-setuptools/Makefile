@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.94 2016/05/05 11:52:09 wiz Exp $
+# $NetBSD: Makefile,v 1.99 2016/06/12 14:32:27 wiz Exp $
 
-DISTNAME=		setuptools-21.0.0
+DISTNAME=		setuptools-23.0.0
 PKGNAME=		${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=		devel python
-MASTER_SITES=		https://pypi.python.org/packages/ff/d4/209f4939c49e31f5524fa0027bf1c8ec3107abaf7c61fdaad704a648c281/
+MASTER_SITES=		${MASTER_SITE_PYPI:=s/setuptools/}
 
 MAINTAINER=		joerg@NetBSD.org
 HOMEPAGE=		https://pypi.python.org/pypi/setuptools
@@ -18,14 +18,11 @@ PLIST_SUBST+=		PYVERSSUFFIX=${PYVERSSUFFIX}
 PLIST_SUBST+=		EGG_INFODIR=${EGG_NAME}-py${PYVERSSUFFIX}.egg-info
 
 REPLACE_PYTHON+=	setuptools/command/easy_install.py
-REPLACE_PYTHON+=	setuptools/tests/test_resources.py
 
 # upstream often forgets deleting files, and packages on Windows,
 # so permissions are usually wrong
 post-install:
 	${RM} -f ${DESTDIR}${PREFIX}/${PYSITELIB}/${EGG_NAME}-py${PYVERSSUFFIX}.egg-info/*.orig
-	${CHMOD} ${SHAREMODE} ${DESTDIR}${PREFIX}/${PYSITELIB}/${EGG_NAME}-py${PYVERSSUFFIX}.egg-info/*
-	${CHMOD} ${SHAREMODE} ${DESTDIR}${PREFIX}/${PYSITELIB}/setuptools/*.tmpl
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"

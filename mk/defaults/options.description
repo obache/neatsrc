@@ -149,6 +149,7 @@ eaccelerator-disassembler	Include disassembler.
 eaccelerator-doc-comment-inclusion	Retain doc-comments in internal php structures.
 eai			Enable EAI (Email Address Internationalization) support.
 eb			Enable EB dictionary library support.
+ecap			Enable eCAP support.
 ecl			Use Embeddable Common Lisp.
 ecore			Enable ecore library support.
 eekboard		Use eekboard for virtual keyboard support.
@@ -185,6 +186,7 @@ fam			Support using File Alteration Monitor (FAM).
 farsight		Enable farsight2 support.
 farstream		Enable farstream support.
 fastcgi			Use FastCGI as the CGI manager.
+fax			Enable fax support
 fd-small		Build smaller misc/fd package.
 ffmpeg			Enable ffmpeg support.
 fftw			Use the fftw library for Discrete Fourier Transforms.
@@ -788,6 +790,7 @@ w3m-lynx-key		Enable lynx-like key bindings.
 wavpack			Enable wavpack support.
 webkit-jit		Enable JIT compilation.
 webrtc			Enable web realtime communications API.
+websocket		Websocket protocol support (as specified in RFC6455)
 webvmail		Install CGI script for voicemail.
 wide-curses		Enable wide curses support.
 winbind			Enable name-service switch daemon support using Windows Servers.

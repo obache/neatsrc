@@ -1,12 +1,7 @@
-# $NetBSD: Makefile,v 1.140 2016/02/26 10:32:47 jperkin Exp $
+# $NetBSD: Makefile,v 1.142 2016/05/27 23:51:10 pgoyette Exp $
 
-DISTNAME=	libxml2-2.9.3
-CATEGORIES=	textproc
-MASTER_SITES=	ftp://xmlsoft.org/libxml2/ \
-		http://xmlsoft.org/sources/
+.include "../../textproc/libxml2/Makefile.common"
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://xmlsoft.org/
 COMMENT=	XML parser library from the GNOME project
 LICENSE=	modified-bsd
 

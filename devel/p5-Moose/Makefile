@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.93 2016/05/05 02:03:31 wen Exp $
+# $NetBSD: Makefile,v 1.97 2016/06/08 19:23:14 wiz Exp $
 
-DISTNAME=	Moose-2.1801
+DISTNAME=	Moose-2.1804
 PKGNAME=	p5-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Test/}
 
@@ -28,7 +29,7 @@ DEPENDS+=	p5-Sub-Exporter>=0.980:../../devel/p5-Sub-Exporter
 DEPENDS+=	p5-Sub-Identify>=0:../../devel/p5-Sub-Identify
 DEPENDS+=	p5-Sub-Name>=0.05:../../devel/p5-Sub-Name
 DEPENDS+=	p5-Task-Weaken-[0-9]*:../../devel/p5-Task-Weaken
-DEPENDS+=	p5-Try-Tiny>=0.02:../../devel/p5-Try-Tiny
+DEPENDS+=	p5-Try-Tiny>=0.17:../../devel/p5-Try-Tiny
 DEPENDS+=	p5-namespace-autoclean-[0-9]*:../../devel/p5-namespace-autoclean
 DEPENDS+=	p5-Scalar-List-Utils>=1.45:../../devel/p5-Scalar-List-Utils
 # Note: Moose can take advantage of PartialDump, but as PartialDump depends

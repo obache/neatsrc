@@ -1,4 +1,4 @@
-#	$NetBSD: bsd.pkg.mk,v 1.2018 2016/03/23 11:50:01 jperkin Exp $
+#	$NetBSD: bsd.pkg.mk,v 1.2020 2016/06/11 12:41:30 rillig Exp $
 #
 # This file is in the public domain.
 #
@@ -678,23 +678,34 @@ _SHORT_UNAME_R=	${:!${UNAME} -r!:C@\.([0-9]*)[_.-].*@.\1@} # n.n[_.]anything => 
 
 .include "install/bin-install.mk"
 
+# Handle PaX flags
+#
+.include "pax.mk"
+
 .PHONY: show-pkgtools-version
 .if !target(show-pkgtools-version)
 show-pkgtools-version:
 	@${ECHO} ${PKGTOOLS_VERSION}
 .endif
 
-# convenience target, to display make variables from command line
-# i.e. "make show-var VARNAME=var", will print var's value
+# show-var:
+# show-vars:
+# show-subdir-var:
+#	Convenience targets, to display make variables from the command
+#	line. Examples:
 #
-# See also:
-#	show-vars, show-subdir-var
+#	make show-var VARNAME=PKGNAME
+#	make show-vars VARNAMES="PKGNAME PKGVERSION PKGREVISION"
+#	make show-subdir-var VARNAME=DISTFILES
 #
+#	In category directories, show-var and show-vars descend
+#	recursively into each subdirectory, printing the variables of
+#	the individual packages. To show a variable from the category
+#	itself, use show-subdir-var.
 .PHONY: show-var
 show-var:
 	@${ECHO} ${${VARNAME}:Q}
 
-# enhanced version of target above, to display multiple variables
 .PHONY: show-vars
 show-vars:
 .for VARNAME in ${VARNAMES}

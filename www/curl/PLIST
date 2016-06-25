@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.56 2016/04/07 11:03:15 adam Exp $
+@comment $NetBSD: PLIST,v 1.58 2016/05/30 14:25:12 prlw1 Exp $
 bin/curl
 bin/curl-config
 include/curl/curl.h
@@ -91,6 +91,7 @@ man/man3/CURLOPT_CLOSESOCKETFUNCTION.3
 man/man3/CURLOPT_CONNECTTIMEOUT.3
 man/man3/CURLOPT_CONNECTTIMEOUT_MS.3
 man/man3/CURLOPT_CONNECT_ONLY.3
+man/man3/CURLOPT_CONNECT_TO.3
 man/man3/CURLOPT_CONV_FROM_NETWORK_FUNCTION.3
 man/man3/CURLOPT_CONV_FROM_UTF8_FUNCTION.3
 man/man3/CURLOPT_CONV_TO_NETWORK_FUNCTION.3
@@ -266,6 +267,7 @@ man/man3/CURLOPT_STDERR.3
 man/man3/CURLOPT_STREAM_DEPENDS.3
 man/man3/CURLOPT_STREAM_DEPENDS_E.3
 man/man3/CURLOPT_STREAM_WEIGHT.3
+man/man3/CURLOPT_TCP_FASTOPEN.3
 man/man3/CURLOPT_TCP_KEEPALIVE.3
 man/man3/CURLOPT_TCP_KEEPIDLE.3
 man/man3/CURLOPT_TCP_KEEPINTVL.3
@@ -332,6 +334,7 @@ man/man3/curl_multi_remove_handle.3
 man/man3/curl_multi_setopt.3
 man/man3/curl_multi_socket.3
 man/man3/curl_multi_socket_action.3
+man/man3/curl_multi_socket_all.3
 man/man3/curl_multi_strerror.3
 man/man3/curl_multi_timeout.3
 man/man3/curl_multi_wait.3
@@ -357,4 +360,3 @@ share/aclocal/libcurl.m4
 share/doc/curl/FAQ
 share/doc/curl/MANUAL
 share/doc/curl/TheArtOfHttpScripting
-share/zsh/site-functions/_curl

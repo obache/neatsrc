@@ -66,14 +66,17 @@
  * headers as required.
  */
 
-/* Get a real definition for __FBSDID if we can */
+/* Get a real definition for __FBSDID or __RCSID if we can */
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
 
-/* If not, define it so as to avoid dangling semicolons. */
+/* If not, define them so as to avoid dangling semicolons. */
 #ifndef __FBSDID
 #define	__FBSDID(a)     struct _undefined_hack
+#endif
+#ifndef __RCSID
+#define	__RCSID(a)     struct _undefined_hack
 #endif
 
 /* Try to get standard C99-style integer type definitions. */
@@ -113,6 +116,12 @@
 #endif
 #if !HAVE_DECL_UINT32_MAX
 #define	UINT32_MAX (~(uint32_t)0)
+#endif
+#if !HAVE_DECL_INT32_MAX
+#define	INT32_MAX ((int32_t)(UINT32_MAX >> 1))
+#endif
+#if !HAVE_DECL_INT32_MIN
+#define	INT32_MIN ((int32_t)(~INT32_MAX))
 #endif
 #if !HAVE_DECL_UINT64_MAX
 #define	UINT64_MAX (~(uint64_t)0)

@@ -1,8 +1,8 @@
-# $NetBSD: options.mk,v 1.2 2016/03/13 18:31:11 schnoebe Exp $
+# $NetBSD: options.mk,v 1.4 2016/06/20 15:25:39 schnoebe Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.conserver8
 
-PKG_OPTIONS_REQUIRED_GROUPS= connectivity
+PKG_OPTIONS_OPTIONAL_GROUPS= connectivity
 PKG_OPTIONS_GROUP.connectivity=inet6 uds
 
 PKG_SUPPORTED_OPTIONS=	pam ssl

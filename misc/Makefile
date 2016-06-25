@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.467 2016/05/06 09:05:46 nonaka Exp $
+# $NetBSD: Makefile,v 1.470 2016/06/09 09:51:36 youri Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -12,6 +12,7 @@ SUBDIR+=	ascii
 SUBDIR+=	asr-manpages
 SUBDIR+=	astrolog
 SUBDIR+=	attica
+SUBDIR+=	attica-qt5
 SUBDIR+=	autocue
 SUBDIR+=	basket
 SUBDIR+=	bbappconf
@@ -137,6 +138,7 @@ SUBDIR+=	kdepimlibs4
 SUBDIR+=	kdeplasma-addons4
 SUBDIR+=	kdeutils3
 SUBDIR+=	kdrill
+SUBDIR+=	kemoticons
 SUBDIR+=	kgeography
 SUBDIR+=	khard
 SUBDIR+=	kig
@@ -161,6 +163,7 @@ SUBDIR+=	kteatime
 SUBDIR+=	ktouch
 SUBDIR+=	kturtle
 SUBDIR+=	ktux
+SUBDIR+=	kunitconversion
 SUBDIR+=	kwordquiz
 SUBDIR+=	kz_h8write
 SUBDIR+=	labelnation
@@ -174,6 +177,7 @@ SUBDIR+=	libkdeedu
 SUBDIR+=	libkgeomap
 SUBDIR+=	libkkc-data
 SUBDIR+=	libkvkontakte
+SUBDIR+=	libmateweather
 SUBDIR+=	libquantum
 SUBDIR+=	libreoffice
 SUBDIR+=	libreoffice4
@@ -191,6 +195,7 @@ SUBDIR+=	m17n-db
 SUBDIR+=	m17n-docs
 SUBDIR+=	man-db
 SUBDIR+=	marble
+SUBDIR+=	mate-utils
 SUBDIR+=	mbuffer
 SUBDIR+=	mirmon
 SUBDIR+=	mkcue
@@ -347,6 +352,7 @@ SUBDIR+=	whohas
 SUBDIR+=	window
 SUBDIR+=	xchm
 SUBDIR+=	xdg-utils
+SUBDIR+=	xfce4-calculator-plugin
 SUBDIR+=	xfce4-smartbookmark-plugin
 SUBDIR+=	xfce4-time-out-plugin
 SUBDIR+=	xfce4-weather-plugin

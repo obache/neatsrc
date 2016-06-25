@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1173 2016/05/13 20:03:17 adam Exp $
+# $NetBSD: Makefile,v 1.1181 2016/06/19 12:53:49 taca Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -85,6 +85,7 @@ SUBDIR+=	clisp-fastcgi
 #SUBDIR+=	contao		# only contains Makefile fragments
 SUBDIR+=	contao35
 SUBDIR+=	contao41
+SUBDIR+=	contao42
 SUBDIR+=	cppcms
 SUBDIR+=	crawl
 SUBDIR+=	cronolog
@@ -143,6 +144,7 @@ SUBDIR+=	htmldoc
 SUBDIR+=	htmldoc-x11
 SUBDIR+=	htmlfix
 SUBDIR+=	htmllint
+SUBDIR+=	http-parser
 SUBDIR+=	http_load
 SUBDIR+=	icedtea-web
 SUBDIR+=	ies4linux
@@ -155,7 +157,9 @@ SUBDIR+=	kahua
 SUBDIR+=	kannel
 SUBDIR+=	kdewebdev3
 SUBDIR+=	kdewebdev4
+SUBDIR+=	kdewebkit
 SUBDIR+=	lhs
+SUBDIR+=	libecap
 SUBDIR+=	libghttp
 SUBDIR+=	libgtkhtml
 SUBDIR+=	libmediawiki
@@ -514,6 +518,7 @@ SUBDIR+=	p5-URI-FromHash
 SUBDIR+=	p5-URI-Nested
 SUBDIR+=	p5-URI-Query
 SUBDIR+=	p5-URI-db
+SUBDIR+=	p5-URI-ws
 SUBDIR+=	p5-VRML
 SUBDIR+=	p5-WWW-Amazon-Wishlist
 SUBDIR+=	p5-WWW-CSRF
@@ -730,6 +735,7 @@ SUBDIR+=	ruby-http_router
 SUBDIR+=	ruby-httpclient
 SUBDIR+=	ruby-innate
 SUBDIR+=	ruby-jekyll
+SUBDIR+=	ruby-jekyll-archives
 SUBDIR+=	ruby-jekyll-coffeescript
 SUBDIR+=	ruby-jekyll-gist
 SUBDIR+=	ruby-jekyll-paginate
@@ -838,8 +844,6 @@ SUBDIR+=	wdg-validate
 SUBDIR+=	webalizer
 SUBDIR+=	webby
 SUBDIR+=	webkit-gtk
-SUBDIR+=	webkit1-gtk
-SUBDIR+=	webkit1-gtk3
 SUBDIR+=	webkit24-gtk
 SUBDIR+=	webkit24-gtk3
 SUBDIR+=	weblint
@@ -857,6 +861,7 @@ SUBDIR+=	wwwcount
 SUBDIR+=	wwwoffle
 SUBDIR+=	yahttp
 SUBDIR+=	yaws
+SUBDIR+=	z-push
 SUBDIR+=	zopeedit
 
 .include "../mk/misc/category.mk"

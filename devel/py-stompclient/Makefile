@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.7 2015/12/05 21:25:39 adam Exp $
+# $NetBSD: Makefile,v 1.9 2016/06/09 05:52:30 wiz Exp $
 
 DISTNAME=	stompclient-0.3.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel
-MASTER_SITES=	http://pypi.python.org/packages/source/s/stompclient/
+MASTER_SITES=	${MASTER_SITE_PYPI:=s/stompclient/}
 
 MAINTAINER=	imil@NetBSD.org
-HOMEPAGE=	http://pypi.python.org/packages/source/s/stompclient/
+HOMEPAGE=	https://pypi.python.org/pypi/stompclient
 COMMENT=	Lightweight and extensible STOMP messaging client
 LICENSE=	apache-2.0
 

@@ -3,9 +3,9 @@ $NetBSD: patch-ab,v 1.20 2014/05/29 07:57:07 adam Exp $
 * XXX
 * Tell perl that Haiku need haikuish.h installed as well
 
---- installperl.orig	2015-05-13 20:19:29.000000000 +0000
+--- installperl.orig	2016-03-01 12:33:02.000000000 +0000
 +++ installperl
-@@ -327,7 +327,6 @@ $do_installprivlib = 0 if $versiononly &
+@@ -335,7 +335,6 @@ $do_installprivlib = 0 if $versiononly &
  mkpath($installprivlib);
  mkpath($installarchlib);
  mkpath($installsitelib, $opts{verbose}, 0777) if ($installsitelib);
@@ -13,7 +13,7 @@ $NetBSD: patch-ab,v 1.20 2014/05/29 07:57:07 adam Exp $
  
  if (-d 'lib') {
      find({no_chdir => 1, wanted => \&installlib}, 'lib')
-@@ -371,6 +370,10 @@ elsif ($Is_Cygwin) { # On Cygwin symlink
+@@ -381,6 +380,10 @@ elsif ($Is_Cygwin) { # On Cygwin symlink
  
      # AIX needs perl.exp installed as well.
      push(@corefiles,'perl.exp') if $^O eq 'aix';
@@ -22,5 +22,5 @@ $NetBSD: patch-ab,v 1.20 2014/05/29 07:57:07 adam Exp $
 +        push(@corefiles, 'haiku/haikuish.h');
 +    }
  }
- foreach my $file (@corefiles) {
-     # HP-UX (at least) needs to maintain execute permissions
+ 
+ 

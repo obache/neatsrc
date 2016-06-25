@@ -1,4 +1,4 @@
-<!-- $NetBSD: fixes.xml,v 1.134 2016/04/06 14:59:18 reed Exp $ -->
+<!-- $NetBSD: fixes.xml,v 1.137 2016/06/21 21:47:29 wiz Exp $ -->
 
 <chapter id="fixes"> <?dbhtml filename="fixes.html"?>
 <title>Making your package work</title>
@@ -6,15 +6,11 @@
 <sect1 id="general-operation">
   <title>General operation</title>
 
-  <sect2 id="portability-of-packages">
-    <title>Portability of packages</title>
-
-    <para>One appealing feature of pkgsrc is that it runs on many
-    different platforms. As a result, it is important to ensure,
-    where possible, that packages in pkgsrc are portable. This
-    chapter mentions some particular details you should pay
-    attention to while working on pkgsrc.</para>
-  </sect2>
+  <para>One appealing feature of pkgsrc is that it runs on many
+  different platforms. As a result, it is important to ensure,
+  where possible, that packages in pkgsrc are portable. This
+  chapter mentions some particular details you should pay
+  attention to while working on pkgsrc.</para>
 
   <sect2 id="pulling-vars-from-etc-mk.conf">
     <title>How to pull in user-settable variables from &mk.conf;</title>
@@ -31,16 +27,17 @@
     <para>But note that some variables may not be completely defined
     after <filename>../../mk/bsd.prefs.mk</filename> has been
     included, as they may contain references to variables that are
-    not yet defined. In shell commands this is no problem, since
-    variables are actually macros, which are only expanded when they
-    are used. But in the preprocessor directives mentioned above and
-    in dependency lines (of the form <literal>target:
+    not yet defined. In shell commands (the lines in
+    <filename>Makefile</filename> that are indented with a tab) this
+    is no problem, since variables are only expanded when they are
+    used. But in the preprocessor directives mentioned above and in
+    dependency lines (of the form <literal>target:
     dependencies</literal>) the variables are expanded at load
     time.</para>
 
-    <note><para>Currently there is no exhaustive list of all
-    variables that tells you whether they can be used at load time
-    or only at run time, but it is in preparation.</para></note>
+    <note><para>To check whether a variable can be used at load time,
+    run <command>pkglint -Wall</command> on your package.</para></note>
+
   </sect2>
 
   <sect2 id="user-interaction">
@@ -75,23 +72,17 @@
       </listitem>
     </itemizedlist>
 
-    <para>The <varname>INTERACTIVE_STAGE</varname> definition is
-    provided to notify the pkgsrc mechanism of an interactive stage
-    which will be needed, and this should be set in the package's
-    <filename>Makefile</filename>, e.g.:</para>
-
-    <programlisting>
-INTERACTIVE_STAGE=      build
-    </programlisting>
-
-    <para>Multiple interactive stages can be specified:</para>
+    <para>A package can set the <varname>INTERACTIVE_STAGE</varname>
+    variable to define which stages need interaction. This should be
+    done in the package's <filename>Makefile</filename>, e.g.:</para>
 
     <programlisting>
 INTERACTIVE_STAGE=      configure install
     </programlisting>
 
     <para>The user can then decide to skip this package by setting the
-    <varname>BATCH</varname> variable.</para>
+    <varname>BATCH</varname> variable. Packages that require interaction
+    are also excluded from bulk builds.</para>
   </sect2>
 
   <sect2 id="handling-licenses">
@@ -122,7 +113,7 @@ INTERACTIVE_STAGE=      configure install
     this is a bug.)</para>
 
     <para>One might want to only install packages with a BSD license,
-    or the GPL, and not the other.  The free licenses are added to the 
+    or the GPL, and not the other.  The free licenses are added to the
     default <varname>ACCEPTABLE_LICENSES</varname> variable.  The
     user can override the default by setting the
     <varname>ACCEPTABLE_LICENSES</varname> variable with "=" instead
@@ -703,7 +694,7 @@ SUBST_SED.fix-paths+=           -e 's,"/var/log,"${VARBASE}/log,g'
   </sect2>
 </sect1>
 <sect1 id="fixes.fetch">
-  <title>Fixing problems in the <emphasis>fetch</emphasis> phase</title>
+  <title>The <emphasis>fetch</emphasis> phase</title>
 
   <sect2 id="no-plain-download">
     <title>Packages whose distfiles aren't available for plain downloading</title>
@@ -744,17 +735,18 @@ FETCH_MESSAGE+= "manually from "${MASTER_SITES:Q}"."
     no trojan horse or so crept in.
     Please mention that the distfiles were compared and what was found
     in your commit message.</para>
-    <para>Then, the correct way to work around this is to
-    set <varname>DIST_SUBDIR</varname> to a unique directory name,
-    usually based on <varname>PKGNAME_NOREV</varname>. All
-    <varname>DISTFILES</varname> and
+    <para>Then, the correct way to work around this is to set
+    <varname>DIST_SUBDIR</varname> to a unique directory name, usually
+    based on <varname>PKGNAME_NOREV</varname> (but take care with
+    python or ruby packages, where <varname>PKGNAME</varname> includes
+    a variable prefix). All <varname>DISTFILES</varname> and
     <varname>PATCHFILES</varname> for this package will be put in that
-    subdirectory of the local distfiles directory.
-    (See <xref linkend="bumping-pkgrevision"/> for more details.)
-    In case this
+    subdirectory of the local distfiles directory. (See <xref
+    linkend="bumping-pkgrevision"/> for more details.) In case this
     happens more often, <varname>PKGNAME</varname> can be used (thus
-    including the <filename>nbX</filename> suffix) or a date stamp
-    can be appended, like <varname>${PKGNAME_NOREV}-YYYYMMDD</varname>.</para>
+    including the <filename>nbX</filename> suffix) or a date stamp can
+    be appended, like
+    <varname>${PKGNAME_NOREV}-YYYYMMDD</varname>.</para>
     <para><varname>DIST_SUBDIR</varname> is also used when a distfile's name does not contain a version and the distfile is apt to change. In cases where the likelihood of this is very small, <varname>DIST_SUBDIR</varname> might not be required. Additionally, <varname>DIST_SUBDIR</varname> must not be removed unless the distfile name changes, even if a package is being moved or renamed.</para>
     <para>Do not forget regenerating the <filename>distinfo</filename> file
     after that, since it contains the <varname>DIST_SUBDIR</varname>
@@ -812,7 +804,7 @@ EXTRACT_SUFX=   .zip
 
 
 <sect1 id="fixes.configure">
-  <title>Fixing problems in the <emphasis>configure</emphasis> phase</title>
+  <title>The <emphasis>configure</emphasis> phase</title>
 
   <sect2 id="fixes.libtool">
     <title>Shared libraries - libtool</title>
@@ -1177,7 +1169,7 @@ pre-configure:
 </sect1>
 
 <sect1 id="fixes.build">
-  <title>Fixing problems in the <emphasis>build</emphasis> phase</title>
+  <title>The <emphasis>build</emphasis> phase</title>
 
 	<para>The most common failures when building a package are that
 	some platforms do not provide certain header files, functions or
@@ -1363,7 +1355,7 @@ of functions.</para>
 </sect1>
 
 <sect1 id="fixes.install">
-  <title>Fixing problems in the <emphasis>install</emphasis> phase</title>
+  <title>The <emphasis>install</emphasis> phase</title>
 
   <sect2 id="install-scripts">
     <title>Creating needed directories</title>

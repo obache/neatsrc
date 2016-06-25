@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.1 2015/12/02 15:14:05 wiz Exp $
+$NetBSD: distinfo,v 1.3 2016/05/29 18:49:54 wiz Exp $
 
-SHA1 (libarchive-c-2.2.tar.gz) = fed7380d59b41a44598bc557164d5b1cf42f3ccd
-RMD160 (libarchive-c-2.2.tar.gz) = 6a148157716341b1e98890cd87b34b824fb01071
-SHA512 (libarchive-c-2.2.tar.gz) = 59ff5c5299c33e0672c5c9571076ecf7ee1f8e9f2a67aedf3fb2cd7de88ba65e72f5c4d7d89dc5c0c07fb3ada985bda110799b2d2dbafa8f465ea96950fed2be
-Size (libarchive-c-2.2.tar.gz) = 7076 bytes
+SHA1 (libarchive-c-2.4.tar.gz) = 702412011a2ecca1b6d01922266f44617481deb1
+RMD160 (libarchive-c-2.4.tar.gz) = 1ac2f329e6118477dcaba6d9247573c513c6b214
+SHA512 (libarchive-c-2.4.tar.gz) = 7e7b1d422bb3d26c9ad5abe09b574a7a0909c29d66680b347504ed339573470cbc2f4bccbc7b77321f71cf3782b7836c80d3e2c52426e141bf5984b63ade0002
+Size (libarchive-c-2.4.tar.gz) = 41277 bytes

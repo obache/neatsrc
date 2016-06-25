@@ -1,4 +1,4 @@
-# $NetBSD: sites.mk,v 1.140 2016/05/17 09:28:06 wiz Exp $
+# $NetBSD: sites.mk,v 1.144 2016/06/16 18:23:01 mspo Exp $
 #
 # This Makefile fragment defines read-only MASTER_SITE_* variables
 # representing some well-known master distribution sites for software.
@@ -105,7 +105,6 @@ MASTER_SITE_SUSE+=	\
 
 MASTER_SITE_MOZILLA_ALL+=   \
 	http://download-origin.cdn.mozilla.net/pub/mozilla.org/ \
-	http://dm-download02.mozilla.org/pub/mozilla.org/ \
 	http://ftp.mozilla.org/pub/mozilla.org/
 
 # see http://www.mozilla.org/mirrors.html
@@ -289,13 +288,15 @@ MASTER_SITE_RUBYGEMS+= \
 	https://rubygems.org/gems/
 
 MASTER_SITE_PYPI+= \
-	https://pypi.python.org/packages/source/
+	https://files.pythonhosted.org/packages/source/
 
 MASTER_SITE_HASKELL_HACKAGE+=	\
 	http://hackage.haskell.org/package/
 
 # The primary backup site.
 MASTER_SITE_BACKUP?=	\
+	http://cdn.NetBSD.org/pub/pkgsrc/distfiles/ \
+	http://ftp6.NetBSD.org/pub/pkgsrc/distfiles/ \
 	ftp://ftp.fr.NetBSD.org/pub/pkgsrc/distfiles/ \
 	http://ftp.fr.NetBSD.org/pub/pkgsrc/distfiles/ \
 	ftp://ftp.NetBSD.org/pub/pkgsrc/distfiles/ \

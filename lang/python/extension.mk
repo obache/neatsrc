@@ -1,4 +1,4 @@
-# $NetBSD: extension.mk,v 1.43 2016/05/07 03:12:08 richard Exp $
+# $NetBSD: extension.mk,v 1.47 2016/05/30 10:31:16 wiz Exp $
 
 .include "../../lang/python/pyversion.mk"
 
@@ -27,11 +27,6 @@ PYSETUPINSTALLARGS?=	#empty
 PYSETUPTESTTARGET?=	test
 PYSETUPTESTARGS?=	#empty
 PYSETUPSUBDIR?=		#empty
-
-pre-patch:	fixup-python-writeable-source
-.PHONY:	fixup-python-writeable-source
-fixup-python-writeable-source:
-	${FIND} ${WRKSRC} -type f -exec ${CHMOD} ${NONBINMODE} {} \;
 
 do-build:
 	(cd ${WRKSRC}/${PYSETUPSUBDIR} && ${SETENV} ${MAKE_ENV} ${PYTHONBIN} \

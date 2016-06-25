@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.56 2016/05/07 10:10:09 joerg Exp $
+# $NetBSD: Makefile,v 1.57 2016/05/25 15:35:32 joerg Exp $
 
 DISTNAME=	open-vm-tools-9.10.3-3167576
 PKGNAME=	${DISTNAME:C/-[0-9]+$//}

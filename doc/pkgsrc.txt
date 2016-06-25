@@ -14,7 +14,7 @@ The pkgsrc Developers
 
 Copyright   1994-2016 The NetBSD Foundation, Inc
 
-$NetBSD: pkgsrc.xml,v 1.29 2016/05/06 17:26:34 jnemeth Exp $
+$NetBSD: pkgsrc.xml,v 1.30 2016/06/11 18:14:42 rillig Exp $
 
 Abstract
 
@@ -84,7 +84,6 @@ I. The pkgsrc user's guide
             4.1.6. Finding if newer versions of your installed packages are in
                 pkgsrc
             4.1.7. Other administrative functions
-            4.1.8. A word of warning
 
         4.2. Building packages from source
 
@@ -196,10 +195,9 @@ II. The pkgsrc developer's guide
         12.3. Code snippets
 
             12.3.1. Adding things to a list
-            12.3.2. Converting an internal list into an external list
-            12.3.3. Passing variables to a shell command
-            12.3.4. Quoting guideline
-            12.3.5. Workaround for a bug in BSD Make
+            12.3.2. Echoing a string exacty as-is
+            12.3.3. Passing CFLAGS to GNU configure scripts
+            12.3.4. Handling possibly empty variables
 
     13. PLIST issues
 
@@ -290,35 +288,33 @@ II. The pkgsrc developer's guide
         18.1. Tools for pkgsrc builds
         18.2. Tools needed by packages
         18.3. Tools provided by platforms
-        18.4. Questions regarding the tools
 
     19. Making your package work
 
         19.1. General operation
 
-            19.1.1. Portability of packages
-            19.1.2. How to pull in user-settable variables from mk.conf
-            19.1.3. User interaction
-            19.1.4. Handling licenses
-            19.1.5. Restricted packages
-            19.1.6. Handling dependencies
-            19.1.7. Handling conflicts with other packages
-            19.1.8. Packages that cannot or should not be built
-            19.1.9. Packages which should not be deleted, once installed
-            19.1.10. Handling packages with security problems
-            19.1.11. How to handle incrementing versions when fixing an
+            19.1.1. How to pull in user-settable variables from mk.conf
+            19.1.2. User interaction
+            19.1.3. Handling licenses
+            19.1.4. Restricted packages
+            19.1.5. Handling dependencies
+            19.1.6. Handling conflicts with other packages
+            19.1.7. Packages that cannot or should not be built
+            19.1.8. Packages which should not be deleted, once installed
+            19.1.9. Handling packages with security problems
+            19.1.10. How to handle incrementing versions when fixing an
                 existing package
-            19.1.12. Substituting variable text in the package files (the SUBST
+            19.1.11. Substituting variable text in the package files (the SUBST
                 framework)
 
-        19.2. Fixing problems in the fetch phase
+        19.2. The fetch phase
 
             19.2.1. Packages whose distfiles aren't available for plain
                 downloading
             19.2.2. How to handle modified distfiles with the 'old' name
             19.2.3. Packages hosted on github.com
 
-        19.3. Fixing problems in the configure phase
+        19.3. The configure phase
 
             19.3.1. Shared libraries - libtool
             19.3.2. Using libtool on GNU packages that already support libtool
@@ -332,14 +328,14 @@ II. The pkgsrc developer's guide
             19.4.4. Packages containing shell scripts
             19.4.5. Other programming languages
 
-        19.5. Fixing problems in the build phase
+        19.5. The build phase
 
             19.5.1. Compiling C and C++ code conditionally
             19.5.2. How to handle compiler bugs
             19.5.3. Undefined reference to "..."
             19.5.4. Running out of memory
 
-        19.6. Fixing problems in the install phase
+        19.6. The install phase
 
             19.6.1. Creating needed directories
             19.6.2. Where to install documentation
@@ -407,17 +403,15 @@ III. The pkgsrc infrastructure internals
 
     25. Regression tests
 
-        25.1. The regression tests framework
-        25.2. Running the regression tests
-        25.3. Adding a new regression test
+        25.1. Running the regression tests
+        25.2. Adding a new regression test
 
-            25.3.1. Overridable functions
-            25.3.2. Helper functions
+            25.2.1. Overridable functions
+            25.2.2. Helper functions
 
     26. Porting pkgsrc
 
         26.1. Porting pkgsrc to a new operating system
-        26.2. Adding support for a new compiler
 
 A. A simple example package: bison
 
@@ -489,7 +483,7 @@ pkgsrc currently contains several thousand packages, including:
 
   * meta-pkgs/kde4 - The K Desktop Environment
 
-...just to name a few.
+? just to name a few.
 
 pkgsrc has built-in support for handling varying dependencies, such as pthreads
 and X11, and extended features such as IPv6 support on a range of platforms.
@@ -736,7 +730,6 @@ Table of Contents
         4.1.6. Finding if newer versions of your installed packages are in
             pkgsrc
         4.1.7. Other administrative functions
-        4.1.8. A word of warning
 
     4.2. Building packages from source
 
@@ -1036,8 +1029,6 @@ directories. Use bmake corresponding to the installation you're working with to
 build and install packages.
 
 3.3. Platform-specific notes
-
-Here are some platform-specific notes you should be aware of.
 
 3.3.1. Cygwin
 
@@ -1505,7 +1496,6 @@ Table of Contents
     4.1.5. Checking for security vulnerabilities in installed packages
     4.1.6. Finding if newer versions of your installed packages are in pkgsrc
     4.1.7. Other administrative functions
-    4.1.8. A word of warning
 
 4.2. Building packages from source
 
@@ -1665,18 +1655,6 @@ any dependencies.
 4.1.7. Other administrative functions
 
 The pkg_admin executes various administrative functions on the package system.
-
-4.1.8. A word of warning
-
-Please pay very careful attention to the warnings expressed in the pkg_add(1)
-manual page about the inherent dangers of installing binary packages which you
-did not create yourself, and the security holes that can be introduced onto
-your system by indiscriminate adding of such files.
-
-The same warning of course applies to every package you install from source
-when you haven't completely read and understood the source code of the package,
-the compiler that is used to build the package and all the other tools that are
-involved.
 
 4.2. Building packages from source
 
@@ -1919,8 +1897,6 @@ each variable's intent.
     to change this variable.
 
 5.2. Variables affecting the build process
-
-XXX
 
   * PACKAGES: The top level directory for the binary packages. The default is $
     {PKGSRCDIR}/packages.
@@ -2602,21 +2578,14 @@ Utilities for people maintaining pkgsrc (or: more obscure pkg utilities)
 
 9.3. How to use pkgsrc as non-root
 
-If you want to use pkgsrc as non-root user, you can set some variables to make
-pkgsrc work under these conditions. At the very least, you need to set
-UNPRIVILEGED to "yes"; this will turn on unprivileged mode and set multiple
-related variables to allow installation of packages as non-root.
+To install packages from source as a non-root user, download pkgsrc as
+described in Chapter 2, Where to get pkgsrc and how to keep it up-to-date, cd
+into that directory and run the command ./bootstrap/bootstrap --unprivileged.
 
-In case the defaults are not enough, you may want to tune some other variables
-used. For example, if the automatic user/group detection leads to incorrect
-values (or not the ones you would like to use), you can change them by setting
-UNPRIVILEGED_USER and UNPRIVILEGED_GROUP respectively.
+This will install the binary part of pkgsrc to ~/pkg and put the pkgsrc
+configuration mk.conf into ~/pkg/etc.
 
-As regards bootstrapping, please note that the bootstrap script will ease
-non-root configuration when given the "--ignore-user-check" flag, as it will
-choose and use multiple default directories under ~/pkg as the installation
-targets. These directories can be overridden by the "--prefix" flag provided by
-the script, as well as some others that allow finer tuning of the tree layout.
+For more details, see mk/unprivileged.mk.
 
 9.4. How to resume transfers when fetching distfiles?
 
@@ -2834,7 +2803,10 @@ they have chosen.
  3. Make sure that you don't have old copies of the packages extracted. Run 
     make clean clean-depends to verify this.
 
- 4. If the problem still exists, write a mail to the pkgsrc-users mailing list.
+ 4. If you are a package developer who wants to invest some work, have a look
+    at Chapter 19, Making your package work.
+
+ 5. If the problem still exists, write a mail to the pkgsrc-users mailing list.
 
 9.17. What does "Makefile appears to contain unresolved cvs/rcs/??? merge
 conflicts" mean?
@@ -2901,10 +2873,9 @@ Table of Contents
     12.3. Code snippets
 
         12.3.1. Adding things to a list
-        12.3.2. Converting an internal list into an external list
-        12.3.3. Passing variables to a shell command
-        12.3.4. Quoting guideline
-        12.3.5. Workaround for a bug in BSD Make
+        12.3.2. Echoing a string exacty as-is
+        12.3.3. Passing CFLAGS to GNU configure scripts
+        12.3.4. Handling possibly empty variables
 
 13. PLIST issues
 
@@ -2995,34 +2966,32 @@ Table of Contents
     18.1. Tools for pkgsrc builds
     18.2. Tools needed by packages
     18.3. Tools provided by platforms
-    18.4. Questions regarding the tools
 
 19. Making your package work
 
     19.1. General operation
 
-        19.1.1. Portability of packages
-        19.1.2. How to pull in user-settable variables from mk.conf
-        19.1.3. User interaction
-        19.1.4. Handling licenses
-        19.1.5. Restricted packages
-        19.1.6. Handling dependencies
-        19.1.7. Handling conflicts with other packages
-        19.1.8. Packages that cannot or should not be built
-        19.1.9. Packages which should not be deleted, once installed
-        19.1.10. Handling packages with security problems
-        19.1.11. How to handle incrementing versions when fixing an existing
+        19.1.1. How to pull in user-settable variables from mk.conf
+        19.1.2. User interaction
+        19.1.3. Handling licenses
+        19.1.4. Restricted packages
+        19.1.5. Handling dependencies
+        19.1.6. Handling conflicts with other packages
+        19.1.7. Packages that cannot or should not be built
+        19.1.8. Packages which should not be deleted, once installed
+        19.1.9. Handling packages with security problems
+        19.1.10. How to handle incrementing versions when fixing an existing
             package
-        19.1.12. Substituting variable text in the package files (the SUBST
+        19.1.11. Substituting variable text in the package files (the SUBST
             framework)
 
-    19.2. Fixing problems in the fetch phase
+    19.2. The fetch phase
 
         19.2.1. Packages whose distfiles aren't available for plain downloading
         19.2.2. How to handle modified distfiles with the 'old' name
         19.2.3. Packages hosted on github.com
 
-    19.3. Fixing problems in the configure phase
+    19.3. The configure phase
 
         19.3.1. Shared libraries - libtool
         19.3.2. Using libtool on GNU packages that already support libtool
@@ -3036,14 +3005,14 @@ Table of Contents
         19.4.4. Packages containing shell scripts
         19.4.5. Other programming languages
 
-    19.5. Fixing problems in the build phase
+    19.5. The build phase
 
         19.5.1. Compiling C and C++ code conditionally
         19.5.2. How to handle compiler bugs
         19.5.3. Undefined reference to "..."
         19.5.4. Running out of memory
 
-    19.6. Fixing problems in the install phase
+    19.6. The install phase
 
         19.6.1. Creating needed directories
         19.6.2. Where to install documentation
@@ -3569,14 +3538,14 @@ Please pay attention to the following gotchas:
 The distinfo file contains the message digest, or checksum, of each distfile
 needed for the package. This ensures that the distfiles retrieved from the
 Internet have not been corrupted during transfer or altered by a malign force
-to introduce a security hole. Due to recent rumor about weaknesses of digest
-algorithms, all distfiles are protected using both SHA1 and RMD160 message
-digests, as well as the file size.
+to introduce a security hole. To provide maximum security, all distfiles are
+protected using three different message digest algorithms (SHA1, RMD160,
+SHA512), as well as the file size.
 
 The distinfo file also contains the checksums for all the patches found in the
 patches directory (see Section 11.3, "patches/*").
 
-To regenerate the distinfo file, use the make makedistinfo or make mdi command.
+To regenerate the distinfo file, use the make distinfo command.
 
 Some packages have different sets of distfiles depending on the platform, for
 example lang/openjdk7. These are kept in the same distinfo file and care should
@@ -3585,9 +3554,9 @@ lost.
 
 11.3. patches/*
 
-Many packages still don't work out-of-the box on the various platforms that are
-supported by pkgsrc. Therefore, a number of custom patch files are needed to
-make the package work. These patch files are found in the patches/ directory.
+Some packages don't work out-of-the box on the various platforms that are
+supported by pkgsrc. These packages need to be patched to make them work. The
+patch files can be found in the patches/ directory.
 
 In the patch phase, these patches are applied to the files in WRKSRC directory
 after extracting them, in alphabetic order.
@@ -3611,10 +3580,10 @@ There are a number of standard cases:
   * Patches that change source code should mention the platform and other
     environment (for example, the compiler) that the patch is needed for.
 
-In all, the patch should be commented so that any developer who knows the code
-of the application can make some use of the patch. Special care should be taken
-for the upstream developers, since we generally want that they accept our
-patches, so we have less work in the future.
+The patch should be commented so that any developer who knows the code of the
+application can make some use of the patch. Special care should be taken for
+the upstream developers, since we generally want that they accept our patches,
+so we have less work in the future.
 
 11.3.2. Creating patch files
 
@@ -3889,10 +3858,9 @@ Table of Contents
 12.3. Code snippets
 
     12.3.1. Adding things to a list
-    12.3.2. Converting an internal list into an external list
-    12.3.3. Passing variables to a shell command
-    12.3.4. Quoting guideline
-    12.3.5. Workaround for a bug in BSD Make
+    12.3.2. Echoing a string exacty as-is
+    12.3.3. Passing CFLAGS to GNU configure scripts
+    12.3.4. Handling possibly empty variables
 
 Pkgsrc consists of many Makefile fragments, each of which forms a well-defined
 part of the pkgsrc system. Using the make(1) system as a programming language
@@ -3952,23 +3920,14 @@ the backslash is passed as is. In a variable assignment, any hash character
 that is not preceded by a backslash starts a comment that continues upto the
 end of the logical line.
 
-Note: Because of this parsing algorithm the only way to create a variable
-consisting of a single backslash is using the ``!='' operator, for example:
-BACKSLASH!=echo "\\".
-
-So far for defining variables. The other thing you can do with variables is
-evaluating them. A variable is evaluated when it is part of the right side of
-the ``:='' or the ``!='' operator, or directly before executing a shell command
-which the variable is part of. In all other cases, make(1) performs lazy
-evaluation, that is, variables are not evaluated until there's no other way.
-The ``modifiers'' mentioned in the man page also evaluate the variable.
+The evaluation of variables either happens immediately or lazy. It happens
+immediately when the variable occurs on the right-hand side of the ``:='' or
+the ``!='' operator, in a .if condition or a .for loop. In the other cases, it
+is evaluated lazily.
 
 Some of the modifiers split the string into words and then operate on the
 words, others operate on the string as a whole. When a string is split into
-words, it is split as you would expect it from sh(1).
-
-No rule without exception?the .for loop does not follow the shell quoting rules
-but splits at sequences of whitespace.
+words, it is split like in sh(1).
 
 There are several types of variables that should be handled differently.
 Strings and two types of lists.
@@ -4000,156 +3959,107 @@ Strings and two types of lists.
 
 12.3. Code snippets
 
-This section presents you with some code snippets you should use in your own
-code. If you don't find anything appropriate here, you should test your code
-and add it here.
-
 12.3.1. Adding things to a list
 
-STRING=                 foo * bar `date`
-INT_LIST=               # empty
-ANOTHER_INT_LIST=       apache-[0-9]*:../../www/apache
-EXT_LIST=               # empty
-ANOTHER_EXT_LIST=       a=b c=d
+When adding a string that possibly contains whitespace or quotes to a list
+(example 1), it must be quoted using the :Q modifier.
 
-INT_LIST+=              ${STRING}               # 1
-INT_LIST+=              ${ANOTHER_INT_LIST}     # 2
-EXT_LIST+=              ${STRING:Q}             # 3
-EXT_LIST+=              ${ANOTHER_EXT_LIST}     # 4
+When adding another list to a list (example 2), it must not be quoted, since
+its elements are already quoted.
 
-When you add a string to an external list (example 3), it must be quoted. In
-all other cases, you must not add a quoting level. You must not merge internal
-and external lists, unless you are sure that all entries are correctly
-interpreted in both lists.
+STRING=         foo * bar `date`
+LIST=           # empty
+ANOTHER_LIST=   a=b c=d
 
-12.3.2. Converting an internal list into an external list
+LIST+=          ${STRING:Q}       # 1
+LIST+=          ${ANOTHER_LIST}   # 2
 
-EXT_LIST=       # empty
-.for i in ${INT_LIST}
-EXT_LIST+=      ${i:Q}""
-.endfor
+12.3.2. Echoing a string exacty as-is
 
-This code converts the internal list INT_LIST into the external list EXT_LIST.
-As the elements of an internal list are unquoted they must be quoted here. The
-reason for appending "" is explained below.
-
-12.3.3. Passing variables to a shell command
-
-Sometimes you may want to print an arbitrary string. There are many ways to get
-it wrong and only few that can handle every nastiness.
+Echoing a string containing special characters needs special work.
 
 STRING=         foo bar <    > * `date` $$HOME ' "
-EXT_LIST=       string=${STRING:Q} x=second\ item
+EXAMPLE_ENV=    string=${STRING:Q} x=multiple\ quoted\ words
 
 all:
         echo ${STRING}                  # 1
-        echo "${STRING}"                # 2
-        echo "${STRING:Q}"              # 3
-        echo ${STRING:Q}                # 4
-        echo x${STRING:Q} | sed 1s,.,,  # 5
-        printf "%s\\n" ${STRING:Q}""    # 6
-        env ${EXT_LIST} /bin/sh -c 'echo "$$string"; echo "$$x"'
+        echo ${STRING:Q}                # 2
+        printf '%s\n' ${STRING:Q}''     # 3
+        env ${EXAMPLE_ENV} sh -c 'echo "$$string"; echo "$$x"'   # 4
 
 Example 1 leads to a syntax error in the shell, as the characters are just
 copied.
 
-Example 2 leads to a syntax error too, and if you leave out the last "
-character from ${STRING}, date(1) will be executed. The $HOME shell variable
-would be evaluated, too.
+Example 2 quotes the string so that the shell interprets it correctly. But the
+echo command may additionally interpret strings with a leading dash or those
+containing backslashes.
 
-Example 3 outputs each space character preceded by a backslash (or not),
-depending on the implementation of the echo(1) command.
+Example 3 can handle arbitrary strings, since printf(1) only interprets the
+format string, but not the next argument.
 
-Example 4 handles correctly every string that does not start with a dash. In
-that case, the result depends on the implementation of the echo(1) command. As
-long as you can guarantee that your input does not start with a dash, this form
-is appropriate.
+In example 4, the EXAMPLE_ENV does not need to be quoted because the quoting
+has already been done when adding elements to the list.
 
-Example 5 handles even the case of a leading dash correctly.
+12.3.3. Passing CFLAGS to GNU configure scripts
 
-Example 6 also works with every string and is the light-weight solution, since
-it does not involve a pipe, which has its own problems.
+When passing CFLAGS or similar variables to a GNU-style configure script
+(especially those that call other configure scripts), it must not have leading
+or trailing whitespace, since otherwise the configure script gets confused. To
+trim leading and trailing whitespace, use the :M modifier, as in the following
+example:
 
-The EXT_LIST does not need to be quoted because the quoting has already been
-done when adding elements to the list.
+CPPFLAGS=               # empty
+CPPFLAGS+=              -Wundef -DPREFIX=\"${PREFIX}\"
+CPPFLAGS+=              ${MY_CPPFLAGS}
 
-As internal lists shall not be passed to the shell, there is no example for it.
+CONFIGURE_ARGS+=        CPPFLAGS=${CPPFLAGS:M*:Q}
 
-12.3.4. Quoting guideline
+all:
+        echo x${CPPFLAGS:Q}x            # leading and trailing whitespace
+        echo x${CONFIGURE_ARGS:Q}x      # properly trimmed
 
-There are many possible sources of wrongly quoted variables. This section lists
-some of the commonly known ones.
+In this example, CPPFLAGS has both leading and trailing whitespace because the
++= operator always adds a space.
 
-  * Whenever you use the value of a list, think about what happens to leading
-    or trailing whitespace. If the list is a well-formed shell expression, you
-    can apply the :M* modifier to strip leading and trailing whitespace from
-    each word. The :M operator first splits its argument according to the rules
-    of the shell, and then creates a new list consisting of all words that
-    match the shell glob expression *, that is: all. One class of situations
-    where this is needed is when adding a variable like CPPFLAGS to
-    CONFIGURE_ARGS. If the configure script invokes other configure scripts, it
-    strips the leading and trailing whitespace from the variable and then
-    passes it to the other configure scripts. But these configure scripts
-    expect the (child) CPPFLAGS variable to be the same as the parent CPPFLAGS.
-    That's why we better pass the CPPFLAGS value properly trimmed. And here is
-    how we do it:
+12.3.4. Handling possibly empty variables
 
-    CPPFLAGS=               # empty
-    CPPFLAGS+=              -Wundef -DPREFIX=\"${PREFIX:Q}\"
-    CPPFLAGS+=              ${MY_CPPFLAGS}
+When a possibly empty variable is used in a shell program, it may lead to a
+syntax error.
 
-    CONFIGURE_ARGS+=        CPPFLAGS=${CPPFLAGS:M*:Q}
+EGFILES=        # empty
 
-    all:
-            echo x${CPPFLAGS:Q}x            # leading and trailing whitespace
-            echo x${CONFIGURE_ARGS}x        # properly trimmed
+install-examples:   # produces a syntax error in the shell
+        for egfile in ${EGFILES}; do            \
+                echo "Installing $$egfile";     \
+        done
 
-  * The example above contains one bug: The ${PREFIX} is a properly quoted
-    shell expression, but there is the C compiler after it, which also expects
-    a properly quoted string (this time in C syntax). The version above is
-    therefore only correct if ${PREFIX} does not have embedded backslashes or
-    double quotes. If you want to allow these, you have to add another layer of
-    quoting to each variable that is used as a C string literal. You cannot use
-    the :Q operator for it, as this operator only works for the shell.
+The shell only sees the text for egfile in ; do, since ${EGFILES} is replaced
+with an empty string by make(1). To fix this syntax error, use one of the
+snippets below.
 
-  * Whenever a variable can be empty, the :Q operator can have surprising
-    results. Here are two completely different cases which can be solved with
-    the same trick.
+EMPTY=          # empty
 
-    EMPTY=                  # empty
-    empty_test:
-            for i in a ${EMPTY:Q} c; do \
-                echo "$$i"; \
-            done
+install-examples:
+        for egfile in ${EGFILES} ""; do         \
+                [ -n "$$egfile" ] || continue;  \
+                echo "Installing $$egfile";     \
+        done
 
-    for_test:
-    .for i in a:\ a:\test.txt
-            echo ${i:Q}
-            echo "foo"
-    .endfor
+In this case, an empty string is appended to the iteration list (to prevent the
+syntax error) and filtered out later.
 
-    The first example will only print two of the three lines we might have
-    expected. This is because ${EMPTY:Q} expands to the empty string, which the
-    shell cannot see. The workaround is to write ${EMPTY:Q}"". This pattern can
-    be often found as ${TEST} -z ${VAR:Q} or as ${TEST} -f ${FNAME:Q} (both of
-    these are wrong).
+EGFILES=        # empty
 
-    The second example will only print three lines instead of four. The first
-    line looks like a:\ echo foo. This is because the backslash of the value a:
-    \ is interpreted as a line-continuation by make(1), which makes the second
-    line the arguments of the echo(1) command from the first line. To avoid
-    this, write ${i:Q}"".
+install-examples:
+.for egfile in ${EGFILES}
+        echo "Installing ${egfile}"
+.endfor
 
-12.3.5. Workaround for a bug in BSD Make
+This variant only works when EGFILES does not contain filenames with spaces,
+since the .for loop splits on simple whitespace.
 
-The pkgsrc bmake program does not handle the following assignment correctly. In
-case _othervar_ contains a ``-'' character, one of the closing braces is
-included in ${VAR} after this code executes.
-
-VAR:=   ${VAR:N${_othervar_:C/-//}}
-
-For a more complex code snippet and a workaround, see the package regress/
-make-quoting, testcase bug1.
+To have a shell command test whether a make variable is empty, use the
+following code: ${TEST} -z ${POSSIBLY_EMPTY:Q}"".
 
 Chapter 13. PLIST issues
 
@@ -4573,7 +4483,7 @@ buildlink3.mk files, their BUILDLINK_ABI_DEPENDS.pkg adjusted, too. This is
 needed so pkgsrc will require the correct package dependency and not settle for
 an older one when building the source.
 
-See Section 19.1.6, "Handling dependencies" for more information about
+See Section 19.1.5, "Handling dependencies" for more information about
 dependencies on other packages, including the BUILDLINK_ABI_DEPENDS and
 ABI_DEPENDS definitions.
 
@@ -4782,7 +4692,9 @@ anywhere in the file system:
     and should attempt to be destroyed by the installation scripts. The
     difference between the two is that the latter prompts the administrator to
     remove any directories that may be left after deinstallation (because they
-    were not empty), while the former does not.
+    were not empty), while the former does not. Example:
+
+    MAKE_DIRS+=             ${VARBASE}/foo/private
 
   * MAKE_DIRS_PERMS and OWN_DIRS_PERMS contain a list of tuples describing
     which directories should be created and should attempt to be destroyed by
@@ -4790,7 +4702,8 @@ anywhere in the file system:
     by spaces: the directory name, its owner, its group and its numerical mode.
     For example:
 
-    MAKE_DIRS_PERMS+=         ${VARBASE}/foo/private ${ROOT_USER} ${ROOT_GROUP} 0700
+    MAKE_DIRS_PERMS+=       ${VARBASE}/foo/private \
+                            ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0700
 
     The difference between the two is exactly the same as their non-PERMS
     counterparts.
@@ -4820,7 +4733,8 @@ handle files outside the installation prefix:
     specifies their owner, their group and their numeric permissions, in this
     order. For example:
 
-    REQD_FILES_PERMS+= ${PREFIX}/share/somefile ${VARBASE}/somefile ${ROOT_USER} ${ROOT_GROUP} 0700
+    REQD_FILES_PERMS+=      ${PREFIX}/share/somefile ${VARBASE}/somefile \
+                            ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0700
 
     The difference between the two is exactly the same as their non-PERMS
     counterparts.
@@ -6110,7 +6024,6 @@ Table of Contents
 18.1. Tools for pkgsrc builds
 18.2. Tools needed by packages
 18.3. Tools provided by platforms
-18.4. Questions regarding the tools
 
 The USE_TOOLS definition is used both internally by pkgsrc and also for
 individual packages to define what commands are needed for building a package
@@ -6170,54 +6083,33 @@ TOOLS_PLATFORM.bzcat?=          /usr/bin/bzip2 -cd
 
 TOOLS_PLATFORM.true?=           true                    # shell builtin
 
-18.4. Questions regarding the tools
-
-18.4.1. How do I add a new tool?
-18.4.2. How do I get a list of all available tools?
-18.4.3. How can I get a list of all the tools that a package is using while
-    being built? I want to know whether it uses sed or not.
-
-18.4.1. How do I add a new tool?
-
-        TODO
-
-18.4.2. How do I get a list of all available tools?
-
-        TODO
-
-18.4.3. How can I get a list of all the tools that a package is using while
-        being built? I want to know whether it uses sed or not.
-
-        Currently, you can't. (TODO: But I want to be able to do it.)
-
 Chapter 19. Making your package work
 
 Table of Contents
 
 19.1. General operation
 
-    19.1.1. Portability of packages
-    19.1.2. How to pull in user-settable variables from mk.conf
-    19.1.3. User interaction
-    19.1.4. Handling licenses
-    19.1.5. Restricted packages
-    19.1.6. Handling dependencies
-    19.1.7. Handling conflicts with other packages
-    19.1.8. Packages that cannot or should not be built
-    19.1.9. Packages which should not be deleted, once installed
-    19.1.10. Handling packages with security problems
-    19.1.11. How to handle incrementing versions when fixing an existing
+    19.1.1. How to pull in user-settable variables from mk.conf
+    19.1.2. User interaction
+    19.1.3. Handling licenses
+    19.1.4. Restricted packages
+    19.1.5. Handling dependencies
+    19.1.6. Handling conflicts with other packages
+    19.1.7. Packages that cannot or should not be built
+    19.1.8. Packages which should not be deleted, once installed
+    19.1.9. Handling packages with security problems
+    19.1.10. How to handle incrementing versions when fixing an existing
         package
-    19.1.12. Substituting variable text in the package files (the SUBST
+    19.1.11. Substituting variable text in the package files (the SUBST
         framework)
 
-19.2. Fixing problems in the fetch phase
+19.2. The fetch phase
 
     19.2.1. Packages whose distfiles aren't available for plain downloading
     19.2.2. How to handle modified distfiles with the 'old' name
     19.2.3. Packages hosted on github.com
 
-19.3. Fixing problems in the configure phase
+19.3. The configure phase
 
     19.3.1. Shared libraries - libtool
     19.3.2. Using libtool on GNU packages that already support libtool
@@ -6231,14 +6123,14 @@ Table of Contents
     19.4.4. Packages containing shell scripts
     19.4.5. Other programming languages
 
-19.5. Fixing problems in the build phase
+19.5. The build phase
 
     19.5.1. Compiling C and C++ code conditionally
     19.5.2. How to handle compiler bugs
     19.5.3. Undefined reference to "..."
     19.5.4. Running out of memory
 
-19.6. Fixing problems in the install phase
+19.6. The install phase
 
     19.6.1. Creating needed directories
     19.6.2. Where to install documentation
@@ -6265,14 +6157,12 @@ Table of Contents
 
 19.1. General operation
 
-19.1.1. Portability of packages
-
 One appealing feature of pkgsrc is that it runs on many different platforms. As
 a result, it is important to ensure, where possible, that packages in pkgsrc
 are portable. This chapter mentions some particular details you should pay
 attention to while working on pkgsrc.
 
-19.1.2. How to pull in user-settable variables from mk.conf
+19.1.1. How to pull in user-settable variables from mk.conf
 
 The pkgsrc user can configure pkgsrc by overriding several variables in the
 file pointed to by MAKECONF, which is mk.conf by default. When you want to use
@@ -6282,17 +6172,18 @@ loads the user preferences.
 
 But note that some variables may not be completely defined after ../../mk/
 bsd.prefs.mk has been included, as they may contain references to variables
-that are not yet defined. In shell commands this is no problem, since variables
-are actually macros, which are only expanded when they are used. But in the
-preprocessor directives mentioned above and in dependency lines (of the form
-target: dependencies) the variables are expanded at load time.
+that are not yet defined. In shell commands (the lines in Makefile that are
+indented with a tab) this is no problem, since variables are only expanded when
+they are used. But in the preprocessor directives mentioned above and in
+dependency lines (of the form target: dependencies) the variables are expanded
+at load time.
 
 Note
 
-Currently there is no exhaustive list of all variables that tells you whether
-they can be used at load time or only at run time, but it is in preparation.
+To check whether a variable can be used at load time, run pkglint -Wall on your
+package.
 
-19.1.3. User interaction
+19.1.2. User interaction
 
 Occasionally, packages require interaction from the user, and this can be in a
 number of ways:
@@ -6308,21 +6199,16 @@ number of ways:
 
   * help during the installation of a package
 
-The INTERACTIVE_STAGE definition is provided to notify the pkgsrc mechanism of
-an interactive stage which will be needed, and this should be set in the
-package's Makefile, e.g.:
-
-INTERACTIVE_STAGE=      build
-
-
-Multiple interactive stages can be specified:
+A package can set the INTERACTIVE_STAGE variable to define which stages need
+interaction. This should be done in the package's Makefile, e.g.:
 
 INTERACTIVE_STAGE=      configure install
 
 
 The user can then decide to skip this package by setting the BATCH variable.
+Packages that require interaction are also excluded from bulk builds.
 
-19.1.4. Handling licenses
+19.1.3. Handling licenses
 
 Authors of software can choose the licence under which software can be copied.
 This is due to copyright law, and reasons for license choices are outside the
@@ -6450,7 +6336,7 @@ Another problem with such usage is that it does not enable a user to tell
 pkgsrc to proceed for a single package without also telling pkgsrc to proceed
 for all packages with that tag.
 
-19.1.5. Restricted packages
+19.1.4. Restricted packages
 
 Some licenses restrict how software may be re-distributed. Because a license
 tag is required unless the package is Free or Open Source, all packages with
@@ -6507,7 +6393,7 @@ not distributable and cannot be obtained for a period of one full quarter
 branch. Packages with manual / interactive fetch must have a maintainer and it
 is his/her responsibility to ensure this.
 
-19.1.6. Handling dependencies
+19.1.5. Handling dependencies
 
 Your package may depend on some other package being present - and there are
 various ways of expressing this dependency. pkgsrc supports the BUILD_DEPENDS
@@ -6588,7 +6474,7 @@ version numbers recognized by pkg_info(1).
     section of the pkgsrc guide.
 
     For security fixes, please update the package vulnerabilities file. See
-    Section 19.1.10, "Handling packages with security problems" for more
+    Section 19.1.9, "Handling packages with security problems" for more
     information.
 
 If your package needs files from another package to build, add the relevant
@@ -6596,7 +6482,7 @@ distribution files to DISTFILES, so they will be extracted automatically. See
 the print/ghostscript package for an example. (It relies on the jpeg sources
 being present in source form during the build.)
 
-19.1.7. Handling conflicts with other packages
+19.1.6. Handling conflicts with other packages
 
 Your package may conflict with other packages a user might already have
 installed on his system, e.g. if your package installs the same set of files as
@@ -6621,7 +6507,7 @@ and in pkgsrc/foo/baz/Makefile:
 CONFLICTS=      bar-[0-9]*
 
 
-19.1.8. Packages that cannot or should not be built
+19.1.7. Packages that cannot or should not be built
 
 There are several reasons why a package might be instructed to not build under
 certain circumstances. If the package builds and runs on most platforms, the
@@ -6650,7 +6536,7 @@ functionality already provided by the system), set PKG_SKIP_REASON to a
 descriptive message. If the package should fail because some preconditions are
 not met, set PKG_FAIL_REASON to a descriptive message.
 
-19.1.9. Packages which should not be deleted, once installed
+19.1.8. Packages which should not be deleted, once installed
 
 To ensure that a package may not be deleted, once it has been installed, the
 PKG_PRESERVE definition should be set in the package Makefile. This will be
@@ -6658,7 +6544,7 @@ carried into any binary package that is made from this pkgsrc entry. A "
 preserved" package will not be deleted using pkg_delete(1) unless the "-f"
 option is used.
 
-19.1.10. Handling packages with security problems
+19.1.9. Handling packages with security problems
 
 When a vulnerability is found, this should be noted in localsrc/security/
 advisories/pkg-vulnerabilities, and after committing that file, ask
@@ -6675,7 +6561,7 @@ submit a pullup request!
 Binary packages already on ftp.NetBSD.org will be handled semi-automatically by
 a weekly cron job.
 
-19.1.11. How to handle incrementing versions when fixing an existing package
+19.1.10. How to handle incrementing versions when fixing an existing package
 
 When making fixes to an existing package it can be useful to change the version
 number in PKGNAME. To avoid conflicting with future versions by the original
@@ -6726,7 +6612,7 @@ Examples of changes that do merit an increase to PKGREVISION include:
 
 PKGREVISION must also be incremented when dependencies have ABI changes.
 
-19.1.12. Substituting variable text in the package files (the SUBST framework)
+19.1.11. Substituting variable text in the package files (the SUBST framework)
 
 When you want to replace the same text in multiple files or when the
 replacement text varies, patches alone cannot help. This is where the SUBST
@@ -6777,7 +6663,7 @@ blocks look uniform.
 There are some more variables, but they are so seldomly used that they are only
 documented in the mk/subst.mk file.
 
-19.2. Fixing problems in the fetch phase
+19.2. The fetch phase
 
 19.2.1. Packages whose distfiles aren't available for plain downloading
 
@@ -6808,12 +6694,13 @@ in. Please mention that the distfiles were compared and what was found in your
 commit message.
 
 Then, the correct way to work around this is to set DIST_SUBDIR to a unique
-directory name, usually based on PKGNAME_NOREV. All DISTFILES and PATCHFILES
-for this package will be put in that subdirectory of the local distfiles
-directory. (See Section 19.1.11, "How to handle incrementing versions when
-fixing an existing package" for more details.) In case this happens more often,
-PKGNAME can be used (thus including the nbX suffix) or a date stamp can be
-appended, like ${PKGNAME_NOREV}-YYYYMMDD.
+directory name, usually based on PKGNAME_NOREV (but take care with python or
+ruby packages, where PKGNAME includes a variable prefix). All DISTFILES and
+PATCHFILES for this package will be put in that subdirectory of the local
+distfiles directory. (See Section 19.1.10, "How to handle incrementing versions
+when fixing an existing package" for more details.) In case this happens more
+often, PKGNAME can be used (thus including the nbX suffix) or a date stamp can
+be appended, like ${PKGNAME_NOREV}-YYYYMMDD.
 
 DIST_SUBDIR is also used when a distfile's name does not contain a version and
 the distfile is apt to change. In cases where the likelihood of this is very
@@ -6869,7 +6756,7 @@ GITHUB_RELEASE= rel-${PKGVERSION_NOREV} # usually just set this to ${DISTNAME}
 EXTRACT_SUFX=   .zip
 
 
-19.3. Fixing problems in the configure phase
+19.3. The configure phase
 
 19.3.1. Shared libraries - libtool
 
@@ -7109,7 +6996,7 @@ Currently, there is no special handling for other languages in pkgsrc. If a
 compiler package provides a buildlink3.mk file, include that, otherwise just
 add a (build) dependency on the appropriate compiler package.
 
-19.5. Fixing problems in the build phase
+19.5. The build phase
 
 The most common failures when building a package are that some platforms do not
 provide certain header files, functions or libraries, or they provide the
@@ -7250,7 +7137,7 @@ this variable is similar to running the shell builtin ulimit command to raise
 the maximum data segment size or maximum stack size of a process, respectively,
 to their hard limits.
 
-19.6. Fixing problems in the install phase
+19.6. The install phase
 
 19.6.1. Creating needed directories
 
@@ -8000,12 +7887,12 @@ pkgsrc-users mailing list.
 22.6. What does ${MASTER_SITE_SOURCEFORGE:=package/} mean? I don't understand
       the := inside it.
 
-      The := is not really an assignment operator, like you might expect at
-      first sight. Instead, it is a degenerate form of ${LIST:old_string=
-      new_string}, which is documented in the make(1) man page and which you
-      may have seen as in ${SRCS:.c=.o}. In the case of MASTER_SITE_*,
-      old_string is the empty string and new_string is package/. That's where
-      the : and the = fall together.
+      The := is not really an assignment operator, although it looks like it.
+      Instead, it is a degenerate form of ${LIST:old_string=new_string}, which
+      is documented in the make(1) man page and which is commonly used in the
+      form ${SRCS:.c=.o}. In the case of MASTER_SITE_*, old_string is the empty
+      string and new_string is package/. That's where the : and the = fall
+      together.
 
 22.7. Which mailing lists are there for package developers?
 
@@ -8353,17 +8240,15 @@ Table of Contents
 
 25. Regression tests
 
-    25.1. The regression tests framework
-    25.2. Running the regression tests
-    25.3. Adding a new regression test
+    25.1. Running the regression tests
+    25.2. Adding a new regression test
 
-        25.3.1. Overridable functions
-        25.3.2. Helper functions
+        25.2.1. Overridable functions
+        25.2.2. Helper functions
 
 26. Porting pkgsrc
 
     26.1. Porting pkgsrc to a new operating system
-    26.2. Adding support for a new compiler
 
 Chapter 24. Design of the pkgsrc infrastructure
 
@@ -8483,7 +8368,8 @@ this point.
 
 There are many ways in which the definition and use of a variable can be
 restricted in order to detect bugs and violations of the (mostly unwritten)
-policies. See the pkglint developer's documentation for further details.
+policies. A package can be checked with pkglint -Wall to see whether it meets
+these rules.
 
 24.5. Designing interfaces for Makefile fragments
 
@@ -8505,7 +8391,7 @@ calling a procedure all input parameters must be completely resolvable. For
 example, CONFIGURE_ARGS should never be an input parameter since it is very
 likely that further text will be added after calling the procedure, which would
 effectively apply the procedure to only a part of the variable. Also,
-references to other variables wit will be modified after calling the procedure.
+references to other variables will be modified after calling the procedure.
 
 A procedure can declare its output parameters either as suitable for use in
 preprocessing directives or as only available at runtime. The latter
@@ -8591,12 +8477,11 @@ Chapter 25. Regression tests
 
 Table of Contents
 
-25.1. The regression tests framework
-25.2. Running the regression tests
-25.3. Adding a new regression test
+25.1. Running the regression tests
+25.2. Adding a new regression test
 
-    25.3.1. Overridable functions
-    25.3.2. Helper functions
+    25.2.1. Overridable functions
+    25.2.2. Helper functions
 
 The pkgsrc infrastructure consists of a large codebase, and there are many
 corners where every little bit of a file is well thought out, making pkgsrc
@@ -8605,61 +8490,76 @@ changes from breaking anything, a suite of regression tests should go along
 with every important part of the pkgsrc infrastructure. This chapter describes
 how regression tests work in pkgsrc and how you can add new tests.
 
-25.1. The regression tests framework
-
-25.2. Running the regression tests
+25.1. Running the regression tests
 
 You first need to install the pkgtools/pkg_regress package, which provides the 
 pkg_regress command. Then you can simply run that command, which will run all
 tests in the regress category.
 
-25.3. Adding a new regression test
+25.2. Adding a new regression test
 
 Every directory in the regress category that contains a file called spec is
 considered a regression test. This file is a shell program that is included by
 the pkg_regress command. The following functions can be overridden to suit your
 needs.
 
-25.3.1. Overridable functions
+25.2.1. Overridable functions
 
-These functions do not take any parameters. They are all called in "set -e"
-mode, so you should be careful to check the exitcodes of any commands you run
-in the test.
+These functions do not take any parameters. Although they are called in "set -e
+" mode, they don't stop at the first failing command. See this StackOverflow
+question for details.
 
-do_setup()
+do_setup
 
     This function prepares the environment for the test. By default it does
     nothing.
 
-do_test()
+do_test
 
     This function runs the actual test. By default, it calls TEST_MAKE with the
     arguments MAKEARGS_TEST and writes its output including error messages into
     the file TEST_OUTFILE.
 
-check_result()
+    When defining this function, make sure that all output that needs to be
+    checked is written to the correct output file. Example:
+
+    do_test() {
+            echo "Example output"
+    } 1>$TEST_OUTFILE 2>&1
+
+check_result
 
     This function is run after the test and is typically used to compare the
     actual output from the one that is expected. It can make use of the various
-    helper functions from the next section.
+    helper functions from the next section. Example:
 
-do_cleanup()
+    check_result() {
+            exit_status 0
+            output_require "Example"
+            output_require "^[[:alpha:]+[[:space:]][[:alpha:]]{6}$"
+            output_prohibit "no such file or directory"
+    }
+
+do_cleanup
 
     This function cleans everything up after the test has been run. By default
     it does nothing.
 
-25.3.2. Helper functions
+25.2.2. Helper functions
 
-exit_status(expected)
+exit_status expected
 
-    This function compares the exitcode of the do_test() function with its
-    first parameter. If they differ, the test will fail.
+    This function compares the exitcode of the do_test function with its first
+    parameter. If they differ, the test will fail.
 
-output_require(regex...)
+output_require regex...
 
     This function checks for each of its parameters if the output from do_test
-    () matches the extended regular expression. If it does not, the test will
-    fail.
+    matches the extended regular expression. If it does not, the test will
+    fail. Example:
+
+    output_require "looks fine"
+    output_require "^[[:alpha:]+[[:space:]][[:alpha:]]{6}$"
 
 output_prohibit(regex...)
 
@@ -8672,7 +8572,6 @@ Chapter 26. Porting pkgsrc
 Table of Contents
 
 26.1. Porting pkgsrc to a new operating system
-26.2. Adding support for a new compiler
 
 The pkgsrc system has already been ported to many operating systems, hardware
 architectures and compilers. This chapter explains the necessary steps to make
@@ -8707,10 +8606,6 @@ mk/tools/tools.MyOS.mk
 
 Now, you should be able to build some basic packages, like lang/perl5, shells/
 bash.
-
-26.2. Adding support for a new compiler
-
-TODO
 
 Appendix A. A simple example package: bison
 

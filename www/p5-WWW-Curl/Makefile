@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.33 2016/03/05 11:29:38 jperkin Exp $
+# $NetBSD: Makefile,v 1.35 2016/06/21 13:23:32 mef Exp $
 #
 
 DISTNAME=	WWW-Curl-4.17
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=WWW/}
 
@@ -13,6 +13,7 @@ COMMENT=	Perl binding interface for curl
 LICENSE=	mit
 
 BUILDLINK_API_DEPENDS.curl+=	curl>=7.10.8
+CFLAGS=	-Wall -Werror -Wreturn-type
 
 PERL5_PACKLIST=	auto/WWW/Curl/.packlist
 PERL5_MODULE_TYPE=	Module::Install::Bundled

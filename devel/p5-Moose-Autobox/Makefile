@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.15 2016/05/15 08:32:31 wen Exp $
+# $NetBSD: Makefile,v 1.17 2016/06/09 12:10:08 mef Exp $
 #
 
 DISTNAME=	Moose-Autobox-0.16
 PKGNAME=	p5-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/E/ET/ETHER//}
 
@@ -21,6 +22,9 @@ DEPENDS+=	p5-Syntax-Keyword-Junction-[0-9]*:../../devel/p5-Syntax-Keyword-Juncti
 DEPENDS+=	p5-List-MoreUtils>=0.07:../../devel/p5-List-MoreUtils
 
 BUILD_DEPENDS+=	p5-Test-Exception>=0.21:../../devel/p5-Test-Exception
+# for make test
+BUILD_DEPENDS+=p5-Package-DeprecationManager-[0-9]*:../../devel/p5-Package-DeprecationManager
+
 
 .include "../../lang/perl5/module.mk"
 .include "../../mk/bsd.pkg.mk"

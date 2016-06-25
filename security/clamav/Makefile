@@ -1,6 +1,5 @@
-# $NetBSD: Makefile,v 1.28 2016/03/05 11:29:18 jperkin Exp $
+# $NetBSD: Makefile,v 1.31 2016/06/12 16:06:01 taca Exp $
 
-PKGREVISION= 1
 .include "Makefile.common"
 
 COMMENT=	Anti-virus toolkit
@@ -35,6 +34,9 @@ CONFIGURE_ARGS+=	--disable-readdir-r
 CONFIGURE_ARGS+=	--enable-readdir_r
 .endif
 
+NOT_PAX_MPROTECT_SAFE+=	sbin/clamd
+NOT_PAX_MPROTECT_SAFE+=	bin/freshclam
+
 CFLAGS.SunOS+=		-D__EXTENSIONS__
 
 BUILD_DEFS+=	CLAMAV_USER CLAMAV_GROUP CLAMAV_DBDIR
@@ -45,7 +47,7 @@ MESSAGE_SUBST+=	CLAMAV_USER=${CLAMAV_USER}
 
 SUBST_CLASSES+=		vars
 SUBST_STAGE.vars=	pre-configure
-SUBST_FILES.vars=	etc/clamd.conf.sample
+SUBST_FILES.vars=	etc/clamav-milter.conf.sample etc/clamd.conf.sample
 SUBST_VARS.vars=	CLAMAV_DBDIR
 
 RCD_SCRIPTS=	clamd freshclamd

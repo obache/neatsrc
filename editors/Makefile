@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.171 2016/03/12 12:05:37 tnn Exp $
+# $NetBSD: Makefile,v 1.175 2016/06/16 02:29:27 kamil Exp $
 #
 
 COMMENT=	Editors
@@ -15,6 +15,8 @@ SUBDIR+=	bvi
 SUBDIR+=	ce
 SUBDIR+=	ce-doc
 SUBDIR+=	ce-x11
+SUBDIR+=	codeblocks
+SUBDIR+=	codelite
 SUBDIR+=	conglomerate
 SUBDIR+=	cooledit
 SUBDIR+=	dasher
@@ -110,11 +112,13 @@ SUBDIR+=	p5-Padre-Plugin-Vi
 SUBDIR+=	p5-Padre-Plugin-XS
 SUBDIR+=	p5-Wx-Scintilla
 SUBDIR+=	pico
+SUBDIR+=	pluma
 SUBDIR+=	poedit
 SUBDIR+=	qgoogletranslator
 SUBDIR+=	rox-edit
 SUBDIR+=	sam
 SUBDIR+=	sandy
+SUBDIR+=	sasm
 SUBDIR+=	scite
 SUBDIR+=	se
 SUBDIR+=	speedbar

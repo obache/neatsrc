@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.58 2016/02/25 15:31:00 jperkin Exp $
+# $NetBSD: Makefile.common,v 1.60 2016/06/09 09:50:27 youri Exp $
 #
 # used by archivers/xfce4-thunar-archive/Makefile
 # used by audio/xfce4-mixer/Makefile
@@ -10,6 +10,7 @@
 # used by editors/xfce4-mousepad/Makefile
 # used by mail/xfce4-mailwatch-plugin/Makefile
 # used by meta-pkgs/xfce4-extras/Makefile
+# used by misc/xfce4-calculator-plugin/Makefile
 # used by misc/xfce4-smartbookmark-plugin/Makefile
 # used by misc/xfce4-time-out-plugin/Makefile
 # used by misc/xfce4-weather-plugin/Makefile
@@ -25,6 +26,7 @@
 # used by sysutils/xfce4-gvfs-mount-plugin/Makefile
 # used by sysutils/xfce4-mount-plugin/Makefile
 # used by sysutils/xfce4-netload-plugin/Makefile
+# used by sysutils/xfce4-power-manager/Makefile
 # used by sysutils/xfce4-quicklauncher-plugin/Makefile
 # used by sysutils/xfce4-systemload-plugin/Makefile
 # used by sysutils/xfce4-taskmanager/Makefile
@@ -51,6 +53,7 @@
 # used by x11/xfce4-garcon/Makefile
 # used by x11/xfce4-kbdleds-plugin/Makefile
 # used by x11/xfce4-gtk2-engine/Makefile
+# used by x11/xfce4-indicator-plugin/Makefile
 # used by x11/xfce4-notes-plugin/Makefile
 # used by x11/xfce4-notifyd/Makefile
 # used by x11/xfce4-panel/Makefile

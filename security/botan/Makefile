@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.35 2016/05/19 22:10:24 joerg Exp $
+# $NetBSD: Makefile,v 1.39 2016/06/19 05:26:37 markd Exp $
 
 DISTNAME=	Botan-1.10.12
 PKGNAME=	${DISTNAME:tl}
 CATEGORIES=	security
-MASTER_SITES=	http://files.randombit.net/botan/
+MASTER_SITES=	http://botan.randombit.net/releases/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -20,12 +20,13 @@ PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 1.8.14; 1.10 is su
 CONFIG_SHELL=		${PYTHONBIN}
 CONFIGURE_SCRIPT=	./configure.py
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
+CONFIGURE_ARGS+=	--without-sphinx
 
 MAKE_FLAGS+=	LIB_OPT=${CXXFLAGS:Q}
 
 .include "../../mk/bsd.prefs.mk"
 
-PLIST_VARS+=	x86 x86_64
+PLIST_VARS+=	x86 x86_64 i386
 
 .if ${MACHINE_ARCH} == "x86_64"
 CONFIGURE_ARGS+=	--cpu=amd64
