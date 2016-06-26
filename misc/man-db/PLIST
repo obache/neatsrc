@@ -6,7 +6,6 @@ bin/man
 bin/mandb
 bin/manpath
 bin/whatis
-lib/charset.alias
 lib/man-db/libman.la
 lib/man-db/libmandb.la
 lib/tmpfiles.d/man-db.conf

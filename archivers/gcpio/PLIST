@@ -4,7 +4,6 @@ gnu/bin/cpio
 gnu/man/man1/cpio.1
 gnu/man/man1/mt.1
 info/cpio.info
-lib/charset.alias
 libexec/grmt
 man/man1/gcpio.1
 man/man8/grmt.8
