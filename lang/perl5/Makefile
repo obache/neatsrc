@@ -11,80 +11,80 @@ CONFLICTS+=	perl-base-[0-9]* perl-thread-[0-9]*
 # based on 'corelist -v ${PKGVERSION}'
 # update based on 'corelist -diff ${PREV_PKGVERSION} ${PKGVERSION}'
 CONFLICTS+=	p5-Archive-Tar<2.04
-CONFLICTS+=	p5-Attribute-Handlers<0.97
+CONFLICTS+=	p5-Attribute-Handlers<0.99
 CONFLICTS+=	p5-AutoLoader<5.74
 CONFLICTS+=	p5-CPAN<2.1100			# 2.11
-CONFLICTS+=	p5-CPAN-Meta<2.150001
-CONFLICTS+=	p5-CPAN-Meta-Requirements<2.132
-CONFLICTS+=	p5-CPAN-Meta-YAML<0.012
-CONFLICTS+=	p5-Compress-Raw-Bzip2<2.068
-CONFLICTS+=	p5-Compress-Raw-Zlib<2.068
+CONFLICTS+=	p5-CPAN-Meta<2.150005
+CONFLICTS+=	p5-CPAN-Meta-Requirements<2.140
+CONFLICTS+=	p5-CPAN-Meta-YAML<0.018
+CONFLICTS+=	p5-Compress-Raw-Bzip2<2.069
+CONFLICTS+=	p5-Compress-Raw-Zlib<2.069
 CONFLICTS+=	p5-DB_File<1.835
-CONFLICTS+=	p5-Devel-PPPort<3.31
+CONFLICTS+=	p5-Devel-PPPort<3.32
 CONFLICTS+=	p5-Digest<1.17
 CONFLICTS+=	p5-Digest-MD5<2.54
 CONFLICTS+=	p5-Digest-SHA<5.95
-CONFLICTS+=	p5-Encode<2.72
-CONFLICTS+=	p5-ExtUtils-CBuilder<0.28.02.21	# 0.280221
-CONFLICTS+=	p5-ExtUtils-Command<1.20
-CONFLICTS+=	p5-ExtUtils-Embed<1.32
+CONFLICTS+=	p5-Encode<2.80
+CONFLICTS+=	p5-ExtUtils-CBuilder<0.28.02.25	# 0.280225
+CONFLICTS+=	p5-ExtUtils-Command<7.10
+CONFLICTS+=	p5-ExtUtils-Embed<1.33
 CONFLICTS+=	p5-ExtUtils-Install<2.04
-CONFLICTS+=	p5-ExtUtils-MakeMaker<7.04.01 # 7.04_01
+CONFLICTS+=	p5-ExtUtils-MakeMaker<7.10.01 # 7.10_01
 CONFLICTS+=	p5-ExtUtils-Manifest<1.70
-CONFLICTS+=	p5-ExtUtils-ParseXS<3.28
-CONFLICTS+=	p5-File-Path<2.09
+CONFLICTS+=	p5-ExtUtils-ParseXS<3.31
+CONFLICTS+=	p5-File-Path<2.12.01	# 2.12_01
 CONFLICTS+=	p5-File-Temp<0.23.04	# 0.2304
-CONFLICTS+=	p5-Getopt-Long<2.45
-CONFLICTS+=	p5-HTTP-Tiny<0.054
+CONFLICTS+=	p5-Getopt-Long<2.48
+CONFLICTS+=	p5-HTTP-Tiny<0.056
 CONFLICTS+=	p5-I18N-LangTags<0.40
-CONFLICTS+=	p5-IO<1.3500			# 1.35
-CONFLICTS+=	p5-IO-Compress<2.068		# IO::Compress::*, Compress::*
+CONFLICTS+=	p5-IO<1.3600			# 1.36
+CONFLICTS+=	p5-IO-Compress<2.069		# IO::Compress::*, Compress::*
 CONFLICTS+=	p5-IO-Zlib<1.10
 CONFLICTS+=	p5-IPC-Cmd<0.92
-CONFLICTS+=	p5-IPC-SysV<2.04
+CONFLICTS+=	p5-IPC-SysV<2.06.01		# 2.06_01
 CONFLICTS+=	p5-JSON-PP<2.27300
-CONFLICTS+=	p5-Locale-Codes<3.34
+CONFLICTS+=	p5-Locale-Codes<3.37
 CONFLICTS+=	p5-Locale-Maketext<1.26
 CONFLICTS+=	p5-Locale-Maketext-Simple<0.21
 CONFLICTS+=	p5-MIME-Base64<3.15
 CONFLICTS+=	p5-Math-Complex<1.59
 CONFLICTS+=	p5-Memoize<1.03
-CONFLICTS+=	p5-Module-CoreList<5.20160429
+CONFLICTS+=	p5-Module-CoreList<5.20160506
 CONFLICTS+=	p5-Module-Load<0.32
 CONFLICTS+=	p5-NEXT<0.65
-CONFLICTS+=	p5-Parse-CPAN-Meta<1.4414
+CONFLICTS+=	p5-Parse-CPAN-Meta<1.4417
 CONFLICTS+=	p5-Pod-Escapes<1.07
 CONFLICTS+=	p5-Pod-Parser<1.63
-CONFLICTS+=	p5-Pod-Simple<3.29
-CONFLICTS+=	p5-Pod-Usage<1.64
-CONFLICTS+=	p5-Storable<2.53.01
+CONFLICTS+=	p5-Pod-Simple<3.32
+CONFLICTS+=	p5-Pod-Usage<1.68
+CONFLICTS+=	p5-Storable<2.56
 CONFLICTS+=	p5-Sys-Syslog<0.33
-CONFLICTS+=	p5-Term-ANSIColor<4.03
-CONFLICTS+=	p5-Term-Cap<1.15
+CONFLICTS+=	p5-Term-ANSIColor<4.04
+CONFLICTS+=	p5-Term-Cap<1.17
 CONFLICTS+=	p5-Term-ReadLine<1.15
 #			older for sysutils/shelldap
-CONFLICTS+=	p5-Test-Harness<3.35
+CONFLICTS+=	p5-Test-Harness<3.36
 CONFLICTS+=	p5-Test-Simple<1.001014
 CONFLICTS+=	p5-Text-Tabs+Wrap<2013.0523	# Text::Tabs + Text::Wrap
-CONFLICTS+=	p5-Tie-File<1.01
+CONFLICTS+=	p5-Tie-File<1.02
 CONFLICTS+=	p5-Tie-RefHash<1.39
-CONFLICTS+=	p5-Time-HiRes<1.9726
+CONFLICTS+=	p5-Time-HiRes<1.9733
 CONFLICTS+=	p5-Time-Local<1.23.00		# 1.2300
-CONFLICTS+=	p5-Time-Piece<1.27
-CONFLICTS+=	p5-Unicode-Collate<1.12
-CONFLICTS+=	p5-Unicode-Normalize<1.18
-CONFLICTS+=	p5-XSLoader<0.20
-CONFLICTS+=	p5-autodie<2.26
+CONFLICTS+=	p5-Time-Piece<1.31
+CONFLICTS+=	p5-Unicode-Collate<1.14
+CONFLICTS+=	p5-Unicode-Normalize<1.25
+CONFLICTS+=	p5-XSLoader<0.21
+CONFLICTS+=	p5-autodie<2.29
 CONFLICTS+=	p5-constant<1.33
-CONFLICTS+=	p5-experimental<0.013
-CONFLICTS+=	p5-parent<0.232
-CONFLICTS+=	p5-version<0.9909
+CONFLICTS+=	p5-experimental<0.016
+CONFLICTS+=	p5-parent<0.234
+CONFLICTS+=	p5-version<0.9916
 
-SUPERSEDES+=	p5-Tie-File<=0.99
+SUPERSEDES+=	p5-Tie-File<=1.02
 SUPERSEDES+=	p5-Memoize<=1.03
-SUPERSEDES+=	p5-I18N-LangTags<=0.39
-SUPERSEDES+=	p5-Locale-Maketext<=1.23
-SUPERSEDES+=	p5-experimental<=0.007
+SUPERSEDES+=	p5-I18N-LangTags<=0.40
+SUPERSEDES+=	p5-Locale-Maketext<=1.26
+SUPERSEDES+=	p5-experimental<=0.016
 
 # XXX: requires that gcc use an external perl to avoid circular dependencies
 USE_GCC_RUNTIME=	yes
