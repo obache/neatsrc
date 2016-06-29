@@ -16,6 +16,7 @@ include/groonga/groonga/file_reader.h
 include/groonga/groonga/geo.h
 include/groonga/groonga/groonga.h
 include/groonga/groonga/hash.h
+include/groonga/groonga/id.h
 include/groonga/groonga/ii.h
 include/groonga/groonga/nfkc.h
 include/groonga/groonga/normalizer.h
@@ -178,6 +179,7 @@ share/doc/groonga/en/html/_sources/reference/commands/object_remove.txt
 share/doc/groonga/en/html/_sources/reference/commands/plugin_register.txt
 share/doc/groonga/en/html/_sources/reference/commands/plugin_unregister.txt
 share/doc/groonga/en/html/_sources/reference/commands/quit.txt
+share/doc/groonga/en/html/_sources/reference/commands/query_expand.txt
 share/doc/groonga/en/html/_sources/reference/commands/range_filter.txt
 share/doc/groonga/en/html/_sources/reference/commands/register.txt
 share/doc/groonga/en/html/_sources/reference/commands/reindex.txt
@@ -212,6 +214,7 @@ share/doc/groonga/en/html/_sources/reference/executables/groonga.txt
 share/doc/groonga/en/html/_sources/reference/function.txt
 share/doc/groonga/en/html/_sources/reference/functions/between.txt
 share/doc/groonga/en/html/_sources/reference/functions/edit_distance.txt
+share/doc/groonga/en/html/_sources/reference/functions/fuzzy_search.txt
 share/doc/groonga/en/html/_sources/reference/functions/geo_distance.txt
 share/doc/groonga/en/html/_sources/reference/functions/geo_in_circle.txt
 share/doc/groonga/en/html/_sources/reference/functions/geo_in_rectangle.txt
@@ -437,6 +440,7 @@ share/doc/groonga/en/html/reference/commands/object_remove.html
 share/doc/groonga/en/html/reference/commands/plugin_register.html
 share/doc/groonga/en/html/reference/commands/plugin_unregister.html
 share/doc/groonga/en/html/reference/commands/quit.html
+share/doc/groonga/en/html/reference/commands/query_expand.html
 share/doc/groonga/en/html/reference/commands/range_filter.html
 share/doc/groonga/en/html/reference/commands/register.html
 share/doc/groonga/en/html/reference/commands/reindex.html
@@ -471,6 +475,7 @@ share/doc/groonga/en/html/reference/executables/groonga.html
 share/doc/groonga/en/html/reference/function.html
 share/doc/groonga/en/html/reference/functions/between.html
 share/doc/groonga/en/html/reference/functions/edit_distance.html
+share/doc/groonga/en/html/reference/functions/fuzzy_search.html
 share/doc/groonga/en/html/reference/functions/geo_distance.html
 share/doc/groonga/en/html/reference/functions/geo_in_circle.html
 share/doc/groonga/en/html/reference/functions/geo_in_rectangle.html
@@ -675,6 +680,7 @@ share/doc/groonga/ja/html/_sources/reference/commands/object_remove.txt
 share/doc/groonga/ja/html/_sources/reference/commands/plugin_register.txt
 share/doc/groonga/ja/html/_sources/reference/commands/plugin_unregister.txt
 share/doc/groonga/ja/html/_sources/reference/commands/quit.txt
+share/doc/groonga/ja/html/_sources/reference/commands/query_expand.txt
 share/doc/groonga/ja/html/_sources/reference/commands/range_filter.txt
 share/doc/groonga/ja/html/_sources/reference/commands/register.txt
 share/doc/groonga/ja/html/_sources/reference/commands/reindex.txt
@@ -709,6 +715,7 @@ share/doc/groonga/ja/html/_sources/reference/executables/groonga.txt
 share/doc/groonga/ja/html/_sources/reference/function.txt
 share/doc/groonga/ja/html/_sources/reference/functions/between.txt
 share/doc/groonga/ja/html/_sources/reference/functions/edit_distance.txt
+share/doc/groonga/ja/html/_sources/reference/functions/fuzzy_search.txt
 share/doc/groonga/ja/html/_sources/reference/functions/geo_distance.txt
 share/doc/groonga/ja/html/_sources/reference/functions/geo_in_circle.txt
 share/doc/groonga/ja/html/_sources/reference/functions/geo_in_rectangle.txt
@@ -934,6 +941,7 @@ share/doc/groonga/ja/html/reference/commands/object_remove.html
 share/doc/groonga/ja/html/reference/commands/plugin_register.html
 share/doc/groonga/ja/html/reference/commands/plugin_unregister.html
 share/doc/groonga/ja/html/reference/commands/quit.html
+share/doc/groonga/ja/html/reference/commands/query_expand.html
 share/doc/groonga/ja/html/reference/commands/range_filter.html
 share/doc/groonga/ja/html/reference/commands/register.html
 share/doc/groonga/ja/html/reference/commands/reindex.html
@@ -968,6 +976,7 @@ share/doc/groonga/ja/html/reference/executables/groonga.html
 share/doc/groonga/ja/html/reference/function.html
 share/doc/groonga/ja/html/reference/functions/between.html
 share/doc/groonga/ja/html/reference/functions/edit_distance.html
+share/doc/groonga/ja/html/reference/functions/fuzzy_search.html
 share/doc/groonga/ja/html/reference/functions/geo_distance.html
 share/doc/groonga/ja/html/reference/functions/geo_in_circle.html
 share/doc/groonga/ja/html/reference/functions/geo_in_rectangle.html

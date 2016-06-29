@@ -101,7 +101,7 @@ CONF_FILES+=	share/examples/${PKGBASE}/httpd/win-utf \
 
 SUBST_CLASSES+=		confpath
 SUBST_STAGE.confpath=	post-configure
-SUBST_FILES.confpath=	vendor/nginx-1.11.0/objs/Makefile
+SUBST_FILES.confpath=	vendor/nginx-1.11.1/objs/Makefile
 SUBST_SED.confpath=	-e 's,\$$(DESTDIR)${PKG_SYSCONFDIR}/httpd,\$$(DESTDIR)${PREFIX}/share/examples/${PKGBASE}/httpd,g'
 .else
 CONFIGURE_ARGS+=	--disable-groonga-httpd
