@@ -466,9 +466,8 @@ while [ -n "$REPLACE_TODO" ]; do
 	OLD_DEPENDS=$(${PKG_INFO} -Nq $pkg | sed 's/-[0-9][^-]*$//')
 	NEW_DEPENDS=
 	cd "$PKGSRCDIR/$pkgdir"
-	bdeps=$(@SETENV@ ${MAKE_SET_VARS} ${MAKE} show-depends VARNAME=BUILD_DEPENDS)
-	rdeps=$(@SETENV@ ${MAKE_SET_VARS} ${MAKE} show-depends)
-	for depver in $bdeps $rdeps; do
+	deps=$(@SETENV@ ${MAKE_SET_VARS} ${MAKE} show-depends VARNAME=ALL_DEPENDS)
+	for depver in $deps; do
 	    dep=$(echo $depver | sed -e 's/[:[].*$/0/' -e 's/[<>]=/-/' \
 		-e 's/-[0-9][^-]*$//')
 	    if ! is_member $dep $OLD_DEPENDS $NEW_DEPENDS; then
