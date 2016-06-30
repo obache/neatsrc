@@ -15,7 +15,7 @@ rcvar=$name
 command="@PREFIX@/sbin/milter-manager"
 pidfile="@VARBASE@/run/milter-manager/milter-manager.pid"
 command_args="--daemon"
-extra_command="reload"
+extra_commands="reload"
 
 start_precmd="${name}_prestart"
 
