@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16076 2016/06/29 13:52:34 taca Exp $
+$NetBSD: TODO,v 1.16091 2016/06/30 17:45:15 wiz Exp $
 
 Suggested new packages
 ======================
@@ -358,7 +358,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o GMT-5.1.1
 	o GNUMail-1.2.2
 	o Gorm-1.2.22
-	o ImageMagick-7.0.2.1 [wiz]
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
 	o MesaDemos-8.3.0
@@ -391,7 +390,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o adocman-0.13
 	o adodb-5.20
 	o aewm++-1.0.27
-	o afl-2.16b [wiz]
 	o afterstep-2.2.12
 	o aget-0.4.1
 	o alacarte-0.13.2
@@ -490,7 +488,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cal3d-0.11.0
 	o calc-2.11.10.1
 	o calcoo-2.1.0
-	o calibre-2.60.0 [wiz]
 	o calligra-2.9.9 [in wip; koffice successor]
 	o cardboard-schedule-1.14c [at http://www.bright-green.com/downloads/]
 	o catdoc-1.1
@@ -576,7 +573,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o denemo-2.0.8
 	o desklaunch-1.1.7
 	o deskmenu-1.4.5
-	o desktop-file-utils-0.23 [wiz]
 	o dhcpcd-dbus-0.6.1
 	o di-4.42
 	o digikam-4.14.0
@@ -792,8 +788,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gnu-crypto-2.1.0
 	o gnu-pw-mgr-2.0
 	o gnucap-20130423
-	o gnucash-2.6.13 [wiz]
-	o gnucash-docs-2.6.13 [wiz]
 	o gnuchess-book-1.02
 	o gnustep-back-0.24.1
 	o gnustep-base-1.24.8
@@ -1047,7 +1041,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libquantum-1.1.0 [pkg/43728, development release]
 	o librecad-2.0.9
 	o libressl-2.4
-	o libsndfile-1.0.27 [wiz]
 	o libstree-0.4.2
 	o libtcl-nothread-8.5.1
 	o libtecla-1.6.3
@@ -1240,7 +1233,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-DBD-SQLite2-0.37
 	o p5-Data-AMF-0.02004
 	o p5-Data-SimplePassword-0.11
-	o p5-DateTime-Locale-1.05 [wiz]
 	o p5-Device-XBee-API-0.8
 	o p5-Digest-Hashcash-1.1
 	o p5-FCGI-1.3.3
@@ -1258,11 +1250,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Heap-1.04
 	o p5-IO-Interface-1.09
 	o p5-IO-Prompt-0.997003
-	o p5-IO-Socket-SSL-2.029 [wiz]
 	o p5-IP-Country-3.03
 	o p5-JSON-Any-1.39
 	o p5-LWP-Protocol-PSGI-0.09
-	o p5-List-AllUtils-0.11 [wiz]
 	o p5-Locale-Codes-3.38
 	o p5-Locale-Currency-Format-1.35
 	o p5-Math-BigInt-GMP-1.49
@@ -1271,7 +1261,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Math-Random-MT-1.17
 	o p5-Math-Random-MT-Perl-1.15
 	o p5-Memoize-Memcached-0.11
-	o p5-Moo-2.002004 [wiz]
 	o p5-MooX-Log-Any-0.004004
 	o p5-Moose-Policy-0.05
 	o p5-Net-DBus-1.1.0
@@ -1344,7 +1333,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Wx-0.9928
 	o p5-X11-Protocol-29
 	o p5-XML-Clean-1.010101
-	o p5-XML-LibXML-2.0126 [wiz]
 	o p5-autobox-20090629
 	o p5-collectd-5.5.1
 	o p5-eBay-API-0.29
@@ -1455,7 +1443,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-Unidecode-0.04.19
 	o py-acora-1.9
 	o py-apache-libcloud-0.20.1
-	o py-betamax-0.7.1 [wiz]
 	o py-bleach-1.4.2
 	o py-bsddb3-6.1.1
 	o py-buildbot-0.9.0b5
@@ -1471,7 +1458,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-datapkg-0.9
 	o py-django-photologue-2.7
 	o py-djangorestframework-2.3.12
-	o py-dns-1.14.0 [wiz]
 	o py-doctor-15.1.0
 	o py-ephem3-3.7.6.0
 	o py-flake8-2.5.4
@@ -1513,7 +1499,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-rope-0.9.4
 	o py-scgi-1.15
 	o py-serpent-1.12
-	o py-setuptools-23.1.0 [wiz]
 	o py-simpletal-5.1
 	o py-smb-1.1.17
 	o py-softlayer-5.1.0
