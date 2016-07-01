@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.65 2016/03/05 11:28:49 jperkin Exp $
 
-DISTNAME=	milter-greylist-4.4.3
-PKGREVISION=	3
+DISTNAME=	milter-greylist-4.6
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.espci.fr/pub/milter-greylist/
 EXTRACT_SUFX=	.tgz
@@ -10,9 +9,6 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://hcpnet.free.fr/milter-greylist/
 COMMENT=	Easy-to-use greylist milter for Sendmail and Postfix
 LICENSE=	original-bsd
-
-# yacc rule moving to y.tab.c and renaming
-MAKE_JOBS_SAFE=		no
 
 GNU_CONFIGURE=		YES
 BUILD_TARGET=		milter-greylist
