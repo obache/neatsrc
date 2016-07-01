@@ -22,6 +22,8 @@ CONFIGURE_ARGS+=	--disable-debug
 EGDIR=		${PREFIX}/share/examples/opendkim
 RCD_SCRIPTS=	opendkim
 
+BUILDLINK_API_DEPENDS.libmilter+=	libmilter>=8.13.0
+.include "../../mail/libmilter/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-filter
 CONFIGURE_ARGS+=	--with-milter=${BUILDLINK_PREFIX.libmilter}
 
