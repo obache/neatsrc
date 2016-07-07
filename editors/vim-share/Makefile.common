@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.150 2014/09/01 20:28:48 jperkin Exp $
+# $NetBSD: Makefile.common,v 1.152 2016/07/04 06:18:39 morr Exp $
 
 # used by editors/vim/Makefile
 # used by editors/vim-gtk/Makefile
