@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.2698 2016/07/06 15:22:58 leot Exp $
+$NetBSD: CHANGES-2016,v 1.2708 2016/07/07 16:45:06 taca Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -3919,3 +3919,14 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated databases/py-cassandra-driver to 3.5.0 [fhajny 2016-07-06]
 	Updated devel/rebar to 2.6.2 [fhajny 2016-07-06]
 	Updated lang/py27-html-docs to 2.7.12 [leot 2016-07-06]
+	Updated mail/mutt to 1.6.2 [tron 2016-07-07]
+	Updated multimedia/minidlna to 1.1.5 [wiz 2016-07-07]
+	Updated sysutils/duplicity to 0.7.08 [wiz 2016-07-07]
+	Updated sysutils/direvent to 5.1 [wiz 2016-07-07]
+	Updated devel/libev to 4.22 [adam 2016-07-07]
+	Updated www/nghttp2 to 1.12.0 [adam 2016-07-07]
+	Updated pkgtools/pkglint to 5.4.3 [rillig 2016-07-07]
+	Updated lang/ocaml to 4.03.0nb1 [jperkin 2016-07-07]
+	Updated converters/php-mbstring to 5.5.37nb1 [jperkin 2016-07-07]
+	Added textproc/py-pytoml version 0.1.10 [jakllsch 2016-07-07]
+	Updated net/samba4 to 4.3.11 [taca 2016-07-07]
