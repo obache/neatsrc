@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.2708 2016/07/07 16:45:06 taca Exp $
+$NetBSD: CHANGES-2016,v 1.2714 2016/07/08 11:11:40 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -3930,3 +3930,9 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated converters/php-mbstring to 5.5.37nb1 [jperkin 2016-07-07]
 	Added textproc/py-pytoml version 0.1.10 [jakllsch 2016-07-07]
 	Updated net/samba4 to 4.3.11 [taca 2016-07-07]
+	Updated net/openvpn to 2.3.11 [jperkin 2016-07-08]
+	Updated net/openvpn-acct-wtmpx to 20130210nb3 [jperkin 2016-07-08]
+	Updated net/openvpn-nagios to 20130210nb4 [jperkin 2016-07-08]
+	Added sysutils/lvm2 version 2.02.98 [kamil 2016-07-08]
+	Added devel/kbuild version 0.1.9998.8.2814.25 [kamil 2016-07-08]
+	Updated misc/calibre to 2.62.0 [wiz 2016-07-08]
