@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.43 2016/03/05 11:28:42 jperkin Exp $
+# $NetBSD: Makefile,v 1.44 2016/07/09 06:38:23 wiz Exp $
 #
 
 DISTNAME=		scim-1.4.17

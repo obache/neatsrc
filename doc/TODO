@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16121 2016/07/07 20:53:18 wiz Exp $
+$NetBSD: TODO,v 1.16125 2016/07/09 13:19:39 wiz Exp $
 
 Suggested new packages
 ======================
@@ -361,6 +361,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
 	o MesaDemos-8.3.0
+	o MesaLib-12.0
 	o OdfConverter-4.0
 	o PACK-0.0.4
 	o PAM-0.99.7.1
@@ -973,6 +974,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o kdevplatform-1.7.1
 	o keybinder-0.3.1
 	o keychain-2.8.2
+	o kf5-5.24.0
 	o kicad-4.0.2
 	o kicad-doc-4.0.2
 	o kicad-footprints-4.0.2
@@ -1252,7 +1254,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Locale-Currency-Format-1.35
 	o p5-Math-BigInt-GMP-1.49
 	o p5-Math-BigInt-Pari-1.25
-	o p5-Math-Random-0.72
 	o p5-Math-Random-MT-1.17
 	o p5-Math-Random-MT-Perl-1.15
 	o p5-Memoize-Memcached-0.11
@@ -1272,7 +1273,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Number-Tolerant-1.708
 	o p5-PAR-1.029
 	o p5-POE-Component-Client-DNS-1.054
-	o p5-POE-Component-Server-SimpleHTTP-2.22
 	o p5-PPIx-EditorTools-0.19
 	o p5-Padre-1.00
 	o p5-Padre-Plugin-Autoformat-1.22
@@ -1456,7 +1456,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-hsm-1.1.1
 	o py-httpbin-0.4.1
 	o py-input-pad-1.4.2
-	o py-ipython-4.0
+	o py-ipython-5.0
 	o py-isodate-0.5.4
 	o py-jaraco_util-11.0
 	o py-jdcal-1.2
@@ -1783,7 +1783,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o whowatch-1.8.5
 	o windowlab-1.40
 	o wine-1.8.3
-	o wine-devel-1.9.13
+	o wine-devel-1.9.14
 	o wmi-11
 	o wmii+ixp-3.9.2 [pkg/43459; wip (wmii-devel); see also libixp entry]
 	o wmx-8

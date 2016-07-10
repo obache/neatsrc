@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.258 2016/03/05 11:29:11 jperkin Exp $
+# $NetBSD: Makefile,v 1.259 2016/07/09 06:38:45 wiz Exp $
 
 DISTNAME=	samba-${VERSION}
 CATEGORIES=	net

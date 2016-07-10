@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.23 2016/03/09 23:53:17 wiz Exp $
+# $NetBSD: Makefile,v 1.25 2016/07/09 13:04:05 wiz Exp $
 
 DISTNAME=	bup-0.27
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	# https://github.com/bup/bup/releases/
 # doc: switch to "man" branch before downloading
@@ -17,7 +17,7 @@ DEPENDS+=	${PYPKGPREFIX}-readline-[0-9]*:../../devel/py-readline
 DEPENDS+=	${PYPKGPREFIX}-tornado-[0-9]*:../../www/py-tornado
 DEPENDS+=	git-base-[0-9]*:../../devel/git-base
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-fuse-bindings
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-fuse-bindings
 
 DOCDIR=		${WRKDIR}/bup-man
 

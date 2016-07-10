@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.36 2016/03/05 11:29:31 jperkin Exp $
+# $NetBSD: Makefile,v 1.39 2016/07/09 13:04:06 wiz Exp $
 
 DISTNAME=		libvirt-1.2.9
-PKGREVISION=		8
+PKGREVISION=		9
 CATEGORIES=		sysutils
 MASTER_SITES=		http://libvirt.org/sources/
 
@@ -18,7 +18,7 @@ USE_LIBTOOL=		yes
 
 BUILD_DEFS+=		VARBASE
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-xml
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-xml
 
 PY_PATCHPLIST=		yes
 REPLACE_PYTHON+=	docs/apibuild.py
@@ -37,7 +37,7 @@ CONF_FILES+=		${EGDIR}/logrotate.d/libvirtd.uml ${PKG_SYSCONFDIR}/logrotate.d/li
 CONF_FILES+=		${EGDIR}/sasl2/libvirt.conf ${PKG_SYSCONFDIR}/sasl2/libvirt.conf
 
 AUTO_MKDIRS=		yes
-RCD_SCRIPTS=            libvirtd
+RCD_SCRIPTS=		libvirtd
 
 .include "options.mk"
 

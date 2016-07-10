@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.2724 2016/07/09 04:22:00 ryoon Exp $
+$NetBSD: CHANGES-2016,v 1.2742 2016/07/09 21:43:31 rillig Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -3949,3 +3949,23 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated www/p5-Mojolicious to 6.66 [wen 2016-07-09]
 	Updated www/p5-URI-Fetch to 0.13 [wen 2016-07-09]
 	Updated net/miruo to 0.9.6b [ryoon 2016-07-09]
+	Updated fonts/noto-emoji-ttf to 1.05 [ryoon 2016-07-09]
+	Updated www/mediawiki to 1.27.0 [wen 2016-07-09]
+	Updated www/p5-URI-Escape-XS to 0.14 [wen 2016-07-09]
+	Updated math/p5-Math-Random to 0.72 [wen 2016-07-09]
+	Updated pkgtools/revbump to 2.14 [wiz 2016-07-09]
+	Updated www/p5-Test-WWW-Mechanize-PSGI to 0.36 [wen 2016-07-09]
+	Updated www/p5-Starlet to 0.30 [wen 2016-07-09]
+	Updated www/p5-POE-Component-Server-SimpleHTTP to 2.22 [wen 2016-07-09]
+	Updated pkgtools/pkglint to 5.4.4 [rillig 2016-07-09]
+	Updated graphics/freetype2 to 2.6.4 [adam 2016-07-09]
+	Updated devel/p5-Readonly to 2.05 [wen 2016-07-09]
+	Removed lang/python33 [wiz 2016-07-09]
+	Updated meta-pkgs/bulk-medium to 20160709 [wiz 2016-07-09]
+	Updated pkgtools/pkglint to 5.4.5 [rillig 2016-07-09]
+	Updated security/netpgpverify to 20160708 [agc 2016-07-09]
+	Updated security/libnetpgpverify to 20160708 [agc 2016-07-09]
+	Updated security/netpgpverify to 20160709 [agc 2016-07-09]
+	Updated security/libnetpgpverify to 20160709 [agc 2016-07-09]
+	Added archivers/py-czipfile version 1.0.0 [wiz 2016-07-09]
+	Added security/bunny version 0.93 [rillig 2016-07-09]

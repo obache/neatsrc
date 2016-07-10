@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.123 2016/03/08 12:41:51 mef Exp $
+# $NetBSD: Makefile,v 1.125 2016/07/09 13:04:12 wiz Exp $
 
 DISTNAME=	bluefish-2.2.8
+PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://bluefish.mrball.net/stable/source/               \
 		http://www.bennewitz.com/bluefish/stable/source/
@@ -29,7 +30,7 @@ REPLACE_PYTHON+=	data/css_decompressor
 CHECK_INTERPRETER_SKIP+= share/bluefish/plugins/*/*.py
 CHECK_INTERPRETER_SKIP+= share/bluefish/plugins/*/*/*.py
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 2.2.4
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 2.2.4
 
 # XXX this doesn't work
 #XML_CATALOGS=	${PREFIX}/share/xml/bluefish/catalog.xml
