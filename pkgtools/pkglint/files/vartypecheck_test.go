@@ -231,6 +231,24 @@ func (s *Suite) Test_VartypeCheck_LdFlag(c *check.C) {
 	c.Check(s.Output(), equals, "WARN: fname:4: Unknown linker flag \"-unknown\".\n")
 }
 
+func (s *Suite) Test_VartypeCheck_License(c *check.C) {
+	runVartypeChecks("LICENSE", opAssign, (*VartypeCheck).License,
+		"gnu-gpl-v2",
+		"AND mit")
+
+	c.Check(s.Output(), equals, ""+
+		"WARN: fname:1: License file /licenses/gnu-gpl-v2 does not exist.\n"+
+		"ERROR: fname:2: Parse error for license condition \"AND mit\".\n")
+
+	runVartypeChecks("LICENSE", opAssignAppend, (*VartypeCheck).License,
+		"gnu-gpl-v2",
+		"AND mit")
+
+	c.Check(s.Output(), equals, ""+
+		"ERROR: fname:1: Parse error for appended license condition \"gnu-gpl-v2\".\n"+
+		"WARN: fname:2: License file /licenses/mit does not exist.\n")
+}
+
 func (s *Suite) Test_VartypeCheck_MachineGnuPlatform(c *check.C) {
 	runVartypeMatchChecks("MACHINE_GNU_PLATFORM", (*VartypeCheck).MachineGnuPlatform,
 		"x86_64-pc-cygwin",
@@ -384,6 +402,17 @@ func (s *Suite) Test_VartypeCheck_VariableName(c *check.C) {
 		"${INDIRECT}")
 
 	c.Check(s.Output(), equals, "WARN: fname:2: \"VarBase\" is not a valid variable name.\n")
+}
+
+func (s *Suite) Test_VartypeCheck_Version(c *check.C) {
+	runVartypeChecks("PERL5_REQD", opAssignAppend, (*VartypeCheck).Version,
+		"0",
+		"1.2.3.4.5.6",
+		"4.1nb17",
+		"4.1-SNAPSHOT",
+		"4pre7")
+
+	c.Check(s.Output(), equals, "WARN: fname:4: Invalid version number \"4.1-SNAPSHOT\".\n")
 }
 
 func (s *Suite) Test_VartypeCheck_Yes(c *check.C) {
