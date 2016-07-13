@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.8 2016/07/09 13:03:43 wiz Exp $
+# $NetBSD: Makefile,v 1.10 2016/07/12 09:32:14 wiz Exp $
 
-DISTNAME=	pylint-1.4.3
+DISTNAME=	pylint-1.6.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pylint/}
 
 MAINTAINER=	helgoman@users.sourceforge.net
-HOMEPAGE=	http://www.logilab.org/project/pylint
+HOMEPAGE=	https://www.pylint.org/
 COMMENT=	Python code static checker
 LICENSE=    	gnu-gpl-v2
 
@@ -26,15 +26,15 @@ REPLACE_PYTHON+=	pylint/__main__.py pylint/test/data/ascript pylint/test/input/n
 
 post-install:
 	${MV} ${DESTDIR}${PREFIX}/bin/epylint \
-		${DESTDIR}${PREFIX}/bin/epylint${PYVERSSUFFIX}
+		${DESTDIR}${PREFIX}/bin/epylint-${PYVERSSUFFIX}
 	${MV} ${DESTDIR}${PREFIX}/bin/pylint \
-		${DESTDIR}${PREFIX}/bin/pylint${PYVERSSUFFIX}
+		${DESTDIR}${PREFIX}/bin/pylint-${PYVERSSUFFIX}
 	${MV} ${DESTDIR}${PREFIX}/bin/pylint-gui \
-		${DESTDIR}${PREFIX}/bin/pylint-gui${PYVERSSUFFIX}
+		${DESTDIR}${PREFIX}/bin/pylint-gui-${PYVERSSUFFIX}
 	${MV} ${DESTDIR}${PREFIX}/bin/pyreverse \
-		${DESTDIR}${PREFIX}/bin/pyreverse${PYVERSSUFFIX}
+		${DESTDIR}${PREFIX}/bin/pyreverse-${PYVERSSUFFIX}
 	${MV} ${DESTDIR}${PREFIX}/bin/symilar \
-		${DESTDIR}${PREFIX}/bin/symilar${PYVERSSUFFIX}
+		${DESTDIR}${PREFIX}/bin/symilar-${PYVERSSUFFIX}
 	${INSTALL_MAN} ${WRKSRC}/man/*.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 
 do-test:
