@@ -273,12 +273,38 @@ post-configure:
 	@${DO_NADA}
 .endif
 
-# configure-help:
-#	Runs ${CONFIGURE_SCRIPT} --help. It is mainly intended for
-#	package developers so they can quickly see the options of the
-#	configure script.
-#
-configure-help:
+######################################################################
+### configure-help-script (PRIVATE)
+######################################################################
+### configure-help-script runs "${CONFIGURE_SCRIPT} --help".
+###
+configure-help-script:
 .for d in ${CONFIGURE_DIRS}
 	${RUN} cd ${WRKSRC} && cd ${d} && ${PKGSRC_SETENV} ${_CONFIGURE_SCRIPT_ENV} ${CONFIG_SHELL} ${CONFIGURE_SCRIPT} --help
 .endfor
+
+######################################################################
+### configure-help-cmake (PRIVATE)
+######################################################################
+### configure-help-cmake runs "cmake -LD" to list cached options with help
+###
+configure-help-cmake:
+.for d in ${CONFIGURE_DIRS}
+	${RUN} cd ${WRKSRC} && cd ${d} && ${PKGSRC_SETENV} ${_CONFIGURE_CMAKE_ENV} cmake -LH ${CMAKE_ARGS} ${CMAKE_ARG_PATH}
+.endfor
+
+######################################################################
+### configure-help (PUBLIC)
+######################################################################
+# configure-help will display messages so that package developers can find
+# the options for configuration of source distribution.
+#
+.PHONY: configure-help
+
+_CONFIGURE_HELP_TARGETS+=	${HAS_CONFIGURE:D	configure-help-script}
+_CONFIGURE_HELP_TARGETS+=	${USE_CMAKE:D		configure-help-cmake}
+
+.if !target(configure-help)
+configure-help: ${_CONFIGURE_HELP_TARGETS}
+	@${DO_NADA}
+.endif
