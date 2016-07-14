@@ -119,7 +119,7 @@ DESTDIR_INSTALLOPTIONS=-package install_root="${DESTDIR}"
 
 do-configure:
 	cd ${WRKSRC} &&							\
-	${SETENV} ${CONFIGURE_ENV} ${MAKE} -f Makefile.init makefiles	\
+	${SETENV} ${MAKE_ENV} ${MAKE} -f Makefile.init makefiles	\
 		'CCARGS=${CCARGS}' 'AUXLIBS=${AUXLIBS}'			\
 		shared=yes dynamicmaps=yes
 
