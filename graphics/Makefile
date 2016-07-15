@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.743 2016/07/10 21:59:38 kamil Exp $
+# $NetBSD: Makefile,v 1.745 2016/07/14 15:47:11 youri Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -340,6 +340,8 @@ SUBDIR+=	mypaint
 SUBDIR+=	ncview
 SUBDIR+=	netpbm
 SUBDIR+=	ns-cult3d
+SUBDIR+=	numix-icon-theme
+SUBDIR+=	numix-icon-theme-circle
 SUBDIR+=	nvtv
 SUBDIR+=	ocrad
 SUBDIR+=	opencsg
@@ -515,6 +517,8 @@ SUBDIR+=	tex-blockdraw_mp
 SUBDIR+=	tex-blockdraw_mp-doc
 SUBDIR+=	tex-bpolynomial
 SUBDIR+=	tex-bpolynomial-doc
+SUBDIR+=	tex-circuitikz
+SUBDIR+=	tex-circuitikz-doc
 SUBDIR+=	tex-cmarrows
 SUBDIR+=	tex-cmarrows-doc
 SUBDIR+=	tex-drv
