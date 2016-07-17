@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16127 2016/07/13 06:50:33 wiz Exp $
+$NetBSD: TODO,v 1.16140 2016/07/16 21:23:06 wiz Exp $
 
 Suggested new packages
 ======================
@@ -382,8 +382,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o SDL2_net-2.0.1
 	o SOGo-3.1.0
 	o SOPE-3.0.2
-	o TeXmacs-1.99.4
-	o TeXmacs-devel-1.0.7.21
 	o TiffIO-140a
 	o YoSucker-81
 	o abcl-1.3.2
@@ -444,7 +442,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o audacious-plugins-3.7.1
 	o augeas-1.4.0
 	o autoconvert-0.3.16
-	o autogen-5.18.10
 	o avant-window-navigator-0.4.2
 	o avidemux-2.6.12
 	o avl-2.0.3 [2.x is not source and binary compatible with 1.x]
@@ -1009,7 +1006,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ldapsdk-6.0.7
 	o leafpad-0.8.18.1
 	o lgeneral-1.3.1
-	o libassuan-2.4.2
 	o libbpg-0.9.6
 	o libburn-1.4.0
 	o libcaca-0.99.19
@@ -1062,13 +1058,13 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o licq-1.3.8
 	o lilv-0.22.0
 	o lincvs-2.1.4 [now called CrossVC]
-	o link-grammar-5.3.3
 	o linpsk-1.2 [ld: cannot find -lqt-mt with qt4]
 	o liquidwar-6.0.0.11
 	o lirc-0.9.3
 	o lit2epub-0.2.2
 	o lldpd-0.9.1
 	o llgal-0.13.17
+	o llvm-3.8.1
 	o lmbench-3
 	o lohit-fonts-2.4.2
 	o lottanzb-0.6
@@ -1127,6 +1123,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mit-scheme-bin-9.2
 	o mksh-52b
 	o mkvtoolnix-5.9.0
+	o mlterm-3.7.2
 	o modular-xorg-xquartz-1.18.0
 	o molden-4.8 [after which PR 40252 can be closed]
 	o molden-5.5
@@ -1233,7 +1230,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-DBD-SQLite2-0.37
 	o p5-Data-AMF-0.02004
 	o p5-Data-SimplePassword-0.11
-	o p5-DateTime-1.3400
 	o p5-Device-XBee-API-0.8
 	o p5-Digest-Hashcash-1.1
 	o p5-FCGI-1.3.3
@@ -1267,7 +1263,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-MooX-Log-Any-0.004004
 	o p5-Moose-Policy-0.05
 	o p5-Net-DBus-1.1.0
-	o p5-Net-DHCP-0.696
 	o p5-Net-DNS-SEC-1.02
 	o p5-Net-Frame-1.16
 	o p5-Net-ManageSieve-0.13
@@ -1276,8 +1271,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Net-Twitter-4.01010
 	o p5-NetPacket-1.6.0
 	o p5-Netdisco-2.033001
-	o p5-Number-Range-0.12
-	o p5-Number-Tolerant-1.708
 	o p5-PAR-1.029
 	o p5-POE-Component-Client-DNS-1.054
 	o p5-PPIx-EditorTools-0.19
@@ -1307,14 +1300,11 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-RT-Authen-ExternalAuth-0.25
 	o p5-RT-Client-REST-0.50
 	o p5-Return-Value-1.666005
-	o p5-Rose-DBx-Garden-0.193
 	o p5-SDL-2.544 [wip, make sure games/frozen-bubble runs, may require p5-SDL_perl]
 	o p5-SNMP-Info-3.31
 	o p5-SVG-Graph-0.0402
 	o p5-SVN-Simple-0.312
 	o p5-Schedule-Cron-Events-1.94
-	o p5-Search-Indexer-0.78
-	o p5-Search-QueryParser-SQL-0.010
 	o p5-Smart-Comments-1.06
 	o p5-Socket6-0.28
 	o p5-Software-License-0.103011
@@ -1331,7 +1321,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Text-Hunspell-2.14
 	o p5-Tie-Cycle-1.221
 	o p5-Tie-DBI-1.06
-	o p5-URI-FromHash-0.05
 	o p5-User-Identity-0.94
 	o p5-Wx-0.9928
 	o p5-X11-Protocol-29
@@ -1631,7 +1620,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o smokeping-2.6.11
 	o smproxy-1.0.3
 	o snappy-1.1.3
-	o snd-10.6
+	o snd-16.6
 	o snes9x-1.53
 	o snobol-2.0
 	o snort-2.9.8.0
@@ -1809,7 +1798,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o worker-3.8.2
 	o wpa_gui-2.5
 	o wpa_supplicant-2.5
-	o wwwoffle-2.9i
+	o wwwoffle-2.9j [pkg/51340]
 	o wxGTK-3.1.0
 	o wxRemind-101
 	o x264-devel-20160709
