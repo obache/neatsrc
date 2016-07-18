@@ -105,7 +105,7 @@ ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 	requires=`{ for i in $$requires $$requires; do echo $$i; done; \
 		${AWK} '{ print "${PREFIX}/" $$0 }' ${_PLIST_NOKEYWORDS}; } | \
 		${SORT} | uniq -c | awk '$$1 == 2 {print $$2}'`; \
-	for i in "" $$libs; do						\
+	for i in "" $$bins $$libs; do					\
 		${TEST} "$$i" != "" || continue;			\
 		${ECHO} "PROVIDES=$${i}";				\
 	done | ${SED} -e 's,^PROVIDES=${DESTDIR},PROVIDES=,'		\
@@ -114,7 +114,16 @@ ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 		${TEST} "$$req" != "" || continue;			\
 		${ECHO} "REQUIRES=$$req" >> ${.TARGET}.tmp;		\
 	done
+.else
+	${RUN}								\
+	${AWK} '/(^|\/)(bin|sbin|libexec)\// { print "${PREFIX}/" $$0 } END { exit 0 }' ${_PLIST_NOKEYWORDS} |  \
+	while read bin; do						\
+		${ECHO} "PROVIDES=$${bin}";				\
+	done >> ${.TARGET}.tmp;
 .endif
+.	for t in ${USE_TOOLS:M*\:run:S/:run//}
+		@${ECHO} "REQUIRES=${TOOLS_PATH.${t}}" >> ${.TARGET}.tmp
+.	endfor
 	${RUN}								\
 	rm -f ${.TARGET};						\
 	sort ${.TARGET}.tmp > ${.TARGET};				\
