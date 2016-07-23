@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2016/04/29 11:54:06 wiz Exp $
+# $NetBSD: Makefile,v 1.3 2016/07/21 17:16:17 wiz Exp $
 
-DISTNAME=	libfilezilla-0.5.0
+DISTNAME=	libfilezilla-0.5.3
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=filezilla/}
 EXTRACT_SUFX=	.tar.bz2

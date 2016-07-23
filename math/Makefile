@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.321 2016/07/15 07:36:54 wiz Exp $
+# $NetBSD: Makefile,v 1.323 2016/07/22 02:47:47 cheusov Exp $
 
 COMMENT=	Mathematics
 
@@ -76,6 +76,7 @@ SUBDIR+=	calcoo
 SUBDIR+=	cantor
 SUBDIR+=	capc-calc
 SUBDIR+=	cgal
+SUBDIR+=	classias
 SUBDIR+=	clisp-pari
 SUBDIR+=	cln
 SUBDIR+=	cloog
@@ -126,6 +127,7 @@ SUBDIR+=	gtklife
 SUBDIR+=	harminv
 SUBDIR+=	heirloom-factor
 SUBDIR+=	heirloom-units
+SUBDIR+=	herisvm
 SUBDIR+=	hs-distributive
 SUBDIR+=	hs-mwc-random
 SUBDIR+=	hs-nats
