@@ -77,11 +77,6 @@ PLIST.mac=	yes
 PLIST.notmac=	yes
 .endif
 
-.if ${OPSYS} == "NetBSD"
-# make sure zone.tab is installed
-DEPENDS+=		zonetab-[0-9]*:../../time/zonetab
-.endif
-
 .if ${OPSYS} == "SunOS"
 PLIST.kgrantpty=	yes
 .endif
