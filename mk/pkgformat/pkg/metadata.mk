@@ -122,7 +122,12 @@ ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 	done >> ${.TARGET}.tmp;
 .endif
 .	for t in ${USE_TOOLS:M*\:run:S/:run//}
-		@${ECHO} "REQUIRES=${TOOLS_PATH.${t}}" >> ${.TARGET}.tmp
+		${RUN}							\
+		case ${TOOLS_PATH.${t}:Q}"" in				\
+		/*)							\
+		${ECHO} "REQUIRES=${TOOLS_PATH.${t}}" >> ${.TARGET}.tmp	\
+		;;							\
+		esac
 .	endfor
 	${RUN}								\
 	rm -f ${.TARGET};						\
