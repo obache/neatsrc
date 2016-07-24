@@ -158,6 +158,7 @@ _BUILD_VERSION_FILE_cmd=	\
 		${SED} -e "s|^|$$file:|";				\
 	done |								\
 	${AWK} '{ sub("^${PKGSRCDIR}/", "");				\
+		  sub("^${PKGPATH}/../../", "");			\
 		  sub(":.*[$$]NetBSD", ":	$$NetBSD");		\
 		  sub("[$$][^$$]*$$", "$$");				\
 		  print; }' |						\
