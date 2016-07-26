@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.391 2016/07/24 02:36:48 kamil Exp $
+# $NetBSD: Makefile,v 1.394 2016/07/24 22:59:50 kamil Exp $
 #
 
 COMMENT=	Games
@@ -21,10 +21,13 @@ SUBDIR+=	angband-tty
 SUBDIR+=	angband-x11
 SUBDIR+=	anise
 SUBDIR+=	aop
+SUBDIR+=	armagetronad
+SUBDIR+=	armagetronad-server
 SUBDIR+=	asc
 SUBDIR+=	asciiquarium
 SUBDIR+=	atomix
 SUBDIR+=	atque
+SUBDIR+=	barrage
 SUBDIR+=	bastet
 SUBDIR+=	battalion
 SUBDIR+=	battleball
@@ -76,6 +79,7 @@ SUBDIR+=	dopewars
 SUBDIR+=	duckmaze
 SUBDIR+=	dungeon
 SUBDIR+=	eboard
+SUBDIR+=	einstein-puzzle
 SUBDIR+=	enigma
 SUBDIR+=	et
 SUBDIR+=	eus-demo
