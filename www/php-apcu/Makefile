@@ -10,7 +10,6 @@ LICENSE=	php
 
 CONFIGURE_ARGS+=	--enable-${MODNAME}
 
-PLIST_SRC+=		${.CURDIR}/PLIST.extras
 PLIST_SUBST+=		PKGBASE=${PKGBASE:Q}
 
 DOCDIR=			${PREFIX}/share/doc/${PKGBASE}
