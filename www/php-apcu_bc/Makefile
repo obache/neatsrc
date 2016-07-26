@@ -9,6 +9,8 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	APCu  Backwards Compatibility Module
 LICENSE=	php
 
+PHP_VERSIONS_ACCEPTED=	70
+
 CONFIGURE_ARGS+=	--enable-${MODNAME}
 
 .include "../../lang/php/ext.mk"
