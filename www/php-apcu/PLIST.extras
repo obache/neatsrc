@@ -16,4 +16,3 @@ include/php/ext/apcu/apc_sma.h
 include/php/ext/apcu/apc_sma_api.h
 include/php/ext/apcu/apc_stack.h
 include/php/ext/apcu/php_apc.h
-@dirrm include/php/ext/apcu
