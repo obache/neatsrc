@@ -1603,6 +1603,7 @@ sub check_pkglint_version() {
 	return unless $lines;
 
 	my $pkglint_version = undef;
+	my $pkglint_revision = undef;
 	foreach my $line (@{$lines}) {
 		if ($line->text =~ regex_varassign) {
 			my ($varname, undef, $value, undef) = ($1, $2, $3, $4);
@@ -1611,15 +1612,19 @@ sub check_pkglint_version() {
 				if ($value =~ regex_pkgname) {
 					$pkglint_version = $2;
 				}
+			} elsif ($varname eq "PKGREVISION") {
+				$pkglint_revision = $value;
 			}
 		}
 	}
 	return unless defined($pkglint_version);
+	$pkglint_version .= "nb" . $pkglint_revision if defined($pkglint_revision);
 
 	if (dewey_cmp($pkglint_version, ">", conf_distver)) {
 		log_note(NO_FILE, NO_LINE_NUMBER, "A newer version of pkglint is available.");
 	} elsif (dewey_cmp($pkglint_version, "<", conf_distver)) {
 		log_error(NO_FILE, NO_LINE_NUMBER, "The pkglint version is newer than the tree to check.");
+		log_error(NO_FILE, NO_LINE_NUMBER, $pkglint_version . "<" . conf_distver);
 	}
 }
 
