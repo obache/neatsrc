@@ -19,7 +19,6 @@ INSTALLATION_DIRS=	${DOCDIR}
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/INSTALL ${DESTDIR}${DOCDIR}
-	cd ${WRKSRC} && ${MAKE} INSTALL_ROOT="${DESTDIR}" install-headers
 
 .include "../../lang/php/ext.mk"
 .include "../../mk/bsd.pkg.mk"
