@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.889 2016/07/20 23:16:37 cheusov Exp $
+# $NetBSD: Makefile,v 1.891 2016/07/26 17:30:18 kamil Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -329,6 +329,7 @@ SUBDIR+=	java-native-hyperestraier
 SUBDIR+=	java-pure-hyperestraier
 SUBDIR+=	jdom
 SUBDIR+=	jing
+SUBDIR+=	jo
 SUBDIR+=	jrep
 SUBDIR+=	json-c
 SUBDIR+=	json-glib
@@ -399,6 +400,7 @@ SUBDIR+=	ocaml-markup
 SUBDIR+=	ocaml-text
 SUBDIR+=	ocaml-tyxml
 SUBDIR+=	ocaml-uutf
+SUBDIR+=	odt2tex
 SUBDIR+=	onigmo
 SUBDIR+=	oniguruma
 SUBDIR+=	openjade

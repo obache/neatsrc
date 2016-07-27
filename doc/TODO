@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16193 2016/07/26 06:37:05 wen Exp $
+$NetBSD: TODO,v 1.16196 2016/07/27 00:18:39 wen Exp $
 
 Suggested new packages
 ======================
@@ -919,7 +919,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o imapfilter-2.6.5
 	o imapsync-1.678
 	o imp-6.2.12
-	o include-what-you-use-0.6
 	o inform-6.32.1
 	o ingo-3.2.8
 	o inn-2.6.0
@@ -1063,7 +1062,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o lit2epub-0.2.2
 	o lldpd-0.9.1
 	o llgal-0.13.17
-	o llvm-3.8.1
 	o lmbench-3
 	o lohit-fonts-2.4.2
 	o lottanzb-0.6
@@ -1272,7 +1270,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Perl6-Export-0.009
 	o p5-PostScript-2.32
 	o p5-PostScript-Simple-1.02
-	o p5-Proc-Wait3-0.05
 	o p5-Publican-4.3.2
 	o p5-RADIUS-2.30
 	o p5-RRDTool-OO-0.36
