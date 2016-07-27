@@ -4,3 +4,4 @@ SHA1 (milter-manager-2.0.9.tar.gz) = 79fb03a93bce45180bea9604fe2838877c9c43ae
 RMD160 (milter-manager-2.0.9.tar.gz) = 0435251fdef4977621464a3081d098f38f88dfc0
 SHA512 (milter-manager-2.0.9.tar.gz) = 151f55893a86671f57574352c3a9b5c8c85e68aeb92f90137f753fff378aade3f6f0ecae62ac6d89eb77106260d14e3f850c71f2097186604d5c176a088ea5a8
 Size (milter-manager-2.0.9.tar.gz) = 6207729 bytes
+SHA1 (patch-binding_ruby_lib_milter_manager_pkgsrc-rc-detector.rb) = 500ba16f7ea26b5f9261677cd8e5a2a5617ecef6
