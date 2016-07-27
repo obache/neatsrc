@@ -1,8 +1,8 @@
 $NetBSD: distinfo,v 1.40 2016/05/15 01:04:45 mef Exp $
 
-SHA1 (skf_2.00.5.tar.xz) = cdf57d82974da66ca1f1a1bab538e674e38780b7
-RMD160 (skf_2.00.5.tar.xz) = 107de16ffdc97deb6ed4015c862a2176923a5298
-SHA512 (skf_2.00.5.tar.xz) = e0de06b86ba0a189c73a4c6a70e6655792f922e085ea8fb800071fd326622880413f2d7ce73f751d14dd934f2a0a2d7e3c4bbb5b20bf6c4efcf65cf452e8d4cd
-Size (skf_2.00.5.tar.xz) = 858268 bytes
+SHA1 (skf_2.00.6.tar.xz) = 1b60fe79d36d7fe248f4763036186b83a27c2bad
+RMD160 (skf_2.00.6.tar.xz) = 6b0dd0cf22ec2ffcc0cb9afe6ad2ba0668088a7d
+SHA512 (skf_2.00.6.tar.xz) = 4d47ff5d986e588b4c49512da8e7df1da11030a064032ca7d4b71b3a64744073467668c5048bb756263061637628be1a9c0dd1f43d7a24d9cc57b1c99ccc4a9f
+Size (skf_2.00.6.tar.xz) = 860192 bytes
 SHA1 (patch-aa) = e49fcf49f05d89d6de2b32729b95234436e583f1
 SHA1 (patch-configure) = 39c83d7c2d4d91e3f81af692d6d5bfd0cf6d4546
