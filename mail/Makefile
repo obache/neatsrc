@@ -315,6 +315,7 @@ SUBDIR+=	ruby-mail
 SUBDIR+=	ruby-mail25
 SUBDIR+=	ruby-mailfactory
 SUBDIR+=	ruby-mime-types
+SUBDIR+=	ruby-mime-types-data
 SUBDIR+=	ruby-mime-types1
 SUBDIR+=	ruby-mime-types2
 SUBDIR+=	ruby-tmail
