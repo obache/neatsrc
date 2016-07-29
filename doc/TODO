@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16196 2016/07/27 00:18:39 wen Exp $
+$NetBSD: TODO,v 1.16206 2016/07/28 17:52:27 prlw1 Exp $
 
 Suggested new packages
 ======================
@@ -521,7 +521,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o clusterssh-4.05
 	o clutter-1.24
 	o clutter-gst-3.0.2
-	o cmake-fedora-2.6.0
 	o cmocka-1.0.1
 	o cmus-2.7.1
 	o collectd-5.5.1
@@ -1205,16 +1204,13 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o oto-0.5
 	o p0f-3.08b
 	o p11-kit-0.23.2
-	o p5-Algorithm-LUHN-1.02
 	o p5-Apache-Gallery-1.0.2
 	o p5-AuthCAS-1.6
 	o p5-Authen-TacacsPlus-0.26
 	o p5-CDDB-2.00
-	o p5-CPANPLUS-2.102
 	o p5-Catalyst-Engine-PSGI-0.14
 	o p5-Catalyst-View-Email-0.36
 	o p5-Chart-3.2
-	o p5-Config-Augeas-1.300
 	o p5-Crypt-GeneratePassword-0.05
 	o p5-DBD-DB2-1.85
 	o p5-DBD-ODBC-1.52
@@ -1280,15 +1276,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-SVG-Graph-0.0402
 	o p5-SVN-Simple-0.312
 	o p5-Schedule-Cron-Events-1.94
-	o p5-Smart-Comments-1.06
 	o p5-Software-License-0.103011
-	o p5-Struct-Dumb-0.08
-	o p5-Sub-Exporter-GlobExporter-0.005
 	o p5-Switch-2.17
 	o p5-Sys-Utmp-1.7
-	o p5-TAP-Harness-Archive-0.18
-	o p5-Term-ANSIColor-4.04
-	o p5-Term-ReadLine-1.30
 	o p5-Test-MinimumVersion-0.101082
 	o p5-Text-Hunspell-2.14
 	o p5-Tie-Cycle-1.221
@@ -1300,7 +1290,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-autobox-20090629
 	o p5-collectd-5.5.1
 	o p5-eBay-API-0.29
-	o p5-experimental-0.016
 	o p5-gtk2-1.300
 	o p5-pango-1.227
 	o p5-pcsc-1.4.14
