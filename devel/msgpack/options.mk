@@ -9,5 +9,12 @@ PKG_SUPPORTED_OPTIONS=	tests
 .if !empty(PKG_OPTIONS:Mtests)
 BUILDLINK_DEPMETHOD.googletest+=	build
 .include "../../devel/googletest/buildlink3.mk"
-TEST_TARGET=	check
+BUILDLINK_DEPMETHOD.zlib+=	build
+.include "../../devel/zlib/buildlink3.mk"
+TEST_TARGET=	test
+CMAKE_ARGS+=	-DMSGPACK_BUILD_TESTS:BOOL=ON
+TEST_ENV+=	LD_LIBRARY_PATH=${WRKSRC}:${BUILDLINK_PREFIX.googletest}/lib
+CXXFLAGS+=	${"${CC_VERSION:Mgcc*}" != "":?-Wno-conversion-null:}
+.else
+CMAKE_ARGS+=	-DMSGPACK_BUILD_TESTS:BOOL=OFF
 .endif
