@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.14 2016/05/29 18:34:44 ryoon Exp $
 
-DISTNAME=	corebird-1.2.2
+DISTNAME=	corebird-1.3
 CATEGORIES=	net
 MASTER_SITES=	-https://github.com/baedert/corebird/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
@@ -13,7 +13,9 @@ USE_LIBTOOL=	yes
 USE_LANGUAGES=	c
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	autogen.sh
-USE_TOOLS+=	autoconf automake intltool gettext-m4 pkg-config gmake msgfmt
+USE_TOOLS+=	autoconf automake gettext-m4 pkg-config gmake msgfmt xmllint
+
+GETTEXT_TOOLS_REQD=	0.19.7
 
 .include "options.mk"
 
@@ -27,7 +29,6 @@ ICON_THEMES=	yes
 .include "../../textproc/json-glib/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../net/libsoup/buildlink3.mk"
-.include "../../devel/libgee/buildlink3.mk"
 BUILDLINK_DEPMETHOD.vala=	build
 .include "../../lang/vala/buildlink3.mk"
 .include "../../devel/glib2/schemas.mk"
