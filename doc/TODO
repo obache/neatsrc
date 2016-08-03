@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16206 2016/07/28 17:52:27 prlw1 Exp $
+$NetBSD: TODO,v 1.16236 2016/08/02 13:57:59 jperkin Exp $
 
 Suggested new packages
 ======================
@@ -522,7 +522,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o clutter-1.24
 	o clutter-gst-3.0.2
 	o cmocka-1.0.1
-	o cmus-2.7.1
 	o collectd-5.5.1
 	o colorize-0.3.4
 	o colortail-0.3.3
@@ -1123,6 +1122,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o modular-xorg-xquartz-1.18.0
 	o molden-4.8 [after which PR 40252 can be closed]
 	o molden-5.5
+	o moneyguru-2.10.1
 	o monit-5.17
 	o mono-4.4.0.122
 	o mono-tools-4.2
@@ -1196,7 +1196,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o openoffice3-3.3
 	o openscad-2013.06
 	o openslp-2.0.0
-	o openssh-7.2p2
+	o openssh-7.3p1
 	o opera-26
 	o orcus-0.11.2
 	o oroborus-2.0.18
@@ -1215,10 +1215,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-DBD-DB2-1.85
 	o p5-DBD-ODBC-1.52
 	o p5-DBD-Oracle-1.74
-	o p5-Data-AMF-0.02004
-	o p5-Data-SimplePassword-0.11
-	o p5-Device-XBee-API-0.8
-	o p5-Digest-Hashcash-1.1
 	o p5-Font-FreeType-0.07
 	o p5-FormValidator-Simple-1.00
 	o p5-GDGraph-1.52
@@ -1235,19 +1231,16 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-IO-Prompt-0.997003
 	o p5-IP-Country-3.03
 	o p5-Locale-Codes-3.38
-	o p5-Locale-Currency-Format-1.35
 	o p5-Math-BigInt-GMP-1.49
 	o p5-Math-BigInt-Pari-1.25
 	o p5-Memoize-Memcached-0.11
 	o p5-MooX-Log-Any-0.004004
 	o p5-Moose-Policy-0.05
-	o p5-Net-DBus-1.1.0
 	o p5-Net-DNS-SEC-1.02
 	o p5-Net-ManageSieve-0.13
 	o p5-NetPacket-1.6.0
 	o p5-Netdisco-2.033001
 	o p5-PAR-1.029
-	o p5-POE-Component-Client-DNS-1.054
 	o p5-PPIx-EditorTools-0.19
 	o p5-Padre-1.00
 	o p5-Padre-Plugin-Autoformat-1.22
@@ -1263,7 +1256,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Padre-Plugin-XS-0.12
 	o p5-Parallel-ForkManager-1.17
 	o p5-Parallel-Prefork-0.18
-	o p5-Perl6-Export-0.009
 	o p5-PostScript-2.32
 	o p5-PostScript-Simple-1.02
 	o p5-Publican-4.3.2
@@ -1275,25 +1267,18 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-SNMP-Info-3.31
 	o p5-SVG-Graph-0.0402
 	o p5-SVN-Simple-0.312
-	o p5-Schedule-Cron-Events-1.94
 	o p5-Software-License-0.103011
-	o p5-Switch-2.17
 	o p5-Sys-Utmp-1.7
-	o p5-Test-MinimumVersion-0.101082
 	o p5-Text-Hunspell-2.14
 	o p5-Tie-Cycle-1.221
 	o p5-Tie-DBI-1.06
-	o p5-User-Identity-0.94
 	o p5-Wx-0.9928
 	o p5-X11-Protocol-29
-	o p5-XML-Clean-1.010101
-	o p5-autobox-20090629
 	o p5-collectd-5.5.1
 	o p5-eBay-API-0.29
 	o p5-gtk2-1.300
 	o p5-pango-1.227
 	o p5-pcsc-1.4.14
-	o p5-sqlrelay-0.64
 	o p5-sybperl-2.18
 	o p5-xmltv-0.5.66
 	o packagekit-0.5.3
@@ -1322,6 +1307,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o pgocaml-2.3
 	o phoronix-test-suite-6.2.1
 	o php-apcu-4.0.10
+	o php-baikal-0.4.5
 	o php-excel-1.8.1
 	o php-geoip-1.1.0
 	o php-jpgraph-3.5.0b1
@@ -1747,7 +1733,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o whowatch-1.8.5
 	o windowlab-1.40
 	o wine-1.8.3
-	o wine-devel-1.9.14
+	o wine-devel-1.9.15
 	o wmi-11
 	o wmii+ixp-3.9.2 [pkg/43459; wip (wmii-devel); see also libixp entry]
 	o wmx-8
@@ -1758,7 +1744,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o wwwoffle-2.9j [pkg/51340]
 	o wxGTK-3.1.0
 	o wxRemind-101
-	o x264-devel-20160723
+	o x264-devel-20160730
 	o x2vnc-1.31
 	o xa65-2.3.7
 	o xaric-0.13.7

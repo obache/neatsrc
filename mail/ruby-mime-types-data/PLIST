@@ -1,7 +1,5 @@
-@comment $NetBSD$
+@comment $NetBSD: PLIST,v 1.1 2016/07/29 21:38:36 minskim Exp $
 ${GEM_HOME}/cache/${GEM_NAME}.gem
-${GEM_LIBDIR}/.gitignore
-${GEM_LIBDIR}/.hoerc
 ${GEM_LIBDIR}/Code-of-Conduct.md
 ${GEM_LIBDIR}/Contributing.md
 ${GEM_LIBDIR}/History.md

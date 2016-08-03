@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2289 2016/07/28 20:28:29 kamil Exp $
+# $NetBSD: Makefile,v 1.2291 2016/08/02 23:14:08 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -1760,6 +1760,7 @@ SUBDIR+=	py-filechunkio
 SUBDIR+=	py-flake8
 SUBDIR+=	py-flakes
 SUBDIR+=	py-flexmock
+SUBDIR+=	py-freezegun
 SUBDIR+=	py-funcparserlib
 SUBDIR+=	py-funcsigs
 SUBDIR+=	py-future
@@ -1982,6 +1983,7 @@ SUBDIR+=	ruby-celluloid-fsm
 SUBDIR+=	ruby-celluloid-pool
 SUBDIR+=	ruby-celluloid-supervision
 SUBDIR+=	ruby-cmd
+SUBDIR+=	ruby-contracts
 SUBDIR+=	ruby-curses
 SUBDIR+=	ruby-curses-gem
 SUBDIR+=	ruby-daemon_controller
