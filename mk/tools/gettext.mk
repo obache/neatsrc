@@ -40,7 +40,7 @@
 # treated specially below.
 #
 _TOOLS.gettext-tools=		gettext msgmerge xgettext msgconv autopoint
-_TOOLS_DEP.gettext-tools=	gettext-tools>=0.15
+_TOOLS_DEP.gettext-tools=	gettext-tools>=${GETTEXT_TOOLS_REQD:U0.15}
 
 .for _t_ in ${_TOOLS.gettext-tools}
 .  if !defined(TOOLS_IGNORE.${_t_}) && !empty(USE_TOOLS:C/:.*//:M${_t_})
@@ -68,7 +68,25 @@ _TOOLS_USE_PKGSRC.msgfmt=	yes
 
 _TOOLS_USE_PKGSRC.msgfmt?=	no
 .    if empty(_TOOLS_USE_PKGSRC.msgfmt:M[Yy][Ee][Ss]) && \
+	defined(GETTEXT_TOOLS_REQD) && \
 	defined(TOOLS_PLATFORM.msgfmt) && !empty(TOOLS_PLATFORM.msgfmt)
+
+_TOOLS_VERSION.msgfmt!=		${TOOLS_PLATFORM.msgfmt} --version |	\
+				${AWK} '{ print $$4; exit }'
+_TOOLS_PKG.gettext-tools=	gettext-tools-${_TOOLS_VERSION.msgfmt}
+.      for _dep_ in ${_TOOLS_DEP.gettext-tools}
+.        if !empty(_TOOLS_USE_PKGSRC.msgfmt:M[nN][oO])
+_TOOLS_USE_PKGSRC.msgfmt!=						\
+	if ${PKG_ADMIN} pmatch ${_dep_:Q} ${_TOOLS_PKG.gettext-tools:Q}; then \
+		${ECHO} no;						\
+	else								\
+		${ECHO} yes;						\
+	fi
+.        endif
+.      endfor
+.    endif
+
+.    if empty(_TOOLS_USE_PKGSRC.msgfmt:M[Yy][Ee][Ss])
 #
 # MSGFMT_STRIP_MSGID_PLURAL: Yes for msgfmt < 0.10.36
 # MSGFMT_STRIP_MSGCTXT: Yes for msgfmt < 0.15
@@ -80,8 +98,6 @@ _TOOLS_USE_PKGSRC.msgfmt?=	no
 # XXX needed to take advantage of this.
 # XXX
 .      if !defined(_TOOLS_USE_MSGFMT_SH)
-_TOOLS_VERSION.msgfmt!=		${TOOLS_PLATFORM.msgfmt} --version |	\
-				${AWK} '{ print $$4; exit }'
 .          if !defined(MSGFMT_STRIP_MSGID_PLURAL)
 MSGFMT_STRIP_MSGID_PLURAL!=						\
 	if ${PKG_ADMIN} pmatch "gettext>0.10.35"			\
