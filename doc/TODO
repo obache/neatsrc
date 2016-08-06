@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16236 2016/08/02 13:57:59 jperkin Exp $
+$NetBSD: TODO,v 1.16245 2016/08/05 23:34:34 mef Exp $
 
 Suggested new packages
 ======================
@@ -669,6 +669,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o filerunner-14.06.18.10
 	o fillets-ng-0.7.4
 	o fillets-ng-data-0.7.4
+	o firefox-48.0
 	o fish-2.2.0
 	o flashplayer-0.4.13
 	o flashrom-0.9.8
@@ -1236,7 +1237,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Memoize-Memcached-0.11
 	o p5-MooX-Log-Any-0.004004
 	o p5-Moose-Policy-0.05
-	o p5-Net-DNS-SEC-1.02
 	o p5-Net-ManageSieve-0.13
 	o p5-NetPacket-1.6.0
 	o p5-Netdisco-2.033001
@@ -1306,15 +1306,12 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o pgbuildfarm-4.17
 	o pgocaml-2.3
 	o phoronix-test-suite-6.2.1
-	o php-apcu-4.0.10
 	o php-baikal-0.4.5
 	o php-excel-1.8.1
 	o php-geoip-1.1.0
 	o php-jpgraph-3.5.0b1
 	o php-memcache-3.0.8
 	o php-ming-0.4.7
-	o php-mongo-1.6.12
-	o php-mongodb-1.1.2
 	o php-mrbs-1.5.0
 	o php-orangehrm-3.3.1
 	o php-pdflib-3.0.4 (require pdflib 7 or later)
@@ -1325,7 +1322,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o php-sqlrelay-0.64
 	o php-tiki6-6.14
 	o php-tt-rss-1.15.3
-	o php-xdebug-2.4.0
 	o phraseanet-3.8.6
 	o phraseanet-indexer-3.8.6
 	o picp-0.6.8
@@ -1368,7 +1364,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o psmisc-22.20
 	o pspp-0.10.1
 	o ptlib-2.16.2
-	o pulseaudio-9.0
 	o pure-ftpd-1.0.40
 	o pvs-5.0
 	o pwlib-1.11.1

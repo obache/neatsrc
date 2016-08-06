@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.3 2015/04/17 15:53:09 adam Exp $
+# $NetBSD: Makefile,v 1.4 2016/08/03 10:22:59 adam Exp $
 
 DISTNAME=	ibus-rime-1.2
+PKGREVISION=	1
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	http://dl.bintray.com/lotem/rime/
 
