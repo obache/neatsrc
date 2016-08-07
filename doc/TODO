@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16246 2016/08/06 08:47:51 ryoon Exp $
+$NetBSD: TODO,v 1.16249 2016/08/06 15:03:51 mef Exp $
 
 Suggested new packages
 ======================
@@ -521,7 +521,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o clusterssh-4.05
 	o clutter-1.24
 	o clutter-gst-3.0.2
-	o cmocka-1.0.1
 	o collectd-5.5.1
 	o colorize-0.3.4
 	o colortail-0.3.3
@@ -1181,7 +1180,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o objc-3.3.1
 	o ocaml-graphics-4.02.3
 	o ocrad-0.25
-	o octave-4.0.1
 	o odbc-postgresql-09.03.0400
 	o olvwm-4.5
 	o oniguruma-5.9.6
@@ -1209,7 +1207,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Authen-TacacsPlus-0.26
 	o p5-CDDB-2.00
 	o p5-Catalyst-Engine-PSGI-0.14
-	o p5-Catalyst-View-Email-0.36
 	o p5-Chart-3.2
 	o p5-Crypt-GeneratePassword-0.05
 	o p5-DBD-DB2-1.85
