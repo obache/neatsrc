@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2016/07/21 17:16:17 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2016/08/07 22:11:46 wiz Exp $
 
 DISTNAME=	libfilezilla-0.5.3
 PKGREVISION=	1
@@ -16,5 +16,8 @@ USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c c++
 
 PKGCONFIG_OVERRIDE+=	lib/libfilezilla.pc.in
+
+# GCC 4.9 is required to support C++14
+GCC_REQD+=	4.9
 
 .include "../../mk/bsd.pkg.mk"
