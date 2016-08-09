@@ -25,6 +25,7 @@ CONFIGURE_ARGS+=	--disable-nls
 CONFIGURE_ARGS+=	--disable-libnotify
 CONFIGURE_ARGS+=	--disable-engine
 CONFIGURE_ARGS+=	--disable-surround-text
+CONFIGURE_ARGS+=	--disable-emoji-dict
 
 NO_BUILD=	yes
 INSTALL_DIRS=	bindings ibus
