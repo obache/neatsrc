@@ -205,6 +205,7 @@ SUBDIR+=	netsurf
 SUBDIR+=	nghttp2
 SUBDIR+=	nginx
 SUBDIR+=	nginx-devel
+SUBDIR+=	npm-emojione
 SUBDIR+=	ns-plugger-common
 SUBDIR+=	ns-remote
 SUBDIR+=	nspluginwrapper
