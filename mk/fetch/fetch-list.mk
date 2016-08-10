@@ -1,4 +1,4 @@
-# $NetBSD: fetch-list.mk,v 1.14 2011/06/19 10:23:56 plunky Exp $
+# $NetBSD: fetch-list.mk,v 1.15 2016/08/09 15:16:35 asau Exp $
 
 ######################################################################
 ### fetch-list (PUBLIC)
@@ -82,16 +82,16 @@ fetch-list-one-pkg:
 		${ECHO} "${MKDIR} ${_DISTDIR}";				\
 		${ECHO} 'cd ${_DISTDIR} && { [ -f ${fetchfile} -o -f ${fetchfile:T} ] ||'; \
 		${ECHO}	'for site in $$sites; do';			\
-		${ECHO} '	case "$$site" in';			\
-		${ECHO} '	-*)';					\
-		${ECHO} '		url=$${site#-}';		\
-		${ECHO} '		;;';				\
-		${ECHO} '	*)';					\
-		${ECHO} '		url=$${site}/${fetchfile:T}';	\
-		${ECHO} '		;;';				\
-		${ECHO} '	esac';					\
-		${ECHO} '	${_FETCH_CMD.${FETCH_USING}} ${_FETCH_BEFORE_ARGS.${FETCH_USING}} ${_FETCH_OUTPUT_ARGS.${FETCH_USING}} ${fetchfile:T} "$${url}" ${_FETCH_AFTER_ARGS.${FETCH_USING}} && break ||'; \
-		${ECHO} '	${ECHO} ${fetchfile:T} not fetched';	\
+		${ECHO}	'	case "$${site}" in';			\
+		${ECHO}	'	-*)';					\
+		${ECHO} '		${_FETCH_CMD.${FETCH_USING}} ${_FETCH_BEFORE_ARGS.${FETCH_USING}} ${_FETCH_OUTPUT_ARGS.${FETCH_USING}} ${fetchfile:T} "$${site#-}" ${_FETCH_AFTER_ARGS.${FETCH_USING}} && break ||'; \
+		${ECHO} '		${ECHO} ${fetchfile:T} not fetched';	\
+		${ECHO}	'		;;';				\
+		${ECHO}	'	*)';					\
+		${ECHO} '		${_FETCH_CMD.${FETCH_USING}} ${_FETCH_BEFORE_ARGS.${FETCH_USING}} ${_FETCH_OUTPUT_ARGS.${FETCH_USING}} ${fetchfile:T} "$${site}${fetchfile:T}" ${_FETCH_AFTER_ARGS.${FETCH_USING}} && break ||'; \
+		${ECHO} '		${ECHO} ${fetchfile:T} not fetched';	\
+		${ECHO}	'		;;';				\
+		${ECHO}	'	esac;';			\
 		${ECHO}	'done; }';					\
 		${ECHO} ')';						\
 	fi)
@@ -108,16 +108,16 @@ fetch-list-one-pkg:
 		${ECHO} "${MKDIR} ${_DISTDIR}";				\
 		${ECHO} 'cd ${_DISTDIR} && { [ -f ${fetchfile} -o -f ${fetchfile:T} ] ||'; \
 		${ECHO}	'for site in $$sites; do';			\
-		${ECHO} '	case "$$site" in';			\
-		${ECHO} '	-*)';					\
-		${ECHO} '		url=$${site#-}';		\
-		${ECHO} '		;;';				\
-		${ECHO} '	*)';					\
-		${ECHO} '		url=$${site}/${fetchfile:T}';	\
-		${ECHO} '		;;';				\
-		${ECHO} '	esac';					\
-		${ECHO} '	${_FETCH_CMD.${FETCH_USING}} ${_FETCH_BEFORE_ARGS.${FETCH_USING}} ${_FETCH_OUTPUT_ARGS.${FETCH_USING}} ${fetchfile:T} "$${url}" ${_FETCH_AFTER_ARGS.${FETCH_USING}} && break ||'; \
-		${ECHO} '	${ECHO} ${fetchfile:T} not fetched';	\
+		${ECHO}	'	case "$${site}" in';			\
+		${ECHO}	'	-*)';					\
+		${ECHO} '		${_FETCH_CMD.${FETCH_USING}} ${_FETCH_BEFORE_ARGS.${FETCH_USING}} ${_FETCH_OUTPUT_ARGS.${FETCH_USING}} ${fetchfile:T} "$${site#-}" ${_FETCH_AFTER_ARGS.${FETCH_USING}} && break ||'; \
+		${ECHO} '		${ECHO} ${fetchfile:T} not fetched';	\
+		${ECHO}	'		;;';				\
+		${ECHO}	'	*)';					\
+		${ECHO} '		${_FETCH_CMD.${FETCH_USING}} ${_FETCH_BEFORE_ARGS.${FETCH_USING}} ${_FETCH_OUTPUT_ARGS.${FETCH_USING}} ${fetchfile:T} "$${site}${fetchfile:T}" ${_FETCH_AFTER_ARGS.${FETCH_USING}} && break ||'; \
+		${ECHO} '		${ECHO} ${fetchfile:T} not fetched';	\
+		${ECHO}	'		;;';				\
+		${ECHO}	'	esac;';			\
 		${ECHO}	'done; }';					\
 	fi)
 .    endif
