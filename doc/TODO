@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16258 2016/08/11 03:24:04 mef Exp $
+$NetBSD: TODO,v 1.16266 2016/08/13 07:11:19 wen Exp $
 
 Suggested new packages
 ======================
@@ -623,7 +623,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o epiphany-extensions-3.2.0
 	o epubcheck-3.0.1
 	o eric5-5.4.6
-	o erlang-19.0
 	o es-0.83
 	o esh-0.8.5
 	o espeak-1.46.02 [wip]
@@ -1219,11 +1218,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-DBD-Oracle-1.74
 	o p5-Font-FreeType-0.07
 	o p5-FormValidator-Simple-1.00
-	o p5-GDGraph-1.52
 	o p5-GStreamer-0.20
 	o p5-Geo-IPfree-1.151940
 	o p5-Git-Wrapper-0.045
-	o p5-GraphViz-2.20
 	o p5-GraphViz2-2.37
 	o p5-GraphicsMagick-1.4.020160216
 	o p5-Gtk2-1.223
@@ -1258,14 +1255,11 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-PostScript-Simple-1.02
 	o p5-Publican-4.3.2
 	o p5-RADIUS-2.30
-	o p5-RRDTool-OO-0.36
 	o p5-RT-Authen-ExternalAuth-0.25
 	o p5-Return-Value-1.666005
 	o p5-SDL-2.544 [wip, make sure games/frozen-bubble runs, may require p5-SDL_perl]
-	o p5-SNMP-Info-3.31
 	o p5-SVG-Graph-0.0402
 	o p5-SVN-Simple-0.312
-	o p5-Software-License-0.103011
 	o p5-Sys-Utmp-1.7
 	o p5-Text-Hunspell-2.14
 	o p5-Tie-Cycle-1.221
@@ -1409,7 +1403,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-munkres-1.0.7
 	o py-musicbrainz-0.7.4
 	o py-ncclient-0.4.7
-	o py-networkx-1.11 [pkg/51271]
 	o py-newt-0.52.18
 	o py-notify-0.3.1
 	o py-numpydoc-0.6.0
@@ -1420,7 +1413,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-ptt-1.10.2
 	o py-pandas-1.81.1 [pkg/51272]
 	o py-pycountry-1.20
-	o py-qrcode-5.3
 	o py-quixote-2.9
 	o py-radare2-0.10.4
 	o py-reportlab-3.0
