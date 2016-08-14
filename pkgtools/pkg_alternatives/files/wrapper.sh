@@ -39,7 +39,7 @@ if [ ! -f __DB_FILE__ ]; then
     exit 1
 fi
 
-if [ $(__ID__ -un) = __ROOT_USER__ ]; then
+if __IS_ROOT_CMD__; then
     userfile=
 else
     userfile=~/.pkg_alternatives/${wrapper}

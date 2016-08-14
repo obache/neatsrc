@@ -276,12 +276,12 @@ action_register_wrapper() {
     if [ ! -f ${wabs} ]; then
         info "creating wrapper \`${wbase}'"
         mkdir_p ${wabs%/*}
-        sed -e "s|__ID__|@ID@|g" \
+        sed \
             -e "s|__SH__|@SH@|g" \
             -e "s|__CONF_FILE__|${sysconf}|g" \
             -e "s|__CREATOR__|${Prog_Name}|g" \
             -e "s|__DB_FILE__|${dbconf}|g" \
-            -e "s|__ROOT_USER__|@ROOT_USER@|g" \
+            -e "s|__IS_ROOT_CMD__|@IS_ROOT_CMD@|g" \
             -e "s|__WRAPPER__|${wabs}|g" \
             <${Data_Dir}/wrapper.sh >${wabs}
         chmod +x ${wabs}
@@ -331,7 +331,7 @@ action_status_wrapper() {
     sysconf=${Conf_Dir}/${wbase}
     userconf=~/.pkg_alternatives${Prefix}/${wbase}
 
-    [ $(@ID@ -un) = @ROOT_USER@ ] && userconf=
+    @IS_ROOT_CMD@ && userconf=
     alts=$(cat ${userconf} ${sysconf} ${dbconf} 2>/dev/null | grep -v '^#' | \
            sed -e 's# #__dE/lImIt/Er__#g')
 
@@ -473,7 +473,7 @@ filter() {
 # personal directory.
 #
 get_my_config() {
-    if [ $(@ID@ -un) = @ROOT_USER@ ]; then
+    if @IS_ROOT_CMD@; then
         echo ${Conf_Dir}
     else
         echo ~/.pkg_alternatives${Prefix}
