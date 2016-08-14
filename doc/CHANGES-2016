@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.3314 2016/08/13 07:11:19 wen Exp $
+$NetBSD: CHANGES-2016,v 1.3324 2016/08/13 23:41:30 dholland Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -4754,3 +4754,13 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated devel/p5-Curses to 1.35 [wen 2016-08-13]
 	Updated net/p5-SNMP-Info to 3.33 [wen 2016-08-13]
 	Updated graphics/py-qrcode to 5.3 [wen 2016-08-13]
+	Updated graphics/py-Pillow to 3.3.0 [wen 2016-08-13]
+	Updated archivers/unrar to 5.4.4 [bsiegert 2016-08-13]
+	Updated archivers/p5-Archive-Extract to 0.78 [wen 2016-08-13]
+	Updated devel/re2 to 20160801 [mef 2016-08-13]
+	Updated www/py-uliweb to 0.5 [wen 2016-08-13]
+	Updated devel/php-xdebug to 2.4.1 [taca 2016-08-13]
+	Updated net/php-yaz to 1.2.1 [taca 2016-08-13]
+	Updated graphics/php-gd to 5.6.24nb1 [taca 2016-08-13]
+	Added textproc/go-runewidth version 0.0.1 [bsiegert 2016-08-13]
+	Updated graphics/xv to 3.10anb23 [dholland 2016-08-13]
