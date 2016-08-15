@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16268 2016/08/14 02:14:04 mef Exp $
+$NetBSD: TODO,v 1.16271 2016/08/14 13:39:45 mef Exp $
 
 Suggested new packages
 ======================
@@ -923,7 +923,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o input-pad-1.4.2
 	o inspircd-1.2.1
 	o instiki-0.13
-	o intercal-0.30
 	o iozone-3.434
 	o iperf3-3.1.2
 	o ipopt-3.12.4
@@ -933,7 +932,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ircservices-5.1.21
 	o iroffer-1.4b01
 	o isl-0.16.1
-	o iso-codes-3.69
 	o ispell-ga-4.6
 	o ispell-ru-0.99g5
 	o ispell-ru-io-0.99g5
@@ -1572,7 +1570,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o spidermonkey-1.8.5
 	o spin-645
 	o spl-1.0pre6
-	o sqlite-3.13.0
 	o sqlrelay-freetds-0.64
 	o sqlrelay-mysql-0.64
 	o sqlrelay-odbc-0.64
