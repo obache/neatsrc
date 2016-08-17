@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.3334 2016/08/14 21:16:49 leot Exp $
+$NetBSD: CHANGES-2016,v 1.3362 2016/08/16 04:08:52 maya Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -4777,3 +4777,31 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated chat/irssi to 0.8.19 [maya 2016-08-14]
 	Updated chat/irssi-icb to 0.15nb1 [leot 2016-08-14]
 	Updated chat/irssi-xmpp to 0.53 [leot 2016-08-14]
+	Added security/p5-Netpgp-Verify version 20160814 [agc 2016-08-14]
+	Updated mail/distribute to 2.1.26nb6 [maya 2016-08-15]
+	Updated devel/ftnchek to 3.3.1 [mef 2016-08-15]
+	Updated net/mldonkey to 3.1.5nb5 [jaapb 2016-08-15]
+	Updated emulators/ski to 1.3.2nb4 [scole 2016-08-15]
+	Updated net/libcmis to 0.5.1 [ryoon 2016-08-15]
+	Updated textproc/libodfgen to 0.1.6 [ryoon 2016-08-15]
+	Updated converters/libmwaw to 0.3.7 [ryoon 2016-08-15]
+	Updated lang/openjdk8 to 1.8.102 [ryoon 2016-08-15]
+	Updated misc/libreoffice to 5.1.5.2 [ryoon 2016-08-15]
+	Updated graphics/py-blockdiag to 1.5.3 [ryoon 2016-08-15]
+	Updated graphics/blender to 2.77a [ryoon 2016-08-15]
+	Updated devel/binutils to 2.26.1 [ryoon 2016-08-15]
+	Updated www/htmllint to 20051019nb7 [maya 2016-08-16]
+	Updated devel/p5-Test-Simple to 1.302052 [wen 2016-08-16]
+	Updated devel/p5-Test-Most to 0.35 [wen 2016-08-16]
+	Updated sysutils/p5-File-Remove to 1.57 [wen 2016-08-16]
+	Updated sysutils/p5-Sys-SigAction to 0.22 [wen 2016-08-16]
+	Updated www/p5-Dancer2 to 0.202000 [wen 2016-08-16]
+	Updated devel/p5-Curses to 0.36 [wen 2016-08-16]
+	Updated devel/p5-Log-Dispatch to 2.57 [wen 2016-08-16]
+	Updated www/p5-URI-Find to 20160806 [wen 2016-08-16]
+	Updated www/p5-URI-Query to 0.16 [wen 2016-08-16]
+	Updated www/p5-WWW-Amazon-Wishlist to 2.015 [wen 2016-08-16]
+	Updated www/p5-WWW-Mechanize to 1.78 [wen 2016-08-16]
+	Updated math/py-pytables to 3.2.3 [maya 2016-08-16]
+	Updated math/py-pandas to 0.18.1 [maya 2016-08-16]
+	Updated math/py-sympy to 1.0 [maya 2016-08-16]
