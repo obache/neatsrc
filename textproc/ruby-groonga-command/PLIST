@@ -50,6 +50,7 @@ ${GEM_LIBDIR}/lib/groonga/command/select.rb
 ${GEM_LIBDIR}/lib/groonga/command/shutdown.rb
 ${GEM_LIBDIR}/lib/groonga/command/status.rb
 ${GEM_LIBDIR}/lib/groonga/command/suggest.rb
+${GEM_LIBDIR}/lib/groonga/command/table-copy.rb
 ${GEM_LIBDIR}/lib/groonga/command/table-create.rb
 ${GEM_LIBDIR}/lib/groonga/command/table-list.rb
 ${GEM_LIBDIR}/lib/groonga/command/table-remove.rb
@@ -99,6 +100,7 @@ ${GEM_LIBDIR}/test/command/test-select.rb
 ${GEM_LIBDIR}/test/command/test-shutdown.rb
 ${GEM_LIBDIR}/test/command/test-status.rb
 ${GEM_LIBDIR}/test/command/test-suggest.rb
+${GEM_LIBDIR}/test/command/test-table-copy.rb
 ${GEM_LIBDIR}/test/command/test-table-create.rb
 ${GEM_LIBDIR}/test/command/test-table-list.rb
 ${GEM_LIBDIR}/test/command/test-table-remove.rb
