@@ -2,17 +2,4 @@
 include/php/ext/gd/config.h
 include/php/ext/gd/gd_compat.h
 include/php/ext/gd/gdcache.h
-include/php/ext/gd/libgd/gd.h
-include/php/ext/gd/libgd/gd_intern.h
-include/php/ext/gd/libgd/gd_io.h
-include/php/ext/gd/libgd/gdcache.h
-include/php/ext/gd/libgd/gdfontg.h
-include/php/ext/gd/libgd/gdfontl.h
-include/php/ext/gd/libgd/gdfontmb.h
-include/php/ext/gd/libgd/gdfonts.h
-include/php/ext/gd/libgd/gdfontt.h
-include/php/ext/gd/libgd/gdhelpers.h
-include/php/ext/gd/libgd/jisx0208.h
-include/php/ext/gd/libgd/wbmp.h
-include/php/ext/gd/libgd/webpimg.h
 include/php/ext/gd/php_gd.h
