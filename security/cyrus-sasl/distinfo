@@ -17,3 +17,4 @@ SHA1 (patch-saslauthd_Makefile.in) = b7962486aef16ec1e5b27a05a3405d79540f8e20
 SHA1 (patch-saslauthd_auth__rimap.c) = cc3e04ae0cf049eeb507df3226a2098528afaaab
 SHA1 (patch-saslauthd_md5global.h) = fc200c6aee12bf58877c7a755c121441ebaa1bde
 SHA1 (patch-saslauthd_saslcache.c) = 725db77c5d56f58331255957a65d385267ddcaed
+SHA1 (patch-sasldb_db__ndbm.c) = 06acf42df856b7bbbedb9f2bf6b492001181368e
