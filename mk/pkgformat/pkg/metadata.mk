@@ -151,6 +151,7 @@ _BUILD_VERSION_FILE_cmd=	\
 		${TEST} ! -f "$$f" || ${ECHO} "$$f";			\
 	done;								\
 	${TEST} -f ${DISTINFO_FILE:Q} || exit 0;			\
+	${ECHO} ${.MAKE.MAKEFILES:M*/Makefile.*};			\
 	${CAT} ${DISTINFO_FILE} |					\
 	${AWK} 'NF == 4 && $$3 == "=" { gsub("[()]", "", $$2); print $$2 }' | \
 	while read file; do						\
@@ -164,6 +165,7 @@ _BUILD_VERSION_FILE_cmd=	\
 	done |								\
 	${AWK} '{ sub("^${PKGSRCDIR}/", "");				\
 		  sub("^${PKGPATH}/../../", "");			\
+		  sub("^../../", "");					\
 		  sub(":.*[$$]NetBSD", ":	$$NetBSD");		\
 		  sub("[$$][^$$]*$$", "$$");				\
 		  print; }' |						\
