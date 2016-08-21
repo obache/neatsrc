@@ -69,7 +69,7 @@ BUILDLINK_TARGETS+=	features-regex-h
 .  for _file_ in fts.h glob.h regex.h sys/cdefs.h
 .PHONY: features-${_file_:S/./-/:S/\//-/}
 features-${_file_:S/./-/:S/\//-/}:
-	${RUN}set -e;							\
+	${RUN}								\
 	nbcompat_header=${LIBNBCOMPAT_SRCDIR:Q}/nbcompat/`${BASENAME} ${_file_:Q}`;	\
 	header=${BUILDLINK_DIR:Q}/include/${_file_:Q};			\
 	if ${TEST} ! -f "$$header" -a -f "$$nbcompat_header"; then	\
