@@ -690,7 +690,7 @@ TOOLS_PATH.pax=			${LOCALBASE}/bin/${NBPAX_PROGRAM_PREFIX}pax
 .  if !empty(PKGPATH:Mdevel/pkg-config)
 MAKEFLAGS+=			TOOLS_IGNORE.pkg-config=
 .  elif !empty(_TOOLS_USE_PKGSRC.pkg-config:M[yY][eE][sS])
-TOOLS_DEPENDS.pkg-config?=	{pkg-config>=0.25,pkgconf-[0-9]*}:../../devel/pkg-config
+TOOLS_DEPENDS.pkg-config?=	{pkg-config>=0.25,pkgconf>=1}:../../devel/pkg-config
 TOOLS_CREATE+=			pkg-config
 TOOLS_PATH.pkg-config=		${LOCALBASE}/bin/pkg-config
 .  else
