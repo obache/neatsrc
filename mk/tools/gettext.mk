@@ -68,22 +68,22 @@ _TOOLS_USE_PKGSRC.msgfmt=	yes
 
 _TOOLS_USE_PKGSRC.msgfmt?=	no
 .    if empty(_TOOLS_USE_PKGSRC.msgfmt:M[Yy][Ee][Ss]) && \
-	defined(GETTEXT_TOOLS_REQD) && \
 	defined(TOOLS_PLATFORM.msgfmt) && !empty(TOOLS_PLATFORM.msgfmt)
-
 _TOOLS_VERSION.msgfmt!=		${TOOLS_PLATFORM.msgfmt} --version |	\
 				${AWK} '{ print $$4; exit }'
+.      if defined(GETTEXT_TOOLS_REQD)
 _TOOLS_PKG.gettext-tools=	gettext-tools-${_TOOLS_VERSION.msgfmt}
-.      for _dep_ in ${_TOOLS_DEP.gettext-tools}
-.        if !empty(_TOOLS_USE_PKGSRC.msgfmt:M[nN][oO])
+.        for _dep_ in ${_TOOLS_DEP.gettext-tools}
+.          if !empty(_TOOLS_USE_PKGSRC.msgfmt:M[nN][oO])
 _TOOLS_USE_PKGSRC.msgfmt!=						\
 	if ${PKG_ADMIN} pmatch ${_dep_:Q} ${_TOOLS_PKG.gettext-tools:Q}; then \
 		${ECHO} no;						\
 	else								\
 		${ECHO} yes;						\
 	fi
-.        endif
-.      endfor
+.          endif
+.        endfor
+.      endif
 .    endif
 
 .    if empty(_TOOLS_USE_PKGSRC.msgfmt:M[Yy][Ee][Ss])
