@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.328 2016/08/08 23:52:45 wen Exp $
+# $NetBSD: Makefile,v 1.331 2016/08/20 07:15:18 wiz Exp $
 
 COMMENT=	Mathematics
 
@@ -250,6 +250,7 @@ SUBDIR+=	py-intervals
 SUBDIR+=	py-mpmath
 SUBDIR+=	py-munkres
 SUBDIR+=	py-networkx
+SUBDIR+=	py-noise
 SUBDIR+=	py-numarray
 SUBDIR+=	py-numexpr
 SUBDIR+=	py-numpy
@@ -271,6 +272,7 @@ SUBDIR+=	qalculate-units
 SUBDIR+=	qhull
 SUBDIR+=	quadpack
 SUBDIR+=	randlib
+SUBDIR+=	ranger
 SUBDIR+=	ruby-gsl
 SUBDIR+=	ruby-narray
 SUBDIR+=	ruby-roo
@@ -296,6 +298,7 @@ SUBDIR+=	tochnog
 SUBDIR+=	udunits
 SUBDIR+=	units
 SUBDIR+=	vista
+SUBDIR+=	vowpal_wabbit
 SUBDIR+=	wxmaxima
 SUBDIR+=	xeukleides10
 SUBDIR+=	xfractint

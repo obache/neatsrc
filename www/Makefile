@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1186 2016/08/11 22:54:16 jdolecek Exp $
+# $NetBSD: Makefile,v 1.1188 2016/08/21 22:34:51 markd Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -158,6 +158,9 @@ SUBDIR+=	kannel
 SUBDIR+=	kdewebdev3
 SUBDIR+=	kdewebdev4
 SUBDIR+=	kdewebkit
+SUBDIR+=	khtml
+SUBDIR+=	kjs
+SUBDIR+=	kjsembed
 SUBDIR+=	lhs
 SUBDIR+=	libecap
 SUBDIR+=	libghttp
@@ -623,6 +626,7 @@ SUBDIR+=	py-djangocms-teaser
 SUBDIR+=	py-djangocms-text-ckeditor
 SUBDIR+=	py-djangocms-video
 SUBDIR+=	py-djangorestframework
+SUBDIR+=	py-feedgen
 SUBDIR+=	py-feedgenerator
 SUBDIR+=	py-flask
 SUBDIR+=	py-flask-admin

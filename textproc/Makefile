@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.894 2016/08/13 20:21:08 bsiegert Exp $
+# $NetBSD: Makefile,v 1.895 2016/08/20 07:20:07 wiz Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -730,6 +730,7 @@ SUBDIR+=	py-jsonlib3
 SUBDIR+=	py-jsonschema
 SUBDIR+=	py-libxml2
 SUBDIR+=	py-libxslt
+SUBDIR+=	py-loremipsum
 SUBDIR+=	py-lxml
 SUBDIR+=	py-marisa
 SUBDIR+=	py-markdown
