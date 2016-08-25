@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2300 2016/08/21 21:51:39 markd Exp $
+# $NetBSD: Makefile,v 1.2303 2016/08/25 00:02:26 markd Exp $
 #
 
 COMMENT=	Development utilities
@@ -898,6 +898,7 @@ SUBDIR+=	p5-Data-MessagePack
 SUBDIR+=	p5-Data-Munge
 SUBDIR+=	p5-Data-OptList
 SUBDIR+=	p5-Data-Page
+SUBDIR+=	p5-Data-Page-Pageset
 SUBDIR+=	p5-Data-Pageset
 SUBDIR+=	p5-Data-Peek
 SUBDIR+=	p5-Data-Perl
@@ -1066,6 +1067,7 @@ SUBDIR+=	p5-Git-Repository
 SUBDIR+=	p5-Git-Repository-Plugin-AUTOLOAD
 SUBDIR+=	p5-Git-Version-Compare
 SUBDIR+=	p5-Git-Wrapper
+SUBDIR+=	p5-GitLab-API-v3
 SUBDIR+=	p5-Glib-Object-Introspection
 SUBDIR+=	p5-Gnome2
 SUBDIR+=	p5-Gnome2-GConf
@@ -1147,6 +1149,8 @@ SUBDIR+=	p5-Log-Agent
 SUBDIR+=	p5-Log-Any
 SUBDIR+=	p5-Log-Any-Adapter-Dispatch
 SUBDIR+=	p5-Log-Any-Adapter-Log4perl
+SUBDIR+=	p5-Log-Any-Adapter-Screen
+SUBDIR+=	p5-Log-Any-Adapter-TAP
 SUBDIR+=	p5-Log-Dispatch
 SUBDIR+=	p5-Log-Dispatch-Array
 SUBDIR+=	p5-Log-Dispatch-Config
@@ -2221,6 +2225,7 @@ SUBDIR+=	ucl
 SUBDIR+=	ucommon
 SUBDIR+=	ucpp
 SUBDIR+=	umbrello
+SUBDIR+=	undebt
 SUBDIR+=	unidiff
 SUBDIR+=	uno
 SUBDIR+=	userspace-rcu

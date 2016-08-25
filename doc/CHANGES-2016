@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.3530 2016/08/24 06:39:00 wen Exp $
+$NetBSD: CHANGES-2016,v 1.3549 2016/08/25 00:19:31 markd Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -5062,3 +5062,30 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated security/p5-IO-Socket-SSL to 2.037 [wiz 2016-08-24]
 	Updated devel/p5-Sub-Exporter-Progressive to 0.001012 [wiz 2016-08-24]
 	Updated databases/py-bsddb3 to 6.2.1 [wen 2016-08-24]
+	Updated multimedia/mpv to 0.19.0 [maya 2016-08-24]
+	Updated audio/id3 to 1.0.0 [wiz 2016-08-24]
+	Updated audio/musicpd to 0.19.19 [wiz 2016-08-24]
+	Updated audio/libwildmidi to 0.4.0 [wiz 2016-08-24]
+	Updated devel/py-hypothesis to 3.4.2 [wiz 2016-08-24]
+	Updated devel/waf to 1.9.3 [wiz 2016-08-24]
+	Updated fonts/FiraCode to 1.200 [wiz 2016-08-24]
+	Updated fonts/urw-fonts to 2.0 [wiz 2016-08-24]
+	Updated net/mosh to 1.2.6 [wiz 2016-08-24]
+	Updated net/py-twisted to 16.3.2 [wiz 2016-08-24]
+	Updated print/cups-filters to 1.11.1 [wiz 2016-08-24]
+	Updated security/caff to 2.4 [wiz 2016-08-24]
+	Updated sysutils/spice-protocol to 0.12.12 [wiz 2016-08-24]
+	Updated www/py-betamax to 0.8.0 [wiz 2016-08-24]
+	Updated x11/ocaml-lablgtk to 2.18.5 [wiz 2016-08-24]
+	Updated net/youtube-dl to 20160824.1 [fly 2016-08-24]
+	Added devel/undebt version 0.2.2 [wiz 2016-08-24]
+	Added www/p5-HTTP-Thin version 0.006 [markd 2016-08-24]
+	Added www/p5-Role-REST-Client version 0.18 [markd 2016-08-24]
+	Added devel/p5-Log-Any-Adapter-Screen version 0.12 [markd 2016-08-24]
+	Added devel/p5-Log-Any-Adapter-TAP version 0.003003 [markd 2016-08-24]
+	Added devel/p5-GitLab-API-v3 version 1.00 [markd 2016-08-24]
+	Added math/py-autograd version 1.1.5 [markd 2016-08-24]
+	Added devel/p5-Data-Page-Pageset version 1.02 [markd 2016-08-24]
+	Added time/p5-Business-Hours version 0.12 [markd 2016-08-25]
+	Added www/p5-JavaScript-Minifier-XS version 0.11 [markd 2016-08-25]
+	Added www/p5-CSS-Minifier-XS version 0.09 [markd 2016-08-25]

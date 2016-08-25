@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16334 2016/08/24 06:39:00 wen Exp $
+$NetBSD: TODO,v 1.16342 2016/08/24 11:05:47 wiz Exp $
 
 Suggested new packages
 ======================
@@ -355,7 +355,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o CSP-0.34
 	o Chinput-3.0.1
 	o DarwinStreamingServer-6.0.3
-	o FiraCode-1.200
 	o GMT-5.1.1
 	o GNUMail-1.2.2
 	o Gorm-1.2.22
@@ -468,7 +467,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o binutils-2.27
 	o bird-1.5.0
 	o bird6-1.5.0
-	o blas-3.6.0
+	o blas-3.6.1
 	o bliz++-0.10
 	o blur6ex-0.3.462
 	o bmkdep-20140112
@@ -992,7 +991,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o kstart-4.2
 	o ktorrent3-3.3.4
 	o labelnation-1.218
-	o lapack-3.6.0
+	o lapack-3.6.1
 	o latex2html-2015
 	o latexmk-444
 	o lbdb-0.40
@@ -1130,13 +1129,11 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o monodevelop-5.10.1.6
 	o mopher-0.6.0
 	o moserial-2.30.0 [GNOME 2.30]
-	o mosh-1.2.6
 	o mousetweaks-3.12.0 [wip]
 	o mp3splt-2.6.2
 	o mp3splt-gtk-0.9.0
 	o mpdas-0.4.1
 	o mpeg4ip-1.6.1
-	o mpv-0.19.0 [leot]
 	o mserv-devel-0.41
 	o msgpack-1.4.1 [pkg/51083]
 	o multitail-6.4.2
@@ -1181,7 +1178,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o oath-toolkit-2.6.1
 	o objc-3.3.1
 	o ocaml-graphics-4.02.3
-	o ocaml-lablgtk-2.18.5
 	o ocrad-0.25
 	o odbc-postgresql-09.03.0400
 	o olvwm-4.5
@@ -1199,7 +1195,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o openslp-2.0.0
 	o openssh-7.3p1
 	o opera-26
-	o orcus-0.11.2
+	o orcus-0.12.0
 	o oroborus-2.0.18
 	o ortp-0.25.0
 	o oto-0.5
@@ -1359,7 +1355,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-Unidecode-0.04.19
 	o py-acora-1.9
 	o py-apache-libcloud-0.20.1
-	o py-betamax-0.8.0
 	o py-bleach-1.4.2
 	o py-buildbot-0.9.0b5
 	o py-buildbot-slave-0.9.0b5
@@ -1424,7 +1419,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-sybase-0.37
 	o py-tlslite-0.4.6
 	o py-tornado-4.4.1
-	o py-twisted-16.3.2
 	o py-uwsgi-2.0.12
 	o py-wxWidgets-3.0.0
 	o py-yubiauth-0.3.10
@@ -1556,7 +1550,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o sparse-0.5.0
 	o spcaview-20060501
 	o spectrwm-2.7.2
-	o spice-protocol-0.12.12
 	o spidermonkey-1.8.5
 	o spin-645
 	o spl-1.0pre6

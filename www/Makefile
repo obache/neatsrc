@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1188 2016/08/21 22:34:51 markd Exp $
+# $NetBSD: Makefile,v 1.1190 2016/08/25 00:17:04 markd Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -267,6 +267,7 @@ SUBDIR+=	p5-CGI-Session-Serialize-yaml
 SUBDIR+=	p5-CGI-Simple
 SUBDIR+=	p5-CGI-Struct
 SUBDIR+=	p5-CSS
+SUBDIR+=	p5-CSS-Minifier-XS
 SUBDIR+=	p5-CSS-Squish
 SUBDIR+=	p5-CSS-Tiny
 SUBDIR+=	p5-Captcha-reCAPTCHA
@@ -404,12 +405,14 @@ SUBDIR+=	p5-HTTP-Server-Simple-Mason
 SUBDIR+=	p5-HTTP-Server-Simple-PSGI
 SUBDIR+=	p5-HTTP-Server-Simple-Recorder
 SUBDIR+=	p5-HTTP-Server-Simple-Static
+SUBDIR+=	p5-HTTP-Thin
 SUBDIR+=	p5-HTTP-Tiny
 SUBDIR+=	p5-HTTPD-User-Manage
 SUBDIR+=	p5-Handel
 SUBDIR+=	p5-Hijk
 SUBDIR+=	p5-I18N-AcceptLanguage
 SUBDIR+=	p5-JSON-RPC
+SUBDIR+=	p5-JavaScript-Minifier-XS
 SUBDIR+=	p5-JavaScript-Value-Escape
 SUBDIR+=	p5-Jemplate
 SUBDIR+=	p5-Kwiki
@@ -480,6 +483,7 @@ SUBDIR+=	p5-Plack-Test-Agent
 SUBDIR+=	p5-Plack-Test-ExternalServer
 SUBDIR+=	p5-Pod-POM-Web
 SUBDIR+=	p5-Reaction
+SUBDIR+=	p5-Role-REST-Client
 SUBDIR+=	p5-Rose-HTML-Objects
 SUBDIR+=	p5-Rose-HTMLx-Form-Field-Autocomplete
 SUBDIR+=	p5-Rose-HTMLx-Form-Field-Boolean
