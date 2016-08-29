@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2303 2016/08/25 00:02:26 markd Exp $
+# $NetBSD: Makefile,v 1.2305 2016/08/28 15:34:54 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -204,6 +204,7 @@ SUBDIR+=	dolphin-plugins
 SUBDIR+=	dotconf
 SUBDIR+=	doxygen
 SUBDIR+=	doxymacs
+SUBDIR+=	dumpet
 SUBDIR+=	easygit
 SUBDIR+=	eclipse
 SUBDIR+=	ecore
@@ -1911,6 +1912,7 @@ SUBDIR+=	py-singledispatch
 SUBDIR+=	py-speaklater
 SUBDIR+=	py-spwd
 SUBDIR+=	py-stompclient
+SUBDIR+=	py-stsci.distutils
 SUBDIR+=	py-subprocess32
 SUBDIR+=	py-subversion
 SUBDIR+=	py-subvertpy
