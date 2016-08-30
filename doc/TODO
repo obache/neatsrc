@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16352 2016/08/27 15:07:53 wiz Exp $
+$NetBSD: TODO,v 1.16354 2016/08/30 03:26:20 maya Exp $
 
 Suggested new packages
 ======================
@@ -978,7 +978,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o kmymoney2-4.6.1
 	o knights-2.5.0
 	o knock-0.7
-	o knot-resolver-1.0.0
+	o knot-resolver-1.1.1
 	o kodi-16.1
 	o koffice-l10n-de-2.0.2
 	o konversation-1.6
@@ -1322,8 +1322,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o poppass-4.0.14
 	o posh-0.12.6
 	o postal-0.72
-	o postfix-3.0.5
-	o postfix-3.1.1
+	o postfix-3.0.6
+	o postfix-3.1.2
 	o powerdns-3.7.3
 	o powerdns-ldap-3.7.3
 	o powerdns-mysql-3.7.3
@@ -1382,7 +1382,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-markdown-2.6.5
 	o py-matplotlib-1.4.3
 	o py-mccabe-0.4.0
-	o py-metar-0.20
 	o py-mezzanine-4.1.0
 	o py-munkres-1.0.7
 	o py-musicbrainz-0.7.4

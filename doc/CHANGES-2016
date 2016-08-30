@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.3586 2016/08/28 23:24:59 agc Exp $
+$NetBSD: CHANGES-2016,v 1.3593 2016/08/30 04:16:22 jnemeth Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -5126,3 +5126,10 @@ Changes to the packages collection and infrastructure in 2016:
 	Added devel/py-stsci.distutils version 0.3.7 [wiz 2016-08-28]
 	Updated security/netpgpverify to 20160828 [agc 2016-08-28]
 	Updated security/libnetpgpverify to 20160828 [agc 2016-08-28]
+	Updated net/rancid to 3.5.0 [pettai 2016-08-29]
+	Updated www/firefox to 48.0.2 [ryoon 2016-08-29]
+	Updated www/firefox-l10n to 48.0.2 [ryoon 2016-08-29]
+	Updated devel/py-logilab-common to 1.2.0 [darcy 2016-08-29]
+	Updated security/stunnel to 5.35 [jym 2016-08-29]
+	Updated net/py-metar to 0.21 [maya 2016-08-30]
+	Updated finance/gnucash to 2.6.13nb3 [jnemeth 2016-08-30]
