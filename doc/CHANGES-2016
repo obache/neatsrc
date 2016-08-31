@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.3593 2016/08/30 04:16:22 jnemeth Exp $
+$NetBSD: CHANGES-2016,v 1.3603 2016/08/30 15:24:26 schnoebe Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -5133,3 +5133,16 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated security/stunnel to 5.35 [jym 2016-08-29]
 	Updated net/py-metar to 0.21 [maya 2016-08-30]
 	Updated finance/gnucash to 2.6.13nb3 [jnemeth 2016-08-30]
+	Updated devel/libgit2 to 0.24.1 [jperkin 2016-08-30]
+	Removed cad/qcad-manual-cs [plunky 2016-08-30]
+	Removed cad/qcad-manual-de [plunky 2016-08-30]
+	Removed cad/qcad-manual-en [plunky 2016-08-30]
+	Removed cad/qcad-manual-hu [plunky 2016-08-30]
+	Updated cad/qcad to 3.15.5.4 [plunky 2016-08-30]
+	Updated cad/qcad-partlibrary to 20160819 [plunky 2016-08-30]
+	Added www/ap2-encoding version 20021209 [manu 2016-08-30]
+	Updated devel/mantis to 1.3.1 [ryoon 2016-08-30]
+	Added www/ap2-mkdir version 0.3 [manu 2016-08-30]
+	Updated devel/libnet10 to 1.0.2anb3 [he 2016-08-30]
+	Updated graphics/eog3 to 3.20.4 [prlw1 2016-08-30]
+	Updated chat/gloox to 1.0.17 [schnoebe 2016-08-30]

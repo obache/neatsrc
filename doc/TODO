@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16354 2016/08/30 03:26:20 maya Exp $
+$NetBSD: TODO,v 1.16356 2016/08/30 12:39:05 ryoon Exp $
 
 Suggested new packages
 ======================
@@ -1083,7 +1083,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o maketool-0.8.4
 	o makeztxt-1.60
 	o manedit-1.2.1
-	o mantis-1.2.19
 	o mapserver-7.0.1
 	o matchbox-panel-0.9.3
 	o mbuf-20141227
@@ -1417,7 +1416,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-zconfig-3.0.3
 	o pythontidy-1.23
 	o qbzr-0.22.4
-	o qcad-3.15.4.1
 	o qgis-2.14.0
 	o qlandkartegt-1.8.1 [pkg/49910]
 	o qnetwalk-1.4
