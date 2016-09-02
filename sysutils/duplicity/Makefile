@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.37 2016/08/18 11:29:06 mef Exp $
+# $NetBSD: Makefile,v 1.39 2016/09/01 16:18:07 wiz Exp $
 
 DISTNAME=	duplicity-0.7.09
+PKGREVISION=	1
 CATEGORIES=	sysutils net
 MASTER_SITES=	http://code.launchpad.net/duplicity/0.7-series/${PKGVERSION_NOREV}/+download/
 
@@ -19,7 +20,7 @@ DEPENDS+=	${PYPKGPREFIX}-paramiko-[0-9]*:../../security/py-paramiko
 REPLACE_PYTHON+=	bin/duplicity \
 			bin/rdiffdir
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 0.6.22
-EGG_NAME=			${DISTNAME:S/08/8/}
+EGG_NAME=			${DISTNAME:S/09/9/}
 
 SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		pre-configure

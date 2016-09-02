@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.45 2016/08/30 12:37:43 ryoon Exp $
+# $NetBSD: Makefile,v 1.47 2016/09/01 13:22:45 ryoon Exp $
 
 DISTNAME=	mantisbt-1.3.1
+PKGREVISION=	1
 PKGNAME=	${DISTNAME:S/mantisbt/mantis/}
 CATEGORIES=	devel www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=mantisbt/}
@@ -12,6 +13,8 @@ LICENSE=	gnu-gpl-v2
 
 PHP_VERSIONS_ACCEPTED=	55 56
 
+DEPENDS+=	${PHP_PKG_PREFIX}-json-[0-9]*:../../textproc/php-json
+
 NO_BUILD=	YES
 
 USE_TOOLS+=	bash:run pax
@@ -20,7 +23,7 @@ APACHE_USER?=		www
 BUILD_DEFS+=		APACHE_USER
 
 PKG_USERS_VARS+=	APACHE_USER
-MESSAGE_SUBST+=		PKG_SYSCONFDIR=${PKG_SYSCONFDIR:Q}
+MESSAGE_SUBST+=		PKG_SYSCONFDIR=${PKG_SYSCONFDIR}
 
 MANTIS_HOME=		${PREFIX}/share/mantis
 EGDIR=			${PREFIX}/share/examples/mantis
