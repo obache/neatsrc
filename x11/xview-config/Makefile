@@ -10,8 +10,6 @@ OWNER=			dholland@NetBSD.org
 COMMENT=		OpenLook Toolkit config files
 LICENSE=		sun-openlook-license
 
-NO_SRC_ON_FTP=		Already in MASTER_SITE_LOCAL
-
 EXTRACT_ELEMENTS=	${DISTNAME}/config
 
 WRKSRC=			${WRKDIR}/${EXTRACT_ELEMENTS}

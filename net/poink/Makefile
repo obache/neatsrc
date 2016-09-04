@@ -8,8 +8,6 @@ MASTER_SITES=	${MASTER_SITE_LOCAL}
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Nosuid, absolutely secure version of ping utility
 
-NO_SRC_ON_FTP=	Already in MASTER_SITE_LOCAL.
-
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
 LDFLAGS.SunOS+=	-lsocket -lnsl

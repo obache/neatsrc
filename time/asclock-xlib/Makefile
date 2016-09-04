@@ -10,8 +10,6 @@ MASTER_SITES=	${MASTER_SITE_LOCAL}	# www.asclock.org is no more
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Dockable clock and calendar with themes for X11
 
-NO_SRC_ON_FTP=	Already in MASTER_SITE_LOCAL
-
 WRKSRC=		${WRKDIR}/asclock-xlib
 USE_IMAKE=	YES
 

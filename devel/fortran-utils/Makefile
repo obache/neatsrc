@@ -7,8 +7,6 @@ MASTER_SITES=	${MASTER_SITE_LOCAL}
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Utilities for Fortran programmers
 
-NO_SRC_ON_FTP=	Already in MASTER_SITE_LOCAL
-
 WRKSRC=		${WRKDIR}/fortran-utils
 
 USE_BSD_MAKEFILE=	yes

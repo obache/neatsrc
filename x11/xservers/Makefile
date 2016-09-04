@@ -12,8 +12,6 @@ COMMENT=	Old X11 servers for use under XFree86 4.x
 
 ONLY_FOR_PLATFORM=	NetBSD-*-i386
 
-NO_SRC_ON_FTP=	Already in MASTER_SITE_LOCAL.
-
 MAKE_JOBS_SAFE=		no
 
 BUILD_TARGET=	World

@@ -8,7 +8,6 @@ MASTER_SITES=		${MASTER_SITE_LOCAL}
 MAINTAINER=		pkgsrc-users@NetBSD.org
 COMMENT=		Fortran routines for the solution of eigenvalue problems
 
-NO_SRC_ON_FTP=		Already in MASTER_SITE_LOCAL
 USE_LANGUAGES=		fortran77
 WRKSRC=			${WRKDIR}/eispack
 

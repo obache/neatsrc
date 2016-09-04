@@ -10,8 +10,6 @@ EXTRACT_SUFX=	.gz
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Convert MP3 files to various other audio formats
 
-NO_SRC_ON_FTP=	already in MASTER_SITE_LOCAL
-
 DEPENDS+=	mpg123-[0-9]*:../../audio/mpg123
 DEPENDS+=	gmp3info>=0.8.2:../../audio/gmp3info
 DEPENDS+=	sox>=12.17.1:../../audio/sox

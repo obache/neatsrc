@@ -42,8 +42,6 @@ MAINTAINER=		pkgsrc-users@NetBSD.org
 
 PKG_DESTDIR_SUPPORT=	destdir
 
-NO_SRC_ON_FTP=		Already in MASTER_SITE_LOCAL
-
 USE_TOOLS+=	pax
 
 NETBSD_PKG=		yes

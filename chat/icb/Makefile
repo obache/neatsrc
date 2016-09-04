@@ -13,8 +13,6 @@ MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.icb.net/
 COMMENT=		Internet CB - a mostly-defunct chat client
 
-NO_SRC_ON_FTP=		already in MASTER_SITE_LOCAL
-
 INSTALLATION_DIRS=	bin ${ICBLIBDIR} ${EGDIR}
 EGDIR=			${PREFIX}/share/examples/icb
 ICBLIBDIR=		${PREFIX}/libdata/icb

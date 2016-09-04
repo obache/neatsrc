@@ -9,8 +9,6 @@ MASTER_SITES=	${MASTER_SITE_LOCAL}	# www.asclock.org is no more
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	NeXTstep-like clock and calendar
 
-NO_SRC_ON_FTP=	Already in MASTER_SITE_LOCAL
-
 WRKSRC=		${WRKDIR}/asclock1.0
 USE_IMAKE=	YES
 

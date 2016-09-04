@@ -11,8 +11,6 @@ COMMENT=		ICB client for Emacs
 
 INSTALLATION_DIRS=	${EMACS_LISPPREFIX:C|^${PREFIX}/||}/zenicb
 
-NO_SRC_ON_FTP=		Already in MASTER_SITE_LOCAL
-
 .include "../../editors/emacs/modules.mk"
 
 EMACS_VERSIONS_ACCEPTED=	emacs21 emacs21nox emacs20 xemacs214 xemacs215

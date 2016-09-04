@@ -14,7 +14,6 @@ MAKE_JOBS_SAFE=		no
 NOT_FOR_PLATFORM=	*-*-alpha	# it builds but everything segfaults...
 
 LICENSE=		sun-openlook-license
-NO_SRC_ON_FTP=		Already in MASTER_SITE_LOCAL
 
 EXTRACT_ELEMENTS=	${DISTNAME}/clients ${DISTNAME}/images
 

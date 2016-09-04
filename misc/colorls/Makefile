@@ -12,8 +12,6 @@ COMMENT=	Uses color with ls(1) to display file attributes
 USE_FEATURES+=		fts_open
 USE_TOOLS=		nroff
 
-NO_SRC_ON_FTP=		Already in MASTER_SITE_LOCAL
-
 MANCOMPRESSED_IF_MANZ=	yes
 MAKE_ENV+=		BINOWN=${BINOWN:Q} BINGRP=${BINGRP:Q} \
 			MANOWN=${MANOWN:Q} MANGRP=${MANGRP:Q}

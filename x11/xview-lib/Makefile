@@ -14,7 +14,6 @@ MAKE_JOBS_SAFE=		no
 DEPENDS+=		xview-config>=3.2.1nb6:../../x11/xview-config
 
 LICENSE=		sun-openlook-license
-NO_SRC_ON_FTP=		Already in MASTER_SITE_LOCAL
 # builds, but binaries in../xview-clients all crash
 NOT_FOR_PLATFORM=	*-*-alpha
 NOT_FOR_PLATFORM+=	Linux-*-*
