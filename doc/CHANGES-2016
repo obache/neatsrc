@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.3663 2016/09/03 18:19:59 wiz Exp $
+$NetBSD: CHANGES-2016,v 1.3676 2016/09/04 21:34:27 dholland Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -5204,3 +5204,17 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated mail/libetpan to 1.7.2 [nros 2016-09-03]
 	Updated mail/claws-mail to 3.14.0 [nros 2016-09-03]
 	Updated textproc/mdoclint to 1.42 [wiz 2016-09-03]
+	Updated devel/p5-Date-Manip to 6.55 [wiz 2016-09-04]
+	Updated audio/libopenmpt to 0.2.7025 [wiz 2016-09-04]
+	Updated emulators/qemu to 2.7.0 [ryoon 2016-09-04]
+	Updated math/gsl to 2.2.1 [wiz 2016-09-04]
+	Updated net/py-foolscap to 0.12.3 [wiz 2016-09-04]
+	Updated security/py-oauthlib to 2.0.0 [wiz 2016-09-04]
+	Updated devel/py-test to 3.0.2 [wiz 2016-09-04]
+	Updated misc/calibre to 2.66.0 [wiz 2016-09-04]
+	Added archivers/zstd version 1.0.0 [wiz 2016-09-04]
+	Updated lang/gcc48 to 4.8.4nb3 [maya 2016-09-04]
+	Updated devel/imake to 1.0.7nb1 [dholland 2016-09-04]
+	Updated mail/neomutt to 20160827 [wiz 2016-09-04]
+	Updated devel/tradcpp to 0.5.2 [dholland 2016-09-04]
+	Updated devel/imake to 1.0.7nb2 [dholland 2016-09-04]
