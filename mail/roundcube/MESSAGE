@@ -16,6 +16,7 @@ For pkgsrc installations the RoundCube package is installed in
 these locations.
 
 	Log files:		${VARBASE}/log/roundcube/
+	Temp files:		${VARBASE}/tmp/roundcube/
 	Document root:		${PREFIX}/share/roundcube/
 
 You will also need to make RoundCube accessible through your HTTP server.

@@ -90,6 +90,7 @@ SUBST_STAGE.files=	do-configure
 SUBST_MESSAGE.files=	Fixing configuration files.
 SUBST_FILES.files=	roundcube.conf
 SUBST_FILES.files+=	config/config.inc.php.sample
+SUBST_FILES.files+=	config/defaults.inc.php
 SUBST_FILES.files+=	installer/index.php
 SUBST_FILES.files+=	program/include/iniset.php
 SUBST_FILES.files+=	program/lib/Roundcube/rcube_mime.php
