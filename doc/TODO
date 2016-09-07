@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16398 2016/09/05 21:14:52 plunky Exp $
+$NetBSD: TODO,v 1.16400 2016/09/06 14:43:29 fhajny Exp $
 
 Suggested new packages
 ======================
@@ -393,7 +393,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o afterstep-2.2.12
 	o aget-0.4.1
 	o alacarte-0.13.2
-	o alex-3.1.7
 	o allegro-5.10
 	o alsa-lib-1.1.2
 	o alsa-plugins-1.1.0
@@ -711,7 +710,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gcc-5.4
 	o gcc-6.2
 	o gcc48-4.8.5
-	o gcc49-4.9.4
 	o gcin-1.5.5
 	o gcombust-0.1.55
 	o gcompris-15.02
