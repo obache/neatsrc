@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.2 2015/11/03 22:13:35 agc Exp $
 
-SHA1 (ibus-libpinyin-1.7.4.tar.gz) = 94423c6e8776e200ec72013bbff6616fce1f85fb
-RMD160 (ibus-libpinyin-1.7.4.tar.gz) = 23cef21c2368bf030b307e83ea0be2c87b6c9ddd
-SHA512 (ibus-libpinyin-1.7.4.tar.gz) = dcee0c7439bd028a205e8fde14d141b001db3913c32e4ccfc5b9b2ec44e148b20836e74abd8d3e7cd3834dfab3900726fef1b62fe37878d6890315e46b0f448f
-Size (ibus-libpinyin-1.7.4.tar.gz) = 1069979 bytes
+SHA1 (ibus-libpinyin-1.8.0.tar.gz) = be0f6b96aef9adf8870c46b1ba87434019b4ee56
+RMD160 (ibus-libpinyin-1.8.0.tar.gz) = 99b62d55e2592dfd8eb813f325a98a6a2b9a46bb
+SHA512 (ibus-libpinyin-1.8.0.tar.gz) = f7bc88ca8ddeb3237de7ad2390309879584d8ae5b829533b5aacc99c8ea252e1f35d7da79a0d97afe900102bff6b37360d7a41b758b9deda28cacf6d08e4638a
+Size (ibus-libpinyin-1.8.0.tar.gz) = 1071592 bytes
