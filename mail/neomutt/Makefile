@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2016/09/04 20:53:05 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2016/09/09 06:31:29 wiz Exp $
 
 DISTNAME=		neomutt-20160827
+PKGREVISION=		1
 CATEGORIES=		mail
 MASTER_SITES=		${MASTER_SITE_GITHUB:=neomutt/}
 GITHUB_TAG=		${DISTNAME}
@@ -10,7 +11,7 @@ HOMEPAGE=		http://www.neomutt.org/
 COMMENT=		Fork of mutt with integrated community patches
 LICENSE=		gnu-gpl-v2 OR gnu-gpl-v3 # or newer
 
-USE_TOOLS+=		autoconf automake autoreconf
+USE_TOOLS+=		autoconf automake autoreconf msgfmt
 
 SPECIAL_PERMS+=		bin/mutt_dotlock ${REAL_ROOT_USER} mail 2551
 GNU_CONFIGURE=		yes

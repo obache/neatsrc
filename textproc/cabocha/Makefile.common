@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.10 2016/07/26 13:38:02 mef Exp $
+# $NetBSD: Makefile.common,v 1.11 2016/09/09 02:13:59 taca Exp $
 # used by textproc/cabocha/Makefile
 # used by textproc/p5-cabocha/Makefile
 # used by textproc/py-cabocha/Makefile

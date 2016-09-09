@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.30 2015/07/09 11:44:09 jperkin Exp $
+# $NetBSD: Makefile,v 1.31 2016/09/08 14:41:36 jperkin Exp $
 
 DISTNAME=	ls
 PKGNAME=	colorls-2.2
