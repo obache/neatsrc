@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.30 2016/09/05 21:13:21 plunky Exp $
+# $NetBSD: Makefile,v 1.33 2016/09/09 20:07:23 plunky Exp $
 #
 
 DISTNAME=	LibreCAD-2.1.1
@@ -14,7 +14,7 @@ LICENSE=	gnu-gpl-v2
 EXTRACT_USING=	bsdtar
 
 USE_LANGUAGES=	c c++
-USE_TOOLS+=	pax
+USE_TOOLS+=	pax pkg-config
 USE_LIBTOOL=	yes
 
 SUBST_CLASSES+=		qtdir
@@ -31,6 +31,10 @@ SUBST_VARS.prefix+=	PREFIX
 
 AUTO_MKDIRS=	yes
 
+#
+# We disable long double math functions, because otherwise one of
+# the boost headers brings in a log1pl() function which was not
+# present (in NetBSD 7) causing compilation failure
 #
 # We configure the plugins directory separately so that we can use
 # make install below, which handles the libtooling of the shared
@@ -62,6 +66,7 @@ do-install:
 
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
+.include "../../graphics/freetype2/buildlink3.mk"
 .include "../../math/muparser/buildlink3.mk"
 .include "../../x11/qt4-libs/buildlink3.mk"
 BUILDLINK_DEPMETHOD.qt4-tools=	full
