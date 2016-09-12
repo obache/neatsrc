@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2305 2016/08/28 15:34:54 wiz Exp $
+# $NetBSD: Makefile,v 1.2307 2016/09/11 08:15:43 bsiegert Exp $
 #
 
 COMMENT=	Development utilities
@@ -296,10 +296,12 @@ SUBDIR+=	gnustep-objc
 SUBDIR+=	gnustep-objc-lf2
 SUBDIR+=	go-check
 SUBDIR+=	go-flags-svent
+SUBDIR+=	go-glog
 SUBDIR+=	go-gls
 SUBDIR+=	go-ini
 SUBDIR+=	go-mow-cli
 SUBDIR+=	go-nbreader
+SUBDIR+=	go-protobuf
 SUBDIR+=	go-ratelimit
 SUBDIR+=	go-review
 SUBDIR+=	go-termbox

@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.3735 2016/09/10 22:14:42 abs Exp $
+$NetBSD: CHANGES-2016,v 1.3745 2016/09/11 17:12:38 taca Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -5291,3 +5291,13 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated devel/rebar to 2.6.3 [fhajny 2016-09-10]
 	Updated databases/py-peewee to 2.8.3 [fhajny 2016-09-10]
 	Updated net/syncthing to 0.14.6 [abs 2016-09-10]
+	Updated net/6tunnel to 0.11 [mef 2016-09-11]
+	Updated devel/pcre2 to 10.22 [mef 2016-09-11]
+	Updated graphics/ansilove to 3.0.4 [kamil 2016-09-11]
+	Updated print/py-reportlab to 3.3.0 [richard 2016-09-11]
+	Updated www/trac to 1.0.13 [gdt 2016-09-11]
+	Updated textproc/groonga to 6.0.8 [taca 2016-09-11]
+	Removed print/py-pisa successor print/py-weasyprint [wiz 2016-09-11]
+	Removed meta-pkgs/php55-extensions [taca 2016-09-11]
+	Removed lang/php55 [taca 2016-09-11]
+	Updated meta-pkgs/bulk-medium to 20160911 [taca 2016-09-11]

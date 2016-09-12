@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.29 2016/03/29 21:59:21 joerg Exp $
+@comment $NetBSD: PLIST,v 1.30 2016/09/11 16:06:53 taca Exp $
 bin/groonga
 bin/groonga-benchmark
 bin/groonga-suggest-create-dataset
@@ -54,7 +54,7 @@ ${PLIST.mecab}lib/groonga/plugins/tokenizers/mecab.la
 lib/libgroonga.la
 lib/pkgconfig/groonga.pc
 ${PLIST.httpd}sbin/groonga-httpd
-sbin/groonga-httpd-restart
+${PLIST.httpd}sbin/groonga-httpd-restart
 share/doc/groonga/en/html/.buildinfo
 share/doc/groonga/en/html/_images/geo-points.png
 share/doc/groonga/en/html/_images/used-when-indexing.png
@@ -1075,21 +1075,16 @@ share/doc/groonga/ja/html/tutorial/query_expansion.html
 share/doc/groonga/ja/html/tutorial/search.html
 share/examples/groonga/groonga.conf
 ${PLIST.httpd}share/examples/groonga/httpd/fastcgi.conf
-${PLIST.httpd}share/examples/groonga/httpd/fastcgi.conf.default
 ${PLIST.httpd}share/examples/groonga/httpd/fastcgi_params
-${PLIST.httpd}share/examples/groonga/httpd/fastcgi_params.default
 share/examples/groonga/httpd/groonga-httpd.conf
 ${PLIST.httpd}share/examples/groonga/httpd/html/50x.html
 ${PLIST.httpd}share/examples/groonga/httpd/html/index.html
 ${PLIST.httpd}share/examples/groonga/httpd/koi-utf
 ${PLIST.httpd}share/examples/groonga/httpd/koi-win
 ${PLIST.httpd}share/examples/groonga/httpd/mime.types
-${PLIST.httpd}share/examples/groonga/httpd/mime.types.default
-${PLIST.httpd}share/examples/groonga/httpd/nginx.conf.default
+${PLIST.httpd}share/examples/groonga/httpd/nginx.conf
 ${PLIST.httpd}share/examples/groonga/httpd/scgi_params
-${PLIST.httpd}share/examples/groonga/httpd/scgi_params.default
 ${PLIST.httpd}share/examples/groonga/httpd/uwsgi_params
-${PLIST.httpd}share/examples/groonga/httpd/uwsgi_params.default
 ${PLIST.httpd}share/examples/groonga/httpd/win-utf
 share/examples/groonga/synonyms.tsv
 share/groonga/examples/dictionary/edict/edict-import.sh
