@@ -73,7 +73,7 @@ DEPENDS+=	${PHP_PKG_PREFIX}-pear-Net_LDAP3-[0-9]*:../../net/pear-Net_LDAP3
 ###
 ### Use sockets, required by managesieve and password plugins.
 ###
-.if !empty(PKG_OPTIONS:Msockets)
+.if !empty(PKG_OPTIONS:Mphp-sockets)
 DEPENDS+=	${PHP_PKG_PREFIX}-sockets>=4.3.1:../../net/php-sockets
 .endif
 
