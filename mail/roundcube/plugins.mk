@@ -4,7 +4,7 @@
 # plugin's PKGNAME
 PKGNAME=	${PHP_PKG_PREFIX}-roundcube-plugin-${PLUGIN}-${RC_VERS}
 
-DEPENDS+=	${PHP_PKG_PREFIX}-roundcube>=${VERS}:../../mail/roundcube
+DEPENDS+=	${PHP_PKG_PREFIX}-roundcube>=${RC_VERS}:../../mail/roundcube
 
 #
 # a few parameters
