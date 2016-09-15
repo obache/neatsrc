@@ -34,7 +34,6 @@ FILES_SUBST+=		RCDIR="${PREFIX}/${RCDIR}"
 INSTALLATION_DIRS+=	${EGDIR}/plugins/${d}
 .endfor
 
-.include "../../mail/roundcube/options.mk"
 .include "../../lang/php/phpversion.mk"
 
 post-install:

@@ -103,5 +103,6 @@ do-install:
 		${DESTDIR}${PREFIX}/${EGDIR}/defaults.inc.php
 
 .include "Makefile.common"
+.include "options.mk"
 .include "../../lang/php/phpversion.mk"
 .include "../../mk/bsd.pkg.mk"
