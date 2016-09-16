@@ -17,7 +17,6 @@ BUILD_DEPENDS+= html2text>=0:../../textproc/html2text
 
 USE_TOOLS+=	perl pod2man
 USE_TOOLS+=	gmake
-USE_PKGINSTALL=	YES
 
 WRKSRC=		${WRKDIR}/${DISTNAME:S:_:-:}
 
