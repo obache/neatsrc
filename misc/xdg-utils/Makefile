@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.9 2016/06/13 21:40:22 youri Exp $
+# $NetBSD: Makefile,v 1.10 2016/09/15 16:16:52 richard Exp $
 
 DISTNAME=	xdg-utils-1.1.1
 PKGNAME=	${DISTNAME:S/-rc/rc/}
+PKGREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	http://portland.freedesktop.org/download/
 
@@ -15,13 +16,14 @@ TOOL_DEPENDS+=	{lynx-[0-9]*,w3m-[0-9]*,links-[0-9]*}:../../www/lynx
 
 GNU_CONFIGURE=	yes
 USE_LANGUAGES=	# none
-USE_TOOLS+=	bash:run gmake gsed:run
+USE_TOOLS+=	bash:run gmake grep:run gsed:run
 
 SUBST_CLASSES+=		gsed
 SUBST_FILES.gsed=	scripts/xdg-*.in
 SUBST_STAGE.gsed=	pre-configure
-SUBST_MESSAGE.gsed=	Use GNU sed instead of sed.
+SUBST_MESSAGE.gsed=	Use GNU grep/sed instead of grep/sed.
 SUBST_SED.gsed+=	-e "s, sed , ${TOOLS_PATH.gsed} ,g"
+SUBST_SED.gsed+=	-e "s, grep , ${TOOLS_PATH.grep} ,g"
 SUBST_SED.gsed+=	-e "s,|sed ,|${TOOLS_PATH.gsed} ,g"
 
 SUBST_CLASSES+=		xdgdir
@@ -37,5 +39,7 @@ REPLACE_BASH+=	scripts/xdg-*.in
 REPLACE_BASH+=	tests/testrun
 
 TEST_TARGET=	test
+
+TOOLS_INCOMPAT_PLATFORMS.grep+=	SunOS-*-*
 
 .include "../../mk/bsd.pkg.mk"
