@@ -1004,12 +1004,8 @@ _INSTALL_DATA_TMPL+=		${_INSTALL_ICON_THEMES_DATAFILE}
 # Icon theme cache will be used either GTK+2 or GTK3+ applications.
 # list their update-icon-cache tools.
 #
-.if !empty(ICON_THEMES:M[Yy][Ee][Ss])
-TOOLS_FIND_PREFIX+=	BUILDLINK_PREFIX.gtk2=gtk2+
-TOOLS_FIND_PREFIX+=	BUILDLINK_PREFIX.gtk3=gtk3+
-FILES_SUBST+=		GTK2_UPDATE_ICON_CACHE=${BUILDLINK_PREFIX.gtk2:Q}/bin/gtk2-update-icon-cache
-FILES_SUBST+=		GTK3_UPDATE_ICON_CACHE=${BUILDLINK_PREFIX.gtk3:Q}/bin/gtk-update-icon-cache
-.endif
+FILES_SUBST+=		GTK2_UPDATE_ICON_CACHE=${LOCALBASE:Q}/bin/gtk2-update-icon-cache
+FILES_SUBST+=		GTK3_UPDATE_ICON_CACHE=${LOCALBASE:Q}/bin/gtk-update-icon-cache
 
 ${_INSTALL_ICON_THEMES_DATAFILE}:
 	${RUN}${MKDIR} ${.TARGET:H}
