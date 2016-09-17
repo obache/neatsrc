@@ -183,6 +183,7 @@ _INSTALL_ALL_TARGETS+=		install-script-data
 .if empty(CHECK_FILES:M[nN][oO]) && !empty(CHECK_FILES_SUPPORTED:M[Yy][Ee][Ss])
 _INSTALL_ALL_TARGETS+=		check-files-post
 .endif
+_INSTALL_ALL_TARGETS+=		pkginstall
 _INSTALL_ALL_TARGETS+=		_pkgformat-generate-metadata
 _INSTALL_ALL_TARGETS+=		privileged-install-hook
 _INSTALL_ALL_TARGETS+=		error-check
