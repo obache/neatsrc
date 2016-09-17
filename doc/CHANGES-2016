@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.3844 2016/09/17 02:06:22 mef Exp $
+$NetBSD: CHANGES-2016,v 1.3849 2016/09/17 04:06:17 mef Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -5420,3 +5420,13 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated devel/libwnck3 to 3.20.1 [prlw1 2016-09-16]
 	Updated devel/p5-Log-Any to 1.04.2 [mef 2016-09-17]
 	Updated devel/p5-Package-DeprecationManager to 0.17 [mef 2016-09-17]
+	Added databases/p5-Net-FileMaker version 0.064 [mef 2016-09-17]
+	Added time/p5-DateTime-Incomplete version 0.08 [mef 2016-09-17]
+	Added time/p5-DateTime-Format-CLDR version 1.17 [mef 2016-09-17]
+	Updated www/p5-CGI to 4.33 [mef 2016-09-17]
+	Updated www/p5-App-Nopaste to 1.007 [mef 2016-09-17]
+	Updated devel/afl to 2.34b [mef 2016-09-17]
+	Updated devel/p5-Class-C3 to 0.32 [mef 2016-09-17]
+	Updated devel/p5-Check-ISA to 0.09 [mef 2016-09-17]
+	Updated devel/p5-File-Find-Object to 0.3.0 [mef 2016-09-17]
+	Updated devel/p5-IO-Interactive to 1.022 [mef 2016-09-17]
