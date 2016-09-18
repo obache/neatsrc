@@ -26,7 +26,7 @@ _WRAP_EXTRA_ARGS.CC+=	-Wno-error=parentheses-equality -Wno-error=tautological-co
 CWRAPPERS_APPEND.cc+=	-Wno-error=parentheses-equality -Wno-error=tautological-compare
 .endif
 
-.include "../../databases/shared-mime-info/buildlink3.mk"
+.include "../../databases/shared-mime-info/mimedb.mk"
 .include "../../ham/hamlib/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../print/libgnomeprint/buildlink3.mk"
