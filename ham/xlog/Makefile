@@ -30,6 +30,5 @@ CWRAPPERS_APPEND.cc+=	-Wno-error=parentheses-equality -Wno-error=tautological-co
 .include "../../ham/hamlib/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../print/libgnomeprint/buildlink3.mk"
-.include "../../sysutils/desktop-file-utils/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -17,6 +17,7 @@ FILES_SUBST+=		UPDATE_DESKTOPDB="${BUILDLINK_PREFIX.desktop-file-utils}/bin/upda
 
 PRINT_PLIST_AWK+=	/^share\/applications\/mimeinfo.cache$$/ { next }
 
-.include "../../sysutils/desktop-file-utils/buildlink3.mk"
+TOOLS_NOOP+=		update-desktop-database
+DEPENDS+=		desktop-file-utils-[0-9]*:../../sysutils/desktop-file-utils
 
 .endif	# DESKTOP_FILE_UTILS_MIMEDB_MK
