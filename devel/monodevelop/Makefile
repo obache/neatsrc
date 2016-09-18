@@ -47,6 +47,7 @@ SUBST_FILES.fix-mcs=	configure
 SUBST_SED.fix-mcs=	-e 's,gmcs,mcs,'
 
 CONFIGURE_ARGS+=	--disable-update-mimedb
+CONFIGURE_ARGS+=	--disable-update-desktopdb
 
 .include "../../databases/shared-mime-info/mimedb.mk"
 .include "../../devel/mono-addins/buildlink3.mk"
