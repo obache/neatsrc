@@ -37,9 +37,7 @@ CHECK_FILES?=		no
 CHECK_FILES_STRICT?=	no
 
 # Info index files updated when a new info file is added.
-.if defined(INFO_FILES)
 CHECK_FILES_SKIP+=	${PREFIX}/.*/dir
-.endif
 
 # Perl's perllocal.pod index that is regenerated when a local module
 # is added.
@@ -83,24 +81,13 @@ CHECK_FILES_SKIP+=	${d:C/^([^\/])/${PREFIX}\/\1/}.*
 .endfor
 
 # Mutable X11 font database files
-.if (defined(FONTS_DIRS.x11) && !empty(FONTS_DIRS.x11:M*))
 CHECK_FILES_SKIP+=	${PREFIX}/.*/encodings.dir
 CHECK_FILES_SKIP+=	${PREFIX}/.*/fonts.dir
-.endif
-.if (defined(FONTS_DIRS.ttf) && !empty(FONTS_DIRS.ttf:M*)) || \
-    (defined(FONTS_DIRS.type1) && !empty(FONTS_DIRS.type1:M*))
 CHECK_FILES_SKIP+=	${PREFIX}/.*/fonts.scale
-.endif
-.if (defined(FONTS_DIRS.ttf) && !empty(FONTS_DIRS.ttf:M*)) || \
-    (defined(FONTS_DIRS.type1) && !empty(FONTS_DIRS.type1:M*)) || \
-    (defined(FONTS_DIRS.x11) && !empty(FONTS_DIRS.x11:M*))
 CHECK_FILES_SKIP+=	${PREFIX}/.*/fonts.cache-1
-.endif
 
 # Mutable icon theme cahce files
-.if !empty(ICON_THEMES:M[Yy][Ee][Ss])
 CHECK_FILES_SKIP+=	${PREFIX}/share/icons/.*/icon-theme.cache
-.endif
 
 # Mutable charset.alias file
 CHECK_FILES_SKIP+=	${PREFIX}/lib/charset.alias
