@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2311 2016/09/17 06:15:40 mef Exp $
+# $NetBSD: Makefile,v 1.2316 2016/09/19 00:29:36 kamil Exp $
 #
 
 COMMENT=	Development utilities
@@ -605,6 +605,7 @@ SUBDIR+=	libxenserver
 SUBDIR+=	libzen
 SUBDIR+=	libzookeeper
 SUBDIR+=	lincvs
+SUBDIR+=	linenoise
 SUBDIR+=	lldb
 SUBDIR+=	lmdbg
 SUBDIR+=	locktests
@@ -1337,6 +1338,7 @@ SUBDIR+=	p5-Params-Classify
 SUBDIR+=	p5-Params-Coerce
 SUBDIR+=	p5-Params-Util
 SUBDIR+=	p5-Params-Validate
+SUBDIR+=	p5-Params-ValidationCompiler
 SUBDIR+=	p5-Parse-CPAN-Meta
 SUBDIR+=	p5-Parse-CPAN-Packages
 SUBDIR+=	p5-Parse-ErrorString-Perl
@@ -1427,6 +1429,7 @@ SUBDIR+=	p5-Software-License
 SUBDIR+=	p5-Sort-Maker
 SUBDIR+=	p5-Sort-Naturally
 SUBDIR+=	p5-Sort-Versions
+SUBDIR+=	p5-Specio
 SUBDIR+=	p5-Spiffy
 SUBDIR+=	p5-Spoon
 SUBDIR+=	p5-Storable
@@ -1764,6 +1767,7 @@ SUBDIR+=	py-distribute
 SUBDIR+=	py-docopt
 SUBDIR+=	py-doctor
 SUBDIR+=	py-dulwich
+SUBDIR+=	py-enum
 SUBDIR+=	py-enum34
 SUBDIR+=	py-expect
 SUBDIR+=	py-extras
@@ -2213,6 +2217,7 @@ SUBDIR+=	tex-xifthen
 SUBDIR+=	tex-xifthen-doc
 SUBDIR+=	threadweaver
 SUBDIR+=	tig
+SUBDIR+=	tinycthread
 SUBDIR+=	tkcvs
 SUBDIR+=	tkdiff
 SUBDIR+=	tla

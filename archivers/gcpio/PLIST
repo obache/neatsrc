@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.15 2016/05/31 14:05:46 mef Exp $
+@comment $NetBSD: PLIST,v 1.16 2016/09/18 11:20:14 wiz Exp $
 bin/gcpio
 gnu/bin/cpio
 gnu/man/man1/cpio.1

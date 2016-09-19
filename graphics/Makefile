@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.749 2016/08/17 13:40:14 richard Exp $
+# $NetBSD: Makefile,v 1.751 2016/09/18 23:36:33 kamil Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -25,6 +25,7 @@ SUBDIR+=	SDL2_image
 SUBDIR+=	SDL_image
 SUBDIR+=	TiffIO
 SUBDIR+=	aalib
+SUBDIR+=	adaptagrams
 SUBDIR+=	adwaita-icon-theme
 SUBDIR+=	agg
 SUBDIR+=	ansilove
@@ -344,6 +345,7 @@ SUBDIR+=	netpbm
 SUBDIR+=	ns-cult3d
 SUBDIR+=	numix-icon-theme
 SUBDIR+=	numix-icon-theme-circle
+SUBDIR+=	nvidia-texture-tools
 SUBDIR+=	nvtv
 SUBDIR+=	ocrad
 SUBDIR+=	opencsg
