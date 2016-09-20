@@ -1,0 +1,81 @@
+$NetBSD: patch-unix_xserver118.patch,v 1.1 2016/09/19 09:37:06 wiz Exp $
+
+--- unix/xserver118.patch.orig	2016-09-08 10:31:18.000000000 +0000
++++ unix/xserver118.patch
+@@ -65,7 +65,7 @@ diff -ur xorg-server.orig/mi/miinitext.c
+  #include "globals.h"
+  
+ +#ifdef TIGERVNC
+-+extern void vncExtensionInit(INITARGS);
+++extern void vncExtensionInit(void);
+ +#endif
+ +
+  /* The following is only a small first step towards run-time
+@@ -84,7 +84,24 @@ diff -ur xorg-server.orig/mi/miinitext.c
+ diff -ur xorg-server.orig/os/WaitFor.c xorg-server/os/WaitFor.c
+ --- xorg-server.orig/os/WaitFor.c	2016-04-09 21:28:27.071999965 +0200
+ +++ xorg-server/os/WaitFor.c	2016-04-09 21:28:57.587999860 +0200
+-@@ -125,6 +125,9 @@
++@@ -52,6 +52,8 @@
++  *
++  *****************************************************************/
++ 
+++#include <X11/Xpoll.h>
+++
++ #ifdef HAVE_DIX_CONFIG_H
++ #include <dix-config.h>
++ #endif
++@@ -66,7 +68,6 @@
++ #include "misc.h"
++ 
++ #include "osdep.h"
++-#include <X11/Xpoll.h>
++ #include "dixstruct.h"
++ #include "opaque.h"
++ #ifdef DPMSExtension
++@@ -125,6 +126,9 @@
+  static void CheckAllTimers(void);
+  static volatile OsTimerPtr timers = NULL;
+  
+@@ -134,3 +151,41 @@ diff -ur xorg-server.orig/os/WaitFor.c x
+          if (i <= 0) {           /* An error or timeout occurred */
+              if (dispatchException)
+                  return 0;
++--- xorg-server.orig/os/connection.c.orig	2015-07-22 08:50:52.000000000 +1200
+++++ xorg-server/os/connection.c	2015-07-22 08:54:35.000000000 +1200
++@@ -60,6 +60,8 @@
++  *
++  *****************************************************************/
++ 
+++#include <X11/Xpoll.h>
+++
++ #ifdef HAVE_DIX_CONFIG_H
++ #include <dix-config.h>
++ #endif
++@@ -103,7 +105,6 @@
++ #endif                          /* WIN32 */
++ #include "misc.h"               /* for typedef of pointer */
++ #include "osdep.h"
++-#include <X11/Xpoll.h>
++ #include "opaque.h"
++ #include "dixstruct.h"
++ #include "xace.h"
++--- xorg-server.orig/os/io.c.orig	2015-07-22 08:50:52.000000000 +1200
+++++ xorg-server/os/io.c	2015-07-22 08:55:03.000000000 +1200
++@@ -51,6 +51,8 @@
++  *
++  *****************************************************************/
++ 
+++#include <X11/Xpoll.h>
+++
++ #ifdef HAVE_DIX_CONFIG_H
++ #include <dix-config.h>
++ #endif
++@@ -74,7 +76,6 @@
++ #include <X11/Xproto.h>
++ #include "os.h"
++ #include "osdep.h"
++-#include <X11/Xpoll.h>
++ #include "opaque.h"
++ #include "dixstruct.h"
++ #include "misc.h"
