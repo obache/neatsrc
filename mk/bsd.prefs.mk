@@ -451,12 +451,12 @@ _MAKE_CLEAN_AS_ROOT=	no
 _MAKE_INSTALL_AS_ROOT=	no
 .  endif
 
-# controls whether binary packages are preserved in pkgsrc/packages/All
+# controls whether binary packages are created in pkgsrc/packages/All
 # default is no (to preserve settings since 2013/05/23, prior to that it
 # was yes)
-_KEEP_BIN_PKGS?= no
-.if !empty(PKGSRC_KEEP_BIN_PKGS:U:M[Yy][Ee][Ss])
-_KEEP_BIN_PKGS=	yes
+_CREATE_BIN_PKGS?=	no
+.if !empty(PKGSRC_CREATE_BIN_PKGS:U:M[Yy][Ee][Ss])
+_CREATE_BIN_PKGS=	yes
 .endif
 
 _MAKE_CLEAN_AS_ROOT?=	no

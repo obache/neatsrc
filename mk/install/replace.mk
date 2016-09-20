@@ -22,13 +22,12 @@
 # _pkgformat-destdir-undo-replace:
 #	Undoes a previous "make _pkgformat-destdir-replace".
 
-.if ${_KEEP_BIN_PKGS} == "no"
-_REPLACE_TARGETS+=	stage-package-create
-.else
-_REPLACE_TARGETS+=	package
+_PRE_REPLACE_TARGETS+=	stage-package-create
+_PRE_REPLACE_TARGETS+=	replace-message
+_PRE_REPLACE_TARGETS+=	unprivileged-install-hook
+.if ${_CREATE_BIN_PKGS} == "yes"
+_POST_REPLACE_TARGETS+=	package
 .endif
-_REPLACE_TARGETS+=	replace-message
-_REPLACE_TARGETS+=	unprivileged-install-hook
 
 #
 # replace
@@ -36,7 +35,7 @@ _REPLACE_TARGETS+=	unprivileged-install-hook
 
 .PHONY: replace
 .if defined(_PKGSRC_BARRIER)
-replace: ${_REPLACE_TARGETS} su-target
+replace: ${_PRE_REPLACE_TARGETS} su-target ${_POST_REPLACE_TARGETS}
 .else
 replace: barrier
 .endif
