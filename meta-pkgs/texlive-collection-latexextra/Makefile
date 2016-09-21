@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.20 2016/09/19 14:36:55 wiz Exp $
+# $NetBSD: Makefile,v 1.22 2016/09/20 13:49:20 markd Exp $
 
 DISTNAME=	collection-latexextra
-PKGNAME=	texlive-${DISTNAME}-2016pre3
+PKGNAME=	texlive-${DISTNAME}-2016pre4
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
 TEXLIVE_REV=	41662
@@ -207,7 +207,7 @@ DEPENDS+=	tex-csquotes-[0-9]*:../../print/tex-csquotes
 # depend csvsimple
 DEPENDS+=	tex-cuisine-[0-9]*:../../print/tex-cuisine
 # depend currfile
-# depend currvita
+DEPENDS+=	tex-currvita-[0-9]*:../../print/tex-currvita
 # depend cutwin
 # depend cv
 # depend cv4tw
@@ -584,7 +584,7 @@ DEPENDS+=	tex-listing-[0-9]*:../../print/tex-listing
 DEPENDS+=	tex-lkproof-[0-9]*:../../print/tex-lkproof
 # depend lmake
 # depend locality
-# depend localloc
+DEPENDS+=	tex-localloc-[0-9]*:../../print/tex-localloc
 # depend logbox
 # depend logical-markup-utils
 # depend logpap
