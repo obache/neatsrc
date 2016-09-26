@@ -46,6 +46,7 @@ _PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^.*\/fonts\.cache-1/)
 .if defined(ICON_THEMES)
 _PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^share\/icons\/*\/icon-theme\.cache$$/)
 .endif
+_PRINT_PLIST_AWK_IGNORE+=	${PRINT_PLIST_AWK_IGNORE}
 
 # List the content of $PREFIX and emit "@pkgdir " statements for
 # empty directories.
