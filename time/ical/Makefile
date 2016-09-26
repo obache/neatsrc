@@ -20,8 +20,6 @@ CPPFLAGS+=	-DUSE_INTERP_RESULT
 
 USE_TOOLS+=	gmake gsed
 
-PLIST_SUBST+=	PKGVERSION=${PKGVERSION_NOREV}
-
 post-configure:
 	${TOUCH} ${WRKDIR}/${DISTNAME}/Makefile \
 	         ${WRKDIR}/${DISTNAME}/calendar/Makefile \
