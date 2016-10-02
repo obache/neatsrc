@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.64 2016/09/25 20:21:25 wiz Exp $
+# $NetBSD: Makefile,v 1.66 2016/10/02 08:20:24 maya Exp $
 
-DISTNAME=	mame-0.177
+DISTNAME=	mame-0.178
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mamedev/}
 GITHUB_TAG=	${DISTNAME:S/-//S/.//}
@@ -19,7 +19,6 @@ INSTALLATION_DIRS+=	${SHAREDIR}/artwork/bgfx/chains/crt-geom ${SHAREDIR}/hash
 DEPENDS+=		liberation-ttf-[0-9]*:../../fonts/liberation-ttf
 
 USE_LANGUAGES=		c99 c++
-# 4.9 is enough, but doesn't build with SSP support on NetBSD
 GCC_REQD+=		5.3
 USE_TOOLS+=		bsdtar gmake pkg-config
 UNLIMIT_RESOURCES+=	datasize

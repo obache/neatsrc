@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.4050 2016/10/01 07:47:14 wiz Exp $
+$NetBSD: CHANGES-2016,v 1.4070 2016/10/02 10:17:24 fhajny Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -5676,3 +5676,26 @@ Changes to the packages collection and infrastructure in 2016:
 	Added net/httpstat version 1.2.0 [agc 2016-09-30]
 	Updated pkgtools/pkglint to 5.4.9.1 [reed 2016-09-30]
 	Updated graphics/freeglut to 3.0.0 [wiz 2016-10-01]
+	Updated devel/pcre2 to 10.22nb1 [wiz 2016-10-01]
+	Updated databases/py-mysql-connector to 2.2.1 [adam 2016-10-01]
+	Updated net/miniupnpd to 2.0 [adam 2016-10-01]
+	Updated devel/p5-Moose to 2.1806 [wen 2016-10-01]
+	Added www/p5-WWW-Form-UrlEncoded version 0.23 [wen 2016-10-01]
+	Added www/p5-HTTP-MultiPartParser version 0.01 [wen 2016-10-01]
+	Updated devel/p5-Params-ValidationCompiler to 0.13nb1 [wiz 2016-10-01]
+	Added www/p5-HTTP-Entity-Parser version 0.17 [wen 2016-10-01]
+	Updated emulators/qemu0 to qemu-0.15.1nb18 [kamil 2016-10-01]
+	Updated www/py-gunicorn to 19.6.0 [wen 2016-10-01]
+	Updated emulators/mame to 0.178 [wiz 2016-10-01]
+	Added pkgtools/plist-utils version 20160731 [kamil 2016-10-01]
+	Updated misc/calibre to 2.69.0 [wiz 2016-10-01]
+	Updated wm/icewm to 1.2.38pre2nb1 [mrg 2016-10-01]
+	Updated games/gnuchess to 6.2.3 [mef 2016-10-02]
+	Updated archivers/pigz to 2.3.4 [fhajny 2016-10-02]
+	Updated misc/tmux to 2.3 [fhajny 2016-10-02]
+	Updated security/hitch to 1.4.1 [fhajny 2016-10-02]
+	Updated devel/libbson to 1.4.2 [fhajny 2016-10-02]
+	Updated databases/mongo-c-driver to 1.4.2 [fhajny 2016-10-02]
+	Updated lang/erlang to 19.1 [fhajny 2016-10-02]
+	Updated lang/erlang-doc to 19.1 [fhajny 2016-10-02]
+	Updated lang/erlang-man to 19.1 [fhajny 2016-10-02]

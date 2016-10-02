@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1192 2016/08/30 12:47:48 manu Exp $
+# $NetBSD: Makefile,v 1.1195 2016/10/01 13:02:59 wen Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -386,11 +386,13 @@ SUBDIR+=	p5-HTTP-Cookies
 SUBDIR+=	p5-HTTP-DAV
 SUBDIR+=	p5-HTTP-Daemon
 SUBDIR+=	p5-HTTP-Date
+SUBDIR+=	p5-HTTP-Entity-Parser
 SUBDIR+=	p5-HTTP-GHTTP
 SUBDIR+=	p5-HTTP-HeaderParser-XS
 SUBDIR+=	p5-HTTP-Headers-Fast
 SUBDIR+=	p5-HTTP-Lite
 SUBDIR+=	p5-HTTP-Message
+SUBDIR+=	p5-HTTP-MultiPartParser
 SUBDIR+=	p5-HTTP-Negotiate
 SUBDIR+=	p5-HTTP-OAI
 SUBDIR+=	p5-HTTP-Parser
@@ -534,6 +536,7 @@ SUBDIR+=	p5-WWW-Amazon-Wishlist
 SUBDIR+=	p5-WWW-CSRF
 SUBDIR+=	p5-WWW-Curl
 SUBDIR+=	p5-WWW-Facebook-API
+SUBDIR+=	p5-WWW-Form-UrlEncoded
 SUBDIR+=	p5-WWW-Mechanize
 SUBDIR+=	p5-WWW-Mechanize-Cached
 SUBDIR+=	p5-WWW-Mechanize-FormFiller
