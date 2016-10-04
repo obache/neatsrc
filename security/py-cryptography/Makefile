@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.44 2016/09/30 11:17:39 wiz Exp $
+# $NetBSD: Makefile,v 1.46 2016/10/03 12:25:37 wiz Exp $
 
-DISTNAME=	cryptography-1.5.1
+DISTNAME=	cryptography-1.5.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	security python
 MASTER_SITES=	${MASTER_SITE_PYPI:=c/cryptography/}
@@ -24,10 +24,8 @@ BUILD_DEPENDS+=	${PYPKGPREFIX}-test>=0.8:../../devel/py-test
 .include "../../lang/python/pyversion.mk"
 
 .if ${PYPKGPREFIX} == "py27"
-DEPENDS+=	${PYPKGPREFIX}-ipaddress-[0-9]*:../../net/py-ipaddress
-.endif
-.if ${PYPKGPREFIX} == "py27" || ${PYPKGPREFIX} == "py33"
 DEPENDS+=	${PYPKGPREFIX}-enum34-[0-9]*:../../devel/py-enum34
+DEPENDS+=	${PYPKGPREFIX}-ipaddress-[0-9]*:../../net/py-ipaddress
 .endif
 
 do-test:

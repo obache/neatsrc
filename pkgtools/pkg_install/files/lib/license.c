@@ -1,4 +1,4 @@
-/*	$NetBSD: license.c,v 1.46 2016/04/21 07:51:51 leot Exp $	*/
+/*	$NetBSD: license.c,v 1.48 2016/10/03 11:49:31 wiz Exp $	*/
 
 /*-
  * Copyright (c) 2009 Joerg Sonnenberger <joerg@NetBSD.org>.
@@ -64,9 +64,9 @@ const char *default_acceptable_licenses =
     "gnu-gpl-v2 gnu-lgpl-v2 gnu-lgpl-v2.1 "
     "gnu-gpl-v3 gnu-lgpl-v3 "
     "hpnd "
-    "ibm-public-license-1.0 "
     "info-zip "
     "ipafont "
+    "ipl-1.0 "
     "isc "
     "lppl-1.0 lppl-1.2 lppl-1.3c "
     "lucent "
@@ -85,6 +85,7 @@ const char *default_acceptable_licenses =
     "python-software-foundation "
     "qpl-v1.0 "
     "sgi-free-software-b-v2.0 "
+    "sissl-1.1 "
     "sleepycat-public "
     "unlicense "
     "vera-ttf-license "
