@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.17 2016/09/06 12:31:56 ryoon Exp $
 
-DISTNAME=	corebird-1.3.2
+DISTNAME=	corebird-1.3.3
 CATEGORIES=	net
 MASTER_SITES=	-https://github.com/baedert/corebird/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
