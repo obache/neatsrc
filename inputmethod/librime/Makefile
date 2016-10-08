@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.5 2015/04/17 15:52:57 adam Exp $
+# $NetBSD: Makefile,v 1.6 2016/10/07 18:25:32 adam Exp $
 
 DISTNAME=	librime-1.2
+PKGREVISION=	1
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	http://dl.bintray.com/lotem/rime/
 

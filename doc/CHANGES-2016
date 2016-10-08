@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.4128 2016/10/05 23:36:22 schnoebe Exp $
+$NetBSD: CHANGES-2016,v 1.4137 2016/10/07 22:24:52 mef Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -5762,3 +5762,18 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated databases/p5-DBD-Oracle to 1.74 [shattered 2016-10-05]
 	Updated net/unbound to 1.5.10 [pettai 2016-10-05]
 	Updated print/hplip to 3.16.9 [schnoebe 2016-10-05]
+	Updated devel/git to 2.10.1 [adam 2016-10-06]
+	Updated mail/neomutt to 20161003nb1 [wiz 2016-10-06]
+	Updated devel/lua-rocks to 2.4.1 [alnsn 2016-10-06]
+	Updated editors/sasm to 3.6.0 [mef 2016-10-06]
+	Updated math/isl to 0.17.1 [wiz 2016-10-06]
+	Updated sysutils/pciutils to 3.5.2 [msaitoh 2016-10-07]
+	Updated time/khal to 0.8.4 [wiz 2016-10-07]
+	Updated devel/boost-jam to 1.62.0 [adam 2016-10-07]
+	Updated devel/boost-headers to 1.62.0 [adam 2016-10-07]
+	Updated devel/boost-libs to 1.62.0 [adam 2016-10-07]
+	Updated devel/boost-docs to 1.62.0 [adam 2016-10-07]
+	Updated devel/boost-build to 1.62.0 [adam 2016-10-07]
+	Updated devel/py-boost to 1.62.0 [adam 2016-10-07]
+	Updated meta-pkgs/boost to 1.62.0 [adam 2016-10-07]
+	Updated devel/p5-glib2 to 1.323 [mef 2016-10-07]
