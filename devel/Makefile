@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2321 2016/10/09 08:11:17 wiz Exp $
+# $NetBSD: Makefile,v 1.2324 2016/10/10 23:16:29 taca Exp $
 #
 
 COMMENT=	Development utilities
@@ -2014,6 +2014,7 @@ SUBDIR+=	ruby-curses-gem
 SUBDIR+=	ruby-daemon_controller
 SUBDIR+=	ruby-delayer
 SUBDIR+=	ruby-delayer-deferred
+SUBDIR+=	ruby-dep
 SUBDIR+=	ruby-deprecated
 SUBDIR+=	ruby-dhaka
 SUBDIR+=	ruby-docile
@@ -2027,6 +2028,7 @@ SUBDIR+=	ruby-ffi
 SUBDIR+=	ruby-ffi-yajl
 SUBDIR+=	ruby-fiddle
 SUBDIR+=	ruby-flexmock
+SUBDIR+=	ruby-forwardable-extended
 SUBDIR+=	ruby-gemcutter
 SUBDIR+=	ruby-getopt
 SUBDIR+=	ruby-gettext
@@ -2047,6 +2049,7 @@ SUBDIR+=	ruby-inline
 SUBDIR+=	ruby-instance_storage
 SUBDIR+=	ruby-io-like
 SUBDIR+=	ruby-kgio
+SUBDIR+=	ruby-lazy_priority_queue
 SUBDIR+=	ruby-libyajl2
 SUBDIR+=	ruby-little-plugger
 SUBDIR+=	ruby-locale
@@ -2082,6 +2085,7 @@ SUBDIR+=	ruby-parsetree
 SUBDIR+=	ruby-parslet
 SUBDIR+=	ruby-path
 SUBDIR+=	ruby-pathname2
+SUBDIR+=	ruby-pathutil
 SUBDIR+=	ruby-pkg-config
 SUBDIR+=	ruby-polyglot
 SUBDIR+=	ruby-posix-spawn

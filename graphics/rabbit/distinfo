@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.37 2015/09/13 15:55:39 taca Exp $
+$NetBSD: distinfo,v 1.38 2016/10/09 16:02:19 taca Exp $
 
 SHA1 (rabbit-2.1.9.gem) = 2007538e81cfeb0a46e5461b4dd8209508f3dcf6
 RMD160 (rabbit-2.1.9.gem) = cf27a051ac0863df91883469a9f1fa6b538fc0a3

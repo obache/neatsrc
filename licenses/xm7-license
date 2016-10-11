@@ -1,0 +1,73 @@
+This is the original README coming with the 71020 distfile.
+It basically says:
+
+  If you re-use whole part of, or some part of this software,
+  the following rules should be honored. This applies all the software
+  versions released historically.
+
+  - Re-use under the VM directory, Copyright notice should be explicitly
+    marked (reserved) for the source and the documnets. Commercial use is
+    prohibited.
+  - Other parts could be re-used freely. But commercial use is still
+    prohibited.
+
+  Re-Distribution of this archive could not be accepted. You need prior
+  permission to do that.
+
+Here's the original:
+
+------------------------------------------------------------------------------
+
+  FM-7 EMULATOR XM7 (V1.0L20)
+
+  ソースコード
+  Copyright (C) 1999-2001 ＰＩ．(ytanaka@ipc-tokai.or.jp)
+
+------------------------------------------------------------------------------
+□ソース公開にあたって
+
+  このアーカイブはFM-7エミュレータXM7(V1.0L20)の全ソースコードです。
+
+  私は元々、ソースコード公開に余り積極的ではありません。ただ本ソフトについては
+  その性質上、実機・資料の入手が難しい過去の機種の、詳細なドキュメント・仕様書
+  となり得ますので、電子保存の意味でも公開すべきだと考えます。
+
+  またXM7の開発の過程で、M88をはじめとする多くのソフトウェアのソースを参考に
+  させて頂きました。そのお礼という意味もあります。
+
+
+□使用規定
+
+  アーカイブに含まれるファイル群は、一部の例外(後述)を除きＰＩ．が著作権を保有
+  しています。
+
+  ソースファイルの一部、もしくは全部を再利用する場合は、次の規則に基づくもの
+  とします。
+  ・VMディレクトリ下のファイルを再利用する場合は、ドキュメントにオリジナルの
+    著作権表示を明記してください。また商用利用は禁止します。
+  ・それ以外の部分の再利用は自由です。ただし前項同様、商用利用は禁止します。
+
+  このアーカイブの再配布はできません。無断転載を禁じます。
+
+
+□例外、その他
+
+  以下に示すファイルはM88の作者であるcisc氏の許可を得て、改変の上組み込んで
+  いるものです。この部分については前述の規定は適用されません。
+
+  vm\fmgen.cpp
+  vm\fmgen.h
+  vm\fmgeninl.h
+  vm\fmgenx86.h
+  vm\opna.cpp
+  vm\opna.h
+  vm\psg.cpp
+  vm\psg.h
+
+  またLinuxディレクトリについては、(寿)TM氏が開発を担当し、ＰＩ．が管理を代行
+  しています。
+
+  次にあげるファイルはM.A.M.E. 0.33のソースファイルを再利用し、改変したもの
+  です。
+
+   vm\cpu.c

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.63 2016/07/09 06:39:18 wiz Exp $
+# $NetBSD: Makefile,v 1.65 2016/10/09 20:48:19 dholland Exp $
 
 DISTNAME=	xephem-3.7.7
 PKGREVISION=	1
@@ -29,7 +29,7 @@ LICENSE=	xephem-license
 MAKE_JOBS_SAFE=	no
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/GUI/xephem
-USE_TOOLS+=	gmake perl:run
+USE_TOOLS+=	gmake pax perl:run
 REPLACE_PERL+=	auxil/*.pl
 
 LIBS.SunOS+=		-lnsl -lsocket
@@ -53,9 +53,9 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/xephem.man ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/xephem.1
 	${SED} s,@PREFIX@,${PREFIX}, ${FILESDIR}/XEphem.ad > ${WRKDIR}/XEphem
 	${INSTALL_DATA} ${WRKDIR}/XEphem ${DESTDIR}${PREFIX}/lib/X11/app-defaults
-	cd ${WRKSRC}; ${CP} -R auxil catalogs fifos fits gallery help lo \
+	cd ${WRKSRC}; pax -rw auxil catalogs fifos fits gallery help lo \
 		${DESTDIR}${PREFIX}/share/xephem
-	rm ${DESTDIR}${PREFIX}/share/xephem/*/._*
+	${RM} -f ${DESTDIR}${PREFIX}/share/xephem/*/._*
 	${CHOWN} -R ${SHAREOWN} ${DESTDIR}${PREFIX}/share/xephem
 
 .include "../../x11/libX11/buildlink3.mk"
