@@ -1,22 +1,14 @@
-$NetBSD: patch-av,v 1.2 2008/08/31 06:36:48 scottr Exp $
+$NetBSD: patch-av,v 1.3 2016/10/09 03:41:56 ryoon Exp $
 
---- lib/include/util.h.orig	2015-06-17 16:14:30.000000000 +0000
+--- lib/include/util.h.orig	2016-02-16 20:06:46.000000000 +0000
 +++ lib/include/util.h
-@@ -57,7 +57,7 @@
-    typedef DWORD Util_ThreadID;
+@@ -67,6 +67,9 @@
+ #elif defined(__FreeBSD__)
+ #  include <pthread.h>
+    typedef pthread_t Util_ThreadID;
++#elif defined(__NetBSD__)
++#  include <pthread.h>
++   typedef pthread_t Util_ThreadID;
  #else
-    #include <unistd.h>
--   #if defined(__APPLE__) || defined(__FreeBSD__)
-+   #if defined(__APPLE__) || defined(__FreeBSD__) || defined(__NetBSD__)
-       #include <pthread.h>
-       typedef pthread_t Util_ThreadID;
-    #else // Linux et al
-@@ -109,7 +109,7 @@ Bool Util_IPv6AddrValid(const char *addr
- Bool Util_IPAddrValid(const char *addr);
+ #  error "Need typedef for Util_ThreadID"
  #endif
- 
--#if defined(__linux__) || defined(__FreeBSD__) || defined(sun)
-+#if defined(__linux__) || defined(__FreeBSD__) || defined(sun) || defined(__NetBSD__)
- Bool Util_GetProcessName(pid_t pid, char *bufOut, size_t bufOutSize);
- #endif
- 

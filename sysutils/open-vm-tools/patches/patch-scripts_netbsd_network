@@ -1,8 +1,8 @@
-$NetBSD$
+$NetBSD: patch-scripts_netbsd_network,v 1.1 2016/10/09 03:41:56 ryoon Exp $
 
---- scripts/netbsd/network.orig	2015-08-18 09:18:37.000000000 +0000
+--- scripts/netbsd/network.orig	2016-10-04 11:37:34.038469430 +0000
 +++ scripts/netbsd/network
-@@ -0,0 +1,93 @@
+@@ -0,0 +1,103 @@
 +#!/bin/sh
 +##########################################################
 +# Copyright (C) 2010-2015 VMware, Inc. All rights reserved.
@@ -28,9 +28,9 @@ $NetBSD$
 +##########################################################################
 +
 +#
-+# network (NetBSD 1.6 and above)
++# network (FreeBSD 6.3 and above)
 +#
-+# This script uses NetBSD's rc(8) scripts to stop and restart networking
++# This script uses FreeBSD's rc(8) scripts to stop and restart networking
 +# services in response to suspend and resume events, respectively.
 +#
 +
@@ -56,13 +56,22 @@ $NetBSD$
 +#
 +
 +ToggleNetwork() {
-+         /etc/rc.d/network $1
++   (
++      . /etc/rc.subr
++      . /etc/network.subr
++
++      load_rc_config network
++
++      for intf in `list_net_interfaces dhcp`; do
++         /etc/rc.d/netif $1 $intf
 +         ec=$?
 +
 +         # Failure to stop an interface should not interfere with suspend.
 +         if [ "$1" != "stop" ]; then
 +            exitCode=`expr $exitCode \| $ec`
 +         fi
++      done
++   )
 +}
 +
 +
@@ -80,7 +89,8 @@ $NetBSD$
 +   exitCode=0
 +
 +   [ -r /etc/rc.subr ] || Panic "Cannot read /etc/rc.subr."
-+   [ -x /etc/rc.d/network ] || Panic "Cannot read /etc/rc.d/network"
++   [ -r /etc/network.subr ] || Panic "Cannot read /etc/network.subr"
++   [ -x /etc/rc.d/netif ] || Panic "Cannot read /etc/rc.d/netif"
 +
 +   case "$1" in
 +      suspend-vm)

@@ -1,6 +1,6 @@
-$NetBSD: patch-au,v 1.2 2008/08/31 06:36:48 scottr Exp $
+$NetBSD: patch-au,v 1.3 2016/10/09 03:41:56 ryoon Exp $
 
---- lib/include/su.h.orig	2015-06-17 16:14:30.000000000 +0000
+--- lib/include/su.h.orig	2016-02-16 20:06:46.000000000 +0000
 +++ lib/include/su.h
 @@ -50,7 +50,7 @@ Bool Id_AuthCheck(char const *right,
                    char const *localizedDescription,
@@ -11,27 +11,3 @@ $NetBSD: patch-au,v 1.2 2008/08/31 06:36:48 scottr Exp $
  
  #include <sys/types.h>
  #include <unistd.h>
-@@ -86,7 +86,11 @@ int Id_SetRESGid(gid_t rgid, gid_t egid,
- static INLINE int
- Id_SetEUid(uid_t euid)
- {
-+#if defined(__NetBSD__)
-+   return seteuid(euid);
-+#else
-    return Id_SetRESUid((uid_t)-1, euid, (uid_t)-1);
-+#endif
- }
- 
- 
-@@ -110,7 +114,11 @@ Id_SetEUid(uid_t euid)
- static INLINE int
- Id_SetEGid(gid_t egid)
- {
-+#if defined(__NetBSD__)
-+   return setegid(egid);
-+#else
-    return Id_SetRESGid((gid_t)-1, egid, (gid_t)-1);
-+#endif
- }
- #endif /* linux */
- 

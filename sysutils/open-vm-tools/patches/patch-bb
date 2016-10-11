@@ -1,6 +1,6 @@
-$NetBSD: patch-bb,v 1.2 2008/08/31 06:36:48 scottr Exp $
+$NetBSD: patch-bb,v 1.3 2016/10/09 03:41:56 ryoon Exp $
 
---- lib/misc/idLinux.c.orig	2015-06-17 16:14:30.000000000 +0000
+--- lib/misc/idLinux.c.orig	2016-02-16 20:06:46.000000000 +0000
 +++ lib/misc/idLinux.c
 @@ -119,7 +119,7 @@ static AuthorizationRef IdAuthCreateWith
  int

@@ -1,6 +1,6 @@
-$NetBSD: patch-az,v 1.2 2008/08/31 06:36:48 scottr Exp $
+$NetBSD: patch-az,v 1.3 2016/10/09 03:41:56 ryoon Exp $
 
---- lib/include/vmblock.h.orig	2015-06-17 16:14:30.000000000 +0000
+--- lib/include/vmblock.h.orig	2016-02-16 20:06:46.000000000 +0000
 +++ lib/include/vmblock.h
 @@ -83,11 +83,11 @@
  #ifndef _VMBLOCK_H_
@@ -25,12 +25,24 @@ $NetBSD: patch-az,v 1.2 2008/08/31 06:36:48 scottr Exp $
  # define VMBLOCK_FS_NAME                "vmblock"
  # define VMBLOCK_MOUNT_POINT            "/var/run/" VMBLOCK_FS_NAME
  # define VMBLOCK_FS_ROOT                VMBLOCK_MOUNT_POINT
-@@ -182,7 +182,7 @@
- #   define VMBLOCK_LIST_FILEBLOCKS       _IO('v', 3)
+@@ -196,6 +196,20 @@
+ #   define VMBLOCK_LIST_FILEBLOCKS       _IO('Z', 3)
+ #   define VMBLOCK_PURGE_FILEBLOCKS      _IO('Z', 4)
  #  endif
++# elif defined(__NetBSD__)               /* } else if (NetBSD) { */
++   /*
++    * Similar to Solaris, construct ioctl(2) commands for block operations.
++    * Since the FreeBSD implementation does not change the user's passed-in
++    * data (pathname), we use the _IOW macro to define commands which write
++    * to the kernel.  (As opposed to _IOR or _IOWR.)  Groups 'v' and 'V'
++    * are taken by terminal drivers, so I opted for group 'Z'.
++    */
++#  define VMBLOCK_ADD_FILEBLOCK          _IOW('z', 1, char[MAXPATHLEN] )
++#  define VMBLOCK_DEL_FILEBLOCK          _IOW('z', 2, char[MAXPATHLEN] )
++#  ifdef VMX86_DEVEL
++#   define VMBLOCK_LIST_FILEBLOCKS       _IO('z', 3)
++#   define VMBLOCK_PURGE_FILEBLOCKS      _IO('z', 4)
++#  endif
  
--# elif defined(__FreeBSD__)              /* } else if (FreeBSD) { */
-+# elif defined(__FreeBSD__) || defined(__NetBSD__)              /* } else if (FreeBSD) { */
-    /*
-     * Similar to Solaris, construct ioctl(2) commands for block operations.
-     * Since the FreeBSD implementation does not change the user's passed-in
+ # endif                                 /* } */
+ #else

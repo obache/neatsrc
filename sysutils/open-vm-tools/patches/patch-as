@@ -1,17 +1,21 @@
-$NetBSD: patch-as,v 1.2 2008/08/31 06:36:48 scottr Exp $
+$NetBSD: patch-as,v 1.3 2016/10/09 03:41:56 ryoon Exp $
 
---- lib/include/mntinfo.h.orig	2015-06-17 16:14:30.000000000 +0000
+--- lib/include/mntinfo.h.orig	2016-02-16 20:06:46.000000000 +0000
 +++ lib/include/mntinfo.h
-@@ -34,7 +34,7 @@
+@@ -34,8 +34,11 @@
  # include <limits.h>
  #elif defined(__linux__)
  # include <mntent.h>
 -#elif defined(__FreeBSD__)
 +#elif defined(__FreeBSD__) || defined(__NetBSD__)
  # include <sys/mount.h>
++#if defined(__NetBSD__)
++# include <fstab.h>
++#endif
  #endif
  #include "posix.h"
-@@ -106,17 +106,27 @@
+ 
+@@ -106,17 +109,27 @@
  # define MNTINFO_FSTYPE(mnt)            mnt->mnt_type
  # define MNTINFO_MNTPT(mnt)             mnt->mnt_dir
  # define MNTINFO_MNT_IS_RO(mnt)         (hasmntopt((mnt), "rw") == NULL)
@@ -19,7 +23,7 @@ $NetBSD: patch-as,v 1.2 2008/08/31 06:36:48 scottr Exp $
 +#elif defined(__FreeBSD__) || defined(__APPLE__) || defined(__NetBSD__)
  struct mntHandle {
 +#if defined(__NetBSD__)
-+   struct statvfs *mountPoints; // array of mountpoints per getmntinfo(3)
++   struct statvfs *mountPoints;  // array of mountpoints per getmntinfo(3)
 +#else
     struct statfs *mountPoints;  // array of mountpoints per getmntinfo(3)
 +#endif
@@ -40,7 +44,7 @@ $NetBSD: patch-as,v 1.2 2008/08/31 06:36:48 scottr Exp $
  
  # define OPEN_MNTFILE(mode)                                             \
  ({                                                                      \
-@@ -155,7 +165,11 @@ struct mntHandle {
+@@ -155,7 +168,11 @@ struct mntHandle {
  # define MNTINFO_NAME(mnt)              mnt->f_mntfromname
  # define MNTINFO_FSTYPE(mnt)            mnt->f_fstypename
  # define MNTINFO_MNTPT(mnt)             mnt->f_mntonname

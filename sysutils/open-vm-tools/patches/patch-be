@@ -1,6 +1,6 @@
-$NetBSD: patch-be,v 1.1 2008/08/31 06:36:48 scottr Exp $
+$NetBSD: patch-be,v 1.2 2016/10/09 03:41:56 ryoon Exp $
 
---- lib/netUtil/netUtilLinux.c.orig	2015-06-17 16:14:30.000000000 +0000
+--- lib/netUtil/netUtilLinux.c.orig	2016-02-16 20:06:46.000000000 +0000
 +++ lib/netUtil/netUtilLinux.c
 @@ -31,7 +31,7 @@
  #endif
@@ -11,30 +11,3 @@ $NetBSD: patch-be,v 1.1 2008/08/31 06:36:48 scottr Exp $
  #   error This file should not be compiled
  #endif
  
-@@ -59,7 +59,7 @@
- #include <sys/ioctl.h>
- #include <net/if_arp.h>         // for ARPHRD_ETHER
- 
--#if defined(__FreeBSD__) || defined(__APPLE__)
-+#if defined(__FreeBSD__) || defined(__APPLE__) || defined(__NetBSD__)
- #include "ifaddrs.h"
- #endif
- 
-@@ -150,7 +150,7 @@ invalid:
-  *----------------------------------------------------------------------
-  */
- 
--#if !defined(__FreeBSD__) && !defined(__APPLE__) /* { */
-+#if !defined(__FreeBSD__) && !defined(__APPLE__) && !defined(__NetBSD__) /* { */
- char *
- NetUtil_GetPrimaryIP(void)
- {
-@@ -192,7 +192,7 @@ NetUtil_GetPrimaryIP(void)
-    return strdup(ipstr);
- }
- 
--#else /* } FreeBSD || APPLE { */
-+#else /* } FreeBSD || APPLE || NetBSD { */
- 
- char *
- NetUtil_GetPrimaryIP(void)

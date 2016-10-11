@@ -1,6 +1,6 @@
-$NetBSD$
+$NetBSD: patch-services_plugins_dndcp_dnd_dndLinux.c,v 1.1 2016/10/09 03:41:56 ryoon Exp $
 
---- services/plugins/dndcp/dnd/dndLinux.c.orig	2015-06-17 16:14:30.000000000 +0000
+--- services/plugins/dndcp/dnd/dndLinux.c.orig	2016-02-16 20:06:48.000000000 +0000
 +++ services/plugins/dndcp/dnd/dndLinux.c
 @@ -39,7 +39,7 @@
  #include "util.h"
@@ -11,7 +11,7 @@ $NetBSD$
  #include "vmblock_user.h"
  #include "mntinfo.h"
  #endif
-@@ -311,7 +311,7 @@ DnD_UriIsNonFileSchemes(const char *uri)
+@@ -276,7 +276,7 @@ DnD_UriIsNonFileSchemes(const char *uri)
  
  
  /* We need to make this suck less. */
@@ -20,12 +20,3 @@ $NetBSD$
  
  /*
   *----------------------------------------------------------------------------
-@@ -771,7 +771,7 @@ DnD_CompleteBlockInitialization(int fd, 
-    return TRUE;
- }
- 
--#endif /* linux || sun || FreeBSD */
-+#endif /* linux || sun || FreeBSD || NetBSD */
- 
- 
- /*

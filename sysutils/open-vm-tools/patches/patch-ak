@@ -1,6 +1,6 @@
-$NetBSD: patch-ak,v 1.2 2008/08/31 06:36:48 scottr Exp $
+$NetBSD: patch-ak,v 1.3 2016/10/09 03:41:56 ryoon Exp $
 
---- lib/file/filePosix.c.orig	2015-06-17 16:14:30.000000000 +0000
+--- lib/file/filePosix.c.orig	2016-02-16 20:06:45.000000000 +0000
 +++ lib/file/filePosix.c
 @@ -24,7 +24,7 @@
  
@@ -20,34 +20,16 @@ $NetBSD: patch-ak,v 1.2 2008/08/31 06:36:48 scottr Exp $
  #if !defined(__APPLE__)
  static char *FilePosixLookupMountPoint(char const *canPath, Bool *bind);
  #endif
-@@ -376,7 +376,7 @@ FileAttributes(ConstUnicode pathName,  /
+@@ -360,7 +360,7 @@ FileAttributes(const char *pathName,  //
   *----------------------------------------------------------------------
   */
  
 -#if !defined(__FreeBSD__) && !defined(sun)
 +#if !defined(__FreeBSD__) && !defined(sun) && !defined(__NetBSD__)
  Bool
- File_IsRemote(ConstUnicode pathName)  // IN: Path name
+ File_IsRemote(const char *pathName)  // IN: Path name
  {
-@@ -415,7 +415,7 @@ File_IsRemote(ConstUnicode pathName)  //
- #endif
-    }
- }
--#endif /* !FreeBSD && !sun */
-+#endif /* !FreeBSD && !sun && !NetBSD */
- 
- 
- /*
-@@ -704,7 +704,7 @@ File_GetTimes(ConstUnicode pathName,    
-     * XXX atime is almost always MAX.
-     */
- 
--#if defined(__FreeBSD__)
-+#if defined(__FreeBSD__) || defined(__NetBSD__)
-    /*
-     * FreeBSD: All supported versions have timestamps with nanosecond
-     * resolution. FreeBSD 5+ has also file creation time.
-@@ -925,7 +925,7 @@ File_SetFilePermissions(ConstUnicode pat
+@@ -909,7 +909,7 @@ File_SetFilePermissions(const char *path
  }
  
  
@@ -56,38 +38,21 @@ $NetBSD: patch-ak,v 1.2 2008/08/31 06:36:48 scottr Exp $
  /*
   *-----------------------------------------------------------------------------
   *
-@@ -1989,7 +1989,7 @@ FilePosixNearestExistingAncestor(char co
- }
- 
- 
--#endif /* !FreeBSD && !sun */
-+#endif /* !FreeBSD && !sun && !NetBSD */
- 
- 
- /*
-@@ -2025,9 +2025,14 @@ File_IsSameFile(ConstUnicode path1,  // 
+@@ -2006,7 +2006,7 @@ File_IsSameFile(const char *path1,  // I
+ {
     struct stat st1;
     struct stat st2;
- #if !defined(sun)  // Solaris does not have statfs
-+#if defined(__NetBSD__)
-+   struct statvfs stfs1;
-+   struct statvfs stfs2;
-+#else
+-#if !defined(sun)  // Solaris does not have statfs
++#if !defined(sun) && !defined(__NetBSD__) // Solaris does not have statfs
     struct statfs stfs1;
     struct statfs stfs2;
  #endif
-+#endif
- 
-    ASSERT(path1);
-    ASSERT(path2);
-@@ -2080,6 +2085,10 @@ File_IsSameFile(ConstUnicode path1,  // 
-    if ((stfs1.f_flags & MNT_LOCAL) && (stfs2.f_flags & MNT_LOCAL)) {
+@@ -2049,7 +2049,7 @@ File_IsSameFile(const char *path1,  // I
        return TRUE;
     }
-+#elif defined(__NetBSD__)
-+   if ((stfs1.f_flag & MNT_LOCAL) && (stfs2.f_flag & MNT_LOCAL)) {
-+      return TRUE;
-+   }
- #else
-    if ((stfs1.f_type != NFS_SUPER_MAGIC) &&
-        (stfs2.f_type != NFS_SUPER_MAGIC)) {
+ 
+-#if !defined(sun)  // Solaris does not have statfs
++#if !defined(sun) && !defined(__NetBSD__) // Solaris does not have statfs
+    if (Posix_Statfs(path1, &stfs1) != 0) {
+       return FALSE;
+    }

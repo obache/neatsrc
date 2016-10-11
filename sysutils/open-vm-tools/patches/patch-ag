@@ -1,6 +1,6 @@
-$NetBSD: patch-ag,v 1.2 2008/08/31 06:36:47 scottr Exp $
+$NetBSD: patch-ag,v 1.3 2016/10/09 03:41:56 ryoon Exp $
 
---- lib/dynxdr/dynxdr.c.orig	2015-06-17 16:14:30.000000000 +0000
+--- lib/dynxdr/dynxdr.c.orig	2016-02-16 20:06:45.000000000 +0000
 +++ lib/dynxdr/dynxdr.c
 @@ -54,7 +54,7 @@ typedef struct DynXdrData {
   * Mac OS X, FreeBSD and Solaris don't take a const parameter to the

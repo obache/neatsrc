@@ -1,6 +1,6 @@
-$NetBSD: patch-ah,v 1.2 2008/08/31 06:36:47 scottr Exp $
+$NetBSD: patch-ah,v 1.3 2016/10/09 03:41:56 ryoon Exp $
 
---- lib/file/fileIO.c.orig	2015-06-17 16:14:30.000000000 +0000
+--- lib/file/fileIO.c.orig	2016-02-16 20:06:45.000000000 +0000
 +++ lib/file/fileIO.c
 @@ -325,7 +325,7 @@ FileIO_Lock(FileIODescriptor *file,  // 
     FileIOResolveLockBits(&access);
@@ -11,15 +11,6 @@ $NetBSD: patch-ah,v 1.2 2008/08/31 06:36:47 scottr Exp $
     if ((access & FILEIO_OPEN_LOCK_MANDATORY) != 0) {
        /* Mandatory file locks are available only when opening a file */
        ret = FILEIO_LOCK_FAILED;
-@@ -364,7 +364,7 @@ FileIO_Lock(FileIODescriptor *file,  // 
-          }
-       }
-    }
--#endif // !__FreeBSD__ && !sun
-+#endif /* !__FreeBSD__ && !sun && !__NetBSD__ */
- 
-    return ret;
- }
 @@ -394,7 +394,7 @@ FileIO_Unlock(FileIODescriptor *file)  /
  
     ASSERT(file);
@@ -29,21 +20,3 @@ $NetBSD: patch-ah,v 1.2 2008/08/31 06:36:47 scottr Exp $
     if (file->lockToken != NULL) {
        int err = 0;
  
-@@ -409,7 +409,7 @@ FileIO_Unlock(FileIODescriptor *file)  /
-    }
- #else
-    ASSERT(file->lockToken == NULL);
--#endif // !__FreeBSD__ && !sun
-+#endif /* !__FreeBSD__ && !sun && !__NetBSD__ */
- 
-    return ret;
- }
-@@ -536,7 +536,7 @@ FileIO_CloseAndUnlink(FileIODescriptor *
- 
- 
- #if defined(_WIN32) || defined(__linux__) || defined(__APPLE__) || \
--    defined(__FreeBSD__) || defined(sun)
-+    defined(__FreeBSD__) || defined(sun) || defined(__NetBSD__)
- /*
-  *----------------------------------------------------------------------
-  *

@@ -1,22 +1,20 @@
-$NetBSD: patch-bd,v 1.1 2008/08/31 06:36:48 scottr Exp $
+$NetBSD: patch-bd,v 1.2 2016/10/09 03:41:56 ryoon Exp $
 
---- lib/misc/util_misc.c.orig	2015-06-17 16:14:30.000000000 +0000
+--- lib/misc/util_misc.c.orig	2016-02-16 20:06:46.000000000 +0000
 +++ lib/misc/util_misc.c
-@@ -51,7 +51,7 @@
- #  include <netinet/in.h>    // for INET6_ADDRSTRLEN
- #endif
- 
--#if defined(__APPLE__) || defined(__FreeBSD__)
-+#if defined(__APPLE__) || defined(__FreeBSD__) || defined(__NetBSD__)
- #include <pthread.h>
- #endif
- 
-@@ -512,7 +512,7 @@ Util_GetCurrentThreadId(void)
-    ASSERT(tid != (pid_t)-1);
- 
-    return tid;
--#elif defined(__APPLE__) || defined(__FreeBSD__)
-+#elif defined(__APPLE__) || defined(__FreeBSD__) || defined(__NetBSD__)
-    ASSERT_ON_COMPILE(sizeof(Util_ThreadID) == sizeof(pthread_t));
+@@ -488,6 +488,15 @@ Util_GetCurrentThreadId(void)
+    ASSERT_ON_COMPILE(sizeof(Util_ThreadID) >= sizeof(pthread_t));
  
     return pthread_self();
++#elif defined(__NetBSD__)
++   /*
++    * These OSes do not implement OS-native thread IDs. You probably
++    * didn't need one anyway, but guess that pthread_self works
++    * well enough.
++    */
++   ASSERT_ON_COMPILE(sizeof(Util_ThreadID) >= sizeof(pthread_t));
++
++   return pthread_self();
+ #elif defined(_WIN32)
+    return GetCurrentThreadId();
+ #else

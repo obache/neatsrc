@@ -1,8 +1,8 @@
-$NetBSD: patch-bf,v 1.1 2008/08/31 06:36:48 scottr Exp $
+$NetBSD: patch-bf,v 1.2 2016/10/09 03:41:56 ryoon Exp $
 
---- lib/procMgr/procMgrPosix.c.orig	2015-06-17 16:14:30.000000000 +0000
+--- lib/procMgr/procMgrPosix.c.orig	2016-02-16 20:06:46.000000000 +0000
 +++ lib/procMgr/procMgrPosix.c
-@@ -31,7 +31,7 @@
+@@ -27,7 +27,7 @@
  // pull in setresuid()/setresgid() if possible
  #define  _GNU_SOURCE
  #include <unistd.h>
@@ -11,7 +11,14 @@ $NetBSD: patch-bf,v 1.1 2008/08/31 06:36:48 scottr Exp $
  #include <asm/param.h>
  #endif
  #if !defined(sun) && !defined(__APPLE__)
-@@ -57,7 +57,7 @@
+@@ -47,13 +47,13 @@
+ #include <time.h>
+ #include <grp.h>
+ #include <sys/syscall.h>
+-#if defined(linux) || defined(__FreeBSD__) || defined(HAVE_SYS_USER_H)
++#if defined(linux) || defined(__FreeBSD__) || defined(HAVE_SYS_USER_H) || defined(__NetBSD__)
+ // sys/param.h is required on FreeBSD before sys/user.h
+ #   include <sys/param.h>
  // Pull in PAGE_SIZE/PAGE_SHIFT defines ahead of vm_basic_defs.h
  #   include <sys/user.h>
  #endif
@@ -41,31 +48,20 @@ $NetBSD: patch-bf,v 1.1 2008/08/31 06:36:48 scottr Exp $
     char errbuf[_POSIX2_LINE_MAX];
     int i;
     int nentries=-1;
-@@ -655,7 +659,11 @@ ProcMgr_ListProcesses(void)
-    /*
-     * Get the handle to the Kernel Virtual Memory
-     */
-+#if defined(__NetBSD__)
-+   kd = kvm_openfiles(NULL, NULL, NULL, KVM_NO_FILES, errbuf);
-+#else
-    kd = kvm_openfiles(NULL, _PATH_DEVNULL, NULL, O_RDONLY, errbuf);
-+#endif
-    if (kd == NULL) {
-       Warning("%s: failed to open kvm with error: %s\n", __FUNCTION__, errbuf);
-       goto abort;
-@@ -664,7 +672,11 @@ ProcMgr_ListProcesses(void)
+@@ -664,7 +668,12 @@ ProcMgr_ListProcesses(void)
     /*
      * Get the list of process info structs
      */
 +#if defined(__NetBSD__)
-+   kp = kvm_getproc2(kd, KERN_PROC_ALL, flag, sizeof(struct kinfo_proc2), &nentries);
++   int temp; 
++   kp = kvm_getproc2(kd, KERN_PROC_ALL, flag, temp, &nentries);
 +#else
     kp = kvm_getprocs(kd, KERN_PROC_PROC, flag, &nentries);
 +#endif
     if (kp == NULL || nentries <= 0) {
        Warning("%s: failed to get proc infos with error: %s\n",
                __FUNCTION__, kvm_geterr(kd));
-@@ -692,14 +704,26 @@ ProcMgr_ListProcesses(void)
+@@ -692,14 +701,26 @@ ProcMgr_ListProcesses(void)
        /*
         * Store the pid of the process.
         */
@@ -92,7 +88,7 @@ $NetBSD: patch-bf,v 1.1 2008/08/31 06:36:48 scottr Exp $
                             : Unicode_Alloc(pwd->pw_name, STRING_ENCODING_DEFAULT);
  
        /*
-@@ -707,15 +731,24 @@ ProcMgr_ListProcesses(void)
+@@ -707,15 +728,24 @@ ProcMgr_ListProcesses(void)
         * maximum allowed size, then we can save it right now. Else we shall
         * need to try and parse it from the entire command line.
         */
@@ -117,46 +113,44 @@ $NetBSD: patch-bf,v 1.1 2008/08/31 06:36:48 scottr Exp $
        if (cmdLineTemp != NULL) {
           /*
            * Flatten the argument list to get cmd & all params.
-@@ -771,9 +804,17 @@ ProcMgr_ListProcesses(void)
+@@ -771,9 +801,15 @@ ProcMgr_ListProcesses(void)
           procInfo.procCmdLine = DynBuf_Detach(&dbuf);
           DynBuf_Destroy(&dbuf);
        } else {
 +#if defined(__NetBSD__)
 +         procInfo.procCmdLine = Unicode_Alloc(kp->p_comm, STRING_ENCODING_DEFAULT);
-+#else
-          procInfo.procCmdLine = Unicode_Alloc(kp->ki_comm, STRING_ENCODING_DEFAULT);
-+#endif
-          if (cmdNameLookup) {
-+#if defined(__NetBSD__)
++         if (cmdNameLookup) {
 +            procInfo.procCmdName = Unicode_Alloc(kp->p_comm, STRING_ENCODING_DEFAULT);
 +#else
+          procInfo.procCmdLine = Unicode_Alloc(kp->ki_comm, STRING_ENCODING_DEFAULT);
+          if (cmdNameLookup) {
              procInfo.procCmdName = Unicode_Alloc(kp->ki_comm, STRING_ENCODING_DEFAULT);
 +#endif
              cmdNameLookup = FALSE;
           }
        }
-@@ -781,7 +822,11 @@ ProcMgr_ListProcesses(void)
+@@ -781,7 +817,11 @@ ProcMgr_ListProcesses(void)
        /*
         * Store the start time of the process
         */
 +#if defined(__NetBSD__)
-+      procInfo.procStartTime = kp->p_ustart_sec;
++      procInfo.procStartTime = kp->p_rtime_sec;
 +#else
        procInfo.procStartTime = kp->ki_start.tv_sec;
 +#endif
  
        /*
         * Store the process info pointer into a list buffer.
-@@ -811,7 +856,7 @@ abort:
+@@ -811,7 +851,7 @@ abort:
  
     return procList;
  }
 -#endif // defined(__FreeBSD__)
-+#endif /* defined(__FreeBSD__) || defined(__NetBSD__) */
++#endif // defined(__NetBSD__)
  
  
  #if defined(__APPLE__)
-@@ -2006,7 +2051,7 @@ ProcMgr_Free(ProcMgr_AsyncProc *asyncPro
+@@ -2033,7 +2073,7 @@ ProcMgr_Free(ProcMgr_AsyncProc *asyncPro
     free(asyncProc);
  }
  
@@ -165,7 +159,7 @@ $NetBSD: patch-bf,v 1.1 2008/08/31 06:36:48 scottr Exp $
  
  /*
   *----------------------------------------------------------------------
-@@ -2079,7 +2124,7 @@ ProcMgr_ImpersonateUserStart(const char 
+@@ -2106,7 +2146,7 @@ ProcMgr_ImpersonateUserStart(const char 
     // first change group
  #if defined(USERWORLD)
     ret = Id_SetREGid(ppw->pw_gid, ppw->pw_gid);
@@ -174,7 +168,7 @@ $NetBSD: patch-bf,v 1.1 2008/08/31 06:36:48 scottr Exp $
     ret = setregid(ppw->pw_gid, ppw->pw_gid);
  #else
     ret = setresgid(ppw->pw_gid, ppw->pw_gid, root_gid);
-@@ -2098,7 +2143,7 @@ ProcMgr_ImpersonateUserStart(const char 
+@@ -2125,7 +2165,7 @@ ProcMgr_ImpersonateUserStart(const char 
     // now user
  #if defined(USERWORLD)
     ret = Id_SetREUid(ppw->pw_uid, ppw->pw_uid);
@@ -183,7 +177,7 @@ $NetBSD: patch-bf,v 1.1 2008/08/31 06:36:48 scottr Exp $
     ret = setreuid(ppw->pw_uid, ppw->pw_uid);
  #else
     ret = setresuid(ppw->pw_uid, ppw->pw_uid, 0);
-@@ -2160,7 +2205,7 @@ ProcMgr_ImpersonateUserStop(void)
+@@ -2187,7 +2227,7 @@ ProcMgr_ImpersonateUserStop(void)
     // first change back user
  #if defined(USERWORLD)
     ret = Id_SetREUid(ppw->pw_uid, ppw->pw_uid);
@@ -192,7 +186,7 @@ $NetBSD: patch-bf,v 1.1 2008/08/31 06:36:48 scottr Exp $
     ret = setreuid(ppw->pw_uid, ppw->pw_uid);
  #else
     ret = setresuid(ppw->pw_uid, ppw->pw_uid, 0);
-@@ -2173,7 +2218,7 @@ ProcMgr_ImpersonateUserStop(void)
+@@ -2200,7 +2240,7 @@ ProcMgr_ImpersonateUserStop(void)
     // now group
  #if defined(USERWORLD)
     ret = Id_SetREGid(ppw->pw_gid, ppw->pw_gid);
@@ -201,9 +195,3 @@ $NetBSD: patch-bf,v 1.1 2008/08/31 06:36:48 scottr Exp $
     ret = setregid(ppw->pw_gid, ppw->pw_gid);
  #else
     ret = setresgid(ppw->pw_gid, ppw->pw_gid, ppw->pw_gid);
-@@ -2244,4 +2289,4 @@ ProcMgr_GetImpersonatedUserInfo(char **u
-    return TRUE;
- }
- 
--#endif // linux || __FreeBSD__ || __APPLE__
-+#endif /* linux || __FreeBSD__ || __APPLE__ || __NetBSD__ */

@@ -1,6 +1,6 @@
 $NetBSD: patch-bt,v 1.1 2008/08/31 06:36:49 scottr Exp $
 
---- vmware-user-suid-wrapper/main.c.orig	2015-06-17 16:14:30.000000000 +0000
+--- vmware-user-suid-wrapper/main.c.orig	2008-08-08 02:01:56.000000000 -0500
 +++ vmware-user-suid-wrapper/main.c
 @@ -28,7 +28,7 @@
   *      remove blocks in the blocking file system.
