@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.4225 2016/10/12 00:30:32 kamil Exp $
+$NetBSD: CHANGES-2016,v 1.4232 2016/10/13 00:31:47 enami Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -5915,3 +5915,21 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated devel/p5-CPAN-ParseDistribution to 1.54 [mef 2016-10-11]
 	Updated net/freeradius2 to 2.2.9 [sevan 2016-10-11]
 	Added math/py-abcpmc version 0.1.2 [kamil 2016-10-12]
+	Updated misc/tmux to 2.3nb2 [leot 2016-10-12]
+	Updated devel/p5-Specio to 0.29 [mef 2016-10-12]
+	Updated devel/p5-Log-Dispatch-FileRotate to 1.22 [mef 2016-10-12]
+	Updated devel/p5-Log-Any-Adapter-Screen to 0.13 [mef 2016-10-12]
+	Updated devel/p5-Future to 0.34 [mef 2016-10-12]
+	Updated devel/p5-File-pushd to 1.014 [mef 2016-10-12]
+	Updated devel/p5-File-Find-Rule-Permissions to 2.03 [mef 2016-10-12]
+	Updated devel/p5-CPAN-Perl-Releases to 2.94 [mef 2016-10-12]
+	Updated devel/p5-Log-Report to 1.17 [mef 2016-10-12]
+	Updated devel/p5-Modern-Perl to 1.20161005 [mef 2016-10-12]
+	Updated devel/p5-Module-CoreList to 5.20160920 [mef 2016-10-12]
+	Updated sysutils/open-vm-tools to 10.0.7nb1 [ryoon 2016-10-12]
+	Updated devel/p5-Dist-Zilla to 6.008 [mef 2016-10-12]
+	Updated databases/mysql55-client to 5.5.53 [adam 2016-10-12]
+	Updated databases/mysql55-server to 5.5.53 [adam 2016-10-12]
+	Updated databases/mysql56-client to 5.6.34 [adam 2016-10-12]
+	Updated databases/mysql56-server to 5.6.34 [adam 2016-10-12]
+	Updated lang/gauche to 0.9.5 [enami 2016-10-13]
