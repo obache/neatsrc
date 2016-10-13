@@ -14,6 +14,4 @@ NO_BUILD=	YES
 USE_LANGUAGES=	# none, not even C
 USE_TOOLS+=	gmake
 
-ICON_THEMES=	yes
-
 .include "../../mk/bsd.pkg.mk"

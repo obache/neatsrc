@@ -13,8 +13,6 @@ USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	msgfmt pkg-config
 
-ICON_THEMES=	yes
-
 .include "../../inputmethod/fcitx/buildlink3.mk"
 .include "../../inputmethod/libchewing/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

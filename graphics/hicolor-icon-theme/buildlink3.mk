@@ -13,8 +13,6 @@ BUILDLINK_PKGSRCDIR.hicolor-icon-theme?=../../graphics/hicolor-icon-theme
 
 .if !defined(HICOLOR_ICON_THEME_DEPEND_ONLY)
 
-ICON_THEMES=	yes
-
 .if !defined(NOOP_GTK_UPDATE_ICON_CACHE)
 NOOP_GTK_UPDATE_ICON_CACHE=
 TOOLS_NOOP+=		gtk-update-icon-cache

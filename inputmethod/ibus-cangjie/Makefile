@@ -19,8 +19,6 @@ USE_PKGLOCALEDIR=	yes
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 PY_PATCHPLIST=	yes
 
-ICON_THEMES=	yes
-
 .include "../../inputmethod/ibus/buildlink3.mk"
 .include "../../inputmethod/libcangjie/buildlink3.mk"
 .include "../../lang/python/application.mk"

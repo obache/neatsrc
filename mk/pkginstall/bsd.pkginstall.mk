@@ -48,8 +48,7 @@ _PKG_VARS.pkginstall+= \
 	OWN_DIRS_PERMS MAKE_DIRS_PERMS REQD_DIRS_PERMS \
 	PKG_SYSCONFDIR_PERMS \
 	PKG_SHELL \
-	FONTS_DIRS.ttf FONTS_DIRS.type1 FONTS_DIRS.x11 \
-	ICON_THEMES
+	FONTS_DIRS.ttf FONTS_DIRS.type1 FONTS_DIRS.x11
 _SYS_VARS.pkginstall= \
 	SETUID_ROOT_PERMS \
 	SETGID_GAMES_PERMS \
@@ -990,11 +989,9 @@ ${_INSTALL_FONTS_FILE}: ../../mk/pkginstall/fonts
 		${TOUCH} ${TOUCH_ARGS} ${.TARGET};			\
 	fi
 
-# ICON_THEMES indicate whether icon theme cache files should be automatically
-#	updated with gtk-update-con-cache tool from GTK+ package if available.
-#	It is either YES or NO and defaults to NO.
 #
-ICON_THEMES?=	NO
+# handle cache files for freedesktop.org icon-theme used by GTK+
+#
 
 _INSTALL_ICON_THEMES_FILE=	${_PKGINSTALL_DIR}/icon-themes
 _INSTALL_ICON_THEMES_DATAFILE=	${_PKGINSTALL_DIR}/icon-themes-data
@@ -1011,37 +1008,24 @@ ${_INSTALL_ICON_THEMES_DATAFILE}:
 	${RUN}${MKDIR} ${.TARGET:H}
 	${RUN}${RM} -f ${.TARGET}
 	${RUN}${TOUCH} ${TOUCH_ARGS} ${.TARGET}
-
-.if !empty(ICON_THEMES:M[Yy][Ee][Ss])
-.PHONY: install-script-data-icon-themes
-install-script-data: install-script-data-icon-themes
-install-script-data-icon-themes:
 	${RUN}${_FUNC_STRIP_PREFIX};					\
-	if ${TEST} -x ${INSTALL_FILE}; then				\
 		${ICON_THEMES_cmd} |					\
 		while read theme; do					\
 			theme=`strip_prefix "$$theme"`;			\
 			${ECHO} "# ICON_THEME: $$theme"			\
-				>> ${INSTALL_FILE};			\
+				>> ${.TARGET};				\
 		done;							\
-		cd ${PKG_DB_TMPDIR} && ${PKGSRC_SETENV} ${INSTALL_SCRIPTS_ENV} \
-		${_PKG_DEBUG_SCRIPT} ${INSTALL_FILE} ${PKGNAME}		\
-			UNPACK +ICON_THEMES;				\
-	fi
-.endif
 
 ${_INSTALL_ICON_THEMES_FILE}: ${_INSTALL_ICON_THEMES_DATAFILE}
 ${_INSTALL_ICON_THEMES_FILE}: ../../mk/pkginstall/icon-themes
 	${RUN}${MKDIR} ${.TARGET:H}
 	${RUN}								\
 	${SED} ${FILES_SUBST_SED} ../../mk/pkginstall/icon-themes > ${.TARGET}
-.if empty(ICON_THEMES:M[Yy][Ee][Ss])
 	${RUN}								\
 	if ${_ZERO_FILESIZE_P} ${_INSTALL_ICON_THEMES_DATAFILE}; then	\
 		${RM} -f ${.TARGET};					\
 		${TOUCH} ${TOUCH_ARGS} ${.TARGET};			\
 	fi
-.endif
 
 # PKG_CREATE_USERGROUP indicates whether the INSTALL script should
 #	automatically add any needed users/groups to the system using

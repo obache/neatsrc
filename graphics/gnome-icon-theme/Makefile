@@ -27,8 +27,6 @@ PKGCONFIG_OVERRIDE=	gnome-icon-theme.pc.in
 # the current pkgsrc version.
 BUILDLINK_API_DEPENDS.icon-naming-utils+=	icon-naming-utils>=0.8.90
 
-ICON_THEMES=	yes
-
 post-install:
 	${LOCALBASE}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 16 -h 16 -o ${DESTDIR}${PREFIX}/share/icons/gnome/16x16/places/start-here.png
 	${LOCALBASE}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg -w 22 -h 22 -o ${DESTDIR}${PREFIX}/share/icons/gnome/22x22/places/start-here.png

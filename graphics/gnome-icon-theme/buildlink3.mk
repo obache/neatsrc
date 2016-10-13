@@ -17,7 +17,6 @@ USE_TOOLS+=	perl
 .include "../../mk/bsd.fast.prefs.mk"
 
 .if !defined(GNOME_ICON_THEME_DEPEND_ONLY)
-ICON_THEMES=	yes
 
 .if !defined(NOOP_GTK_UPDATE_ICON_CACHE)
 NOOP_GTK_UPDATE_ICON_CACHE=

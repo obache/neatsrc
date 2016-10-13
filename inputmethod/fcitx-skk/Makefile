@@ -17,8 +17,6 @@ CMAKE_ARGS+=	-DSKK_DEFAULT_PATH:PATH=${LOCALBASE}/share/skk/SKK-JISYO.L
 
 BUILDLINK_TRANSFORM+=	rm:-std=c++11
 
-ICON_THEMES=	yes
-
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../inputmethod/fcitx/buildlink3.mk"
 .include "../../inputmethod/libskk/buildlink3.mk"

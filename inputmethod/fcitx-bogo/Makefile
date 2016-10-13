@@ -12,8 +12,6 @@ USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config
 
-ICON_THEMES=	yes
-
 .include "../../inputmethod/fcitx/buildlink3.mk"
 .include "../../x11/libICE/buildlink3.mk"
 .include "../../x11/libSM/buildlink3.mk"

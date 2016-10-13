@@ -38,8 +38,6 @@ SUBST_SED.paths+=	-e 's,/usr/lib,${PREFIX}/lib,g'
 REPLACE_SH+=	gui/ibus-bogo-settings
 REPLACE_SH+=	ibus_engine/data/ibus-engine-bogo
 
-ICON_THEMES=	yes
-
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 .include "../../lang/python/application.mk"
 .include "../../x11/qt4-tools/buildlink3.mk"

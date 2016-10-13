@@ -16,8 +16,6 @@ USE_TOOLS+=	msgfmt pkg-config
 
 WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
 
-ICON_THEMES=	yes
-
 .include "options.mk"
 
 .include "../../devel/gettext-lib/buildlink3.mk"

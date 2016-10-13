@@ -26,8 +26,6 @@ PKGCONFIG_OVERRIDE+=	adwaita-icon-theme.pc.in
 # but isn't
 INSTALLATION_DIRS+=	share/icons/Adwaita/96x96/places
 
-ICON_THEMES=		yes
-
 post-install:
 .for s in 16 22 24 32 48 96 256
 	 ${LOCALBASE}/bin/rsvg-convert ${FILESDIR}/distributor-logo.svg \

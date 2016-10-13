@@ -21,8 +21,6 @@ GETTEXT_TOOLS_REQD=	0.19.7
 
 TEST_TARGET=	check
 
-ICON_THEMES=	yes
-
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../www/librest07/buildlink3.mk"

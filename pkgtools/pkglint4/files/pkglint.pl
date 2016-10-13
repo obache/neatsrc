@@ -5289,11 +5289,6 @@ sub checkfile_PLIST($) {
 "Otherwise, this warning is harmless.");
 				}
 
-			} elsif ($text =~ m"^share/icons/[^/]+/.+$") {
-				if (defined($pkgctx_vardef) && !exists($pkgctx_vardef->{"ICON_THEMES"})) {
-					$line->log_warning("Packages that install icon theme files should set ICON_THEMES.");
-				}
-
 			} elsif (substr($text, 0, 6) eq "share/" && $pkgpath ne "graphics/hicolor-icon-theme" && $text =~ m"^share/icons/hicolor(?:$|/)") {
 				my $f = "../../graphics/hicolor-icon-theme/buildlink3.mk";
 				if (defined($pkgctx_included) && !exists($pkgctx_included->{$f})) {
