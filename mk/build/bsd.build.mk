@@ -36,7 +36,7 @@ _COOKIE.test=	${WRKDIR}/.test_done
 build:
 	@${DO_NADA}
 .  elif defined(_PKGSRC_BARRIER)
-build: configure build-cookie pkginstall
+build: configure build-cookie
 .  else
 build: barrier
 .  endif
