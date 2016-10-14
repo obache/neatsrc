@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.4232 2016/10/13 00:31:47 enami Exp $
+$NetBSD: CHANGES-2016,v 1.4243 2016/10/13 21:49:06 ryoon Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -5933,3 +5933,28 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated databases/mysql56-client to 5.6.34 [adam 2016-10-12]
 	Updated databases/mysql56-server to 5.6.34 [adam 2016-10-12]
 	Updated lang/gauche to 0.9.5 [enami 2016-10-13]
+	Updated devel/jenkins to 2.25 [fhajny 2016-10-13]
+	Added devel/jenkins-lts version 2.19.1 [fhajny 2016-10-13]
+	Added sysutils/riemann-client version 1.9.1 [fhajny 2016-10-13]
+	Updated www/p5-Dancer2 to 0.204000 [wen 2016-10-13]
+	Updated www/p5-HTTP-Tiny to 0.070 [wen 2016-10-13]
+	Updated lang/nodejs to 6.8.0 [fhajny 2016-10-13]
+	Updated devel/p5-MooseX-App to 1.36 [mef 2016-10-13]
+	Updated sysutils/collectd to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/collectd-amqp to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/collectd-curl to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/collectd-dbi to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/collectd-dns to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/collectd-memcached to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/collectd-mysql to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/collectd-network to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/collectd-notify-email to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/collectd-postgresql to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/collectd-riemann to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/collectd-rrdtool to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/collectd-snmp to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/p5-collectd to 5.6.1 [fhajny 2016-10-13]
+	Updated sysutils/py-collectd to 5.6.1 [fhajny 2016-10-13]
+	Updated mail/mutt to 1.7.1 [tron 2016-10-13]
+	Updated net/haproxy to 1.6.9 [morr 2016-10-13]
+	Updated sysutils/open-vm-tools to 10.0.7nb2 [ryoon 2016-10-13]
