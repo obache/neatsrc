@@ -5289,22 +5289,6 @@ sub checkfile_PLIST($) {
 "Otherwise, this warning is harmless.");
 				}
 
-			} elsif (substr($text, 0, 6) eq "share/" && $pkgpath ne "graphics/hicolor-icon-theme" && $text =~ m"^share/icons/hicolor(?:$|/)") {
-				my $f = "../../graphics/hicolor-icon-theme/buildlink3.mk";
-				if (defined($pkgctx_included) && !exists($pkgctx_included->{$f})) {
-					$line->log_error("Please .include \"$f\" in the Makefile");
-					$line->explain_error(
-"If hicolor icon themes are installed, icon theme cache must be",
-"maintained. The hicolor-icon-theme package takes care of that.");
-				}
-
-			} elsif (substr($text, 0, 6) eq "share/" && $pkgpath ne "graphics/gnome-icon-theme" && $text =~ m"^share/icons/gnome(?:$|/)") {
-				my $f = "../../graphics/gnome-icon-theme/buildlink3.mk";
-				if (defined($pkgctx_included) && !exists($pkgctx_included->{$f})) {
-					$line->log_error("Please .include \"$f\"");
-					$line->explain_error(
-"If Gnome icon themes are installed, icon theme cache must be maintained.");
-				}
 			} elsif ($dirname eq "share/aclocal" && $basename =~ m"\.m4$") {
 				# Fine.
 

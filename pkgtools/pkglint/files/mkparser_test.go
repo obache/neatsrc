@@ -42,7 +42,6 @@ func (s *Suite) Test_MkParser_MkTokens(c *check.C) {
 	check("${VARIABLE}", varuse("VARIABLE"))
 	check("${VARIABLE.param}", varuse("VARIABLE.param"))
 	check("${VARIABLE.${param}}", varuse("VARIABLE.${param}"))
-	check("${VARIABLE.hicolor-icon-theme}", varuse("VARIABLE.hicolor-icon-theme"))
 	check("${VARIABLE.gtk+extra}", varuse("VARIABLE.gtk+extra"))
 	check("${VARIABLE:S/old/new/}", varuse("VARIABLE", "S/old/new/"))
 	check("${GNUSTEP_LFLAGS:S/-L//g}", varuse("GNUSTEP_LFLAGS", "S/-L//g"))

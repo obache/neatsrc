@@ -341,21 +341,6 @@ func (ck *PlistChecker) checkpathShare(pline *PlistLine) {
 				"warning is harmless.")
 		}
 
-	case hasPrefix(text, "share/icons/hicolor/") && G.Pkg != nil && G.Pkg.Pkgpath != "graphics/hicolor-icon-theme":
-		f := "../../graphics/hicolor-icon-theme/buildlink3.mk"
-		if G.Pkg.included[f] == nil {
-			line.Error1("Packages that install hicolor icons must include %q in the Makefile.", f)
-		}
-
-	case hasPrefix(text, "share/icons/gnome") && G.Pkg != nil && G.Pkg.Pkgpath != "graphics/gnome-icon-theme":
-		f := "../../graphics/gnome-icon-theme/buildlink3.mk"
-		if G.Pkg.included[f] == nil {
-			line.Error1("The package Makefile must include %q.", f)
-			Explain2(
-				"Packages that install GNOME icons must maintain the icon theme",
-				"cache.")
-		}
-
 	case hasPrefix(text, "share/doc/html/"):
 		if G.opts.WarnPlistDepr {
 			line.Warn0("Use of \"share/doc/html\" is deprecated. Use \"share/doc/${PKGBASE}\" instead.")
@@ -364,13 +349,6 @@ func (ck *PlistChecker) checkpathShare(pline *PlistLine) {
 	case G.Pkg != nil && G.Pkg.EffectivePkgbase != "" && (hasPrefix(text, "share/doc/"+G.Pkg.EffectivePkgbase+"/") ||
 		hasPrefix(text, "share/examples/"+G.Pkg.EffectivePkgbase+"/")):
 		// Fine.
-
-	case text == "share/icons/hicolor/icon-theme.cache" && G.Pkg != nil && G.Pkg.Pkgpath != "graphics/hicolor-icon-theme":
-		line.Error0("This file must not appear in any PLIST file.")
-		Explain3(
-			"Remove this line and add the following line to the package Makefile.",
-			"",
-			".include \"../../graphics/hicolor-icon-theme/buildlink3.mk\"")
 
 	case hasPrefix(text, "share/info/"):
 		line.Warn0("Info pages should be installed into info/, not share/info/.")
