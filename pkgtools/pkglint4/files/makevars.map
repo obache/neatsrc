@@ -61,7 +61,7 @@ PKGSRC_LOCKTYPE			{ none sleep once } [$user]
 PKGSRC_SLEEPSECS		Integer [$user]
 USETBL				Yes [$user]
 ABI				{ 32 64 } [$user]
-PKG_DEVELOPER			Yes [$user]
+PKG_DEVELOPER			YesNo [$user]
 USE_ABI_DEPENDS			YesNo [$user]
 PKG_REGISTER_SHELLS		{ YES NO } [$user]
 PKGSRC_COMPILER			List of { \
