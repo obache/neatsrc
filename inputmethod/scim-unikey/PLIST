@@ -4,6 +4,7 @@ lib/scim-1.0/1.4.0/Helper/unikey-helper.la
 lib/scim-1.0/1.4.0/IMEngine/unikey.la
 libexec/scim-setup-unikey
 share/locale/vi/LC_MESSAGES/scim-unikey.mo
+share/locale/zh_CN/LC_MESSAGES/scim-unikey.mo
 share/scim-unikey/setup/setup-macro.glade
 share/scim-unikey/setup/setup-main.glade
 share/scim/icons/scim-unikey-check.png
