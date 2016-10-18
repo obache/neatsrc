@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.4300 2016/10/18 02:53:04 kamil Exp $
+$NetBSD: CHANGES-2016,v 1.4306 2016/10/18 08:33:38 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -6020,3 +6020,9 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated sysutils/open-vm-tools to 10.0.7nb3 [ryoon 2016-10-17]
 	Updated www/lighttpd to 1.4.42 [nros 2016-10-17]
 	Added graphics/ptex version 2.1.28 [kamil 2016-10-18]
+	Updated www/p5-CGI to 4.35 [wiz 2016-10-18]
+	Updated time/p5-DateTime-Locale to 1.09 [wiz 2016-10-18]
+	Updated mail/p5-Net-SMTP-SSL to 1.04 [wiz 2016-10-18]
+	Updated devel/p5-Specio to 0.30 [wiz 2016-10-18]
+	Updated time/p5-Time-HiRes to 1.9740 [wiz 2016-10-18]
+	Updated devel/py-setuptools to 28.5.0 [wiz 2016-10-18]
