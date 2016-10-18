@@ -16,4 +16,4 @@ SHA1 (patch-imap_mbexamine.c) = d413c7e0091215cf0572cf0510741cea168b7a68
 SHA1 (patch-imap_mboxevent.c) = e4ff6c2f0c1e6459bef13c0555249fd84c9fcce5
 SHA1 (patch-imap_sync__client.c) = 801a934c94cd3a7884fdbb1860543cd84ceab3a0
 SHA1 (patch-imap_sync__support.c) = 753c0842a6e4660494c0fed5621e1530996c89a6
-SHA1 (patch-lib_util.h) = 1e1a377bcccd3b44449fbca0163b9380c3139e20
+SHA1 (patch-lib_util.h) = 331855e7448187a081029e65f4d959eb0e8e7b73
