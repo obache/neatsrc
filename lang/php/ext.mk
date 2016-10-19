@@ -1,4 +1,4 @@
-# $NetBSD: ext.mk,v 1.42 2016/07/26 08:19:45 jdolecek Exp $
+# $NetBSD: ext.mk,v 1.43 2016/10/18 19:09:10 jdolecek Exp $
 #
 # PHP extension package framework, for both PECL and bundled PHP extensions.
 #
@@ -66,6 +66,10 @@ DISTNAME=		${PECL_DISTNAME}
 DIST_SUBDIR?=		php-${MODNAME}
 EXTRACT_SUFX?=		.tgz
 .endif
+
+EGDIR=      ${PREFIX}/share/examples/php.d
+
+PHP_EXT_CONF_DIR?=	${PKG_SYSCONFDIR}/php.d
 
 PHPIZE?=		${BUILDLINK_PREFIX.php}/bin/phpize
 PHP_CONFIG?=		${BUILDLINK_PREFIX.php}/bin/php-config
@@ -146,14 +150,14 @@ post-install: install-php-ext-ini
 
 .PHONY: install-php-ext-ini
 install-php-ext-ini: ${WRKDIR}/${_PHP_EXT_INI_NAME}
-	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/examples/php.d
-	${INSTALL_DATA} ${WRKDIR}/${_PHP_EXT_INI_NAME} ${DESTDIR}${PREFIX}/share/examples/php.d/
+	${INSTALL_DATA_DIR} ${DESTDIR}${EGDIR}
+	${INSTALL_DATA} ${WRKDIR}/${_PHP_EXT_INI_NAME} ${DESTDIR}${EGDIR}/
 
-MAKE_DIRS+=	${PKG_SYSCONFDIR}/php.d
-CONF_FILES+=	${PREFIX}/share/examples/php.d/${_PHP_EXT_INI_NAME} ${PKG_SYSCONFDIR}/php.d/${_PHP_EXT_INI_NAME}
+MAKE_DIRS+=	${PHP_EXT_CONF_DIR}
+CONF_FILES+=	${EGDIR}/${_PHP_EXT_INI_NAME} ${PHP_EXT_CONF_DIR}/${_PHP_EXT_INI_NAME}
 
-GENERATE_PLIST+=	${ECHO} share/examples/php.d/${_PHP_EXT_INI_NAME};
-PRINT_PLIST_AWK+=	/^share\/examples\/php.d\/${_PHP_EXT_INI_NAME}/ { next; }
+GENERATE_PLIST+=	${ECHO} ${EGDIR:S/^${PREFIX}\///}/${_PHP_EXT_INI_NAME};
+PRINT_PLIST_AWK+=	/^${EGDIR:S/^${PREFIX}\///:S/\//\\\//g}\/${_PHP_EXT_INI_NAME}/ { next; }
 
 .endif
 
