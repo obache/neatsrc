@@ -1,4 +1,4 @@
-$NetBSD: patch-libcc1_connection.cc,v 1.1 2015/12/10 03:02:16 joerg Exp $
+$NetBSD: patch-libcc1_connection.cc,v 1.1 2016/10/19 12:48:26 ryoon Exp $
 
 --- libcc1/connection.cc.orig	2014-11-13 10:22:22.000000000 +0000
 +++ libcc1/connection.cc

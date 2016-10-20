@@ -1,4 +1,4 @@
-$NetBSD: patch-gcc_system.h,v 1.1 2015/12/10 03:02:16 joerg Exp $
+$NetBSD: patch-gcc_system.h,v 1.1 2016/10/19 12:48:26 ryoon Exp $
 
 --- gcc/system.h.orig	2015-01-05 12:33:28.000000000 +0000
 +++ gcc/system.h

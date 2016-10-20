@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.4 2016/10/17 13:44:38 ryoon Exp $
+# $NetBSD: Makefile,v 1.1 2016/10/19 12:38:41 ryoon Exp $
 
-DISTNAME=		gcc-core-3.4.6
-PKGNAME=		cross-h8300-elf-${DISTNAME:S/-core//}
-PKGREVISION=		1
+DISTNAME=		gcc-6.2.0
+PKGNAME=		cross-h8300-elf-${DISTNAME}
 CATEGORIES=		cross
-MASTER_SITES=		${MASTER_SITE_GNU:=gcc/gcc-3.4.6/}
+MASTER_SITES=		${MASTER_SITE_GNU:=gcc/gcc-${PKGVERSION_NOREV}/}
+EXTRACT_SUFX=		.tar.bz2
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX} \
-			${DISTNAME:S/-core-/-g++-/}${EXTRACT_SUFX} \
-			newlib-${NEWLIBVER}${EXTRACT_SUFX}
-NEWLIBVER=		1.14.0
+			newlib-${NEWLIBVER}.tar.gz
+NEWLIBVER=		2.4.0
 SITES.newlib-${NEWLIBVER}.tar.gz=	ftp://sources.redhat.com/pub/newlib/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
@@ -17,7 +16,7 @@ COMMENT=		GCC compiler for h8300-elf
 
 DEPENDS+=	cross-h8300-elf-binutils-[0-9]*:../../cross/h8300-elf-binutils
 
-WRKSRC=			${WRKDIR}/${DISTNAME:S/-core//}
+USE_LANGUAGES=		c c++
 
 H8300_PREFIX=		${PREFIX}/cross-h8300-elf
 OBJDIR=			../build
@@ -29,17 +28,17 @@ GNU_CONFIGURE=		yes
 
 GNU_CONFIGURE_PREFIX=	${H8300_PREFIX}
 
+CONFIGURE_ARGS+=	--disable-nls
 CONFIGURE_ARGS+=	--target=h8300-elf
 CONFIGURE_ARGS+=	--enable-languages=c,c++
 CONFIGURE_ARGS+=	--disable-multilib
 CONFIGURE_ARGS+=	--with-newlib
 CONFIGURE_ARGS+=	--disable-libstdcxx-pch
+CONFIGURE_ARGS+=        --with-gmp=${BUILDLINK_PREFIX.gmp}
+CONFIGURE_ARGS+=        --with-mpc=${BUILDLINK_PREFIX.mpcomplex}
+CONFIGURE_ARGS+=        --with-mpfr=${BUILDLINK_PREFIX.mpfr}
 MAKE_ENV+=		SHELL=${CONFIG_SHELL}
 INFO_FILES=		yes
-
-INSTALLATION_DIRS+=	bin
-
-GCC_REQD+=		2.8.0
 
 post-extract:
 	${LN} -s ${WRKDIR}/newlib-${NEWLIBVER}/newlib ${WRKSRC}/newlib
@@ -49,13 +48,7 @@ pre-configure:
 	${CP} ${PKGSRCDIR}/mk/gnu-config/config.guess ${WRKSRC}
 	${CP} ${PKGSRCDIR}/mk/gnu-config/config.sub ${WRKSRC}
 
-post-install:
-	for f in h8300-elf-cpp    h8300-elf-gcc \
-		 h8300-elf-c++    h8300-elf-g++ \
-		 h8300-elf-gccbug h8300-elf-gcov \
-		 ; do \
-		${LN} -s ../cross-h8300-elf/bin/"$$f" \
-			${DESTDIR}${PREFIX}/bin/"$$f" || exit 1; \
-	done
-
+.include "../../devel/gmp/buildlink3.mk"
+.include "../../math/mpcomplex/buildlink3.mk"
+.include "../../math/mpfr/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

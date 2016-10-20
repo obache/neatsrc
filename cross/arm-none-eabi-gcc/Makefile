@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.4 2016/07/05 18:59:58 ryoon Exp $
+# $NetBSD: Makefile,v 1.1 2016/10/19 12:48:25 ryoon Exp $
 
-DISTNAME=		gcc-5.4.0
+DISTNAME=		gcc-6.2.0
 PKGNAME=		cross-arm-none-eabi-${DISTNAME}
 CATEGORIES=		cross
 MASTER_SITES=		${MASTER_SITE_GNU:=gcc/gcc-${PKGVERSION_NOREV}/}
@@ -12,7 +12,7 @@ DISTFILES=		${DISTNAME}${EXTRACT_SUFX} \
 MAINTAINER=		ryoon@NetBSD.org
 HOMEPAGE=		# none
 COMMENT=		GCC for bare metal ARM EABI
-EXTRACT_SUFX=		.tar.bz2
+EXTRACT_SUFX=		.tar.gz
 
 # for http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33549
 # use makeinfo from pkgsrc/devel/gtexinfo.
@@ -46,8 +46,6 @@ CONFIGURE_ARGS+=	--disable-nls
 CONFIGURE_ARGS+=	--disable-libstdcxx-pch
 
 INFO_FILES=		yes
-
-INSTALLATION_DIRS+=	bin
 
 CONFIGURE_ARGS+=	--enable-${PLUGIN_NAME}-plugin
 
