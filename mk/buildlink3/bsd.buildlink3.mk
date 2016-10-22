@@ -744,9 +744,12 @@ _BLNK_LT_ARCHIVE_FILTER_SED_SCRIPT.${_pkg_}+=				\
 #
 _BLNK_LT_ARCHIVE_FILTER_SED_SCRIPT.${_pkg_}+=				\
 	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${LOCALBASE}/[^${_BLNK_SEP}]*\([${_BLNK_SEP}]\),\\1\\2,g" \
-	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${LOCALBASE}/[^${_BLNK_SEP}]*\([${_BLNK_SEP}]\),\\1\\2,g" \
+	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${LOCALBASE}/[^${_BLNK_SEP}]*\([${_BLNK_SEP}]\),\\1\\2,g"
+.if ${X11_TYPE} != "modular" && ${X11BASE} != "/usr"
+_BLNK_LT_ARCHIVE_FILTER_SED_SCRIPT.${_pkg_}+=				\
 	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${X11BASE}/[^${_BLNK_SEP}]*\([${_BLNK_SEP}]\),\\1\\2,g" \
 	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${X11BASE}/[^${_BLNK_SEP}]*\([${_BLNK_SEP}]\),\\1\\2,g"
+.endif
 #
 # Unmangle.
 #
