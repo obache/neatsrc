@@ -1,0 +1,13 @@
+$NetBSD: distinfo,v 1.20 2014/06/17 01:08:59 obache Exp $
+
+SHA1 (cyrus-imapd-3.0.0-beta3.tar.gz) = c828a0c91e20d8dc74162dc16ddf22824fb4b345
+RMD160 (cyrus-imapd-3.0.0-beta3.tar.gz) = 7e462eafde59b472449b1dec43460129947e12cb
+SHA512 (cyrus-imapd-3.0.0-beta3.tar.gz) = c11ab776cc7f2bc8a7136f782c261712d1773ca1b6e76c8efda89ee3fcee87ae1839432d3e44663cd9758754a87b02cea299751255550bea12452e8b275cc97d
+Size (cyrus-imapd-3.0.0-beta3.tar.gz) = 10906273 bytes
+SHA1 (patch-Makefile.am) = 0c03b22db3ec58d43e943b99ffcb8e8ee15b289e
+SHA1 (patch-Makefile.in) = 1a76dbda8655bb9574b37b31579a2567a3202f28
+SHA1 (patch-configure) = a304997fc9cdceaf54b10c8f128e50583828b9f5
+SHA1 (patch-imap_backend.c) = f06e0c6ed6e9a7be960cce1d2d9f5c29b2e6a2ab
+SHA1 (patch-imap_ctl__cyrusdb.c) = 8e9098a51c939e03168afd803864beae7d7ca6d4
+SHA1 (patch-imap_http__admin.c) = 04d1cdc7f6f020583d64c49608f1fde376b4d037
+SHA1 (patch-lib_util.h) = de64d83dc8f7667131aa81f73e59f2e21cb00f7f
