@@ -738,18 +738,14 @@ _BLNK_LT_ARCHIVE_FILTER_SED_SCRIPT.${_pkg_}+=				\
 	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${_dir_}/\.\([${_BLNK_SEP}]\),\\1\\2,g"
 .endfor
 #
-# Modify the dependency_libs line by removing -L${LOCALBASE}/* and
-# -L${X11BASE}/*, since those are automatically added by the buildlink3.mk
+# Modify the dependency_libs line by removing -L* flags already in
+# BUILDLINK_LDFLAGS, those are automatically added by the buildlink3.mk
 # files.
 #
+.for _ldflags_ in ${BUILDLINK_LDFLAGS:M-L*}
 _BLNK_LT_ARCHIVE_FILTER_SED_SCRIPT.${_pkg_}+=				\
-	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${LOCALBASE}/[^${_BLNK_SEP}]*\([${_BLNK_SEP}]\),\\1\\2,g" \
-	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${LOCALBASE}/[^${_BLNK_SEP}]*\([${_BLNK_SEP}]\),\\1\\2,g"
-.if ${X11_TYPE} != "modular" && ${X11BASE} != "/usr"
-_BLNK_LT_ARCHIVE_FILTER_SED_SCRIPT.${_pkg_}+=				\
-	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${X11BASE}/[^${_BLNK_SEP}]*\([${_BLNK_SEP}]\),\\1\\2,g" \
-	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${X11BASE}/[^${_BLNK_SEP}]*\([${_BLNK_SEP}]\),\\1\\2,g"
-.endif
+	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)${_ldflags_}\([${_BLNK_SEP}]\),\\1\\2,g"
+.endfor
 #
 # Unmangle.
 #
