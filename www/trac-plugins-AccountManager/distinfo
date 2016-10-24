@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (accountmanagerplugin_tags_acct_mgr-0.4.4-13806.zip) = cd2e2da194948cd02ed2f3ee2cb69e4f63053842
-RMD160 (accountmanagerplugin_tags_acct_mgr-0.4.4-13806.zip) = 4e2ac73001ad1859b399c7ebe0165d4d380afaaa
-SHA512 (accountmanagerplugin_tags_acct_mgr-0.4.4-13806.zip) = be419540da4f5a6793f9952901a56feca4cabdf234783b3d1bafd073572edd8d88d2e15631857a6c237cd11a63a407be7cec8ec0a94d398b48ffcb480b6da9ba
-Size (accountmanagerplugin_tags_acct_mgr-0.4.4-13806.zip) = 266132 bytes
+SHA1 (TracAccountManager-0.4.4.tar.gz) = 07564289a0644111e5323a5528f0ecaca53c251e
+RMD160 (TracAccountManager-0.4.4.tar.gz) = 4c4380c4908fe6b844cf0d808daad7481965fd99
+SHA512 (TracAccountManager-0.4.4.tar.gz) = 622e011c5cd956c3e32fe578b60d0cc060b109893a6bbd5ea12dea36373a9a47a8a226ae6a297d69a22f9d1d1deae686ccdf2258623877ee794febb99c9a99e4
+Size (TracAccountManager-0.4.4.tar.gz) = 157666 bytes

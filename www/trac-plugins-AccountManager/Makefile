@@ -1,11 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	${SVN_MOD}_tags_${SVN_TAG}-${SVN_REV}
-PKGNAME=	trac-plugins-AccountManager-0.4.4
-EGG_NAME=	TracAccountManager-0.4.4
+DISTNAME=	TracAccountManager-0.4.4
+PKGNAME=	${DISTNAME:S/Trac/trac-plugins/}
 CATEGORIES=	www
-MASTER_SITES=	-http://trac-hacks.org/changeset/${SVN_REV}/${SVN_MOD}/tags/${SVN_TAG}?old_path=%2F&old=${SVN_REV}&format=zip
-EXTRACT_SUFX=	.zip
+MASTER_SITES=	${MASTER_SITE_PYPI:=T/TracAccountManager/}
 
 HOMEPAGE=	http://trac-hacks.org/wiki/AccountManagerPlugin
 COMMENT=	User account management plugin for Trac
@@ -15,22 +13,7 @@ DEPENDS+=	trac>=0.12:../../www/trac
 DEPENDS+=	${PYPKGPREFIX}-genshi>=0.5:../../www/py-genshi
 DEPENDS+=	${PYPKGPREFIX}-babel>=0.9.5:../../devel/py-babel
 
-SVN_TAG=	acct_mgr-0.4.4
-SVN_REV=	13806
-SVN_MOD=	accountmanagerplugin
-WRKSRC=		${WRKDIR}/${SVN_MOD}/tags/${SVN_TAG}
-
-# Unwanted "/" in archive.
-EXTRACT_OPTS+=		-x
-EXTRACT_ELEMENTS=	/
-
-# and NetBSD's buitlin unzip cannot handled well it.
-.if !empty(OPSYS:MNetBSD)
-TOOLS_INCOMPAT_PLATFORMS.unzip+=	NetBSD-*-*
-.endif
-
-post-extract:
-	find ${WRKSRC} -type f -print | xargs chmod +r
+WRKSRC=		${WRKDIR}/acct_mgr-${PKGVERSION_NOREV}
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"
