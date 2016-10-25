@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.4421 2016/10/23 15:45:51 schmonz Exp $
+$NetBSD: CHANGES-2016,v 1.4433 2016/10/24 22:35:21 ryoon Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -6166,3 +6166,15 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated net/youtube-dl to 20161021.1 [leot 2016-10-23]
 	Updated parallel/openmpi to 1.10.4 [asau 2016-10-23]
 	Updated mail/getmail to 4.52.0 [schmonz 2016-10-23]
+	Updated multimedia/ffmpeg3 to 3.1.5 [maya 2016-10-23]
+	Updated multimedia/x264-devel to 20161023 [maya 2016-10-23]
+	Updated fonts/unifont to 9.0.03 [maya 2016-10-23]
+	Updated databases/ruby-mysql2 to 0.4.5 [taca 2016-10-24]
+	Updated devel/ruby-fast_gettext to 1.3.0 [taca 2016-10-24]
+	Updated devel/ruby-octokit to 4.4.0 [taca 2016-10-24]
+	Updated time/ruby-tzinfo-data to 1.2016.8 [taca 2016-10-24]
+	Updated www/ruby-css-parser to 1.4.6 [taca 2016-10-24]
+	Updated www/ruby-jekyll-archives to 2.1.1 [taca 2016-10-24]
+	Updated www/ruby-jekyll-archives to 2.1.1nb1 [taca 2016-10-24]
+	Added geography/opencpn-plugin-debugger version 20160224 [bouyer 2016-10-24]
+	Updated cross/h8300-elf-gcc to 6.2.0nb1 [ryoon 2016-10-24]
