@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.4436 2016/10/25 02:11:45 kamil Exp $
+$NetBSD: CHANGES-2016,v 1.4454 2016/10/26 07:51:56 kleink Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -6181,3 +6181,21 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated devel/cppcheck to 1.76.1 [kamil 2016-10-25]
 	Updated audio/hydrogen to 0.9.6.1nb3 [mrg 2016-10-25]
 	Updated textproc/xmlstarlet to 1.6.1 [kamil 2016-10-25]
+	Added comms/asterisk14 version 14.0.2 [jnemeth 2016-10-25]
+	Added geography/mapcode version 2.3.0 [fhajny 2016-10-25]
+	Updated devel/ccache to 3.3.2 [adam 2016-10-25]
+	Updated x11/libXi to 1.7.8 [wiz 2016-10-25]
+	Updated devel/p5-Ouch to 0.0410 [schmonz 2016-10-25]
+	Updated devel/ruby-octokit to 4.4.1 [taca 2016-10-25]
+	Updated www/contao35 to 3.5.18 [taca 2016-10-25]
+	Updated devel/valgrind to 3.12.0 [alnsn 2016-10-25]
+	Updated lang/abcl to 1.4.0 [asau 2016-10-25]
+	Updated lang/racket to 6.6 [asau 2016-10-25]
+	Updated lang/racket-textual to 6.6 [asau 2016-10-25]
+	Updated devel/fossil to 1.36 [kamil 2016-10-25]
+	Updated lang/jimtcl to 0.77 [kamil 2016-10-25]
+	Updated lang/nodejs to 7.0.0 [fhajny 2016-10-25]
+	Added lang/nodejs6 version 6.9.1 [fhajny 2016-10-25]
+	Updated geography/geos to 3.5.1 [gdt 2016-10-25]
+	Updated comms/asterisk to 11.24.0 [jnemeth 2016-10-26]
+	Added textproc/py-webencodings version 0.5 [kleink 2016-10-26]
