@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.17 2016/09/06 12:31:56 ryoon Exp $
+# $NetBSD: Makefile,v 1.18 2016/10/26 20:34:00 ryoon Exp $
 
 DISTNAME=	corebird-1.3.3
 CATEGORIES=	net
-MASTER_SITES=	-https://github.com/baedert/corebird/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
+MASTER_SITES=	https://github.com/baedert/corebird/releases/download/${PKGVERSION_NOREV}/
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://corebird.baedert.org/
@@ -12,8 +13,7 @@ LICENSE=	gnu-gpl-v3
 USE_LIBTOOL=	yes
 USE_LANGUAGES=	c
 GNU_CONFIGURE=	yes
-CONFIGURE_SCRIPT=	autogen.sh
-USE_TOOLS+=	autoconf automake gettext-m4 pkg-config gmake msgfmt xmllint
+USE_TOOLS+=	pkg-config gmake msgfmt xmllint
 
 GETTEXT_TOOLS_REQD=	0.19.7
 
