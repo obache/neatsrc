@@ -3,7 +3,7 @@
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.cyrus-imapd
 PKG_SUPPORTED_OPTIONS=	clamav gssapi http kerberos kerberos4 ldap pcre snmp zephyr
-PKG_SUPPORTED_OPTIONS+=	mysql pgsql sqlite
+PKG_SUPPORTED_OPTIONS+=	mysql pgsql sqlite lmdb
 PKG_SUGGESTED_OPTIONS=	http ldap pcre
 
 .include "../../mk/bsd.options.mk"
@@ -100,6 +100,13 @@ CONFIGURE_ARGS+=	--with-sqlite=${BUILDLINK_PREFIX.sqlite3}
 CONFIGURE_ARGS+=	--without-sqlite
 .endif
 
+.if !empty(PKG_OPTIONS:Mlmdb)
+.  include "../../databases/lmdb/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-lmdb
+.else
+CONFIGURE_ARGS+=	--without-lmdb
+.endif
+
 .if !empty(PKG_OPTIONS:Mpcre)
 .  include "../../devel/pcre/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-pcre
@@ -116,7 +123,6 @@ CONFIGURE_ARGS+=	--without-clamav
 .endif
 
 .if !empty(PKG_OPTIONS:Mhttp)
-TOOL_DEPENDS+=	vim-share-[0-9]*:../../editors/vim-share # for xxd
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
