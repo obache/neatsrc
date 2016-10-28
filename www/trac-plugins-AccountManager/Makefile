@@ -1,7 +1,7 @@
 # $NetBSD$
 
 DISTNAME=	TracAccountManager-0.4.4
-PKGNAME=	${DISTNAME:S/Trac/trac-plugins/}
+PKGNAME=	${DISTNAME:S/Trac/trac-plugins-/}
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_PYPI:=T/TracAccountManager/}
 
