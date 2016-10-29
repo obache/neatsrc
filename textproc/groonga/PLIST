@@ -195,8 +195,8 @@ share/doc/groonga/en/html/_sources/reference/commands/select.txt
 share/doc/groonga/en/html/_sources/reference/commands/shutdown.txt
 share/doc/groonga/en/html/_sources/reference/commands/status.txt
 share/doc/groonga/en/html/_sources/reference/commands/suggest.txt
-share/doc/groonga/en/html/_sources/reference/commands/table_create.txt
 share/doc/groonga/en/html/_sources/reference/commands/table_copy.txt
+share/doc/groonga/en/html/_sources/reference/commands/table_create.txt
 share/doc/groonga/en/html/_sources/reference/commands/table_list.txt
 share/doc/groonga/en/html/_sources/reference/commands/table_remove.txt
 share/doc/groonga/en/html/_sources/reference/commands/table_rename.txt
@@ -461,8 +461,8 @@ share/doc/groonga/en/html/reference/commands/select.html
 share/doc/groonga/en/html/reference/commands/shutdown.html
 share/doc/groonga/en/html/reference/commands/status.html
 share/doc/groonga/en/html/reference/commands/suggest.html
-share/doc/groonga/en/html/reference/commands/table_create.html
 share/doc/groonga/en/html/reference/commands/table_copy.html
+share/doc/groonga/en/html/reference/commands/table_create.html
 share/doc/groonga/en/html/reference/commands/table_list.html
 share/doc/groonga/en/html/reference/commands/table_remove.html
 share/doc/groonga/en/html/reference/commands/table_rename.html
@@ -706,8 +706,8 @@ share/doc/groonga/ja/html/_sources/reference/commands/select.txt
 share/doc/groonga/ja/html/_sources/reference/commands/shutdown.txt
 share/doc/groonga/ja/html/_sources/reference/commands/status.txt
 share/doc/groonga/ja/html/_sources/reference/commands/suggest.txt
-share/doc/groonga/ja/html/_sources/reference/commands/table_create.txt
 share/doc/groonga/ja/html/_sources/reference/commands/table_copy.txt
+share/doc/groonga/ja/html/_sources/reference/commands/table_create.txt
 share/doc/groonga/ja/html/_sources/reference/commands/table_list.txt
 share/doc/groonga/ja/html/_sources/reference/commands/table_remove.txt
 share/doc/groonga/ja/html/_sources/reference/commands/table_rename.txt
@@ -972,8 +972,8 @@ share/doc/groonga/ja/html/reference/commands/select.html
 share/doc/groonga/ja/html/reference/commands/shutdown.html
 share/doc/groonga/ja/html/reference/commands/status.html
 share/doc/groonga/ja/html/reference/commands/suggest.html
-share/doc/groonga/ja/html/reference/commands/table_create.html
 share/doc/groonga/ja/html/reference/commands/table_copy.html
+share/doc/groonga/ja/html/reference/commands/table_create.html
 share/doc/groonga/ja/html/reference/commands/table_list.html
 share/doc/groonga/ja/html/reference/commands/table_remove.html
 share/doc/groonga/ja/html/reference/commands/table_rename.html
