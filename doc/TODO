@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16625 2016/10/27 16:36:03 taca Exp $
+$NetBSD: TODO,v 1.16634 2016/10/28 23:28:32 wiz Exp $
 
 Suggested new packages
 ======================
@@ -377,7 +377,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o R-mapproj-3
 	o R-maps-3.1.0
 	o R-ncdf-1.6.8
-	o SDL2-2.0.5
 	o SDL2_net-2.0.1
 	o SOGo-3.1.0
 	o SOPE-3.0.2
@@ -1016,7 +1015,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libmilter-8.16.0.16
 	o libmtag-0.3.6
 	o liboobs-2.32.0 [GNOME 2.32]
-	o libopenmpt-0.2.7299beta20.2
 	o libowfat-0.29
 	o libpgm-5.2.122
 	o libprelude-3.1.0
@@ -1198,8 +1196,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Chart-3.2
 	o p5-DBD-DB2-1.85
 	o p5-DBD-ODBC-1.52
-	o p5-DateTime-Locale-1.10
-	o p5-DateTime-TimeZone-2.06
 	o p5-FormValidator-Simple-1.00
 	o p5-GStreamer-0.20
 	o p5-GraphViz2-2.37
@@ -1208,7 +1204,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-HTTP-Server-EV-0.69
 	o p5-Heap-1.04
 	o p5-IP-Country-3.03
-	o p5-List-AllUtils-0.12
 	o p5-Memoize-Memcached-0.11
 	o p5-Net-ManageSieve-0.13
 	o p5-NetPacket-1.6.0
@@ -1235,12 +1230,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-SDL-2.544 [wip, make sure games/frozen-bubble runs, may require p5-SDL_perl]
 	o p5-SVG-Graph-0.0402
 	o p5-SVN-Simple-0.312
-	o p5-Sub-Exporter-Progressive-0.001013
 	o p5-Sys-Utmp-1.7
-	o p5-Test-Simple-1.302062
 	o p5-Text-Hunspell-2.14
 	o p5-Tie-DBI-1.06
-	o p5-Unicode-Collate-1.15
 	o p5-Wx-0.9928
 	o p5-X11-Protocol-29
 	o p5-eBay-API-0.29
@@ -1387,8 +1379,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-radare2-0.10.6
 	o py-scgi-1.15
 	o py-serpent-1.12
-	o py-setuptools-28.6.1
-	o py-setuptools_scm-1.15.0
 	o py-simpletal-5.1
 	o py-smb-1.1.17
 	o py-softlayer-5.1.0

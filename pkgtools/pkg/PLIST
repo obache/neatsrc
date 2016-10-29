@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2016/10/27 00:24:58 khorben Exp $
+@comment $NetBSD: PLIST,v 1.7 2016/10/28 23:39:10 marino Exp $
 include/pkg.h
 lib/libpkg.la
 lib/libpkg_static.la
@@ -52,4 +52,3 @@ share/examples/pkg/periodic/security/460.pkg-checksum
 share/examples/pkg/periodic/weekly/400.status-pkg
 share/examples/pkg/pkg.conf.sample
 share/zsh/site-functions/_pkg
-@pkgdir etc/periodic
