@@ -1,7 +1,6 @@
-$NetBSD: distinfo,v 1.6 2015/11/03 03:27:30 agc Exp $
+$NetBSD: distinfo,v 1.7 2016/10/31 16:43:17 wiz Exp $
 
-SHA1 (gtest-1.7.0.zip) = f85f6d2481e2c6c4a18539e391aa4ea8ab0394af
-RMD160 (gtest-1.7.0.zip) = 33591b2223d31386c595dc43487fe02c37d008e4
-SHA512 (gtest-1.7.0.zip) = 8859369f2dd32cbc2ac01aba029aa3ff20a321f40658b9643aff442d34c33468221866b801b28c66a28af47dbcd362d26941fc98db92b6efb7e41ea5b7be1a07
-Size (gtest-1.7.0.zip) = 1164254 bytes
-SHA1 (patch-Makefile.in) = 21e07b72de723ad17dfa76d97061590e10a72444
+SHA1 (googletest-1.8.0.tar.gz) = e7e646a6204638fe8e87e165292b8dd9cd4c36ed
+RMD160 (googletest-1.8.0.tar.gz) = b0a9e48874df3291a261ed85a0c0a4d677b01dc1
+SHA512 (googletest-1.8.0.tar.gz) = 1dbece324473e53a83a60601b02c92c089f5d314761351974e097b2cf4d24af4296f9eb8653b6b03b1e363d9c5f793897acae1f0c7ac40149216035c4d395d9d
+Size (googletest-1.8.0.tar.gz) = 1281617 bytes
