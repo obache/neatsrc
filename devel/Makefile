@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2327 2016/10/21 02:32:58 kamil Exp $
+# $NetBSD: Makefile,v 1.2329 2016/11/02 13:06:00 joerg Exp $
 #
 
 COMMENT=	Development utilities
@@ -152,6 +152,7 @@ SUBDIR+=	cproto
 SUBDIR+=	cpuflags
 SUBDIR+=	cqual
 SUBDIR+=	cre2
+SUBDIR+=	creduce
 SUBDIR+=	cscope
 SUBDIR+=	cssc
 SUBDIR+=	ctemplate
@@ -285,7 +286,6 @@ SUBDIR+=	glib2
 SUBDIR+=	glibmm
 SUBDIR+=	global
 SUBDIR+=	gmake
-SUBDIR+=	gmock
 SUBDIR+=	gmp
 SUBDIR+=	gmtk
 SUBDIR+=	gnatpython
