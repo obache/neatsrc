@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2329 2016/11/02 13:06:00 joerg Exp $
+# $NetBSD: Makefile,v 1.2333 2016/11/08 12:05:30 fhajny Exp $
 #
 
 COMMENT=	Development utilities
@@ -1132,6 +1132,7 @@ SUBDIR+=	p5-IPC-Signal
 SUBDIR+=	p5-IPC-SysV
 SUBDIR+=	p5-IPC-System-Simple
 SUBDIR+=	p5-Import-Into
+SUBDIR+=	p5-Importer
 SUBDIR+=	p5-Inline
 SUBDIR+=	p5-Inline-C
 SUBDIR+=	p5-InlineX-C2XS
@@ -1152,6 +1153,7 @@ SUBDIR+=	p5-Locale-Msgfmt
 SUBDIR+=	p5-Locale-PO
 SUBDIR+=	p5-Log-Agent
 SUBDIR+=	p5-Log-Any
+SUBDIR+=	p5-Log-Any-Adapter-Callback
 SUBDIR+=	p5-Log-Any-Adapter-Dispatch
 SUBDIR+=	p5-Log-Any-Adapter-Log4perl
 SUBDIR+=	p5-Log-Any-Adapter-Screen
@@ -1576,6 +1578,8 @@ SUBDIR+=	p5-Test-YAML-Meta
 SUBDIR+=	p5-Test-YAML-Valid
 SUBDIR+=	p5-Test-use-ok
 SUBDIR+=	p5-Test-utf8
+SUBDIR+=	p5-Test2-Plugin-NoWarnings
+SUBDIR+=	p5-Test2-Suite
 SUBDIR+=	p5-Throwable
 SUBDIR+=	p5-Tie-Array-AsHash
 SUBDIR+=	p5-Tie-Array-Sorted

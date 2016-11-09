@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.2 2013/08/17 16:28:48 richard Exp $
+# $NetBSD: options.mk,v 1.3 2016/11/08 10:24:43 wiz Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.libnotify
 PKG_SUPPORTED_OPTIONS=	doc introspection

@@ -1,0 +1,20 @@
+===========================================================================
+$NetBSD: MESSAGE,v 1.2 2016/11/07 00:47:29 christos Exp $
+
+For users migrating from Netatalk 2.x, version 3.x comes with
+substantial changes, like an all-new config file format, and the loss
+of AppleTalk (ddp) support. You are advised to familiarize yourself
+with the changes in advance; use
+<http://netatalk.sourceforge.net/3.0/htmldocs/upgrade.html> as a
+starting point.
+
+In addition, 3.x appears to only work reliably with the Berkeley
+Database v5, so you either have to manually upgrade the existing
+CNID database(s), or discard them.
+
+- You need to start mdnsd for this
+- add your IPv4 address to the 'afp listen' in /etc/netatalk/afp.conf
+  because otherwise the daemon only listens on IPv6, and we have mapped
+  addresses turned off by default
+
+===========================================================================
