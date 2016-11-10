@@ -1,10 +1,10 @@
-$NetBSD: patch-media_libcubeb_src_cubeb__oss.c,v 1.5 2016/06/16 12:08:21 ryoon Exp $
+$NetBSD: patch-media_libcubeb_src_cubeb__oss.c,v 1.7 2016/11/09 19:33:24 maya Exp $
 
 * Restore OSS audio support code
 
---- media/libcubeb/src/cubeb_oss.c.orig	2016-05-15 03:58:16.955259529 +0000
+--- media/libcubeb/src/cubeb_oss.c.orig	2016-11-09 15:26:24.842721769 +0000
 +++ media/libcubeb/src/cubeb_oss.c
-@@ -0,0 +1,412 @@
+@@ -0,0 +1,414 @@
 +/*
 + * Copyright © 2014 Mozilla Foundation
 + *
@@ -35,6 +35,8 @@ $NetBSD: patch-media_libcubeb_src_cubeb__oss.c,v 1.5 2016/06/16 12:08:21 ryoon E
 +#endif
 +
 +#define OSS_BUFFER_SIZE 1024
++
++#define SATURATE(f) fmaxf(-1,fminf(1,f))
 +
 +struct cubeb {
 +  struct cubeb_ops const * ops;
@@ -175,7 +177,7 @@ $NetBSD: patch-media_libcubeb_src_cubeb__oss.c,v 1.5 2016/06/16 12:08:21 ryoon E
 +      got = run_data_callback(stream, f_buffer,
 +                              OSS_BUFFER_SIZE/stream->params.channels);
 +      for (i=0; i<((unsigned long)got)*stream->params.channels; i++) {
-+          buffer[i] = f_buffer[i]*32767.0;
++          buffer[i] = SATURATE(f_buffer[i])*32767.0;
 +      }
 +    } else {
 +      got = run_data_callback(stream, buffer,
