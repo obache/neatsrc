@@ -35,6 +35,7 @@
 .include "check-vulnerable.mk"
 .include "check-wrkref.mk"
 .include "check-fakehome.mk"
+.include "check-maintainance-tasks.mk"
 
 pre-configure-checks-hook \
 pre-build-checks-hook: .PHONY
