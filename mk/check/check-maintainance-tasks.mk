@@ -35,6 +35,12 @@ _CHECK_MAINTAINANCE_TASKS_MAKEFILE.desktopdb=	sysutils/desktop-file-utils/deskto
 _CHECK_MAINTAINANCE_TASKS_SELFPKGPATH.desktopdb=	sysutils/desktop-file-utils
 _CHECK_MAINTAINANCE_TASKS_VARNAME.desktopdb=	DESKTOP_FILE_UTILS_MIMEDB_MK
 
+_CHECK_MAINTAINANCE_TASKS+=	gschema
+_CHECK_MAINTAINANCE_TASKS_FILES_FILTER.gschema=	${AWK} '/^${PREFIX:S/\//\\\//g}\/share\/glib-2.0\/schemas\/.+\.gschema\.xml$$/'
+_CHECK_MAINTAINANCE_TASKS_MAKEFILE.gschema=	devel/glib2/schemas.mk
+_CHECK_MAINTAINANCE_TASKS_SELFPKGPATH.gschema=	devel/glib2
+_CHECK_MAINTAINANCE_TASKS_VARNAME.gschema=	GLIB_SCHEMAS_MK
+
 .if !empty(CHECK_MAINTAINANCE_TASKS:M[Yy][Ee][Ss])
 privileged-install-hook: _check-maintainance-tasks
 .endif
