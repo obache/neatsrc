@@ -20,14 +20,14 @@ CHECK_MAINTAINANCE_TASKS?=	no
 .endif
 
 _CHECK_MAINTAINANCE_TASKS+=	mimedb
-_CHECK_MAINTAINANCE_TASKS_FILES_FILTER.mimedb=	${GREP} -e '^${PREFIX}/share/mime/packages/.*\.xml$$'
+_CHECK_MAINTAINANCE_TASKS_FILES_FILTER.mimedb=	${AWK} '/^${PREFIX:S/\//\\\//g}\/share\/mime\/packages\/.+\.xml$$/'
 _CHECK_MAINTAINANCE_TASKS_MAKEFILE.mimedb=	databases/shared-mime-info/mimedb.mk
 _CHECK_MAINTAINANCE_TASKS_SELFPKGPATH.mimedb=	databases/shared-mime-info
 _CHECK_MAINTAINANCE_TASKS_VARNAME.mimedb=	SHARED_MIME_INFO_MIMEDB_MK
 
 
 _CHECK_MAINTAINANCE_TASKS+=	desktopdb
-_CHECK_MAINTAINANCE_TASKS_FILES_FILTER.desktopdb=	${GREP} -e '^${PREFIX}/share/applications/.*\.desktop$$'	\
+_CHECK_MAINTAINANCE_TASKS_FILES_FILTER.desktopdb=	${AWK} '/^${PREFIX:S/\//\\\//g}\/share\/applications\/.+\.desktop$$/'	\
 			| while read fname; do	\
 				${GREP} -q -e '^MimeType=.' ${DESTDIR}$$fname && ${ECHO} $$fname || ${TRUE}; \
 			done
