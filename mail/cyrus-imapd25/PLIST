@@ -24,6 +24,7 @@ cyrus/bin/cyr_info
 cyrus/bin/cyr_sequence
 cyrus/bin/cyr_synclog
 cyrus/bin/cyr_userseen
+${PLIST.clamav}cyrus/bin/cyr_virusscan
 cyrus/bin/cyrdump
 ${PLIST.http}cyrus/bin/dav_reconstruct
 cyrus/bin/deliver

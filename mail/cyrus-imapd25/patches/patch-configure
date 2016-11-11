@@ -1,8 +1,17 @@
 $NetBSD$
 
---- configure.orig	2015-03-03 22:56:14.000000000 +0000
+--- configure.orig	2016-10-17 22:15:29.000000000 +0000
 +++ configure
-@@ -21633,7 +21633,7 @@ fi
+@@ -17064,7 +17064,7 @@ $as_echo "#define HAVE_CLAMAV /**/" >>co
+ fi
+ 
+ 
+- if test "$have_clamav" = "yes"; then
++ if test "$have_clamav" != "no"; then
+   HAVE_CLAMAV_TRUE=
+   HAVE_CLAMAV_FALSE='#'
+ else
+@@ -22259,7 +22259,7 @@ fi
  
  
      PERL="${PERL}"

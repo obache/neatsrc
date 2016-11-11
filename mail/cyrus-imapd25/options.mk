@@ -2,13 +2,13 @@
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.cyrus-imapd
-PKG_SUPPORTED_OPTIONS=	gssapi http kerberos kerberos4 ldap pcre snmp zephyr
+PKG_SUPPORTED_OPTIONS=	clamav gssapi http kerberos kerberos4 ldap pcre snmp zephyr
 PKG_SUPPORTED_OPTIONS+=	bdb mysql pgsql sqlite
 PKG_SUGGESTED_OPTIONS=	http ldap pcre
 
 .include "../../mk/bsd.options.mk"
 
-PLIST_VARS+=	http ldap
+PLIST_VARS+=	clamav http ldap
 
 .if !empty(PKG_OPTIONS:Mkerberos)
 .  if empty(PKG_OPTIONS:Mgssapi)
@@ -115,6 +115,14 @@ CONFIGURE_ARGS+=	--without-sqlite
 CONFIGURE_ARGS+=	--enable-pcre
 .else
 CONFIGURE_ARGS+=	--disable-pcre
+.endif
+
+.if !empty(PKG_OPTIONS:Mclamav)
+.  include "../../security/clamav/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-clamav=${BUILDLINK_PREFIX.clamav}
+PLIST.clamav=		yes
+.else
+CONFIGURE_ARGS+=	--without-clamav
 .endif
 
 .if !empty(PKG_OPTIONS:Mhttp)
