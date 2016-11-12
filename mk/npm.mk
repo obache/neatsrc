@@ -16,7 +16,7 @@ _PKG_VARS.npm=		NPM_PKGNAME NPM_PKGVERSION
 
 _NPM_PKG_PREFIX=	npm
 _NPM=			${LOCALBASE}/bin/npm
-DEPENDS+=		nodejs-[0-9]*:../../lang/nodejs
+TOOL_DEPENDS+=		nodejs-[0-9]*:../../lang/nodejs
 
 WRKSRC?=			${WRKDIR}/package
 USE_LANGUAGES?=	# none
