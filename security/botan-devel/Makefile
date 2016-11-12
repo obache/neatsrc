@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.15 2016/10/07 18:25:33 adam Exp $
+# $NetBSD: Makefile,v 1.17 2016/11/11 19:46:05 joerg Exp $
 
-DISTNAME=	Botan-1.11.29
+DISTNAME=	Botan-1.11.33
 PKGNAME=	${DISTNAME:tl}
-PKGREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://botan.randombit.net/releases/
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	joerg@NetBSD.org
 HOMEPAGE=	http://botan.randombit.net/
 COMMENT=	Portable, easy to use, and efficient C++ crypto library
 LICENSE=	2-clause-bsd
@@ -33,16 +32,6 @@ MAKE_FLAGS+=	LIB_OPT=${CXXFLAGS:Q}
 USE_TOOLS+=	gmake
 
 PY_PATCHPLIST=	yes
-
-PLIST_VARS+=	x86 x86_64
-
-.if ${MACHINE_ARCH} == "x86_64"
-PLIST.x86_64=	yes
-PLIST.x86=	yes
-CONFIGURE_ARGS+=	--cpu=x86_64
-.elif ${MACHINE_ARCH} == "i386"
-PLIST.x86=	yes
-.endif
 
 MAKE_FLAGS.SunOS+=	USER_APP_LINKS_TO=-lnsl
 

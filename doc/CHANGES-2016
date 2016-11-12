@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.4645 2016/11/10 13:58:07 mef Exp $
+$NetBSD: CHANGES-2016,v 1.4660 2016/11/11 19:47:09 joerg Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -6413,3 +6413,18 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated www/firefox to 49.0.2nb1 [maya 2016-11-09]
 	Updated graphics/ImageMagick to 7.0.3.6 [ryoon 2016-11-10]
 	Updated ham/xnec2c to 3.5.1 [mef 2016-11-10]
+	Updated devel/flex to 2.6.2nb1 [wiz 2016-11-11]
+	Updated security/py-ndg_httpsclient to 0.4.2 [fhajny 2016-11-11]
+	Updated editors/emacs20 to 20.7nb20 [maya 2016-11-11]
+	Updated devel/py-requests to 2.11.1 [fhajny 2016-11-11]
+	Updated devel/py-configargparse to 0.11.0 [fhajny 2016-11-11]
+	Updated net/py-dns to 1.15.0 [fhajny 2016-11-11]
+	Updated devel/py-ZopeComponent to 4.3.0 [fhajny 2016-11-11]
+	Updated devel/py-dialog2 to 3.4.0 [fhajny 2016-11-11]
+	Updated time/py-pytz to 2016.7 [fhajny 2016-11-11]
+	Updated editors/emacs21 to 21.4anb36 [maya 2016-11-11]
+	Updated print/py-pisa to 3.0.33nb1 [joerg 2016-11-11]
+	Updated comms/asterisk13 to 13.12.2 [jnemeth 2016-11-11]
+	Updated comms/asterisk14 to 14.1.2 [jnemeth 2016-11-11]
+	Updated security/botan-devel to 1.11.33 [joerg 2016-11-11]
+	Updated security/botan to 1.10.13 [joerg 2016-11-11]
