@@ -41,6 +41,12 @@ _CHECK_MAINTAINANCE_TASKS_MAKEFILE.gschema=	devel/glib2/schemas.mk
 _CHECK_MAINTAINANCE_TASKS_SELFPKGPATH.gschema=	devel/glib2
 _CHECK_MAINTAINANCE_TASKS_VARNAME.gschema=	GLIB_SCHEMAS_MK
 
+_CHECK_MAINTAINANCE_TASKS+=	gdk-pixbuf
+_CHECK_MAINTAINANCE_TASKS_FILES_FILTER.gdk-pixbuf=	${AWK} '/^${PREFIX:S/\//\\\//g}\/lib\/gdk-pixbuf-2.0\/2.10.0\/loaders\/.+\..+$$/'
+_CHECK_MAINTAINANCE_TASKS_MAKEFILE.gdk-pixbuf=	graphics/gdk-pixbuf2/loaders.mk
+_CHECK_MAINTAINANCE_TASKS_SELFPKGPATH.gdk-pixbuf=	graphics/gdk-pixbuf2
+_CHECK_MAINTAINANCE_TASKS_VARNAME.gdk-pixbuf=	GTK2_LOADERS_MK
+
 .if !empty(CHECK_MAINTAINANCE_TASKS:M[Yy][Ee][Ss])
 privileged-install-hook: _check-maintainance-tasks
 .endif
