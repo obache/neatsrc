@@ -11,17 +11,23 @@ datarootdir=	@datarootdir@
 man1dir=	$(mandir)/man1
 cat1dir=	$(mandir)/cat1
 
+BOOTSTRAP=	@bootstrap@
 SSL_SUPPORT=	@ssl_support@
 
 CC=		@CC@
 CCLD=		$(CC)
-LIBS=		-linstall -lnetpgpverify -larchive -lbz2 -lz -lfetch @LIBS@
-
+.if empty(BOOTSTRAP)
+LIBS=		-linstall -lnetpgpverify -larchive -lbz2 -lz -lfetch
 .if !empty(SSL_SUPPORT)
 LIBS+=		-lssl -lcrypto
 .endif
+LIBS+=		@LIBS@
+.else
+LIBS=		-linstall ${STATIC_LIBARCHIVE} @LIBS@
+CPPFLAGS+=	-DBOOTSTRAP
+.endif
 
-CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib -DBINDIR=\"$(sbindir)\"
+CPPFLAGS+=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib -DBINDIR=\"$(sbindir)\"
 DEFS=		@DEFS@
 CFLAGS=		@CFLAGS@
 LDFLAGS=	@LDFLAGS@ -L../lib
