@@ -49,6 +49,8 @@ FILES_SUBST+=		GCONF_SCHEMAS=${GCONF_SCHEMAS:Q}
 FILES_SUBST+=		GCONF_SCHEMAS_DIR=${GCONF_SCHEMAS_DIR:Q}
 INSTALL_TEMPLATES+=	${.CURDIR}/../../devel/GConf/files/install.tmpl
 DEINSTALL_TEMPLATES+=	${.CURDIR}/../../devel/GConf/files/deinstall.tmpl
+.else
+PKG_FAIL_REASON+=	"[devel/GConf/schemas.mk] Neither GCONF_SCHEMAS nor GCONF_ENTRIES is set."
 .endif
 
 .include "../../mk/bsd.prefs.mk"
