@@ -32,5 +32,4 @@ SUBST_SED.fixpkgcfg=	-e 's|libpanelapplet-2.0|libgnomeui-2.0 libpanelapplet-2.0|
 .include "../../devel/libglade/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../x11/gtk2/modules.mk"
-.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"
