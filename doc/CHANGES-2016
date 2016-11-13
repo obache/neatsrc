@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.4661 2016/11/12 07:51:44 adam Exp $
+$NetBSD: CHANGES-2016,v 1.4668 2016/11/13 01:52:44 wen Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -6432,3 +6432,13 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated audio/mikmod to 3.3.7 [adam 2016-11-12]
 	Updated devel/libuv to 1.10.0 [adam 2016-11-12]
 	Updated devel/cmake to 3.7.0 [adam 2016-11-12]
+	Updated mail/dovecot2 to 2.2.26.0 [adam 2016-11-12]
+	Updated mail/dovecot2-pigeonhole to 0.4.16 [taca 2016-11-12]
+	Updated lang/php56 to 5.6.28 [taca 2016-11-12]
+	Updated lang/php70 to 7.0.13 [taca 2016-11-12]
+	Updated lang/php71 to 7.1.0rc6 [taca 2016-11-12]
+	Updated www/typo3_62 to 6.2.28 [taca 2016-11-12]
+	Updated audio/glyr to 1.0.10 [leot 2016-11-12]
+	Updated time/p5-DateTime to 1.40 [wen 2016-11-13]
+	Updated mail/p5-Email-Simple to 2.211 [wen 2016-11-13]
+	Updated devel/p5-Log-Any to 1.045 [wen 2016-11-13]
