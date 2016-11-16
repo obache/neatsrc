@@ -108,11 +108,10 @@ PLIST_SUBST+=	LLVM_LIBNAME=${LLVM_LIBNAME}
 
 # replacing config.guess is required even for cmake.
 # It is used to detect correct LLVM_HOST_TRIPLE, e.g. for NetBSD/evbarm.
+OVERRIDE_GNU_CONFIG_SCRIPTS=	yes
+
 post-extract:
 	${RUN} mkdir -p ${WRKDIR}/build
-.for f in config.guess config.sub
-	cp ../../mk/gnu-config/${f} ${WRKSRC}/cmake/${f}
-.endfor
 
 post-install:
 	${INSTALL_LIB_DIR} ${DESTDIR}${PREFIX}/lib/libLLVM
