@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.18 2016/11/07 13:46:46 wiz Exp $
+# $NetBSD: Makefile,v 1.20 2016/11/15 10:13:45 wiz Exp $
 
-DISTNAME=		neomutt-20161028
-PKGREVISION=		1
+DISTNAME=		neomutt-20161104
 CATEGORIES=		mail
 MASTER_SITES=		${MASTER_SITE_GITHUB:=neomutt/}
 GITHUB_TAG=		${DISTNAME}
@@ -26,7 +25,7 @@ EGDIR=			${PREFIX}/share/examples/mutt
 CONF_FILES=		${EGDIR}/Muttrc ${PKG_SYSCONFDIR}/Muttrc
 CONF_FILES+=		${EGDIR}/mime.types ${PKG_SYSCONFDIR}/mime.types
 INSTALLATION_DIRS+=     ${DOCDIR} ${EGDIR}
-INSTALL_MAKE_FLAGS=     ${MAKE_FLAGS} sysconfdir=${EGDIR}
+INSTALL_MAKE_FLAGS=     ${MAKE_FLAGS} DOTLOCK_GROUP= sysconfdir=${EGDIR}
 
 .include "../../mk/bsd.prefs.mk"
 

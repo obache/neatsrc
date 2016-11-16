@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16680 2016/11/08 10:51:12 wiz Exp $
+$NetBSD: TODO,v 1.16697 2016/11/15 16:35:50 wiz Exp $
 
 Suggested new packages
 ======================
@@ -472,7 +472,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o binutils-2.27
 	o bird-1.5.0
 	o bird6-1.5.0
-	o blender-2.78
+	o blender-2.78a
 	o bliz++-0.10
 	o blur6ex-0.3.462
 	o bmkdep-20140112
@@ -559,7 +559,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o dap-3.10
 	o dar-2.4.14
 	o darcs-2.12.0
-	o darktable-2.0.4
+	o darktable-2.0.7
 	o dasher-4.11
 	o davical-1.1.4
 	o dd_rescue-1.46
@@ -651,6 +651,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o evolution-mapi-0.32.2 [GNOME 2.32]
 	o ex-20050325
 	o exaile-3.4.4
+	o exiftool-10.32
 	o exmh-2.8.0
 	o ezmlm-idx-7.2.0 [schmonz]
 	o faces-1.7.7
@@ -842,8 +843,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o hesiod-3.2.1
 	o hevea-2.28
 	o heyu-2.9.0
-	o hiawatha-10.2
-	o highlight-3.27
+	o hiawatha-10.4
+	o highlight-3.33
 	o honeyd-1.5c
 	o horde-5.2.9
 	o howm-1.4.3 [pkg/51101]
@@ -1042,7 +1043,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o lit2epub-0.2.2
 	o lldpd-0.9.1
 	o llgal-0.13.17
-	o llvm-3.9.0
 	o lmbench-3
 	o lohit-fonts-2.4.2
 	o lottanzb-0.6
@@ -1162,6 +1162,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o oath-toolkit-2.6.1
 	o objc-3.3.1
 	o ocaml-4.04.0
+	o ocaml-cppo-1.4.1
 	o ocaml-findlib-1.6.3
 	o ocaml-graphics-4.02.3
 	o ocrad-0.25
@@ -1271,6 +1272,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o php-ming-0.4.7
 	o php-mrbs-1.5.0
 	o php-orangehrm-3.3.1
+	o php-owncloud-9.1.2
 	o php-pdflib-3.0.4 (require pdflib 7 or later)
 	o php-phrasea2-3.8.6 (php-phrasea-3.8.6?)
 	o php-pthread-3.1.6
@@ -1373,7 +1375,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-ptt-1.10.2
 	o py-pycountry-1.20
 	o py-quixote-2.9
-	o py-radare2-0.10.6
+	o py-radare2-1.0.1
 	o py-scgi-1.15
 	o py-serpent-1.12
 	o py-simpletal-5.1
@@ -1398,7 +1400,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o qt5-5.7.0
 	o qt5-qtbase-5.7.0
 	o quodlibet2-3.5.3
-	o radare2-0.10.6
+	o radare2-1.0.1
 	o radiance-4R1
 	o ragel-7.0.0.9
 	o rails-4.1.5
@@ -1454,7 +1456,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o rust-1.12
 	o sabayon-2.30.1 [GNOME 2.30]
 	o sablecc-3.7
-	o samba-4.4.7
+	o samba-4.5.1
 	o samba-4.5.1
 	o sarg-2.2.5
 	o sawfish-1.12.0
@@ -1533,6 +1535,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o strace-4.12
 	o stratagus-2.2.5.5
 	o streamtuner-2.1.4
+	o stunnel-5.37
 	o subtitleeditor-0.52.1
 	o superlu-5.1.1
 	o supertux-0.5
@@ -1546,6 +1549,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o swi-prolog-packages-7.1.37
 	o swt-4.5
 	o sympa-6.2.14
+	o synergy-1.8.5
 	o sysinfo-4.2.2
 	o system-tools-backends-2.10.1 [needs polkit|GNOME 2.30]
 	o systrace-1.6e
@@ -1654,7 +1658,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o whowatch-1.8.5
 	o windowlab-1.40
 	o wine-1.8.5
-	o wine-devel-1.9.21
+	o wine-devel-1.9.22
 	o wmi-11
 	o wmii+ixp-3.9.2 [pkg/43459; wip (wmii-devel); see also libixp entry]
 	o wmx-8
@@ -1715,7 +1719,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o xwrits-2.26
 	o xye-0.12.2
 	o yabause-0.9.15
-	o yacas-1.3.5
+	o yacas-1.6.1
 	o yafc-1.1
 	o yaws-2.0.2
 	o yodl-2.14.3
