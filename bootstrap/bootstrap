@@ -1093,7 +1093,8 @@ elif is_root; then
 	user=$root_user
 	group=$root_group
 else
-	die "You must be either root to install bootstrap-pkgsrc or use the --unprivileged option."
+	user=`$whoamiprog`
+	group=`$groupsprog | $awkprog '{print $1}'`
 fi
 
 # export the proper environment
@@ -1444,12 +1445,15 @@ build_package "pkgtools/pkg_install"
 
 etc_mk_conf="$sysconfdir/mk.conf"
 
+if is_root || [ "$unprivileged" = "yes" ]; then
 # Install the example mk.conf so that it is used, but only if it doesn't
 # exist yet. This can happen with non-default sysconfdir settings.
 mkdir_p "$sysconfdir"
 if [ ! -f "$etc_mk_conf" ]; then
 	cp "$TARGET_MKCONF" "$etc_mk_conf"
 	TARGET_MKCONF="$etc_mk_conf"
+fi
+
 fi
 
 hline="==========================================================================="
