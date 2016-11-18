@@ -1165,6 +1165,8 @@ echo "PKGINFODIR=		$pkginfodir" >> ${TARGET_MKCONF}
 fi
 if [ -n "${pkgmandir}" ]; then
 echo "PKGMANDIR=		$pkgmandir" >> ${TARGET_MKCONF}
+else
+pkgmandir=man
 fi
 echo "" >> ${TARGET_MKCONF}
 
@@ -1461,7 +1463,7 @@ echo ""
 echo "$hline"
 echo ""
 echo "Please remember to add $prefix/bin to your PATH environment variable"
-echo "and $mandir to your MANPATH environment variable, if necessary."
+echo "and $prefix/$pkgmandir to your MANPATH environment variable, if necessary."
 echo ""
 echo "An example mk.conf file with the settings you provided to \"bootstrap\""
 echo "has been created for you. It can be found in:"
