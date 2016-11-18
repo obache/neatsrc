@@ -443,7 +443,7 @@ full=no
 make_jobs=1
 mk_fragment=
 quiet=no
-package_target=install
+bootstrap_updating=no
 
 while [ $# -gt 0 ]; do
 	case $1 in
@@ -469,12 +469,14 @@ while [ $# -gt 0 ]; do
 	--unprivileged | --ignore-user-check) unprivileged=yes ;;
 	--package-target=*)
 			package_target=`get_optarg "$1"` ;;
+	--package-target)
+			package_target="$2"; shift ;;
 	--prefer-pkgsrc=*)
 			prefer_pkgsrc=`get_optarg "$1"` ;;
 	--prefer-pkgsrc)
 			prefer_pkgsrc="$2"; shift ;;
 	--preserve-path) preserve_path=yes ;;
-	--update)	package_target=update ;;
+	--update)	bootstrap_updating=yes ;;
 	--mk-fragment=*)
 			mk_fragment=`get_optarg "$1"` ;;
 	--mk-fragment)
@@ -510,17 +512,56 @@ checkarg_sane_absolute_path "$varbase" "--varbase"
 checkarg_sane_relative_path "$pkginfodir" "--pkginfodir"
 checkarg_sane_relative_path "$pkgmandir" "--pkgmandir"
 
+if [ -z "$package_target" ]; then
+	if [ "$bootstrap_updating" = "yes" ]; then
+		package_target=update
+	else
+		package_target=install
+	fi
+fi
+
 # set defaults for system locations if not already set by the user
 wrkobjdir=${wrkdir}/pkgsrc
 if [ "$unprivileged" = "yes" ]; then
 	[ -z "$prefix" ] && prefix=${HOME}/pkg
-elif [ -z "$prefix" -o "$prefix" = "/usr/pkg" ]; then
+	[ -z "$varbase" ] && varbase=${prefix}/var
+elif [ -z "$prefix" ]; then
 	prefix=/usr/pkg
-	[ -z "$varbase" ] && varbase=/var
 fi
 
-[ -z "$varbase" ] && varbase=${prefix}/var
-[ -z "$pkgdbdir" ] && pkgdbdir=${prefix}/pkgdb
+if [ "$bootstrap_updating" = "yes" ]; then
+	cur_pkg_admin=$prefix/sbin/pkg_admin
+	if [ ! -x "$cur_pkg_admin" ]; then
+		if [ -x /usr/sbin/pkg_admin ]; then
+			cur_pkg_admin=/usr/sbin/pkg_admin
+		else
+			echo "ERROR: Current installation is not found in ${prefix}." 1>&2
+			exit 1
+		fi
+	fi
+	cur_pkgdbdir=`$cur_pkg_admin config-var PKG_DBDIR`
+	if [ -z "$pkgdbdir" ]; then
+		pkgdbdir="$cur_pkgdbdir"
+	elif [ "$pkgdbdir" != "$cur_pkgdbdir" ]; then
+		echo "ERROR: Specifyed pkgdbdir ($pkgdbdir) does not match to current configuration (${cur_pkgdbdir})." 1>&2
+		exit 1
+	fi
+else
+	if [ -e ${prefix} ];then
+		echo "ERROR: prefix ${prefix} already exists." 1>&2
+		exit 1
+	fi
+fi
+
+[ -z "$varbase" ] && varbase=/var
+[ -z "$pkgdbdir" ] && pkgdbdir=${varbase}/db/pkg
+
+if [ "$bootstrap_updating" = "no" ]; then
+	if [ -e ${pkgdbdir} ];then
+		echo "ERROR: pkgdbdir ${pkgdbdir} already exists." 1>&2
+		exit 1
+	fi
+fi
 
 if [ "$prefix" = "/usr" ]; then
 	[ -z "$pkginfodir" ] && pkginfodir=share/info

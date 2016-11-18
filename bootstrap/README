@@ -17,7 +17,7 @@ as root:
 The defaults for the arguments are as follows:
 
 	--prefix	/usr/pkg
-	--pkgdbdir	/usr/pkg/pkgdb
+	--pkgdbdir	/var/db/pkg
 	--sysconfdir	/usr/pkg/etc
 	--varbase	/var
 	--workdir	work
