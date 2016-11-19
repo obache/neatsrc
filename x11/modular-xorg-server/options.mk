@@ -28,7 +28,6 @@ CONFIGURE_ARGS+=	--enable-dri
 CONFIGURE_ARGS+=	--enable-dri2
 CONFIGURE_ARGS+=	--enable-dri3
 CONFIGURE_ARGS+=	--enable-glx
-CONFIGURE_ARGS+=	--enable-aiglx
 CONFIGURE_ARGS+=	--enable-glamor
 CONFIGURE_ARGS+=	--enable-present
 CPPFLAGS+=		-DHAVE_LIBDRM
