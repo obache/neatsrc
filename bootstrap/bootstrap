@@ -514,7 +514,7 @@ checkarg_sane_relative_path "$pkgmandir" "--pkgmandir"
 
 if [ -z "$package_target" ]; then
 	if [ "$bootstrap_updating" = "yes" ]; then
-		package_target=update
+		package_target=replace
 	else
 		package_target=install
 	fi
