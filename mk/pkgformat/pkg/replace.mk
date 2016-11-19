@@ -211,6 +211,7 @@ replace-destdir: .PHONY
 .else
 	${PKG_ADD} -U -D ${STAGE_PKGFILE}
 .endif
+	${RUN} \
 	${PKG_INFO} -qR ${PKGNAME:Q} | while read pkg; do \
 		[ -n "$$pkg" ] || continue; \
 		${PKG_ADMIN} set unsafe_depends_strict=YES "$$pkg"; \
