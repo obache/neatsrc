@@ -114,7 +114,7 @@ replace-names: .PHONY
 	else								\
 		wildcard="${OLDNAME}-[0-9]*";				\
 	fi;								\
-	${_PKG_BEST_EXISTS} "$${wildcard}" > ${_REPLACE_OLDNAME_FILE}
+	${_PKG_BEST_EXISTS} "$${wildcard}" > ${_REPLACE_OLDNAME_FILE} || ${RM} -f ${_REPLACE_OLDNAME_FILE}
 	${RUN} ${ECHO} ${PKGNAME} > ${_REPLACE_NEWNAME_FILE}
 	${RUN} ${CP} -f ${_REPLACE_NEWNAME_FILE} ${_COOKIE.replace}
 
@@ -211,7 +211,6 @@ replace-destdir: .PHONY
 .else
 	${PKG_ADD} -U -D ${STAGE_PKGFILE}
 .endif
-	${RUN}${_REPLACE_OLDNAME_CMD}; \
 	${PKG_INFO} -qR ${PKGNAME:Q} | while read pkg; do \
 		[ -n "$$pkg" ] || continue; \
 		${PKG_ADMIN} set unsafe_depends_strict=YES "$$pkg"; \
