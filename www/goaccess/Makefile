@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.12 2016/03/17 00:39:25 wiedi Exp $
+# $NetBSD: Makefile,v 1.14 2016/11/17 22:44:03 wiedi Exp $
 
-DISTNAME=	goaccess-0.9.8
+DISTNAME=	goaccess-1.1
 CATEGORIES=	www
 MASTER_SITES=	http://tar.goaccess.io/
 
@@ -11,7 +11,7 @@ LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	yes
 
-USE_TOOLS+=     pkg-config aclocal automake
+USE_TOOLS+=     pkg-config aclocal autoconf automake
 USE_NCURSES=	yes
 
 EGDIR=		${PREFIX}/share/examples/${PKGBASE}
@@ -23,7 +23,7 @@ CPPFLAGS.SunOS+=	-D__EXTENSIONS__
 .include "options.mk"
 
 pre-configure:
-	cd ${WRKSRC} && aclocal && automake --add-missing
+	cd ${WRKSRC} && autoreconf -fiv
 
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
