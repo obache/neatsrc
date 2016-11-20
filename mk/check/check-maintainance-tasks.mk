@@ -62,13 +62,13 @@ _check-maintainance-tasks: .PHONY error-check
 	if ${_ZERO_FILESIZE_P} ${WRKDIR}/${.TARGET}-${d}; then		\
 		${ECHO} "************************************************************"; \
 		${ECHO} "${_CHECK_MAINTAINANCE_TASKS_MAKEFILE.${d}} is included, but any relevant files are not installed."; \
-	fi
+	fi >> ${ERROR_DIR}/${.TARGET}
 . elif empty(_CHECK_MAINTAINANCE_TASKS_SELFPKGPATH.${d}:U:M${PKGPATH})
 	${RUN}		\
 	if ${_NONZERO_FILESIZE_P} ${WRKDIR}/${.TARGET}-${d}; then	\
 		${ECHO} "************************************************************"; \
 		${ECHO} "Following files are installed but ${_CHECK_MAINTAINANCE_TASKS_MAKEFILE.${d}} is not included"; \
-		${CAT} ${WRKDIR}/${.TARGET}-${d} >> ${ERROR_DIR}/${.TARGET}; \
-	fi
+		${CAT} ${WRKDIR}/${.TARGET}-${d}; \
+	fi >> ${ERROR_DIR}/${.TARGET}
 . endif
 .endfor
