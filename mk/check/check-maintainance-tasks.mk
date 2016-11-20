@@ -55,20 +55,20 @@ _check-maintainance-tasks: .PHONY error-check
 	@${STEP_MSG} "Checking for maintainance tasks in ${PKGNAME}"
 	${RUN}${RM} -f ${ERROR_DIR}/${.TARGET}
 .for d in ${_CHECK_MAINTAINANCE_TASKS}
-	${RUN}${RM} -f ${WRKDIR}/${.TARGET}-${d}
-	${RUN}${PKG_FILELIST_CMD} | ${_CHECK_MAINTAINANCE_TASKS_FILES_FILTER.${d}} > ${WRKDIR}/${.TARGET}-${d}
+	${RUN}${RM} -f ${ERROR_DIR}/${.TARGET}-${d}.tmp
+	${RUN}${PKG_FILELIST_CMD} | ${_CHECK_MAINTAINANCE_TASKS_FILES_FILTER.${d}} > ${ERROR_DIR}/${.TARGET}-${d}.tmp
 . if	defined(${_CHECK_MAINTAINANCE_TASKS_VARNAME.${d}})
 	${RUN}		\
-	if ${_ZERO_FILESIZE_P} ${WRKDIR}/${.TARGET}-${d}; then		\
+	if ${_ZERO_FILESIZE_P} ${ERROR_DIR}/${.TARGET}-${d}.tmp; then	\
 		${ECHO} "************************************************************"; \
 		${ECHO} "${_CHECK_MAINTAINANCE_TASKS_MAKEFILE.${d}} is included, but any relevant files are not installed."; \
 	fi >> ${ERROR_DIR}/${.TARGET}
 . elif empty(_CHECK_MAINTAINANCE_TASKS_SELFPKGPATH.${d}:U:M${PKGPATH})
 	${RUN}		\
-	if ${_NONZERO_FILESIZE_P} ${WRKDIR}/${.TARGET}-${d}; then	\
+	if ${_NONZERO_FILESIZE_P} ${ERROR_DIR}/${.TARGET}-${d}.tmp; then \
 		${ECHO} "************************************************************"; \
 		${ECHO} "Following files are installed but ${_CHECK_MAINTAINANCE_TASKS_MAKEFILE.${d}} is not included"; \
-		${CAT} ${WRKDIR}/${.TARGET}-${d}; \
+		${CAT} ${ERROR_DIR}/${.TARGET}-${d}.tmp; \
 	fi >> ${ERROR_DIR}/${.TARGET}
 . endif
 .endfor
