@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.4738 2016/11/20 04:05:58 wen Exp $
+$NetBSD: CHANGES-2016,v 1.4755 2016/11/21 00:14:16 pho Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -6536,3 +6536,20 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated textproc/p5-podlators to 4.09 [wen 2016-11-19]
 	Updated math/octave to 4.2.0 [maya 2016-11-19]
 	Updated net/mikutter to 3.4.7 [tsutsui 2016-11-20]
+	Updated databases/p5-DBD-mysql to 4.040 [wen 2016-11-20]
+	Updated net/p5-Net-Twitter to 4.01041 [wen 2016-11-20]
+	Updated shells/bash to 4.4.005 [wen 2016-11-20]
+	Updated games/lgogdownloader to 3.0 [wiz 2016-11-20]
+	Added devel/py-incremental version 16.10.1 [wiz 2016-11-20]
+	Updated devel/lua-penlight to 1.4.1 [alnsn 2016-11-20]
+	Updated textproc/LDoc to 1.4.5 [alnsn 2016-11-20]
+	Updated math/R-XML to 3.98-1.5 [alnsn 2016-11-20]
+	Updated devel/cmph to 2.0 [alnsn 2016-11-20]
+	Updated www/netsurf to 3.6 [leot 2016-11-20]
+	Added fonts/go-ttf version 20161118 [wiz 2016-11-20]
+	Updated x11/p5-Wx to 0.9928 [wiz 2016-11-20]
+	Updated archivers/p5-Archive-Tar to 2.18 [wiz 2016-11-20]
+	Updated multimedia/py-m3u8 to 0.3.0 [joerg 2016-11-20]
+	Updated multimedia/mkvtoolnix to 9.5.0 [joerg 2016-11-20]
+	Updated net/youtube-dl to 20161118 [leot 2016-11-20]
+	Updated sysutils/open-vm-tools to 10.0.7nb4 [pho 2016-11-20]

@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.82 2016/10/07 18:26:05 adam Exp $
+# $NetBSD: Makefile,v 1.84 2016/11/20 21:58:39 joerg Exp $
 
-DISTNAME=	mkvtoolnix-9.4.0
-PKGREVISION=	1
+DISTNAME=	mkvtoolnix-9.5.0
 CATEGORIES=	multimedia
 MASTER_SITES=	https://mkvtoolnix.download/sources/
 EXTRACT_SUFX=	.tar.xz
@@ -18,7 +17,7 @@ USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake msgfmt
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--without-curl --disable-precompiled-headers
-CONFIGURE_ARGS+=	--with-boost-libdir=${BUILDLINK_PREFIX.boost-libs}
+CONFIGURE_ARGS+=	--with-boost-libdir=${BUILDLINK_PREFIX.boost-libs}/lib
 CONFIGURE_ARGS+=	--with-boost_regex=boost_regex
 CONFIGURE_ARGS+=	--with-boost-system=boost_system
 CONFIGURE_ARGS+=	--with-boost-filesystem=boost_filesystem
