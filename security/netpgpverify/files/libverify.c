@@ -2784,6 +2784,7 @@ fixup_detached(pgpv_cursor_t *cursor, const char *f)
 	pgpv_mem_t	*mem;
 	size_t		 el;
 	char		*original;
+	size_t		 ol;
 
 	/* cons up litdata pkt */
 	if ((dot = strrchr(f, '.')) == NULL || strcasecmp(dot, ".sig") != 0) {
@@ -2799,10 +2800,12 @@ fixup_detached(pgpv_cursor_t *cursor, const char *f)
 	read_binary_memory(cursor->pgp, "signature", cons_onepass, 15);
 	onepass = &ARRAY_ELEMENT(cursor->pgp->pkts, el).u.onepass;
 	/* read the original file into litdata */
-	if (-1 == asprintf(&original, "%.*s", (int)(dot - f), f)) {
+	ol = (size_t)(dot - f);
+	if (NULL == (original = malloc(ol+1))) {
 		printf("can't construct original file name for '$s'\n", f);
 		return 0;
 	}
+	snprintf(original, ol+1, "%.*s", ol, f);
 	if (!read_file(cursor->pgp, original)) {
 		printf("can't read file '%s'\n", original);
 		free(original);
