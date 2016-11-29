@@ -2,19 +2,9 @@ $NetBSD$
 
 * install perl modules into vendor
 * escape tab for input of ed.
-* enable clamav for the case --with-clamav=dir too
 
 --- configure.orig	2016-10-28 03:08:17.000000000 +0000
 +++ configure
-@@ -21392,7 +21392,7 @@ $as_echo "#define HAVE_CLAMAV /**/" >>co
- fi
- 
- 
-- if test "$with_clamav" = "yes"; then
-+ if test "$with_clamav" != "no"; then
-   HAVE_CLAMAV_TRUE=
-   HAVE_CLAMAV_FALSE='#'
- else
 @@ -27538,7 +27538,7 @@ fi
  
  

@@ -2,7 +2,7 @@ $NetBSD$
 
 * regen from Makefile.am
 
---- Makefile.in.orig	2016-10-28 03:08:19.000000000 +0000
+--- Makefile.in.orig	2016-11-29 01:19:24.000000000 +0000
 +++ Makefile.in
 @@ -61,7 +61,6 @@
  
@@ -64,7 +64,7 @@ $NetBSD$
  	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
  	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
  perl_libcyrus_la_DEPENDENCIES = $(am__DEPENDENCIES_4)
-@@ -1384,14 +1379,14 @@ AM_V_YACC = $(am__v_YACC_@AM_V@)
+@@ -1386,14 +1381,14 @@ AM_V_YACC = $(am__v_YACC_@AM_V@)
  am__v_YACC_ = $(am__v_YACC_@AM_DEFAULT_V@)
  am__v_YACC_0 = @echo "  YACC    " $@;
  am__v_YACC_1 = 
@@ -81,7 +81,7 @@ $NetBSD$
  	$(perl_libcyrus_la_SOURCES) $(perl_libcyrus_min_la_SOURCES) \
  	$(nodist_perl_libcyrus_min_la_SOURCES) \
  	$(perl_sieve_lib_libisieve_la_SOURCES) \
-@@ -1432,13 +1427,12 @@ SOURCES = $(libcrc32_a_SOURCES) $(backup
+@@ -1434,13 +1429,12 @@ SOURCES = $(libcrc32_a_SOURCES) $(backup
  	$(ptclient_ptexpire_SOURCES) $(ptclient_ptloader_SOURCES) \
  	sieve/sievec.c sieve/sieved.c $(sieve_test_SOURCES) \
  	$(timsieved_timsieved_SOURCES)
@@ -97,7 +97,7 @@ $NetBSD$
  	$(am__perl_libcyrus_la_SOURCES_DIST) \
  	$(am__perl_libcyrus_min_la_SOURCES_DIST) \
  	$(perl_sieve_lib_libisieve_la_SOURCES) \
-@@ -1784,7 +1778,6 @@ pdfdir = @pdfdir@
+@@ -1786,7 +1780,6 @@ pdfdir = @pdfdir@
  prefix = @prefix@
  program_transform_name = @program_transform_name@
  psdir = @psdir@
@@ -105,16 +105,7 @@ $NetBSD$
  sbindir = @sbindir@
  sharedstatedir = @sharedstatedir@
  srcdir = @srcdir@
-@@ -1849,7 +1842,7 @@ noinst_HEADERS = $(am__append_28) lib/by
- 	lib/libconfig.h lib/md5.h lib/prot.h lib/ptrarray.h lib/util.h \
- 	lib/xsha1.h lib/xstrlcat.h lib/xstrlcpy.h lib/xstrnchr.h
- noinst_LTLIBRARIES = $(am__append_27) $(am__append_42) \
--	$(am__append_44) $(am__append_46)
-+	$(am__append_44) $(am__append_46) libcrc32.la
- EXTRA_DIST = $(wildcard tools/vzic/*) $(am__append_35) \
- 	$(am__append_36) COPYING README.md SMakefile xversion.h \
- 	com_err/et/et_c.awk com_err/et/et_h.awk com_err/et/test1.et \
-@@ -2445,12 +2438,11 @@ lib_libcyrus_la_SOURCES = lib/acl.c lib/
+@@ -2453,12 +2446,11 @@ lib_libcyrus_la_SOURCES = lib/acl.c lib/
  	lib/tok.c lib/wildmat.c $(am__append_69) $(am__append_70) \
  	$(am__append_71) $(am__append_72) $(am__append_73) \
  	$(am__append_74) $(am__append_75)
@@ -130,7 +121,7 @@ $NetBSD$
  nodist_lib_libcyrus_min_la_SOURCES = \
  	lib/imapopts.c
  
-@@ -2686,24 +2678,6 @@ perl/imap/Makefile.PL: $(top_builddir)/c
+@@ -2694,24 +2686,6 @@ perl/imap/Makefile.PL: $(top_builddir)/c
  perl/sieve/managesieve/Makefile.PL: $(top_builddir)/config.status $(top_srcdir)/perl/sieve/managesieve/Makefile.PL.in
  	cd $(top_builddir) && $(SHELL) ./config.status $@
  
@@ -155,7 +146,7 @@ $NetBSD$
  install-libLTLIBRARIES: $(lib_LTLIBRARIES)
  	@$(NORMAL_INSTALL)
  	@list='$(lib_LTLIBRARIES)'; test -n "$(libdir)" || list=; \
-@@ -2749,6 +2723,12 @@ clean-noinstLTLIBRARIES:
+@@ -2757,6 +2731,12 @@ clean-noinstLTLIBRARIES:
  	  echo rm -f $${locs}; \
  	  rm -f $${locs}; \
  	}
@@ -168,7 +159,7 @@ $NetBSD$
  lib/gzuncat.lo: lib/$(am__dirstamp) lib/$(DEPDIR)/$(am__dirstamp)
  backup/$(am__dirstamp):
  	@$(MKDIR_P) backup
-@@ -3088,6 +3068,13 @@ lib/lib_libcyrus_min_la-imapopts.lo: lib
+@@ -3096,6 +3076,13 @@ lib/lib_libcyrus_min_la-imapopts.lo: lib
  
  lib/libcyrus_min.la: $(lib_libcyrus_min_la_OBJECTS) $(lib_libcyrus_min_la_DEPENDENCIES) $(EXTRA_lib_libcyrus_min_la_DEPENDENCIES) lib/$(am__dirstamp)
  	$(AM_V_CCLD)$(lib_libcyrus_min_la_LINK) -rpath $(libdir) $(lib_libcyrus_min_la_OBJECTS) $(lib_libcyrus_min_la_LIBADD) $(LIBS)
@@ -182,7 +173,7 @@ $NetBSD$
  lib/acl.lo: lib/$(am__dirstamp) lib/$(DEPDIR)/$(am__dirstamp)
  lib/acl_afs.lo: lib/$(am__dirstamp) lib/$(DEPDIR)/$(am__dirstamp)
  lib/auth.lo: lib/$(am__dirstamp) lib/$(DEPDIR)/$(am__dirstamp)
-@@ -4340,8 +4327,8 @@ distclean-compile:
+@@ -4360,8 +4347,8 @@ distclean-compile:
  @AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/lib_libcyrus_min_la-xstrlcpy.Plo@am__quote@
  @AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/lib_libcyrus_min_la-xstrnchr.Plo@am__quote@
  @AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libconfig.Plo@am__quote@
@@ -193,7 +184,7 @@ $NetBSD$
  @AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libcyr_cfg.Plo@am__quote@
  @AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/lock_fcntl.Plo@am__quote@
  @AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/lock_flock.Plo@am__quote@
-@@ -4450,34 +4437,6 @@ distclean-compile:
+@@ -4470,34 +4457,6 @@ distclean-compile:
  @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
  @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
  
@@ -228,7 +219,7 @@ $NetBSD$
  com_err/et/com_err_et_libcyrus_com_err_la-com_err.lo: com_err/et/com_err.c
  @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(com_err_et_libcyrus_com_err_la_CFLAGS) $(CFLAGS) -MT com_err/et/com_err_et_libcyrus_com_err_la-com_err.lo -MD -MP -MF com_err/et/$(DEPDIR)/com_err_et_libcyrus_com_err_la-com_err.Tpo -c -o com_err/et/com_err_et_libcyrus_com_err_la-com_err.lo `test -f 'com_err/et/com_err.c' || echo '$(srcdir)/'`com_err/et/com_err.c
  @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) com_err/et/$(DEPDIR)/com_err_et_libcyrus_com_err_la-com_err.Tpo com_err/et/$(DEPDIR)/com_err_et_libcyrus_com_err_la-com_err.Plo
-@@ -5444,6 +5403,20 @@ lib/lib_libcyrus_min_la-imapopts.lo: lib
+@@ -5464,6 +5423,20 @@ lib/lib_libcyrus_min_la-imapopts.lo: lib
  @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
  @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libcyrus_min_la_CFLAGS) $(CFLAGS) -c -o lib/lib_libcyrus_min_la-imapopts.lo `test -f 'lib/imapopts.c' || echo '$(srcdir)/'`lib/imapopts.c
  
@@ -249,7 +240,7 @@ $NetBSD$
  sieve/sieve_libcyrus_sieve_la-addr.lo: sieve/addr.c
  @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(sieve_libcyrus_sieve_la_CFLAGS) $(CFLAGS) -MT sieve/sieve_libcyrus_sieve_la-addr.lo -MD -MP -MF sieve/$(DEPDIR)/sieve_libcyrus_sieve_la-addr.Tpo -c -o sieve/sieve_libcyrus_sieve_la-addr.lo `test -f 'sieve/addr.c' || echo '$(srcdir)/'`sieve/addr.c
  @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sieve/$(DEPDIR)/sieve_libcyrus_sieve_la-addr.Tpo sieve/$(DEPDIR)/sieve_libcyrus_sieve_la-addr.Plo
-@@ -6228,8 +6201,8 @@ check-am: all-am
+@@ -6248,8 +6221,8 @@ check-am: all-am
  	$(MAKE) $(AM_MAKEFLAGS) check-local
  check: $(BUILT_SOURCES)
  	$(MAKE) $(AM_MAKEFLAGS) check-recursive
@@ -260,7 +251,7 @@ $NetBSD$
  install-binPROGRAMS: install-libLTLIBRARIES
  
  installdirs: installdirs-recursive
-@@ -6309,8 +6282,8 @@ clean: clean-recursive
+@@ -6329,8 +6302,8 @@ clean: clean-recursive
  
  clean-am: clean-binPROGRAMS clean-checkPROGRAMS clean-generic \
  	clean-libLTLIBRARIES clean-libexecPROGRAMS clean-libtool \
@@ -271,7 +262,7 @@ $NetBSD$
  
  distclean: distclean-recursive
  	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-@@ -6405,11 +6378,11 @@ uninstall-man: uninstall-man1 uninstall-
+@@ -6425,11 +6398,11 @@ uninstall-man: uninstall-man1 uninstall-
  	am--refresh check check-am check-local clean clean-binPROGRAMS \
  	clean-checkPROGRAMS clean-cscope clean-generic \
  	clean-libLTLIBRARIES clean-libexecPROGRAMS clean-libtool \
