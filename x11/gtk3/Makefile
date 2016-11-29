@@ -98,6 +98,5 @@ BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.14.0
 BUILDLINK_API_DEPENDS.libepoxy+=	libepoxy>=1.2nb2
 .include "../../graphics/libepoxy/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 
 .include "../../mk/bsd.pkg.mk"
