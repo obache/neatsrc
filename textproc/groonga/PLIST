@@ -6,6 +6,7 @@ ${PLIST.learner}bin/groonga-suggest-httpd
 ${PLIST.learner}bin/groonga-suggest-learner
 include/groonga/groonga.h
 include/groonga/groonga/array.h
+include/groonga/groonga/accessor.h
 include/groonga/groonga/column.h
 include/groonga/groonga/command.h
 include/groonga/groonga/config.h

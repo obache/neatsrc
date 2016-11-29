@@ -2,7 +2,7 @@
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.groonga
-PKG_SUPPORTED_OPTIONS=	mecab tests zlib lz4
+PKG_SUPPORTED_OPTIONS=	mecab tests zlib lz4 zstd
 PKG_SUPPORTED_OPTIONS+=	groonga-suggest-learner groonga-httpd
 PKG_SUGGESTED_OPTIONS=	mecab zlib groonga-suggest-learner groonga-httpd
 
@@ -49,6 +49,13 @@ CONFIGURE_ARGS+=	--with-lz4
 .include "../../archivers/lz4/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-lz4
+.endif
+
+.if !empty(PKG_OPTIONS:Mzstd)
+CONFIGURE_ARGS+=	--with-zstd
+.include "../../archivers/zstd/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--without-zstd
 .endif
 
 .if !empty(PKG_OPTIONS:Mgroonga-suggest-learner)
@@ -103,7 +110,7 @@ CONF_FILES+=	share/examples/${PKGBASE}/httpd/win-utf \
 
 SUBST_CLASSES+=		confpath
 SUBST_STAGE.confpath=	pre-build
-SUBST_FILES.confpath=	vendor/nginx-1.11.5/objs/Makefile
+SUBST_FILES.confpath=	vendor/nginx-1.11.6/objs/Makefile
 SUBST_SED.confpath=	-e 's,\$$(DESTDIR)${PKG_SYSCONFDIR}/httpd,\$$(DESTDIR)${PREFIX}/share/examples/${PKGBASE}/httpd,g'
 
 .else

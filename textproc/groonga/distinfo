@@ -1,8 +1,8 @@
 $NetBSD: distinfo,v 1.42 2016/09/11 16:06:53 taca Exp $
 
-SHA1 (groonga-6.1.0.tar.gz) = 5f97ec3c51189ffb2cc5cc6fbe75be23a27729ff
-RMD160 (groonga-6.1.0.tar.gz) = b6f92f5cd2a00737e8568092f44d1086c230c04e
-SHA512 (groonga-6.1.0.tar.gz) = 5ecf62857c0096cc805a58b0ff50b52c421cfc8650b049087817d1c0f4339cc976dcadd5dfc5362a0f2377a13207c36c1ef217efaf136c01255fa85cd9867c56
-Size (groonga-6.1.0.tar.gz) = 13908125 bytes
+SHA1 (groonga-6.1.1.tar.gz) = 0da10ac7a50c550e88a0cc569de99cb5b2bfa467
+RMD160 (groonga-6.1.1.tar.gz) = 20a76b409c82cdb45a811cfe7d22fdb3328db842
+SHA512 (groonga-6.1.1.tar.gz) = f60fa1639a8b617b4fa308ff37d506a549fda89f69a8a05b12385d67ace7418ae303842a9fd958410bdcdd5d4628fda59a1537cecc42850e719d61349d8f08a4
+Size (groonga-6.1.1.tar.gz) = 13987565 bytes
 SHA1 (patch-data_scripts_Makefile.in) = 3ad802186af2d4a95286322546d29d33a1505928
-SHA1 (patch-vendor_nginx-1.11.5_auto_install) = 12e2a99912257da480873b71e6bdc6f4092e220c
+SHA1 (patch-vendor_nginx-1.11.6_auto_install) = cdc23f92b262640d71ba44edeb09049162c7d003
