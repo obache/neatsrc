@@ -67,7 +67,7 @@ DIST_SUBDIR?=		php-${MODNAME}
 EXTRACT_SUFX?=		.tgz
 .endif
 
-EGDIR=      ${PREFIX}/share/examples/php.d
+PHP_CONF_EGDIR=		${PREFIX}/share/examples/php.d
 
 PHP_EXT_CONF_DIR?=	${PKG_SYSCONFDIR}/php.d
 
@@ -150,14 +150,14 @@ post-install: install-php-ext-ini
 
 .PHONY: install-php-ext-ini
 install-php-ext-ini: ${WRKDIR}/${_PHP_EXT_INI_NAME}
-	${INSTALL_DATA_DIR} ${DESTDIR}${EGDIR}
-	${INSTALL_DATA} ${WRKDIR}/${_PHP_EXT_INI_NAME} ${DESTDIR}${EGDIR}/
+	${INSTALL_DATA_DIR} ${DESTDIR}${PHP_CONF_EGDIR}
+	${INSTALL_DATA} ${WRKDIR}/${_PHP_EXT_INI_NAME} ${DESTDIR}${PHP_CONF_EGDIR}/
 
 MAKE_DIRS+=	${PHP_EXT_CONF_DIR}
-CONF_FILES+=	${EGDIR}/${_PHP_EXT_INI_NAME} ${PHP_EXT_CONF_DIR}/${_PHP_EXT_INI_NAME}
+CONF_FILES+=	${PHP_CONF_EGDIR}/${_PHP_EXT_INI_NAME} ${PHP_EXT_CONF_DIR}/${_PHP_EXT_INI_NAME}
 
-GENERATE_PLIST+=	${ECHO} ${EGDIR:S/^${PREFIX}\///}/${_PHP_EXT_INI_NAME};
-PRINT_PLIST_AWK+=	/^${EGDIR:S/^${PREFIX}\///:S/\//\\\//g}\/${_PHP_EXT_INI_NAME}/ { next; }
+GENERATE_PLIST+=	${ECHO} ${PHP_CONF_EGDIR:S/^${PREFIX}\///}/${_PHP_EXT_INI_NAME};
+PRINT_PLIST_AWK+=	/^${PHP_CONF_EGDIR:S/^${PREFIX}\///:S/\//\\\//g}\/${_PHP_EXT_INI_NAME}/ { next; }
 
 .endif
 
