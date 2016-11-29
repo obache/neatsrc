@@ -1,0 +1,13 @@
+# $NetBSD$
+#
+
+BUILDLINK_TREE+=	zstd
+
+.if !defined(ZSTD_BUILDLINK3_MK)
+ZSTD_BUILDLINK3_MK:=
+
+BUILDLINK_API_DEPENDS.zstd+=	zstd>=1.1.0
+BUILDLINK_PKGSRCDIR.zstd?=	../../archivers/zstd
+.endif	# ZSTD_BUILDLINK3_MK
+
+BUILDLINK_TREE+=	-zstd
