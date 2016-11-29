@@ -92,6 +92,7 @@ CONFIGURE_ENV.HPUX+=		ac_cv_func_mmap_fixed_mapped=yes
 .if !empty(MACHINE_PLATFORM:MIRIX-5*)
 CONFIGURE_ARGS+=	--disable-threads
 .else
+PTHREAD_AUTO_VARS=	yes
 .include "../../mk/pthread.buildlink3.mk"
 .endif
 
