@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.12 2016/10/07 18:25:55 adam Exp $
+# $NetBSD: Makefile,v 1.14 2016/11/24 14:11:31 mef Exp $
 
 PKGNAME=	gnuradio-doxygen-${VERSION}
-PKGREVISION=	1
+PKGREVISION=	2
 COMMENT=	Doxygen documentation of GNU Radio
 
 .include	"../../ham/gnuradio-core/Makefile.common"
 .include	"../../ham/gnuradio-core/Nocore.mk"
 
-BUILD_DEPENDS+=	doxygen>=1.8.9.1:../../devel/doxygen
+BUILD_DEPENDS+=	doxygen>=1.8.12:../../devel/doxygen
 BUILD_DEPENDS+=	${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 BUILD_DEPENDS+=	graphviz-[0-9]*:../../graphics/graphviz
 

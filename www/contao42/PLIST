@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2016/10/27 15:14:17 taca Exp $
+@comment $NetBSD: PLIST,v 1.7 2016/11/27 16:06:32 taca Exp $
 ${CT_WEBDIR}/CHANGELOG.md
 ${CT_WEBDIR}/README.md
 ${CT_WEBDIR}/app/AppCache.php

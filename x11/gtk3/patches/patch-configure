@@ -1,11 +1,10 @@
 $NetBSD: patch-configure,v 1.3 2014/09/08 12:06:48 wiz Exp $
 
-* Make gtk3-atk-bridge an option to avoid unwanted dbus dependency.
-* Relax xgettext requirement.
+Make gtk3-atk-bridge an option to avoid unwanted dbus dependency.
 
---- configure.orig	2015-05-11 18:47:39.000000000 +0000
+--- configure.orig	2014-03-25 00:21:59.000000000 +0000
 +++ configure
-@@ -1037,6 +1037,7 @@ enable_glibtest
+@@ -1035,6 +1035,7 @@ enable_glibtest
  enable_modules
  with_included_immodules
  with_x
@@ -13,7 +12,7 @@ $NetBSD: patch-configure,v 1.3 2014/09/08 12:06:48 wiz Exp $
  enable_cups
  enable_papi
  enable_cloudprint
-@@ -1791,6 +1792,7 @@ Optional Packages:
+@@ -1782,6 +1783,7 @@ Optional Packages:
    --with-included-immodules=MODULE1,MODULE2,...
                            build the specified input methods into gtk
    --with-x                use the X Window System
@@ -21,23 +20,7 @@ $NetBSD: patch-configure,v 1.3 2014/09/08 12:06:48 wiz Exp $
    --with-html-dir=PATH    path to installed docs
    --with-xml-catalog=CATALOG
                            path to xml catalog to use
-@@ -21883,6 +21885,7 @@ $as_echo "$LINGUAS" >&6; }
- 	< $srcdir/po/POTFILES.in > po/POTFILES
- 
- 
-+if test "$USE_MAINTAINER_MODE" = yes; then
- { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether xgettext supports ui files" >&5
- $as_echo_n "checking whether xgettext supports ui files... " >&6; }
- if $ac_cv_path_XGETTEXT --output=- --color=no --language=Glade $srcdir/gtk/ui/gtkfilechooserwidget.ui > /dev/null 2>&1; then
-@@ -21893,6 +21896,7 @@ else
- $as_echo "no" >&6; }
-   as_fn_error $? "GNU gettext 0.18.3 or newer is required" "$LINENO" 5
- fi
-+fi
- 
- LIBS="$LIBS $INTLLIBS"
- ac_config_commands="$ac_config_commands po-properties"
-@@ -24516,8 +24520,20 @@ fi
+@@ -24467,8 +24469,20 @@ fi
  # Check for Accessibility Toolkit flags
  ########################################
  

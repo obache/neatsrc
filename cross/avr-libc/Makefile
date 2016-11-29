@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.44 2016/11/15 20:30:01 riastradh Exp $
+# $NetBSD: Makefile,v 1.46 2016/11/24 14:11:31 mef Exp $
 
 DISTNAME=		avr-libc-1.8.1
-PKGREVISION=		3
+PKGREVISION=		4
 CATEGORIES=		cross
 MASTER_SITES=		http://savannah.nongnu.org/download/avr-libc/
 EXTRACT_SUFX=		.tar.bz2
@@ -20,6 +20,8 @@ CONFIGURE_ARGS+=	--host=avr
 CONFIGURE_ARGS+=	--disable-versioned-doc
 CONFIGURE_ARGS+=	CC=${PREFIX}/bin/avr-gcc
 CONFIGURE_ARGS+=	CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/avr/include"
+
+BUILD_DEPENDS+=		doxygen>=1.8.12:../../devel/doxygen
 
 #   In doc/examples/demo directory, we have sample Makefile both for
 #   generating *.hex file at pkg installation time, and for installing
