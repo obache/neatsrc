@@ -19,6 +19,7 @@ lib/libpinyin/data/history.bin
 lib/libpinyin/data/life.bin
 lib/libpinyin/data/merged.bin
 lib/libpinyin/data/nature.bin
+lib/libpinyin/data/opengram.bin
 lib/libpinyin/data/people.bin
 lib/libpinyin/data/phrase_index.bin
 lib/libpinyin/data/pinyin_index.bin

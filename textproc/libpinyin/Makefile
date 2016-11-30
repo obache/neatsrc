@@ -1,17 +1,17 @@
 # $NetBSD: Makefile,v 1.6 2016/02/26 12:17:18 jperkin Exp $
 
-DISTNAME=	libpinyin-1.6.0
+DISTNAME=	libpinyin-1.7.0
 CATEGORIES=	textproc chinese
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libpinyin/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/libpinyin/libpinyin/
 COMMENT=	Library to deal with pinyin
-LICENSE=	gnu-gpl-v2
+LICENSE=	gnu-gpl-v3
 
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	gmake pkg-config
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c99 c++11
 USE_LIBTOOL=	yes
 
 PKGCONFIG_OVERRIDE+=	libpinyin.pc.in
