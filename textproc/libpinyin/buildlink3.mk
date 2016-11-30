@@ -13,7 +13,8 @@ BUILDLINK_PKGSRCDIR.libpinyin?=	../../textproc/libpinyin
 pkgbase := libpinyin
 .include "../../mk/pkg-build-options.mk"
 .if !empty(PKG_BUILD_OPTIONS.libpinyin:Mbdb)
-.include "../../databases/db4/buildlink3.mk"
+BDB_INCOMPATIBLE+=	db1 db2 db3
+.include "../../mk/bdb.buildlink3.mk"
 .endif
 .if !empty(PKG_BUILD_OPTIONS.libpinyin:Mkyotocabinet)
 .include "../../databases/kyotocabinet/buildlink3.mk"
