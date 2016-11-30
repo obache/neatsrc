@@ -21,5 +21,7 @@ BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--version-script=./libpinyin.ver
 
 .include "options.mk"
 
+TEST_TARGET=	check
+
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
