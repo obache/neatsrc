@@ -35,6 +35,10 @@
 #	FIXME: If the list does not include db1 and does not include
 #	BDB_DEFAULT, the package will not build at the moment.
 #
+# BDB_INCOMPATIBLE
+#	The list of Berkeley DB implementations that cannot be used by the
+#	package.
+#
 # === Variables set by this file ===
 #
 # BDB_TYPE
@@ -62,6 +66,7 @@ BDB_BUILDLINK3_MK:=	${BDB_BUILDLINK3_MK}+
 _VARGROUPS+=	bdb
 _USER_VARS.bdb=	BDB_DEFAULT BDB185_DEFAULT
 _PKG_VARS.bdb=	BDB_ACCEPTED
+_PKG_VARS.bdb=	BDB_INCOMPATIBLE
 _SYS_VARS.bdb=	BDB_TYPE BDBBASE BDB_LIBS
 
 # If the package specified a list of acceptable Berkeley DB packages,
@@ -69,7 +74,7 @@ _SYS_VARS.bdb=	BDB_TYPE BDBBASE BDB_LIBS
 # preferring to use db1.  Assume that the package's configure process
 # should know how to probe for the libraries and headers on its own.
 #
-.  if defined(BDB_ACCEPTED) && empty(BDB_ACCEPTED:Mdb1)
+.  if defined(BDB_ACCEPTED) && empty(BDB_ACCEPTED:Mdb1) || defined(BDB_INCOMPATIBLE) && !empty(BDB_INCOMPATIBLE:Mdb1)
 USE_DB185?=	no
 .  else
 USE_DB185?=	yes
@@ -82,6 +87,7 @@ _BDB_PKGS?=	db1 db2 db3 db4 db5 db6
 
 BDB_DEFAULT?=	db4
 BDB_ACCEPTED?=	${_BDB_PKGS}
+BDB_INCOMPATIBLE?=	
 
 # Decide what to use when DB185 is required.  If builtin db1 is
 # present, use it, and if not use DBD_DEFAULT.
@@ -102,7 +108,12 @@ _BDB_PKGSRCDIR.${_bdb_}?=	../../databases/${_bdb_}
 
 _BDB_DEFAULT=		${BDB_DEFAULT}
 _BDB185_DEFAULT=	${BDB185_DEFAULT}
-_BDB_ACCEPTED=		${BDB_ACCEPTED}
+_BDB_ACCEPTED=
+.for bdb in ${BDB_ACCEPTED}
+.  if empty(BDB_INCOMPATIBLE:M${bdb}) 
+_BDB_ACCEPTED+=		${bdb}
+.  endif
+.endfor
 
 .  if !defined(_BDB_TYPE)
 .    if !empty(USE_DB185:M[yY][eE][sS])
