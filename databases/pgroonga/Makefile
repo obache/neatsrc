@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	pgroonga-1.1.1
+DISTNAME=	pgroonga-1.1.9
 PKGNAME=	postgresql${PGSQL_VERSION}-${DISTNAME}
 CATEGORIES=	databases
 MASTER_SITES=	http://packages.groonga.org/source/pgroonga/
