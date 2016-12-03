@@ -368,14 +368,8 @@ OBJECT_FMT=	SOM
 OBJECT_FMT=	PE
 .endif
 
-# Calculate depth
-.if exists(${.CURDIR}/mk/bsd.pkg.mk)
-_PKGSRC_TOPDIR=	${.CURDIR}
-.elif exists(${.CURDIR}/../mk/bsd.pkg.mk)
-_PKGSRC_TOPDIR=	${.CURDIR}/..
-.elif exists(${.CURDIR}/../../mk/bsd.pkg.mk)
-_PKGSRC_TOPDIR=	${.CURDIR}/../..
-.endif
+# top directory name only used internally here
+_PKGSRC_TOPDIR:=	${.PARSEDIR:H:tA}
 
 # include the defaults file
 .include "${_PKGSRC_TOPDIR}/mk/defaults/mk.conf"
