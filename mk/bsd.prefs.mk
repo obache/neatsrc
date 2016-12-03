@@ -642,7 +642,7 @@ FETCH_USING=	ftp
 .endif
 
 .if !defined(_PKGSRCDIR)
-_PKGSRCDIR!=		cd ${_PKGSRC_TOPDIR} && ${PWD_CMD}
+_PKGSRCDIR=		${_PKGSRC_TOPDIR:tA}
 MAKEFLAGS+=		_PKGSRCDIR=${_PKGSRCDIR:Q}
 .endif
 PKGSRCDIR=		${_PKGSRCDIR}
@@ -662,7 +662,7 @@ _BUILTIN_PKGS?=		# empty
 .if defined(WRKOBJDIR)
 BUILD_DIR?=		${WRKOBJDIR}/${PKGPATH}
 .else
-BUILD_DIR!=		cd ${.CURDIR} && ${PWD_CMD}
+BUILD_DIR?=		${.CURDIR:tA}
 .endif
 
 # If OBJHOSTNAME is set, use first component of hostname in directory name.
