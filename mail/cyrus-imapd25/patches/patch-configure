@@ -7,7 +7,7 @@ $NetBSD$
  
  
 - if test "$have_clamav" = "yes"; then
-+ if test "$have_clamav" != "no"; then
++ if test "$with_clamav" != "no"; then
    HAVE_CLAMAV_TRUE=
    HAVE_CLAMAV_FALSE='#'
  else
