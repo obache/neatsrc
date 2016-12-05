@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.3 2016/04/11 19:01:35 ryoon Exp $
+# $NetBSD: Makefile,v 1.5 2016/12/04 05:17:07 ryoon Exp $
 
 DISTNAME=	libspatialite-4.3.0a
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	geography
 MASTER_SITES=	http://www.gaia-gis.it/gaia-sins/
 
@@ -28,4 +28,5 @@ MAKE_JOBS_SAFE=no
 .include "../../geography/proj/buildlink3.mk"
 .include "../../textproc/freexl/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
+.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

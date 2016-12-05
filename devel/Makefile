@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2338 2016/11/30 12:24:54 wiz Exp $
+# $NetBSD: Makefile,v 1.2340 2016/12/04 21:12:58 rodent Exp $
 #
 
 COMMENT=	Development utilities
@@ -1725,6 +1725,7 @@ SUBDIR+=	py-Pyro
 SUBDIR+=	py-ZopeComponent
 SUBDIR+=	py-ZopeEvent
 SUBDIR+=	py-ZopeInterface
+SUBDIR+=	py-appdirs
 SUBDIR+=	py-argcomplete
 SUBDIR+=	py-argh
 SUBDIR+=	py-argparse
@@ -2181,6 +2182,7 @@ SUBDIR+=	sgi-stl-docs
 SUBDIR+=	shtk
 SUBDIR+=	silc-toolkit
 SUBDIR+=	slib
+SUBDIR+=	slibtool
 SUBDIR+=	sml-mode
 SUBDIR+=	snappy
 SUBDIR+=	snappy-java10

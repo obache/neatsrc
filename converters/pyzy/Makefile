@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.10 2016/04/11 19:01:33 ryoon Exp $
+# $NetBSD: Makefile,v 1.12 2016/12/04 05:17:04 ryoon Exp $
 
 DISTNAME=	pyzy-0.1.0
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	converters chinese
 MASTER_SITES=	http://pyzy.googlecode.com/files/
 DISTFILES=	${DEFAULT_DISTFILES} ${DBTAR}
@@ -59,4 +59,5 @@ CONFIGURE_ARGS+=	--with-boost=${BUILDLINK_PREFIX.boost-headers}
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.24.0
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
+.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

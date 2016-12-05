@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.13 2016/08/21 19:16:58 fhajny Exp $
+# $NetBSD: Makefile,v 1.15 2016/12/04 05:17:21 ryoon Exp $
 #
 
+PKGREVISION= 1
 .include "../../databases/libdbi-driver-sqlite3/Makefile_drivers"
 
 LICENSE=		gnu-lgpl-v2.1
@@ -17,4 +18,5 @@ CONFIGURE_ARGS+=	--with-sqlite3-libdir=${BUILDLINK_PREFIX.sqlite}/lib
 
 .include "../../databases/libdbi/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
+.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
