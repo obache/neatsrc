@@ -89,8 +89,6 @@ _EMUL_PREFER.netbsd-sparc64=	netbsd-sparc solaris-sparc64 solaris-sparc sunos-sp
 _EMUL_PREFER.netbsd-sparc=	solaris-sparc sunos-sparc
 _EMUL_PREFER.netbsd-x86_64=	netbsd-i386 linux-x86_64 linux-i386
 
-_EMUL_PREFER.dragonfly-i386=	linux-i386
-
 _EMUL_PREFER.solaris-sparc64=	solaris-sparc
 _EMUL_PREFER.solaris-x86_64=	solaris-i386
 
