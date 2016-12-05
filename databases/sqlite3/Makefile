@@ -49,15 +49,7 @@ LDFLAGS.SCO_SV+=	-lpthread
 .endif
 
 .include "../../mk/readline.buildlink3.mk"
-.if ${READLINE_TYPE} == "editline" && !empty(IS_BUILTIN.editline:M[yY][eE][sS])
-LDFLAGS.NetBSD+=	-ledit
-LDFLAGS.DragonFly+=	-ledit
-LDFLAGS.FreeBSD+=	-ledit
-.else
-LDFLAGS.NetBSD+=	-lreadline
-LDFLAGS.DragonFly+=	-lreadline
-LDFLAGS.FreeBSD+=	-lreadline
-.endif
+CONFIGURE_ARGS+=	--enable-${READLINE_TYPE}
 
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
