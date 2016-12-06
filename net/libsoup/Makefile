@@ -60,5 +60,4 @@ BUILDLINK_DEPMETHOD.gobject-introspection+=	build
 .include "../../devel/gobject-introspection/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-introspection
 .include "../../textproc/libxml2/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -16,5 +16,4 @@ USE_LANGUAGES=	c c++
 
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/boost-headers/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -27,5 +27,4 @@ do-install:
 	${SHLIBTOOL} --mode=install \
 		${INSTALL_PROGRAM} libgssapiv2.la ${DESTDIR}${PLUGINDIR}
 
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

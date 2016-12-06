@@ -38,5 +38,4 @@ BUILDLINK_API_DEPENDS.gnutls+=	gnutls>=3.4.0
 BUILDLINK_API_DEPENDS.tinyxml+=	tinyxml>=2.6.2nb1
 .include "../../textproc/pugixml/buildlink3.mk"
 .include "../../x11/wxGTK30/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

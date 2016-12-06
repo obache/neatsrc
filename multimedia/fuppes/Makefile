@@ -38,5 +38,4 @@ CONFIGURE_ARGS+=	--enable-lame
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../graphics/simage/buildlink3.mk"
 .include "../../multimedia/ffmpeg1/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

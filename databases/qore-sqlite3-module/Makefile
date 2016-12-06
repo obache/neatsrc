@@ -28,5 +28,4 @@ post-install:
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../lang/qore/buildlink3.mk"
 .include "../../lang/qore/module.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

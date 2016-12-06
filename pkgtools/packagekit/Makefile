@@ -78,5 +78,4 @@ BUILDLINK_TRANSFORM+=	rm:-DG_DISABLE_DEPRECATED
 .include "../../sysutils/dbus/buildlink3.mk"
 .include "../../sysutils/dbus-glib/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

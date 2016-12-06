@@ -34,5 +34,4 @@ MAKE_ENV+=	EXTRA_LIBS=${LIBS:M*:Q}
 
 .include "../../databases/openldap/Makefile.common"
 .include "../../databases/openldap-client/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

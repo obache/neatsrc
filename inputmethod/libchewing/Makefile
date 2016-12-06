@@ -21,5 +21,4 @@ PKGCONFIG_OVERRIDE=	chewing.pc.in
 TEST_TARGET=	check
 
 .include "../../databases/sqlite3/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -49,5 +49,4 @@ CONFIGURE_ARGS+=	--disable-xmltest
 .include "../../net/libcares/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

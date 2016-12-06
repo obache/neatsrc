@@ -31,5 +31,4 @@ BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.15.0
 .include "../../textproc/libplist/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

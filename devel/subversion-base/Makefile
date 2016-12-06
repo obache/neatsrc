@@ -81,5 +81,4 @@ svn-build-outputs-hack:
 .include "../../devel/apr/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../mk/curses.buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -32,5 +32,4 @@ SUBST_SED.epython=	-e 's;exec python;exec ${PYTHONBIN};g'
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../inputmethod/ibus/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

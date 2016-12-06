@@ -45,5 +45,4 @@ MAKE_ENV+=	INSTALL_ROOT=${DESTDIR}
 .include "../../security/openssl/buildlink3.mk"
 .include "../../x11/qt4-libs/buildlink3.mk"
 .include "../../x11/qt4-tools/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

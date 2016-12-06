@@ -18,5 +18,4 @@ CPPFLAGS.NetBSD+=       -DNO_STATIC_MODULES
 
 .include "../../mk/krb5.buildlink3.mk"
 .include "../../mk/pam.buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -24,5 +24,4 @@ USE_TOOLS+=		perl pkg-config intltool msgfmt
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

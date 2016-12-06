@@ -30,5 +30,4 @@ CWRAPPERS_APPEND.cxx+=	-Wno-error=unused-private-field
 .include "../../www/curl/buildlink3.mk"
 .include "../../mk/krb5.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

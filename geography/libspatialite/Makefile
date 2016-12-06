@@ -28,5 +28,4 @@ MAKE_JOBS_SAFE=no
 .include "../../geography/proj/buildlink3.mk"
 .include "../../textproc/freexl/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

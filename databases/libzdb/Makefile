@@ -18,5 +18,4 @@ PKGCONFIG_OVERRIDE+=	zdb.pc.in
 
 .include "options.mk"
 
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -21,6 +21,5 @@ BUILDLINK_API_DEPENDS.libzip+=  libzip>=1.0
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

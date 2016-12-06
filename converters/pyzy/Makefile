@@ -59,5 +59,4 @@ CONFIGURE_ARGS+=	--with-boost=${BUILDLINK_PREFIX.boost-headers}
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.24.0
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

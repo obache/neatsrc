@@ -31,5 +31,4 @@ do-install:
 
 .include "../../mk/apache.mk"
 .include "../../mk/krb5.buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

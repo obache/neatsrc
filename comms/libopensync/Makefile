@@ -22,5 +22,4 @@ BUILDLINK_TRANSFORM+=	rm:-Werror
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
