@@ -6,6 +6,10 @@
 # When variables are added or removed, the pkgsrc guide (build.xml)
 # should also be updated.
 
+MASTER_SITE_RING_SERVER+=	\
+	ftp://www.dnsbalance.ring.gr.jp/pub/ \
+	http://www.dnsbalance.ring.gr.jp/archives/
+
 MASTER_SITE_XCONTRIB+=  \
 	ftp://ftp.gwdg.de/pub/x11/x.org/contrib/ \
 	ftp://sunsite.icm.edu.pl/pub/X11/contrib/ \
@@ -62,8 +66,7 @@ MASTER_SITE_R_CRAN+=    \
 MASTER_SITE_TEX_CTAN+= \
 	ftp://ftp.funet.fi/pub/TeX/CTAN/ \
 	ftp://ftp.dante.de/tex-archive/ \
-	ftp://www.dnsbalance.ring.gr.jp/pub/text/CTAN/ \
-	http://www.dnsbalance.ring.gr.jp/archives/text/CTAN/
+	${MASTER_SITE_RING_SERVER:=text/CTAN/}
 
 MASTER_SITE_SUNSITE+=   \
 	ftp://ftp.icm.edu.pl/pub/Linux/sunsite/ \
@@ -80,8 +83,7 @@ MASTER_SITE_GNOME+=     \
 
 MASTER_SITE_KDE+=	\
 	http://download.kde.org/stable/ \
-	ftp://www.dnsbalance.ring.gr.jp/pub/X/kde/stable/ \
-	http://www.dnsbalance.ring.gr.jp/archives/X/kde/stable/ \
+	${MASTER_SITE_RING_SERVER:=X/kde/stable/} \
 	ftp://ftp.kddlabs.co.jp/pub/X/kde/stable/ \
 	ftp://ftp.gtlib.gatech.edu/pub/kde/stable/ \
 	ftp://kde.mirrors.tds.net/pub/kde/stable/ \
@@ -122,7 +124,7 @@ MASTER_SITE_XEMACS+=    \
 	ftp://ftp.pasteur.fr/pub/computing/xemacs/ \
 	ftp://mirror.aarnet.edu.au/pub/xemacs/ \
 	ftp://mirror.cict.fr/xemacs/ \
-	ftp://ftp.dnsbalance.ring.gr.jp/pub/text/xemacs/
+	${MASTER_SITE_RING_SERVER:=text/xemacs/}
 
 # http://www.ibiblio.org/pub/mirrors/apache/ returns 200 for missing
 # files, which is incompatible with resuming transfers.
@@ -222,13 +224,13 @@ MASTER_SITE_OPENOFFICE+=	\
 	http://na.mirror.garr.it/mirrors/openoffice/ \
 	http://vlaai.snt.utwente.nl/pub/software/openoffice/ \
 	ftp://ftp.kddlabs.co.jp/office/openoffice/ \
-	ftp://ftp.dnsbalance.ring.gr.jp/pub/misc/openoffice/ \
+	${MASTER_SITE_RING_SERVER:=misc/openoffice/} \
 	ftp://ftp.kr.freebsd.org/pub/openoffice/
 
 MASTER_SITE_CYGWIN+= \
 	http://mirrors.kernel.org/sources.redhat.com/cygwin/ \
 	http://mirrors.xmission.com/cygwin/ \
-	ftp://ftp.dnsbalance.ring.gr.jp/pub/pc/gnu-win32/ \
+	${MASTER_SITE_RING_SERVER:=pc/gnu-win32/} \
 	ftp://ftp.funet.fi/pub/mirrors/cygwin.com/pub/cygwin/
 
 MASTER_SITE_IFARCHIVE+= \

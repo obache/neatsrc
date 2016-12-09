@@ -3,7 +3,7 @@
 DISTNAME=	libgpg-error-1.25
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/libgpg-error/ \
-		ftp://ftp.ring.gr.jp/pub/net/gnupg/libgpg-error/ \
+		${MASTER_SITE_RING_SERVER:=net/gnupg/libgpg-error/} \
 		ftp://mirror.switch.ch/mirror/gnupg/libgpg-error/ \
 		ftp://ftp.freenet.de/pub/ftp.gnupg.org/gcrypt/libgpg-error/
 EXTRACT_SUFX=	.tar.bz2

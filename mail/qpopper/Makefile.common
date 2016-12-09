@@ -2,7 +2,7 @@
 # used by mail/poppassd/Makefile
 
 QPOPPER_MASTER_SITES+=	ftp://ftp.qualcomm.com/eudora/servers/unix/popper/ \
-			http://core.ring.gr.jp/archives/net/mail/qpopper/
+			${MASTER_SITE_RING_SERVER:=net/mail/qpopper/}
 QPOPPER_HOMEPAGE=	http://www.eudora.com/products/unsupported/qpopper/
 #QPOPPER_PATCHSITES+=	http://www.imasy.or.jp/~ume/ipv6/
 #QPOPPER_PATCHFILES=	qpopper4.0.9-ipv6-20060626.diff.gz

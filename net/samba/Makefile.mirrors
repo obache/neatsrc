@@ -12,7 +12,7 @@ SAMBA_MIRRORS=	\
 	ftp://ftp.ntua.gr/pub/net/samba/ \
 	ftp://ftp.hkmirror.org/pub/samba/sambaftp/ \
 	ftp://ftp.heanet.ie/pub/samba/ \
-	ftp://ftp.ring.gr.jp/pub/net/samba/ \
+	${MASTER_SITE_RING_SERVER:=net/samba/} \
 	ftp://ftp.samba.gr.jp/pub/samba/ \
 	http://samba.osmirror.nl/samba/ftp/ \
 	ftp://ftp.bit.nl/mirror/samba/ \

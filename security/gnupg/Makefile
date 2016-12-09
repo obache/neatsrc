@@ -5,7 +5,7 @@ PKGREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/gnupg/ \
 		http://gd.tuwien.ac.at/privacy/gnupg/gnupg/ \
-		ftp://ftp.ring.gr.jp/pub/net/gnupg/gnupg/
+		${MASTER_SITE_RING_SERVER:=net/gnupg/gnupg/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
