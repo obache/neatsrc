@@ -481,22 +481,6 @@ BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${_dir_}
 . endif
 .endfor
 #
-# Add the default view library directories to the runtime library search
-# path so that wildcard dependencies on library packages can always be
-# fulfilled through the default view.
-#
-.for _pkg_ in ${_BLNK_PACKAGES}
-.  if !empty(BUILDLINK_RPATHDIRS.${_pkg_})
-.    for _dir_ in ${BUILDLINK_RPATHDIRS.${_pkg_}:S/^/${LOCALBASE}\//}
-.      if exists(${_dir_})
-.        if empty(BUILDLINK_LDFLAGS:M${COMPILER_RPATH_FLAG}${_dir_})
-BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${_dir_}
-.        endif
-.      endif
-.    endfor
-.  endif
-.endfor
-#
 # Add the X11 library directory to the library search paths if the package
 # uses X11 and we are not using modular Xorg.
 #
