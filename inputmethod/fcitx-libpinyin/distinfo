@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (fcitx-libpinyin-0.3.91_dict.tar.xz) = d7744584c5e5cfde3926339c88e66b57c26aeb56
-RMD160 (fcitx-libpinyin-0.3.91_dict.tar.xz) = 8f7e09d346f4c6c79d40fc376d74f2561664bfd9
-SHA512 (fcitx-libpinyin-0.3.91_dict.tar.xz) = ddf9f220cd2438c49691dbcd92e6904e9bb313efbb58046f442160c94dbf43c43a520c35f731e744d8dfbad5578420f26a143987c10af2d5e0aa2e7abb5338d3
-Size (fcitx-libpinyin-0.3.91_dict.tar.xz) = 15145512 bytes
+SHA1 (fcitx-libpinyin-0.4.0_dict.tar.xz) = 3e38b8d18379d6fe3279c4797f7bd300bcb51cd4
+RMD160 (fcitx-libpinyin-0.4.0_dict.tar.xz) = f3de10b5ddaf94f7e64ec34f324a004f985bb210
+SHA512 (fcitx-libpinyin-0.4.0_dict.tar.xz) = 34a2efffbcfd926a3180276681cff53b5d59fc306e82359b6ecd288f8f04fc1078a9dc296ac643b2ea3a8787552dcefb95c26de6cadd93a8a409929d1b85c125
+Size (fcitx-libpinyin-0.4.0_dict.tar.xz) = 15146932 bytes
