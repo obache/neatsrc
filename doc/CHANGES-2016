@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.4961 2016/12/11 01:19:18 dholland Exp $
+$NetBSD: CHANGES-2016,v 1.4973 2016/12/11 08:58:21 wen Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -6920,3 +6920,15 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated converters/p5-Unicode-Collate to 1.19 [wen 2016-12-11]
 	Updated comms/asterisk to 11.25.1 [jnemeth 2016-12-11]
 	Updated games/finalbattle to 0.0nb2 [dholland 2016-12-11]
+	Updated converters/p5-Unicode-String to 2.10 [wen 2016-12-11]
+	Updated databases/p5-Fsdb to 2.62 [wen 2016-12-11]
+	Updated devel/p5-Class-Inspector to 1.31 [wen 2016-12-11]
+	Updated devel/p5-Date-Manip to 6.57 [wen 2016-12-11]
+	Updated www/p5-Mojolicious to 7.11 [wen 2016-12-11]
+	Updated www/p5-Role-REST-Client to 0.19 [wen 2016-12-11]
+	Updated www/p5-HTTP-Entity-Parser to 0.18 [wen 2016-12-11]
+	Updated textproc/p5-YAML to 1.20 [wen 2016-12-11]
+	Updated textproc/p5-Swim to 0.1.44 [wen 2016-12-11]
+	Updated textproc/p5-Pod-Simple to 3.35 [wen 2016-12-11]
+	Updated devel/p5-MooseX-Types to 0.48 [wen 2016-12-11]
+	Updated textproc/p5-PDF-Create to 1.39 [wen 2016-12-11]
