@@ -12,7 +12,7 @@ COMMENT=	The Parma Polyhedra Library
 LICENSE=	gnu-gpl-v3
 
 USE_LIBTOOL=	yes
-USE_TOOLS+=	autoconf automake gmake perl gsed
+USE_TOOLS+=	autoconf automake gmake perl gsed gm4
 
 USE_LANGUAGES=	c c++
 GNU_CONFIGURE=	yes
