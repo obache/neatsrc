@@ -3,7 +3,7 @@
 DISTNAME=	zile-2.4.5
 PKGREVISION=	4
 CATEGORIES=	editors
-MASTER_SITES=	http://ftp.gnu.org/gnu/zile/
+MASTER_SITES=	${MASTER_SITE_GNU:=zile/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.gnu.org/software/zile/

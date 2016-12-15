@@ -2,7 +2,7 @@
 
 DISTNAME=	guile-gnome-platform-2.16.4
 CATEGORIES=	devel
-MASTER_SITES=	http://ftp.gnu.org/gnu/guile-gnome/guile-gnome-platform/
+MASTER_SITES=	${MASTER_SITE_GNU:=guile-gnome/guile-gnome-platform/}
 
 MAINTAINER=	gdt@NetBSD.org
 HOMEPAGE=	http://www.gnu.org/software/guile-gnome/

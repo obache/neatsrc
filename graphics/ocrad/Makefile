@@ -2,7 +2,7 @@
 
 DISTNAME=	ocrad-0.21
 CATEGORIES=	graphics
-MASTER_SITES=	http://ftp.gnu.org/gnu/ocrad/
+MASTER_SITES=	${MASTER_SITE_GNU:=ocrad/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.gnu.org/software/ocrad/ocrad.html
