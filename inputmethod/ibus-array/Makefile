@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.18 2016/12/04 05:17:30 ryoon Exp $
+# $NetBSD: Makefile,v 1.19 2016/12/12 14:22:02 wiz Exp $
 
 DISTNAME=	ibus-array-0.1.0
 PKGREVISION=	4

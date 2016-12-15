@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.34 2016/12/04 22:51:55 marino Exp $
+# $NetBSD: Makefile,v 1.36 2016/12/12 14:36:22 wiz Exp $
 
 DISTNAME=	numpy-1.11.2
 GITHUB_PROJECT=	numpy
@@ -17,12 +17,6 @@ MAKE_ENV+=		ATLAS=None
 
 REPLACE_PYTHON+=	*.py */*.py */*/*.py */*/*/*.py */*/*/*/*.py
 
-# numpy fails using the gold linker with:
-# fatal error: --sysroot=: must take a non-empty argument
-# Work around it on DragonFly by specifying the classic gnu linker
-
-MAKE_ENV+=	LDVER=ld.bfd
-
 # XXX Avoid picking up other compilers when installed
 .include "../../mk/compiler.mk"
 
@@ -39,6 +33,11 @@ PYSETUPBUILDARGS+=	--fcompiler=gnu
 LDFLAGS+=		${_COMPILER_ABI_FLAG.${ABI}}
 
 .include "../../mk/bsd.prefs.mk"
+
+# numpy fails using the gold linker with:
+# fatal error: --sysroot=: must take a non-empty argument
+# Work around it on DragonFly by specifying the classic gnu linker
+MAKE_ENV.DragonFly+=	LDVER=ld.bfd
 
 # TEST_DEPENDS
 BUILD_DEPENDS+=	${PYPKGPREFIX}-nose-[0-9]*:../../devel/py-nose

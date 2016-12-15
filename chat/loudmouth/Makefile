@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.45 2016/12/04 03:51:14 marino Exp $
+# $NetBSD: Makefile,v 1.46 2016/12/12 14:22:02 wiz Exp $
 
 DISTNAME=	loudmouth-1.5.3
 CATEGORIES=	chat

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2016/12/04 03:51:16 marino Exp $
+# $NetBSD: Makefile,v 1.15 2016/12/12 14:22:03 wiz Exp $
 #
 # The CUPS author is very good about taking back changes into the main
 # CUPS distribution.  The correct place to send patches or bug-fixes is:

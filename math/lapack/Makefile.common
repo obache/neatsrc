@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.4 2016/12/03 15:37:34 marino Exp $
+# $NetBSD: Makefile.common,v 1.6 2016/12/12 14:36:23 wiz Exp $
 # used by math/blas/Makefile
 # used by math/lapack/Makefile
 
@@ -23,4 +23,4 @@ INSTALLATION_DIRS=	lib
 # fatal error: --sysroot=: must take a non-empty argument
 # Work around it on DragonFly by specifying the classic gnu linker
 
-MAKE_ENV+=	LDVER=ld.bfd
+MAKE_ENV.DragonFly+=	LDVER=ld.bfd

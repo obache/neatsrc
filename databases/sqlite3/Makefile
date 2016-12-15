@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.111 2016/12/04 05:17:04 ryoon Exp $
+# $NetBSD: Makefile,v 1.112 2016/12/12 16:17:53 wiz Exp $
 #
 # used by databases/sqlite3-tcl/Makefile
 
-PKGREVISION= 1
+PKGREVISION= 2
 .include "Makefile.common"
 
 PKGNAME=	sqlite3-${SQLITE3_VERSION}
@@ -51,6 +51,5 @@ LDFLAGS.SCO_SV+=	-lpthread
 
 .include "../../mk/readline.buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-${READLINE_TYPE}
-
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

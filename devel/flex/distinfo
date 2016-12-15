@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.27 2016/11/11 08:14:54 wiz Exp $
+$NetBSD: distinfo,v 1.29 2016/12/13 20:51:42 wiedi Exp $
 
 SHA1 (flex-2.6.2.tar.gz) = 9eab5eddb6efb34d420b3162fd619a01940b9438
 RMD160 (flex-2.6.2.tar.gz) = f58dca039f2b77b9477e45ac92a57804a6458f13

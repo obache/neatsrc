@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.63 2016/12/04 05:17:34 ryoon Exp $
+# $NetBSD: Makefile,v 1.64 2016/12/12 14:22:03 wiz Exp $
 
 DISTNAME=	fuppes-0.660
 PKGREVISION=	29

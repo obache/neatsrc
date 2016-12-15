@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2016/12/04 03:51:15 marino Exp $
+# $NetBSD: Makefile,v 1.22 2016/12/12 14:22:02 wiz Exp $
 
 PKGNAME=	${DISTNAME:S/-/-smbk5pwd-/}
 PKGREVISION=	2

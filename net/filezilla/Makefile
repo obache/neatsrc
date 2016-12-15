@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.75 2016/12/04 05:17:36 ryoon Exp $
+# $NetBSD: Makefile,v 1.76 2016/12/12 14:22:03 wiz Exp $
 
 VERSION=	3.21.0
 DISTNAME=	FileZilla_${VERSION}_src
