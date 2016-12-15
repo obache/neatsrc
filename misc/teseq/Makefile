@@ -7,7 +7,7 @@ MASTER_SITES=	http://ftp.gnu.org/gnu/teseq/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ftp.gnu.org/gnu/teseq/
+HOMEPAGE=	http://www.gnu.org/software/teseq/
 COMMENT=	Terminal control sequence analyzer
 LICENSE=	gnu-gpl-v3
 
