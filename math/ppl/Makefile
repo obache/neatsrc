@@ -17,7 +17,7 @@ USE_TOOLS+=	autoconf automake gmake perl gsed gm4
 USE_LANGUAGES=	c c++
 GNU_CONFIGURE=	yes
 
-CONFIGURE_ARGS+=	--with-gmp-prefix=${PREFIX}
+CONFIGURE_ARGS+=	--with-gmp=${BUILDLINK_PREFIX.gmp}
 #CONFIGURE_ARGS+=	--enable-interfaces=c,cxx
 
 do-build:
