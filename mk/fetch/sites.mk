@@ -19,12 +19,7 @@ MASTER_SITE_XCONTRIB+=  \
 MASTER_SITE_GNU+=       \
 	http://ftpmirror.gnu.org/ \
 	http://ftp.gnu.org/pub/gnu/ \
-	ftp://ftp.gnu.org/pub/gnu/ \
-	ftp://ftp.funet.fi/pub/gnu/prep/ \
-	ftp://ftp.kddlabs.co.jp/pub/gnu/gnu/ \
-	ftp://mirrors.kernel.org/gnu/ \
-	ftp://ftp.lip6.fr/pub/gnu/ \
-	http://gd.tuwien.ac.at/gnu/gnusrc/
+	ftp://ftp.gnu.org/pub/gnu/
 
 MASTER_SITE_GITHUB+=    \
 	https://github.com/
