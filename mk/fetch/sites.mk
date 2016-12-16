@@ -17,6 +17,7 @@ MASTER_SITE_XCONTRIB+=  \
 	ftp://ftp.x.org/contrib/
 
 MASTER_SITE_GNU+=       \
+	http://ftpmirror.gnu.org/ \
 	http://ftp.gnu.org/pub/gnu/ \
 	ftp://ftp.gnu.org/pub/gnu/ \
 	ftp://ftp.funet.fi/pub/gnu/prep/ \
