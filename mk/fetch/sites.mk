@@ -60,9 +60,7 @@ MASTER_SITE_R_CRAN+=    \
 	http://www.stats.bris.ac.uk/R/src/
 
 MASTER_SITE_TEX_CTAN+= \
-	ftp://ftp.funet.fi/pub/TeX/CTAN/ \
-	ftp://ftp.dante.de/tex-archive/ \
-	${MASTER_SITE_RING_SERVER:=text/CTAN/}
+	http://mirrors.ctan.org/
 
 MASTER_SITE_SUNSITE+=   \
 	ftp://ftp.icm.edu.pl/pub/Linux/sunsite/ \
