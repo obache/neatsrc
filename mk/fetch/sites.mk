@@ -75,11 +75,6 @@ MASTER_SITE_SUNSITE+=   \
 	ftp://ftp.lip6.fr/pub/linux/sunsite/
 
 MASTER_SITE_GNOME+=     \
-	http://ftp.gnome.org/pub/GNOME/ \
-	ftp://ftp.gnome.org/pub/GNOME/ \
-	http://ftp.tuwien.ac.at/hci/gnome.org/ \
-	ftp://ftp.cse.buffalo.edu/pub/Gnome/ \
-	ftp://ftp.kddlabs.co.jp/pub/GNOME/ \
 	https://download.gnome.org/
 
 MASTER_SITE_KDE+=	\
