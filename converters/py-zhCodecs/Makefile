@@ -12,12 +12,12 @@ HOMEPAGE=	http://sourceforge.net/projects/python-codecs/
 COMMENT=	Python Unicode codecs for Chinese charsets
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/Python
-PYDISTUTILSPKG=	# defined
 
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35
 
 post-extract:
 	@${CHMOD} 711 ${WRKSRC}/chinesetw
 
-.include "../../lang/python/extension.mk"
+EGG_NAME=	ChineseCodecs-1.1.0
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
