@@ -13,7 +13,7 @@ COMMENT=	Python Unicode codecs for Chinese charsets
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/Python
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35
+PYTHON_VERSIONS_ACCEPTED=	27
 
 post-extract:
 	@${CHMOD} 711 ${WRKSRC}/chinesetw
