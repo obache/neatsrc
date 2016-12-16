@@ -3,7 +3,7 @@
 DISTNAME=	cvs-1.12.13
 PKGREVISION=	3
 CATEGORIES=	devel scm
-MASTER_SITES=	http://ftp.gnu.org/non-gnu/cvs/source/feature/${PKGVERSION_NOREV}/
+MASTER_SITES=	${MASTER_SITE_GNU:=non-gnu/cvs/source/feature/${PKGVERSION_NOREV}/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
