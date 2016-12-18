@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.43 2016/11/14 20:15:33 ryoon Exp $
+$NetBSD: distinfo,v 1.45 2016/12/17 23:28:51 joerg Exp $
 
 SHA1 (cfe-3.9.0.src.tar.xz) = 00d49ee82451130a8e1e7b1d56cffa37b783bcb2
 RMD160 (cfe-3.9.0.src.tar.xz) = a33d18142ce0fd69db59a96b75ffcfd20cef2f2c

@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.5052 2016/12/17 07:34:09 wen Exp $
+$NetBSD: CHANGES-2016,v 1.5068 2016/12/18 03:20:58 taca Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -7042,3 +7042,19 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated textproc/p5-Text-Table to 1.132 [wen 2016-12-17]
 	Updated devel/R-Rcpp to 0.12.8 [wen 2016-12-17]
 	Updated devel/R-proto to 1.0.0 [wen 2016-12-17]
+	Updated devel/py-flakes to 1.3.0 [adam 2016-12-17]
+	Updated net/syncthing to 0.14.15 [wiz 2016-12-17]
+	Updated pkgtools/pkglint to 5.4.14 [rillig 2016-12-17]
+	Updated devel/gmake to 4.1nb3 [joerg 2016-12-17]
+	Updated graphics/jasper to 1.900.29nb1 [dholland 2016-12-17]
+	Updated games/ccgo to 0.3.6.5 [joerg 2016-12-17]
+	Updated www/firefox to 50.1.0 [ryoon 2016-12-18]
+	Updated www/firefox-l10n to 50.1.0 [ryoon 2016-12-18]
+	Updated textproc/R-stringi to 1.1.2 [wen 2016-12-18]
+	Updated devel/R-evaluate to 0.10 [wen 2016-12-18]
+	Updated textproc/R-stringr to 1.1.0 [wen 2016-12-18]
+	Updated textproc/R-formatR to 1.4 [wen 2016-12-18]
+	Updated textproc/R-yaml to 2.1.14 [wen 2016-12-18]
+	Updated math/R-gtools to 3.5.0 [wen 2016-12-18]
+	Updated ham/fldigi to 3.23.18 [mef 2016-12-18]
+	Updated www/squid3 to 3.5.23 [taca 2016-12-18]
