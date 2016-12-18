@@ -13,8 +13,7 @@ MASTER_SITE_RING_SERVER+=	\
 MASTER_SITE_XCONTRIB+=  \
 	ftp://ftp.gwdg.de/pub/x11/x.org/contrib/ \
 	ftp://sunsite.icm.edu.pl/pub/X11/contrib/ \
-	ftp://mirror.switch.ch/mirror/X11/contrib/ \
-	ftp://ftp.x.org/contrib/
+	ftp://mirror.switch.ch/mirror/X11/contrib/
 
 MASTER_SITE_GNU+=       \
 	http://ftpmirror.gnu.org/ \
