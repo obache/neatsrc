@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.5069 2016/12/18 06:01:05 mef Exp $
+$NetBSD: CHANGES-2016,v 1.5081 2016/12/18 23:20:30 leot Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -7059,3 +7059,15 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated ham/fldigi to 3.23.18 [mef 2016-12-18]
 	Updated www/squid3 to 3.5.23 [taca 2016-12-18]
 	Updated ham/xlog to 2.0.14 [mef 2016-12-18]
+	Updated www/php-owncloud to 9.1.3 [wen 2016-12-18]
+	Updated emulators/simh to 4.0.0.20161218 [hans 2016-12-18]
+	Updated www/logswan to 1.06 [maya 2016-12-18]
+	Updated misc/ansiweather to 1.09 [maya 2016-12-18]
+	Updated games/openttd to 1.6.1 [tnn 2016-12-18]
+	Updated net/synergy to 1.8.6 [tnn 2016-12-18]
+	Updated security/ykclient to 2.13nb3 [joerg 2016-12-18]
+	Updated security/gnupg21 to 2.1.16 [tnn 2016-12-18]
+	Updated pkgtools/pbulk to 0.65 [joerg 2016-12-18]
+	Updated audio/mpg123 to 1.23.8 [adam 2016-12-18]
+	Removed www/contao42 [taca 2016-12-18]
+	Updated net/youtube-dl to 20161218 [leot 2016-12-18]
