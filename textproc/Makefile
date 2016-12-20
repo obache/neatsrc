@@ -820,6 +820,7 @@ SUBDIR+=	ruby-htree
 SUBDIR+=	ruby-itex2MML
 SUBDIR+=	ruby-json
 SUBDIR+=	ruby-json-pure
+SUBDIR+=	ruby-json-stream
 SUBDIR+=	ruby-kramdown
 SUBDIR+=	ruby-levenshtein
 SUBDIR+=	ruby-libxml
