@@ -1,4 +1,6 @@
-$NetBSD: CHANGES-2016,v 1.5081 2016/12/18 23:20:30 leot Exp $
+$NetBSD: CHANGES-2016,v 1.5098 2016/12/19 12:47:29 wiz Exp $
+
+PKGSRC FREEZE IS ON!
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -7071,3 +7073,20 @@ Changes to the packages collection and infrastructure in 2016:
 	Updated audio/mpg123 to 1.23.8 [adam 2016-12-18]
 	Removed www/contao42 [taca 2016-12-18]
 	Updated net/youtube-dl to 20161218 [leot 2016-12-18]
+	Updated audio/chromaprint to 1.4.1 [wiz 2016-12-19]
+	Updated print/cups-filters to 1.13.1 [wiz 2016-12-19]
+	Updated devel/gmp to 6.1.2 [wiz 2016-12-19]
+	Updated devel/meld to 3.16.4 [wiz 2016-12-19]
+	Updated devel/py-ZopeInterface to 4.3.3 [wiz 2016-12-19]
+	Updated security/py-cryptography to 1.7.1 [wiz 2016-12-19]
+	Updated devel/py-dulwich to 0.15.0 [wiz 2016-12-19]
+	Updated devel/py-mccabe to 0.5.3 [wiz 2016-12-19]
+	Updated devel/py-setuptools to 32.1.0 [wiz 2016-12-19]
+	Updated fonts/unifont to 9.0.05 [wiz 2016-12-19]
+	Updated devel/waf to 1.9.7 [wiz 2016-12-19]
+	Updated net/wireshark to 2.2.3 [wiz 2016-12-19]
+	Updated audio/musicpd to 0.19.21 [wiz 2016-12-19]
+	Updated security/p5-IO-Socket-SSL to 2.040 [wiz 2016-12-19]
+	Updated devel/p5-Test-Simple to 1.302071 [wiz 2016-12-19]
+	Updated finance/gnucash to 2.6.15 [wiz 2016-12-19]
+	mk/bsd.pkg.mk: started freeze for pkgsrc-2016Q4 branch [wiz 2016-12-19]
