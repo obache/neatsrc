@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.4 2016/11/22 20:59:01 bouyer Exp $
+# $NetBSD: Makefile,v 1.6 2016/12/20 18:15:10 gdt Exp $
 
 VERSION=	4.6.3
 DISTNAME=	xen-${VERSION}
 PKGNAME=	xenkernel46-${VERSION}
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	sysutils
 MASTER_SITES=	http://bits.xensource.com/oss-xen/release/${VERSION}/
 
@@ -13,8 +13,8 @@ COMMENT=	Xen 4.6.x Kernel
 
 LICENSE=	gnu-gpl-v2
 
-ONLY_FOR_PLATFORM=	Linux-2.6*-i386 Linux-2.6*-x86_64
-ONLY_FOR_PLATFORM+=	NetBSD-[5-9].*-x86_64 NetBSD-[5-9].*-i386
+ONLY_FOR_PLATFORM=	Linux-2.6*-x86_64
+ONLY_FOR_PLATFORM+=	NetBSD-[5-9].*-x86_64
 
 NO_CONFIGURE=	yes
 USE_TOOLS+=	gmake
