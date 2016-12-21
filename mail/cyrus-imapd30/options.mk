@@ -8,7 +8,7 @@ PKG_SUGGESTED_OPTIONS=	http ldap pcre
 
 .include "../../mk/bsd.options.mk"
 
-PLIST_VARS+=	clamav http ldap
+PLIST_VARS+=	http ldap
 
 .if !empty(PKG_OPTIONS:Mkerberos)
 .  if empty(PKG_OPTIONS:Mgssapi)
@@ -116,8 +116,7 @@ CONFIGURE_ARGS+=	--disable-pcre
 
 .if !empty(PKG_OPTIONS:Mclamav)
 .  include "../../security/clamav/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-clamav=${BUILDLINK_PREFIX.clamav}
-PLIST.clamav=		yes
+CONFIGURE_ARGS+=	--with-clamav
 .else
 CONFIGURE_ARGS+=	--without-clamav
 .endif
