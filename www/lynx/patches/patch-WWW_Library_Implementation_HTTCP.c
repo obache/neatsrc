@@ -1,4 +1,4 @@
-$NetBSD: patch-WWW_Library_Implementation_HTTCP.c,v 1.1 2016/12/21 11:25:25 sevan Exp $
+$NetBSD: patch-WWW_Library_Implementation_HTTCP.c,v 1.2 2016/12/22 17:30:51 sevan Exp $
 
 Fix CVE-2016-9179
 https://hg.java.net/hg/solaris-userland~gate/file/0a979060f73b/components/lynx/patches/05-fix-CVE-2016-9179.patch
@@ -13,7 +13,7 @@ https://hg.java.net/hg/solaris-userland~gate/file/0a979060f73b/components/lynx/p
      char *host = NULL;
  
  #ifdef INET6
-@@ -1814,14 +1813,7 @@ int HTDoConnect(const char *url,
+@@ -1814,14 +1813,8 @@ int HTDoConnect(const char *url,
       * Get node name and optional port number.
       */
      p1 = HTParse(url, "", PARSE_HOST);
@@ -23,7 +23,7 @@ https://hg.java.net/hg/solaris-userland~gate/file/0a979060f73b/components/lynx/p
 -	 */
 -	StrAllocCopy(host, (at_sign + 1));
 -    } else {
--	StrAllocCopy(host, p1);
+ 	StrAllocCopy(host, p1);
 -    }
 +    strip_userid(host, FALSE);
      FREE(p1);
