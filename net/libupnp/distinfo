@@ -1,8 +1,8 @@
 $NetBSD: distinfo,v 1.22 2015/11/04 00:35:10 agc Exp $
 
-SHA1 (libupnp-1.6.20.tar.bz2) = e07cb8f9f7016233f62519f7ea5c481c4a5f10b2
-RMD160 (libupnp-1.6.20.tar.bz2) = bf0070d1bf522c6362607290c40c85816ac083d8
-SHA512 (libupnp-1.6.20.tar.bz2) = 754a3f587963078fc60e8a58f6b04536dac03d053c8cd14d4fd7e505a3417484fa03b72dd09ef92150f00263f270aa19646b7aab1b8707111aff53c43f8a120a
-Size (libupnp-1.6.20.tar.bz2) = 1243637 bytes
+SHA1 (libupnp-1.6.21.tar.bz2) = 4c2f03f8d2f52d92bfe80039a027fafa98c8c226
+RMD160 (libupnp-1.6.21.tar.bz2) = dc6109e0a466e38d6e9c9d4155d2473cd113e4d4
+SHA512 (libupnp-1.6.21.tar.bz2) = 65a2989497b941dfa1f7ac09fe44267de4a5231af25a304f0f6e754c7cbb578bdcb3c500188b5ebfbff9f579099db7501817d45e1724ef8e384d6d918bcdcdeb
+Size (libupnp-1.6.21.tar.bz2) = 1245353 bytes
 SHA1 (patch-aa) = 1cb00c3ebbfcc4a9a1215e886c3c9d038e16342f
 SHA1 (patch-upnp_sample_Makefile.in) = 63675848b7289f414f3d78968aef69130addce28
