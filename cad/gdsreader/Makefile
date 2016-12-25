@@ -4,7 +4,7 @@
 DISTNAME=	GDSreader.0.3.2
 PKGNAME=	gdsreader-0.3.2
 CATEGORIES=	cad
-MASTER_SITES=	http://distcache.FreeBSD.org/local-distfiles/hrs/
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL:=hrs/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	# empty, former one not available now
