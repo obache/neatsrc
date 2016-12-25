@@ -12,10 +12,8 @@ PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 4.11.3
 .include "../../meta-pkgs/kde4/Makefile.kde4"
 
 DISTFILES=	${DEFAULT_DISTFILES} Daemon.png Daemon.README
-DISTFILES+=	NetBSD-flag-1.0.png
 SITES.Daemon.png=	${MASTER_SITE_LOCAL}
 SITES.Daemon.README=	${MASTER_SITE_LOCAL}
-SITES.NetBSD-flag-1.0.png=	${MASTER_SITE_LOCAL}
 
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
@@ -120,18 +118,9 @@ post-install:
 		${DESTDIR}${PREFIX}/share/kde/apps/kdm/faces/.default.face.icon
 	${INSTALL_DATA} ${WRKSRC}/kdm/kfrontend/pics/root1.png \
 		${DESTDIR}${PREFIX}/share/kde/apps/kdm/faces/root.face.icon
-	${INSTALL_DATA} ${DISTDIR}/NetBSD-flag-1.0.png \
-		${DESTDIR}${PREFIX}/${ICONDIR}/NetBSD-flag.png
 	${INSTALL_DATA} ${DISTDIR}/Daemon.png ${DESTDIR}${PREFIX}/${ICONDIR}
 	${INSTALL_DATA} ${DISTDIR}/Daemon.README \
 		${DESTDIR}${PREFIX}/share/doc/kde/HTML/en/kdm
-.if ${OPSYS} == "NetBSD"
-	@# NetBSD Advertisement O:-)
-	cd ${DESTDIR}${PREFIX}/share/kde/config/kdm;			\
-	${SED} -e 's|^\(LogoPixmap\)=.*|\1=${PREFIX}/${ICONDIR}/NetBSD-flag.png|' \
-                kdmrc > ${WRKDIR}/kdmrc.ad;				\
-	${CP} -f ${WRKDIR}/kdmrc.ad kdmrc
-.endif
 	${RM} ${DESTDIR}${PREFIX}/share/icons/oxygen/*/mimetypes/fonts-package.png
 
 CFLAGS.SunOS+=	-D__EXTENSIONS__ -D__uint16_t=uint16_t
