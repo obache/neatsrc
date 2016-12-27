@@ -128,7 +128,7 @@
 #			The prefix of PKGNAME and DEPENDS lines.  All ELPs
 #			must honour this!
 #		Possible values:
-#			"", "xemacs-"
+#			Any ${EMACS_TYPE} values with "-" suffix
 #
 #	EMACS_VERSION_MAJOR
 #		Description:
@@ -251,14 +251,10 @@ _EMACS_PKGDIR_MAP= \
 _EMACS_ETCDIR.emacs=		share
 _EMACS_INFODIR.emacs=		${PKGINFODIR}
 _EMACS_LISPDIR.emacs=		share/emacs/site-lisp
-_EMACS_PKGNAME_PREFIX.emacs=
-_EMACS_CONFLICTS.emacs=		xemacs-${PKGBASE}-[0-9]*
 
 _EMACS_ETCDIR.xemacs=		lib/xemacs/site-packages/etc
 _EMACS_INFODIR.xemacs=		lib/xemacs/site-packages/info
 _EMACS_LISPDIR.xemacs=		lib/xemacs/site-packages/lisp
-_EMACS_PKGNAME_PREFIX.xemacs=	xemacs-
-_EMACS_CONFLICTS.xemacs=	${PKGBASE:C|^xemacs-||}-[0-9]*
 
 #
 # Version decision
@@ -292,7 +288,7 @@ _EMACS_PKGDIR=	${_EMACS_PKGDIR_MAP:M${_EMACS_TYPE}@*:C|${_EMACS_TYPE}@||}
 #
 
 DEPENDS+=	${_EMACS_REQD}:${_EMACS_PKGDIR}
-CONFLICTS+=	${_EMACS_CONFLICTS.${_EMACS_FLAVOR}}
+CONFLICTS+=	${_EMACS_VERSIONS_ALL:M${_EMACS_FLAVOR}*:N${_EMACS_TYPE}:=${PKGBASE:S/^${EMACS_TYPE}//}-[0-9]*}
 
 EMACS_MODULES?=
 .for _mod_ in ${EMACS_MODULES}
@@ -313,7 +309,7 @@ EMACS_VERSION_MICRO=	${_EMACS_VERSION_MICRO}
 EMACS_ETCPREFIX=	${PREFIX}/${_EMACS_ETCDIR.${_EMACS_FLAVOR}}
 EMACS_INFOPREFIX=	${PREFIX}/${_EMACS_INFODIR.${_EMACS_FLAVOR}}
 EMACS_LISPPREFIX=	${PREFIX}/${_EMACS_LISPDIR.${_EMACS_FLAVOR}}
-EMACS_PKGNAME_PREFIX=	${_EMACS_PKGNAME_PREFIX.${_EMACS_FLAVOR}}
+EMACS_PKGNAME_PREFIX=	${_EMACS_TYPE}-
 
 GNU_CONFIGURE_INFODIR?=	${EMACS_INFOPREFIX}
 
