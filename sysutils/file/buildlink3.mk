@@ -11,8 +11,6 @@ FILE_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.file+=	file>=4.17
 BUILDLINK_ABI_DEPENDS.file+=	file>=4.17
 BUILDLINK_PKGSRCDIR.file?=	../../sysutils/file
-pkgbase := file
-.include "../../mk/pkg-build-options.mk"
 .endif # FILE_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-file
