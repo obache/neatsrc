@@ -23,5 +23,4 @@ BUILDLINK_API_DEPENDS.gtk2+=	gtk2+>=2.6
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
-.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"
