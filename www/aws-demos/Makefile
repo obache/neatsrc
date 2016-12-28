@@ -75,14 +75,14 @@ PLIST_VARS+=	ldap ssl
 
 .include "../../www/aws/buildlink3.mk"
 
-.if !empty(PKG_BUILD_OPTIONS.awk:Mldap)
+.if !empty(PKG_BUILD_OPTIONS.aws:Mldap)
 .include "../../databases/openldap-client/buildlink3.mk"
 CONFIGURE_ARGS+=	LDAP=true
 DEMO_DIRS+=		test_ldap
 PLIST.ldap=		yes
 .endif
 
-.if !empty(PKG_BUILD_OPTIONS.awk:Mssl)
+.if !empty(PKG_BUILD_OPTIONS.aws:Mssl)
 .include "../../security/openssl/buildlink3.mk"
 CONFIGURE_ARGS+=	SOCKET=openssl
 DEMO_DIRS+=		agent
@@ -90,7 +90,7 @@ DEMO_DIRS+=		runme
 PLIST.ssl=		yes
 .endif
 
-.if !empty(PKG_BUILD_OPTIONS.awk:Mgnutls)
+.if !empty(PKG_BUILD_OPTIONS.aws:Mgnutls)
 .include "../../security/libgcrypt/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
