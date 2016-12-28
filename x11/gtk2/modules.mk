@@ -26,8 +26,6 @@ INSTALL_TEMPLATES+=	../../x11/gtk2/files/immodules.tmpl
 DEINSTALL_TEMPLATES+=	../../x11/gtk2/files/immodules.tmpl
 .endif
 
-PRINT_PLIST_AWK+=	/^libdata\/gtk-2.0/ { next; }
-
 .if !defined(_BUILDING_GTK2)
 .  include "../../x11/gtk2/buildlink3.mk"
 .endif
