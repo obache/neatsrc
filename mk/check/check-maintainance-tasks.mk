@@ -47,6 +47,12 @@ _CHECK_MAINTAINANCE_TASKS_MAKEFILE.gdk-pixbuf=	graphics/gdk-pixbuf2/loaders.mk
 _CHECK_MAINTAINANCE_TASKS_SELFPKGPATH.gdk-pixbuf=	graphics/gdk-pixbuf2
 _CHECK_MAINTAINANCE_TASKS_VARNAME.gdk-pixbuf=	GTK2_LOADERS_MK
 
+_CHECK_MAINTAINANCE_TASKS+=	gio
+_CHECK_MAINTAINANCE_TASKS_FILES_FILTER.gio=	${AWK} '/^${PREFIX:S/\//\\\//g}\/lib\/gio\/modules\/.+\..+$$/'
+_CHECK_MAINTAINANCE_TASKS_MAKEFILE.gio=	devel/glib2/modules.mk
+_CHECK_MAINTAINANCE_TASKS_SELFPKGPATH.gio=	devel/glib2
+_CHECK_MAINTAINANCE_TASKS_VARNAME.gio=	GIO_MODULES_MK
+
 .if !empty(CHECK_MAINTAINANCE_TASKS:M[Yy][Ee][Ss])
 privileged-install-hook: _check-maintainance-tasks
 .endif
