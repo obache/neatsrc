@@ -12,8 +12,8 @@ DESKTOP_FILE_UTILS_MIMEDB_MK=	# defined
 INSTALL_TEMPLATES+=	${.CURDIR}/../../sysutils/desktop-file-utils/files/install.tmpl
 DEINSTALL_TEMPLATES+=	${.CURDIR}/../../sysutils/desktop-file-utils/files/install.tmpl
 
-FILES_SUBST+=		APPLICATIONS_PATH="${BUILDLINK_PREFIX.desktop-file-utils}/share/applications"
-FILES_SUBST+=		UPDATE_DESKTOPDB="${BUILDLINK_PREFIX.desktop-file-utils}/bin/update-desktop-database"
+FILES_SUBST+=		APPLICATIONS_PATH="${LOCALBASE}/share/applications"
+FILES_SUBST+=		UPDATE_DESKTOPDB="${LOCALBASE}/bin/update-desktop-database"
 
 PRINT_PLIST_AWK+=	/^share\/applications\/mimeinfo.cache$$/ { next }
 
