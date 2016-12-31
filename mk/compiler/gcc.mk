@@ -1,4 +1,4 @@
-# $NetBSD: gcc.mk,v 1.171 2016/11/25 20:36:49 marino Exp $
+# $NetBSD: gcc.mk,v 1.174 2016/12/29 23:16:26 maya Exp $
 #
 # This is the compiler definition for the GNU Compiler Collection.
 #
@@ -128,17 +128,8 @@ _GCC34_PATTERNS= 3.[4-9] 3.[4-9].* 3.[1-9][0-9]*
 # _GCC44_PATTERNS matches N s.t. 4.4 <= N < 4.5.
 _GCC44_PATTERNS= 4.4 4.4.*
 
-# _GCC45_PATTERNS matches N s.t. 4.5 <= N < 4.6.
-_GCC45_PATTERNS= 4.5 4.5.*
-
-# _GCC46_PATTERNS matches N s.t. 4.6 <= N < 4.7.
-_GCC46_PATTERNS= 4.6 4.6.*
-
-# _GCC47_PATTERNS matches N s.t. 4.7 <= N < 4.8.
-_GCC47_PATTERNS= 4.7 4.7.*
-
-# _GCC48_PATTERNS matches N s.t. 4.8 <= N < 4.9.
-_GCC48_PATTERNS= 4.8 4.8.*
+# _GCC48_PATTERNS matches N s.t. 4.5 <= N < 4.9.
+_GCC48_PATTERNS= 4.[5678] 4.[5678].*
 
 # _GCC49_PATTERNS matches N s.t. 4.9 <= N < 4.10.
 _GCC49_PATTERNS= 4.9 4.9.*
@@ -259,24 +250,6 @@ _NEED_GCC44?=	no
 _NEED_GCC44=	yes
 .  endif
 .endfor
-_NEED_GCC45?=	no
-.for _pattern_ in ${_GCC45_PATTERNS}
-.  if !empty(_GCC_REQD:M${_pattern_})
-_NEED_GCC45=	yes
-.  endif
-.endfor
-_NEED_GCC46?=	no
-.for _pattern_ in ${_GCC46_PATTERNS}
-.  if !empty(_GCC_REQD:M${_pattern_})
-_NEED_GCC46=	yes
-.  endif
-.endfor
-_NEED_GCC47?=	no
-.for _pattern_ in ${_GCC47_PATTERNS}
-.  if !empty(_GCC_REQD:M${_pattern_})
-_NEED_GCC47=	yes
-.  endif
-.endfor
 _NEED_GCC48?=	no
 .for _pattern_ in ${_GCC48_PATTERNS}
 .  if !empty(_GCC_REQD:M${_pattern_})
@@ -310,10 +283,9 @@ _NEED_NEWER_GCC=NO
 .endfor
 .if !empty(_NEED_GCC2:M[nN][oO]) && !empty(_NEED_GCC3:M[nN][oO]) && \
     !empty(_NEED_GCC34:M[nN][oO]) && !empty(_NEED_GCC44:M[nN][oO]) && \
-    !empty(_NEED_GCC45:M[nN][oO]) && !empty(_NEED_GCC46:M[nN][oO]) && \
-    !empty(_NEED_GCC47:M[nN][oO]) && !empty(_NEED_GCC48:M[nN][oO]) && \
-    !empty(_NEED_GCC49:M[nN][oO]) && !empty(_NEED_GCC5:M[nN][oO]) && \
-    !empty(_NEED_GCC6:M[nN][oO]) && !empty(_NEED_GCC_AUX:M[nN][oO])
+    !empty(_NEED_GCC48:M[nN][oO]) && !empty(_NEED_GCC49:M[nN][oO]) && \
+    !empty(_NEED_GCC5:M[nN][oO]) && !empty(_NEED_GCC6:M[nN][oO]) && \
+    !empty(_NEED_GCC_AUX:M[nN][oO])
 _NEED_GCC6=	yes
 .endif
 
@@ -327,12 +299,6 @@ LANGUAGES.gcc=	c c++ fortran77 java objc
 LANGUAGES.gcc=	c c++ fortran77 objc
 .elif !empty(_NEED_GCC44:M[yY][eE][sS])
 LANGUAGES.gcc=	c c++ fortran fortran77 java objc
-.elif !empty(_NEED_GCC45:M[yY][eE][sS])
-LANGUAGES.gcc=	c c++ fortran fortran77 java objc
-.elif !empty(_NEED_GCC46:M[yY][eE][sS])
-LANGUAGES.gcc=	c c++ fortran fortran77 java objc
-.elif !empty(_NEED_GCC47:M[yY][eE][sS])
-LANGUAGES.gcc=	c c++ fortran fortran77 go java objc obj-c++
 .elif !empty(_NEED_GCC48:M[yY][eE][sS])
 LANGUAGES.gcc=	c c++ fortran fortran77 go java objc obj-c++
 .elif !empty(_NEED_GCC49:M[yY][eE][sS])
@@ -485,65 +451,6 @@ _GCC_DEPENDENCY=	gcc44>=${_GCC_REQD}:../../lang/gcc44
         !empty(_LANGUAGES.gcc:Mfortran) || \
         !empty(_LANGUAGES.gcc:Mfortran77) || \
         !empty(_LANGUAGES.gcc:Mobjc)
-_USE_GCC_SHLIB?=	yes
-.    endif
-.  endif
-.elif !empty(_NEED_GCC45:M[yY][eE][sS])
-#
-# We require gcc-4.5.x in the lang/gcc45 directory.
-#
-_GCC_PKGBASE=		gcc45
-.  if !empty(PKGPATH:Mlang/gcc45)
-_IGNORE_GCC=		yes
-MAKEFLAGS+=		_IGNORE_GCC=yes
-.  endif
-.  if !defined(_IGNORE_GCC) && !empty(_LANGUAGES.gcc)
-_GCC_PKGSRCDIR=		../../lang/gcc45
-_GCC_DEPENDENCY=	gcc45>=${_GCC_REQD}:../../lang/gcc45
-.    if !empty(_LANGUAGES.gcc:Mc++) || \
-        !empty(_LANGUAGES.gcc:Mfortran) || \
-        !empty(_LANGUAGES.gcc:Mfortran77) || \
-        !empty(_LANGUAGES.gcc:Mobjc)
-_USE_GCC_SHLIB?=	yes
-.    endif
-.  endif
-.elif !empty(_NEED_GCC46:M[yY][eE][sS])
-#
-# We require gcc-4.6.x in the lang/gcc46 directory.
-#
-_GCC_PKGBASE=		gcc46
-.  if !empty(PKGPATH:Mlang/gcc46)
-_IGNORE_GCC=		yes
-MAKEFLAGS+=		_IGNORE_GCC=yes
-.  endif
-.  if !defined(_IGNORE_GCC) && !empty(_LANGUAGES.gcc)
-_GCC_PKGSRCDIR=		../../lang/gcc46
-_GCC_DEPENDENCY=	gcc46>=${_GCC_REQD}:../../lang/gcc46
-.    if !empty(_LANGUAGES.gcc:Mc++) || \
-        !empty(_LANGUAGES.gcc:Mfortran) || \
-        !empty(_LANGUAGES.gcc:Mfortran77) || \
-        !empty(_LANGUAGES.gcc:Mobjc)
-_USE_GCC_SHLIB?=	yes
-.    endif
-.  endif
-.elif !empty(_NEED_GCC47:M[yY][eE][sS])
-#
-# We require gcc-4.7.x in the lang/gcc47 directory.
-#
-_GCC_PKGBASE=		gcc47
-.  if !empty(PKGPATH:Mlang/gcc47)
-_IGNORE_GCC=		yes
-MAKEFLAGS+=		_IGNORE_GCC=yes
-.  endif
-.  if !defined(_IGNORE_GCC) && !empty(_LANGUAGES.gcc)
-_GCC_PKGSRCDIR=		../../lang/gcc47
-_GCC_DEPENDENCY=	gcc47>=${_GCC_REQD}:../../lang/gcc47
-.    if !empty(_LANGUAGES.gcc:Mc++) || \
-        !empty(_LANGUAGES.gcc:Mfortran) || \
-        !empty(_LANGUAGES.gcc:Mfortran77) || \
-        !empty(_LANGUAGES.gcc:Mgo) || \
-        !empty(_LANGUAGES.gcc:Mobjc) || \
-        !empty(_LANGUAGES.gcc:Mobj-c++)
 _USE_GCC_SHLIB?=	yes
 .    endif
 .  endif
@@ -951,11 +858,7 @@ PREPEND_PATH+=	${_GCC_DIR}/bin
 .if (defined(_USE_GCC_SHLIB) && !empty(_USE_GCC_SHLIB:M[Yy][Ee][Ss])) && !empty(USE_PKGSRC_GCC_RUNTIME:M[Yy][Ee][Ss])
 #  Special case packages which are themselves a dependency of gcc runtime.
 .  if empty(PKGPATH:Mdevel/libtool-base) && empty(PKGPATH:Mdevel/binutils) && empty(PKGPATH:Mlang/gcc??)
-.    if !empty(CC_VERSION:Mgcc-4.6*)
-.      include "../../lang/gcc46-libs/buildlink3.mk"
-.    elif !empty(CC_VERSION:Mgcc-4.7*)
-.      include "../../lang/gcc47-libs/buildlink3.mk"
-.    elif !empty(CC_VERSION:Mgcc-4.8*)
+.    if !empty(CC_VERSION:Mgcc-4.8*)
 .      include "../../lang/gcc48-libs/buildlink3.mk"
 .    elif !empty(CC_VERSION:Mgcc-4.9*)
 .      include "../../lang/gcc49-libs/buildlink3.mk"

@@ -1,12 +1,8 @@
-# $NetBSD: options.mk,v 1.12 2010/12/23 11:44:29 dsainty Exp $
+# $NetBSD: options.mk,v 1.14 2016/12/30 23:18:53 wiz Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.xemacs
-PKG_SUPPORTED_OPTIONS=		ldap xface canna debug x11 xft
+PKG_SUPPORTED_OPTIONS+=		ldap xface canna debug
 #PKG_SUPPORTED_OPTIONS+=	esound
-PKG_OPTIONS_OPTIONAL_GROUPS=	toolkit
-PKG_OPTIONS_GROUP.toolkit=	gtk lucid motif
-PKG_OPTIONS_LEGACY_OPTS=	xaw:lucid
-PKG_SUGGESTED_OPTIONS=		x11
 
 .include "../../mk/bsd.options.mk"
 

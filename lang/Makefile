@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.446 2016/12/13 01:19:19 marino Exp $
+# $NetBSD: Makefile,v 1.448 2016/12/30 22:27:04 alnsn Exp $
 #
 
 COMMENT=	Programming languages
@@ -63,11 +63,6 @@ SUBDIR+=	gcc3-f77
 SUBDIR+=	gcc3-objc
 SUBDIR+=	gcc34
 SUBDIR+=	gcc44
-SUBDIR+=	gcc45
-SUBDIR+=	gcc46
-SUBDIR+=	gcc46-libs
-SUBDIR+=	gcc47
-SUBDIR+=	gcc47-libs
 SUBDIR+=	gcc48
 SUBDIR+=	gcc48-libs
 SUBDIR+=	gcc49
@@ -93,7 +88,6 @@ SUBDIR+=	guile20
 SUBDIR+=	gwydion-dylan
 SUBDIR+=	heirloom-awk
 SUBDIR+=	hugs
-SUBDIR+=	icc11
 SUBDIR+=	icon
 SUBDIR+=	inform
 SUBDIR+=	intercal

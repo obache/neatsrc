@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.158 2016/12/27 21:44:42 bsiegert Exp $
+# $NetBSD: Makefile,v 1.160 2016/12/30 10:00:16 ryoon Exp $
 
-DISTNAME=	qemu-2.7.0
+DISTNAME=	qemu-2.8.0
 CATEGORIES=	emulators
 MASTER_SITES=	http://wiki.qemu.org/download/
 EXTRACT_SUFX=	.tar.bz2
-PKGREVISION=	1
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.qemu.org/
@@ -23,6 +22,12 @@ HAS_CONFIGURE=		yes
 
 BUILD_DEPENDS+=		texi2html-[0-9]*:../../textproc/texi2html
 
+SUBST_CLASSES+=			prefix
+SUBST_STAGE.prefix=		pre-configure
+SUBST_MESSAGE.prefix=		Setting PREFIX
+SUBST_FILES.prefix+=		configure
+SUBST_VARS.prefix+=		PREFIX
+
 .include "options.mk"
 
 .include "../../mk/bsd.prefs.mk"
@@ -37,6 +42,12 @@ CONFIGURE_ARGS+=	--enable-curses
 #HF#CONFIGURE_ARGS+=	--disable-fdt			# HF: build on OS X
 CONFIGURE_ARGS+=	--disable-opengl
 CONFIGURE_ENV+=		mansuffix=/${PKGMANDIR}
+
+.if defined(PKGSRC_USE_SSP)
+# do not add flags to everything
+PKGSRC_USE_SSP=		no
+CONFIGURE_ARGS+=	--enable-stack-protector
+.endif
 
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-aarch64
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-alpha
@@ -124,7 +135,7 @@ post-install:
 .include "../../mk/oss.buildlink3.mk"
 .endif
 .include "../../devel/glib2/buildlink3.mk"
-.include "../../devel/ncurses/buildlink3.mk"
+.include "../../devel/ncursesw/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/extension.mk"
 .include "../../security/libgcrypt/buildlink3.mk"

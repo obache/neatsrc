@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.116 2016/12/21 00:52:59 schmonz Exp $
+$NetBSD: distinfo,v 1.118 2016/12/30 13:59:42 schmonz Exp $
 
-SHA1 (ikiwiki_3.20161219.tar.gz) = b4ea2d1f162290aca7e6e658462d679a5a0e2498
-RMD160 (ikiwiki_3.20161219.tar.gz) = fd3f313f0ef79dc8f6f13624f12075af626f8b5b
-SHA512 (ikiwiki_3.20161219.tar.gz) = 2b544c7fcbc878a344f03fa403de784e33a61397d58cc42356ac99ae134bf0b633d63154a9ffac01bc8cca69cdb8e2d23360b95be56d0cd8999264cdb5b7dc3e
-Size (ikiwiki_3.20161219.tar.gz) = 3471888 bytes
+SHA1 (ikiwiki_3.20161229.1.tar.gz) = fee9095d09a3b76721a955f87fe1266362744975
+RMD160 (ikiwiki_3.20161229.1.tar.gz) = 0386eccfd0cad13fce33df3bb695c5607d483a6b
+SHA512 (ikiwiki_3.20161229.1.tar.gz) = 2a15494131a4a9dc4ac8a7a06512c797d7ed5715bb0efac75b2c16a11ce9f151bf4f15e5d5939dc3ae3f34a3eb74af275f2eeeeb62e2c7976396d62955437c1e
+Size (ikiwiki_3.20161229.1.tar.gz) = 3477558 bytes
