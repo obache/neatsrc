@@ -49,7 +49,6 @@ lib/groonga/plugins/functions/time.la
 lib/groonga/plugins/functions/vector.la
 lib/groonga/plugins/query_expanders/tsv.la
 lib/groonga/plugins/suggest/suggest.la
-lib/groonga/plugins/table/table.la
 lib/groonga/plugins/token_filters/stop_word.la
 ${PLIST.mecab}lib/groonga/plugins/tokenizers/mecab.la
 lib/libgroonga.la

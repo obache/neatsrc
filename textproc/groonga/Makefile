@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.60 2016/09/11 16:06:53 taca Exp $
 #
 
-DISTNAME=	groonga-6.1.1
+DISTNAME=	groonga-6.1.2
 CATEGORIES=	textproc
 MASTER_SITES=	http://packages.groonga.org/source/groonga/
 
@@ -10,7 +10,7 @@ HOMEPAGE=	http://groonga.org/
 COMMENT=	Fulltext search engine and column store
 LICENSE=	gnu-lgpl-v2.1
 
-DEPENDS+=	onigmo>=5.15.0:../../textproc/onigmo
+DEPENDS+=	onigmo>=6.0.0:../../textproc/onigmo
 
 GNU_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
