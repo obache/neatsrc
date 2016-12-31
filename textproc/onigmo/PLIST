@@ -1,7 +1,7 @@
 @comment $NetBSD$
-bin/onig-config
-include/oniggnu.h
-include/onigposix.h
-include/oniguruma.h
-lib/libonig.la
-lib/pkgconfig/oniguruma.pc
+bin/onigmo-config
+include/onigmo.h
+include/onigmognu.h
+include/onigmoposix.h
+lib/libonigmo.la
+lib/pkgconfig/onigmo.pc
