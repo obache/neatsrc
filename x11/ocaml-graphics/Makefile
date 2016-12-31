@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.28 2016/12/30 11:16:57 jaapb Exp $
+# $NetBSD: Makefile,v 1.30 2016/12/31 09:15:00 dholland Exp $
 
 .include "../../lang/ocaml/Makefile.common"
 DISTINFO_FILE= ${PKGDIR}/../../lang/ocaml/distinfo
@@ -58,8 +58,15 @@ SUBST_CLASSES+=		comp
 SUBST_STAGE.comp=	post-patch
 SUBST_FILES.comp=	otherlibs/Makefile
 SUBST_SED.comp=		-e 's,^CAMLC=.*,CAMLC=ocamlc,g'
-SUBST_SED.comp+=	-e 's,^CAMLOPT=.*,CAMLOPT=ocamlopt,g'
-SUBST_MESSAGE.comp=	Fixing CAMLC OCAMLOPT in otherlibs/Makefile.
+SUBST_SED.comp+=	-e '/^CAMLOPT=/{;N;s,^CAMLOPT=.*,CAMLOPT=ocamlopt,g;}'
+SUBST_SED.comp+=	-e 's,^MKLIB=.*,MKLIB=ocamlmklib,g'
+SUBST_MESSAGE.comp=	Fixing CAMLC OCAMLOPT MKLIB in otherlibs/Makefile.
+
+SUBST_CLASSES+=		comp2
+SUBST_STAGE.comp2=	post-patch
+SUBST_FILES.comp2=	otherlibs/graph/Makefile
+SUBST_SED.comp2=	-e 's,..CAMLRUN..*ocamldep,ocamldep,g'
+SUBST_MESSAGE.comp2=	Fixing ocamldep in otherlibs/graph/Makefile.
 
 INSTALLATION_DIRS+=	lib/ocaml/stublibs
 
