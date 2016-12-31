@@ -280,10 +280,10 @@ lib/ocaml/profiling.cmx
 lib/ocaml/queue.cmx
 lib/ocaml/random.cmx
 lib/ocaml/ratio.cmx
-lib/ocaml/raw_spacetime_lib.a
-lib/ocaml/raw_spacetime_lib.cmx
-lib/ocaml/raw_spacetime_lib.cmxa
-lib/ocaml/raw_spacetime_lib.cmxs
+${PLIST.LP64}lib/ocaml/raw_spacetime_lib.a
+${PLIST.LP64}lib/ocaml/raw_spacetime_lib.cmx
+${PLIST.LP64}lib/ocaml/raw_spacetime_lib.cmxa
+${PLIST.LP64}lib/ocaml/raw_spacetime_lib.cmxs
 lib/ocaml/scanf.cmx
 lib/ocaml/set.cmx
 lib/ocaml/sort.cmx

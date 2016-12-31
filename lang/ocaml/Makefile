@@ -16,6 +16,12 @@ USE_GCC_RUNTIME=	yes
 ### PLIST components
 ###
 
+PLIST_VARS+=	LP64
+
+.if !empty(LP64PLATFORMS:S/*-*-//:M${MACHINE_ARCH})
+PLIST.LP64=yes
+.endif
+
 # Stub libraries for functions missing from base system.
 .if !empty(MACHINE_PLATFORM:MDarwin-*-powerpc) || \
     !empty(MACHINE_PLATFORM:MDarwin-9.*-i386) || \
