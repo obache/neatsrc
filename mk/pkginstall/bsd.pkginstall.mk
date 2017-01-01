@@ -812,16 +812,6 @@ ${_INSTALL_OFR_FILE}: ../../mk/pkginstall/ocaml-findlib-register
 	${TOUCH} ${TOUCH_ARGS} ${.TARGET}
 .endif
 
-.PHONY: install-script-data-ocaml-findlib-register
-install-script-data: install-script-data-ocaml-findlib-register
-install-script-data-ocaml-findlib-register:
-.if !empty(OCAML_FINDLIB_REGISTER:M[Yy][Ee][Ss])
-	${RUN} \
-	cd ${PKG_DB_TMPDIR} && ${PKGSRC_SETENV} ${INSTALL_SCRIPTS_ENV} \
-	${_PKG_DEBUG_SCRIPT} ${INSTALL_FILE} ${PKGNAME} \
-		UNPACK +OCAML_FINDLIB_REGISTER
-.endif
-
 # PKG_SHELL contains the pathname of the shell that should be added or
 #	removed from the shell database, /etc/shells.  If a pathname
 #	is relative, then it is taken to be relative to ${PREFIX}.
