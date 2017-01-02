@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.32 2016/12/04 05:17:28 ryoon Exp $
+# $NetBSD: Makefile,v 1.34 2017/01/01 16:06:13 adam Exp $
 
 DISTNAME=	kajongg-${_KDE_VERSION}
-PKGREVISION=	8
+PKGREVISION=	9
 CATEGORIES=	games
 COMMENT=	Maj Jong game
 
@@ -9,7 +9,7 @@ COMMENT=	Maj Jong game
 
 DEPENDS+=	${PYPKGPREFIX}-twisted-[0-9]*:../../net/py-twisted
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-twisted
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-twisted
 
 REPLACE_PYTHON+=	setup.py
 REPLACE_PYTHON+=	src/deferredutil.py

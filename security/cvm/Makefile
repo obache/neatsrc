@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.18 2014/03/14 01:06:39 wiedi Exp $
+# $NetBSD: Makefile,v 1.20 2017/01/02 02:20:08 schmonz Exp $
 #
 
-DISTNAME=		cvm-0.96
+DISTNAME=		cvm-0.97
 CATEGORIES=		security
 MASTER_SITES=		${HOMEPAGE}
 
@@ -41,7 +41,7 @@ PLIST_SUBST+=		CVM_LIB_EXT=${CVM_LIB_EXT:Q}
 
 DJB_CONFIG_CMDS=							\
 	${ECHO} ${DJB_CONFIG_PREFIX}/include > conf-include;		\
-	${ECHO} ${DJB_CONFIG_PREFIX}/lib > conf-lib
+	${ECHO} ${DJB_CONFIG_PREFIX}/lib > conf-lib;
 
 .include "../../mk/bsd.prefs.mk"
 

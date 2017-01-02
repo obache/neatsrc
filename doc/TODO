@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16841 2016/12/30 11:15:43 jaapb Exp $
+$NetBSD: TODO,v 1.16869 2017/01/02 02:20:13 schmonz Exp $
 
 Suggested new packages
 ======================
@@ -381,7 +381,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o SOPE-3.0.2
 	o TiffIO-140a
 	o YoSucker-81
-	o abcm2ps-8.13.2
 	o abcmidi-20160505
 	o abook-0.6.1
 	o accerciser-3.22.0
@@ -403,7 +402,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o alephone-20150620
 	o alevt-1.6.2
 	o allegro-5.10
-	o alsa-lib-1.1.2
+	o alsa-lib-1.1.3
 	o alsa-plugins-1.1.0
 	o amavis-perl-0.3.12 [called just amavis]
 	o amaya-11.4.4 [wip]
@@ -426,6 +425,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ap22-authnz-external-3.3.2
 	o ap22-limitipconn-0.24
 	o ap22-vhost-ldap-2.4.0
+	o apache-ant-1.10.0
 	o apache-ivy-2.4.0
 	o apollo-1.7
 	o apr0-2.4.1
@@ -433,7 +433,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o argon2-20151206
 	o argtable-2.9
 	o argus-20121202
-	o aria2-1.26.0
 	o aribas-1.64
 	o arirang-1.70
 	o arnold-20040104
@@ -462,7 +461,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o bbsload-0.2.8
 	o bbweather-0.6.3
 	o benchfft-3.1
-	o bglibs-2.03
 	o bibclean-2.17
 	o bibparse-1.11
 	o bin86-0.16.21
@@ -471,6 +469,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o binutils-2.27
 	o bird-1.5.0
 	o bird6-1.5.0
+	o blas-3.7.0
 	o blender-2.78a
 	o bliz++-0.10
 	o blur6ex-0.3.462
@@ -539,7 +538,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o crossfire-1.71.0
 	o crossfire-client-gtk2-1.60.0
 	o csharp-mysql-6.9.8
-	o cvm-0.97
 	o cvs-fast-export-1.38
 	o cvs2p4-2.5.5 [schmonz]
 	o cvsgraph-1.7.0
@@ -659,15 +657,12 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o fet-5.28.6
 	o fetchmail-6.3.26
 	o fetchyahoo-2.14.0
-	o ffmpeg2-2.8.10
 	o filerunner-14.06.18.10
-	o filezilla-3.23.0.2
 	o fillets-ng-0.7.4
 	o fillets-ng-data-0.7.4
 	o fish-2.2.0
 	o flashplayer-0.4.13
 	o flashrom-0.9.8
-	o fldigi-3.23.19
 	o flightgear-2.12
 	o flightgear-data-3.4.0
 	o flow-tools-0.411
@@ -931,7 +926,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ja-vflib-utils-2.25.6
 	o ja-vfxdvik-22.40y1
 	o jabberd-1.6.1.1
-	o jasper-2.0.6
+	o jasper-2.0.10
 	o java-db3-3.87
 	o java-rxtx-2.1.17
 	o jcabc2ps-20150524
@@ -957,7 +952,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o kdevelop4-4.7.2
 	o kdevplatform-1.7.1
 	o keybinder-0.3.1
-	o kid3-3.4.3
 	o kipi-plugins-4.14.0
 	o kismet-2011.03r2 [pkg/45692]
 	o kismet-2013.03R1b
@@ -977,6 +971,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o kstart-4.2
 	o ktorrent3-3.3.4
 	o labelnation-1.218
+	o lapack-3.7.0
 	o latex2html-2015
 	o lbdb-0.40
 	o lcc-4.2
@@ -1059,7 +1054,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o magic-8.1.89
 	o magit-2.5
 	o maildrop-2.8.2
-	o mailfront-2.12
 	o mailman-2.1.22
 	o mailman-3.0.3
 	o mailscanner-4.74
@@ -1067,7 +1061,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o makeself-2.2.0
 	o maketool-0.8.4
 	o makeztxt-1.60
-	o mame-0.180
+	o mame-0.181
 	o manedit-1.2.1
 	o mapserver-7.0.1
 	o matchbox-panel-0.9.3
@@ -1098,6 +1092,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o minivmac-3.2.3
 	o miredo-1.2.4
 	o mit-scheme-bin-9.2
+	o mitmproxy-1.0
 	o mksh-52b
 	o modular-xorg-xquartz-1.18.0
 	o molden-4.8 [after which PR 40252 can be closed]
@@ -1167,6 +1162,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o oo2c-2.1.7
 	o opal-3.16.2
 	o opencsg-1.4.0
+	o opencv-3.2
 	o openh323-1.19.1
 	o openmortal-0.7.1
 	o openoffice-4.1
@@ -1190,7 +1186,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Catalyst-Engine-PSGI-0.14
 	o p5-Chart-3.2
 	o p5-DBD-DB2-1.85
-	o p5-DBD-SQLite-1.54
 	o p5-FormValidator-Simple-1.00
 	o p5-GStreamer-0.20
 	o p5-GraphViz2-2.37
@@ -1226,7 +1221,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-SVG-Graph-0.0402
 	o p5-SVN-Simple-0.312
 	o p5-Sys-Utmp-1.7
-	o p5-Test-Simple-1.302073
 	o p5-Text-Hunspell-2.14
 	o p5-Tie-DBI-1.06
 	o p5-X11-Protocol-29
@@ -1267,6 +1261,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o php-pdflib-3.0.4 (require pdflib 7 or later)
 	o php-phrasea2-3.8.6 (php-phrasea-3.8.6?)
 	o php-pthread-3.1.6
+	o php-pthreads-3.1.6
 	o php-rrd-2.0.0
 	o php-soycms-1.8.11
 	o php-tiki6-6.14
@@ -1342,21 +1337,18 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-gnome-menus-3.8.0
 	o py-hsm-1.1.1
 	o py-httpbin-0.4.1
-	o py-hypothesis-3.6.1
 	o py-input-pad-1.4.2
 	o py-ipython-5.0
 	o py-isodate-0.5.4
 	o py-jaraco_util-11.0
 	o py-jdcal-1.2
 	o py-keybinder-0.3.1
-	o py-lxml-3.7.1
 	o py-mezzanine-4.2.2
 	o py-munkres-1.0.7
 	o py-musicbrainz-0.7.4
 	o py-ncclient-0.5.3
 	o py-newt-0.52.18
 	o py-notify-0.3.1
-	o py-numpy-1.11.3
 	o py-numpydoc-0.6.0
 	o py-omniORBpy-3.7
 	o py-pdf-parser-0.6.4
@@ -1374,7 +1366,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-static-1.1.1
 	o py-suds-0.4.1
 	o py-sybase-0.37
-	o py-tlslite-0.4.6
 	o py-tornado-4.4.1
 	o py-wxWidgets-3.0.0
 	o py-yubiauth-0.3.10
@@ -1390,7 +1381,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o radare2-1.0.2
 	o radiance-4R1
 	o ragel-7.0.0.9
-	o rails-4.1.5
+	o rails-5.0.1
 	o rainbowcrack-1.5
 	o raine-0.64.9
 	o rakudo-star-2016.01
@@ -1403,7 +1394,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o rc-1.7.4
 	o rdp-1.6
 	o regionset-0.2
-	o relay-ctrl-3.2
 	o rep-gtk-0.90.8.1
 	o reposurgeon-3.35
 	o resize_image-0.7
@@ -1427,6 +1417,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o rtcw-1.41.3
 	o rtty-4.0 [at ftp://ftp.isc.org/isc/rtty/]
 	o rubber-1.4
+	o ruby-2.4.0
 	o ruby-actionmailer-4.2.5
 	o ruby-actionpack-4.2.5
 	o ruby-activemodel-4.2.5
@@ -1441,7 +1432,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ruby-review-1.4.0 [wip]
 	o ruby-selenium-webdriver-2.46.2
 	o rump-20131213
-	o rust-1.13
+	o rust-1.14
 	o sabayon-2.30.1 [GNOME 2.30]
 	o sablecc-3.7
 	o samba-4.5.1
@@ -1481,7 +1472,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o sjeng-11.2
 	o skktools-1.3.3
 	o skype-4.3
-	o slony1-2.2.4
 	o slurm-14.11.2
 	o smokeping-2.6.11
 	o smproxy-1.0.3
@@ -1598,7 +1588,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o uhttpmock-0.5.0
 	o unicap-0.9.8
 	o unicode-screensaver-0.5
-	o unifont-9.0.06
 	o units-2.12
 	o unrealircd-4.0.6
 	o uriparser-0.8.2
@@ -1636,6 +1625,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o wbm-virtual-server-5.01
 	o wcalc-2.4
 	o webalizer-2.23.05
+	o webkit-gtk-2.14.2
 	o webmin-1.780
 	o websvn-2.3.3
 	o weewm-0.01
@@ -1652,7 +1642,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o worker-3.8.3
 	o wxGTK-3.1.0
 	o wxRemind-101
-	o x264-devel-20161224
+	o x264-devel-20161231
 	o x2vnc-1.31
 	o xa65-2.3.7
 	o xaric-0.13.7

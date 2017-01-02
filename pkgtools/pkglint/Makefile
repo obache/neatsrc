@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.504 2016/12/17 13:35:32 rillig Exp $
+# $NetBSD: Makefile,v 1.507 2017/01/01 16:41:37 rillig Exp $
 
-PKGNAME=	pkglint-5.4.14
+PKGNAME=	pkglint-5.4.15
 DISTFILES=	# none
 CATEGORIES=	pkgtools
 
@@ -10,44 +10,45 @@ COMMENT=	Verifier for NetBSD packages
 LICENSE=	2-clause-bsd
 CONFLICTS+=	pkglint4-[0-9]*
 
-WRKSRC=		${WRKDIR}/netbsd.org/pkglint
 NO_CHECKSUM=	yes
-USE_LANGUAGES=	# none
+USE_LANGUAGES=	c
 USE_TOOLS+=	pax
 AUTO_MKDIRS=	yes
 GO_SRCPATH=	netbsd.org/pkglint
 
 SUBST_CLASSES+=		pkglint
 SUBST_STAGE.pkglint=	post-configure
-SUBST_FILES.pkglint+=	main.go package_test.go
+SUBST_FILES.pkglint+=	pkglint.go package_test.go
 SUBST_SED.pkglint+=	-e s\|@VERSION@\|${PKGNAME:S/pkglint-//}\|g
 SUBST_SED.pkglint+=	-e s\|@BMAKE@\|${MAKE:Q}\|g
 
 do-extract:
-	${RUN} mkdir -p ${WRKDIR}/pkglint/plist-clash
-	${RUN} cd ${FILESDIR} && ${PAX} -rw *.go *.y */*.go pkglint.[01] ${WRKDIR}/pkglint
+	${RUN} cd ${FILESDIR} && ${PAX} -rw . ${WRKDIR}/pkglint
 
 pre-build:
 	${RUN} env GOPATH=${WRKDIR}:${BUILDLINK_DIR}/gopkg go generate ${GO_BUILD_PATTERN}
+
+pre-install:
+	${RUN} rm -rf ${WRKDIR}/pkg
 
 do-install: do-install-man
 
 .include "../../mk/bsd.prefs.mk"
 
 do-install-man: .PHONY
-.if !empty(MANINSTALL:Mcatinstall)
-.  if defined(CATMAN_SECTION_SUFFIX) && !empty(CATMAN_SECTION_SUFFIX:M[Yy][Ee][Ss])
+.if ${MANINSTALL:Mcatinstall}
+.  if ${CATMAN_SECTION_SUFFIX:M[Yy][Ee][Ss]}
 	${INSTALL_MAN} ${WRKSRC}/pkglint.0 ${DESTDIR}${PREFIX}/${PKGMANDIR}/cat1/pkglint.1
 .  else
 	${INSTALL_MAN} ${WRKSRC}/pkglint.0 ${DESTDIR}${PREFIX}/${PKGMANDIR}/cat1
 .  endif
 .endif
-.if !empty(MANINSTALL:Mmaninstall)
+.if ${MANINSTALL:Mmaninstall}
 	${INSTALL_MAN} ${WRKSRC}/pkglint.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 .endif
 
 .include "../../lang/go/go-package.mk"
 .if !empty(PKGSRC_RUN_TEST:M[yY][eE][sS])
-.include "../../devel/go-check/buildlink3.mk"
+.  include "../../devel/go-check/buildlink3.mk"
 .endif
 .include "../../mk/bsd.pkg.mk"

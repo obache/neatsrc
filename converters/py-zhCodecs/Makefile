@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2016/07/09 13:03:34 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2017/01/01 14:43:26 wiz Exp $
 
 DISTNAME=	ChineseCodecs1.2.0
 PKGNAME=	${PYPKGPREFIX}-zhCodecs-1.2.0

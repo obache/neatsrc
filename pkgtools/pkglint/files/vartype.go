@@ -101,7 +101,7 @@ func (vt *Vartype) AllowedFiles(perms AclPermissions) string {
 }
 
 // Returns whether the type is considered a shell list.
-// This distinction between “real lists” and “considered a list” makes
+// This distinction between "real lists" and "considered a list" makes
 // the implementation of checklineMkVartype easier.
 func (vt *Vartype) IsConsideredList() bool {
 	switch vt.kindOfList {
@@ -111,7 +111,7 @@ func (vt *Vartype) IsConsideredList() bool {
 		return false
 	}
 	switch vt.basicType {
-	case BtAwkCommand, BtSedCommands, BtShellCommand, BtShellCommands, BtLicense:
+	case BtAwkCommand, BtSedCommands, BtShellCommand, BtShellCommands, BtLicense, BtConfFiles:
 		return true
 	}
 	return false
@@ -147,8 +147,8 @@ func (vt *Vartype) IsShell() bool {
 	return false
 }
 
-// The basic vartype consists only of characters that don’t
-// need escaping in most contexts, like A-Za-z0-9-_.
+// IsBasicSafe returns whether the basic vartype consists only of
+// characters that don't need escaping in most contexts, like A-Za-z0-9-_.
 func (vt *Vartype) IsBasicSafe() bool {
 	switch vt.basicType {
 	case BtBuildlinkDepmethod,
@@ -213,6 +213,7 @@ var (
 	BtCategory               = &BasicType{"Category", (*VartypeCheck).Category}
 	BtCFlag                  = &BasicType{"CFlag", (*VartypeCheck).CFlag}
 	BtComment                = &BasicType{"Comment", (*VartypeCheck).Comment}
+	BtConfFiles              = &BasicType{"ConfFiles", (*VartypeCheck).ConfFiles}
 	BtDependency             = &BasicType{"Dependency", (*VartypeCheck).Dependency}
 	BtDependencyWithPath     = &BasicType{"DependencyWithPath", (*VartypeCheck).DependencyWithPath}
 	BtDistSuffix             = &BasicType{"DistSuffix", (*VartypeCheck).DistSuffix}
