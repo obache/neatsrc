@@ -95,6 +95,8 @@ post-install:
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/$$m;		\
 	done
 
+CHECK_FILES_SKIP+=	${PREFIX}/lib/ocaml/ld.conf
+
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/termcap.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -877,7 +877,6 @@ lib/ocaml/lazy.cmt
 lib/ocaml/lazy.cmti
 lib/ocaml/lazy.ml
 lib/ocaml/lazy.mli
-lib/ocaml/ld.conf
 lib/ocaml/lexing.cmi
 lib/ocaml/lexing.cmt
 lib/ocaml/lexing.cmti
