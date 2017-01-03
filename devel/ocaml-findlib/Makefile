@@ -14,6 +14,7 @@ LICENSE=		mit
 OCAML_FINDLIB_DIRS+=	bigarray bytes compiler-libs dynlink findlib graphics \
 			ocamldoc num-top num stdlib str threads unix
 
+OCAML_FINDLIB_REGISTER=yes
 .include "../../mk/ocaml.mk"
 
 # Undeclared dependencies between different components
