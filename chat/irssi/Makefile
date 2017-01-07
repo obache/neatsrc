@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.73 2016/09/22 09:07:08 maya Exp $
+# $NetBSD: Makefile,v 1.75 2017/01/05 15:46:10 maya Exp $
 
 DISTNAME=		${IRSSI_DISTNAME}
 CATEGORIES=		chat
 EXTRACT_SUFX=		${IRSSI_EXTRACT_SUFX}
-PKGREVISION=		1
 
 MAINTAINER=		maya@NetBSD.org
 HOMEPAGE=		http://www.irssi.org/
@@ -33,5 +32,5 @@ INSTALL_MAKE_FLAGS+=	sysconfdir=${EGDIR}
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/irssi-config ${DESTDIR}${IRSSI_CONFIG}
 
-.include "../../mk/termcap.buildlink3.mk"
+.include "../../mk/terminfo.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
