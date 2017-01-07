@@ -1,4 +1,4 @@
-<!-- $NetBSD: using.xml,v 1.40 2016/06/11 13:39:44 rillig Exp $ -->
+<!-- $NetBSD: using.xml,v 1.42 2017/01/07 03:28:38 sevan Exp $ -->
 
 <chapter id="using"> <?dbhtml filename="using.html"?>
 <title>Using pkgsrc</title>
@@ -49,8 +49,7 @@ and you can still use binary packages from someone else.</para>
     operating system already provides those tools. Download the file and
     extract it in the <filename>/</filename> directory. It will create
     the directories <filename>/usr/pkg</filename> (containing the tools
-    for managing binary packages) and <filename>/var/db/pkg</filename>
-    (the database of installed packages).</para>
+    for managing binary packages and the database of installed packages).</para>
   </sect2>
 
   <sect2 id="installing-binary-packages">
@@ -82,9 +81,9 @@ and you can still use binary packages from someone else.</para>
     easy:</para>
 
 <screen>
-&rprompt; <userinput>pkg_add openoffice2</userinput>
+&rprompt; <userinput>pkg_add libreoffice</userinput>
 &rprompt; <userinput>pkg_add kde-3.5.7</userinput>
-&rprompt; <userinput>pkg_add ap2-php5-*</userinput>
+&rprompt; <userinput>pkg_add ap24-php71-*</userinput>
 </screen>
 
     <para>Note that any prerequisite packages needed to run the
@@ -175,17 +174,26 @@ and you can still use binary packages from someone else.</para>
       to the root users &man.crontab.5; entry.  For example the entry
       <screen>
 # download vulnerabilities file
-0 3 * * * /usr/sbin/pkg_admin fetch-pkg-vulnerabilities >/dev/null 2>&1
+0 3 * * * /usr/pkg/sbin/pkg_admin fetch-pkg-vulnerabilities >/dev/null 2>&1
+# audit the installed packages and email results to root
+9 3 * * * /usr/pkg/sbin/pkg_admin auit |mail -s "Installed package audit result" root >/dev/null 2>&1
       </screen>
-      will update the vulnerability list every day at 3AM. You may wish to do
-      this more often than once a day.
+      will update the vulnerability list every day at 3AM, followed by an audit
+      at 3:09AM. The result of the audit are then emailed to root.
 
-      In addition, you may wish to run the package audit from the daily
-      security script.  This may be accomplished by adding the following
-      line to <filename>/etc/security.local</filename>:
+      On NetBSD this may be accomplished instead by adding the following
+      line to <filename>/etc/daily.conf</filename>:
       <screen>
-/usr/sbin/pkg_admin audit
+fetch_pkg_vulnerabilities=YES
       </screen>
+      to fetch the vulnerability list from the daily security script. The system
+      is set to audit the packages by default but can be set explicitly, if
+      desired (not required), by adding the follwing line to
+<filename>/etc/security.conf</filename>:
+      <screen>
+check_pkg_vulnerabilities=YES
+      </screen>
+      see &man.daily.conf.5; and &man.security.conf.5; for more details.
     </para>
   </sect2>
 
