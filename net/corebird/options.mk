@@ -2,8 +2,8 @@
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.corebird
-PKG_SUPPORTED_OPTIONS=	gstreamer
-PKG_SUGGESTED_OPTIONS=	gstreamer
+PKG_SUPPORTED_OPTIONS=	gstreamer spellcheck
+PKG_SUGGESTED_OPTIONS=	gstreamer spellcheck
 
 .include "../../mk/bsd.options.mk"
 
@@ -12,7 +12,12 @@ PKG_SUGGESTED_OPTIONS=	gstreamer
 DEPENDS+=	gst-plugins1-bad-[0-9]*:../../multimedia/gst-plugins1-bad
 DEPENDS+=	gst-plugins1-good-[0-9]*:../../multimedia/gst-plugins1-good
 DEPENDS+=	gst-plugins1-libav-[0-9]*:../../multimedia/gst-plugins1-libav
-CONFIGURE_ARGS+=	--enable-video
 .else
 CONFIGURE_ARGS+=	--disable-video
+.endif
+
+.if !empty(PKG_OPTIONS:Mgstreamer)
+.include "../../textproc/gspell/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--disable-spellcheck
 .endif
