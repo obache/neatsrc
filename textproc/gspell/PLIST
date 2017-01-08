@@ -10,8 +10,10 @@ include/gspell-1/gspell/gspell-navigator.h
 include/gspell-1/gspell/gspell-text-buffer.h
 include/gspell-1/gspell/gspell-text-view.h
 include/gspell-1/gspell/gspell.h
+lib/girepository-1.0/Gspell-1.typelib
 lib/libgspell-1.la
 lib/pkgconfig/gspell-1.pc
+share/gir-1.0/Gspell-1.gir
 share/gtk-doc/html/gspell-1.0/GspellChecker.html
 share/gtk-doc/html/gspell-1.0/GspellCheckerDialog.html
 share/gtk-doc/html/gspell-1.0/GspellLanguage.html
