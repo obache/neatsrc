@@ -123,7 +123,7 @@ http://bugs.python.org/issue21457
      PyCursesInitialised;
  
 -    if (!PyArg_ParseTuple(args,"ii:resize_term", &lines, &columns))
-+    if (!PyArg_ParseTuple(args,"ii:resize_term", &nline, &ncolumns))
++    if (!PyArg_ParseTuple(args,"ii:resize_term", &nlines, &ncolumns))
          return NULL;
  
 -    result = PyCursesCheckERR(resize_term(lines, columns), "resize_term");
