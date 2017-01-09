@@ -25,9 +25,7 @@ TEST_TARGET=		check
 PRINT_PLIST_AWK+= \
 	($$0 ~ /^lib\/girepository-1.0\//) || \
 	($$0 ~ /^share\/gir-1.0\//) \
-	{ $$0 = "$${PLIST.introspection}" $$0; } \
-	($$0 ~ /^${PKGLOCALEDIR:S|/|\/|g}\/locale\//) \
-	{ $$0 = "$${PLIST.nls}" $$0; }
+	{ $$0 = "$${PLIST.introspection}" $$0; }
 
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.38.0
 .include "../../devel/glib2/buildlink3.mk"
