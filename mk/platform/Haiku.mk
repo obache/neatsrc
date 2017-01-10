@@ -34,9 +34,16 @@ GROUPADD?=		/bin/groupadd
 .endif
 
 .if exists(/boot/system/develop)
-_OPSYS_SYSTEM_RPATH?=	/boot/system/lib
-_OPSYS_LIB_DIRS?=	/boot/system/develop/lib /boot/system/lib
-_OPSYS_INCLUDE_DIRS?=	/boot/system/develop/headers \
+_SYSTEM_ARCH!=		/bin/getarch
+_SYSTEM_BIN_DIRECTORY!=	/bin/finddir B_SYSTEM_BIN_DIRECTORY
+.if exists(${_SYSTEM_BIN_DIRECTORY}/${_SYSTEM_ARCH})
+LIBABISUFFIX=		/${_SYSTEM_ARCH}
+.endif
+_OPSYS_SYSTEM_RPATH?=	/boot/system/lib${LIBABISUFFIX}
+_OPSYS_LIB_DIRS?=	/boot/system/develop/lib${LIBABISUFFIX} \
+			/boot/system/lib${LIBABISUFFIX}
+_OPSYS_INCLUDE_DIRS?=	/boot/system/develop/headers${LIBABISUFFIX} \
+			/boot/system/develop/headers \
 			/boot/system/develop/headers/posix
 .else
 _OPSYS_SYSTEM_RPATH?=	/boot/common/lib:/boot/system/lib

@@ -82,7 +82,7 @@ case $arg in
 	for dir in $rellpath; do
 		la="$dir/lib$lib.la"
 		if $test -f "$la"; then
-			ldir=`cd $dir; $pwd`
+			ldir=`cd $dir; $pwd -P`
 			buildlibdir=`. $la; $echo ${buildlibdir-}`
 			if $test -n "$buildlibdir" -a \
 				 "$ldir" != "$buildlibdir"; then
@@ -106,7 +106,7 @@ case $arg in
 ./*.la|../*.la|[!-/]*.la|${WRKSRC}/*.la)
 	labase=`$basename $arg`
 	ladir=`$dirname $arg`
-	ldir=`cd $ladir; $pwd`
+	ldir=`cd $ladir; $pwd -P`
 	buildlibdir=`. $ladir/$labase; $echo ${buildlibdir-}`
 	if $test -n "$buildlibdir" -a "$ldir" != "$buildlibdir" -a \
 		 -e "$buildlibdir/$labase"; then

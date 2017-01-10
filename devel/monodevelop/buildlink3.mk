@@ -10,7 +10,6 @@ BUILDLINK_ABI_DEPENDS.monodevelop+=	monodevelop>=5.0.1nb7
 BUILDLINK_PKGSRCDIR.monodevelop?=	../../devel/monodevelop
 BUILDLINK_CONTENTS_FILTER.monodevelop=	${EGREP} '^lib/'
 
-.include "../../databases/shared-mime-info/buildlink3.mk"
 .include "../../devel/mono-addins/buildlink3.mk"
 .include "../../graphics/libgdiplus/buildlink3.mk"
 .include "../../lang/mono/buildlink3.mk"

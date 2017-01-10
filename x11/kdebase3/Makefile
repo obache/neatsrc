@@ -12,10 +12,8 @@ COMMENT=	Base modules for the KDE 3 integrated X11 desktop
 .include "../../meta-pkgs/kde3/Makefile.kde3"
 
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} Daemon.png Daemon.README
-DISTFILES+=	NetBSD-flag-1.0.png
 SITES.Daemon.png=	${MASTER_SITE_LOCAL}
 SITES.Daemon.README=	${MASTER_SITE_LOCAL}
-SITES.NetBSD-flag-1.0.png=	${MASTER_SITE_LOCAL}
 
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
@@ -157,7 +155,6 @@ post-install:
 		${DESTDIR}${PREFIX}/share/kde/apps/kdm/faces/.default.face.icon
 	${INSTALL_DATA} ${WRKSRC}/kdm/kfrontend/pics/root1.png \
 		${DESTDIR}${PREFIX}/share/kde/apps/kdm/faces/root.face.icon
-	${INSTALL_DATA} ${DISTDIR}/NetBSD-flag-1.0.png ${DESTDIR}${PREFIX}/${ICONDIR}/NetBSD-flag.png
 	${INSTALL_DATA} ${DISTDIR}/Daemon.png ${DESTDIR}${PREFIX}/${ICONDIR}
 	${INSTALL_DATA} ${DISTDIR}/Daemon.README			\
 		${DESTDIR}${PREFIX}/share/doc/kde/HTML/en/kdm
@@ -181,14 +178,6 @@ post-install:
 		fi;							\
 	  done;								\
 	) > ${WRKDIR}/PLIST.Xdpms
-
-.if ${OPSYS} == "NetBSD"
-	@# NetBSD Advertisement O:-)
-	cd ${DESTDIR}${PREFIX}/share/kde/config/kdm;			\
-	${SED} -e 's|^\(LogoPixmap\)=.*|\1=${PREFIX}/${ICONDIR}/NetBSD-flag.png|' \
-		kdmrc > ${WRKDIR}/kdmrc.ad;				\
-	${CP} -f ${WRKDIR}/kdmrc.ad kdmrc
-.endif
 
 .if ${OPSYS} == "NetBSD" && !empty(OS_VERSION:M1.[0-6]*)
 CONFIGURE_ENV+= ac_cv_func_getutxent='no'

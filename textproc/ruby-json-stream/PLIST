@@ -1,0 +1,16 @@
+@comment $NetBSD$
+${GEM_HOME}/cache/${GEM_NAME}.gem
+${GEM_LIBDIR}/LICENSE
+${GEM_LIBDIR}/README.md
+${GEM_LIBDIR}/Rakefile
+${GEM_LIBDIR}/json-stream.gemspec
+${GEM_LIBDIR}/lib/json/stream.rb
+${GEM_LIBDIR}/lib/json/stream/buffer.rb
+${GEM_LIBDIR}/lib/json/stream/builder.rb
+${GEM_LIBDIR}/lib/json/stream/parser.rb
+${GEM_LIBDIR}/lib/json/stream/version.rb
+${GEM_LIBDIR}/spec/buffer_spec.rb
+${GEM_LIBDIR}/spec/builder_spec.rb
+${GEM_LIBDIR}/spec/fixtures/repository.json
+${GEM_LIBDIR}/spec/parser_spec.rb
+${GEM_HOME}/specifications/${GEM_NAME}.gemspec

@@ -917,15 +917,15 @@ fetch_read_word(FILE *f)
 int
 fetch_netrc_auth(struct url *url)
 {
-	char fn[PATH_MAX];
+	char *fn;
 	const char *word;
 	char *p;
 	FILE *f;
 
 	if ((p = getenv("NETRC")) != NULL) {
-		if (snprintf(fn, sizeof(fn), "%s", p) >= (int)sizeof(fn)) {
+		if ((fn = strdup(p)) == NULL) {
 			fetch_info("$NETRC specifies a file name "
-			    "longer than PATH_MAX");
+			    "out of memory");
 			return (-1);
 		}
 	} else {
@@ -936,12 +936,15 @@ fetch_netrc_auth(struct url *url)
 			    (p = pwd->pw_dir) == NULL)
 				return (-1);
 		}
-		if (snprintf(fn, sizeof(fn), "%s/.netrc", p) >= (int)sizeof(fn))
+		if (asprintf(&fn, "%s/.netrc", p) == -1)
 			return (-1);
 	}
 
-	if ((f = fopen(fn, "r")) == NULL)
+	if ((f = fopen(fn, "r")) == NULL) {
+		free(fn);
 		return (-1);
+	}
+	free(fn);
 	while ((word = fetch_read_word(f)) != NULL) {
 		if (strcmp(word, "default") == 0)
 			break;

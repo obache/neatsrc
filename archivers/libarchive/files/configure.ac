@@ -564,7 +564,8 @@ AC_CHECK_DECLS([INTMAX_MAX, INTMAX_MIN, UINTMAX_MAX])
 AC_CHECK_DECL([SSIZE_MAX],
 		[AC_DEFINE(HAVE_DECL_SSIZE_MAX, 1, [Define to 1 if you have the declaration of `SSIZE_MAX', and to 0 if you don't.])],
 		[],
-		[#include <limits.h>])
+		[AC_INCLUDES_DEFAULT
+#include <limits.h>])
 
 AC_CHECK_DECL([EFTYPE],
 		[AC_DEFINE(HAVE_EFTYPE, 1, [A possible errno value for invalid file format errors])],

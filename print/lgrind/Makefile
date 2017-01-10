@@ -14,7 +14,6 @@ BUILD_DEPENDS+=	tex-tools-[0-9]*:../../print/tex-tools
 DEPENDS+=	tex-latex-bin-[0-9]*:../../print/tex-latex-bin
 
 WRKSRC=		${WRKDIR}/lgrind
-NO_SRC_ON_FTP=	Already in MASTER_SITE_LOCAL
 NO_CONFIGURE=	yes
 
 MAKE_ENV+=	PKG_LOCALTEXMFPREFIX=${PKG_LOCALTEXMFPREFIX:Q}

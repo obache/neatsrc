@@ -430,7 +430,8 @@ static int
 check_other_installed(struct pkg_task *pkg)
 {
 	FILE *f, *f_pkg;
-	size_t len;
+	ssize_t len;
+	size_t siz;
 	char *pkgbase, *iter, *filename;
 	package_t plist;
 	plist_t *p;
@@ -476,15 +477,16 @@ check_other_installed(struct pkg_task *pkg)
 
 	status = 0;
 
-	while ((iter = fgetln(f, &len)) != NULL) {
+	iter = NULL;
+	while ((len = getline(&iter, &siz, f)) != -1) {
 		if (iter[len - 1] == '\n')
-			iter[len - 1] = '\0';
+			iter[--len] = '\0';
 		filename = pkgdb_pkg_file(iter, CONTENTS_FNAME);
 		if ((f_pkg = fopen(filename, "r")) == NULL) {
 			warnx("Can't open +CONTENTS of depending package %s",
 			    iter);
-			fclose(f);
-			return -1;
+			status = -1;
+			break;
 		}
 		read_plist(&plist, f_pkg);
 		fclose(f_pkg);
@@ -512,6 +514,7 @@ check_other_installed(struct pkg_task *pkg)
 		}
 		free_plist(&plist);		
 	}
+	free(iter);
 
 	fclose(f);
 
@@ -1227,20 +1230,31 @@ start_replacing(struct pkg_task *pkg)
 	return 0;
 }
 
-static int check_input(const char *line, size_t len)
+static int
+check_input(void)
 {
-	if (line == NULL || len == 0)
-		return 1;
-	switch (*line) {
-	case 'Y':
-	case 'y':
-	case 'T':
-	case 't':
-	case '1':
-		return 0;
-	default:
-		return 1;
+	int status;
+	char *line;
+	ssize_t len;
+	size_t siz;
+
+	status = 1;
+
+	line = NULL;
+	if ((len = getline(&line, &siz, stdin)) != -1) {
+		switch (*line) {
+		case 'Y':
+		case 'y':
+		case 'T':
+		case 't':
+		case '1':
+			status = 0;
+			break;
+		}
 	}
+	free(line);
+
+	return status;
 }
 
 static int
@@ -1249,9 +1263,6 @@ check_signature(struct pkg_task *pkg, int invalid_sig)
 #ifdef BOOTSTRAP
 	return 0;
 #else
-	char *line;
-	size_t len;
-
 	if (strcasecmp(verified_installation, "never") == 0)
 		return 0;
 	if (strcasecmp(verified_installation, "always") == 0) {
@@ -1266,8 +1277,7 @@ check_signature(struct pkg_task *pkg, int invalid_sig)
 		    pkg->pkgname);
 		fprintf(stderr,
 		    "Do you want to proceed with the installation [y/n]?\n");
-		line = fgetln(stdin, &len);
-		if (check_input(line, len)) {
+		if (check_input()) {
 			fprintf(stderr, "Cancelling installation\n");
 			return 1;
 		}
@@ -1276,8 +1286,7 @@ check_signature(struct pkg_task *pkg, int invalid_sig)
 	if (strcasecmp(verified_installation, "interactive") == 0) {
 		fprintf(stderr, "Do you want to proceed with "
 		    "the installation of %s [y/n]?\n", pkg->pkgname);
-		line = fgetln(stdin, &len);
-		if (check_input(line, len)) {
+		if (check_input()) {
 			fprintf(stderr, "Cancelling installation\n");
 			return 1;
 		}
@@ -1296,8 +1305,6 @@ check_vulnerable(struct pkg_task *pkg)
 #else
 	static struct pkg_vulnerabilities *pv;
 	int require_check;
-	char *line;
-	size_t len;
 
 	if (strcasecmp(check_vulnerabilities, "never") == 0)
 		return 0;
@@ -1326,8 +1333,7 @@ check_vulnerable(struct pkg_task *pkg)
 
 	fprintf(stderr, "Do you want to proceed with the installation of %s"
 	    " [y/n]?\n", pkg->pkgname);
-	line = fgetln(stdin, &len);
-	if (check_input(line, len)) {
+	if (check_input()) {
 		fprintf(stderr, "Cancelling installation\n");
 		return 1;
 	}

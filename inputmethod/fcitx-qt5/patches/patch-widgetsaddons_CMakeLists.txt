@@ -1,0 +1,22 @@
+$NetBSD$
+
+* requilre libintl
+
+--- widgetsaddons/CMakeLists.txt.orig	2015-12-18 00:02:37.000000000 +0000
++++ widgetsaddons/CMakeLists.txt
+@@ -45,6 +45,7 @@ set(fcitxqtwidgetsaddons_INCLUDE_DIRS
+     ${CMAKE_CURRENT_BINARY_DIR}
+     ${CMAKE_CURRENT_SOURCE_DIR}
+     ${FCITX_UTILS_INCLUDE_DIRS}
++    ${Intl_INCLUDE_DIRS}
+ )
+ 
+ add_library(FcitxQt5WidgetsAddons SHARED ${widgetsaddons_SOURCES})
+@@ -70,6 +71,7 @@ target_link_libraries(FcitxQt5WidgetsAdd
+     PRIVATE
+         ${FCITX_UTILS_LIBRARIES}
+         ${FCITX_CONFIG_LIBRARIES}
++        ${Intl_LIBRARIES}
+ )
+ 
+ install(TARGETS FcitxQt5WidgetsAddons EXPORT FcitxQt5WidgetsAddonsTargets LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}")

@@ -2,7 +2,7 @@
 #
 
 DISTNAME=	tin-2.2.1
-PKGREVISION=	10
+PKGREVISION=	9
 CATEGORIES=	news
 MASTER_SITES=	ftp://ftp.tin.org/pub/news/clients/tin/stable/ \
 		ftp://ftp.funet.fi/pub/unix/news/tin-unoff/ \

@@ -1,0 +1,6 @@
+@comment $NetBSD$
+bin/mana
+bin/mana-config
+libexec/mana/makeda
+libexec/mana/makemat
+share/mana/mana-prelude.scm

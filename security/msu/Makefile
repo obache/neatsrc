@@ -8,9 +8,10 @@ EXTRACT_SUFX=	.tbz
 MAINTAINER=	abs@NetBSD.org
 HOMEPAGE=	http://code.google.com/p/msu/
 COMMENT=	Mini passwordless su
+LICENSE=	modified-bsd
 
 MAKE_ENV+=	SYSCONFDIR=${PKG_SYSCONFDIR:Q}
 
-PKG_DESTDIR_SUPPORT=    destdir
+SPECIAL_PERMS+=	bin/msu ${SETUID_ROOT_PERMS}
 
 .include "../../mk/bsd.pkg.mk"

@@ -1,0 +1,7 @@
+@comment $NetBSD$
+bin/onigmo-config
+include/onigmo.h
+include/onigmognu.h
+include/onigmoposix.h
+lib/libonigmo.la
+lib/pkgconfig/onigmo.pc

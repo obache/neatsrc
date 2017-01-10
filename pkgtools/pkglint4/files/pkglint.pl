@@ -1599,10 +1599,11 @@ sub check_pkglint_version() {
 	return if $done;
 	$done = true;
 
-	my $lines = load_lines("${cwd_pkgsrcdir}/pkgtools/pkglint4/Makefile", true);
+	my $lines = load_lines("${cwd_pkgsrcdir}/@PKGPATH@/Makefile", true);
 	return unless $lines;
 
 	my $pkglint_version = undef;
+	my $pkglint_revision = undef;
 	foreach my $line (@{$lines}) {
 		if ($line->text =~ regex_varassign) {
 			my ($varname, undef, $value, undef) = ($1, $2, $3, $4);
@@ -1611,15 +1612,19 @@ sub check_pkglint_version() {
 				if ($value =~ regex_pkgname) {
 					$pkglint_version = $2;
 				}
+			} elsif ($varname eq "PKGREVISION") {
+				$pkglint_revision = $value;
 			}
 		}
 	}
 	return unless defined($pkglint_version);
+	$pkglint_version .= "nb" . $pkglint_revision if defined($pkglint_revision);
 
 	if (dewey_cmp($pkglint_version, ">", conf_distver)) {
 		log_note(NO_FILE, NO_LINE_NUMBER, "A newer version of pkglint is available.");
 	} elsif (dewey_cmp($pkglint_version, "<", conf_distver)) {
 		log_error(NO_FILE, NO_LINE_NUMBER, "The pkglint version is newer than the tree to check.");
+		log_error(NO_FILE, NO_LINE_NUMBER, $pkglint_version . "<" . conf_distver);
 	}
 }
 
@@ -2850,7 +2855,7 @@ sub checkline_mk_vartype_basic($$$$$$$$) {
 				japanese java
 				kde korean
 				lang linux local
-				mail math mbone meta-pkgs misc multimedia
+				mail mate math mbone meta-pkgs misc multimedia
 				net news
 				packages parallel perl5 pkgtools plan9 print python
 				ruby
@@ -3299,7 +3304,7 @@ sub checkline_mk_vartype_basic($$$$$$$$) {
 			if ($value =~ m"^(${part})-(${part})-(${part})$") {
 				my ($opsys, $os_version, $arch) = ($1, $2, $3);
 
-				if ($opsys !~ m"^(?:\*|BSDOS|Cygwin|Darwin|DragonFly|FreeBSD|Haiku|HPUX|Interix|IRIX|Linux|NetBSD|OpenBSD|OSF1|QNX|SunOS)$") {
+				if ($opsys !~ m"^(?:\*|AIX|BSDOS|Bitrig|Cygwin|Darwin|DragonFly|FreeBSD|FreeMiNT|Haiku|HPUX|GNUkFreeBSD|Interix|IRIX|Linux|Minix|MirBSD|Msys|NetBSD|OpenBSD|OSF1|QNX|SCO_SV|SunOS|UnixWare)$") {
 					$line->log_warning("Unknown operating system: ${opsys}");
 				}
 				# no check for $os_version
@@ -5284,22 +5289,6 @@ sub checkfile_PLIST($) {
 "Otherwise, this warning is harmless.");
 				}
 
-			} elsif (substr($text, 0, 6) eq "share/" && $pkgpath ne "graphics/hicolor-icon-theme" && $text =~ m"^share/icons/hicolor(?:$|/)") {
-				my $f = "../../graphics/hicolor-icon-theme/buildlink3.mk";
-				if (defined($pkgctx_included) && !exists($pkgctx_included->{$f})) {
-					$line->log_error("Please .include \"$f\" in the Makefile");
-					$line->explain_error(
-"If hicolor icon themes are installed, icon theme cache must be",
-"maintained. The hicolor-icon-theme package takes care of that.");
-				}
-
-			} elsif (substr($text, 0, 6) eq "share/" && $pkgpath ne "graphics/gnome-icon-theme" && $text =~ m"^share/icons/gnome(?:$|/)") {
-				my $f = "../../graphics/gnome-icon-theme/buildlink3.mk";
-				if (defined($pkgctx_included) && !exists($pkgctx_included->{$f})) {
-					$line->log_error("Please .include \"$f\"");
-					$line->explain_error(
-"If Gnome icon themes are installed, icon theme cache must be maintained.");
-				}
 			} elsif ($dirname eq "share/aclocal" && $basename =~ m"\.m4$") {
 				# Fine.
 

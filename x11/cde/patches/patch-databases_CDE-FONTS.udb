@@ -1,0 +1,50 @@
+$NetBSD$
+
+* install Japanese font settings on NetBSD (copy from Linux config)
+
+--- databases/CDE-FONTS.udb.orig	2015-05-09 23:09:11.000000000 +0000
++++ databases/CDE-FONTS.udb
+@@ -1135,3 +1135,43 @@ programs/fontaliases/netbsd/C/dtinfo.pcf
+ { netbsd
+ 	install_target = /usr/dt/config/xfonts/C/dtinfo.pcf.Z
+ }
++#
++programs/fontaliases/linux/ja_JP/fonts.alias
++{ netbsd
++	install_target = /usr/dt/config/xfonts/ja/fonts.alias
++}
++#
++programs/fontaliases/linux/ja_JP/fonts.dir
++{ netbsd
++	install_target = /usr/dt/config/xfonts/ja/fonts.dir
++}
++#
++/usr/dt/config/xfonts/ja
++{ netbsd
++	install_target = /usr/dt/config/xfonts/ja_JP.eucJP
++	type = sym_link
++}
++#
++/usr/dt/config/xfonts/ja
++{ netbsd
++	install_target = /usr/dt/config/xfonts/ja_JP.UTF-8
++	type = sym_link
++}
++#
++/usr/dt/config/xfonts/ja
++{ netbsd
++	install_target = /usr/dt/config/xfonts/ja_JP.SJIS
++	type = sym_link
++}
++#
++/usr/dt/config/xfonts/ja
++{ netbsd
++	install_target = /usr/dt/config/xfonts/ja_JP.ISO-2022-JP
++	type = sym_link
++}
++#
++/usr/dt/config/xfonts/ja
++{ netbsd
++	install_target = /usr/dt/config/xfonts/ja_JP.ISO-2022-JP-2
++	type = sym_link
++}

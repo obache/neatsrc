@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.19 2017/01/04 20:36:06 roy Exp $
+# $NetBSD: Makefile,v 1.18 2015/08/18 07:31:15 wiz Exp $
 #
 
 DISTNAME=	slurm-0.3.3
@@ -22,5 +22,5 @@ do-install:
 		    ${DESTDIR}${PREFIX}/share/slurm ;		 \
 	done
 
-.include "../../mk/curses.buildlink3.mk"
+.include "../../devel/ncurses/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

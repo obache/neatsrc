@@ -18,9 +18,7 @@ runs
 .Dq make replace
 on packages that have been marked to have unsafe dependencies or have
 been marked to be rebuilt.
-Optionally it can replace any outdated packages (as reported by
-.Xr pkg_chk 8 )
-as well.
+Optionally it can replace any outdated packages as well.
 .Pp
 Whenever
 .Dq make replace
@@ -58,9 +56,7 @@ If the
 .Fl u
 option is given,
 .Nm
-will use
-.Xr pkg_chk 8
-to check for packages for which the version in pkgsrc is different
+will check packages for which the version in pkgsrc is different
 than the installed version, and run
 .Dq make replace
 on those packages as well (tsorting them along with the unsafe/rebuild
@@ -71,11 +67,7 @@ packages.)
 .Ss Options
 .Bl -tag -width xxxxxxxx
 .It Fl B
-Pass
-.Dq -B
-to
-.Xl pkg_chk 8
-to also mark any packages with any change in build version data.
+Also mark any packages as outdated with any change in build version data.
 .It Fl D Ar VARIABLE=VALUE
 Passes VARIABLE=VALUE to each make call.
 .Dq -D
@@ -121,9 +113,7 @@ tags.
 This will replace packages more aggressively and can be used to solve
 shared library problems.
 .It Fl u
-Use
-.Xl pkg_chk 8
-to check for outdated packages, and replace those too.
+Check outdated packages, and replace those too.
 .It Fl v
 Verbose output.
 .It Fl X Ar pkgs

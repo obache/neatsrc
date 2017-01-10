@@ -1137,7 +1137,6 @@ share/examples/kdebase3/kde-screensavers.menu
 share/examples/kdebase3/kde-settings.menu
 share/examples/kdebase3/ksysguarddrc
 share/icons/Daemon.png
-share/icons/NetBSD-flag.png
 share/icons/crystalsvg/128x128/apps/access.png
 share/icons/crystalsvg/128x128/apps/acroread.png
 share/icons/crystalsvg/128x128/apps/applixware.png

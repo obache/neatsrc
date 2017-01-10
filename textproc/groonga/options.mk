@@ -2,9 +2,9 @@
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.groonga
-PKG_SUPPORTED_OPTIONS=	mecab tests zlib lz4
+PKG_SUPPORTED_OPTIONS=	mecab tests zlib lz4 zstd
 PKG_SUPPORTED_OPTIONS+=	groonga-suggest-learner groonga-httpd
-PKG_SUGGESTED_OPTIONS=	mecab groonga-suggest-learner groonga-httpd
+PKG_SUGGESTED_OPTIONS=	mecab zlib groonga-suggest-learner groonga-httpd
 
 .include "../../mk/bsd.options.mk"
 
@@ -21,9 +21,18 @@ CONFIGURE_ARGS+=	--without-mecab
 
 .if !empty(PKG_OPTIONS:Mtests)
 CONFIGURE_ARGS+=	--with-cutter
+CONFIGURE_ARGS+=	--with-ruby=${RUBY}
 TEST_TARGET=		check
 BUILDLINK_API_DEPENDS.cutter+=		cutter>=1.1.6
 .include "../../devel/cutter/buildlink3.mk"
+USE_TOOLS+=	bash
+REPLACE_BASH=	test/command/run-test.sh
+.include "../../lang/ruby/rubyversion.mk"
+BUILD_DEPENDS+=	${RUBY_BASE}>=${RUBY_VERSION}:${RUBY_SRCDIR}
+BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-bundler-[0-9]*:../../misc/ruby-bundler
+BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-ffi-[0-9]*:../../devel/ruby-ffi
+BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-ffi-yajl-[0-9]*:../../devel/ruby-ffi-yajl
+BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-msgpack-[0-9]*:../../devel/ruby-msgpack
 .else
 CONFIGURE_ARGS+=	--without-cutter
 .endif
@@ -42,6 +51,13 @@ CONFIGURE_ARGS+=	--with-lz4
 CONFIGURE_ARGS+=	--without-lz4
 .endif
 
+.if !empty(PKG_OPTIONS:Mzstd)
+CONFIGURE_ARGS+=	--with-zstd
+.include "../../archivers/zstd/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--without-zstd
+.endif
+
 .if !empty(PKG_OPTIONS:Mgroonga-suggest-learner)
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../devel/msgpack/buildlink3.mk"
@@ -58,6 +74,7 @@ CONFIGURE_ARGS+=	--disable-zeromq
 
 .if !empty(PKG_OPTIONS:Mgroonga-httpd)
 .include "../../devel/pcre/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-groonga-httpd
 PLIST.httpd=	yes
 OWN_DIRS+=	${PKG_SYSCONFDIR}/httpd/html
@@ -93,7 +110,7 @@ CONF_FILES+=	share/examples/${PKGBASE}/httpd/win-utf \
 
 SUBST_CLASSES+=		confpath
 SUBST_STAGE.confpath=	pre-build
-SUBST_FILES.confpath=	vendor/nginx-1.11.3/objs/Makefile
+SUBST_FILES.confpath=	vendor/nginx-1.11.8/objs/Makefile
 SUBST_SED.confpath=	-e 's,\$$(DESTDIR)${PKG_SYSCONFDIR}/httpd,\$$(DESTDIR)${PREFIX}/share/examples/${PKGBASE}/httpd,g'
 
 .else

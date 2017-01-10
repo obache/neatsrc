@@ -1,0 +1,17 @@
+@comment $NetBSD$
+share/ibus-googlepinyin/engine.py
+share/ibus-googlepinyin/factory.py
+share/ibus-googlepinyin/googlepinyin.py
+share/ibus-googlepinyin/icons/chinese.svg
+share/ibus-googlepinyin/icons/english.svg
+share/ibus-googlepinyin/icons/full-letter.svg
+share/ibus-googlepinyin/icons/full-punct.svg
+share/ibus-googlepinyin/icons/half-letter.svg
+share/ibus-googlepinyin/icons/half-punct.svg
+share/ibus-googlepinyin/icons/ibus-googlepinyin.png
+share/ibus-googlepinyin/icons/ibus-pinyin.svg
+share/ibus-googlepinyin/icons/simp-chinese.svg
+share/ibus-googlepinyin/icons/trad-chinese.svg
+share/ibus-googlepinyin/libopencc.py
+share/ibus-googlepinyin/main.py
+share/ibus/component/googlepinyin.xml

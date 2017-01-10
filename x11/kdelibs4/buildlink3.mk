@@ -10,7 +10,6 @@ BUILDLINK_ABI_DEPENDS.kdelibs+=	kdelibs4>=4.14.15nb4
 BUILDLINK_PKGSRCDIR.kdelibs?=	../../x11/kdelibs4
 
 .include "../../archivers/bzip2/buildlink3.mk"
-.include "../../databases/shared-mime-info/buildlink3.mk"
 .include "../../devel/libdbusmenu-qt/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

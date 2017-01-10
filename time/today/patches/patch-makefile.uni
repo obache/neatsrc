@@ -1,0 +1,24 @@
+$NetBSD$
+
+--- makefile.uni.orig	2015-08-24 11:53:07.000000000 +0000
++++ makefile.uni
+@@ -7,16 +7,15 @@
+ #
+ #---+----*----+----*----+----*----+----*----+----*----+----*----+----*----+----
+ 
+-ADD_CFLAGS = -DMSG_STYLE
++ADD_CFLAGS = -DTRANS -DMSG_STYLE -DINTERNAL_KYUREKI_TBL
+ #ADDFLAGS = -DUSE_TERMCAP
+ 
+ BASEDIR = /usr/local
+ BINDIR = $(BASEDIR)/bin
+ TODAYLIBDIR = $(BASEDIR)/lib/today
+ 
+-CC = gcc
+-CFLAGS = -O2 -fomit-frame-pointer -fstrength-reduce -Wall -Wpointer-arith -Wcast-qual -Wcast-align -Wstrict-prototypes -Wmissing-prototypes $(ADD_CFLAGS) $(ADDFLAGS)
+-#LDLIBS = -ltermcap
++CFLAGS += -fomit-frame-pointer -fstrength-reduce -Wall -Wpointer-arith -Wcast-qual -Wcast-align -Wstrict-prototypes -Wmissing-prototypes $(ADD_CFLAGS) $(ADDFLAGS)
++LDLIBS = -ltermcap
+ 
+ HFILES = cdefs.h chu68k.h cmsdos.h cunix.h cwin32.h extern.h
+ 

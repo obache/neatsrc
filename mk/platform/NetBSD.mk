@@ -15,6 +15,8 @@ TYPE?=		type				# Shell builtin
 
 USERADD?=	/usr/sbin/useradd
 GROUPADD?=	/usr/sbin/groupadd
+_PKG_UID_RANGE?=	500..999
+_PKG_GID_RANGE?=	500..999
 
 CPP_PRECOMP_FLAGS?=	# unset
 DEF_UMASK?=		0022
@@ -42,6 +44,13 @@ ULIMIT_CMD_cputime?=	ulimit -t `ulimit -H -t`
 .if empty(MACHINE_PLATFORM:MNetBSD-[0-5].*)
 X11_TYPE?=		native
 .endif
+
+# Builtin defaults which make sense for this platform.
+_OPSYS_PREFER.curses?=		native
+_OPSYS_PREFER.gettext-lib?=	native
+_OPSYS_PREFER.libiconv?=	native
+_OPSYS_PREFER.termcap?=		native
+_OPSYS_PREFER.terminfo?=	native
 
 _OPSYS_EMULDIR.aout=		/emul/aout
 _OPSYS_EMULDIR.darwin=		/emul/darwin

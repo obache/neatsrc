@@ -6,6 +6,7 @@
 DISTNAME=	mecab-java-${MECAB_VERSION}
 PKGNAME=	java-mecab-${MECAB_VERSION}
 CATEGORIES+=	java
+MASTER_SITES=	-https://drive.google.com/uc?id=0B4y35FiV1wh7NHo1bEJxd0RnSzg&export=download
 
 COMMENT=	MeCab java module
 LICENSE=	gnu-gpl-v2 OR gnu-lgpl-v2.1 OR modified-bsd

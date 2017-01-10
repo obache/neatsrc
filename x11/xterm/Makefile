@@ -58,6 +58,5 @@ post-install:
 .include "options.mk"
 
 .include "../../mk/curses.buildlink3.mk"
-.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/xaw.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

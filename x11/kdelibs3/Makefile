@@ -81,8 +81,6 @@ PLIST_VARS+=		kded
 .  else
 PLIST.kded=		yes
 .  endif
-# make sure zone.tab is installed
-DEPENDS+=		zonetab-[0-9]*:../../time/zonetab
 .else
 PLIST.kded=		yes
 .endif

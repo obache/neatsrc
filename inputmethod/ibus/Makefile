@@ -1,11 +1,11 @@
 # $NetBSD: Makefile,v 1.45 2016/08/03 10:22:59 adam Exp $
 
-PKGREVISION= 1
 .include "Makefile.common"
 
 COMMENT=	Intelligent Input Bus
 
 DEPENDS+=	${PYPKGPREFIX}-gobject3-[0-9]*:../../devel/py-gobject3
+TOOL_DEPENDS+=	npm-emojione-[0-9]*:../../www/npm-emojione
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
@@ -25,6 +25,7 @@ CONFIGURE_ARGS+=	--enable-gtk3
 CONFIGURE_ARGS+=	--enable-surrounding-text
 CONFIGURE_ARGS+=	--enable-introspection=yes
 CONFIGURE_ARGS+=	--with-python=${PYTHONBIN}
+CONFIGURE_ARGS+=	--with-emoji-json-file=${LOCALBASE}/lib/node_modules/emojione/emoji.json
 
 SUBST_CLASSES+=		dbus
 SUBST_STAGE.dbus=	post-configure
@@ -62,6 +63,8 @@ BUILDLINK_API_DEPENDS.glib2+=		glib2>=2.26.0
 PY_PATCHPLIST=	yes
 .include "../../sysutils/libnotify/buildlink3.mk"
 .include "../../textproc/iso-codes/buildlink3.mk"
+BUILDLINK_DEPMETHOD.json-glib+=	build
+.include "../../textproc/json-glib/buildlink3.mk"
 GTK2_IMMODULES=	yes
 .include "../../x11/gtk2/modules.mk"
 .include "../../x11/gtk2/buildlink3.mk"

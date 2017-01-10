@@ -142,7 +142,7 @@ WRAPPEES+=	CXX_R
 _WRAPPEE_UNIQUE_CMDS=	# empty
 .for _wrappee_ in ${WRAPPEES}
 _WRAPPEES+=		${_wrappee_}
-_WRAPPEE_${_wrappee_}=	${${_wrappee_}:T:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//}
+_WRAPPEE_${_wrappee_}=	${${_wrappee_}:[1]:T}
 .  if empty(_WRAPPEE_UNIQUE_CMDS:M${_WRAPPEE_${_wrappee_}})
 _WRAPPEE_UNIQUE_CMDS+=	${_WRAPPEE_${_wrappee_}}
 _WRAPPEES_UNIQUE+=	${_wrappee_}
@@ -154,10 +154,10 @@ _WRAPPEES_UNIQUE+=	${_wrappee_}
 # Strip the leading paths from the toolchain variables since we manipulate
 # the PATH to use the correct executable.
 #
-.  if empty(${_wrappee_}:C/^/_asdf_/1:N_asdf_*)
-${_wrappee_}:=		${${_wrappee_}:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//:T}
+.  if ${${_wrappee_}:[#]} < 2
+${_wrappee_}:=		${${_wrappee_}:[1]:T}
 .  else
-${_wrappee_}:=		${${_wrappee_}:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//:T} ${${_wrappee_}:C/^/_asdf_/1:N_asdf_*}
+${_wrappee_}:=		${${_wrappee_}:[1]:T} ${${_wrappee_}:[2..-1]}
 .  endif
 #
 # WRAPPER_<wrappee> is the full path to the wrapper script, plus any
@@ -442,11 +442,11 @@ ${_WRAP_COOKIE.${_wrappee_}}:						\
 		${_WRAP_SUBR_SH}					\
 		${_WRAP_TRANSFORM.${_wrappee_}}
 	${RUN} 								\
-	wrapper="${WRAPPER_${_wrappee_}:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//}"; \
+	wrapper="${WRAPPER_${_wrappee_}:[1]}"; \
 	if [ -x "$$wrapper" ]; then ${ECHO_BUILDLINK_MSG} "=> $$wrapper already exists. Skipping"; exit 0; fi; \
 	${ECHO_BUILDLINK_MSG} "=> Creating ${_wrappee_} wrapper: $$wrapper"; \
         gen_wrapper=yes;						\
-	wrappee="${PKG_${_wrappee_}:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//}"; \
+	wrappee="${PKG_${_wrappee_}:[1]}"; \
 	case $$wrappee in						\
 	/*)	;;							\
 	*)	save_IFS="$$IFS";					\
@@ -490,7 +490,7 @@ ${_WRAP_COOKIE.${_wrappee_}}:						\
 generate-wrappers: ${_alias_}
 ${_alias_}: ${_WRAP_COOKIE.${_wrappee_}}
 	${RUN} 								\
-	wrapper="${WRAPPER_${_wrappee_}:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//}"; \
+	wrapper="${WRAPPER_${_wrappee_}:[1]}"; \
 	if [ ! -x ${.TARGET} -a -x $$wrapper ]; then			\
 		${ECHO_BUILDLINK_MSG} "=> Linking ${_wrappee_} wrapper: ${.TARGET}"; \
 		${LN} -f${WRAPPER_USE_SYMLINK:Ds} $$wrapper ${.TARGET};	\

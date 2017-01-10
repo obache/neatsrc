@@ -18,7 +18,8 @@ REPLACE_PYTHON+=	gio/gdbus-2.0/codegen/gdbus-codegen.in
 
 DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
-.include "../../devel/glib2/modules.mk"
+BUILDLINK_DEPMETHOD.glib2+=	build
+.include "../../devel/glib2/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -43,7 +43,6 @@ func (s *Suite) Test_ChecklinesPlist(c *check.C) {
 		"WARN: PLIST:11: IMAKE_MANNEWSUFFIX is not meant to appear in PLISTs.\n"+
 		"WARN: PLIST:12: Please remove this line. It is no longer necessary.\n"+
 		"WARN: PLIST:13: Manual page missing for sbin/clockctl.\n"+
-		"ERROR: PLIST:14: The package Makefile must include \"../../graphics/gnome-icon-theme/buildlink3.mk\".\n"+
 		"ERROR: PLIST:16: Duplicate filename \"share/tzinfo\", already appeared in line 15.\n")
 }
 

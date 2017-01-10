@@ -389,14 +389,9 @@ static int
 tmp(void)
 {
 	sigset_t set, oset;
-	size_t len;
 	int fd;
 	char *envtmp;
-#ifdef PATH_MAX
-	char path[PATH_MAX];
-#else
-	char path[MAXPATHLEN];
-#endif
+	char *path;
 
 #if HAVE_ISSETUGID
 	if (issetugid())
@@ -405,9 +400,9 @@ tmp(void)
 #endif
 		envtmp = getenv("TMPDIR");
 
-	len = snprintf(path,
-	    sizeof(path), "%s/bt.XXXXXX", envtmp ? envtmp : _PATH_TMP);
-	if (len >= sizeof(path))
+	path = NULL;
+	if (-1 == asprintf(&path,
+	    "%s/bt.XXXXXX", envtmp ? envtmp : _PATH_TMP))
 		return -1;
 	
 	(void)sigfillset(&set);
@@ -417,6 +412,7 @@ tmp(void)
 		(void)fcntl(fd, F_SETFD, FD_CLOEXEC);
 	}
 	(void)sigprocmask(SIG_SETMASK, &oset, NULL);
+	free(path);
 	return(fd);
 }
 

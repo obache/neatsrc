@@ -15,8 +15,6 @@ HOMEPAGE=		http://www.nagios.org/
 COMMENT=		Network monitor
 LICENSE=		gnu-gpl-v2
 
-PKG_DESTDIR_SUPPORT=	user-destdir
-
 .include "../../mk/bsd.prefs.mk"
 .include "../../net/nagios-base/Makefile.common"
 .include "options.mk"

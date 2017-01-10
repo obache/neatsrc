@@ -35,6 +35,15 @@ X11_LDFLAGS+=	-L${BUILDLINK_PREFIX.libX11}/lib
 .endif
 
 .include "../../x11/xproto/buildlink3.mk"
+
+# http://cgit.freedesktop.org/xorg/lib/libX11/commit/?id=d0cbf388919364fe6b5b9127f36426eb744090a0
+SUBST_CLASSES+=	fx-libX11-h-guards
+SUBST_STAGE.fx-libX11-h-guards=	post-wrapper
+SUBST_MESSAGE.fx-libX11-h-guards=\
+	Add an "X11_" string to header guards to avoid possible collision
+SUBST_FILES.fx-libX11-h-guards=	${BUILDLINK_X11_DIR}/include/X11/Xlocale.h
+SUBST_SED.fx-libX11-h-guards=	-e 's/ _XLOCALE_H_/ _X11_XLOCALE_H_/g'
+
 .endif # LIBX11_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-libX11

@@ -24,7 +24,6 @@ COMMENT=		Limits per-IP connections to an Apache 2 server
 APACHE_MODULE=		yes
 MAKE_FLAGS+=		APXS=${APXS:Q}
 USE_LIBTOOL=		yes
-PKG_DESTDIR_SUPPORT=	user-destdir
 
 INSTALLATION_DIRS+=	lib/httpd
 

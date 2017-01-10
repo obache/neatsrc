@@ -16,14 +16,5 @@ PHP_VERSIONS_ACCEPTED=	70
 USE_LANGUAGES=	c c++
 USE_LIBTOOL=	yes
 
-INSTALLATION_DIRS+=	include/php/ext/propro
-PLIST_SRC+=		PLIST
-
-post-install:
-	${INSTALL_DATA} ${WRKSRC}/php_propro.h \
-		${DESTDIR}${PREFIX}/include/php/ext/propro
-	${INSTALL_DATA} ${WRKSRC}/src/php_propro_api.h \
-		${DESTDIR}${PREFIX}/include/php/ext/propro
-
 .include "../../lang/php/ext.mk"
 .include "../../mk/bsd.pkg.mk"

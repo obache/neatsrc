@@ -19,8 +19,6 @@ USE_LANGUAGES=	c c++
 GNU_CONFIGURE=	yes
 MAKE_JOBS_SAFE=	no
 
-PKG_DESTDIR_SUPPORT=	user-destdir
-
 # Configuration looks for certain versions of JDK - this list can be expanded
 # if the patches are also appropriately updated.
 PKG_JVMS_ACCEPTED= oracle-jdk8 openjdk8 openjdk7 sun-jdk7 sun-jdk6 sun-jdk15 sun-jdk14

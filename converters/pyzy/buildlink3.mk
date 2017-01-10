@@ -16,6 +16,12 @@ BUILDLINK_PKGSRCDIR.pyzy?=	../../converters/pyzy
 .  include "../../devel/libuuid/buildlink3.mk"
 .endif
 
+pkgbase := pyzy
+.include "../../mk/pkg-build-options.mk"
+.if !empty(PKG_BUILD_OPTIONS.pyzy:Mopencc)
+.include "../../converters/opencc/buildlink3.mk"
+.endif
+
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
 .endif	# PYZY_BUILDLINK3_MK

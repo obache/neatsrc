@@ -79,7 +79,8 @@ _DEF_VARS.gcc=	\
 	_IS_BUILTIN_GCC \
 	_LANGUAGES.gcc \
 	_LINKER_RPATH_FLAG \
-	_NEED_GCC2 _NEED_GCC3 _NEED_GCC34 _NEED_GCC44 _NEED_NEWER_GCC \
+	_NEED_GCC2 _NEED_GCC3 _NEED_GCC34 _NEED_GCC44 _NEED_GCC48 _NEED_GCC49 \
+	_NEED_GCC5 _NEED_GCC6 _NEED_GCC_AUX _NEED_NEWER_GCC \
 	_PKGSRC_GCC_VERSION \
 	_USE_GCC_SHLIB _USE_PKGSRC_GCC \
 	_WRAP_EXTRA_ARGS.CC
@@ -95,6 +96,11 @@ GCC_REQD+=	2.8.0
 # gcc2 doesn't support c99 and amd64
 .if !empty(USE_LANGUAGES:Mc99) || ${MACHINE_ARCH} == "x86_64"
 GCC_REQD+=	3.0
+.endif
+
+# gcc 4.7 has experimental C++11 support 
+.if !empty(USE_LANGUAGES:Mc++11)
+GCC_REQD+=	4.7
 .endif
 
 # Only one compiler defined here supports Ada: lang/gcc5-aux
@@ -140,14 +146,14 @@ _GCC_AUX_PATTERNS= 20[1-2][0-9][0-1][0-9][0-3][0-9]*
 
 # _CC is the full path to the compiler named by ${CC} if it can be found.
 .if !defined(_CC)
-_CC:=	${CC:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//}
+_CC:=	${CC:[1]}
 .  if !empty(GCCBASE) && exists(${GCCBASE}/bin)
 _EXTRA_CC_DIRS=	${GCCBASE}/bin
 .  endif
 .  for _dir_ in ${_EXTRA_CC_DIRS} ${PATH:C/\:/ /g}
 .    if empty(_CC:M/*)
-.      if exists(${_dir_}/${CC:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//})
-_CC:=	${_dir_}/${CC:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//}
+.      if exists(${_dir_}/${CC:[1]})
+_CC:=	${_dir_}/${CC:[1]}
 .      endif
 .    endif
 .  endfor
@@ -313,6 +319,11 @@ _LANGUAGES.gcc+=	${LANGUAGES.gcc:M${_lang_}}
 .if !empty(USE_LANGUAGES:Mc99)
 _WRAP_EXTRA_ARGS.CC+=	-std=gnu99
 CWRAPPERS_APPEND.cc+=	-std=gnu99
+.endif
+
+.if !empty(USE_LANGUAGES:Mc++11)
+_WRAP_EXTRA_ARGS.CXX+=	-std=c++11
+CWRAPPERS_APPEND.cxx+=	-std=c++11
 .endif
 
 .if ${OPSYS} == "NetBSD"

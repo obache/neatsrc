@@ -3,7 +3,7 @@
 # used by inputmethod/ibus/Makefile
 # used by inputmethod/ibus-python/Makefile
 
-DISTNAME=	ibus-1.5.13
+DISTNAME=	ibus-1.5.14
 CATEGORIES=	inputmethod
 MASTER_SITES=	https://github.com/ibus/ibus/releases/download/${PKGVERSION_NOREV}/
 
@@ -11,5 +11,5 @@ DISTINFO_FILE=	${.CURDIR}/../../inputmethod/ibus/distinfo
 PATCHDIR=	${.CURDIR}/../../inputmethod/ibus/patches
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://code.google.com/p/ibus/
+HOMEPAGE=	https://github.com/ibus/ibus/wiki
 LICENSE=	gnu-lgpl-v2.1

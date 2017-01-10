@@ -51,16 +51,6 @@
 #define pgno_t	db_pgno_t
 #endif
 
-/*
- * SCO OpenServer 5.0.7/3.2 has no MAXPATHLEN, but it has PATH_MAX (256).
- * in limits.h. But it is not usable under ordinal condition.
- */
-#if !defined(MAXPATHLEN)
-#if defined(_SCO_DS)
-#define MAXPATHLEN	1024
-#endif
-#endif
-
 #define	MAX_PAGE_NUMBER	0xffffffff	/* >= # of pages in a file */
 typedef uint32_t	pgno_t;
 #define	MAX_PAGE_OFFSET	65535		/* >= # of bytes in a page */

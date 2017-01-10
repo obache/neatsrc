@@ -1,0 +1,4 @@
+@comment $NetBSD$
+${PLIST.mysqlnd}include/php/ext/mysqli/mysqli_mysqlnd.h
+${PLIST.libmysql}include/php/ext/mysqli/mysqli_libmysql.h
+include/php/ext/mysqli/php_mysqli_structs.h

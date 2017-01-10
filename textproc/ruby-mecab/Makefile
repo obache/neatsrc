@@ -5,6 +5,7 @@
 DISTNAME=	mecab-ruby-${MECAB_VERSION}
 PKGNAME=	${RUBY_PKGPREFIX}-mecab-${MECAB_VERSION}
 CATEGORIES+=	ruby
+MASTER_SITES=	-https://drive.google.com/uc?id=0B4y35FiV1wh7VUNlczBWVDZJbE0&export=download
 
 COMMENT=	MeCab ruby module
 LICENSE=	gnu-gpl-v2 OR gnu-lgpl-v2.1 OR modified-bsd

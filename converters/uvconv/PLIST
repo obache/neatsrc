@@ -1,0 +1,3 @@
+@comment $NetBSD$
+bin/uvconv
+man/man1/uvconv.1

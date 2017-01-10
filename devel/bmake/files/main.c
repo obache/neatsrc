@@ -144,6 +144,11 @@ __RCSID("$NetBSD: main.c,v 1.14 2016/01/24 16:14:44 jperkin Exp $");
 #include <sys/uio.h>
 #endif
 
+#ifdef HAVE_SPAWN_H
+#include <spawn.h>
+extern char** environ;
+#endif
+
 #ifndef	DEFMAXLOCAL
 #define	DEFMAXLOCAL DEFMAXJOBS
 #endif	/* DEFMAXLOCAL */
@@ -884,7 +889,16 @@ main(int argc, char **argv)
 		struct rlimit rl;
 		if (getrlimit(RLIMIT_NOFILE, &rl) != -1 &&
 		    rl.rlim_cur != rl.rlim_max) {
+#if defined(__GLIBC__) && defined(HAVE_POSIX_SPAWN) && __GLIBC__ == 2 && __GLIBC_MINOR__ < 24
+		/* posix_spawn_file_actions_add{open,close,dup2} in glibc<2.24
+		 * don't expect that file descriptor number is unlimited
+		 * https://sourceware.org/bugzilla/show_bug.cgi?id=19505
+		 */
+			rl.rlim_cur = (rl.rlim_max == RLIM_INFINITY)
+			    ? INT_MAX - 1 : rl.rlim_max;
+#else
 			rl.rlim_cur = rl.rlim_max;
+#endif
 			(void)setrlimit(RLIMIT_NOFILE, &rl);
 		}
 	}
@@ -1532,6 +1546,12 @@ Cmd_Exec(const char *cmd, const char **errnum)
     char	*cp;
     int		cc;		/* bytes read, or -1 */
     int		savederr;	/* saved errno */
+#ifdef HAVE_POSIX_SPAWN
+    int		spawn_err = 0;
+    posix_spawn_file_actions_t fa;
+#else
+    unsigned int forksleep;
+#endif
 
 
     *errnum = NULL;
@@ -1554,10 +1574,37 @@ Cmd_Exec(const char *cmd, const char **errnum)
 	goto bad;
     }
 
+#ifdef HAVE_POSIX_SPAWN
+    if(posix_spawn_file_actions_init(&fa) != 0) {
+	*errnum = "Couldn't spawn file actions init for \"%s\"";
+	goto bad;
+    }
+    if ((spawn_err = posix_spawn_file_actions_addclose(&fa, fds[0])) == 0 &&
+	(spawn_err = posix_spawn_file_actions_adddup2(&fa, fds[1], 1)) == 0 &&
+	(spawn_err = posix_spawn_file_actions_addclose(&fa, fds[1])) == 0) {
+	Var_ExportVars();
+	spawn_err = posix_spawn(&cpid, shellPath, &fa, NULL, UNCONST(args), environ);
+	if (spawn_err != 0) {
+	    *errnum = "Couldn't spawn for \"%s\"";
+	}
+    } else {
+	*errnum = "Couldn't spawn file actions for \"%s\"";
+    }
+
+    (void)posix_spawn_file_actions_destroy(&fa);
+    if (spawn_err != 0) {
+	goto bad;
+    }
+#else
     /*
      * Fork
      */
-    switch (cpid = vFork()) {
+    forksleep = 1;
+    while ((cpid = vFork()) < 0 && errno == EAGAIN && forksleep < 32) {
+        if (sleep(forksleep)) break;
+        forksleep <<= 1;
+    }
+    switch (cpid) {
     case 0:
 	/*
 	 * Close input side of pipe
@@ -1583,6 +1630,7 @@ Cmd_Exec(const char *cmd, const char **errnum)
 	goto bad;
 
     default:
+#endif
 	/*
 	 * No need for the writing half
 	 */
@@ -1643,8 +1691,10 @@ Cmd_Exec(const char *cmd, const char **errnum)
 	    }
 	    cp--;
 	}
+#ifndef HAVE_POSIX_SPAWN
 	break;
     }
+#endif
     return res;
 bad:
     res = bmake_malloc(1);

@@ -11,8 +11,6 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Another mp3 player
 
-NO_SRC_ON_FTP=	Already in MASTER_SITE_LOCAL
-
 NOT_FOR_PLATFORM=	Interix-*-*
 
 GNU_CONFIGURE=	yes

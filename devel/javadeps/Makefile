@@ -11,8 +11,6 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.vet.com.au/java/javadeps/
 COMMENT=	Automatic dependency tracking for Java
 
-PKG_DESTDIR_SUPPORT=	destdir
-
 WRKSRC=		${WRKDIR}/JavaDeps-1.1
 USE_JAVA=	run
 USE_TOOLS+=	pax

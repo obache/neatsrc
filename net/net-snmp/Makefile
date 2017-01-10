@@ -49,7 +49,7 @@ BUILD_DEFS+=		NET_SNMP_MIBDIRS
 CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ARGS+=	--with-defaults
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
-CONFIGURE_ARGS+=	--with-libwrap=${BUILDLINK_PREFIX.tcp_wrappers}/lib
+CONFIGURE_ARGS+=	--with-libwrap=${BUILDLINK_PREFIX.tcp_wrappers}
 CONFIGURE_ARGS+=	--with-sys-contact=${NET_SNMP_SYS_CONTACT:Q}
 CONFIGURE_ARGS+=	--with-sys-location=${NET_SNMP_SYS_LOCATION:Q}
 CONFIGURE_ARGS+=	--with-install-prefix=${DESTDIR}

@@ -12,15 +12,13 @@ MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://homepage.corbina.net/~maloff/binkd/
 COMMENT=		FidoNet-over-IP transport program utilizing BINKP protocol
 
-PKG_DESTDIR_SUPPORT=	destdir
-
 MAKE_JOBS_SAFE=		no
 
 WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
 GNU_CONFIGURE=		yes
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
-INSTALL_MAKE_FLAGS=     ${MAKE_FLAGS} PREFIX=${DESTDIR:Q}${PREFIX:Q}
+INSTALL_MAKE_FLAGS=     PREFIX=${DESTDIR:Q}${PREFIX:Q}
 
 BROKEN_ON_PLATFORM=	${LP64PLATFORMS}
 

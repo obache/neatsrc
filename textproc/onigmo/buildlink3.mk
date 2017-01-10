@@ -1,0 +1,12 @@
+# $NetBSD$
+
+BUILDLINK_TREE+=	onigmo
+
+.if !defined(ONIGMO_BUILDLINK3_MK)
+ONIGMO_BUILDLINK3_MK:=
+
+BUILDLINK_API_DEPENDS.onigmo+=	onigmo>=6.0.0
+BUILDLINK_PKGSRCDIR.onigmo?=	../../textproc/onigmo
+.endif # ONIGUMO_BUILDLINK3_MK
+
+BUILDLINK_TREE+=	-onigmo

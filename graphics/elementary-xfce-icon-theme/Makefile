@@ -17,14 +17,6 @@ USE_TOOLS+=	pax
 
 WRKSRC=		${WRKDIR}/elementary-xfce-${GHCOMMIT}
 
-FILES_SUBST+=		GTK_UPDATE_ICON_CACHE="${LOCALBASE}/bin/gtk-update-icon-cache"
-FILES_SUBST+=		ICON_THEME_DIR="${PREFIX}/share/icons"
-INSTALL_TEMPLATES+=	../../graphics/elementary-xfce-icon-theme/files/icon-cache.tmpl
-DEINSTALL_TEMPLATES+=	../../graphics/elementary-xfce-icon-theme/files/icon-cache.tmpl
-PRINT_PLIST_AWK+=	/^share\/icons\/elementary-xfce\/icon-theme.cache$$/ { next; }
-PRINT_PLIST_AWK+=	/^share\/icons\/elementary-xfce-dark\/icon-theme.cache$$/ { next; }
-PRINT_PLIST_AWK+=	/^share\/icons\/elemantary-xfce-darker\/icon-theme.cache$$/ { next; }
-
 INSTALLATION_DIRS+=	share/icons
 
 do-install:

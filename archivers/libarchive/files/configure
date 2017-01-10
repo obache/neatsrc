@@ -16350,7 +16350,8 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
 
-ac_fn_c_check_decl "$LINENO" "SSIZE_MAX" "ac_cv_have_decl_SSIZE_MAX" "#include <limits.h>
+ac_fn_c_check_decl "$LINENO" "SSIZE_MAX" "ac_cv_have_decl_SSIZE_MAX" "$ac_includes_default
+#include <limits.h>
 "
 if test "x$ac_cv_have_decl_SSIZE_MAX" = xyes; then :
 

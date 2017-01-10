@@ -1,0 +1,17 @@
+$NetBSD$
+
+SHA1 (td212m.lzh) = 3f1bad98d46a344bffacef2e77871a1e6145339d
+RMD160 (td212m.lzh) = 02cf97950869753fadbfe9b8e1b1aee51e03c8dc
+SHA512 (td212m.lzh) = 23fc5968a95e5a2dc1216f87d4e9b7e99318b4a05624c27c959eb0d174e395b9a1cda890b4a713ec528f11c7cc6f1a8f535343f64cf51c4b7d8fffeb84617c0b
+Size (td212m.lzh) = 463411 bytes
+SHA1 (td212s.lzh) = dd10c574d7e9aec2839d565db0d6d458cf621058
+RMD160 (td212s.lzh) = 44d7fd6cef7b9c2e260d31634c50ea901309834f
+SHA512 (td212s.lzh) = cc9a40fc09afc9007123c9c02756b19f8aa6a6647ad1098941ece074fd356e708a4da5ffbaa4db5d3f1dc4f8b0ced28cef55b48e7501f5d9123976e9a152eb82
+Size (td212s.lzh) = 208034 bytes
+SHA1 (patch-cunix.h) = 17a4d6756274e205938581ecfe8fc3a75a3a6585
+SHA1 (patch-makefile.uni) = d1a00fcd7e3a51d65caad75f0f23491e89535273
+SHA1 (patch-src_dayinfo.c) = a86691f53ad26bf928b773c4eccc8b051b811277
+SHA1 (patch-src_eventcnv.c) = a445523ccf34718c45a10eb21e6a90cfacfcef11
+SHA1 (patch-src_makefile.gcc) = 6a02041b73afb3db8aff35458c190be7d2393b2b
+SHA1 (patch-today.cnf) = 7ee4aa17b10d6f3bf225ab794b458ada341415b8
+SHA1 (patch-version.c) = ba0916883e6db5d91b2fc3552883f44d312256f7

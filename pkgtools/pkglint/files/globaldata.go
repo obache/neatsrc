@@ -449,6 +449,7 @@ func (gd *GlobalData) loadDeprecatedVars() {
 		"USE_SOCKS":    "Use the PKG_OPTIONS framework (socks4 and socks5 options) instead.",
 		"USE_WNN4":     "Use the PKG_OPTIONS framework (option wnn4) instead.",
 		"USE_XFACE":    "Use the PKG_OPTIONS framework instead.",
+		"USE_PKGINSTALL":      "You can just remove it.",
 
 		// February 2006
 		"TOOLS_DEPMETHOD":     "Use the :build or :run modifiers in USE_TOOLS instead.",

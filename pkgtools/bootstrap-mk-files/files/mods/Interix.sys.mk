@@ -22,7 +22,7 @@ LINK.S?=	${CC} ${AFLAGS} ${CPPFLAGS} ${LDFLAGS}
 # Unless told otherwise, assume GNU CC
 CC?=		gcc
 
-DBG?=		-O
+DBG?=		-O2
 
 CFLAGS?=	-D_ALL_SOURCE ${DBG}
 COMPILE.c?=	${CC} ${CFLAGS} ${CPPFLAGS} -c

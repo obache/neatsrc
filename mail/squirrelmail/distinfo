@@ -8,3 +8,4 @@ SHA1 (patch-aa) = 4ba7ea0a85308816b9dc77c0af3c927359ed1275
 SHA1 (patch-ab) = 30bf68c730f20e817fbe81d18bc2a95899ee3fd0
 SHA1 (patch-ai) = 1c08904ecf074ff3ba7e6042becc0f0771388b9f
 SHA1 (patch-ca) = d2e41316b8ecd97b49842eff548219e40e9b163a
+SHA1 (patch-functions_imap__messages.php) = d1be4295d1456964d684205f05ef173d0c77ee9d

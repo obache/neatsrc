@@ -14,7 +14,7 @@ pre-distclean:
 
 .PHONY: distclean
 .if !target(distclean)
-distclean: pre-distclean clean
+distclean: pre-distclean
 	@${PHASE_MSG} "Dist cleaning for ${PKGNAME}"
 	${RUN} [ -d ${_DISTDIR} ] || exit 0;				\
 	cd ${_DISTDIR};							\

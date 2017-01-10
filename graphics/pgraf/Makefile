@@ -8,7 +8,6 @@ MASTER_SITES=		${MASTER_SITE_LOCAL}
 MAINTAINER=		pkgsrc-users@NetBSD.org
 COMMENT=		Portable graphics system
 
-NO_SRC_ON_FTP=		Already in MASTER_SITE_LOCAL
 INSTALLATION_DIRS=	bin include lib ${PKGMANDIR}/man1 \
 			${PKGMANDIR}/man3 ${PKGMANDIR}/man5 \
 			share/doc/pgraf share/examples/pgraf

@@ -45,6 +45,7 @@ _OPSYS_LIB_DIRS?=		/lib /usr/lib
 _OPSYS_INCLUDE_DIRS?=		/usr/include
 
 _OPSYS_EXE_SUFFIX=	.exe	# executables may have suffix
+_OPSYS_DLL_PREFIX=	cyg	# DLL may have own prefix
 _OPSYS_HAS_INET6=	yes	# IPv6 is standard
 _OPSYS_HAS_JAVA=	no	# Java is not standard
 _OPSYS_HAS_MANZ=	yes	# MANZ controls gzipping of man pages
@@ -67,9 +68,3 @@ _OPSYS_CAN_CHECK_SHLIBS=	no # can't use readelf in check/bsd.check-vars.mk
 # check for maximum command line length and set it in configure's environment,
 # to avoid a test required by the libtool script that takes forever.
 _OPSYS_MAX_CMDLEN_CMD=	${ECHO} 262144
-
-# check for requirement of uac-manifest.
-.if !empty(OS_VARIANT:MCYGWIN_NT-[6-9].*)
-_OPSYS_REQUIRE_UAC_MANIFEST=	yes
-.endif
-

@@ -1,15 +1,23 @@
-$NetBSD: patch-src_thread.cpp,v 1.1 2016/04/03 00:01:30 kamil Exp $
+$NetBSD$
+
+* Use spec macro to detect posix thread priority scheduling
 
 --- src/thread.cpp.orig	2015-11-04 08:55:13.000000000 +0000
 +++ src/thread.cpp
-@@ -131,6 +131,10 @@ void zmq::thread_t::setSchedulingParamet
-         policy = schedulingPolicy_;
-     }
+@@ -114,10 +114,15 @@ void zmq::thread_t::stop ()
  
-+#ifdef __NetBSD__
-+    if(policy == SCHED_OTHER) param.sched_priority = -1;
+ void zmq::thread_t::setSchedulingParameters(int priority_, int schedulingPolicy_)
+ {
+-#if !defined ZMQ_HAVE_ZOS
++#if defined _POSIX_THREAD_PRIORITY_SCHEDULING && _POSIX_THREAD_PRIORITY_SCHEDULING >= 0
+     int policy = 0;
+     struct sched_param param;
+ 
++#if _POSIX_THREAD_PRIORITY_SCHEDULING == 0 && defined _SC_THREAD_PRIORITY_SCHEDULING
++    if (sysconf(_SC_THREAD_PRIORITY_SCHEDULING) < 0) {
++        return;
++    }
 +#endif
-+
-     rc = pthread_setschedparam(descriptor, policy, &param);
+     int rc = pthread_getschedparam(descriptor, &policy, &param);
      posix_assert (rc);
- #endif
+ 

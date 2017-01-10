@@ -15,8 +15,6 @@ DEPENDS+=	xpmroot-2.*:../../x11/xpmroot
 
 CONFLICTS=	fvwm2-* fvwm>=1
 
-NO_SRC_ON_FTP=	Already in MASTER_SITE_LOCAL
-
 USE_IMAKE=	YES
 
 post-extract:

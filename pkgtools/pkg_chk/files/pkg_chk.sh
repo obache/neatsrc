@@ -206,7 +206,10 @@ extract_pkg_vars()
 	return
     fi
     cd $PKGSRCDIR/$PKGDIR
-    extract_make_vars Makefile "$@"
+    eval $(${MAKE} show-vars-eval VARS="$*")
+    for var in $* ; do
+	verbose_var $var
+    done
     if [ -z "$PKGNAME" ]; then
 	fatal "Unable to extract PKGNAME for $pkgdir"
     fi

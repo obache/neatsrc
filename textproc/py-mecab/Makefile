@@ -5,6 +5,7 @@
 DISTNAME=	mecab-python-${MECAB_VERSION}
 PKGNAME=	${PYPKGPREFIX}-mecab-${MECAB_VERSION}
 CATEGORIES+=	python
+MASTER_SITES=	-https://drive.google.com/uc?id=0B4y35FiV1wh7UlJpaWJKM01KRVE&export=download
 
 COMMENT=	MeCab python module
 LICENSE=	gnu-gpl-v2 OR gnu-lgpl-v2.1 OR modified-bsd

@@ -54,10 +54,11 @@ SUBST_STAGE.files=	do-configure
 SUBST_MESSAGE.files=	Fixing configuration files.
 SUBST_FILES.files=	roundcube.conf
 SUBST_FILES.files+=	config/config.inc.php.sample
+SUBST_FILES.files+=	config/defaults.inc.php
 SUBST_FILES.files+=	installer/index.php
 SUBST_FILES.files+=	program/include/iniset.php
 SUBST_FILES.files+=	program/lib/Roundcube/rcube_mime.php
-SUBST_SED.files=	-e "s|@RCDIR@|${RCDIR}|g"
+SUBST_SED.files=	-e "s|@RCDIR@|${PREFIX}/${RCDIR}|g"
 SUBST_SED.files+=	-e "s|@VARBASE@|${VARBASE}|g"
 SUBST_SED.files+=	-e "s|@PKG_EXAMPLES@|${PREFIX}/share/examples/roundcube|g"
 SUBST_SED.files+=	-e "s|@PKG_SYSCONFBASE@|${PKG_SYSCONFBASE}|g"
@@ -101,5 +102,6 @@ do-install:
 		${DESTDIR}${PREFIX}/${EGDIR}/defaults.inc.php
 
 .include "Makefile.common"
+.include "options.mk"
 .include "../../lang/php/phpversion.mk"
 .include "../../mk/bsd.pkg.mk"

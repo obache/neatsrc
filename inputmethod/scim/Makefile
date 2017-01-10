@@ -1,8 +1,8 @@
 # $NetBSD: Makefile,v 1.45 2016/08/03 10:22:16 adam Exp $
 #
 
-DISTNAME=		scim-1.4.15
-PKGREVISION=		5
+DISTNAME=		scim-1.4.17
+PKGREVISION=		1
 CATEGORIES=		inputmethod
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=scim/}
 
@@ -53,6 +53,14 @@ CHECK_PORTABILITY_SKIP+=	extras/immodules/tests/test-exec.sh.in
 
 pre-configure:
 	${RUN}cd ${WRKSRC}; ${SETENV} ${CONFIGURE_ENV} ${SH} bootstrap
+
+INSTALLATION_DIRS+=	${PKGMANDIR}/man1
+
+post-install:
+.for m in scim-config-agent scim-im-agent scim-setup scim
+	${INSTALL_MAN} ${WRKSRC}/docs/${m}.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/${m}.1
+.endfor
+
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/libltdl/buildlink3.mk"

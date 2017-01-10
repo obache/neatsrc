@@ -15,8 +15,6 @@ MAINTAINER=		pkgsrc-users@NetBSD.org
 COMMENT=		The enhanced FTP client in NetBSD
 LICENSE=		original-bsd
 
-BOOTSTRAP_PKG=		yes
-
 GNU_CONFIGURE=		yes
 CHECK_PERMS=		no
 

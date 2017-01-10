@@ -10,7 +10,5 @@ BUILDLINK_ABI_DEPENDS.libclucene?=	libclucene>=2.3.3.4nb7
 BUILDLINK_PKGSRCDIR.libclucene?=	../../textproc/libclucene
 .endif # LIBCLUCENE_BUILDLINK3_MK
 
-# boost-libs sets GCC_REQD, so we need to ensure we are in sync otherwise
-# we may end up with the wrong libstdc++ runtime.
-.include "../../devel/boost-libs/buildlink3.mk"
+.include "../../devel/boost-headers/buildlink3.mk"
 BUILDLINK_TREE+=	-libclucene

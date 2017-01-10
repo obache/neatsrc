@@ -1,6 +1,6 @@
 $NetBSD: patch-base_process.cc,v 1.4 2016/05/16 11:51:49 ryoon Exp $
 
---- base/process.cc.orig	2016-05-15 08:11:10.000000000 +0000
+--- base/process.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ base/process.cc
 @@ -46,12 +46,12 @@
  #include "base/mac_process.h"

@@ -46,7 +46,7 @@ MASTER_SITE_RUBY?= \
 	ftp://sunsite.dk/mirrors/ruby/${RUBY_SITE_SUBDIR}/ \
 	ftp://ruby.cdpa.nsysu.edu.tw/ruby/${RUBY_SITE_SUBDIR}/ \
 	ftp://ftp.chg.ru/pub/lang/ruby/${RUBY_SITE_SUBDIR}/ \
-	ftp://ftp.ring.gr.jp/pub/lang/ruby/${RUBY_SITE_SUBDIR}/ \
+	${MASTER_SITE_RING_SERVER:=lang/ruby/${RUBY_SITE_SUBDIR}/} \
 	ftp://ftp.iij.ad.jp/pub/lang/ruby/${RUBY_SITE_SUBDIR}/ \
 	ftp://ftp.idaemons.org/pub/mirror/ftp.ruby-lang.org/ruby/${RUBY_SITE_SUBDIR}/
 

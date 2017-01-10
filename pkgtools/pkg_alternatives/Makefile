@@ -33,8 +33,7 @@ SUBST_SED.vars+=	-e 's|@DBDIR@|${DBDIR}|g'
 SUBST_SED.vars+=	-e 's|@PKGMANDIR@|${PKGMANDIR}|g'
 SUBST_SED.vars+=	-e 's|@PKG_DBDIR@|${PKG_DBDIR}|g'
 SUBST_SED.vars+=	-e 's|@PREFIX@|${PREFIX}|g'
-SUBST_SED.vars+=	-e 's|@ROOT_USER@|${REAL_ROOT_USER}|g'
-SUBST_SED.vars+=	-e 's|@ID@|${ID}|g'
+SUBST_SED.vars+=	-e 's|@IS_ROOT_CMD@|${_IS_ROOT_CMD}|g'
 SUBST_SED.vars+=	-e 's|@SH@|${SH}|g'
 
 INSTALLATION_DIRS=	${PKGMANDIR}/man8 sbin

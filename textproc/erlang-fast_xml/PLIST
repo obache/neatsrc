@@ -1,5 +1,4 @@
-@comment $NetBSD: PLIST,v 1.3 2017/01/03 17:48:52 fhajny Exp $
-lib/erlang/lib/fast_xml
+@comment $NetBSD: PLIST,v 1.2 2016/08/12 09:34:59 fhajny Exp $
 lib/erlang/lib/fast_xml-${PKGVERSION}/ebin/fast_xml.app
 lib/erlang/lib/fast_xml-${PKGVERSION}/ebin/fast_xml.beam
 lib/erlang/lib/fast_xml-${PKGVERSION}/ebin/fxml.beam

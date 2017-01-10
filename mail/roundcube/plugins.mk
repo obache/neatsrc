@@ -4,7 +4,7 @@
 # plugin's PKGNAME
 PKGNAME=	${PHP_PKG_PREFIX}-roundcube-plugin-${PLUGIN}-${RC_VERS}
 
-DEPENDS+=	${PHP_PKG_PREFIX}-roundcube>=${VERS}:../../mail/roundcube
+DEPENDS+=	${PHP_PKG_PREFIX}-roundcube>=${RC_VERS}:../../mail/roundcube
 
 #
 # a few parameters
@@ -16,6 +16,14 @@ CONF_PLUGINS?=		${PLUGIN}
 # plugin directory
 INSTALLATION_DIRS=	${RCDIR}/${PLUGIN_DIR}
 
+.if !empty(CONF_PLUGINS)
+ROUNDCUBE_BUILD_DEF_CMD= \
+	${PKG_INFO} -Q @BUILD_DEF@ ${PHP_PKG_PREFIX}-roundcube 2>/dev/null \
+	|| {	cd ${.CURDIR}/../../mail/roundcube \
+		&& ${MAKE} ${MAKEFLAGS} show-var VARNAME=@BUILD_DEF@;}
+WWW_USER?=	${ROUNDCUBE_BUILD_DEF_CMD:S/@BUILD_DEF@/WWW_USER/:sh}
+WWW_GROUP?=	${ROUNDCUBE_BUILD_DEF_CMD:S/@BUILD_DEF@/WWW_GROUP/:sh}
+.endif
 
 .for f in ${CONF_PLUGINS}
 CONF_FILES_PERMS+=	${EGDIR}/plugins/${f}/config.inc.php \

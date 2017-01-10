@@ -30,6 +30,7 @@ CONFIGURE_ARGS+=	--enable-dri3
 CONFIGURE_ARGS+=	--enable-glx
 CONFIGURE_ARGS+=	--enable-glamor
 CONFIGURE_ARGS+=	--enable-present
+CPPFLAGS+=		-DHAVE_LIBDRM
 .else
 ###
 ### XXX Perhaps we should allow for a built-in glx without dri enabled?

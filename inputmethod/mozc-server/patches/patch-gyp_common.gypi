@@ -1,6 +1,6 @@
 $NetBSD: patch-gyp_common.gypi,v 1.8 2016/05/16 11:51:49 ryoon Exp $
 
---- gyp/common.gypi.orig	2016-05-15 08:11:11.000000000 +0000
+--- gyp/common.gypi.orig	2016-01-10 19:41:41.000000000 +0000
 +++ gyp/common.gypi
 @@ -158,7 +158,7 @@
          'compiler_host': 'clang',
@@ -11,15 +11,6 @@ $NetBSD: patch-gyp_common.gypi,v 1.8 2016/05/16 11:51:49 ryoon Exp $
          # enable_gtk_renderer represents if mozc_renderer is supported on Linux
          # or not.
          'compiler_target': 'clang',
-@@ -206,7 +206,7 @@
- 
-     # server_dir represents the directory where mozc_server is
-     # installed. This option is only for Linux.
--    'server_dir%': '/usr/lib/mozc',
-+    'server_dir%': '@PREFIX@/libexec',
- 
-     # Represents the directory where the source code of protobuf is
-     # extracted. This value is ignored when 'use_libprotobuf' is 1.
 @@ -415,7 +415,7 @@
            },
          },
@@ -47,14 +38,13 @@ $NetBSD: patch-gyp_common.gypi,v 1.8 2016/05/16 11:51:49 ryoon Exp $
          'ldflags': [
            '<@(linux_ldflags)',
          ],
-@@ -807,6 +807,22 @@
+@@ -807,6 +807,21 @@
            }],
          ],
        }],
 +      ['OS=="netbsd"', {
 +        'defines': [
 +          'OS_NETBSD',
-+          'MOZC_SERVER_DIRECTORY="<@(server_dir)"',
 +        ],
 +        'cflags': [
 +          '<@(gcc_cflags)',

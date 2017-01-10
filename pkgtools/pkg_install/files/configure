@@ -5267,7 +5267,7 @@ case $host in
 esac
 
 case $host in
-*-*-cygwin*|*-*-dragonfly* |*-*-freebsd*|*-*-linux*)
+*-*-cygwin*|*-*-dragonfly* |*-*-freebsd*|*-*-linux*|*-*-msys*)
 
 $as_echo "#define NUMERIC_VERSION_ONLY 1" >>confdefs.h
 

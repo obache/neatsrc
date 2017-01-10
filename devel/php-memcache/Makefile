@@ -3,7 +3,6 @@
 
 MODNAME=		memcache
 PECL_VERSION=		2.2.7
-PECL_LEGACY_VERSION_SCHEME=	yes
 CATEGORIES+=		devel
 COMMENT=		PHP extension for memcached
 

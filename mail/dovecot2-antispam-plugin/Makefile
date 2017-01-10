@@ -4,7 +4,7 @@ DISTNAME=		dovecot-antispam-plugin-20130429
 PKGREVISION=		4
 CATEGORIES=		mail
 MASTER_SITES=		http://olgeni.olgeni.com/~olgeni/distfiles/ \
-			http://distcache.FreeBSD.org/local-distfiles/olgeni/
+			${MASTER_SITE_FREEBSD_LOCAL:=olgeni/}
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		schmonz@NetBSD.org

@@ -1,0 +1,22 @@
+$NetBSD$
+
+--- configure.orig	2016-10-17 22:15:29.000000000 +0000
++++ configure
+@@ -17064,7 +17064,7 @@ $as_echo "#define HAVE_CLAMAV /**/" >>co
+ fi
+ 
+ 
+- if test "$have_clamav" = "yes"; then
++ if test "$with_clamav" != "no"; then
+   HAVE_CLAMAV_TRUE=
+   HAVE_CLAMAV_FALSE='#'
+ else
+@@ -22259,7 +22259,7 @@ fi
+ 
+ 
+     PERL="${PERL}"
+-    MAKE_MAKER_ARGS="PREFIX=${prefix}"
++    MAKE_MAKER_ARGS="INSTALLDIRS=vendor PREFIX=${prefix}"
+ 
+ 
+ _ACEOF

@@ -67,7 +67,6 @@ _BUILD_TARGETS+=	configure
 _BUILD_TARGETS+=	acquire-build-lock
 _BUILD_TARGETS+=	${_COOKIE.build}
 _BUILD_TARGETS+=	release-build-lock
-_BUILD_TARGETS+=	pkginstall
 
 .PHONY: build
 .if !target(build)

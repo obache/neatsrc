@@ -17,8 +17,6 @@ WRKSRC=		${WRKDIR}/FreeImage
 
 INSTALLATION_DIRS+= include lib
 
-PLIST_SUBST+=	PKGVERSION_NOREV=${PKGVERSION_NOREV}
-
 NOT_FOR_PLATFORM=Darwin-*-*
 
 .include "../../mk/bsd.pkg.mk"

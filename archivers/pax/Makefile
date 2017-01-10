@@ -11,7 +11,6 @@ HOMEPAGE=		http://www.NetBSD.org/
 COMMENT=		POSIX standard archiver with many extensions
 LICENSE=		2-clause-bsd AND modified-bsd AND public-domain
 
-BOOTSTRAP_PKG=	yes
 CHECK_PERMS=		no
 
 MAKE_ENV+=		CATMAN_SECTION_SUFFIX=${CATMAN_SECTION_SUFFIX:Q}

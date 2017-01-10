@@ -8,7 +8,6 @@ MAINTAINER=	tonnerre@NetBSD.org
 HOMEPAGE=	http://bcollect.ancient-solutions.com/
 COMMENT=	Incremental remote backup tool
 
-PKG_DESTDIR_SUPPORT=	destdir
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	lex yacc
 

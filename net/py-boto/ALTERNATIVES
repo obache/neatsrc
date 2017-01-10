@@ -3,7 +3,7 @@ bin/bundle_image bin/bundle_image@PYVERSSUFFIX@
 bin/cfadmin bin/cfadmin@PYVERSSUFFIX@
 bin/cq bin/cq@PYVERSSUFFIX@
 bin/cwutil bin/cwutil@PYVERSSUFFIX@
-in/dynamodb_dump bin/dynamodb_dump@PYVERSSUFFIX@
+bin/dynamodb_dump bin/dynamodb_dump@PYVERSSUFFIX@
 bin/dynamodb_load bin/dynamodb_load@PYVERSSUFFIX@
 bin/elbadmin bin/elbadmin@PYVERSSUFFIX@
 bin/fetch_file bin/fetch_file@PYVERSSUFFIX@

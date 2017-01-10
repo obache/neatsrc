@@ -25,8 +25,6 @@ ULIMIT_CMD_stacksize?=	ulimit -s `ulimit -H -s`
 ULIMIT_CMD_memorysize?=	ulimit -m `ulimit -H -m`
 ULIMIT_CMD_cputime?=	ulimit -t `ulimit -H -t`
 
-_OPSYS_EMULDIR.linux=	# empty
-
 _OPSYS_SYSTEM_RPATH?=		/lib:/usr/lib:/usr/lib/gcc47:/usr/lib/gcc50
 _OPSYS_LIB_DIRS?=		/lib /usr/lib
 _OPSYS_INCLUDE_DIRS?=		/usr/include

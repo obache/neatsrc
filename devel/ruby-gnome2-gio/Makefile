@@ -7,8 +7,6 @@ PKGREVISION=		1
 COMMENT=		Ruby binding of gio-2.0.x
 CATEGORIES=		devel
 
-CONFLICTS+=		ruby[0-9][0-9]-gnome2-gio-[0-9]*
-
 DEPENDS+=		${RUBY_PKGPREFIX}-gnome2-glib>=${VERSION}:../../devel/ruby-gnome2-glib
 DEPENDS+=		${RUBY_PKGPREFIX}-gnome2-gobject-introspection>=${VERSION}:../../devel/ruby-gnome2-gobject-introspection
 

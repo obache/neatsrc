@@ -158,6 +158,8 @@ AC_CHECK_FUNC(SHA512_File, [:], [
 	AC_LIBOBJ(sha2hl)
 ])
 
+AC_CHECK_FUNCS([pread pwrite])
+
 case $host in
 *-*-hpux*)
 	AC_DEFINE(BROKEN_PREAD)
@@ -190,7 +192,7 @@ AC_ARG_ENABLE([bsd-getopt],
 	[AS_HELP_STRING([--enable-bsd-getopt],
 			[force use of BSDish getopt implementation])])
 
-AC_CHECK_DECLS([optarg, optind, optreset], [:], [:], [
+AC_CHECK_DECLS([optarg, optind], [:], [:], [
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <unistd.h>
@@ -202,6 +204,15 @@ AC_CHECK_HEADERS([getopt.h],
 	    [ our_getopt_long=yes ], [#include <getopt.h>])],
 	[ our_getopt_long=yes ]
 )
+
+AC_CHECK_DECLS([optreset], [:], [:], [
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <unistd.h>
+	#ifdef HAVE_GETOPT_H
+	#include <getopt.h>
+	#endif
+])
 
 if test "$enable_bsd_getopt" = yes; then
 	if test "$ac_cv_have_decl_optreset" = no; then
@@ -433,11 +444,29 @@ AC_CHECK_FUNCS([getpassphrase getpgrp select])
 
 AC_CHECK_FUNC(getpgrp, [AC_FUNC_GETPGRP])
 
+AC_CHECK_TYPES([fsblkcnt_t, fsfilcnt_t], [], [], [[#ifdef HAVE_SYS_TYPES_H
+# include <sys/types.h>
+#endif
+#ifdef HAVE_SYS_STATVFS_H
+#include <sys/statvfs.h>
+#endif
+#ifdef HAVE_SYS_MOUNT_H
+#include <sys/mount.h>
+#endif
+#ifdef HAVE_SYS_STATFS_H
+#include <sys/statfs.h>
+#endif
+#ifdef HAVE_SYS_VFS_H
+#include <sys/vfs.h>
+#endif
+]])
 AC_CHECK_MEMBERS([struct statfs.f_flags], [:], [:],
 	[ #include <sys/statfs.h> ])
 AC_CHECK_MEMBERS([struct statfs.f_fsize], [:], [:],
 	[ #include <sys/statfs.h> ])
 AC_CHECK_MEMBERS([struct statfs.f_iosize], [:], [:],
+	[ #include <sys/statfs.h> ])
+AC_CHECK_MEMBERS([struct statfs.f_fsid.val], [:], [:],
 	[ #include <sys/statfs.h> ])
 AC_CHECK_MEMBERS([struct dirent.d_namlen, DIR.dd_fd], [:], [:],
 	[ #include <sys/types.h>

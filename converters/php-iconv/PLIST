@@ -1,0 +1,3 @@
+@comment $NetBSD$
+include/php/ext/iconv/config.h
+include/php/ext/iconv/php_iconv.h

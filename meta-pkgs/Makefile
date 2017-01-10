@@ -4,9 +4,9 @@
 COMMENT=	Collections of other packages
 
 SUBDIR+=	boost
-SUBDIR+=	bulk-large
-SUBDIR+=	bulk-medium
-SUBDIR+=	bulk-small
+#SUBDIR+=	bulk-large
+#SUBDIR+=	bulk-medium
+#SUBDIR+=	bulk-small
 SUBDIR+=	c++-gnome-bindings
 SUBDIR+=	compiz-fusion
 SUBDIR+=	courier

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.39 2017/01/04 21:17:56 roy Exp $
+# $NetBSD: Makefile,v 1.38 2015/08/18 07:31:13 wiz Exp $
 #
 
 DISTNAME=		pinfo-0.6.1
@@ -22,13 +22,17 @@ CONF_FILES=		${EGDIR}/pinforc ${PKG_SYSCONFDIR}/pinforc
 INFO_FILES=		yes
 INSTALL_MAKE_FLAGS=	${MAKE_FLAGS} sysconfdir=${EGDIR:Q}
 
-.include "../../devel/gettext-lib/buildlink3.mk"
+PKG_OPTIONS_VAR=	PKG_OPTIONS.pinfo
+PKG_SUPPORTED_OPTIONS=	pinfo-native-curses
 
-.include "../../mk/curses.buildlink3.mk"
-.if ${CURSES_TYPE} == "curses"
+.include "../../mk/bsd.options.mk"
+
+.if !empty(PKG_OPTIONS:Mpinfo-native-curses)
 CONFIGURE_ARGS+=	--with-vcurses
-.elif ${CURSES_TYPE} == "ncurses" || ${CURSES_TYPE} == "ncursesw"
-CONFIGURE_ARGS+=	--with-ncurses=${BUILDLINK_PREFIX.curses}
+.else
+.include "../../devel/ncurses/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-ncurses=${BUILDLINK_PREFIX.ncurses}
 .endif
 
+.include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

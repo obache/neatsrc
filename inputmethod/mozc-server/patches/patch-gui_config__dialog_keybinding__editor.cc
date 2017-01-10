@@ -1,6 +1,6 @@
 $NetBSD: patch-gui_config__dialog_keybinding__editor.cc,v 1.2 2016/05/16 11:51:49 ryoon Exp $
 
---- gui/config_dialog/keybinding_editor.cc.orig	2016-05-15 08:11:11.000000000 +0000
+--- gui/config_dialog/keybinding_editor.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ gui/config_dialog/keybinding_editor.cc
 @@ -37,7 +37,7 @@
  #include <windows.h>

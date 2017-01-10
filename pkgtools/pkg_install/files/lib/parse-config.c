@@ -128,7 +128,8 @@ parse_pkg_install_conf(void)
 	struct config_variable *var;
 	FILE *fp;
 	char *line, *value;
-	size_t len, var_len, i;
+	size_t siz, var_len, i;
+	ssize_t len;
 
 	fp = fopen(config_file, "r");
 	if (!fp) {
@@ -137,7 +138,8 @@ parse_pkg_install_conf(void)
 		return;
 	}
 
-	while ((line = fgetln(fp, &len)) != (char *) NULL) {
+	line = NULL;
+	while ((len = getline(&line, &siz, fp)) != -1) {
 		if (line[len - 1] == '\n')
 			--len;
 		for (i = 0; (var = &config_variables[i])->name != NULL; ++i) {
@@ -158,6 +160,7 @@ parse_pkg_install_conf(void)
 			break;
 		}
 	}
+	free(line);
 
 	for (i = 0; (var = &config_variables[i])->name != NULL; ++i) {
 		if (config_tmp_variables[i] == NULL)

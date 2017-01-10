@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.3 2017/01/04 18:16:32 roy Exp $
+# $NetBSD: options.mk,v 1.2 2013/10/16 20:26:23 roy Exp $
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.tig
@@ -11,5 +11,9 @@ PKG_SUGGESTED_OPTIONS+=	wide-curses
 
 .include "../../mk/bsd.options.mk"
 
-USE_CURSES=		getsyx
-.include "../../mk/curses.buildlink3.mk"
+# NetBSD curses does not implemet getsyx or setsyx
+.if !empty(PKG_OPTIONS:Mwide-curses)
+.  include "../../devel/ncursesw/buildlink3.mk"
+.else
+.  include "../../devel/ncurses/buildlink3.mk"
+.endif

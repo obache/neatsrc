@@ -1,0 +1,5 @@
+@comment $NetBSD$
+bin/dvplay
+bin/dvrecv
+bin/dvsave
+bin/dvsend

@@ -2,7 +2,9 @@
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.tin
 PKG_SUPPORTED_OPTIONS=		icu inet6 tin-use-inn-spool
-PKG_SUGGESTED_OPTIONS=		inet6
+PKG_OPTIONS_OPTIONAL_GROUPS=	display
+PKG_OPTIONS_GROUP.display=	curses ncurses ncursesw
+PKG_SUGGESTED_OPTIONS=		curses inet6
 # untested
 #PKG_SUPPORTED_OPTIONS+=	socks
 

@@ -13,7 +13,6 @@ COMMENT=		DNS performance and load tester
 USE_PKGLOCALEDIR=	yes
 GNU_CONFIGURE=		yes
 BUILD_TARGET=		queryperf
-USE_PKGINSTALL=		yes
 
 EGDIR=			share/examples/queryperf
 INSTALLATION_DIRS+=	bin share/doc/queryperf ${EGDIR}

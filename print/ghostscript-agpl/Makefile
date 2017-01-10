@@ -89,6 +89,7 @@ post-extract:
 
 post-install:
 	${LN} -sf gsc ${DESTDIR}${PREFIX}/bin/gs
+	${INSTALL_DATA} ${WRKSRC}/base/gserrors.h ${DESTDIR}${PREFIX}/include/ghostscript/
 
 .include "../../devel/libidn/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

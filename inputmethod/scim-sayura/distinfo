@@ -1,0 +1,7 @@
+$NetBSD$
+
+SHA1 (scim-sayura-0.3.3.tar.gz) = 71b69503fd2940fa2e374e0450bbf81f8a7c1eb3
+RMD160 (scim-sayura-0.3.3.tar.gz) = d88888d5bf2894fd628d02748552915f0a8af37b
+SHA512 (scim-sayura-0.3.3.tar.gz) = bf97b8d82e0e193a94698dfe7d3c9b1256e928a2082dc0ca6be328ed56409a05d38ba04254617b3800116514c1c8fdbfca869f2aa3f2f005505a4e873d2b90bb
+Size (scim-sayura-0.3.3.tar.gz) = 380147 bytes
+SHA1 (patch-src_scim__sinhala__imengine.cpp) = 0b41013b974da1a859d0d3880e6582d4346ed5d7

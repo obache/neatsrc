@@ -5,3 +5,4 @@ RMD160 (suikyo-2.1.0.tar.gz) = fb55a82666d789e3f2e7b63a8a69f4b4429d06cf
 SHA512 (suikyo-2.1.0.tar.gz) = f27d0213d5f0ac5249820e2119f0df389be955988149dc6d1f53d9d4af63209e85d265a702927a66fef217c019eae5f3077d662394fc74922497f5bd9d18b799
 Size (suikyo-2.1.0.tar.gz) = 202155 bytes
 SHA1 (patch-aa) = 3dc948215fa1c5c2b69a6ebaecae3dcc5d2520c7
+SHA1 (patch-ruby_src_suikyo.rb) = 330601e4aa8697bfae05cebb769f186d73e7b903

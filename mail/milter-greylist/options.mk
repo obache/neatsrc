@@ -3,7 +3,8 @@
 PKG_OPTIONS_VAR=		PKG_OPTIONS.milter-greylist
 PKG_OPTIONS_REQUIRED_GROUPS=	mta
 PKG_OPTIONS_GROUP.mta=		postfix-milter sendmail-milter
-PKG_SUPPORTED_OPTIONS=		curl dnsrbl drac ldap p0f spamassassin spf
+PKG_SUPPORTED_OPTIONS=		curl dnsrbl dkim drac geoip ldap p0f \
+				spamassassin spf
 PKG_SUGGESTED_OPTIONS=		dnsrbl p0f sendmail-milter spamassassin spf
 
 .include "../../mk/bsd.options.mk"
@@ -18,10 +19,19 @@ CONFIGURE_ARGS+=	--with-libcurl=${BUILDLINK_PREFIX.curl}
 .endif
 
 ###
+### GeoIP support
+###
+.if !empty(PKG_OPTIONS:Mgeoip)
+.include "../../net/GeoIP/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-libGeoIP=${BUILDLINK_PREFIX.GeoIP}
+.endif
+
+###
 ### DNS Realtime Black List
 ###
 .if !empty(PKG_OPTIONS:Mdnsrbl)
 CONFIGURE_ARGS+=	--enable-dnsrbl --with-thread-safe-resolver
+.include "../../mk/resolv.buildlink3.mk"
 .endif
 
 ###
@@ -52,6 +62,15 @@ CONFIGURE_ARGS+=	--with-openldap=${BUILDLINK_PREFIX.openldap-client}
 .endif
 
 ###
+### DKIM support
+###
+.if !empty(PKG_OPTIONS:Mdkim)
+.include "../../mail/opendkim/buildlink3.mk"
+
+CONFIGURE_ARGS+=	--with-libopendkim=${BUILDLINK_PREFIX.opendkim}
+.endif
+
+###
 ### P0f support
 ###
 .if !empty(PKG_OPTIONS:Mp0f)
@@ -66,26 +85,25 @@ CONFIGURE_ARGS+=	--enable-postfix
 
 POSTFIX_QUEUE_DIR?=	${VARBASE}/spool/postfix
 
-PKG_GROUPS?=		postfix
-PKG_USERS?=		postfix:postfix
 PKG_GECOS.postfix=	Postfix User
 PKG_HOME.postfix=	${POSTFIX_QUEUE_DIR}
 
-MILTER_USER=		postfix
-MILTER_GROUP=		postfix
+MILTER_USER?=		postfix
+MILTER_GROUP?=		postfix
 .endif
 
 ###
 ### Sendmail support
 ###
 .if !empty(PKG_OPTIONS:Msendmail-milter)
-PKG_GROUPS=		smmsp
-PKG_USERS=		smmsp:smmsp
 PKG_GECOS.smmsp=	Sendmail Message Submission Program
 
-MILTER_USER=		smmsp
-MILTER_GROUP=		smmsp
+MILTER_USER?=		smmsp
+MILTER_GROUP?=		smmsp
 .endif
+
+PKG_GROUPS+=		${MILTER_GROUP}
+PKG_USERS+=		${MILTER_USER}:${MILTER_GROUP}
 
 ###
 ### SpamAssassin support

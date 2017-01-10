@@ -153,8 +153,8 @@ PRINT_PLIST_AWK+=	/lib\/${PKGNAME_NOREV}\/package\.conf\.d/ { next; }
 # feature has seemingly bitrotted.
 .include "../../mk/bsd.prefs.mk"
 GENERATE_PLIST+= \
-	cd ${DESTDIR}${PREFIX} && \
-		${FIND} lib/${PKGNAME_NOREV}/package.conf.d -xdev -newer ${_COOKIE.extract} \! -type d -print | ${SORT} -d;
+	cd ${DESTDIR:Q}${PREFIX:Q} && \
+		${FIND} lib/${PKGNAME_NOREV}/package.conf.d -xdev \! -type d -print | ${SORT} -d;
 
 # -----------------------------------------------------------------------------
 # Sanity checks

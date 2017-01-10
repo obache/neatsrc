@@ -1,6 +1,6 @@
 $NetBSD: patch-ipc_unix__ipc.cc,v 1.4 2016/05/16 11:51:49 ryoon Exp $
 
---- ipc/unix_ipc.cc.orig	2016-05-15 08:11:11.000000000 +0000
+--- ipc/unix_ipc.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ ipc/unix_ipc.cc
 @@ -28,7 +28,7 @@
  // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

@@ -1,0 +1,65 @@
+#! /bin/sh
+
+read_rpath_needed_from_obj ()
+{
+	${readelf} -Wd "$1" | ${awk} '
+	{
+		if ($2 == "(NEEDED)") {
+			sub("^[[:space:]]*0[xX][[:xdigit:]]+[[:space:]]+\\(NEEDED\\)[[:space:]]+Shared library: \\[", "")
+			num ++
+			libs[num] = substr($0, 1, length($0) - 1)
+		}
+		if ($2 == "(RPATH)") {
+			sub("^[[:space:]]*0[xX][[:xdigit:]]+[[:space:]]+\\(RPATH\\)[[:space:]]+Library rpath: \\[", "")
+			rpath = substr($0, 1, length($0) - 1)
+		}
+		if ($2 == "(RUNPATH)") {
+			sub("^[[:space:]]*0[xX][[:xdigit:]]+[[:space:]]+\\(RUNPATH\\)[[:space:]]+Library runpath: \\[", "")
+			runpath = substr($0, 1, length($0) - 1)
+		}
+	}
+	END {
+		#if (length(runpath) > 0) {
+		#	rpath = runpath;
+		#}
+		print rpath;
+		for(x = 1; x <= num; x++) {
+			print libs[x];
+		}
+	}'
+}
+
+list_libs ()
+{
+	read rpath
+	if test -n "$system_rpath"; then
+		if test -n "$rpath"; then
+			rpath="$rpath:$system_rpath"
+		else
+			rpath="$system_rpath"
+		fi
+	fi
+	while read f; do
+		IFS=':'
+		for r in $rpath; do
+			if test -n "$destdir" -a -e "$destdir$r/$f"; then
+				break;
+			fi
+			if test -e "$cross_destdir$r/$f"; then
+				echo "$r/$f"
+				break;
+			fi
+		done
+	done
+}
+
+awk=${AWK:-awk}
+readelf=${READELF:-readelf}
+system_rpath=${SYSTEM_RPATH}
+destdir=${DESTDIR}
+cross_destdir=${CROSS_DESTDIR}
+
+while test $# -gt 0; do
+	read_rpath_needed_from_obj "$1" | list_libs
+	shift
+done

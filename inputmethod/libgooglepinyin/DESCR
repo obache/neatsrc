@@ -1,0 +1,13 @@
+A fork from google pinyin on android.
+
+This is not a long term project, it only began as some kind of prove concept
+project.
+
+This project is only forked form out dated code of Google Pinyin on Android
+(Not the desktop version), and Google no longer provides up to date code for it
+since 2009.
+
+If you are interested in full featured pinyin input method, please try libpinyin
+or sunpinyin, they are both supported by fcitx and ibus.  They use more advanced
+algorithm (2-gram vs thie project's unigream) and support more feature, like
+Shuangpin, Zhuyin, Fuzzy Pinyin and so on.

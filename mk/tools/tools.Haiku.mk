@@ -120,6 +120,9 @@ TOOLS_PLATFORM.openssl?=	/boot/common/bin/openssl
 #TOOLS_PLATFORM.patch?=		/bin/patch
 TOOLS_PLATFORM.printf?=		/bin/printf
 TOOLS_PLATFORM.pwd?=		/bin/pwd
+.if exists(/bin/readelf)
+TOOLS_PLATFORM.readelf?=	/bin/readelf
+.endif
 TOOLS_PLATFORM.readlink?=	/bin/readlink
 TOOLS_PLATFORM.rm?=		/bin/rm
 TOOLS_PLATFORM.rmdir?=		/bin/rmdir
@@ -150,6 +153,7 @@ TOOLS_PLATFORM.tr?=		/bin/tr
 TOOLS_PLATFORM.true?=		true			# shell builtin
 TOOLS_PLATFORM.tsort?=		/bin/tsort
 TOOLS_PLATFORM.uniq?=		/bin/uniq
+TOOLS_PLATFORM.unlink?=		/bin/unlink
 TOOLS_PLATFORM.unzip?=		/bin/unzip
 TOOLS_PLATFORM.wc?=		/bin/wc
 TOOLS_PLATFORM.wget?=		/bin/wget

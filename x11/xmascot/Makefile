@@ -16,6 +16,12 @@ USE_IMAKE=	yes
 
 INSTALL_MAKE_FLAGS+=	LANG=ja_JP.eucJP
 
-.include "../../x11/libXaw/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
+.include "../../mk/xaw.buildlink3.mk"
+.if ${XAW_TYPE} == "3d" || {XAW_TYPE} == "xpm"
+SUBST_CLASSES+=		xaw
+SUBST_STAGE.xaw=	pre-configure
+SUBST_FILES.xaw=	config.tmpl
+SUBST_SED.xaw=		-e 's/undef USE_XAW3D/define USE_XAW3D/'
+.endif
 .include "../../mk/bsd.pkg.mk"

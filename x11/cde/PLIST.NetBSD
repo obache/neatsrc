@@ -1,0 +1,7 @@
+@comment $NetBSD$
+dt/config/xfonts/ja/fonts.alias
+dt/config/xfonts/ja_JP.ISO-2022-JP
+dt/config/xfonts/ja_JP.ISO-2022-JP-2
+dt/config/xfonts/ja_JP.SJIS
+dt/config/xfonts/ja_JP.UTF-8
+dt/config/xfonts/ja_JP.eucJP

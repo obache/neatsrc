@@ -1,0 +1,12 @@
+$NetBSD$
+
+--- lib/csa/Imakefile.orig	2015-05-09 23:09:11.000000000 +0000
++++ lib/csa/Imakefile
+@@ -95,6 +95,7 @@ reparser.o:	reparser.c
+ rtable2_clnt.c rtable3_clnt.c rtable4_clnt.c cm_clnt.c:
+ 	$(RM) $@
+ 	cat EUSinclude > $@
++	echo '#include "string.h"' > $@
+ 	rpcgen -l $(@:_clnt.c=.x) | sed -f namechange1.sed | sed -f namechange2.sed >> $@
+ 
+ rtable2_xdr.c rtable3_xdr.c rtable4_xdr.c agent_xdr.c:

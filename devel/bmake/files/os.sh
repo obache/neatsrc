@@ -44,7 +44,7 @@ MACHINE_ARCH=`uname -p 2>/dev/null || echo $MACHINE`
 # there is at least one case of `uname -p` outputting
 # a bunch of usless drivel
 case "$MACHINE_ARCH" in
-*[!A-Za-z0-9_-]*) MACHINE_ARCH="$MACHINE";;
+unknown|*[!A-Za-z0-9_-]*) MACHINE_ARCH="$MACHINE";;
 esac
         
 # we need this here, and it is not always available...
@@ -191,6 +191,27 @@ Haiku)
 	BeMac)	MACHINE_ARCH=powerpc;;
 	BePC)	MACHINE_ARCH=i386;;
 	esac
+	;;
+CYGWIN_*)
+	case $MACHINE in
+	i?86)	MACHINE_ARCH=i386;;
+	esac
+	;;
+MSYS_*)
+	case $MACHINE in
+	i?86)	MACHINE_ARCH=i386;;
+	esac
+	;;
+GNU/kFreeBSD)
+	MACHINE_ARCH=$MACHINE
+	;;
+FreeMiNT)
+	MACHINE_ARCH=m68k
+	;;
+SCO_SV)
+	OSREL=`uname -v`
+	OSMAJOR=`IFS=.; set $OSREL; echo $1`
+	MACHINE_ARCH=`uname -m`
 	;;
 esac
 

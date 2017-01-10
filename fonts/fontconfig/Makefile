@@ -39,11 +39,14 @@ SUBST_SED.visibility+=		-e 's/, visibility("default")//g'
 
 .include "../../mk/bsd.prefs.mk"
 
-ADDFONTS=	${PREFIX}/share/fonts/urw,${PREFIX}/share/ghostscript/fonts,${PREFIX}/share/fonts/X11
-.if ${X11BASE} != ${LOCALBASE}
+ADDFONTS=	${PREFIX}/share/fonts/urw,${PREFIX}/share/ghostscript/fonts
+.if ${X11_TYPE} != "modular"
+.  if exists(${X11BASE}/lib/X11/fonts)
 ADDFONTS:=	${X11BASE}/lib/X11/fonts,${ADDFONTS}
-.else
-ADDFONTS:=	${LOCALBASE}/share/fonts/X11,${ADDFONTS}
+.  endif
+.  if exists(${X11BASE}/share/fonts/X11)
+ADDFONTS:=	${X11BASE}/share/fonts/X11,${ADDFONTS}
+.  endif
 .endif
 
 .if ${OPSYS} == "Darwin"

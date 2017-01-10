@@ -124,15 +124,19 @@ _UNPRIVILEGED+=		user-destdir
 
 .if !empty(_UNPRIVILEGED)
 
+_WHOAMI_CMD?=	${_OPSYS_WHOAMI_CMD:U${ID} -n -u}
+_GROUP_CMD?=	${_OPSYS_GROUP_CMD:U${ID} -n -g}
+_GROUPS_CMD?=	${_OPSYS_GROUPS_CMD:U${ID} -n -G}
+
 # Guess which user/group has to be used.
 .  if !defined(UNPRIVILEGED_USER) || empty(UNPRIVILEGED_USER)
-UNPRIVILEGED_USER!=	${ID} -n -u
+UNPRIVILEGED_USER!=	${_WHOAMI_CMD}
 .  endif
 .  if !defined(UNPRIVILEGED_GROUP) || empty(UNPRIVILEGED_GROUP)
-UNPRIVILEGED_GROUP!=	${ID} -n -g
+UNPRIVILEGED_GROUP!=	${_GROUP_CMD}
 .  endif
 .  if !defined(UNPRIVILEGED_GROUPS) || empty(UNPRIVILEGED_GROUPS)
-UNPRIVILEGED_GROUPS!=	${ID} -n -G
+UNPRIVILEGED_GROUPS!=	${_GROUPS_CMD}
 .  endif
 
 .  if empty(_UNPRIVILEGED:Munprivileged) && !empty(_UNPRIVILEGED:Muser-destdir)

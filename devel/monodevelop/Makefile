@@ -46,7 +46,10 @@ SUBST_MESSAGE.fix-mcs=	Fix compiler name
 SUBST_FILES.fix-mcs=	configure
 SUBST_SED.fix-mcs=	-e 's,gmcs,mcs,'
 
-.include "../../databases/shared-mime-info/buildlink3.mk"
+CONFIGURE_ARGS+=	--disable-update-mimedb
+CONFIGURE_ARGS+=	--disable-update-desktopdb
+
+.include "../../databases/shared-mime-info/mimedb.mk"
 .include "../../devel/mono-addins/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/libgdiplus/buildlink3.mk"

@@ -1,14 +1,15 @@
-# $NetBSD: Makefile,v 1.7 2017/01/04 21:20:16 abs Exp $
+# $NetBSD: Makefile,v 1.6 2009/02/13 21:47:02 abs Exp $
 
-DISTNAME=	mrstat-1.21
+DISTNAME=	mrstat-1.20
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_GITHUB:=abs0/}
+MASTER_SITES=	http://mrstat.googlecode.com/files/
+EXTRACT_SUFX=	.tbz
 
 MAINTAINER=	abs@absd.org
-HOMEPAGE=	https://github.com/abs0/mrstat
+HOMEPAGE=	http://code.google.com/p/mrstat/
 COMMENT=	Track load and number of users on specified hosts
-LICENSE=	public-domain
+LICENSE=	modified-bsd
 
-MAKE_ENV+=	SYSCONFDIR=${PKG_SYSCONFDIR}
+MAKE_ENV+=	SYSCONFDIR=${PKG_SYSCONFDIR:Q}
 
 .include "../../mk/bsd.pkg.mk"

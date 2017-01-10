@@ -132,4 +132,8 @@ SUBST_SED.icu-config+=	-e '/l$${ICUPREFIX}/ s/$${ICULIBSUFFIX_VERSION}//g'
 
 .endif
 
+.if !empty(_USE_RPATH:M[Yy][Ee][Ss])
+CONFIGURE_ARGS+=	--enable-rpath
+.endif
+
 .include "../../mk/bsd.pkg.mk"

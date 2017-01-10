@@ -107,6 +107,12 @@
 /* Define to 1 if you have the `fparseln' function. */
 #undef HAVE_FPARSELN
 
+/* Define to 1 if the system has the type `fsblkcnt_t'. */
+#undef HAVE_FSBLKCNT_T
+
+/* Define to 1 if the system has the type `fsfilcnt_t'. */
+#undef HAVE_FSFILCNT_T
+
 /* Define to 1 if the system has the type `fsid_t'. */
 #undef HAVE_FSID_T
 
@@ -251,6 +257,9 @@
 /* Define to 1 if you have the <poll.h> header file. */
 #undef HAVE_POLL_H
 
+/* Define to 1 if you have the `pread' function. */
+#undef HAVE_PREAD
+
 /* Define to 1 if *printf() uses %qd to print `long long' (otherwise uses
    %lld). */
 #undef HAVE_PRINTF_QD
@@ -263,6 +272,9 @@
 
 /* Define to 1 if you have the <pwd.h> header file. */
 #undef HAVE_PWD_H
+
+/* Define to 1 if you have the `pwrite' function. */
+#undef HAVE_PWRITE
 
 /* Define to 1 if you have the <regex.h> header file. */
 #undef HAVE_REGEX_H
@@ -377,6 +389,9 @@
 
 /* Define to 1 if `f_flags' is a member of `struct statfs'. */
 #undef HAVE_STRUCT_STATFS_F_FLAGS
+
+/* Define to 1 if `f_fsid.val' is a member of `struct statfs'. */
+#undef HAVE_STRUCT_STATFS_F_FSID_VAL
 
 /* Define to 1 if `f_fsize' is a member of `struct statfs'. */
 #undef HAVE_STRUCT_STATFS_F_FSIZE

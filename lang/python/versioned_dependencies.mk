@@ -4,7 +4,7 @@
 # package is used as dependency, depending on the Python version
 # used.
 #
-# === User-settable variables ===
+# === Package-settable variables ===
 #
 # PYTHON_VERSIONED_DEPENDENCIES
 #       The Python package which should be added as a dependency.
@@ -23,7 +23,6 @@ _SUPPORTED_PACKAGES+=	dateutil time/py-dateutil time/py-dateutil
 _SUPPORTED_PACKAGES+=	dialog devel/py-dialog2 devel/py-dialog
 _SUPPORTED_PACKAGES+=	ephem math/py-ephem math/py-ephem3
 _SUPPORTED_PACKAGES+=	flup www/py-flup www/py-flup3
-_SUPPORTED_PACKAGES+=	gobject devel/py-gobject devel/py-gobject3
 _SUPPORTED_PACKAGES+=	jsonlib textproc/py-jsonlib textproc/py-jsonlib3
 _SUPPORTED_PACKAGES+=	python-digest www/py-python-digest www/py-python3-digest
 

@@ -22,8 +22,6 @@ INSTALLATION_DIRS=	\
 	lib/java/flexdock/lib/jmf/lib \
 	share/examples/flexdock
 
-PLIST_SUBST+=	PKGVERSION_NOREV=${PKGVERSION_NOREV}
-
 do-build:
 	${MKDIR} ${WRKSRC}
 	printf "#! ${SH}\\nexec ${PKG_JAVA_HOME}/bin/java -jar ${PREFIX}/lib/java/flexdock/flexdock-demo-${PKGVERSION_NOREV}.jar \"\$$@\"\\n" > ${WRKDIR}/flexdock.sh

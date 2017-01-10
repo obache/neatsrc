@@ -294,11 +294,11 @@ sub generate_initial_package($) {
 	}
 
 	if (!$found) {
-		if ($url =~ qr"^http://([^.]*).googlecode\.com/files/(.*$)") {
+		if ($url =~ qr"^https://([^.]*).googlecode\.com/files/(.*$)") {
 			my $pkgbase = $1;
 			$distfile = $2;
-			$master_sites = "http://${pkgbase}.googlecode.com/files/";
-			$homepage = "http://code.google.com/p/${pkgbase}/";
+			$master_sites = "https://${pkgbase}.googlecode.com/files/";
+			$homepage = "https://code.google.com/p/${pkgbase}/";
 			$found = true;
 		}
 	}

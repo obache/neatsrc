@@ -16,5 +16,13 @@ SUBST_FILES.iconv=	glib/configure
 SUBST_SED.iconv=	-e 's,libiconv_open,iconv_open,g'
 .  endif
 .endif
+#
+# GLib2>=2.36 depends on builtin functions which enabled with i486 and
+# later with GCC.
+#
+.if !empty(MACHINE_PLATFORM:MNetBSD-[0-5]*-i386)
+GNU_ARCH.i386=		i486
+CFLAGS+=		-march=i486
+.endif
 
 .endif

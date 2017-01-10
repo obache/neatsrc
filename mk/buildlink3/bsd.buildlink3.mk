@@ -453,7 +453,7 @@ BUILDLINK_LIBS+=	${_flag_}
      !empty(BUILDLINK_AUTO_DIRS.${_pkg_}:M[yY][eE][sS])
 .  if !empty(BUILDLINK_INCDIRS.${_pkg_})
 .    for _dir_ in ${BUILDLINK_INCDIRS.${_pkg_}:S/^/${BUILDLINK_PREFIX.${_pkg_}}\//}
-.      if exists(${_dir_})
+.      if exists(${_dir_}) && empty(COMPILER_INCLUDE_DIRS:M${_dir_})
 .        if empty(BUILDLINK_CPPFLAGS:M-I${_dir_})
 BUILDLINK_CPPFLAGS+=	-I${_dir_}
 .        endif
@@ -462,7 +462,7 @@ BUILDLINK_CPPFLAGS+=	-I${_dir_}
 .  endif
 .  if !empty(BUILDLINK_LIBDIRS.${_pkg_})
 .    for _dir_ in ${BUILDLINK_LIBDIRS.${_pkg_}:S/^/${BUILDLINK_PREFIX.${_pkg_}}\//}
-.      if exists(${_dir_})
+.      if exists(${_dir_}) && empty(COMPILER_LIB_DIRS:M${_dir_})
 .        if empty(BUILDLINK_LDFLAGS:M-L${_dir_})
 BUILDLINK_LDFLAGS+=	-L${_dir_}
 .        endif
@@ -471,7 +471,7 @@ BUILDLINK_LDFLAGS+=	-L${_dir_}
 .  endif
 .  if !empty(BUILDLINK_RPATHDIRS.${_pkg_})
 .    for _dir_ in ${BUILDLINK_RPATHDIRS.${_pkg_}:S/^/${BUILDLINK_PREFIX.${_pkg_}}\//}
-.      if exists(${_dir_})
+.      if exists(${_dir_}) && empty(SYSTEM_DEFAULT_RPATH:S/:/ /g:M${_dir_})
 .        if empty(BUILDLINK_LDFLAGS:M${COMPILER_RPATH_FLAG}${_dir_})
 BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${_dir_}
 .        endif
@@ -480,28 +480,6 @@ BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${_dir_}
 .  endif
 . endif
 .endfor
-#
-# Add the default view library directories to the runtime library search
-# path so that wildcard dependencies on library packages can always be
-# fulfilled through the default view.
-#
-.for _pkg_ in ${_BLNK_PACKAGES}
-.  if !empty(BUILDLINK_RPATHDIRS.${_pkg_})
-.    for _dir_ in ${BUILDLINK_RPATHDIRS.${_pkg_}:S/^/${LOCALBASE}\//}
-.      if exists(${_dir_})
-.        if empty(BUILDLINK_LDFLAGS:M${COMPILER_RPATH_FLAG}${_dir_})
-BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${_dir_}
-.        endif
-.      endif
-.    endfor
-.  endif
-.endfor
-#
-# Ensure that ${LOCALBASE}/lib is in the runtime library search path.
-#
-.if empty(BUILDLINK_LDFLAGS:M${COMPILER_RPATH_FLAG}${LOCALBASE}/lib)
-BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${LOCALBASE}/lib
-.endif
 #
 # Add the X11 library directory to the library search paths if the package
 # uses X11 and we are not using modular Xorg.
@@ -598,6 +576,9 @@ buildlink-directories:
 #	sed arguments used to transform the name of the source filename
 #	into a destination filename, e.g. -e "s|/curses.h|/ncurses.h|g"
 #
+# BUILDLINK_FNAME_ALIASES.<pkg>
+#	list of source and destination filename alias pairs.
+#
 .for _pkg_ in ${_BLNK_PACKAGES}
 _BLNK_COOKIE.${_pkg_}=		${BUILDLINK_DIR}/.buildlink_${_pkg_}_done
 
@@ -621,10 +602,10 @@ buildlink-${_pkg_}-cookie:
 
 BUILDLINK_CONTENTS_FILTER.${_pkg_}?=					\
 	${EGREP} '(include.*/|\.h$$|\.idl$$|\.pc$$|/lib[^/]*\.[^/]*$$)'
-# XXX: Why not pkg_info -qL?
+
 BUILDLINK_FILES_CMD.${_pkg_}?=						\
-	${_BLNK_PKG_INFO.${_pkg_}} -f ${BUILDLINK_PKGNAME.${_pkg_}} |	\
-	${SED} -n '/File:/s/^[ 	]*File:[ 	]*//p' |		\
+	${_BLNK_PKG_INFO.${_pkg_}} -qL ${BUILDLINK_PKGNAME.${_pkg_}} |	\
+	${SED} -e 's,^${BUILDLINK_PREFIX.${_pkg_}}/,,' |		\
 	${BUILDLINK_CONTENTS_FILTER.${_pkg_}} | ${CAT}
 
 # _BLNK_FILES_CMD.<pkg> combines BUILDLINK_FILES_CMD.<pkg> and
@@ -691,6 +672,15 @@ ${_BLNK_COOKIE.${_pkg_}}:
 			esac;						\
 		fi;							\
 		${ECHO} "$$msg" >> ${.TARGET};				\
+	done;								\
+	set -- dummy ${BUILDLINK_FNAME_ALIASES.${_pkg_}}; shift;	\
+	while [ $$# -gt 0 ]; do						\
+		[ $$# -ge 2 ] || ${FAIL_MSG} BUILDLINK_FNAME_ALIASES.${_pkg_} must be pairs; \
+		src=${BUILDLINK_DIR}/$$1;				\
+		[ -e "$$src" ] || ${FAIL_MSG} missing $$src;		\
+		dst=${BUILDLINK_DIR}/$$2;				\
+		shift 2;						\
+		[ -e "$$dst" ] || ${LN} -sf "$$src" "$$dst";		\
 	done
 
 # _BLNK_LT_ARCHIVE_FILTER.${_pkg_} is a command-line filter used in
@@ -732,15 +722,14 @@ _BLNK_LT_ARCHIVE_FILTER_SED_SCRIPT.${_pkg_}+=				\
 	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${_dir_}/\.\([${_BLNK_SEP}]\),\\1\\2,g"
 .endfor
 #
-# Modify the dependency_libs line by removing -L${LOCALBASE}/* and
-# -L${X11BASE}/*, since those are automatically added by the buildlink3.mk
+# Modify the dependency_libs line by removing -L* flags already in
+# BUILDLINK_LDFLAGS, those are automatically added by the buildlink3.mk
 # files.
 #
+.for _ldflags_ in ${BUILDLINK_LDFLAGS:M-L*}
 _BLNK_LT_ARCHIVE_FILTER_SED_SCRIPT.${_pkg_}+=				\
-	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${LOCALBASE}/[^${_BLNK_SEP}]*\([${_BLNK_SEP}]\),\\1\\2,g" \
-	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${LOCALBASE}/[^${_BLNK_SEP}]*\([${_BLNK_SEP}]\),\\1\\2,g" \
-	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${X11BASE}/[^${_BLNK_SEP}]*\([${_BLNK_SEP}]\),\\1\\2,g" \
-	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)-L${X11BASE}/[^${_BLNK_SEP}]*\([${_BLNK_SEP}]\),\\1\\2,g"
+	-e "/^dependency_libs=/s,\([${_BLNK_SEP}]\)${_ldflags_}\([${_BLNK_SEP}]\),\\1\\2,g"
+.endfor
 #
 # Unmangle.
 #
@@ -911,12 +900,7 @@ _BLNK_UNPROTECT_DIRS+=	${BUILDLINK_DIR}
 _BLNK_PHYSICAL_PATH_VARS?=	WRKDIR LOCALBASE
 .for _var_ in ${_BLNK_PHYSICAL_PATH_VARS}
 .  if !defined(_BLNK_PHYSICAL_PATH.${_var_})
-_BLNK_PHYSICAL_PATH.${_var_}!=						\
-	if [ -d ${${_var_}} ]; then					\
-		cd ${${_var_}}; ${PWD_CMD};				\
-	else								\
-		${ECHO} ${${_var_}};					\
-	fi
+_BLNK_PHYSICAL_PATH.${_var_}= 	${${_var_}:tA}
 .  endif
 MAKEVARS+=	_BLNK_PHYSICAL_PATH.${_var_}
 .endfor

@@ -1,3 +1,2 @@
 @comment $NetBSD: PLIST,v 1.1 2016/03/12 09:11:01 fhajny Exp $
 include/php/ext/raphf/php_raphf.h
-include/php/ext/raphf/php_raphf_api.h

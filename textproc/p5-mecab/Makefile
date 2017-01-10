@@ -6,6 +6,7 @@ DISTNAME=		mecab-perl-${MECAB_VERSION}
 PKGNAME=		p5-mecab-${MECAB_VERSION}
 PKGREVISION=		5
 CATEGORIES+=		perl5
+MASTER_SITES=		-https://drive.google.com/uc?id=0B4y35FiV1wh7M1pQam5XQjBLcU0&export=download
 
 COMMENT=		MeCab perl module
 LICENSE=		gnu-gpl-v2 OR gnu-lgpl-v2.1 OR modified-bsd

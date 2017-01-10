@@ -1,18 +1,17 @@
-# $NetBSD: Makefile,v 1.4 2017/01/03 17:19:11 roy Exp $
+# $NetBSD: Makefile,v 1.3 2015/08/18 07:31:05 wiz Exp $
 
 DISTNAME=	dhex_0.68
 PKGNAME=	${DISTNAME:S/_/-/}
-PKGREVISION=	3
+PKGREVISION=	2
 CATEGORIES=	editors
 MASTER_SITES=	http://dettus.net/dhex/
 
 MAINTAINER=	amoibos@gmail.com
 HOMEPAGE=	http://www.dettus.net/dhex/
-COMMENT=	The curses-based hex-editor with diff mode
+COMMENT=	The ncurses-based hex-editor with diff mode
 LICENSE=	gnu-gpl-v2
 
 USE_LANGUAGES=	c
-FAKE_NCURSES=	yes
 
 MAN1=		dhex.1
 MAN5=		dhexrc.5 dhex_markers.5 dhex_searchlog.5
@@ -26,5 +25,5 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/${f} ${DESTDIR}${PREFIX}/${PKGMANDIR}/man5
 .endfor
 
-.include "../../mk/curses.buildlink3.mk"
+.include "../../devel/ncurses/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

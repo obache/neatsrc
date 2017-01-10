@@ -65,6 +65,9 @@ PERL5_PLIST_FILES_CMD= \
 PERL5_GENERATE_PLIST=	${PERL5_PLIST_COMMENT_CMD}; \
 			${PERL5_PLIST_FILES_CMD};
 GENERATE_PLIST+=	${PERL5_GENERATE_PLIST}
+
+PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^${PERL5_SUB_INSTALLARCHLIB:S/\//\\\//g}\/perllocal.pod$$/)
+PRINT_PLIST_AWK_IGNORE+=	|| ${PERL5_PLIST_FILES_CMD:sh:S/\//\\\//g:S/$$/\$\/)/:S/^/(\$0 ~ \/^/:[*]:S/) (/) || (/g}
 .endif
 
 ###########################################################################

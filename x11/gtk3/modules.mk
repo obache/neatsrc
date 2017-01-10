@@ -26,10 +26,12 @@ INSTALL_TEMPLATES+=	../../x11/gtk3/files/immodules.tmpl
 DEINSTALL_TEMPLATES+=	../../x11/gtk3/files/immodules.tmpl
 .endif
 
-PRINT_PLIST_AWK+=	/^libdata\/gtk-3.0/ { next; }
-
 .if !defined(_BUILDING_GTK3)
 .  include "../../x11/gtk3/buildlink3.mk"
+.endif
+
+.if empty(GTK3_IMMODULES:U:M[Yy][Ee][Ss])
+PKG_FAIL_REASON+=	"[x11/gtk3/modules.mk] No GTK3 module is specified."
 .endif
 
 .endif			# GTK3_MODULES_MK

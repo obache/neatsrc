@@ -2,8 +2,7 @@
 
 DISTNAME=	libidn-1.33
 CATEGORIES=	devel
-MASTER_SITES=	ftp://alpha.gnu.org/pub/gnu/libidn/ \
-		${MASTER_SITE_GNU:=libidn/}
+MASTER_SITES=	${MASTER_SITE_GNU:=libidn/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.gnu.org/software/libidn/

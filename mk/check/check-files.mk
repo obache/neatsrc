@@ -37,9 +37,7 @@ CHECK_FILES?=		no
 CHECK_FILES_STRICT?=	no
 
 # Info index files updated when a new info file is added.
-.if defined(INFO_FILES)
 CHECK_FILES_SKIP+=	${PREFIX}/.*/dir
-.endif
 
 # Perl's perllocal.pod index that is regenerated when a local module
 # is added.
@@ -83,19 +81,13 @@ CHECK_FILES_SKIP+=	${d:C/^([^\/])/${PREFIX}\/\1/}.*
 .endfor
 
 # Mutable X11 font database files
-.if (defined(FONTS_DIRS.x11) && !empty(FONTS_DIRS.x11:M*))
 CHECK_FILES_SKIP+=	${PREFIX}/.*/encodings.dir
 CHECK_FILES_SKIP+=	${PREFIX}/.*/fonts.dir
-.endif
-.if (defined(FONTS_DIRS.ttf) && !empty(FONTS_DIRS.ttf:M*)) || \
-    (defined(FONTS_DIRS.type1) && !empty(FONTS_DIRS.type1:M*))
 CHECK_FILES_SKIP+=	${PREFIX}/.*/fonts.scale
-.endif
-.if (defined(FONTS_DIRS.ttf) && !empty(FONTS_DIRS.ttf:M*)) || \
-    (defined(FONTS_DIRS.type1) && !empty(FONTS_DIRS.type1:M*)) || \
-    (defined(FONTS_DIRS.x11) && !empty(FONTS_DIRS.x11:M*))
 CHECK_FILES_SKIP+=	${PREFIX}/.*/fonts.cache-1
-.endif
+
+# Mutable icon theme cahce files
+CHECK_FILES_SKIP+=	${PREFIX}/share/icons/.*/icon-theme.cache
 
 # Mutable charset.alias file
 CHECK_FILES_SKIP+=	${PREFIX}/lib/charset.alias
@@ -104,6 +96,7 @@ CHECK_FILES_SKIP+=	${PREFIX}/lib/charset.alias
 CHECK_FILES_SKIP+=	${PREFIX}/share/locale/locale.alias
 
 _CHECK_FILES_SKIP_FILTER=	${GREP} -vx ${CHECK_FILES_SKIP:@f@-e ${DESTDIR:Q}${f:Q}@}
+_CHECK_FILES_CATCH_SKIP_FILTER=	(${GREP} -x ${CHECK_FILES_SKIP:@f@-e ${DESTDIR:Q}${f:Q}@} || ${TRUE})
 
 ###########################################################################
 # These are the files generated and used by the check-files implementation
@@ -241,6 +234,7 @@ _CHECK_FILES_EXPECTED=		${WRKDIR}/.check_files_expected
 _CHECK_FILES_MISSING=		${WRKDIR}/.check_files_missing
 _CHECK_FILES_MISSING_SKIP=	${WRKDIR}/.check_files_missing_skip
 _CHECK_FILES_MISSING_REAL=	${WRKDIR}/.check_files_missing_real
+_CHECK_FILES_PLIST_SKIP=	${WRKDIR}/.check_files_plist_skip
 _CHECK_FILES_EXTRA=		${WRKDIR}/.check_files_extra
 
 ${_CHECK_FILES_DIFF}: ${_CHECK_FILES_PRE.prefix} ${_CHECK_FILES_POST.prefix}
@@ -286,6 +280,12 @@ ${_CHECK_FILES_MISSING_SKIP}:						\
 	${GREP} '^-[^-]' | ${SED} "s|^-||"				\
 		> ${.TARGET}
 
+${_CHECK_FILES_PLIST_SKIP}: ${_CHECK_FILES_EXPECTED}
+	${RUN}					\
+	${CAT} ${_CHECK_FILES_EXPECTED} | 				\
+	${_CHECK_FILES_CATCH_SKIP_FILTER}				\
+		> ${.TARGET}
+
 ${_CHECK_FILES_EXTRA}: ${_CHECK_FILES_EXPECTED} ${_CHECK_FILES_ADDED}
 	${RUN}					\
 	${DIFF} -u  ${_CHECK_FILES_EXPECTED} ${_CHECK_FILES_ADDED} |	\
@@ -299,6 +299,7 @@ ${_CHECK_FILES_ERRMSG.prefix}:						\
 		${_CHECK_FILES_MISSING}					\
 		${_CHECK_FILES_MISSING_REAL}				\
 		${_CHECK_FILES_MISSING_SKIP}				\
+		${_CHECK_FILES_PLIST_SKIP}				\
 		${_CHECK_FILES_EXTRA}
 	${RUN}${RM} -f ${.TARGET}
 	${RUN}					\
@@ -322,11 +323,11 @@ ${_CHECK_FILES_ERRMSG.prefix}:						\
 		${SED} "s|^|        |" ${_CHECK_FILES_EXTRA};		\
 	fi >> ${.TARGET}
 	${RUN}					\
-	if ${_NONZERO_FILESIZE_P} ${_CHECK_FILES_MISSING_SKIP}; then	\
+	if ${_NONZERO_FILESIZE_P} ${_CHECK_FILES_PLIST_SKIP}; then	\
 		${ECHO} "************************************************************"; \
 		${ECHO} "The following files are in both the"		\
 			"PLIST and CHECK_FILES_SKIP:";			\
-		${SED} "s|^|        |" ${_CHECK_FILES_MISSING_SKIP};	\
+		${SED} "s|^|        |" ${_CHECK_FILES_PLIST_SKIP};	\
 	fi >> ${.TARGET}
 
 # Check ${SYSCONFDIR} for files which are not in the PLIST and are also

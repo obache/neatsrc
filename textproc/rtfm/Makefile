@@ -2,8 +2,7 @@
 
 DISTNAME=	rtfm-1.0
 CATEGORIES=	textproc
-MASTER_SITES=	ftp://ftp.freebsd.org/pub/FreeBSD/ports/distfiles/	\
-		ftp://ftp.pl.freebsd.org/pub/FreeBSD/ports/distfiles/
+MASTER_SITES=	${MASTER_SITE_FREEBSD}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	NetBSD documentation and GNU Texinfo files search mechanism

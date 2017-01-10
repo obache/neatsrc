@@ -1,0 +1,6 @@
+@comment $NetBSD$
+man/man8/portmaster.8
+sbin/portmaster
+share/bash-completion/completions/portmaster.sh
+share/examples/portmaster/portmaster.rc.sample
+share/zsh/site-functions/_portmaster

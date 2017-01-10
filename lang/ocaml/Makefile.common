@@ -47,11 +47,7 @@ BDB_LINK=	${BDB_LIBS}
 BDB_LINK+=	-L${BDBBASE}/lib ${COMPILER_RPATH_FLAG}${BDBBASE}/lib
 .endif
 
-post-extract: cp-gnu-config
-
-.PHONY: cp-gnu-config
-cp-gnu-config:
-	${CP} ${PKGSRCDIR}/mk/gnu-config/config.guess ${WRKSRC}/config/gnu/
-	${CP} ${PKGSRCDIR}/mk/gnu-config/config.sub ${WRKSRC}/config/gnu/
+OVERRIDE_GNU_CONFIG_SCRIPTS=	yes
+CONFIG_OVERRIDE_DIRS=		${WRKSRC}/config/gnu
 
 .include "../../mk/pthread.buildlink3.mk"

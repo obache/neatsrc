@@ -151,6 +151,7 @@ SUBDIR+=	xchat-systray-integration
 SUBDIR+=	ysm
 SUBDIR+=	zenicb
 SUBDIR+=	zenirc
+SUBDIR+=	zephyr
 SUBDIR+=	zircon
 
 .include "../mk/misc/category.mk"

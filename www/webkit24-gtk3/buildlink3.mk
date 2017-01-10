@@ -1,23 +1,23 @@
 # $NetBSD: buildlink3.mk,v 1.6 2016/12/04 05:17:13 ryoon Exp $
 
-BUILDLINK_TREE+=	webkit24-gtk3
+BUILDLINK_TREE+=	webkit1-gtk3
 
-.if !defined(WEBKIT24_GTK3_BUILDLINK3_MK)
-WEBKIT24_GTK3_BUILDLINK3_MK:=
+.if !defined(WEBKIT1_GTK3_BUILDLINK3_MK)
+WEBKIT1_GTK3_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.webkit24-gtk3+=	webkit24-gtk3>=2.0
-BUILDLINK_ABI_DEPENDS.webkit24-gtk3?=	webkit24-gtk3>=2.4.11nb4
-BUILDLINK_PKGSRCDIR.webkit24-gtk3?=	../../www/webkit24-gtk3
+BUILDLINK_API_DEPENDS.webkit1-gtk3+=	webkit1-gtk3>=2.0
+BUILDLINK_ABI_DEPENDS.webkit1-gtk3?=	webkit1-gtk3>=2.4.11nb4
+BUILDLINK_PKGSRCDIR.webkit1-gtk3?=	../../www/webkit24-gtk3
 
 # Linking with this library may require newer libstdc++ features than are
 # available under the native compiler, so possibly upgrade the compiler
 # used by dependent packages too.
 GCC_REQD+=	4.8
 
-pkgbase := webkit24-gtk3
+pkgbase := webkit1-gtk3
 .include "../../mk/pkg-build-options.mk"
 
-.if !empty(PKG_BUILD_OPTIONS.webkit24-gtk3:Menchant)
+.if !empty(PKG_BUILD_OPTIONS.webkit1-gtk3:Menchant)
 .include "../../textproc/enchant/buildlink3.mk"
 .endif
 
@@ -36,6 +36,6 @@ pkgbase := webkit24-gtk3
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../x11/libXdamage/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
-.endif # WEBKIT24_GTK3_BUILDLINK3_MK
+.endif # WEBKIT1_GTK3_BUILDLINK3_MK
 
-BUILDLINK_TREE+=	-webkit24-gtk3
+BUILDLINK_TREE+=	-webkit1-gtk3

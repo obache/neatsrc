@@ -16,14 +16,5 @@ PHP_VERSIONS_ACCEPTED=	56
 USE_LANGUAGES=	c c++
 USE_LIBTOOL=	yes
 
-INSTALLATION_DIRS+=	include/php/ext/raphf
-PLIST_SRC+=		PLIST
-
-post-install:
-	${INSTALL_DATA} ${WRKSRC}/php_raphf.h \
-		${DESTDIR}${PREFIX}/include/php/ext/raphf
-	${INSTALL_DATA} ${WRKSRC}/src/php_raphf_api.h \
-		${DESTDIR}${PREFIX}/include/php/ext/raphf
-
 .include "../../lang/php/ext.mk"
 .include "../../mk/bsd.pkg.mk"

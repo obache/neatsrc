@@ -75,7 +75,10 @@ undo-replace-check: .PHONY
 
 # Generates a binary package for the (older) installed package using pkg_tarup.
 #
+_PKG_TARUP_CMD= ${LOCALBASE}/bin/pkg_tarup
+
 replace-tarup: .PHONY
+.if exists(${_PKG_TARUP_CMD})
 	${RUN} [ -x ${_PKG_TARUP_CMD:Q} ] \
 	|| ${FAIL_MSG} ${_PKG_TARUP_CMD:Q}" was not found.";		\
 	${_REPLACE_OLDNAME_CMD};					\
@@ -83,6 +86,9 @@ replace-tarup: .PHONY
 		PKGREPOSITORY=${WRKDIR}					\
 		${_PKG_TARUP_CMD} $${oldname} ||			\
 	${FAIL_MSG} "Could not pkg_tarup $${oldname}".
+.else
+	@${WARNING_MSG} "Please install pkgtools/pkg_tarup to create saved tar up package before replace."
+.endif
 
 # Re-installs the old package that has been saved by replace-tarup.
 #
@@ -108,7 +114,7 @@ replace-names: .PHONY
 	else								\
 		wildcard="${OLDNAME}-[0-9]*";				\
 	fi;								\
-	${_PKG_BEST_EXISTS} "$${wildcard}" > ${_REPLACE_OLDNAME_FILE}
+	${_PKG_BEST_EXISTS} "$${wildcard}" > ${_REPLACE_OLDNAME_FILE} || ${RM} -f ${_REPLACE_OLDNAME_FILE}
 	${RUN} ${ECHO} ${PKGNAME} > ${_REPLACE_NEWNAME_FILE}
 	${RUN} ${CP} -f ${_REPLACE_NEWNAME_FILE} ${_COOKIE.replace}
 
@@ -132,9 +138,7 @@ replace-preserve-required-by: .PHONY
 
 # Fixes the +CONTENTS files of dependent packages to refer to the
 # replacement package, and puts the +REQUIRED_BY file back into place.
-# It also sets the unsafe_depends_strict tag on each dependent package,
-# and sets the unsafe_depends tag if the replaced package has a different
-# version.
+# It also sets the unsafe_depends_strict tag on each dependent package.
 #
 # XXX Only set unsafe_depends if there is an ABI change.
 #
@@ -159,9 +163,6 @@ replace-fixup-required-by: .PHONY
 			$$contents > $$newcontents;			\
 		${MV} -f $$newcontents $$contents;			\
 		${PKG_ADMIN} set unsafe_depends_strict=YES $$pkg;	\
-		if ${TEST} "$$oldname" != "$$newname"; then		\
-			${PKG_ADMIN} set unsafe_depends=YES $$pkg;	\
-		fi;							\
 	done;								\
 	${MV} ${_REQUIRED_BY_FILE} ${_PKG_DBDIR}/$$newname/+REQUIRED_BY
 
@@ -198,6 +199,7 @@ replace-clean: .PHONY
 # mode should behave the same way.  unsafe_depends will be set on
 # depending packages, and then those may be rebuilt via a manual
 # process or by pkg_rolling-replace.
+# XXX Only set unsafe_depends if there is an ABI change.
 replace-destdir: .PHONY
 	@${PHASE_MSG} "Updating using binary package of "${PKGNAME:Q}
 .if !empty(USE_CROSS_COMPILE:M[yY][eE][sS])
@@ -209,13 +211,23 @@ replace-destdir: .PHONY
 .else
 	${PKG_ADD} -U -D ${STAGE_PKGFILE}
 .endif
-	${RUN}${_REPLACE_OLDNAME_CMD}; \
+	${RUN} \
 	${PKG_INFO} -qR ${PKGNAME:Q} | while read pkg; do \
 		[ -n "$$pkg" ] || continue; \
 		${PKG_ADMIN} set unsafe_depends_strict=YES "$$pkg"; \
-		if [ "$$oldname" != ${PKGNAME:Q} ]; then \
-			${PKG_ADMIN} set unsafe_depends=YES "$$pkg"; \
-		fi; \
+		${PKG_INFO} -qQ REQUIRES "$$pkg" | while read req; do \
+			if [ ! -e "$$req" ]; then \
+				${PKG_ADMIN} set unsafe_depends=YES "$$pkg"; \
+				break; \
+			fi; \
+		done;	\
+		${PKG_INFO} -qn "$$pkg" | while read dep; do \
+			[ -n "$$dep" ] || continue; \
+			if ! ${PKG_INFO} -qe "$$dep"; then \
+				${PKG_ADMIN} set unsafe_depends=YES "$$pkg"; \
+				break; \
+			fi; \
+		done;	\
 	done
 	${RUN}${PKG_ADMIN} unset unsafe_depends ${PKGNAME:Q}
 	${RUN}${PKG_ADMIN} unset unsafe_depends_strict ${PKGNAME:Q}

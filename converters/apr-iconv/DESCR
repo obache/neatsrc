@@ -1,0 +1,4 @@
+APR-iconv provides a portable iconv() implementation built on top of APR.
+It is generally of interest only where no system provided iconv() is available
+(either in libiconv, or libc as applicable). An example is the Windows platform,
+where APR-iconv is required to enable the APR-util library's apr_xlate feature.

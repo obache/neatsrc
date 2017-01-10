@@ -4,7 +4,7 @@
 DISTNAME=		cvsweb-3.0.6
 PKGREVISION=		8
 CATEGORIES=		www
-MASTER_SITES=		ftp://ftp.freebsd.org/pub/FreeBSD/ports/local-distfiles/scop/
+MASTER_SITES=		${MASTER_SITE_FREEBSD_LOCAL:=scop/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.freebsd.org/projects/cvsweb.html

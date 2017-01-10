@@ -1,7 +1,7 @@
 $NetBSD: patch-as,v 1.4 2013/08/12 02:45:55 taca Exp $
 
---- script/installmodules.sh.orig	2013-07-29 18:55:18.000000000 +0000
-+++ script/installmodules.sh
+--- source3/script/installmodules.sh.orig	2013-07-29 18:55:18.000000000 +0000
++++ source3/script/installmodules.sh
 @@ -11,7 +11,7 @@ shift
  
  for d in $prefix $LIBDIR; do

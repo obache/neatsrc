@@ -2,14 +2,14 @@ $NetBSD: patch-Makefile,v 1.1 2015/10/30 12:21:17 tnn Exp $
 
 Don't litter /tmp with 200MB of debug logs after build.
 
---- Makefile.orig	2013-11-10 10:20:19.000000000 +0000
+--- Makefile.orig	2014-07-19 07:14:07.000000000 +0000
 +++ Makefile
-@@ -18,7 +18,7 @@ all: essay
+@@ -18,7 +18,7 @@ all:
  	@cp symbols.yaml ${DATA}
  	@cp preset/*.yaml  ${DATA}
  	@cp supplement/*.yaml  ${DATA}
 -	rime_deployer --build  ${DATA}
 +	env TMPDIR="$$(pwd)" rime_deployer --build  ${DATA}
  
- essay:
- 	@echo "generating essay.kct."
+ # deprecated
+ essay.kct:

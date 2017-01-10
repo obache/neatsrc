@@ -1,8 +1,8 @@
 # $NetBSD: Makefile,v 1.17 2016/12/12 14:22:03 wiz Exp $
 #
 
-DISTNAME=	libchewing-0.4.0
-PKGREVISION=	5
+DISTNAME=	libchewing-0.5.1
+PKGREVISION=	1
 CATEGORIES=	chinese inputmethod
 MASTER_SITES=	https://github.com/chewing/libchewing/releases/download/v${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.bz2

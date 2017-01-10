@@ -1,0 +1,15 @@
+$NetBSD$
+
+* NetBSD atomic_ops support
+
+--- openpgm/pgm/configure.orig	2012-12-04 03:03:45.000000000 +0000
++++ openpgm/pgm/configure
+@@ -14160,6 +14160,8 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_
+ /* Solaris intrinsic */
+ #elif defined( __APPLE__ )
+ /* Darwin intrinsic */
++#elif defined( __NetBSD__ )
++/* NetBSD intrinsic */
+ #elif defined( __GNUC__ ) && ( __GNUC__ * 100 + __GNUC_MINOR__ >= 401 )
+ /* GCC 4.0.1 intrinsic */
+ #elif defined( _WIN32 )

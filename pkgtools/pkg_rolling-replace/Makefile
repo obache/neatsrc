@@ -7,9 +7,6 @@ MAINTAINER=	ngoffee@bbn.com
 COMMENT=	Replace/upgrade packages in-place
 LICENSE=	modified-bsd
 
-DEPENDS+=	pkg_chk>=1.76:../../pkgtools/pkg_chk
-DEPENDS+=	pkg_tarup>=1.6.6:../../pkgtools/pkg_tarup
-
 USE_TOOLS+=	patch
 
 WRKSRC=		${WRKDIR}
@@ -29,7 +26,7 @@ SUBST_VARS.tools=	PKG_INFO_CMD MAKE PKG_CHK AWK MKDIR SETENV
 SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	pre-configure
 SUBST_MESSAGE.prefix=	Substituting PREFIX location.
-SUBST_FILES.prefix=	pkg_rolling-replace.8
+SUBST_FILES.prefix=	pkg_rolling-replace.sh pkg_rolling-replace.8
 SUBST_VARS.prefix=	PREFIX
 
 SUBST_CLASSES+=		makeconf

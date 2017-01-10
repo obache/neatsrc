@@ -4,7 +4,7 @@
 DISTNAME=	html-4.01
 PKGREVISION=	4
 CATEGORIES=	textproc
-MASTER_SITES=	ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/distfiles/
+MASTER_SITES=	${MASTER_SITE_FREEBSD}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.w3.org/TR/REC-html40/

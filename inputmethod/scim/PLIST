@@ -70,7 +70,11 @@ lib/scim-1.0/scim-helper-launcher
 lib/scim-1.0/scim-helper-manager
 lib/scim-1.0/scim-launcher
 lib/scim-1.0/scim-panel-gtk
-${PLIST.qt}qt4/plugins/inputmethods/im-scim.la
+${PLIST.qt4}qt4/plugins/inputmethods/im-scim.la
+man/man1/scim-config-agent.1
+man/man1/scim-im-agent.1
+man/man1/scim-setup.1
+man/man1/scim.1
 share/applications/scim-setup.desktop
 share/control-center-2.0/capplets/scim-setup.desktop
 share/examples/scim/config

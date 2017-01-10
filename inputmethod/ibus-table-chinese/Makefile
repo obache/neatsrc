@@ -6,7 +6,7 @@ CATEGORIES=	inputmethod chinese
 MASTER_SITES=	-https://github.com/definite/ibus-table-chinese/archive/${PKGVERSION_NOREV}.tar.gz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://code.google.com/p/ibus/
+HOMEPAGE=	https://github.com/ibus/ibus/wiki
 COMMENT=	Chinese tables for IBus-Table
 LICENSE=	gnu-gpl-v3
 

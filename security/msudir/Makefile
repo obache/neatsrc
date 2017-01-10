@@ -8,9 +8,10 @@ EXTRACT_SUFX=	.tbz
 MAINTAINER=	abs@NetBSD.org
 HOMEPAGE=	http://code.google.com/p/msudir/
 COMMENT=	Easy setuid script management
+LICENSE=	modified-bsd
 
 MAKE_ENV+=	SYSCONFDIR=${PKG_SYSCONFDIR:Q}
 
-PKG_DESTDIR_SUPPORT=    destdir
+SPECIAL_PERMS+=	bin/msudir ${SETUID_ROOT_PERMS}
 
 .include "../../mk/bsd.pkg.mk"

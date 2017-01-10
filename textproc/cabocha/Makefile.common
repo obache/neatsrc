@@ -6,11 +6,7 @@
 
 DISTNAME=	cabocha-0.69
 CATEGORIES=	textproc
-# 0.69 cached to ftp.netbsd.org
-MASTER_SITES=	# http://cabocha.googlecode.com/files/
-#MASTER_SITES=	https://drive.google.com/open?id=0B4y35FiV1wh7SDd1Q1dUQkZQaUU
-#               https://drive.google.com/folderview?id=0B4y35FiV1wh7cGRCUUJHVTNJRnM&usp=sharing#list
-DIST_SUBDIR=	cabocha-20160909
+MASTER_SITES=	-https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7SDd1Q1dUQkZQaUU
 EXTRACT_SUFX=	.tar.bz2
 
 DISTINFO_FILE=	${.CURDIR}/../../textproc/cabocha/distinfo

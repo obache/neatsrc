@@ -17,6 +17,7 @@ CONFIGURE_ARGS+=	--disable-docbook-docs
 
 .if !empty(PKG_OPTIONS:Mintrospection)
 BUILDLINK_API_DEPENDS.gobject-introspection+=	gobject-introspection>=0.9.12
+BUILDLINK_DEPMETHOD.gobject-introspection=	build
 .include "../../devel/gobject-introspection/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-introspection=yes
 PLIST.introspection=	yes

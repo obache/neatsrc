@@ -1,11 +1,12 @@
 # $NetBSD: Makefile,v 1.29 2016/08/03 10:23:02 adam Exp $
 #
 
-DISTNAME=	scim-thai-0.1.3
-PKGREVISION=	5
+DISTNAME=	scim-thai-0.1.4
+PKGREVISION=	1
 CATEGORIES=	inputmethod
 MASTER_SITES=	http://linux.thai.net/pub/thailinux/software/libthai/ \
 		ftp://linux.thai.net/pub/ThaiLinux/software/libthai/
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://linux.thai.net/projects/scim-thai

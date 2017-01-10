@@ -14,8 +14,6 @@ LICENSE=	modified-bsd
 
 ONLY_FOR_PLATFORM=	FreeBSD-*-* NetBSD-*-* OpenBSD-*-* DragonFly-*-*
 
-PKG_DESTDIR_SUPPORT=	user-destdir
-
 INSTALLATION_DIRS+= libexec/nagios
 
 do-install:

@@ -37,7 +37,7 @@ checksum checksum-phase:
 	@${DO_NADA}
 .else
 checksum checksum-phase:
-	${RUN} set -e;							\
+	${RUN}								\
 	case ${.TARGET:Q} in						\
 	*-phase)	${TEST} ! -f ${_COOKIE.checksum} || exit 0 ;;	\
 	esac;								\
@@ -79,7 +79,7 @@ _DISTINFO_ARGS_PATCHSUM+=	${PATCHDIR}/patch-*
 _DISTINFO_ARGS_PATCHSUM+=	${PATCHDIR}/emul-*-patch-*
 
 distinfo:
-	${RUN}set -e;							\
+	${RUN}								\
 	newfile=${DISTINFO_FILE}.$$$$;					\
 	if ${_DISTINFO_CMD} ${_DISTINFO_ARGS_COMMON}			\
 		${_DISTINFO_ARGS_DISTSUM}				\
@@ -92,7 +92,7 @@ distinfo:
 	fi
 
 makesum:
-	${RUN}set -e;							\
+	${RUN}								\
 	newfile=${DISTINFO_FILE}.$$$$;					\
 	if ${_DISTINFO_CMD} ${_DISTINFO_ARGS_COMMON}			\
 		${_DISTINFO_ARGS_DISTSUM} > $$newfile;			\
@@ -104,7 +104,7 @@ makesum:
 	fi
 
 makepatchsum:
-	${RUN}set -e;							\
+	${RUN}								\
 	newfile=${DISTINFO_FILE}.$$$$;					\
 	if ${_DISTINFO_CMD} ${_DISTINFO_ARGS_COMMON}			\
 		${_DISTINFO_ARGS_PATCHSUM} > $$newfile;			\

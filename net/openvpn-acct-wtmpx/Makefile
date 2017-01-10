@@ -14,8 +14,6 @@ HOMEPAGE=	http://ftp.espci.fr/pub/openvpn-acct-wtmpx/
 COMMENT=	Log OpenVPN logins and logouts to wtmpx
 LICENSE=	2-clause-bsd
 
-PKG_DESTDIR_SUPPORT=	user-destdir
-
 USE_LIBTOOL=	yes
 USE_TOOLS+=	install
 

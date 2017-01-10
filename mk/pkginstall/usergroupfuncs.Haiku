@@ -1,0 +1,84 @@
+# $NetBSD$
+#
+# Platform-specific adduser and addgroup functionality.
+
+# group_exists group [groupid]
+#	Returns 0 if $group exists and has gid $groupid
+#	Returns 1 if neither $group nor $groupid exist
+#	Returns 2 if $group or $groupid exist but don't match
+#	Returns 3 for all errors
+#
+group_exists()
+{
+	_group="$1"; _groupid="$2"
+	${TEST} -n "$_group" || return 3
+
+	if ${TEST} -n "$_groupid"; then
+		${AWK} -F : "BEGIN { rv=1 }; \$1 == \"$_group\" { if (\$3 == $_groupid) rv=0; else rv=2 }; END { exit rv }" /etc/group
+	else
+		${AWK} -F : "\$1 == \"$_group\" || \$3 == \"$_group\" { found=1 }; END { if (!found) exit 1 }" /etc/group
+	fi
+}
+
+# user_exists user [userid]
+#	Returns 0 if $user exists and has uid $userid
+#	Returns 1 if neither $user nor $userid exist
+#	Returns 2 if $user or $userid exist but don't match
+#	Returns 3 for all errors
+#
+user_exists()
+{
+	_user="$1"; _userid="$2"
+	${TEST} -n "$_user" || return 3
+
+	if ${TEST} -n "$_userid"; then
+		${AWK} -F : "BEGIN { rv=1 }; \$1 == \"$_user\" { if (\$3 == $_userid) rv=0; else rv=2 }; END { exit rv }" /etc/passwd
+	else
+		${AWK} -F : "\$1 == \"$_user\" || \$3 == \"$_user\" { found=1 }; END { if (!found) exit 1 }" /etc/passwd
+	fi
+}
+
+# adduser user group [userid] [descr] [home] [shell]
+adduser()
+{
+	user="$1"; group="$2"; userid="$3"
+	descr="$4"; home="$5" shell="$6"
+	${TEST} $# -eq 6 || return 1
+	${TEST} -n "$user" || return 2
+	${TEST} -n "$group" || return 2
+
+	USERADD="@USERADD@"
+
+	case $user in
+	${PKGNAME%-[0-9]*})	descr_dflt="$user user" ;;
+	*)			descr_dflt="${PKGNAME%-[0-9]*} $user user" ;;
+	esac
+
+	: ${descr:="$descr_dflt"}
+	: ${home:="@PKG_USER_HOME@"}
+	: ${shell:="@PKG_USER_SHELL@"}
+
+	if ${TEST} -n "${USERADD}" -a -x "${USERADD}"; then
+		${ECHO} "${PKGNAME}: Creating user \`\`$user''"
+		${USERADD}					\
+			-n "$descr" -d "$home" -s "$shell"	\
+			-g $group $user
+	fi
+	return 0
+}
+
+# addgroup group
+addgroup()
+{
+	group="$1"; groupid="$2"
+	${TEST} $# -eq 2 || return 1
+	${TEST} -n "$group" || return 2
+
+	GROUPADD="@GROUPADD@"
+
+	if ${TEST} -n "${GROUPADD}" -a -x "${GROUPADD}"; then
+		${ECHO} "${PKGNAME}: Creating group \`\`$group''"
+		${GROUPADD} $group
+	fi
+	return 0
+}

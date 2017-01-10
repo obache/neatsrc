@@ -1,7 +1,7 @@
 $NetBSD: patch-av,v 1.5 2013/08/12 02:45:55 taca Exp $
 
---- smbd/server.c.orig	2013-07-29 18:55:18.000000000 +0000
-+++ smbd/server.c
+--- source3/smbd/server.c.orig	2013-07-29 18:55:18.000000000 +0000
++++ source3/smbd/server.c
 @@ -1154,6 +1154,9 @@ extern void build_options(bool screen);
  	if (!directory_exist(lp_lockdir()))
  		mkdir(lp_lockdir(), 0755);

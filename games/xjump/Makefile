@@ -4,7 +4,7 @@ DISTNAME=		xjump_2.7.5.orig
 PKGNAME=		xjump-2.7.5
 PKGREVISION=		4
 CATEGORIES=		games
-MASTER_SITES=		ftp://ftp.freebsd.org/pub/FreeBSD/ports/distfiles/\
+MASTER_SITES=		${MASTER_SITE_FREEBSD} \
 			http://www.gtlib.cc.gatech.edu/pub/debian/pool/main/x/xjump/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org

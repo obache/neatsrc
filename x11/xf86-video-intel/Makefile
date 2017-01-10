@@ -20,6 +20,8 @@ USE_TOOLS+=	pkg-config
 
 CONFIGURE_ENV.SunOS+=	DRIVER_MAN_SUFFIX=4
 
+CPPFLAGS.FreeBSD+=	-D_WITH_GETLINE
+
 BUILDLINK_API_DEPENDS.libdrm+=	libdrm>=2.4.7
 
 .include "../../x11/modular-xorg-server/buildlink3.mk"

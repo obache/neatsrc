@@ -36,9 +36,6 @@ BINPKG_SITES?= \
 .elif ${OPSYS} == "Minix"
 BINPKG_SITES?= \
 	ftp://ftp.minix3.org/pub/minix/packages/$$(${UNAME} -r)/$${arch}
-.elif ${OPSYS} == "DragonFly"
-BINPKG_SITES?= \
-	http://mirror-master.dragonflybsd.org/packages/$${arch}/DragonFly-$${rel}/stable
 .else
 BINPKG_SITES?=
 .endif
@@ -61,6 +58,7 @@ do-bin-install: su-target
 .  endif
 	@${PHASE_MSG} "Binary install for "${PKGNAME_REQD:Q}
 
+MAKEFLAGS.su-do-bin-install=	PKGNAME_REQD=${PKGNAME_REQD:Q}
 su-do-bin-install: \
 	acquire-bin-install-lock \
 	locked-su-do-bin-install \
@@ -74,7 +72,7 @@ release-bin-install-lock: \
 
 # Note: PKGREPOSITORY is usually ${PACKAGES}/All
 _BIN_INSTALL_PREPARE_CMD= \
-	found=`${PKG_BEST_EXISTS} "${PKGWILDCARD}" || ${TRUE}`;		\
+	found=`${_PKG_BEST_EXISTS} "${PKGWILDCARD}" || ${TRUE}`;	\
 	if [ "$$found" != "" ]; then					\
 		${ERROR_MSG} "$$found is already installed - perhaps an older version?"; \
 		${ERROR_MSG} "If so, you may wish to \`\`pkg_delete $$found'' and install"; \
@@ -93,7 +91,7 @@ locked-su-do-bin-install:
 .if !empty(USE_CROSS_COMPILE:M[yY][eE][sS])
 	${RUN} ${_BIN_INSTALL_PREPARE_CMD}				\
 	${STEP_MSG} "Installing ${PKGNAME} from $$pkg_path";		\
-	if ${PKGSRC_SETENV} PKG_PATH="$$pkg_path" ${PKG_ADD} -m ${MACHINE_ARCH} -I -p ${_CROSS_DESTDIR}${PREFIX} ${_BIN_INSTALL_FLAGS} ${PKGNAME_REQD:Q}${PKG_SUFX}; then \
+	if ${PKGSRC_SETENV} PKG_PATH="$$pkg_path" ${PKG_ADD} -m ${MACHINE_ARCH} -I -p ${_CROSS_DESTDIR}${PREFIX} ${_BIN_INSTALL_FLAGS} ${PKGNAME:Q}; then \
 		${ECHO} "Fixing recorded cwd...";			\
 		${SED} -e 's|@cwd ${_CROSS_DESTDIR}|@cwd |' ${_PKG_DBDIR}/${PKGNAME:Q}/+CONTENTS > ${_PKG_DBDIR}/${PKGNAME:Q}/+CONTENTS.tmp; \
 		${MV} ${_PKG_DBDIR}/${PKGNAME:Q}/+CONTENTS.tmp ${_PKG_DBDIR}/${PKGNAME:Q}/+CONTENTS; \
@@ -101,7 +99,7 @@ locked-su-do-bin-install:
 	fi
 .else
 	${RUN} ${_BIN_INSTALL_PREPARE_CMD}				\
-	pkgpattern=${PKGNAME_REQD:Q};					\
+	pkgpattern=${PKGNAME:Q};					\
 	${STEP_MSG} "Installing $$pkgpattern from $$pkg_path";		\
 	if ${PKGSRC_SETENV} PKG_PATH="$$pkg_path" ${PKG_ADD} ${_BIN_INSTALL_FLAGS} "$$pkgpattern"; then \
 		installed=`${PKG_INFO} -e "$$pkgpattern"`;		\

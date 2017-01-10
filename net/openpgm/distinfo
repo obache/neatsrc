@@ -1,0 +1,13 @@
+$NetBSD$
+
+SHA1 (libpgm-5.2.122.tar.gz) = 13b014523fb53feb4e88e0560dd340862bc25ca8
+RMD160 (libpgm-5.2.122.tar.gz) = bbf52e84cd53d716ba46f0cc5450e29f4d3a73f5
+SHA512 (libpgm-5.2.122.tar.gz) = e51cd33b6705dcf5415423890de58bf7b21e2758c5c43342d89fab9f3346f0f3e98ed1df1240a81da212c6499f57862e01ae6b16f590f0fa51013ff9f67cb200
+Size (libpgm-5.2.122.tar.gz) = 1026254 bytes
+SHA1 (patch-openpgm_pgm_configure) = e0dbd18360f629f34ff76b4acdfef5497329a9f9
+SHA1 (patch-openpgm_pgm_configure.ac) = d98e30a615186a48853de9f7c35263cb68e060a7
+SHA1 (patch-openpgm_pgm_include_impl_sockaddr.h) = 72a60e0ae4ffb0182f9c5e9f96856d9b7c6fac67
+SHA1 (patch-openpgm_pgm_include_impl_ticket.h) = 7418411c82553acfd9217414da0838dde59f1841
+SHA1 (patch-openpgm_pgm_include_pgm_atomic.h) = b004f35eb47242d9f72d4db0678f0d0271c5706a
+SHA1 (patch-openpgm_pgm_time.c) = e274b18d7559b73bd0c7a6acf43807ab2b7bff8e
+SHA1 (patch-openpgm_pgm_version__generator.py) = 036afa13b836b5aefd4d135234ab0203ba2e1cca

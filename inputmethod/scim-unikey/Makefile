@@ -1,10 +1,9 @@
 # $NetBSD: Makefile,v 1.25 2016/08/03 10:23:02 adam Exp $
 #
 
-DISTNAME=	scim-unikey-0.3.1
-PKGREVISION=	22
+DISTNAME=	scim-unikey-0.3.2
 CATEGORIES=	inputmethod
-MASTER_SITES=	http://scim-unikey.googlecode.com/files/
+MASTER_SITES=	-https://github.com/scim-im/${PKGBASE}/archive/v${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://code.google.com/p/scim-unikey/
@@ -16,8 +15,11 @@ USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		pkg-config msgfmt
+USE_TOOLS+=		autopoint aclocal autoheader automake autoconf
 
 USE_SCIM_GTKUTILS=	yes
+
+CONFIGURE_SCRIPT=	autogen.sh
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../inputmethod/scim/buildlink3.mk"

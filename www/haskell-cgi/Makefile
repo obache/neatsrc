@@ -10,8 +10,6 @@ COMMENT=	CGI module for the Hugs Haskell 98 interpreter
 
 DEPENDS+=	hugs98-[0-9]*:../../lang/hugs
 
-NO_SRC_ON_FTP=	Already in MASTER_SITE_LOCAL
-
 NO_BUILD=	yes
 
 INSTALLATION_DIRS=	share/hugs/lib

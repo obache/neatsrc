@@ -13,8 +13,6 @@ COMMENT=	Dialup IP program
 
 NOT_FOR_PLATFORM=	Interix-*-* # no sl(4) device
 
-NO_SRC_ON_FTP=		Already in MASTER_SITE_LOCAL
-
 INSTALLATION_DIRS=	${PKGMANDIR}/cat8 ${PKGMANDIR}/man8 sbin
 
 NO_CONFIGURE=	yes

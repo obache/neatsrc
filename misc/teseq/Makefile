@@ -3,11 +3,11 @@
 DISTNAME=	teseq-1.1.1
 PKGREVISION=	1
 CATEGORIES=	misc
-MASTER_SITES=	http://ftp.gnu.org/gnu/teseq/
+MASTER_SITES=	${MASTER_SITE_GNU:=teseq/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ftp.gnu.org/gnu/teseq/
+HOMEPAGE=	http://www.gnu.org/software/teseq/
 COMMENT=	Terminal control sequence analyzer
 LICENSE=	gnu-gpl-v3
 

@@ -11,5 +11,5 @@
 .if ${MACHINE_ARCH:Ni386:Nx86_64:Nevbarm} || ${MACHINE_PLATFORM:MSunOS-*-i386} || ${MACHINE_PLATFORM:MNetBSD-[1-5]*-*}
 DEPENDS+=	pkglint4>=4.82<5:../../pkgtools/pkglint4
 .else
-DEPENDS+=	pkglint>=5:../../pkgtools/pkglint
+DEPENDS+=	{pkglint>=5,pkglint4>=4.82}:../../pkgtools/pkglint
 .endif

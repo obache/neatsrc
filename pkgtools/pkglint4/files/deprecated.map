@@ -76,6 +76,7 @@ USE_SJ3			Use the PKG_OPTIONS framework (option sj3) instead.
 USE_SOCKS		Use the PKG_OPTIONS framework (socks4 and socks5 options) instead.
 USE_WNN4		Use the PKG_OPTIONS framework (option wnn4) instead.
 USE_XFACE		Use the PKG_OPTIONS framework instead.
+USE_PKGINSTALL		You can just remove it.
 
 # February 2006
 TOOLS_DEPMETHOD		Use the :build or :run modifiers in USE_TOOLS instead.
@@ -164,3 +165,6 @@ USE_GNU_READLINE	Include "../../devel/readline/buildlink3.mk" instead.
 # October 2014
 SVR4_PKGNAME		Just remove it.
 PKG_INSTALLATION_TYPES	Just remove it.
+
+# March 2015
+MASTER_SITE_SOURCEFORGE_JP	Use MASTER_SITE_OSDN instead.

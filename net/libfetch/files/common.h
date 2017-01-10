@@ -54,6 +54,7 @@
 
 #if !defined(__sun) && !defined(__hpux) && !defined(__INTERIX) && \
     !defined(__digital__) && !defined(__linux) && !defined(__MINT__) && \
+    !defined(__SKYOS__) && \
     !defined(__sgi) && !defined(__minix) && !defined(__CYGWIN__)
 #define HAVE_SA_LEN
 #endif

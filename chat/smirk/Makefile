@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.10 2017/01/03 21:27:33 roy Exp $
+# $NetBSD: Makefile,v 1.9 2015/08/18 07:31:03 wiz Exp $
 #
 
 DISTNAME=	smirk-20080111
-PKGREVISION=	4
+PKGREVISION=	3
 CATEGORIES=	chat
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 EXTRACT_SUFX=	.tar.bz2
@@ -15,7 +15,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--datadir=${DATADIR:Q}
 
 USE_TOOLS+=		gmake
-FAKE_NCURSES=		yes
+USE_NCURSES=		yes
 
 DATADIR=		${PREFIX}/share/${PKGBASE}
 HELP_DIR=		${DATADIR}/help
@@ -31,5 +31,5 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/help/${fn} ${DESTDIR}${HELP_DIR}
 .endfor
 
-.include "../../mk/curses.buildlink3.mk"
+.include "../../devel/ncurses/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

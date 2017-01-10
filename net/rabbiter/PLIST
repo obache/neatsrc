@@ -1,6 +1,16 @@
 @comment $NetBSD: PLIST,v 1.2 2013/09/03 11:29:18 obache Exp $
 bin/rabbiter
-${RUBY_VENDORLIB}/rabbiter.rb
-${RUBY_VENDORLIB}/rabbiter/gettext.rb
-${RUBY_VENDORLIB}/rabbiter/version.rb
-share/locale/ja/LC_MESSAGES/rabbiter.mo
+${GEM_HOME}/cache/${GEM_NAME}.gem
+${GEM_LIBDIR}/COPYING
+${GEM_LIBDIR}/GPL
+${GEM_LIBDIR}/Gemfile
+${GEM_LIBDIR}/README
+${GEM_LIBDIR}/Rakefile
+${GEM_LIBDIR}/bin/rabbiter
+${GEM_LIBDIR}/lib/rabbiter.rb
+${GEM_LIBDIR}/lib/rabbiter/gettext.rb
+${GEM_LIBDIR}/lib/rabbiter/version.rb
+${GEM_LIBDIR}/locale/ja/LC_MESSAGES/rabbiter.mo
+${GEM_LIBDIR}/po/ja/rabbiter.po
+${GEM_LIBDIR}/rabbiter.gemspec
+${GEM_HOME}/specifications/${GEM_NAME}.gemspec

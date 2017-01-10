@@ -22,8 +22,10 @@ _USER_VARS.pkginstall= \
 	OCAML_FINDLIB_REGISTER_VERBOSE \
 	PKG_CREATE_USERGROUP \
 	PKG_CONFIG PKG_CONFIG_PERMS \
+	PKG_GID_RANGE \
 	PKG_RCD_SCRIPTS \
 	PKG_REGISTER_SHELLS \
+	PKG_UID_RANGE \
 	PKG_UPDATE_FONTS_DB
 _PKG_VARS.pkginstall= \
 	DEINSTALL_TEMPLATES INSTALL_TEMPLATES \
@@ -46,7 +48,7 @@ _PKG_VARS.pkginstall+= \
 	OWN_DIRS_PERMS MAKE_DIRS_PERMS REQD_DIRS_PERMS \
 	PKG_SYSCONFDIR_PERMS \
 	PKG_SHELL \
-	FONTS_DIRS.ttf FONTS_DIRS.type1 FONTS_DIRS.x11 \
+	FONTS_DIRS.ttf FONTS_DIRS.type1 FONTS_DIRS.x11
 _SYS_VARS.pkginstall= \
 	SETUID_ROOT_PERMS \
 	SETGID_GAMES_PERMS \
@@ -186,12 +188,22 @@ FILES_SUBST+=		PKGBASE=${PKGBASE:Q}
 #	the numeric UIDs and GIDs of users and groups required by this
 #	package are hardcoded into the +INSTALL script.
 #
+# PKG_UID_RANGE specifies the uid boundaries for new users
+#	to create for packages.
+#
+# PKG_GID_RANGE specifies the gid boundaries for new groups
+#	to create for packages.
+#
 PKG_GROUPS?=		# empty
 PKG_USERS?=		# empty
 _PKG_USER_HOME?=	/nonexistent
 _PKG_USER_SHELL?=	${NOLOGIN}
+PKG_UID_RANGE?=		${_PKG_UID_RANGE}
+PKG_GID_RANGE?=		${_PKG_GID_RANGE}
 FILES_SUBST+=		PKG_USER_HOME=${_PKG_USER_HOME:Q}
 FILES_SUBST+=		PKG_USER_SHELL=${_PKG_USER_SHELL:Q}
+FILES_SUBST+=		PKG_UID_RANGE=${PKG_UID_RANGE:Q}
+FILES_SUBST+=		PKG_GID_RANGE=${PKG_GID_RANGE:Q}
 
 USE_GAMESGROUP?=	no
 SETGIDGAME?=            ${USE_GAMESGROUP}
@@ -800,16 +812,6 @@ ${_INSTALL_OFR_FILE}: ../../mk/pkginstall/ocaml-findlib-register
 	${TOUCH} ${TOUCH_ARGS} ${.TARGET}
 .endif
 
-.PHONY: install-script-data-ocaml-findlib-register
-install-script-data: install-script-data-ocaml-findlib-register
-install-script-data-ocaml-findlib-register:
-.if !empty(OCAML_FINDLIB_REGISTER:M[Yy][Ee][Ss])
-	${RUN} \
-	cd ${PKG_DB_TMPDIR} && ${PKGSRC_SETENV} ${INSTALL_SCRIPTS_ENV} \
-	${_PKG_DEBUG_SCRIPT} ${INSTALL_FILE} ${PKGNAME} \
-		UNPACK +OCAML_FINDLIB_REGISTER
-.endif
-
 # PKG_SHELL contains the pathname of the shell that should be added or
 #	removed from the shell database, /etc/shells.  If a pathname
 #	is relative, then it is taken to be relative to ${PREFIX}.
@@ -905,7 +907,8 @@ _INSTALL_DATA_TMPL+=		${_INSTALL_FONTS_DATAFILE}
 # list them as "x11" font directories as well.
 #
 .if !empty(FONTS_DIRS.ttf:M*)
-.if ${X11_TYPE} == "modular"
+.if ${X11_TYPE} == "modular" \
+	|| (${X11_TYPE} == "native" && exists(${X11BASE}/bin/mkfontscale))
 USE_TOOLS+=		mkfontscale:run
 FILES_SUBST+=		TTF_INDEX_CMD=${TOOLS_PATH.mkfontscale:Q}
 .else
@@ -915,9 +918,10 @@ FILES_SUBST+=		TTF_INDEX_CMD=${TOOLS_PATH.ttmkfdir:Q}
 FONTS_DIRS.x11+=	${FONTS_DIRS.ttf}
 .endif
 .if !empty(FONTS_DIRS.type1:M*)
-.if ${X11_TYPE} == "modular"
+.if ${X11_TYPE} == "modular" \
+	|| (${X11_TYPE} == "native" && exists(${X11BASE}/bin/mkfontscale))
 USE_TOOLS+=		mkfontscale:run
-FILES_SUBST+=		TYPE1_INDEX_CMD=${TOOLS_PATH.type1inst:Q}
+FILES_SUBST+=		TYPE1_INDEX_CMD=${TOOLS_PATH.mkfontscale:Q}
 FILES_SUBST+=		TYPE1_POSTINDEX_CMD=
 .else
 USE_TOOLS+=		type1inst:run
@@ -971,6 +975,44 @@ ${_INSTALL_FONTS_FILE}: ../../mk/pkginstall/fonts
 	${SED} ${FILES_SUBST_SED} ../../mk/pkginstall/fonts > ${.TARGET}
 	${RUN}								\
 	if ${_ZERO_FILESIZE_P} ${_INSTALL_FONTS_DATAFILE}; then		\
+		${RM} -f ${.TARGET};					\
+		${TOUCH} ${TOUCH_ARGS} ${.TARGET};			\
+	fi
+
+#
+# handle cache files for freedesktop.org icon-theme used by GTK+
+#
+
+_INSTALL_ICON_THEMES_FILE=	${_PKGINSTALL_DIR}/icon-themes
+_INSTALL_ICON_THEMES_DATAFILE=	${_PKGINSTALL_DIR}/icon-themes-data
+_INSTALL_UNPACK_TMPL+=		${_INSTALL_ICON_THEMES_FILE}
+_INSTALL_DATA_TMPL+=		${_INSTALL_ICON_THEMES_DATAFILE}
+
+# Icon theme cache will be used either GTK+2 or GTK3+ applications.
+# list their update-icon-cache tools.
+#
+FILES_SUBST+=		GTK2_UPDATE_ICON_CACHE=${LOCALBASE:Q}/bin/gtk2-update-icon-cache
+FILES_SUBST+=		GTK3_UPDATE_ICON_CACHE=${LOCALBASE:Q}/bin/gtk-update-icon-cache
+
+${_INSTALL_ICON_THEMES_DATAFILE}:
+	${RUN}${MKDIR} ${.TARGET:H}
+	${RUN}${RM} -f ${.TARGET}
+	${RUN}${TOUCH} ${TOUCH_ARGS} ${.TARGET}
+	${RUN}${_FUNC_STRIP_PREFIX};					\
+		${ICON_THEMES_cmd} |					\
+		while read theme; do					\
+			theme=`strip_prefix "$$theme"`;			\
+			${ECHO} "# ICON_THEME: $$theme"			\
+				>> ${.TARGET};				\
+		done;							\
+
+${_INSTALL_ICON_THEMES_FILE}: ${_INSTALL_ICON_THEMES_DATAFILE}
+${_INSTALL_ICON_THEMES_FILE}: ../../mk/pkginstall/icon-themes
+	${RUN}${MKDIR} ${.TARGET:H}
+	${RUN}								\
+	${SED} ${FILES_SUBST_SED} ../../mk/pkginstall/icon-themes > ${.TARGET}
+	${RUN}								\
+	if ${_ZERO_FILESIZE_P} ${_INSTALL_ICON_THEMES_DATAFILE}; then	\
 		${RM} -f ${.TARGET};					\
 		${TOUCH} ${TOUCH_ARGS} ${.TARGET};			\
 	fi
@@ -1050,7 +1092,6 @@ FILES_SUBST+=		FALSE=${FALSE:Q}
 FILES_SUBST+=		FIND=${FIND:Q}
 FILES_SUBST+=		GREP=${GREP:Q}
 FILES_SUBST+=		GROUPADD=${GROUPADD:Q}
-FILES_SUBST+=		GTAR=${GTAR:Q}
 FILES_SUBST+=		HEAD=${HEAD:Q}
 FILES_SUBST+=		ID=${ID:Q}
 FILES_SUBST+=		INSTALL_INFO=${INSTALL_INFO:Q}

@@ -66,7 +66,7 @@ ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 	ELF)								\
 		libs=`${AWK} '/\/lib.*\.so(\.[0-9]+)*$$/ { print "${DESTDIR}${PREFIX}/" $$0 } END { exit 0 }' ${_PLIST_NOKEYWORDS}`; \
 		if ${TEST} -n "$$bins" -o -n "$$libs"; then		\
-			requires=`(${PKGSRC_SETENV} ${LDD_ENV:U} $$ldd $$bins $$libs 2>/dev/null || ${TRUE}) | ${AWK} '$$2 == "=>" && $$3 ~ "/" { print $$3 }' | ${SORT} -u`; \
+			requires=`${PKGSRC_SETENV} AWK=${AWK} SYSTEM_RPATH=${_OPSYS_SYSTEM_RPATH:Q} CROSS_DESTDIR=${CROSS_DESTDIR:Q} DESTDIR=${DESTDIR:Q} ${SH} ${PKGSRCDIR}/mk/scripts/list-requires-elf $$bins $$libs 2>/dev/null | ${SORT} -u`; \
 		fi;							\
 		linklibs=`${AWK} '/.*\.so(\.[0-9]+)*$$/ { print "${DESTDIR}${PREFIX}/" $$0 }' ${_PLIST_NOKEYWORDS}`; \
 		for i in $$linklibs; do					\
@@ -105,7 +105,7 @@ ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 	requires=`{ for i in $$requires $$requires; do echo $$i; done; \
 		${AWK} '{ print "${PREFIX}/" $$0 }' ${_PLIST_NOKEYWORDS}; } | \
 		${SORT} | uniq -c | awk '$$1 == 2 {print $$2}'`; \
-	for i in "" $$libs; do						\
+	for i in "" $$bins $$libs; do					\
 		${TEST} "$$i" != "" || continue;			\
 		${ECHO} "PROVIDES=$${i}";				\
 	done | ${SED} -e 's,^PROVIDES=${DESTDIR},PROVIDES=,'		\
@@ -114,7 +114,21 @@ ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 		${TEST} "$$req" != "" || continue;			\
 		${ECHO} "REQUIRES=$$req" >> ${.TARGET}.tmp;		\
 	done
+.else
+	${RUN}								\
+	${AWK} '/(^|\/)(bin|sbin|libexec)\// { print "${PREFIX}/" $$0 } END { exit 0 }' ${_PLIST_NOKEYWORDS} |  \
+	while read bin; do						\
+		${ECHO} "PROVIDES=$${bin}";				\
+	done >> ${.TARGET}.tmp;
 .endif
+.	for t in ${USE_TOOLS:M*\:run:S/:run//}
+		${RUN}							\
+		case ${TOOLS_PATH.${t}:Q}"" in				\
+		/*)							\
+		${ECHO} "REQUIRES=${TOOLS_PATH.${t}}" >> ${.TARGET}.tmp	\
+		;;							\
+		esac
+.	endfor
 	${RUN}								\
 	rm -f ${.TARGET};						\
 	sort ${.TARGET}.tmp > ${.TARGET};				\
@@ -130,43 +144,41 @@ ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 _BUILD_VERSION_FILE=	${PKG_DB_TMPDIR}/+BUILD_VERSION
 _METADATA_TARGETS+=	${_BUILD_VERSION_FILE}
 
-${_BUILD_VERSION_FILE}:
-	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}${RM} -f ${.TARGET}.tmp
+_BUILD_VERSION_FILE_cmd=	\
 	${RUN}								\
-	exec 1>>${.TARGET}.tmp;						\
+	(								\
 	for f in ${.CURDIR}/Makefile ${FILESDIR}/* ${PKGDIR}/*; do	\
 		${TEST} ! -f "$$f" || ${ECHO} "$$f";			\
-	done
-	${RUN}								\
-	exec 1>>${.TARGET}.tmp;						\
+	done;								\
 	${TEST} -f ${DISTINFO_FILE:Q} || exit 0;			\
+	${ECHO} ${.MAKE.MAKEFILES:M*/Makefile.*};			\
 	${CAT} ${DISTINFO_FILE} |					\
 	${AWK} 'NF == 4 && $$3 == "=" { gsub("[()]", "", $$2); print $$2 }' | \
 	while read file; do						\
 		${TEST} ! -f "${PATCHDIR}/$$file" ||			\
 			${ECHO} "${PATCHDIR}/$$file";			\
-	done
-	${RUN}								\
-	exec 1>>${.TARGET}.tmp;						\
-	${TEST} -d ${PATCHDIR} || exit 0;				\
-	cd ${PATCHDIR}; for f in *; do					\
-		case "$$f" in						\
-		"*"|*.orig|*.rej|*~)	;;				\
-		patch-*)		${ECHO} "${PATCHDIR}/$$f" ;;	\
-		esac;							\
-	done
-	${RUN}								\
-	${CAT} ${.TARGET}.tmp |						\
+	done								\
+	) |								\
 	while read file; do						\
 		${GREP} '\$$NetBSD' $$file 2>/dev/null |		\
 		${SED} -e "s|^|$$file:|";				\
 	done |								\
 	${AWK} '{ sub("^${PKGSRCDIR}/", "");				\
+		  sub("^${PKGPATH}/../../", "");			\
+		  sub("^../../", "");					\
 		  sub(":.*[$$]NetBSD", ":	$$NetBSD");		\
 		  sub("[$$][^$$]*$$", "$$");				\
 		  print; }' |						\
-	${SORT} -u > ${.TARGET} && ${RM} -f ${.TARGET}.tmp
+	${SORT} -u
+
+
+${_BUILD_VERSION_FILE}:
+	${RUN}${MKDIR} ${.TARGET:H}
+	${_BUILD_VERSION_FILE_cmd} > ${.TARGET}
+
+.PHONY: show-build-version
+show-build-version:
+	${_BUILD_VERSION_FILE_cmd}
 
 ######################################################################
 ###

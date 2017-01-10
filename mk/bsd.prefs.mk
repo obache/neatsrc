@@ -70,7 +70,12 @@ UNAME=echo Unknown
 .endif
 
 .if !defined(OPSYS)
-OPSYS:=			${:!${UNAME} -s!:S/-//g:S/\///g:C/^CYGWIN_.*$/Cygwin/}
+OPSYS:=			${:!${UNAME} -s!:S/-//g:S/\///g}
+.  if !empty(OPSYS:MCYGWIN_*) || !empty(OPSYS:MMSYS_*)
+OPSYS:=			${:!${UNAME} -o!}
+.  elif !empty(OPSYS:MIRIX*)
+OPSYS:=			IRIX
+.  endif
 MAKEFLAGS+=		OPSYS=${OPSYS:Q}
 .endif
 
@@ -171,6 +176,11 @@ LOWER_VENDOR?=		pc
 .  endif
 LOWER_VENDOR?=		unknown
 
+.elif ${OPSYS} == "GNU"
+LOWER_OPSYS?=		gnu
+LOWER_OPSYS_VERSUFFIX?=	${OS_VERSION}
+LOWER_VENDOR?=		unknown
+
 .elif ${OPSYS} == "Haiku"
 LOWER_OPSYS?=		haiku
 .  if ${MACHINE_ARCH} == "i386"
@@ -192,6 +202,13 @@ OS_VERSION=		3.1
 OS_VERSION=		3.0
 .    endif
 .  endif
+
+.elif ${OPSYS} == "Msys"
+LOWER_OPSYS?=		msys
+LOWER_VENDOR?=		pc
+_OS_VERSION!=		${UNAME} -r
+OS_VERSION=		${_OS_VERSION:C/\(.*\)//}
+OS_VARIANT!=		${UNAME} -s
 
 .elif ${OPSYS} == "MirBSD"
 LOWER_OPSYS?=		mirbsd
@@ -240,6 +257,11 @@ OS_VERSION:=		${OS_VERSION:C/^B.//}
 LOWER_OPSYS?=		hpux
 LOWER_OPSYS_VERSUFFIX?=	${OS_VERSION}
 LOWER_VENDOR?=		hp
+
+.elif ${OPSYS} == "skyos"
+LOWER_OPSYS?=		skyos
+LOWER_OPSYS_VERSUFFIX?=	${OS_VERSION}
+LOWER_VENDOR?=		pc
 
 .elif ${OPSYS} == "SunOS"
 LOWER_VENDOR?=		sun
@@ -342,18 +364,12 @@ OBJECT_FMT=	SOM
 .  else # hppa
 OBJECT_FMT=	SOM
 .  endif
-.elif ${OPSYS} == "Cygwin"
+.elif ${OPSYS} == "Cygwin" || ${OPSYS} == "Msys"
 OBJECT_FMT=	PE
 .endif
 
-# Calculate depth
-.if exists(${.CURDIR}/mk/bsd.pkg.mk)
-_PKGSRC_TOPDIR=	${.CURDIR}
-.elif exists(${.CURDIR}/../mk/bsd.pkg.mk)
-_PKGSRC_TOPDIR=	${.CURDIR}/..
-.elif exists(${.CURDIR}/../../mk/bsd.pkg.mk)
-_PKGSRC_TOPDIR=	${.CURDIR}/../..
-.endif
+# top directory name only used internally here
+_PKGSRC_TOPDIR:=	${.PARSEDIR:H:tA}
 
 # include the defaults file
 .include "${_PKGSRC_TOPDIR}/mk/defaults/mk.conf"
@@ -390,7 +406,6 @@ PKGDIRMODE?=		755
 # Keywords: meta meta-package META_PACKAGE
 #
 .if defined(META_PACKAGE)
-PKG_DESTDIR_SUPPORT=	user-destdir
 NO_CONFIGURE=		yes
 NO_BUILD=		yes
 DISTFILES=		# none
@@ -430,12 +445,12 @@ _MAKE_CLEAN_AS_ROOT=	no
 _MAKE_INSTALL_AS_ROOT=	no
 .  endif
 
-# controls whether binary packages are preserved in pkgsrc/packages/All
+# controls whether binary packages are created in pkgsrc/packages/All
 # default is no (to preserve settings since 2013/05/23, prior to that it
 # was yes)
-_KEEP_BIN_PKGS?= no
-.if !empty(PKGSRC_KEEP_BIN_PKGS:U:M[Yy][Ee][Ss])
-_KEEP_BIN_PKGS=	yes
+_CREATE_BIN_PKGS?=	no
+.if !empty(PKGSRC_CREATE_BIN_PKGS:U:M[Yy][Ee][Ss])
+_CREATE_BIN_PKGS=	yes
 .endif
 
 _MAKE_CLEAN_AS_ROOT?=	no
@@ -627,7 +642,7 @@ FETCH_USING=	ftp
 .endif
 
 .if !defined(_PKGSRCDIR)
-_PKGSRCDIR!=		cd ${_PKGSRC_TOPDIR} && ${PWD_CMD}
+_PKGSRCDIR=		${_PKGSRC_TOPDIR:tA}
 MAKEFLAGS+=		_PKGSRCDIR=${_PKGSRCDIR:Q}
 .endif
 PKGSRCDIR=		${_PKGSRCDIR}
@@ -647,7 +662,7 @@ _BUILTIN_PKGS?=		# empty
 .if defined(WRKOBJDIR)
 BUILD_DIR?=		${WRKOBJDIR}/${PKGPATH}
 .else
-BUILD_DIR!=		cd ${.CURDIR} && ${PWD_CMD}
+BUILD_DIR?=		${.CURDIR:tA}
 .endif
 
 # If OBJHOSTNAME is set, use first component of hostname in directory name.

@@ -1,0 +1,14 @@
+Arundina fonts were created under SIPA's initiation, aiming at Bitstream
+Vera / Dejavu compatibility. They were then further modified by TLWG
+for certain aspects:
+
+  * Latin glyph size compatiblity. That is, Latin glyphs should have equal
+    size with those from Western fonts at the same point size, so that it
+    would not require users to scale fonts when using them together in the
+    same documents.
+
+  * OpenType conformance. We attempt to fullfill OpenType requirements for
+    Thai fonts[3], according to our drafted spec [4]. However, as many
+    applications, including MacOS before Leopard and Adobe CS2, do not support
+    the Thai-specific features well, the 'liga' GSUB hack developed by the
+    original author is still retained for the time being.

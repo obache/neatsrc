@@ -26,7 +26,6 @@ DEPENDS+=	modular-xorg-fonts>0:../../meta-pkgs/modular-xorg-fonts
 .endif
 
 USE_TOOLS+=	gmake perl:run
-USE_PKGINSTALL=	YES
 
 PERL5_CONFIGURE=NO
 

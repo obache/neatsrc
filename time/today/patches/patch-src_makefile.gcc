@@ -1,0 +1,15 @@
+$NetBSD$
+
+--- src/makefile.gcc.orig	2015-08-24 08:28:22.000000000 +0000
++++ src/makefile.gcc
+@@ -2,8 +2,8 @@
+ # Makefile for GCC
+ #
+ 
+-CC = gcc
+-CFLAGS = -O2 -fomit-frame-pointer -fstrength-reduce -Wall -Wpointer-arith -Wcast-qual -Wcast-align -Wstrict-prototypes -DHAVE_STRTOK_R
++CC ?= gcc
++CFLAGS += -fomit-frame-pointer -fstrength-reduce -Wall -Wpointer-arith -Wcast-qual -Wcast-align -Wstrict-prototypes -DHAVE_STRTOK_R
+ 
+ all: dayinfo eventcnv weekcnv histext
+ 

@@ -12,7 +12,6 @@ PHP_VERSIONS_ACCEPTED=	70 71
 
 CONFIGURE_ARGS+=	--enable-${MODNAME}
 
-PLIST_SRC+=		${.CURDIR}/PLIST.extras
 PLIST_SUBST+=		PKGBASE=${PKGBASE:Q}
 
 DOCDIR=			${PREFIX}/share/doc/${PKGBASE}
@@ -21,7 +20,6 @@ INSTALLATION_DIRS=	${DOCDIR}
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/INSTALL ${DESTDIR}${DOCDIR}
-	cd ${WRKSRC} && ${MAKE} INSTALL_ROOT="${DESTDIR}" install-headers
 
 .include "../../lang/php/ext.mk"
 .include "../../mk/bsd.pkg.mk"

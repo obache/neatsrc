@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.2 2015/11/03 22:13:39 agc Exp $
 
-SHA1 (scim-unikey-0.3.1.tar.gz) = b5db5c2871e217b33f613e0cc8a4913ad32fed22
-RMD160 (scim-unikey-0.3.1.tar.gz) = bb81333348d53accfcc7a6dc671df9b9a5caf9df
-SHA512 (scim-unikey-0.3.1.tar.gz) = 2222da1e4ef75fc4ca9b59cd8ed14af9fd7095e62f0e0e3186545e5108c982fe18a0e5af6386a71b297493caa81e8510946484f50d64e3d0138ed9515bfdcfe3
-Size (scim-unikey-0.3.1.tar.gz) = 482106 bytes
+SHA1 (scim-unikey-0.3.2.tar.gz) = 290d352097fc6b53f8551b938a273b71c3ea1521
+RMD160 (scim-unikey-0.3.2.tar.gz) = 59de84bc315115b953672c6c116df3889d2a027f
+SHA512 (scim-unikey-0.3.2.tar.gz) = 8c28a05ba3c653e7fdc39bee217bb2c4bf9965202662099e6055646292667a14618add14371c47ca4bb2b29a81af5c25acaf48555971400387f2b0a370a8e84b
+Size (scim-unikey-0.3.2.tar.gz) = 102094 bytes

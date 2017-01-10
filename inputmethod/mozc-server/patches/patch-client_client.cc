@@ -1,6 +1,6 @@
 $NetBSD: patch-client_client.cc,v 1.2 2016/05/16 11:51:49 ryoon Exp $
 
---- client/client.cc.orig	2016-05-15 08:11:10.000000000 +0000
+--- client/client.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ client/client.cc
 @@ -891,7 +891,7 @@ bool Client::LaunchTool(const string &mo
    }

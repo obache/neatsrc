@@ -49,5 +49,6 @@ LDFLAGS.SCO_SV+=	-lpthread
 .endif
 
 .include "../../mk/readline.buildlink3.mk"
+CONFIGURE_ARGS+=	--enable-${READLINE_TYPE}
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

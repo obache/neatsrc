@@ -18,6 +18,7 @@ post-extract:
 	${MV} ${WRKSRC}/Xos_r.h ${WRKSRC}/Xos_r.h.in
 
 pre-configure:
-	sleep 1 && ${TOUCH} ${WRKSRC}/aclocal.m4 ${WRKSRC}/Makefile.in
+	${RUN} cd ${WRKSRC}; ${TOUCH} -r configure.ac \
+		do-not-use-config.h.in aclocal.m4 Makefile.in
 
 .include "../../mk/bsd.pkg.mk"

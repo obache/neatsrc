@@ -137,6 +137,7 @@ _PLIST_AWK_ENV+=	LIBTOOL_EXPAND=${_LIBTOOL_EXPAND:Q}
 _PLIST_AWK_ENV+=	LS=${TOOLS_LS:Q}
 _PLIST_AWK_ENV+=	MANINSTALL=${_PLIST_MANINSTALL:Q}
 _PLIST_AWK_ENV+=	MANZ=${_MANZ:Q}
+_PLIST_AWK_ENV+=	OPSYS_DLL_PREFIX=${_OPSYS_DLL_PREFIX:Q}
 _PLIST_AWK_ENV+=	PKGGNUDIR=${PKGGNUDIR:Q}
 _PLIST_AWK_ENV+=	PKGMANDIR=${PKGMANDIR:Q}
 _PLIST_AWK_ENV+=	PREFIX=${DESTDIR:Q}${PREFIX:Q}
@@ -192,7 +193,7 @@ _PLIST_AWK+=		-f ${.CURDIR}/../../mk/plist/plist-gnu.awk
 _PLIST_AWK+=		-f ${.CURDIR}/../../mk/plist/plist-info.awk
 _PLIST_AWK+=		-f ${.CURDIR}/../../mk/plist/plist-man.awk
 _PLIST_AWK+=		-f ${.CURDIR}/../../mk/plist/plist-libtool.awk
-.if ${OPSYS} == "Cygwin"
+.if ${OPSYS} == "Cygwin" || ${OPSYS} == "Msys"
 _PLIST_AWK+=		-f ${.CURDIR}/../../mk/plist/plist-cygwin.awk
 .endif
 _PLIST_AWK+=		${PLIST_AWK}
@@ -282,6 +283,12 @@ INFO_FILES_cmd=								\
 	${PKGSRC_SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_INFO_AWK} |	\
 	${AWK} '($$0 !~ "-[0-9]*(\\.gz)?$$") { print }'
 .endif
+
+ICON_THEMES_cmd=							\
+	${CAT} ${PLIST} |						\
+	${PKGSRC_SETENV} ${_PLIST_AWK_ENV} ${AWK} -F /			\
+	'$$0 ~ "^share/icons/[^/]+/.*$$" { print $$3 }' |		\
+	${SORT} -u
 
 ######################################################################
 ### plist-clean (PRIVATE)

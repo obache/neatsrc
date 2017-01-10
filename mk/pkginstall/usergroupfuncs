@@ -106,6 +106,13 @@ adduser()
 	${PKGNAME%-[0-9]*})	descr_dflt="$user user" ;;
 	*)			descr_dflt="${PKGNAME%-[0-9]*} $user user" ;;
 	esac
+
+	uid_range=${PKG_UID_RANGE:-@PKG_UID_RANGE@}
+	case $uid_range in
+	"")			range=""  ;;
+	*)			range="-r $uid_range" ;;
+	esac
+
 	: ${descr:="$descr_dflt"}
 	: ${home:="@PKG_USER_HOME@"}
 	: ${shell:="@PKG_USER_SHELL@"}
@@ -116,7 +123,7 @@ adduser()
 		"")
 			${USERADD}					\
 				-c "$descr" -d "$home" -s "$shell"	\
-				-g $group $user
+				-g $group $range $user
 			;;
 		*)
 			${USERADD}					\
@@ -137,10 +144,16 @@ addgroup()
 
 	GROUPADD="@GROUPADD@"
 
+	gid_range=${PKG_GID_RANGE:-@PKG_GID_RANGE@}
+	case $gid_range in
+	"")			group_range=""  ;;
+	*)			group_range="-r $gid_range" ;;
+	esac
+
 	if ${TEST} -n "${GROUPADD}" -a -x "${GROUPADD}"; then
 		${ECHO} "${PKGNAME}: Creating group \`\`$group''"
 		case $groupid in
-		"")	${GROUPADD} $group ;;
+		"")	${GROUPADD} $group_range $group ;;
 		*)	${GROUPADD} -g $groupid $group ;;
 		esac
 	fi

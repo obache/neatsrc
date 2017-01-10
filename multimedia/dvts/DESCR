@@ -1,0 +1,11 @@
+DVTS (Digital Video Transport System) is an application for sending and
+receiving DV(Digital Video) streams using the Internet. Currently DVTS works on
+FreeBSD and MacOSX. IEEE1394(Firewire) cables are used for connecting DV
+equipments. However, the length of a single IEEE1394 cables can not be longer
+than 4.5 meters. Using DVTS, DV data can be sent anywhere using the Internet.
+
+DVTS is an Internet Protocol based high quality real-time audio visual(AV)
+communication tool. DV camcorder and VCR being the product for the consumer
+market are adopted as AV CODEC. Thus, DVTS does not require especial and
+expensive equipments. The AV devices having IEEE1394 interface are connected to
+the IP host with its interface.

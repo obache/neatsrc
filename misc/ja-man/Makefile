@@ -23,7 +23,7 @@ MAKE_ENV+=	MANOWN=${MANOWN} MANGRP=${MANGRP} MANMODE=${MANMODE} MKHTML=no
 PLIST_SRC=	${WRKDIR}/PLIST
 
 USE_TOOLS+=		patch pax
-USE_BSD_MAKE=		yes
+USE_BSD_MAKEFILE=	yes
 MANCOMPRESSED_IF_MANZ=	yes
 INSTALLATION_DIRS=	bin share/groff/tmac/mdoc share/examples
 .for c in 1 2 3 4 5 6 7 8 9

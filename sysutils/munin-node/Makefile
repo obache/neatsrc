@@ -24,7 +24,6 @@ DEPENDS+=	munin-doc>=1.3.1:../../sysutils/munin-doc
 
 USE_TOOLS+=	perl:run tar
 USE_TOOLS+=	gmake
-USE_PKGINSTALL=	YES
 
 WRKSRC=		${WRKDIR}/${DISTNAME:S:_:-:}
 

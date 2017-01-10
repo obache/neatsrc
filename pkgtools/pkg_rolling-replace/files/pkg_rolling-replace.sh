@@ -91,7 +91,6 @@ if [ -z "$PKGSRCDIR" ] ; then
     done
 fi
 test -z "$PKGSRCDIR" && echo >&2 "Please set PKGSRCDIR" && exit 1
-test -z "$PKG_CHK" && PKG_CHK="@PKG_CHK@"
 test -z "$PKG_INFO" && PKG_INFO="@PKG_INFO_CMD@"
 
 export PKGSRCDIR
@@ -102,7 +101,8 @@ usage()
 {
     echo "Usage: pkg_rolling-replace [opts]
         -h         This help
-        -B         Pass -B to pkg_chk (only applies with -u)
+        -B         Include BUILD_VERSION when determining outdated packages
+                   (only applies with -u)
         -F         Fetch sources (including depends) only, don't build
         -k         Keep running, even on error
         -n         Don't actually do make replace
@@ -146,22 +146,26 @@ OPI='RR>'
 OPC='rr>' # continuation
 
 
-# Echo the names of packages needing updates, versions stripped.  This
-# has been tested with pkg_chk 1.76.  Older versions are not
-# supported.  Newer versions may or may not work (patches welcome).
+# Echo the names of packages needing updates, versions stripped.
 check_packages_mismatched()
 {
-    ${PKG_CHK} -u -q $opt_B | while read line; do
-        # duplicate output of pkg_chk to stderr (bypass $(...) or `...`)
-        echo "${OPC} $line" 1>&2
-	# Look for the first thing that looks like pkg-version rather
-	# than category/pkg and remove the version.
-        for word in $line; do
-            if [ "$(echo $word | egrep '^[^/]+-[0-9][^-/]*$')" ]; then
-                echo $word | sed 's/-[0-9][^-]*$//'
-                break  #done with this line
+    ${PKG_INFO} -aI | while read pkgname comment; do
+        pkgdir=$(${PKG_INFO} -Q PKGPATH $pkgname)
+        if [ -d "$PKGSRCDIR/$pkgdir" ]; then
+            pkg=$(echo $pkgname | sed 's/-[0-9][^-]*$//') 
+            newpkgname=$(cd $PKGSRCDIR/$pkgdir && @SETENV@ PKGNAME_REQD="$pkg-*" ${MAKE} show-var VARNAME=PKGNAME)
+            if [ "$pkgname" != "$newpkgname" ]; then
+                echo "${OPC} $pkgdir - $pkgname < $newpkgname" 1>&2
+                echo "$pkg"
+            elif [ -n "$opt_B" ]; then
+                oldpkgversion=$(${PKG_INFO} -q -b "$pkgname" | grep .)
+		newpkgversion=$(cd $PKGSRCDIR/$pkgdir && @SETENV@ PKGNAME_REQD="$pkg-*" ${MAKE} show-build-version)
+                if [ "$oldpkgversion" != "$newpkgversion" ]; then
+                    echo "${OPC} $pkg - $pkgname build_version mismatch" 1>&2
+                    echo "$pkg"
+                fi
             fi
-        done
+        fi
     done
 }
 
@@ -340,7 +344,7 @@ fi
 set -- $args
 while [ $# -gt 0 ]; do
     case "$1" in
-        -B) opt_B=-B ;;
+        -B) opt_B=1 ;;
         -F) opt_F=1 ;;
         -h) opt_h=1 ;;
         -k) opt_k=1 ;;
@@ -375,7 +379,7 @@ FAILED=""
 
 MISMATCH_TODO=
 if [ -n "$opt_u" -o -n "$opt_F" ]; then
-    echo "${OPI} Checking for mismatched installed packages using pkg_chk"
+    echo "${OPI} Checking for mismatched installed packages"
     MISMATCH_TODO=$(check_packages_mismatched)
     echo "${OPI} Excluding the following mismatched packages:"
     echo "${OPC} EXCLUDE=[$EXCLUDE]"
@@ -462,9 +466,8 @@ while [ -n "$REPLACE_TODO" ]; do
 	OLD_DEPENDS=$(${PKG_INFO} -Nq $pkg | sed 's/-[0-9][^-]*$//')
 	NEW_DEPENDS=
 	cd "$PKGSRCDIR/$pkgdir"
-	bdeps=$(@SETENV@ ${MAKE_SET_VARS} ${MAKE} show-depends VARNAME=BUILD_DEPENDS)
-	rdeps=$(@SETENV@ ${MAKE_SET_VARS} ${MAKE} show-depends)
-	for depver in $bdeps $rdeps; do
+	deps=$(@SETENV@ ${MAKE_SET_VARS} ${MAKE} show-depends VARNAME=ALL_DEPENDS)
+	for depver in $deps; do
 	    dep=$(echo $depver | sed -e 's/[:[].*$/0/' -e 's/[<>]=/-/' \
 		-e 's/-[0-9][^-]*$//')
 	    if ! is_member $dep $OLD_DEPENDS $NEW_DEPENDS; then

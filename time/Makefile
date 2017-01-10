@@ -164,6 +164,7 @@ SUBDIR+=	swisswatch
 SUBDIR+=	taskwarrior
 SUBDIR+=	tdl
 SUBDIR+=	titrax
+SUBDIR+=	today
 SUBDIR+=	vixie-cron
 SUBDIR+=	wmCalClock
 SUBDIR+=	wmclockmon

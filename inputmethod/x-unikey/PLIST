@@ -1,0 +1,4 @@
+@comment $NetBSD$
+bin/ukxim
+bin/unikey
+${PLIST.gtk2}lib/gtk-2.0/2.10.0/immodules/im-vn.la

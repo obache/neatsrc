@@ -2,7 +2,8 @@
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.ibus-libpinyin
-PKG_SUPPORTED_OPTIONS=	lua
+PKG_SUPPORTED_OPTIONS=	lua opencc
+PKG_SUGGESTED_OPTIONS=	lua
 
 .include "../../mk/bsd.options.mk"
 
@@ -17,4 +18,15 @@ CONFIGURE_ARGS+=	--enable-lua-extension
 PLIST.lua=		yes
 .else
 CONFIGURE_ARGS+=	--disable-lua-extension
+.endif
+
+#
+# OpenCC
+#
+.if !empty(PKG_OPTIONS:Mopencc)
+.include "../../converters/opencc/buildlink3.mk"
+CONFIGURE_ARGS+=	--enable-opencc
+PLIST.lua=		yes
+.else
+CONFIGURE_ARGS+=	--disable-opencc
 .endif

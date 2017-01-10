@@ -1,8 +1,8 @@
 $NetBSD: patch-base_system__util.cc,v 1.4 2016/05/16 11:51:49 ryoon Exp $
 
---- base/system_util.cc.orig	2016-05-15 08:11:10.000000000 +0000
+--- base/system_util.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ base/system_util.cc
-@@ -372,11 +372,11 @@ string SystemUtil::GetServerDirectory() 
+@@ -372,7 +372,7 @@ string SystemUtil::GetServerDirectory() 
  #elif defined(OS_MACOSX)
    return MacUtil::GetServerDirectory();
  
@@ -11,11 +11,6 @@ $NetBSD: patch-base_system__util.cc,v 1.4 2016/05/16 11:51:49 ryoon Exp $
  #if defined(MOZC_SERVER_DIRECTORY)
    return MOZC_SERVER_DIRECTORY;
  #else
--  return "/usr/lib/mozc";
-+  return "@PREFIX@/lib/mozc";
- #endif  // MOZC_SERVER_DIRECTORY
- 
- #endif  // OS_WIN, OS_MACOSX, OS_LINUX, ...
 @@ -450,7 +450,7 @@ string SystemUtil::GetUserNameAsString()
    return ppw->pw_name;
  

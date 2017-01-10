@@ -1,18 +1,17 @@
-# $NetBSD: Makefile,v 1.14 2017/01/04 20:44:25 abs Exp $
+# $NetBSD: Makefile,v 1.13 2012/10/23 19:51:25 asau Exp $
+#
 
 DISTNAME=	sysgen
-PKGNAME=	sysgen-20151230
+PKGNAME=	sysgen-1.0
 CATEGORIES=	sysutils
-MASTER_SITES=	http://minnie.tuhs.org/Archive/tools/Misc/
+MASTER_SITES=	http://ox.compsoc.net/~dankolb/sysgen/
 EXTRACT_SUFX=	.tar.Z
 
 MAINTAINER=	abs@NetBSD.org
 COMMENT=	Assign DEC Qbus or UNIBUS standard CSR and vector addresses
-LICENSE=	public-domain
 
 WRKSRC=		${WRKDIR}
 BUILD_TARGET=	sysgen
-DIST_SUBDIR=	sysgen
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 

@@ -106,7 +106,7 @@ word with the wrapper's absolute file name):
 This is called the
 .Em user configuration file
 and is only read when not running as
-.Dq @ROOT_USER@ .
+.Dq a privileged user .
 Otherwise, tools such as
 .Xr sudo 8
 could be used to execute any program in the system.
@@ -122,7 +122,7 @@ This file can be freely edited by the administrator, either by hand or
 by using the
 .Cm manual
 action described below.
-.It Pa @DATADIR@/wrapper
+.It Pa @DBDIR@/wrapper
 This is called the
 .Em database configuration file
 and is always read.
@@ -232,7 +232,7 @@ In most situations, you will want to use these actions in group mode.
 Removes any manual configuration created for the given
 .Ar wrapper .
 That is, if running as
-.Dq @ROOT_USER@ ,
+.Dq a privileged user ,
 the system configuration file is deleted; otherwise, the user configuration
 file is removed.
 The effect of this action is that the wrapper is then free to choose any
@@ -243,7 +243,7 @@ Manually selects the
 for the given
 .Ar wrapper .
 If running as
-.Dq @ROOT_USER@ ,
+.Dq a privileged user ,
 the system configuration file is modified; otherwise, the user configuration
 file is changed.
 The effect of this action is that the wrapper will try to use your preferred
@@ -320,7 +320,7 @@ User-specific configuration directory.
 System-wide configuration directory.
 .It Pa @CONFDIR@/filter.conf
 Wrapper filter.
-.It Pa @DATADIR@/
+.It Pa @DBDIR@/
 System-wide configuration database.
 .El
 .Sh DIAGNOSTICS

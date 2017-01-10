@@ -1,0 +1,15 @@
+$NetBSD$
+
+* accept widely
+
+--- configure.in.orig	2008-03-12 10:30:06.000000000 +0000
++++ configure.in
+@@ -96,7 +96,7 @@ case "$host_os" in
+     DVPLAY_LDFLAGS="-framework QuickTime -framework DVComponentGlue -framework Carbon"
+     ;;
+ 
+- netbsd1.5*)
++ netbsd*)
+     echo " + OS Type is NetBSD 1.5.x"
+     CFLAGS="-DNETBSD $CFLAGS"
+     DVSEND_SRC="ieee1394-netbsd.c"

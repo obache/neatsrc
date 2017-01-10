@@ -26,10 +26,12 @@ INSTALL_TEMPLATES+=	../../x11/gtk2/files/immodules.tmpl
 DEINSTALL_TEMPLATES+=	../../x11/gtk2/files/immodules.tmpl
 .endif
 
-PRINT_PLIST_AWK+=	/^libdata\/gtk-2.0/ { next; }
-
 .if !defined(_BUILDING_GTK2)
 .  include "../../x11/gtk2/buildlink3.mk"
+.endif
+
+.if empty(GTK2_IMMODULES:U:M[Yy][Ee][Ss])
+PKG_FAIL_REASON+=	"[x11/gtk2/modules.mk] No GTK2 modules is specified."
 .endif
 
 .endif			# GTK2_MODULES_MK

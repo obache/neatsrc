@@ -13,7 +13,6 @@ COMMENT=	UPnP AV Mediaserver
 LICENSE=	gnu-gpl-v2
 
 USE_LANGUAGES=	c c++
-USE_PKGINSTALL=	yes
 USE_TOOLS+=	gmake pkg-config
 
 HAS_CONFIGURE=	yes

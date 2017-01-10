@@ -18,13 +18,5 @@ USE_TOOLS+=		gsed
 CONFIGURE_ARGS+=	--enable-${MODNAME}
 USE_LIBTOOL=		yes
 
-PLIST_SRC+=		PLIST
-
-INSTALLATION_DIRS+=	include/php/ext/igbinary
-
-post-install:
-	${INSTALL_DATA} ${WRKSRC}/igbinary.h \
-		${DESTDIR}${PREFIX}/include/php/ext/igbinary
-
 .include "../../lang/php/ext.mk"
 .include "../../mk/bsd.pkg.mk"

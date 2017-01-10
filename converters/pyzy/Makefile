@@ -52,6 +52,8 @@ CONFIGURE_ARGS+=	--with-boost=${BUILDLINK_PREFIX.boost-headers}
 .include "../../devel/boost-headers/buildlink3.mk"
 .endif
 
+.include "options.mk"
+
 # http://code.google.com/p/pyzy/issues/detail?id=4
 .include "../../inputmethod/ibus/bad-env-usage.mk"
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.24.0

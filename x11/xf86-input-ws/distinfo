@@ -7,3 +7,4 @@ Size (xf86-input-ws-1.3.0.20151010.tar.gz) = 323648 bytes
 SHA1 (patch-src_emumb.c) = 6e24f30272373f07eacfc86288e6513bc04b9abc
 SHA1 (patch-src_emuwheel.c) = 71898121faa75af02dc46dd597f87afb00ad2bc5
 SHA1 (patch-src_ws.c) = 66cdc536a6a931d117f2e22111b1b95bf1d63b84
+SHA1 (patch-src_ws.h) = 8c41ebc8e40c1f3352bbf348bc75be872b5ae1d8

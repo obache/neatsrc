@@ -4,7 +4,7 @@ DISTNAME=	binutils-2.12.1
 PKGNAME=	cross-h8300-hms-binutils-2.12.1
 PKGREVISION=	1
 CATEGORIES=	cross
-MASTER_SITES=	ftp://ftp.gnu.org/gnu/binutils/
+MASTER_SITES=	${MASTER_SITE_GNU:=binutils/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

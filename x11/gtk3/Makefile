@@ -12,15 +12,11 @@ COMMENT=	GIMP Toolkit v3 - libraries for building X11 user interfaces
 LICENSE=	gnu-lgpl-v2.1
 
 USE_PKGLOCALEDIR=	yes
-USE_TOOLS+=		gmake perl pkg-config bash xgettext msgmerge
+USE_TOOLS+=		gmake msgfmt perl pkg-config bash
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 PTHREAD_AUTO_VARS=	yes
 BUILD_DEPENDS+=		gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
-TOOL_DEPENDS+=		gettext-tools>=0.19.4nb1:../../devel/gettext-tools
-# There is no logic in gettext.mk to detect the native version of xgettext,
-# and we do need it to be compiled with Glade support.
-_TOOLS_USE_PKGSRC.xgettext=yes
 
 GNU_CONFIGURE=		yes
 # XXX there is a subtle bashism in "configure" or a bug in NetBSD's sh
@@ -69,6 +65,10 @@ CPPFLAGS+=		-DPREFIX="\"${PREFIX}\""
 post-install:
 	${RM} -f ${DESTDIR}${GTK3_IMMODULES_DB}
 
+FILES_SUBST+=		GTK_UPDATE_ICON_CACHE="${PREFIX}/bin/gtk-update-icon-cache"
+FILES_SUBST+=		ICON_THEME_DIR="${LOCALBASE}/share/icons"
+INSTALL_TEMPLATES+=	../../x11/gtk2/files/icon-cache.tmpl
+
 _BUILDING_GTK3=	yes
 .include "modules.mk"
 
@@ -98,6 +98,5 @@ BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.14.0
 BUILDLINK_API_DEPENDS.libepoxy+=	libepoxy>=1.2nb2
 .include "../../graphics/libepoxy/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 
 .include "../../mk/bsd.pkg.mk"

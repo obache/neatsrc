@@ -1,6 +1,6 @@
-$NetBSD: patch-base_clock.cc,v 1.1 2016/05/16 11:51:49 ryoon Exp $
+$NetBSD$
 
---- base/clock.cc.orig	2016-05-15 08:11:10.000000000 +0000
+--- base/clock.cc.orig	2016-01-10 19:41:41.000000000 +0000
 +++ base/clock.cc
 @@ -124,7 +124,7 @@ class ClockImpl : public ClockInterface 
      mach_timebase_info(&timebase_info);

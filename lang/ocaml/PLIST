@@ -877,7 +877,6 @@ lib/ocaml/lazy.cmt
 lib/ocaml/lazy.cmti
 lib/ocaml/lazy.ml
 lib/ocaml/lazy.mli
-lib/ocaml/ld.conf
 lib/ocaml/lexing.cmi
 lib/ocaml/lexing.cmt
 lib/ocaml/lexing.cmti
@@ -1190,9 +1189,9 @@ lib/ocaml/random.ml
 lib/ocaml/random.mli
 lib/ocaml/ratio.cmi
 lib/ocaml/ratio.mli
-lib/ocaml/raw_spacetime_lib.cma
-lib/ocaml/raw_spacetime_lib.cmi
-lib/ocaml/raw_spacetime_lib.mli
+${PLIST.LP64}lib/ocaml/raw_spacetime_lib.cma
+${PLIST.LP64}lib/ocaml/raw_spacetime_lib.cmi
+${PLIST.LP64}lib/ocaml/raw_spacetime_lib.mli
 lib/ocaml/scanf.cmi
 lib/ocaml/scanf.cmt
 lib/ocaml/scanf.cmti

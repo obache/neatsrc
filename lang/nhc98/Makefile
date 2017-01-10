@@ -35,6 +35,9 @@ BUILD_MAKE_FLAGS+=	PKGSRC_M32=${M32}
 
 PLIST_SUBST+=		HARCH=`${WRKSRC}/script/harch`
 
+OVERRIDE_GNU_CONFIG_SCRIPTS=	yes
+OVERRIDE_DIRDEPTH=	5
+
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mk/readline.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

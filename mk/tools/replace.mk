@@ -184,9 +184,17 @@ _TOOLS_DEPMETHOD.gsoelim=	${_TOOLS_DEPMETHOD.soelim}
 # _TOOLS_USE_PKGSRC.<tool> is "yes" or "no" depending on whether we're
 # using a pkgsrc-supplied tool to replace the system-supplied one.  We
 # use the system-supplied one if TOOLS_PLATFORM.<tool> is non-empty, or
-# otherwise if this is a particular ${MACHINE_PLATFORM} listed above.
+# otherwise if this is not a particular ${MACHINE_PLATFORM} listed in
+# TOOLS_INCOMPAT_PLATFORMS.<tool>.
 #
 .for _t_ in ${_USE_TOOLS}
+.  if defined(TOOLS_INCOMPAT_PLATFORMS.${_t_}) && !empty(TOOLS_INCOMPAT_PLATFORMS.${_t_})
+.    for _pattern_ in ${TOOLS_INCOMPAT_PLATFORMS.${_t_}}
+.      if !empty(MACHINE_PLATFORM:M${_pattern_})
+_TOOLS_USE_PKGSRC.${_t_}?=	yes
+.      endif
+.    endfor
+.  endif
 .  if defined(TOOLS_PLATFORM.${_t_}) && !empty(TOOLS_PLATFORM.${_t_})
 _TOOLS_USE_PKGSRC.${_t_}?=	no
 .  endif
@@ -518,6 +526,16 @@ TOOLS_PATH.install-info=	${LOCALBASE}/bin/pkg_install-info
 #
 TOOLS_SCRIPT.install-info=	exit 0
 
+.if !defined(TOOLS_IGNORE.itstool) && !empty(_USE_TOOLS:Mitstool)
+.  if !empty(PKGPATH:Mtextproc/itstool)
+MAKEFLAGS+=			TOOLS_IGNORE.itstool=
+.  elif !empty(_TOOLS_USE_PKGSRC.itstool:M[yY][eE][sS])
+TOOLS_DEPENDS.itstool?=		itstool-[0-9]*:../../textproc/itstool
+TOOLS_CREATE+=			itstool
+TOOLS_PATH.itstool=		${LOCALBASE}/bin/itstool
+.  endif
+.endif
+
 .if !defined(TOOLS_IGNORE.ksh) && !empty(_USE_TOOLS:Mksh)
 .  if !empty(PKGPATH:Mshells/pdksh)
 MAKEFLAGS+=			TOOLS_IGNORE.ksh=
@@ -672,11 +690,22 @@ TOOLS_PATH.pax=			${LOCALBASE}/bin/${NBPAX_PROGRAM_PREFIX}pax
 .  if !empty(PKGPATH:Mdevel/pkg-config)
 MAKEFLAGS+=			TOOLS_IGNORE.pkg-config=
 .  elif !empty(_TOOLS_USE_PKGSRC.pkg-config:M[yY][eE][sS])
-TOOLS_DEPENDS.pkg-config?=	pkgconf-[0-9]*:../../devel/pkgconf
+TOOLS_DEPENDS.pkg-config?=	{pkg-config>=0.25,pkgconf>=1}:../../devel/pkg-config
 TOOLS_CREATE+=			pkg-config
 TOOLS_PATH.pkg-config=		${LOCALBASE}/bin/pkg-config
 .  else
 AUTORECONF_ARGS+=		-I ${TOOLS_PLATFORM.pkg-config:S/\/bin\/pkg-config//}/share/aclocal
+.  endif
+.endif
+
+.if !defined(TOOLS_IGNORE.ruby) && !empty(_USE_TOOLS:Mruby)
+.  if !empty(PKGPATH:Mlang/ruby[0-9]*-base)
+MAKEFLAGS+=			TOOLS_IGNORE.ruby=
+.  elif !empty(_TOOLS_USE_PKGSRC.ruby:M[yY][eE][sS])
+.    include "../../lang/ruby/rubyversion.mk"
+TOOLS_DEPENDS.ruby?=		${RUBY_BASE}>=${RUBY_VERSION}:${RUBY_SRCDIR}
+TOOLS_CREATE+=			ruby
+TOOLS_PATH.ruby=		${RUBY}
 .  endif
 .endif
 
@@ -689,6 +718,19 @@ TOOLS_CREATE+=			rpm2pkg
 TOOLS_PATH.rpm2pkg=		${LOCALBASE}/sbin/rpm2pkg
 .  endif
 .endif
+
+_TOOLS.scons=	scons sconsign scons-time
+.for _t_ in ${_TOOLS.scons}
+.  if !defined(TOOLS_IGNORE.${_t_}) && !empty(_USE_TOOLS:M${_t_})
+.    if !empty(PKGPATH:Mdevel/scons)
+MAKEFLAGS+=			TOOLS_IGNORE.${_t_}=
+.    elif !empty(_TOOLS_USE_PKGSRC.${_t_}:M[yY][eE][sS])
+TOOLS_DEPENDS.${_t_}?=		scons>=1.1:../../devel/scons
+TOOLS_CREATE+=			${_t_}
+TOOLS_PATH.${_t_}=		${LOCALBASE}/bin/${_t_}
+.    endif
+.  endif
+.endfor
 
 .if !defined(TOOLS_IGNORE.sed) && !empty(_USE_TOOLS:Msed)
 .  if !empty(PKGPATH:Mtextproc/nbsed)
@@ -831,6 +873,16 @@ TOOLS_ARGS.xargs=		-r	# don't run command if stdin is empty
 .  endif
 .endif
 
+.if !defined(TOOLS_IGNORE.xmllint) && !empty(_USE_TOOLS:Mxmllint)
+.  if !empty(PKGPATH:Mtextproc/libxml2)
+MAKEFLAGS+=			TOOLS_IGNORE.xmllint=
+.  elif !empty(_TOOLS_USE_PKGSRC.xmllint:M[yY][eE][sS])
+TOOLS_DEPENDS.xmllint?=		libxml2>=2.0:../../textproc/libxml2
+TOOLS_CREATE+=			xmllint
+TOOLS_PATH.xmllint=		${LOCALBASE}/bin/xmllint
+.  endif
+.endif
+
 _TOOLS.xz=	xz xzcat
 .for _t_ in ${_TOOLS.xz}
 .  if !defined(TOOLS_IGNORE.${_t_}) && !empty(_USE_TOOLS:M${_t_})
@@ -948,7 +1000,8 @@ TOOLS_PATH.${_t_}=		${LOCALBASE}/bin/${_t_}
 _TOOLS.coreutils=	basename cat chgrp chmod chown cp cut date	\
 		dirname echo env expr false head hostname id install	\
 		ln ls mkdir mv nice numfmt printf pwd readlink realpath \
-		rm rmdir sleep sort tail tee test touch tr true tsort wc
+		rm rmdir sleep sort tail tee test touch tr true tsort	\
+		unlink wc
 
 .for _t_ in ${_TOOLS.coreutils}
 .  if !defined(TOOLS_IGNORE.${_t_}) && !empty(_USE_TOOLS:M${_t_})
@@ -1240,6 +1293,20 @@ TOOLS_PATH.xmessage=		${LOCALBASE}/bin/xmessage
 .  endif
 .endif
 
+.if !defined(TOOLS_IGNORE.xrdb) && !empty(_USE_TOOLS:Mxrdb)
+.  if !empty(PKGPATH:Mx11/xrdb)
+MAKEFLAGS+=		TOOLS_IGNORE.xrdb=
+.  elif !empty(_TOOLS_USE_PKGSRC.xrdb:M[yY][eE][sS])
+TOOLS_CREATE+=			xrdb
+.    if !empty(X11_TYPE:Mnative)
+TOOLS_PATH.xmessage=	${X11BASE}/bin/xrdb
+.    else
+TOOLS_DEPENDS.xrdb?=		xrdb-[0-9]*:../../x11/xrdb
+TOOLS_PATH.xrdb=		${LOCALBASE}/bin/xrdb
+.    endif
+.  endif
+.endif
+
 ######################################################################
 
 # These tools are all supplied by an X11 imake package if there is no
@@ -1291,9 +1358,9 @@ ${_TOOLS_DEPMETHOD.${_t_}}+=	${_dep_}
 #####
 TOOLS_CREATE+=		${_t_}
 TOOLS_PATH.${_t_}?=	\
-	${TOOLS_PLATFORM.${_t_}:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//}
+	${TOOLS_PLATFORM.${_t_}:[1]}
 TOOLS_ARGS.${_t_}?=	\
-	${TOOLS_PLATFORM.${_t_}:C/^/_asdf_/1:N_asdf_*}
+	${TOOLS_PLATFORM.${_t_}:C/.*//1}
 .  endif
 ###
 ### For each tool, TOOLS_CMDLINE.<tool> is the full command (path and

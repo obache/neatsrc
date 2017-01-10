@@ -140,7 +140,7 @@ create_package()
 
 	PKG_ARGS="${PKG_ARGS} -v"
 	PKG_ARGS="${PKG_ARGS} -f \"${PLIST}\""
-	PKG_ARGS="${PKG_ARGS} -l"
+	PKG_ARGS="${PKG_ARGS} -U"
 	PKG_ARGS="${PKG_ARGS} -p \"${PKG_PREFIX}\""
 	PKG_ARGS="${PKG_ARGS} -I \"${PKG_PREFIX}\""
 	PKG_ARGS="${PKG_ARGS} \"${PKGREPOSITORY}/${PKGFILE}${PKG_SUFX}\""

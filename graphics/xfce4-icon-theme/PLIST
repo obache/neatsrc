@@ -1610,5 +1610,3 @@ share/icons/Rodent/scalable/stock/volume-min.svg
 share/icons/Rodent/scalable/stock/volume-mute.svg
 share/icons/Rodent/scalable/stock/volume-zero.svg
 share/xfce4/mime/Rodent.mime.xml
-@unexec ${RMDIR} %D/share/xfce4/mime 2>/dev/null || ${TRUE}
-@unexec ${RMDIR} %D/share/xfce4 2>/dev/null || ${TRUE}

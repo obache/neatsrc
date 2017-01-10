@@ -20,8 +20,6 @@ GNU_CONFIGURE=		yes
 
 PKGCONFIG_OVERRIDE+=	gucharmap-2.pc.in
 
-GTK2_IMMODULES=		yes
-
 GCONF_SCHEMAS+=	gucharmap.schemas
 
 .include "../../devel/gettext-lib/buildlink3.mk"
@@ -32,6 +30,6 @@ BUILDLINK_API_DEPENDS.glib2+=		glib2>=2.16.3
 .include "../../mk/omf-scrollkeeper.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 BUILDLINK_API_DEPENDS.gtk2+=		gtk2+>=2.13.6
-.include "../../x11/gtk2/modules.mk"
+.include "../../x11/gtk2/buildlink3.mk"
 .include "../../devel/GConf/schemas.mk"
 .include "../../mk/bsd.pkg.mk"

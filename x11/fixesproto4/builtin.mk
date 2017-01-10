@@ -31,6 +31,22 @@ IS_BUILTIN.fixesproto=	yes
 MAKEVARS+=	IS_BUILTIN.fixesproto
 
 ###
+### If there is a built-in implementation, then set BUILTIN_PKG.<pkg> to
+### a package name to represent the built-in package.
+###
+.if !defined(BUILTIN_PKG.fixesproto) && \
+    !empty(IS_BUILTIN.fixesproto:M[yY][eE][sS]) && \
+    empty(H_XFIXESWIRE:M__nonexistent__)
+BUILTIN_VERSION.fixesproto!=                                            \
+	${AWK} '/\#define[ 	]*XFIXES_MAJOR/ { M = $$3 }              \
+		/\#define[	]*XFIXES_MINOR/ { m = "."$$3 }           \
+		END { printf "%s%s\n", M, m }'                          \
+		${H_XFIXESWIRE}
+BUILTIN_PKG.fixesproto=	fixesproto-${BUILTIN_VERSION.fixesproto}
+.endif
+MAKEVARS+=      BUILTIN_PKG.fixesproto
+
+###
 ### Determine whether we should use the built-in implementation if it
 ### exists, and set USE_BUILTIN.<pkg> appropriate ("yes" or "no").
 ###

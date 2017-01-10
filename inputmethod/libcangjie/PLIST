@@ -1,0 +1,12 @@
+@comment $NetBSD$
+bin/libcangjie_bench
+bin/libcangjie_cli
+bin/libcangjie_dbbuilder
+include/cangjie/cangjie.h
+include/cangjie/cangjiechar.h
+include/cangjie/cangjiecharlist.h
+include/cangjie/cangjiecommon.h
+include/cangjie/cangjieerrors.h
+lib/libcangjie.la
+lib/pkgconfig/cangjie.pc
+share/libcangjie/cangjie.db

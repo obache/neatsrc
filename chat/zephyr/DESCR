@@ -1,0 +1,5 @@
+Zephyr allows users to send messages to other users or to groups of
+users.  Users can view incoming Zephyr messages as windowgrams
+(transient X windows) or as text on a terminal. Zephyr can optionally
+make use of the Kerberos version 4 security library or the Hesiod
+service name resolution library.

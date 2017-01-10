@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.18 2017/01/04 16:50:31 roy Exp $
+# $NetBSD: Makefile,v 1.17 2016/04/20 12:10:27 nros Exp $
 #
 
 DISTNAME=	juke-0.7
-PKGREVISION=	5
+PKGREVISION=	4
 CATEGORIES=	audio
 MASTER_SITES=	http://www.moll.no/oyvind/distfiles/
 
@@ -12,7 +12,6 @@ COMMENT=	Simple ncurses based jukebox
 LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	YES
-FAKE_NCURSES=	yes
 
 EGDIR=		${PREFIX}/share/examples/juke
 
@@ -29,5 +28,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/juke.conf ${DESTDIR}${EGDIR}/juke.conf.default
 	${INSTALL_DATA} ${WRKSRC}/MANUAL ${DESTDIR}${PREFIX}/share/doc/juke/
 
-.include "../../mk/curses.buildlink3.mk"
+.include "../../devel/ncurses/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

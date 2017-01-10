@@ -28,10 +28,10 @@ PRE-INSTALL)
 	OSF1)
 		OS_VERSION=`echo "${OS_VERSION}" | sed -e's/^V//'`
 		;;
-	HPUX)
+	HP-UX)
 		OS_VERSION=`echo "${OS_VERSION}" | sed -e's/^B.//'`
 		;;
-	CYGWIN_*)
+	CYGWIN_*|MSYS_*)
 		OS_VERSION=`echo "${OS_VERSION}" | sed -e's/(.*)//'`
 		;;
 	esac

@@ -14,16 +14,12 @@ LICENSE=	gnu-lgpl-v2.1 AND gnu-gpl-v2
 
 CONFLICTS+=	gtkmm<2.22.0
 
-USE_LANGUAGES=		c c++
+USE_LANGUAGES=		c c++11
 USE_LIBTOOL=		yes
-USE_TOOLS+=		autoconf bsdtar gmake perl pkg-config
+USE_TOOLS+=		gmake perl pkg-config
 GNU_CONFIGURE=		yes
 PKGCONFIG_OVERRIDE+=	atk/atkmm.pc.in
-
-CXXFLAGS+=		-std=c++11
-
-pre-configure:
-	cd ${WRKSRC} && autoconf
+PKGCONFIG_OVERRIDE+=	atk/atkmm-uninstalled.pc.in
 
 .include "../../devel/atk/buildlink3.mk"
 .include "../../devel/glibmm/buildlink3.mk"

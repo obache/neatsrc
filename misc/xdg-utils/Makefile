@@ -11,8 +11,8 @@ HOMEPAGE=	http://portland.freedesktop.org/
 COMMENT=	Tools to assist applications with various desktop integration tasks
 LICENSE=	mit
 
-BUILD_DEPENDS+=	xmlto-[0-9]*:../../textproc/xmlto
-BUILD_DEPENDS+=	w3m-[0-9]*:../../www/w3m
+TOOL_DEPENDS+=	xmlto-[0-9]*:../../textproc/xmlto
+TOOL_DEPENDS+=	{lynx-[0-9]*,w3m-[0-9]*,links-[0-9]*}:../../www/lynx
 
 GNU_CONFIGURE=	yes
 USE_LANGUAGES=	# none
@@ -24,14 +24,22 @@ SUBST_STAGE.gsed=	pre-configure
 SUBST_MESSAGE.gsed=	Use GNU grep/sed instead of grep/sed.
 SUBST_SED.gsed+=	-e "s, sed , ${TOOLS_PATH.gsed} ,g"
 SUBST_SED.gsed+=	-e "s, grep , ${TOOLS_PATH.grep} ,g"
+SUBST_SED.gsed+=	-e "s,|sed ,|${TOOLS_PATH.gsed} ,g"
+
+SUBST_CLASSES+=		xdgdir
+SUBST_FILES.xdgdir=	scripts/xdg-*.in
+SUBST_STAGE.xdgdir=	pre-configure
+SUBST_MESSAGE.xdgdir=	Insert our XDG_*_DIR to the default path.
+SUBST_SED.xdgdir+=	-e 's,/usr/local/share/:,${PREFIX}/share/:&,g'
+SUBST_SED.xdgdir+=	-e 's,/usr/local/share:,${PREFIX}/share:&,g'
+SUBST_SED.xdgdir+=	-e 's,/etc/xdg,${PKG_SYSCONFDIR}/xdg,g'
 
 # "foo > /dev/null 2> /dev/null" gives "foo: not found" with NetBSD's sh
-REPLACE_BASH+=	scripts/xdg-*
+REPLACE_BASH+=	scripts/xdg-*.in
+REPLACE_BASH+=	tests/testrun
 
-.include "../../mk/bsd.prefs.mk"
+TEST_TARGET=	test
 
-.if ${OPSYS} == "SunOS"
-TOOLS_PLATFORM.grep=	# use pkgsrc ggrep
-.endif
+TOOLS_INCOMPAT_PLATFORMS.grep+=	SunOS-*-*
 
 .include "../../mk/bsd.pkg.mk"

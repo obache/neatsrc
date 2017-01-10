@@ -3,9 +3,9 @@
 PKGREVISION= 5
 .include "Makefile.common"
 
-PKGNAME=	${DISTNAME:S/webkitgtk/webkit24-gtk/}
+PKGNAME=	${DISTNAME:S/webkitgtk/webkit1-gtk/}
 
-COMMENT=	GTK2 port of the WebKit browser engine (version 2.4)
+COMMENT=	GTK2 port of the WebKit1 browser engine
 
 CONFIGURE_ARGS+=	--with-gtk=2.0
 CONFIGURE_ARGS+=	--disable-webkit2

@@ -1,0 +1,9 @@
+@comment $NetBSD$
+bin/fcitx-handwriting
+share/fcitx/handwrite/Buttons/1.png
+share/fcitx/handwrite/Buttons/2.png
+share/fcitx/handwrite/Buttons/hand.png
+share/fcitx/handwrite/beijing.png
+share/fcitx/handwrite/ch_beijing.png
+share/fcitx/handwrite/gtkrc
+share/fcitx/handwrite/writer.png

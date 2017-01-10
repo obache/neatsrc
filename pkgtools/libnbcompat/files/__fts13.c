@@ -69,13 +69,10 @@ __RCSID("$NetBSD: __fts13.c,v 1.11 2014/03/14 22:08:17 ryoon Exp $");
 #endif
 
 /*
- * SCO OpenServer 5.0.7/3.2 has no MAXPATHLEN, but it has PATH_MAX (256).
- * in limits.h. But it is not usable under ordinal condition.
+ * Just use this size for default buffer size if not defined
  */
 #if !defined(MAXPATHLEN)
-#if defined(_SCO_DS)
 #define MAXPATHLEN	1024
-#endif
 #endif
 
 #if 0

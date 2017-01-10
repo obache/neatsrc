@@ -8,8 +8,6 @@ MASTER_SITES=		${MASTER_SITE_LOCAL}
 MAINTAINER=		pkgsrc-users@NetBSD.org
 COMMENT=		Very fast true-to-the-original port of galaga for X11
 
-NO_SRC_ON_FTP=		"already in MASTER_SITE_LOCAL"
-
 GNU_CONFIGURE=		YES
 GNU_CONFIGURE_PREFIX=	${PREFIX}/share/xgalaga
 CONFIGURE_ARGS+=	--exec-prefix=${PREFIX}/bin

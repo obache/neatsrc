@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.219 2017/01/03 17:53:14 jperkin Exp $
+# $NetBSD: Makefile,v 1.218 2016/06/21 12:23:01 joerg Exp $
 
 # Notes to package maintainers:
 #
@@ -161,12 +161,10 @@ LIBARCHIVE_LIBS=	${SED} -n -e 's/^Libs.private://p' \
     ${WRKDIR}/libarchive/build/pkgconfig/libarchive.pc 2>/dev/null || echo
 LIBS+=		${LIBARCHIVE_LIBS:sh}
 
-CONFIG_GUESS_OVERRIDE+=	${WRKDIR}/libarchive/build/autoconf/config.guess \
-			${WRKSRC}/config.guess
-CONFIG_SUB_OVERRIDE+=	${WRKDIR}/libarchive/build/autoconf/config.sub \
-			${WRKSRC}/config.sub
+CONFIG_EXTRA_OVERRIDE_DIRS+=	${WRKDIR}/libarchive
 
 CPPFLAGS.Cygwin+=	-DLIBARCHIVE_STATIC
+CPPFLAGS.Msys+=		-DLIBARCHIVE_STATIC
 
 # Make sure that the linker used our static library instead of the
 # (outdated) dynamic library "/usr/lib/libarchive.dylib".
@@ -174,9 +172,6 @@ LDFLAGS.Darwin+=	-Wl,-search_paths_first
 
 # workaround for pkg/45491
 CONFIGURE_ENV.SunOS+=	ac_cv_header_ext2fs_ext2_fs_h=no
-
-# Hack to make sure that the libarchive version is replaced
-pre-configure: config-guess-override config-sub-override
 .endif
 CPPFLAGS+=	-I${WRKDIR}/libfetch
 LDFLAGS+=	-L${WRKDIR}/libfetch
@@ -201,7 +196,10 @@ do-extract:
 	@${CP} -R ${FILESDIR.libfetch} ${WRKDIR}/libfetch
 	@${CP} -R ${FILESDIR.netpgpverify} ${WRKDIR}/netpgpverify
 
-pre-configure:
+_DO_CONFIGURE_TARGETS+=	sub-inplace-build
+
+.PHONY: sub-inplace-build:
+sub-inplace-build:
 .if empty(USE_BUILTIN.bzip2:M[yY][eE][sS])
 	cd ${WRKDIR}/bzip2 && ${BUILD_MAKE_CMD} libbz2.a
 .endif
@@ -213,9 +211,9 @@ pre-configure:
 		${CONFIG_SHELL} ${CONFIG_SHELL_FLAGS} ./configure	\
 		--disable-bsdcpio --disable-bsdtar --disable-shared	\
 		--disable-dependency-tracking --without-expat		\
-		--disable-maintainer-mode				\
+		--disable-maintainer-mode \
 		--without-iconv --without-lzo2 --without-nettle		\
-		--without-xml2 --without-lz4				\
+		--without-xml2	\
 		${LIBARCHIVE_CONFIGURE_ARGS}
 	cd ${WRKDIR}/libarchive && ${BUILD_MAKE_CMD}
 .endif

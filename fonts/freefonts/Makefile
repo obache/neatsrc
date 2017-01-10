@@ -9,8 +9,6 @@ MASTER_SITES=	${MASTER_SITE_SUNSITE:=X11/fonts/} \
 MAINTAINER=	reed@reedmedia.net
 COMMENT=	Collection of 79 freely available fonts
 
-PKG_DESTDIR_SUPPORT=	destdir
-
 EXTRACT_ONLY=	# empty
 NO_CONFIGURE=	yes
 NO_BUILD=	yes

@@ -10,7 +10,7 @@ LICENSE=	gnu-lgpl-v2.1
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config intltool msgfmt gmake
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c
 USE_PKGLOCALEDIR=	yes
 
 DEPENDS+=		ibus>=${PKGVERSION_NOREV}:../../inputmethod/ibus
@@ -25,11 +25,7 @@ CONFIGURE_ARGS+=	--disable-nls
 CONFIGURE_ARGS+=	--disable-libnotify
 CONFIGURE_ARGS+=	--disable-engine
 CONFIGURE_ARGS+=	--disable-surround-text
-
-.include "../../mk/compiler.mk"
-.if !empty(CC_VERSION:Mgcc-4.1.[0-9]*)
-BUILDLINK_TRANSFORM+=	rm:-Wno-unused-but-set-variable
-.endif
+CONFIGURE_ARGS+=	--disable-emoji-dict
 
 NO_BUILD=	yes
 INSTALL_DIRS=	bindings ibus
@@ -47,5 +43,6 @@ PY_PATCHPLIST=	yes
 BUILDLINK_API_DEPENDS.py-dbus+=	${PYPKGPREFIX}-dbus>=0.83.0
 .include "../../sysutils/py-dbus/buildlink3.mk"
 .include "../../textproc/iso-codes/buildlink3.mk"
+BUILDLINK_DEPMETHOD.libX11=	build
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

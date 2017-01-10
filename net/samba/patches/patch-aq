@@ -2,8 +2,8 @@ $NetBSD: patch-aq,v 1.4 2013/08/12 02:45:55 taca Exp $
 
 Add support for passwd expand gecos
 
---- param/loadparm.c.orig	2013-07-29 18:55:18.000000000 +0000
-+++ param/loadparm.c
+--- source3/param/loadparm.c.orig	2013-07-29 18:55:18.000000000 +0000
++++ source3/param/loadparm.c
 @@ -325,6 +325,7 @@ struct global {
  	bool bUnixPasswdSync;
  	bool bPasswdChatDebug;

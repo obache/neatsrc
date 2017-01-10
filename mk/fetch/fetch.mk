@@ -54,6 +54,13 @@ DYNAMIC_SITES_CMD?=	${PKGSRC_SETENV} PATH=${PATH:Q} ${SH} ${DYNAMIC_SITES_SCRIPT
 SITES.${fetchfile:T:S/=/--/}?= `${DYNAMIC_SITES_CMD} ${fetchfile:T}`
 .  endfor
 .endif
+.for d in ${DISTFILES_VARS}
+.  if !empty(SITES.${d})
+.    for fetchfile in ${DISTFILES.${d}}
+SITES.${fetchfile:T:S/=/--/}?= ${SITES.${d}}
+.    endfor
+.  endif
+.endfor
 .if !empty(_DISTFILES)
 .  for fetchfile in ${_DISTFILES}
 SITES.${fetchfile:T:S/=/--/}?= ${MASTER_SITES}
@@ -200,37 +207,45 @@ fetch-check-interactive: .USEBEFORE
 # FETCH_USE_IPV4_ONLY, if defined, will cause the fetch command to force
 #	connecting to only IPv4 addresses.
 #
+# FETCH_CHECK_CERT, if defined, will cause the fetch command to force
+#	checking server certificate with secure connection.
+#
 
 # If this host is behind a filtering firewall, use passive ftp(1)
 _FETCH_BEFORE_ARGS.ftp=		${PASSIVE_FETCH:D-p} \
 				${FETCH_TIMEOUT:D-q ${FETCH_TIMEOUT}} \
-				${FETCH_USE_IPV4_ONLY:D-4}
+				${FETCH_USE_IPV4_ONLY:D-4} \
+				${FETCH_VERBOSE:D-v}
 _FETCH_AFTER_ARGS.ftp=		# empty
 _FETCH_RESUME_ARGS.ftp=		-R
 _FETCH_OUTPUT_ARGS.ftp=		-o
 _FETCH_CMD.ftp=			${TOOLS_PATH.ftp}
 
 _FETCH_BEFORE_ARGS.fetch=	${FETCH_TIMEOUT:D-T ${FETCH_TIMEOUT}} \
-				${FETCH_USE_IPV4_ONLY:D-4}
+				${FETCH_USE_IPV4_ONLY:D-4} \
+				${FETCH_VERBOSE:D-v}
 _FETCH_AFTER_ARGS.fetch=	# empty
 _FETCH_RESUME_ARGS.fetch=	-r
 _FETCH_OUTPUT_ARGS.fetch=	-o
 _FETCH_CMD.fetch=		${TOOLS_PATH.fetch}
 
 _FETCH_BEFORE_ARGS.wget=	${PASSIVE_FETCH:D--passive-ftp} \
-				--no-check-certificate \
+				${FETCH_CHECK_CERT:U--no-check-certificate} \
 				${FETCH_TIMEOUT:D--timeout=${FETCH_TIMEOUT}} \
-				${FETCH_USE_IPV4_ONLY:D--inet4-only}
+				${FETCH_USE_IPV4_ONLY:D--inet4-only} \
+				${FETCH_VERBOSE:D--verbose}
 _FETCH_AFTER_ARGS.wget=		# empty
 _FETCH_RESUME_ARGS.wget=	-c
 _FETCH_OUTPUT_ARGS.wget=	-O
 _FETCH_CMD.wget=		${TOOLS_PATH.wget}
 
 _FETCH_BEFORE_ARGS.curl=	${PASSIVE_FETCH:D--ftp-pasv} \
-				--fail --insecure --location --remote-time \
+				${FETCH_CHECK_CERT:U--insecure} \
+				--fail --location --remote-time \
 				${FETCH_TIMEOUT:D--connect-timeout ${FETCH_TIMEOUT}} \
 				${FETCH_TIMEOUT:D--speed-time ${FETCH_TIMEOUT}} \
-				${FETCH_USE_IPV4_ONLY:D--ipv4}
+				${FETCH_USE_IPV4_ONLY:D--ipv4} \
+				${FETCH_VERBOSE:D--verbose}
 _FETCH_AFTER_ARGS.curl=		-O # must be here to honor -o option
 _FETCH_RESUME_ARGS.curl=	-C -
 _FETCH_OUTPUT_ARGS.curl=	-o

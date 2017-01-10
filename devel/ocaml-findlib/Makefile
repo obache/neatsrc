@@ -14,6 +14,7 @@ LICENSE=		mit
 OCAML_FINDLIB_DIRS+=	bigarray bytes compiler-libs dynlink findlib graphics \
 			ocamldoc num-top num stdlib str threads unix
 
+OCAML_FINDLIB_REGISTER=yes
 .include "../../mk/ocaml.mk"
 
 # Undeclared dependencies between different components
@@ -52,6 +53,12 @@ SUBST_CLASSES+=		pathes
 SUBST_STAGE.pathes=	post-install
 SUBST_FILES.pathes=	${DESTDIR}${PREFIX}/lib/ocaml/site-lib/findlib/Makefile.config
 SUBST_SED.pathes=	-e 's,^\(OCAML_CORE_BIN=\).*,\1'${PREFIX:Q}/bin','
+
+PLIST_VARS+=	LP64
+
+.if !empty(LP64PLATFORMS:S/*-*-//:M${MACHINE_ARCH})
+PLIST.LP64=yes
+.endif
 
 do-test:
 	${RUN} cd ${WRKSRC}; ${SH} itest

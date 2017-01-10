@@ -1,0 +1,12 @@
+# $NetBSD$
+
+BUILDLINK_TREE+=	openpgm
+
+.if !defined(OPENPGM_BUILDLINK3_MK)
+OPENPGM_BUILDLINK3_MK:=
+
+BUILDLINK_API_DEPENDS.openpgm+=	openpgm>=5.2.122
+BUILDLINK_PKGSRCDIR.openpgm?=	../../net/openpgm
+.endif	# OPENPGM_BUILDLINK3_MK
+
+BUILDLINK_TREE+=	-openpgm

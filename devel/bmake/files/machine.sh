@@ -44,6 +44,9 @@ Which() {
 }
 
 case $OS in
+MirBSD)
+	MACHINE=$OS$OSMAJOR.$machine
+	;;
 OpenBSD)
 	MACHINE=$OS$OSMAJOR.$machine
 	arch=`Which arch /usr/bin:/usr/ucb:$PATH`
@@ -82,6 +85,29 @@ Linux)
 	i?86) MACHINE_ARCH=i386;;# does anyone really care about 686 vs 586?
 	esac
         ;;
+CYGWIN_*)
+	OS=Cygwin
+	case "$machine" in
+	i?86) MACHINE_ARCH=i386;;
+	esac
+	;;
+MSYS_*)
+	OS=Msys
+	case "$machine" in
+	i?86) MACHINE_ARCH=i386;;
+	esac
+	;;
+GNU/kFreeBSD)
+	MACHINE_ARCH=$MACHINE
+	;;
+FreeMiNT)
+	MACHINE_ARCH=m68k
+	;;
+SCO_SV)
+	OSREL=`uname -v`
+	OSMAJOR=`IFS=.; set $OSREL; echo $1`
+	MACHINE_ARCH=`uname -m`
+	;;
 esac
 
 MACHINE=${MACHINE:-$OS$OSMAJOR}

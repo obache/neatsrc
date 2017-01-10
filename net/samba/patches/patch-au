@@ -1,7 +1,7 @@
 $NetBSD: patch-au,v 1.12 2011/12/16 11:05:24 asau Exp $
 
---- script/installswat.sh.orig	2010-01-14 10:12:10.000000000 +0000
-+++ script/installswat.sh
+--- source3/script/installswat.sh.orig	2010-01-14 10:12:10.000000000 +0000
++++ source3/script/installswat.sh
 @@ -140,7 +140,7 @@ if [ -d $SRCDIR../docs/htmldocs/ ]; then
        
        INSTALLDIR="$DESTDIR/$SWATDIR/help/`echo $dir | sed 's/htmldocs\///g'`"

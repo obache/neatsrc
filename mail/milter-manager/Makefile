@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.42 2016/03/13 09:36:58 taca Exp $
 #
 
-DISTNAME=	milter-manager-2.0.5
-PKGREVISION=	1
+DISTNAME=	milter-manager-2.0.9
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=milter-manager/}
 
@@ -31,7 +30,7 @@ SUBST_CLASSES+=		libev_inc
 SUBST_STAGE.libev_inc=	pre-configure
 SUBST_MESSAGE.libev_inc=Adjust include path for libevent from pkgsrc.
 SUBST_FILES.libev_inc=	configure
-SUBST_SED.libev_inc=	's,/include/ev.h,/include/ev/ev.h,g'
+SUBST_SED.libev_inc=	-e 's,/include/ev.h,/include/ev/ev.h,g'
 
 PKG_SYSCONFSUBDIR=	${PKGBASE}
 

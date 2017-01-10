@@ -95,7 +95,7 @@ requirement of "root".
 
 The package manager should use a umask of 002. "make install" will automatically
 complain if this is not the case. This ensures that directories written in
-/usr/pkg/pkgdb are Administrators-group writeable.
+$PKG_DBDIR (/var/db/pkg by default) are Administrators-group writeable.
 
 The popular Interix binary packages from http://www.interopsystems.com/ use an
 older version of pkgsrc's pkg_* tools. Ideally, these should NOT be used in

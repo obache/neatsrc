@@ -11,26 +11,18 @@ COMMENT=		GNU Revision Control System - version control software
 LICENSE=		gnu-gpl-v3
 
 GNU_CONFIGURE=		yes
-USE_TOOLS+=		gmake gsoelim diff:run diff3:run
-
-.include "../../mk/bsd.prefs.mk"
+USE_TOOLS+=		gmake diff:run diff3:run
 
 # the native diff/diff3 is not sufficient for rcs
-.if ${OPSYS} == "SunOS" || ${OPSYS} == "OSF1" || ${OPSYS} == "AIX" || ${OPSYS} == "Minix"
-TOOLS_PLATFORM.diff=
-TOOLS_PLATFORM.diff3=
-.endif
+TOOLS_INCOMPAT_PLATFORMS.diff=	SunOS-*-* OSF1-*-* AIX-*-* Minix-*-*
+TOOLS_INCOMPAT_PLATFORMS.diff3=	SunOS-*-* OSF1-*-* AIX-*-* Minix-*-*
+
 # DIFF is already in CONFIGURE_ENV
 CONFIGURE_ENV+=		DIFF3=${TOOLS_PATH.diff3}
 
 REPLACE_SH=		build-aux/extract-help
 
 INFO_FILES=	yes
-
-# configure will be modified by pkgsrc framework with timestamp update.
-# sync timestamp with man/REL to avoid regeneration of man.
-post-configure:
-	${TOUCH} -r ${WRKSRC}/man/REL ${WRKSRC}/configure
 
 post-install:
 	${LN} -s ${DESTDIR}${PREFIX}/bin/rlog ${DESTDIR}${PREFIX}/bin/rcslog

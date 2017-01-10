@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.10 2017/01/04 19:29:23 roy Exp $
+# $NetBSD: Makefile,v 1.9 2016/12/18 23:33:11 joerg Exp $
 #
 
 DISTNAME=		nload-0.7.4
-PKGREVISION=		4
+PKGREVISION=		3
 CATEGORIES=		net sysutils
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=nload/}
 
@@ -14,9 +14,8 @@ LICENSE=		gnu-gpl-v2
 USE_LANGUAGES=		c c++
 MANCOMPRESSED=		yes
 GNU_CONFIGURE=		yes
-FAKE_NCURSES=		yes
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 
-.include "../../mk/curses.buildlink3.mk"
+.include "../../devel/ncurses/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

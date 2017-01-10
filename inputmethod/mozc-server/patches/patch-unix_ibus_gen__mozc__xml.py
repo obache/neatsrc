@@ -2,7 +2,7 @@ $NetBSD: patch-unix_ibus_gen__mozc__xml.py,v 1.7 2016/05/16 11:51:49 ryoon Exp $
 
 * Fix for pkgsrc installation.
 
---- unix/ibus/gen_mozc_xml.py.orig	2016-05-15 08:11:12.000000000 +0000
+--- unix/ibus/gen_mozc_xml.py.orig	2016-01-10 19:41:41.000000000 +0000
 +++ unix/ibus/gen_mozc_xml.py
 @@ -170,7 +170,7 @@ def main():
    (options, unused_args) = parser.parse_args()

@@ -1,4 +1,5 @@
 @comment $NetBSD: PLIST,v 1.1 2016/07/07 13:59:00 jperkin Exp $
+include/php/ext/mbstring/libmbfl/config.h
 include/php/ext/mbstring/libmbfl/filters/cp932_table.h
 include/php/ext/mbstring/libmbfl/filters/emoji2uni.h
 include/php/ext/mbstring/libmbfl/filters/html_entities.h
@@ -123,3 +124,7 @@ include/php/ext/mbstring/libmbfl/nls/nls_tr.h
 include/php/ext/mbstring/libmbfl/nls/nls_ua.h
 include/php/ext/mbstring/libmbfl/nls/nls_uni.h
 include/php/ext/mbstring/libmbfl/nls/nls_zh.h
+include/php/ext/mbstring/mbstring.h
+include/php/ext/mbstring/oniguruma/oniguruma.h
+include/php/ext/mbstring/php_mbregex.h
+include/php/ext/mbstring/php_onig_compat.h

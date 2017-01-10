@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.29 2017/01/04 20:04:50 roy Exp $
+# $NetBSD: Makefile,v 1.28 2015/09/08 11:57:50 jperkin Exp $
 
 DISTNAME=	nap-1.4.4
-PKGREVISION=	5
+PKGREVISION=	4
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=nap/}
 
@@ -10,7 +10,6 @@ HOMEPAGE=	http://nap.sourceforge.net/
 COMMENT=	Terminal based Napster client similar to ircII
 
 GNU_CONFIGURE=		YES
-FAKE_NCURSES=		yes
 
 INSTALLATION_DIRS+=	share/doc/nap share/examples/nap
 
@@ -21,5 +20,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/nap.conf.dist \
 		${DESTDIR}${PREFIX}/share/examples/nap/nap.conf
 
-.include "../../mk/curses.buildlink3.mk"
+.include "../../devel/ncurses/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.24 2015/07/01 09:32:36 wiz Exp $
 
-DISTNAME=	json-glib-1.0.4
+DISTNAME=	json-glib-1.2.2
 CATEGORIES=	textproc gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/json-glib/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -25,9 +25,7 @@ TEST_TARGET=		check
 PRINT_PLIST_AWK+= \
 	($$0 ~ /^lib\/girepository-1.0\//) || \
 	($$0 ~ /^share\/gir-1.0\//) \
-	{ $$0 = "$${PLIST.introspection}" $$0; } \
-	($$0 ~ /^${PKGLOCALEDIR:S|/|\/|g}\/locale\//) \
-	{ $$0 = "$${PLIST.nls}" $$0; }
+	{ $$0 = "$${PLIST.introspection}" $$0; }
 
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.38.0
 .include "../../devel/glib2/buildlink3.mk"

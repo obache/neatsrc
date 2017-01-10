@@ -42,7 +42,7 @@
 # USE_LANGUAGES
 #	Lists the languages used in the source code of the package,
 #	and is used to determine the correct compilers to install.
-#	Valid values are: c, c99, c++, fortran, fortran77, java, objc,
+#	Valid values are: c, c99, c++, c++11, fortran, fortran77, java, objc,
 #	obj-c++, and ada.  The default is "c".
 #
 # The following variables are defined, and available for testing in
@@ -75,6 +75,11 @@ USE_LANGUAGES?=	c
 # Add c support if c99 is set
 .if !empty(USE_LANGUAGES:Mc99)
 USE_LANGUAGES+=	c
+.endif
+
+# Add c++ support if c++11 is set
+.if !empty(USE_LANGUAGES:Mc++11)
+USE_LANGUAGES+=	c++
 .endif
 
 COMPILER_USE_SYMLINKS?=	yes
@@ -150,11 +155,7 @@ PKG_LD?=       /usr/bin/ld
 # the PATH to use the correct executable.
 #
 .for _var_ in ${_COMPILER_STRIP_VARS}
-.  if empty(${_var_}:C/^/_asdf_/1:N_asdf_*)
-${_var_}:=	${${_var_}:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//:T}
-.  else
-${_var_}:=	${${_var_}:C/^/_asdf_/1:M_asdf_*:S/^_asdf_//:T} ${${_var_}:C/^/_asdf_/1:N_asdf_*}
-.  endif
+${_var_}:=	${${_var_}:[1]:T} ${${_var_}:C/.*//1}
 .endfor
 
 .if defined(ABI) && !empty(ABI)

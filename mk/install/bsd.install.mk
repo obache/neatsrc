@@ -17,16 +17,14 @@ _COOKIE.install=	${WRKDIR}/.install_done
 ######################################################################
 ### install (PUBLIC)
 ######################################################################
-### install is a public target to install the package by depending
-### on stage-package-install or package-install. The difference is
-### a package is created in the public PACKAGES directory.
+### install is a public target to install the package.
 ###
-.PHONY: install
-.if ${_KEEP_BIN_PKGS} == "no"
-install: stage-package-install
-.else
-install: package-install
+_PKG_INSTALL_TARGETS+=	stage-package-install
+.if ${_CREATE_BIN_PKGS} == "yes"
+_PKG_INSTALL_TARGETS+=	package
 .endif
+.PHONY: install
+install: ${_PKG_INSTALL_TARGETS}
 
 ######################################################################
 ### stage-install (PUBLIC)

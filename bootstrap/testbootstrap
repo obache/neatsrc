@@ -46,5 +46,5 @@ pwd=`pwd`
 	--prefix=$pwd/pkg \
 	--sysconfdir=$pwd/pkg/etc \
 	--pkgdbdir=$pwd/.db \
-	--ignore-user-check 2>&1 | \
+	--ignore-user-check "$@" 2>&1 | \
 tee BOOTSTRAP.LOG

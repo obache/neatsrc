@@ -10,7 +10,9 @@ COMMENT=	NetBSD zone.tab file
 NO_BUILD=	yes
 
 # Installs NetBSD's zone data, not probably that useful elsewhere.
-ONLY_FOR_PLATFORM=	NetBSD-*-*
+.if exists(/usr/share/zoneinfo/zone.tab)
+PKG_FAIL_REASON+=	"Only for platforms missing zone data."
+.endif
 
 ZTDIR=	${PREFIX}/share/examples/zoneinfo
 

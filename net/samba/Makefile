@@ -3,6 +3,20 @@
 DISTNAME=	samba-${VERSION}
 CATEGORIES=	net
 MASTER_SITES=	${SAMBA_MIRRORS:=stable/}
+PATCH_SITES=	${SAMBA_MIRRORS:=patches/security/}
+PATCHFILES=	${DISTNAME}-security-2015-12-16.patch
+PATCH_DIST_STRIP=	-p1
+DISTFILES_VARS+=	badlockpatch
+DISTFILES.badlockpatch=	samba-v3-6-security-2016-04-12.tar.xz
+SITES.badlockpatch=	${PATCH_SITES}
+DIST_PATCHFILES+=	${PATCHFILES}
+DIST_PATCHFILES+=	CVE-preparation-v3-6.patch
+DIST_PATCHFILES+=	CVE-2015-5370-v3-6.patch
+DIST_PATCHFILES+=	CVE-2016-2110-v3-6.patch
+DIST_PATCHFILES+=	CVE-2016-2111-v3-6.patch
+DIST_PATCHFILES+=	CVE-2016-2112-v3-6.patch
+DIST_PATCHFILES+=	CVE-2016-2115-v3-6.patch
+DIST_PATCHFILES+=	CVE-2016-2118-v3-6.patch
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.samba.org/
@@ -19,7 +33,7 @@ USE_GCC_RUNTIME=	yes
 FILESDIR=		${PKGDIR}/../../net/samba/files
 DESCR_SRC=		${PKGDIR}/../../net/samba/DESCR
 MESSAGE_SRC=		${PKGDIR}/../../net/samba/MESSAGE
-WRKSRC=			${WRKDIR}/${DISTNAME}/source3
+CONFIGURE_DIRS=		source3
 BUILD_DEFS+=		VARBASE
 
 .include "../../mk/bsd.prefs.mk"
@@ -50,7 +64,7 @@ FILES_SUBST+=		WINBINDD_RCD_SCRIPT=${WINBINDD_RCD_SCRIPT:Q}
 # mktemp is useful for the replacement adduser script, but don't require
 # a full dependency since it's not actually needed by samba.
 USE_TOOLS+=		gmake mktemp perl:run pkg-config
-REPLACE_PERL=		script/findsmb.in
+REPLACE_PERL=		source3/script/findsmb.in
 
 BROKEN_GETTEXT_DETECTION=yes
 GNU_CONFIGURE=		yes
@@ -116,9 +130,33 @@ SUBST_VARS.def-cfg=	SAMBA_LOGDIR
 post-extract:
 	${CP} ${FILESDIR}/adduser.sh ${FILESDIR}/deluser.sh ${WRKDIR}
 	for n in tdbbackup.8 tdbdump.8 tdbtool.8; do \
-		${RM} ${WRKSRC}/../docs/manpages/$$n; \
-		${RM} ${WRKSRC}/../docs/htmldocs/manpages/$$n.html; \
+		${RM} ${WRKSRC}/docs/manpages/$$n; \
+		${RM} ${WRKSRC}/docs/htmldocs/manpages/$$n.html; \
 	done
+
+post-patch:
+	${TEST} -f ${WRKSRC}/lib/util/bitmap.c || ${MV} ${WRKSRC}/source3/lib/bitmap.c ${WRKSRC}/lib/util/bitmap.c
+
+SUBST_CLASSES+=		dpfix
+SUBST_MESSAGE.dpfix=	Fixing CVE-preparation patch miss
+SUBST_STAGE.dpfix=	post-patch
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_lsa.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_winreg.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_initshutdown.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_dssetup.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_wkssvc.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_svcctl.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_ntsvcs.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_netlogon.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_dfs.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_srvsvc.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_spoolss.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_eventlog.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_samr.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_echo.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_epmapper.c
+SUBST_FILES.dpfix+=	source3/librpc/gen_ndr/srv_wbint.c
+SUBST_SED.dpfix=	-e 's,->rng_fault_state,->fault_state,g'
 
 post-install:
 	${RMDIR} ${DESTDIR}${PREFIX}/share/samba/swat/js
@@ -142,13 +180,13 @@ post-install:
 		${DESTDIR}${PREFIX}/${EGDIR}
 	${INSTALL_DATA} ${WRKDIR}/${DISTNAME}/examples/smb.conf.default \
 		${DESTDIR}${PREFIX}/${EGDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/script/mknissmbpasswd.sh \
+	${INSTALL_SCRIPT} ${WRKSRC}/source3/script/mknissmbpasswd.sh \
 		${DESTDIR}${PREFIX}/${EGDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/script/mknissmbpwdtbl.sh \
+	${INSTALL_SCRIPT} ${WRKSRC}/source3/script/mknissmbpwdtbl.sh \
 		${DESTDIR}${PREFIX}/${EGDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/script/mksmbpasswd.sh \
+	${INSTALL_SCRIPT} ${WRKSRC}/source3/script/mksmbpasswd.sh \
 		${DESTDIR}${PREFIX}/${EGDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/script/updatesmbpasswd.sh \
+	${INSTALL_SCRIPT} ${WRKSRC}/source3/script/updatesmbpasswd.sh \
 		${DESTDIR}${PREFIX}/${EGDIR}
 	${CHMOD} ${SHAREMODE} ${DESTDIR}${PREFIX}/include/*.h
 .if ${_OPSYS_SHLIB_TYPE} == "dylib"

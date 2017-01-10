@@ -11,8 +11,6 @@ HOMEPAGE=	http://openvpn.net/
 COMMENT=	Easy-to-use SSL VPN daemon
 LICENSE=	gnu-gpl-v2
 
-PKG_DESTDIR_SUPPORT=	user-destdir
-
 USE_LIBTOOL=		yes
 USE_TOOLS+=		aclocal autoconf autom4te grep:run pkg-config
 GNU_CONFIGURE=		yes

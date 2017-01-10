@@ -1,0 +1,4 @@
+@comment $NetBSD$
+lib/scim-1.0/1.4.0/IMEngine/sunpinyin_imengine.so
+lib/scim-1.0/1.4.0/SetupUI/sunpinyin_imengine_setup.so
+share/scim/icons/sunpinyin_logo.png

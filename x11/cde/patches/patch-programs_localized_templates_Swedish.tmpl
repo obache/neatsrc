@@ -1,0 +1,14 @@
+$NetBSD$
+
+* NetBSD locales
+
+--- programs/localized/templates/Swedish.tmpl.orig	2015-05-09 23:09:11.000000000 +0000
++++ programs/localized/templates/Swedish.tmpl
+@@ -30,3 +30,7 @@ LANG=sv
+ #ifdef UXPArchitecture
+ LANG=sv
+ #endif
++
++#ifdef NetBSDArchitecture
++LANG=sv_SE.ISO8859-1
++#endif

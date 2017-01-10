@@ -29,15 +29,14 @@ CONFIGURE_ARGS+=	--with-xkb-base=${X11BASE}/share/X11/xkb
 CONFIGURE_ARGS+=	--with-xkb-base=${X11BASE}/lib/X11/xkb
 .endif
 
-# Workaround for Upstream Bug#562310.
-# for more detail, see also PR#41475.
-TOOLS_NOOP+=	gtkdoc-rebase
-
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.6.0
 
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/gobject-introspection/buildlink3.mk"
 .include "../../textproc/iso-codes/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
+.include "../../x11/libX11/buildlink3.mk"
+BUILDLINK_API_DEPENDS.libXi+=	libXi>=1.1.3
+.include "../../x11/libXi/buildlink3.mk"
 .include "../../x11/libxkbfile/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

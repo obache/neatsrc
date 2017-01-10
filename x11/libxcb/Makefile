@@ -63,23 +63,6 @@ PKGCONFIG_OVERRIDE+=	xcb.pc.in
 # libXdmcp is optional; adds support for XDM-AUTHORIZATION-1 in
 # addition to MIT-MAGIC-COOKIE-1.
 
-.include "../../mk/pthread.buildlink3.mk"
-LDFLAGS.OpenBSD+=	${PTHREAD_LDFLAGS}
-
-XTHREADLIB=	${${PTHREAD_LDFLAGS} ${PTHREAD_LIBS}:L:M*}
-
-.if empty(PTHREAD_CPPFLAGS)
-XTHREAD_CPPFLAGS=	-D_REENTRANT
-.else
-XTHREAD_CPPFLAGS=	${PTHREAD_CPPFLAGS}
-.endif
-
-SUBST_CLASSES+=		pc
-SUBST_FILES.pc=		xcb.pc.in
-SUBST_MESSAGE.pc=	Configuring threading in xcb.pc.in.
-SUBST_STAGE.pc=		pre-configure
-SUBST_VARS.pc=		XTHREADLIB XTHREAD_CPPFLAGS
-
 post-extract:
 	${CHMOD} -R go-w ${WRKSRC}
 
@@ -90,6 +73,7 @@ post-extract:
 #.include "../../devel/gperf/buildlink3.mk"
 PYTHON_FOR_BUILD_ONLY=	tool
 .include "../../lang/python/application.mk"
+.include "../../devel/libpthread-stubs/buildlink3.mk"
 BUILDLINK_API_DEPENDS.xcb-proto?=	xcb-proto>=1.12
 .include "../../x11/xcb-proto/buildlink3.mk"
 .include "../../x11/libXdmcp/buildlink3.mk"

@@ -1,0 +1,2 @@
+@comment $NetBSD$
+include/php/ext/sockets/php_sockets.h

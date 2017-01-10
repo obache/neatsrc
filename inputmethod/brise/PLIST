@@ -15,7 +15,7 @@ share/rime-data/double_pinyin_flypy.schema.yaml
 share/rime-data/double_pinyin_mspy.schema.yaml
 share/rime-data/emoji.dict.yaml
 share/rime-data/emoji.schema.yaml
-share/rime-data/essay.kct
+share/rime-data/essay.txt
 share/rime-data/ipa_xsampa.dict.yaml
 share/rime-data/ipa_xsampa.schema.yaml
 share/rime-data/jyutping.dict.yaml

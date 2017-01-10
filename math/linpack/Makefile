@@ -10,7 +10,6 @@ COMMENT=	Library of linear algebra Fortran routines
 
 DEPENDS+=	blas-[0-9]*:../../math/blas
 
-NO_SRC_ON_FTP=	Already in MASTER_SITE_LOCAL
 USE_LANGUAGES=	fortran77
 WRKSRC=		${WRKDIR}/linpack
 INSTALLATION_DIRS=	lib

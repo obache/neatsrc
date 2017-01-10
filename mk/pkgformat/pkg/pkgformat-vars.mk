@@ -82,8 +82,3 @@ HOST_LINKFARM?=		${LINKFARM_CMD}
 #
 _PKG_BEST_EXISTS?=	${PKG_INFO} -E
 _HOST_PKG_BEST_EXISTS?=	${HOST_PKG_INFO} -E
-
-# XXX Leave this here until all uses of this have been purged from the
-# XXX public parts of pkgsrc.
-# XXX
-PKG_BEST_EXISTS=	${_PKG_BEST_EXISTS}

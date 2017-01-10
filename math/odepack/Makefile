@@ -10,7 +10,6 @@ COMMENT=		Systematized Collection of ODE Solvers
 
 DEPENDS+=		linpack>=20010427:../../math/linpack
 
-NO_SRC_ON_FTP=		Already in MASTER_SITE_LOCAL
 USE_LANGUAGES=		fortran77
 WRKSRC=			${WRKDIR}/odepack
 INSTALLATION_DIRS=	lib

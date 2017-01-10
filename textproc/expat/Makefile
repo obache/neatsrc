@@ -7,7 +7,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=expat/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	drochner@NetBSD.org
-HOMEPAGE=	http://expat.sourceforge.net/
+HOMEPAGE=	http://www.libexpat.org/
 COMMENT=	XML parser library written in C
 LICENSE=	mit
 

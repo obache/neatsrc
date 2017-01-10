@@ -1,0 +1,12 @@
+$NetBSD$
+
+SHA1 (lightdm-1.17.5.tar.xz) = 14dbe8b19f239950225541ab6d408e2ccbafd5e8
+RMD160 (lightdm-1.17.5.tar.xz) = 1e42c2778607c50afd9adb8287720823e82f8976
+SHA512 (lightdm-1.17.5.tar.xz) = 6d3bc969978fe536d30882c26c9b5ab4fca4d8ece60d6705c5838032718b20edbeee1c87f75baeef9df4ebea99cecde1a3bfc706f56c44ee3ce94bc8ad3d7e46
+Size (lightdm-1.17.5.tar.xz) = 488048 bytes
+SHA1 (patch-configure) = 612f6e8ed4f1236c442f5b34eeaf8f339b6c128a
+SHA1 (patch-liblightdm-gobject_language.c) = 4e99487073a65acf5c5c486cb5826d8fe9c1a2f4
+SHA1 (patch-src_lightdm.c) = 63337f8884f3d94a84edaae116d72189268bc9eb
+SHA1 (patch-src_process.c) = ab7c0d6e2d70b34f52017848b3f5019dbb20a30c
+SHA1 (patch-src_session-child.c) = 2216c6c200514851a7ea6a28de1f8176684da5bc
+SHA1 (patch-src_x-server.c) = 8c60475b56280cdb46a44673afefb951c1d6c550

@@ -1,0 +1,31 @@
+#! /bin/bash
+
+while getopts 'Ggpunr' o; do
+	case $o in
+	G)	show_groups=yes;;
+	g) show_group=yes;;
+	p)	show_print=yes;;
+	u) show_user=yes;;
+	n) opt_name=yes;;
+	r) opt_real=yes;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+user="$1"
+
+if [ -n "$show_groups" -o -n "$show_group" ]; then
+	echo 0
+	exit 0
+fi
+
+if [ -n "$show_user" ]; then
+	if [ -n "$opt_name" ]; then
+		/bin/whoami
+	else
+		echo 0
+	fi
+	exit 0
+fi
+
+exit 1

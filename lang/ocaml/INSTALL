@@ -1,0 +1,22 @@
+#!@SH@
+
+LDCONF="@PREFIX@/lib/ocaml/ld.conf"
+
+LDCONFtmp="${LDCONF}.$$"
+
+case $STAGE in
+POST-INSTALL)
+	${ECHO} "@PREFIX@/lib/ocaml/stublibs" >> "${LDCONFtmp}"
+	${ECHO} "@PREFIX@/lib/ocaml" >> "${LDCONFtmp}"
+	if ${TEST} -f "${LDCONF}"; then
+		${AWK} '						\
+		BEGIN {							\
+			ldirs["@PREFIX@/lib/ocaml/stublibs"];		\
+			ldirs["@PREFIX@/lib/ocaml"];			\
+		}							\
+		! ($0 in ldirs) {print;}'				\
+		${LDCONF} >> "${LDCONFtmp}"
+	fi
+	${MV} -f "${LDCONFtmp}" "${LDCONF}"
+	;;
+esac

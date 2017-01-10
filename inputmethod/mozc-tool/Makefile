@@ -3,6 +3,8 @@
 PKGNAME=	${DISTNAME:S/mozc-/mozc-tool-/}
 PKGREVISION=	3
 
+DEPENDS+=	tegaki-zinnia-japanese{,-light}-[0-9]*:../../inputmethod/tegaki-zinnia-japanese
+
 INSTALLATION_DIRS+=	libexec
 
 ALL_ENV+=	qt_dir=${QTDIR}

@@ -37,7 +37,8 @@ SUBST_SED.pkglint+=	-e s\|@PKGSRCDIR@\|/usr/pkgsrc\|g
 SUBST_SED.pkglint+=	-e s\|@PKGSRCDIR@\|${PKGSRCDIR}\|g
 .endif
 SUBST_SED.pkglint+=	-e s\|@PREFIX@\|${PREFIX}\|g
-SUBST_SED.pkglint+=	-e s\|@DISTVER@\|${PKGNAME:S/pkglint-//}\|g
+SUBST_SED.pkglint+=	-e s\|@PKGPATH@\|${PKGPATH}\|g
+SUBST_SED.pkglint+=	-e s\|@DISTVER@\|${PKGVERSION}\|g
 SUBST_SED.pkglint+=	-e s\|@MAKE@\|${MAKE:Q}\|g
 SUBST_SED.pkglint+=	-e s\|@PERL@\|${PERL5:Q}\|g
 SUBST_SED.pkglint+=	-e s\|@DATADIR@\|${FILESDIR}\|g

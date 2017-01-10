@@ -193,6 +193,7 @@ SUBDIR+=	lookup
 SUBDIR+=	lv
 SUBDIR+=	m17n-db
 SUBDIR+=	m17n-docs
+SUBDIR+=	man-db
 SUBDIR+=	marble
 SUBDIR+=	mate-utils
 SUBDIR+=	mbuffer

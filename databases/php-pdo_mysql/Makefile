@@ -12,7 +12,7 @@ USE_PHP_EXT_PATCHES=	yes
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.php-pdo_mysql
 PKG_SUPPORTED_OPTIONS=	mysqlnd
-PKG_SUGGESTED_OPTIONS=	# empty
+PKG_SUGGESTED_OPTIONS=	mysqlnd
 
 .include "../../mk/bsd.options.mk"
 

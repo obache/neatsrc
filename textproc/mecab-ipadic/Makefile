@@ -3,9 +3,9 @@
 
 .include "../../textproc/mecab/Makefile.common"
 
-DISTNAME=	mecab-ipadic-2.7.0-20070610
-PKGNAME=	mecab-ipadic-2.7.0.20070610
-PKGREVISION=	1
+DISTNAME=	mecab-ipadic-2.7.0-20070801
+PKGNAME=	mecab-ipadic-2.7.0.20070801
+MASTER_SITES=	-https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM
 
 COMMENT=	Japanese Morphological Dictionary for MeCab
 #LICENSE=	# See ${WRKSRC}/COPYING

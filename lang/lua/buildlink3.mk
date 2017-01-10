@@ -14,8 +14,7 @@ BUILDLINK_PREFIX.lua=	${BUILDLINK_PREFIX.${LUA_PACKAGE}}
 .if !defined(LUA_BUILDLINK3_MK)
 LUA_BUILDLINK3_MK:=
 
-BUILDLINK_TARGETS+=     buildlink-bin-unversioned
+BUILDLINK_FNAME_ALIASES.${LUA_PACKAGE}+= \
+	lib/pkgconfig/lua-${_LUA_DOT_VERSION}.pc lib/pkgconfig/lua.pc
 
-buildlink-bin-unversioned:
-	${LN} -s ${BUILDLINK_DIR}/lib/pkgconfig/lua-${_LUA_DOT_VERSION}.pc ${BUILDLINK_DIR}/lib/pkgconfig/lua.pc
 .endif # LUA_BUILDLINK3_MK

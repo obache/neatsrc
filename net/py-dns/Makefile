@@ -3,7 +3,7 @@
 DISTNAME=	dnspython-1.15.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/python-/-/}
 CATEGORIES=	net python
-MASTER_SITES=	http://www.dnspython.org/kits/${PKGVERSION}/
+MASTER_SITES=	http://www.dnspython.org/kits/${PKGVERSION_NOREV}/
 
 MAINTAINER=	gson@NetBSD.org
 HOMEPAGE=	http://www.dnspython.org/

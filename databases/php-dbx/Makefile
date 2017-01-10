@@ -2,7 +2,6 @@
 
 MODNAME=		dbx
 PECL_VERSION=		1.1.2
-PECL_LEGACY_VERSION_SCHEME=	yes
 CATEGORIES+=		databases
 COMMENT=		PHP database abstraction layer extension
 

@@ -3,7 +3,6 @@
 
 DISTNAME=	rabbit-2.1.9
 CATEGORIES=	graphics ruby
-MASTER_SITES=	http://rabbit-shocker.org/download/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://rabbit-shocker.org/
@@ -24,12 +23,5 @@ DEPENDS+=	${RUBY_PKGPREFIX}-gettext>=3.0.1:../../devel/ruby-gettext
 DEPENDS+=	${RUBY_PKGPREFIX}-faraday-[0-9]*:../../www/ruby-faraday
 #DEPENDS+=	${RUBY_PKGPREFIX}-gnome2-gstreamer-[0-9]*:../../multimedia/ruby-gnome2-gstreamer
 
-USE_RUBY_SETUP=		yes
-USE_RUBY_SETUP_PKG=	yes
-
-CONFIGURE_ARGS+=	--siteruby=${PREFIX}/${RUBY_VENDORLIB_BASE} \
-			--siterubyver=${PREFIX}/${RUBY_VENDORLIB} \
-			--siterubyverarch=${PREFIX}/${RUBY_VENDORARCHLIB}
-
-.include "../../lang/ruby/modules.mk"
+.include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

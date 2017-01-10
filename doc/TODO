@@ -1069,6 +1069,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o makeself-2.2.0
 	o maketool-0.8.4
 	o makeztxt-1.60
+	o mame-0.181
 	o manedit-1.2.1
 	o mapserver-7.0.1
 	o matchbox-panel-0.9.3
@@ -1100,7 +1101,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o minivmac-3.2.3
 	o miredo-1.2.4
 	o mit-scheme-bin-9.2
-	o mitmproxy-1.0.2
+	o mitmproxy-1.0
 	o mksh-52b
 	o mkvtoolnix-9.6.0
 	o modular-xorg-xquartz-1.18.0
@@ -1448,6 +1449,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ruby-jquery-rails-4.1.0
 	o ruby-ncurses-1.3.1 [where is this package available from?]
 	o ruby-railties-4.2.5
+	o ruby-redmine-3.3.1
+	o ruby-redmine_work_time-0.3.1
 	o ruby-review-1.4.0 [wip]
 	o ruby-selenium-webdriver-2.46.2
 	o rump-20131213

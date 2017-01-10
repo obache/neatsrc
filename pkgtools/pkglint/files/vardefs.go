@@ -750,7 +750,6 @@ func (gd *GlobalData) InitVartypes() {
 	pkg("USE_MSGFMT_PLURALS", lkNone, BtYes)
 	pkg("USE_NCURSES", lkNone, BtYes)
 	pkg("USE_OLD_DES_API", lkNone, BtYesNo)
-	pkg("USE_PKGINSTALL", lkNone, BtYes)
 	pkg("USE_PKGLOCALEDIR", lkNone, BtYesNo)
 	usr("USE_PKGSRC_GCC", lkNone, BtYes)
 	acl("USE_TOOLS", lkShell, BtTool, "*: append")

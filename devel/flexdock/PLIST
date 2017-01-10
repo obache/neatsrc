@@ -1,6 +1,6 @@
 @comment $NetBSD: PLIST,v 1.1.1.1 2010/03/08 12:38:39 dmcmahill Exp $
-lib/java/flexdock/flexdock-${PKGVERSION_NOREV}.jar
-lib/java/flexdock/flexdock-demo-${PKGVERSION_NOREV}.jar
+lib/java/flexdock/flexdock-${PKGVERSION}.jar
+lib/java/flexdock/flexdock-demo-${PKGVERSION}.jar
 lib/java/flexdock/lib/jmf/doc/readme.html
 lib/java/flexdock/lib/jmf/lib/customizer.jar
 lib/java/flexdock/lib/jmf/lib/jmf.jar

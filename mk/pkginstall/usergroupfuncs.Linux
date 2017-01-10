@@ -137,7 +137,7 @@ adduser()
 	return 0
 }
 
-# adduser group [groupid]
+# addgroup group [groupid]
 addgroup()
 {
 	group="$1"; groupid="$2"

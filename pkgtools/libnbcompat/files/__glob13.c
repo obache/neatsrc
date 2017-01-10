@@ -49,6 +49,10 @@ __RCSID("$NetBSD: __glob13.c,v 1.4 2014/03/14 22:08:17 ryoon Exp $");
 #if !defined(MAXPATHLEN)
 #if defined(_SCO_DS)
 #define MAXPATHLEN	1024
+#elif defined(PATH_MAX)
+#define MAXPATHLEN	PATH_MAX
+#else
+#define MAXPATHLEN	1024
 #endif
 #endif
 

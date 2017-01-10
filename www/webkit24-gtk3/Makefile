@@ -3,9 +3,9 @@
 PKGREVISION= 4
 .include "../../www/webkit24-gtk/Makefile.common"
 
-PKGNAME=	${DISTNAME:S/webkitgtk/webkit24-gtk3/}
+PKGNAME=	${DISTNAME:S/webkitgtk/webkit1-gtk3/}
 
-COMMENT=	GTK3 port of the WebKit browser engine
+COMMENT=	GTK3 port of the WebKit1 browser engine
 
 CONFIGURE_ARGS+=	--with-gtk=3.0
 CONFIGURE_ARGS+=	--disable-gtk-doc-html

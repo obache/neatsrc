@@ -14,6 +14,7 @@ USE_LANGUAGES=	c c++
 USE_TOOLS+=	gmake
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
+CONFIGURE_ARGS+=	--with-charset=${CABOCHA_CHARSET}
 
 INSTALL_MAKE_FLAGS+=	confdir=${PREFIX}/share/examples
 

@@ -4,7 +4,7 @@ DISTNAME=		grub-2.00
 PKGNAME=		${DISTNAME:S/grub/grub2/}
 PKGREVISION=		5
 CATEGORIES=		sysutils
-MASTER_SITES=		ftp://ftp.gnu.org/gnu/grub/
+MASTER_SITES=		${MASTER_SITE_GNU:=grub/}
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org

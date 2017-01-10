@@ -1,0 +1,19 @@
+#!@SH@
+
+LDCONF="@PREFIX@/lib/ocaml/ld.conf"
+
+LDCONFtmp="${LDCONF}.$$"
+
+case $STAGE in
+DEINSTALL)
+	${AWK} '						\
+	BEGIN {							\
+		ldirs["@PREFIX@/lib/ocaml/stublibs"];		\
+		ldirs["@PREFIX@/lib/ocaml"];			\
+	}							\
+	! ($0 in ldirs) {print;}'				\
+	${LDCONF} >> "${LDCONFtmp}"
+	${MV} -f "${LDCONFtmp}" "${LDCONF}"
+	${TEST} -s ${LDCONF} || ${RM} -f ${LDCONF}
+	;;
+esac

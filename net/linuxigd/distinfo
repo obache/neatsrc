@@ -1,0 +1,13 @@
+$NetBSD$
+
+SHA1 (linuxigd-1.0.tar.gz) = 0dd71fd7c5b8a3b0609164618314f4c110aff100
+RMD160 (linuxigd-1.0.tar.gz) = b05fe11d99766119779839766e323cfb6ada6977
+SHA512 (linuxigd-1.0.tar.gz) = 33b903edf5a4837363b52e84b302bf8d45a23c714d90c62f171ce88149f23a8f55f06122dde8746ff022542538669f9d25010e628e6bbc813c211ca270445db6
+Size (linuxigd-1.0.tar.gz) = 35396 bytes
+SHA1 (patch-Makefile) = 8344c38bfe913bc2bc197c788cf067f66a88ec61
+SHA1 (patch-config.c) = b2ebfd35939eff81c33e2d2fc1df93a9180722c9
+SHA1 (patch-gatedevice.c) = 9f222b8bae03254216b42cbcaa4b2b4c533beb39
+SHA1 (patch-main.c) = ed14fb38fe59b45fefdbd3ce0461c942aa0457fe
+SHA1 (patch-pmlist.c) = a4c2ad3aae36b94c3e7309bb432556ad09b8f60d
+SHA1 (patch-pmlist.h) = e34577080439af21e6915be14a1b138bedabc5f0
+SHA1 (patch-util.c) = 93f0191b19bbef5978f39c27225792bcdbf1dcb3

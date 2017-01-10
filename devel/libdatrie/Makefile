@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.14 2015/03/15 17:09:00 hiramatsu Exp $
 #
 
-DISTNAME=	libdatrie-0.2.8
+DISTNAME=	libdatrie-0.2.10
 CATEGORIES=	devel
 MASTER_SITES=	http://linux.thai.net/pub/thailinux/software/libthai/ \
 		ftp://linux.thai.net/pub/ThaiLinux/software/libthai/

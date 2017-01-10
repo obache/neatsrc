@@ -43,7 +43,7 @@
 # Create TOOLS_LDCONFIG and LDCONFIG variables that point to the actual
 # commands that can be embedded into packages.
 #
-.if !defined(TOOLS_PLATFORM.ldconfig)
+.if !defined(TOOLS_PLATFORM.ldconfig) || empty(TOOLS_PLATFORM.ldconfig)
 TOOLS_NOOP+=		ldconfig
 TOOLS_LDCONFIG?=	${TRUE}
 .else

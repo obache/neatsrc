@@ -1,0 +1,27 @@
+@comment $NetBSD$
+lib/girepository-1.0/Groonga-1.0.typelib
+lib/libgroonga-gobject.la
+lib/pkgconfig/groonga-gobject.pc
+share/doc/groonga-gobject/news.md
+share/gir-1.0/Groonga-1.0.gir
+share/groonga-gobject/sample/groonga.py
+share/gtk-doc/html/groonga-gobject/GGrnCommand.html
+share/gtk-doc/html/groonga-gobject/GGrnContext.html
+share/gtk-doc/html/groonga-gobject/groonga-gobject.devhelp2
+share/gtk-doc/html/groonga-gobject/home.png
+share/gtk-doc/html/groonga-gobject/index-1-0-0.html
+share/gtk-doc/html/groonga-gobject/index-1-0-1.html
+share/gtk-doc/html/groonga-gobject/index-all.html
+share/gtk-doc/html/groonga-gobject/index-deprecated.html
+share/gtk-doc/html/groonga-gobject/index.html
+share/gtk-doc/html/groonga-gobject/index.sgml
+share/gtk-doc/html/groonga-gobject/left-insensitive.png
+share/gtk-doc/html/groonga-gobject/left.png
+share/gtk-doc/html/groonga-gobject/libgroonga-gobject.html
+share/gtk-doc/html/groonga-gobject/reference.html
+share/gtk-doc/html/groonga-gobject/right-insensitive.png
+share/gtk-doc/html/groonga-gobject/right.png
+share/gtk-doc/html/groonga-gobject/start.html
+share/gtk-doc/html/groonga-gobject/style.css
+share/gtk-doc/html/groonga-gobject/up-insensitive.png
+share/gtk-doc/html/groonga-gobject/up.png

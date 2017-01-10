@@ -111,9 +111,9 @@ INSTALLATION_DIRS+=	${EGDIR}/pam_smbpass
 .PHONY: samba-pam-smbpass-install
 post-install: samba-pam-smbpass-install
 samba-pam-smbpass-install:
-	${INSTALL_DATA} ${WRKSRC}/pam_smbpass/README			\
+	${INSTALL_DATA} ${WRKSRC}/source3/pam_smbpass/README		\
 		${DESTDIR}${PREFIX}/${DOCDIR}/README.pam_smbpass
-	cd ${WRKSRC}/pam_smbpass/samples; for f in [a-z]*; do		\
+	cd ${WRKSRC}/source3/pam_smbpass/samples; for f in [a-z]*; do	\
 		${INSTALL_DATA} $${f} \
 			${DESTDIR}${PREFIX}/${EGDIR}/pam_smbpass/$${f};	\
 	done
@@ -140,10 +140,10 @@ PLIST_SUBST+=		NSS_WINBIND=${NSS_WINBIND:Q}
 FILES_SUBST+=		NSS_WINBIND=${NSS_WINBIND:Q}
 NSS_WINBIND=		${NSS_WINBIND_cmd:sh}
 NSS_WINBIND_cmd=	\
-	${TEST} -x ${WRKSRC}/config.status ||				\
+	${TEST} -x ${WRKSRC}/source3/config.status ||			\
 		{ ${ECHO} "@comment no NSS winbind module" ; exit 0; };	\
 	cd ${WRKDIR} && ${ECHO} @WINBIND_NSS@ |				\
-	${WRKSRC}/config.status --file=-:- | 				\
+	${WRKSRC}/source3/config.status --file=-:- | 			\
 	${AWK} '/^$$/ { print "@comment no NSS winbind module"; exit 0; } \
 		{ sub(".*/", "lib/"); print; }' &&			\
 	${RM} -f config.log
@@ -166,10 +166,10 @@ samba-nss-winbind-install:
 PLIST_SUBST+=	NSS_WINS=${NSS_WINS:Q}
 NSS_WINS=	${NSS_WINS_cmd:sh}
 NSS_WINS_cmd=	\
-	${TEST} -x ${WRKSRC}/config.status ||				\
+	${TEST} -x ${WRKSRC}/source3/config.status ||			\
 		{ ${ECHO} "@comment no NSS WINS module" ; exit 0; };	\
 	cd ${WRKDIR} && ${ECHO} @WINBIND_WINS_NSS@ |			\
-	${WRKSRC}/config.status --file=-:- |				\
+	${WRKSRC}/source3/config.status --file=-:- |			\
 	${AWK} '/^$$/ { print "@comment no NSS WINS module"; exit 0; }	\
 		{ sub(".*/", "lib/"); print; }' &&			\
 	${RM} -f config.log

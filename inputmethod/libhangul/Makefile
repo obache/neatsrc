@@ -15,5 +15,7 @@ USE_PKGLOCALEDIR=	yes
 PKGCONFIG_OVERRIDE+=	libhangul.pc.in
 GNU_CONFIGURE=		yes
 
+CONFIGURE_ARGS+=	${"${USE_BUILTIN.gettext:M[Yy][Ee][Ss]}" != "":?--without-libintl-prefix:--with-libintl-prefix=${BUILDLINK_PREFIX.gettext}}
+
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

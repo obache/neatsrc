@@ -2,7 +2,7 @@
 
 DISTNAME=	libunistring-0.9.7
 CATEGORIES=	textproc
-MASTER_SITES=	http://ftp.gnu.org/gnu/libunistring/
+MASTER_SITES=	${MASTER_SITE_GNU:=libunistring/}
 
 MAINTAINER=	gdt@NetBSD.org
 HOMEPAGE=	http://www.gnu.org/software/libunistring/

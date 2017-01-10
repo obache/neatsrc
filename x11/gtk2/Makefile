@@ -91,7 +91,6 @@ post-install:
 FILES_SUBST+=		GTK_UPDATE_ICON_CACHE="${PREFIX}/bin/gtk2-update-icon-cache"
 FILES_SUBST+=		ICON_THEME_DIR="${LOCALBASE}/share/icons/hicolor"
 INSTALL_TEMPLATES+=	../../x11/gtk2/files/icon-cache.tmpl
-PRINT_PLIST_AWK+=	/^share\/icons\/hicolor\/icon-theme.cache$$/ { next; }
 
 _BUILDING_GTK2=	yes
 .include "modules.mk"
@@ -114,6 +113,7 @@ BUILDLINK_API_DEPENDS.pango+=	pango>=1.20.0
 .include "../../fonts/fontconfig/buildlink3.mk"
 BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.6.0
 .include "../../graphics/cairo/buildlink3.mk"
+.include "../../graphics/cairo-gobject/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 #.include "../../mk/jpeg.buildlink3.mk"
 #.include "../../graphics/png/buildlink3.mk"
