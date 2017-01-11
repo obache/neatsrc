@@ -1,19 +1,9 @@
 $NetBSD$
 
-* install perl modules into vendor
 * escape tab for input of ed.
 
 --- configure.orig	2016-10-28 03:08:17.000000000 +0000
 +++ configure
-@@ -27538,7 +27538,7 @@ fi
- 
- 
-     PERL="${PERL}"
--    MAKE_MAKER_ARGS="PREFIX=${prefix}"
-+    MAKE_MAKER_ARGS="INSTALLDIRS=vendor PREFIX=${prefix}"
- 
- 
- _ACEOF
 @@ -29001,9 +29001,9 @@ _LT_EOF
  		n
  		s/\$(SITEARCHEXP)/\$(DESTINSTALLSITEARCH)/

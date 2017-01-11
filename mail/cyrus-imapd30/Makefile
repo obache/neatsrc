@@ -63,6 +63,7 @@ FILES_SUBST+=		IMAPDCONF=${PKG_SYSCONFDIR}/imapd.conf
 
 REPLACE_PERL+=		tools/rehash
 REPLACE_PERL+=		perl/annotator/Daemon.pm
+INSTALL_MAKE_FLAGS+=	INSTALLDIRS=vendor
 
 PERL5_PACKLIST= \
 	auto/Cyrus/Annotator/Daemon/.packlist		\
