@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.15 2017/01/01 16:06:09 adam Exp $
+# $NetBSD: Makefile,v 1.17 2017/01/11 14:25:42 wiz Exp $
 
-DISTNAME=	libgit2-0.24.1
-PKGREVISION=	2
+DISTNAME=	libgit2-0.25.1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libgit2/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -16,7 +15,9 @@ USE_TOOLS+=	pkg-config
 USE_CMAKE=	yes
 
 PKGCONFIG_OVERRIDE+=	libgit2.pc.in
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 0.21.1
+
+do-test:
+	cd ${WRKSRC} && ctest
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/libssh2/buildlink3.mk"

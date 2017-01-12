@@ -1,6 +1,6 @@
 #! /bin/sh
 
-# $NetBSD: bootstrap,v 1.234 2016/11/15 11:19:09 jperkin Exp $
+# $NetBSD: bootstrap,v 1.237 2017/01/10 12:30:00 jperkin Exp $
 #
 # Copyright (c) 2001-2011 Alistair Crooks <agc@NetBSD.org>
 # All rights reserved.
@@ -401,8 +401,7 @@ case "$bootstrap_sh" in
 /*)
 	;;
 *)
-	echo "ERROR: The variable SH must contain an absolute path" 1>&2
-	exit 1
+	die "ERROR: The variable SH must contain an absolute path"
 	;;
 esac
 
@@ -420,8 +419,7 @@ if [ "$opsys" != "GNUkFreeBSD" ] && [ "$dash_echo_test" = "@" ]; then
 fi
 
 if [ -n "$PKG_PATH" ]; then
-	echo "ERROR: Please unset PKG_PATH before running bootstrap." 1>&2
-	exit 1;
+	die "ERROR: Please unset PKG_PATH before running bootstrap."
 fi
 
 build_start=`date`
@@ -1033,16 +1031,22 @@ check_prog shprog sh
 check_prog whoamiprog whoami
 
 if [ -d "${wrkdir}" ] || [ -f "${wrkdir}" ]; then
-	echo "\"${wrkdir}\" already exists, please remove it or use --workdir.";
-	exit 1
+	die "\"${wrkdir}\" already exists, please remove it or use --workdir"
+fi
+
+if [ -f "${prefix}/share/mk/sys.mk" ]; then
+	die "\"${prefix}\" already in use, remove it or use a different --prefix"
+fi
+
+if [ -d "${pkgdbdir}/bootstrap-mk-files-"* ]; then
+	die "\"${pkgdbdir}\" already in use, remove it or use a different --pkgdbdir"
 fi
 
 mkdir_p_early ${wrkdir}
 if touch ${wrkdir}/.writeable; then
 	:
 else
-	echo "\"${wrkdir}\" is not writeable. Try $0 -h.";
-	exit 1
+	die "\"${wrkdir}\" is not writeable. Try $0 -h"
 fi
 echo "Working directory is: ${wrkdir}"
 
@@ -1307,7 +1311,7 @@ run_cmd "(cd $wrkdir/libarchive; env $BSTRAP_ENV \
 $shprog ./configure $configure_quiet_flags --enable-static --disable-shared \
 --disable-bsdtar --disable-bsdcpio --disable-posix-regex-lib --disable-xattr \
 --disable-maintainer-mode --disable-acl --without-zlib --without-bz2lib \
---without-lzmadec --without-iconv --without-lzma --without-lzo2 \
+--without-lzmadec --without-iconv --without-lzma --without-lzo2 --without-lz4 \
 --without-nettle --without-openssl --without-xml2 --without-expat \
 MAKE=$bmake && $bmake $make_quiet_flags -j$make_jobs)"
 copy_src $pkgsrcdir/pkgtools/pkg_install/files pkg_install
