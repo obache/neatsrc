@@ -1,6 +1,7 @@
 $NetBSD: distinfo,v 1.6 2015/11/03 03:27:50 agc Exp $
 
-SHA1 (msgpack-2.0.0.tar.gz) = 5c3a1314d7c12a3bbff9cc14905d9612c7e3c15d
-RMD160 (msgpack-2.0.0.tar.gz) = ba2930eb5ddb40e9a8a51fc7d9f08a921562ee97
-SHA512 (msgpack-2.0.0.tar.gz) = 74d1c9641ecdf1a54346088c59415cf778821dc6f6acb0c5a8a93c2284edaf53c4746459093971d96136279fbd8de10cb9a43dd8d8220d335618ad30e971e9a3
-Size (msgpack-2.0.0.tar.gz) = 446063 bytes
+SHA1 (msgpack-2.1.0.tar.gz) = afdd01fa0e62541609da480498b4359b97160a00
+RMD160 (msgpack-2.1.0.tar.gz) = 755c97b2e34946af58362a203b6f7a34d6ce689c
+SHA512 (msgpack-2.1.0.tar.gz) = 4997cffcab79d2909fb854f6e0ce9d12082135439c7e8f971b9ea5f7a592c689a59173566fef4478b159522b00cf3ff182743424b67a1d0f88f95d572123c639
+Size (msgpack-2.1.0.tar.gz) = 459355 bytes
+SHA1 (patch-src_objectc.c) = 89c0e85e1291d3c3d3496ca375db07740a15ecc1
