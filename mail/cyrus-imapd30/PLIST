@@ -1,4 +1,5 @@
 @comment $NetBSD$
+bin/httptest
 bin/imtest
 bin/installsieve
 bin/lmtptest
@@ -89,6 +90,7 @@ ${PLIST.ldap}libexec/cyrus/ptloader
 libexec/cyrus/smmapd
 libexec/cyrus/sync_server
 libexec/cyrus/timsieved
+man/man1/httptest.1
 man/man1/imtest.1
 man/man1/installsieve.1
 man/man1/lmtptest.1
@@ -154,6 +156,7 @@ sbin/ctl_deliver
 sbin/ctl_mboxlist
 ${PLIST.http}sbin/ctl_zoneinfo
 sbin/cvt_cyrusdb
+sbin/cvt_xlist_specialuse
 sbin/cyr_buildinfo
 sbin/cyr_dbtool
 sbin/cyr_deny
@@ -375,7 +378,9 @@ share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.0-beta
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.0-beta4.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.0-beta5.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.0-beta6.txt
+share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.0-rc1.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/index.txt
+share/doc/cyrus-imapd/html/_sources/imap/download/upgrade.txt
 share/doc/cyrus-imapd/html/_sources/imap/index.txt
 share/doc/cyrus-imapd/html/_sources/imap/quickstart/introduction.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/admin.txt
@@ -462,6 +467,7 @@ share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/ctl_m
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/ctl_zoneinfo.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/cvt_cyrusdb.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/cvt_cyrusdb_all.txt
+share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/cvt_xlist_specialuse.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/cyr_backup.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/cyr_buildinfo.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/cyr_dbtool.txt
@@ -524,6 +530,7 @@ share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/undoh
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/unexpunge.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/upgradesieve.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/usercommands/dav_reconstruct.txt
+share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/usercommands/httptest.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/usercommands/imtest.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/usercommands/installsieve.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/usercommands/lmtptest.txt
@@ -782,7 +789,9 @@ share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.0-beta3.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.0-beta4.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.0-beta5.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.0-beta6.html
+share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.0-rc1.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/index.html
+share/doc/cyrus-imapd/html/imap/download/upgrade.html
 share/doc/cyrus-imapd/html/imap/index.html
 share/doc/cyrus-imapd/html/imap/quickstart/introduction.html
 share/doc/cyrus-imapd/html/imap/reference/admin.html
@@ -869,6 +878,7 @@ share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/ctl_mboxlist.h
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/ctl_zoneinfo.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/cvt_cyrusdb.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/cvt_cyrusdb_all.html
+share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/cvt_xlist_specialuse.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/cyr_backup.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/cyr_buildinfo.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/cyr_dbtool.html
@@ -931,6 +941,7 @@ share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/undohash.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/unexpunge.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/upgradesieve.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/usercommands/dav_reconstruct.html
+share/doc/cyrus-imapd/html/imap/reference/manpages/usercommands/httptest.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/usercommands/imtest.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/usercommands/installsieve.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/usercommands/lmtptest.html
@@ -1193,7 +1204,9 @@ share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.0-beta3.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.0-beta4.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.0-beta5.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.0-beta6.txt
+share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.0-rc1.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/index.txt
+share/doc/cyrus-imapd/text/imap/download/upgrade.txt
 share/doc/cyrus-imapd/text/imap/index.txt
 share/doc/cyrus-imapd/text/imap/quickstart/introduction.txt
 share/doc/cyrus-imapd/text/imap/reference/admin.txt
@@ -1280,6 +1293,7 @@ share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/ctl_mboxlist.t
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/ctl_zoneinfo.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/cvt_cyrusdb.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/cvt_cyrusdb_all.txt
+share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/cvt_xlist_specialuse.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/cyr_backup.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/cyr_buildinfo.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/cyr_dbtool.txt
@@ -1342,6 +1356,7 @@ share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/undohash.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/unexpunge.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/upgradesieve.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/usercommands/dav_reconstruct.txt
+share/doc/cyrus-imapd/text/imap/reference/manpages/usercommands/httptest.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/usercommands/imtest.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/usercommands/installsieve.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/usercommands/lmtptest.txt

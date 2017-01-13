@@ -126,6 +126,7 @@ CONFIGURE_ARGS+=	--without-clamav
 .include "../../textproc/icu/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../time/libical/buildlink3.mk"
+.include "../../www/nghttp2/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-http
 PLIST.http=		yes
 .else
