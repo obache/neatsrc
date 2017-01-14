@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.214 2017/01/13 02:26:11 gdt Exp $
+$NetBSD: CHANGES-2017,v 1.223 2017/01/14 01:04:19 ryoon Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -254,3 +254,13 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated security/py-certbot to 0.10.0 [fhajny 2017-01-12]
 	Updated devel/flex to 2.6.3nb1 [wiz 2017-01-12]
 	Updated geography/gdal-lib to 1.11.5 [gdt 2017-01-13]
+	Updated audio/fdk-aac to 0.1.5 [adam 2017-01-13]
+	Updated audio/opencore-amr to 0.1.4 [adam 2017-01-13]
+	Updated net/wireshark to 2.2.3nb1 [leot 2017-01-13]
+	Updated geography/gdal-lib to 2.0.3 [gdt 2017-01-13]
+	Updated www/typo3_62 to 6.2.30 [taca 2017-01-13]
+	Updated databases/ruby-moneta to 0.8.1 [taca 2017-01-13]
+	Updated databases/ruby-sequel to 4.42.1 [taca 2017-01-13]
+	Updated converters/py-cairosvg to 1.0.20 [kleink 2017-01-13]
+	Updated ham/gnuradio-core to 3.7.10.1 [mef 2017-01-13]
+	Updated lang/gawk to 4.1.4 [ryoon 2017-01-14]
