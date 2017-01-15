@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2016/08/03 10:22:19 adam Exp $
+# $NetBSD: Makefile,v 1.4 2017/01/14 09:14:54 ryoon Exp $
 
 DISTNAME=	gspell-1.2.2
 CATEGORIES=	textproc gnome

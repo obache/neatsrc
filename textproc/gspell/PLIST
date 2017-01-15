@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2016/04/12 16:08:05 prlw1 Exp $
+@comment $NetBSD: PLIST,v 1.2 2017/01/14 09:14:54 ryoon Exp $
 include/gspell-1/gspell/gspell-checker-dialog.h
 include/gspell-1/gspell/gspell-checker.h
 include/gspell-1/gspell/gspell-enum-types.h

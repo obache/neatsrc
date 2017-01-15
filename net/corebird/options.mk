@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.2 2016/01/05 21:38:07 joerg Exp $
+# $NetBSD: options.mk,v 1.3 2017/01/14 09:28:41 ryoon Exp $
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.corebird
