@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.232 2017/01/14 23:33:49 leot Exp $
+$NetBSD: CHANGES-2017,v 1.237 2017/01/16 00:31:00 schmonz Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -273,3 +273,8 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated textproc/py-html5lib to 0.999999999nb1 [kleink 2017-01-14]
 	Updated print/py-weasyprint to 0.34 [kleink 2017-01-14]
 	Updated www/netsurf to 3.6nb2 [leot 2017-01-14]
+	Updated games/lgogdownloader to 3.1 [wiz 2017-01-15]
+	Added emulators/PC6001VX version 2.30.0 [tsutsui 2017-01-15]
+	Updated devel/pcc-libs to 1.1.0 [mef 2017-01-15]
+	Updated mail/getmail to 4.53.0 [schmonz 2017-01-16]
+	Updated www/lighttpd to 1.4.45 [schmonz 2017-01-16]
