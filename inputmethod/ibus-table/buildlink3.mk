@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	ibus-table
 IBUS_TABLE_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.ibus-table+=	ibus-table>=1.2.0.20100111
-BUILDLINK_API_DEPENDS.ibus-table+=	ibus-table>=1.8.0
+BUILDLINK_ABI_DEPENDS.ibus-table+=	ibus-table>=1.8.0
 BUILDLINK_PKGSRCDIR.ibus-table?=	../../inputmethod/ibus-table
 
 .endif	# IBUS_TABLE_BUILDLINK3_MK
