@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2017/01/05 11:54:32 adam Exp $
+# $NetBSD: Makefile,v 1.18 2017/01/16 21:56:35 brook Exp $
 
 DISTNAME=	llvm-3.9.1.src
 PKGNAME=	${DISTNAME:S/llvm/libLLVM/:S/.src//}
@@ -24,6 +24,8 @@ CMAKE_ARGS+=	-DCMAKE_C_COMPILER=gcc
 CMAKE_ARGS+=	-DCMAKE_CXX_COMPILER=g++
 CMAKE_ARGS+=	-DLLVM_BUILD_LLVM_DYLIB=ON
 CMAKE_ARGS+=	-DLLVM_INCLUDE_TESTS=OFF
+
+CMAKE_ARGS.Darwin+=	-DCMAKE_LIBTOOL=/usr/bin/libtool
 
 .for tool in 	bugpoint bugpoint_passes dsymutil llc lli llvm_ar	\
 	llvm_as llvm_bcanalyzer llvm_c_test llvm_cov llvm_cxxdump	\
@@ -87,10 +89,6 @@ TEST_TARGET=		check
 TEST_ENV+=		LD_LIBRARY_PATH=${WRKDIR}/build/lib
 
 .include "../../mk/bsd.prefs.mk"
-
-.if ${OPSYS} == "Darwin"
-CMAKE_ARGS+=	-DCMAKE_LIBTOOL=/usr/bin/libtool
-.endif
 
 # 3.8.0 -> 3.8
 LLVM_MAJOR_MINOR=	${PKGVERSION_NOREV:C/^([0-9]+\.[0-9]+)\..*$/\1/}

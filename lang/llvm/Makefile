@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2017/01/05 11:54:32 adam Exp $
+# $NetBSD: Makefile,v 1.14 2017/01/16 21:56:35 brook Exp $
 #
 # when updating this, please also update:
 # devel/include-what-you-use
@@ -32,6 +32,8 @@ CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
 CMAKE_ARGS+=	-DCMAKE_C_COMPILER=gcc
 CMAKE_ARGS+=	-DCMAKE_CXX_COMPILER=g++
 CMAKE_ARGS+=	-DLLVM_INSTALL_UTILS=ON
+
+CMAKE_ARGS.Darwin+=	-DCMAKE_LIBTOOL=/usr/bin/libtool
 
 CHECK_PORTABILITY_SKIP=	utils/buildit/build_llvm
 
@@ -97,7 +99,6 @@ CXXFLAGS+=	-march=i586
 .endif
 
 .if ${OPSYS} == "Darwin"
-CMAKE_ARGS+=	-DCMAKE_LIBTOOL=/usr/bin/libtool
 .PHONY: fix-darwin-install-name
 post-install: fix-darwin-install-name
 fix-darwin-install-name:
