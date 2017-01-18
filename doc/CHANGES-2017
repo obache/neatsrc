@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.278 2017/01/16 20:43:30 snj Exp $
+$NetBSD: CHANGES-2017,v 1.290 2017/01/17 23:19:35 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -319,3 +319,17 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated www/apache22 to 2.2.32 [adam 2017-01-16]
 	Updated sysutils/user_darwin to 20170116 [schmonz 2017-01-16]
 	Updated games/quakespasm to 0.92.1 [snj 2017-01-16]
+	Updated multimedia/omxplayer to 20170112 [skrll 2017-01-17]
+	Updated mail/neomutt to 20170113 [wiz 2017-01-17]
+	Updated www/py-webassets to 0.12.1 [kleink 2017-01-17]
+	Updated www/py-flask-assets to 0.11 [kleink 2017-01-17]
+	Updated devel/SOPE to 2.3.19 [taca 2017-01-17]
+	Updated www/SOGo to 2.3.19 [taca 2017-01-17]
+	Updated www/contao35 to 3.5.23 [taca 2017-01-17]
+	Updated devel/py-future to 0.16.0 [fhajny 2017-01-17]
+	Updated net/py-lexicon to 1.2.1 [fhajny 2017-01-17]
+	Updated databases/elasticsearch to 5.1.2 [fhajny 2017-01-17]
+	Updated sysutils/beats to 5.1.2 [fhajny 2017-01-17]
+	Added devel/p5-Config-INI-Reader-Ordered version 0.020 [schmonz 2017-01-17]
+	Added devel/p5-Reply version 0.42 [schmonz 2017-01-17]
+	Updated misc/calibre to 2.76.0nb1 [wiz 2017-01-17]

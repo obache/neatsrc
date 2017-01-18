@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2347 2017/01/09 15:53:14 taca Exp $
+# $NetBSD: Makefile,v 1.2349 2017/01/17 19:44:18 schmonz Exp $
 #
 
 COMMENT=	Development utilities
@@ -879,6 +879,7 @@ SUBDIR+=	p5-Config-General
 SUBDIR+=	p5-Config-GitLike
 SUBDIR+=	p5-Config-Grammar
 SUBDIR+=	p5-Config-INI
+SUBDIR+=	p5-Config-INI-Reader-Ordered
 SUBDIR+=	p5-Config-IniFiles
 SUBDIR+=	p5-Config-MVP
 SUBDIR+=	p5-Config-MVP-Reader-INI
@@ -1402,6 +1403,7 @@ SUBDIR+=	p5-Regexp-Assemble
 SUBDIR+=	p5-Regexp-MatchContext
 SUBDIR+=	p5-Regexp-Parser
 SUBDIR+=	p5-Regexp-Shellish
+SUBDIR+=	p5-Reply
 SUBDIR+=	p5-Return-MultiLevel
 SUBDIR+=	p5-Return-Value
 SUBDIR+=	p5-Role-Basic
