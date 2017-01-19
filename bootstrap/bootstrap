@@ -533,21 +533,18 @@ if [ "$bootstrap_updating" = "yes" ]; then
 		if [ -x /usr/sbin/pkg_admin ]; then
 			cur_pkg_admin=/usr/sbin/pkg_admin
 		else
-			echo "ERROR: Current installation is not found in ${prefix}." 1>&2
-			exit 1
+			die "ERROR: Current installation is not found in ${prefix}."
 		fi
 	fi
 	cur_pkgdbdir=`$cur_pkg_admin config-var PKG_DBDIR`
 	if [ -z "$pkgdbdir" ]; then
 		pkgdbdir="$cur_pkgdbdir"
 	elif [ "$pkgdbdir" != "$cur_pkgdbdir" ]; then
-		echo "ERROR: Specifyed pkgdbdir ($pkgdbdir) does not match to current configuration (${cur_pkgdbdir})." 1>&2
-		exit 1
+		die "ERROR: Specifyed pkgdbdir ($pkgdbdir) does not match to current configuration (${cur_pkgdbdir})."
 	fi
 else
 	if [ -e ${prefix} ];then
-		echo "ERROR: prefix ${prefix} already exists." 1>&2
-		exit 1
+		die "ERROR: prefix ${prefix} already exists."
 	fi
 fi
 
@@ -556,8 +553,7 @@ fi
 
 if [ "$bootstrap_updating" = "no" ]; then
 	if [ -e ${pkgdbdir} ];then
-		echo "ERROR: pkgdbdir ${pkgdbdir} already exists." 1>&2
-		exit 1
+		die "ERROR: pkgdbdir ${pkgdbdir} already exists."
 	fi
 fi
 
