@@ -4,4 +4,4 @@ SHA1 (cyrus-imapd-3.0.0-rc1.tar.gz) = 6ddb87e692c9f426c9ec5b1a94733e10eac54678
 RMD160 (cyrus-imapd-3.0.0-rc1.tar.gz) = 1abb6788bbfbdf594213f898d2c2c4211b85dcb4
 SHA512 (cyrus-imapd-3.0.0-rc1.tar.gz) = 5318847d17a62657780d9f69c30c3e58c6b69ecfa0d2ea29a1a8c6d59bbed2dc4a08cf9ec9b060e5cf9df5907de54e3010553dc7460dcc8c0891ffcd305a1ffd
 Size (cyrus-imapd-3.0.0-rc1.tar.gz) = 10009574 bytes
-SHA1 (patch-imap_http__admin.c) = 04d1cdc7f6f020583d64c49608f1fde376b4d037
+SHA1 (patch-imap_http__admin.c) = 9600adcfae406ce363d1c91edbd0cecb68198bd4
