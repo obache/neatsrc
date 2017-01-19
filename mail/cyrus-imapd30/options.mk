@@ -123,6 +123,7 @@ CONFIGURE_ARGS+=	--without-clamav
 
 .if !empty(PKG_OPTIONS:Mhttp)
 .include "../../databases/sqlite3/buildlink3.mk"
+.include "../../geography/shapelib/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../time/libical/buildlink3.mk"
