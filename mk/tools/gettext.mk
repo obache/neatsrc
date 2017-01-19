@@ -84,6 +84,8 @@ _TOOLS_USE_PKGSRC.msgfmt!=						\
 .          endif
 .        endfor
 .      endif
+.    else
+_TOOLS_USE_PKGSRC.msgfmt=	yes
 .    endif
 
 .    if empty(_TOOLS_USE_PKGSRC.msgfmt:M[Yy][Ee][Ss])
