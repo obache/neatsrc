@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16929 2017/01/17 16:21:18 taca Exp $
+$NetBSD: TODO,v 1.16934 2017/01/18 21:10:51 wiz Exp $
 
 Suggested new packages
 ======================
@@ -336,7 +336,7 @@ Suggested new packages
 	xf86-input-spaceorb, xf86-input-summa, xf86-input-synaptics [pkg/47082],
 	xf86-input-tek4957, xf86-input-ur98, xf86-video-amd, xf86-video-dummy,
 	xf86-video-freedreno, xf86-video-glide, xf86-video-impact,
-	xf86-video-omap, xf86-video-sisusb, xf86-video-sunbw2,
+	xf86-video-omap, xf86-video-sisusb (Linux-only), xf86-video-sunbw2,
 	xf86-video-sunleo, xf86-video-v4l, xf86-video-vermilion,
 	xf86-video-xgixp
 	lib: liboldX
@@ -527,7 +527,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o compiz-0.8.10
 	o cone-0.92
 	o cook-2.31
-	o coreutils-8.26
 	o courier-0.76.0
 	o courier-authlib-0.66.2
 	o courier-imap-4.16.1
@@ -688,6 +687,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o freewais-sf-2.2.14
 	o frink-2.3.1a2
 	o frotz-2.44
+	o fs-uae-2.8.2 [pkg/51895]
 	o ftplibpp-2.0.2
 	o fuse-archivemount-0.8.7
 	o fuse-emulator-1.2.0
@@ -788,7 +788,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gossip-0.31
 	o gource-0.43
 	o gourmet-0.13.3
-	o gperiodic-3.0.0
+	o gperiodic-3.0.2
 	o gps-6.1.1
 	o gpsd-3.16
 	o gpsdrive-2.11
@@ -1335,15 +1335,12 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-django-photologue-2.7
 	o py-djangorestframework-2.3.12
 	o py-doctor-15.1.0
-	o py-dulwich-0.16.3
 	o py-ephem3-3.7.6.0
-	o py-foolscap-0.12.6
 	o py-gmpy-1.17
 	o py-gnome-menus-3.8.0
 	o py-hsm-1.1.1
 	o py-httpbin-0.4.1
 	o py-input-pad-1.4.2
-	o py-ipaddress-1.0.18
 	o py-ipython-5.0
 	o py-isodate-0.5.4
 	o py-jaraco_util-11.0

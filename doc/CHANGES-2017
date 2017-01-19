@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.290 2017/01/17 23:19:35 wiz Exp $
+$NetBSD: CHANGES-2017,v 1.318 2017/01/18 23:05:57 rillig Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -333,3 +333,31 @@ Changes to the packages collection and infrastructure in 2017:
 	Added devel/p5-Config-INI-Reader-Ordered version 0.020 [schmonz 2017-01-17]
 	Added devel/p5-Reply version 0.42 [schmonz 2017-01-17]
 	Updated misc/calibre to 2.76.0nb1 [wiz 2017-01-17]
+	Updated audio/abcde to 2.8nb1 [wiz 2017-01-18]
+	Updated comms/conserver8 to 8.2.1nb3 [he 2017-01-18]
+	Updated misc/calibre1 to 1.48.0nb22 [kleink 2017-01-18]
+	Updated www/p5-Mojolicious to 7.20 [wen 2017-01-18]
+	Updated devel/p5-Modern-Perl to 1.20170117 [wen 2017-01-18]
+	Updated devel/p5-Mouse to 2.4.7 [wen 2017-01-18]
+	Updated mail/p5-Email-Simple to 2.213 [wen 2017-01-18]
+	Updated math/p5-Math-BigInt to 1.999808 [wen 2017-01-18]
+	Updated math/p5-Math-BigInt-Pari to 1.3003 [wen 2017-01-18]
+	Updated textproc/groff to 1.22.3nb5 [leot 2017-01-18]
+	Updated math/p5-Math-BigInt-GMP to 1.6003 [wen 2017-01-18]
+	Updated filesystems/glusterfs to 3.8.8 [manu 2017-01-18]
+	Updated x11/xf86-video-tdfx to 1.4.7 [wiz 2017-01-18]
+	Updated x11/xf86-video-sis to 0.10.9 [wiz 2017-01-18]
+	Updated x11/xf86-video-mga to 1.6.5 [wiz 2017-01-18]
+	Updated x11/xf86-video-chips to 1.2.7 [wiz 2017-01-18]
+	Updated x11/xf86-video-siliconmotion to 1.7.9 [wiz 2017-01-18]
+	Updated x11/xf86-video-nv to 2.1.21 [wiz 2017-01-18]
+	Updated x11/xf86-video-glint to 1.2.9 [wiz 2017-01-18]
+	Updated x11/xf86-video-trident to 1.3.8 [wiz 2017-01-18]
+	Updated x11/xf86-video-savage to 2.3.9 [wiz 2017-01-18]
+	Updated x11/xf86-video-i740 to 1.3.6 [wiz 2017-01-18]
+	Updated x11/xf86-video-r128 to 6.10.2 [wiz 2017-01-18]
+	Updated devel/py-dulwich to 0.16.3 [wiz 2017-01-18]
+	Updated net/py-foolscap to 0.12.6 [wiz 2017-01-18]
+	Updated net/py-ipaddress to 1.0.18 [wiz 2017-01-18]
+	Updated sysutils/coreutils to 8.26 [wiz 2017-01-18]
+	Updated pkgtools/pkglint to 5.4.17 [rillig 2017-01-18]
