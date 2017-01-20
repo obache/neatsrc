@@ -53,6 +53,10 @@ _CHECK_MAINTAINANCE_TASKS_MAKEFILE.gio=	devel/glib2/modules.mk
 _CHECK_MAINTAINANCE_TASKS_SELFPKGPATH.gio=	devel/glib2
 _CHECK_MAINTAINANCE_TASKS_VARNAME.gio=	GIO_MODULES_MK
 
+_CHECK_MAINTAINANCE_TASKS+=	infodir
+_CHECK_MAINTAINANCE_TASKS_FILES_FILTER.infodir=	${AWK} '/^${PREFIX:S/\//\\\//g}\/${PKGINFODIR:S/\//\\\//g}\/.+\.info$$/'
+_CHECK_MAINTAINANCE_TASKS_VARNAME.infodir=	INFO_FILES
+
 .if !empty(CHECK_MAINTAINANCE_TASKS:M[Yy][Ee][Ss])
 privileged-install-hook: _check-maintainance-tasks
 .endif
@@ -67,13 +71,13 @@ _check-maintainance-tasks: .PHONY error-check
 	${RUN}		\
 	if ${_ZERO_FILESIZE_P} ${ERROR_DIR}/${.TARGET}-${d}.tmp; then	\
 		${ECHO} "************************************************************"; \
-		${ECHO} "${_CHECK_MAINTAINANCE_TASKS_MAKEFILE.${d}} is included, but any relevant files are not installed."; \
+		${ECHO} "${_CHECK_MAINTAINANCE_TASKS_MAKEFILE.${d}:U${_CHECK_MAINTAINANCE_TASKS_VARNAME.${d}}} is ${_CHECK_MAINTAINANCE_TASKS_MAKEFILE.${d}:Dincluded:Udefined}, but any relevant files are not installed."; \
 	fi >> ${ERROR_DIR}/${.TARGET}
 . elif empty(_CHECK_MAINTAINANCE_TASKS_SELFPKGPATH.${d}:U:M${PKGPATH})
 	${RUN}		\
 	if ${_NONZERO_FILESIZE_P} ${ERROR_DIR}/${.TARGET}-${d}.tmp; then \
 		${ECHO} "************************************************************"; \
-		${ECHO} "Following files are installed but ${_CHECK_MAINTAINANCE_TASKS_MAKEFILE.${d}} is not included"; \
+		${ECHO} "Following files are installed but ${_CHECK_MAINTAINANCE_TASKS_MAKEFILE.${d}:U${_CHECK_MAINTAINANCE_TASKS_VARNAME.${d}}} is not ${_CHECK_MAINTAINACE_TASKS_MAKEFILE.${d}:Dincluded:Udefined}"; \
 		${CAT} ${ERROR_DIR}/${.TARGET}-${d}.tmp; \
 	fi >> ${ERROR_DIR}/${.TARGET}
 . endif
