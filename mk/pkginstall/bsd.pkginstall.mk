@@ -747,54 +747,42 @@ ${_INSTALL_DIRS_FILE}: ../../mk/pkginstall/dirs
 #	installed info files.
 #
 
+.if defined(INFO_FILES)
+
 _INSTALL_INFO_FILES_FILE=	${_PKGINSTALL_DIR}/info-files
 _INSTALL_INFO_FILES_DATAFILE=	${_PKGINSTALL_DIR}/info-files-data
 _INSTALL_UNPACK_TMPL+=		${_INSTALL_INFO_FILES_FILE}
 _INSTALL_DATA_TMPL+=		${_INSTALL_INFO_FILES_DATAFILE}
 
-.if defined(INFO_FILES)
 USE_TOOLS+=	install-info:run
 FILES_SUBST+=	INSTALL_INFO=${INSTALL_INFO:Q}
-.endif
 
 ${_INSTALL_INFO_FILES_DATAFILE}:
 	${RUN}${MKDIR} ${.TARGET:H}
 	${RUN}${RM} -f ${.TARGET}
 	${RUN}${TOUCH} ${TOUCH_ARGS} ${.TARGET}
-
-${_INSTALL_INFO_FILES_FILE}: ${_INSTALL_INFO_FILES_DATAFILE}
-${_INSTALL_INFO_FILES_FILE}: ../../mk/pkginstall/info-files
-	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}								\
-	${SED} ${FILES_SUBST_SED} ../../mk/pkginstall/info-files > ${.TARGET}
-.if !defined(INFO_FILES)
-	${RUN}								\
-	if ${_ZERO_FILESIZE_P} ${_INSTALL_INFO_FILES_DATAFILE}; then	\
-		${RM} -f ${.TARGET};					\
-		${TOUCH} ${TOUCH_ARGS} ${.TARGET};			\
-	fi
-.endif
-
-.PHONY: install-script-data-info-files
-install-script-data: install-script-data-info-files
-install-script-data-info-files:
-.if defined(INFO_FILES)
 	${RUN}${_FUNC_STRIP_PREFIX};					\
-	if ${TEST} -x ${INSTALL_FILE}; then				\
 		${INFO_FILES_cmd} |					\
 		while read file; do					\
 			infodir=${INFO_DIR:Q};				\
 			infodir=`strip_prefix "$$infodir"`;		\
 			case "$$infodir" in				\
 			"")	${ECHO} "# INFO: $$file"		\
-					>> ${INSTALL_FILE} ;;		\
+					>> ${.TARGET} ;;		\
 			*)	${ECHO} "# INFO: $$file $$infodir"	\
-					>> ${INSTALL_FILE} ;;		\
+					>> ${.TARGET} ;;		\
 			esac;						\
 		done;							\
-		cd ${PKG_DB_TMPDIR} && ${PKGSRC_SETENV} ${INSTALL_SCRIPTS_ENV} \
-		${_PKG_DEBUG_SCRIPT} ${INSTALL_FILE} ${PKGNAME}		\
-			UNPACK +INFO_FILES;				\
+
+${_INSTALL_INFO_FILES_FILE}: ${_INSTALL_INFO_FILES_DATAFILE}
+${_INSTALL_INFO_FILES_FILE}: ../../mk/pkginstall/info-files
+	${RUN}${MKDIR} ${.TARGET:H}
+	${RUN}								\
+	${SED} ${FILES_SUBST_SED} ../../mk/pkginstall/info-files > ${.TARGET}
+	${RUN}								\
+	if ${_ZERO_FILESIZE_P} ${_INSTALL_INFO_FILES_DATAFILE}; then	\
+		${RM} -f ${.TARGET};					\
+		${TOUCH} ${TOUCH_ARGS} ${.TARGET};			\
 	fi
 .endif
 
@@ -1240,7 +1228,7 @@ _PKGINSTALL_TARGETS+=	acquire-pkginstall-lock
 _PKGINSTALL_TARGETS+=	real-pkginstall
 _PKGINSTALL_TARGETS+=	release-pkginstall-lock
 
-.PHONY: pkginstall install-script-data
+.PHONY: pkginstall
 pkginstall: ${_PKGINSTALL_TARGETS}
 
 .PHONY: acquire-pkginstall-lock release-pkginstall-lock
