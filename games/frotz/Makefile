@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.30 2015/09/08 11:57:49 jperkin Exp $
+# $NetBSD: Makefile,v 1.32 2017/01/19 18:52:10 agc Exp $
 
 DISTNAME=	frotz-2.43
 PKGREVISION=	5
 CATEGORIES=	games
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=frotz/} \
-		ftp://ftp.ifarchive.org/if-archive/infocom/interpreters/frotz/
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=frotz/}
+MASTER_SITES+=	ftp://ftp.ifarchive.org/if-archive/infocom/interpreters/frotz/
 
 MAINTAINER=	seebs@plethora.net
 HOMEPAGE=	http://frotz.sourceforge.net/
@@ -34,6 +34,6 @@ do-install:
 	cd ${WRKSRC} && ${INSTALL_DATA} README INSTALL HOW_TO_PLAY \
 		${DESTDIR}${DOCDIR}
 
-.include "../../devel/ncurses/buildlink3.mk"
+.include "../../mk/curses.buildlink3.mk"
 .include "../../mk/oss.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

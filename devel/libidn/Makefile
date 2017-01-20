@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.97 2016/07/21 11:51:28 wiz Exp $
+# $NetBSD: Makefile,v 1.98 2017/01/19 18:52:06 agc Exp $
 
 DISTNAME=	libidn-1.33
 CATEGORIES=	devel

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2012/10/25 06:56:55 asau Exp $
+# $NetBSD: Makefile,v 1.11 2017/01/19 18:52:27 agc Exp $
 
 DISTNAME=	rtfm-1.0
 CATEGORIES=	textproc
