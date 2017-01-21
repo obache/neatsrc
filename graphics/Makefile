@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.754 2016/12/30 21:25:55 ryoon Exp $
+# $NetBSD: Makefile,v 1.757 2017/01/20 23:07:38 markd Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -537,6 +537,8 @@ SUBDIR+=	tex-dviincl-doc
 SUBDIR+=	tex-dvipng-doc
 SUBDIR+=	tex-eepic
 SUBDIR+=	tex-eepic-doc
+SUBDIR+=	tex-ellipse
+SUBDIR+=	tex-ellipse-doc
 SUBDIR+=	tex-emp
 SUBDIR+=	tex-emp-doc
 SUBDIR+=	tex-epsincl
@@ -561,6 +563,8 @@ SUBDIR+=	tex-graphics-pln
 SUBDIR+=	tex-graphics-pln-doc
 SUBDIR+=	tex-hatching
 SUBDIR+=	tex-hatching-doc
+SUBDIR+=	tex-incgraph
+SUBDIR+=	tex-incgraph-doc
 SUBDIR+=	tex-latexmp
 SUBDIR+=	tex-latexmp-doc
 SUBDIR+=	tex-mcf2graph
@@ -581,6 +585,8 @@ SUBDIR+=	tex-mfpic4ode
 SUBDIR+=	tex-mfpic4ode-doc
 SUBDIR+=	tex-mp3d
 SUBDIR+=	tex-mp3d-doc
+SUBDIR+=	tex-mparrows
+SUBDIR+=	tex-mparrows-doc
 SUBDIR+=	tex-mpattern
 SUBDIR+=	tex-mpattern-doc
 SUBDIR+=	tex-mpcolornames
