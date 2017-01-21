@@ -62,6 +62,7 @@ SUBDIR+=	cyrus-sasl
 SUBDIR+=	cyrus-saslauthd
 SUBDIR+=	dcfldd
 SUBDIR+=	ddos-scan
+SUBDIR+=	dehydrated
 SUBDIR+=	destroy
 SUBDIR+=	dhbitty
 SUBDIR+=	dirb

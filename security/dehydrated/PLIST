@@ -1,0 +1,15 @@
+@comment $NetBSD$
+bin/dehydrated
+share/doc/dehydrated/dns-verification.md
+share/doc/dehydrated/domains_txt.md
+share/doc/dehydrated/ecc.md
+share/doc/dehydrated/examples/config
+share/doc/dehydrated/examples/domains.txt
+share/doc/dehydrated/examples/hook.sh
+share/doc/dehydrated/hook_chain.md
+share/doc/dehydrated/import-from-official-client.md
+share/doc/dehydrated/logo.jpg
+share/doc/dehydrated/per-certificate-config.md
+share/doc/dehydrated/staging.md
+share/doc/dehydrated/troubleshooting.md
+share/doc/dehydrated/wellknown.md
