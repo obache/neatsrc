@@ -312,6 +312,7 @@ ${GEM_LIBDIR}/lib/rabbit/frame.rb
 ${GEM_LIBDIR}/lib/rabbit/front.rb
 ${GEM_LIBDIR}/lib/rabbit/gem-builder.rb
 ${GEM_LIBDIR}/lib/rabbit/gem-finder.rb
+${GEM_LIBDIR}/lib/rabbit/gem-pusher.rb
 ${GEM_LIBDIR}/lib/rabbit/gesture/handler.rb
 ${GEM_LIBDIR}/lib/rabbit/gesture/processor.rb
 ${GEM_LIBDIR}/lib/rabbit/gettext.rb
@@ -367,6 +368,7 @@ ${GEM_LIBDIR}/lib/rabbit/parser/rd/rt/rt2rabbit-lib.rb
 ${GEM_LIBDIR}/lib/rabbit/parser/rd/visitor.rb
 ${GEM_LIBDIR}/lib/rabbit/parser/wiki.rb
 ${GEM_LIBDIR}/lib/rabbit/parser/wiki/output.rb
+${GEM_LIBDIR}/lib/rabbit/password-reader.rb
 ${GEM_LIBDIR}/lib/rabbit/path-manipulatable.rb
 ${GEM_LIBDIR}/lib/rabbit/progress.rb
 ${GEM_LIBDIR}/lib/rabbit/rabbit.rb
@@ -400,10 +402,7 @@ ${GEM_LIBDIR}/lib/rabbit/renderer/engine.rb
 ${GEM_LIBDIR}/lib/rabbit/renderer/engine/cairo.rb
 ${GEM_LIBDIR}/lib/rabbit/renderer/gl.rb
 ${GEM_LIBDIR}/lib/rabbit/renderer/kernel.rb
-${GEM_LIBDIR}/lib/rabbit/renderer/pixmap.rb
-${GEM_LIBDIR}/lib/rabbit/renderer/pixmap/base.rb
-${GEM_LIBDIR}/lib/rabbit/renderer/pixmap/cairo.rb
-${GEM_LIBDIR}/lib/rabbit/renderer/pixmap/gl.rb
+${GEM_LIBDIR}/lib/rabbit/renderer/offscreen.rb
 ${GEM_LIBDIR}/lib/rabbit/renderer/print.rb
 ${GEM_LIBDIR}/lib/rabbit/renderer/print/base.rb
 ${GEM_LIBDIR}/lib/rabbit/renderer/print/cairo.rb
