@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2016/08/12 09:38:37 fhajny Exp $
+# $NetBSD: Makefile,v 1.4 2017/01/21 20:15:46 fhajny Exp $
 
-DISTNAME=	fast_yaml-1.0.6
+DISTNAME=	fast_yaml-1.0.8
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=processone/}
 
@@ -9,7 +9,7 @@ HOMEPAGE=	http://github.com/processone/fast_yaml/
 COMMENT=	Fast YAML native library for Erlang / Elixir
 LICENSE=	apache-2.0
 
-DEPENDS+=	erlang-p1_utils>=1.0.5:../../misc/erlang-p1_utils
+DEPENDS+=	erlang-p1_utils>=1.0.6:../../misc/erlang-p1_utils
 
 GITHUB_PROJECT=	fast_yaml
 

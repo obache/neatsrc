@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.68 2017/01/05 12:30:39 roy Exp $
+# $NetBSD: Makefile,v 1.70 2017/01/22 15:31:28 jperkin Exp $
 
-DISTNAME=	weechat-1.6
+DISTNAME=	weechat-1.7
 CATEGORIES=	chat
 MASTER_SITES=	http://www.weechat.org/files/src/
 EXTRACT_SUFX=	.tar.bz2
@@ -28,6 +28,7 @@ CMAKE_ARGS+=		-DLOCALEDIR:STRING=${PKGLOCALEDIR}/locale
 CMAKE_ARGS+=		-DENABLE_CHARSET:BOOL=ON
 
 LDFLAGS+=		${BUILDLINK_LDADD.gettext}
+LDFLAGS.Darwin+=	-lresolv
 
 .include "options.mk"
 

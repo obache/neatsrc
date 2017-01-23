@@ -126,6 +126,7 @@ SUBDIR+=	enet
 SUBDIR+=	entropy
 SUBDIR+=	erlang-esip
 SUBDIR+=	erlang-stun
+SUBDIR+=	erlang-xmpp
 SUBDIR+=	ether2dns
 SUBDIR+=	etherape
 SUBDIR+=	ettercap

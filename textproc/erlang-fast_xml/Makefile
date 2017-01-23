@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.3 2017/01/03 10:25:04 fhajny Exp $
+# $NetBSD: Makefile,v 1.5 2017/01/21 20:14:50 fhajny Exp $
 
-DISTNAME=	fast_xml-1.1.18
+DISTNAME=	fast_xml-1.1.19
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=processone/}
 
@@ -14,6 +14,10 @@ GITHUB_PROJECT=	fast_xml
 DEPENDS+=	erlang-p1_utils>=1.0.6:../../misc/erlang-p1_utils
 
 GNU_CONFIGURE=	yes
+
+# Leave a non-versioned symlink in place for includes
+post-install:
+	${LN} -sf ${DISTNAME} ${DESTDIR}${PREFIX}/lib/erlang/lib/fast_xml
 
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../lang/erlang/module.mk"
