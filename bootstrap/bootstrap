@@ -1376,7 +1376,7 @@ fi
 # opsys specific fiddling
 opsys_finish
 
-echo "WRKOBJDIR=		${wrkdir}/wrk" >> ${BOOTSTRAP_MKCONF}
+echo "WRKOBJDIR=		${wrkobjdir}" >> ${BOOTSTRAP_MKCONF}
 
 echo "" >> ${TARGET_MKCONF}
 echo "" >> ${BOOTSTRAP_MKCONF}
