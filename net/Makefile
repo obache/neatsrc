@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1143 2017/01/09 13:33:43 taca Exp $
+# $NetBSD: Makefile,v 1.1146 2017/01/24 17:22:09 bsiegert Exp $
 #
 
 COMMENT=	Networking tools
@@ -178,6 +178,7 @@ SUBDIR+=	gnugk
 SUBDIR+=	go-dns
 SUBDIR+=	go-grpc
 SUBDIR+=	go-net
+SUBDIR+=	go-ovh
 SUBDIR+=	go-vultr
 SUBDIR+=	gofish
 SUBDIR+=	gopher
@@ -541,6 +542,8 @@ SUBDIR+=	p5-Umph-Prompt
 SUBDIR+=	p5-WebService-Google-Reader
 SUBDIR+=	p5-WebService-MusicBrainz
 SUBDIR+=	p5-X500-DN
+SUBDIR+=	p5-XML-RPC
+SUBDIR+=	p5-XMLRPC-Lite
 SUBDIR+=	p5-Zabbix-Sender
 SUBDIR+=	p5-gcap
 SUBDIR+=	p5-grake
