@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.478 2016/12/29 19:10:27 wiz Exp $
+# $NetBSD: Makefile,v 1.479 2017/01/26 14:07:42 ryoon Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -197,6 +197,7 @@ SUBDIR+=	man-db
 SUBDIR+=	marble
 SUBDIR+=	mate-utils
 SUBDIR+=	mbuffer
+SUBDIR+=	mdp
 SUBDIR+=	mirmon
 SUBDIR+=	mkcue
 SUBDIR+=	mmv
