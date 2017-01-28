@@ -17,6 +17,7 @@ CONFIGURE_ARGS+=	--disable-video
 .endif
 
 .if !empty(PKG_OPTIONS:Mgstreamer)
+BUILDLINK_API_DEPENDS.gspell+=	gspell>=1.2.2
 .include "../../textproc/gspell/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-spellcheck

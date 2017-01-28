@@ -1,11 +1,8 @@
 # $NetBSD: Makefile,v 1.22 2017/01/22 20:48:07 maya Exp $
 
-DISTNAME=	corebird-1.4.1
-PKGREVISION=	1
+DISTNAME=	corebird-1.4.2
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_GITHUB:=baedert/}
-GITHUB_PROJECT=	corebird
-GITHUB_RELEASE=	1.4.1
+MASTER_SITES=	https://github.com/baedert/${PKGBASE}/releases/download/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -24,12 +21,9 @@ GETTEXT_TOOLS_REQD=	0.19.7
 
 TEST_TARGET=	check
 
-.include "../../graphics/adwaita-icon-theme/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../www/librest07/buildlink3.mk"
-BUILDLINK_API_DEPENDS.gspell+=	gspell>=1.2.2
-.include "../../textproc/gspell/buildlink3.mk"
 .include "../../textproc/json-glib/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../net/libsoup/buildlink3.mk"
