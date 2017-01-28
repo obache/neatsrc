@@ -2,6 +2,7 @@
 
 .include "../../mail/postfix/Makefile.common"
 
+PKGREVISION=	1
 COMMENT=	Postfix SMTP server and tools
 
 CONFLICTS+=	courier-mta-[0-9]* fastforward>=0.51nb2 sendmail-[0-9]*
