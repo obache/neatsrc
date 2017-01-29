@@ -1,13 +1,13 @@
 # $NetBSD$
 
-DISTNAME=	brotli-0.4.0
+DISTNAME=	brotli-0.5.2
 CATEGORIES=	archivers
 MASTER_SITES=	-https://github.com/google/brotli/archive/v${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
-LIB_VERSION=		1.0
+LIB_TAG=	ccb89e138b0948d7c353bc508b0d8fc584e01ff2
 DISTFILES_VARS+=	lib
-DISTFILES.lib=	libbrotli-libbrotli-${LIB_VERSION}.tar.gz
-SITES.lib=	-https://github.com/bagder/lib${PKGBASE}/archive/libbrotli-${LIB_VERSION}${EXTRACT_SUFX}
+DISTFILES.lib=	libbrotli-${LIB_TAG}.tar.gz
+SITES.lib=	-https://github.com/bagder/lib${PKGBASE}/archive/${LIB_TAG}${EXTRACT_SUFX}
 
 HOMEPAGE=	https://github.com/google/${PKGBASE}/
 COMMENT=	generic-purpose lossless compression algorithm.
@@ -22,7 +22,7 @@ TOOLS_NOOP=	git
 PKGCONFIG_OVERRIDE+=	libbrotlienc.pc.in
 PKGCONFIG_OVERRIDE+=	libbrotlidec.pc.in
 
-WRKSRC=		${WRKDIR}/libbrotli-libbrotli-${LIB_VERSION}
+WRKSRC=		${WRKDIR}/libbrotli-${LIB_TAG}
 
 post-extract:
 		${RMDIR} ${WRKSRC}/brotli || ${TRUE}

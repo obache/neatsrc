@@ -1,10 +1,10 @@
 $NetBSD$
 
-SHA1 (brotli-0.4.0.tar.gz) = aab7b719f6a7398b1459fac5d9e4c46596bb2912
-RMD160 (brotli-0.4.0.tar.gz) = 05f6534d559f773764235907d9906e4263b22d2d
-SHA512 (brotli-0.4.0.tar.gz) = df6c346a402239c71bcbad9bb1850823819782bfc974dae5671f37e1d0874efda6ceb64d81a142f6df28c8f64f82351420a554fe9f9b4e1b030a40e38cd0844b
-Size (brotli-0.4.0.tar.gz) = 8069842 bytes
-SHA1 (libbrotli-libbrotli-1.0.tar.gz) = e55b63c89115646222a0387dc3c7e64d275b0c53
-RMD160 (libbrotli-libbrotli-1.0.tar.gz) = 6a71c136d664144a76b84177fed3d8d77cf993d9
-SHA512 (libbrotli-libbrotli-1.0.tar.gz) = dffea70a33404e194938da7b06dc4bbe2b94de2e0ae25cb8dda1053cfe5bfd2a5a8ec7d7d7675ffa1d1a6eb13f59cd3256522a86ef8c54f6100504b67a2b038d
-Size (libbrotli-libbrotli-1.0.tar.gz) = 3116 bytes
+SHA1 (brotli-0.5.2.tar.gz) = db2ee5c54b4da35c5abfb4a8a7b3120541261f1b
+RMD160 (brotli-0.5.2.tar.gz) = 2465f34e21302347fcc9b0f2d181949dfc453648
+SHA512 (brotli-0.5.2.tar.gz) = e8c10e31f524e9a38a3c14e9a9ad2994601b597f7224e3316b07f419d0b4e2e927488c3519700907d9f4e57735ba86cceeaf2f07bb51c89025ae9cc527599d73
+Size (brotli-0.5.2.tar.gz) = 7771705 bytes
+SHA1 (libbrotli-ccb89e138b0948d7c353bc508b0d8fc584e01ff2.tar.gz) = e18781ad447e80e5e28971aec97bb3991012c19a
+RMD160 (libbrotli-ccb89e138b0948d7c353bc508b0d8fc584e01ff2.tar.gz) = 5dae5af442ba14ff486b55030aa3473baa87871a
+SHA512 (libbrotli-ccb89e138b0948d7c353bc508b0d8fc584e01ff2.tar.gz) = 7dc5054eeea924fb9623546205088f339a2508a6de876dd25ebb51c9ced5c0ad37339bb756e1695fe542580536e83cc1f1bc60baa1d3098196a7794f26f3acad
+Size (libbrotli-ccb89e138b0948d7c353bc508b0d8fc584e01ff2.tar.gz) = 3251 bytes
