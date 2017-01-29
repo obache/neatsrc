@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.466 2017/01/28 04:58:27 ryoon Exp $
+$NetBSD: CHANGES-2017,v 1.484 2017/01/29 06:38:11 mef Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -587,3 +587,23 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated shells/bash to 4.4.012 [ryoon 2017-01-28]
 	Updated audio/libopus to 1.1.4nb1 [ryoon 2017-01-28]
 	Updated www/apache24 to 2.4.25nb2 [ryoon 2017-01-28]
+	Updated filesystems/tahoe-lafs to 1.12.1 [riastradh 2017-01-28]
+	Updated www/wordpress to 4.7.2 [morr 2017-01-28]
+	Updated security/py-cryptography to 1.7.2nb1 [wiz 2017-01-28]
+	Updated security/py-OpenSSL to 16.2.0 [wiz 2017-01-28]
+	Updated www/p5-Dancer2 to 0.204004 [wen 2017-01-28]
+	Updated www/p5-Mojolicious to 7.22 [wen 2017-01-28]
+	Updated textproc/p5-Filter to 1.57 [wen 2017-01-28]
+	Updated cad/py-gds to 1.1.1 [mef 2017-01-28]
+	Updated cad/py-simpy to 3.0.10 [mef 2017-01-28]
+	Updated cross/avrdude to 6.3 [mef 2017-01-29]
+	Updated security/stunnel to 5.40 [schmonz 2017-01-29]
+	Updated cross/avr-libc to 2.0.0 [mef 2017-01-29]
+	Updated cross/avr-gdb to 7.12.1 [mef 2017-01-29]
+	Updated shells/zsh to 5.3.1 [mef 2017-01-29]
+	Updated x11/xfstt to 1.9.3 [mef 2017-01-29]
+	Updated graphics/gdk-pixbuf2 to 2.36.4 [tsutsui 2017-01-29]
+	Updated graphics/gdk-pixbuf2-jasper to 2.36.4 [tsutsui 2017-01-29]
+	Updated graphics/gdk-pixbuf2-xlib to 2.36.4 [tsutsui 2017-01-29]
+	Updated x11/unicode-screensaver to 0.5 [mef 2017-01-29]
+	Updated x11/wmweather to 2.4.6 [mef 2017-01-29]

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.29 2016/11/03 11:40:28 maya Exp $
+# $NetBSD: Makefile,v 1.31 2017/01/28 15:39:56 wiz Exp $
 
 DISTNAME=	libffi-3.2.1
 PKGREVISION=	2
