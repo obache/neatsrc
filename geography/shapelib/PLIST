@@ -1,3 +1,25 @@
 @comment $NetBSD: PLIST,v 1.2 2009/06/14 17:57:16 joerg Exp $
-include/libshp/shapefil.h
+bin/Shape_PointInPoly
+bin/dbfadd
+bin/dbfcat
+bin/dbfcreate
+bin/dbfdump
+bin/dbfinfo
+bin/shpadd
+bin/shpcat
+bin/shpcentrd
+bin/shpcreate
+bin/shpdata
+bin/shpdump
+bin/shpdxf
+bin/shpfix
+bin/shpinfo
+bin/shpproj
+bin/shprewind
+bin/shpsort
+bin/shptreedump
+bin/shputils
+bin/shpwkb
+include/shapefil.h
 lib/libshp.la
+lib/pkgconfig/shapelib.pc
