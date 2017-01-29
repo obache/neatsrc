@@ -12,6 +12,7 @@ SUBDIR+=	arj
 SUBDIR+=	ark
 SUBDIR+=	bicom
 SUBDIR+=	bmap-tools
+SUBDIR+=	brotli
 SUBDIR+=	bsdtar
 SUBDIR+=	bunzip
 SUBDIR+=	bzip2
