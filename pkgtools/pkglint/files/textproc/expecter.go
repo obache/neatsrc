@@ -1,35 +1,45 @@
-package main
+package textproc
 
 import (
+	"netbsd.org/pkglint/line"
 	"netbsd.org/pkglint/regex"
 	"netbsd.org/pkglint/trace"
+	"strings"
 )
 
 // Expecter records the state when checking a list of lines from top to bottom.
 type Expecter struct {
-	lines []Line
+	lines []line.Line
 	index int
 	m     []string
 }
 
-func NewExpecter(lines []Line) *Expecter {
+func NewExpecter(lines []line.Line) *Expecter {
 	return &Expecter{lines, 0, nil}
 }
 
-func (exp *Expecter) CurrentLine() Line {
+func (exp *Expecter) CurrentLine() line.Line {
 	if exp.index < len(exp.lines) {
 		return exp.lines[exp.index]
 	}
 
-	return NewLineEOF(exp.lines[0].Filename())
+	return line.NewLineEOF(exp.lines[0].Filename())
 }
 
-func (exp *Expecter) PreviousLine() Line {
+func (exp *Expecter) PreviousLine() line.Line {
 	return exp.lines[exp.index-1]
+}
+
+func (exp *Expecter) Index() int {
+	return exp.index
 }
 
 func (exp *Expecter) EOF() bool {
 	return !(exp.index < len(exp.lines))
+}
+
+func (exp *Expecter) Group(index int) string {
+	return exp.m[index]
 }
 
 func (exp *Expecter) Advance() bool {
@@ -62,7 +72,7 @@ func (exp *Expecter) AdvanceIfPrefix(prefix string) bool {
 		defer trace.Call2(exp.CurrentLine().Text(), prefix)()
 	}
 
-	return !exp.EOF() && hasPrefix(exp.lines[exp.index].Text(), prefix) && exp.Advance()
+	return !exp.EOF() && strings.HasPrefix(exp.lines[exp.index].Text(), prefix) && exp.Advance()
 }
 
 func (exp *Expecter) AdvanceIfEquals(text string) bool {
@@ -73,12 +83,12 @@ func (exp *Expecter) AdvanceIfEquals(text string) bool {
 	return !exp.EOF() && exp.lines[exp.index].Text() == text && exp.Advance()
 }
 
-func (exp *Expecter) ExpectEmptyLine() bool {
+func (exp *Expecter) ExpectEmptyLine(warnSpace bool) bool {
 	if exp.AdvanceIfEquals("") {
 		return true
 	}
 
-	if G.opts.WarnSpace {
+	if warnSpace {
 		if !exp.CurrentLine().AutofixInsertBefore("") {
 			exp.CurrentLine().Notef("Empty line expected.")
 		}
@@ -95,4 +105,8 @@ func (exp *Expecter) ExpectText(text string) bool {
 
 	exp.CurrentLine().Warnf("This line should contain the following text: %s", text)
 	return false
+}
+
+func (exp *Expecter) SkipToFooter() {
+	exp.index = len(exp.lines) - 2
 }
