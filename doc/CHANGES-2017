@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.507 2017/01/30 17:26:49 prlw1 Exp $
+$NetBSD: CHANGES-2017,v 1.520 2017/01/31 14:09:10 leot Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -657,3 +657,16 @@ Changes to the packages collection and infrastructure in 2017:
 	Added devel/p5-Eval-LineNumbers version 0.1 [mef 2017-01-30]
 	Added sysutils/p5-Daemon-Generic version 0.84 [mef 2017-01-30]
 	Updated x11/gtk3 to 3.22.7 [prlw1 2017-01-30]
+	Added math/amath version 1.6.2 [leot 2017-01-30]
+	Updated graphics/girara to 0.2.7 [leot 2017-01-31]
+	Updated print/zathura to 0.3.7 [leot 2017-01-31]
+	Updated print/zathura-ps to 0.2.4 [leot 2017-01-31]
+	Updated print/zathura-pdf-mupdf to 0.3.1 [leot 2017-01-31]
+	Updated print/zathura-pdf-poppler to 0.2.7 [leot 2017-01-31]
+	Updated graphics/zathura-cb to 0.1.6 [leot 2017-01-31]
+	Updated graphics/zathura-djvu to 0.2.6 [leot 2017-01-31]
+	Updated www/php-http to 2.6.0 [fhajny 2017-01-31]
+	Updated net/corebird to 1.4.2 [ryoon 2017-01-31]
+	Updated ham/fldigi to 3.23.21 [mef 2017-01-31]
+	Added devel/py-olefile version 0.44 [leot 2017-01-31]
+	Updated graphics/py-Pillow to 4.0.0nb1 [leot 2017-01-31]
