@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.11 2015/06/12 10:51:18 wiz Exp $
+# $NetBSD: Makefile,v 1.13 2017/02/01 23:47:47 mef Exp $
 
-DISTNAME=	cyrus-imapd-mod-1.6
+DISTNAME=	cyrus-imapd-mod-1.6.2
 WBM_NAME=	cyrus-imapd
 PKGNAME=	wbm-${DISTNAME:S/-mod-/-/}
-PKGREVISION=	4
 MASTER_SITES=	http://www.tecchio.net/webmin/cyrus/
 
 DEPENDS+=	cyrus-imapd>=2.1:../../mail/cyrus-imapd
