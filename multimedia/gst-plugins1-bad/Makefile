@@ -6,7 +6,7 @@ USE_LANGUAGES=	c c++
 
 COMMENT+=	Bad plugins
 
-.include "../../devel/glib2/schemas.mk"
+.include "../../devel/glib2/buildlink3.mk"
 # bzip2 is likely present anyway, make it default
 .include "../../archivers/bzip2/buildlink3.mk"
 # same for OpenSSL
