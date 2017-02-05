@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.565 2017/02/03 17:08:20 maya Exp $
+$NetBSD: CHANGES-2017,v 1.586 2017/02/05 01:48:19 ryoon Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -716,9 +716,29 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated sysutils/salt to 2016.11.2 [sborrill 2017-02-03]
 	Updated sysutils/e2fsprogs to 1.43.4 [mef 2017-02-03]
 	Updated devel/py-mercurial to 4.1 [wiz 2017-02-03]
-	Added textproc/p5-String-Expand 0.04 [hauke 2017-02-03]
+	Added textproc/p5-String-Expand version 0.04 [hauke 2017-02-03]
 	Updated multimedia/gst-plugins1-libav to 1.10.3 [maya 2017-02-03]
 	Updated multimedia/gst-plugins1-good to 1.10.3 [maya 2017-02-03]
 	Updated multimedia/gst-plugins1-bad to 1.10.3 [maya 2017-02-03]
 	Updated multimedia/gst-plugins1-base to 1.10.3 [maya 2017-02-03]
 	Updated multimedia/gst-plugins1-ugly to 1.10.3 [maya 2017-02-03]
+	Updated lang/openjdk8 to 1.8.121 [ryoon 2017-02-04]
+	Added converters/libzmf version 0.0.1 [ryoon 2017-02-04]
+	Added converters/libstaroffice version 0.0.2 [ryoon 2017-02-04]
+	Updated misc/libreoffice to 5.3.0.3 [ryoon 2017-02-04]
+	Updated devel/p5-CPANPLUS to 0.9162 [mef 2017-02-04]
+	Updated devel/p5-ExtUtils-ModuleMaker to 0.56 [mef 2017-02-04]
+	Updated devel/p5-Exporter-Tiny to 0.044 [mef 2017-02-04]
+	Updated security/gnupg21 to 2.1.18 [maya 2017-02-04]
+	Updated devel/git to 2.11.1 [adam 2017-02-04]
+	Updated lang/go to 1.7.5 [bsiegert 2017-02-04]
+	Added benchmarks/fio version 2.17 [ryoon 2017-02-04]
+	Updated x11/mlterm to 3.8.0 [tsutsui 2017-02-04]
+	Added fonts/junicode version 0.7.8 [wiz 2017-02-04]
+	Updated archivers/unzip to 6.0nb8 [wiz 2017-02-04]
+	Updated www/ruby-sawyer to 0.8.1 [tsutsui 2017-02-05]
+	Updated www/ruby-faraday to 0.11.0 [tsutsui 2017-02-05]
+	Updated www/ruby-http to 2.2.0 [tsutsui 2017-02-05]
+	Updated net/ruby-twitter to 6.1.0 [tsutsui 2017-02-05]
+	Updated lang/nim to 0.16.0 [kamil 2017-02-05]
+	Updated misc/libreoffice to 5.3.0.3nb1 [ryoon 2017-02-05]
