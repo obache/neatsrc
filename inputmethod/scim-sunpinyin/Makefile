@@ -21,7 +21,7 @@ do-install:
 		${SETENV} ${MAKE_ENV} \
 		${SCONS} install --prefix=${PREFIX} --install-sandbox=${DESTDIR}
 
+USE_SCIM_GTKUTILS=	yes
 .include "../../inputmethod/scim/buildlink3.mk"
 .include "../../inputmethod/sunpinyin/buildlink3.mk"
-.include "../../x11/gtk2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

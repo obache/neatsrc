@@ -14,7 +14,7 @@ USE_LANGUAGES=	c c++
 USE_TOOLS+=	gmake:run pkg-config scons pod2man
 
 pre-build:
-	cd ${WRKSRC} && \
+	${RUN}cd ${WRKSRC}; \
 		${SETENV} ${MAKE_ENV} \
 		${SCONS} --prefix=${PREFIX}
 	${LN} -sf ${WRKSRC}/src/slmpack ${TOOLS_DIR}/bin/slmpack
@@ -23,24 +23,14 @@ pre-build:
 	${LN} -sf ${WRKSRC}/src/genpyt ${TOOLS_DIR}/bin/genpyt
 
 BUILD_DIRS=	src
-BUILD_TARGET=	lm_sc.t3g pydict_sc.bin
-MAKE_FILE=	sunpinyin-dictgen.mk
+MAKE_FILE=	../doc/SLM-inst.mk
 
-do-install:
+pre-install:
 	cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} \
 		${SCONS} install --prefix=${PREFIX} --install-sandbox=${DESTDIR}
 
-INSTALLATION_DIRS+=	share/sunpinyin
-
-post-install:
-	${INSTALL_DATA} ${WRKSRC}/src/lm_sc.t3g ${DESTDIR}${PREFIX}/share/sunpinyin
-	${INSTALL_DATA} ${WRKSRC}/src/pydict_sc.bin ${DESTDIR}${PREFIX}/share/sunpinyin
-
 REPLACE_PYTHON=	python/*.py
-
-TOOLS_CREATE+=	w3m
-TOOLS_SCRIPT.w3m=	for v in ${DISTFILES.opengram};do ${ECHO} $${v};done;exit 0;
 
 post-extract:
 	cd ${WRKSRC}/src && ${TOUCH} ${DISTFILES.opengram}
