@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	dehydrated-0.3.1
+DISTNAME=	dehydrated-0.4.0
 CATEGORIES=	security
 MASTER_SITES=	-https://github.com/lukas2511/${PKGBASE}/archive/v${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
@@ -10,7 +10,7 @@ LICENSE=	mit
 
 USE_LANGUAGES=	# none
 USE_TOOLS+=	bash:run curl:run sed:run grep:run mktemp:run openssl:run
-USE_TOOLS+=	diff:run readlink:run pax
+USE_TOOLS+=	diff:run readlink:run awk:run pax
 
 REPLACE_BASH+=	dehydrated test.sh docs/examples/hook.sh
 
