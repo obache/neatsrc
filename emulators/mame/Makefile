@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.70 2017/01/01 14:43:38 wiz Exp $
+# $NetBSD: Makefile,v 1.72 2017/02/05 17:55:52 wiz Exp $
 
-DISTNAME=	mame-0.179
-PKGREVISION=	1
+DISTNAME=	mame-0.182
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mamedev/}
 GITHUB_TAG=	${DISTNAME:S/-//S/.//}
@@ -93,6 +92,8 @@ PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 0.151
 post-extract:
 	# will be chosen in preference to /usr/include/signal.h, but does not provide kill()
 	${RM} ${WRKSRC}/3rdparty/bx/include/compat/freebsd/signal.h
+	# will be chosen in preference to /usr/include/dirent.h, but does not provide opendir() et al.
+	${RM} ${WRKSRC}/3rdparty/bx/include/compat/freebsd/dirent.h
 	${MV} ${WRKSRC}/3rdparty/genie/build/gmake.freebsd ${WRKSRC}/3rdparty/genie/build/gmake.bsd
 
 pre-build:
