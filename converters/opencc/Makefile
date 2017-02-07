@@ -1,8 +1,9 @@
 # $NetBSD: Makefile,v 1.3 2015/03/15 20:03:24 hiramatsu Exp $
 
-DISTNAME=	opencc-1.0.4
+DISTNAME=	OpenCC-ver.1.0.5
+PKGNAME=	${DISTNAME:S/-ver./-/:tl}
 CATEGORIES=	converters chinese
-MASTER_SITES=	http://dl.bintray.com/byvoid/opencc/
+MASTER_SITES=	-https://github.com/BYVoid/OpenCC/archive/ver.${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://opencc.byvoid.com/
@@ -17,7 +18,8 @@ PKGCONFIG_OVERRIDE+=	opencc.pc.in
 
 USE_GCC_RUNTIME=	yes
 
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/src
+CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE:STRING=Release
+CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:STRING=${PREFIX}/lib
 
 TEST_TARGET=	test
 
