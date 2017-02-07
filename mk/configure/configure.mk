@@ -286,7 +286,7 @@ configure-help-script:
 ######################################################################
 ### configure-help-cmake (PRIVATE)
 ######################################################################
-### configure-help-cmake runs "cmake -LD" to list cached options with help
+### configure-help-cmake runs "cmake -LH" to list cached options with help
 ###
 configure-help-cmake:
 .for d in ${CONFIGURE_DIRS}
