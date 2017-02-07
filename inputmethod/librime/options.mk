@@ -10,5 +10,4 @@ PKG_SUPPORTED_OPTIONS=		tests
 .include "../../devel/googletest/buildlink3.mk"
 CMAKE_ARGS+=	-DBUILD_TEST=ON
 TEST_TARGET=	test
-TEST_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/lib
 .endif
