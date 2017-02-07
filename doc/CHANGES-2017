@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.612 2017/02/06 07:10:34 wiz Exp $
+$NetBSD: CHANGES-2017,v 1.619 2017/02/07 01:25:18 joerg Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -768,3 +768,10 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated chat/irssi to 1.0.1 [maya 2017-02-05]
 	Updated net/socat to 1.7.3.2 [leot 2017-02-05]
 	Removed converters/orcus successor converters/orcus0.12 [wiz 2017-02-06]
+	Updated fonts/harfbuzz to 1.4.2 [wiz 2017-02-06]
+	Updated www/c-icap to 0.4.4 [adam 2017-02-06]
+	Updated www/c-icap-modules to 0.4.4 [adam 2017-02-06]
+	Updated www/squidclamav to 6.16 [adam 2017-02-06]
+	Added devel/gradle version 3.0rc1 [maya 2017-02-06]
+	Updated print/abcm2ps to 8.13.5 [wiz 2017-02-07]
+	Added security/py-oath version 1.4.1 [joerg 2017-02-07]
