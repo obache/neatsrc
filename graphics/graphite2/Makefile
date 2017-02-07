@@ -14,6 +14,8 @@ USE_LANGUAGES=	c c++
 USE_CMAKE=	yes
 USE_LIBTOOL=	yes
 
+CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:STRING=${PREFIX}/lib
+
 .include "../../mk/bsd.prefs.mk"
 
 .if ${OPSYS} == "Linux"
