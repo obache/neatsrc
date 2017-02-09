@@ -20,7 +20,7 @@ PKG_SUGGESTED_OPTIONS=	inet6
 
 .include "../../mk/bsd.options.mk"
 
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c
 USE_LIBTOOL=	yes
 
 GNU_CONFIGURE=	yes
