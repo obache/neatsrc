@@ -15,6 +15,7 @@ command=@PREFIX@/sbin/${name}
 pidfile=/var/run/${name}/${name}.pid
 required_files="@PKG_SYSCONFDIR@/nsd.conf"
 start_precmd="nsd_precmd"
+extra_commands="reload"
 
 nsd_precmd()
 {
