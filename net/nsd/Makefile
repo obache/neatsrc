@@ -27,7 +27,6 @@ GNU_CONFIGURE=	yes
 
 PKG_SYSCONFSUBDIR=	nsd
 
-CONFIGURE_ARGS+=--prefix=${PREFIX:Q}
 CONFIGURE_ARGS+=--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=--with-configdir=${PKG_SYSCONFDIR:Q}
 .if !empty(PKG_OPTIONS:Minet6)
