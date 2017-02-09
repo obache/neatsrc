@@ -12,7 +12,7 @@ name="unbound"
 rcvar=${name}
 
 command=@PREFIX@/sbin/${name}
-pidfile=/var/run/${name}/${name}.pid
+pidfile=@VARBASE@/run/${name}/${name}.pid
 required_files="@PKG_SYSCONFDIR@/unbound.conf"
 extra_commands="reload"
 start_precmd="unbound_precmd"
