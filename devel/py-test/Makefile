@@ -10,6 +10,7 @@ HOMEPAGE=	https://pypi.python.org/pypi/pytest
 COMMENT=	Python testing tool
 LICENSE=	mit
 
+DEPENDS+=	${PYPKGPREFIX}-setuptools-[0-9]*:../../devel/py-setuptools
 DEPENDS+=	${PYPKGPREFIX}-py>=1.4.29:../../devel/py-py
 DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 # TEST_DEPENDS
