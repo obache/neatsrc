@@ -10,6 +10,7 @@ HOMEPAGE=	http://genshi.edgewall.org/
 COMMENT=	Python toolkit for generation of output for the web
 LICENSE=	modified-bsd
 
+DEPENDS+=	${PYPKGPREFIX}-setuptools>=0.6a1:../../devel/py-setuptools
 DEPENDS+=	${PYPKGPREFIX}-babel>=0.8:../../devel/py-babel
 DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
