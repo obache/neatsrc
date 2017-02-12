@@ -50,7 +50,7 @@ do-build: ensurepip
 ensurepip:
 	${SETENV} ${MAKE_ENV} ${PYTHONBIN} -m ensurepip --user
 .else
-DEPENDS+=	${PYPKGPREFIX}-setuptools>=0.8:../../devel/py-setuptools
+BUILD_DEPENDS+=	${PYPKGPREFIX}-setuptools>=0.8:../../devel/py-setuptools
 .endif
 
 INSTALLATION_DIRS+=	${PYSITELIB}
