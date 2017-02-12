@@ -18,6 +18,7 @@ LICENSE=	modified-bsd
 # not depend on svn or git to avoid installing them for trac installs
 # that use the other.
 
+DEPENDS+=	${PYPKGPREFIX}-setuptools>=0.6b1:../../devel/py-setuptools
 DEPENDS+=	${PYPKGPREFIX}-genshi>=0.6:../../www/py-genshi
 
 USE_TOOLS+=	pax
