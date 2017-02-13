@@ -102,6 +102,7 @@ share/doc/groonga/en/html/_sources/news/2.x.txt
 share/doc/groonga/en/html/_sources/news/3.x.txt
 share/doc/groonga/en/html/_sources/news/4.x.txt
 share/doc/groonga/en/html/_sources/news/5.x.txt
+share/doc/groonga/en/html/_sources/news/6.x.txt
 share/doc/groonga/en/html/_sources/news/senna.txt
 share/doc/groonga/en/html/_sources/reference.txt
 share/doc/groonga/en/html/_sources/reference/alias.txt
@@ -245,6 +246,8 @@ share/doc/groonga/en/html/_sources/reference/functions/time_classify_week.txt
 share/doc/groonga/en/html/_sources/reference/functions/time_classify_year.txt
 share/doc/groonga/en/html/_sources/reference/functions/vector_size.txt
 share/doc/groonga/en/html/_sources/reference/functions/vector_slice.txt
+share/doc/groonga/en/html/_sources/reference/functions/window_record_number.txt
+share/doc/groonga/en/html/_sources/reference/functions/window_sum.txt
 share/doc/groonga/en/html/_sources/reference/grn_expr.txt
 share/doc/groonga/en/html/_sources/reference/grn_expr/query_syntax.txt
 share/doc/groonga/en/html/_sources/reference/grn_expr/script_syntax.txt
@@ -367,6 +370,7 @@ share/doc/groonga/en/html/news/2.x.html
 share/doc/groonga/en/html/news/3.x.html
 share/doc/groonga/en/html/news/4.x.html
 share/doc/groonga/en/html/news/5.x.html
+share/doc/groonga/en/html/news/6.x.html
 share/doc/groonga/en/html/news/senna.html
 share/doc/groonga/en/html/objects.inv
 share/doc/groonga/en/html/reference.html
@@ -511,6 +515,8 @@ share/doc/groonga/en/html/reference/functions/time_classify_week.html
 share/doc/groonga/en/html/reference/functions/time_classify_year.html
 share/doc/groonga/en/html/reference/functions/vector_size.html
 share/doc/groonga/en/html/reference/functions/vector_slice.html
+share/doc/groonga/en/html/reference/functions/window_record_number.html
+share/doc/groonga/en/html/reference/functions/window_sum.html
 share/doc/groonga/en/html/reference/grn_expr.html
 share/doc/groonga/en/html/reference/grn_expr/query_syntax.html
 share/doc/groonga/en/html/reference/grn_expr/script_syntax.html
@@ -613,6 +619,7 @@ share/doc/groonga/ja/html/_sources/news/2.x.txt
 share/doc/groonga/ja/html/_sources/news/3.x.txt
 share/doc/groonga/ja/html/_sources/news/4.x.txt
 share/doc/groonga/ja/html/_sources/news/5.x.txt
+share/doc/groonga/ja/html/_sources/news/6.x.txt
 share/doc/groonga/ja/html/_sources/news/senna.txt
 share/doc/groonga/ja/html/_sources/reference.txt
 share/doc/groonga/ja/html/_sources/reference/alias.txt
@@ -756,6 +763,8 @@ share/doc/groonga/ja/html/_sources/reference/functions/time_classify_week.txt
 share/doc/groonga/ja/html/_sources/reference/functions/time_classify_year.txt
 share/doc/groonga/ja/html/_sources/reference/functions/vector_size.txt
 share/doc/groonga/ja/html/_sources/reference/functions/vector_slice.txt
+share/doc/groonga/ja/html/_sources/reference/functions/window_record_number.txt
+share/doc/groonga/ja/html/_sources/reference/functions/window_sum.txt
 share/doc/groonga/ja/html/_sources/reference/grn_expr.txt
 share/doc/groonga/ja/html/_sources/reference/grn_expr/query_syntax.txt
 share/doc/groonga/ja/html/_sources/reference/grn_expr/script_syntax.txt
@@ -878,6 +887,7 @@ share/doc/groonga/ja/html/news/2.x.html
 share/doc/groonga/ja/html/news/3.x.html
 share/doc/groonga/ja/html/news/4.x.html
 share/doc/groonga/ja/html/news/5.x.html
+share/doc/groonga/ja/html/news/6.x.html
 share/doc/groonga/ja/html/news/senna.html
 share/doc/groonga/ja/html/objects.inv
 share/doc/groonga/ja/html/reference.html
@@ -1022,6 +1032,8 @@ share/doc/groonga/ja/html/reference/functions/time_classify_week.html
 share/doc/groonga/ja/html/reference/functions/time_classify_year.html
 share/doc/groonga/ja/html/reference/functions/vector_size.html
 share/doc/groonga/ja/html/reference/functions/vector_slice.html
+share/doc/groonga/ja/html/reference/functions/window_record_number.html
+share/doc/groonga/ja/html/reference/functions/window_sum.html
 share/doc/groonga/ja/html/reference/grn_expr.html
 share/doc/groonga/ja/html/reference/grn_expr/query_syntax.html
 share/doc/groonga/ja/html/reference/grn_expr/script_syntax.html
