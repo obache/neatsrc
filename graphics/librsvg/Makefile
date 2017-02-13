@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.90 2017/02/11 08:44:09 ryoon Exp $
+# $NetBSD: Makefile,v 1.92 2017/02/12 06:52:24 ryoon Exp $
 
 DISTNAME=	librsvg-2.40.15
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	graphics gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/librsvg/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -20,7 +20,6 @@ USE_LANGUAGES+=		c c++
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-tools
 CONFIGURE_ARGS+=	--enable-Bsymbolic=auto
-CONFIGURE_ARGS+=	--disable-pixbuf-loader
 
 PKGCONFIG_OVERRIDE=	librsvg.pc.in
 
