@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2359 2017/02/13 03:22:57 minskim Exp $
+# $NetBSD: Makefile,v 1.2362 2017/02/13 21:18:14 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -572,6 +572,7 @@ SUBDIR+=	libportlib
 SUBDIR+=	libproplist
 SUBDIR+=	libpthread_dbg
 SUBDIR+=	libpthread-stubs
+SUBDIR+=	librelp
 SUBDIR+=	librfuncs
 SUBDIR+=	librlog
 SUBDIR+=	librxspencer
@@ -1517,6 +1518,7 @@ SUBDIR+=	p5-Test-CleanNamespaces
 SUBDIR+=	p5-Test-Cmd
 SUBDIR+=	p5-Test-Command-Simple
 SUBDIR+=	p5-Test-Compile
+SUBDIR+=	p5-Test-Continuous
 SUBDIR+=	p5-Test-Deep
 SUBDIR+=	p5-Test-DependentModules
 SUBDIR+=	p5-Test-Differences
@@ -1751,6 +1753,7 @@ SUBDIR+=	py-at-spi
 SUBDIR+=	py-at-spi2
 SUBDIR+=	py-atomicwrites
 SUBDIR+=	py-attrs
+SUBDIR+=	py-automat
 SUBDIR+=	py-babel
 SUBDIR+=	py-backports_abc
 SUBDIR+=	py-binaryornot
@@ -1883,6 +1886,7 @@ SUBDIR+=	py-proteus
 SUBDIR+=	py-protobuf
 SUBDIR+=	py-py
 SUBDIR+=	py-py2app
+SUBDIR+=	py-pydispatcher
 SUBDIR+=	py-pyev
 SUBDIR+=	py-pylint
 SUBDIR+=	py-pyobjc
@@ -1928,6 +1932,7 @@ SUBDIR+=	py-pyparsing
 SUBDIR+=	py-pysvn
 SUBDIR+=	py-pytemplate
 SUBDIR+=	py-pyutil
+SUBDIR+=	py-queuelib
 SUBDIR+=	py-quixote
 SUBDIR+=	py-radare2
 SUBDIR+=	py-readline
