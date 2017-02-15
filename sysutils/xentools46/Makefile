@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.10 2017/01/01 14:43:59 wiz Exp $
-
-VERSION=	4.6.3
-VERSION_IPXE=	9a93db3f0947484e30e753bbd61a10b17336e20e
+# $NetBSD: Makefile,v 1.12 2017/01/04 16:45:24 sborrill Exp $
+#
+# VERSION is set in version.mk as it is shared with other packages
+.include		"version.mk"
 
 DISTNAME=		xen-${VERSION}
 PKGNAME=		xentools46-${VERSION}
