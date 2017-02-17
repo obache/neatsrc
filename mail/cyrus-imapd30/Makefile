@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	cyrus-imapd-3.0.0-rc2
+DISTNAME=	cyrus-imapd-3.0.0-rc3
 PKGNAME=	${DISTNAME:S/-rc/rc/}
 CATEGORIES=	mail
 MASTER_SITES=	http://cyrusimap.org/releases/
@@ -128,6 +128,7 @@ post-install:
 		pax -rwpp . ${DESTDIR}${DOCDIR};		\
 	done
 
+BUILDLINK_API_DEPENDS.zlib+=	zlib>=1.2.5.3
 .include "../../devel/zlib/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib}
 .include "../../textproc/jansson/buildlink3.mk"
