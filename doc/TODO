@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.17041 2017/02/16 15:25:06 wiz Exp $
+$NetBSD: TODO,v 1.17047 2017/02/17 15:44:01 wiz Exp $
 
 Suggested new packages
 ======================
@@ -486,7 +486,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cal3d-0.11.0
 	o calc-2.11.10.1
 	o calcoo-2.1.0
-	o calibre-2.79.1
 	o calligra-2.9.9 [in wip; koffice successor]
 	o cardboard-schedule-1.14c [at http://www.bright-green.com/downloads/]
 	o catdoc-1.1
@@ -974,7 +973,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libcanberra-0.28 [drops support for GNOME2; don't update for now -- wiz]
 	o libconfuse-3.0
 	o libdatrie-0.2.10
-	o libepoxy-1.4
 	o libextractor-1.2 [requires shm_open()]
 	o libflash-0.4.13
 	o libfolks-0.10.1
@@ -1307,7 +1305,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-HappyDoc-3.0
 	o py-Scientific-doc-2.5.5
 	o py-Unidecode-0.04.19
-	o py-anki2-2.0.42
 	o py-apache-libcloud-0.20.1
 	o py-buildbot-0.9.1
 	o py-buildbot-slave-0.9.1
@@ -1351,7 +1348,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-spf-2.0.12t
 	o py-suds-0.4.1
 	o py-sybase-0.37
-	o py-test-runner-2.11.1
 	o py-tornado-4.4.1
 	o py-wxWidgets-3.0.0
 	o py-yubiauth-0.3.10
@@ -1366,7 +1362,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o quodlibet2-3.5.3
 	o radare2-1.0.2
 	o radiance-4R1
-	o ragel-7.0.0.9
 	o rails-5.0.1
 	o rainbowcrack-1.5
 	o raine-0.64.9
@@ -1398,7 +1393,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o rp-pppoe-3.11
 	o rpm-4.13
 	o rsnapshot-1.4.2
-	o rspamd-1.4.3
 	o rt4-4.4.0
 	o rtcw-1.41.3
 	o rtty-4.0 [at ftp://ftp.isc.org/isc/rtty/]
