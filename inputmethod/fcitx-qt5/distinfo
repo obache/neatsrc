@@ -1,8 +1,6 @@
 $NetBSD$
 
-SHA1 (fcitx-qt5-1.0.6.tar.xz) = bee5f041d5eadfa5577f705522f47c6dcfcd7ca1
-RMD160 (fcitx-qt5-1.0.6.tar.xz) = 39259d1681856053c72b3d3f81a1b56cfc6558b5
-SHA512 (fcitx-qt5-1.0.6.tar.xz) = ea816a3bc324b838d77d7ee67a05853f7f07cbc3c0c1e0a3809fe72084f7e0db8e98623499299712b8b496922e46acb06cf3a1cbd3ff2ef1de92ca5a74d540da
-Size (fcitx-qt5-1.0.6.tar.xz) = 53892 bytes
-SHA1 (patch-CMakeLists.txt) = fe6597ee1f546dd65e8740157ef12c0cc5b34cac
-SHA1 (patch-widgetsaddons_CMakeLists.txt) = bb1b6a5fc37228bf8eb385523049e040f1d9f031
+SHA1 (fcitx-qt5-1.1.0.tar.xz) = ad1d443bca4d798dbe968ccc9f165753712bdb8c
+RMD160 (fcitx-qt5-1.1.0.tar.xz) = c31bfda21f84f7c1e96484be83c23d9e27847be8
+SHA512 (fcitx-qt5-1.1.0.tar.xz) = 1f11c13162483957f0ff29dc8d05e8c781bfcc6f60d938037b94ae825be9c1bc47f594540a2d1d3ffa7185abcc9fd734522a64e36813d3116ec394b52f98135c
+Size (fcitx-qt5-1.1.0.tar.xz) = 55944 bytes
