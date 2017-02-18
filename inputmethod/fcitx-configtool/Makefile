@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-configtool-0.4.8
+DISTNAME=	fcitx-configtool-0.4.9
 CATEGORIES=	inputmethod
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-configtool/
 EXTRACT_SUFX=	.tar.xz
@@ -10,7 +10,7 @@ COMMENT=	GTK+ based configure tool for Fcitx
 LICENSE=	gnu-gpl-v2
 
 USE_CMAKE=	yes
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c99 c++
 USE_TOOLS+=	msgfmt pkg-config
 
 .include "options.mk"
