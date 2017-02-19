@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.769 2017/02/17 21:29:13 jmmv Exp $
+$NetBSD: CHANGES-2017,v 1.784 2017/02/19 02:37:08 mef Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -967,3 +967,18 @@ Changes to the packages collection and infrastructure in 2017:
 	Added sysutils/sandboxctl version 1.0 [jmmv 2017-02-17]
 	Added pkgtools/pkg_comp version 2.0 [jmmv 2017-02-17]
 	Added pkgtools/pkg_comp-cron version 1.0 [jmmv 2017-02-17]
+	Added finance/ledger version 3.1.1nb1 [riastradh 2017-02-18]
+	Updated databases/py-ldap to 2.4.32 [adam 2017-02-18]
+	Updated filesystems/p5-Path-Tiny to 0.104 [wen 2017-02-18]
+	Updated devel/p5-Mouse to 2.4.8 [wen 2017-02-18]
+	Updated textproc/p5-Encode to 2.88 [wen 2017-02-18]
+	Updated security/p5-AuthCAS to 1.7 [wen 2017-02-18]
+	Updated textproc/py-pygments to 2.2.0 [adam 2017-02-18]
+	Updated lang/php70 to 7.0.16 [taca 2017-02-18]
+	Updated lang/php71 to 7.1.2 [taca 2017-02-18]
+	Updated devel/ruby-rugged to 0.25.1.1 [taca 2017-02-18]
+	Updated print/zathura-pdf-mupdf to 0.3.1nb3 [leot 2017-02-18]
+	Updated net/youtube-dl to 20170217 [leot 2017-02-18]
+	Updated graphics/ImageMagick6 to 6.9.7.9 [joerg 2017-02-18]
+	Added textproc/ruby-builder30 version 3.0.4 [minskim 2017-02-19]
+	Updated devel/p5-Dist-Zooky to 0.22 [mef 2017-02-19]
