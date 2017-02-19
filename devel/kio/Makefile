@@ -41,4 +41,5 @@ SUBST_SED.fix-moc=	-e 's,;${PREFIX}/include;,;,g'
 .include "../../x11/kjobwidgets/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtscript/buildlink3.mk"
+.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"
