@@ -12,7 +12,7 @@ LICENSE=	gnu-lgpl-v2 AND gnu-lgpl-v2.1 AND modified-bsd
 
 #CMAKE_ARGS+=	-DENABLE_INOTIFY=OFF
 
-.include "../../databases/shared-mime-info/buildlink3.mk"
+.include "../../databases/shared-mime-info/mimedb.mk"
 .include "../../mk/fam.buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 BUILDLINK_DEPMETHOD.qt5-qttools= build
