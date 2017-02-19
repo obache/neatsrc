@@ -17,6 +17,8 @@ USE_TOOLS+=	pkg-config
 
 PKG_SYSCONFSUBDIR=openal
 
+CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:PATH=${PREFIX}/lib
+
 .include "../../mk/bsd.prefs.mk"
 
 .if ${OPSYS} != "Linux"
