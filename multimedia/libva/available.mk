@@ -1,4 +1,4 @@
-# $NetBSD: available.mk,v 1.4 2016/02/25 23:35:44 jperkin Exp $
+# $NetBSD: available.mk,v 1.6 2017/02/24 03:25:36 maya Exp $
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -7,11 +7,11 @@
 # i.e. in mplayer, xine, xbmc etc.  Have a look at buildlink3.mk too.
 
 # The following should be kept up-to-date!
-.if ${OPSYS} == "Linux"
+.if ${OPSYS} == "FreeBSD"
 VAAPI_AVAILABLE=	yes
-.elif ${OPSYS} == "FreeBSD"
+.elif ${OPSYS} == "NetBSD"
 VAAPI_AVAILABLE=	yes
-.elif ${OPSYS} == "OpenBSD"
+.elif ${OPSYS} == "Linux"
 VAAPI_AVAILABLE=	yes
 .else
 VAAPI_AVAILABLE=	no

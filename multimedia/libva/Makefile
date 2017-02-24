@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.9 2015/09/16 12:28:53 tnn Exp $
+# $NetBSD: Makefile,v 1.11 2017/02/24 03:25:36 maya Exp $
 #
 
-DISTNAME=	libva-1.1.0
-PKGREVISION=	2
+DISTNAME=	libva-1.7.3
+PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.freedesktop.org/software/vaapi/releases/libva/
 EXTRACT_SUFX=	.tar.bz2
@@ -38,10 +38,10 @@ PLIST_VARS+=		egl
 pre-configure:
 	cd ${WRKSRC} && autoreconf -i
 
-.include "../../graphics/MesaLib/buildlink3.mk"
-.if !empty(MESALIB_SUPPORTS_EGL:Myes)
-PLIST.egl=		yes
-.endif
+#.include "../../graphics/MesaLib/buildlink3.mk"
+#.if !empty(MESALIB_SUPPORTS_EGL:Myes)
+#PLIST.egl=		yes
+#.endif
 .include "../../x11/libXfixes/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
