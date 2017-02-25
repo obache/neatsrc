@@ -1,18 +1,31 @@
-# $NetBSD: options.mk,v 1.25 2016/11/20 21:13:46 joerg Exp $
+# $NetBSD: options.mk,v 1.27 2017/02/24 23:31:24 wiz Exp $
 
 # Global and legacy options
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.mutt
 PKG_OPTIONS_REQUIRED_GROUPS=	display
-PKG_OPTIONS_GROUP.display=	slang ncurses ncursesw curses
+PKG_OPTIONS_GROUP.display=	curses wide-curses slang
 PKG_SUPPORTED_OPTIONS=	debug gpgme idn ssl smime sasl
+# TODO: add kyoto cabinet and lmdb backend options for header cache
 PKG_SUPPORTED_OPTIONS+=	mutt-hcache tokyocabinet mutt-smtp
-PKG_SUPPORTED_OPTIONS+=	mutt-compressed-mbox
 PKG_SUGGESTED_OPTIONS=	curses gpgme mutt-hcache mutt-smtp smime ssl
-# patch does not apply
-#PKG_SUGGESTED_OPTIONS+=	mutt-compressed-mbox
+PKG_OPTIONS_LEGACY_OPTS+=	ncurses:curses ncursesw:wide-curses
 
 .include "../../mk/bsd.options.mk"
+
+### curses
+###
+.if !empty(PKG_OPTIONS:Mcurses) || !empty(PKG_OPTIONS:Mwide-curses)
+.  include "../../mk/curses.buildlink3.mk"
+CONFIGURE_ARGS+=	--with-curses=${BUILDLINK_PREFIX.curses}
+.  if !empty(CURSES_TYPE:Mcurses)
+OPSYSVARS+=			BUILDLINK_PASSTHRU_DIRS
+BUILDLINK_PASSTHRU_DIRS.SunOS+=	/usr/xpg4
+CONFIGURE_ARGS.SunOS+=		--with-curses=/usr/xpg4
+LDFLAGS.SunOS+=			-L/usr/xpg4/lib${LIBABISUFFIX}
+LDFLAGS.SunOS+=			${COMPILER_RPATH_FLAG}/usr/xpg4/lib${LIBABISUFFIX}
+.  endif
+.endif
 
 ###
 ### Slang
@@ -23,44 +36,11 @@ CONFIGURE_ARGS+=	--with-slang=${BUILDLINK_PREFIX.libslang2}
 .endif
 
 ###
-### ncurses
-###
-.if !empty(PKG_OPTIONS:Mncurses)
-USE_NCURSES=		yes
-.  include "../../devel/ncurses/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-curses=${BUILDLINK_PREFIX.ncurses}
-.endif
-
-###
 ### SASLv2
 ###
 .if !empty(PKG_OPTIONS:Msasl)
 .  include "../../security/cyrus-sasl/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-sasl=${BUILDLINK_PREFIX.cyrus-sasl}
-.endif
-
-### curses
-###
-.if !empty(PKG_OPTIONS:Mcurses)
-.  include "../../mk/curses.buildlink3.mk"
-OPSYSVARS+=			BUILDLINK_PASSTHRU_DIRS
-BUILDLINK_PASSTHRU_DIRS.SunOS+=	/usr/xpg4
-CONFIGURE_ARGS.SunOS+=		--with-curses=/usr/xpg4
-LDFLAGS.SunOS+=			-L/usr/xpg4/lib${LIBABISUFFIX}
-LDFLAGS.SunOS+=			${COMPILER_RPATH_FLAG}/usr/xpg4/lib${LIBABISUFFIX}
-.endif
-
-###
-### ncursesw
-###
-.if !empty(PKG_OPTIONS:Mncursesw)
-.  include "../../devel/ncursesw/buildlink3.mk"
-.else
-SUBST_CLASSES+=		curse
-SUBST_MESSAGE.curse=	Fixing mutt to avoid ncursesw
-SUBST_STAGE.curse=	post-patch
-SUBST_FILES.curse=	configure
-SUBST_SED.curse=	-e 's,for lib in ncurses ncursesw,for lib in ncurses,'
 .endif
 
 ###
@@ -111,29 +91,6 @@ CONFIGURE_ENV+=		BDB_LIB=${BDB_LIBS:S/^-l//:M*:Q}
 .  endif
 .else
 CONFIGURE_ARGS+=	--disable-hcache
-.endif
-
-###
-### Compressed mail boxes
-###
-PLIST_VARS+=		compressed_mbox
-.if !empty(PKG_OPTIONS:Mmutt-compressed-mbox)	\
-	|| make(distinfo) || make(mps) || make(makepatchsum)
-PLIST.compressed_mbox=	yes
-PATCH_SITES+=		http://mutt.org.ua/download/${PKGNAME_NOREV}/
-PATCHFILES+=		patch-${PKGVERSION_NOREV}.rr.compressed.gz
-PATCH_DIST_STRIP=	-p1
-CONFIGURE_ARGS+=	--enable-compressed
-SUBST_CLASSES+=		compress
-SUBST_MESSAGE.compress=	Patch Makefile.in to avoid autoreconf for compress
-SUBST_STAGE.compress=	post-patch
-SUBST_FILES.compress=	Makefile.in
-SUBST_SED.compress=	-e 's,^mutt_SOURCES = ,mutt_SOURCES = compress.c ,'
-SUBST_SED.compress+=	-e 's,^EXTRA_DIST = ,EXTRA_DIST = compress.h ,'
-SUBST_SED.compress+=	-e 's,^mutt_OBJECTS = ,mutt_OBJECTS = compress.o ,'
-# add xsltproc to be able to regenerate the documentation
-BUILD_DEPENDS+=		libxslt-[0-9]*:../../textproc/libxslt
-BUILD_DEPENDS+=		docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 .endif
 
 ###

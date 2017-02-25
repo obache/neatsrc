@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.6 2017/02/24 03:25:36 maya Exp $
+@comment $NetBSD: PLIST,v 1.8 2017/02/24 19:14:17 maya Exp $
 include/va/va.h
 include/va/va_backend.h
 include/va/va_backend_tpi.h
@@ -30,4 +30,3 @@ lib/pkgconfig/libva-drm.pc
 lib/pkgconfig/libva-tpi.pc
 lib/pkgconfig/libva-x11.pc
 lib/pkgconfig/libva.pc
-lib/xorg/modules/dri/dummy_drv_video.la

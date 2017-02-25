@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.21 2015/11/03 23:27:03 agc Exp $
+$NetBSD: distinfo,v 1.22 2017/02/25 01:08:20 mef Exp $
 
 SHA1 (cyrus-imapd-2.4.18.tar.gz) = 2a3e449afc235ea72ef3b48ba5c0f66eb199faf2
 RMD160 (cyrus-imapd-2.4.18.tar.gz) = 9a2a601a93abcaece16a77f0f77460a49e6e7c53
