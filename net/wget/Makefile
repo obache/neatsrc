@@ -13,7 +13,6 @@ LICENSE=	gnu-gpl-v3
 USE_TOOLS+=		perl pod2man pkg-config makeinfo
 
 GNU_CONFIGURE=		YES
-USE_OLD_DES_API=	YES
 USE_PKGLOCALEDIR=	YES
 USE_TOOLS+=		msgfmt
 
