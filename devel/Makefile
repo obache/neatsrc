@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2374 2017/02/25 02:44:10 maya Exp $
+# $NetBSD: Makefile,v 1.2377 2017/02/28 20:59:27 fhajny Exp $
 #
 
 COMMENT=	Development utilities
@@ -419,6 +419,7 @@ SUBDIR+=	jflex
 SUBDIR+=	jq
 SUBDIR+=	js2-mode
 SUBDIR+=	js_of_ocaml
+SUBDIR+=	kafka
 SUBDIR+=	kapptemplate
 SUBDIR+=	kbookmarks
 SUBDIR+=	kbuild
@@ -1755,6 +1756,7 @@ SUBDIR+=	py-atomicwrites
 SUBDIR+=	py-attrs
 SUBDIR+=	py-automat
 SUBDIR+=	py-babel
+SUBDIR+=	py-backports.functools_lru_cache
 SUBDIR+=	py-backports_abc
 SUBDIR+=	py-binaryornot
 SUBDIR+=	py-blinker
@@ -1774,6 +1776,7 @@ SUBDIR+=	py-codestyle
 SUBDIR+=	py-compizconfig
 SUBDIR+=	py-configargparse
 SUBDIR+=	py-configobj
+SUBDIR+=	py-configparser
 SUBDIR+=	py-constantly
 SUBDIR+=	py-constants
 SUBDIR+=	py-construct
@@ -1841,14 +1844,17 @@ SUBDIR+=	py-ipython013
 SUBDIR+=	py-ipython1
 SUBDIR+=	py-iso3166
 SUBDIR+=	py-iso-639
+SUBDIR+=	py-isort
 SUBDIR+=	py-jaraco_util
 SUBDIR+=	py-jersey
 SUBDIR+=	py-kjbuckets
 SUBDIR+=	py-kqueue
+SUBDIR+=	py-lazy-object-proxy
 SUBDIR+=	py-libevent-rpcgen
 SUBDIR+=	py-libmc
 SUBDIR+=	py-limits
 SUBDIR+=	py-linecache2
+SUBDIR+=	py-lint
 SUBDIR+=	py-lockfile
 SUBDIR+=	py-logan
 SUBDIR+=	py-logilab-astng
