@@ -19,7 +19,6 @@ BUILD_TARGET=	mcookie
 EXTRACT_USING=	bsdtar
 
 GNU_CONFIGURE=	yes
-INFO_FILES=	yes
 USE_TOOLS+=	bsdtar gmake
 INSTALLATION_DIRS+=	bin ${PKGMANDIR}/man1
 
