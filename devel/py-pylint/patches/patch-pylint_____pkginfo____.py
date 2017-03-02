@@ -1,4 +1,4 @@
-$NetBSD: patch-pylint_____pkginfo____.py,v 1.1 2017/02/28 20:56:33 fhajny Exp $
+$NetBSD: patch-pylint_____pkginfo____.py,v 1.1 2017/03/01 13:08:44 fhajny Exp $
 
 Add PYVERSSUFFIX to scripts.
 
