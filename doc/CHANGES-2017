@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.964 2017/03/02 15:29:04 fhajny Exp $
+$NetBSD: CHANGES-2017,v 1.975 2017/03/04 01:58:25 mef Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -1178,3 +1178,14 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated graphics/feh to 2.18.2 [szptvlfn 2017-03-01]
 	Updated graphics/MesaLib to 11.2.2nb3 [maya 2017-03-02]
 	Updated lang/nodejs to 7.7.1 [fhajny 2017-03-02]
+	Updated devel/glib2 to 2.50.3 [prlw1 2017-03-03]
+	Updated x11/gtk3 to 3.22.9 [prlw1 2017-03-03]
+	Updated sysutils/salt to 2016.11.3 [sborrill 2017-03-03]
+	Updated devel/py-mercurial to 4.1.1 [wiz 2017-03-03]
+	Updated converters/py-zfec to 1.4.24nb2 [wiz 2017-03-03]
+	Updated net/filezilla to 3.24.1nb1 [wiz 2017-03-03]
+	Added www/e2guardian version 3.5.0 [prlw1 2017-03-03]
+	Updated print/py-weasyprint to 0.36 [kleink 2017-03-03]
+	Updated textproc/p5-Text-CSV_XS to 1.27 [wen 2017-03-04]
+	Updated math/p5-Spreadsheet-Read to 0.70 [wen 2017-03-04]
+	Updated mail/claws-mail to 3.14.1 [mef 2017-03-04]
