@@ -98,9 +98,12 @@ ${_var_}!=								\
 		${ECHO} __nonexistent__;				\
 	fi
 .          endif
+.          if empty(${_var_}:M__nonexistent__)
+BUILTIN_HEADER_FOUND_DIR.${_var_}=	${_dir_}
+.          endif
 .        endif
 .      endfor
 .    endfor
 .  endif
-MAKEVARS+=	${_var_}
+MAKEVARS+=	${_var_} BUILTIN_HEADER_FOUND_DIR.${_var_}
 .endfor

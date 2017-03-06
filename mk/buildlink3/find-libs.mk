@@ -70,8 +70,11 @@ BUILTIN_LIB_FOUND.${_lib_}!=    \
 	else								\
 		${ECHO} no;						\
 	fi
+.        if ${BUILTIN_LIB_FOUND.${_lib_}} == "yes"
+BUILTIN_LIB_FOUND_DIR.${_lib_}=	${_path_}
+.        endif
 .      endif
 .    endfor
 .  endif
-MAKEVARS+=	BUILTIN_LIB_FOUND.${_lib_}
+MAKEVARS+=	BUILTIN_LIB_FOUND.${_lib_} BUILTIN_LIB_FOUND_DIR.${_lib_}
 .endfor
