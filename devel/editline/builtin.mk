@@ -6,6 +6,7 @@ BUILTIN_FIND_LIBS:=		edit
 BUILTIN_FIND_HEADERS_VAR:=	H_EDITLINE
 BUILTIN_FIND_HEADERS.H_EDITLINE=editline/readline.h \
 				readline/readline.h
+BUILTIN_FIND_PKGCONFIGS:=	libedit
 
 .include "../../mk/buildlink3/bsd.builtin.mk"
 
@@ -80,5 +81,20 @@ buildlink-readline-history-h:
 		${LN} -s "$$src" "$$dest";				\
 	fi
 .    endif
+.    if ${BUILTIN_PKGCONFIG_FOUND.libedit} == "yes"
+BUIDLINK_PREFIX.editline?=	BUILTIN_PKGCONFIG_PREFIX.libedit
+BUILTIN_VERSION.editline?=	BUILTIN_PKGCONFIG_VERSION.libedit
+.    endif
+BUILTIN_VERSION.editline?=	3.0
+BUILTIN_PKG.editline?=		editline-${BUILTIN_VERSION.editline}
+BUILTIN_FAKE_PC_FILES.editline=	libedit
+FAKE_PC_SRC.libedit=	../../devel/editline/files/libedit.pc.in
+FAKE_PC_SUBST_SED.libedit+=	-e s,@VERSION@,${BUILTIN_VERSION.editline},g
+FAKE_PC_SUBST_SED.libedit+=	-e s,@prefix@,${BUILDLINK_PREFIX.editline},g
+FAKE_PC_SUBST_SED.libedit+=	-e s,@exec_prefix@,${BUILDLINK_PREFIX.editline},g
+FAKE_PC_SUBST_SED.libedit+=	-e s,@libdir@,${BUILTIN_LIB_FOUND_DIR.edit},g
+FAKE_PC_SUBST_SED.libedit+=	-e s,@includedir@,${BUILTIN_HEADER_FOUND_DIR.H_EDITLINE},g
+FAKE_PC_SUBST_SED.libedit+=	-e s,@LIBS@,${BUILDLINK_LDADD.termcap},g
 .  endif
+
 .endif	# CHECK_BUILTIN.editline
