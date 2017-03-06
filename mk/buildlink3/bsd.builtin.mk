@@ -172,4 +172,5 @@ _BUILTIN_PKGS+=	${_pkg_}
 
 .include "../../mk/buildlink3/find-libs.mk"
 .include "../../mk/buildlink3/find-headers.mk"
+.include "../../mk/buildlink3/find-pkgconfig.mk"
 .include "../../mk/buildlink3/find-files.mk"

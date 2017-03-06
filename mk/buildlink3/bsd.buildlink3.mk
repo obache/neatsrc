@@ -764,6 +764,8 @@ _BLNK_LT_ARCHIVE_FILTER_SED_SCRIPT.${_pkg_}+=				\
 .  endif
 .endfor
 
+.include "fake-pc.mk"
+
 # Include any BUILDLINK_TARGETS provided in buildlink3.mk files in
 # _BLNK_TARGETS.
 #
