@@ -33,6 +33,7 @@ SUBDIR+=	chipmunk
 SUBDIR+=	chord
 SUBDIR+=	chordii
 SUBDIR+=	cksfv
+SUBDIR+=	cldr-emoji-annotation
 SUBDIR+=	color-theme
 SUBDIR+=	colorblind
 SUBDIR+=	colorize
