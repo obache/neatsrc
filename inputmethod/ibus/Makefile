@@ -1,12 +1,12 @@
 # $NetBSD: Makefile,v 1.47 2017/02/12 06:25:33 ryoon Exp $
 
-PKGREVISION=	2
 .include "Makefile.common"
 
 COMMENT=	Intelligent Input Bus
 
 DEPENDS+=	${PYPKGPREFIX}-gobject3-[0-9]*:../../devel/py-gobject3
 TOOL_DEPENDS+=	npm-emojione-[0-9]*:../../www/npm-emojione
+TOOL_DEPENDS+=	cldr-emoji-annotation-[0-9]*:../../misc/cldr-emoji-annotation
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
@@ -27,6 +27,7 @@ CONFIGURE_ARGS+=	--enable-surrounding-text
 CONFIGURE_ARGS+=	--enable-introspection=yes
 CONFIGURE_ARGS+=	--with-python=${PYTHONBIN}
 CONFIGURE_ARGS+=	--with-emoji-json-file=${LOCALBASE}/lib/node_modules/emojione/emoji.json
+CONFIGURE_ARGS+=	--with-emoji-annotation-dir=${LOCALBASE}/share/unicode/cldr/common/annotations
 
 SUBST_CLASSES+=		dbus
 SUBST_STAGE.dbus=	post-configure
