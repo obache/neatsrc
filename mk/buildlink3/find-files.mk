@@ -99,3 +99,4 @@ ${_var_}!=								\
 .  endif
 MAKEVARS+=	${_var_}
 .endfor
+.undef BUILTIN_FIND_FILES_VAR

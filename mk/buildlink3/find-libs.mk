@@ -78,3 +78,4 @@ BUILTIN_LIB_FOUND_DIR.${_lib_}=	${_path_}
 .  endif
 MAKEVARS+=	BUILTIN_LIB_FOUND.${_lib_} BUILTIN_LIB_FOUND_DIR.${_lib_}
 .endfor
+.undef BUILDLINK_FIND_LIBS

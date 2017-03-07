@@ -107,3 +107,4 @@ BUILTIN_HEADER_FOUND_DIR.${_var_}=	${_dir_}
 .  endif
 MAKEVARS+=	${_var_} BUILTIN_HEADER_FOUND_DIR.${_var_}
 .endfor
+.undef BUILTIN_FIND_HEADERS_VAR
