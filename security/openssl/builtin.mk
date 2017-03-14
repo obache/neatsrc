@@ -6,6 +6,7 @@ BUILTIN_FIND_LIBS:=		crypto des ssl
 BUILTIN_FIND_HEADERS_VAR:=	H_OPENSSLCONF H_OPENSSLV
 BUILTIN_FIND_HEADERS.H_OPENSSLCONF=	openssl/opensslconf.h
 BUILTIN_FIND_HEADERS.H_OPENSSLV=	openssl/opensslv.h
+BUILTIN_FIND_PKGCONFIGS:=	openssl libcrypto libssl
 
 .include "../../mk/buildlink3/bsd.builtin.mk"
 
@@ -26,8 +27,10 @@ MAKEVARS+=	IS_BUILTIN.openssl
 ### a package name to represent the built-in package.
 ###
 .if !defined(BUILTIN_PKG.openssl) && \
-    !empty(IS_BUILTIN.openssl:M[yY][eE][sS]) && \
-    empty(H_OPENSSLV:M__nonexistent__)
+    !empty(IS_BUILTIN.openssl:M[yY][eE][sS])
+.  if ${BUILTIN_PKGCONFIG_FOUND.openssl} == "yes"
+BUILTIN_VERSION.openssl=	${BUILTIN_PKGCONFIG_VERSION.openssl}
+.  elif  empty(H_OPENSSLV:M__nonexistent__)
 BUILTIN_VERSION.openssl!=						\
 	${AWK} 'BEGIN { hex="0123456789abcdef";				\
 			alpha="abcdefghijklmnopqrstuvwxyz";	\
@@ -55,6 +58,7 @@ BUILTIN_VERSION.openssl!=						\
 			exit 0;						\
 		}							\
 	' ${H_OPENSSLV}
+.  endif
 BUILTIN_PKG.openssl=	openssl-${BUILTIN_VERSION.openssl}
 .endif
 MAKEVARS+=	BUILTIN_PKG.openssl
@@ -119,7 +123,9 @@ CHECK_BUILTIN.openssl?=	no
 .if !empty(CHECK_BUILTIN.openssl:M[nN][oO])
 
 .  if !empty(USE_BUILTIN.openssl:M[yY][eE][sS])
-.    if empty(H_OPENSSLV:M__nonexistent__)
+.    if ${BUILTIN_PKGCONFIG_FOUND.openssl} == "yes"
+BUILDLINK_PREFIX.openssl=	${BUILTIN_PKGCONFIG_PREFIX.openssl}
+.    elif empty(H_OPENSSLV:M__nonexistent__)
 .      if !empty(H_OPENSSLV:M/usr/sfw/*)
 BUILDLINK_PREFIX.openssl=	/usr/sfw
 BUILDLINK_PASSTHRU_DIRS+=	/usr/sfw
