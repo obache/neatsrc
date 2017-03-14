@@ -1,37 +1,45 @@
-# $NetBSD$
+# $NetBSD: Makefile,v 1.1 2017/03/10 08:30:51 nils Exp $
 
 DISTNAME=	dehydrated-0.4.0
 CATEGORIES=	security
-MASTER_SITES=	-https://github.com/lukas2511/${PKGBASE}/archive/v${PKGVERSION_NOREV}${EXTRACT_SUFX}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=lukas2511/}
 
-HOMEPAGE=	https://dehydrated.de/
-COMMENT=	letsencrpyt/acme client implementad as a shell-script
+MAINTAINER=	nils@NetBSD.org
+HOMEPAGE=	https://github.com/lukas2511/dehydrated
+COMMENT=	Letsencrypt/acme client implemented as a shell-script
 LICENSE=	mit
 
-USE_LANGUAGES=	# none
-USE_TOOLS+=	bash:run curl:run sed:run grep:run mktemp:run openssl:run
-USE_TOOLS+=	diff:run readlink:run awk:run pax
-
-REPLACE_BASH+=	dehydrated test.sh docs/examples/hook.sh
+GITHUB_PROJECT=	dehydrated
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 NO_BUILD=	yes
 
+USE_LANGUAGES=	# none
+USE_TOOLS+=	bash:run sed:run awk:run curl:run pax openssl:run
+USE_TOOLS+=	grep:run mktemp:run diff:run readlink:run
+REPLACE_BASH=	dehydrated test.sh docs/examples/hook.sh
+
 PKG_SYSCONFSUBDIR=	${PKGBASE}
 
-SUBST_CLASSES+=		sysconfdir
-SUBST_STAGE.sysconfdir=	pre-configure
-SUBST_FILES.sysconfdir=	dehydrated
-SUBST_SED.sysconfdir=	-e s,/usr/local/etc/${PKGBASE},${PKG_SYSCONFDIR},g
+EGDIR=			${PREFIX}/share/examples/dehydrated
+CONF_FILES=		${EGDIR}/config ${PKG_SYSCONFDIR}/config
+CONF_FILES+=		${EGDIR}/domains.txt ${PKG_SYSCONFDIR}/domains.txt
+DOCDIR=			share/doc/dehydrated
+INSTALLATION_DIRS+=	${EGDIR} ${DOCDIR} bin
 
-.for c in config domains.txt hook.sh
-CONF_FILES+=	${PREFIX}/share/doc/${PKGBASE}/examples/$c ${PKG_SYSCONFDIR}/$c
-.endfor
-
-INSTALLATION_DIRS+=	bin share/doc/${PKGBASE}
+SUBST_CLASSES+=		paths
+SUBST_STAGE.paths=	post-extract
+SUBST_FILES.paths=	${WRKSRC}/dehydrated
+SUBST_SED.paths=	-e 's|/usr/local/etc/${PKGBASE}|${PKG_SYSCONFDIR}|g'
 
 do-install:
-	${RUN}cd ${WRKSRC};	\
-	${INSTALL_SCRIPT} dehydrated ${DESTDIR}${PREFIX}/bin/dehydrated; \
-	cd docs; ${PAX} -rwpp . ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
+	${INSTALL_SCRIPT} ${WRKSRC}/dehydrated ${DESTDIR}${PREFIX}/bin/dehydrated
+	${INSTALL_DATA} ${WRKSRC}/CHANGELOG ${DESTDIR}${PREFIX}/${DOCDIR}
+	${INSTALL_DATA} ${WRKSRC}/LICENSE ${DESTDIR}${PREFIX}/${DOCDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.md ${DESTDIR}${PREFIX}/${DOCDIR}
+	cd ${WRKSRC}/docs && pax -rw *.md ${DESTDIR}${PREFIX}/${DOCDIR}
+	${INSTALL_DATA} ${WRKSRC}/docs/examples/config ${DESTDIR}${EGDIR}
+	${INSTALL_DATA} ${WRKSRC}/docs/examples/domains.txt ${DESTDIR}${EGDIR}
+	${INSTALL_DATA} ${WRKSRC}/docs/examples/hook.sh ${DESTDIR}${EGDIR}
 
 .include "../../mk/bsd.pkg.mk"

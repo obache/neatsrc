@@ -40,8 +40,6 @@ __FBSDID("$FreeBSD: head/lib/libarchive/archive_read_disk_entry_from_file.c 2010
 #endif
 #ifdef HAVE_DARWIN_ACL
 #include <membership.h>
-#include <grp.h>
-#include <pwd.h>
 #endif
 #ifdef HAVE_SYS_EXTATTR_H
 #include <sys/extattr.h>
@@ -126,7 +124,7 @@ __FBSDID("$FreeBSD: head/lib/libarchive/archive_read_disk_entry_from_file.c 2010
 /* NFSv4 platform ACL type */
 #if HAVE_DARWIN_ACL
 #define	ARCHIVE_PLATFORM_ACL_TYPE_NFS4	ACL_TYPE_EXTENDED
-#elif HAVE_ACL_TYPE_NFS4
+#elif HAVE_FREEBSD_NFS4_ACL
 #define	ARCHIVE_PLATFORM_ACL_TYPE_NFS4	ACL_TYPE_NFS4
 #endif
 
@@ -496,7 +494,7 @@ sunacl_get(int cmd, int *aclcnt, int fd, const char *path)
 static int translate_acl(struct archive_read_disk *a,
     struct archive_entry *entry,
 #if HAVE_SUN_ACL
-    void *acl,
+    void *aclp,
     int aclcnt,
 #else
     acl_t acl,
@@ -509,7 +507,7 @@ setup_acls(struct archive_read_disk *a,
 {
 	const char	*accpath;
 #if HAVE_SUN_ACL
-	void		*acl;
+	void		*aclp;
 	int		aclcnt;
 #else
 	acl_t		acl;
@@ -547,13 +545,17 @@ setup_acls(struct archive_read_disk *a,
 
 	archive_entry_acl_clear(entry);
 
+#if HAVE_SUN_ACL
+	aclp = NULL;
+#else
 	acl = NULL;
+#endif
 
 #if HAVE_NFS4_ACL
 	/* Try NFSv4 ACL first. */
 	if (*fd >= 0)
 #if HAVE_SUN_ACL
-		acl = sunacl_get(ACE_GETACL, &aclcnt, *fd, NULL);
+		aclp = sunacl_get(ACE_GETACL, &aclcnt, *fd, NULL);
 #elif HAVE_ACL_GET_FD_NP
 		acl = acl_get_fd_np(*fd, ARCHIVE_PLATFORM_ACL_TYPE_NFS4);
 #else
@@ -567,52 +569,59 @@ setup_acls(struct archive_read_disk *a,
 	    && (archive_entry_filetype(entry) == AE_IFLNK))
 		/* We can't get the ACL of a symlink, so we assume it can't
 		   have one. */
+#if HAVE_SUN_ACL
+		aclp = NULL;
+#else
 		acl = NULL;
 #endif
+#endif /* !HAVE_ACL_GET_LINK_NP */
 	else
 #if HAVE_SUN_ACL
 		/* Solaris reads both POSIX.1e and NFSv4 ACLs here */
-		acl = sunacl_get(ACE_GETACL, &aclcnt, 0, accpath);
+		aclp = sunacl_get(ACE_GETACL, &aclcnt, 0, accpath);
 #else
 		acl = acl_get_file(accpath, ARCHIVE_PLATFORM_ACL_TYPE_NFS4);
 #endif
 
 
-#if HAVE_ACL_IS_TRIVIAL_NP || HAVE_SUN_ACL
 	/* Ignore "trivial" ACLs that just mirror the file mode. */
-	if (acl != NULL) {
 #if HAVE_SUN_ACL
-		if (sun_acl_is_trivial(acl, aclcnt, archive_entry_mode(entry),
-		    1, S_ISDIR(archive_entry_mode(entry)), &r) == 0 && r == 1)
-#elif HAVE_ACL_IS_TRIVIAL_NP
-		if (acl_is_trivial_np(acl, &r) == 0 && r == 1)
-#endif
-		{
-#if HAVE_SUN_ACL
-			free(acl);
-#else
-			acl_free(acl);
-#endif
-			acl = NULL;
-			/*
-			 * Simultaneous NFSv4 and POSIX.1e ACLs for the same
-			 * entry are not allowed, so we should return here
-			 */
-			return (ARCHIVE_OK);
-		}
+	if (aclp != NULL && sun_acl_is_trivial(aclp, aclcnt,
+	    archive_entry_mode(entry), 1, S_ISDIR(archive_entry_mode(entry)),
+	    &r) == 0 && r == 1) {
+		free(aclp);
+		aclp = NULL;
+		return (ARCHIVE_OK);
 	}
-#endif	/* HAVE_ACL_IS_TRIVIAL_NP || HAVE_SUN_ACL */
-	if (acl != NULL) {
-		r = translate_acl(a, entry, acl,
+#elif HAVE_ACL_IS_TRIVIAL_NP
+	if (acl != NULL && acl_is_trivial_np(acl, &r) == 0 && r == 1) {
+		acl_free(acl);
+		acl = NULL;
+		return (ARCHIVE_OK);
+	}
+#endif
+
 #if HAVE_SUN_ACL
-		    aclcnt,
+	if (aclp != NULL)
+#else
+	if (acl != NULL)
+#endif
+	{
+		r = translate_acl(a, entry,
+#if HAVE_SUN_ACL
+		    aclp, aclcnt,
+#else
+		    acl,
 #endif
 		    ARCHIVE_ENTRY_ACL_TYPE_NFS4);
 #if HAVE_SUN_ACL
-		free(acl);
+		free(aclp);
+		aclp = NULL;
 #else
 		acl_free(acl);
+		acl = NULL;
 #endif
+
 		if (r != ARCHIVE_OK) {
 			archive_set_error(&a->archive, errno,
 			    "Couldn't translate NFSv4 ACLs");
@@ -638,7 +647,7 @@ setup_acls(struct archive_read_disk *a,
 	/* Retrieve access ACL from file. */
 	if (*fd >= 0)
 #if HAVE_SUN_ACL
-		acl = sunacl_get(GETACL, &aclcnt, *fd, NULL);
+		aclp = sunacl_get(GETACL, &aclcnt, *fd, NULL);
 #else
 		acl = acl_get_fd(*fd);
 #endif
@@ -650,50 +659,56 @@ setup_acls(struct archive_read_disk *a,
 	    && (archive_entry_filetype(entry) == AE_IFLNK))
 		/* We can't get the ACL of a symlink, so we assume it can't
 		   have one. */
+#if HAVE_SUN_ACL
+		aclp = NULL;
+#else
 		acl = NULL;
 #endif
+#endif /* !HAVE_ACL_GET_LINK_NP */
 	else
 #if HAVE_SUN_ACL
-		acl = sunacl_get(GETACL, &aclcnt, 0, accpath);
+		aclp = sunacl_get(GETACL, &aclcnt, 0, accpath);
 #else
 		acl = acl_get_file(accpath, ACL_TYPE_ACCESS);
 #endif
 
 
-#if HAVE_ACL_IS_TRIVIAL_NP || HAVE_SUN_ACL
 	/* Ignore "trivial" ACLs that just mirror the file mode. */
-	if (acl != NULL) {
 #if HAVE_SUN_ACL
-		if (sun_acl_is_trivial(acl, aclcnt, archive_entry_mode(entry),
-		    0, S_ISDIR(archive_entry_mode(entry)), &r) == 0 && r == 1)
-#else
-		if (acl_is_trivial_np(acl, &r) == 0)
-#endif
-		{
-			if (r) {
-#if HAVE_SUN_ACL
-				free(acl);
-#else
-				acl_free(acl);
-#endif
-				acl = NULL;
-			}
-		}
+	if (aclp != NULL && sun_acl_is_trivial(aclp, aclcnt,
+	    archive_entry_mode(entry), 0, S_ISDIR(archive_entry_mode(entry)),
+	    &r) == 0 && r == 1) {
+		free(aclp);
+		aclp = NULL;
+	}
+#elif HAVE_ACL_IS_TRIVIAL_NP
+	if (acl != NULL && acl_is_trivial_np(acl, &r) == 0 && r == 1) {
+		acl_free(acl);
+		acl = NULL;
 	}
 #endif
 
-	if (acl != NULL) {
-		r = translate_acl(a, entry, acl,
 #if HAVE_SUN_ACL
-		    aclcnt,
+	if (aclp != NULL)
+#else
+	if (acl != NULL)
+#endif
+	{
+		r = translate_acl(a, entry,
+#if HAVE_SUN_ACL
+		    aclp, aclcnt,
+#else
+		    acl,
 #endif
 		    ARCHIVE_ENTRY_ACL_TYPE_ACCESS);
 #if HAVE_SUN_ACL
-		free(acl);
+		free(aclp);
+		aclp = NULL;
 #else
 		acl_free(acl);
-#endif
 		acl = NULL;
+#endif
+
 		if (r != ARCHIVE_OK) {
 			archive_set_error(&a->archive, errno,
 			    "Couldn't translate access ACLs");
@@ -768,14 +783,14 @@ static const struct {
 	{ARCHIVE_ENTRY_ACL_READ_ACL, ACL_READ_SECURITY},
 	{ARCHIVE_ENTRY_ACL_WRITE_ACL, ACL_WRITE_SECURITY},
 	{ARCHIVE_ENTRY_ACL_WRITE_OWNER, ACL_CHANGE_OWNER},
-#ifdef ACL_SYNCHRONIZE
+#if HAVE_DECL_ACL_SYNCHRONIZE
 	{ARCHIVE_ENTRY_ACL_SYNCHRONIZE, ACL_SYNCHRONIZE}
 #endif
 #else	/* POSIX.1e ACL permissions */
 	{ARCHIVE_ENTRY_ACL_EXECUTE, ACL_EXECUTE},
 	{ARCHIVE_ENTRY_ACL_WRITE, ACL_WRITE},
 	{ARCHIVE_ENTRY_ACL_READ, ACL_READ},
-#if HAVE_ACL_TYPE_NFS4	/* FreeBSD NFSv4 ACL permissions */
+#if HAVE_FREEBSD_NFS4_ACL	/* FreeBSD NFSv4 ACL permissions */
 	{ARCHIVE_ENTRY_ACL_READ_DATA, ACL_READ_DATA},
 	{ARCHIVE_ENTRY_ACL_LIST_DIRECTORY, ACL_LIST_DIRECTORY},
 	{ARCHIVE_ENTRY_ACL_WRITE_DATA, ACL_WRITE_DATA},
@@ -839,8 +854,6 @@ static int translate_guid(struct archive *a, acl_entry_t acl_entry,
 	void *q;
 	uid_t ugid;
 	int r, idtype;
-	struct passwd *pwd;
-	struct group *grp;
 
 	q = acl_get_qualifier(acl_entry);
 	if (q == NULL)
@@ -852,24 +865,12 @@ static int translate_guid(struct archive *a, acl_entry_t acl_entry,
 	}
 	if (idtype == ID_TYPE_UID) {
 		*ae_tag = ARCHIVE_ENTRY_ACL_USER;
-		pwd = getpwuuid(q);
-		if (pwd == NULL) {
-			*ae_id = ugid;
-			*ae_name = NULL;
-		} else {
-			*ae_id = pwd->pw_uid;
-			*ae_name = archive_read_disk_uname(a, *ae_id);
-		}
+		*ae_id = ugid;
+		*ae_name = archive_read_disk_uname(a, *ae_id);
 	} else if (idtype == ID_TYPE_GID) {
 		*ae_tag = ARCHIVE_ENTRY_ACL_GROUP;
-		grp = getgruuid(q);
-		if (grp == NULL) {
-			*ae_id = ugid;
-			*ae_name = NULL;
-		} else {
-			*ae_id = grp->gr_gid;
-			*ae_name = archive_read_disk_gname(a, *ae_id);
-		}
+		*ae_id = ugid;
+		*ae_name = archive_read_disk_gname(a, *ae_id);
 	} else
 		r = 1;
 
@@ -1267,11 +1268,11 @@ translate_acl(struct archive_read_disk *a,
     struct archive_entry *entry, acl_t acl, int default_entry_acl_type)
 {
 	acl_tag_t	 acl_tag;
-#if HAVE_ACL_TYPE_NFS4
+#if HAVE_FREEBSD_NFS4_ACL
 	acl_entry_type_t acl_type;
 	int brand;
 #endif
-#if HAVE_ACL_TYPE_NFS4 || HAVE_DARWIN_ACL
+#if HAVE_FREEBSD_NFS4_ACL || HAVE_DARWIN_ACL
 	acl_flagset_t	 acl_flagset;
 #endif
 	acl_entry_t	 acl_entry;
@@ -1283,7 +1284,7 @@ translate_acl(struct archive_read_disk *a,
 #endif
 	const char	*ae_name;
 
-#if HAVE_ACL_TYPE_NFS4
+#if HAVE_FREEBSD_NFS4_ACL
 	// FreeBSD "brands" ACLs as POSIX.1e or NFSv4
 	// Make sure the "brand" on this ACL is consistent
 	// with the default_entry_acl_type bits provided.
@@ -1374,7 +1375,7 @@ translate_acl(struct archive_read_disk *a,
 		case ACL_OTHER:
 			ae_tag = ARCHIVE_ENTRY_ACL_OTHER;
 			break;
-#if HAVE_ACL_TYPE_NFS4
+#if HAVE_FREEBSD_NFS4_ACL
 		case ACL_EVERYONE:
 			ae_tag = ARCHIVE_ENTRY_ACL_EVERYONE;
 			break;
@@ -1409,9 +1410,9 @@ translate_acl(struct archive_read_disk *a,
 		// XXX acl_type maps to allow/deny/audit/YYYY bits
 		entry_acl_type = default_entry_acl_type;
 #endif
-#if HAVE_ACL_TYPE_NFS4 || HAVE_DARWIN_ACL
+#if HAVE_FREEBSD_NFS4_ACL || HAVE_DARWIN_ACL
 		if (default_entry_acl_type & ARCHIVE_ENTRY_ACL_TYPE_NFS4) {
-#if HAVE_ACL_TYPE_NFS4
+#if HAVE_FREEBSD_NFS4_ACL
 			/*
 			 * acl_get_entry_type_np() fails with non-NFSv4 ACLs
 			 */
@@ -1438,7 +1439,7 @@ translate_acl(struct archive_read_disk *a,
 				    "Invalid NFSv4 ACL entry type");
 				return (ARCHIVE_WARN);
 			}
-#endif	/* HAVE_ACL_TYPE_NFS4 */
+#endif	/* HAVE_FREEBSD_NFS4_ACL */
 
 			/*
 			 * Libarchive stores "flag" (NFSv4 inheritance bits)
@@ -1463,7 +1464,7 @@ translate_acl(struct archive_read_disk *a,
 					ae_perm |= acl_inherit_map[i].archive_inherit;
 			}
 		}
-#endif	/* HAVE_ACL_TYPE_NFS4 || HAVE_DARWIN_ACL */
+#endif	/* HAVE_FREEBSD_NFS4_ACL || HAVE_DARWIN_ACL */
 
 		if (acl_get_permset(acl_entry, &acl_permset) != 0) {
 			archive_set_error(&a->archive, errno,
@@ -1484,7 +1485,7 @@ translate_acl(struct archive_read_disk *a,
 				ae_perm |= acl_perm_map[i].archive_perm;
 		}
 
-#if defined(HAVE_DARWIN_ACL) && !defined(ACL_SYNCHRONIZE)
+#if HAVE_DARWIN_ACL && !HAVE_DECL_ACL_SYNCHRONIZE
 		/* On Mac OS X without ACL_SYNCHRONIZE assume it is set */
 		ae_perm |= ARCHIVE_ENTRY_ACL_SYNCHRONIZE;
 #endif
