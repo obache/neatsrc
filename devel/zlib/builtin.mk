@@ -4,6 +4,8 @@ BUILTIN_PKG:=	zlib
 
 BUILTIN_FIND_HEADERS_VAR:=	H_ZLIB
 BUILTIN_FIND_HEADERS.H_ZLIB=	zlib.h
+BUILTIN_FIND_LIBS:=		z
+BUILTIN_FIND_PKGCONFIGS:=	zlib
 
 .include "../../mk/buildlink3/bsd.builtin.mk"
 
@@ -28,8 +30,10 @@ MAKEVARS+=	IS_BUILTIN.zlib
 ### a package name to represent the built-in package.
 ###
 .if !defined(BUILTIN_PKG.zlib) && \
-    !empty(IS_BUILTIN.zlib:M[yY][eE][sS]) && \
-    empty(H_ZLIB:M__nonexistent__)
+    !empty(IS_BUILTIN.zlib:M[yY][eE][sS])
+.  if ${BUILTIN_PKGCONFIG_FOUND.zlib} == "yes"
+BUILTIN_VERSION.zlib=	${BUILTIN_PKGCONFIG_VERSION.zlib}
+.  elif    empty(H_ZLIB:M__nonexistent__)
 BUILTIN_VERSION.zlib!=							\
 	${AWK} '/\#define[ 	]*ZLIB_VERSION/ {			\
 			vers = $$3;					\
@@ -37,6 +41,7 @@ BUILTIN_VERSION.zlib!=							\
 			print vers;					\
 		}							\
 	' ${H_ZLIB:Q}
+.  endif
 BUILTIN_PKG.zlib=      zlib-${BUILTIN_VERSION.zlib:C/-[A-Za-z]*//}
 
 .endif
@@ -85,31 +90,16 @@ USE_BUILTIN.zlib=	no
 CHECK_BUILTIN.zlib?=    no
 .if !empty(CHECK_BUILTIN.zlib:M[nN][oO])
 .  if !empty(USE_BUILTIN.zlib:M[yY][eE][sS])
-
-BUILDLINK_TARGETS+= fake-zlib-pc
-
-_FAKE_ZLIB_PC=${BUILDLINK_DIR}/lib/pkgconfig/zlib.pc
-
-fake-zlib-pc:
-	${RUN}	\
-	sedsrc=../../devel/zlib/files/zlib.pc.in;	\
-	src=${BUILDLINK_PREFIX.zlib}/lib${LIBABISUFFIX}/pkgconfig/zlib.pc;\
-	dst=${_FAKE_ZLIB_PC};					\
-	${MKDIR} ${BUILDLINK_DIR}/lib/pkgconfig;\
-	if [ ! -f $${dst} ]; then	\
-		if [ -f $${src} ]; then	\
-			${ECHO_BUILDLINK_MSG} "Symlinking $${src}";	\
-			${LN} -sf $${src} $${dst};			\
-		else	\
-			${ECHO_BUILDLINK_MSG} "Creating $${dst}";	\
-			${SED}	-e s,@prefix@,${BUILDLINK_PREFIX.zlib},\
-					-e s,@exec_prefix@,${BUILDLINK_PREFIX.zlib},\
-					-e s,@libdir@,${BUILDLINK_PREFIX.zlib}/lib${LIBABISUFFIX},\
-					-e s,@VERSION@,${BUILTIN_VERSION.zlib},\
-					-e s,@includedir@,${BUILDLINK_PREFIX.zlib}/include,\
-					-e s,@sharedlibdir@,${BUILDLINK_PREFIX.zlib}/lib,\
-				$${sedsrc} > $${dst};			\
-		fi	\
-	fi
+.    if ${BUILTIN_PKGCONFIG_FOUND.zlib} == "yes"
+BUIDLINK_PREFIX.zlib?=	BUILTIN_PKGCONFIG_PREFIX.zlib
+.    endif
+BUILTIN_FAKE_PC_FILES.zlib=	zlib
+FAKE_PC_SRC.zlib=	../../devel/zlib/files/zlib.pc.in
+FAKE_PC_SUBST_SED.zlib+=	-e s,@VERSION@,${BUILTIN_VERSION.zlib},g
+FAKE_PC_SUBST_SED.zlib+=	-e s,@prefix@,${BUILDLINK_PREFIX.zlib},g
+FAKE_PC_SUBST_SED.zlib+=	-e s,@exec_prefix@,${BUILDLINK_PREFIX.zlib},g
+FAKE_PC_SUBST_SED.zlib+=	-e s,@includedir@,${BUILTIN_HEADER_FOUND_DIR.H_ZLIB},g
+FAKE_PC_SUBST_SED.zlib+=	-e s,@libdir@,${BUILTIN_LIB_FOUND_DIR.z},g
+FAKE_PC_SUBST_SED.zlib+=	-e s,@sharedlibdir@,${BUILTIN_LIB_FOUND_DIR.z},g
 .  endif
 .endif # CHECK_BUILTIN.zlib
