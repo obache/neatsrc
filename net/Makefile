@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1151 2017/03/09 13:54:12 fhajny Exp $
+# $NetBSD: Makefile,v 1.1153 2017/03/14 13:09:55 wiz Exp $
 #
 
 COMMENT=	Networking tools
@@ -381,6 +381,7 @@ SUBDIR+=	nap
 SUBDIR+=	napshare
 SUBDIR+=	nasd
 SUBDIR+=	nbtscan
+SUBDIR+=	ncdc
 SUBDIR+=	ncftp3
 SUBDIR+=	ndpi
 SUBDIR+=	nemesis
@@ -842,6 +843,7 @@ SUBDIR+=	wakeup
 SUBDIR+=	walker
 SUBDIR+=	wap-utils
 SUBDIR+=	waste
+SUBDIR+=	websocketpp
 SUBDIR+=	wget
 SUBDIR+=	wgetpaste
 SUBDIR+=	whatmask

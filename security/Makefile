@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.604 2017/03/10 08:31:56 nils Exp $
+# $NetBSD: Makefile,v 1.606 2017/03/13 11:26:40 leot Exp $
 #
 
 COMMENT=	Security tools
@@ -379,6 +379,7 @@ SUBDIR+=	py-acme-tiny
 SUBDIR+=	py-aes
 SUBDIR+=	py-asn1
 SUBDIR+=	py-asn1-modules
+SUBDIR+=	py-asn1crypto
 SUBDIR+=	py-backports.ssl_match_hostname
 SUBDIR+=	py-bcrypt
 SUBDIR+=	py-certbot
@@ -490,6 +491,7 @@ SUBDIR+=	snortsnarf
 SUBDIR+=	snow
 SUBDIR+=	softhsm
 SUBDIR+=	spiped
+SUBDIR+=	sqlmap
 SUBDIR+=	srm
 SUBDIR+=	srp_client
 SUBDIR+=	ssdeep

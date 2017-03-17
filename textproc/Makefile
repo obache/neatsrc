@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.911 2017/03/08 15:05:14 wiz Exp $
+# $NetBSD: Makefile,v 1.914 2017/03/16 20:07:05 darcy Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -161,6 +161,7 @@ SUBDIR+=	docbook-website
 SUBDIR+=	docbook-xml
 SUBDIR+=	docbook-xsl
 SUBDIR+=	docbook2mdoc
+SUBDIR+=	docbook2odf
 SUBDIR+=	doclifter
 SUBDIR+=	dsssl-docbook-modular
 SUBDIR+=	dtdparse
@@ -757,6 +758,7 @@ SUBDIR+=	py-natsort
 SUBDIR+=	py-numpydoc
 SUBDIR+=	py-openpyxl
 SUBDIR+=	py-pdf-parser
+SUBDIR+=	py-pdfrw
 SUBDIR+=	py-phonenumbers
 SUBDIR+=	py-prettytable
 SUBDIR+=	py-pygments
@@ -765,6 +767,7 @@ SUBDIR+=	py-pyquery
 SUBDIR+=	py-pytoml
 SUBDIR+=	py-rdflib
 SUBDIR+=	py-relatorio
+SUBDIR+=	py-rst2pdf
 SUBDIR+=	py-snowballstemmer
 SUBDIR+=	py-sphinx
 SUBDIR+=	py-sphinx-rtd-theme
