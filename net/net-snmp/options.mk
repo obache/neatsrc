@@ -48,6 +48,7 @@ PLIST.perl=		yes
 USE_TOOLS+=		perl
 PERL5_CONFIGURE=	no
 PERL5_PACKLIST=		auto/Bundle/NetSNMP/.packlist
+PERL5_LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib
 CONFIGURE_ARGS+=	--with-perl-modules=${MAKE_PARAMS:Q}
 CONFIGURE_ENV+=		PERLPROG=${PERL5:Q}
 .include "../../lang/perl5/buildlink3.mk"
