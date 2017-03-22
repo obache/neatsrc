@@ -199,5 +199,4 @@ post-install:
 .endif
 
 .include "../../mk/pthread.buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

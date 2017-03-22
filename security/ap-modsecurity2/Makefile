@@ -50,6 +50,5 @@ post-install:
 
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
-.include "../../devel/readline/buildlink3.mk"
 .include "../../lang/lua/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
