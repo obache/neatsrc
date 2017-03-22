@@ -39,8 +39,8 @@ MASTER_SITE_OSDN+=	\
 	http://osdn.dl.osdn.jp/
 
 MASTER_SITE_PERL_CPAN+= \
-	http://ftp.cpan.org/pub/CPAN/modules/by-module/ \
-	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/
+	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/ \
+	http://ftp.cpan.org/pub/CPAN/modules/by-module/
 
 MASTER_SITE_R_CRAN+=    \
 	http://cran.r-project.org/src/ \
