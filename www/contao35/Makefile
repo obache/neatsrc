@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.24 2017/01/19 14:58:05 taca Exp $
+# $NetBSD: Makefile,v 1.27 2017/03/21 02:37:42 taca Exp $
 #
 
 DISTNAME=	contao-${CT_PKGVER}
@@ -17,16 +17,12 @@ DEPENDS+=	${PHP_PKG_PREFIX}-dom>=5.4.0:../../textproc/php-dom
 DEPENDS+=	${PHP_PKG_PREFIX}-gd>=5.4.0:../../graphics/php-gd
 DEPENDS+=	${PHP_PKG_PREFIX}-mbstring>=5.4.0:../../converters/php-mbstring
 DEPENDS+=	${PHP_PKG_PREFIX}-mysqli>=5.4.0:../../databases/php-mysqli
-DEPENDS+=	${PHP_PKG_PREFIX}-mcrypt>=5.4.0:../../security/php-mcrypt
 DEPENDS+=	${PHP_PKG_PREFIX}-soap>=5.4.0:../../net/php-soap
 DEPENDS+=	${PHP_PKG_PREFIX}-curl>=5.4.0:../../www/php-curl
 DEPENDS+=	${PHP_PKG_PREFIX}-zlib>=5.4.0:../../archivers/php-zlib
 DEPENDS+=	bash>=4.0:../../shells/bash
 
-# mcrypt is deprecated and removed in PHP 7.1.x
-PHP_VERSIONS_ACCEPTED=	56 70
-
-CT_VERSION=	3.5.24
+CT_VERSION=	3.5.25
 USE_TOOLS=	bash pax
 NO_BUILD=	yes
 FILESDIR?=	${.CURDIR}/files
@@ -87,6 +83,14 @@ WWW_SYSFILES=	.htaccess bin config/default.php cron docs helper \
 		initialize.php modules themes
 
 INSTALLATION_DIRS+=	${CT_DOCDIR} ${CT_EGDIR} ${CT_WEBDIR}/system/config
+
+.include "../../lang/php/phpversion.mk"
+
+.if ${PKG_PHP_VERSION} < 71
+DEPENDS+=	${PHP_PKG_PREFIX}-mcrypt>=5.4.0:../../security/php-mcrypt
+.else
+DEPENDS+=	${PHP_PKG_PREFIX}-pecl-mcrypt>=1.0.1:../../security/php-pecl-mcrypt
+.endif
 
 PKG_GROUPS_VARS+=	APACHE_GROUP
 PKG_USERS_VARS+=	APACHE_USER

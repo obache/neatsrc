@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.7 2015/11/04 01:59:52 agc Exp $
+$NetBSD: distinfo,v 1.9 2017/03/18 19:06:19 schmonz Exp $
 
 SHA1 (Text-Markdown-Discount-0.11.tar.gz) = cd0b2bdc3479f90a0f3e68421984bb47f015d1d2
 RMD160 (Text-Markdown-Discount-0.11.tar.gz) = a4484f181746789b7bfb7c0faa95011bb374e383

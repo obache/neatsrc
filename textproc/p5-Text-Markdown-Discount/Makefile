@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2016/06/08 19:24:38 wiz Exp $
+# $NetBSD: Makefile,v 1.14 2017/03/18 19:06:19 schmonz Exp $
 #
 
 DISTNAME=		Text-Markdown-Discount-0.11
@@ -16,6 +16,12 @@ PERL5_PACKLIST=		auto/Text/Markdown/Discount/.packlist
 USE_LANGUAGES=		c
 
 MAKE_JOBS_SAFE=		no
+
+.include "../../mk/bsd.prefs.mk"
+
+.if ${OPSYS} == "Darwin"
+PKG_CPP=		/usr/bin/cpp
+.endif
 
 post-extract:
 	cd ${WRKSRC} && mv discount/VERSION discount/MYVERSION

@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.17 2016/06/08 17:43:36 wiz Exp $
+# $NetBSD: Makefile,v 1.19 2017/03/20 10:49:03 sborrill Exp $
 
 DISTNAME=	Radicale-1.1.1
+PKGREVISION=	2
 CATEGORIES=	net time www
 MASTER_SITES=	${MASTER_SITE_PYPI:=R/Radicale/}
 

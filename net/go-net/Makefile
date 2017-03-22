@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2017/03/16 19:14:19 bsiegert Exp $
+# $NetBSD: Makefile,v 1.15 2017/03/20 22:53:45 bsiegert Exp $
 
 DISTNAME=		go-net-20170308
 CATEGORIES=		net
