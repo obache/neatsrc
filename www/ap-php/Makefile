@@ -17,6 +17,10 @@ MESSAGE_SUBST+=		PKG_PHP_MAJOR_VERS=${PKG_PHP_MAJOR_VERS}
 # Ensure we export symbols in the linked shared object.
 CONFIGURE_ENV+=		EXTRA_LDFLAGS=${EXPORT_SYMBOLS_LDFLAGS:M*:Q}
 
+CONFIGURE_ARGS+=	--disable-cgi
+
+BUILD_TARGET=		libphp${PKG_PHP_MAJOR_VERS}.la
+
 INSTALLATION_DIRS=	lib/httpd
 
 do-install:
