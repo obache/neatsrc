@@ -20,6 +20,11 @@ FPM_GROUP?=		${APACHE_GROUP}
 
 BUILD_DEFS+=		VARBASE FPM_USER FPM_GROUP
 
+BUILD_TARGET=		fpm
+INSTALL_TARGET=		install-fpm
+INSTALL_MAKE_FLAGS+=	sysconfdir=${EGDIR}
+DESTDIR_VARNAME=	INSTALL_ROOT
+
 PKG_USERS_VARS=		FPM_USER
 PKG_GROUPS_VARS=	FPM_GROUP
 PKG_GROUPS=		${FPM_GROUP}
@@ -29,17 +34,15 @@ PKG_GECOS.${FPM_USER}=	PHP FPM daemon user
 PKG_SHELL.${FPM_USER}=	${NOLOGIN}
 
 EGDIR=			${PREFIX}/share/examples/php
-CONF_FILES=		${EGDIR}/php-fpm.conf ${PKG_SYSCONFDIR}/php-fpm.conf
-AUTO_MKDIRS=		yes
+CONF_FILES=		${EGDIR}/php-fpm.conf.default ${PKG_SYSCONFDIR}/php-fpm.conf
 
 .include "../../lang/php/phpversion.mk"
 
 PLIST_VARS+=		fpmdotd
 
 .if ${PKG_PHP_VERSION} >= 70
-CONF_FILES+=		${EGDIR}/php-fpm.d/www.conf ${PKG_SYSCONFDIR}/php-fpm.d/www.conf
+CONF_FILES+=		${EGDIR}/php-fpm.d/www.conf.default ${PKG_SYSCONFDIR}/php-fpm.d/www.conf
 OWN_DIRS+=		${PKG_SYSCONFDIR}/php-fpm.d
-INSTALLATION_DIRS+=	${EGDIR}/php-fpm.d
 PLIST.fpmdotd=		yes
 .endif
 
@@ -51,14 +54,6 @@ SMF_NAME=		php-fpm
 RCD_SCRIPTS=		php_fpm
 MESSAGE_SUBST+=		CGIDIR=${CGIDIR}
 MESSAGE_SUBST+=		VARBASE=${VARBASE}
-
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/sapi/fpm/php-fpm ${DESTDIR}${PREFIX}/sbin/php-fpm
-	${INSTALL_MAN} ${WRKSRC}/sapi/fpm/php-fpm.8 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man8/
-	${INSTALL_DATA} ${WRKSRC}/sapi/fpm/php-fpm.conf ${DESTDIR}${EGDIR}
-.if ${PKG_PHP_VERSION} >= 70
-	${INSTALL_DATA} ${WRKSRC}/sapi/fpm/www.conf ${DESTDIR}${EGDIR}/php-fpm.d
-.endif
 
 .include "${PHPPKGSRCDIR}/Makefile.php"
 .include "${PHPPKGSRCDIR}/buildlink3.mk"
