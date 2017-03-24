@@ -248,7 +248,6 @@ share/doc/cyrus-imapd/html/_sources/imap/concepts/features/authentication-kerber
 share/doc/cyrus-imapd/html/_sources/imap/concepts/features/authentication-ldap.txt
 share/doc/cyrus-imapd/html/_sources/imap/concepts/features/authentication-sql.txt
 share/doc/cyrus-imapd/html/_sources/imap/concepts/features/automatic-creation-of-mailboxes.txt
-share/doc/cyrus-imapd/html/_sources/imap/concepts/features/caldav-collection-mgmt.txt
 share/doc/cyrus-imapd/html/_sources/imap/concepts/features/caldav-collections.txt
 share/doc/cyrus-imapd/html/_sources/imap/concepts/features/carddav.txt
 share/doc/cyrus-imapd/html/_sources/imap/concepts/features/dav-collection-mgmt.txt
@@ -377,6 +376,7 @@ share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.0-rc1.
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.0-rc2.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.0-rc3.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.0-rc4.txt
+share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.0.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/index.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/upgrade.txt
 share/doc/cyrus-imapd/html/_sources/imap/index.txt
@@ -649,7 +649,6 @@ share/doc/cyrus-imapd/html/imap/concepts/features/authentication-kerberos.html
 share/doc/cyrus-imapd/html/imap/concepts/features/authentication-ldap.html
 share/doc/cyrus-imapd/html/imap/concepts/features/authentication-sql.html
 share/doc/cyrus-imapd/html/imap/concepts/features/automatic-creation-of-mailboxes.html
-share/doc/cyrus-imapd/html/imap/concepts/features/caldav-collection-mgmt.html
 share/doc/cyrus-imapd/html/imap/concepts/features/caldav-collections.html
 share/doc/cyrus-imapd/html/imap/concepts/features/carddav.html
 share/doc/cyrus-imapd/html/imap/concepts/features/dav-collection-mgmt.html
@@ -778,6 +777,7 @@ share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.0-rc1.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.0-rc2.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.0-rc3.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.0-rc4.html
+share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.0.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/index.html
 share/doc/cyrus-imapd/html/imap/download/upgrade.html
 share/doc/cyrus-imapd/html/imap/index.html
@@ -1054,7 +1054,6 @@ share/doc/cyrus-imapd/text/imap/concepts/features/authentication-kerberos.txt
 share/doc/cyrus-imapd/text/imap/concepts/features/authentication-ldap.txt
 share/doc/cyrus-imapd/text/imap/concepts/features/authentication-sql.txt
 share/doc/cyrus-imapd/text/imap/concepts/features/automatic-creation-of-mailboxes.txt
-share/doc/cyrus-imapd/text/imap/concepts/features/caldav-collection-mgmt.txt
 share/doc/cyrus-imapd/text/imap/concepts/features/caldav-collections.txt
 share/doc/cyrus-imapd/text/imap/concepts/features/carddav.txt
 share/doc/cyrus-imapd/text/imap/concepts/features/dav-collection-mgmt.txt
@@ -1183,6 +1182,7 @@ share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.0-rc1.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.0-rc2.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.0-rc3.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.0-rc4.txt
+share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.0.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/index.txt
 share/doc/cyrus-imapd/text/imap/download/upgrade.txt
 share/doc/cyrus-imapd/text/imap/index.txt

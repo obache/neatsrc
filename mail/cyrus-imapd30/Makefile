@@ -1,7 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	cyrus-imapd-3.0.0-rc4
-PKGNAME=	${DISTNAME:S/-rc/rc/}
+DISTNAME=	cyrus-imapd-3.0.0
 CATEGORIES=	mail
 MASTER_SITES=	http://cyrusimap.org/releases/
 
