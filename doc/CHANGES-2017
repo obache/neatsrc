@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.1316 2017/03/24 03:43:52 taca Exp $
+$NetBSD: CHANGES-2017,v 1.1325 2017/03/26 04:13:57 ryoon Exp $
 
 [Now in freeze for 2017Q1.]
 
@@ -1606,3 +1606,12 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated print/ghostscript-gpl to 9.06nb10 [tez 2017-03-23]
 	Updated net/ntp4 to 4.2.8p10 [taca 2017-03-24]
 	Updated www/contao43 to 4.3.7 [taca 2017-03-24]
+	Updated benchmarks/google-benchmark to 1.1.0nb1 [joerg 2017-03-24]
+	Updated net/parpd to 1.7 [roy 2017-03-24]
+	Removed multimedia/realplayer-codecs [wiz 2017-03-24]
+	Updated www/php-owncloud to 9.1.4 [ryoon 2017-03-26]
+	Updated www/firefox45 to 45.8.0 [ryoon 2017-03-26]
+	Updated www/firefox45-l10n to 45.8.0 [ryoon 2017-03-26]
+	Updated devel/xulrunner45 to 45.8.0 [ryoon 2017-03-26]
+	Updated mail/thunderbird to 45.8.0 [ryoon 2017-03-26]
+	Updated mail/thunderbird-l10n to 45.8.0 [ryoon 2017-03-26]
