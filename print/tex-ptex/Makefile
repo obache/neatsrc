@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.7 2017/03/25 14:27:00 mef Exp $
+# $NetBSD: Makefile,v 1.9 2017/03/26 20:10:11 markd Exp $
 
 DISTNAME=	ptex
 PKGNAME=	tex-${DISTNAME}-3.2pl41220
-PKGREVISION=	1
+PKGREVISION=	3
 TEXLIVE_REV=	41220
 
 MAINTAINER=	minskim@NetBSD.org
@@ -24,22 +24,9 @@ DEPENDS+=	tex-tex-[0-9]*:../../print/tex-tex
 DEPENDS+=	tex-babel-[0-9]*:../../print/tex-babel
 DEPENDS+=	web2c>=2010nb5:../../print/web2c
 
-#PKG_SYSCONFSUBDIR=	texmf
-
-INSTALLATION_DIRS+=	bin
-
-TEX_FORMATS+=		"ptex ptex - ptex.ini\\neptex eptex language.def *eptex.ini\\nplatex eptex language.dat *platex.ini\\n"
+TEX_FORMATS+=		"ptex ptex - ptex.ini\\neptex eptex language.def *eptex.ini\\n"
 TEX_KANJIMAP_FILES+=	morisawa.map
-#TEX_TEXMF_DIRS+=	${PKG_SYSCONFDIR}
-#TEX_TEXMF_DIRS+=	${PREFIX}/share/texmf-dist
 
 .include "../../print/texlive/package.mk"
-
-pre-patch:
-	${CP} -pr ${FILESDIR}/texmf-dist ${WRKSRC}
-	${FIND}   ${WRKSRC}/texmf-dist -type d -name CVS -exec ${RM} -rf '{}' \;
-
-post-install:
-	${LN} -sf eptex ${DESTDIR}${PREFIX}/bin/platex
 
 .include "../../mk/bsd.pkg.mk"
