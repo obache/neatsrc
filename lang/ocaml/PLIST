@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.37 2017/03/23 18:23:58 jperkin Exp $
+@comment $NetBSD: PLIST,v 1.39 2017/03/27 12:51:58 jperkin Exp $
 bin/ocaml
 bin/ocamlc
 bin/ocamlc.byte
@@ -1189,9 +1189,6 @@ lib/ocaml/random.ml
 lib/ocaml/random.mli
 lib/ocaml/ratio.cmi
 lib/ocaml/ratio.mli
-${PLIST.LP64}lib/ocaml/raw_spacetime_lib.cma
-${PLIST.LP64}lib/ocaml/raw_spacetime_lib.cmi
-${PLIST.LP64}lib/ocaml/raw_spacetime_lib.mli
 lib/ocaml/scanf.cmi
 lib/ocaml/scanf.cmt
 lib/ocaml/scanf.cmti
@@ -1227,7 +1224,11 @@ lib/ocaml/std_exit.cmo
 lib/ocaml/std_exit.cmt
 lib/ocaml/std_exit.ml
 lib/ocaml/std_exit.o
+lib/ocaml/std_exit.p.cmx
+lib/ocaml/std_exit.p.o
 lib/ocaml/stdlib.cma
+lib/ocaml/stdlib.p.a
+lib/ocaml/stdlib.p.cmxa
 lib/ocaml/str.cma
 lib/ocaml/str.cmi
 lib/ocaml/str.mli
