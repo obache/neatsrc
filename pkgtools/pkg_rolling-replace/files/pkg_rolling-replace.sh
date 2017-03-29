@@ -164,6 +164,15 @@ check_packages_mismatched()
                     echo "${OPC} $pkg - $pkgname build_version mismatch" 1>&2
                     echo "$pkg"
                 fi
+            elif [ -n "$opt_U" ]; then
+		oldosver=$(${PKG_INFO} -Q OS_VERSION $pkgname)
+                if [ -z "$newosver" ]; then
+		    newosver=$(cd ${PKGSRCDIR}/$pkgdir && @SETENV@ PKGNAME_REQD="$pkg-*" ${MAKE} show-var VARNAME=OS_VERSION)
+                fi
+                if [ "$oldosver" != "$newosver" ]; then
+                    echo "${OPC} $pkgdir - $pkgname OS_VERSION mismatch $oldosver < $newosver" 1>&2
+                    echo "$pkg"
+                fi
             fi
         fi
     done
@@ -337,7 +346,7 @@ EXCLUDE=
 MAKE_VAR="IN_PKG_ROLLING_REPLACE=1"
 MAKE_VAR_SEP=" "
 
-args=$(getopt BFhknursvD:x:X:L: $*)
+args=$(getopt BFhknuUrsvD:x:X:L: $*)
 if [ $? -ne 0 ]; then
     opt_h=1
 fi
@@ -352,6 +361,7 @@ while [ $# -gt 0 ]; do
         -r) opt_r=1 ;;
         -s) opt_s=1 ;;
         -u) opt_u=1 ;;
+        -U) opt_U=1 ;;
         -v) opt_v=1 ;;
 	-D) MAKE_VAR="${MAKE_VAR}${MAKE_VAR_SEP}$2"; MAKE_VAR_SEP=" "; shift ;;
         -x) EXCLUDE="$EXCLUDE $(echo $2 | sed 's/,/ /g')" ; shift ;;
