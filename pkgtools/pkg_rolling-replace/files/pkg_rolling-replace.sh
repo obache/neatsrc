@@ -109,6 +109,8 @@ usage()
         -r         Just replace, don't create binary packages
         -s         Replace even if the ABIs are still compatible ("strict")
         -u         Update outdated packages
+        -U         Include OS_VERSION when determining outdated packages
+                   (only applies with -u)
         -v         Verbose
 	-D VAR=VAL Passes given variables and values to make
         -L <path>  Log to path (<path>/pkgdir/pkg)
