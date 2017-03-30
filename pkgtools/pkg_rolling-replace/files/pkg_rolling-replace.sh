@@ -480,8 +480,13 @@ while [ -n "$REPLACE_TODO" ]; do
 	cd "$PKGSRCDIR/$pkgdir"
 	deps=$(@SETENV@ ${MAKE_SET_VARS} ${MAKE} show-depends VARNAME=ALL_DEPENDS)
 	for depver in $deps; do
-	    dep=$(echo $depver | sed -e 's/[:[].*$/0/' -e 's/[<>]=/-/' \
-		-e 's/-[0-9][^-]*$//')
+            if (echo $depver | grep -q -e '{' ); then
+	        deppkgdir=$(echo $depver | sed -e 's/^[^:]*://')
+                dep=$(cd $deppkgdir && @SETENV@ ${MAKE} show-var VARNAME=PKGBASE)
+	    else
+		dep=$(echo $depver | sed -e 's/[:[].*$/0/' -e 's/[<>]=/-/' \
+		    -e 's/-[0-9][^-]*$//')
+            fi
 	    if ! is_member $dep $OLD_DEPENDS $NEW_DEPENDS; then
 		NEW_DEPENDS="$NEW_DEPENDS $dep"
 		DEPGRAPH_SRC="$DEPGRAPH_SRC $dep $pkg"
