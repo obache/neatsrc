@@ -441,7 +441,7 @@ while [ -n "$REPLACE_TODO" ]; do
     [ -n "$pkgdir" ] || abort "pkg_chk reports the following packages need replacing, but they are not installed: $REPLACE_TODO"
 
     echo "${OPI} Selecting $pkg ($pkgdir) as next package to replace"
-    sleep 1
+    vsleep 1
 
     # Newer versions in pkgsrc sometimes have more depends than are
     # recorded for the installed version (this is entirely to be
@@ -489,7 +489,7 @@ while [ -n "$REPLACE_TODO" ]; do
 	if [ -n "$NEW_DEPENDS" ]; then
 	    echo "${OPI} $pkg has the following new depends (need to re-tsort):"
 	    echo "${OPC} [$(echo $NEW_DEPENDS)]"
-	    sleep 2
+	    vsleep 2
 	    continue
 	fi
     fi
@@ -594,7 +594,7 @@ while [ -n "$REPLACE_TODO" ]; do
         mark_as_succeeded $pkg
     fi
 
-    sleep 1
+    vsleep 1
 
     # remove just-replaced package from all *_TODO lists
     MISMATCH_TODO=$(exclude $pkg --from $MISMATCH_TODO)
@@ -609,7 +609,7 @@ while [ -n "$REPLACE_TODO" ]; do
 	# would have done (approximately).
         UNSAFE_TODO=$(uniqify $UNSAFE_TODO \
             $(who_requires $pkg --in-graph $DEPGRAPH_INSTALLED))
-        sleep 1
+        vsleep 1
     else
         UNSAFE_TODO=$(check_packages_w_flag ${UNSAFE_VAR})
     fi
