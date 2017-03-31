@@ -37,7 +37,7 @@ CHECK_FILES?=		no
 CHECK_FILES_STRICT?=	no
 
 # Info index files updated when a new info file is added.
-CHECK_FILES_SKIP+=	${PREFIX}/.*/dir
+CHECK_FILES_SKIP+=	${PREFIX}/${INFO_DIR:U${PKGINFODIR}}/dir
 
 # Perl's perllocal.pod index that is regenerated when a local module
 # is added.
