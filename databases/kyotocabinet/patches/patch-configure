@@ -64,3 +64,12 @@ $NetBSD: patch-configure,v 1.2 2015/02/19 14:09:32 joerg Exp $
  printf 'checking for useless warnings... '
  if printf 'main() {}' | $CC -xc \
    -Wno-unused-but-set-variable -Wno-unused-but-set-parameter -o config.tmp - >config.tmp 2>&1
+@@ -4533,6 +4508,8 @@ if test "$is_static" = "yes"
+ then
+   MYCMDLDFLAGS="$MYCMDLDFLAGS -static"
+   MYCMDLIBS="$MYCMDLIBS $LIBS"
++else
++  MYCMDLDFLAGS="$MYCMDLDFLAGS $COMPILER_RPATH_FLAG\$(LIBDIR)"
+ fi
+ 
+ # As-needed linking
