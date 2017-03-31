@@ -6,4 +6,5 @@ SHA512 (kyotocabinet-1.2.76.tar.gz) = 278db7b327eb4c21bf0137d9aa14fb67d74d5ce7ed
 Size (kyotocabinet-1.2.76.tar.gz) = 951930 bytes
 SHA1 (patch-configure) = 67f2a01332236f7db88a5714ced8662b1c82a467
 SHA1 (patch-kccommon.h) = 912f384b6a65673c9aaccc11e0b67d91265c44e5
+SHA1 (patch-kcdbext.h) = 677b5aff97af9af70bd788f5d7db477504861bb1
 SHA1 (patch-kcthread.cc) = d09d280cd9589b10bbc10b29dc51d40ce074cc7f
