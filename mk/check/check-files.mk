@@ -81,7 +81,7 @@ CHECK_FILES_SKIP+=	${d:C/^([^\/])/${PREFIX}\/\1/}.*
 .endfor
 
 # Mutable X11 font database files
-CHECK_FILES_SKIP+=	${PREFIX}/.*/encodings.dir
+CHECK_FILES_SKIP+=	${FONTS_DIRS.x11:=/encodings.dir}
 CHECK_FILES_SKIP+=	${PREFIX}/.*/fonts.dir
 CHECK_FILES_SKIP+=	${PREFIX}/.*/fonts.scale
 CHECK_FILES_SKIP+=	${PREFIX}/.*/fonts.cache-1
