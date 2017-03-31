@@ -58,7 +58,6 @@ LINUX_LDCONFIG=		${EMULDIR}/usr/sbin/ldconfig
 
 INSTALLATION_DIRS+=	${EMULDIR}/etc ${EMULDIR}/dev/shm ${EMULDIR}/var/lock
 INSTALLATION_DIRS+=	sbin
-OWN_DIRS+=		${EMULSUBDIR}
 
 SUBST_CLASSES+=		suse
 SUBST_STAGE.suse=	do-build

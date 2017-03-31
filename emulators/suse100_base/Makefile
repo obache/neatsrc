@@ -25,7 +25,6 @@ LINUX_LDD=		${EMULDIR}/usr/bin/ldd
 LINUX_LDCONFIG=		${EMULDIR}/usr/sbin/ldconfig
 
 INSTALLATION_DIRS+=	sbin emul/linux/etc
-OWN_DIRS+=		${EMULSUBDIR}
 
 SUBST_CLASSES+=		suse
 SUBST_STAGE.suse=	do-build
