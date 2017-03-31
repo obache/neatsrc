@@ -4,7 +4,7 @@
 DISTNAME=	libpgm-5.2.122
 PKGNAME=	${DISTNAME:S/lib/open/}
 CATEGORIES=	net
-MASTER_SITES=	http://openpgm.googlecode.com/files/
+MASTER_SITES=	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/openpgm/
 
 HOMEPAGE=	http://code.google.com/p/openpgm/
 COMMENT=	Open source implementation of the Pragmatic General Multicast
