@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.1355 2017/03/31 07:26:53 adam Exp $
+$NetBSD: CHANGES-2017,v 1.1363 2017/03/31 21:19:08 roy Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -1658,3 +1658,10 @@ Changes to the packages collection and infrastructure in 2017:
 	Added devel/py-cyordereddict version 1.0.0 [minskim 2017-03-31]
 	Updated pkgtools/pkg_rolling-replace to 0.24.3 [tron 2017-03-31]
 	Updated print/ghostscript-agpl to 9.21 [adam 2017-03-31]
+	Updated security/gpgme to 1.8.0 [wiz 2017-03-31]
+	Updated x11/libdrm to 2.4.76 [wiz 2017-03-31]
+	Updated mail/qmail to 1.03nb25 [schmonz 2017-03-31]
+	Updated devel/scmcvs to 1.12.13nb4 [jakllsch 2017-03-31]
+	Updated devel/re2 to 20170301 [fhajny 2017-03-31]
+	Added net/dnsdist version 1.1.0 [fhajny 2017-03-31]
+	Updated net/dhcpcd to 7.0.0beta1 [roy 2017-03-31]
