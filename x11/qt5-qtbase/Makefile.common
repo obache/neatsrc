@@ -60,5 +60,5 @@ SCRIPTS_ENV+=		HOME=${WRKDIR}
 	&& empty(PKGPATH:Mx11/qt5-odbc) && empty(PKGPATH:Mx11/qt5-mysql) \
 	&& empty(PKGPATH:Mx11/qt5-psql) && empty(PKGPATH:Mx11/qt5-sqlite3)
 do-configure:
-	cd ${WRKSRC} && ${QTPREFIX}/bin/qmake -o Makefile
+	${RUN}cd ${WRKSRC};${SETENV} ${CONFIGURE_ENV} ${QTPREFIX}/bin/qmake -o Makefile
 .endif
