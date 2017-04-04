@@ -4,3 +4,4 @@ SHA1 (adwaita-icon-theme-3.22.0.tar.xz) = cc90236ea7ef41eb347f590d5a59f0624b66c8
 RMD160 (adwaita-icon-theme-3.22.0.tar.xz) = 2d215e67a239a90f968bebe90bbb5ae5c9c3ca54
 SHA512 (adwaita-icon-theme-3.22.0.tar.xz) = 33d5eab0a7295069bb3cc8939bebeed0bad8ff72bfe42b0a90e616190ce519e7d7e2b4e9e4c145d04911ea37c205c12ca39972fd00e6ef34271b66a25ff24983
 Size (adwaita-icon-theme-3.22.0.tar.xz) = 18395856 bytes
+SHA1 (patch-Adwaita_scalable_actions_send-to-symbolic.svg) = 9328ace27ace63db3f98266e233d7f79bc2c4f07
