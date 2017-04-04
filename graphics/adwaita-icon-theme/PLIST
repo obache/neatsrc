@@ -2186,7 +2186,6 @@ share/icons/Adwaita/256x256/places/folder-videos.png
 share/icons/Adwaita/256x256/places/folder.png
 share/icons/Adwaita/256x256/places/network-server.png
 share/icons/Adwaita/256x256/places/network-workgroup.png
-share/icons/Adwaita/256x256/places/start-here.png
 share/icons/Adwaita/256x256/places/user-bookmarks.png
 share/icons/Adwaita/256x256/places/user-desktop.png
 share/icons/Adwaita/256x256/places/user-home.png
@@ -4667,7 +4666,6 @@ share/icons/Adwaita/96x96/places/folder-videos-symbolic.symbolic.png
 share/icons/Adwaita/96x96/places/network-server-symbolic.symbolic.png
 share/icons/Adwaita/96x96/places/network-workgroup-symbolic.symbolic.png
 share/icons/Adwaita/96x96/places/start-here-symbolic.symbolic.png
-share/icons/Adwaita/96x96/places/start-here.png
 share/icons/Adwaita/96x96/places/user-bookmarks-symbolic.symbolic.png
 share/icons/Adwaita/96x96/places/user-desktop-symbolic.symbolic.png
 share/icons/Adwaita/96x96/places/user-home-symbolic.symbolic.png
