@@ -270,6 +270,8 @@ share/locale/vi_VN/LC_MESSAGES/libvirt.mo
 share/locale/zh_CN/LC_MESSAGES/libvirt.mo
 share/locale/zh_TW/LC_MESSAGES/libvirt.mo
 share/locale/zu/LC_MESSAGES/libvirt.mo
+${PLIST.polkit}share/polkit-1/actions/org.libvirt.api.policy
+${PLIST.polkit}share/polkit-1/actions/org.libvirt.unix.policy
 @pkgdir share/examples/libvirt/nwfilter
 @pkgdir        etc/libvirt/qemu/networks/autostart
 @pkgdir        etc/logrotate.d
