@@ -18,14 +18,6 @@ USE_LIBTOOL=		yes
 
 BUILD_DEFS+=		VARBASE
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-xml
-
-PY_PATCHPLIST=		yes
-REPLACE_PYTHON+=	docs/apibuild.py
-REPLACE_PYTHON+=	src/esx/esx_vi_generator.py
-REPLACE_PYTHON+=	src/hyperv/hyperv_wmi_generator.py
-REPLACE_PYTHON+=	src/util/virkeycode-mapgen.py
-
 EGDIR=			${PREFIX}/share/examples
 CONF_FILES+=		${EGDIR}/libvirt/libvirtd.conf ${PKG_SYSCONFDIR}/libvirt/libvirtd.conf
 CONF_FILES+=		${EGDIR}/libvirt/qemu/networks/autostart/default.xml ${PKG_SYSCONFDIR}/libvirt/qemu/networks/autostart/default.xml
@@ -41,9 +33,6 @@ RCD_SCRIPTS=		libvirtd
 
 .include "options.mk"
 
-.include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
-
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/yajl/buildlink3.mk"
@@ -53,7 +42,6 @@ RCD_SCRIPTS=		libvirtd
 .include "../../security/cyrus-sasl/buildlink3.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
-.include "../../textproc/py-xml/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 
 .include "../../mk/pthread.buildlink3.mk"
