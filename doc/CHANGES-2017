@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.1374 2017/04/03 01:41:48 wen Exp $
+$NetBSD: CHANGES-2017,v 1.1382 2017/04/04 07:51:09 schmonz Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -1677,3 +1677,11 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated www/p5-HTML-Selector-XPath to 0.23 [wen 2017-04-03]
 	Updated www/p5-HTML-TreeBuilder-LibXML to 0.26 [wen 2017-04-03]
 	Updated www/p5-HTTP-Async to 0.33 [wen 2017-04-03]
+	Updated www/squid3 to 3.5.25 [adam 2017-04-03]
+	Updated net/py-lexicon to 2.0.5 [fhajny 2017-04-03]
+	Updated databases/py-elasticsearch to 5.3.0 [fhajny 2017-04-03]
+	Added devel/py-bugzilla version 2.1.0 [joerg 2017-04-03]
+	Updated net/haproxy to 1.7.5 [morr 2017-04-03]
+	Updated mail/queue-fix to 1.4nb1 [schmonz 2017-04-04]
+	Updated mail/qmail to 1.03nb26 [schmonz 2017-04-04]
+	Updated mail/qmail-run to 20170404 [schmonz 2017-04-04]
