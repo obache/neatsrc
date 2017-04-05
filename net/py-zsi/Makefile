@@ -10,11 +10,9 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://pywebsvcs.sourceforge.net/
 COMMENT=	SOAP implementation
 
-DEPENDS+=	${PYPKGPREFIX}-xml>=0.8.3:../../textproc/py-xml
+DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
 USE_LANGUAGES=	# none
-
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-xml
 
 post-extract:
 	${MV} ${WRKSRC}/scripts/wsdl2py \
