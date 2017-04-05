@@ -10,12 +10,15 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.pycage.de/\#gdeskcal
 COMMENT=	Desktop calendar
 
+DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
+DEPENDS+=	${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
+
 WRKSRC=		${WRKDIR}/gDeskCal-0.57.1
 NO_BUILD=	yes
 
 REPLACE_PYTHON=	gdeskcal
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-xml, py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2
 
 INSTALLATION_DIRS=	bin lib/gdeskcal
 
@@ -27,7 +30,5 @@ do-install:
 	${PY_COMPILE_ALL} ${DESTDIR}${PREFIX}/lib/gdeskcal/code
 	${LN} -s ../lib/gdeskcal/gdeskcal ${DESTDIR}${PREFIX}/bin
 
-.include "../../x11/py-gtk2/buildlink3.mk"
-.include "../../textproc/py-xml/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"
