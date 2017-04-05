@@ -814,6 +814,9 @@ sub load_dist_sites() {
 				}
 			}
 
+		} elsif ($text =~ m"^\t\$\{MASTER_SITE_[^:]+:=(.*)\}(\s+\\)?$") {
+			# ignore ${MASTER_SITE_*} in MASTER_SITE_*
+
 		} elsif ($text =~ m"^(?:#.*|\s*)$") {
 			# ignore empty and comment lines
 
