@@ -11,10 +11,10 @@ LICENSE=	2-clause-bsd
 
 DEPENDS+=	${PYPKGPREFIX}-boto>=2.2:../../net/py-boto
 DEPENDS+=	${PYPKGPREFIX}-m2crypto>=0.20.2:../../security/py-m2crypto
-DEPENDS+=	${PYPKGPREFIX}-xml-[0-9]*:../../textproc/py-xml
+DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 DEPENDS+=	help2man-[0-9]*:../../converters/help2man
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-xml, py-m2crypto
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-m2crypto
 
 #USE_LANGUAGES=	# none
 
