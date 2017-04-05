@@ -15,11 +15,9 @@ COMMENT=		Next-generation web application templating system
 LICENSE=		mit
 
 DEPENDS+=		${PYPKGPREFIX}-twisted>=1.3.0:../../net/py-twisted
-DEPENDS+=		${PYPKGPREFIX}-xml>=0.8.3:../../textproc/py-xml
+DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
 REPLACE_PYTHON=		nevow/test/segfault.py
-
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-xml
 
 INSTALLATION_DIRS+=	share/doc
 
