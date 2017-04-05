@@ -25,13 +25,12 @@ REPLACE_PYTHON+=	zenmap/zenmapCore/*.py
 REPLACE_PYTHON+=	zenmap/zenmapGUI/*.py
 REPLACE_PYTHON+=	zenmap/zenmapGUI/higwidgets/*.py
 REPLACE_PYTHON+=	zenmap/test/*.py
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-xml, py-sqlite2, py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2
+DEPENDS+=	${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
+DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
+DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
-.include "../../x11/py-gtk2/buildlink3.mk"
-.include "../../databases/py-sqlite2/buildlink3.mk"
-.include "../../textproc/py-xml/buildlink3.mk"
-.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .else
 CONFIGURE_ARGS+=	--without-zenmap
 .endif
