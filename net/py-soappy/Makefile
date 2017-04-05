@@ -11,11 +11,9 @@ HOMEPAGE=	http://pywebsvcs.sourceforge.net/
 COMMENT=	SOAP implementation
 
 DEPENDS+=	${PYPKGPREFIX}-fpconst>=0.6.0:../../math/py-fpconst
-DEPENDS+=	${PYPKGPREFIX}-xml>=0.8.3:../../textproc/py-xml
+DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
 USE_LANGUAGES=	# empty
-
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-xml
 
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
