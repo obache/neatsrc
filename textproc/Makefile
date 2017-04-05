@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.915 2017/03/19 15:26:33 taca Exp $
+# $NetBSD: Makefile,v 1.917 2017/04/04 11:34:15 wiz Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -734,6 +734,7 @@ SUBDIR+=	py-generateDS
 SUBDIR+=	py-gnosis-utils
 SUBDIR+=	py-html2text
 SUBDIR+=	py-html5lib
+SUBDIR+=	py-humanize
 SUBDIR+=	py-iniparse
 SUBDIR+=	py-jinja2
 SUBDIR+=	py-jsonlib
@@ -773,6 +774,7 @@ SUBDIR+=	py-sphinx
 SUBDIR+=	py-sphinx-rtd-theme
 SUBDIR+=	py-sphinx-theme-cloud
 SUBDIR+=	py-sphinxcontrib-newsfeed
+SUBDIR+=	py-tabulate
 SUBDIR+=	py-textile
 SUBDIR+=	py-tinycss
 SUBDIR+=	py-uritemplate

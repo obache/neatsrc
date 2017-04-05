@@ -1,4 +1,4 @@
-# $NetBSD: builtin.mk,v 1.12 2014/01/14 20:34:49 bsiegert Exp $
+# $NetBSD: builtin.mk,v 1.13 2017/04/04 08:57:33 adam Exp $
 
 BUILTIN_PKG:=	zlib
 
@@ -42,7 +42,7 @@ BUILTIN_VERSION.zlib!=							\
 		}							\
 	' ${H_ZLIB:Q}
 .  endif
-BUILTIN_PKG.zlib=      zlib-${BUILTIN_VERSION.zlib:C/-[A-Za-z]*//}
+BUILTIN_PKG.zlib=	zlib-${BUILTIN_VERSION.zlib:C/-[A-Za-z]*//}
 
 .endif
 MAKEVARS+=	BUILTIN_PKG.zlib
@@ -87,7 +87,7 @@ USE_BUILTIN.zlib=	no
 ### The section below only applies if we are not including this file
 ### solely to determine whether a built-in implementation exists.
 ###
-CHECK_BUILTIN.zlib?=    no
+CHECK_BUILTIN.zlib?=	no
 .if !empty(CHECK_BUILTIN.zlib:M[nN][oO])
 .  if !empty(USE_BUILTIN.zlib:M[yY][eE][sS])
 .    if ${BUILTIN_PKGCONFIG_FOUND.zlib} == "yes"
