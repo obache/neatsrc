@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.8 2016/09/20 12:03:57 wiz Exp $
+# $NetBSD: Makefile.common,v 1.10 2017/04/05 14:22:20 mef Exp $
 #
 # used by security/libprelude/Makefile
 # used by security/libprelude-lua/Makefile

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.79 2017/03/31 10:31:57 wiz Exp $
+# $NetBSD: Makefile,v 1.81 2017/04/05 09:31:18 wiz Exp $
 
 DISTNAME=	gpgme-1.8.0
 CATEGORIES=	security
@@ -15,6 +15,10 @@ GNU_CONFIGURE=		yes
 PTHREAD_OPTS+=		require
 INFO_FILES=		yes
 
+# turn off swig/python detection; there is no configure flag as of 1.8.0
+# https://dev.gnupg.org/T3057
+CONFIGURE_ENV+=		ac_cv_path_SWIG=
+
 SUBST_CLASSES+=		pthread
 SUBST_FILES.pthread=	src/gpgme-config.in
 SUBST_SED.pthread+=	-e 's,@PTHREAD_LIBS@,${PTHREAD_LDFLAGS} ${PTHREAD_LIBS},g'
@@ -27,6 +31,8 @@ LIBS.SunOS+=		-lnsl -lsocket
 # in either base system or librfuncs
 CONFIGURE_ENV+=		ac_cv_func_getenv_r=yes
 
+# 17 errors as of 1.8.0
+# https://dev.gnupg.org/T3056
 TEST_TARGET=		check
 
 .include "../../mk/pthread.buildlink3.mk"

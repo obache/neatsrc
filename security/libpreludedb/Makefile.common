@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.4 2013/02/01 22:21:11 wiz Exp $
+# $NetBSD: Makefile.common,v 1.6 2017/04/05 14:22:20 mef Exp $
 #
 # used by security/libpreludedb/Makefile
 # used by security/libpreludedb-mysql/Makefile

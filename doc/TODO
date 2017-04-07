@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.17203 2017/04/04 14:12:25 wiz Exp $
+$NetBSD: TODO,v 1.17230 2017/04/06 13:56:38 mef Exp $
 
 Suggested new packages
 ======================
@@ -377,7 +377,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o R-maps-3.1.0
 	o R-ncdf-1.6.8
 	o SOPE-3.0.2
-	o Sigil-0.9.8
 	o TiffIO-140a
 	o YoSucker-81
 	o abcmidi-20160505
@@ -408,6 +407,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o angband-3.2
 	o anjuta-3.16.0
 	o anope-1.8.7
+	o ant-contrib-1.0b3
 	o antiright-8.6
 	o ap-Embperl-1.3.6
 	o ap-auth-pam-1.1.1
@@ -540,7 +540,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cyrus-imapd-2.5.4
 	o cyrus-imapd23-2.3.19
 	o cyrus-imapd24-2.4.18
-	o dact-0.8.42
 	o dap-3.10
 	o dar-2.4.14
 	o darcs-2.12.0
@@ -706,8 +705,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gfract-0.33
 	o ghc-8.0.1
 	o ghc7-7.10.1
-	o gifsicle-1.88
-	o git-base-2.12.1
 	o gkrellm-2.3.5
 	o gkrellm-multiping-2.0.13
 	o gkrellm-server-2.3.5
@@ -759,7 +756,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gnu-crypto-2.1.0
 	o gnu-pw-mgr-2.0
 	o gnucap-20130423
-	o gnucash-2.6.16
 	o gnumeric-1.2.26
 	o gnupg21-2.1.19
 	o gnustep-back-0.24.1
@@ -789,7 +785,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o grilo-0.2.12
 	o grilo-plugins-0.2.14
 	o gromacs-5.1.2
-	o gsharutils-4.15.2
 	o gss-1.0.3
 	o gst-plugins1-omx-1.10.0
 	o gthumb-3.4.0
@@ -1035,6 +1030,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o makeself-2.2.0
 	o maketool-0.8.4
 	o makeztxt-1.60
+	o mame-0.184
 	o manedit-1.2.1
 	o mapserver-7.0.1
 	o matchbox-panel-0.9.3
@@ -1151,7 +1147,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p0f-3.08b
 	o p11-kit-0.23.2
 	o p5-Apache-Gallery-1.0.2
-	o p5-Authen-TacacsPlus-0.26
 	o p5-CDDB-2.00
 	o p5-Catalyst-Engine-PSGI-0.14
 	o p5-Chart-3.2
@@ -1164,12 +1159,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-HTTP-Server-EV-0.69
 	o p5-Heap-1.04
 	o p5-IP-Country-3.03
-	o p5-MRO-Compat-0.13
 	o p5-Memoize-Memcached-0.11
-	o p5-Moo-2.003002
-	o p5-Net-DNS-1.09
 	o p5-Net-ManageSieve-0.13
-	o p5-Net-SSLeay-1.81
 	o p5-NetPacket-1.6.0
 	o p5-Netdisco-2.033001
 	o p5-PAR-1.029
@@ -1195,14 +1186,11 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-SVG-Graph-0.0402
 	o p5-SVN-Simple-0.312
 	o p5-Sys-Utmp-1.7
-	o p5-Text-BibTeX-0.80
 	o p5-Text-Hunspell-2.14
 	o p5-Tie-DBI-1.06
-	o p5-WebService-MusicBrainz-1.0.1
 	o p5-X11-Protocol-29
 	o p5-eBay-API-0.29
 	o p5-gtk2-1.300
-	o p5-pcsc-1.4.14
 	o p5-sybperl-2.18
 	o p5-xmltv-0.5.66
 	o packagekit-0.5.3
@@ -1292,12 +1280,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-HappyDoc-3.0
 	o py-Scientific-doc-2.5.5
 	o py-Unidecode-0.04.19
-	o py-anki2-2.0.45
 	o py-apache-libcloud-0.20.1
 	o py-buildbot-0.9.1
 	o py-buildbot-slave-0.9.1
 	o py-cassa-1.11.0
-	o py-cffi-1.10.0
 	o py-creole-1.1.1
 	o py-cups-1.9.73
 	o py-daemon-2.1.1
@@ -1325,7 +1311,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-newt-0.52.18
 	o py-notify-0.3.1
 	o py-numpydoc-0.6.0
-	o py-oauthlib-2.0.2
 	o py-omniORBpy-3.7
 	o py-pdf-parser-0.6.4
 	o py-pendrell-0.3.7
@@ -1334,7 +1319,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-quixote-2.9
 	o py-radare2-1.0.1
 	o py-scgi-1.15
-	o py-setuptools-34.3.3
 	o py-simpletal-5.1
 	o py-smb-1.1.17
 	o py-softlayer-5.1.0
@@ -1342,7 +1326,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-sqlalchemy-migrate-0.10.0
 	o py-suds-0.4.1
 	o py-sybase-0.37
-	o py-tornado-4.4.1
 	o py-wxWidgets-3.0.0
 	o py-yubiauth-0.3.10
 	o py-zconfig-3.0.3
@@ -1581,7 +1564,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o virtinst-0.600.4
 	o virtuoso-7.2.0p1
 	o visual-regexp-3.1
-	o vlc-2.2.5.1
 	o vm-8.0.7.522 [pkg/37707]
 	o vnc-4.0 [http://www.realvnc.com/download.html|pkgsrc-wip]
 	o vnstat-1.15
