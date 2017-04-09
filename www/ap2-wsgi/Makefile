@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	mod_wsgi-4.4.21
+DISTNAME=	mod_wsgi-4.5.15
 PKGNAME=	${APACHE_PKG_PREFIX}-${PYPKGPREFIX}-${DISTNAME:S/mod_//}
 CATEGORIES=	www python
-MASTER_SITES=	http://pypi.python.org/packages/source/m/mod_wsgi/
+MASTER_SITES=	${MASTER_SITE_PYPI:=m/mod_wsgi/}
 
 HOMEPAGE=	https://www.modwsgi.org/
 COMMENT=	WSGI module for apache
