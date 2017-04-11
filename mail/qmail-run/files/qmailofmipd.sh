@@ -1,6 +1,6 @@
 #!@RCD_SCRIPTS_SHELL@
 #
-# $NetBSD: qmailofmipd.sh,v 1.2 2017/04/04 07:51:03 schmonz Exp $
+# $NetBSD: qmailofmipd.sh,v 1.4 2017/04/10 15:04:56 schmonz Exp $
 #
 # @PKGNAME@ script to control ofmipd (SMTP submission service).
 #
@@ -18,6 +18,7 @@ name="qmailofmipd"
 : ${qmailofmipd_datalimit:="146800640"}
 : ${qmailofmipd_pretcpserver:=""}
 : ${qmailofmipd_preofmipd:=""}
+: ${qmailofmipd_ofmipdcmd:="@PREFIX@/bin/ofmipd"}
 : ${qmailofmipd_postofmipd:=""}
 : ${qmailofmipd_log:="YES"}
 : ${qmailofmipd_logcmd:="logger -t nb${name} -p mail.info"}
@@ -43,12 +44,21 @@ cdb_cmd="qmailofmipd_cdb"
 qmailofmipd_precmd()
 {
 	# tcpserver(1) is akin to inetd(8), but runs one service per process.
-	# We want to signal only the tcpserver process responsible for SMTP
+	# We want to signal only the tcpserver process responsible for OFMIP
 	# service. Use argv0(1) to set procname to "qmailofmipd".
-	if [ -f /etc/rc.subr ]; then
-		checkyesno qmailofmipd_log || qmailofmipd_logcmd=${qmailofmipd_nologcmd}
+	if [ -f /etc/rc.subr ] && ! checkyesno qmailofmipd_log; then
+		qmailofmipd_logcmd=${qmailofmipd_nologcmd}
 	fi
-	command="@SETENV@ - ${qmailofmipd_postenv} @PREFIX@/bin/softlimit -m ${qmailofmipd_datalimit} ${qmailofmipd_pretcpserver} @PREFIX@/bin/argv0 @PREFIX@/bin/tcpserver ${name} ${qmailofmipd_tcpflags} -x @PKG_SYSCONFDIR@/tcp.ofmip.cdb -c `@HEAD@ -1 @PKG_SYSCONFDIR@/control/concurrencyofmip` -u `@ID@ -u @QMAIL_DAEMON_USER@` -g `@ID@ -g @QMAIL_DAEMON_USER@` ${qmailofmipd_tcphost} ${qmailofmipd_tcpport} ${qmailofmipd_preofmipd} @PREFIX@/bin/ofmipd ${qmailofmipd_postofmipd} 2>&1 | @PREFIX@/bin/setuidgid @QMAIL_LOG_USER@ ${qmailofmipd_logcmd}"
+	command="@SETENV@ - ${qmailofmipd_postenv}
+@PREFIX@/bin/softlimit -m ${qmailofmipd_datalimit} ${qmailofmipd_pretcpserver}
+@PREFIX@/bin/argv0 @PREFIX@/bin/tcpserver ${name}
+${qmailofmipd_tcpflags} -x @PKG_SYSCONFDIR@/tcp.ofmip.cdb
+-c `@HEAD@ -1 @PKG_SYSCONFDIR@/control/concurrencyofmip`
+-u `@ID@ -u @QMAIL_DAEMON_USER@` -g `@ID@ -g @QMAIL_DAEMON_USER@`
+${qmailofmipd_tcphost} ${qmailofmipd_tcpport}
+${qmailofmipd_preofmipd} ${qmailofmipd_ofmipdcmd} ${qmailofmipd_postofmipd}
+2>&1 |
+@PREFIX@/bin/setuidgid @QMAIL_LOG_USER@ ${qmailofmipd_logcmd}"
 	command_args="&"
 	rc_flags=""
 }
