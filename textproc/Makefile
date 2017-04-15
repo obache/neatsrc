@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.918 2017/04/05 12:34:47 fhajny Exp $
+# $NetBSD: Makefile,v 1.924 2017/04/14 14:18:29 leot Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -708,6 +708,7 @@ SUBDIR+=	py-X2
 SUBDIR+=	py-acora
 SUBDIR+=	py-alabaster
 SUBDIR+=	py-anyjson
+SUBDIR+=	py-babelfish
 SUBDIR+=	py-biplist
 SUBDIR+=	py-cElementTree
 SUBDIR+=	py-cabocha
@@ -731,11 +732,13 @@ SUBDIR+=	py-feedparser
 SUBDIR+=	py-ftfy
 SUBDIR+=	py-generateDS
 SUBDIR+=	py-gnosis-utils
+SUBDIR+=	py-guessit
 SUBDIR+=	py-html2text
 SUBDIR+=	py-html5lib
 SUBDIR+=	py-humanize
 SUBDIR+=	py-iniparse
 SUBDIR+=	py-jinja2
+SUBDIR+=	py-jsbeautifier
 SUBDIR+=	py-jsonlib
 SUBDIR+=	py-jsonlib3
 SUBDIR+=	py-jsonrpclib
@@ -764,8 +767,10 @@ SUBDIR+=	py-prettytable
 SUBDIR+=	py-pygments
 SUBDIR+=	py-pyphen
 SUBDIR+=	py-pyquery
+SUBDIR+=	py-pysrt
 SUBDIR+=	py-pytoml
 SUBDIR+=	py-rdflib
+SUBDIR+=	py-rebulk
 SUBDIR+=	py-relatorio
 SUBDIR+=	py-rst2pdf
 SUBDIR+=	py-snowballstemmer
@@ -889,6 +894,7 @@ SUBDIR+=	sphinxsearch
 SUBDIR+=	stardic
 SUBDIR+=	sub2srt
 SUBDIR+=	sublib
+SUBDIR+=	subliminal
 SUBDIR+=	subtitleripper
 SUBDIR+=	suikyo
 SUBDIR+=	suikyo-conv-table

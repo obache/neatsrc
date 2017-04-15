@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.6 2016/07/09 06:38:44 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2017/04/14 09:15:57 hauke Exp $
 
 DISTNAME=	netatalk-2.2.5
 PKGNAME=        ${DISTNAME:C/-/22-/}
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	net print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=netatalk/}
 EXTRACT_SUFX=	.tar.bz2
@@ -31,9 +31,6 @@ CONF_FILES+=	${EGDIR}/afpd.conf ${PKG_SYSCONFDIR}/afpd.conf
 CONF_FILES+=	${EGDIR}/atalkd.conf ${PKG_SYSCONFDIR}/atalkd.conf
 CONF_FILES+=	${EGDIR}/netatalk.conf ${PKG_SYSCONFDIR}/netatalk.conf
 CONF_FILES+=	${EGDIR}/papd.conf ${PKG_SYSCONFDIR}/papd.conf
-
-CONFLICTS=		netatalk30-[0-9]* netatalk-[0-9]*
-CONFLICTS+=		netatalk-asun-[0-9]* netatalk-umich-[0-9]*
 
 .include "../../mk/bsd.prefs.mk"
 

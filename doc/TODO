@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.17239 2017/04/11 13:48:45 mef Exp $
+$NetBSD: TODO,v 1.17243 2017/04/14 15:17:21 mef Exp $
 
 Suggested new packages
 ======================
@@ -469,7 +469,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o bos-2.5
 	o boson-0.13
 	o bottlerocket-0.05b3
-	o bpython-0.15
 	o brasero-3.4.0
 	o bwa-0.7.12 [needs shm_open(3), please contact MAINTAINER]
 	o byacc-20170201
@@ -1065,8 +1064,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o minivmac-3.2.3
 	o miredo-1.2.4
 	o mit-scheme-bin-9.2
-	o mitmproxy-1.0.2
-	o mksh-52b
 	o mkvtoolnix-9.6.0
 	o modular-xorg-xquartz-1.18.0
 	o molden-4.8 [after which PR 40252 can be closed]
@@ -1157,7 +1154,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Chart-3.2
 	o p5-Clone-0.39
 	o p5-DBD-DB2-1.85
-	o p5-File-HomeDir-1.002
 	o p5-FormValidator-Simple-1.00
 	o p5-GStreamer-0.20
 	o p5-GraphViz2-2.37
@@ -1166,7 +1162,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-HTTP-Server-EV-0.69
 	o p5-Heap-1.04
 	o p5-IP-Country-3.03
-	o p5-List-MoreUtils-0.419
 	o p5-MIME-Charset-1.012.1
 	o p5-MIME-tools-5.509
 	o p5-Memoize-Memcached-0.11

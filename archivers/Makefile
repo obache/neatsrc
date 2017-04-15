@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.151 2017/03/13 16:07:59 taca Exp $
+# $NetBSD: Makefile,v 1.153 2017/04/14 14:01:30 leot Exp $
 #
 
 COMMENT=	Archivers
@@ -86,9 +86,11 @@ SUBDIR+=	php-zlib
 SUBDIR+=	pigz
 SUBDIR+=	ppmd
 SUBDIR+=	ppunpack
+SUBDIR+=	py-brotlipy
 SUBDIR+=	py-czipfile
 SUBDIR+=	py-lhafile
 SUBDIR+=	py-libarchive-c
+SUBDIR+=	py-rarfile
 SUBDIR+=	py-yuicompressor
 SUBDIR+=	py-zstandard
 SUBDIR+=	rar

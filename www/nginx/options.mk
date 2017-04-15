@@ -1,11 +1,12 @@
-# $NetBSD: options.mk,v 1.36 2016/06/15 14:49:11 fhajny Exp $
+# $NetBSD: options.mk,v 1.38 2017/04/15 06:26:51 maya Exp $
 
-PKG_OPTIONS_VAR=	PKG_OPTIONS.nginx
-PKG_SUPPORTED_OPTIONS=	dav flv gtools inet6 luajit mail-proxy memcache naxsi \
-			pcre push realip ssl sub uwsgi image-filter \
-			debug status nginx-autodetect-cflags echo \
-			set-misc headers-more array-var encrypted-session \
-			form-input perl gzip v2
+PKG_OPTIONS_VAR=		PKG_OPTIONS.nginx
+PKG_SUPPORTED_OPTIONS=		dav flv gtools inet6 luajit mail-proxy memcache naxsi \
+				pcre push realip ssl sub uwsgi image-filter \
+				debug status nginx-autodetect-cflags echo \
+				set-misc headers-more array-var encrypted-session \
+				form-input perl gzip http2
+PKG_OPTIONS_LEGACY_OPTS+=	v2:http2
 
 PKG_SUGGESTED_OPTIONS=	inet6 pcre ssl
 
@@ -45,7 +46,7 @@ CONFIGURE_ARGS+=	--with-http_dav_module
 CONFIGURE_ARGS+=	--with-http_flv_module
 .endif
 
-.if !empty(PKG_OPTIONS:Mv2)
+.if !empty(PKG_OPTIONS:Mhttp2)
 CONFIGURE_ARGS+=	--with-http_v2_module
 .endif
 
