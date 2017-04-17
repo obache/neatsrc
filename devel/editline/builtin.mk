@@ -82,8 +82,8 @@ buildlink-readline-history-h:
 	fi
 .    endif
 .    if ${BUILTIN_PKGCONFIG_FOUND.libedit} == "yes"
-BUIDLINK_PREFIX.editline?=	BUILTIN_PKGCONFIG_PREFIX.libedit
-BUILTIN_VERSION.editline?=	BUILTIN_PKGCONFIG_VERSION.libedit
+BUIDLINK_PREFIX.editline?=	${BUILTIN_PKGCONFIG_PREFIX.libedit}
+BUILTIN_VERSION.editline?=	${BUILTIN_PKGCONFIG_VERSION.libedit}
 .    endif
 BUILTIN_VERSION.editline?=	3.0
 BUILTIN_PKG.editline?=		editline-${BUILTIN_VERSION.editline}

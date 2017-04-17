@@ -91,7 +91,7 @@ CHECK_BUILTIN.zlib?=	no
 .if !empty(CHECK_BUILTIN.zlib:M[nN][oO])
 .  if !empty(USE_BUILTIN.zlib:M[yY][eE][sS])
 .    if ${BUILTIN_PKGCONFIG_FOUND.zlib} == "yes"
-BUIDLINK_PREFIX.zlib?=	BUILTIN_PKGCONFIG_PREFIX.zlib
+BUIDLINK_PREFIX.zlib?=	${BUILTIN_PKGCONFIG_PREFIX.zlib}
 .    endif
 BUILTIN_FAKE_PC_FILES.zlib=	zlib
 FAKE_PC_SRC.zlib=	../../devel/zlib/files/zlib.pc.in
