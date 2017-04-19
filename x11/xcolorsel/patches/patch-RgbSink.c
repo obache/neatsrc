@@ -7,7 +7,7 @@ $NetBSD: patch-RgbSink.c,v 1.1 2015/10/14 20:17:28 wiz Exp $
    },
    { /* text_sink fields */
 -    /* DisplayText		*/	(_XawSinkVoidFunc) mydisp,
-+    /* DisplayText		*/	mydisp,
++    /* DisplayText		*/	(_XawSinkDisplayTextProc) mydisp,
      /* InsertCursor		*/	XtInheritInsertCursor,
      /* ClearToBackground	*/	XtInheritClearToBackground,
      /* FindPosition		*/	XtInheritFindPosition,

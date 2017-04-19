@@ -7,7 +7,7 @@ $NetBSD: patch-RgbSrc.c,v 1.1 2015/10/14 20:17:28 wiz Exp $
      /* Read			*/	XtInheritRead,
      /* Replace			*/	XtInheritReplace,
 -    /* Scan			*/	(_XawTextPositionFunc)myscan,
-+    /* Scan			*/	myscan,
++    /* Scan			*/	(_XawSrcScanProc)myscan,
      /* Search			*/	XtInheritSearch,
      /* SetSelection		*/	XtInheritSetSelection,
      /* ConvertSelection		*/	XtInheritConvertSelection,
