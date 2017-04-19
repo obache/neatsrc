@@ -153,7 +153,7 @@ check_packages_mismatched()
 {
     ${PKG_INFO} -aI | while read pkgname comment; do
         pkgdir=$(${PKG_INFO} -Q PKGPATH $pkgname)
-        if [ -d "$PKGSRCDIR/$pkgdir" ]; then
+        if [ -f "$PKGSRCDIR/$pkgdir/Makefile" ]; then
             pkg=$(echo $pkgname | sed 's/-[0-9][^-]*$//') 
             newpkgname=$(cd $PKGSRCDIR/$pkgdir && @SETENV@ PKGNAME_REQD="$pkg-*" ${MAKE} show-var VARNAME=PKGNAME)
             if [ "$pkgname" != "$newpkgname" ]; then
@@ -513,7 +513,7 @@ while [ -n "$REPLACE_TODO" ]; do
 
     # Do make replace, with clean before, and package and clean afterwards.
     fail=
-    if [ -d "$PKGSRCDIR/$pkgdir" ]; then
+    if [ -f "$PKGSRCDIR/$pkgdir/Makefile" ]; then
 	cd "$PKGSRCDIR/$pkgdir";
     else
         mark_as_failed $pkg
