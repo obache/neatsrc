@@ -6,5 +6,5 @@ SHA512 (xcolorsel-1.1a-src.tar.gz) = 33df2bdfaef8d82e061fe28d736f41fa6ca59e3eca3
 Size (xcolorsel-1.1a-src.tar.gz) = 67359 bytes
 SHA1 (patch-RgbSink.c) = be63e447646a28d0b9e8c18e19a1c5924bdf3f7c
 SHA1 (patch-RgbSrc.c) = cb2573c0eb388d0dcbeee275f39c69919c9b4680
-SHA1 (patch-RgbText.c) = ea09371fd88c4a1068f069926097743fd25cfbdc
+SHA1 (patch-RgbText.c) = fdb884069b4eb0b2d171b29dc62add26bf85a7c3
 SHA1 (patch-xcolorsel.c) = a6667fff4372d242cc13c44d2a2fdf53ad5b065d

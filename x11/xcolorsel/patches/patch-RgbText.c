@@ -10,12 +10,3 @@ $NetBSD: patch-RgbText.c,v 1.2 2015/10/14 20:17:28 wiz Exp $
  #include <ctype.h>
  #include <errno.h>
  #include <X11/IntrinsicP.h>
-@@ -146,7 +145,7 @@ static XtResource resources[] = {
- { XtNcolumns, XtCColumns, XtRDimension, sizeof(Dimension), offset(columns),
- 		XtRString, (XtPointer) "30" },
- { XtNfile, XtCFile, XtRString, sizeof(String), offset(file),
--		XtRString, (XtPointer) "/usr/lib/X11/rgb.txt" },
-+		XtRString, (XtPointer) "@X11BASE@/X11/rgb.txt" },
- { XtNtileWidth, XtCTileWidth, XtRDimension, sizeof(Dimension), offset(tile_width),
- 		XtRString, (XtPointer) "3" },
- { XtNmaxRed, XtCMaxRed, XtRShort, sizeof(unsigned short), offset(max_red),
