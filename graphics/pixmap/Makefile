@@ -17,23 +17,15 @@ COMMENT=		Pixmap editor based on XPM library
 
 WRKSRC=			${WRKDIR}/pixmap
 USE_IMAKE=		YES
+USE_X11_RGB_TXT=	yes
 
 MAKE_ENV+=		LOCAL_LDFLAGS=${LDFLAGS:Q}
 MAKE_ENV+=		MOTIFBASE=${MOTIFBASE}
 
-.include "../../mk/bsd.prefs.mk"
-
-.if ${X11_TYPE} == "modular"
-DEPENDS+=	rgb>=1.0.1:../../x11/rgb
-RGBTXT=		${PREFIX}/share/X11/rgb.txt
-.else
-RGBTXT=		${X11BASE}/lib/X11/rgb.txt
-.endif
-
 SUBST_CLASSES+=		rgb
 SUBST_STAGE.rgb=	pre-configure
 SUBST_FILES.rgb=	Imakefile
-SUBST_VARS.rgb=		RGBTXT
+SUBST_SED.rgb=		-e 's,@RGBTXT@,${PKG_RGB_TXT_PATH},g'
 
 post-extract:
 	rm -rf ${WRKSRC}/X11
