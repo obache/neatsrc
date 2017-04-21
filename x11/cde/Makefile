@@ -1,6 +1,6 @@
 # $NetBSD$
 #
-DISTNAME=	cde-src-2.2.3
+DISTNAME=	cde-src-2.2.4
 PKGNAME=	${DISTNAME:S/-src-/-/}
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=cdesktopenv/}
@@ -170,9 +170,12 @@ BUILD_MAKE_FLAGS+=	ICONV_INBUF_DEFINE="-DICONV_INBUF_CONST=const"
 FONTS_DIRS.x11+=	${PREFIX}/dt/config/xfonts/ja
 .endif
 
+.include "../../x11/xbitmaps/buildlink3.mk"
 .include "../../x11/libXinerama/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
+.include "../../x11/libXScrnSaver/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 #.include "../../lang/tcl/buildlink3.mk"
+.include "../../mk/xaw.buildlink3.mk"
 .include "../../mk/motif.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

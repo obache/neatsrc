@@ -1,9 +1,9 @@
 $NetBSD$
 
-SHA1 (cde-src-2.2.3.tar.gz) = f1868f21d6e9a13c7cf9bc9b557cb2d7487b3b67
-RMD160 (cde-src-2.2.3.tar.gz) = c2b59e6425b12c5b6df849d7b4d3a45ca3a596bb
-SHA512 (cde-src-2.2.3.tar.gz) = 9dd7d5a2f55dd2198dcc2cfcf0957cf66358fbd17f0b7e178bb63fbd76fb725cdfbb46f56f8c6ab2370458e819b6fd5bc22b3e900fbe7e71e873905a53a1e8fe
-Size (cde-src-2.2.3.tar.gz) = 60738851 bytes
+SHA1 (cde-src-2.2.4.tar.gz) = 9060bae255d44daee1c563b1a467e51bbca477f8
+RMD160 (cde-src-2.2.4.tar.gz) = 10674766d3be1cd0462f4087ad276d62ea25e250
+SHA512 (cde-src-2.2.4.tar.gz) = 90f8be83d4ed4fd2f1fa8429abb994e51a23984566ec43ddafeb8d7ed31a82e4ea4020fc1881aae20a06f961f60e2c3863012c4119f9d32daeb8427c25504270
+Size (cde-src-2.2.4.tar.gz) = 60735049 bytes
 SHA1 (patch-databases_CDE-FONTS.udb) = f7686e84d410c102c6c146227d7c81fe3994bce4
 SHA1 (patch-databases_CDE-LOC.src) = 510b3ec064afe5af2e94eb437e9f45e6376be4a5
 SHA1 (patch-include_EUSCompat.h) = 45066c58200b8c342c2168ddaa44f5e643afbd60
@@ -12,6 +12,7 @@ SHA1 (patch-lib_DtHelp_HelpXlate.c) = 225d9c31aacb316cc8f1241a60303a4fecd07e02
 SHA1 (patch-lib_DtSearch_mrclean.c) = 71f1d483382111635d3e26a7abfe4341872d43d0
 SHA1 (patch-lib_DtSearch_oekwic.c) = eaf20b2954a59df633784d3131c3abd2b3762cf0
 SHA1 (patch-lib_DtSvc_DtEncap_local.c) = 7bc74580bdd3cf19747a411fdd78b51cc1668782
+SHA1 (patch-lib_DtSvc_include_SPC_spc-proto.h) = 4874d5b02f89943cc6e93e82502590bcae64fb49
 SHA1 (patch-lib_csa_Imakefile) = d0f94bc60076c7dd3bd481cbc5035c81fa442690
 SHA1 (patch-lib_csa_cmxdr.c) = 0d9ce5546cab494e3e9002a95a4ac26366724677
 SHA1 (patch-programs_dtappbuilder_src_libAButil_util__file.c) = a41f5671179fdb70cdbb76f69b6f8ea9054c1e06
