@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.64 2017/03/12 07:20:52 maya Exp $
+# $NetBSD: Makefile,v 1.67 2017/04/15 15:46:29 taca Exp $
 
 DISTNAME=		wordpress-${VERSION}
 VERSION=		4.7.3
@@ -38,12 +38,11 @@ OWN_DIRS_PERMS+=	${WPHOME}/wp-content/uploads \
 
 INSTALLATION_DIRS+=	${DOCDIR} ${WPHOME} ${EGDIR}
 
-DEPENDS+=		${PHP_PKG_PREFIX}-mysql>=5.6.0:../../databases/php-mysql
+DEPENDS+=		${PHP_PKG_PREFIX}-mysqli>=5.6.0:../../databases/php-mysqli
 DEPENDS+=		${PHP_PKG_PREFIX}-gd>=5.6.0:../../graphics/php-gd
 DEPENDS+=		${PHP_PKG_PREFIX}-curl>=5.6.0:../../www/php-curl
 DEPENDS+=		${PHP_PKG_PREFIX}-zip>=5.6.0:../../archivers/php-zip
 DEPENDS+=		${PHP_PKG_PREFIX}-zlib>=5.6.0:../../archivers/php-zlib
-PHP_VERSIONS_ACCEPTED=	56
 
 SUBST_CLASSES+=		conf
 SUBST_MESSAGE.conf=	Fixing pathnames in configuration file.

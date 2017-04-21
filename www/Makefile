@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1221 2017/04/10 10:44:45 ryoon Exp $
+# $NetBSD: Makefile,v 1.1225 2017/04/20 22:00:05 minskim Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -737,6 +737,8 @@ SUBDIR+=	raggle
 SUBDIR+=	ramaze
 SUBDIR+=	rekonq
 SUBDIR+=	ruby-actionpack32
+SUBDIR+=	ruby-actionpack42
+SUBDIR+=	ruby-actionview42
 SUBDIR+=	ruby-activeresource32
 SUBDIR+=	ruby-borges
 SUBDIR+=	ruby-capybara
@@ -807,6 +809,8 @@ SUBDIR+=	ruby-rack-ssl
 SUBDIR+=	ruby-rack-test
 SUBDIR+=	ruby-rack14
 SUBDIR+=	ruby-rack15
+SUBDIR+=	ruby-rails-deprecated_sanitizer
+SUBDIR+=	ruby-rails-html-sanitizer
 SUBDIR+=	ruby-rails32
 SUBDIR+=	ruby-raindrops
 SUBDIR+=	ruby-rest-client

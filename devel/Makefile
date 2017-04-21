@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2405 2017/04/14 14:06:26 leot Exp $
+# $NetBSD: Makefile,v 1.2407 2017/04/20 08:02:26 fhajny Exp $
 #
 
 COMMENT=	Development utilities
@@ -573,6 +573,7 @@ SUBDIR+=	libportlib
 SUBDIR+=	libproplist
 SUBDIR+=	libpthread_dbg
 SUBDIR+=	libpthread-stubs
+SUBDIR+=	librdkafka
 SUBDIR+=	librelp
 SUBDIR+=	librfuncs
 SUBDIR+=	librlog
@@ -2068,6 +2069,7 @@ SUBDIR+=	rubigen
 SUBDIR+=	ruby-SDL
 SUBDIR+=	ruby-abstract
 SUBDIR+=	ruby-activemodel32
+SUBDIR+=	ruby-activemodel42
 SUBDIR+=	ruby-activesupport32
 SUBDIR+=	ruby-activesupport42
 SUBDIR+=	ruby-algorithms
