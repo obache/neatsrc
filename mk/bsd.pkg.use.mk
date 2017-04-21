@@ -19,6 +19,19 @@
 #	Keywords: imake
 #
 
+# Package-settable variables:
+#
+# USE_X11_RGB_TXT
+#	When set to "yes", a package uses a X11 rgb.txt file.
+#	When set to "build", means that it is only used to build package.
+#
+#	Keywords: rgb.txt
+#
+# Variables provided by this file:
+#
+# PKG_RGB_TXT_PATH
+#	Full path to X11 rgb.txt file.
+
 .if defined(USE_BSD_MAKEFILE)
 MAKE_ENV+=		${BSD_MAKE_ENV} INSTALL=${TOOLS_INSTALL:Q}
 .  if !defined(TOOLS_PLATFORM.ctfconvert) && !defined(TOOLS_PLATFORM.ctfmerge)
@@ -105,4 +118,24 @@ TOOL_DEPENDS+=		libtool-base>=${_OPSYS_LIBTOOL_REQD:U${LIBTOOL_REQD}}:../../deve
 .endif
 CONFIGURE_ENV+=		LIBTOOL="${LIBTOOL} ${LIBTOOL_FLAGS}"
 MAKE_ENV+=		LIBTOOL="${LIBTOOL} ${LIBTOOL_FLAGS}"
+.endif
+
+### USE_X11_RGB_TXT, PKG_RGB_TXT_PATH
+
+.if !empty(USE_X11_RGB_TXT:M[Yy][Ee][Ss])
+.  if ${X11_TYPE} == "native"
+.    if exists(${X11BASE}/lib/X11/rgb.txt)
+PKG_RGB_TXT_PATH=	${X11BASE}/lib/X11/rgb.txt
+.    elif exists(${X11BASE}/share/X11/rgb.txt)
+PKG_RGB_TXT_PATH=	${X11BASE}/share/X11/rgb.txt
+.    endif
+.  endif
+.  if !defined(PKG_RGB_TXT_PATH)
+PKG_RGB_TXT_PATH=	${LOCALBASE}/share/X11/rgb.txt
+.    if !empty(USE_X11_RGB_TXT:tl:Mbuild)
+TOOL_DEPENDS+=	rgb-[0-9]*:../../x11/rgb
+.    else
+DEPENDS+=	rgb-[0-9]*:../../x11/rgb
+.    endif
+.  endif
 .endif
