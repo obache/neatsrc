@@ -19,12 +19,10 @@ BUILDLINK_TRANSFORM+=	l:Xm:Xm:Xft
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
-.include "../../x11/libXaw/buildlink3.mk"
 .include "../../x11/libXmu/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../x11/libXft/buildlink3.mk"
 .include "../../x11/libXp/buildlink3.mk"
-.include "../../x11/xbitmaps/buildlink3.mk"
 .endif # X11MOTIF_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-motif
