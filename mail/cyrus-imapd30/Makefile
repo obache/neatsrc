@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	cyrus-imapd-3.0.0
+DISTNAME=	cyrus-imapd-3.0.1
 CATEGORIES=	mail
 MASTER_SITES=	http://cyrusimap.org/releases/
 
@@ -54,9 +54,8 @@ CONFIGURE_ARGS+=	andrew_cv_runpath_switch=${COMPILER_RPATH_FLAG}
 MAKE_ENV+=		PERL=${PERL5:Q}
 
 DOCDIR=			${PREFIX}/share/doc/cyrus-imapd
-EGDIR=			${PREFIX}/share/examples/cyrus-imapd
-CONF_FILES=		${EGDIR}/imapd.conf ${PKG_SYSCONFDIR}/imapd.conf
-CONF_FILES+=		${EGDIR}/normal.conf ${PKG_SYSCONFDIR}/cyrus.conf
+CONF_FILES=		${DOCDIR}/examples/imapd_conf/normal.conf ${PKG_SYSCONFDIR}/imapd.conf
+CONF_FILES+=		${DOCDIR}/examples/cyrus_conf/normal.conf ${PKG_SYSCONFDIR}/cyrus.conf
 RCD_SCRIPTS=		cyrus
 FILES_SUBST+=		IMAPDCONF=${PKG_SYSCONFDIR}/imapd.conf
 
@@ -117,11 +116,6 @@ post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/mknewsgroups ${DESTDIR}${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/translatesieve ${DESTDIR}${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/rehash ${DESTDIR}${PREFIX}/bin
-	${INSTALL_DATA_DIR} ${DESTDIR}${EGDIR}
-	${INSTALL_DATA} ${FILESDIR}/imapd.conf ${DESTDIR}${EGDIR}
-	cd ${WRKSRC}/master/conf; for file in *.conf; do		\
-		${INSTALL_DATA} $${file} ${DESTDIR}${EGDIR};		\
-	done
 	${INSTALL_DATA_DIR} ${DESTDIR}${DOCDIR}
 	cd ${WRKSRC}/doc; \
 		pax -rwpp . ${DESTDIR}${DOCDIR};		\
