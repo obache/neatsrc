@@ -9,9 +9,9 @@ PLIST_VARS+=	qt
 .include "../../mk/bsd.options.mk"
 
 .if !empty(PKG_OPTIONS:Mqt)
-USE_FCITX_QT_GUI=	yes
 PLIST.qt=		yes
 CMAKE_ARGS+=	-DENABLE_QT:BOOL=ON
+.include "../../inputmethod/fcitx-qt5/buildlink3.mk"
 .else
 CMAKE_ARGS+=	-DENABLE_QT:BOOL=OFF
 .endif
