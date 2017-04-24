@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.57 2017/01/25 14:36:39 wiz Exp $
+# $NetBSD: Makefile,v 1.59 2017/04/23 09:25:59 wiz Exp $
 
 DISTNAME=	texlive-20160523-source
 PKGNAME=	xetex-0.99996
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	print
 MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2016/
 EXTRACT_SUFX=	.tar.xz
@@ -22,6 +22,7 @@ EXTRACT_ELEMENTS=	${DISTNAME}/build-aux \
 
 GNU_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
+CXXFLAGS+=	-std=c++11
 USE_LIBTOOL=	yes
 USE_TOOLS+=	gmake lex perl pkg-config yacc
 CONFIGURE_ARGS+=	--disable-aleph --disable-etex --disable-pdftex \

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.611 2017/04/07 00:09:14 mef Exp $
+# $NetBSD: Makefile,v 1.613 2017/04/23 05:40:08 markd Exp $
 #
 
 COMMENT=	Security tools
@@ -168,7 +168,6 @@ SUBDIR+=	libprelude
 SUBDIR+=	libprelude-lua
 SUBDIR+=	libprelude-perl
 SUBDIR+=	libprelude-python
-SUBDIR+=	libprelude-ruby
 SUBDIR+=	libpreludedb
 SUBDIR+=	libpreludedb-mysql
 SUBDIR+=	libpreludedb-perl
@@ -422,6 +421,7 @@ SUBDIR+=	py-pbkdf2
 SUBDIR+=	py-prewikka
 SUBDIR+=	py-py-bcrypt
 SUBDIR+=	py-pydeep
+SUBDIR+=	py-requests-kerberos
 SUBDIR+=	py-requests-oauthlib
 SUBDIR+=	py-rsa
 SUBDIR+=	py-service_identity

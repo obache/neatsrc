@@ -1,0 +1,34 @@
+$NetBSD: patch-Makefile.in,v 1.1 2017/04/22 20:11:45 adam Exp $
+
+Add linker flags for finding the libraries to pkg-config files.
+Avoid using programs which need elevated privileges during the build.
+
+--- Makefile.in.orig	2016-09-09 21:28:18.000000000 +0000
++++ Makefile.in
+@@ -272,7 +272,7 @@ config/icu-i18n.pc: config/icu.pc Makefi
+ 	@echo "Description: $(PACKAGE_ICU_DESCRIPTION): Internationalization library" >> $@
+ 	@echo "Name: $(PACKAGE)-i18n" >> $@
+ 	@echo "Requires: icu-uc" >> $@
+-	@echo "Libs:" "${ICULIBS_I18N}" >> $@
++	@echo "Libs:" '-L$${libdir}' "${ICULIBS_I18N}" >> $@
+ 	@echo $@ updated.
+ 
+ config/icu-io.pc: config/icu.pc Makefile icudefs.mk
+@@ -280,7 +280,7 @@ config/icu-io.pc: config/icu.pc Makefile
+ 	@echo "Description: $(PACKAGE_ICU_DESCRIPTION): Stream and I/O Library" >> $@
+ 	@echo "Name: $(PACKAGE)-io" >> $@
+ 	@echo "Requires: icu-i18n" >> $@
+-	@echo "Libs:" "${ICULIBS_IO}" >> $@
++	@echo "Libs:" '-L$${libdir}' "${ICULIBS_IO}" >> $@
+ 	@echo $@ updated.
+ 
+ ICULEHB_LIBS=@ICULEHB_LIBS@
+@@ -299,7 +299,7 @@ ifneq ($(ICULEHB_LIBS),)
+ else
+ 	@echo "Requires: icu-le" >> $@
+ endif
+-	@echo "Libs:" "${ICULIBS_LX}" >> $@
++	@echo "Libs:" '-L$${libdir}' "${ICULIBS_LX}" >> $@
+ 	@echo $@ updated.
+ 
+ 

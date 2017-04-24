@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.925 2017/04/19 06:13:43 minskim Exp $
+# $NetBSD: Makefile,v 1.928 2017/04/23 05:10:29 markd Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -760,6 +760,7 @@ SUBDIR+=	py-mkdocs-bootswatch
 SUBDIR+=	py-natsort
 SUBDIR+=	py-numpydoc
 SUBDIR+=	py-openpyxl
+SUBDIR+=	py-pandocfilters
 SUBDIR+=	py-pdf-parser
 SUBDIR+=	py-pdfrw
 SUBDIR+=	py-phonenumbers
@@ -820,7 +821,6 @@ SUBDIR+=	ruby-cabocha
 SUBDIR+=	ruby-classifier-reborn
 SUBDIR+=	ruby-coderay
 SUBDIR+=	ruby-diff-lcs
-SUBDIR+=	ruby-eruby
 SUBDIR+=	ruby-escape
 SUBDIR+=	ruby-fast-stemmer
 SUBDIR+=	ruby-fastercsv
@@ -862,7 +862,6 @@ SUBDIR+=	ruby-safe_yaml
 SUBDIR+=	ruby-sary
 SUBDIR+=	ruby-simple-rss
 SUBDIR+=	ruby-stringex
-SUBDIR+=	ruby-suikyo
 SUBDIR+=	ruby-syntax
 SUBDIR+=	ruby-text
 SUBDIR+=	ruby-textpow
@@ -897,10 +896,6 @@ SUBDIR+=	sub2srt
 SUBDIR+=	sublib
 SUBDIR+=	subliminal
 SUBDIR+=	subtitleripper
-SUBDIR+=	suikyo
-SUBDIR+=	suikyo-conv-table
-SUBDIR+=	suikyo-docs
-SUBDIR+=	suikyo-elisp
 SUBDIR+=	swath
 SUBDIR+=	tcl-dom
 SUBDIR+=	tcl-expat

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.68 2014/12/04 13:00:55 obache Exp $
+# $NetBSD: Makefile,v 1.69 2017/04/22 17:35:15 taca Exp $
 #
 
 COMMENT=	Input method tools and libraries
@@ -98,9 +98,6 @@ SUBDIR+=	multiskkserv
 SUBDIR+=	nabi
 SUBDIR+=	novel-pinyin
 SUBDIR+=	p5-zinnia
-SUBDIR+=	prime
-SUBDIR+=	prime-dict
-SUBDIR+=	prime-el
 SUBDIR+=	py-cangjie
 SUBDIR+=	py-input-pad
 SUBDIR+=	py-zinnia
@@ -117,7 +114,6 @@ SUBDIR+=	scim-hangul
 SUBDIR+=	scim-input-pad
 SUBDIR+=	scim-m17n
 SUBDIR+=	scim-pinyin
-SUBDIR+=	scim-prime
 SUBDIR+=	scim-python
 SUBDIR+=	scim-sayura
 SUBDIR+=	scim-sinhala

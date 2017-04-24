@@ -1,0 +1,20 @@
+$NetBSD: patch-icudefs.mk.in,v 1.1 2017/04/22 20:11:45 adam Exp $
+
+--- icudefs.mk.in.orig	2013-10-04 20:54:58.000000000 +0000
++++ icudefs.mk.in
+@@ -207,13 +207,13 @@ LIBICU = $(LIBPREFIX)$(ICUPREFIX)
+ 
+ ## If we can't use the shared libraries, use the static libraries
+ ifneq ($(ENABLE_SHARED),YES)
+-STATIC_PREFIX_WHEN_USED = s
++STATIC_PREFIX_WHEN_USED = 
+ else
+ STATIC_PREFIX_WHEN_USED = 
+ endif
+ 
+ # Static library prefix and file extension
+-STATIC_PREFIX = s
++STATIC_PREFIX =
+ LIBSICU = $(LIBPREFIX)$(STATIC_PREFIX)$(ICUPREFIX)
+ A = a
+ SOBJ = $(SO)
