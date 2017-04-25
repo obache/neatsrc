@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.31 2016/12/30 11:16:58 jaapb Exp $
+# $NetBSD: Makefile,v 1.32 2017/04/24 21:47:47 maya Exp $
 
 DISTNAME=		findlib-1.7.1
 PKGNAME=		ocaml-${DISTNAME}
@@ -16,6 +16,13 @@ OCAML_FINDLIB_DIRS+=	bigarray bytes compiler-libs dynlink findlib graphics \
 
 OCAML_FINDLIB_REGISTER=yes
 .include "../../mk/ocaml.mk"
+
+# spacetime profiling is only available for native code on 64bit platforms
+PLIST_VARS+=		64bit
+.if !empty(LP64PLATFORMS:@.PLAT.@${MACHINE_PLATFORM:M${.PLAT.}}@) || \
+    (defined(ABI) && ${ABI} == "64")
+PLIST.64bit=		yes
+.endif
 
 # Undeclared dependencies between different components
 MAKE_JOBS_SAFE=		no
@@ -53,12 +60,6 @@ SUBST_CLASSES+=		pathes
 SUBST_STAGE.pathes=	post-install
 SUBST_FILES.pathes=	${DESTDIR}${PREFIX}/lib/ocaml/site-lib/findlib/Makefile.config
 SUBST_SED.pathes=	-e 's,^\(OCAML_CORE_BIN=\).*,\1'${PREFIX:Q}/bin','
-
-PLIST_VARS+=	LP64
-
-.if !empty(LP64PLATFORMS:S/*-*-//:M${MACHINE_ARCH})
-PLIST.LP64=yes
-.endif
 
 do-test:
 	${RUN} cd ${WRKSRC}; ${SH} itest
