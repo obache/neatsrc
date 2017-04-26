@@ -322,8 +322,8 @@ CWRAPPERS_APPEND.cc+=	-std=gnu99
 .endif
 
 .if !empty(USE_LANGUAGES:Mc++11)
-_WRAP_EXTRA_ARGS.CXX+=	-std=c++11
-CWRAPPERS_APPEND.cxx+=	-std=c++11
+_WRAP_EXTRA_ARGS.CXX+=	-std=gnu++11
+CWRAPPERS_APPEND.cxx+=	-std=gnu++11
 .endif
 
 .if ${OPSYS} == "NetBSD"
