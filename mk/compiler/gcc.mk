@@ -98,9 +98,9 @@ GCC_REQD+=	2.8.0
 GCC_REQD+=	3.0
 .endif
 
-# gcc 4.7 has experimental C++11 support 
+# gcc 4.8.1 was the first feature-complete of the C++11 standard 
 .if !empty(USE_LANGUAGES:Mc++11)
-GCC_REQD+=	4.7
+GCC_REQD+=	4.8
 .endif
 
 # Only one compiler defined here supports Ada: lang/gcc5-aux
