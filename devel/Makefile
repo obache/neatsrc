@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2426 2017/04/25 20:56:08 fhajny Exp $
+# $NetBSD: Makefile,v 1.2428 2017/04/27 06:34:08 jnemeth Exp $
 #
 
 COMMENT=	Development utilities
@@ -1749,8 +1749,8 @@ SUBDIR+=	py-Pyro
 SUBDIR+=	py-ZopeComponent
 SUBDIR+=	py-ZopeConfiguration
 SUBDIR+=	py-ZopeEvent
-SUBDIR+=	py-ZopeInterface
 SUBDIR+=	py-ZopeI18NMessageid
+SUBDIR+=	py-ZopeInterface
 SUBDIR+=	py-ZopeSchema
 SUBDIR+=	py-appdirs
 SUBDIR+=	py-argcomplete
@@ -1817,9 +1817,9 @@ SUBDIR+=	py-doctor
 SUBDIR+=	py-dogpile-cache
 SUBDIR+=	py-dulwich
 SUBDIR+=	py-editorconfig-core
+SUBDIR+=	py-entrypoints
 SUBDIR+=	py-enum
 SUBDIR+=	py-enum34
-SUBDIR+=	py-entrypoints
 SUBDIR+=	py-expect
 SUBDIR+=	py-extras
 SUBDIR+=	py-faker
@@ -1834,6 +1834,9 @@ SUBDIR+=	py-flake8-import-order
 SUBDIR+=	py-flake8-polyfill
 SUBDIR+=	py-flakes
 SUBDIR+=	py-flexmock
+SUBDIR+=	py-flufl.i18n
+SUBDIR+=	py-flufl.lock
+SUBDIR+=	py-flufl.testing
 SUBDIR+=	py-freezegun
 SUBDIR+=	py-funcparserlib
 SUBDIR+=	py-funcsigs

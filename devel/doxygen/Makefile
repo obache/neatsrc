@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.129 2017/01/19 18:52:05 agc Exp $
+# $NetBSD: Makefile,v 1.131 2017/04/26 21:18:35 wiz Exp $
 
-DISTNAME=	doxygen-1.8.12.src
+DISTNAME=	doxygen-1.8.13.src
 PKGNAME=	${DISTNAME:S/.src//}
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.stack.nl/pub/users/dimitri/
@@ -11,6 +11,8 @@ HOMEPAGE=	http://www.doxygen.org/
 COMMENT=	Documentation system for C++, Java, IDL and C
 LICENSE=	gnu-gpl-v2
 
+BUILD_DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
+
 WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
 UNLIMIT_RESOURCES+=	datasize
 # doxygen upstream uses this version of flex
@@ -20,8 +22,6 @@ USE_CMAKE=		yes
 USE_LANGUAGES=		c c++
 MAKE_ENV+=		PKGSRC_CFLAGS=${CFLAGS:Q}
 MAKE_FLAGS+=		MAN1DIR=${PKGMANDIR}/man1
-
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 1.8.6
 
 # Case Insensitive or Case Sensitive File System
 PLIST_VARS+=		ci cs
