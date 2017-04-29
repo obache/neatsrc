@@ -19,6 +19,8 @@ USE_TOOLS+=	sed
 
 INSTALLATION_DIRS=	share/mk
 
+TARGET_MKCONF?=	${PREFIX}/share/mk/bsd.bootstrap.pkg.mk
+
 do-extract:
 	@${CP} -R ${FILESDIR} ${WRKSRC}
 
@@ -37,6 +39,12 @@ do-configure:
 		-e 's|@ROOT_USER@|'${REAL_ROOT_USER}'|g'			\
 		-e 's|@SYSCONFDIR@|'${PKG_SYSCONFDIR}'|g'		\
 		$$own_mk > bsd.own.mk
+	if ${TEST} ! -f ${TARGET_MKCONF}; then				\
+		bootstrap_pkg_mk=/dev/null;				\
+	else								\
+		bootstrap_pkg_mk=${TARGET_MKCONF};			\
+	fi;								\
+	${CP} -f $${bootstrap_pkg_mk} ${WRKSRC}/bsd.bootstrap.pkg.mk
 
 do-install:
 	cd ${WRKSRC} && for file in bsd.* sys.mk; do			\

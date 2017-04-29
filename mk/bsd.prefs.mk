@@ -333,6 +333,11 @@ ACCEPTABLE_LICENSES?=	${DEFAULT_ACCEPTABLE_LICENSES}
 # Provide PKGPATH early on so that mk.conf can use it.
 PKGPATH?=		${.CURDIR:C|.*/([^/]*/[^/]*)$|\1|}
 
+# Load default bootstrap settings if MAKECONF is not specified
+.if empty(MAKECONF)
+.sinclude <bsd.bootstrap.pkg.mk>
+.endif
+
 # Load the settings from MAKECONF, which is /etc/mk.conf by default.
 .include <bsd.own.mk>
 

@@ -1,5 +1,6 @@
 @comment $NetBSD: PLIST,v 1.3 2009/06/14 18:11:02 joerg Exp $
 share/mk/bsd.README
+share/mk/bsd.bootstrap.pkg.mk
 share/mk/bsd.dep.mk
 share/mk/bsd.depall.mk
 share/mk/bsd.doc.mk
