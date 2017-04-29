@@ -7,6 +7,7 @@ ${PLIST.learner}bin/groonga-suggest-learner
 include/groonga/groonga.h
 include/groonga/groonga/array.h
 include/groonga/groonga/accessor.h
+include/groonga/groonga/cache.h
 include/groonga/groonga/column.h
 include/groonga/groonga/command.h
 include/groonga/groonga/config.h
@@ -227,6 +228,7 @@ share/doc/groonga/en/html/_sources/reference/functions/geo_in_rectangle.txt
 share/doc/groonga/en/html/_sources/reference/functions/highlight_full.txt
 share/doc/groonga/en/html/_sources/reference/functions/highlight_html.txt
 share/doc/groonga/en/html/_sources/reference/functions/html_untag.txt
+share/doc/groonga/en/html/_sources/reference/functions/in_records.txt
 share/doc/groonga/en/html/_sources/reference/functions/in_values.txt
 share/doc/groonga/en/html/_sources/reference/functions/now.txt
 share/doc/groonga/en/html/_sources/reference/functions/number_classify.txt
@@ -499,6 +501,7 @@ share/doc/groonga/en/html/reference/functions/geo_in_rectangle.html
 share/doc/groonga/en/html/reference/functions/highlight_full.html
 share/doc/groonga/en/html/reference/functions/highlight_html.html
 share/doc/groonga/en/html/reference/functions/html_untag.html
+share/doc/groonga/en/html/reference/functions/in_records.html
 share/doc/groonga/en/html/reference/functions/in_values.html
 share/doc/groonga/en/html/reference/functions/now.html
 share/doc/groonga/en/html/reference/functions/number_classify.html
@@ -750,6 +753,7 @@ share/doc/groonga/ja/html/_sources/reference/functions/geo_in_rectangle.txt
 share/doc/groonga/ja/html/_sources/reference/functions/highlight_full.txt
 share/doc/groonga/ja/html/_sources/reference/functions/highlight_html.txt
 share/doc/groonga/ja/html/_sources/reference/functions/html_untag.txt
+share/doc/groonga/ja/html/_sources/reference/functions/in_records.txt
 share/doc/groonga/ja/html/_sources/reference/functions/in_values.txt
 share/doc/groonga/ja/html/_sources/reference/functions/now.txt
 share/doc/groonga/ja/html/_sources/reference/functions/number_classify.txt
@@ -1022,6 +1026,7 @@ share/doc/groonga/ja/html/reference/functions/geo_in_rectangle.html
 share/doc/groonga/ja/html/reference/functions/highlight_full.html
 share/doc/groonga/ja/html/reference/functions/highlight_html.html
 share/doc/groonga/ja/html/reference/functions/html_untag.html
+share/doc/groonga/ja/html/reference/functions/in_records.html
 share/doc/groonga/ja/html/reference/functions/in_values.html
 share/doc/groonga/ja/html/reference/functions/now.html
 share/doc/groonga/ja/html/reference/functions/number_classify.html
