@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.29 2017/01/01 16:06:03 adam Exp $
+# $NetBSD: Makefile,v 1.31 2017/04/30 01:21:27 ryoon Exp $
 #
 
 DISTNAME=	herrie-2.2
-PKGREVISION=	14
+PKGREVISION=	16
 CATEGORIES=	audio
 MASTER_SITES=	http://herrie.info/distfiles/
 EXTRACT_SUFX=	.tar.bz2
@@ -28,11 +28,16 @@ CONFIGURE_ENV+=		TRANSDIR=${PREFIX}/${PKGLOCALEDIR}/locale
 
 RESOLV_AUTO_VARS=	yes
 USE_FEATURES=		snprintf regcomp
-USE_NCURSES=		yes
 
 AUTO_MKDIRS=		yes
 
+FAKE_NCURSES=		yes
+
 .include "options.mk"
+
+.if ${CURSES_TYPE} != "ncursesw"
+CONFIGURE_ARGS+=	ncurses
+.endif
 
 SUBST_CLASSES+=		conf
 SUBST_STAGE.conf=	pre-configure

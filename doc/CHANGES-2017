@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.1818 2017/04/29 01:26:31 wen Exp $
+$NetBSD: CHANGES-2017,v 1.1828 2017/04/29 18:33:34 adam Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -2274,3 +2274,28 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated sysutils/py-crontab to 2.2.1 [adam 2017-04-28]
 	Updated parallel/hwloc to 1.11.7 [adam 2017-04-28]
 	Updated www/p5-HTML-Tree to 5.06 [wen 2017-04-29]
+	Updated textproc/p5-XML-Compile to 1.56 [wen 2017-04-29]
+	Updated textproc/p5-XML-SemanticDiff to 1.0005 [wen 2017-04-29]
+	Updated textproc/p5-XML-Simple to 2.24 [wen 2017-04-29]
+	Updated textproc/p5-YAML-LibYAML to 0.64 [wen 2017-04-29]
+	Updated time/p5-DateTime-Format-Natural to 1.05 [wen 2017-04-29]
+	Updated www/p5-Plack to 1.0044 [wen 2017-04-29]
+	Updated textproc/p5-Biblio-EndnoteStyle to 0.06 [mef 2017-04-29]
+	Updated textproc/p5-Data-FormValidator to 4.86 [mef 2017-04-29]
+	Updated textproc/p5-Encode to 2.89 [mef 2017-04-29]
+	Updated audio/p5-Audio-Scan to 0.98 [wen 2017-04-29]
+	Updated textproc/p5-Lingua-EN-Inflect to 1.901 [mef 2017-04-29]
+	Updated textproc/p5-Lingua-EN-Tagger to 0.28 [mef 2017-04-29]
+	Updated textproc/p5-PDF-Create to 1.42 [mef 2017-04-29]
+	Updated textproc/p5-String-Approx to 3.28 [mef 2017-04-29]
+	Updated textproc/p5-String-Compare-ConstantTime to 0.312 [mef 2017-04-29]
+	Updated math/p5-Math-FFT to 1.34 [wen 2017-04-29]
+	Updated www/nghttp2 to 1.22.0 [adam 2017-04-29]
+	Updated parallel/mpi-ch to 3.2 [adam 2017-04-29]
+	Updated devel/boost-jam to 1.64.0 [adam 2017-04-29]
+	Updated devel/boost-headers to 1.64.0 [adam 2017-04-29]
+	Updated devel/boost-libs to 1.64.0 [adam 2017-04-29]
+	Updated devel/boost-docs to 1.64.0 [adam 2017-04-29]
+	Updated devel/boost-build to 1.64.0 [adam 2017-04-29]
+	Updated devel/py-boost to 1.64.0 [adam 2017-04-29]
+	Updated meta-pkgs/boost to 1.64.0 [adam 2017-04-29]
