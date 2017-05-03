@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.17314 2017/05/01 10:13:47 leot Exp $
+$NetBSD: TODO,v 1.17322 2017/05/02 13:28:18 wiz Exp $
 
 Suggested new packages
 ======================
@@ -358,7 +358,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o GMT-5.1.1
 	o GNUMail-1.2.2
 	o Gorm-1.2.22
-	o ImageMagick-7.0.5.5
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
 	o MesaDemos-8.3.0
@@ -804,7 +803,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o hamster-applet-2.32.1 [GNOME 2.32]
 	o handbrake-1.0.0
 	o hanzim-3.5
-	o harfbuzz-1.4.6
 	o harminv-1.4
 	o haskell-mode-13.20
 	o hdevtools-0.1.3.0
@@ -981,7 +979,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libmilter-8.16.0.16
 	o libmtag-0.3.6
 	o liboobs-2.32.0 [GNOME 2.32]
-	o libopenmpt-0.2.8043beta23
 	o libowfat-0.29
 	o libpgm-5.2.122
 	o libprelude-3.1.0
@@ -1176,7 +1173,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Padre-Plugin-Nopaste-0.08
 	o p5-Padre-Plugin-SpellCheck-1.33
 	o p5-Padre-Plugin-XS-0.12
-	o p5-Params-Validate-1.27
 	o p5-PostScript-2.32
 	o p5-PostScript-Simple-1.02
 	o p5-Publican-4.3.2
@@ -1249,7 +1245,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o policyd-weight-0.1.15.2
 	o polsms-2.1.0
 	o poppass-4.0.14
-	o poppler-0.54.0
 	o posh-0.12.6
 	o postal-0.72
 	o pound-2.8a
@@ -1269,7 +1264,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o prime-1.5.1.3
 	o privoxy-3.0.24
 	o profit-2.5.3
-	o protobuf-3.3.0
 	o psmisc-22.20
 	o pspp-0.10.1
 	o ptlib-2.16.2
@@ -1315,7 +1309,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-quixote-2.9
 	o py-radare2-1.0.1
 	o py-scgi-1.15
-	o py-setuptools-35.0.2
 	o py-simpletal-5.1
 	o py-smb-1.1.17
 	o py-softlayer-5.1.0
@@ -1366,7 +1359,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o rp-l2tp-0.4
 	o rp-pppoe-3.11
 	o rsnapshot-1.4.2
-	o rspamd-1.5.6
 	o rt4-4.4.0
 	o rtcw-1.41.3
 	o rtty-4.0 [at ftp://ftp.isc.org/isc/rtty/]
@@ -1515,7 +1507,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o tomboy-1.10.2
 	o top-3.8beta1
 	o topgit-0.8
-	o tor-0.3.0.6
 	o tor-browser-6.5.1
 	o totem-3.14.1
 	o totem-pl-parser-3.10.3
