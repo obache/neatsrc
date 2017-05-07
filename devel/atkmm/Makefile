@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2017/04/26 13:16:11 prlw1 Exp $
+# $NetBSD: Makefile,v 1.21 2017/05/03 08:38:39 jperkin Exp $
 
 DISTNAME=	atkmm-2.24.2
 PKGREVISION=	4

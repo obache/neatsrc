@@ -1,4 +1,4 @@
-# $NetBSD: compiler.mk,v 1.83 2016/11/10 20:59:43 joerg Exp $
+# $NetBSD: compiler.mk,v 1.84 2017/05/03 08:34:23 jperkin Exp $
 #
 # This Makefile fragment implements handling for supported C/C++/Fortran
 # compilers.
@@ -42,8 +42,9 @@
 # USE_LANGUAGES
 #	Lists the languages used in the source code of the package,
 #	and is used to determine the correct compilers to install.
-#	Valid values are: c, c99, c++, c++11, fortran, fortran77, java, objc,
-#	obj-c++, and ada.  The default is "c".
+#	Valid values are: c, c99, c++, c++0x, gnu++0x, c++11, gnu++11,
+#	c++14, gnu++14, fortran, fortran77, java, objc, obj-c++, and
+#	ada.  The default is "c".
 #
 # The following variables are defined, and available for testing in
 # package Makefiles:
@@ -75,11 +76,6 @@ USE_LANGUAGES?=	c
 # Add c support if c99 is set
 .if !empty(USE_LANGUAGES:Mc99)
 USE_LANGUAGES+=	c
-.endif
-
-# Add c++ support if c++11 is set
-.if !empty(USE_LANGUAGES:Mc++11)
-USE_LANGUAGES+=	c++
 .endif
 
 COMPILER_USE_SYMLINKS?=	yes
@@ -156,6 +152,23 @@ PKG_LD?=       /usr/bin/ld
 #
 .for _var_ in ${_COMPILER_STRIP_VARS}
 ${_var_}:=	${${_var_}:[1]:T} ${${_var_}:C/.*//1}
+.endfor
+
+# Pass the compiler flag based on the most recent version of the C++ standard
+# required.  We currently assume that each standard is a superset of all that
+# come after it.
+#
+# If and when the flags differ between compilers we can push this down into
+# the respective mk/compiler/*.mk files.
+#
+_CXX_VERSION_REQD=
+.for _version_ in gnu++14 c++14 gnu++11 c++11 gnu++0x c++0x
+.  if empty(_CXX_VERSION_REQD) && !empty(USE_LANGUAGES:M${_version_})
+USE_LANGUAGES+=		c++
+_CXX_VERSION_REQD=	${_version_}
+_WRAP_EXTRA_ARGS.CXX+=	-std=${_CXX_VERSION_REQD}
+CWRAPPERS_PREPEND.cxx+=	-std=${_CXX_VERSION_REQD}
+.  endif
 .endfor
 
 .if defined(ABI) && !empty(ABI)
