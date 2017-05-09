@@ -11,6 +11,7 @@ BUILDLINK_PKGSRCDIR.clamav?=	../../security/clamav
 .endif	# CLAMAV_BUILDLINK3_MK
 
 .include "../../archivers/bzip2/buildlink3.mk"
+.include "../../devel/libltdl/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 
