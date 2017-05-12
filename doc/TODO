@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.17326 2017/05/07 16:04:08 wiz Exp $
+$NetBSD: TODO,v 1.17331 2017/05/10 18:00:24 adam Exp $
 
 Suggested new packages
 ======================
@@ -596,6 +596,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o emacs-muse-3.20
 	o embryo-1.7.10
 	o emerillon-0.1.90
+	o enigma-1.21
 	o enlightenment-0.21
 	o eog-plugins-3.6.1
 	o epic4-2.10.6
@@ -706,6 +707,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gfract-0.33
 	o ghc-8.0.1
 	o ghc7-7.10.1
+	o ghdl-0.33
 	o gkrellm-2.3.5
 	o gkrellm-multiping-2.0.13
 	o gkrellm-server-2.3.5
@@ -1092,7 +1094,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o munin-node-1.4.6
 	o munin-server-1.4.6
 	o muse-0.9.2
-	o mutagen-tools-1.31
 	o myodbc-5.3.4
 	o mysql-workbench-6.3
 	o nagios-base-4.3.1
@@ -1102,6 +1103,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o nagios-plugin-radius-2.1.1
 	o nagios-plugin-snmp-2.1.1
 	o nagios-plugins-2.1.1
+	o nant-0.92
 	o nap-1.5.3
 	o nas-auscope-1.9.4
 	o nautilus-actions-2.30.3 [GNOME 2.30]
@@ -1162,6 +1164,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-GraphicsMagick-1.4.020160216
 	o p5-Gtk2-1.223
 	o p5-HTTP-Server-EV-0.69
+	o p5-HTTP-Server-Simple-0.52
 	o p5-Heap-1.04
 	o p5-IP-Country-3.03
 	o p5-Memoize-Memcached-0.11
@@ -1192,6 +1195,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-SDL-2.544 [wip, make sure games/frozen-bubble runs, may require p5-SDL_perl]
 	o p5-SVG-Graph-0.0402
 	o p5-SVN-Simple-0.312
+	o p5-Specio-0.37
 	o p5-Sys-Utmp-1.7
 	o p5-Test-Simple-1.302085
 	o p5-Text-Hunspell-2.14
@@ -1285,7 +1289,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-HappyDoc-3.0
 	o py-Scientific-doc-2.5.5
 	o py-Unidecode-0.04.19
-	o py-apache-libcloud-0.20.1
 	o py-buildbot-0.9.1
 	o py-buildbot-slave-0.9.1
 	o py-cassa-1.11.0
