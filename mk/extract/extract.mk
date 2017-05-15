@@ -117,9 +117,9 @@ extract-message:
 
 .PHONY: extract-dir
 extract-dir:
-	${RUN}${MKDIR} ${EXTRACT_DIR}
+	${RUN}cd ${WRKDIR};${MKDIR} ${EXTRACT_DIR}
 .for f in ${EXTRACT_ONLY}
-	${RUN}${MKDIR} ${EXTRACT_DIR.${f}}
+	${RUN}cd ${WRKDIR};${MKDIR} ${EXTRACT_DIR.${f}}
 .endfor
 
 ######################################################################
