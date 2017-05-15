@@ -1,0 +1,6 @@
+@comment $NetBSD$
+share/unicode/emoji/ReadMe.txt
+share/unicode/emoji/emoji-data.txt
+share/unicode/emoji/emoji-sequences.txt
+share/unicode/emoji/emoji-test.txt
+share/unicode/emoji/emoji-zwj-sequences.txt

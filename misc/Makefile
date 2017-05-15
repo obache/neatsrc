@@ -361,6 +361,7 @@ SUBDIR+=	topless
 SUBDIR+=	ttyrec
 SUBDIR+=	udfclient
 SUBDIR+=	ukpostcodes
+SUBDIR+=	unicode-emoji
 SUBDIR+=	uptimec
 SUBDIR+=	urjtag
 SUBDIR+=	usbids

@@ -1,0 +1,22 @@
+$NetBSD$
+
+SHA1 (unicode-emoji-4.0/ReadMe.txt) = 2683d741b0dd4bad040ee69e2eaee9c332d2f44e
+RMD160 (unicode-emoji-4.0/ReadMe.txt) = 287a4311afa115c0b3d4f4d48ce0057d3e2a8065
+SHA512 (unicode-emoji-4.0/ReadMe.txt) = 077d39fab993cef44bf788d785dc2721d3a6b330c79ec23a95ba476127b1e065ef151a19f880a35333a5626ab62ab1704a9902e334a542fbea10ab7242631d69
+Size (unicode-emoji-4.0/ReadMe.txt) = 74 bytes
+SHA1 (unicode-emoji-4.0/emoji-data.txt) = ed58a3b799670d3e909c81435f2569c8ddc46ee0
+RMD160 (unicode-emoji-4.0/emoji-data.txt) = 0d7c1c44cb44f8a7982c1a013aef43c9ab819175
+SHA512 (unicode-emoji-4.0/emoji-data.txt) = 4b2addbcf9ce7f320daa8c8738beafa940752a2df624724d0ee944fdf8ce611f8cdf3285f13ad05a8f9be9081942cf786f96b31f240f5038793c0e281b999318
+Size (unicode-emoji-4.0/emoji-data.txt) = 32490 bytes
+SHA1 (unicode-emoji-4.0/emoji-sequences.txt) = 6b4591273a55ad7a4a148b638be6799d4d75dba4
+RMD160 (unicode-emoji-4.0/emoji-sequences.txt) = 61db28faf4afebbc79e21600f0cd60b036a69120
+SHA512 (unicode-emoji-4.0/emoji-sequences.txt) = 9a70bcb04bb369fd2078df1dbdbade1068d33593b68b9359062e81900c6ef54c1886d2831bfa55cfe4db7b0501570144408b525da5b6c5666e6e71ef442037fb
+Size (unicode-emoji-4.0/emoji-sequences.txt) = 91671 bytes
+SHA1 (unicode-emoji-4.0/emoji-test.txt) = dbf74270123a0363d0e71485edaf45b437bc21ba
+RMD160 (unicode-emoji-4.0/emoji-test.txt) = 33b4dddfe203b55d030ec67961ce3df051803523
+SHA512 (unicode-emoji-4.0/emoji-test.txt) = 39461e3b242798238a7f653f388e605d7b5ad74147fb644d3754ca72f1add7aa946cfd649c36ebd9306539629f149304fa92801bfc18257077d43659745e10e7
+Size (unicode-emoji-4.0/emoji-test.txt) = 287574 bytes
+SHA1 (unicode-emoji-4.0/emoji-zwj-sequences.txt) = 72ad38322b1dcb2ae8cc295b2b4c96dd75208d3e
+RMD160 (unicode-emoji-4.0/emoji-zwj-sequences.txt) = f38fc881cf25ff931004b8a0c8c5888e1e873aed
+SHA512 (unicode-emoji-4.0/emoji-zwj-sequences.txt) = 92b7342c74d4812f1c0453d5e6db49e80becd6848b6d5ba316d5d4734915286cc6d8989abaa2a601d873b1c9002d3d47d2cc8b107448bbe28856ef8705c3e00b
+Size (unicode-emoji-4.0/emoji-zwj-sequences.txt) = 98993 bytes
