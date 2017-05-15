@@ -5,7 +5,7 @@
 COMMENT=	Intelligent Input Bus
 
 DEPENDS+=	${PYPKGPREFIX}-gobject3-[0-9]*:../../devel/py-gobject3
-TOOL_DEPENDS+=	npm-emojione-[0-9]*:../../www/npm-emojione
+TOOL_DEPENDS+=	unicode-emoji>=4.0:../../misc/unicode-emoji
 TOOL_DEPENDS+=	cldr-emoji-annotation-[0-9]*:../../misc/cldr-emoji-annotation
 
 GNU_CONFIGURE=	yes
@@ -26,7 +26,7 @@ CONFIGURE_ARGS+=	--enable-gtk3
 CONFIGURE_ARGS+=	--enable-surrounding-text
 CONFIGURE_ARGS+=	--enable-introspection=yes
 CONFIGURE_ARGS+=	--with-python=${PYTHONBIN}
-CONFIGURE_ARGS+=	--with-emoji-json-file=${LOCALBASE}/lib/node_modules/emojione/emoji.json
+CONFIGURE_ARGS+=	--with-unicode-emoji-dir=${LOCALBASE}/share/unicode/emoji
 CONFIGURE_ARGS+=	--with-emoji-annotation-dir=${LOCALBASE}/share/unicode/cldr/common/annotations
 
 SUBST_CLASSES+=		dbus

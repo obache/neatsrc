@@ -11,7 +11,6 @@ include/ibus-1.0/ibusconfig.h
 include/ibus-1.0/ibusconfigservice.h
 include/ibus-1.0/ibusdebug.h
 include/ibus-1.0/ibusemoji.h
-include/ibus-1.0/ibusemojidialog.h
 include/ibus-1.0/ibusengine.h
 include/ibus-1.0/ibusenginedesc.h
 include/ibus-1.0/ibusenginesimple.h
@@ -41,20 +40,20 @@ include/ibus-1.0/ibusutil.h
 include/ibus-1.0/ibusversion.h
 include/ibus-1.0/ibusxml.h
 lib/girepository-1.0/IBus-1.0.typelib
-lib/girepository-1.0/IBusEmojiDialog-1.0.typelib
 lib/gtk-2.0/2.10.0/immodules/im-ibus.la
 lib/gtk-3.0/3.0.0/immodules/im-ibus.la
 lib/libibus-1.0.la
-lib/libibus-emoji-dialog-1.0.la
 lib/pkgconfig/ibus-1.0.pc
 libexec/ibus-dconf
 libexec/ibus-engine-simple
 libexec/ibus-gconf
+libexec/ibus-ui-emojier
 libexec/ibus-ui-gtk3
 libexec/ibus-x11
 man/man1/ibus-daemon.1
 man/man1/ibus-setup.1
 man/man1/ibus.1
+man/man7/ibus-emoji.7
 share/GConf/gsettings/ibus.convert
 share/applications/ibus-setup.desktop
 share/bash-completion/completions/ibus.bash
@@ -63,7 +62,6 @@ share/examples/ibus/dconf/db/ibus.d/00-upstream-settings
 share/examples/ibus/dconf/profile/ibus
 share/gconf/schemas/ibus.schemas
 share/gir-1.0/IBus-1.0.gir
-share/gir-1.0/IBusEmojiDialog-1.0.gir
 share/glib-2.0/schemas/org.freedesktop.ibus.gschema.xml
 share/gtk-doc/html/ibus/IBusAttrList.html
 share/gtk-doc/html/ibus/IBusAttribute.html
@@ -90,7 +88,6 @@ share/gtk-doc/html/ibus/IBusSerializable.html
 share/gtk-doc/html/ibus/IBusService.html
 share/gtk-doc/html/ibus/IBusText.html
 share/gtk-doc/html/ibus/annotation-glossary.html
-share/gtk-doc/html/ibus/api-index-deprecated.html
 share/gtk-doc/html/ibus/api-index-full.html
 share/gtk-doc/html/ibus/ch01.html
 share/gtk-doc/html/ibus/ch02.html
@@ -210,6 +207,9 @@ share/ibus/keymaps/jp
 share/ibus/keymaps/kr
 share/ibus/keymaps/modifiers
 share/ibus/keymaps/us
+share/ibus/setup/emojilang.py
+share/ibus/setup/emojilang.pyc
+share/ibus/setup/emojilang.pyo
 share/ibus/setup/engineabout.py
 share/ibus/setup/engineabout.pyc
 share/ibus/setup/engineabout.pyo
@@ -258,6 +258,7 @@ share/locale/es/LC_MESSAGES/ibus10.mo
 share/locale/et/LC_MESSAGES/ibus10.mo
 share/locale/eu/LC_MESSAGES/ibus10.mo
 share/locale/fa/LC_MESSAGES/ibus10.mo
+share/locale/fi/LC_MESSAGES/ibus10.mo
 share/locale/fr/LC_MESSAGES/ibus10.mo
 share/locale/gu/LC_MESSAGES/ibus10.mo
 share/locale/he/LC_MESSAGES/ibus10.mo
@@ -279,8 +280,10 @@ share/locale/pa/LC_MESSAGES/ibus10.mo
 share/locale/pl/LC_MESSAGES/ibus10.mo
 share/locale/pt_BR/LC_MESSAGES/ibus10.mo
 share/locale/ru/LC_MESSAGES/ibus10.mo
+share/locale/sq/LC_MESSAGES/ibus10.mo
 share/locale/sr/LC_MESSAGES/ibus10.mo
 share/locale/sr@latin/LC_MESSAGES/ibus10.mo
+share/locale/sv/LC_MESSAGES/ibus10.mo
 share/locale/ta/LC_MESSAGES/ibus10.mo
 share/locale/te/LC_MESSAGES/ibus10.mo
 share/locale/tg/LC_MESSAGES/ibus10.mo
