@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (onigmo-6.1.1.tar.gz) = 9bc879c3a54ff11452d4fef2b43b3c153a43ff9d
-RMD160 (onigmo-6.1.1.tar.gz) = bb807aa491528fea38210e0e4c686ce2d7126bcd
-SHA512 (onigmo-6.1.1.tar.gz) = 6b1567aa953f0cf757ee0c6c75439de2b31ed46ccc117a8ddfdcb6206133e1d837d2385fd79c350b095a68bf1b7ca5a488831ceca42c568945eac722d7cc024f
-Size (onigmo-6.1.1.tar.gz) = 821378 bytes
+SHA1 (onigmo-6.1.2.tar.gz) = ebbbf13c9e777330f5b105130e956a11539f5892
+RMD160 (onigmo-6.1.2.tar.gz) = bafb38e2398ec90b608156a4f351541b499889c9
+SHA512 (onigmo-6.1.2.tar.gz) = 0dff1c27913af0ea9c95419483725c3eeb2cad0daa327ad532a02f0af06e9d77fd536f238c34704023c1278ae448903f1cbe42d85ab75929cddccb22f9ddc46b
+Size (onigmo-6.1.2.tar.gz) = 821659 bytes
