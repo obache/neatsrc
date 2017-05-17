@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.34 2016/02/25 12:12:47 jperkin Exp $
+# $NetBSD: Makefile,v 1.35 2017/05/15 14:14:04 wiz Exp $
 
 .include "../../devel/gettext/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/-/-tools-/}
+PKGREVISION=	1
 COMMENT=	Tools for providing messages in different languages
 
 DISTINFO_FILE=	${.CURDIR}/../../devel/gettext/distinfo
