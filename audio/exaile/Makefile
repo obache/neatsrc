@@ -11,6 +11,8 @@ HOMEPAGE=	http://www.exaile.org/
 COMMENT=	Music player
 LICENSE=	gnu-gpl-v2 # or later
 
+DEPENDS+=	${PYPKGPREFIX}-mutagen-[0-9]*:../../audio/py-mutagen
+
 WRKSRC=		${WRKDIR}/exaile-0.2.14
 
 USE_PKGLOCALEDIR=	yes
@@ -26,7 +28,6 @@ MAKE_FLAGS+=	PKGLOCALEDIR=${PKGLOCALEDIR}
 .include "../../lang/python/application.mk"
 .include "../../x11/py-gtk2/buildlink3.mk"
 .include "../../sysutils/py-dbus/buildlink3.mk"
-.include "../../audio/py-mutagen/buildlink3.mk"
 .include "../../multimedia/py-gstreamer0.10/buildlink3.mk"
 .include "../../textproc/py-elementtree/buildlink3.mk"
 .include "../../databases/py-sqlite2/buildlink3.mk"
