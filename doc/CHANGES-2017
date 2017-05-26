@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.2083 2017/05/25 03:18:50 manu Exp $
+$NetBSD: CHANGES-2017,v 1.2089 2017/05/26 04:28:04 adam Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -2611,3 +2611,10 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated net/mosh to 1.3.0 [agc 2017-05-24]
 	Updated security/cy2-saml to 1.8 [manu 2017-05-25]
 	Updated security/pam-saml to 1.8 [manu 2017-05-25]
+	Updated lang/go to 1.8.2 [bsiegert 2017-05-25]
+	Updated lang/go to 1.8.3 [bsiegert 2017-05-25]
+	Updated mail/ezmlm-idx to 7.2.2 [schmonz 2017-05-25]
+	Added sysutils/dtb-arm-tegra124 version 4.11.3 [jmcneill 2017-05-25]
+	Added sysutils/dtb-arm64-tegra210 version 4.11.3 [jmcneill 2017-05-25]
+	Updated mail/pymsgauth to 2.1.0nb6 [schmonz 2017-05-26]
+	Updated net/py-boto to 2.47.0 [adam 2017-05-26]
