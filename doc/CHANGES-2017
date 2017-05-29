@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.2105 2017/05/28 01:43:14 maya Exp $
+$NetBSD: CHANGES-2017,v 1.2119 2017/05/28 20:08:05 nros Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -2645,3 +2645,17 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated lang/gcc6 to 6.3.0nb1 [maya 2017-05-28]
 	Updated lang/gcc5 to 5.4.0nb3 [maya 2017-05-28]
 	Updated lang/gcc49 to 4.9.4nb1 [maya 2017-05-28]
+	Updated devel/p5-Devel-Cover to 1.25 [wen 2017-05-28]
+	Updated lang/pear to 1.10.4 [taca 2017-05-28]
+	Updated net/pear-Net_Socket to 1.2.2 [taca 2017-05-28]
+	Updated net/pear-Net_SMTP to 1.8.0 [taca 2017-05-28]
+	Updated net/pear-Net_Sieve to 1.4.1 [taca 2017-05-28]
+	Updated math/pear-Math_BigInteger to 1.0.3 [taca 2017-05-28]
+	Updated mail/pear-Mail to 1.4.1 [taca 2017-05-28]
+	Updated mail/pear-Mail_Mime to 1.10.1 [taca 2017-05-28]
+	Updated devel/php-xdebug to 2.5.4 [taca 2017-05-28]
+	Updated www/php-concrete5 to 5.7.5.13 [taca 2017-05-28]
+	Updated mail/dcc to 1.3.159 [maya 2017-05-28]
+	Updated misc/py-anita to 1.41 [gson 2017-05-28]
+	Added converters/p5-Sereal version 0.330 [mef 2017-05-28]
+	Added devel/editorconfig-core version 0.12.1 [nros 2017-05-28]
