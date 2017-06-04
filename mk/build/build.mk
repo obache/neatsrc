@@ -1,4 +1,4 @@
-# $NetBSD: build.mk,v 1.21 2012/05/27 14:32:29 cheusov Exp $
+# $NetBSD: build.mk,v 1.22 2017/06/01 02:15:10 jlam Exp $
 #
 # This file defines what happens in the build phase, excluding the
 # self-test, which is defined in test.mk.
