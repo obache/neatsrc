@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	perl
 PERL_BUILDLINK3_MK:=
 
 .include "../../mk/bsd.fast.prefs.mk"
-PERL5_REQD+=			5.24.0
+PERL5_REQD+=			5.26.0
 .for _perl5_ver_ in ${PERL5_REQD}
 BUILDLINK_API_DEPENDS.perl+=	perl>=${_perl5_ver_}
 .endfor
