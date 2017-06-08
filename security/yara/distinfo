@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.6 2017/05/15 15:27:31 khorben Exp $
+$NetBSD: distinfo,v 1.9 2017/06/07 20:46:34 wiz Exp $
 
-SHA1 (yara/v3.5.0.tar.gz) = 96cab443d6a4328023a01c4032efbcefc211ef35
-RMD160 (yara/v3.5.0.tar.gz) = 49969b1915c2e798265f7ef6fe6a9feca8fc56df
-SHA512 (yara/v3.5.0.tar.gz) = 84e3b8248749271f154c05216417be76c56563012c0a2013fde5184c6ed03d2933c456d61f036292c42030b52705d5c6e94824d1fd36dbffe46af625ddedaaf5
-Size (yara/v3.5.0.tar.gz) = 7648499 bytes
+SHA1 (yara-3.6.1.tar.gz) = 67705f7516e70b9b2a627618af7c842711472359
+RMD160 (yara-3.6.1.tar.gz) = 9e36654aa360277c7b45946c46a2f159400fd40a
+SHA512 (yara-3.6.1.tar.gz) = 0b3b6deeb83f979898ef2711233b9e856b39a43098549173f81e627b0c35454c68cb3e8f64115b265cf483bfc3ce2d14e916fbcdeba95648fb1795ff77bf0bbf
+Size (yara-3.6.1.tar.gz) = 505302 bytes
 SHA1 (patch-libyara_proc.c) = cbe52e79c63eb6389a5f7d1107d15a57ca4890f9
