@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.60 2017/06/05 14:45:54 ryoon Exp $
+# $NetBSD: buildlink3.mk,v 1.61 2017/06/08 11:05:33 wiz Exp $
 
 BUILDLINK_TREE+=	perl
 
