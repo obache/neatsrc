@@ -1,4 +1,4 @@
-# $NetBSD: Linux.mk,v 1.72 2017/02/01 10:00:17 sevan Exp $
+# $NetBSD: Linux.mk,v 1.75 2017/06/09 17:21:53 khorben Exp $
 #
 # Variable definitions for the Linux operating system.
 
@@ -117,6 +117,21 @@ _OPSYS_CAN_CHECK_SHLIBS=	yes # use readelf in check/bsd.check-vars.mk
 # to avoid a test required by the libtool script that takes forever.
 .if exists(/usr/bin/getconf)
 _OPSYS_MAX_CMDLEN_CMD?=	/usr/bin/getconf ARG_MAX
+.endif
+
+# Register support for FORTIFY (with GCC)
+_OPSYS_SUPPORTS_FORTIFY=yes
+
+# Register support for RELRO on supported architectures (with GCC)
+.if (${MACHINE_ARCH} == "i386") || \
+    (${MACHINE_ARCH} == "x86_64")
+_OPSYS_SUPPORTS_RELRO=	yes
+.endif
+
+# Register support for SSP on x86 architectures
+.if (${MACHINE_ARCH} == "i386") || \
+    (${MACHINE_ARCH} == "x86_64")
+_OPSYS_SUPPORTS_SSP=	yes
 .endif
 
 .if ${MACHINE_ARCH} == "x86_64"
