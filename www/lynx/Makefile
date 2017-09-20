@@ -73,6 +73,7 @@ CONFIGURE_ARGS+=	--enable-read-eta
 CONFIGURE_ENV+=		BUILD_CC=${NATIVE_CC:Q}
 .endif
 
+.include "../../devel/gettext-tools/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"

@@ -2,7 +2,7 @@
 #
 
 DISTNAME=	multitail-4.0.6
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	misc sysutils
 MASTER_SITES=	http://www.vanheusden.com/multitail/
 EXTRACT_SUFX=	.tgz
@@ -32,5 +32,5 @@ do-install:
 	cd ${WRKSRC:Q} && ${INSTALL_DATA} *.txt manual*.html \
 		${DESTDIR}${PREFIX:Q}/share/doc/multitail/
 
-.include "../../devel/ncurses/buildlink3.mk"
+.include "../../mk/curses.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

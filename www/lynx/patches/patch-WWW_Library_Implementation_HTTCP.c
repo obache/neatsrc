@@ -1,4 +1,4 @@
-$NetBSD: patch-WWW_Library_Implementation_HTTCP.c,v 1.2 2016/12/22 17:30:51 sevan Exp $
+$NetBSD$
 
 Fix CVE-2016-9179
 https://hg.java.net/hg/solaris-userland~gate/file/0a979060f73b/components/lynx/patches/05-fix-CVE-2016-9179.patch

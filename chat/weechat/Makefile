@@ -18,6 +18,7 @@ USE_TOOLS+=		msgfmt pkg-config
 USE_LANGUAGES=		c99
 USE_LIBTOOL=		yes
 USE_CMAKE=		yes
+FAKE_NCURSES=		yes
 
 CMAKE_ARGS+=		-DENABLE_ASPELL:BOOL=OFF
 CMAKE_ARGS+=		-DENABLE_GUILE:BOOL=OFF
@@ -41,4 +42,5 @@ LDFLAGS.SunOS+=		-lresolv
 .include "../../www/curl/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
+.include "../../mk/curses.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
