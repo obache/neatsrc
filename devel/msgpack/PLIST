@@ -647,6 +647,10 @@ include/msgpack/zbuffer_decl.hpp
 include/msgpack/zone.h
 include/msgpack/zone.hpp
 include/msgpack/zone_decl.hpp
+lib/cmake/msgpack/msgpack-config-version.cmake
+lib/cmake/msgpack/msgpack-config.cmake
+lib/cmake/msgpack/msgpack-targets-release.cmake
+lib/cmake/msgpack/msgpack-targets.cmake
 lib/libmsgpackc.a
 lib/libmsgpackc.so
 lib/libmsgpackc.so.2
