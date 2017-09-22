@@ -8,7 +8,6 @@ CONFLICTS=	mysql3-server-[0-9]*
 .include "../../databases/mysql56-client/Makefile.common"
 
 CMAKE_ARGS+=		-DWITH_LIBWRAP=ON
-CMAKE_ARGS+=		-DINSTALL_INFODIR=${PKGINFODIR}
 
 .if !empty(PKG_OPTIONS:Membedded-server)
 CMAKE_ARGS+=		-DWITH_EMBEDDED_SERVER=ON

@@ -10,7 +10,6 @@ CONFLICTS=	mysql3-client-[0-9]*
 CMAKE_ARGS+=		-DWITHOUT_SERVER=ON
 CMAKE_ARGS+=		-DWITH_UNIT_TESTS=OFF
 UNWRAP_FILES+=		scripts/mysql_config
-INFO_FILES=		yes
 INSTALL_DIRS+=		client include libmysql man scripts tests
 
 REPLACE_PERL=	scripts/mysql_convert_table_format.sh

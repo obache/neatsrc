@@ -9,7 +9,6 @@ CONFLICTS=	mysql-server-[0-9]*
 .include "../../databases/mariadb55-client/Makefile.common"
 
 CMAKE_ARGS+=		-DWITH_LIBWRAP=ON
-CMAKE_ARGS+=		-DINSTALL_INFODIR=${PKGINFODIR}
 # Avoid build error on NetBSD/amd64 7.99.9
 # and TokuDB is available only on amd64.
 CMAKE_ARGS+=		-DWITHOUT_TOKUDB=1
