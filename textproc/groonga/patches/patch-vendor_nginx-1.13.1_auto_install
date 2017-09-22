@@ -2,8 +2,8 @@ $NetBSD: patch-vendor_nginx-1.11.3_auto_install,v 1.1 2016/09/11 16:07:55 taca E
 
 Don't create "*.default".
 
---- vendor/nginx-1.13.0/auto/install.orig	2016-07-27 04:07:48.000000000 +0000
-+++ vendor/nginx-1.13.0/auto/install
+--- vendor/nginx-1.13.1/auto/install.orig	2016-07-27 04:07:48.000000000 +0000
++++ vendor/nginx-1.13.1/auto/install
 @@ -123,30 +123,21 @@ install:	build $NGX_INSTALL_PERL_MODULES
  
  	test -f '\$(DESTDIR)$NGX_CONF_PREFIX/mime.types' \\

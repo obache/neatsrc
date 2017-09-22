@@ -1,8 +1,8 @@
 $NetBSD: distinfo,v 1.42 2016/09/11 16:06:53 taca Exp $
 
-SHA1 (groonga-7.0.3.tar.gz) = c4131564089e472502fc42df3482ba27961b33b9
-RMD160 (groonga-7.0.3.tar.gz) = f4d831f6af8eeae1208382ca07206a44b33f617d
-SHA512 (groonga-7.0.3.tar.gz) = a130a3eb0671dac44abd04ba186b6523b2ae08a22d6d7c1bcab819d0fe753b923d3dd2bcae550a007033a382d514696c5005edc8292feba26e91687ba410b3d7
-Size (groonga-7.0.3.tar.gz) = 14403442 bytes
-SHA1 (patch-vendor_nginx-1.13.0_auto_install) = 9379d0d6f82ca1db597c8090f87c8aab509f66e3
-SHA1 (patch-vendor_nginx-1.13.0_src_os_unix_ngx__udp__sendmsg__chain.c) = 559d2efa3cf29e4dac3d4b4acbcda7a558d0aa55
+SHA1 (groonga-7.0.4.tar.gz) = 80848570d91dc7a4481aa9c6b505f5eff0208daf
+RMD160 (groonga-7.0.4.tar.gz) = fcb25437c92529917baf2ebf3576f6fc63a9cdea
+SHA512 (groonga-7.0.4.tar.gz) = bf8cc95402bdc5709e5aad452a76564c873d486eaf59603897d665c696229ee3d4c7fc65bb62c4206dfaade40d46d8ea4f4504f9a8aec78886e97c7411e8d8d7
+Size (groonga-7.0.4.tar.gz) = 14424905 bytes
+SHA1 (patch-vendor_nginx-1.13.1_auto_install) = f6efdbe94be10db38a2e618c9774b52dfc39aa8a
+SHA1 (patch-vendor_nginx-1.13.1_src_os_unix_ngx__udp__sendmsg__chain.c) = e3ffa15e7ff90dcbaf4f54957ddf515864e3c986
