@@ -4,3 +4,6 @@ SHA1 (cmake-fedora-2.6.0-modules-only.tar.gz) = 90fad24a15901df8830d4a1bc49fe4ba
 RMD160 (cmake-fedora-2.6.0-modules-only.tar.gz) = 820fd1f861ccaa596af317ac8cd3e24fb59b26bd
 SHA512 (cmake-fedora-2.6.0-modules-only.tar.gz) = db0f1193e653bbb860e31e698a254caf7193be51133f81acc01a001c43a850fec3939cee9bcec573fd07376a1d9fccec2db4220af7eb061f5817b2f2ae89388e
 Size (cmake-fedora-2.6.0-modules-only.tar.gz) = 59346 bytes
+SHA1 (patch-Modules_ManageEnvironment.cmake) = 213274162dca9e3fb4d54d494908a309b6819e51
+SHA1 (patch-Modules_ManageEnvironmentCommon.cmake) = 1d8bb1e91c448df5dc8c7e5b7aa1760bb637a9d0
+SHA1 (patch-Modules_ManageTranslation.cmake) = 4d682cea4cd079ad6a1ae754c7ce2cb8602e8646
