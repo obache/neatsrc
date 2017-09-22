@@ -4,6 +4,7 @@
 PKG_OPTIONS_VAR=	PKG_OPTIONS.cyrus-imapd
 PKG_SUPPORTED_OPTIONS=	clamav gssapi http kerberos kerberos4 ldap pcre snmp zephyr
 PKG_SUPPORTED_OPTIONS+=	mysql pgsql sqlite lmdb
+PKG_SUPPORTED_OPTIONS+=	sphinx xapian
 PKG_SUGGESTED_OPTIONS=	http ldap pcre
 
 .include "../../mk/bsd.options.mk"
@@ -79,7 +80,7 @@ USE_TOOLS+=		perl:run
 CONFIGURE_ARGS+=	--without-snmp
 .endif
 
-.if !empty(PKG_OPTIONS:Mmysql)
+.if !empty(PKG_OPTIONS:Mmysql) || !empty(PKG_OPTIONS:Msphinx)
 .  include "../../mk/mysql.buildlink3.mk"
 CONFIGURE_ARGS+=	--with-mysql=${BUILDLINK_PREFIX.mysql-client}
 .else
@@ -140,4 +141,18 @@ CONFIGURE_ARGS+=	--disable-http
 CONFIGURE_ARGS+=	--with-zephyr=${BUILDLINK_PREFIX.zephyr}
 .else
 CONFIGURE_ARGS+=	--without-zephyr
+.endif
+
+.if !empty(PKG_OPTIONS:Msphinx)
+.  include "../../textproc/sphinxsearch/buildlink3.mk"
+CONFIGURE_ARGS+=	--enable-sphinx
+.else
+CONFIGURE_ARGS+=	--disable-sphinx
+.endif
+
+.if !empty(PKG_OPTIONS:Mxapian)
+.  include "../../textproc/xapian/buildlink3.mk"
+CONFIGURE_ARGS+=	--enable-xapian
+.else
+CONFIGURE_ARGS+=	--disable-xapian
 .endif
