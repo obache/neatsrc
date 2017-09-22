@@ -14,7 +14,6 @@ REPLACE_BASH+=		test/run-test.sh
 .include "../../lang/ruby/rubyversion.mk"
 TOOL_DEPENDS+=	${RUBY_PKGPREFIX}-groonga-command-parser-[0-9]*:../../textproc/ruby-groonga-command-parser
 TOOL_DEPENDS+=	${RUBY_PKGPREFIX}-msgpack-[0-9]*:../../devel/ruby-msgpack
-.include "../../lang/ruby/json.mk"
 .else
 CONFIGURE_ARGS+=	--without-ruby
 .endif
