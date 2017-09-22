@@ -1,9 +1,9 @@
 $NetBSD: distinfo,v 1.18 2015/11/03 22:13:34 agc Exp $
 
-SHA1 (ibus-chewing-1.6.0.tar.gz) = 6490ae695a54336b96a38943d6f48b0a4de85135
-RMD160 (ibus-chewing-1.6.0.tar.gz) = 2fafb11de3010eef9c06b4f575ed58fc26205df7
-SHA512 (ibus-chewing-1.6.0.tar.gz) = 9ed4e36a143afb25096bc239558f19c4ab62ba86e2876482e834afabe57080e06c574ceb7692d5e2bfad1d6512e359863e9faa73d16ccdae87ca18a7cc01baf4
-Size (ibus-chewing-1.6.0.tar.gz) = 110573 bytes
+SHA1 (ibus-chewing-1.6.1.tar.gz) = a50f5231b1676892de06f56ad35c68559d00bc43
+RMD160 (ibus-chewing-1.6.1.tar.gz) = d2b01002886475132ca0fdba54de4771ea2abe8e
+SHA512 (ibus-chewing-1.6.1.tar.gz) = b093db79c656433614b9f72719a2b0768a30c2fb6fa066eda1e79cc9932ce1836f7f1e5611612fb44f260fe80a9baa9e18fdc9754b285e8a5f12a87c376cbd39
+Size (ibus-chewing-1.6.1.tar.gz) = 111103 bytes
 SHA1 (patch-po_zh__CN.po) = ec3a38f4da58ec45c67e921eb0e2fbdca76fb122
 SHA1 (patch-src_generate-gconf-schemas.c) = e48a546d676f65c83379ed0cd35bd3529b5db4e5
 SHA1 (patch-src_generate-gsettings-schemas.c) = 451ad5e9aece6b3436f9d549e4d733e8a7a0f958
