@@ -20,6 +20,11 @@ TEST_TARGET=		check
 
 LDFLAGS.SunOS+=		-lsocket -lnsl
 
+.include "../../mk/bsd.prefs.mk"
+
+SUPPORTED_BUILTIN_UUID_OPSYS=	AIX FreeBSD NetBSD
+.if empty(SUPPORTED_BUILTIN_UUID_OPSYS:M${OPSYS})
 .include "../../devel/libuuid/buildlink3.mk"
+.endif
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

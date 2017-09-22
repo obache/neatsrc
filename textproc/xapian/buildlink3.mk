@@ -9,7 +9,12 @@ BUILDLINK_API_DEPENDS.xapian+=	xapian>=1.0.7
 BUILDLINK_ABI_DEPENDS.xapian+=	xapian>=1.4.1
 BUILDLINK_PKGSRCDIR.xapian?=	../../textproc/xapian
 
+.include "../../mk/bsd.prefs.mk"
+
+SUPPORTED_BUILTIN_UUID_OPSYS=	AIX FreeBSD NetBSD
+.if empty(SUPPORTED_BUILTIN_UUID_OPSYS:M${OPSYS})
 .include "../../devel/libuuid/buildlink3.mk"
+.endif
 .include "../../devel/zlib/buildlink3.mk"
 
 .endif # XAPIAN_BUILDLINK3_MK
