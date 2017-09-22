@@ -5,7 +5,7 @@ share/applications/ibus-setup-chewing.desktop
 share/doc/ibus-chewing/AUTHORS
 share/doc/ibus-chewing/COPYING
 share/doc/ibus-chewing/ChangeLog
-share/doc/ibus-chewing/README
+share/doc/ibus-chewing/README.md
 share/doc/ibus-chewing/USER-GUIDE
 share/glib-2.0/schemas/org.freedesktop.IBus.Chewing.gschema.xml
 share/ibus-chewing/icons/ibus-chewing-chi-full.svg
