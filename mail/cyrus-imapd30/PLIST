@@ -402,6 +402,7 @@ share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.0-rc3.
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.0-rc4.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.0.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.1.txt
+share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.2.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/${PKGVERSION}.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/index.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/upgrade.txt
@@ -459,6 +460,7 @@ share/doc/cyrus-imapd/html/_sources/imap/reference/faqs/feature-duplicate-delive
 share/doc/cyrus-imapd/html/_sources/imap/reference/faqs/install-compilationerrors.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/faqs/install-detecting-berkeley.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/faqs/install-install-help.txt
+share/doc/cyrus-imapd/html/_sources/imap/reference/faqs/install-linkerwarnings.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/faqs/interop-8bit.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/faqs/interop-barenewlines.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/faqs/interop-sieve-exim.txt
@@ -626,6 +628,7 @@ share/doc/cyrus-imapd/html/_static/event_notifications/QuotaWithin.json
 share/doc/cyrus-imapd/html/_static/favicon.ico
 share/doc/cyrus-imapd/html/_static/file.png
 share/doc/cyrus-imapd/html/_static/fonts/Inconsolata-Bold.ttf
+share/doc/cyrus-imapd/html/_static/fonts/Inconsolata-Regular.ttf
 share/doc/cyrus-imapd/html/_static/fonts/Inconsolata.ttf
 share/doc/cyrus-imapd/html/_static/fonts/Lato-Bold.ttf
 share/doc/cyrus-imapd/html/_static/fonts/Lato-Regular.ttf
@@ -807,6 +810,7 @@ share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.0-rc3.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.0-rc4.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.0.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.1.html
+share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.2.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/${PKGVERSION}.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/index.html
 share/doc/cyrus-imapd/html/imap/download/upgrade.html
@@ -864,6 +868,7 @@ share/doc/cyrus-imapd/html/imap/reference/faqs/feature-duplicate-delivery.html
 share/doc/cyrus-imapd/html/imap/reference/faqs/install-compilationerrors.html
 share/doc/cyrus-imapd/html/imap/reference/faqs/install-detecting-berkeley.html
 share/doc/cyrus-imapd/html/imap/reference/faqs/install-install-help.html
+share/doc/cyrus-imapd/html/imap/reference/faqs/install-linkerwarnings.html
 share/doc/cyrus-imapd/html/imap/reference/faqs/interop-8bit.html
 share/doc/cyrus-imapd/html/imap/reference/faqs/interop-barenewlines.html
 share/doc/cyrus-imapd/html/imap/reference/faqs/interop-sieve-exim.html
@@ -996,6 +1001,7 @@ share/doc/cyrus-imapd/html/search.html
 share/doc/cyrus-imapd/html/searchindex.js
 share/doc/cyrus-imapd/html/setup.html
 share/doc/cyrus-imapd/html/sitemap.html
+share/doc/cyrus-imapd/html/sitemap.xml
 share/doc/cyrus-imapd/html/styles.html
 share/doc/cyrus-imapd/html/support.html
 share/doc/cyrus-imapd/internal/backup
@@ -1216,6 +1222,7 @@ share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.0-rc3.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.0-rc4.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.0.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.1.txt
+share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.2.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/${PKGVERSION}.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/index.txt
 share/doc/cyrus-imapd/text/imap/download/upgrade.txt
@@ -1273,6 +1280,7 @@ share/doc/cyrus-imapd/text/imap/reference/faqs/feature-duplicate-delivery.txt
 share/doc/cyrus-imapd/text/imap/reference/faqs/install-compilationerrors.txt
 share/doc/cyrus-imapd/text/imap/reference/faqs/install-detecting-berkeley.txt
 share/doc/cyrus-imapd/text/imap/reference/faqs/install-install-help.txt
+share/doc/cyrus-imapd/text/imap/reference/faqs/install-linkerwarnings.txt
 share/doc/cyrus-imapd/text/imap/reference/faqs/interop-8bit.txt
 share/doc/cyrus-imapd/text/imap/reference/faqs/interop-barenewlines.txt
 share/doc/cyrus-imapd/text/imap/reference/faqs/interop-sieve-exim.txt
