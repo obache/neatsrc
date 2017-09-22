@@ -6,10 +6,10 @@ ${PLIST.learner}bin/groonga-suggest-httpd
 ${PLIST.learner}bin/groonga-suggest-learner
 include/groonga/groonga.h
 include/groonga/groonga.hpp
+include/groonga/groonga/accessor.h
 include/groonga/groonga/array.h
 include/groonga/groonga/arrow.h
 include/groonga/groonga/arrow.hpp
-include/groonga/groonga/accessor.h
 include/groonga/groonga/cache.h
 include/groonga/groonga/column.h
 include/groonga/groonga/command.h
@@ -48,6 +48,7 @@ include/groonga/groonga/window_function.h
 include/groonga/groonga/windows.h
 include/groonga/groonga/windows_event_logger.h
 lib/groonga/plugins/functions/index_column.la
+lib/groonga/plugins/functions/math.la
 lib/groonga/plugins/functions/number.la
 lib/groonga/plugins/functions/string.la
 lib/groonga/plugins/functions/time.la
@@ -234,6 +235,7 @@ share/doc/groonga/en/html/_sources/reference/functions/highlight_html.txt
 share/doc/groonga/en/html/_sources/reference/functions/html_untag.txt
 share/doc/groonga/en/html/_sources/reference/functions/in_records.txt
 share/doc/groonga/en/html/_sources/reference/functions/in_values.txt
+share/doc/groonga/en/html/_sources/reference/functions/math_abs.txt
 share/doc/groonga/en/html/_sources/reference/functions/now.txt
 share/doc/groonga/en/html/_sources/reference/functions/number_classify.txt
 share/doc/groonga/en/html/_sources/reference/functions/prefix_rk_search.txt
@@ -297,6 +299,7 @@ share/doc/groonga/en/html/_sources/spec/gqtp.txt
 share/doc/groonga/en/html/_sources/spec/search.txt
 share/doc/groonga/en/html/_sources/troubleshooting.txt
 share/doc/groonga/en/html/_sources/troubleshooting/different_results_with_the_same_keyword.txt
+share/doc/groonga/en/html/_sources/troubleshooting/how_to_analyze_error_message.txt
 share/doc/groonga/en/html/_sources/troubleshooting/mmap_cannot_allocate_memory.txt
 share/doc/groonga/en/html/_sources/tutorial.txt
 share/doc/groonga/en/html/_sources/tutorial/data.txt
@@ -507,6 +510,7 @@ share/doc/groonga/en/html/reference/functions/highlight_html.html
 share/doc/groonga/en/html/reference/functions/html_untag.html
 share/doc/groonga/en/html/reference/functions/in_records.html
 share/doc/groonga/en/html/reference/functions/in_values.html
+share/doc/groonga/en/html/reference/functions/math_abs.html
 share/doc/groonga/en/html/reference/functions/now.html
 share/doc/groonga/en/html/reference/functions/number_classify.html
 share/doc/groonga/en/html/reference/functions/prefix_rk_search.html
@@ -572,6 +576,7 @@ share/doc/groonga/en/html/spec/gqtp.html
 share/doc/groonga/en/html/spec/search.html
 share/doc/groonga/en/html/troubleshooting.html
 share/doc/groonga/en/html/troubleshooting/different_results_with_the_same_keyword.html
+share/doc/groonga/en/html/troubleshooting/how_to_analyze_error_message.html
 share/doc/groonga/en/html/troubleshooting/mmap_cannot_allocate_memory.html
 share/doc/groonga/en/html/tutorial.html
 share/doc/groonga/en/html/tutorial/data.html
@@ -759,6 +764,7 @@ share/doc/groonga/ja/html/_sources/reference/functions/highlight_html.txt
 share/doc/groonga/ja/html/_sources/reference/functions/html_untag.txt
 share/doc/groonga/ja/html/_sources/reference/functions/in_records.txt
 share/doc/groonga/ja/html/_sources/reference/functions/in_values.txt
+share/doc/groonga/ja/html/_sources/reference/functions/math_abs.txt
 share/doc/groonga/ja/html/_sources/reference/functions/now.txt
 share/doc/groonga/ja/html/_sources/reference/functions/number_classify.txt
 share/doc/groonga/ja/html/_sources/reference/functions/prefix_rk_search.txt
@@ -822,6 +828,7 @@ share/doc/groonga/ja/html/_sources/spec/gqtp.txt
 share/doc/groonga/ja/html/_sources/spec/search.txt
 share/doc/groonga/ja/html/_sources/troubleshooting.txt
 share/doc/groonga/ja/html/_sources/troubleshooting/different_results_with_the_same_keyword.txt
+share/doc/groonga/ja/html/_sources/troubleshooting/how_to_analyze_error_message.txt
 share/doc/groonga/ja/html/_sources/troubleshooting/mmap_cannot_allocate_memory.txt
 share/doc/groonga/ja/html/_sources/tutorial.txt
 share/doc/groonga/ja/html/_sources/tutorial/data.txt
@@ -1032,6 +1039,7 @@ share/doc/groonga/ja/html/reference/functions/highlight_html.html
 share/doc/groonga/ja/html/reference/functions/html_untag.html
 share/doc/groonga/ja/html/reference/functions/in_records.html
 share/doc/groonga/ja/html/reference/functions/in_values.html
+share/doc/groonga/ja/html/reference/functions/math_abs.html
 share/doc/groonga/ja/html/reference/functions/now.html
 share/doc/groonga/ja/html/reference/functions/number_classify.html
 share/doc/groonga/ja/html/reference/functions/prefix_rk_search.html
@@ -1097,6 +1105,7 @@ share/doc/groonga/ja/html/spec/gqtp.html
 share/doc/groonga/ja/html/spec/search.html
 share/doc/groonga/ja/html/troubleshooting.html
 share/doc/groonga/ja/html/troubleshooting/different_results_with_the_same_keyword.html
+share/doc/groonga/ja/html/troubleshooting/how_to_analyze_error_message.html
 share/doc/groonga/ja/html/troubleshooting/mmap_cannot_allocate_memory.html
 share/doc/groonga/ja/html/tutorial.html
 share/doc/groonga/ja/html/tutorial/data.html
