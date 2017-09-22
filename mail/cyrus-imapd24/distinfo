@@ -1,9 +1,9 @@
 $NetBSD: distinfo,v 1.22 2017/02/25 01:08:20 mef Exp $
 
-SHA1 (cyrus-imapd-2.4.19.tar.gz) = 2db900b7369ddbedd919905bffdcfa8c60117507
-RMD160 (cyrus-imapd-2.4.19.tar.gz) = c995cf6a526ae078b61b8f29aa0578caff46be32
-SHA512 (cyrus-imapd-2.4.19.tar.gz) = 5d1b461ecaa49bc21ef7a583c861e4503611e7b9750ad997dd9785c5a63739e8cb77eeb898647b8104b172566379d6b46bf641707fdb20c0dc6f83c79a93ee78
-Size (cyrus-imapd-2.4.19.tar.gz) = 2488567 bytes
+SHA1 (cyrus-imapd-2.4.20.tar.gz) = 0a1f5f36dc1fa2451d2f40e894a6f214224f2333
+RMD160 (cyrus-imapd-2.4.20.tar.gz) = 0dc74400acdfaef176266f536ef90f6dded6014c
+SHA512 (cyrus-imapd-2.4.20.tar.gz) = a1e7d8b4bc096c57ba36f74f2853eb520503b40beffc80912a0c081bce1df3fa8cd41b00c789d33097be6325563743c9540c11cc6137c51a747880749d2f5b4d
+Size (cyrus-imapd-2.4.20.tar.gz) = 2488878 bytes
 SHA1 (patch-ac) = 1971360e93633cd29d7d9d2dc5cc1eb20af1d16d
 SHA1 (patch-ah) = 4bc62dfdeafdca83ddac02aff0ffd05db28fe0b9
 SHA1 (patch-ai) = 9167678988f411479d187b232eb10ad8622b4151
