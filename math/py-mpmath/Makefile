@@ -12,7 +12,6 @@ COMMENT=	Python library for arbitrary-precision FP arithmetic
 LICENSE=	modified-bsd
 
 USE_LANGUAGES=	# none
-PYDISTUTILSPKG=	yes
 
 TEST_ENV+=	PYTHONPATH=${WRKSRC}/build/lib
 
@@ -34,7 +33,7 @@ do-test:
 	${RUN} cd ${WRKSRC}/build/lib/mpmath/tests; \
 	${SETENV} ${TEST_ENV} ${PYTHONBIN} runtests.py
 
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 # optional speedup
 #.include "../../math/py-gmpy/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
