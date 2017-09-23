@@ -1,8 +1,6 @@
 $NetBSD$
 
-SHA1 (cangjie-1.2.tar.xz) = 850bdfb29235bf3d45fbf878e88c7fb8cc54314e
-RMD160 (cangjie-1.2.tar.xz) = b2042eccc5af10ae9b9dac543dc71a91b8350b0b
-SHA512 (cangjie-1.2.tar.xz) = 4cc3e0e4a77b671c93fe39f17c970d458d6d935c1efa33f9d8de0a0311ed6c3a444fd41431d553f70f3e96065f8136801128d8b16c86d0340c78ab560bd9e63f
-Size (cangjie-1.2.tar.xz) = 221524 bytes
-SHA1 (patch-Makefile.am) = 7015a85f32bedac32dcdd1163ed4edeba4e32e7e
-SHA1 (patch-Makefile.in) = 1cbef775e06c0b0c5303bf7e7b0bbfea63e5199d
+SHA1 (cangjie-1.3.tar.xz) = b7c8348c1e99e8440d1c46b588c80090aec807d6
+RMD160 (cangjie-1.3.tar.xz) = 777e15f5efac084906fea3969b2219b1cf5383a2
+SHA512 (cangjie-1.3.tar.xz) = 633b0040740105573fe72811c2f763756b67784330520ecadd5e0b24fc51e414f54a71f03444940f20c8a4943a14b65e2f1d18339696e2ea5cf659de8592df2a
+Size (cangjie-1.3.tar.xz) = 237156 bytes

@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	cangjie-1.2
+DISTNAME=	cangjie-1.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	inputmethod chinese python
 MASTER_SITES=	https://github.com/Cangjians/pycangjie/releases/download/v${PKGVERSION_NOREV}/
