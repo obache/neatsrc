@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.20 2014/06/17 01:08:59 obache Exp $
 
-SHA1 (cyrus-imapd-3.0.3.tar.gz) = c43d86cca140937a8c9b732cc14b84a2fe47a6d7
-RMD160 (cyrus-imapd-3.0.3.tar.gz) = 01ec3a31d2d7bc447f861db8d82558670aec27c5
-SHA512 (cyrus-imapd-3.0.3.tar.gz) = 0b5c3167d80d91371e3f07e64b8bc8c085481946e6536dd407976f6f8ae66405fd1f6d2ff5ad51e5e0eb827a64d90d93daf72d5a1afa409782a287bec29665df
-Size (cyrus-imapd-3.0.3.tar.gz) = 10819454 bytes
+SHA1 (cyrus-imapd-3.0.4.tar.gz) = 3f9f64e86838ecd7871e755315de603d8a0037db
+RMD160 (cyrus-imapd-3.0.4.tar.gz) = 785a5d2933002782f951d93f2f7a7de8a0a70673
+SHA512 (cyrus-imapd-3.0.4.tar.gz) = 9ceb7ac837c932c70fa0c1583bf8700b3ec27568d72538ae8d59f2f551e3007b3c2fc68fd29c009597c3949345dbe1bf2eb614bea038d70a5b49e5507df6b69a
+Size (cyrus-imapd-3.0.4.tar.gz) = 10819487 bytes
