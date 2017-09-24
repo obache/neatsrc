@@ -14,7 +14,6 @@ LICENSE=	gnu-lgpl-v2 AND gnu-gpl-v2
 DEPENDS+=	${PYPKGPREFIX}-sk1libs-[0-9]*:../../graphics/py-sk1libs
 
 USE_LANGUAGES=		c
-PYDISTUTILSPKG=		yes
 PYTHON_SELF_CONFLICT=	yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-sk1libs
 REPLACE_PYTHON+=	src/__init__.py
