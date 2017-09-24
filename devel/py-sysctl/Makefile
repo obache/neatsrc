@@ -13,7 +13,7 @@ ONLY_FOR_PLATFORM+=	NetBSD-*-*
 MAINTAINER=	cherry@zyx.in
 COMMENT=	Python interface to sysctl(3)
 
-PYDISTUTILSPKG=	# yes
+EGG_NAME=	${DISTNAME:S/^py-//}
 
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
