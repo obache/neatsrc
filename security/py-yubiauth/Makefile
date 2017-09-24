@@ -10,10 +10,6 @@ HOMEPAGE=	https://developers.yubico.com/yubiauth/
 COMMENT=	YubiAuth authentication backend
 LICENSE=	2-clause-bsd
 
-PYDISTUTILSPKG=	yes
-
-PYSETUP=	setup.py
-
 USE_LANGUAGES=	# none
 
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 0.3.9
