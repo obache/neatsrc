@@ -8,10 +8,10 @@ contrib/plugins/example.py
 contrib/plugins/pagecheck.py
 contrib/plugins/psdispscan.py
 contrib/plugins/scanprof.py
-${PYSITELIB}/${PKGNAME}-py2.7.egg-info/PKG-INFO
-${PYSITELIB}/${PKGNAME}-py2.7.egg-info/SOURCES.txt
-${PYSITELIB}/${PKGNAME}-py2.7.egg-info/dependency_links.txt
-${PYSITELIB}/${PKGNAME}-py2.7.egg-info/top_level.txt
+${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
+${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
+${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
+${PYSITELIB}/${EGG_INFODIR}/top_level.txt
 ${PYSITELIB}/volatility/__init__.py
 ${PYSITELIB}/volatility/__init__.pyc
 ${PYSITELIB}/volatility/__init__.pyo
