@@ -10,7 +10,7 @@ MAINTAINER=	bouyer@NetBSD.org
 HOMEPAGE=	http://barryp.org/software/py-smbpasswd/
 COMMENT=	Python SMB Password Hash Generator
 
-PYDISTUTILSPKG= yes
+EGG_NAME?=	${DISTNAME:S/py-//:C/-([^0-9])/_\1/g}
 
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
