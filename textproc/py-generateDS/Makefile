@@ -14,14 +14,12 @@ COMMENT=	Python XML data binding library
 
 LICENSE=	mit
 
+DEPENDS+=	${PYPKGPREFIX}-lxml-[0-9]*:../../textproc/py-lxml
 # TODO: explain
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-xml
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36
 
 REPLACE_PYTHON=	generateDS.py libgenerateDS/gui/*.py libgenerateDS/*.py
 
 .include "../../lang/python/egg.mk"
 .include "../../lang/python/application.mk"
-# TODO: Explain why this is commented out and present.
-#.include "../../textproc/py-xml/buildlink3.mk"
-
 .include "../../mk/bsd.pkg.mk"
