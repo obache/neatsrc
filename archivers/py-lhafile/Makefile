@@ -14,7 +14,8 @@ COMMENT=	LHA(.lzh) file extract interface
 LICENSE=	modified-bsd
 
 USE_LANGUAGES=		c
-PYDISTUTILSPKG=		yes
 
-.include "../../lang/python/extension.mk"
+EGG_NAME=	${PKGNAME_NOREV:S/^${PYPKGPREFIX}-//}
+
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
