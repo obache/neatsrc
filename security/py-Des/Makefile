@@ -11,7 +11,5 @@ HOMEPAGE=	http://twhiteman.netfirms.com/pyDES/
 COMMENT=	DES implementation in python
 LICENSE=	public-domain
 
-PYDISTUTILSPKG= yes
-
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
