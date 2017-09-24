@@ -11,8 +11,7 @@ HOMEPAGE=	http://pydns.sourceforge.net/
 COMMENT=	Python DNS library
 LICENSE=	python-software-foundation
 
-PYDISTUTILSPKG=			yes
 PYTHON_VERSIONS_ACCEPTED=	27
 
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
