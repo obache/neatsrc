@@ -14,8 +14,6 @@ COMMENT=	Python XML data binding library
 
 LICENSE=	mit
 
-PY_PATCHPLIST=	yes
-PYDISTUTILSPKG=	yes
 # TODO: explain
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-xml
 
