@@ -46,3 +46,4 @@ ${PYSITELIB}/S3/Utils.pyo
 ${PYSITELIB}/S3/__init__.py
 ${PYSITELIB}/S3/__init__.pyc
 ${PYSITELIB}/S3/__init__.pyo
+${PYSITELIB}/${EGG_FILE}
