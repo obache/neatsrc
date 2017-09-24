@@ -8,8 +8,6 @@ REPLACE_PYTHON=	*.py
 CATEGORIES=	devel
 MASTER_SITES=	http://www.golug.it/pub/yenc/
 
-PYDISTUTILSPKG=	yes
-
 MAINTAINER=	pkgsrc128@fastmail.us
 HOMEPAGE=	http://www.golug.it/yenc.html
 COMMENT=	Python module for yenc decoding module in C
@@ -17,5 +15,5 @@ LICENSE=        gnu-lgpl-v2.1
 
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # as of 0.4.0
 
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
