@@ -11,9 +11,7 @@ HOMEPAGE=	http://code.google.com/p/distorm/
 COMMENT=	Powerful Disassembler Library For x86/AMD64
 LICENSE=	gnu-gpl-v3
 
-PYDISTUTILSPKG= yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36
 
-.include "../../lang/python/extension.mk"
-.include "../../lang/python/application.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
