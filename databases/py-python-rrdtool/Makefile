@@ -17,8 +17,6 @@ USE_TOOLS+=	pkg-config
 
 PKGCONFIG_OVERRIDE+=	rrdtool-1.4.7/src/librrd.pc.in
 
-PYDISTUTILSPKG=		yes
-
 .include "../../databases/rrdtool/buildlink3.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
