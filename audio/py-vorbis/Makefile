@@ -11,8 +11,6 @@ HOMEPAGE=		http://vorbis.com/
 COMMENT=		Python bindings for Vorbis library
 LICENSE=		gnu-lgpl-v2
 
-PY_PATCHPLIST=		yes
-PYDISTUTILSPKG=		yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-ogg, and itself not ported as of 1.3
 
 HAS_CONFIGURE=		yes
@@ -22,7 +20,7 @@ CONFIGURE_ARGS+=	--prefix ${PREFIX}
 
 .include "../../audio/py-ogg/buildlink3.mk"
 .include "../../audio/libvorbis/buildlink3.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../multimedia/libogg/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"
