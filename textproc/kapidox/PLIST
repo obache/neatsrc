@@ -3,6 +3,7 @@ bin/depdiagram-generate
 bin/depdiagram-generate-all
 bin/depdiagram-prepare
 bin/kapidox_generate
+${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/kapidox/__init__.py
 ${PYSITELIB}/kapidox/__init__.pyc
 ${PYSITELIB}/kapidox/__init__.pyo

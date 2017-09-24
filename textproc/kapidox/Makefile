@@ -12,6 +12,5 @@ DEPENDS+=	${PYPKGPREFIX}-yaml-[0-9]*:../../textproc/py-yaml
 
 .include "../../meta-pkgs/kf5/Makefile.common"
 
-PYDISTUTILSPKG=	YES
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
