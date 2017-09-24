@@ -13,10 +13,6 @@ LICENSE=	modified-bsd
 DEPENDS+=	${PYPKGPREFIX}-serial-[0-9]*:../../comms/py-serial
 DEPENDS+=	${PYPKGPREFIX}-crypto-[0-9]*:../../security/py-crypto
 
-PYDISTUTILSPKG= yes
-
-PYSETUP=                setup.py
-
 USE_LANGUAGES=	# none
 
 CONFLICTS+=	${PYPKGPREFIX}-pyhsm-[0-9]*
