@@ -13,8 +13,7 @@ HOMEPAGE=	http://www.openidenabled.com/openid/libraries/python/
 COMMENT=	Python module for OpenID
 LICENSE=	apache-2.0
 
-PYDISTUTILSPKG= yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36
 
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
