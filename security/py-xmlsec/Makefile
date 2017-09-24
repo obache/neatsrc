@@ -15,11 +15,10 @@ DEPENDS+=	${PYPKGPREFIX}-libxml2-[0-9]*:../../textproc/py-libxml2
 
 USE_TOOLS+=	pkg-config
 
-PYDISTUTILSPKG=	yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 0.3.1
 
 .include "../../security/openssl/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../security/xmlsec1/buildlink3.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
