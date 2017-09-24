@@ -11,11 +11,10 @@ HOMEPAGE=	http://ag-projects.com/
 COMMENT=	Fast JSON encoder/decoder for Python
 LICENSE=	gnu-lgpl-v2
 
-PYDISTUTILSPKG= yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # Uses old string API.
 
 do-test:
 	( cd ${WKSRC} && ${PYTHONBIN} jsontest.py )
 
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
