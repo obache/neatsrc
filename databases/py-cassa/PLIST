@@ -1,4 +1,5 @@
 @comment $NetBSD: PLIST,v 1.1.1.1 2010/05/01 18:56:22 tonnerre Exp $
+${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/pycassa/__init__.py
 ${PYSITELIB}/pycassa/__init__.pyc
 ${PYSITELIB}/pycassa/__init__.pyo
