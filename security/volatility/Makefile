@@ -13,7 +13,6 @@ DEPENDS+=	${PYPKGPREFIX}-crypto-[0-9]*:../../security/py-crypto
 DEPENDS+=	${PYPKGPREFIX}-cElementTree-[0-9]*:../../textproc/py-cElementTree
 DEPENDS+=	${PYPKGPREFIX}-distorm3-[0-9]*:../../devel/py-distorm3
 
-PYDISTUTILSPKG= yes
 REPLACE_PYTHON= tools/vtype_diff.py
 
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36
