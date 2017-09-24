@@ -11,13 +11,10 @@ COMMENT=	Send and receive files with scp
 LICENSE=	apache-2.0
 
 USE_LANGUAGES=	# none
-PLIST_SUBST+=	PYVERSUFFIX=${PYVERSUFFIX}
-PYTHON_VERSIONS_ACCEPTED=	27
 
-PYDISTUTILSPKG= yes
+PYTHON_VERSIONS_ACCEPTED=	27
 
 DEPENDS+=	${PYPKGPREFIX}-paramiko-[0-9]*:../../security/py-paramiko
 
-.include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"
