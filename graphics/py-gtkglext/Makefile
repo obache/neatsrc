@@ -15,12 +15,11 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	PYTHON=${PYTHONBIN}
 USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config
-PYDISTUTILSPKG=	yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2
 
 PKGCONFIG_OVERRIDE+=	pygtkglext.pc.in
 
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../x11/py-gtk2/buildlink3.mk"
 .include "../../graphics/gtkglext/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
