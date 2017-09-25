@@ -9,6 +9,11 @@ MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://games.moria.org.uk/kye/pygtk
 COMMENT=		Puzzle game
 
+DEPENDS+=		${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
+DEPENDS+=		librsvg-[0-9]*:../../graphics/librsvg
+
+USE_LANGUAGES=		#
+
 SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	pre-configure
 SUBST_FILES.prefix=	kye/common.py
@@ -18,6 +23,4 @@ PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
-.include "../../x11/py-gtk2/buildlink3.mk"
-.include "../../graphics/librsvg/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
