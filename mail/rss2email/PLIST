@@ -1,6 +1,7 @@
 @comment $NetBSD: PLIST,v 1.4 2013/07/02 01:13:30 schmonz Exp $
 bin/r2e
 man/man1/r2e.1
+${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/rss2email/__init__.py
 ${PYSITELIB}/rss2email/__init__.pyc
 ${PYSITELIB}/rss2email/__init__.pyo

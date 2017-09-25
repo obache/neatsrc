@@ -17,8 +17,6 @@ DEPENDS+=		${PYPKGPREFIX}-html2text>=2014.4.5:../../textproc/py-html2text
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
-PYDISTUTILSPKG=		yes
-PY_PATCHPLIST=		yes
 REPLACE_PYTHON=		test/test.py
 
 INSTALLATION_DIRS=	${PKGMANDIR}/man1
@@ -31,5 +29,5 @@ post-install:
 	${INSTALL_MAN} r2e.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 
 .include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
