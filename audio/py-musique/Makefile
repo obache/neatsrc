@@ -28,5 +28,4 @@ PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-mcrypt, py-gtk2
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
 .include "../../x11/py-gtk2/buildlink3.mk"
-.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"
