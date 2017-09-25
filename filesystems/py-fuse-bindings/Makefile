@@ -11,8 +11,6 @@ HOMEPAGE=		http://sourceforge.net/apps/mediawiki/fuse/index.php?title=FusePython
 COMMENT=		Python bindings for FUSE and refuse
 LICENSE=		gnu-lgpl-v2.1
 
-PYDISTUTILSPKG=		yes
-PY_PATCHLIST=		yes
 USE_TOOLS+=		pkg-config
 
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 0.2.1
