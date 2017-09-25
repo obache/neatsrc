@@ -12,6 +12,7 @@ COMMENT=		CompizConfig Settings Manager
 LICENSE=		gnu-gpl-v2
 
 DEPENDS+=		compizconfig-backend-gconf>=0.6.0:../../devel/compizconfig-backend-gconf
+DEPENDS+=		${PYPKGPREFIX}-compizconfig-[0-9]*:../../devel/py-compizconfig
 DEPENDS+=		${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
 
 USE_TOOLS+=		pkg-config gmake msgfmt intltool
@@ -21,7 +22,6 @@ PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2
 
 MAKE_ENV+=	PYTHONBIN=${PYTHONBIN:Q}
 
-.include "../../devel/py-compizconfig/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
