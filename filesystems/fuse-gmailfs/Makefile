@@ -10,6 +10,8 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://richard.jones.name/google-hacks/gmail-filesystem/gmail-filesystem.html
 COMMENT=	FUSE filesystem which uses Google mail for free space
 
+DEPENDS+=	${PYPKGPREFIX}-fuse-bindings-[0-9]*:../../filesystems/py-fuse-bindings
+
 NO_BUILD=			yes
 REPLACE_PYTHON=		gmailfs.py mount.gmailfs
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-fuse-bindings
@@ -37,8 +39,6 @@ do-install:
 	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/examples/gmailfs
 	${INSTALL_DATA} ${WRKSRC}/gmailfs.conf \
 		${DESTDIR}${PREFIX}/share/examples/gmailfs/
-
-.include "../../filesystems/py-fuse-bindings/buildlink3.mk"
 
 .include "../../lang/python/application.mk"
 .include "../../mk/fuse.buildlink3.mk"
