@@ -16,7 +16,6 @@ WRKSRC=		${WRKDIR}/${DISTNAME}/dbxml/src/python
 
 USE_LANGUAGES=		c c++
 NO_CONFIGURE=		yes
-PYDISTUTILSPKG=		yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 2.5.16
 
 SUBST_CLASSES+=		fix-path
@@ -30,5 +29,5 @@ SUBST_SED.fix-path+=	-e 's,@XQILLA_DIR@,${BUILDLINK_PREFIX.xqilla},'
 SUBST_SED.fix-path+=	-e 's,@BDB_TYPE@,${BDB_TYPE},'
 
 .include "../../databases/bdb-xml/buildlink3.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
