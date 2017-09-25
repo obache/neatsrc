@@ -12,12 +12,10 @@ HOMEPAGE=	https://github.com/ibizaman/pcachefs
 COMMENT=	FUSE-based persistent caching filesystem
 LICENSE=	apache-2.0
 
-BUILD_DEPENDS+=	${PYPKGPREFIX}-setuptools-[0-9]*:../../devel/py-setuptools
-
 EGG_NAME=	pCacheFS-0.2
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-fuse-bindings
 
 .include "../../filesystems/py-fuse-bindings/buildlink3.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../lang/python/egg.mk"
 .include "../../mk/fuse.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
