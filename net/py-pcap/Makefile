@@ -23,8 +23,9 @@ SUBST_FILES.prefix=	Makefile
 SUBST_SED.prefix=	-e "s|@PREFIX@|${PREFIX}|g"
 SUBST_STAGE.prefix=	post-patch
 
-PYDISTUTILSPKG=			yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-pyrex
+
+EGG_NAME=	${DISTNAME:S/^py//}
 
 FILES_SUBST+=	PYTHONBIN=${PYTHONBIN:Q}
 
@@ -38,6 +39,6 @@ do-configure:
 	# --with-pcap=${PREFIX}
 
 .include "../../net/libpcap/buildlink3.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"
