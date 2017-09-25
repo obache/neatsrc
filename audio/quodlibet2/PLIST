@@ -2,6 +2,7 @@
 bin/exfalso
 bin/operon
 bin/quodlibet
+${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/quodlibet/__init__.py
 ${PYSITELIB}/quodlibet/__init__.pyc
 ${PYSITELIB}/quodlibet/__init__.pyo

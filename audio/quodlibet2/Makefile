@@ -19,7 +19,6 @@ USE_TOOLS+=		msgfmt intltool
 USE_PKGLOCALEDIR=	yes
 #BUILD_TARGET=		_trayicon.so _mmkeys.so
 
-PYDISTUTILSPKG= yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2, py-gstreamer0.10
 REPLACE_PYTHON=	exfalso.py quodlibet.py operon.py
 
@@ -31,6 +30,6 @@ REPLACE_PYTHON=	exfalso.py quodlibet.py operon.py
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../sysutils/py-dbus/buildlink3.mk"
 .include "../../x11/py-gtk2/buildlink3.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"
