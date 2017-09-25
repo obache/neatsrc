@@ -15,8 +15,6 @@ BUILD_DEPENDS+=		${PYPKGPREFIX}-pyrex>=0:../../lang/py-pyrex
 
 USE_TOOLS+=		gmake msgfmt
 
-PY_PATCHPLIST=		yes
-PYDISTUTILSPKG=		yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-pyrex
 
 REPLACE_PYTHON=		bzr bzrlib/weave.py
@@ -44,5 +42,5 @@ do-test:
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

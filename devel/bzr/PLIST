@@ -1,4 +1,5 @@
 @comment $NetBSD: PLIST,v 1.37 2015/07/29 18:05:52 wiz Exp $
+${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/bzrlib/__init__.py
 ${PYSITELIB}/bzrlib/__init__.pyc
 ${PYSITELIB}/bzrlib/__init__.pyo
