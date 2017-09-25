@@ -12,11 +12,12 @@ COMMENT=		Computer version of a popular board game
 # pytraffic-2.5.4 distfile was changed after release
 DIST_SUBDIR=	pytraffic-2.5.4-070313
 
+DEPENDS+=	${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
+
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
-.include "../../x11/py-gtk2/buildlink3.mk"
 .include "../../devel/SDL/buildlink3.mk"
 .include "../../audio/SDL_mixer/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
