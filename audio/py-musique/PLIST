@@ -8,6 +8,7 @@ lib/pymusique/qtstream.py
 lib/pymusique/scramble.py
 lib/pymusique/store.py
 lib/pymusique/storebase.py
+${PYSITELIB}/${EGG_FILE}
 share/applications/pymusique.desktop
 share/doc/pymusique/AUTHORS
 share/doc/pymusique/COPYING

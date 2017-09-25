@@ -25,9 +25,10 @@ DEPENDS+=	${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
 
 USE_LANGUAGES=	#
 
-PYDISTUTILSPKG= yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-mcrypt, py-gtk2
 
+EGG_NAME=	PyMusique-${PKGVERSION_NOREV}	
+
 .include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
