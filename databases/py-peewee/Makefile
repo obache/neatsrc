@@ -12,6 +12,8 @@ LICENSE=	mit
 
 GITHUB_PROJECT=	peewee
 
+DEPENDS+=	${PYPKGPREFIX}-cython>=0.22.1:../../devel/py-cython
+
 USE_LANGUAGES=	c
 USE_TOOLS+=	bash
 
@@ -38,7 +40,6 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/docs/_build/man/peewee.1 \
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/peewee${PYVERSSUFFIX}.1
 
-.include "../../devel/py-cython/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
