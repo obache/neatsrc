@@ -24,6 +24,7 @@ ${PYSITELIB}/ccm/Window.pyo
 ${PYSITELIB}/ccm/__init__.py
 ${PYSITELIB}/ccm/__init__.pyc
 ${PYSITELIB}/ccm/__init__.pyo
+${PYSITELIB}/${EGG_FILE}
 share/applications/ccsm.desktop
 share/ccsm/icons/hicolor/22x22/categories/plugins-accessibility.png
 share/ccsm/icons/hicolor/22x22/categories/plugins-desktop.png

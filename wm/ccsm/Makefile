@@ -16,8 +16,6 @@ DEPENDS+=		${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
 
 USE_TOOLS+=		pkg-config gmake msgfmt intltool
 
-PY_PATCHPLIST=		yes
-PYDISTUTILSPKG=		yes
 REPLACE_PYTHON=		${WRKSRC}/setup.py ${WRKSRC}/ccm/*.py
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2
 
@@ -25,7 +23,7 @@ MAKE_ENV+=	PYTHONBIN=${PYTHONBIN:Q}
 
 .include "../../devel/py-compizconfig/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"
