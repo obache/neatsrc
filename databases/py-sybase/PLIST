@@ -2,4 +2,5 @@
 ${PYSITELIB}/sybasect.so
 ${PYSITELIB}/Sybase.py
 ${PYSITELIB}/Sybase.pyc
+${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/Sybase.pyo

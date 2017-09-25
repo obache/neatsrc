@@ -11,7 +11,6 @@ HOMEPAGE=	http://www.object-craft.com.au/projects/sybase/
 COMMENT=	Sybase interface for Python using FreeTDS
 
 PYSETUPBUILDARGS=	build_ext -D HAVE_FREETDS=61 -U WANT_BULKCOPY
-PYDISTUTILSPKG=		yes
 
 SYBASE=		${BUILDLINK_PREFIX.freetds}
 MAKE_ENV+=	SYBASE=${SYBASE:Q}
@@ -25,5 +24,5 @@ SUBST_SED.sybase=	-e "s|\\(runtime_library_dirs = \\)None|\\1['${SYBASE}/lib']|"
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 0.36
 
 .include "../../databases/freetds/buildlink3.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
