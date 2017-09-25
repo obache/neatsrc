@@ -4,6 +4,7 @@ bin/empy-${PYVERSSUFFIX}
 ${PYSITELIB}/em.py
 ${PYSITELIB}/em.pyc
 ${PYSITELIB}/em.pyo
+${PYSITELIB}/${EGG_FILE}
 share/doc/empy/em.html
 share/doc/empy/em/AbstractFile.html
 share/doc/empy/em/BreakFlow.html

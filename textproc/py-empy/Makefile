@@ -2,6 +2,7 @@
 
 DISTNAME=	empy-3.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+EGG_NAME=	empy-3.1
 PKGREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	http://www.alcyone.com/software/empy/
@@ -15,7 +16,6 @@ INSTALLATION_DIRS=	bin share/doc/empy
 REPLACE_PYTHON+=        em.py
 
 USE_TOOLS+=		pax
-PYDISTUTILSPKG=		# yes
 
 PYTHON_SELF_CONFLICT=	yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36
@@ -44,5 +44,5 @@ install-doc:
 	${CP} ${WRKSRC}/doc/index.html ${DESTDIR}${PREFIX}/share/doc/empy/
 
 .include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
