@@ -27,7 +27,6 @@ REPLACE_PYTHON=	exfalso.py quodlibet.py operon.py
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../multimedia/py-gstreamer0.10/buildlink3.mk"
 .include "../../multimedia/xine-lib/buildlink3.mk"
-.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../sysutils/py-dbus/buildlink3.mk"
 .include "../../x11/py-gtk2/buildlink3.mk"
 .include "../../lang/python/distutils.mk"
