@@ -13,7 +13,6 @@ DEPENDS+=	subversion-base-[0-9]*:../../devel/subversion-base
 
 CONFLICTS+=	py*-subversion<1.0.1
 
-PYDISTUTILSPKG=			yes
 REPLACE_PYTHON=		run-tests.py cvs2svn_rcsparse/run-tests.py \
 				cvs2svn_rcsparse/parse_rcs_file.py
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 2.3.0
@@ -37,5 +36,5 @@ do-test:
 
 .include "../../databases/py-bsddb3/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

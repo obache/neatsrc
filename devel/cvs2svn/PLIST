@@ -2,6 +2,7 @@
 bin/cvs2bzr
 bin/cvs2git
 bin/cvs2svn
+${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/cvs2svn_lib/__init__.py
 ${PYSITELIB}/cvs2svn_lib/__init__.pyc
 ${PYSITELIB}/cvs2svn_lib/__init__.pyo
