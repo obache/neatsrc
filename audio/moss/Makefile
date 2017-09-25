@@ -30,8 +30,6 @@ SUBST_SED.path+=	-e 's,$${PREFIX}/share,${PREFIX}/share,g'
 
 FILES_SUBST+=	INTERPRETER=${PYTHONBIN:Q}
 
-PYDISTUTILSPKG=	yes
-
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"
