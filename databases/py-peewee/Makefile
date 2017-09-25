@@ -25,8 +25,6 @@ MESSAGE_SUBST+=	PYPKGPREFIX=${PYPKGPREFIX}
 REPLACE_BASH+=		playhouse/berkeley_build.sh
 REPLACE_PYTHON+=	pwiz.py
 
-PYDISTUTILSPKG=		yes
-
 INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 
 post-build:
@@ -42,5 +40,5 @@ post-install:
 
 .include "../../devel/py-cython/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
