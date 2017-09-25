@@ -13,7 +13,7 @@ HOMEPAGE=	http://denyhosts.sourceforge.net/
 COMMENT=	Watch auth log for invalid ssh login attempts and block hosts
 
 CONF_FILES+=	${PREFIX}/share/denyhosts/denyhosts.cfg-dist \
-		${PREFIX}/etc/denyhosts.conf
+		${PKG_SYSCONFDIR}/denyhosts.conf
 
 FILES_SUBST+=	PYTHONBIN=${PYTHONBIN:Q}
 

@@ -11,7 +11,7 @@ $NetBSD: patch-ac,v 1.2 2011/12/14 03:05:04 sbd Exp $
 -DENYHOSTS_CFG   = "/usr/share/denyhosts/denyhosts.cfg"
 +DENYHOSTS_BIN   = "@PREFIX@/bin/denyhosts.py"
 +DENYHOSTS_LOCK  = "@VARBASE@/db/denyhosts/lock"
-+DENYHOSTS_CFG   = "@PREFIX@/etc/denyhosts.cfg"
++DENYHOSTS_CFG   = "@PKG_SYSCONFDIR@/denyhosts.cfg"
  
  PYTHON_BIN      = "/usr/bin/env python"
  
