@@ -10,6 +10,7 @@ HOMEPAGE=	http://cvs2svn.tigris.org/
 COMMENT=	Converts a CVS repository to a Subversion repository
 
 DEPENDS+=	subversion-base-[0-9]*:../../devel/subversion-base
+DEPENDS+=	${PYPKGPREFIX}-bsddb3-[0-9]*:../../databases/py-bsddb3
 
 CONFLICTS+=	py*-subversion<1.0.1
 
@@ -34,7 +35,6 @@ post-install:
 do-test:
 	cd ${WRKSRC} && ./run-tests.py
 
-.include "../../databases/py-bsddb3/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
