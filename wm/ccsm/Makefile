@@ -15,7 +15,7 @@ DEPENDS+=		compizconfig-backend-gconf>=0.6.0:../../devel/compizconfig-backend-gc
 DEPENDS+=		${PYPKGPREFIX}-compizconfig-[0-9]*:../../devel/py-compizconfig
 DEPENDS+=		${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
 
-USE_TOOLS+=		pkg-config gmake msgfmt intltool
+USE_TOOLS+=		msgfmt intltool
 
 REPLACE_PYTHON=		${WRKSRC}/setup.py ${WRKSRC}/ccm/*.py
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2
