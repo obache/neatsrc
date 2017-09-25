@@ -12,8 +12,6 @@ MAINTAINER=	he@NetBSD.org
 HOMEPAGE=	http://denyhosts.sourceforge.net/
 COMMENT=	Watch auth log for invalid ssh login attempts and block hosts
 
-PYDISTUTILSPKG= yes
-
 CONF_FILES+=	${PREFIX}/share/denyhosts/denyhosts.cfg-dist \
 		${PREFIX}/etc/denyhosts.conf
 
@@ -37,6 +35,6 @@ SMF_NAME=	denyhost
 post-configure:
 	${RM} ${WRKDIR}/${DISTNAME}/scripts/*.orig
 
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"
