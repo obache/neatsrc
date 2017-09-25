@@ -12,7 +12,6 @@ HOMEPAGE=	http://gtkglext.sourceforge.net/
 COMMENT=	Python bindings for gtkglext
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV+=	PYTHON=${PYTHONBIN}
 USE_TOOLS+=	pkg-config
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2
 
