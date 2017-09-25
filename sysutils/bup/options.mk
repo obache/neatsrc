@@ -13,5 +13,5 @@ PKG_SUGGESTED_OPTIONS=
 .include "../../mk/bsd.options.mk"
 
 .if !empty(PKG_OPTIONS:Mfuse)
-.include "../../filesystems/py-fuse-bindings/buildlink3.mk"
+DEPENDS+=	${PYPKGPREFIX}-fuse-bindings-[0-9]*:../../filesystems/py-fuse-bindings
 .endif
