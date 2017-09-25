@@ -16,7 +16,6 @@ DEPENDS+=	${PYPKGPREFIX}-expat>=0nb4:../../textproc/py-expat
 
 USE_LANGUAGES=	# none
 
-PYDISTUTILSPKG=		yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 0.5.0rc1
 
 DOCDIR=		${PREFIX}/share/doc/py-xmpppy
