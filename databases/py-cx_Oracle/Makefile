@@ -10,8 +10,6 @@ MAINTAINER=	joerg@NetBSD.org
 HOMEPAGE=	http://cx-oracle.sourceforge.net/
 COMMENT=	Oracle binding for Python
 
-PYDISTUTILSPKG=	yes
-
 .include "../../mk/bsd.prefs.mk"
 
 .if !defined(ORACLE_HOME)
