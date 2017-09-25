@@ -394,6 +394,7 @@ share/pytraffic/music.pyo
 share/pytraffic/music/README.README
 share/pytraffic/music/Ranger_Song.COPYRIGHT
 share/pytraffic/music/Ranger_Song.s3m
+share/pytraffic/${EGG_FILE}
 share/pytraffic/pytraffic.desktop
 share/pytraffic/sdl_mixer.py
 share/pytraffic/sdl_mixer.pyc
