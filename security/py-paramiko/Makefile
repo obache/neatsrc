@@ -13,7 +13,6 @@ LICENSE=		gnu-lgpl-v2.1
 DEPENDS+=		${PYPKGPREFIX}-crypto>=2.1:../../security/py-crypto
 DEPENDS+=		${PYPKGPREFIX}-ecdsa>=0.11:../../security/py-ecdsa
 
-PYDISTUTILSPKG=	yes
 REPLACE_PYTHON=	paramiko/rng*.py
 
 do-test:
