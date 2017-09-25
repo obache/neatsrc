@@ -16,7 +16,6 @@ PKG_SHELL=	bin/lshell
 
 USE_LANGUAGES=		# none
 
-PYDISTUTILSPKG=		yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 0.9.16
 
 EGDIR=			share/examples/lshell
@@ -33,5 +32,5 @@ CONF_FILES=		${PREFIX}/${EGDIR}/lshell.conf \
 			${PKG_SYSCONFDIR}/lshell.conf
 
 .include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
