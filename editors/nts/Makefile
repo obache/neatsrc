@@ -17,8 +17,6 @@ PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-wxWidgets
 
 USE_LANGUAGES=	# none
 
-PYDISTUTILSPKG=	yes
-
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"
