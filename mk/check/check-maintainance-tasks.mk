@@ -77,7 +77,7 @@ _check-maintainance-tasks: .PHONY error-check
 	${RUN}		\
 	if ${_NONZERO_FILESIZE_P} ${ERROR_DIR}/${.TARGET}-${d}.tmp; then \
 		${ECHO} "************************************************************"; \
-		${ECHO} "Following files are installed but ${_CHECK_MAINTAINANCE_TASKS_MAKEFILE.${d}:U${_CHECK_MAINTAINANCE_TASKS_VARNAME.${d}}} is not ${_CHECK_MAINTAINACE_TASKS_MAKEFILE.${d}:Dincluded:Udefined}"; \
+		${ECHO} "Following files are installed but ${_CHECK_MAINTAINANCE_TASKS_MAKEFILE.${d}:U${_CHECK_MAINTAINANCE_TASKS_VARNAME.${d}}} is not ${_CHECK_MAINTAINANCE_TASKS_MAKEFILE.${d}:Dincluded:Udefined}"; \
 		${CAT} ${ERROR_DIR}/${.TARGET}-${d}.tmp; \
 	fi >> ${ERROR_DIR}/${.TARGET}
 . endif
