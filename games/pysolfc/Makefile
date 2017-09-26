@@ -12,6 +12,9 @@ HOMEPAGE=	http://pysolfc.sourceforge.net/
 COMMENT=	Over 1000 solitaire games
 LICENSE=	gnu-gpl-v3
 
+DEPENDS+=	${PYPKGPREFIX}-Tk-[0-9]*:../../x11/py-Tk
+DEPENDS+=	${PYPKGPREFIX}-imagingtk>=1.1.7:../../graphics/py-imagingtk
+
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-imaging
 
 REPLACE_PYTHON+= \
@@ -233,5 +236,4 @@ post-install:
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
-.include "../../graphics/py-imagingtk/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
