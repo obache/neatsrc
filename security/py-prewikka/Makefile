@@ -12,6 +12,8 @@ HOMEPAGE=		http://prelude-ids.org/download/releases/
 COMMENT=		Prelude-IDS console
 
 DEPENDS+=		${PYPKGPREFIX}-cheetah-[0-9]*:../../devel/py-cheetah
+DEPENDS+=		libprelude-python>=0.9.23:../../security/libprelude-python
+DEPENDS+=		libpreludedb-python>=0.9.12:../../security/libpreludedb-python
 
 VERSION=		0.9.17.1
 
@@ -65,7 +67,4 @@ post-install:
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
-BUILDLINK_API_DEPENDS.libpreludedb+=	libpreludedb>=0.9.9
-.include "../../security/libpreludedb-python/buildlink3.mk"
-.include "../../security/libprelude-python/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
