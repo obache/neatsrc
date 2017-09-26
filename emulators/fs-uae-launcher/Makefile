@@ -24,7 +24,6 @@ USE_TOOLS+=		gmake msgfmt
 
 # Imports urllib.parse which is 3+.
 PYTHON_VERSIONS_INCOMPATIBLE=	27
-PYDISTUTILSPKG=		yes
 PYSETUPINSTALLARGS=	--install-lib=${PREFIX:Q}/share/fs-uae-launcher
 PYSETUPINSTALLARGS+=	--install-scripts=${PREFIX:Q}/share/fs-uae-launcher
 
@@ -51,5 +50,5 @@ post-install:
 
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

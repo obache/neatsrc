@@ -6338,6 +6338,7 @@ share/fs-uae-launcher/OpenGL/wrapper.py
 share/fs-uae-launcher/OpenGL/wrapper.pyc
 share/fs-uae-launcher/OpenGL/wrapper.pyo
 share/fs-uae-launcher/fs-uae-launcher
+share/fs-uae-launcher/${EGG_FILE}
 share/fs-uae-launcher/fs_uae_launcher/CDManager.py
 share/fs-uae-launcher/fs_uae_launcher/CDManager.pyc
 share/fs-uae-launcher/fs_uae_launcher/CDManager.pyo
