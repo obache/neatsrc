@@ -120,7 +120,6 @@ post-extract:
 pre-configure:
 	cd ${WRKSRC} && autoreconf -vi ${AUTORECONF_ARGS}
 
-.include "../../devel/GConf/schemas.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../misc/usbids/buildlink3.mk"
 .include "../../security/policykit/buildlink3.mk"
