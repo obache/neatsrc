@@ -55,3 +55,7 @@ SUBST_SED.make=		-e 's,@EGDIR@,${EGDIR},g'
 INSTALLATION_DIRS=	share/examples/libprelude
 
 .include "../../mk/bsd.prefs.mk"
+
+.if ${PKGPATH} != "security/libprelude"
+BUILDLINK_API_DEPENDS.libprelude+=	libprelude>=${VERSION}
+.endif
