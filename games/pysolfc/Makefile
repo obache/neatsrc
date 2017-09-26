@@ -12,7 +12,6 @@ HOMEPAGE=	http://pysolfc.sourceforge.net/
 COMMENT=	Over 1000 solitaire games
 LICENSE=	gnu-gpl-v3
 
-PYDISTUTILSPKG=	yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-imaging
 
 REPLACE_PYTHON+= \
@@ -233,6 +232,6 @@ post-install:
 	  ${DESTDIR}${PREFIX}/${PKGMANDIR}/man6/pysol.py.6
 
 .include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../graphics/py-imagingtk/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
