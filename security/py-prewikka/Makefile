@@ -21,7 +21,6 @@ USE_TOOLS+=		msgfmt
 
 .include "../../mk/bsd.prefs.mk"
 
-PYDISTUTILSPKG=		yes
 PYSETUP=		setup.py
 REPLACE_PYTHON=	scripts/prewikka-httpd
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-cheetah
@@ -65,7 +64,7 @@ post-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/runPrewikka ${DESTDIR}${PREFIX}/sbin/runPrewikka
 
 .include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 BUILDLINK_API_DEPENDS.libpreludedb+=	libpreludedb>=0.9.9
 .include "../../security/libpreludedb-python/buildlink3.mk"
 .include "../../security/libprelude-python/buildlink3.mk"

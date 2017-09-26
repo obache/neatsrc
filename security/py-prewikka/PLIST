@@ -1,4 +1,5 @@
 @comment $NetBSD: PLIST,v 1.18 2014/03/11 14:05:14 jperkin Exp $
+${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/prewikka/Auth.py
 ${PYSITELIB}/prewikka/Auth.pyc
 ${PYSITELIB}/prewikka/Auth.pyo
