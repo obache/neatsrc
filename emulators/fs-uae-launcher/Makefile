@@ -23,7 +23,7 @@ INSTALL_TARGET=		install-data
 USE_TOOLS+=		gmake msgfmt
 
 # Imports urllib.parse which is 3+.
-PYTHON_VERSIONS_ACCEPTED=	34 35 36
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 PYDISTUTILSPKG=		yes
 PYSETUPINSTALLARGS=	--install-lib=${PREFIX:Q}/share/fs-uae-launcher
 PYSETUPINSTALLARGS+=	--install-scripts=${PREFIX:Q}/share/fs-uae-launcher
