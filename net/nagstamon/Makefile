@@ -13,8 +13,9 @@ HOMEPAGE=	http://nagstamon.ifw-dresden.de/
 COMMENT=	Nagios status monitor which takes place in systray or on desktop
 LICENSE=	gnu-gpl-v2
 
-DEPENDS+=	${PYPKGPREFIX}-lxml>=2.2.4:../../textproc/py-lxml
-DEPENDS+=	${PYPKGPREFIX}-libxslt>=1.1.24:../../textproc/py-libxslt
+DEPENDS+=	librsvg-[0-9]*:../../graphics/librsvg
+DEPENDS+=	${PYPKGPREFIX}-beautifulsoup-[0-9]*:../../www/py-beautifulsoup
+DEPENDS+=	${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
 DEPENDS+=	sox>=14.0.1:../../audio/sox
 
 USE_LANGUAGES=		# none
@@ -25,7 +26,7 @@ INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 REPLACE_PYTHON=		${WRKSRC}/*.py
 REPLACE_PYTHON+=	${WRKSRC}/Nagstamon/Server/Multisite.py
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-libxslt, py-ORBit via py-gnome2, py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2
 
 SUBST_CLASSES+=		mandir
 SUBST_STAGE.mandir=	pre-configure
@@ -40,10 +41,6 @@ post-install:
 
 EGG_NAME=	${DISTNAME:tl}
 
-.include "../../graphics/librsvg/buildlink3.mk"
-.include "../../textproc/py-libxml2/buildlink3.mk"
-.include "../../x11/py-gtk2/buildlink3.mk"
-.include "../../x11/py-gnome2-extras/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
