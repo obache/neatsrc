@@ -48,7 +48,6 @@ post-install:
 		ln -s ../share/fs-uae-launcher/fs-uae-launcher \
 			${DESTDIR}${PREFIX}/bin/fs-uae-launcher
 
-.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
