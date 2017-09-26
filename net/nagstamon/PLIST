@@ -127,4 +127,5 @@ ${PYSITELIB}/Nagstamon/thirdparty/__init__.pyo
 ${PYSITELIB}/Nagstamon/thirdparty/zabbix_api.py
 ${PYSITELIB}/Nagstamon/thirdparty/zabbix_api.pyc
 ${PYSITELIB}/Nagstamon/thirdparty/zabbix_api.pyo
+${PYSITELIB}/${EGG_FILE}
 man/man1/nagstamon.1

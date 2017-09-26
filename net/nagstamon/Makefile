@@ -18,7 +18,6 @@ DEPENDS+=	${PYPKGPREFIX}-libxslt>=1.1.24:../../textproc/py-libxslt
 DEPENDS+=	sox>=14.0.1:../../audio/sox
 
 USE_LANGUAGES=		# none
-PYDISTUTILSPKG=		yes
 
 WRKSRC=			${WRKDIR}/Nagstamon
 
@@ -39,10 +38,12 @@ post-install:
 	${LN} -s ${DESTDIR}${PREFIX}/bin/nagstamon.py \
 		${DESTDIR}${PREFIX}/bin/nagstamon
 
+EGG_NAME=	${DISTNAME:tl}
+
 .include "../../graphics/librsvg/buildlink3.mk"
 .include "../../textproc/py-libxml2/buildlink3.mk"
 .include "../../x11/py-gtk2/buildlink3.mk"
 .include "../../x11/py-gnome2-extras/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
