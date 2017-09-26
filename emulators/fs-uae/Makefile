@@ -30,5 +30,6 @@ GNU_CONFIGURE=		yes
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../multimedia/libmpeg2/buildlink3.mk"
+.include "../../databases/shared-mime-info/mimedb.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"
