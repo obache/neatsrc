@@ -32,3 +32,7 @@ pre-configure:
 	${LN} -s ${BUILDLINK_DIR}/lib/libltdl.la ${BUILDLINK_DIR}/lib/libltdlc.la
 
 .include "../../mk/bsd.prefs.mk"
+
+.if ${PKGPATH} != "security/libpreludedb"
+BUILDLINK_API_DEPENDS.libpreludedb+=	libpreludedb>=${VERSION}
+.endif
