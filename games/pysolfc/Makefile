@@ -232,7 +232,6 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/docs/pysol.6 \
 	  ${DESTDIR}${PREFIX}/${PKGMANDIR}/man6/pysol.py.6
 
-.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
 .include "../../graphics/py-imagingtk/buildlink3.mk"
