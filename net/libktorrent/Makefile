@@ -1,16 +1,16 @@
-# $NetBSD: Makefile,v 1.36 2017/04/30 01:21:23 ryoon Exp $
+# $NetBSD: Makefile,v 1.38 2017/08/24 20:03:00 adam Exp $
 
 DISTNAME=	libktorrent-${LIBKTORRENT_VER}
-PKGREVISION=	8
+PKGREVISION=	9
 CATEGORIES=	net kde
-MASTER_SITES=	http://ktorrent.pwsp.net/downloads/${KTORRENT_VER}/
+#MASTER_SITES=	http://ktorrent.pwsp.net/downloads/${KTORRENT_VER}/
 EXTRACT_SUFX=	.tar.bz2
 
 
 .include "../../net/libktorrent/Makefile.version"
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ktorrent.pwsp.net/
+#HOMEPAGE=	http://ktorrent.pwsp.net/
 COMMENT=	Torrent library split from KTorrent
 LICENSE=	gnu-gpl-v2
 

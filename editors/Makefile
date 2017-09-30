@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.179 2016/10/04 17:57:22 morr Exp $
+# $NetBSD: Makefile,v 1.181 2017/09/13 16:37:10 minskim Exp $
 #
 
 COMMENT=	Editors
@@ -117,7 +117,7 @@ SUBDIR+=	p5-Wx-Scintilla
 SUBDIR+=	pico
 SUBDIR+=	pluma
 SUBDIR+=	poedit
-SUBDIR+=	qgoogletranslator
+SUBDIR+=	py-editor
 SUBDIR+=	rox-edit
 SUBDIR+=	sam
 SUBDIR+=	sandy

@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.39 2017/03/20 16:33:59 taca Exp $
+$NetBSD: distinfo,v 1.40 2017/09/18 05:31:02 taca Exp $
 
-SHA1 (rabbit-2.2.0.gem) = b814ed487238a5c35435572de4f8edd4aeda1bfd
-RMD160 (rabbit-2.2.0.gem) = 1d8c7d86ad1755cd1dd728f66f18be182f43e271
-SHA512 (rabbit-2.2.0.gem) = d44dc28602b08b857883113ac003fc1eab609be0ffe19d52f5eddb65f1044e37eaf4987912404a9e8b66e5a03d7aeb5d127c7aa42347d3ccd10b413dcb73eff1
-Size (rabbit-2.2.0.gem) = 5215744 bytes
+SHA1 (rabbit-2.2.1.gem) = 30d44131f202e91baa3fc0e8e3136ebd0537cc7b
+RMD160 (rabbit-2.2.1.gem) = e1d5d7612b783136e7b0674355d877cc6e906876
+SHA512 (rabbit-2.2.1.gem) = c30f8fc09366e8676c8502854c9186459b1609110ab4f80ebac3e3b272f805410e69718c2d217f4cd29f10518d3a925de7c7dcda44d4a7f999db2ec48e0c3173
+Size (rabbit-2.2.1.gem) = 5217280 bytes

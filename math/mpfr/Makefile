@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.31 2016/10/03 12:35:18 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2017/09/10 21:17:02 wiz Exp $
 
-DISTNAME=		mpfr-3.1.5
+DISTNAME=		mpfr-3.1.6
 CATEGORIES=		math
 MASTER_SITES=		http://www.mpfr.org/${DISTNAME}/
 EXTRACT_SUFX=		.tar.bz2
@@ -17,3 +17,8 @@ INFO_FILES=		yes
 
 .include "../../devel/gmp/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
+
+.if (${MACHINE_ARCH} == alpha)
+CONFIGURE_ENV+=CFLAGS="${CFLAGS:N-mieee}"
+.endif
+

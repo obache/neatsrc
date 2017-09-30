@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.482 2017/04/22 18:08:22 taca Exp $
+# $NetBSD: Makefile,v 1.488 2017/09/17 15:57:54 taca Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -204,6 +204,7 @@ SUBDIR+=	mkcue
 SUBDIR+=	mmv
 SUBDIR+=	mnemosyne
 SUBDIR+=	molden
+SUBDIR+=	moreutils
 SUBDIR+=	most
 SUBDIR+=	mousetweaks
 SUBDIR+=	mtail
@@ -212,6 +213,8 @@ SUBDIR+=	nxtvepg
 SUBDIR+=	nyancat
 SUBDIR+=	ocaml-cudf
 SUBDIR+=	ocaml-opam
+SUBDIR+=	ocaml-opam-file-format
+SUBDIR+=	ocaml-topkg
 SUBDIR+=	open2300
 SUBDIR+=	open2300-mysql
 SUBDIR+=	orca
@@ -317,7 +320,6 @@ SUBDIR+=	ruby-hashie2
 SUBDIR+=	ruby-launchy
 SUBDIR+=	ruby-memoizable
 SUBDIR+=	ruby-method_source
-SUBDIR+=	ruby-mini_portile
 SUBDIR+=	ruby-mini_portile2
 SUBDIR+=	ruby-naught
 SUBDIR+=	ruby-ohai
@@ -328,6 +330,7 @@ SUBDIR+=	ruby-pry
 SUBDIR+=	ruby-rainbow
 SUBDIR+=	ruby-slop
 SUBDIR+=	ruby-sprockets
+SUBDIR+=	ruby-sprockets-rails
 SUBDIR+=	ruby-sprockets22
 SUBDIR+=	ruby-systemu
 SUBDIR+=	ruby-thread_safe
@@ -354,6 +357,7 @@ SUBDIR+=	team
 SUBDIR+=	tellico
 SUBDIR+=	tellico-kde3
 SUBDIR+=	teseq
+SUBDIR+=	tmate
 SUBDIR+=	tmux
 SUBDIR+=	todoman
 SUBDIR+=	toilet

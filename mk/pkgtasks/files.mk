@@ -1,4 +1,4 @@
-# $NetBSD: files.mk,v 1.3 2017/06/02 16:12:25 jlam Exp $
+# $NetBSD: files.mk,v 1.9 2017/08/19 00:30:55 jlam Exp $
 #
 # Copyright (c) 2017 The NetBSD Foundation, Inc.
 # All rights reserved.
@@ -107,16 +107,16 @@ _REQD_FILES_PERMS=	${REQD_FILES_PERMS:S|^${PREFIX}/||g}
 __INIT_SCRIPTS=		${_INIT_SCRIPTS:S|^${PREFIX}/||g}
 __INIT_SCRIPTS_PERMS=	${_INIT_SCRIPTS_PERMS:S|^${PREFIX}/||g}
 
-# Assert that the variables have the right number of words and
-# that no target file is listed in more than one variable.
+# ASSERT: The variables have the right number of words and that
+#	no target file is listed in more than one variable.
 #
-_ALL_FILES.files=	# empty
+_ALL_TARGET_FILES.files=	# empty
 .for _var_ in CONF_FILES REQD_FILES _INIT_SCRIPTS
 .  if empty(${_var_}) || empty(${_var_}:C/.*/2/:M*:S/2 2//gW)
 # ${_var_} has a multiple of 2 words.
 .    for s t in ${${_var_}}
-_FILES.${t}+=		${_var_}
-_ALL_FILES.files+=	${t}
+_FILE_VARLIST.${t}+=		${_var_}
+_ALL_TARGET_FILES.files+=	${t}
 .    endfor
 .  else
 PKG_FAIL_REASON+=	${_var_:Q}" must have a multiple of 2 words."
@@ -126,16 +126,16 @@ PKG_FAIL_REASON+=	${_var_:Q}" must have a multiple of 2 words."
 .  if empty(${_var_}) || empty(${_var_}:C/.*/5/:M*:S/5 5 5 5 5//gW)
 # ${_var_} has a multiple of 5 words.
 .    for s t o g m in ${${_var_}}
-_FILES.${t}+=		${_var_}
-_ALL_FILES.files+=	${t}
+_FILE_VARLIST.${t}+=		${_var_}
+_ALL_TARGET_FILES.files+=	${t}
 .    endfor
 .  else
 PKG_FAIL_REASON+=	${_var_:Q}" must have a multiple of 5 words."
 .  endif
 .endfor
-.for t in ${_ALL_FILES.files:O:u}
-.  if ${_FILES.${t}:[#]} != 1
-PKG_FAIL_REASON+=       ${t:Q}" is listed more than once: "${_FILES.${t}:Q}
+.for t in ${_ALL_TARGET_FILES.files:O:u}
+.  if ${_FILE_VARLIST.${t}:[#]} != 1
+PKG_FAIL_REASON+=       ${t:Q}" is listed more than once: "${_FILE_VARLIST.${t}:Q}
 .  endif
 .endfor
 
@@ -151,10 +151,23 @@ PKG_FAIL_REASON+=       ${t:Q}" is listed more than once: "${_FILES.${t}:Q}
 .if defined(PKG_SYSCONFSUBDIR) && !empty(PKG_SYSCONFSUBDIR)
 # Always create ${PKG_SYSCONFDIR} if ${PKG_SYSCONFSUBDIR} is non-empty.
 MAKE_DIRS_PERMS+=	${PKG_SYSCONFDIR} ${PKG_SYSCONFDIR_PERMS}
-.elif !empty(_ALL_FILES.files:M${PKG_SYSCONFDIR}/*)
+_ALL_DIRS.directories+=	${PKG_SYSCONFDIR}
+.elif !empty(_ALL_TARGET_FILES.files:M${PKG_SYSCONFDIR}/*)
 # Create ${PKG_SYSCONFDIR} if any target files are in that directory.
 MAKE_DIRS+=		${PKG_SYSCONFDIR}
+_ALL_DIRS.directories+=	${PKG_SYSCONFDIR}
 .endif
+
+# ASSERT: The directories that contain target files are listed in
+#	one of the directory variables.  This makes use of
+#	${_ALL_DIRS.directories}, which is defined in directories.mk.
+#
+.for t in ${_ALL_TARGET_FILES.files:O:u}
+_FILEMATCH.${t}=	${_ALL_DIRS.directories:@d@${t:M${d}/*}@}
+.  if empty(_FILEMATCH.${t})
+PKG_FAIL_REASON+=	"This package may need MAKE_DIRS+="${t:C|/[^/]*$||:Q}
+.  endif
+.endfor
 
 _PKGTASKS_DATA.files=	${_PKGTASKS_DIR}/files
 _PKGTASKS_DATAFILES+=	${_PKGTASKS_DATA.files}
@@ -205,46 +218,70 @@ ${_PKGTASKS_DATA.files}:
 
 privileged-install-hook: _pkgtasks-files-postinstall-check
 
+# _PKGTASKS_CHECK_EGFILE
+#	Shell script macro to test for the existence of $$egfile in
+#	${DESTDIR} after normalizing it with respect to ${PREFIX}, and
+#	an error message is emitted if it is missing.
+#
+#	If $$egfile is an absolute path that is not rooted inside
+#	${PREFIX}, then it is checked to see if it is in the host system,
+#	and not under ${DESTDIR}, and only a warning message is emitted
+#	if it is missing.  This allows for specifying source files for a
+#	cross-build without requiring that the source file exists on the
+#	host system.
+#
+_PKGTASKS_CHECK_EGFILE=	\
+	${TEST} -n "$$varname" -a -n "$$egfile" ||			\
+	${FAIL_MSG} "_PKGTASKS_CHECK_EGFILES called with missing variables"; \
+	case $$egfile in						\
+	${PREFIX:Q}/*)	canon_egfile=${DESTDIR:Q}"$$egfile" ;;		\
+	/*)		canon_egfile= ;;				\
+	*)		canon_egfile=${DESTDIR:Q}${PREFIX:Q}"/$$egfile" ;; \
+	esac;								\
+	if ${TEST} -n "$$canon_egfile"; then				\
+		${TEST} -f "$$canon_egfile" ||				\
+		${TEST} -c "$$canon_egfile" ||				\
+		${FAIL_MSG} "$$varname - $$canon_egfile does not exist."; \
+	else								\
+		${TEST} -f "$$egfile" ||				\
+		${TEST} -c "$$egfile" ||				\
+		${WARNING_MSG} "$$varname - $$egfile does not exist.";	\
+	fi
+
 _pkgtasks-files-postinstall-check: .PHONY
 	${RUN}set -- args ${_CONF_FILES}; shift;			\
 	while ${TEST} "$$#" -gt 0; do					\
-		${TEST} "$$#" -gt 2 || break;				\
-		egfile=${DESTDIR:Q}${PREFIX:Q}"/$$1"; shift 2;		\
-		${TEST} -f "$$egfile" || ${TEST} -c "$$egfile" ||	\
-		${FAIL_MSG} "CONF_FILES $$egfile does not exist.";	\
+		${TEST} "$$#" -ge 2 || break;				\
+		egfile="$$1"; shift 2;					\
+		varname="CONF_FILES"; ${_PKGTASKS_CHECK_EGFILE};	\
 	done
 	${RUN}set -- args ${_CONF_FILES_PERMS}; shift;			\
 	while ${TEST} "$$#" -gt 0; do					\
-		${TEST} "$$#" -gt 5 || break;				\
-		egfile=${DESTDIR:Q}${PREFIX:Q}"/$$1"; shift 5;		\
-		${TEST} -f "$$egfile" || ${TEST} -c "$$egfile" ||	\
-		${FAIL_MSG} "CONF_FILES_PERMS $$egfile does not exist.";\
+		${TEST} "$$#" -ge 5 || break;				\
+		egfile="$$1"; shift 5;					\
+		varname="CONF_FILES_PERMS"; ${_PKGTASKS_CHECK_EGFILE};	\
 	done
 	${RUN}set -- args ${_REQD_FILES}; shift;			\
 	while ${TEST} "$$#" -gt 0; do					\
-		${TEST} "$$#" -gt 2 || break;				\
-		egfile=${DESTDIR:Q}${PREFIX:Q}"/$$1"; shift 2;		\
-		${TEST} -f "$$egfile" || ${TEST} -c "$$egfile" ||	\
-		${FAIL_MSG} "REQD_FILES $$egfile does not exist.";	\
+		${TEST} "$$#" -ge 2 || break;				\
+		egfile="$$1"; shift 2;					\
+		varname="REQD_FILES"; ${_PKGTASKS_CHECK_EGFILE};	\
 	done
 	${RUN}set -- args ${_REQD_FILES_PERMS}; shift;			\
 	while ${TEST} "$$#" -gt 0; do					\
-		${TEST} "$$#" -gt 5 || break;				\
-		egfile=${DESTDIR:Q}${PREFIX:Q}"/$$1"; shift 5;		\
-		${TEST} -f "$$egfile" || ${TEST} -c "$$egfile" ||	\
-		${FAIL_MSG} "REQD_FILES_PERMS $$egfile does not exist.";\
+		${TEST} "$$#" -ge 5 || break;				\
+		egfile="$$1"; shift 5;					\
+		varname="REQD_FILES_PERMS"; ${_PKGTASKS_CHECK_EGFILE};	\
 	done
 	${RUN}set -- args ${__INIT_SCRIPTS}; shift;			\
 	while ${TEST} "$$#" -gt 0; do					\
-		${TEST} "$$#" -gt 2 || break;				\
-		egfile=${DESTDIR:Q}${PREFIX:Q}"/$$1"; shift 2;		\
-		${TEST} -f "$$egfile" || ${TEST} -c "$$egfile" ||	\
-		${FAIL_MSG} "REQD_FILES $$egfile does not exist.";	\
+		${TEST} "$$#" -ge 2 || break;				\
+		egfile="$$1"; shift 2;					\
+		varname="INIT_SCRIPTS"; ${_PKGTASKS_CHECK_EGFILE};	\
 	done
 	${RUN}set -- args ${__INIT_SCRIPTS_PERMS}; shift;		\
 	while ${TEST} "$$#" -gt 0; do					\
-		${TEST} "$$#" -gt 5 || break;				\
-		egfile=${DESTDIR:Q}${PREFIX:Q}"/$$1"; shift 5;		\
-		${TEST} -f "$$egfile" || ${TEST} -c "$$egfile" ||	\
-		${FAIL_MSG} "REQD_FILES_PERMS $$egfile does not exist.";\
+		${TEST} "$$#" -ge 5 || break;				\
+		egfile="$$1"; shift 5;					\
+		varname="INIT_SCRIPTS_PERMS"; ${_PKGTASKS_CHECK_EGFILE}; \
 	done

@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.34 2016/03/05 11:27:50 jperkin Exp $
+# $NetBSD: Makefile,v 1.36 2017/09/16 12:47:45 tnn Exp $
 
 DISTNAME=	libesmtp-1.0.6
 PKGREVISION=	3
 CATEGORIES=	mail devel
-MASTER_SITES=	http://www.stafford.uklinux.net/libesmtp/
+#MASTER_SITES=	http://www.stafford.uklinux.net/libesmtp/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	dolemite@wuli.nu
-HOMEPAGE=	http://www.stafford.uklinux.net/libesmtp/
+#HOMEPAGE=	http://www.stafford.uklinux.net/libesmtp/
 COMMENT=	Library to manage posting of electronic mail
 
 USE_TOOLS+=	gmake
@@ -22,6 +22,11 @@ CONFIGURE_ARGS+=	--disable-isoc
 
 .if !empty(MACHINE_PLATFORM:MIRIX-5*)
 CONFIGURE_ARGS+=	--enable-emulate-getaddrinfo
+.endif
+
+.if !empty(MACHINE_PLATFORM:M*)
+# assume all platforms have working snprintf these days.
+CPPFLAGS+=	-DHAVE_SNPRINTF=1 -DHAVE_VSNPRINTF=1
 .endif
 
 .include "../../security/openssl/buildlink3.mk"

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.4 2016/06/16 03:54:43 markd Exp $
+@comment $NetBSD: PLIST,v 1.6 2017/08/17 04:13:29 markd Exp $
 share/texmf-dist/doc/latex/l3kernel/README.md
 share/texmf-dist/doc/latex/l3kernel/expl3.pdf
 share/texmf-dist/doc/latex/l3kernel/interface3.pdf

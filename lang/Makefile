@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.459 2017/05/03 23:37:47 maya Exp $
+# $NetBSD: Makefile,v 1.464 2017/08/24 03:40:26 jnemeth Exp $
 #
 
 COMMENT=	Programming languages
@@ -81,6 +81,7 @@ SUBDIR+=	ghc7
 SUBDIR+=	gnat_util
 SUBDIR+=	gnucobol
 SUBDIR+=	go
+SUBDIR+=	go-hcl
 SUBDIR+=	go14
 SUBDIR+=	gpc
 SUBDIR+=	gprolog
@@ -176,6 +177,7 @@ SUBDIR+=	polyml
 SUBDIR+=	py-basicproperty
 SUBDIR+=	py-byterun
 SUBDIR+=	py-cxfreeze
+SUBDIR+=	py-execjs
 SUBDIR+=	py-hy
 SUBDIR+=	py-js2py
 SUBDIR+=	py-jsparser
@@ -205,12 +207,12 @@ SUBDIR+=	ruby-doc-stdlib
 SUBDIR+=	ruby-execjs
 SUBDIR+=	ruby-gherkin
 SUBDIR+=	ruby-rkelly-remix
-SUBDIR+=	ruby21
-SUBDIR+=	ruby21-base
 SUBDIR+=	ruby22
 SUBDIR+=	ruby22-base
 SUBDIR+=	ruby23
 SUBDIR+=	ruby23-base
+SUBDIR+=	ruby24
+SUBDIR+=	ruby24-base
 SUBDIR+=	runawk
 SUBDIR+=	rust
 SUBDIR+=	sablevm

@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.8 2017/04/22 21:04:04 adam Exp $
+# $NetBSD: Makefile,v 1.10 2017/09/18 09:53:39 maya Exp $
 
 PYTHON_VERSIONS_ACCEPTED=	27
+PKGREVISION= 1
 .include "../../meta-pkgs/mate/Makefile.common"
 
-DISTNAME=	mate-panel-1.14.1
-PKGREVISION=	6
+DISTNAME=	mate-panel-${VERSION:R}.3
 CATEGORIES=	x11
 
 COMMENT=	MATE panel application
@@ -29,17 +29,8 @@ PYTHON_FOR_BUILD_ONLY=	yes
 .include "../../audio/libcanberra/buildlink3.mk"
 .include "../../devel/dconf/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
-.include "../../devel/libwnck/buildlink3.mk"
-.include "../../devel/pango/buildlink3.mk"
-.include "../../graphics/cairo/buildlink3.mk"
-.include "../../graphics/gdk-pixbuf2/buildlink3.mk"
+.include "../../devel/libwnck3/buildlink3.mk"
 .include "../../graphics/librsvg/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../sysutils/dbus-glib/buildlink3.mk"
-.include "../../x11/gtk2/buildlink3.mk"
-.include "../../x11/libICE/buildlink3.mk"
-.include "../../x11/libSM/buildlink3.mk"
-.include "../../x11/libXrandr/buildlink3.mk"
-.include "../../x11/libX11/buildlink3.mk"
-.include "../../x11/libXau/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

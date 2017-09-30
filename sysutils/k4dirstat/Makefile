@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.37 2017/04/30 01:22:00 ryoon Exp $
+# $NetBSD: Makefile,v 1.39 2017/08/24 20:03:39 adam Exp $
 
 DISTNAME=	k4dirstat-2.7.8
-PKGREVISION=	8
+PKGREVISION=	9
 CATEGORIES=	sysutils
-MASTER_SITES=	http://bitbucket.org/jeromerobert/k4dirstat/get/
+MASTER_SITES=	https://bitbucket.org/jeromerobert/k4dirstat/get/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	markd@NetBSD.org
-HOMEPAGE=	http://bitbucket.org/jeromerobert/k4dirstat
+HOMEPAGE=	https://bitbucket.org/jeromerobert/k4dirstat
 COMMENT=	Graphical disk usage utility
 
 BUILD_DEPENDS+=	automoc4>=0.9.87:../../devel/automoc4

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.26 2017/04/30 01:21:46 ryoon Exp $
+# $NetBSD: Makefile,v 1.28 2017/09/06 09:03:02 wiz Exp $
 
 DISTNAME=		tqsl-2.2.1
-PKGREVISION=		4
+PKGREVISION=		5
 CATEGORIES=		ham
-MASTER_SITES=		http://sourceforge.net/projects/trustedqsl/files/TrustedQSL/v${PKGVERSION_NOREV}/
+MASTER_SITES=		https://sourceforge.net/projects/trustedqsl/files/TrustedQSL/v${PKGVERSION_NOREV}/
 
 MAINTAINER=		makoto@ki.nu
-HOMEPAGE=		http://sourceforge.net/projects/trustedqsl/
+HOMEPAGE=		https://sourceforge.net/projects/trustedqsl/
 COMMENT=		TrustedQSL, uploading QSL Data to LoTW of ARRL
 LICENSE=		arrl-license
 

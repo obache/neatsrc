@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.29 2017/05/02 13:37:33 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2017/09/04 20:20:56 ryoon Exp $
 #
 
-DISTNAME=	pdfgrep-1.4.1
-PKGREVISION=	6
+DISTNAME=	pdfgrep-2.0.1
+PKGREVISION=	3
 CATEGORIES=	textproc
 MASTER_SITES=	https://pdfgrep.org/download/
 
@@ -19,4 +19,5 @@ USE_TOOLS+=	gmake pkg-config
 .include "../../print/poppler-includes/buildlink3.mk"
 .include "../../print/poppler-cpp/buildlink3.mk"
 .include "../../print/poppler/buildlink3.mk"
+.include "../../security/libgcrypt/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

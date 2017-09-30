@@ -1,4 +1,4 @@
-# $NetBSD: install.mk,v 1.70 2017/06/01 02:15:10 jlam Exp $
+# $NetBSD: install.mk,v 1.72 2017/08/08 17:17:25 jlam Exp $
 #
 # This file provides the code for the "install" phase.
 #
@@ -38,10 +38,11 @@
 #
 # INSTALLATION_DIRS
 #	A list of directories that should be created at the very
-#	beginning of the install phase. These directories are relative
-#	to ${PREFIX}. As a convenience, a leading gnu/ is transformed
-#	to ${PKGGNUDIR} and a leading man/ is transformed to
-#	${PKGMANDIR}, to save package authors from typing too much.
+#	beginning of the install phase. These directories MUST either
+#	be paths that contain a leading {PREFIX}/ or be relative
+#	paths. As a convenience, a leading gnu/ is transformed to
+#	${PKGGNUDIR} and a leading man/ is transformed to ${PKGMANDIR},
+#	to save package authors from typing too much.
 #
 # AUTO_MKDIRS
 # INSTALLATION_DIRS_FROM_PLIST
@@ -237,19 +238,33 @@ _INSTALL_ONE_DIR_CMD= { \
 	esac;								\
 	}
 
+# _INSTALLATION_DIRS
+#	Contains the items listed in ${INSTALLATION_DIRS} with the
+#	following transformations performed, in order:
+#
+#	1. Leading "${PREFIX}/" is stripped.
+#	2. Leading "gnu/" is transformed into "${PKGGNUDIR}".
+#	3. Leading "man/" is transformed into "${PKGMANDIR}/".
+#
+# Check that paths listed in ${_INSTALLATION_DIRS} are relative paths.
+# This can't be an assertion because some variables used when listing
+# directories in INSTALLATION_DIRS are not expanded until they are
+# used.
+#
+_INSTALLATION_DIRS=	${INSTALLATION_DIRS:C,^${PREFIX}/,,:C,^gnu/,${PKGGNUDIR},:C,^man/,${PKGMANDIR}/,}
+
 .PHONY: install-makedirs
 install-makedirs:
 	${RUN} ${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}
 .if defined(INSTALLATION_DIRS) && !empty(INSTALLATION_DIRS)
 	@${STEP_MSG} "Creating installation directories"
-	${RUN}								\
-	for dir in ${INSTALLATION_DIRS:C,^gnu/,${PKGGNUDIR},:C,^man/,${PKGMANDIR}/,}; do \
+	${RUN} set -- args ${_INSTALLATION_DIRS}; shift;		\
+	while ${TEST} "$$#" -gt 0; do					\
+		dir="$$1"; shift;					\
 		case "$$dir" in						\
-		${PREFIX}/*)						\
-			dir=`${ECHO} "$$dir" | ${SED} "s|^${PREFIX}/||"` ;; \
-		/*)	continue ;;					\
+		/*)	${FAIL_MSG} "INSTALLATION_DIRS: $$dir must be in "${PREFIX:Q}"." ;; \
+		*)	${_INSTALL_ONE_DIR_CMD}	;;			\
 		esac;							\
-		${_INSTALL_ONE_DIR_CMD};				\
 	done
 .endif	# INSTALLATION_DIRS
 

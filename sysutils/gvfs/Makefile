@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.84 2017/05/29 11:09:46 jperkin Exp $
+# $NetBSD: Makefile,v 1.86 2017/09/18 09:53:34 maya Exp $
 #
 
 DISTNAME=	gvfs-1.6.7
-PKGREVISION=	28
+PKGREVISION=	29
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gvfs/1.6/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnome.org/
+HOMEPAGE=	https://www.gnome.org/
 COMMENT=	Userspace virtual filesystem
 LICENSE=	gnu-lgpl-v2
 

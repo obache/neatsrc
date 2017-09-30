@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.1 2017/01/20 21:44:00 markd Exp $
+# $NetBSD: Makefile,v 1.3 2017/08/17 03:30:07 markd Exp $
 
 DISTNAME=	tcolorbox.doc
-PKGNAME=	tex-${DISTNAME:S/./-/}-3.94
-TEXLIVE_REV=	41700
+PKGNAME=	tex-${DISTNAME:S/./-/}-4.10
+TEXLIVE_REV=	44759
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://ctan.org/pkg/tcolorbox

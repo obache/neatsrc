@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.35 2017/05/02 13:37:31 wiz Exp $
+# $NetBSD: Makefile,v 1.39 2017/09/04 20:20:55 ryoon Exp $
 #
 
 DISTNAME=	PDFViewer-0.0.2
 PKGNAME=	deforaos-pdfviewer-0.0.2
-PKGREVISION=	9
+PKGREVISION=	12
 CATEGORIES=	print
-MASTER_SITES=	http://www.defora.org/os/download/download/4431/
+MASTER_SITES=	https://www.defora.org/os/download/download/4431/
 
 MAINTAINER=	khorben@defora.org
-HOMEPAGE=	http://www.defora.org/
+HOMEPAGE=	https://www.defora.org/
 COMMENT=	DeforaOS desktop PDF viewer
 
 LICENSE=	gnu-gpl-v3

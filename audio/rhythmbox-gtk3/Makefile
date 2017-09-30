@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.36 2017/04/22 21:03:24 adam Exp $
+# $NetBSD: Makefile,v 1.38 2017/09/18 09:53:11 maya Exp $
 
 DISTNAME=	rhythmbox-3.0.1
-PKGREVISION=	15
+PKGREVISION=	16
 CATEGORIES=	audio gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/rhythmbox/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnome.org/projects/rhythmbox/
+HOMEPAGE=	https://www.gnome.org/projects/rhythmbox/
 COMMENT=	Music management application for GNOME
 LICENSE=	gnu-gpl-v2 # with exception for non-GPL GStreamer plugins
 

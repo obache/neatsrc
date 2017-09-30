@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.160 2017/06/05 15:30:47 taca Exp $
+# $NetBSD: Makefile,v 1.165 2017/09/04 17:46:06 wiz Exp $
 #
 
 COMMENT=	Clocks, calendars, daily planners and other time related applications
@@ -23,7 +23,6 @@ SUBDIR+=	evolution-webcal
 SUBDIR+=	fet
 SUBDIR+=	gcal
 SUBDIR+=	gchore
-SUBDIR+=	gdeskcal
 SUBDIR+=	glclock
 SUBDIR+=	globe
 SUBDIR+=	gnotime
@@ -31,7 +30,6 @@ SUBDIR+=	gnutime
 SUBDIR+=	gnyaclock
 SUBDIR+=	grdc
 SUBDIR+=	gtodo
-SUBDIR+=	gtodo-applet
 SUBDIR+=	hamster-applet
 SUBDIR+=	hebcal
 SUBDIR+=	heirloom-date
@@ -44,7 +42,6 @@ SUBDIR+=	khal
 SUBDIR+=	kronolith
 SUBDIR+=	ktimer
 SUBDIR+=	leapsunpack
-SUBDIR+=	libgcal
 SUBDIR+=	libical
 SUBDIR+=	lmclock
 SUBDIR+=	logtime
@@ -60,6 +57,7 @@ SUBDIR+=	p5-Date-ICal
 SUBDIR+=	p5-Date-Leapyear
 SUBDIR+=	p5-DateTime
 SUBDIR+=	p5-DateTime-Calendar-Discordian
+SUBDIR+=	p5-DateTime-Calendar-Julian
 SUBDIR+=	p5-DateTime-Calendar-Mayan
 SUBDIR+=	p5-DateTime-Event-Cron
 SUBDIR+=	p5-DateTime-Event-ICal
@@ -165,6 +163,8 @@ SUBDIR+=	sunclock
 SUBDIR+=	swisswatch
 SUBDIR+=	taskwarrior
 SUBDIR+=	tdl
+SUBDIR+=	tex-datenumber
+SUBDIR+=	tex-datenumber-doc
 SUBDIR+=	titrax
 SUBDIR+=	today
 SUBDIR+=	vixie-cron

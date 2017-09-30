@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.php,v 1.2 2017/04/05 12:28:59 fhajny Exp $
+# $NetBSD: Makefile.php,v 1.4 2017/07/12 09:11:35 manu Exp $
 # used by lang/php56/Makefile
 # used by www/ap-php/Makefile
 # used by www/php-fpm/Makefile

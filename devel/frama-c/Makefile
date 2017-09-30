@@ -1,22 +1,29 @@
-# $NetBSD: Makefile,v 1.66 2017/04/22 21:03:30 adam Exp $
+# $NetBSD: Makefile,v 1.70 2017/09/18 09:53:16 maya Exp $
 #
 
-DISTNAME=	frama-c-Oxygen-20120901
-PKGNAME=	${DISTNAME:S/-Oxygen//}
-PKGREVISION=	37
+DISTNAME=	frama-c-Phosphorus-20170501
+PKGNAME=	${DISTNAME:S/-Phosphorus//}
+PKGREVISION=	2
 CATEGORIES=	devel
-MASTER_SITES=	http://frama-c.com/download/
+MASTER_SITES=	https://frama-c.com/download/
 
 MAINTAINER=	tonio@NetBSD.org
-HOMEPAGE=	http://frama-c.com/
+HOMEPAGE=	https://frama-c.com/
 COMMENT=	Extensible platform dedicated to source-code analysis of C software
 LICENSE=	gnu-lgpl-v2
 
-USE_TOOLS+=	gmake
+USE_TOOLS+=	gmake autoconf
 GNU_CONFIGURE=	yes
+
+OCAML_USE_FINDLIB=	yes
 
 .include "options.mk"
 
-.include "../../x11/ocaml-lablgtk/buildlink3.mk"
-.include "../../lang/ocaml/buildlink3.mk"
+# WARNING: you must build ocamlgraph with ocaml-lablgtk support
+# (not the default) or the build fails with missing module "Dgraph".
+
+.include "../../devel/ocamlgraph/buildlink3.mk"
+.include "../../math/ocaml-zarith/buildlink3.mk"
+
+.include "../../mk/ocaml.mk"
 .include "../../mk/bsd.pkg.mk"

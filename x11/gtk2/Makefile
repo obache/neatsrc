@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.285 2017/05/19 13:29:05 prlw1 Exp $
+# $NetBSD: Makefile,v 1.288 2017/08/16 20:21:16 wiz Exp $
 
 DISTNAME=	gtk+-2.24.31
 PKGNAME=	${DISTNAME:S/gtk/gtk2/}
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtk+/2.24/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gtk.org/
+HOMEPAGE=	https://www.gtk.org/
 COMMENT=	GIMP Toolkit v2 - libraries for building X11 user interfaces
 LICENSE=	gnu-lgpl-v2.1
 
@@ -90,7 +90,7 @@ post-install:
 	${RM} -f ${DESTDIR}${GTK_IMMODULES_DB}
 
 FILES_SUBST+=		GTK_UPDATE_ICON_CACHE="${PREFIX}/bin/gtk2-update-icon-cache"
-FILES_SUBST+=		ICON_THEME_DIR="${LOCALBASE}/share/icons/hicolor"
+FILES_SUBST+=		ICON_THEME_DIR="${LOCALBASE}/share/icons"
 INSTALL_TEMPLATES+=	../../x11/gtk2/files/icon-cache.tmpl
 
 _BUILDING_GTK2=	yes

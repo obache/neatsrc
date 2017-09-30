@@ -1,16 +1,16 @@
-# $NetBSD: Makefile,v 1.5 2017/06/08 09:52:48 maya Exp $
+# $NetBSD: Makefile,v 1.12 2017/07/25 13:19:00 wiz Exp $
 
 GCC_PKGNAME=		gcc7
 .include		"version.mk"
 
-DISTNAME=	gcc-${GCC7S_DIST_VERSION}
-PKGNAME=	${GCC_PKGNAME}-${GCC7S_DIST_VERSION}
+DISTNAME=	gcc-${GCC7_DIST_VERSION}
+PKGNAME=	${GCC_PKGNAME}-${GCC7_DIST_VERSION}
 ## When bumping the PKGREVISION of this package the PKGREVISION of
 ## lang/gcc7-libs needs to be bump to be at least 1 more than the
 ## PKGREVISION of this package!
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	lang
-MASTER_SITES=	${MASTER_SITE_GNU:=gcc/gcc-${GCC7S_DIST_VERSION}/}
+MASTER_SITES=	${MASTER_SITE_GNU:=gcc/gcc-${GCC7_DIST_VERSION}/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	maya@NetBSD.org
@@ -23,8 +23,9 @@ EXTRACT_ONLY=		${DEFAULT_DISTFILES}
 
 NOT_FOR_PLATFORM=	Interix-*-*
 
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=		c c++
 USE_TOOLS+=		gmake makeinfo sed:run tar:build
+USE_TOOLS.NetBSD+=	gsed
 
 GNU_CONFIGURE=		yes
 ## Build outside ${WRKSRC}
@@ -54,7 +55,7 @@ LANGS=			c
 LINKER_RPATH_FLAG:=	${LINKER_RPATH_FLAG:S/-rpath/& /}
 
 ## The Library rpath to use in end programs.
-LDFLAGS_FOR_TARGET=	${LDFLAGS:M${COMPILER_RPATH_FLAG}*:N*/usr/lib*}
+LDFLAGS_FOR_TARGET=	${LDFLAGS:M${COMPILER_RPATH_FLAG}*:N*/usr/lib*} ${LDFLAGS:M-Wl,-z*}
 
 # The "-static-libstdc++ -static-libgcc" flags are normally added to the
 # boot-ldflags by configure but because we are supply the boot-ldflags
@@ -76,8 +77,14 @@ post-extract:
 .endif
 
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-*)
-# on NetBSD, use the native SSP code in libc
+# native SSP conflicts with gcc's libssp
 CONFIGURE_ARGS+=	--disable-libssp
+# Match base libstdc++ major
+SUBST_CLASSES+=		libstdc
+SUBST_STAGE.libstdc=	pre-configure
+SUBST_FILES.libstdc=	libstdc++-v3/configure
+SUBST_MESSAGE.libstdc=	Bumping libstdc++ major to 7
+SUBST_SED.libstdc=	-e 's,libtool_VERSION=6:,libtool_VERSION=7:,g'
 .else
 CONFIGURE_ARGS+=	--enable-libssp
 .endif
@@ -91,6 +98,11 @@ CONFIGURE_ARGS+=	--enable-long-long
 CONFIGURE_ARGS+=	--with-local-prefix=${GCC_PREFIX:Q}
 CONFIGURE_ARGS+=	--enable-threads=posix
 CONFIGURE_ARGS+=	--with-boot-ldflags=${BOOT_LDFLAGS:Q}
+# multilib on Darwin requires fat-binaries
+CONFIGURE_ARGS.Darwin+=	--disable-multilib
+.if !empty(OSX_SDK_PATH)
+CONFIGURE_ARGS.Darwin+=	--with-sysroot=${OSX_SDK_PATH}
+.endif
 CONFIGURE_ARGS.NetBSD+=	--with-gnu-ld --with-ld=/usr/bin/ld
 CONFIGURE_ARGS.NetBSD+=	--with-gnu-as --with-as=/usr/bin/as
 MAKE_ENV.NetBSD+=	ac_cv_func_clock_gettime=yes
@@ -98,6 +110,7 @@ MAKE_ENV.NetBSD+=	ac_cv_func_gethostbyname_r=no
 MAKE_ENV.NetBSD+=	ac_cv_func_freelocale=no
 MAKE_ENV.NetBSD+=	ac_cv_func_newlocale=no
 MAKE_ENV.NetBSD+=	ac_cv_func_uselocale=no
+MAKE_ENV.SunOS+=	ac_cv_func_mkostemp=no
 
 CONFIGURE_ARGS.DragonFly+=	--disable-bootstrap
 

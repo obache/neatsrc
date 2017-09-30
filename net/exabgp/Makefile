@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.19 2017/01/01 14:43:49 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2017/07/04 12:35:12 he Exp $
 
-VERSION=	3.4.11
+VERSION=	3.4.19
 DISTNAME=	${VERSION}
+PKGREVISION=	1
 PKGNAME=	exabgp-${VERSION}
-PKGREVISION=	2
 EGG_NAME=	exabgp-${VERSION}
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Exa-Networks/exabgp/archive/}
 DIST_SUBDIR=	exabgp
 
-MAINTAINER=	pettai@NetBSD.org
+MAINTAINER=	he@NetBSD.org
 HOMEPAGE=	https://github.com/Exa-Networks/exabgp/
 COMMENT=	ExaBGP is a userspace BGP daemon written in python
 LICENSE=	modified-bsd
@@ -24,17 +24,37 @@ DEPENDS+=	${PYPKGPREFIX}-setuptools-[0-9]*:../../devel/py-setuptools
 REPLACE_PERL+=		etc/exabgp/processes/dynamic-1.pl
 REPLACE_PERL+=		etc/exabgp/processes/watchdog-1.pl
 
-REPLACE_PYTHON+=	etc/exabgp/processes/healthcheck.py
 REPLACE_PYTHON+=	etc/exabgp/processes/read-write.py
 REPLACE_PYTHON+=	etc/exabgp/processes/stderr-1.py
 REPLACE_PYTHON+=	etc/exabgp/processes/syslog-1.py
 REPLACE_PYTHON+=	etc/exabgp/processes/tcp-server
 REPLACE_PYTHON+=	lib/exabgp/application/bmp.py
 REPLACE_PYTHON+=	lib/exabgp/application/cli.py
+REPLACE_PYTHON+=	lib/exabgp/application/healthcheck.py
 REPLACE_PYTHON+=	lib/exabgp/application/netlink.py
 REPLACE_PYTHON+=	lib/exabgp/netlink/old.py
-REPLACE_PYTHON+=	lib/exabgp/netlink/route.py
 REPLACE_PYTHON+=	lib/exabgp/reactor/api/encoding.py
+REPLACE_PYTHON+=	qa/conf/api-add-remove.run
+REPLACE_PYTHON+=	qa/conf/api-announcement.run
+REPLACE_PYTHON+=	qa/conf/api-api.nothing.run
+REPLACE_PYTHON+=	qa/conf/api-api.receive.run
+REPLACE_PYTHON+=	qa/conf/api-broken-flow.run
+REPLACE_PYTHON+=	qa/conf/api-check.run
+REPLACE_PYTHON+=	qa/conf/api-eor.run
+REPLACE_PYTHON+=	qa/conf/api-fast.run
+REPLACE_PYTHON+=	qa/conf/api-flow.run
+REPLACE_PYTHON+=	qa/conf/api-multi-neighbor.run
+REPLACE_PYTHON+=	qa/conf/api-multisession.run
+REPLACE_PYTHON+=	qa/conf/api-nexthop-self.run
+REPLACE_PYTHON+=	qa/conf/api-nexthop.run
+REPLACE_PYTHON+=	qa/conf/api-notification.run
+REPLACE_PYTHON+=	qa/conf/api-open.run
+REPLACE_PYTHON+=	qa/conf/api-reload.run
+REPLACE_PYTHON+=	qa/conf/api-teardown.run
+REPLACE_PYTHON+=	qa/conf/api-vpls.run
+REPLACE_PYTHON+=	qa/conf/api-vpnv4.run
+REPLACE_PYTHON+=	qa/conf/manual-eor.run
+REPLACE_PYTHON+=	qa/conf/watchdog.run
 
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 3.2.19
 

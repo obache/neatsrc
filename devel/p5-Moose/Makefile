@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.103 2017/06/05 14:23:18 ryoon Exp $
+# $NetBSD: Makefile,v 1.107 2017/09/03 08:36:53 wiz Exp $
 
-DISTNAME=	Moose-2.2004
+DISTNAME=	Moose-2.2006
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Test/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://moose.perl.org/
+#HOMEPAGE=	http://moose.perl.org/
 COMMENT=	Postmodern object system for Perl 5
 LICENSE=	${PERL5_LICENSE}
 
@@ -75,7 +74,9 @@ BUILD_DEPENDS+=	p5-URI-[0-9]*:../../www/p5-URI
 #BUILD_DEPENDS+=	p5-libwww-[0-9]*:../../www/p5-libwww
 # for make test
 BUILD_DEPENDS+=		p5-Module-Metadata>=1.000023:../../devel/p5-Module-Metadata
-BUILD_DEPENDS+=		p5-Test-DependentModules-[0-9]*:../../devel/p5-Test-DependentModules
+# circular test dependency: p5-MetaCPAN-Client => p5-Type-Tiny => p5-Moose
+# => p5-Test-DependentModules => p5-MetaCPAN-Client
+#BUILD_DEPENDS+=		p5-Test-DependentModules-[0-9]*:../../devel/p5-Test-DependentModules
 
 
 USE_LANGUAGES=		c

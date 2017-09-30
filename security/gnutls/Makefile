@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.171 2017/05/18 07:54:26 he Exp $
+# $NetBSD: Makefile,v 1.176 2017/09/06 13:41:26 wiz Exp $
 
-DISTNAME=	gnutls-3.5.12
+DISTNAME=	gnutls-3.6.0
 CATEGORIES=	security devel
-MASTER_SITES=	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.5/
+MASTER_SITES=	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.6/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -22,6 +22,7 @@ CONFIGURE_ARGS+=	--disable-guile
 CONFIGURE_ARGS+=	--disable-libdane
 CONFIGURE_ARGS+=	--without-tpm
 CONFIGURE_ARGS+=	--disable-valgrind-tests
+CONFIGURE_ARGS+=	--with-libintl-prefix=${BUILDLINK_PREFIX.gettext}
 # Assembler support is broken for SunOS in 3.2.9.
 CONFIGURE_ARGS.SunOS+=	--disable-hardware-acceleration
 CONFIGURE_ARGS.FreeBSD+=ac_cv_type_max_align_t=yes
@@ -36,7 +37,6 @@ TEST_TARGET=		check
 
 INFO_FILES=		yes
 
-REPLACE_BASH+=		tests/cert-tests/openpgp-certs
 REPLACE_BASH+=		tests/danetool.sh
 REPLACE_BASH+=		tests/ocsp-tests/ocsp-must-staple-connection
 REPLACE_BASH+=		tests/ocsp-tests/ocsp-tls-connection
@@ -56,7 +56,7 @@ MAKE_ENV+=		TZ=UTC
 
 EGDIR=		${PREFIX}/share/examples/gnutls
 
-INSTALLATION_DIRS=	${DOCDIR} ${EGDIR} include/gnutls
+INSTALLATION_DIRS=	${EGDIR} include/gnutls
 
 post-install:
 	cd ${WRKSRC}/doc/examples && ${INSTALL_DATA} *.c ${DESTDIR}${EGDIR}

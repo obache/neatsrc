@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.135 2017/04/27 01:47:21 ryoon Exp $
+# $NetBSD: Makefile,v 1.139 2017/09/18 09:53:17 maya Exp $
 
 DISTNAME=		nss-${NSS_RELEASE:S/.0$//}
-NSS_RELEASE=		3.30.2
+NSS_RELEASE=		3.32.0
+PKGREVISION=		1
 CATEGORIES=		security
 MASTER_SITES=		${MASTER_SITE_MOZILLA_ALL:=security/nss/releases/NSS_${NSS_DIST_DIR_VERSION:S/_0$//}_RTM/src/}
 
@@ -49,7 +50,7 @@ SO_SUFFIX=		so.1.0
 .endif
 PLIST_SUBST+=		SO_SUFFIX=${SO_SUFFIX:Q}
 
-.if ${OPSYS} == "SunOS" && (${PKGSRC_COMPILER} == "clang" || ${PKGSRC_COMPILER} == "gcc")
+.if ${OPSYS} == "SunOS" && (${PKGSRC_COMPILER:Mclang} || ${PKGSRC_COMPILER:Mgcc})
 MAKE_ENV+=	NS_USE_GCC=YES
 .endif
 
@@ -73,7 +74,7 @@ MAKE_ENV+=	INCLUDES=-I${BUILDLINK_PREFIX.nspr}/include/nspr
 MAKE_ENV+=	NSS_USE_SYSTEM_SQLITE=1
 MAKE_ENV+=	ZLIB_LIBS="${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.zlib}/lib -L${BUILDLINK_PREFIX.zlib}/lib -lz"
 MAKE_ENV+=	USE_SYSTEM_ZLIB=1
-MAKE_ENV+=	EXTRA_SHARED_LIBS="${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.nspr}/lib/nspr ${COMPILER_RPATH_FLAG}${PREFIX}/lib/nss -L${BUILDLINK_PREFIX.nspr}/lib/nspr -lplc4 -lplds4 -lnspr4"
+MAKE_ENV+=	EXTRA_SHARED_LIBS="${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.nspr}/lib/nspr ${COMPILER_RPATH_FLAG}${PREFIX}/lib/nss -L${BUILDLINK_PREFIX.nspr}/lib/nspr -lplc4 -lplds4 -lnspr4 "${LDFLAGS:Q}
 MAKE_ENV+=	NSS_DISABLE_GTESTS=yes
 MAKE_ENV+=	NSS_ENABLE_TLS_1_3=1
 .include "../../mk/compiler.mk"

@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.8 2016/12/30 11:33:50 jaapb Exp $
+# $NetBSD: Makefile,v 1.11 2017/09/08 09:51:22 jaapb Exp $
 
 GITHUB_PROJECT=	reactiveData
 DISTNAME=	${GITHUB_PROJECT}-0.2.1
+PKGREVISION=	2
 PKGNAME=	ocaml-${DISTNAME}
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ocsigen/}
 
 MAINTAINER=	jaapb@NetBSD.org
-HOMEPAGE=	http://github.com/ocsigen/reactiveData
+HOMEPAGE=	https://github.com/ocsigen/reactiveData
 COMMENT=	Functional reactive programming library
 LICENSE=	gnu-lgpl-v2.1
 

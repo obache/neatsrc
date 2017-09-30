@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.8 2017/04/30 01:21:56 ryoon Exp $
+# $NetBSD: Makefile,v 1.11 2017/08/24 20:03:35 adam Exp $
 
 DISTNAME=	${GHNAME}-${GHDATE}-${GHCOMMIT}
 PKGNAME=	${GHNAME}-0.3.0.${GHDATE}
-PKGREVISION=	7
+PKGREVISION=	8
 CATEGORIES=	net
 MASTER_SITES=	https://github.com/${GHACCOUNT}/${GHNAME}/archive/${GHCOMMIT}/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.lbreda.com/grive/start
+#HOMEPAGE=	http://www.lbreda.com/grive/start
 COMMENT=	Independent open source implementation of Google Drive client
 LICENSE=	gnu-gpl-v2
 
@@ -18,7 +18,7 @@ GHCOMMIT=	27817e835fe115ebbda5410ec904aa49a2ad01f1
 
 WRKSRC=		${WRKDIR}/grive-${GHCOMMIT}
 USE_CMAKE=	yes
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c c++11
 
 SUBST_CLASSES+=		disableqt
 SUBST_MESSAGE.disableqt=Disable QT frontend

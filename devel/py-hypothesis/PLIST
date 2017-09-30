@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2017/05/24 11:28:37 adam Exp $
+@comment $NetBSD: PLIST,v 1.11 2017/09/13 06:26:55 adam Exp $
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
@@ -57,6 +57,9 @@ ${PYSITELIB}/hypothesis/extra/pytz.pyo
 ${PYSITELIB}/hypothesis/internal/__init__.py
 ${PYSITELIB}/hypothesis/internal/__init__.pyc
 ${PYSITELIB}/hypothesis/internal/__init__.pyo
+${PYSITELIB}/hypothesis/internal/branchcheck.py
+${PYSITELIB}/hypothesis/internal/branchcheck.pyc
+${PYSITELIB}/hypothesis/internal/branchcheck.pyo
 ${PYSITELIB}/hypothesis/internal/charmap.py
 ${PYSITELIB}/hypothesis/internal/charmap.pyc
 ${PYSITELIB}/hypothesis/internal/charmap.pyo
@@ -75,15 +78,15 @@ ${PYSITELIB}/hypothesis/internal/conjecture/data.pyo
 ${PYSITELIB}/hypothesis/internal/conjecture/engine.py
 ${PYSITELIB}/hypothesis/internal/conjecture/engine.pyc
 ${PYSITELIB}/hypothesis/internal/conjecture/engine.pyo
+${PYSITELIB}/hypothesis/internal/conjecture/floats.py
+${PYSITELIB}/hypothesis/internal/conjecture/floats.pyc
+${PYSITELIB}/hypothesis/internal/conjecture/floats.pyo
 ${PYSITELIB}/hypothesis/internal/conjecture/minimizer.py
 ${PYSITELIB}/hypothesis/internal/conjecture/minimizer.pyc
 ${PYSITELIB}/hypothesis/internal/conjecture/minimizer.pyo
 ${PYSITELIB}/hypothesis/internal/conjecture/utils.py
 ${PYSITELIB}/hypothesis/internal/conjecture/utils.pyc
 ${PYSITELIB}/hypothesis/internal/conjecture/utils.pyo
-${PYSITELIB}/hypothesis/internal/deferredformat.py
-${PYSITELIB}/hypothesis/internal/deferredformat.pyc
-${PYSITELIB}/hypothesis/internal/deferredformat.pyo
 ${PYSITELIB}/hypothesis/internal/detection.py
 ${PYSITELIB}/hypothesis/internal/detection.pyc
 ${PYSITELIB}/hypothesis/internal/detection.pyo
@@ -96,9 +99,15 @@ ${PYSITELIB}/hypothesis/internal/floats.pyo
 ${PYSITELIB}/hypothesis/internal/intervalsets.py
 ${PYSITELIB}/hypothesis/internal/intervalsets.pyc
 ${PYSITELIB}/hypothesis/internal/intervalsets.pyo
+${PYSITELIB}/hypothesis/internal/lazyformat.py
+${PYSITELIB}/hypothesis/internal/lazyformat.pyc
+${PYSITELIB}/hypothesis/internal/lazyformat.pyo
 ${PYSITELIB}/hypothesis/internal/reflection.py
 ${PYSITELIB}/hypothesis/internal/reflection.pyc
 ${PYSITELIB}/hypothesis/internal/reflection.pyo
+${PYSITELIB}/hypothesis/internal/renaming.py
+${PYSITELIB}/hypothesis/internal/renaming.pyc
+${PYSITELIB}/hypothesis/internal/renaming.pyo
 ${PYSITELIB}/hypothesis/reporting.py
 ${PYSITELIB}/hypothesis/reporting.pyc
 ${PYSITELIB}/hypothesis/reporting.pyo
@@ -114,12 +123,12 @@ ${PYSITELIB}/hypothesis/searchstrategy/datetime.pyo
 ${PYSITELIB}/hypothesis/searchstrategy/deferred.py
 ${PYSITELIB}/hypothesis/searchstrategy/deferred.pyc
 ${PYSITELIB}/hypothesis/searchstrategy/deferred.pyo
-${PYSITELIB}/hypothesis/searchstrategy/fixed.py
-${PYSITELIB}/hypothesis/searchstrategy/fixed.pyc
-${PYSITELIB}/hypothesis/searchstrategy/fixed.pyo
 ${PYSITELIB}/hypothesis/searchstrategy/flatmapped.py
 ${PYSITELIB}/hypothesis/searchstrategy/flatmapped.pyc
 ${PYSITELIB}/hypothesis/searchstrategy/flatmapped.pyo
+${PYSITELIB}/hypothesis/searchstrategy/lazy.py
+${PYSITELIB}/hypothesis/searchstrategy/lazy.pyc
+${PYSITELIB}/hypothesis/searchstrategy/lazy.pyo
 ${PYSITELIB}/hypothesis/searchstrategy/misc.py
 ${PYSITELIB}/hypothesis/searchstrategy/misc.pyc
 ${PYSITELIB}/hypothesis/searchstrategy/misc.pyo
@@ -129,9 +138,9 @@ ${PYSITELIB}/hypothesis/searchstrategy/numbers.pyo
 ${PYSITELIB}/hypothesis/searchstrategy/recursive.py
 ${PYSITELIB}/hypothesis/searchstrategy/recursive.pyc
 ${PYSITELIB}/hypothesis/searchstrategy/recursive.pyo
-${PYSITELIB}/hypothesis/searchstrategy/reprwrapper.py
-${PYSITELIB}/hypothesis/searchstrategy/reprwrapper.pyc
-${PYSITELIB}/hypothesis/searchstrategy/reprwrapper.pyo
+${PYSITELIB}/hypothesis/searchstrategy/regex.py
+${PYSITELIB}/hypothesis/searchstrategy/regex.pyc
+${PYSITELIB}/hypothesis/searchstrategy/regex.pyo
 ${PYSITELIB}/hypothesis/searchstrategy/shared.py
 ${PYSITELIB}/hypothesis/searchstrategy/shared.pyc
 ${PYSITELIB}/hypothesis/searchstrategy/shared.pyo
@@ -144,9 +153,9 @@ ${PYSITELIB}/hypothesis/searchstrategy/streams.pyo
 ${PYSITELIB}/hypothesis/searchstrategy/strings.py
 ${PYSITELIB}/hypothesis/searchstrategy/strings.pyc
 ${PYSITELIB}/hypothesis/searchstrategy/strings.pyo
-${PYSITELIB}/hypothesis/searchstrategy/wrappers.py
-${PYSITELIB}/hypothesis/searchstrategy/wrappers.pyc
-${PYSITELIB}/hypothesis/searchstrategy/wrappers.pyo
+${PYSITELIB}/hypothesis/searchstrategy/types.py
+${PYSITELIB}/hypothesis/searchstrategy/types.pyc
+${PYSITELIB}/hypothesis/searchstrategy/types.pyo
 ${PYSITELIB}/hypothesis/stateful.py
 ${PYSITELIB}/hypothesis/stateful.pyc
 ${PYSITELIB}/hypothesis/stateful.pyo
@@ -156,9 +165,6 @@ ${PYSITELIB}/hypothesis/statistics.pyo
 ${PYSITELIB}/hypothesis/strategies.py
 ${PYSITELIB}/hypothesis/strategies.pyc
 ${PYSITELIB}/hypothesis/strategies.pyo
-${PYSITELIB}/hypothesis/strategytests.py
-${PYSITELIB}/hypothesis/strategytests.pyc
-${PYSITELIB}/hypothesis/strategytests.pyo
 ${PYSITELIB}/hypothesis/tools/__init__.py
 ${PYSITELIB}/hypothesis/tools/__init__.pyc
 ${PYSITELIB}/hypothesis/tools/__init__.pyo

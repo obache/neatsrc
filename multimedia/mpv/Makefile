@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.55 2017/04/24 15:18:01 maya Exp $
+# $NetBSD: Makefile,v 1.60 2017/09/13 10:35:58 leot Exp $
 
-DISTNAME=	mpv-0.25.0
+DISTNAME=	mpv-0.27.0
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mpv-player/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	leot@NetBSD.org
-HOMEPAGE=	http://mpv.io/
+HOMEPAGE=	https://mpv.io/
 COMMENT=	Video player based on MPlayer and mplayer2
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
@@ -29,7 +29,7 @@ CONF_FILES+=		share/examples/mpv/encoding-profiles.conf ${PKG_SYSCONFDIR}/mpv/en
 
 SUBST_CLASSES+=		audio
 SUBST_SED.audio+=	-e "s,/dev/dsp,${DEVOSSAUDIO},"
-SUBST_FILES.audio+=	stream/audio_in.c waftools/checks/custom.py wscript
+SUBST_FILES.audio+=	audio/out/ao_oss.c stream/ai_oss.c
 SUBST_STAGE.audio=	pre-configure
 SUBST_MESSAGE.audio=	Fixing path to audio device.
 

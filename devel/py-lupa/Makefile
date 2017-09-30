@@ -1,18 +1,14 @@
-# $NetBSD: Makefile,v 1.5 2017/05/30 21:59:56 alnsn Exp $
+# $NetBSD: Makefile,v 1.7 2017/09/17 10:50:19 adam Exp $
 
-DISTNAME=	lupa-1.4
+DISTNAME=	lupa-1.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=l/lupa/}
 
-MAINTAINER=	alnsn@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://pypi.python.org/pypi/lupa
 COMMENT=	Python wrapper around Lua and LuaJIT
 LICENSE=	mit
-
-# XXX Find a replacement for luaL_openlib().
-LUA_VERSIONS_INCOMPATIBLE=	53
 
 USE_TOOLS+=	pkg-config
 

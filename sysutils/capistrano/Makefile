@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.23 2017/04/22 16:47:01 taca Exp $
+# $NetBSD: Makefile,v 1.26 2017/09/18 01:03:01 taca Exp $
 
-DISTNAME=	capistrano-3.8.1
+DISTNAME=	capistrano-3.9.1
 CATEGORIES=	sysutils
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://github.com/capistrano/capistrano
+HOMEPAGE=	https://github.com/capistrano/capistrano
 COMMENT=	Tool for parallel execution of commands across multiple machines
 LICENSE=	mit
 

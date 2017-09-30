@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.7 2017/01/01 14:44:01 wiz Exp $
+# $NetBSD: Makefile,v 1.9 2017/09/16 19:27:19 wiz Exp $
 
 DISTNAME=	iniparse-0.4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	python textproc
 MASTER_SITES=	http://iniparse.googlecode.com/files/
 
-MAINTAINER=	rodent@NetBSD.org
-HOMEPAGE=	http://code.google.com/p/iniparse/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://pypi.python.org/pypi/iniparse/
 COMMENT=	Better INI parser for Python
 LICENSE=	mit AND python-software-foundation
 

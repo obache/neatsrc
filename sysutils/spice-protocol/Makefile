@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.7 2016/08/24 10:47:08 wiz Exp $
+# $NetBSD: Makefile,v 1.9 2017/09/16 19:27:08 wiz Exp $
 
-DISTNAME=	spice-protocol-0.12.12
+DISTNAME=	spice-protocol-0.12.13
 CATEGORIES=	sysutils
 MASTER_SITES=	http://spice-space.org/download/releases/
 EXTRACT_SUFX=	.tar.bz2
 
-MAINTAINER=	rodent@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://spice-space.org/
 COMMENT=	Headers defining protocols for SPICE server code
-LICENSE=	modified-bsd
+LICENSE=	modified-bsd AND mit
 
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config

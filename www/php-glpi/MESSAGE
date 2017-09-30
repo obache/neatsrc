@@ -1,0 +1,33 @@
+===========================================================================
+$NetBSD: MESSAGE,v 1.4 2017/07/21 10:11:27 hauke Exp $
+
+GLPI requires a web server set up to run PHP scripts;
+${PREFIX}/share/examples/glpi/http-glpi.conf is a sample
+configuration for Apache.
+
+In addition, you need access to a MySQL server. Create a MySQL gpli user,
+and as that user create a database:
+
+# mysql -u root -p
+Enter password: <your_mysql_root_passwd>
+
+mysql> CREATE DATABASE glpi;
+mysql> CREATE USER 'glpi'@'<web_server_host_name>';
+mysql> GRANT ALL PRIVILEGES ON glpi.* TO 'glpi'@'<web_server_host_name>'
+		IDENTIFIED BY '<your_glpi_passwd>';
+mysql> FLUSH PRIVILEGES;
+mysql> EXIT
+Bye
+#
+
+To set up or upgrade GLPI, activate the setup page:
+
+cd ${PREFIX}/share/glpi/install && mv install.php.disabled install.php
+
+Then, open <http://localhost/glpi>. Follow the instructions, enter the
+above glpi user's credentials, and select the newly created glpi
+database.
+
+Rename install.php when you are done.
+
+===========================================================================

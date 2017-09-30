@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.7 2016/12/30 11:21:47 jaapb Exp $
+$NetBSD: distinfo,v 1.9 2017/09/03 11:59:15 jaapb Exp $
 
-SHA1 (batteries-2.5.3.tar.gz) = 0a208161b402ba5584a26ebea030db0ac0744412
-RMD160 (batteries-2.5.3.tar.gz) = 43cbceb0b3fb543e1ab9c8dd272c607d844ac2ba
-SHA512 (batteries-2.5.3.tar.gz) = d1b776c82a8a79c2908da5f5c7b7ee335ea8520e05b725910c03f4eb3c6e653619e1ff9fab8811d94a613620a84ec016651d13773e1ceea8830bb8c1ce7b46ba
-Size (batteries-2.5.3.tar.gz) = 756020 bytes
-SHA1 (patch-Makefile) = 916f5bb2eeffca3830865e0a63dfdb9a48e1e40f
+SHA1 (batteries-2.7.0.tar.gz) = 63a741d51e768dc24bf6dc17a050df7c49dc5176
+RMD160 (batteries-2.7.0.tar.gz) = a555e52aedf4451d452daf6afa39de2c75ab6365
+SHA512 (batteries-2.7.0.tar.gz) = ecb973c9cc535fce18db8efb1bfb9dfde73d7a7fc82cb6b0657547b6f7d173e9004015f698065ed5efeb9f89f1fcc1b548745b708139ce0d01eb6f63981421c9
+Size (batteries-2.7.0.tar.gz) = 768498 bytes
+SHA1 (patch-Makefile) = 461b36e023fd5d63202edc9a35c242c181e38def

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.47 2017/03/20 18:09:21 bouyer Exp $
+# $NetBSD: Makefile,v 1.51 2017/09/08 09:51:25 jaapb Exp $
 
 VERSION=	4.5.5
-PKGREVISION=	4
+PKGREVISION=	7
 VERSION_IPXE=	9a93db3f0947484e30e753bbd61a10b17336e20e
 
 DISTNAME=		xen-${VERSION}
@@ -30,9 +30,9 @@ PKG_SYSCONFSUBDIR=	xen
 ONLY_FOR_PLATFORM=	Linux-2.6*-x86_64
 ONLY_FOR_PLATFORM+=	NetBSD-[5-9].*-x86_64
 
+PKGSRC_USE_SSP=		no
+
 CONFLICTS+=		libxen-[0-9]*
-CONFLICTS+=		xentools20-[0-9]*
-CONFLICTS+=		xentools3-[0-9]*
 CONFLICTS+=		xenstoretools-[0-9]*
 
 XENTOP=			${WRKDIR}/xen-${VERSION}

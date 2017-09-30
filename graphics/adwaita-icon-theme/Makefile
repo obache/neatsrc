@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.7 2016/09/30 13:09:10 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2017/08/27 15:35:23 prlw1 Exp $
 
-DISTNAME=		adwaita-icon-theme-3.22.0
+DISTNAME=		adwaita-icon-theme-3.24.0
 CATEGORIES=		graphics gnome
-MASTER_SITES=		${MASTER_SITE_GNOME:=/sources/adwaita-icon-theme/3.22/}
+MASTER_SITES=		${MASTER_SITE_GNOME:=sources/adwaita-icon-theme/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=		.tar.xz
 
 MAINTAINER=		prlw1@cam.ac.uk
-HOMEPAGE=		http://www.gnome.org/
+HOMEPAGE=		https://www.gnome.org/
 COMMENT=		Standard GNOME icons
 LICENSE=		cc-by-sa-v3.0 OR gnu-lgpl-v3
 

@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.3 2015/04/25 04:49:50 markd Exp $
+# $NetBSD: Makefile,v 1.5 2017/09/06 10:40:32 wiz Exp $
 
 DISTNAME=	texconfig.doc
-PKGNAME=	tex-${DISTNAME:S/./-/}-2014
-TEXLIVE_REV=	34642
+PKGNAME=	tex-${DISTNAME:S/./-/}-2017
+TEXLIVE_REV=	44166
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
+#HOMEPAGE=	http://ctan.org/pkg/texconfig
 COMMENT=	Documentation for tex-texconfig
 
 CONFLICTS+=	texlive-tetex<=2011nb1

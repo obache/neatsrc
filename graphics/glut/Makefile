@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.57 2015/04/25 14:23:11 tnn Exp $
+# $NetBSD: Makefile,v 1.59 2017/08/01 14:59:00 wiz Exp $
 
 DISTNAME=	MesaGLUT-7.9.2
 # we have the autoconf patches from git, so call it 8.0.1.
@@ -9,7 +9,7 @@ MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/glut/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://cgit.freedesktop.org/mesa/glut/
+HOMEPAGE=	https://cgit.freedesktop.org/mesa/glut/
 COMMENT=	GLUT Graphics library similar to SGI's OpenGL
 #LICENSE=	# TODO: (see mk/license.mk)
 
@@ -21,7 +21,7 @@ GNU_CONFIGURE=	YES
 
 PKGCONFIG_OVERRIDE+=	src/glut/glx/glut.pc.in
 
-CONFIGURE_ENV+=	"EXTRA_LIB_PATH=${COMPILER_RPATH_FLAG}${X11BASE}/lib -L${X11BASE}/lib"
+CONFIGURE_ENV+=	"EXTRA_LIB_PATH=${LDFLAGS} ${COMPILER_RPATH_FLAG}${X11BASE}/lib -L${X11BASE}/lib"
 
 pre-configure:
 	cd ${WRKSRC} && autoreconf -vif

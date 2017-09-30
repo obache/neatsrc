@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2012/10/31 11:19:45 asau Exp $
+# $NetBSD: Makefile,v 1.5 2017/09/09 18:20:56 dholland Exp $
 
 DISTNAME=	sfslite-1.2.7
 PKGREVISION=	1
@@ -6,15 +6,15 @@ CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_FREEBSD}
 
 MAINTAINER=	agc@NetBSD.org
-HOMEPAGE=	http://dist.okws.org/sfslite
+#HOMEPAGE=	http://dist.okws.org/sfslite
 COMMENT=	Standard version of the sfslite library
 LICENSE=	gnu-gpl-v2
 
-GNU_CONFIGURE=	yes
+GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-sfsmisc
-USE_TOOLS=	gmake bison
-USE_LANGUAGES+=	c c++
-USE_LIBTOOL=	yes
+USE_TOOLS+=		gmake bison
+USE_LANGUAGES+=		c c++
+USE_LIBTOOL=		yes
 
 AUTO_MKDIRS=	yes
 

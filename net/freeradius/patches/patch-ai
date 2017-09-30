@@ -1,57 +1,93 @@
-$NetBSD: patch-ai,v 1.10 2007/09/18 22:15:08 adrianp Exp $
+$NetBSD: patch-ai,v 1.12 2017/09/09 22:46:57 joerg Exp $
 
---- configure.orig	2007-07-21 15:01:34.000000000 +0100
+Portable test syntax
+
+--- configure.orig	2017-07-17 12:43:00.000000000 +0000
 +++ configure
-@@ -20022,13 +20022,13 @@ fi
- done
+@@ -9047,7 +9047,7 @@ fi
+ 
+ smart_prefix=
+ 
+-  if test "x$ac_cv_header_pcap_h" == "xyes"; then
++  if test "x$ac_cv_header_pcap_h" = "xyes"; then
+ 
+ $as_echo "#define HAVE_PCAP_H 1" >>confdefs.h
+ 
+@@ -9290,7 +9290,7 @@ fi
+ 
+ smart_prefix=
+ 
+-  if test "x$ac_cv_header_collectd_client_h" == "xyes"; then
++  if test "x$ac_cv_header_collectd_client_h" = "xyes"; then
+ 
+ $as_echo "#define HAVE_COLLECTDC_H 1" >>confdefs.h
+ 
+@@ -9533,7 +9533,7 @@ fi
+ 
+ smart_prefix=
+ 
+-  if test "x$ac_cv_header_sys_capability_h" == "xyes"; then
++  if test "x$ac_cv_header_sys_capability_h" = "xyes"; then
+ 
+ $as_echo "#define HAVE_CAPABILITY_H 1" >>confdefs.h
+ 
+@@ -10133,7 +10133,49 @@ $as_echo "no" >&6; }
+     eval "ac_cv_type_${ac_safe_type}_has_ipi_addr="
+  fi
+ 
+-if test "x$ac_cv_type_struct_in_pktinfo_has_ipi_addr" = "xyes"; then
++
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for ipi_spec_dst in struct in_pktinfo" >&5
++$as_echo_n "checking for ipi_spec_dst in struct in_pktinfo... " >&6; }
++
++
++  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
++/* end confdefs.h.  */
++
++#include <netinet/in.h>
++#ifdef HAVE_STDDEF_H
++#include <stddef.h>
++#endif
++#ifndef offsetof
++#define offsetof(TYPE, MEMBER) ((int) &((TYPE *)0)->MEMBER)
++#endif
++
++int
++main ()
++{
++ int foo = offsetof(struct in_pktinfo, ipi_spec_dst)
++  ;
++  return 0;
++}
++_ACEOF
++if ac_fn_c_try_compile "$LINENO"; then :
++  has_element=" "
++else
++  has_element=
++fi
++rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
++
++  ac_safe_type=`echo "struct in_pktinfo" | sed 'y% %_%'`
++  if test "x$has_element" != "x"; then
++    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++    eval "ac_cv_type_${ac_safe_type}_has_ipi_spec_dst=yes"
++  else
++    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++    eval "ac_cv_type_${ac_safe_type}_has_ipi_spec_dst="
++ fi
++
++if test "$ac_cv_type_struct_in_pktinfo_has_ipi_addr" = "yes" && test "$ac_cv_type_struct_in_pktinfo_has_ipi_spec_dst" = "yes"; then
+ 
+ $as_echo "#define HAVE_IP_PKTINFO /**/" >>confdefs.h
+ 
+@@ -12656,7 +12698,7 @@ subdirs="$subdirs $mysubdirs"
  
  
--  { echo "$as_me:$LINENO: checking for pthread_create in -lpthread" >&5
--echo $ECHO_N "checking for pthread_create in -lpthread... $ECHO_C" >&6; }
-+  { echo "$as_me:$LINENO: checking for pthread_create in ${PTHREAD_LDFLAGS} ${PTHREAD_LIBS}" >&5
-+echo $ECHO_N "checking for pthread_create in ${PTHREAD_LDFLAGS} ${PTHREAD_LIBS}... $ECHO_C" >&6; }
- if test "${ac_cv_lib_pthread_pthread_create+set}" = set; then
-   echo $ECHO_N "(cached) $ECHO_C" >&6
- else
-   ac_check_lib_save_LIBS=$LIBS
--LIBS="-lpthread  $LIBS"
-+LIBS="${PTHREAD_LDFLAGS} ${PTHREAD_LIBS}  $LIBS"
- cat >conftest.$ac_ext <<_ACEOF
- /* confdefs.h.  */
- _ACEOF
-@@ -20085,7 +20085,7 @@ fi
- echo "${ECHO_T}$ac_cv_lib_pthread_pthread_create" >&6; }
- if test $ac_cv_lib_pthread_pthread_create = yes; then
-    CFLAGS="$CFLAGS -D_REENTRANT -D_POSIX_PTHREAD_SEMANTICS"
--                  LIBS="$LIBS -lpthread"
-+                  LIBS="$LIBS ${PTHREAD_LDFLAGS} ${PTHREAD_LIBS}"
- else
-   { echo "$as_me:$LINENO: checking for pthread_create in -lc_r" >&5
- echo $ECHO_N "checking for pthread_create in -lc_r... $ECHO_C" >&6; }
-@@ -20194,7 +20194,7 @@ return sem_init ();
-   return 0;
- }
- _ACEOF
--for ac_lib in '' pthread sem posix4 rt; do
-+for ac_lib in '' pthread sem posix4 rt semaphore; do
-   if test -z "$ac_lib"; then
-     ac_res="none required"
-   else
-@@ -20552,7 +20552,7 @@ if test "${ac_cv_lib_ssl_SSL_new+set}" =
-   echo $ECHO_N "(cached) $ECHO_C" >&6
- else
-   ac_check_lib_save_LIBS=$LIBS
--LIBS="-lssl  $LIBS"
-+LIBS="-lssl -lcrypto  $LIBS"
- cat >conftest.$ac_ext <<_ACEOF
- /* confdefs.h.  */
- _ACEOF
-@@ -23623,7 +23623,7 @@ gethostbyaddrrstyle=""
- { echo "$as_me:$LINENO: checking gethostbyaddr_r() syntax" >&5
- echo $ECHO_N "checking gethostbyaddr_r() syntax... $ECHO_C" >&6; }
- case "$host" in
--*-freebsd*)
-+*-freebsd* | *-dragonfly*)
- 	{ echo "$as_me:$LINENO: checking whether gethostbyaddr_r is declared" >&5
- echo $ECHO_N "checking whether gethostbyaddr_r is declared... $ECHO_C" >&6; }
- if test "${ac_cv_have_decl_gethostbyaddr_r+set}" = set; then
+ 
+-if test "x$werror" == "xyes"; then
++if test "x$werror" = "xyes"; then
+   CFLAGS="-Werror $CFLAGS"
+ fi
+ 

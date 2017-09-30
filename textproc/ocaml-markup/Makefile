@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2016/12/30 11:17:02 jaapb Exp $
+# $NetBSD: Makefile,v 1.4 2017/09/08 09:51:26 jaapb Exp $
 
-VERSION=	0.7.2
+VERSION=	0.7.5
 GITHUB_PROJECT=	markup.ml
 DISTNAME=	markup-${VERSION}
 PKGNAME=	${GITHUB_PROJECT}-${DISTNAME}

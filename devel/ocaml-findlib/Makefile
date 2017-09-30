@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.32 2017/04/24 21:47:47 maya Exp $
+# $NetBSD: Makefile,v 1.34 2017/09/08 09:51:21 jaapb Exp $
 
-DISTNAME=		findlib-1.7.1
+DISTNAME=		findlib-1.7.3
 PKGNAME=		ocaml-${DISTNAME}
 PKGREVISION=		1
 CATEGORIES=		devel

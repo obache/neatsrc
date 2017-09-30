@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.16 2017/04/28 07:56:53 jaapb Exp $
+# $NetBSD: Makefile,v 1.18 2017/09/08 17:14:34 jaapb Exp $
 #
 
 GITHUB_PROJECT=	eliom
 DISTNAME=	${GITHUB_PROJECT}-6.2.0
+PKGREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ocsigen/}
 
@@ -17,6 +18,7 @@ OCAML_USE_FINDLIB=	yes
 
 DEPENDS+=	ocsigen>=2.8:../../www/ocsigen
 DEPENDS+=	ocaml-deriving-ocsigen>=0.7.1:../../devel/ocaml-deriving-ocsigen
+
 
 .include "../../mk/ocaml.mk"
 

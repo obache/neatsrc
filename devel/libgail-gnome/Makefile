@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.81 2017/04/22 21:03:11 adam Exp $
-#
+# $NetBSD: Makefile,v 1.84 2017/09/19 08:36:25 wiz Exp $
 
 DISTNAME=	libgail-gnome-1.20.4
-PKGREVISION=	29
+PKGREVISION=	30
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libgail-gnome/1.20/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://developer.gnome.org/projects/gap/
+HOMEPAGE=	https://developer.gnome.org/accessibility-devel-guide/stable/dev-start-5.html.en
 COMMENT=	GNOME Accessibility Implementation Library
 
 GNU_CONFIGURE=		YES

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.32 2017/05/31 06:30:25 adam Exp $
+# $NetBSD: Makefile,v 1.36 2017/08/16 07:17:58 adam Exp $
 
-DISTNAME=	requests-2.17.3
+DISTNAME=	requests-2.18.4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel www
 MASTER_SITES=	${MASTER_SITE_PYPI:=r/requests/}
 
 MAINTAINER=	imil@NetBSD.org
-HOMEPAGE=	http://docs.python-requests.org/en/latest/
+HOMEPAGE=	http://www.python-requests.org/
 COMMENT=	HTTP library, written in Python, for human beings
 LICENSE=	apache-2.0
 

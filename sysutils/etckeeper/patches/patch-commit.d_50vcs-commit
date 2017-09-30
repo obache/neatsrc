@@ -1,4 +1,4 @@
-$NetBSD: patch-commit.d_50vcs-commit,v 1.1 2017/05/20 01:05:05 schmonz Exp $
+$NetBSD: patch-commit.d_50vcs-commit,v 1.3 2017/06/29 17:19:13 schmonz Exp $
 
 Test more carefully for a possibly missing binary. From Nathan Arthur in
 private mail.

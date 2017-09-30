@@ -1,8 +1,6 @@
-$NetBSD: distinfo,v 1.4 2016/06/20 15:10:30 jaapb Exp $
+$NetBSD: distinfo,v 1.6 2017/09/03 12:56:01 jaapb Exp $
 
-SHA1 (ocaml-sexplib/113.33.03.tar.gz) = 93dbbf1f8337eb588a94fed5b1bc844dfa8480b5
-RMD160 (ocaml-sexplib/113.33.03.tar.gz) = 49dd47c79e62f3c2116521820fe96bf6b443cc79
-SHA512 (ocaml-sexplib/113.33.03.tar.gz) = 33b0dbcfd2f2040628cc8680305e988a0b4e24d4e3d773c2a968ed5a9d9727bd7e3383b4c93ee3cb41872857026e7e747df7f1026a83b8d51b5aaebf430e9fe0
-Size (ocaml-sexplib/113.33.03.tar.gz) = 67249 bytes
-SHA1 (patch-Makefile) = b39d312d8db993db38302d42451854b1078e8209
-SHA1 (patch-src_conv.ml) = a47d82a1b3e8c1a000972b1ed9cc559e5bac38e6
+SHA1 (sexplib-0.9.2.tar.gz) = 9d69c5a720a9fd19c971e1d87e0e93131bbc3055
+RMD160 (sexplib-0.9.2.tar.gz) = 78c8467d3678eb5b83cac8bf6982dfc66373acf1
+SHA512 (sexplib-0.9.2.tar.gz) = d9e02ae9e7e8be4387c5d4e5c4a23222e2ebbd3355d52c26e0d6ac0ccc4f4e09653ac2852e6698d6128ff954888e65d97dd7a494b9404bad2e8349cd592bab1d
+Size (sexplib-0.9.2.tar.gz) = 75035 bytes

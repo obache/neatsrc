@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.337 2017/06/07 08:12:47 adam Exp $
+# $NetBSD: Makefile,v 1.343 2017/08/17 13:52:12 wen Exp $
 
 COMMENT=	Mathematics
 
@@ -116,6 +116,7 @@ SUBDIR+=	gnome-calculator
 SUBDIR+=	gnumeric
 SUBDIR+=	gnumeric110
 SUBDIR+=	gnumeric112
+SUBDIR+=	go-stats
 SUBDIR+=	gp-autpgrp
 SUBDIR+=	gp-factint
 SUBDIR+=	gp-fplsa
@@ -191,6 +192,7 @@ SUBDIR+=	p5-Math-BigInt
 SUBDIR+=	p5-Math-BigInt-GMP
 SUBDIR+=	p5-Math-BigInt-Pari
 SUBDIR+=	p5-Math-BigInteger
+SUBDIR+=	p5-Math-Calc-Units
 SUBDIR+=	p5-Math-Complex
 SUBDIR+=	p5-Math-Derivative
 SUBDIR+=	p5-Math-FFT
@@ -208,6 +210,7 @@ SUBDIR+=	p5-Math-Random-MT-Auto
 SUBDIR+=	p5-Math-Random-MT-Perl
 SUBDIR+=	p5-Math-Round
 SUBDIR+=	p5-Math-Spline
+SUBDIR+=	p5-Math-Utils
 SUBDIR+=	p5-Math-VecStat
 SUBDIR+=	p5-Number-Compare
 SUBDIR+=	p5-Number-Latin
@@ -261,10 +264,12 @@ SUBDIR+=	py-numarray
 SUBDIR+=	py-numexpr
 SUBDIR+=	py-numpy
 SUBDIR+=	py-pandas
+SUBDIR+=	py-pandas-datareader
 SUBDIR+=	py-patsy
 SUBDIR+=	py-pytables
 SUBDIR+=	py-roman
 SUBDIR+=	py-rpy
+SUBDIR+=	py-scikit-learn
 SUBDIR+=	py-scipy
 SUBDIR+=	py-simpleeval
 SUBDIR+=	py-statsmodels
@@ -299,6 +304,10 @@ SUBDIR+=	tex-fp
 SUBDIR+=	tex-fp-doc
 SUBDIR+=	tex-kastrup
 SUBDIR+=	tex-kastrup-doc
+SUBDIR+=	tex-mathspec
+SUBDIR+=	tex-mathspec-doc
+SUBDIR+=	tex-unicode-math
+SUBDIR+=	tex-unicode-math-doc
 SUBDIR+=	texdrive
 SUBDIR+=	tochnog
 SUBDIR+=	udunits

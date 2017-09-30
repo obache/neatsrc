@@ -1,7 +1,6 @@
-$NetBSD: distinfo,v 1.8 2017/01/29 07:54:19 tsutsui Exp $
+$NetBSD: distinfo,v 1.10 2017/08/18 14:58:50 tsutsui Exp $
 
-SHA1 (glib2-3.1.1.gem) = a9f3f95da63fcb0504c8fa69613ac861b7e9a37d
-RMD160 (glib2-3.1.1.gem) = 0a27ffb24c6fd694398cb652c2c63647a63dc7b4
-SHA512 (glib2-3.1.1.gem) = d70584b7603687baee2a869a1e4260a637d75eba6ddcec8f51c4da99920928b11d5b7085d3b22c83fbce0f718f49750e338644dbd8b51a3a25bdcadc68adaf1f
-Size (glib2-3.1.1.gem) = 139776 bytes
-SHA1 (patch-lib_mkmf-gnome2.rb) = 86646c78fae3254d0a96dac3eb1edebf24172ff4
+SHA1 (glib2-3.1.8.gem) = cf6ff409a0303a35b5deedbace262221ea8f50c4
+RMD160 (glib2-3.1.8.gem) = ce318bc3b51c943d1afee3af64eb71b4861fc78d
+SHA512 (glib2-3.1.8.gem) = e39f6cfc9691af82ed5140d2fbe9ec277e83af97fce8af771302dcf849e9b47666490902a3365413e6dcf696dfd78c3b3ac3218ae3a5ce9a83a771a2fb681546
+Size (glib2-3.1.8.gem) = 140288 bytes

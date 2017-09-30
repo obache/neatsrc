@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.44 2017/01/19 18:52:24 agc Exp $
+# $NetBSD: Makefile,v 1.46 2017/09/03 08:37:00 wiz Exp $
 
 DISTNAME=		prewikka-${VERSION}
 PKGNAME=		${PYPKGPREFIX}-prewikka-${VERSION}
 PKGREVISION=		1
 CATEGORIES=		security
-MASTER_SITES=		http://www.prelude-ids.org/download/releases/prewikka/
-MASTER_SITES+=		http://www.prelude-ids.org/download/releases/old/
+#MASTER_SITES=		http://www.prelude-ids.org/download/releases/prewikka/
+#MASTER_SITES+=		http://www.prelude-ids.org/download/releases/old/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://prelude-ids.org/download/releases/
+#HOMEPAGE=		http://prelude-ids.org/download/releases/
 COMMENT=		Prelude-IDS console
 
 DEPENDS+=		${PYPKGPREFIX}-cheetah-[0-9]*:../../devel/py-cheetah

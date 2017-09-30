@@ -1,4 +1,4 @@
-# $NetBSD: bsd.pkginstall.mk,v 1.70 2017/06/01 13:29:18 jlam Exp $
+# $NetBSD: bsd.pkginstall.mk,v 1.71 2017/06/14 16:23:09 prlw1 Exp $
 #
 # This Makefile fragment is included by bsd.pkg.mk and implements the
 # common INSTALL/DEINSTALL scripts framework.  To use the pkginstall

@@ -1,0 +1,13 @@
+$NetBSD: distinfo,v 1.2 2017/09/06 12:21:22 fhajny Exp $
+
+SHA1 (trafficserver-7.1.1.tar.bz2) = 05d32314de2045b2fedd60707d8afe0e7c1d66cd
+RMD160 (trafficserver-7.1.1.tar.bz2) = 93bf90bb9b76bfc71376884f54b2bde863440805
+SHA512 (trafficserver-7.1.1.tar.bz2) = 9d3d9af85f58015a1221c74e3034a16fad3f9f4b1d55ff0271561a065282847c8c46f9d0152c6b534ab25647acddaf232e9df6228ae609c41ea7ffa8d0a84a6d
+Size (trafficserver-7.1.1.tar.bz2) = 9036381 bytes
+SHA1 (patch-cmd_traffic__wccp_wccp__client.cc) = 8acd84155a37bbc9aa83deb731b7ceb1a38db065
+SHA1 (patch-configure) = 2cfd8dd50ad3883c1fbac7147807de29417949bf
+SHA1 (patch-lib_ts_MemView.h) = 5d067b56a19bb5295a3877b7b05b543e1e599124
+SHA1 (patch-lib_wccp_wccp-test-router.cc) = 950014ed07186b4979eaf48f9f5d54441debe80b
+SHA1 (patch-proxy_Makefile.in) = 00bc5c483107798054d46eb136e236a3e588963f
+SHA1 (patch-proxy_config_Makefile.in) = fc1fe7ae06db9147271bb4a2a422619f234f8f6d
+SHA1 (patch-rc_traffixserver.ml.in) = 1f0185ba67379aed11fd99e5696228a50063008d

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.9 2017/01/04 15:23:15 roy Exp $
+# $NetBSD: Makefile,v 1.11 2017/09/16 19:27:26 wiz Exp $
 
 DISTNAME=	sqtop-2013-12-17
 PKGNAME=	${DISTNAME:C/([0-9])-/\1/g}
@@ -7,8 +7,8 @@ CATEGORIES=	www
 MASTER_SITES=	http://sqtop.googlecode.com/files/
 EXTRACT_SUFX=	.tar.bz2
 
-MAINTAINER=	rodent@NetBSD.org
-HOMEPAGE=	http://code.google.com/p/sqtop/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://github.com/paleg/sqtop
 COMMENT=	Display active client connections for Squid
 LICENSE=	gnu-gpl-v2
 

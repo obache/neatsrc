@@ -1,0 +1,27 @@
+$NetBSD: patch-configure,v 1.2 2017/08/07 22:24:05 schmonz Exp $
+
+- Remove hackaround for old OpenBSD bugs that break builds with other
+  STL implementations.
+- Link directly with static-only libtclstub.a (fixes build on NetBSD).
+
+--- configure.orig	2017-04-24 02:19:58.000000000 +0000
++++ configure
+@@ -18051,7 +18051,7 @@ fi
+ 	    for x in "/tcl$tcl_version" "" ; do
+ 	      TCLCONFIG_SH=$tcl_libdir_runtime$x/tclConfig.sh
+ 	      if test -r "$TCLCONFIG_SH" ; then
+-		eval "`sed 's/^TCL_STUB_LIB_SPEC=/TCL_LIBS=/p;d' $TCLCONFIG_SH`"
++		eval "`sed 's/^TCL_BUILD_STUB_LIB_PATH=/TCL_LIBS=/p;d' $TCLCONFIG_SH`"
+ 		break
+ 	      fi
+ 	    done
+@@ -19581,9 +19581,6 @@ SWIG_CXXFLAGS=
+ if test yes = "$GXX" ; then
+                     SWIG_CXXFLAGS="-fno-strict-aliasing"
+ 
+-              XAPIAN_LIBS="$XAPIAN_LIBS -lstdc++"
+-
+-
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ #ifdef __INTEL_COMPILER

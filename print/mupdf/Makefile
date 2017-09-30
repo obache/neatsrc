@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.49 2017/04/30 01:21:24 ryoon Exp $
+# $NetBSD: Makefile,v 1.52 2017/09/03 08:53:13 wiz Exp $
 
 DISTNAME=	mupdf-1.11-source
 PKGNAME=	${DISTNAME:S/-source//}
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	print
-MASTER_SITES=	http://mupdf.com/downloads/archive/
+MASTER_SITES=	https://mupdf.com/downloads/archive/
 
 MAINTAINER=	leot@NetBSD.org
-HOMEPAGE=	http://mupdf.com/
+HOMEPAGE=	https://mupdf.com/
 COMMENT=	Lightweight PDF, XPS and E-book viewer and toolkit
 LICENSE=	gnu-agpl-v3
 
@@ -18,7 +18,7 @@ USE_TOOLS+=	pkg-config gmake
 INSTALLATION_DIRS+=	bin include lib/pkgconfig
 INSTALL_MAKE_FLAGS+=	prefix=${PREFIX}
 INSTALL_MAKE_FLAGS+=	mandir=${PREFIX}/${PKGMANDIR}
-LDFLAGS=		${COMPILER_RPATH_FLAG}${X11BASE}/lib
+LDFLAGS+=		${COMPILER_RPATH_FLAG}${X11BASE}/lib
 MAKE_FLAGS+=		LDFLAGS=${LDFLAGS:Q}
 MAKE_FLAGS+=		XCFLAGS=${CFLAGS:Q}
 MAKE_FLAGS+=		build=release

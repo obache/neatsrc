@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.32 2017/02/12 06:24:54 ryoon Exp $
+# $NetBSD: Makefile,v 1.34 2017/08/27 15:26:03 prlw1 Exp $
 
-DISTNAME=	gtksourceview-3.22.0
+DISTNAME=	gtksourceview-3.24.3
 PKGNAME=	${DISTNAME:S/gtksourceview/gtksourceview3/}
-PKGREVISION=	2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtksourceview/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -22,12 +21,24 @@ CONFIGURE_ARGS+=	--disable-vala
 
 PKGCONFIG_OVERRIDE+=	gtksourceview-3.0.pc.in
 
+PKG_OPTIONS_VAR=	PKG_OPTIONS.gtksourceview3
+PKG_SUPPORTED_OPTIONS=	introspection
+PKG_SUGGESTED_OPTIONS=	introspection
+PLIST_VARS+=		introspection
+
+.include "../../mk/bsd.options.mk"
+
 BUILD_DEPENDS+=		itstool-[0-9]*:../../textproc/itstool
 
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.48
 .include "../../devel/glib2/buildlink3.mk"
+.if !empty(PKG_OPTIONS:Mintrospection)
+PLIST.introspection=	yes
 BUILDLINK_API_DEPENDS.gobject-introspection+=	gobject-introspection>=1.42.0
 .include "../../devel/gobject-introspection/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--enable-introspection=no
+.endif
 .include "../../textproc/libxml2/buildlink3.mk"
 BUILDLINK_API_DEPENDS.gtk3+=	gtk3+>=3.20
 .include "../../x11/gtk3/buildlink3.mk"

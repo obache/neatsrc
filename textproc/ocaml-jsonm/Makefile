@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.6 2016/12/30 11:17:02 jaapb Exp $
+# $NetBSD: Makefile,v 1.8 2017/09/08 09:51:26 jaapb Exp $
 
-DISTNAME=	jsonm-0.9.1
+DISTNAME=	jsonm-1.0.1
 PKGNAME=	ocaml-${DISTNAME}
-PKGREVISION=	4
+PKGREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	http://erratique.ch/software/jsonm/releases/
 EXTRACT_SUFX=	.tbz
@@ -10,11 +10,36 @@ EXTRACT_SUFX=	.tbz
 MAINTAINER=	jaapb@NetBSD.org
 HOMEPAGE=	http://erratique.ch/software/jsonm/
 COMMENT=	OCaml streaming codec for JSON
-LICENSE=	modified-bsd
+LICENSE=	isc
 
-OCAML_USE_FINDLIB=	yes
-OCAML_USE_OASIS=	yes
+OCAML_USE_TOPKG=	yes
+INSTALLATION_DIRS+=	bin share/doc/jsonm
 
 .include "../../mk/ocaml.mk"
+
+# Normally, we'd do this using opam-installer, but that requires
+# this package.
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/_build/test/jsontrip.native \
+		${DESTDIR}${PREFIX}/bin/jsontrip
+	for i in CHANGES.md LICENSE.md README.md test/examples.ml test/jtree.ml; do \
+		${INSTALL_DATA} ${WRKSRC}/_build/$$i \
+		${DESTDIR}${PREFIX}/share/doc/jsonm; \
+	done
+	${INSTALL_DATA} ${WRKSRC}/_build/opam \
+		${DESTDIR}${PREFIX}/${OCAML_SITELIBDIR}/jsonm/opam
+	for i in pkg/META src/jsonm.cma src/jsonm.cmi src/jsonm.cmti \
+		src/jsonm.mli; do \
+		${INSTALL_DATA} ${WRKSRC}/_build/$$i \
+		${DESTDIR}${PREFIX}/${OCAML_SITELIBDIR}/jsonm; \
+	done
+.if ${OCAML_USE_OPT_COMPILER} == "yes"
+	for i in jsonm.a jsonm.cmx jsonm.cmxa jsonm.cmxs; do \
+		${INSTALL_DATA} ${WRKSRC}/_build/src/$$i \
+		${DESTDIR}${PREFIX}/${OCAML_SITELIBDIR}/jsonm; \
+	done
+.endif
+
+.include "../../devel/ocamlbuild/buildlink3.mk"
 .include "../../textproc/ocaml-uutf/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

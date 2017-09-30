@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.34 2017/04/30 01:21:49 ryoon Exp $
+# $NetBSD: Makefile,v 1.36 2017/08/24 20:03:28 adam Exp $
 
 DISTNAME=	etpan-ng-0.7.1
 PKGNAME=	${DISTNAME:S/-ng//}
-PKGREVISION=	27
+PKGREVISION=	28
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libetpan/}
 
 MAINTAINER=	dawszy@arhea.pl
-HOMEPAGE=	http://libetpan.sourceforge.net/etpan/
+#HOMEPAGE=	http://libetpan.sourceforge.net/etpan/
 COMMENT=	Mail console client with S/MIME and PGP support
 
 BDB_ACCEPTED=		db4 db5

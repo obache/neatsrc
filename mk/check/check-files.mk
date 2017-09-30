@@ -1,4 +1,4 @@
-# $NetBSD: check-files.mk,v 1.34 2017/06/01 02:15:10 jlam Exp $
+# $NetBSD: check-files.mk,v 1.35 2017/06/14 16:23:09 prlw1 Exp $
 #
 # This file checks that the list of installed files matches the PLIST.
 # For that purpose it records the file list of LOCALBASE before and

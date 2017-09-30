@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.33 2017/04/30 01:21:22 ryoon Exp $
+# $NetBSD: Makefile,v 1.35 2017/08/24 20:02:59 adam Exp $
 #
 
 PKGNAME=	libkface-4.13.0
-PKGREVISION=	5
+PKGREVISION=	6
 DISTNAME=	digikam-4.13.0
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_KDE:=digikam/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.digikam.org/
+HOMEPAGE=	https://www.digikam.org/
 COMMENT=	LibFace Library interface for KDE
 LICENSE=	gnu-gpl-v2
 

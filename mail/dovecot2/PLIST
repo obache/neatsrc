@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.54 2017/05/31 11:04:37 adam Exp $
+@comment $NetBSD: PLIST,v 1.56 2017/08/25 08:29:04 adam Exp $
 bin/doveadm
 bin/doveconf
 bin/dsync
@@ -46,6 +46,7 @@ include/dovecot/base64.h
 include/dovecot/bits.h
 include/dovecot/bsearch-insert-pos.h
 include/dovecot/buffer.h
+include/dovecot/byteorder.h
 include/dovecot/charset-utf8.h
 include/dovecot/child-wait.h
 include/dovecot/client-common.h
@@ -342,6 +343,7 @@ include/dovecot/mailbox-list-fs.h
 include/dovecot/mailbox-list-index-storage.h
 include/dovecot/mailbox-list-index-sync.h
 include/dovecot/mailbox-list-index.h
+include/dovecot/mailbox-list-iter-private.h
 include/dovecot/mailbox-list-iter.h
 include/dovecot/mailbox-list-maildir.h
 include/dovecot/mailbox-list-notify-tree.h
@@ -434,6 +436,7 @@ include/dovecot/ostream-metawrap.h
 include/dovecot/ostream-null.h
 include/dovecot/ostream-private.h
 include/dovecot/ostream-rawlog.h
+include/dovecot/ostream-unix.h
 include/dovecot/ostream-zlib.h
 include/dovecot/ostream.h
 include/dovecot/passdb-blocking.h
@@ -477,6 +480,7 @@ include/dovecot/push-notification-triggers.h
 include/dovecot/push-notification-txn-mbox.h
 include/dovecot/push-notification-txn-msg.h
 include/dovecot/qp-decoder.h
+include/dovecot/qp-encoder.h
 include/dovecot/quota-fs.h
 include/dovecot/quota-plugin.h
 include/dovecot/quota-private.h
@@ -869,6 +873,7 @@ share/doc/dovecot/wiki/Pigeonhole.Sieve.Troubleshooting.txt
 share/doc/dovecot/wiki/Pigeonhole.Sieve.Usage.txt
 share/doc/dovecot/wiki/Pigeonhole.Sieve.txt
 share/doc/dovecot/wiki/Pigeonhole.txt
+share/doc/dovecot/wiki/Plugins.Apparmor.txt
 share/doc/dovecot/wiki/Plugins.Autocreate.txt
 share/doc/dovecot/wiki/Plugins.Compress.txt
 share/doc/dovecot/wiki/Plugins.Expire.txt
@@ -884,6 +889,7 @@ share/doc/dovecot/wiki/Plugins.MailFilter.txt
 share/doc/dovecot/wiki/Plugins.MailLog.txt
 share/doc/dovecot/wiki/Plugins.MailboxAlias.txt
 share/doc/dovecot/wiki/Plugins.Notify.txt
+share/doc/dovecot/wiki/Plugins.NotifyStatus.txt
 share/doc/dovecot/wiki/Plugins.PushNotification.txt
 share/doc/dovecot/wiki/Plugins.QuotaClone.txt
 share/doc/dovecot/wiki/Plugins.Snarf.txt

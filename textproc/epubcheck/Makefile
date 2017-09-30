@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.6 2012/10/25 06:55:49 asau Exp $
-#
+# $NetBSD: Makefile,v 1.8 2017/08/01 17:40:17 wiz Exp $
 
 DISTNAME=	epubcheck-${VER}
 VER=		1.2
 CATEGORIES=	textproc
-MASTER_SITES=	http://epubcheck.googlecode.com/files/
+#MASTER_SITES=	http://epubcheck.googlecode.com/files/
 EXTRACT_SUFX=	.zip
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://epubcheck.googlecode.com/
+HOMEPAGE=	https://github.com/IDPF/epubcheck
 COMMENT=	Tool to validate IDPF Epub files
 LICENSE=	mit
 

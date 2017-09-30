@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.145 2017/04/22 21:04:03 adam Exp $
+# $NetBSD: Makefile,v 1.147 2017/09/18 09:53:38 maya Exp $
 
 DISTNAME=		gnome-applets-2.32.1.1
-PKGREVISION=		51
+PKGREVISION=		52
 CATEGORIES=		x11 gnome
 MASTER_SITES=		${MASTER_SITE_GNOME:=sources/gnome-applets/2.32/}
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.gnome.org/
+HOMEPAGE=		https://www.gnome.org/
 COMMENT=		GNOME2 panel applets
 
 GNU_CONFIGURE=		yes

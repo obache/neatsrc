@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.74 2017/02/12 06:26:11 ryoon Exp $
+# $NetBSD: Makefile,v 1.76 2017/07/30 22:47:57 wiz Exp $
 
 DISTNAME=		gnome-terminal-2.32.1
 PKGREVISION=		30
@@ -7,7 +7,7 @@ MASTER_SITES=		${MASTER_SITE_GNOME:=sources/gnome-terminal/2.32/}
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.gnome.org/
+HOMEPAGE=		https://www.gnome.org/
 COMMENT=		Xterm like terminal program for GNOME 2
 
 BUILD_DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
@@ -43,6 +43,6 @@ BUILDLINK_API_DEPENDS.gtk2+=	gtk2+>=2.13.6
 .include "../../x11/libXft/buildlink3.mk"
 BUILDLINK_API_DEPENDS.startup-notification+=	startup-notification>=0.8
 .include "../../x11/startup-notification/buildlink3.mk"
-BUILDLINK_API_DEPENDS.vte+=	vte>=0.24.0
+BUILDLINK_API_DEPENDS.vte+=    vte>=0.24.0<0.32
 .include "../../x11/vte/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

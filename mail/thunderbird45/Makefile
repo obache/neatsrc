@@ -1,14 +1,15 @@
-# $NetBSD: Makefile,v 1.1 2017/04/27 13:38:18 ryoon Exp $
+# $NetBSD: Makefile,v 1.3 2017/09/08 02:38:40 ryoon Exp $
 
 DISTNAME=	thunderbird-${TB_VER}.source
 PKGNAME=	thunderbird45-${TB_VER}
+PKGREVISION=	1
 TB_VER=		45.8.0
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_MOZILLA:=thunderbird/releases/${TB_VER}/source/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.mozillamessaging.com/en-US/thunderbird/
+HOMEPAGE=	https://www.mozillamessaging.com/en-US/thunderbird/
 COMMENT=	Organize, secure and customize your mail
 
 USE_TOOLS+=	unzip pax

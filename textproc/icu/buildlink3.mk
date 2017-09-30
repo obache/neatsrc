@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.32 2017/04/24 12:25:09 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.34 2017/09/18 09:53:05 maya Exp $
 
 BUILDLINK_TREE+=	icu
 
@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	icu
 ICU_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.icu+=	icu>=3.4
-BUILDLINK_ABI_DEPENDS.icu+=	icu>=58.1
+BUILDLINK_ABI_DEPENDS.icu+=	icu>=59.1nb1
 BUILDLINK_PKGSRCDIR.icu?=	../../textproc/icu
 
 .if !empty(USE_LANGUAGES:Mc++)

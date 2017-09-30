@@ -1,4 +1,4 @@
-# $NetBSD: NetBSD.mk,v 1.50 2017/05/31 22:55:01 jlam Exp $
+# $NetBSD: NetBSD.mk,v 1.55 2017/08/07 23:54:09 maya Exp $
 #
 # Variable definitions for the NetBSD operating system.
 
@@ -93,12 +93,6 @@ _PATCH_CAN_BACKUP=	yes	# native patch(1) can make backups
 _PATCH_BACKUP_ARG?=	-V simple --suffix # switch to patch(1) for backup suffix
 _USE_RPATH=		yes	# add rpath to LDFLAGS
 
-# for programs which use dlopen()
-# not necessary since 1.6 (shared libs are linked against libgcc_pic)
-.if !empty(OS_VERSION:M1.5*)
-LINK_ALL_LIBGCC_HACK=	-Wl,--whole-archive -lgcc -Wl,--no-whole-archive
-.endif
-
 _STRIPFLAG_CC?=		${_INSTALL_UNSTRIPPED:D:U-s}	# cc(1) option to strip
 _STRIPFLAG_INSTALL?=	${_INSTALL_UNSTRIPPED:D:U-s}	# install(1) option to strip
 
@@ -127,13 +121,10 @@ DEFAULT_SERIAL_DEVICE?=	/dev/null
 SERIAL_DEVICES?=	/dev/null
 .endif
 
-# Add -mieee to CFLAGS and FFLAGS for NetBSD->=1.5V-alpha
-.for __tmp__ in 1.5[V-Z] 1.5[A-Z][A-Z]* 1.[6-9]* [2-9].*
-.  if ${MACHINE_PLATFORM:MNetBSD-${__tmp__}-alpha} != ""
+.if (${MACHINE_ARCH} == alpha)
 CFLAGS+=	-mieee
 FFLAGS+=	-mieee
-.  endif	# MACHINE_PLATFORM
-.endfor		# __tmp__
+.endif
 
 # check for kqueue(2) support, added in NetBSD-1.6J
 .if exists(/usr/include/sys/event.h)
@@ -141,7 +132,12 @@ PKG_HAVE_KQUEUE=	# defined
 .endif
 
 # Register support for FORTIFY (with GCC)
+.if !empty(OS_VERSION:M[2-6].*)
+# Disable on older versions, see:
+# http://mail-index.netbsd.org/pkgsrc-users/2017/08/07/msg025435.html
+.else
 _OPSYS_SUPPORTS_FORTIFY=yes
+.endif
 
 # Register support for PIE on supported architectures (with GCC)
 .if (${MACHINE_ARCH} == "i386") || \
@@ -163,9 +159,17 @@ _OPSYS_SUPPORTS_RELRO=	yes
 _OPSYS_SUPPORTS_SSP=	yes
 .endif
 
+# Register support for stack check on supported architectures (with GCC)
+.if (${MACHINE_ARCH} == "i386") || \
+    (${MACHINE_ARCH} == "x86_64")
+_OPSYS_SUPPORTS_STACK_CHECK=	yes
+.endif
+
 _OPSYS_SUPPORTS_CWRAPPERS=	yes
 
-_OPSYS_CAN_CHECK_SHLIBS=	yes # use readelf in check/bsd.check-vars.mk
+# use readelf in check/bsd.check-vars.mk
+_OPSYS_CAN_CHECK_RELRO=		yes
+_OPSYS_CAN_CHECK_SHLIBS=	yes
 
 # check for maximum command line length and set it in configure's environment,
 # to avoid a test required by the libtool script that takes forever.

@@ -90,6 +90,7 @@ clang-static-analyzer	Install the clang static analyzer.
 claws-mail-jpilot	Add jpilot support.
 clisp			Common/C Lisp.
 clutter			Use Clutter for graphics support.
+cmxs			Produce CMXS files.
 compface		Enable compface support.
 coqide			Enable ide support for coq.
 coreaudio		Enable Core Audio library support.
@@ -157,6 +158,7 @@ ecore			Enable ecore library support.
 eekboard		Use eekboard for virtual keyboard support.
 efence			Build with Electric Fence malloc() debugger support.
 efnet			Enable tweaks to support EFNet.
+el1			Switch to EL1 before booting kernel (required for 32-bit kernels).
 elinks-exmode		Enable vi-like command entry.
 elinks-fastmem		Allow direct use of system memory allocation functions.
 elinks-html-highlight	Enable HTML highlighting using DOM engine.
@@ -198,6 +200,7 @@ finger			Enable finger support.
 firefox			Use firefox as gecko rendering engine.
 firefox3		Use firefox3 as gecko rendering engine.
 flac			Enable FLAC support.
+flambda			Enable Flambda optimisation passes
 floppyd			Use floppyd to access floppy device.
 fluidsynth		Enable MIDI support using fluidsynth.
 fontconfig		Enable FONTCONFIG (fonts/fontconfig) support.
@@ -248,8 +251,6 @@ gnome-keyring		Enable GNOME keyring support.
 gnomecanvas		Enable GNOME canvas support
 gnomevfs		Enable GNOME Virtual File System support.
 gnupg2			Use GNU Privacy Guard (GnuPG) Version 2.0
-gnupg2-gpgsm		Install gpgsm binary.
-gnupg21			Use GNU Privacy Guard (GnuPG) Version 2.1
 gnuplot-pdf-doc		Install PDF document.
 gnutls			Enable GNU TLS support.
 goffice			Enable goffice support.
@@ -276,6 +277,7 @@ gtksourceview2		Enable gtksourceview2 support.
 gtkspell		Enable gtkspell support.
 gtkwave-tcl		Enable tcl for gtkwave.
 guile			Enable support for GUILE.
+gvfs                    Enable GVFS support.
 gzip			Enable compression using gzip.
 hal			Support for the freedesktop.org Hardware Abstraction Layer.
 halfops			Halfops are similar to plain ops, but can't kick/deop plain ops.
@@ -420,7 +422,6 @@ libgcrypt		Use GNU cryptographic library.
 libgme			Enable Game_Music_Emu video game music file library support.
 libgpod			Enable libgpod support.
 libiconv-cp932		Add supplemental support for CP932.
-libidn			Add support for libidn text conversion.
 libind			Add Indian script support using libind.
 liblqr			Enable liblqr (liquid rescale) support.
 libmms			Enable streaming from mms:// URLS using libmms.
@@ -574,6 +575,7 @@ p5-module-build-license-creation	Enable license creation.
 pam			Enable PAM support.
 pcb-motif		Use Motif for the gui instead of GTK for cad/pcb.
 pcre			Enable Perl-compatible regular expressions.
+pcre2-jit		Enable JIT (just-in-time) support in pcre2.
 pcsc			Enable PC/SC support.
 pdf			Enable PDF support.
 perl			Enable Perl support.
@@ -581,6 +583,7 @@ pgadmin-db-designer	Enable pgAdmin database-designer functionality.
 pgm			Enable Pragmatic General Multicast support.
 pgsql			Enable PostgreSQL support.
 php-sockets		Enable php-sockets support.
+pic			Enable compiling with -fPIC
 pim			Enable pim (personal information management) support.
 pinepwd			Enable $HOME/.pinepwd stored IMAP password file.
 pinfo-native-curses	Use NetBSD native curses rather than ncurses.
@@ -609,14 +612,15 @@ qemu			Use qemu.
 qemu-0			Use qemu-0.x.
 qmail-badrcptto		Patch to SMTP-reject particular envelope recipients.
 qmail-bigdns		Patch to handle oversized responses to MX queries.
+qmail-customerror	Patch to return custom messages from queue filters.
 qmail-maildiruniq	Patch to avoid name collisions when PIDs recycle fast.
 qmail-netqmail		Patch collection prepared by respected list members.
 qmail-outgoingip	Patch to force a particular source IP address.
 qmail-qregex		Patch to SMTP-reject customizable patterns.
 qmail-rcptcheck		Patch to SMTP-reject via a script or program.
 qmail-realrcptto	Patch to SMTP-reject nonexistent recipients.
+qmail-rejectutils	Patch to SMTP-reject recipients, senders, or content.
 qmail-remote		Patch to run $QMAILREMOTE instead of "qmail-remote".
-qmail-run-ofmipd	Enable dependency on mess822 for ofmipd service.
 qmail-srs		Patch to implement Sender Rewriting Scheme with libsrs2.
 qmail-viruscan		Patch to SMTP-reject certain types of MIME attachments.
 qpopper-servermode	Enable server mode.
@@ -682,6 +686,7 @@ snort-prelude		Enable support for the Prelude Hybrid IDS system.
 socks4			Enable Socks4 support.
 socks5			Enable Socks5 support.
 softhsm			Enable SoftHSM for key management.
+spacetime		Enable memory profiling with Spacetime
 spamassassin		Enable SpamAssassin support.
 spamassassin-perl-warnings	Enable Perl warnings at run-time.
 spamassassin-taint-checks	Enable Perl taint checks to improve security.
@@ -801,6 +806,7 @@ w3m-image-imlib		Use imlib as imaging library for W3m.
 w3m-image-imlib2	Use imlib2 as imaging library for W3m.
 w3m-lynx-key		Enable lynx-like key bindings.
 wavpack			Enable wavpack support.
+webdav			Enable WebDAV support.
 webkit-jit		Enable JIT compilation.
 webrtc			Enable web realtime communications API.
 websocket		Websocket protocol support (as specified in RFC6455)

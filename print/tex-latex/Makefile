@@ -1,15 +1,14 @@
-# $NetBSD: Makefile,v 1.12 2016/08/07 09:09:38 markd Exp $
+# $NetBSD: Makefile,v 1.14 2017/09/06 16:49:39 wiz Exp $
 
 DISTNAME=	latex
-PKGNAME=	tex-${DISTNAME}-2016.41765
-TEXLIVE_REV=	41765
+PKGNAME=	tex-${DISTNAME}-20170101.1
+TEXLIVE_REV=	43813
 
 MAINTAINER=	minskim@NetBSD.org
 HOMEPAGE=	http://ctan.org/pkg/latex
 COMMENT=	TeX macro package that defines LaTeX
 LICENSE=	lppl-1.3c
 
-CONFLICTS+=	teTeX-texmf<=3.0nb12
 DEPENDS+=	tex-latexconfig>=2011:../../print/tex-latexconfig
 DEPENDS+=	tex-latex-fonts-[0-9]*:../../fonts/tex-latex-fonts
 DEPENDS+=	tex-luatex-[0-9]*:../../print/tex-luatex

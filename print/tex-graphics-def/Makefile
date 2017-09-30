@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.1 2016/08/07 10:09:19 markd Exp $
+# $NetBSD: Makefile,v 1.3 2017/08/06 12:00:36 markd Exp $
 
 DISTNAME=	graphics-def
-PKGNAME=	tex-${DISTNAME}-2016
-TEXLIVE_REV=	41687
+PKGNAME=	tex-${DISTNAME}-2017.44697
+TEXLIVE_REV=	44697
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://ctan.org/pkg/graphics-def

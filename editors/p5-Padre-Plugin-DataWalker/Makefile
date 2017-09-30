@@ -1,9 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2017/06/05 14:23:56 ryoon Exp $
-#
+# $NetBSD: Makefile,v 1.13 2017/09/17 15:19:56 wiz Exp $
 
-DISTNAME=	Padre-Plugin-DataWalker-0.02
+DISTNAME=	Padre-Plugin-DataWalker-0.04
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	8
 CATEGORIES=	editors perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Padre/}
 
@@ -12,8 +10,6 @@ HOMEPAGE=	http://search.cpan.org/dist/Padre-Plugin-DataWalker/
 COMMENT=	Simple Perl data structure browser Padre
 LICENSE=	${PERL5_LICENSE}
 
-MAKE_JOBS_SAFE=	no
-
 DEPENDS+=	p5-Padre>=0.47:../../editors/p5-Padre
 DEPENDS+=	p5-Wx-Perl-DataWalker>=0.02:../../devel/p5-Wx-Perl-DataWalker
 DEPENDS+=	p5-YAML-LibYAML-[0-9]*:../../textproc/p5-YAML-LibYAML
@@ -21,10 +17,7 @@ DEPENDS+=	p5-YAML-LibYAML-[0-9]*:../../textproc/p5-YAML-LibYAML
 BUILD_DEPENDS+=	p5-Locale-Msgfmt>=0.14:../../devel/p5-Locale-Msgfmt
 
 PERL5_PACKLIST=		auto/Padre/Plugin/DataWalker/.packlist
-PERL5_MODULE_TYPE=	Module::Install::Bundled
-
-#pre-configure:
-#	cd ${WRKSRC} && find `pwd` -name "*.orig" -type f | xargs rm
+PERL5_MODULE_TYPE=	Module::Build
 
 .include "../../lang/perl5/module.mk"
 .include "../../mk/bsd.pkg.mk"

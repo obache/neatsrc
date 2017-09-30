@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.45 2017/04/30 01:21:27 ryoon Exp $
+# $NetBSD: Makefile,v 1.47 2017/08/24 20:03:04 adam Exp $
 #
 
 DISTNAME=	gimmix-0.5.7.1
-PKGREVISION=	34
+PKGREVISION=	35
 CATEGORIES=	audio
 MASTER_SITES=	http://download.berlios.de/gimmix/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://gimmix.berlios.de/
+#HOMEPAGE=	http://gimmix.berlios.de/
 COMMENT=	Graphical Music player daemon (MPD) client
 LICENSE=	gnu-gpl-v2
 

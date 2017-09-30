@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.29 2017/01/02 21:01:34 roy Exp $
+# $NetBSD: Makefile,v 1.31 2017/09/03 08:53:08 wiz Exp $
 
 PKGNAME=	${PYPKGPREFIX}-cursespanel-${PY_DISTVERSION}
 PKGREVISION=	4
 CATEGORIES=	devel python
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.python.org/doc/current/lib/module-curses.html
+#HOMEPAGE=	https://www.python.org/doc/current/lib/module-curses.html
 COMMENT=	Curses panel module for Python
 
 DEPENDS+=	${PYPKGPREFIX}-curses-[0-9]*:../../devel/py-curses

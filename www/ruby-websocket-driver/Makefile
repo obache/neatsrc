@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.1 2017/02/05 11:21:38 tsutsui Exp $
+# $NetBSD: Makefile,v 1.3 2017/09/18 01:11:36 taca Exp $
 
-DISTNAME=	websocket-driver-0.6.5
+DISTNAME=	websocket-driver-0.7.0
 CATEGORIES=	www
 
 MAINTAINER=	tsutsui@NetBSD.org
-HOMEPAGE=	http://github.com/faye/websocket-driver-ruby
+HOMEPAGE=	https://github.com/faye/websocket-driver-ruby
 COMMENT=	WebSocket protocol handler with pluggable I/O
 LICENSE=	mit
 

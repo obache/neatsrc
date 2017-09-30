@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.407 2016/11/01 21:59:23 wiz Exp $
+# $NetBSD: Makefile,v 1.413 2017/09/18 22:53:34 wiz Exp $
 #
 
 COMMENT=	Games
@@ -107,11 +107,13 @@ SUBDIR+=	flightgear
 SUBDIR+=	flightgear-data
 SUBDIR+=	fltk-sudoku
 SUBDIR+=	foobillardplus
+SUBDIR+=	fortune
 SUBDIR+=	fortune-strfile
 SUBDIR+=	fortunes-calvin
 SUBDIR+=	fortunes-de
 SUBDIR+=	fortunes-futurama
 SUBDIR+=	fortunes-h2g2
+SUBDIR+=	fortunes-it
 SUBDIR+=	freeciv-client
 SUBDIR+=	freeciv-manual
 SUBDIR+=	freeciv-server
@@ -124,6 +126,7 @@ SUBDIR+=	frozen-bubble
 SUBDIR+=	fruit
 SUBDIR+=	galaxa
 SUBDIR+=	gamazons
+SUBDIR+=	gargoyle
 SUBDIR+=	gate88
 SUBDIR+=	gbrainy
 SUBDIR+=	gcompris
@@ -374,6 +377,7 @@ SUBDIR+=	xjewel
 SUBDIR+=	xjig
 SUBDIR+=	xjump
 SUBDIR+=	xkobo
+SUBDIR+=	xlennart
 SUBDIR+=	xmahjongg
 SUBDIR+=	xmris
 SUBDIR+=	xnibbles

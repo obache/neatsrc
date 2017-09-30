@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2016/09/13 19:15:14 maya Exp $
+# $NetBSD: Makefile,v 1.6 2017/08/08 11:23:38 fhajny Exp $
 
 PKGNAME=	${DISTNAME:S/-/-server-/}
 COMMENT=	MariaDB 5.5, a free SQL database (server)

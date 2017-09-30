@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.19 2014/12/10 14:05:40 mef Exp $
+# $NetBSD: Makefile,v 1.21 2017/09/03 08:53:17 wiz Exp $
 #
 
 DISTNAME=	keylaunch_1.3.9
 PKGNAME=	${DISTNAME:S/_/-/}
 CATEGORIES=	x11
-MASTER_SITES=	http://www.oroborus.org/debian/dists/sid/main/source/x11/
+MASTER_SITES=	https://www.oroborus.org/debian/dists/sid/main/source/x11/
 MASTER_SITES+=	${MASTER_SITE_DEBIAN:=pool/main/k/keylaunch/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.oroborus.org/?node=Download
+HOMEPAGE=	https://www.oroborus.org/?node=Download
 COMMENT=	X utility for binding commands to a hot key
 LICENSE=	gnu-gpl-v2
 

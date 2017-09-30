@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2017/04/13 13:08:34 bouyer Exp $
+# $NetBSD: Makefile,v 1.7 2017/09/08 09:51:25 jaapb Exp $
 #
 VERSION=	4.8.0
 VERSION_IPXE=	827dd1bfee67daa683935ce65316f7e0f057fe1c
@@ -16,7 +16,7 @@ DIST_LIBPCI=	pciutils-2.2.9.tar.bz2
 DIST_SUBDIR=		xen48
 DISTNAME=		xen-${VERSION}
 PKGNAME=		xentools48-${VERSION}
-#PKGREVISION=		2
+PKGREVISION=		3
 CATEGORIES=		sysutils
 MASTER_SITES=		https://downloads.xenproject.org/release/xen/${VERSION}/
 
@@ -70,9 +70,9 @@ PKG_SYSCONFSUBDIR=	xen
 ONLY_FOR_PLATFORM=	Linux-2.6*-x86_64
 ONLY_FOR_PLATFORM+=	NetBSD-[5-9].*-x86_64
 
+PKGSRC_USE_SSP=		no
+
 CONFLICTS+=		libxen-[0-9]*
-CONFLICTS+=		xentools20-[0-9]*
-CONFLICTS+=		xentools3-[0-9]*
 CONFLICTS+=		xenstoretools-[0-9]*
 
 CHECK_PORTABILITY_SKIP=	tools/examples/* \
@@ -281,7 +281,8 @@ EXTRA_CFLAGS+=	-Wno-error=ignored-attributes -no-integrated-as \
 		-Wno-error=unused-const-variable \
 		-Wno-error=gnu-designator -Wno-error=uninitialized \
 		-Wno-error=parentheses-equality \
-		-Wno-error=enum-conversion
+		-Wno-error=enum-conversion \
+		-Wno-error=address-of-packed-member
 BUILDLINK_TRANSFORM+=	rm:-falign-jumps=1 rm:-falign-loops=1 \
 			rm:-mpreferred-stack-boundary=2
 .endif

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.29 2017/01/01 14:43:47 wiz Exp $
+# $NetBSD: Makefile,v 1.32 2017/09/06 16:49:28 wiz Exp $
 
-DISTNAME=	bulk-large-20160317
+DISTNAME=	bulk-large-20170622
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -101,7 +101,8 @@ BUILD_DEPENDS+=	mit-krb5-appl-[0-9]*:../../security/mit-krb5-appl
 BUILD_DEPENDS+=	FlightCrew-[0-9]*:../../textproc/FlightCrew
 BUILD_DEPENDS+=	clearsilver-[0-9]*:../../www/clearsilver
 BUILD_DEPENDS+=	mediawiki-[0-9]*:../../www/mediawiki
-BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-rails>=3.2:../../www/ruby-rails32
+BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-rails32>=3.2:../../www/ruby-rails32
+BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-rails42>=4.2:../../www/ruby-rails42
 
 #
 # 3. Libraries
@@ -115,13 +116,9 @@ BUILD_DEPENDS+=	mit-krb5-[0-9]*:../../security/mit-krb5
 #
 BUILD_DEPENDS+=	texlive-collection-fontsrecommended-[0-9]*:../../meta-pkgs/texlive-collection-fontsrecommended
 BUILD_DEPENDS+=	texlive-collection-fontsrecommended-doc-[0-9]*:../../meta-pkgs/texlive-collection-fontsrecommended-doc
-BUILD_DEPENDS+=	teTeX-[0-9]*:../../print/teTeX
-BUILD_DEPENDS+=	teTeX-bin>=3:../../print/teTeX3-bin
-BUILD_DEPENDS+=	teTeX-texmf>=3:../../print/teTeX3-texmf
 BUILD_DEPENDS+=	texlive-collection-basic-[0-9]*:../../meta-pkgs/texlive-collection-basic
 BUILD_DEPENDS+=	texlive-collection-basic-doc-[0-9]*:../../meta-pkgs/texlive-collection-basic-doc
-BUILD_DEPENDS+=	texlive-collection-genericrecommended-[0-9]*:../../meta-pkgs/texlive-collection-genericrecommended
-BUILD_DEPENDS+=	texlive-collection-genericrecommended-doc-[0-9]*:../../meta-pkgs/texlive-collection-genericrecommended-doc
+BUILD_DEPENDS+=	texlive-collection-plaingeneric-[0-9]*:../../meta-pkgs/texlive-collection-plaingeneric
 BUILD_DEPENDS+=	texlive-collection-latex-[0-9]*:../../meta-pkgs/texlive-collection-latex
 BUILD_DEPENDS+=	texlive-collection-latex-doc-[0-9]*:../../meta-pkgs/texlive-collection-latex-doc
 

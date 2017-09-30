@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.24 2017/04/30 01:21:55 ryoon Exp $
+# $NetBSD: Makefile,v 1.27 2017/09/18 09:53:28 maya Exp $
 
 PKGNAME=	kodi-15.2
-PKGREVISION=	16
+PKGREVISION=	18
 DISTNAME=	15.2-Isengard
 CATEGORIES=	multimedia
 MASTER_SITES=	http://mirrors.kodi.tv/releases/source/
 
 MAINTAINER=	jmcneill@invisible.ca
-HOMEPAGE=	http://kodi.tv/
+HOMEPAGE=	https://kodi.tv/
 COMMENT=	Open source software media center
 LICENSE=	gnu-gpl-v2
 

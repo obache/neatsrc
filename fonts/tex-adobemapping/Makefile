@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.6 2016/06/16 03:57:26 markd Exp $
+# $NetBSD: Makefile,v 1.8 2017/08/23 22:13:27 markd Exp $
 
 DISTNAME=	adobemapping
-PKGNAME=	tex-${DISTNAME}-2016
+PKGNAME=	tex-${DISTNAME}-2017.44861
 CATEGORIES=	fonts
-TEXLIVE_REV=	41067
+TEXLIVE_REV=	44861
 
 MAINTAINER=	minskim@NetBSD.org
+HOMEPAGE=	http://ctan.org/pkg/adobemapping
 COMMENT=	Adobe cmap and pdfmapping files
 LICENSE=	modified-bsd
 

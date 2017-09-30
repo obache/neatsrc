@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.5 2016/03/29 22:06:48 joerg Exp $
+$NetBSD: distinfo,v 1.7 2017/06/27 20:09:24 joerg Exp $
 
 SHA1 (Csound6.03.2.tar.gz) = 2ff8081c887ef98735197c1ff70bb4955c3eb3ff
 RMD160 (Csound6.03.2.tar.gz) = 00d6407feab8f992b8d309ec6701858087569752

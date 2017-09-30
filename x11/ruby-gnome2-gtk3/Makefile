@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.25 2017/02/12 06:24:59 ryoon Exp $
+# $NetBSD: Makefile,v 1.27 2017/06/11 05:51:41 tsutsui Exp $
 #
 
 DISTNAME=		gtk3-${VERSION}
 PKGNAME=		${RUBY_PKGPREFIX}-gnome2-${DISTNAME}
-PKGREVISION=		2
 COMMENT=		Ruby binding of GTK+-3.x
 CATEGORIES=		x11
+
+MAINTAINER=		tsutsui@NetBSD.org
 
 DEPENDS+=		${RUBY_PKGPREFIX}-gnome2-atk>=${VERSION}:../../devel/ruby-gnome2-atk
 DEPENDS+=		${RUBY_PKGPREFIX}-gnome2-gio>=${VERSION}:../../devel/ruby-gnome2-gio

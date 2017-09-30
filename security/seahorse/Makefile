@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.139 2017/04/22 21:03:56 adam Exp $
+# $NetBSD: Makefile,v 1.142 2017/09/18 09:53:34 maya Exp $
 
 DISTNAME=	seahorse-2.32.0
-PKGREVISION=	44
+PKGREVISION=	45
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/seahorse/2.32/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnome.org/projects/seahorse/
+HOMEPAGE=	https://www.gnome.org/projects/seahorse/
 COMMENT=	GnuPG front end and bonobo component for GNOME
 #LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.1 AND gnu-lgpl-v2
 
@@ -32,7 +32,7 @@ CONFIGURE_ARGS+=	--disable-nautilus
 CONFIGURE_ENV+=		SSH_PATH=${SSH_PATH:Q}
 CONFIGURE_ENV+=		SSH_ADD_PATH=${SSH_ADD_PATH:Q}
 CONFIGURE_ENV+=		SSH_KEYGEN_PATH=${SSH_KEYGEN_PATH:Q}
-CONFIGURE_ENV+=		ac_cv_path_GNUPG=${GPGME_GPG}
+CONFIGURE_ENV+=		GNUPG=${GPGME_GPG}
 
 PKGCONFIG_OVERRIDE+=	libcryptui/cryptui.pc.in
 GCONF_SCHEMAS= 	seahorse.schemas

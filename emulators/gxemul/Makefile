@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.56 2017/05/15 01:45:49 christos Exp $
+# $NetBSD: Makefile,v 1.59 2017/08/24 22:52:55 mrg Exp $
 
 DISTNAME=	gxemul-0.6.0.1
-PKGREVISION=	3
+PKGREVISION=	6
 CATEGORIES=	emulators
 MASTER_SITES=	http://gxemul.sourceforge.net/src/
 

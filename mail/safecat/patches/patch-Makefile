@@ -1,0 +1,53 @@
+$NetBSD: patch-Makefile,v 1.1 2017/07/27 02:20:30 schmonz Exp $
+
+DESTDIR support.
+
+--- Makefile.orig	2004-08-17 00:50:09.000000000 +0000
++++ Makefile
+@@ -29,6 +29,14 @@ auto-str.o: \
+ compile auto-str.c substdio.h readwrite.h exit.h
+ 	./compile auto-str.c
+ 
++auto_destdir.c: \
++auto-str conf-destdir
++	./auto-str auto_home `head -1 conf-destdir` > auto_destdir.c
++
++auto_destdir.o: \
++compile auto_destdir.c
++	./compile auto_destdir.c
++
+ auto_home.c: \
+ auto-str conf-root
+ 	./auto-str auto_home `head -1 conf-root` > auto_home.c
+@@ -103,9 +111,9 @@ compile hier.c auto_home.h
+ 	./compile hier.c
+ 
+ install: \
+-load install.o hier.o auto_home.o strerr.a substdio.a open.a error.a \
++load install.o hier.o auto_destdir.o strerr.a substdio.a open.a error.a \
+ str.a
+-	./load install hier.o auto_home.o strerr.a substdio.a \
++	./load install hier.o auto_destdir.o strerr.a substdio.a \
+ 	open.a error.a str.a
+ 
+ install.o: \
+@@ -114,8 +122,8 @@ exit.h buffer.h
+ 	./compile install.c
+ 
+ instcheck: \
+-load instcheck.o hier.o auto_home.o strerr.a substdio.a error.a str.a
+-	./load instcheck hier.o auto_home.o strerr.a substdio.a \
++load instcheck.o hier.o auto_destdir.o strerr.a substdio.a error.a str.a
++	./load instcheck hier.o auto_destdir.o strerr.a substdio.a \
+ 	error.a str.a
+ 
+ instcheck.o: \
+@@ -123,7 +131,7 @@ compile instcheck.c strerr.h error_no.h 
+ 	./compile instcheck.c
+ 
+ it: \
+-maildir safecat man
++maildir safecat
+ 
+ find-systype: \
+ find-systype.sh auto-ccld.sh

@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.172 2017/04/30 01:21:26 ryoon Exp $
+# $NetBSD: Makefile,v 1.174 2017/08/24 20:03:03 adam Exp $
 
 DISTNAME=	amarok-${VERS}
 VERS=		2.8.0
-PKGREVISION=	31
+PKGREVISION=	32
 CATEGORIES=	audio multimedia
 MASTER_SITES=	${MASTER_SITE_KDE:=amarok/${VERS}/src/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://amarok.kde.org/
+HOMEPAGE=	https://amarok.kde.org/
 COMMENT=	KDE4 audio player
 LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2 AND gnu-lgpl-v2.1
 

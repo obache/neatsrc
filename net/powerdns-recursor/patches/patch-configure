@@ -1,0 +1,23 @@
+$NetBSD: patch-configure,v 1.2 2017/08/02 20:15:42 fhajny Exp $
+
+Regenerate for PDNS_CHECK_OS fix.
+
+--- configure.orig	2017-07-04 15:43:19.000000000 +0000
++++ configure
+@@ -15921,13 +15921,12 @@ fi
+ { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ax_cv_check_ldflags___latomic" >&5
+ $as_echo "$ax_cv_check_ldflags___latomic" >&6; }
+ if test "x$ax_cv_check_ldflags___latomic" = xyes; then :
+-   :
++  LDFLAGS="-latomic $LDFLAGS"
++      as_fn_error $? "Unable to link against libatomic, cannot continue" "$LINENO" 5
+ else
+-   as_fn_error $? "Unable to link against libatomic, cannot continue" "$LINENO" 5
+-
++  :
+ fi
+ 
+-    LDFLAGS="-latomic $LDFLAGS"
+     ;;
+   esac
+ 

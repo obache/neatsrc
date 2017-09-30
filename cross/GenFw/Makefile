@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2014/04/06 16:14:16 jakllsch Exp $
+# $NetBSD: Makefile,v 1.3 2017/09/04 05:48:38 wiz Exp $
 
 DISTNAME=	GenFw-r15188
 PKGNAME=	GenFw-0pre15188
@@ -7,7 +7,7 @@ MASTER_SITES=	${MASTER_SITE_LOCAL:=GenFw/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	jakllsch@NetBSD.org
-HOMEPAGE=	http://sourceforge.net/apps/mediawiki/tianocore/index.php?title=Edk2-buildtools
+HOMEPAGE=	https://github.com/tianocore/tianocore.github.io/wiki/Edk2-buildtools
 COMMENT=	Convert ELF to PE-COFF for UEFI
 LICENSE=	2-clause-bsd
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.136 2017/01/01 14:43:47 wiz Exp $
+# $NetBSD: Makefile,v 1.138 2017/07/30 22:47:52 wiz Exp $
 
 DISTNAME=	gnome-2.26.2
 PKGREVISION=	5
@@ -6,7 +6,7 @@ CATEGORIES=	meta-pkgs x11 gnome
 MASTER_SITES=	# empty
 
 MAINTAINER=	drochner@NetBSD.org
-HOMEPAGE=	http://www.gnome.org/
+HOMEPAGE=	https://www.gnome.org/
 COMMENT=	Meta-package for the GNOME desktop
 
 META_PACKAGE=	yes
@@ -135,7 +135,7 @@ DEPENDS+=	vinagre>=2.26.2:../../net/vinagre
 # compilation errors on NetBSD, see wip/vino
 #DEPENDS+=	vino>=2.26.2:../../net/vino
 DEPENDS+=	vino>=2.24.1:../../net/vino
-DEPENDS+=	vte>=0.20.2:../../x11/vte
+DEPENDS+=	vte>=0.20.2<0.32:../../x11/vte
 DEPENDS+=	yelp>=2.26.0:../../misc/yelp
 DEPENDS+=	zenity>=2.26.0:../../x11/zenity
 

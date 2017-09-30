@@ -1,6 +1,6 @@
-# $NetBSD$
+# $NetBSD: icon-themes,v 1.1 2017/06/14 16:23:09 prlw1 Exp $
 #
-# Generate an +ICON_THEMES script that handles icon theme cache for
+# Generate an +ICON_THEMES script that handles the icon theme cache for
 # the package.
 #
 case "${STAGE},$1" in

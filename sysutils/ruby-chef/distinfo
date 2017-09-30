@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.3 2015/11/04 01:32:29 agc Exp $
+$NetBSD: distinfo,v 1.5 2017/09/18 04:31:38 taca Exp $
 
-SHA1 (chef-12.0.3.gem) = 8e46fcf3eb865180f40c732836f6daae213a606c
-RMD160 (chef-12.0.3.gem) = 75adb05b4620beb50245880ebb88fb5db6792030
-SHA512 (chef-12.0.3.gem) = bc957bd33265d44b8a39b616da7d750bc049b903cb24b7f129e495777f7cbcded8fc994b5ffafe9b0468ea0fc9716934a61ef4c9ba9d9d7b828cd137babce481
-Size (chef-12.0.3.gem) = 1516544 bytes
+SHA1 (chef-13.4.24.gem) = 04b0c61bffd16e83d1fda2587f407c5e5ecaaaf0
+RMD160 (chef-13.4.24.gem) = 632022ff0b7e1dbc66da124efa995ddedb45705c
+SHA512 (chef-13.4.24.gem) = c2b50a48c33b59943edc17296cf426d105253230cf39d74fe91f44f3b2e27370c5b56bd93a8c6f799c40f13c866c3a643b4250f8186feaf4f6f743815ebcdc38
+Size (chef-13.4.24.gem) = 1959424 bytes

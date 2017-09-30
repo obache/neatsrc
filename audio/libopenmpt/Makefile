@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.23 2017/05/29 12:13:22 wiz Exp $
+# $NetBSD: Makefile,v 1.25 2017/09/08 02:38:36 ryoon Exp $
 
-DISTNAME=	libopenmpt-0.2.8190-beta24-autotools
+DISTNAME=	libopenmpt-0.2.8760-beta27-autotools
 PKGNAME=	${DISTNAME:C/-beta.*//}
+PKGREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://lib.openmpt.org/files/libopenmpt/src/
 
@@ -13,6 +14,7 @@ LICENSE=	modified-bsd
 BUILD_DEPENDS+=	help2man-[0-9]*:../../converters/help2man
 
 WRKSRC=		${WRKDIR}/${DISTNAME:C/-beta.*-/-/}
+WRKSRC=		${WRKDIR}/${DISTNAME:C/0-beta.*-/2-/}
 USE_LANGUAGES=	c c++
 USE_TOOLS=	gmake pkg-config
 

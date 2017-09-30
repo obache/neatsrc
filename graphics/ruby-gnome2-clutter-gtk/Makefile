@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.8 2017/02/12 06:25:31 ryoon Exp $
+# $NetBSD: Makefile,v 1.10 2017/06/11 05:51:40 tsutsui Exp $
 #
 
 DISTNAME=		clutter-gtk-${VERSION}
 PKGNAME=		${RUBY_PKGPREFIX}-gnome2-${DISTNAME}
-PKGREVISION=		2
 COMMENT=		Ruby binding of Clutter-GTK
 CATEGORIES=		graphics
+
+MAINTAINER=		pkgsrc-users@NetBSD.org
 
 DEPENDS+=	${RUBY_PKGPREFIX}-gnome2-clutter>=${VERSION}:../../graphics/ruby-gnome2-clutter
 DEPENDS+=	${RUBY_PKGPREFIX}-gnome2-clutter-gdk>=${VERSION}:../../graphics/ruby-gnome2-clutter-gdk

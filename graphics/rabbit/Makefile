@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.56 2017/03/20 16:33:59 taca Exp $
+# $NetBSD: Makefile,v 1.57 2017/09/18 05:31:02 taca Exp $
 #
 
-DISTNAME=	rabbit-2.2.0
+DISTNAME=	rabbit-2.2.1
 CATEGORIES=	graphics ruby
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.60 2017/02/12 06:26:00 ryoon Exp $
+# $NetBSD: Makefile,v 1.62 2017/09/08 02:38:43 ryoon Exp $
 #
 
 DISTNAME=	gnome-settings-daemon-2.32.1
-PKGREVISION=	37
+PKGREVISION=	38
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gnome-settings-daemon/2.32/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnome.org/
+HOMEPAGE=	https://www.gnome.org/
 COMMENT=	GNOME settings daemon
 
 GNU_CONFIGURE=	yes

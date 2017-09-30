@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.49 2016/11/25 13:00:13 prlw1 Exp $
+# $NetBSD: Makefile,v 1.52 2017/08/25 12:08:47 prlw1 Exp $
 
-DISTNAME=	gobject-introspection-1.50.0
+DISTNAME=	gobject-introspection-1.52.1
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gobject-introspection/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://wiki.gnome.org/Projects/GObjectIntrospection
+HOMEPAGE=	https://wiki.gnome.org/Projects/GObjectIntrospection
 COMMENT=	GObject Introspection
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2
 
@@ -18,7 +18,6 @@ USE_TOOLS+=	pkg-config flex bison gmake
 GMAKE_REQD=	3.81
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--disable-doctool
-CONFIGURE_ARGS+=	--disable-tests
 
 PKGCONFIG_OVERRIDE+=	gobject-introspection-1.0.pc.in
 PKGCONFIG_OVERRIDE+=	gobject-introspection-no-export-1.0.pc.in
@@ -50,7 +49,7 @@ CHECK_INTERPRETER_SKIP+= lib/gobject-introspection/giscanner/*.py
 #.include "../../graphics/cairo-gobject/buildlink3.mk"
 #TEST_TARGET=	check
 
-BUILDLINK_API_DEPENDS.glib2+= glib2>=2.50.0
+BUILDLINK_API_DEPENDS.glib2+= glib2>=2.52.1
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libffi+= libffi>=3.0.0
 .include "../../devel/libffi/buildlink3.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2016/10/30 09:45:32 maya Exp $
+# $NetBSD: Makefile,v 1.8 2017/09/16 19:27:04 wiz Exp $
 #
 
 DISTNAME=	liboggz-1.1.1
@@ -6,8 +6,8 @@ PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://downloads.xiph.org/releases/liboggz/
 
-MAINTAINER=	rodent@NetBSD.org
-HOMEPAGE=	http://www.xiph.org/oggz/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://www.xiph.org/oggz/
 COMMENT=	Inspects, edits, and validates Ogg files
 LICENSE=	modified-bsd
 

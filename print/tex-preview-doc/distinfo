@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.4 2016/06/16 04:06:15 markd Exp $
+$NetBSD: distinfo,v 1.6 2017/08/23 22:37:59 markd Exp $
 
-SHA1 (tex-preview-38865/preview.doc.tar.xz) = e412b795fc1eb9d5e3d64b2af0d0be654e0e71ae
-RMD160 (tex-preview-38865/preview.doc.tar.xz) = b66123e325cb6e16a866e06e442f3a11cd37ba86
-SHA512 (tex-preview-38865/preview.doc.tar.xz) = cd10c05abc2514b331f211a0dd1233f32a98485c6ca8c82ebd26e6c1e3e2a7b41704d4cc16fe48d5668f26d83d68fc869b37f01579656c3114e4d1e3fda6a845
-Size (tex-preview-38865/preview.doc.tar.xz) = 171724 bytes
+SHA1 (tex-preview-44883/preview.doc.tar.xz) = 86c8db286de388c14e8b1c68aa05c03f7266ef58
+RMD160 (tex-preview-44883/preview.doc.tar.xz) = 7d4148765cf275e23bb465e0c5f6e85cb4da107e
+SHA512 (tex-preview-44883/preview.doc.tar.xz) = 1593350e4d3efcd8cc5ae1fb5846c444a281f3bbf032bfe3bab4614350fa8a2fdcca7f645ad948a5e977433b4b806a24877d09c45f2a0976dd4ecf9fa0e4bae3
+Size (tex-preview-44883/preview.doc.tar.xz) = 172180 bytes

@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.18 2017/02/12 06:24:47 ryoon Exp $
+# $NetBSD: Makefile,v 1.20 2017/08/16 21:22:13 wiz Exp $
 
-DISTNAME=	libass-0.13.4
-PKGREVISION=	2
+DISTNAME=	libass-0.13.7
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libass/}
 GITHUB_PROJECT=	libass
@@ -9,7 +8,7 @@ GITHUB_RELEASE=	${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://code.google.com/p/libass/
+HOMEPAGE=	https://github.com/libass/libass
 COMMENT=	Portable subtitle renderer for the ASS/SSA subtitle format
 LICENSE=	isc
 

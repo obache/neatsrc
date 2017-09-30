@@ -1,0 +1,62 @@
+$NetBSD: patch-pkgs_sqlite3.20.0_configure,v 1.1 2017/08/25 11:05:33 adam Exp $
+
+Add support for DragonFly.
+
+Honor LDFLAGS on NetBSD.
+https://core.tcl.tk/tcl/tktview/fed5069f8a8e59e97af0a784b534919f5b789b1e
+
+--- pkgs/sqlite3.20.0/configure.orig	2017-08-04 11:57:41.000000000 +0000
++++ pkgs/sqlite3.20.0/configure
+@@ -7409,7 +7409,7 @@ fi
+ fi
+ 	    LD_SEARCH_FLAGS=${CC_SEARCH_FLAGS}
+ 	    SHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.so${SHLIB_VERSION}'
+-	    LDFLAGS="-Wl,-export-dynamic"
++	    LDFLAGS="-Wl,--export-dynamic"
+ 	    CFLAGS_OPTIMIZE="-O2"
+ 	    if test "${TCL_THREADS}" = "1"; then :
+ 
+@@ -7420,13 +7420,11 @@ fi
+ 
+ fi
+ 	    # OpenBSD doesn't do version numbers with dots.
+-	    UNSHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.a'
+-	    TCL_LIB_VERSIONS_OK=nodots
+ 	    ;;
+ 	NetBSD-*)
+ 	    # NetBSD has ELF and can use 'cc -shared' to build shared libs
+ 	    SHLIB_CFLAGS="-fPIC"
+-	    SHLIB_LD='${CC} -shared ${SHLIB_CFLAGS}'
++	    SHLIB_LD='${CC} -shared ${SHLIB_CFLAGS} ${LDFLAGS_DEFAULT}'
+ 	    SHLIB_SUFFIX=".so"
+ 	    LDFLAGS="$LDFLAGS -export-dynamic"
+ 	    if test $doRpath = yes; then :
+@@ -7443,7 +7441,7 @@ fi
+ 
+ fi
+ 	    ;;
+-	FreeBSD-*)
++	FreeBSD-*|DragonFly-*)
+ 	    # This configuration from FreeBSD Ports.
+ 	    SHLIB_CFLAGS="-fPIC"
+ 	    SHLIB_LD="${CC} -shared"
+@@ -7465,10 +7463,6 @@ fi
+ 	    case $system in
+ 	    FreeBSD-3.*)
+ 		# Version numbers are dot-stripped by system policy.
+-		TCL_TRIM_DOTS=`echo ${PACKAGE_VERSION} | tr -d .`
+-		UNSHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.a'
+-		SHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}\$\{DBGX\}.so.1'
+-		TCL_LIB_VERSIONS_OK=nodots
+ 		;;
+ 	    esac
+ 	    ;;
+@@ -8079,7 +8073,7 @@ fi
+ 	    BSD/OS*) ;;
+ 	    CYGWIN_*|MINGW32_*) ;;
+ 	    IRIX*) ;;
+-	    NetBSD-*|FreeBSD-*|OpenBSD-*) ;;
++	    NetBSD-*|FreeBSD-*|OpenBSD-*|DragonFly-*) ;;
+ 	    Darwin-*) ;;
+ 	    SCO_SV-3.2*) ;;
+ 	    windows) ;;

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2017/01/19 18:52:28 agc Exp $
+# $NetBSD: Makefile,v 1.6 2017/09/04 18:08:29 wiz Exp $
 #
 
 DISTNAME=	swath-0.5.5
@@ -8,7 +8,7 @@ MASTER_SITES+=	ftp://linux.thai.net/pub/ThaiLinux/software/swath/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://linux.thai.net/projects/thailatex
+HOMEPAGE=	https://linux.thai.net/projects/thailatex
 COMMENT=	Smart Word Analysis for THai
 LICENSE=	gnu-gpl-v2
 

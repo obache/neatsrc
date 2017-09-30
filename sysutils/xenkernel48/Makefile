@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2017/04/13 13:08:34 bouyer Exp $
+# $NetBSD: Makefile,v 1.5 2017/07/24 08:53:45 maya Exp $
 
 VERSION=	4.8.0
 DISTNAME=	xen-${VERSION}
@@ -16,6 +16,8 @@ LICENSE=	gnu-gpl-v2
 
 ONLY_FOR_PLATFORM=	Linux-2.6*-x86_64
 ONLY_FOR_PLATFORM+=	NetBSD-[5-9].*-x86_64
+
+PKGSRC_USE_SSP=	no
 
 NO_CONFIGURE=	yes
 USE_TOOLS+=	gmake
@@ -39,8 +41,9 @@ EXTRA_CFLAGS+=	-Qunused-arguments -no-integrated-as -Wno-error=format \
 		-Wno-error=address-of-packed-member \
 		-Wno-error=initializer-overrides \
 		-Wno-error=tautological-compare
-.endif
+.elif !empty(PKGSRC_COMPILER:Mgcc)
 EXTRA_CFLAGS+=	 -falign-functions=16
+.endif
 
 MAKE_ENV+=	EXTRA_CFLAGS=${EXTRA_CFLAGS:Q}
 

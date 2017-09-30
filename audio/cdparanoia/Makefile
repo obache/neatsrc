@@ -1,5 +1,4 @@
-# $NetBSD: Makefile,v 1.36 2015/02/21 00:09:08 joerg Exp $
-#
+# $NetBSD: Makefile,v 1.38 2017/08/01 14:58:52 wiz Exp $
 
 DISTNAME=	cdparanoia-III-10.2
 PKGNAME=	cdparanoia-3.0.10.2
@@ -9,7 +8,7 @@ MASTER_SITES=	http://downloads.xiph.org/releases/cdparanoia/
 EXTRACT_SUFX=	.src.tgz
 
 MAINTAINER=	kim@tac.nyc.ny.us
-HOMEPAGE=	http://www.xiph.org/paranoia/
+HOMEPAGE=	https://www.xiph.org/paranoia/
 COMMENT=	CDDA reading utility with extra data verification features
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 

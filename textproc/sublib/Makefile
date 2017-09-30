@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.18 2017/04/22 21:03:17 adam Exp $
+# $NetBSD: Makefile,v 1.20 2017/09/18 09:53:05 maya Exp $
 
 DISTNAME=		sublib-0.9
-PKGREVISION=		16
+PKGREVISION=		17
 CATEGORIES=		multimedia textproc
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=sublib/}
 EXTRACT_SUFX=		.zip
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://sublib.sourceforge.net/
+#HOMEPAGE=		http://sublib.sourceforge.net/
 COMMENT=		Library that eases the development of subtitling applications
 
 GNU_CONFIGURE=		yes

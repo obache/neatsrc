@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.121 2017/05/17 07:13:37 adam Exp $
+# $NetBSD: Makefile,v 1.125 2017/09/19 14:13:22 wiz Exp $
 
-DISTNAME=		tor-0.3.0.7
+DISTNAME=		tor-0.3.0.11
 CATEGORIES=		net security
 MASTER_SITES=		http://www.torproject.org/dist/
 
@@ -16,6 +16,8 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ENV+=		CPP=${CPP:Q}
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASEDIR}
 
+# one test failure in 0.3.0.10
+# https://trac.torproject.org/projects/tor/ticket/23250
 TEST_TARGET=		check
 
 TOR_USER?=		tor

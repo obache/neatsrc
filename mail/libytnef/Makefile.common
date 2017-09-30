@@ -1,0 +1,24 @@
+# $NetBSD: Makefile.common,v 1.2 2017/09/03 08:53:10 wiz Exp $
+# used by mail/libytnef/Makefile
+# used by mail/ytnef/Makefile
+
+DISTNAME=       ytnef-1.9.2
+CATEGORIES=     mail
+MASTER_SITES=   ${MASTER_SITE_GITHUB:=Yeraze/}
+GITHUB_TAG=     v${PKGVERSION_NOREV}
+GITHUB_PROJECT= ytnef
+EXTRACT_USING=  bsdtar
+
+MAINTAINER=     pkgsrc-users@NetBSD.org
+HOMEPAGE=       https://github.com/Yeraze/ytnef
+LICENSE=	gnu-gpl-v2
+
+DISTINFO_FILE=          ${.CURDIR}/../../mail/libytnef/distinfo
+PATCHDIR=               ${.CURDIR}/../../mail/libytnef/patches
+
+GNU_CONFIGURE=          YES
+USE_LIBTOOL=            YES
+USE_TOOLS+=             autoconf automake
+
+pre-configure:
+	cd ${WRKSRC} && ${MKDIR} m4 && autoreconf -vfi

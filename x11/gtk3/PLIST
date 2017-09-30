@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.19 2017/03/03 08:24:57 prlw1 Exp $
+@comment $NetBSD: PLIST,v 1.22 2017/08/25 12:39:43 prlw1 Exp $
 bin/gtk-builder-tool
 bin/gtk-encode-symbolic-svg
 bin/gtk-launch
@@ -61,6 +61,7 @@ ${PLIST.quartz}include/gtk-3.0/gdk/quartz/gdkquartzdisplay.h
 ${PLIST.quartz}include/gtk-3.0/gdk/quartz/gdkquartzdisplaymanager.h
 ${PLIST.quartz}include/gtk-3.0/gdk/quartz/gdkquartzdnd.h
 ${PLIST.quartz}include/gtk-3.0/gdk/quartz/gdkquartzkeys.h
+${PLIST.quartz}include/gtk-3.0/gdk/quartz/gdkquartzmonitor.h
 ${PLIST.quartz}include/gtk-3.0/gdk/quartz/gdkquartzscreen.h
 ${PLIST.quartz}include/gtk-3.0/gdk/quartz/gdkquartzutils.h
 ${PLIST.quartz}include/gtk-3.0/gdk/quartz/gdkquartzvisual.h
@@ -461,6 +462,7 @@ share/gir-1.0/Gtk-3.0.gir
 share/glib-2.0/schemas/org.gtk.Demo.gschema.xml
 share/glib-2.0/schemas/org.gtk.Settings.ColorChooser.gschema.xml
 share/glib-2.0/schemas/org.gtk.Settings.Debug.gschema.xml
+share/glib-2.0/schemas/org.gtk.Settings.EmojiChooser.gschema.xml
 share/glib-2.0/schemas/org.gtk.Settings.FileChooser.gschema.xml
 share/gtk-3.0/gtkbuilder.rng
 share/gtk-doc/html/gail-libgail-util3/gail-libgail-util3-GailMisc.html
@@ -1223,6 +1225,8 @@ share/locale/fi/LC_MESSAGES/gtk30-properties.mo
 share/locale/fi/LC_MESSAGES/gtk30.mo
 share/locale/fr/LC_MESSAGES/gtk30-properties.mo
 share/locale/fr/LC_MESSAGES/gtk30.mo
+share/locale/fur/LC_MESSAGES/gtk30-properties.mo
+share/locale/fur/LC_MESSAGES/gtk30.mo
 share/locale/ga/LC_MESSAGES/gtk30-properties.mo
 share/locale/ga/LC_MESSAGES/gtk30.mo
 share/locale/gd/LC_MESSAGES/gtk30-properties.mo

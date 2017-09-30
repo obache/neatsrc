@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.35 2017/03/20 13:51:55 wiz Exp $
+# $NetBSD: Makefile,v 1.38 2017/09/04 14:46:03 wiz Exp $
 
-DISTNAME=	psycopg2-2.7.1
+DISTNAME=	psycopg2-2.7.3.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	databases python
 MASTER_SITES=	http://initd.org/psycopg/tarballs/PSYCOPG-2-7/
@@ -10,7 +10,7 @@ HOMEPAGE=	http://initd.org/psycopg/
 COMMENT=	PostgreSQL database adapter for Python
 LICENSE=	gnu-lgpl-v3
 
-REPLACE_PYTHON+=		tests/*.py
+REPLACE_PYTHON+=	tests/*.py
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"

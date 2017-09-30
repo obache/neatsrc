@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2017/05/22 11:31:07 ryoon Exp $
+@comment $NetBSD: PLIST,v 1.7 2017/09/09 06:18:53 ryoon Exp $
 bin/corebird
 man/man1/corebird.1
 share/applications/org.baedert.corebird.desktop

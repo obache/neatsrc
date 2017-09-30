@@ -1,5 +1,5 @@
 #! @PERL@
-# $NetBSD: pkglint.pl,v 1.4 2016/02/02 08:02:29 rillig Exp $
+# $NetBSD: pkglint.pl,v 1.5 2017/06/14 16:23:09 prlw1 Exp $
 #
 
 # pkglint - static analyzer and checker for pkgsrc packages

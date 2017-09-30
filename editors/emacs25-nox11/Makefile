@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2016/09/21 12:21:51 ryoon Exp $
+# $NetBSD: Makefile,v 1.5 2017/09/12 03:19:02 ryoon Exp $
 
 PKGNAME=	${DISTNAME:S/emacs/emacs25/:S/-/-nox11-/}
 

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.89 2017/04/30 01:21:56 ryoon Exp $
+# $NetBSD: Makefile,v 1.91 2017/08/24 20:03:35 adam Exp $
 
 DISTNAME=	dc_gui2-0.80
-PKGREVISION=	39
+PKGREVISION=	40
 CATEGORIES=	net
-MASTER_SITES=	http://ac2i.homelinux.com/dctc/
+#MASTER_SITES=	http://ac2i.homelinux.com/dctc/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ac2i.homelinux.com/dctc/
+#HOMEPAGE=	http://ac2i.homelinux.com/dctc/
 COMMENT=	Graphical user interface for DCTC
 LICENSE=	gnu-gpl-v2
 

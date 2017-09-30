@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.8 2017/04/19 12:19:15 mef Exp $
+$NetBSD: distinfo,v 1.10 2017/09/17 11:08:45 wiz Exp $
 
-SHA1 (MetaCPAN-Client-2.011000.tar.gz) = fb2eb00e388075536412b328549d1a3de277b283
-RMD160 (MetaCPAN-Client-2.011000.tar.gz) = 2b831d55989229b58951b6cc2a26611eb78fcb30
-SHA512 (MetaCPAN-Client-2.011000.tar.gz) = 3564afcec5d04751dc708921b7dd53a87ad125a62d7e0d220cce042cc60f1d71ae03be51ab86ab5bb0c08210af0aa6b1b5c7401deccb88af7c9aa20359574fa2
-Size (MetaCPAN-Client-2.011000.tar.gz) = 49814 bytes
+SHA1 (MetaCPAN-Client-2.017000.tar.gz) = 1595ff628e849be0558caf614c51ab1c59fd632e
+RMD160 (MetaCPAN-Client-2.017000.tar.gz) = 3066bc715f4ae943caaa9bf131c8e67b6d0d1924
+SHA512 (MetaCPAN-Client-2.017000.tar.gz) = 57e3910c9d35643b77520fb41b0b6dfc6218228263a8de53095c2b9ea96c759b38ca9fdb06dd8f68c58c49c861d7777c6c4bd3aa59debf2737389e40b27791dd
+Size (MetaCPAN-Client-2.017000.tar.gz) = 50925 bytes

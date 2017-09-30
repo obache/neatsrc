@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.28 2017/05/29 12:20:24 wiz Exp $
+# $NetBSD: Makefile,v 1.32 2017/09/18 09:53:29 maya Exp $
 
 DISTNAME=	corebird-1.6
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	https://github.com/baedert/${PKGBASE}/releases/download/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://corebird.baedert.org/
+HOMEPAGE=	https://corebird.baedert.org/
 COMMENT=	Native Gtk+ Twitter Client
 LICENSE=	gnu-gpl-v3
 

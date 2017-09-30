@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.7 2016/08/07 11:09:32 markd Exp $
+# $NetBSD: Makefile,v 1.9 2017/06/23 23:54:32 markd Exp $
 
 DISTNAME=	collection-langenglish
-PKGNAME=	texlive-${DISTNAME}-2016
+PKGNAME=	texlive-${DISTNAME}-2017
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	41445
+TEXLIVE_REV=	43650
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.tug.org/texlive/
@@ -19,11 +19,14 @@ DEPENDS+=	tex-hyphen-english-[0-9]*:../../print/tex-hyphen-english
 # amslatex-primer is documentation only
 # around-the-bend is documentation only
 # ascii-chart is documentation only
+# biblatex-cheatsheet is documentation only
 # components-of-TeX is documentation only
 # comprehensive is documentation only
 # dickimaw is documentation only
+# docsurvey is documentation only
 # dtxtut is documentation only
 # first-latex-doc is documentation only
+# forest-quickstart is documentation only
 # gentle is documentation only
 DEPENDS+=	tex-guide-to-latex-[0-9]*:../../print/tex-guide-to-latex
 # happy4th is documentation only
@@ -45,11 +48,11 @@ DEPENDS+=	tex-latexfileinfo-pkgs-[0-9]*:../../print/tex-latexfileinfo-pkgs
 # lshort-english is documentation only
 # macros2e is documentation only
 # math-e is documentation only
+# math-into-latex-4 is documentation only
 # maths-symbols is documentation only
 # memdesign is documentation only
 # metafont-beginners is documentation only
 # metapost-examples is documentation only
-# mil3 is documentation only
 # patgen2-tutorial is documentation only
 # pictexsum is documentation only
 # plain-doc is documentation only
@@ -65,8 +68,8 @@ DEPENDS+=	tex-latexfileinfo-pkgs-[0-9]*:../../print/tex-latexfileinfo-pkgs
 # texbytopic is documentation only
 # titlepages is documentation only
 # tlc2 is documentation only
+# undergradmath is documentation only
 # visualfaq is documentation only
-# voss-mathmode is documentation only
 # webguide is documentation only
 # xetexref is documentation only
 

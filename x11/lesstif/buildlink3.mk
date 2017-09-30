@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.25 2013/06/04 22:17:27 tron Exp $
+# $NetBSD: buildlink3.mk,v 1.26 2017/08/15 17:24:03 wiz Exp $
 
 BUILDLINK_TREE+=	lesstif
 

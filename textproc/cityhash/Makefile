@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.1 2013/07/02 11:22:21 rodent Exp $
-#
+# $NetBSD: Makefile,v 1.3 2017/09/16 19:27:17 wiz Exp $
 
 DISTNAME=	cityhash-1.1.1
 CATEGORIES=	textproc
 MASTER_SITES=	http://cityhash.googlecode.com/files/
 
-MAINTAINER=	rodent@NetBSD.org
-HOMEPAGE=	https://code.google.com/p/cityhash/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://github.com/google/cityhash
 COMMENT=	Provides hash functions for strings
 LICENSE=	mit
 

@@ -1,15 +1,17 @@
-# $NetBSD: Makefile,v 1.33 2017/05/24 16:42:18 jperkin Exp $
+# $NetBSD: Makefile,v 1.36 2017/09/18 09:53:03 maya Exp $
 
-DISTNAME=	libsoup-2.54.1
-PKGREVISION=	3
+DISTNAME=	libsoup-2.58.2
+PKGREVISION=	1
 CATEGORIES=	net gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libsoup/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://wiki.gnome.org/Projects/libsoup
+HOMEPAGE=	https://wiki.gnome.org/Projects/libsoup
 COMMENT=	HTTP library implementation in C
 LICENSE=	gnu-lgpl-v2
+
+DEPENDS+=	glib-networking-[0-9]*:../../net/glib-networking
 
 USE_TOOLS+=		pkg-config gmake intltool msgfmt
 USE_LIBTOOL=		yes
@@ -21,8 +23,6 @@ CONFIGURE_ENV+=		DATADIRNAME=share
 # XXX: disable Vala bindings otherwise the configure phase fails because is not
 # XXX: able to find vapigen.
 CONFIGURE_ARGS+=	--enable-vala=no
-
-DEPENDS+=	glib-networking-[0-9]*:../../net/glib-networking
 
 PKGCONFIG_OVERRIDE+=	libsoup-2.4.pc.in
 PKGCONFIG_OVERRIDE+=	libsoup-gnome-2.4.pc.in
@@ -46,6 +46,7 @@ CWRAPPERS_APPEND.cc+=	-Wno-error=format-nonliteral
 
 REPLACE_PYTHON= libsoup/tld-parser.py
 PYTHON_FOR_BUILD_ONLY= yes
+
 .include "../../lang/python/application.mk"
 
 .include "../../databases/sqlite3/buildlink3.mk"

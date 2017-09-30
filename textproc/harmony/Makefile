@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.19 2016/12/30 11:17:02 jaapb Exp $
+# $NetBSD: Makefile,v 1.22 2017/09/08 09:51:25 jaapb Exp $
 #
 
 DISTNAME=	harmony-stable-${VERSION}
 PKGNAME=	harmony-${VERSION}
-PKGREVISION=	11
+PKGREVISION=	13
 CATEGORIES=	misc
-MASTER_SITES=	http://alliance.seas.upenn.edu/~harmony/download/
+MASTER_SITES=	https://alliance.seas.upenn.edu/~harmony/download/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://alliance.seas.upenn.edu/~harmony/
+HOMEPAGE=	https://alliance.seas.upenn.edu/~harmony/
 COMMENT=	Reconciles disconnected updates to heterogeneous, replicated XML data
 
 MAKE_JOBS_SAFE=	no

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.69 2017/04/22 17:35:15 taca Exp $
+# $NetBSD: Makefile,v 1.71 2017/09/05 06:00:47 wiz Exp $
 #
 
 COMMENT=	Input method tools and libraries
@@ -74,8 +74,8 @@ SUBDIR+=	input-pad
 SUBDIR+=	ja-freewnn-lib
 SUBDIR+=	ja-freewnn-server
 SUBDIR+=	kasumi
-SUBDIR+=	kcm-fcitx-kde4
 SUBDIR+=	kcm-fcitx
+SUBDIR+=	kcm-fcitx-kde4
 SUBDIR+=	kimera
 SUBDIR+=	kimera-tomoe-gtk
 SUBDIR+=	kinput2

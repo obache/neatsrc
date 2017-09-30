@@ -1,11 +1,8 @@
-# $NetBSD: Makefile,v 1.119 2017/01/19 18:52:20 agc Exp $
+# $NetBSD: Makefile,v 1.123 2017/09/14 06:38:21 adam Exp $
 
-DISTNAME=	lftp-4.7.2
-PKGREVISION=	2
+DISTNAME=	lftp-4.8.1
 CATEGORIES=	net
 MASTER_SITES=	http://lftp.yar.ru/ftp/
-MASTER_SITES+=	ftp://ftp.tuwien.ac.at/infosys/browsers/ftp/lftp/
-MASTER_SITES+=	ftp://ftp.cs.tu-berlin.de/pub/net/ftp/lftp/
 MASTER_SITES+=	ftp://ftp.st.ryukoku.ac.jp/pub/network/ftp/lftp/
 MASTER_SITES+=	http://lftp.cybermirror.org/
 EXTRACT_SUFX=	.tar.xz
@@ -35,8 +32,6 @@ SHLIBTOOL_OVERRIDE=	# empty
 
 .include "options.mk"
 
-LDFLAGS.Darwin+=	-flat_namespace
-
 EGDIR=			${PREFIX}/share/examples/lftp
 CONF_FILES=		${EGDIR}/lftp.conf.default ${PKG_SYSCONFDIR}/lftp.conf
 
@@ -51,5 +46,6 @@ post-install: post-install-perl
 # uses _rl_mark_modified_lines and GNU history(3) functions
 .include "../../devel/readline/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

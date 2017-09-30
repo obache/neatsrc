@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2016/08/10 15:52:15 jperkin Exp $
+# $NetBSD: Makefile,v 1.10 2017/08/03 12:38:22 jperkin Exp $
 
 DISTNAME=	jq-1.5
 PKGREVISION=	1
@@ -7,8 +7,8 @@ MASTER_SITES=	${MASTER_SITE_GITHUB:=stedolan/}
 GITHUB_PROJECT=	jq
 GITHUB_TAG=	jq-${PKGVERSION_NOREV}
 
-MAINTAINER=	jperkin@joyent.com
-HOMEPAGE=	http://github.com/stedolan/jq/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://github.com/stedolan/jq/
 COMMENT=	Command-line JSON processor
 LICENSE=	mit
 

@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.1 2017/02/07 23:48:57 joerg Exp $
+# $NetBSD: Makefile,v 1.3 2017/09/04 18:08:24 wiz Exp $
 
-VERS=		2.4.5
-DISTNAME=	pyjsparser-${VERS}
-PKGNAME=	${PYPKGPREFIX}-jsparser-${VERS}
+DISTNAME=	pyjsparser-2.5.2
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/^py//}
 CATEGORIES=	python lang
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pyjsparser/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://pypi.python.org/pypi/pyjsparser/
+HOMEPAGE=	https://pypi.python.org/pypi/pyjsparser/
 COMMENT=	Pure-Python Javascript parser
 LICENSE=	mit
 

@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.71 2017/05/03 08:38:45 jperkin Exp $
+# $NetBSD: Makefile,v 1.75 2017/09/18 09:53:35 maya Exp $
 
-DISTNAME=	open-vm-tools-10.1.5-5055683
-PKGNAME=	open-vm-tools-10.1.5
+DISTNAME=	open-vm-tools-10.1.10-6082533
+PKGNAME=	open-vm-tools-10.1.10
 PKGREVISION=	1
 CATEGORIES=	sysutils
-MASTER_SITES=	https://github.com/vmware/open-vm-tools/releases/download/stable-10.1.5/
+MASTER_SITES=	https://github.com/vmware/open-vm-tools/releases/download/stable-10.1.10/
 
 MAINTAINER=	agc@NetBSD.org
 HOMEPAGE=	https://github.com/vmware/open-vm-tools
@@ -28,7 +28,7 @@ CONFIGURE_ARGS+=		--disable-vgauth
 CONFIGURE_ARGS+=		--disable-grabbitmqproxy
 CONFIGURE_ARGS+=		--disable-docs # Requires doxygen
 
-INSTALLATION_DIRS+=		${PKG_SYSCONFDIR} share/examples/vmware-tools
+INSTALLATION_DIRS+=		share/examples/vmware-tools
 
 PKG_SYSCONFSUBDIR=		vmware-tools
 EGDIR=				${PREFIX}/share/examples/vmware-tools
@@ -61,6 +61,7 @@ CWRAPPERS_APPEND.cc+=	-Wno-error=unused-local-typedefs -Wno-error=unused-but-set
 .include "../../archivers/libmspack/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../mk/fuse.buildlink3.mk"
+.include "../../mk/pam.buildlink3.mk"
 .include "../../net/libdnet/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../security/xml-security-c/buildlink3.mk"

@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.27 2016/12/30 11:17:00 jaapb Exp $
+# $NetBSD: Makefile,v 1.30 2017/09/08 09:51:23 jaapb Exp $
 
-DISTNAME=		pcre-ocaml-7.1.6
-PKGREVISION=		5
+DISTNAME=		pcre-ocaml-7.2.3
+PKGREVISION=		1
 CATEGORIES=		devel
 MASTER_SITES=          ${MASTER_SITE_GITHUB:=mmottl/}
 GITHUB_RELEASE=                v${PKGVERSION_NOREV}
 
 MAINTAINER=		jaapb@NetBSD.org
-HOMEPAGE=		http://github.com/mmottl/pcre-ocaml
+HOMEPAGE=		https://github.com/mmottl/pcre-ocaml
 COMMENT=		Perl compatible regular expressions for OCaml
 LICENSE=	gnu-lgpl-v2.1
 

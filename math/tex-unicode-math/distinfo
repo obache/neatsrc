@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.2 2017/08/23 23:25:22 markd Exp $
+
+SHA1 (tex-unicode-math-44940/unicode-math.tar.xz) = 3ebfe57d367f52738abd7f30bc1ee0f2dcbc5331
+RMD160 (tex-unicode-math-44940/unicode-math.tar.xz) = 1f8075609bacff98f892a0f4df73725efca03030
+SHA512 (tex-unicode-math-44940/unicode-math.tar.xz) = b2d9850901082fe89b254a54f5914756fbd3e5d61a0400109e36040f83c7299e3f748f37e979feb8deac2a6c093ed794c068b78d144a0311248bcc06cf23c4a5
+Size (tex-unicode-math-44940/unicode-math.tar.xz) = 40348 bytes

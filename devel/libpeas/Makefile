@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.29 2017/02/12 06:24:41 ryoon Exp $
+# $NetBSD: Makefile,v 1.31 2017/08/27 15:29:09 prlw1 Exp $
 
-DISTNAME=	libpeas-1.18.0
-PKGREVISION=	3
+DISTNAME=	libpeas-1.20.0
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libpeas/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://wiki.gnome.org/Projects/Libpeas
+HOMEPAGE=	https://wiki.gnome.org/Projects/Libpeas
 COMMENT=	GObject-based plugins engine
 LICENSE=	gnu-lgpl-v2.1
 

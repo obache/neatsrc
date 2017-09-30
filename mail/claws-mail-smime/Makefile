@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.56 2017/04/30 01:21:48 ryoon Exp $
+# $NetBSD: Makefile,v 1.58 2017/08/29 12:23:24 wiz Exp $
 #
 
 PLUGIN_NAME=	smime
-PKGREVISION= 2
+PKGREVISION= 3
 .include "../../mail/claws-mail/plugins.mk"
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -10,7 +10,7 @@ COMMENT=	This plugin handles S/MIME signed and/or encrypted mails
 
 PLIST_SRC+=	PLIST
 
-DEPENDS+=	gnupg2>=2.0<2.1:../../security/gnupg2
+DEPENDS+=	gnupg2-[0-9]*:../../security/gnupg2
 
 CONFIGURE_ARGS+=	--enable-smime-plugin
 CONFIGURE_ARGS+=	--enable-pgpcore-plugin

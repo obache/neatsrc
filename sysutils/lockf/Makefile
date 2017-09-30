@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2014/10/05 16:27:25 wiz Exp $
+# $NetBSD: Makefile,v 1.4 2017/09/08 06:18:03 wiz Exp $
 
 DISTNAME=	lockf-1
 CATEGORIES=	sysutils
@@ -6,7 +6,7 @@ MASTER_SITES=	# none
 DISTFILES=	# none
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.FreeBSD.org/
+HOMEPAGE=	https://www.FreeBSD.org/
 COMMENT=	FreeBSD's lockf
 LICENSE=	original-bsd
 
@@ -23,7 +23,7 @@ INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 do-build:
 	cd ${WRKSRC}; \
 	 ${ECHO} "${CC} -o lockf lockf.c"; \
-	 ${CC} -o lockf lockf.c
+	 ${CC} ${CFLAGS} ${LDFLAGS} -o lockf lockf.c
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/lockf ${DESTDIR}${PREFIX}/bin/lockf

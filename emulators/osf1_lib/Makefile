@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.23 2016/07/09 06:38:15 wiz Exp $
+# $NetBSD: Makefile,v 1.25 2017/09/03 08:36:54 wiz Exp $
 
 DISTNAME=	netscape-4.7-3.alpha
 PKGNAME=	osf1_lib-1.1
-PKGREVISION=	7
+PKGREVISION=	8
 CATEGORIES=	emulators
 #MASTER_SITES=	ftp://digital.com/pub/alphaserver/archive/linuxalphatools/netscape/
 MASTER_SITES=	ftp://ftp.hp.com/pub/alphaserver/archive/linuxalphatools/netscape/
 EXTRACT_SUFX=	.rpm
 
 MAINTAINER=	eric@cirr.com
-HOMEPAGE=	http://www.support.compaq.com/alpha-tools/software/index.html
+#HOMEPAGE=	http://www.support.compaq.com/alpha-tools/software/index.html
 COMMENT=	DEC/Compaq OSF-1/Tru64 compatibility package for netscape
 
 RESTRICTED=		COMPAQ Licensed Software

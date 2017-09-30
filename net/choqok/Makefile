@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.34 2017/04/30 01:21:56 ryoon Exp $
+# $NetBSD: Makefile,v 1.36 2017/08/24 20:03:35 adam Exp $
 #
 
 DISTNAME=	choqok-1.5
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=choqok/}Choqok/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	jaapb@NetBSD.org
-HOMEPAGE=	http://choqok.gnufolks.org/
+#HOMEPAGE=	http://choqok.gnufolks.org/
 COMMENT=	Twitter and StatusNet client for KDE
 LICENSE=	gnu-gpl-v2
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2015/03/15 20:13:23 hiramatsu Exp $
+# $NetBSD: Makefile,v 1.3 2017/08/01 16:52:55 wiz Exp $
 
 DISTNAME=	brise-0.35
 CATEGORIES=	inputmethod chinese

@@ -1,17 +1,15 @@
-# $NetBSD: Makefile,v 1.11 2016/06/16 04:11:50 markd Exp $
+# $NetBSD: Makefile,v 1.13 2017/09/06 16:49:47 wiz Exp $
 
-DISTNAME=	texlive-20160523-source
+DISTNAME=	texlive-20170524-source
 PKGNAME=	makeindexk-2.15
-PKGREVISION=	8
+PKGREVISION=	9
 CATEGORIES=	print
-MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2016/
+MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2017/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	minskim@NetBSD.org
 HOMEPAGE=	http://www.tug.org/texlive/
 COMMENT=	General purpose hierarchical index generator
-
-CONFLICTS+=	teTeX-bin<=3.0nb32
 
 EXTRACT_ELEMENTS=	${DISTNAME}/build-aux \
 			${DISTNAME}/texk/makeindexk

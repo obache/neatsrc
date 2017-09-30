@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.95 2017/04/22 21:03:40 adam Exp $
+# $NetBSD: Makefile,v 1.97 2017/09/18 09:53:25 maya Exp $
 
 DISTNAME=	smalltalk-3.2.4
-PKGREVISION=	30
+PKGREVISION=	31
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GNU:=smalltalk/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.smalltalk.org/versions/GNUSmalltalk.html
+#HOMEPAGE=	http://www.smalltalk.org/versions/GNUSmalltalk.html
 COMMENT=	GNU Smalltalk: A smalltalk-80 implementation
 
 ONLY_FOR_PLATFORM=	*-*-i386 *-*-x86_64 *-*-sparc *-*-powerpc

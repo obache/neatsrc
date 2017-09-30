@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.31 2017/02/12 06:25:25 ryoon Exp $
+# $NetBSD: Makefile,v 1.33 2017/08/30 08:12:42 prlw1 Exp $
 
-DISTNAME=	eog-3.20.5
-PKGREVISION=	2
+DISTNAME=	eog-3.24.1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/eog/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	prlw1@cam.ac.uk
-HOMEPAGE=	http://www.gnome.org/
+HOMEPAGE=	https://www.gnome.org/
 COMMENT=	Eye of GNOME: an image viewing and cataloging program
 LICENSE=	gnu-gpl-v2
 

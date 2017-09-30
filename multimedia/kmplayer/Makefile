@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.111 2017/04/30 01:21:54 ryoon Exp $
+# $NetBSD: Makefile,v 1.113 2017/08/24 20:03:33 adam Exp $
 #
 
 DISTNAME=	kmplayer-0.11.3d
-PKGREVISION=	38
+PKGREVISION=	39
 CATEGORIES=	multimedia kde
-MASTER_SITES=	http://kmplayer.kde.org/pkgs/
+MASTER_SITES=	https://kmplayer.kde.org/pkgs/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	markd@NetBSD.org
-HOMEPAGE=	http://kmplayer.kde.org/
+HOMEPAGE=	https://kmplayer.kde.org/
 COMMENT=	KDE frontend to mplayer
 
 BUILD_DEPENDS+=		automoc4>=0.9.87:../../devel/automoc4

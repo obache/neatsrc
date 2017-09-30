@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.1 2014/07/31 00:00:32 rodent Exp $
+# $NetBSD: Makefile,v 1.3 2017/09/16 19:27:18 wiz Exp $
 #
 
-DISTNAME=	1.8.0
+DISTNAME=	1.8.1
 PKGNAME=	${PHP_PKG_PREFIX}-excel-${DISTNAME}
 CATEGORIES=	textproc
 MASTER_SITES=	https://github.com/PHPOffice/PHPExcel/archive/
 DIST_SUBDIR=	${PKGBASE:S/${PHP_PKG_PREFIX}/php/1}
 
-MAINTAINER=	rodent@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/PHPOffice/PHPExcel
 COMMENT=	Pure PHP library for reading and writing spreadsheet files
 LICENSE=	gnu-lgpl-v2 AND gnu-lgpl-v2.1

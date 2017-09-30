@@ -1,21 +1,19 @@
-# $NetBSD: Makefile,v 1.6 2017/03/30 14:29:20 fhajny Exp $
+# $NetBSD: Makefile,v 1.8 2017/07/30 22:32:22 wiz Exp $
 
-DISTNAME=	fast_xml-1.1.22
+DISTNAME=	fast_xml-1.1.23
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=processone/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://github.com/processone/fast_xml/
+HOMEPAGE=	https://github.com/processone/fast_xml/
 COMMENT=	Fast Expat based Erlang XML parsing library
 LICENSE=	apache-2.0
 
 GITHUB_PROJECT=	fast_xml
 
-DEPENDS+=	erlang-p1_utils>=1.0.7:../../misc/erlang-p1_utils
+DEPENDS+=	erlang-p1_utils>=1.0.9:../../misc/erlang-p1_utils
 
 GNU_CONFIGURE=	yes
-
-MAKE_ENV+=	USE_GLOBAL_DEPS=true
 
 # Leave a non-versioned symlink in place for includes
 post-install:

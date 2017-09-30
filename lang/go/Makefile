@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.52 2017/05/25 09:06:43 bsiegert Exp $
+# $NetBSD: Makefile,v 1.56 2017/09/03 16:49:52 tron Exp $
 
 .include "version.mk"
 
@@ -6,6 +6,7 @@ DISTNAME=	go${GO_VERSION}.src
 PKGNAME=	go-${GO_VERSION}
 CATEGORIES=	lang
 MASTER_SITES=	https://storage.googleapis.com/golang/
+EXTRACT_USING=	bsdtar
 
 MAINTAINER=	bsiegert@NetBSD.org
 HOMEPAGE=	http://golang.org/
@@ -65,6 +66,13 @@ REPLACE_PERL+=	src/regexp/syntax/make_perl_groups.pl
 REPLACE_PERL+=	src/syscall/*.pl
 REPLACE_PERL+=	test/errchk
 
+# uses own linker, which does not support relro on NetBSD
+CHECK_RELRO_SKIP+=		go/bin/go
+CHECK_RELRO_SKIP+=		go/bin/gofmt
+CHECK_RELRO_SKIP+=		go/pkg/bootstrap/bin/asm
+CHECK_RELRO_SKIP+=		go/pkg/bootstrap/bin/compile
+CHECK_RELRO_SKIP+=		go/pkg/bootstrap/bin/link
+
 # uses /bin/rc (for Plan 9)
 CHECK_INTERPRETER_SKIP+=	go/include/plan9/mklibc.rc
 CHECK_INTERPRETER_SKIP+=	go/src/all.rc
@@ -85,6 +93,8 @@ PLIST.route=	yes
 
 do-build:
 	cd ${WRKSRC}/src && env GOROOT_BOOTSTRAP=${GOROOT_BOOTSTRAP:Q} GOROOT_FINAL=${GOROOT_FINAL:Q} ${BASH} ./make.bash
+# for RELRO build:
+#	cd ${WRKSRC}/src && env GOROOT_BOOTSTRAP=${GOROOT_BOOTSTRAP:Q} GOROOT_FINAL=${GOROOT_FINAL:Q} GO_LDFLAGS="-buildmode=pie" ${BASH} ./make.bash
 
 do-install:
 	cd ${WRKSRC} && rm -rf .hgignore .hgtags pkg/obj

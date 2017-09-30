@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.7 2017/02/12 06:25:00 ryoon Exp $
+# $NetBSD: Makefile,v 1.9 2017/06/20 14:50:04 youri Exp $
 
-PKGREVISION= 3
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-DISTNAME=	garcon-0.5.0
-PKGNAME=	xfce4-garcon-0.5.0
+DISTNAME=	garcon-0.6.1
+PKGNAME=	xfce4-garcon-0.6.1
 CATEGORIES=	x11
-MASTER_SITES=	http://archive.xfce.org/src/xfce/garcon/0.5/
+MASTER_SITES=	http://archive.xfce.org/src/xfce/garcon/0.6/
 
 HOMEPAGE=	https://wiki.xfce.org/dev/garcon
 COMMENT=	Xfce menu library
@@ -23,6 +22,7 @@ MAKE_DIRS+=		${EGDIR} ${EGDIR}/menus ${PKG_SYSCONFDIR}/menus
 CONF_FILES=		${EGDIR}/menus/xfce-applications.menu \
 			${PKG_SYSCONFDIR}/menus/xfce-applications.menu
 
+.include "../../x11/gtk2/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../x11/libxfce4ui/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

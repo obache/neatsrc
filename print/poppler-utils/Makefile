@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.32 2014/04/29 07:56:48 wiz Exp $
+# $NetBSD: Makefile,v 1.34 2017/07/11 16:35:03 adam Exp $
 
 .include "../../print/poppler/Makefile.common"
 
@@ -13,8 +13,6 @@ GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
-# Don't build the cairo graphics backend.
-CONFIGURE_ARGS+=	--disable-cairo-output
 # Don't build the splash graphics backend.
 CONFIGURE_ARGS+=	--disable-splash-output
 # Don't compile poppler qt wrapper.
@@ -29,7 +27,9 @@ CONFIGURE_ARGS+=	--enable-utils	# the default
 BUILDLINK_API_DEPENDS.poppler+=     poppler>=${POPPLER_VERS}
 .include "../../print/poppler/buildlink3.mk"
 
-BUILD_DIRS=		utils # implies INSTALL_DIRS too
+# needed to build libpoppler-cairo
+BUILD_DIRS=		fofi goo poppler utils
+INSTALL_DIRS=		utils
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -41,6 +41,7 @@ PTHREAD_STUBLIB=	# provided by libc
 .endif
 MAKE_ENV+=		PTHREAD_STUBLIB=${PTHREAD_STUBLIB}
 
+.include "../../graphics/cairo/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

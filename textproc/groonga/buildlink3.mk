@@ -1,5 +1,4 @@
-# $NetBSD$
-#
+# $NetBSD: buildlink3.mk,v 1.1 2017/08/29 12:54:47 fhajny Exp $
 
 BUILDLINK_TREE+=	groonga
 

@@ -12,9 +12,9 @@ Hubert Feyrer
 
 The pkgsrc Developers
 
-Copyright   1994-2016 The NetBSD Foundation, Inc
+Copyright   1994-2017 The NetBSD Foundation, Inc
 
-$NetBSD: pkgsrc.xml,v 1.30 2016/06/11 18:14:42 rillig Exp $
+$NetBSD: pkgsrc.xml,v 1.31 2017/07/30 22:07:39 jnemeth Exp $
 
 Abstract
 
@@ -354,10 +354,11 @@ II. The pkgsrc developer's guide
         21.1. Submitting binary packages
         21.2. Submitting source packages (for non-NetBSD-developers)
         21.3. General notes when adding, updating, or removing packages
-        21.4. Committing: Adding a package to CVS
-        21.5. Updating a package to a newer version
-        21.6. Renaming a package in pkgsrc
-        21.7. Moving a package in pkgsrc
+        21.4. Commit Messages
+        21.5. Committing: Adding a package to CVS
+        21.6. Updating a package to a newer version
+        21.7. Renaming a package in pkgsrc
+        21.8. Moving a package in pkgsrc
 
     22. Frequently Asked Questions
     23. GNOME packaging and porting
@@ -2565,10 +2566,11 @@ Table of Contents
     21.1. Submitting binary packages
     21.2. Submitting source packages (for non-NetBSD-developers)
     21.3. General notes when adding, updating, or removing packages
-    21.4. Committing: Adding a package to CVS
-    21.5. Updating a package to a newer version
-    21.6. Renaming a package in pkgsrc
-    21.7. Moving a package in pkgsrc
+    21.4. Commit Messages
+    21.5. Committing: Adding a package to CVS
+    21.6. Updating a package to a newer version
+    21.7. Renaming a package in pkgsrc
+    21.8. Moving a package in pkgsrc
 
 22. Frequently Asked Questions
 23. GNOME packaging and porting
@@ -3851,9 +3853,8 @@ issues:
     implementation.
 
   * motif.buildlink3.mk checks for a system-provided Motif installation or adds
-    a dependency on x11/lesstif, x11/motif or x11/openmotif. The user can set
-    MOTIF_TYPE to "dt", "lesstif", "motif" or "openmotif" to choose which Motif
-    version will be used.
+    a dependency on x11/lesstif or x11/motif. The user can set MOTIF_TYPE to "
+    dt", "lesstif" or "motif" to choose which Motif version will be used.
 
   * readline.buildlink3.mk checks for a system-provided GNU readline or
     editline (libedit) installation, or adds a dependency on devel/readline,
@@ -5910,9 +5911,9 @@ version numbers recognized by pkg_info(1).
  5. If your package needs some executable to be able to run correctly and if
     there's no buildlink3.mk file, this is specified using the DEPENDS
     variable. The print/lyx package needs to be able to execute the latex
-    binary from the teTeX package when it runs, and that is specified:
+    binary from the tex-latex-bin package when it runs, and that is specified:
 
-    DEPENDS+=        teTeX-[0-9]*:../../print/teTeX
+    DEPENDS+=        tex-latex-bin-[0-9]*:../../print/tex-latex-bin
 
  6. You can use wildcards in package dependencies. Note that such wildcard
     dependencies are retained when creating binary packages. The dependency is
@@ -7092,10 +7093,11 @@ Table of Contents
 21.1. Submitting binary packages
 21.2. Submitting source packages (for non-NetBSD-developers)
 21.3. General notes when adding, updating, or removing packages
-21.4. Committing: Adding a package to CVS
-21.5. Updating a package to a newer version
-21.6. Renaming a package in pkgsrc
-21.7. Moving a package in pkgsrc
+21.4. Commit Messages
+21.5. Committing: Adding a package to CVS
+21.6. Updating a package to a newer version
+21.7. Renaming a package in pkgsrc
+21.8. Moving a package in pkgsrc
 
 21.1. Submitting binary packages
 
@@ -7157,7 +7159,42 @@ commit-changes-entry! If you are not using a checkout directly from
 cvs.NetBSD.org, but e.g. a local copy of the repository, you can set
 USE_NETBSD_REPO=yes. This makes the cvs commands use the main repository.
 
-21.4. Committing: Adding a package to CVS
+21.4. Commit Messages
+
+For several years, there have been mirrors of pkgsrc in fossil, git, and hg.
+Standard practise when using these tools is to make the first line of a commit
+message function as a summary that can be read without the rest, such as is
+commonly done with "git log --oneline". For this reason, we have the following
+guidelines for pkgsrc commit messages:
+
+  * Start the commit message with a line that explains the big picture in 65
+    characters or less. When a commit is for one package, include the name of
+    the package. For updates, include the version to which it is updated.
+
+  * Leave the next line empty.
+
+  * Then come the details for the commit (changes in that package, reason for a
+    change) and any relevant PRs. Wrap this section.
+
+Here is an example:
+
+  libxslt: update to 1.0.30
+
+  Changes since 1.0.29:
+  ...
+
+
+Here is another example:
+
+  mk/bsd.pkg.mk: enable SSP by default on NetBSD
+
+  (rationale)
+
+
+Commit messages are final: no "cvs admin" is allowed on the pkgsrc repository
+to change commit messages.
+
+21.5. Committing: Adding a package to CVS
 
 This section is only of interest for pkgsrc developers with write access to the
 pkgsrc repository.
@@ -7188,7 +7225,7 @@ Also mention the new package in pkgsrc/doc/CHANGES-20xx.
 Previously, "cvs import" was suggested, but it was much easier to get wrong
 than "cvs add".
 
-21.5. Updating a package to a newer version
+21.6. Updating a package to a newer version
 
 Please always put a concise, appropriate and relevant summary of the changes
 between old and new versions into the commit log when updating a package. There
@@ -7213,7 +7250,7 @@ which pkgsrc is used. Please use your judgement about what should go into
 pkgsrc, and bear in mind that stability is to be preferred above new and
 possibly untested features.
 
-21.6. Renaming a package in pkgsrc
+21.7. Renaming a package in pkgsrc
 
 Renaming packages is not recommended.
 
@@ -7228,7 +7265,7 @@ Note that "successor" in the CHANGES-YYYY file doesn't necessarily mean that it
 supersedes, as that successor may not be an exact replacement but is a
 suggestion for the replaced functionality.
 
-21.7. Moving a package in pkgsrc
+21.8. Moving a package in pkgsrc
 
 It is preferred that packages are not renamed or moved, but if needed please
 follow these steps.

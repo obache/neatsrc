@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.61 2017/04/22 21:03:14 adam Exp $
+# $NetBSD: Makefile,v 1.63 2017/09/18 09:53:02 maya Exp $
 
 DISTNAME=	totem-pl-parser-3.4.5
-PKGREVISION=	7
+PKGREVISION=	8
 CATEGORIES=	multimedia gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/totem-pl-parser/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://wiki.gnome.org/Apps/Videos
+HOMEPAGE=	https://wiki.gnome.org/Apps/Videos
 COMMENT=	Totem playlist parser
 LICENSE=	gnu-lgpl-v2
 

@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.35 2017/04/22 21:03:13 adam Exp $
+# $NetBSD: Makefile,v 1.37 2017/09/18 09:53:01 maya Exp $
 #
 
 DISTNAME=		Addresses-0.4.8
-PKGREVISION=		10
+PKGREVISION=		11
 CATEGORIES=		misc gnustep
 MASTER_SITES=		http://savannah.nongnu.org/download/gap/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://giesler.biz/bjoern/en/sw_addr.html
+#HOMEPAGE=		http://giesler.biz/bjoern/en/sw_addr.html
 COMMENT=		Address book for GNUstep
 LICENSE=		gnu-lgpl-v2
 

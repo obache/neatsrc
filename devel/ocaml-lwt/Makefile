@@ -1,39 +1,28 @@
-# $NetBSD: Makefile,v 1.28 2016/12/30 11:16:59 jaapb Exp $
+# $NetBSD: Makefile,v 1.31 2017/09/08 16:54:31 jaapb Exp $
 #
 
-DISTNAME=	lwt-2.5.2
+.include "Makefile.common"
+
 PKGNAME=	ocaml-${DISTNAME}
-PKGREVISION=	3
+PKGREVISION=	1
 CATEGORIES=	devel
-#MASTER_SITES=	http://github.com/ocsigen/lwt/archive/
-MASTER_SITES=	${MASTER_SITE_GITHUB:=ocsigen/}
-GITHUB_PROJECT=	lwt
 
 MAINTAINER=	jaapb@NetBSD.org
 HOMEPAGE=	http://www.ocsigen.org/
 COMMENT=	Cooperative threading library for OCaml
-LICENSE=	gnu-lgpl-v2.1
 
-DEPENDS+=	ocaml-ppx_tools-[0-9]*:../../devel/ocaml-ppx_tools
-DEPENDS+=	ocaml-react-[0-9]*:../../devel/ocaml-react
-BUILDLINK_API_DEPENDS.ocaml-ssl+=	ocaml-ssl>=0.5.0
+JBUILDER_BUILD_TARGETS=	lwt
 
-OCAML_USE_OASIS=	yes
-CONFIGURE_ARGS+=	--destdir "${DESTDIR}" --prefix "${PREFIX}" --enable-react \
-	--disable-glib
+CONFIGURE_ARGS=	-use-libev false
 
-SUBST_CLASSES+=		libev destdir
-SUBST_STAGE.libev=	post-configure
-SUBST_MESSAGE.libev=	Correcting compiler flags for libev
-SUBST_FILES.libev=	setup.data
-SUBST_SED.libev=	-e 's%"-lev"%"-lev -L${PREFIX}/lib/ev ${COMPILER_RPATH_FLAG}${PREFIX}/lib/ev"%'
-#SUBST_STAGE.destdir=    post-configure
-#SUBST_MESSAGE.destdir=  Changing install location to DESTDIR
-#SUBST_FILES.destdir=    setup.ml
-#SUBST_SED.destdir=      -e 's,"install" :: findlib_name,"install" :: "-destdir ${DESTDIR}${PREFIX}/lib/ocaml/site-lib" :: "-ldconf /dev/null" :: findlib_name,'
+do-configure:
+	cd ${WRKSRC} && ocaml src/util/configure.ml ${CONFIGURE_ARGS}
 
 .include "options.mk"
 .include "../../mk/ocaml.mk"
+.include "../../devel/ocaml-cppo/buildlink3.mk"
 .include "../../devel/ocaml-findlib/buildlink3.mk"
-.include "../../devel/libev/buildlink3.mk"
+.include "../../devel/ocaml-migrate-parsetree/buildlink3.mk"
+.include "../../devel/ocaml-ppx_tools_versioned/buildlink3.mk"
+.include "../../devel/ocaml-result/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.20 2015/11/25 12:50:43 jperkin Exp $
+# $NetBSD: buildlink3.mk,v 1.21 2017/06/14 16:23:09 prlw1 Exp $
 
 BUILDLINK_TREE+=	gnome-icon-theme
 

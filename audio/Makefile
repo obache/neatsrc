@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.539 2017/04/22 17:26:57 taca Exp $
+# $NetBSD: Makefile,v 1.543 2017/09/12 09:38:59 wiz Exp $
 #
 
 COMMENT=	Audio tools
@@ -152,6 +152,7 @@ SUBDIR+=	goom
 SUBDIR+=	gqmpeg-devel
 SUBDIR+=	gqmpeg-skins
 SUBDIR+=	gramofile
+SUBDIR+=	grip
 SUBDIR+=	gsm
 SUBDIR+=	gst-buzztard
 SUBDIR+=	gst-plugins0.10-a52
@@ -187,7 +188,7 @@ SUBDIR+=	gst-plugins1-flac
 SUBDIR+=	gst-plugins1-jack
 SUBDIR+=	gst-plugins1-lame
 SUBDIR+=	gst-plugins1-libvisual
-SUBDIR+=	gst-plugins1-mad
+SUBDIR+=	gst-plugins1-mpg123
 SUBDIR+=	gst-plugins1-opus
 SUBDIR+=	gst-plugins1-oss
 SUBDIR+=	gst-plugins1-pulse
@@ -333,14 +334,12 @@ SUBDIR+=	mpg321
 SUBDIR+=	mppenc
 SUBDIR+=	mserv
 SUBDIR+=	mserv-devel
-SUBDIR+=	mserv-irman
 SUBDIR+=	mstream
 SUBDIR+=	mt-daapd
 SUBDIR+=	muse
 SUBDIR+=	musepack
 SUBDIR+=	musicbrainz
 SUBDIR+=	musicpd
-SUBDIR+=	mutagen-tools
 SUBDIR+=	nas
 SUBDIR+=	nas-auscope
 SUBDIR+=	ncmpc

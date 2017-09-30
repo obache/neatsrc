@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.1 2016/04/25 14:30:45 fhajny Exp $
+# $NetBSD: Makefile,v 1.3 2017/08/20 12:30:34 fhajny Exp $
 
-DISTNAME=	p1_oauth2-0.6.1
+DISTNAME=	p1_oauth2-0.6.2
 PKGNAME=	erlang-${DISTNAME}
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GITHUB:=processone/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://github.com/processone/p1_oauth2/
+HOMEPAGE=	https://github.com/processone/p1_oauth2/
 COMMENT=	Erlang Oauth2 implementation
 LICENSE=	mit
 

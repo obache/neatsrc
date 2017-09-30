@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.9 2016/12/30 11:17:00 jaapb Exp $
+# $NetBSD: Makefile,v 1.12 2017/09/08 09:51:24 jaapb Exp $
 
-DISTNAME=	dose3-5.0~rc2
-PKGNAME=	dose3-5.0rc2
-PKGREVISION=	2
+DISTNAME=	dose3-5.0.1
+PKGREVISION=	1
 CATEGORIES=	misc
-MASTER_SITES=	https://gforge.inria.fr/frs/download.php/file/35957/
+MASTER_SITES=	https://gforge.inria.fr/frs/download.php/file/36063/
 
 MAINTAINER=	jaapb@NetBSD.org
-HOMEPAGE=	http://gforge.inria.fr/projects/dose/
+HOMEPAGE=	https://gforge.inria.fr/projects/dose/
 COMMENT=	Package repository analysis toolkit
 LICENSE=	gnu-lgpl-v3
 

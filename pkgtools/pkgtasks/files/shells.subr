@@ -101,6 +101,7 @@ __task_shells_init__="_task_shells_init"
 task_load cleanup
 task_load echo
 task_load lock
+task_load makedir
 task_load maketemp
 task_load match
 task_load quote
@@ -108,6 +109,7 @@ task_load truthy
 
 task_shells()
 {
+	: ${CP:=cp}
 	: ${MV:=mv}
 
 	: ${PKG_PREFIX:=/usr/pkg}
@@ -171,15 +173,21 @@ task_shells()
 		[!/]*)	shelldb="$prefix/$shelldb" ;;
 		esac
 		shelldb="${PKG_DESTDIR}$shelldb"
+		local shelldbdir=${shelldb%/*}
 
 		line_result=0
 		case $action in
 		add|remove)
-			lock="$shelldb.lock"
-			task_quote "$lock"
-			lock_quoted=$quoted
-			__task_shells_locks__="$lock_quoted $__task_shells_locks__"
-			task_lock "$lock" || line_result=1 ;;
+			# Ensure that the shelldb directory exists.
+			[ -d "$shelldbdir" ] || task_makedir "$shelldbdir" 2>/dev/null
+			[ -d "$shelldbdir" ] || line_result=1
+			if [ $line_result -eq 0 ]; then
+				lock="$shelldb.lock"
+				task_quote "$lock"
+				lock_quoted=$quoted
+				__task_shells_locks__="$lock_quoted $__task_shells_locks__"
+				task_lock "$lock" || line_result=1
+			fi ;;
 		esac
 		if [ $line_result -eq 0 ]; then
 			case $action in
@@ -192,12 +200,14 @@ task_shells()
 							task_quote "$temp"
 							temp_quoted="$quoted"
 							__task_shells_temps__="$__task_shells_temps__ $temp_quoted"
-							if [ ! -f "$shelldb" ]; then
-								echo "$shell"
+							if [ -f "$shelldb" ]; then
+								# Preserve existing ownership and permissions onto tempfile.
+								${CP} -fp "$shelldb" "$temp"
+								# Overwrite contents of tempfile.
+								{ task_match -vw "$shell" < $shelldb; echo "$shell"; } > $temp
 							else
-								task_match -vw "$shell" < $shelldb
-								echo "$shell"
-							fi > $temp
+								echo "$shell" > $temp
+							fi
 							# rename(2) is atomic.
 							if ${MV} -f "$temp" "$shelldb"; then
 								$echo "${TASK_MSG}> shell added: $shell"
@@ -219,6 +229,9 @@ task_shells()
 							task_quote "$temp"
 							temp_quoted="$quoted"
 							__task_shells_temps__="$__task_shells_temps__ $temp_quoted"
+							# Preserve existing ownership and permissions onto tempfile.
+							${CP} -fp "$shelldb" "$temp"
+							# Overwrite contents of tempfile.
 							task_match -vw "$shell" < $shelldb > $temp
 							# rename(2) is atomic.
 							if ${MV} -f "$temp" "$shelldb"; then

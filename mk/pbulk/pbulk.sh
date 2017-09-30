@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id: pbulk.sh,v 1.3 2015/12/14 21:12:01 asau Exp $
+# $NetBSD: pbulk.sh,v 1.6 2017/08/27 18:18:57 sevan Exp $
 set -e
 
 usage="usage: ${0##*/} [-lun] [-c mk.conf.fragment] [-d nodes]"
@@ -195,9 +195,6 @@ fi
 
 # Final preparations:
 mkdir -p ${PACKAGES}
-if [ ! -n "$unprivileged" ]; then
-chown pbulk:"$(id -gn pbulk)" ${PACKAGES}
-fi
 
 # Let's start:
 #PACKAGES=${PACKAGES} WRKOBJDIR=${TMPDIR} ${PBULKPREFIX}/bin/bulkbuild

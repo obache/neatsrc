@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.21 2016/12/23 19:31:26 pettai Exp $
+# $NetBSD: Makefile,v 1.23 2017/08/15 13:22:20 jperkin Exp $
 #
 
-DISTNAME=		rancid-3.6.1
+DISTNAME=		rancid-3.6.2
 CATEGORIES=		net
 MASTER_SITES=		ftp://ftp.shrubbery.net/pub/rancid/
 
@@ -60,7 +60,6 @@ OWN_DIRS_PERMS+=	${VARBASE}/rancid ${RC_USER} ${RC_GROUP} 0755
 
 INSTALLATION_DIRS=	share/examples/rancid
 INSTALLATION_DIRS+=	share/doc/rancid
-INSTALLATION_DIRS+=	${VARBASE}/rancid
 
 .include "../../mk/bsd.prefs.mk"
 

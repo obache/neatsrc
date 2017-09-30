@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.5 2016/06/15 20:10:50 rumko Exp $
-#
+# $NetBSD: Makefile,v 1.8 2017/09/11 07:45:33 wiz Exp $
 
 PKGNAME=	${DISTNAME:S/-r2704//}
 DISTNAME=	bullet-2.82-r2704
 CATEGORIES=	devel
-MASTER_SITES=	http://bullet.googlecode.com/files/
+#MASTER_SITES=	http://bullet.googlecode.com/files/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://bullet.googlecode.com/
+HOMEPAGE=	http://bulletphysics.org/wordpress/
 COMMENT=	Collision detection, soft body and rigid body dynamics library
 LICENSE=	mit
 

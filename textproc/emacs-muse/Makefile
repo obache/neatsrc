@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.7 2013/02/17 19:18:08 dholland Exp $
-#
+# $NetBSD: Makefile,v 1.10 2017/09/09 06:06:13 wiz Exp $
 
-DISTNAME=	muse-3.11
+DISTNAME=	muse-3.20
 PKGNAME=	${EMACS_PKGNAME_PREFIX}emacs-${DISTNAME}
-PKGREVISION=	2
+PKGREVISION=	1
 CATEGORIES=	textproc editors
-MASTER_SITES=	http://download.gna.org/muse-el/
+MASTER_SITES=	https://web.archive.org/web/20170309215441/http://download.gna.org/muse-el/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://mwolson.org/projects/EmacsMuse.html
+HOMEPAGE=	https://www.gnu.org/software/emacs-muse/index.html
 COMMENT=	Publishing environment for Emacs
 LICENSE=	gnu-gpl-v3
 

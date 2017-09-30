@@ -1,8 +1,6 @@
-$NetBSD: distinfo,v 1.1 2017/04/04 14:19:58 wiz Exp $
+$NetBSD: distinfo,v 1.4 2017/09/11 05:24:28 adam Exp $
 
-SHA1 (radon-1.5.0.tar.gz) = f505e57e3e8b128d8a29d836f5ffdcf58d6c315c
-RMD160 (radon-1.5.0.tar.gz) = b0b68f9304baebb022c538c6a36e899f921db826
-SHA512 (radon-1.5.0.tar.gz) = a2336b7e6592d4efa8c78eadad61b386e35f551be31f7691dd2ca8f9d5d2afff9d96a2d25ced8b93dc0a1d1ccbf12fd8dc7b69f0b04bd3c3986335205a1b6650
-Size (radon-1.5.0.tar.gz) = 3492497 bytes
-SHA1 (patch-requirements.txt) = d09c6b9a90e11cffef7a7726ea6272d96c7d293f
-SHA1 (patch-setup.py) = 5faf02aa86dc3aba3cd028c1cd6532fdd3164bc9
+SHA1 (radon-2.1.1.tar.gz) = 36ae79e3f6249f5e44d9a3ee5ad2cb07f76808d4
+RMD160 (radon-2.1.1.tar.gz) = de6a1ad2cd2a0575c83f68e0f9bda30da9814c07
+SHA512 (radon-2.1.1.tar.gz) = 00354e2275a56883abd0d8810573f24e6e6eab9f21a535b314283a0751b8508df410c5533060516af517ee324c04245d8b816e9895658f05c8b1bde28d4a5768
+Size (radon-2.1.1.tar.gz) = 3494651 bytes

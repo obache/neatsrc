@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.54 2017/02/12 06:24:47 ryoon Exp $
+# $NetBSD: Makefile,v 1.56 2017/09/08 02:38:42 ryoon Exp $
 #
 
 DISTNAME=	gtk-vnc-0.5.2
-PKGREVISION=	17
+PKGREVISION=	18
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtk-vnc/0.5/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://live.gnome.org/gtk-vnc
+#HOMEPAGE=	http://live.gnome.org/gtk-vnc
 COMMENT=	VNC viewer widget for GTK
 LICENSE=	gnu-lgpl-v2.1
 

@@ -1,20 +1,23 @@
-# $NetBSD: Makefile,v 1.6 2017/03/18 13:48:48 roy Exp $
+# $NetBSD: Makefile,v 1.13 2017/09/14 09:41:58 wiz Exp $
 
-DISTNAME=		phabricator-20170316
-PKGREVISION=		2
+DISTNAME=		phabricator-20170609
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_GITHUB:=phacility/}
+# Track the stable branch
 GITHUB_PROJECT=		phabricator
-GITHUB_TAG=		6f879559707c57006a1a95d839e2e2e6c64a5ff6
+GITHUB_TAG=		5885704800a97aadf47aee5654ff2647b40fb4ad
 
-MAINTAINER=		youri@NetBSD.org
+MAINTAINER=		roy@NetBSD.org
 HOMEPAGE=		http://phabricator.com/
 COMMENT=		Open software engineering platform
 LICENSE=		apache-2.0
 
+PHP_VERSIONS_INCOMPATIBLE=      70
+
 USE_TOOLS+=		pax bash:run
 EXTRACT_USING=		bsdtar
 
+.include "../../lang/php/phpversion.mk"
 DEPENDS+=		${PHP_PKG_PREFIX}-curl-[0-9]*:../../www/php-curl
 DEPENDS+=		${PHP_PKG_PREFIX}-mbstring-[0-9]*:../../converters/php-mbstring
 DEPENDS+=		${PHP_PKG_PREFIX}-iconv-[0-9]*:../../converters/php-iconv
@@ -24,7 +27,11 @@ DEPENDS+=		${PHP_PKG_PREFIX}-posix-[0-9]*:../../devel/php-posix
 DEPENDS+=		${PHP_PKG_PREFIX}-gd-[0-9]*:../../graphics/php-gd
 DEPENDS+=		${PHP_PKG_PREFIX}-zlib-[0-9]*:../../archivers/php-zlib
 DEPENDS+=		${PHP_PKG_PREFIX}-opcache-[0-9]*:../../devel/php-opcache
-DEPENDS+=		${PHP_PKG_PREFIX}-apcu-[0-9]*:../../www/php-apcu
+.if ${PKG_PHP_MAJOR_VERS} == "5"
+DEPENDS+=		${PHP_PKG_PREFIX}-apcu<5:../../www/php-apcu4
+.else
+DEPENDS+=		${PHP_PKG_PREFIX}-apcu>=5:../../www/php-apcu
+.endif
 #DEPENDS+=		:../../textproc/py-pygments?
 DEPENDS+=		libphutil-[0-9]*:../../devel/libphutil
 DEPENDS+=		arcanist-[0-9]*:../../devel/arcanist
@@ -89,5 +96,4 @@ do-install:
 			${PAX} -rw * -s',.*\.orig$$,,' \
 				${DESTDIR}${PREFIX}/${PHABRICATOR_DIR}
 
-.include "../../lang/php/phpversion.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.12 2017/04/30 01:21:53 ryoon Exp $
+# $NetBSD: Makefile,v 1.18 2017/09/08 19:10:21 jaapb Exp $
 
-VERSION=	1.2.2
+VERSION=	2.0.0_beta4
 GITHUB_PROJECT=	opam
+GITHUB_TAG=	${VERSION:S/_/-/}
 DISTNAME=	${GITHUB_PROJECT}-${VERSION}
 PKGNAME=	ocaml-${DISTNAME}
-PKGREVISION=	4
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ocaml/}
 
@@ -14,14 +14,15 @@ COMMENT=	OCaml package manager
 LICENSE=	gnu-lgpl-v3
 MAKE_JOBS_SAFE=	no
 
-HAS_CONFIGURE=	yes
-USE_TOOLS+=	gawk gmake
+OCAML_USE_JBUILDER=	yes
+OCAML_USE_OPAM=		no # obviously
 
-CONFIGURE_ARGS+=	--prefix=${PREFIX} --mandir=${PREFIX}/${PKGMANDIR}
-
-BUILD_TARGET=	all
-INSTALL_TARGET=	install libinstall
-INSTALL_ENV+=	LIBINSTALL_DIR=${DESTDIR}${PREFIX}/${OCAML_SITELIBDIR}
+do-install:
+	cd ${WRKSRC} && _build/install/default/bin/opam-installer -i --prefix \
+			${DESTDIR}${PREFIX} \
+			--libdir ${OCAML_SITELIBDIR} \
+			--docdir ${DESTDIR}/${OCAML_TOPKG_DOCDIR} \
+			opam.install
 
 .include "../../devel/ocaml-cmdliner/buildlink3.mk"
 .include "../../devel/ocaml-extlib/buildlink3.mk"
@@ -30,6 +31,7 @@ INSTALL_ENV+=	LIBINSTALL_DIR=${DESTDIR}${PREFIX}/${OCAML_SITELIBDIR}
 .include "../../lang/camlp4/buildlink3.mk"
 .include "../../misc/dose3/buildlink3.mk" # with ocamlgraph option
 .include "../../misc/ocaml-cudf/buildlink3.mk"
+.include "../../misc/ocaml-opam-file-format/buildlink3.mk"
 .include "../../textproc/ocaml-jsonm/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../mk/ocaml.mk"

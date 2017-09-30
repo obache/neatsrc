@@ -1,17 +1,17 @@
-# $NetBSD: Makefile,v 1.9 2017/06/04 15:08:16 taca Exp $
+# $NetBSD: Makefile,v 1.14 2017/09/16 19:27:25 wiz Exp $
 
-DISTNAME=	capybara-2.14.0
+DISTNAME=	capybara-2.15.1
 PKGNAME=	${RUBY_PKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel ruby www
 
-MAINTAINER=	rodent@NetBSD.org
-HOMEPAGE=	http://github.com/jnicklas/capybara
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://github.com/jnicklas/capybara
 COMMENT=	Integration testing tool for rack based web applications
 LICENSE=	mit
 
-DEPENDS+=	${RUBY_PKGPREFIX}-mime-types>=1.16:../../mail/ruby-mime-types
 DEPENDS+=	${RUBY_PKGPREFIX}-nokogiri>=1.3.3:../../textproc/ruby-nokogiri
-DEPENDS+=	${RUBY_PKGPREFIX}-rack16>=1.0.0:../../www/ruby-rack16
+DEPENDS+=	${RUBY_PKGPREFIX}-mini_mime>=0.1.3:../../mail/ruby-mini_mime
+DEPENDS+=	${RUBY_PKGPREFIX}-rack14>=1.0.0:../../www/ruby-rack14
 DEPENDS+=	${RUBY_PKGPREFIX}-rack-test>=0.5.4:../../www/ruby-rack-test
 DEPENDS+=	${RUBY_PKGPREFIX}-xpath>=2.0:../../textproc/ruby-xpath
 DEPENDS+=	${RUBY_PKGPREFIX}-addressable>=0:../../net/ruby-addressable

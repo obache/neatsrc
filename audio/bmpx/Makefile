@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.88 2017/05/03 08:38:38 jperkin Exp $
+# $NetBSD: Makefile,v 1.91 2017/09/18 09:53:10 maya Exp $
 
 DISTNAME=	bmpx-0.40.14
-PKGREVISION=	60
+PKGREVISION=	62
 CATEGORIES=	audio
 MASTER_SITES=	http://files.backtrace.info/releases/0.40/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://bmpx.backtrace.info/site/BMPx_Homepage
+#HOMEPAGE=	http://bmpx.backtrace.info/site/BMPx_Homepage
 COMMENT=	Audio player to be used with a frontend or as a daemon
 
 GNU_CONFIGURE=		yes

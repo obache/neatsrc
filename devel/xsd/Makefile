@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.24 2017/04/30 01:21:34 ryoon Exp $
+# $NetBSD: Makefile,v 1.26 2017/08/24 20:03:12 adam Exp $
 
 DISTNAME=		xsd-3.2.0+dep
 EXTRACT_SUFX=		.tar.bz2
 PKGNAME=		xsd-3.2.0
-PKGREVISION=		15
+PKGREVISION=		16
 CATEGORIES=		devel textproc
 MASTER_SITES=		http://www.codesynthesis.com/download/xsd/3.2/
 
@@ -26,7 +26,7 @@ do-build:
 
 do-install:
 	cd ${WRKSRC} && MAKEFLAGS="install_prefix=${DESTDIR}${PREFIX} \
-	install_man_dir=${DESTDIR}${PREFIX}/man" ./build.sh install
+	install_man_dir=${DESTDIR}${PREFIX}/${PKGMANDIR}" ./build.sh install
 
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../textproc/xerces-c/buildlink3.mk"

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.13 2017/02/13 21:42:50 adam Exp $
+# $NetBSD: Makefile,v 1.15 2017/09/04 18:08:28 wiz Exp $
 
-DISTNAME=	Markdown-2.6.8
+DISTNAME=	Markdown-2.6.9
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
 CATEGORIES=	textproc python
 MASTER_SITES=	${MASTER_SITE_PYPI:=M/Markdown/}
 
 MAINTAINER=	joerg@NetBSD.org
-HOMEPAGE=	http://pypi.python.org/pypi/Markdown
+HOMEPAGE=	https://pypi.python.org/pypi/Markdown
 COMMENT=	XHTML generator using a simple markup
 LICENSE=	modified-bsd
 
@@ -19,7 +19,7 @@ post-extract:
 	${MV} ${WRKSRC}/bin/markdown_py ${WRKSRC}/bin/markdown_py${PYVERSSUFFIX}
 
 do-test:
-	${RUN} cd ${WRKSRC}; ${SETENV} ${TEST_ENV} ${PYTHONBIN} run-tests.py
+	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHONBIN} run-tests.py
 
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

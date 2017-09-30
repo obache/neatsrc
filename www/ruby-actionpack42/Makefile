@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.2 2017/06/04 14:46:29 taca Exp $
+# $NetBSD: Makefile,v 1.4 2017/07/18 14:38:52 taca Exp $
 
-DISTNAME=	actionpack-${RUBY_RAILS_VERSION}
+DISTNAME=	actionpack-${RAILS_VERSION}
+PKGNAME=	${RUBY_PKGPREFIX}-actionpack${RUBY_RAILS}-${RAILS_VERSION}
 PKGREVISION=	1
 CATEGORIES=	www
 
@@ -13,8 +14,9 @@ DEPENDS+=	${RUBY_ACTIONVIEW_DEPENDS}
 DEPENDS+=	${RUBY_ACTIVESUPPORT_DEPENDS}
 DEPENDS+=	${RUBY_PKGPREFIX}-rack16>=1.6:../../www/ruby-rack16
 DEPENDS+=	${RUBY_PKGPREFIX}-rack-test>=0.6.2<0.7:../../www/ruby-rack-test
-DEPENDS+=	${RUBY_PKGPREFIX}-rails-dom-testing>=1.0.5:../../textproc/ruby-rails-dom-testing
-DEPENDS+=	${RUBY_PKGPREFIX}-rails-html-sanitizer>=1.0.2:../../www/ruby-rails-html-sanitizer
+# ruby-actionview already depends them.
+#DEPENDS+=	${RUBY_PKGPREFIX}-rails-dom-testing>=1.0.5:../../textproc/ruby-rails-dom-testing
+#DEPENDS+=	${RUBY_PKGPREFIX}-rails-html-sanitizer>=1.0.2:../../www/ruby-rails-html-sanitizer
 
 RUBY_RAILS_SUPPORTED=	42
 RUBY_RAILS_STRICT_DEP=	yes

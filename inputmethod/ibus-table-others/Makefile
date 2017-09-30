@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2015/04/13 23:12:42 rodent Exp $
+# $NetBSD: Makefile,v 1.14 2017/08/16 21:22:13 wiz Exp $
 #
 
 DISTNAME=	ibus-table-others-1.3.9

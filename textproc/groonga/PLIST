@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.30 2016/09/11 16:06:53 taca Exp $
+@comment $NetBSD: PLIST,v 1.31 2017/08/29 12:54:47 fhajny Exp $
 bin/groonga
 bin/groonga-benchmark
 bin/groonga-suggest-create-dataset

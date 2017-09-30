@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.8 2016/12/30 11:16:57 jaapb Exp $
+# $NetBSD: Makefile,v 1.11 2017/09/08 09:51:24 jaapb Exp $
 
-VERSION=	2.7.0
+VERSION=	2.8.0
 GITHUB_PROJECT=	ocaml-ipaddr
 DISTNAME=	${GITHUB_PROJECT}-${VERSION}
-PKGREVISION=	3
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mirage/}
 
@@ -12,12 +12,9 @@ HOMEPAGE=	https://github.com/mirage/ocaml-ipaddr/
 COMMENT=	Library for manipulation of IP and MAC addresses
 LICENSE=	isc
 
-WRKSRC=		${WRKDIR}/ocaml-ipaddr-${VERSION}
+OCAML_USE_JBUILDER=	yes
 
-OCAML_USE_FINDLIB=	yes
-OCAML_USE_OASIS=	yes
-
-.include "../../devel/ocaml-sexplib/buildlink3.mk"
+.include "../../devel/ocamlbuild/buildlink3.mk"
 .include "../../devel/ocaml-ppx_sexp_conv/buildlink3.mk"
 .include "../../mk/ocaml.mk"
 .include "../../mk/bsd.pkg.mk"

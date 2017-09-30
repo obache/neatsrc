@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.5 2016/06/08 17:43:22 wiz Exp $
+# $NetBSD: Makefile,v 1.7 2017/09/17 13:31:04 adam Exp $
 
-DISTNAME=	PyMySQL-0.6.6
+DISTNAME=	PyMySQL-0.7.11
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
 CATEGORIES=	databases python
 MASTER_SITES=	${MASTER_SITE_PYPI:=P/PyMySQL/}
 
-MAINTAINER=	rodent@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/PyMySQL/PyMySQL/
 COMMENT=	Pure-Python MySQL driver
 LICENSE=	mit

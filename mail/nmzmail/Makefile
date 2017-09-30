@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.1 2013/07/02 11:43:36 rodent Exp $
+# $NetBSD: Makefile,v 1.3 2017/09/16 19:26:59 wiz Exp $
 #
 
 DISTNAME=	nmzmail-1.1
 CATEGORIES=	mail
 MASTER_SITES=	http://www.ecademix.com/JohannesHofmann/
 
-MAINTAINER=	rodent@NetBSD.org
-HOMEPAGE=	http://www.ecademix.com/JohannesHofmann/nmzmail.html
+MAINTAINER=	pkgsrc-users@NetBSD.org
+#HOMEPAGE=	http://www.ecademix.com/JohannesHofmann/nmzmail.html
 COMMENT=	Fast mail searching for mutt
 LICENSE=	gnu-gpl-v3
 

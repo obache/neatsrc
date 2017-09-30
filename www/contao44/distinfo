@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.6 2017/09/18 12:19:55 taca Exp $
+
+SHA1 (contao-4.4.5.tar.gz) = 8c391f7cb0328bb54ef34fde4eb60b754b82824f
+RMD160 (contao-4.4.5.tar.gz) = e85fc8f46213bfd0a876e70d7f56f42ebdde5579
+SHA512 (contao-4.4.5.tar.gz) = 9390f84e1c3028684eeb55ea52e00cc1e15ed6f11adf77c4b9fc4ce64a40f8509f5ff7461dc878638e3bf3227de84dac82896a8e303337969dafa206a59767cf
+Size (contao-4.4.5.tar.gz) = 30674869 bytes

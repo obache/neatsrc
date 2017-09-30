@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.6 2016/04/13 17:59:34 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2017/08/16 20:21:09 wiz Exp $
 
 DISTNAME=	jbig2dec-0.13
+PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://downloads.ghostscript.com/public/jbig2dec/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.ghostscript.com/jbig2dec.html
+HOMEPAGE=	https://www.ghostscript.com/jbig2dec.html
 COMMENT=	JBIG2 decoder library
 LICENSE=	gnu-gpl-v3
 

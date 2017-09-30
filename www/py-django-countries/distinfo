@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.2 2017/06/16 07:17:58 adam Exp $
+
+SHA1 (django-countries-4.6.1.tar.gz) = c2f027e268aa87c084ed189c787965c1cc752f62
+RMD160 (django-countries-4.6.1.tar.gz) = 802d79ab79a729150f0f6b2f9c4aa76419d21a8d
+SHA512 (django-countries-4.6.1.tar.gz) = dd0896e67190d362e9682dd52f2744d348162963768b3c25c8d87581a94467e300561bcc7f410d4b237413914fa17be263386f9fb2ea0af1b998ba2784ea3072
+Size (django-countries-4.6.1.tar.gz) = 424039 bytes

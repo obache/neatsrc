@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.245 2017/04/26 14:10:04 prlw1 Exp $
+# $NetBSD: Makefile,v 1.250 2017/09/03 11:30:54 leot Exp $
 
-DISTNAME=	cups-2.2.3-source
+DISTNAME=	cups-2.2.4-source
 PKGNAME=	${DISTNAME:S/-source//}
-PKGREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_GITHUB:=apple/}
 
 MAINTAINER=	sbd@NetBSD.org
-HOMEPAGE=	http://www.cups.org/
+HOMEPAGE=	https://www.cups.org/
 COMMENT=	Common UNIX Printing System
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2
 
@@ -32,6 +31,7 @@ CONFIGURE_ARGS+=	--with-serverbindir=${PREFIX}/libexec/cups
 CONFIGURE_ARGS+=	--with-cups-user=${CUPS_USER}
 CONFIGURE_ARGS+=	--with-cups-group=${CUPS_GROUP}
 CONFIGURE_ARGS+=	--with-system-groups=${CUPS_SYSTEM_GROUPS:Q}
+CONFIGURE_ARGS+=	--with-exe-file-perm=0755
 CONFIGURE_ARGS+=	--enable-libpaper
 CONFIGURE_ARGS+=	--enable-libtool
 CONFIGURE_ARGS+=	--enable-ssl
@@ -131,7 +131,7 @@ SUBST_SED.piefix=	-e 's|@PIEFLAGS@||g'
 SUBST_STAGE.piefix=	post-patch
 .endif
 
-INSTALLATION_DIRS=	${DOCDIR} ${EGDIR} ${MIMEDIR} ${CUPS_CONFDIR}
+INSTALLATION_DIRS=	${DOCDIR} ${EGDIR} ${MIMEDIR}
 INSTALL_ENV+=		DSTROOT=${DESTDIR}
 
 pre-configure:
@@ -145,7 +145,7 @@ post-extract:
 	${CP} ${FILESDIR}/cups.pam ${WRKDIR}/cups.pam
 
 post-install:
-	set -e; for file in LICENSE.txt README.txt; do			\
+	set -e; for file in LICENSE.txt README.md; do			\
 		${INSTALL_DATA} ${WRKSRC}/$${file}			\
 		     ${DESTDIR}${DOCDIR}/$${file}; \
 	done

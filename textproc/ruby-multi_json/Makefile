@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.15 2016/10/18 14:39:16 taca Exp $
+# $NetBSD: Makefile,v 1.17 2017/09/10 16:09:00 taca Exp $
 
-DISTNAME=	multi_json-1.12.1
+DISTNAME=	multi_json-1.12.2
 CATEGORIES=	textproc
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://github.com/intridea/multi_json
+HOMEPAGE=	https://github.com/intridea/multi_json
 COMMENT=	General-purpose swappable JSON backend library
 LICENSE=	mit
 

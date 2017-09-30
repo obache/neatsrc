@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.4 2016/11/16 13:21:14 wiz Exp $
+@comment $NetBSD: PLIST,v 1.6 2017/08/06 08:34:02 wiz Exp $
 bin/borg-${PYVERSSUFFIX}
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
@@ -12,6 +12,8 @@ ${PYSITELIB}/borg/__init__.pyo
 ${PYSITELIB}/borg/__main__.py
 ${PYSITELIB}/borg/__main__.pyc
 ${PYSITELIB}/borg/__main__.pyo
+${PYSITELIB}/borg/_chunker.c
+${PYSITELIB}/borg/_hashindex.c
 ${PYSITELIB}/borg/_version.py
 ${PYSITELIB}/borg/_version.pyc
 ${PYSITELIB}/borg/_version.pyo
@@ -24,12 +26,20 @@ ${PYSITELIB}/borg/archiver.pyo
 ${PYSITELIB}/borg/cache.py
 ${PYSITELIB}/borg/cache.pyc
 ${PYSITELIB}/borg/cache.pyo
+${PYSITELIB}/borg/chunker.c
+${PYSITELIB}/borg/chunker.pyx
 ${PYSITELIB}/borg/chunker.so
+${PYSITELIB}/borg/compress.c
+${PYSITELIB}/borg/compress.pyx
 ${PYSITELIB}/borg/compress.so
+${PYSITELIB}/borg/crypto.c
+${PYSITELIB}/borg/crypto.pyx
 ${PYSITELIB}/borg/crypto.so
 ${PYSITELIB}/borg/fuse.py
 ${PYSITELIB}/borg/fuse.pyc
 ${PYSITELIB}/borg/fuse.pyo
+${PYSITELIB}/borg/hashindex.c
+${PYSITELIB}/borg/hashindex.pyx
 ${PYSITELIB}/borg/hashindex.so
 ${PYSITELIB}/borg/helpers.py
 ${PYSITELIB}/borg/helpers.pyc
@@ -49,9 +59,16 @@ ${PYSITELIB}/borg/logger.pyo
 ${PYSITELIB}/borg/lrucache.py
 ${PYSITELIB}/borg/lrucache.pyc
 ${PYSITELIB}/borg/lrucache.pyo
+${PYSITELIB}/borg/paperkey.html
 ${PYSITELIB}/borg/platform.py
 ${PYSITELIB}/borg/platform.pyc
 ${PYSITELIB}/borg/platform.pyo
+${PYSITELIB}/borg/platform_darwin.c
+${PYSITELIB}/borg/platform_darwin.pyx
+${PYSITELIB}/borg/platform_freebsd.c
+${PYSITELIB}/borg/platform_freebsd.pyx
+${PYSITELIB}/borg/platform_linux.c
+${PYSITELIB}/borg/platform_linux.pyx
 ${PYSITELIB}/borg/remote.py
 ${PYSITELIB}/borg/remote.pyc
 ${PYSITELIB}/borg/remote.pyo
@@ -70,6 +87,7 @@ ${PYSITELIB}/borg/testsuite/archive.pyo
 ${PYSITELIB}/borg/testsuite/archiver.py
 ${PYSITELIB}/borg/testsuite/archiver.pyc
 ${PYSITELIB}/borg/testsuite/archiver.pyo
+${PYSITELIB}/borg/testsuite/attic.tar.gz
 ${PYSITELIB}/borg/testsuite/benchmark.py
 ${PYSITELIB}/borg/testsuite/benchmark.pyc
 ${PYSITELIB}/borg/testsuite/benchmark.pyo

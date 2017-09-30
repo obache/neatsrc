@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.4 2017/05/10 17:58:32 adam Exp $
+$NetBSD: distinfo,v 1.6 2017/09/07 06:26:39 adam Exp $
 
-SHA1 (apache-libcloud-2.0.0.tar.gz) = 707e3566807f3bb24d68ef76499e50649fb39baf
-RMD160 (apache-libcloud-2.0.0.tar.gz) = 44b7c3fd552ec1245a9d28d175ccda75152e1406
-SHA512 (apache-libcloud-2.0.0.tar.gz) = 02b45a4f582dea4f1f5c4a5de1113620510bfda9e64069c282bb8838dd80786b98881ef1e3c276db10629a589ee40eb09ee58737fabaf198397d75da5c964f14
-Size (apache-libcloud-2.0.0.tar.gz) = 1704652 bytes
+SHA1 (apache-libcloud-2.2.0.tar.gz) = a7954c86014ec0f23cf4afff7c5d6f9b28c1c5d0
+RMD160 (apache-libcloud-2.2.0.tar.gz) = 41b66d85c2366f3844e3ef56c56e6097b1d28933
+SHA512 (apache-libcloud-2.2.0.tar.gz) = 1a18cab5d5a75c1950dffa0653df63898ef74f46e9f520598c128901a2a3ab8fbf35f0f911c9440e232487cae6a968d5b6799ece2ab17b8a28a74d80d044cce5
+Size (apache-libcloud-2.2.0.tar.gz) = 1728215 bytes

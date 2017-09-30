@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.17 2016/07/16 00:47:00 markd Exp $
+$NetBSD: distinfo,v 1.19 2017/06/26 11:02:30 markd Exp $
 
 SHA1 (Daemon.README) = eb1e6af52adc02ded77af17e8953134b7e60d23b
 RMD160 (Daemon.README) = 39edd92ed4314397080f32a8caff0ac3f716ecf4
@@ -31,7 +31,7 @@ SHA1 (patch-ksysguard_ksysguardd_NetBSD_CPU.c) = 05312793f0c66cacf1bb61c081a8b15
 SHA1 (patch-ksysguard_ksysguardd_NetBSD_CPU.h) = e682d488c61ca2540ed4b2112c9bffc45bbe5e8d
 SHA1 (patch-ksysguard_ksysguardd_NetBSD_Memory.c) = 38f18a03c1b99fddbbc51fe52fd6e3b66e5d9f13
 SHA1 (patch-ksysguard_ksysguardd_NetBSD_Memory.h) = e58dc4a0a7be7350251f26de34a8949e7508c983
-SHA1 (patch-ksysguard_ksysguardd_NetBSD_ProcessList.c) = 0921fe9569bd54f5e381ebead738b95e431bb1d5
+SHA1 (patch-ksysguard_ksysguardd_NetBSD_ProcessList.c) = 55e33c0b12258e1bcc9c5395c1f743cfdb07f0e1
 SHA1 (patch-ksysguard_ksysguardd_Solaris_LoadAvg.c) = bc3c434d09485cdf03a357ab5621271adcc3627b
 SHA1 (patch-kwin_effects_mousemark_mousemark.cpp) = 4b6625f9bebf6bd2c6057d7045d9ce6af3103578
 SHA1 (patch-kwin_glxbackend.cpp) = c0e1c43cfb832cdc966156c54e5e12d78e78e7ab
@@ -41,7 +41,7 @@ SHA1 (patch-libs_kephal_service_xrandr12_randroutput.cpp) = 03fc906e4ec34b31d923
 SHA1 (patch-libs_ksysguard_ksgrd_SensorManager.cpp) = 5fa92fa4876514198813f900f71f3364794b8248
 SHA1 (patch-libs_ksysguard_processcore_CMakeLists.txt) = 61b886388aa5d0831581eacb7db79de0ae5eaf80
 SHA1 (patch-libs_ksysguard_processcore_processes.cpp) = 8bfcc8b7e91eafd6b444f4103d3860fb6434a535
-SHA1 (patch-libs_ksysguard_processcore_processes__netbsd__p.cpp) = 9fa5c51c28537c4b242847d3d54c893d28ddcaf4
+SHA1 (patch-libs_ksysguard_processcore_processes__netbsd__p.cpp) = 37303769e7b3890b47cc4f1f2715f55f2015a3ca
 SHA1 (patch-mkpamserv) = 736fc439a34298f51c9fb09200b9dc8628eabc43
 SHA1 (patch-plasma_generic_applets_digital-clock_clock.cpp) = dd052f6c36fbd62dd5fecc0bcf162f22e500463c
 SHA1 (patch-plasma_generic_dataengines_rss_CMakeLists.txt) = 6a12cb3cb54a8b1899f29e7f50a1171862dce66e

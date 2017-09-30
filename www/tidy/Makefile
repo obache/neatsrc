@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.50 2017/02/20 09:31:53 wiz Exp $
+# $NetBSD: Makefile,v 1.52 2017/07/16 19:07:12 maya Exp $
 
-DISTNAME=	tidy-html5-5.2.0
+DISTNAME=	tidy-html5-5.4.0
 PKGNAME=	${DISTNAME:S/-html5//}
 CATEGORIES=	www textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=htacg/}
@@ -15,6 +15,7 @@ LICENSE=	mit
 BUILD_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 
 USE_LANGUAGES=	c c++
+GCC_REQD+=	4.4
 
 USE_CMAKE=	yes
 CMAKE_ARGS+=	-DMAN_INSTALL_DIR:PATH=${PKGMANDIR}/man1

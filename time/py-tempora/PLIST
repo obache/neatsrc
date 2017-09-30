@@ -1,5 +1,5 @@
-@comment $NetBSD: PLIST,v 1.3 2017/04/23 06:58:47 wiz Exp $
-bin/calc-prorate
+@comment $NetBSD: PLIST,v 1.5 2017/08/22 08:08:25 adam Exp $
+bin/calc-prorate${PYVERSSUFFIX}
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt

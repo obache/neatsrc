@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.7 2017/04/30 01:21:20 ryoon Exp $
+# $NetBSD: Makefile,v 1.9 2017/08/24 20:02:56 adam Exp $
 
-PKGREVISION= 5
+PKGREVISION= 6
 .include "../../meta-pkgs/kde-telepathy/Makefile.common"
 DISTNAME=	ktp-common-internals-${KTP_VERSION}
 CATEGORIES=	chat kde
@@ -8,7 +8,7 @@ MASTER_SITES=	${MASTER_SITE_KDE:=kde-telepathy/${KTP_VERSION}/src/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	jaapb@NetBSD.org
-HOMEPAGE=	http://community.kde.org/KTp
+HOMEPAGE=	https://community.kde.org/KTp
 COMMENT=	KDE Telepathy common internal library
 LICENSE=	gnu-lgpl-v2.1
 

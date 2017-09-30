@@ -1,4 +1,4 @@
-$NetBSD: patch-startkde.cmake,v 1.3 2013/11/07 13:35:56 markd Exp $
+$NetBSD: patch-startkde.cmake,v 1.5 2017/06/26 11:02:30 markd Exp $
 
 --- startkde.cmake.orig	2013-03-01 06:32:24.000000000 +0000
 +++ startkde.cmake

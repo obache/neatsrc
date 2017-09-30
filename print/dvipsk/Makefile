@@ -1,17 +1,15 @@
-# $NetBSD: Makefile,v 1.15 2016/06/16 04:06:19 markd Exp $
+# $NetBSD: Makefile,v 1.17 2017/09/06 16:49:29 wiz Exp $
 
-DISTNAME=	texlive-20160523-source
-PKGNAME=	dvipsk-5.996
+DISTNAME=	texlive-20170524-source
+PKGNAME=	dvipsk-5.997
 CATEGORIES=	print
-MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2016/
+MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2017/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	minskim@NetBSD.org
 HOMEPAGE=	http://www.radicaleye.com/dvips.html
 COMMENT=	DVI-to-PostScript translator
 
-CONFLICTS+=	teTeX-bin<3.0nb24
-CONFLICTS+=	teTeX-texmf<3.0nb9
 BUILD_DEPENDS+=	tex-texconfig-[0-9]*:../../print/tex-texconfig
 DEPENDS+=	tex-dvips>=2013:../../print/tex-dvips
 

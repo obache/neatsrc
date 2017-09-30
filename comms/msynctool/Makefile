@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.21 2017/04/22 21:03:26 adam Exp $
+# $NetBSD: Makefile,v 1.23 2017/09/18 09:53:13 maya Exp $
 #
 
 DISTNAME=	msynctool-0.22
-PKGREVISION=	17
+PKGREVISION=	18
 CATEGORIES=	comms
-MASTER_SITES=	http://www.opensync.org/download/releases/0.22/
+##MASTER_SITES=	http://www.opensync.org/download/releases/0.22/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.opensync.org/
+#HOMEPAGE=	http://www.opensync.org/
 COMMENT=	Command line tool for opensync framework
 
 USE_TOOLS+=	pkg-config

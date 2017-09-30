@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.69 2017/05/31 17:31:51 adam Exp $
+@comment $NetBSD: PLIST,v 1.72 2017/08/25 05:27:53 adam Exp $
 share/doc/sqlite3/34to35.html
 share/doc/sqlite3/35to36.html
 share/doc/sqlite3/about.html
@@ -11,6 +11,7 @@ share/doc/sqlite3/asyncvfs.html
 share/doc/sqlite3/atomiccommit.html
 share/doc/sqlite3/autoinc.html
 share/doc/sqlite3/backup.html
+share/doc/sqlite3/bindptr.html
 share/doc/sqlite3/books.html
 share/doc/sqlite3/c3ref/aggregate_context.html
 share/doc/sqlite3/c3ref/aggregate_count.html
@@ -52,6 +53,7 @@ share/doc/sqlite3/c3ref/c_limit_attached.html
 share/doc/sqlite3/c3ref/c_lock_exclusive.html
 share/doc/sqlite3/c3ref/c_mutex_fast.html
 share/doc/sqlite3/c3ref/c_open_autoproxy.html
+share/doc/sqlite3/c3ref/c_prepare_persistent.html
 share/doc/sqlite3/c3ref/c_scanstat_est.html
 share/doc/sqlite3/c3ref/c_shm_exclusive.html
 share/doc/sqlite3/c3ref/c_shm_nlock.html
@@ -202,6 +204,7 @@ share/doc/sqlite3/chronology.html
 share/doc/sqlite3/cintro.html
 share/doc/sqlite3/cli.html
 share/doc/sqlite3/compile.html
+share/doc/sqlite3/completion.html
 share/doc/sqlite3/conflict.html
 share/doc/sqlite3/consortium.html
 share/doc/sqlite3/consortium_agreement-20071201.html
@@ -303,6 +306,11 @@ share/doc/sqlite3/images/cpu-usage.jpg
 share/doc/sqlite3/images/dan1.jpg
 share/doc/sqlite3/images/direct1b.gif
 share/doc/sqlite3/images/drh1.jpg
+share/doc/sqlite3/images/faster-read-blobapi.jpg
+share/doc/sqlite3/images/faster-read-mmap.jpg
+share/doc/sqlite3/images/faster-read-sql.jpg
+share/doc/sqlite3/images/faster-write-safe.jpg
+share/doc/sqlite3/images/faster-write-unsafe.jpg
 share/doc/sqlite3/images/fileformat/db_connection.gif
 share/doc/sqlite3/images/fileformat/examplepop.gif
 share/doc/sqlite3/images/fileformat/fileio_diagrams.odg
@@ -580,9 +588,12 @@ share/doc/sqlite3/releaselog/3_16_1.html
 share/doc/sqlite3/releaselog/3_16_2.html
 share/doc/sqlite3/releaselog/3_17_0.html
 share/doc/sqlite3/releaselog/3_18_0.html
+share/doc/sqlite3/releaselog/3_18_1.html
+share/doc/sqlite3/releaselog/3_18_2.html
 share/doc/sqlite3/releaselog/3_19_0.html
 share/doc/sqlite3/releaselog/3_19_1.html
 share/doc/sqlite3/releaselog/3_19_2.html
+share/doc/sqlite3/releaselog/3_19_3.html
 share/doc/sqlite3/releaselog/3_1_0.html
 share/doc/sqlite3/releaselog/3_1_1.html
 share/doc/sqlite3/releaselog/3_1_2.html
@@ -590,6 +601,8 @@ share/doc/sqlite3/releaselog/3_1_3.html
 share/doc/sqlite3/releaselog/3_1_4.html
 share/doc/sqlite3/releaselog/3_1_5.html
 share/doc/sqlite3/releaselog/3_1_6.html
+share/doc/sqlite3/releaselog/3_20_0.html
+share/doc/sqlite3/releaselog/3_20_1.html
 share/doc/sqlite3/releaselog/3_2_0.html
 share/doc/sqlite3/releaselog/3_2_1.html
 share/doc/sqlite3/releaselog/3_2_2.html
@@ -777,7 +790,9 @@ share/doc/sqlite3/spellfix1.html
 share/doc/sqlite3/sqlanalyze.html
 share/doc/sqlite3/sqldiff.html
 share/doc/sqlite3/sqlite.css
+share/doc/sqlite3/sqlite.css~
 share/doc/sqlite3/sqlite.html
+share/doc/sqlite3/stmt.html
 share/doc/sqlite3/support.html
 share/doc/sqlite3/syntax.html
 share/doc/sqlite3/syntax/alter-table-stmt.html
@@ -849,6 +864,7 @@ share/doc/sqlite3/threadsafe.html
 share/doc/sqlite3/toc.db
 share/doc/sqlite3/transactional.html
 share/doc/sqlite3/undoredo.html
+share/doc/sqlite3/unionvtab.html
 share/doc/sqlite3/unlock_notify.html
 share/doc/sqlite3/uri.html
 share/doc/sqlite3/vdbe.html

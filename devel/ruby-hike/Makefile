@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.2 2013/06/16 15:45:06 taca Exp $
+# $NetBSD: Makefile,v 1.4 2017/09/02 15:04:49 taca Exp $
 
-DISTNAME=	hike-1.2.3
+DISTNAME=	hike-2.1.3
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://github.com/sstephenson/hike
+HOMEPAGE=	https://github.com/sstephenson/hike
 COMMENT=	Find files in a set of paths
 LICENSE=	mit
 

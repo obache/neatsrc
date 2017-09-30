@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.52 2017/05/31 09:40:53 wiz Exp $
+# $NetBSD: Makefile,v 1.58 2017/09/08 20:14:20 wiz Exp $
 
 # Upstream regularly breaks protocol compatibility.  While users of
 # pkgsrc syncthing on multiple systems can update synchronously, an
@@ -13,14 +13,14 @@
 # Note that the android versioning is disconnected from syncthing versioning;
 # see https://github.com/syncthing/syncthing-android/issues/652 for
 # a fuller explanation.
-DISTNAME=	syncthing-0.14.29
+DISTNAME=	syncthing-0.14.37
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=syncthing/}
 
 # Minor version updates may be committed without asking.  Major
 # updates not following the above policy will be reverted.
 COMMENT=	Keeps directories in sync across hosts
-HOMEPAGE=	http://syncthing.net/
+HOMEPAGE=	https://syncthing.net/
 MAINTAINER=	gdt@NetBSD.org
 LICENSE=	mpl-2.0
 
@@ -57,6 +57,8 @@ WRKPLACEP=		${GOPATH}/src/github.com/syncthing
 WRKPLACE=		${WRKPLACEP}/syncthing
 
 MAKE_ENV+=		GOPATH=${GOPATH}
+
+CHECK_RELRO_SKIP+=	bin/syncthing
 
 # This used to be set; there seems to be no reason any longer.  To be
 # pruned on 2016-11-04.

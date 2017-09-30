@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2013/04/11 16:50:38 rodent Exp $
+# $NetBSD: Makefile,v 1.3 2017/09/16 19:27:12 wiz Exp $
 #
 
 DISTNAME=	aspell5-ku-0.20-1
@@ -7,8 +7,8 @@ CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GNU:=aspell/dict/ku/}
 EXTRACT_SUFX=	.tar.bz2
 
-MAINTAINER=	rodent@NetBSD.org
-HOMEPAGE=	http://sourceforge.net/projects/myspellkurdish/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://sourceforge.net/projects/myspellkurdish/
 COMMENT=	Kurdi language support for aspell
 LICENSE=	gnu-gpl-v2
 

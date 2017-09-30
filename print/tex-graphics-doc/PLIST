@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2016/08/07 10:32:06 markd Exp $
+@comment $NetBSD: PLIST,v 1.7 2017/08/23 23:59:34 markd Exp $
 share/texmf-dist/doc/latex/graphics/README.txt
 share/texmf-dist/doc/latex/graphics/cat.eps
 share/texmf-dist/doc/latex/graphics/changes.txt

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.14 2017/01/01 14:43:26 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2017/08/01 14:58:53 wiz Exp $
 
-DISTNAME=	python-gammu-2.7
+DISTNAME=	python-gammu-2.9
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/python-//}
 MASTER_SITES=	http://dl.cihar.com/python-gammu/
 CATEGORIES=	comms
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://wammu.eu/gammu/
+HOMEPAGE=	https://wammu.eu/gammu/
 COMMENT=	Python bindings for gammu
 LICENSE=	gnu-gpl-v2
 

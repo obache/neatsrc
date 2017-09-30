@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.515 2017/05/14 14:36:06 wiz Exp $
+# $NetBSD: Makefile,v 1.517 2017/07/27 11:21:25 wiz Exp $
 
 PKGNAME=	pkglint-5.4.20
-PKGREVISION=	2
+PKGREVISION=	3
 DISTFILES=	# none
 CATEGORIES=	pkgtools
 
@@ -16,6 +16,9 @@ USE_LANGUAGES=	c
 USE_TOOLS+=	pax
 AUTO_MKDIRS=	yes
 GO_SRCPATH=	netbsd.org/pkglint
+
+CHECK_RELRO_SKIP+=	bin/pkglint
+CHECK_RELRO_SKIP+=	bin/plist-clash
 
 SUBST_CLASSES+=		pkglint
 SUBST_STAGE.pkglint=	post-configure

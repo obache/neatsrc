@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.71 2017/05/21 09:44:06 leot Exp $
+# $NetBSD: Makefile,v 1.79 2017/09/07 11:24:29 prlw1 Exp $
 
-DISTNAME=	cups-filters-1.14.0
+DISTNAME=	cups-filters-1.17.2
+PKGREVISION=	3
 CATEGORIES=	print
 MASTER_SITES=	http://openprinting.org/download/cups-filters/
 EXTRACT_SUFX=	.tar.xz
@@ -13,7 +14,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND mit
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	bash:run pkg-config gmake
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c c++11
 
 BUILD_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 DEPENDS+=	poppler-utils-[0-9]*:../../print/poppler-utils
@@ -36,10 +37,11 @@ REPLACE_BASH+=	filter/braille/filters/texttobrf.in
 CFLAGS+=	-framework IOKit
 .endif
 
-.if ${INIT_SYSTEM} == "rc.d"
-CONFIGURE_ARGS+=	--with-rcdir=${PREFIX}/share/examples/rc.d
-CONFIGURE_ARGS+=	--with-rclevels=""
-.endif
+BUILD_DEFS+=		VARBASE
+CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
+
+RCD_SCRIPTS=		cups-browsed
+
 CONFIGURE_ARGS+=	--disable-braille
 CONFIGURE_ARGS+=	--disable-ldap
 CONFIGURE_ARGS+=	--disable-mutool
@@ -53,11 +55,22 @@ INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples/cups-filters
 CONF_FILES=		${PREFIX}/share/examples/cups-filters/fonts/conf.d/99pdftoopvp.conf ${PKG_SYSCONFDIR}/fontconfig/conf.d/99pdftoopvp.conf
 CONF_FILES+=		${PREFIX}/share/examples/cups-filters/cups-browsed.conf ${PKG_SYSCONFDIR}/cups/cups-browsed.conf
 
+post-extract:
+	${CP} ${FILESDIR}/cups-browsed-daemonize.sh ${WRKSRC}
+
+SUBST_CLASSES+=			daemonize
+SUBST_STAGE.daemonize=		pre-configure
+SUBST_MESSAGE.daemonize=	Customizing daemonizing script
+SUBST_FILES.daemonize=		cups-browsed-daemonize.sh
+SUBST_SED.daemonize=		-e 's|@PREFIX@|${PREFIX}|g'
+SUBST_SED.daemonize+=		-e 's|@VARBASE@|${VARBASE}|g'
+
 post-install:
 	${MV} ${DESTDIR}${PKG_SYSCONFDIR}/cups/cups-browsed.conf ${DESTDIR}${PREFIX}/share/examples/cups-filters/cups-browsed.conf
 	# backends that need root access should not have world read and execute permissions
 	${CHMOD} go-rwx ${DESTDIR}${PREFIX}/libexec/cups/backend/parallel
 	${CHMOD} go-rwx ${DESTDIR}${PREFIX}/libexec/cups/backend/serial
+	${INSTALL_SCRIPT} ${WRKSRC}/cups-browsed-daemonize.sh ${DESTDIR}${PREFIX}/libexec/cups-browsed
 
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

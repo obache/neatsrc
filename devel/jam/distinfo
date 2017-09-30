@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.9 2017/03/23 17:06:48 joerg Exp $
+$NetBSD: distinfo,v 1.11 2017/07/27 08:48:34 wiz Exp $
 
 SHA1 (ftjam-2.5.2.tar.bz2) = 08bad35e74ec85c4592d378014586174d22297b5
 RMD160 (ftjam-2.5.2.tar.bz2) = fd1d1161963ba85be09aecffe832cf1db8a7b70f

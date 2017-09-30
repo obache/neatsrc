@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.2 2017/09/17 10:28:54 adam Exp $
+
+SHA1 (multidict-3.2.0.tar.gz) = 15c599f208c3c22373035ecf2703023f7cfea8bb
+RMD160 (multidict-3.2.0.tar.gz) = 3898ddc9e5a50ecc44209eb598358e3d5c91657a
+SHA512 (multidict-3.2.0.tar.gz) = 2b32d7ca31628bf20cee6880dfdf7765ab7b651f0bd965ade7356ddfaf69f66288a959a8a9ab07d8c18714e7031e55b1c9e7d1b7adea7e6cf0626a22dfecce3e
+Size (multidict-3.2.0.tar.gz) = 33870 bytes

@@ -1,10 +1,12 @@
-# $NetBSD: Makefile,v 1.20 2017/01/29 07:54:19 tsutsui Exp $
+# $NetBSD: Makefile,v 1.21 2017/06/11 05:51:40 tsutsui Exp $
 #
 
 DISTNAME=		gio2-${VERSION}
 PKGNAME=		${RUBY_PKGPREFIX}-gnome2-gio-${VERSION}
 COMMENT=		Ruby binding of gio-2.0.x
 CATEGORIES=		devel
+
+MAINTAINER=		tsutsui@NetBSD.org
 
 DEPENDS+=		${RUBY_PKGPREFIX}-gnome2-glib>=${VERSION}:../../devel/ruby-gnome2-glib
 DEPENDS+=		${RUBY_PKGPREFIX}-gnome2-gobject-introspection>=${VERSION}:../../devel/ruby-gnome2-gobject-introspection

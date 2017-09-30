@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.802 2017/04/22 17:40:39 taca Exp $
+# $NetBSD: Makefile,v 1.807 2017/09/03 09:04:47 wiz Exp $
 #
 
 COMMENT=	Packages to support the X window system
@@ -386,8 +386,6 @@ SUBDIR+=	modular-xorg-xquartz
 SUBDIR+=	motif
 SUBDIR+=	mowitz
 SUBDIR+=	mozo
-SUBDIR+=	mrxvt
-SUBDIR+=	multi-aterm
 SUBDIR+=	mxterm
 SUBDIR+=	neXtaw
 SUBDIR+=	numlockx
@@ -500,6 +498,7 @@ SUBDIR+=	ruby-gnome2-gtksourceview2
 SUBDIR+=	ruby-gnome2-gtksourceview3
 SUBDIR+=	ruby-gnome2-vte
 SUBDIR+=	ruby-tk
+SUBDIR+=	ruby-tk-gem
 SUBDIR+=	ruby-wxruby
 SUBDIR+=	rxvt
 SUBDIR+=	rxvt-unicode
@@ -534,6 +533,7 @@ SUBDIR+=	videoproto
 SUBDIR+=	viewres
 SUBDIR+=	vte
 SUBDIR+=	vte029
+SUBDIR+=	vte3
 SUBDIR+=	wdm
 SUBDIR+=	wmavgload
 SUBDIR+=	wmfire
@@ -568,6 +568,7 @@ SUBDIR+=	xcb-util-image
 SUBDIR+=	xcb-util-keysyms
 SUBDIR+=	xcb-util-renderutil
 SUBDIR+=	xcb-util-wm
+SUBDIR+=	xcb-util-xrm
 SUBDIR+=	xcb-util036
 SUBDIR+=	xclip
 SUBDIR+=	xclipboard
@@ -589,6 +590,7 @@ SUBDIR+=	xdialog
 SUBDIR+=	xditview
 SUBDIR+=	xdm
 SUBDIR+=	xdm3d
+SUBDIR+=	xdotool
 SUBDIR+=	xdpyinfo
 SUBDIR+=	xdriinfo
 SUBDIR+=	xearth

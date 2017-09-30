@@ -1,16 +1,18 @@
-# $NetBSD: Makefile,v 1.17 2016/12/30 11:16:57 jaapb Exp $
+# $NetBSD: Makefile,v 1.20 2017/09/08 09:51:18 jaapb Exp $
 #
 
+VERSION=	1.07
+GITHUB_PROJECT=	camlzip
+GITHUB_TAG=	rel${VERSION:S/.//}
+DISTNAME=	${GITHUB_PROJECT}-${VERSION}
 PKGNAME=	ocaml-zip-${VERSION}
-DISTNAME=	camlzip-${VERSION}
-VERSION=	1.06
-PKGREVISION=	2
+PKGREVISION=	1
 CATEGORIES=	archivers
-MASTER_SITES=	http://forge.ocamlcore.org/frs/download.php/1616/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=xavierleroy/}
 LICENSE=	gnu-lgpl-v2.1
 
 MAINTAINER=	jaapb@NetBSD.org
-HOMEPAGE=	http://forge.ocamlcore.org/projects/camlzip/
+HOMEPAGE=	https://github.com/xavierleroy/camlzip
 COMMENT=	OCaml library to manipulate ZIP/GZIP/JAR archives
 
 BUILD_TARGET=	all

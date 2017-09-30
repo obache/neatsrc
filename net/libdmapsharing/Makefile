@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.44 2017/04/22 21:03:49 adam Exp $
+# $NetBSD: Makefile,v 1.46 2017/09/18 09:53:31 maya Exp $
 
 DISTNAME=	libdmapsharing-2.1.9
-PKGREVISION=	40
+PKGREVISION=	41
 CATEGORIES=	net
-MASTER_SITES=	http://www.flyn.org/projects/libdmapsharing/
+MASTER_SITES=	https://www.flyn.org/projects/libdmapsharing/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Implementation of the DMAP family of protocols
-HOMEPAGE=	http://www.flyn.org/projects/libdmapsharing/
+HOMEPAGE=	https://www.flyn.org/projects/libdmapsharing/
 
 GNU_CONFIGURE=		yes
 LICENSE=		gnu-lgpl-v2.1

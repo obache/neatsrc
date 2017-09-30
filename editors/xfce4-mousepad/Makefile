@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.34 2017/02/12 06:25:17 ryoon Exp $
+# $NetBSD: Makefile,v 1.36 2017/06/20 15:35:23 youri Exp $
 
-PKGREVISION= 4
+PKGREVISION= 5
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
 VERSION=	0.4.0
@@ -14,5 +14,5 @@ COMMENT=	Xfce text editor
 
 .include "../../devel/glib2/schemas.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../x11/gtksourceview2/buildlink3.mk"
+.include "../../x11/gtksourceview3/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.100 2016/07/09 06:38:21 wiz Exp $
+# $NetBSD: Makefile,v 1.103 2017/07/30 22:47:51 wiz Exp $
 
 DISTNAME=		gnome-icon-theme-3.12.0
-PKGREVISION=		1
+PKGREVISION=		2
 CATEGORIES=		graphics gnome
 MASTER_SITES=		${MASTER_SITE_GNOME:=sources/gnome-icon-theme/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=		.tar.xz
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.gnome.org/
+HOMEPAGE=		https://www.gnome.org/
 COMMENT=		Theme consisting of a set of icons for GNOME
 LICENSE=		cc-by-sa-v3.0 AND gnu-lgpl-v3
 

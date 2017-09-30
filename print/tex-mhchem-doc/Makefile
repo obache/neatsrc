@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.6 2016/06/16 04:06:12 markd Exp $
+# $NetBSD: Makefile,v 1.8 2017/08/24 02:14:15 markd Exp $
 
 DISTNAME=	mhchem.doc
-PKGNAME=	tex-${DISTNAME:S/./-/}-4.04
-TEXLIVE_REV=	39676
+PKGNAME=	tex-${DISTNAME:S/./-/}-4.07
+TEXLIVE_REV=	44888
 
 MAINTAINER=	minskim@NetBSD.org
 HOMEPAGE=	http://ctan.org/pkg/mhchem

@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.35 2016/07/24 20:12:34 rillig Exp $
+# $NetBSD: Makefile,v 1.37 2017/09/03 08:37:02 wiz Exp $
 #
 
 DISTNAME=	pwm-20060517
 PKGNAME=	${DISTNAME:S/-/-1.0./}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	wm x11
 MASTER_SITES=	http://modeemi.fi/~tuomov/pwm/dl/
 
 MAINTAINER=	salo@NetBSD.org
-HOMEPAGE=	http://modeemi.fi/~tuomov/ion/pwm.html
+#HOMEPAGE=	http://modeemi.fi/~tuomov/ion/pwm.html
 COMMENT=	Window manager that frames multiple client windows in a single frame
 
 # pwm is linked against libtu.a before it is build.
@@ -20,6 +20,12 @@ USE_TOOLS+=	gmake
 
 CFLAGS+=	-DPKG_SYSCONFDIR="\"${PKG_SYSCONFDIR}\""
 MAKE_FLAGS+=	MANDIR=${PREFIX}/${PKGMANDIR}
+
+.include "../../mk/bsd.prefs.mk"
+
+.if ${OPSYS} == "NetBSD"
+MAKE_FLAGS+=	HAS_SYSTEM_ASPRINTF=1
+.endif
 
 PKG_SYSCONFSUBDIR=	pwm
 

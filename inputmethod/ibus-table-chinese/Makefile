@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2015/11/25 12:50:58 jperkin Exp $
+# $NetBSD: Makefile,v 1.14 2017/08/16 21:22:13 wiz Exp $
 #
 
 DISTNAME=	ibus-table-chinese-1.8.2

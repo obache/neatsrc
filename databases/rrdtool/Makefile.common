@@ -1,0 +1,16 @@
+# $NetBSD: Makefile.common,v 1.2 2017/09/04 18:08:19 wiz Exp $
+# used by databases/rrdtool/Makefile
+# used by databases/py-rrdtool/Makefile
+# used by databases/ruby-rrdtool/Makefile
+
+DISTNAME=	rrdtool-1.7.0
+CATEGORIES=	databases graphics net
+MASTER_SITES=	https://oss.oetiker.ch/rrdtool/pub/
+
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://oss.oetiker.ch/rrdtool/
+COMMENT=	Data analysis tool generating graphical representations
+LICENSE=	gnu-gpl-v2
+
+#DISTINFO_FILE=	${.CURDIR}/../../databases/rrdtool/distinfo
+#PATCHDIR=	${.CURDIR}/../../databases/rrdtool/patches

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.4 2016/06/08 17:43:47 wiz Exp $
+# $NetBSD: Makefile,v 1.6 2017/09/16 19:27:25 wiz Exp $
 
 DISTNAME=	wtforms-recaptcha-0.3.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	python www
 MASTER_SITES=	${MASTER_SITE_PYPI:=w/wtforms-recaptcha/}
 
-MAINTAINER=	rodent@NetBSD.org
-HOMEPAGE=	http://bitbucket.org/excieve/wtforms-recaptcha
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://bitbucket.org/excieve/wtforms-recaptcha
 COMMENT=	Custom WTForms field that handles reCaptcha display and validation
 LICENSE=	modified-bsd
 

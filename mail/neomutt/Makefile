@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.27 2017/05/02 09:39:56 wiz Exp $
+# $NetBSD: Makefile,v 1.35 2017/09/13 14:56:14 wiz Exp $
 
-DISTNAME=		neomutt-20170428
+DISTNAME=		neomutt-20170912
 CATEGORIES=		mail
 MASTER_SITES=		${MASTER_SITE_GITHUB:=neomutt/}
 GITHUB_TAG=		${DISTNAME}
 
 MAINTAINER=		wiz@NetBSD.org
-HOMEPAGE=		http://www.neomutt.org/
+HOMEPAGE=		https://www.neomutt.org/
 COMMENT=		Fork of mutt with integrated community patches
 LICENSE=		gnu-gpl-v2 OR gnu-gpl-v3 # or newer
 
@@ -14,18 +14,15 @@ USE_TOOLS+=		autoconf automake autoreconf msgfmt gmake
 
 BUILD_DEPENDS+=		gettext-tools-[0-9]*:../../devel/gettext-tools
 
-SPECIAL_PERMS+=		bin/mutt_dotlock ${REAL_ROOT_USER} mail 2551
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--enable-external-dotlock
-CONFIGURE_ARGS+=	--enable-imap
+EXTRACT_USING=		bsdtar
 CONFIGURE_ARGS+=	--enable-notmuch
-CONFIGURE_ARGS+=	--enable-pop
 #CONFIGURE_ARGS+=	CFLAGS="-g -O0"
 
 EGDIR=			${PREFIX}/share/examples/mutt
 CONF_FILES=		${EGDIR}/Muttrc ${PKG_SYSCONFDIR}/Muttrc
 CONF_FILES+=		${EGDIR}/mime.types ${PKG_SYSCONFDIR}/mime.types
-INSTALLATION_DIRS+=     ${DOCDIR} ${EGDIR}
+INSTALLATION_DIRS+=     ${EGDIR}
 INSTALL_MAKE_FLAGS=     ${MAKE_FLAGS} DOTLOCK_GROUP= sysconfdir=${EGDIR}
 
 .include "../../mk/bsd.prefs.mk"

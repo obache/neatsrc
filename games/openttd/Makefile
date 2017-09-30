@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.66 2017/04/22 21:03:36 adam Exp $
+# $NetBSD: Makefile,v 1.69 2017/09/18 09:53:21 maya Exp $
 
-DISTNAME=	openttd-1.6.1-source
+DISTNAME=	openttd-1.7.1-source
 PKGNAME=	${DISTNAME:S/-source//}
 PKGREVISION=	1
 CATEGORIES=	games x11
@@ -13,7 +13,7 @@ COMMENT=	Open source clone of Transport Tycoon Deluxe
 LICENSE=	gnu-gpl-v2
 
 WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
-USE_LANGUAGES=		c c++
+USE_LANGUAGES=		c c++0x
 USE_TOOLS+=		gmake pkg-config
 BUILD_DEFS+=		VARBASE
 BUILD_TARGET=		bundle
@@ -32,6 +32,7 @@ CONFIGURE_ARGS+=	--shared-dir=${VARBASE}/games/openttd
 # Hack: built-in xz does not provide liblzma.pc, needed to configure
 PREFER_PKGSRC+=		xz
 
+CONFIGURE_ARGS+=	--with-iconv
 CONFIGURE_ARGS+=	--with-lzo2=${BUILDLINK_PREFIX.lzo}/lib
 
 .include "../../mk/bsd.prefs.mk"
@@ -49,6 +50,7 @@ CONFIGURE_ARGS+=	--without-osx-sysroot
 
 .include "../../archivers/lzo/buildlink3.mk"
 .include "../../archivers/xz/buildlink3.mk"
+.include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"

@@ -1,22 +1,42 @@
-$NetBSD: patch-awesomeConfig.cmake,v 1.3 2014/04/06 05:46:14 obache Exp $
+$NetBSD: patch-awesomeConfig.cmake,v 1.5 2017/08/18 10:16:11 triaxx Exp $
 
---- awesomeConfig.cmake.orig	2013-04-01 11:44:46.000000000 +0000
-+++ awesomeConfig.cmake	2013-07-21 21:05:57.000000000 +0000
-@@ -16,7 +16,7 @@
- option(GENERATE_DOC "generate API documentation" ON)
- 
- # {{{ CFLAGS
--add_definitions(-O1 -std=gnu99 -ggdb3 -rdynamic -fno-strict-aliasing -Wall -Wextra
-+add_definitions(-O1 -std=gnu99 -rdynamic -fno-strict-aliasing -Wall -Wextra
-     -Wchar-subscripts -Wundef -Wshadow -Wcast-align -Wwrite-strings
-     -Wsign-compare -Wunused -Wno-unused-parameter -Wuninitialized -Winit-self
-     -Wpointer-arith -Wformat-nonliteral
-@@ -153,7 +153,7 @@
- endif()
- 
- macro(a_find_library variable library)
--    find_library(${variable} ${library})
-+    find_library(${variable} ${library} @LIBEV_PREFIX@/lib/ev)
-     if(NOT ${variable})
-         message(FATAL_ERROR ${library} " library not found.")
+Use pkgsrc lua interpreter instead of builtin one.
+
+--- awesomeConfig.cmake.orig	2017-07-15 13:53:13.000000000 +0000
++++ awesomeConfig.cmake
+@@ -40,7 +40,7 @@ a_find_program(XMLTO_EXECUTABLE xmlto FA
+ a_find_program(GZIP_EXECUTABLE gzip FALSE)
+ # Lua documentation
+ if(GENERATE_DOC)
+-    a_find_program(LDOC_EXECUTABLE ldoc FALSE)
++    a_find_program(LDOC_EXECUTABLE @LDOC_EXECUTABLE@ FALSE)
+     if(NOT LDOC_EXECUTABLE)
+         a_find_program(LDOC_EXECUTABLE ldoc.lua FALSE)
      endif()
+@@ -361,7 +361,7 @@ file(MAKE_DIRECTORY ${BUILD_DIR}/script_
+ 
+ add_custom_command(
+         OUTPUT ${BUILD_DIR}/docs/06-appearance.md
+-        COMMAND lua ${SOURCE_DIR}/docs/06-appearance.md.lua
++        COMMAND @LUA_INTERPRETER@ ${SOURCE_DIR}/docs/06-appearance.md.lua
+         ${BUILD_DIR}/docs/06-appearance.md
+         DEPENDS lgi-check
+ )
+@@ -369,7 +369,7 @@ add_custom_command(
+ add_custom_command(
+         OUTPUT ${BUILD_DIR}/awesomerc.lua ${BUILD_DIR}/docs/05-awesomerc.md
+             ${BUILD_DIR}/script_files/rc.lua
+-        COMMAND lua ${SOURCE_DIR}/docs/05-awesomerc.md.lua
++        COMMAND @LUA_INTERPRETER@ ${SOURCE_DIR}/docs/05-awesomerc.md.lua
+         ${BUILD_DIR}/docs/05-awesomerc.md ${SOURCE_DIR}/awesomerc.lua
+         ${BUILD_DIR}/awesomerc.lua
+         ${BUILD_DIR}/script_files/rc.lua
+@@ -377,7 +377,7 @@ add_custom_command(
+ 
+ add_custom_command(
+         OUTPUT ${BUILD_DIR}/script_files/theme.lua
+-        COMMAND lua ${SOURCE_DIR}/docs/sample_theme.lua ${BUILD_DIR}/script_files/
++        COMMAND @LUA_INTERPRETER@ ${SOURCE_DIR}/docs/sample_theme.lua ${BUILD_DIR}/script_files/
+ )
+ 
+ # Create a target for the auto-generated awesomerc.lua and other files

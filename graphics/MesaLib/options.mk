@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.55 2017/03/22 20:22:31 markd Exp $
+# $NetBSD: options.mk,v 1.57 2017/07/01 12:48:10 maya Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.MesaLib
 PKG_SUPPORTED_OPTIONS=		llvm dri

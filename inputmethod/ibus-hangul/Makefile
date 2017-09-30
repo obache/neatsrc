@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2015/03/15 17:25:55 hiramatsu Exp $
+# $NetBSD: Makefile,v 1.17 2017/08/16 21:22:12 wiz Exp $
 #
 
 DISTNAME=	ibus-hangul-1.5.0

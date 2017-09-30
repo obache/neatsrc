@@ -1,15 +1,14 @@
-# $NetBSD: Makefile,v 1.18 2016/08/07 09:09:40 markd Exp $
+# $NetBSD: Makefile,v 1.20 2017/09/06 16:49:42 wiz Exp $
 
 DISTNAME=	oberdiek
-PKGNAME=	tex-${DISTNAME}-2016.41346
-TEXLIVE_REV=	41346
+PKGNAME=	tex-${DISTNAME}-2017
+TEXLIVE_REV=	43610
 
 MAINTAINER=	minskim@NetBSD.org
+HOMEPAGE=	http://ctan.org/pkg/oberdiek
 COMMENT=	Bundle of packages submitted by Heiko Oberdiek
 LICENSE=	lppl-1.3c
 
-CONFLICTS+=	teTeX-texmf<=3.0nb13
-CONFLICTS+=	texlive-pdftools<2011
 DEPENDS+=	tex-amsmath-[0-9]*:../../print/tex-amsmath
 DEPENDS+=	tex-latex-bin-[0-9]*:../../print/tex-latex-bin
 DEPENDS+=	tex-etex-pkg-[0-9]*:../../print/tex-etex-pkg

@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.12 2016/06/16 04:06:02 markd Exp $
+# $NetBSD: Makefile,v 1.14 2017/09/06 16:49:32 wiz Exp $
 
 DISTNAME=	context
-PKGNAME=	tex-${DISTNAME}-2016
-TEXLIVE_REV=	41282
+PKGNAME=	tex-${DISTNAME}-2017
+TEXLIVE_REV=	44436
 
 MAINTAINER=	minskim@NetBSD.org
 HOMEPAGE=	http://ctan.org/pkg/context
 COMMENT=	The ConTeXt macro package
 
-CONFLICTS+=	teTeX-bin<=3.0nb44
 DEPENDS+=	tex-lm>=2.004nb1:../../fonts/tex-lm
 DEPENDS+=	tex-manfnt-font>=2014:../../fonts/tex-manfnt-font
 DEPENDS+=	tex-mflogo-font>=1.002:../../fonts/tex-mflogo-font

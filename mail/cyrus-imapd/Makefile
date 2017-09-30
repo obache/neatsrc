@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.107 2017/01/19 18:52:15 agc Exp $
+# $NetBSD: Makefile,v 1.109 2017/08/14 15:25:36 jlam Exp $
 
 DISTNAME=	cyrus-imapd-2.2.13p1
-PKGREVISION=	15
+PKGREVISION=	16
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/
 MASTER_SITES+=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/OLD-VERSIONS/imap/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.cyrusimap.org/
+HOMEPAGE=	https://www.cyrusimap.org/
 COMMENT=	Cyrus IMAP server
 
 MAKE_JOBS_SAFE=		no
@@ -126,6 +126,14 @@ CONF_FILES=		${EGDIR}/imapd.conf ${PKG_SYSCONFDIR}/imapd.conf
 CONF_FILES+=		${EGDIR}/normal.conf ${PKG_SYSCONFDIR}/cyrus.conf
 RCD_SCRIPTS=		cyrus
 FILES_SUBST+=		IMAPDCONF=${PKG_SYSCONFDIR}/imapd.conf
+
+# Fix path to /bin/sh that was replaced by Perl's MakeMaker to
+# point to the shell in the tools directory.
+#
+SUBST_CLASSES+=		sh
+SUBST_STAGE.sh=		post-build
+SUBST_FILES.sh=		perl/imap/blib/script/cyradm
+SUBST_SED.sh+=		-e 's|^\#!.*|\#!/bin/sh|'
 
 PERL5_PACKLIST= \
 	auto/Cyrus/IMAP/.packlist			\

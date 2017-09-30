@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.14 2017/04/22 21:03:08 adam Exp $
+# $NetBSD: Makefile,v 1.16 2017/09/18 09:52:57 maya Exp $
 
 DISTNAME=	pyzy-0.1.0
-PKGREVISION=	7
+PKGREVISION=	8
 CATEGORIES=	converters chinese
 MASTER_SITES=	http://pyzy.googlecode.com/files/
 DISTFILES=	${DEFAULT_DISTFILES} ${DBTAR}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://code.google.com/p/pyzy/
+HOMEPAGE=	https://github.com/pyzy/pyzy
 COMMENT=	Chinese PinYin and Bopomofo conversion library
 LICENSE=	gnu-lgpl-v2.1
 
@@ -54,7 +54,7 @@ CONFIGURE_ARGS+=	--with-boost=${BUILDLINK_PREFIX.boost-headers}
 
 .include "options.mk"
 
-# http://code.google.com/p/pyzy/issues/detail?id=4
+# https://github.com/pyzy/pyzyissues/detail?id=4
 .include "../../inputmethod/ibus/bad-env-usage.mk"
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.24.0
 .include "../../devel/glib2/buildlink3.mk"

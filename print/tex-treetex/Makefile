@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2015/05/08 14:09:53 wiz Exp $
+# $NetBSD: Makefile,v 1.3 2017/09/06 11:32:32 markd Exp $
 
 DISTNAME=	treetex
 PKGNAME=	tex-${DISTNAME}-2014

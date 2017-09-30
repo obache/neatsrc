@@ -1,9 +1,9 @@
-# $NetBSD: Makefile.common,v 1.11 2016/11/01 14:00:55 adam Exp $
+# $NetBSD: Makefile.common,v 1.14 2017/08/16 06:55:02 wiz Exp $
 #
 # used by archivers/libunrar/Makefile
 # used by archivers/unrar/Makefile
 
-DISTNAME=	unrarsrc-5.4.5
+DISTNAME=	unrarsrc-5.5.8
 PKGNAME=	${DISTNAME:S/src//}
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.rarlab.com/rar/

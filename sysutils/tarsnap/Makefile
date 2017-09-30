@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.13 2016/03/10 22:54:13 wiz Exp $
+# $NetBSD: Makefile,v 1.15 2017/07/29 06:19:28 wiz Exp $
 
-DISTNAME=	tarsnap-autoconf-1.0.37
+DISTNAME=	tarsnap-autoconf-1.0.39
 PKGNAME=	${DISTNAME:S/-autoconf//}
 CATEGORIES=	sysutils archivers security
 MASTER_SITES=	https://www.tarsnap.com/download/
@@ -13,8 +13,6 @@ LICENSE=	tarsnap-license
 
 GNU_CONFIGURE=		yes
 INSTALL_MAKE_FLAGS=	sysconfdir=${PREFIX}/share/examples/tarsnap
-
-LDFLAGS.SunOS+=	-lnsl
 
 CONF_FILES=	${PREFIX}/share/examples/tarsnap/tarsnap.conf.sample ${PKG_SYSCONFDIR}/tarsnap.conf
 

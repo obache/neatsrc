@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2015/11/25 12:50:57 jperkin Exp $
+# $NetBSD: Makefile,v 1.21 2017/08/16 21:22:12 wiz Exp $
 
 DISTNAME=	ibus-anthy-1.5.9
 CATEGORIES=	inputmethod japanese

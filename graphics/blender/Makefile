@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.132 2017/05/03 08:38:42 jperkin Exp $
+# $NetBSD: Makefile,v 1.135 2017/08/24 20:03:20 adam Exp $
 
 DISTNAME=	blender-2.77a
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	graphics
 MASTER_SITES=	http://download.blender.org/source/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.blender.org/
+HOMEPAGE=	https://www.blender.org/
 COMMENT=	Fully integrated 3D graphics creation suite
 LICENSE=	gnu-gpl-v2
 
@@ -50,7 +50,9 @@ INSTALLATION_DIRS=	bin share/blender
 PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX}
 PLIST_SUBST+=	BLENDERVER=${PKGVERSION_NOREV:C/[a-z]//}
 
-.if !empty(MACHINE_PLATFORM:MNetBSD-7.*)
+.if !empty(MACHINE_PLATFORM:MNetBSD-8.*)
+PLIST_SUBST+=	NETBSDVER=netbsd8
+.elif !empty(MACHINE_PLATFORM:MNetBSD-7.*)
 PLIST_SUBST+=	NETBSDVER=netbsd7
 .else
 PLIST_SUBST+=	NETBSDVER=netbsd6

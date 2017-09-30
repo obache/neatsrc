@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.9 2016/03/02 22:59:00 ryoon Exp $
+# $NetBSD: Makefile.common,v 1.10 2017/08/16 21:22:12 wiz Exp $
 #
 # used by inputmethod/ibus/Makefile
 # used by inputmethod/ibus-python/Makefile

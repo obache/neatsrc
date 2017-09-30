@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.47 2017/02/12 06:24:50 ryoon Exp $
+# $NetBSD: Makefile,v 1.49 2017/06/23 16:39:54 youri Exp $
 
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-VERSION=	1.6.10
-PKGREVISION=	5
+VERSION=	1.6.11
 DISTNAME=	Thunar-${VERSION}
 PKGNAME=	xfce4-thunar-${VERSION}
 CATEGORIES=	sysutils
@@ -26,6 +25,7 @@ CONF_FILES=	${EGDIR}/uca.xml ${PKG_SYSCONFDIR}/uca.xml
 .include "../../graphics/png/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../sysutils/libnotify/buildlink3.mk"
+.include "../../x11/gtk2/buildlink3.mk"
 .include "../../x11/libxfce4util/buildlink3.mk"
 .include "../../x11/libxfce4ui/buildlink3.mk"
 .include "../../x11/xfce4-exo/buildlink3.mk"

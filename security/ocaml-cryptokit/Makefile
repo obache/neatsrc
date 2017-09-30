@@ -1,14 +1,17 @@
-# $NetBSD: Makefile,v 1.15 2016/12/30 11:16:57 jaapb Exp $
+# $NetBSD: Makefile,v 1.18 2017/09/08 09:51:25 jaapb Exp $
 #
 
-DISTNAME=	cryptokit-1.10
+VERSION=	1.11
+GITHUB_PROJECT=	cryptokit
+GITHUB_TAG=	release${VERSION:S/.//}
+DISTNAME=	${GITHUB_PROJECT}-${VERSION}
 PKGNAME=	ocaml-${DISTNAME}
-PKGREVISION=	3
+PKGREVISION=	1
 CATEGORIES=	security
-MASTER_SITES=	http://forge.ocamlcore.org/frs/download.php/1493/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=xavierleroy/}
 
 MAINTAINER=	jaapb@NetBSD.org
-HOMEPAGE=	http://forge.ocamlcore.org/projects/cryptokit/
+HOMEPAGE=	https://github.com/xavierleroy/cryptokit
 COMMENT=	Cryptographic primitives library for Objective Caml
 LICENSE=	gnu-lgpl-v2 # with static compilation exception
 
@@ -19,4 +22,5 @@ OCAML_USE_OASIS=	yes
 USE_TOOLS+=	gmake
 
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../math/ocaml-zarith/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

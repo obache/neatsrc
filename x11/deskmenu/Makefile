@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.28 2017/02/12 06:26:10 ryoon Exp $
+# $NetBSD: Makefile,v 1.30 2017/09/03 08:53:17 wiz Exp $
 #
 
 VERSION=	1.4.2
@@ -6,10 +6,10 @@ DISTNAME=	deskmenu_${VERSION}
 PKGNAME=	deskmenu-${VERSION}
 PKGREVISION=	24
 CATEGORIES=	x11
-MASTER_SITES=	http://www.oroborus.org/debian/dists/sid/main/source/x11/
+MASTER_SITES=	https://www.oroborus.org/debian/dists/sid/main/source/x11/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.oroborus.org/?node=Download
+HOMEPAGE=	https://www.oroborus.org/?node=Download
 COMMENT=	X utility for providing root menus
 
 WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}

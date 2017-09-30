@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2012/10/02 21:25:37 asau Exp $
+# $NetBSD: Makefile,v 1.9 2017/09/03 08:53:05 wiz Exp $
 #
 
 DISTNAME=	${PKGNAME_NOREV:S/./_/g}
@@ -8,7 +8,7 @@ CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=palm-db-tools/}
 
 MAINTAINER=	dsainty@NetBSD.org
-HOMEPAGE=	http://sourceforge.net/projects/palm-db-tools/
+HOMEPAGE=	https://sourceforge.net/projects/palm-db-tools/
 COMMENT=	Conversion utilities for PalmOS flat-file database programs
 LICENSE=	gnu-gpl-v2
 
@@ -25,6 +25,10 @@ CONFIGURE_ARGS=	--disable-warnings --enable-libtool
 
 INSTALLATION_DIRS=	share/doc/palm-db-tools
 INSTALL_MAKE_FLAGS=	prefix=${DESTDIR}${PREFIX}
+
+# Case-insensitive filesystems confuse make install without this.
+post-extract:
+	cd ${WRKSRC} && mv INSTALL INSTALL.txt
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/docs/manual.* ${DESTDIR}${PREFIX}/share/doc/palm-db-tools

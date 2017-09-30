@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2012/10/08 12:19:29 asau Exp $
+# $NetBSD: Makefile,v 1.16 2017/09/01 03:50:11 schmonz Exp $
 #
 
 DISTNAME=		qmailanalog-0.70
@@ -12,7 +12,6 @@ COMMENT=		Collection of tools to help analyze qmail's activity
 
 DJB_RESTRICTED=		YES
 DJB_CONFIG_PREFIX=	${PREFIX}/qmailanalog
-BUILD_TARGETS=		prog install instcheck
 
 .include "../../mk/djbware.mk"
 .include "../../mk/bsd.pkg.mk"

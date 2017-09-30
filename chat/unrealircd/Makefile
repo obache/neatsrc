@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.48 2017/04/30 01:21:29 ryoon Exp $
+# $NetBSD: Makefile,v 1.50 2017/09/06 09:03:00 wiz Exp $
 
 DISTNAME=	Unreal3.2.10.5
 PKGNAME=	${DISTNAME:tl:S/l/lircd-/1}
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	chat
 MASTER_SITES=	http://unrealircd.org/downloads/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.unrealircd.org/
+HOMEPAGE=	https://www.unrealircd.org/
 COMMENT=	Advanced IRC server with IPv6 and SSL support
 LICENSE=	gnu-gpl-v2
 

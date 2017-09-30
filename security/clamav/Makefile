@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.34 2017/01/05 11:27:21 roy Exp $
+# $NetBSD: Makefile,v 1.39 2017/09/01 23:56:00 gdt Exp $
 
 .include "Makefile.common"
 
 COMMENT=	Anti-virus toolkit
+PKGREVISION=		5
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
@@ -19,9 +20,10 @@ CONFIGURE_ARGS+=	--with-libcurl=${BUILDLINK_PREFIX.curl}
 CONFIGURE_ARGS+=	--with-ltdl-include=${BUILDLINK_PREFIX.libltdl}/include
 CONFIGURE_ARGS+=	--with-ltdl-lib=${BUILDLINK_PREFIX.libltdl}/lib
 CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
-CONFIGURE_ARGS+=	--with-pcre=${BUILDLINK_PREFIX.pcre}
+CONFIGURE_ARGS+=	--with-pcre=${BUILDLINK_PREFIX.pcre2}
 CONFIGURE_ARGS+=	--with-xml=${BUILDLINK_PREFIX.libxml2}
 CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib}
+CONFIGURE_ARGS+=	--enable-readdir_r
 # pkgsrc enforces a "secure" version of zlib, so don't let this check
 # bomb the build
 CONFIGURE_ARGS+=	--disable-zlib-vcheck
@@ -29,12 +31,6 @@ CONFIGURE_ARGS+=	--disable-zlib-vcheck
 CHECK_PORTABILITY_SKIP=	contrib/* unit_tests/* win32/*
 
 .include "../../mk/bsd.prefs.mk"
-
-.if ${OPSYS} == "NetBSD" && !empty(OS_VERSION:M1.*)
-CONFIGURE_ARGS+=	--disable-readdir-r
-.else
-CONFIGURE_ARGS+=	--enable-readdir_r
-.endif
 
 NOT_PAX_MPROTECT_SAFE+=	sbin/clamd
 NOT_PAX_MPROTECT_SAFE+=	bin/clamscan
@@ -83,7 +79,7 @@ post-install:
 
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../devel/libltdl/buildlink3.mk"
-.include "../../devel/pcre/buildlink3.mk"
+.include "../../devel/pcre2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../devel/gmp/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"

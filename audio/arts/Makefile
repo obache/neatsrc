@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.91 2017/05/24 16:48:39 jperkin Exp $
+# $NetBSD: Makefile,v 1.94 2017/08/01 14:58:51 wiz Exp $
 
 DISTNAME=	arts-1.5.10
 PKGREVISION=	15
 CATEGORIES=	audio
-HOMEPAGE=	http://multimedia.kde.org/
+HOMEPAGE=	https://multimedia.kde.org/
 COMMENT=	Analog Real-Time Synthesizer
 
 .include "../../meta-pkgs/kde3/Makefile.kde3"
@@ -12,9 +12,10 @@ REPLACE_SH+=	artsc/artsc-config.in artsc/artsdsp.in
 
 CFLAGS.SunOS+=	-D_XOPEN_SOURCE=600 -std=c99
 
-CONFLICTS+=	kdelibs-2*
-
 USE_TOOLS+=	perl pkg-config
+
+# intentionally overrides libc
+PKGSRC_USE_FORTIFY=	no
 
 # Ensure we export symbols in the linked shared object.
 LDFLAGS+=		${EXPORT_SYMBOLS_LDFLAGS}

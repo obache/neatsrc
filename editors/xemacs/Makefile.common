@@ -1,10 +1,10 @@
-# $NetBSD: Makefile.common,v 1.23 2017/01/24 20:31:14 hauke Exp $
+# $NetBSD: Makefile.common,v 1.26 2017/07/13 17:55:30 hauke Exp $
 #
 # used by editors/xemacs-nox11/Makefile
 # used by editors/xemacs/Makefile
 
 DISTNAME=	xemacs-21.4.24
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_XEMACS:=${DISTNAME:C/[.][^.]*$//}/}
 
@@ -43,12 +43,13 @@ CONFIGURE_ARGS+=	--with-clash-detection
 CONFIGURE_ARGS+=	--with-mule=yes
 CONFIGURE_ARGS+=	--with-msw=no
 CONFIGURE_ARGS+=	--pdump
+CONFIGURE_ARGS+=	--with-system-malloc
 CFLAGS+=		-Dunix
 
 # Use terminfo on NetBSD-6 and newer.
 # We cannot use terminfo.*.mk as XEmacs enforces a link to termcap,
 # but this is fine for us.
-.if (${OPSYS} == "NetBSD") && exists(/usr/include/term.h)
+.if (${OPSYS} == "NetBSD" || ${OPSYS} == "FreeBSD") && exists(/usr/include/term.h)
 CPPFLAGS+=	-DTERMINFO
 .endif
 

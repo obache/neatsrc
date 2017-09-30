@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2017/04/30 01:22:00 ryoon Exp $
+# $NetBSD: Makefile,v 1.9 2017/08/24 20:03:39 adam Exp $
 
 COLLECTD_PACKAGE=	curl
 COLLECTD_PLUGINS=	curl curl_json curl_xml apache bind nginx write_http

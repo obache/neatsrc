@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.24 2017/04/22 21:03:20 adam Exp $
+# $NetBSD: Makefile,v 1.29 2017/09/18 09:53:08 maya Exp $
 
 DISTNAME=	lablgtk-2.18.5
 PKGNAME=	ocaml-${DISTNAME}
-PKGREVISION=	5
+PKGREVISION=	10
 CATEGORIES=	x11
 MASTER_SITES=	https://forge.ocamlcore.org/frs/download.php/1627/
 
@@ -26,6 +26,8 @@ BUILDLINK_DEPMETHOD.ocaml=	full
 CONFLICTS=	lablgtk-[0-9]*
 SUPERSEDES=	lablgtk-[0-9]*
 
+CONFIGURE_ENV+=	OCAML_SITELIBDIR="${OCAML_SITELIBDIR}"
+
 .include "../../mk/bsd.prefs.mk"
 
 # Stub libraries for functions missing from base system.
@@ -41,5 +43,12 @@ PLIST.stubs=	yes
 
 .include "options.mk"
 
+.include "../../devel/atk/buildlink3.mk"
+.include "../../devel/glib2/buildlink3.mk"
+.include "../../devel/pango/buildlink3.mk"
+.include "../../graphics/cairo/buildlink3.mk"
+.include "../../graphics/gdk-pixbuf2/buildlink3.mk"
+.include "../../graphics/libart/buildlink3.mk"
+.include "../../textproc/libxml2/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

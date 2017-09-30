@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.18 2017/04/30 01:22:03 ryoon Exp $
+# $NetBSD: Makefile,v 1.22 2017/09/08 09:51:26 jaapb Exp $
 #
 
 DISTNAME=		ocurl-0.5.3
 PKGNAME=		ocaml-curl-0.5.3
 EXTRACT_SUFX=		.tgz
-PKGREVISION=		16
+PKGREVISION=		19
 CATEGORIES=		www net devel
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=ocurl/}
 
 MAINTAINER=		rich.neswold@gmail.com
-HOMEPAGE=		http://sourceforge.net/projects/ocurl/
+HOMEPAGE=		https://sourceforge.net/projects/ocurl/
 COMMENT=		OCaml bindings to the CURL library
 LICENSE=		mit
 

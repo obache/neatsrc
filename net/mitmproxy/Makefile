@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.16 2017/04/14 13:15:04 leot Exp $
+# $NetBSD: Makefile,v 1.18 2017/09/03 08:53:12 wiz Exp $
 
-DISTNAME=	mitmproxy-2.0.1
+DISTNAME=	mitmproxy-2.0.2
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mitmproxy/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://mitmproxy.org/
+HOMEPAGE=	https://mitmproxy.org/
 COMMENT=	Interactive console program for inspecting and editing traffic flows
 LICENSE=	mit
 

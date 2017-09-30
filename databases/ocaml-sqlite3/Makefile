@@ -1,16 +1,16 @@
-# $NetBSD: Makefile,v 1.27 2017/04/22 21:03:28 adam Exp $
+# $NetBSD: Makefile,v 1.31 2017/09/18 09:53:14 maya Exp $
 
 VERSION=	4.0.5
 GITHUB_PROJECT=	sqlite3-ocaml
 GITHUB_TAG=	v${VERSION}
 DISTNAME=	${GITHUB_PROJECT}-${VERSION}
 PKGNAME=	ocaml-sqlite3-${VERSION}
-PKGREVISION=	3
+PKGREVISION=	6
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mmottl/}
 
 MAINTAINER=	jaapb@NetBSD.org
-HOMEPAGE=	http://github.com/mmottl/sqlite3-ocaml/
+HOMEPAGE=	https://github.com/mmottl/sqlite3-ocaml/
 COMMENT=	Sqlite bindings for OCaml
 LICENSE=	mit
 

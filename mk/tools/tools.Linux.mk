@@ -1,4 +1,4 @@
-# $NetBSD: tools.Linux.mk,v 1.60 2016/03/09 22:27:29 tnn Exp $
+# $NetBSD: tools.Linux.mk,v 1.61 2017/07/10 12:32:30 joerg Exp $
 #
 # System-supplied tools for the Linux operating system.
 
@@ -270,7 +270,11 @@ TOOLS_PLATFORM.unlink?=		/bin/unlink
 .elif exists(/usr/bin/unlink)
 TOOLS_PLATFORM.unlink?=		/usr/bin/unlink
 .endif
+.if exists(/bin/wc)
+TOOLS_PLATFORM.wc?=		/bin/wc
+.elif exists(/usr/bin/wc)
 TOOLS_PLATFORM.wc?=		/usr/bin/wc
+.endif
 .if exists(/usr/bin/wget)
 TOOLS_PLATFORM.wget?=		/usr/bin/wget
 .endif

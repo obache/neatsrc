@@ -1,8 +1,10 @@
-# $NetBSD: Makefile,v 1.8 2017/02/20 09:44:34 wiz Exp $
+# $NetBSD: Makefile,v 1.10 2017/09/07 13:47:21 wiz Exp $
 
-DISTNAME=	pcre2-10.23
+DISTNAME=	pcre2-10.30
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/
+MASTER_SITES+=	https://ftp.pcre.org/pub/pcre/
 MASTER_SITES+=	${MASTER_SITE_SOURCEFORGE:=pcre/}
 EXTRACT_SUFX=	.tar.bz2
 
@@ -14,7 +16,6 @@ LICENSE=	modified-bsd
 USE_LANGUAGES=		c
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--enable-jit
 
 PKGCONFIG_OVERRIDE+=	libpcre2-16.pc.in
 PKGCONFIG_OVERRIDE+=	libpcre2-posix.pc.in
@@ -28,7 +29,7 @@ CONFIGURE_ARGS+=	--enable-pcre2grep-libbz2
 
 TEST_TARGET=		check
 
-NOT_PAX_MPROTECT_SAFE=	bin/pcre2grep bin/pcre2test
+.include "options.mk"
 
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

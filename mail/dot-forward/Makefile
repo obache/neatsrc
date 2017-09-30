@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.24 2017/01/02 03:48:11 schmonz Exp $
+# $NetBSD: Makefile,v 1.26 2017/09/01 04:02:11 schmonz Exp $
 #
 
 DISTNAME=		dot-forward-0.71
@@ -12,8 +12,6 @@ COMMENT=		Reads sendmail's .forward files under qmail
 LICENSE=		public-domain
 
 DEPENDS+=		qmail>=1.03nb7:../../mail/qmail
-
-USE_TOOLS+=		nroff
 
 DJB_BUILD_TARGETS=	install instcheck
 

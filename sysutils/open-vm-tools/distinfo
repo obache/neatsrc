@@ -1,9 +1,9 @@
-$NetBSD: distinfo,v 1.21 2017/04/16 02:49:50 ryoon Exp $
+$NetBSD: distinfo,v 1.24 2017/08/18 13:16:45 ryoon Exp $
 
-SHA1 (open-vm-tools-10.1.5-5055683.tar.gz) = 6de8e774cd61dde304c6e93a34b4fcdaefb12fc9
-RMD160 (open-vm-tools-10.1.5-5055683.tar.gz) = 54b39bc8ef20bbd948a7a50b0aa2e3b4f28c7477
-SHA512 (open-vm-tools-10.1.5-5055683.tar.gz) = eb934fb452d788f7f6153dc04fc97e722e69ed33acb900095989f79b3a7dd8ec6af639c128001877366d3839f6883ff386a8901c587e8de7e833d445167f6e54
-Size (open-vm-tools-10.1.5-5055683.tar.gz) = 5013543 bytes
+SHA1 (open-vm-tools-10.1.10-6082533.tar.gz) = 54795f3f71bd78af8046c01b511948f280d7cbd1
+RMD160 (open-vm-tools-10.1.10-6082533.tar.gz) = 26ea25ed926e7acd4f056e8b8f47a269b88bafbf
+SHA512 (open-vm-tools-10.1.10-6082533.tar.gz) = 60c52a24509cb0630f2ad649fe6717fefff624fc2a5c736ced35cbdb8f639264d482e063e8140eedb39216adfb1231d58232bfef0233ebc477ba4f9a732c5965
+Size (open-vm-tools-10.1.10-6082533.tar.gz) = 5111726 bytes
 SHA1 (patch-ag) = 67ce2bcba5cfcbd48f4d2345d5529329424952b3
 SHA1 (patch-ah) = bdee6d92cdfe64f1ab513876ccd9d01f6fda6882
 SHA1 (patch-ai) = 3e8c67a33f6072319f1741bda960377fc2663b06
@@ -22,7 +22,7 @@ SHA1 (patch-bb) = e22d082689016d81add208e1d3b31d9d897d36e8
 SHA1 (patch-bc) = c2f316cd9035648676fd9d0d7e40fc7f6bf5c8d4
 SHA1 (patch-bd) = eacc267fad7021a96ee435e8fc41c82fb49d9c5f
 SHA1 (patch-be) = 4e4f88df81daf40769b38d1ddd49fbf5e8d8d1eb
-SHA1 (patch-bf) = 705b0eb11296e5563af9167dc2bc3ba13dec645a
+SHA1 (patch-bf) = dc72e905601521cc703a72aea7f1b31ac03a8802
 SHA1 (patch-bh) = 813a390478247b12c0ec0dd9e84302f1700b99ad
 SHA1 (patch-bm) = 219f196fc07e3746e9e6eb340be5e647544a255a
 SHA1 (patch-bt) = 34c85d8d994c33fb4e18f76bb8b6baa41098f23e
@@ -36,6 +36,7 @@ SHA1 (patch-lib_guestApp_guestApp.c) = ed916ad0726b8d992319828f8f3a4115d7aba753
 SHA1 (patch-lib_hgfsHelper_hgfsHelperPosix.c) = 9299f0a781d11689b04223a1dfd1c4725912f863
 SHA1 (patch-lib_hgfsUri_hgfsUriPosix.c) = f98eab5cb5885a9c2e258bf072b24d8806b20fd4
 SHA1 (patch-lib_include_sigPosixRegs.h) = 634e12414f004671c1b2855764970e5d16ef4ef8
+SHA1 (patch-lib_include_vm__basic__types.h) = 4dfefc05e2bba336593c74ddac7a4583afa3053a
 SHA1 (patch-lib_include_vmblock__user.h) = 05ed8a0cdd481b759643ea47e27ef6e223a835d8
 SHA1 (patch-lib_include_vmci__sockets.h) = fba82038daf87a08f04ddd541281122f0047e968
 SHA1 (patch-lib_lock_ulSema.c) = 6908d4b453cbdb74100c9419da95a07db532c624

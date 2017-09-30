@@ -1,23 +1,23 @@
-# $NetBSD: Makefile,v 1.23 2017/02/14 10:26:29 wiz Exp $
+# $NetBSD: Makefile,v 1.25 2017/08/25 06:24:03 adam Exp $
 
-VERSION=		0.13.0
-DISTNAME=		Nevow-${VERSION}
-PKGNAME=		${PYPKGPREFIX}-nevow-${VERSION}
-CATEGORIES=		www python
-# Nevow does not appear to make tarballs easily available; there's a link
-# in trac with ?format=raw at the end.  Many others have the same sorts
-# of issues, so ride on their redistribution.
-MASTER_SITES=		https://tahoe-lafs.org/source/tahoe-lafs/deps/tahoe-lafs-dep-sdists/
+DISTNAME=	Nevow-0.14.3
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
+CATEGORIES=	www python
+MASTER_SITES=	${MASTER_SITE_PYPI:=N/Nevow/}
 
-MAINTAINER=		gdt@ir.bbn.com
-HOMEPAGE=		http://divmod.org/trac/wiki/DivmodNevow
-COMMENT=		Next-generation web application templating system
-LICENSE=		mit
+MAINTAINER=	gdt@ir.bbn.com
+HOMEPAGE=	https://github.com/twisted/nevow
+COMMENT=	Next-generation web application templating system
+LICENSE=	mit
 
-DEPENDS+=		${PYPKGPREFIX}-twisted>=1.3.0:../../net/py-twisted
-DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
+DEPENDS+=	${PYPKGPREFIX}-twisted>=13.0:../../net/py-twisted
+DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
+
+USE_LANGUAGES=		# none
 
 REPLACE_PYTHON=		nevow/test/segfault.py
+
+PYTHON_VERSIONS_ACCEPTED=	27
 
 INSTALLATION_DIRS+=	share/doc
 

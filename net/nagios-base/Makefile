@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.69 2017/06/05 14:24:16 ryoon Exp $
+# $NetBSD: Makefile,v 1.74 2017/09/03 08:53:12 wiz Exp $
 #
 
 DISTNAME=		nagios-4.3.2
 PKGNAME=		${DISTNAME:S/-/-base-/}
-PKGREVISION=		1
-#PKGREVISION=		1
+PKGREVISION=		3
 CATEGORIES=		net sysutils
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX}
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=nagios/}
@@ -12,7 +11,7 @@ DISTFILES+=		nagios-netbsd40-icons.tar.gz
 SITES.nagios-netbsd40-icons.tar.gz= ${MASTER_SITE_LOCAL}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.nagios.org/
+HOMEPAGE=		https://www.nagios.org/
 COMMENT=		Network monitor
 LICENSE=		gnu-gpl-v2
 
@@ -34,7 +33,7 @@ CONFIGURE_ARGS+=	--with-command-group=${NAGIOSCMD_GROUP}
 CONFIGURE_ARGS+=	--with-init-dir=${PREFIX}/share/examples/rc.d
 CONFIGURE_ARGS+=	--with-lockfile=/var/run/nagios/nagios.lock
 
-USE_TOOLS+=		mail:run perl
+USE_TOOLS+=		mail:run perl unzip
 CONFIGURE_ARGS+=	--with-mail=${TOOLS_PLATFORM.mail:Q}
 
 RCD_SCRIPTS+=		nagios
@@ -65,8 +64,7 @@ EGFILES+=		objects/contacts.cfg objects/timeperiods.cfg
 EGFILES+=		objects/localhost.cfg objects/windows.cfg
 EGFILES+=		objects/printer.cfg objects/switch.cfg
 
-INSTALLATION_DIRS+=	${PKG_SYSCONFDIR}/objects
-
+OWN_DIRS=		${PKG_SYSCONFDIR}/objects
 .for files in ${EGFILES}
 CONF_FILES+=		${EGDIR}/${files}-sample ${PKG_SYSCONFDIR}/${files}
 .endfor
@@ -77,8 +75,7 @@ OWN_DIRS_PERMS+=${NAGIOSDIR}/archives ${NAGIOS_USER} ${NAGIOS_GROUP} 0775
 OWN_DIRS_PERMS+=${NAGIOSDIR}/rw ${NAGIOS_USER} ${NAGIOSCMD_GROUP} 0775
 OWN_DIRS_PERMS+=${NAGIOSDIR}/checkresults ${NAGIOS_USER} ${NAGIOSCMD_GROUP} 0775
 
-SPECIAL_PERMS+=	${DESTDIR}/${PREFIX}/share/nagios/jsonquery.html ${NAGIOS_USER} ${NAGIOSCMD_GROUP} 0644
-SPECIAL_PERMS+=	${DESTDIR}/${PREFIX}/share/nagios/rss-newsfeed.html ${NAGIOS_USER} ${NAGIOSCMD_GROUP} 0644
+SPECIAL_PERMS+=	share/nagios/jsonquery.html ${NAGIOS_USER} ${NAGIOSCMD_GROUP} 0644
 
 SUBST_CLASSES+=		files
 SUBST_STAGE.files=	post-build
@@ -90,15 +87,15 @@ pre-build:
 	${CP} ${FILESDIR}/nagios.conf.dist ${WRKSRC}/nagios.conf.dist
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/nagios.conf.dist ${DESTDIR}/${EGDIR}/nagios.conf
+	${INSTALL_DATA} ${WRKSRC}/nagios.conf.dist ${DESTDIR}${EGDIR}/nagios.conf
 	${INSTALL_DATA} ${WRKDIR}/netbsd40.gd2 \
-	    ${DESTDIR}/${PREFIX}/share/nagios/images/logos/
+	    ${DESTDIR}${PREFIX}/share/nagios/images/logos/
 	${INSTALL_DATA} ${WRKDIR}/netbsd40.gif \
-	    ${DESTDIR}/${PREFIX}/share/nagios/images/logos/
+	    ${DESTDIR}${PREFIX}/share/nagios/images/logos/
 	${INSTALL_DATA} ${WRKDIR}/netbsd40.jpg \
-	    ${DESTDIR}/${PREFIX}/share/nagios/images/logos/
+	    ${DESTDIR}${PREFIX}/share/nagios/images/logos/
 	${INSTALL_DATA} ${WRKDIR}/netbsd40.png \
-	    ${DESTDIR}/${PREFIX}/share/nagios/images/logos/
+	    ${DESTDIR}${PREFIX}/share/nagios/images/logos/
 	${CHMOD} g-w ${DESTDIR}${PREFIX}/share/nagios/jsonquery.html
 
 .include "../../mk/dlopen.buildlink3.mk"

@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.26 2017/04/22 21:03:36 adam Exp $
+# $NetBSD: Makefile,v 1.30 2017/09/18 09:53:21 maya Exp $
 
 VERSION=	1.5.1
 DISTNAME=	solarus-${VERSION}-src
 PKGNAME=	${DISTNAME:S/-src//1}
-PKGREVISION=	5
+PKGREVISION=	8
 CATEGORIES=	games
 MASTER_SITES=	http://www.solarus-games.org/downloads/solarus/
 
-MAINTAINER=	rodent@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.solarus-games.org/solarus/
 COMMENT=	Open-source Zelda-like 2D game engine licensed under GPL
 LICENSE=	gnu-gpl-v3

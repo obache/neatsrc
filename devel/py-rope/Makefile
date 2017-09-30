@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.12 2017/01/01 14:43:35 wiz Exp $
+# $NetBSD: Makefile,v 1.15 2017/08/25 09:24:48 adam Exp $
 
-VERS=		0.10.2
-DISTNAME=	rope-${VERS}
+DISTNAME=	rope-0.10.7
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_PYPI:=r/rope/}
@@ -11,11 +10,7 @@ HOMEPAGE=	https://github.com/python-rope/rope
 COMMENT=	Rope is a python refactoring library
 LICENSE=	gnu-gpl-v2
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36
+USE_LANGUAGES=		# none
 
-# XXX tests in contrib.codeassisttest fail
-do-test:
-	cd ${WRKSRC} && ${PYTHONBIN} setup.py test
-
-.include "../../lang/python/distutils.mk"
+.include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"
