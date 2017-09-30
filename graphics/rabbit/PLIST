@@ -116,6 +116,7 @@ ${GEM_LIBDIR}/doc/_plugins/converters/rd.rb
 ${GEM_LIBDIR}/doc/_plugins/support_symlink.rb
 ${GEM_LIBDIR}/doc/css/jquery-ui/themes/ui-lightness.css
 ${GEM_LIBDIR}/doc/css/rabbit.css
+${GEM_LIBDIR}/doc/css/syntax.scss
 ${GEM_LIBDIR}/doc/en/development.rd
 ${GEM_LIBDIR}/doc/en/faq.rd
 ${GEM_LIBDIR}/doc/en/hiki.hiki
@@ -348,6 +349,7 @@ ${GEM_LIBDIR}/lib/rabbit/parser/ext/entity.rb
 ${GEM_LIBDIR}/lib/rabbit/parser/ext/escape.rb
 ${GEM_LIBDIR}/lib/rabbit/parser/ext/image.rb
 ${GEM_LIBDIR}/lib/rabbit/parser/ext/inline.rb
+${GEM_LIBDIR}/lib/rabbit/parser/ext/rouge.rb
 ${GEM_LIBDIR}/lib/rabbit/parser/ext/tex.rb
 ${GEM_LIBDIR}/lib/rabbit/parser/ext/video.rb
 ${GEM_LIBDIR}/lib/rabbit/parser/image.rb
