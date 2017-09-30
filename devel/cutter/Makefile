@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.52 2017/09/18 09:53:16 maya Exp $
 #
 
-DISTNAME=	cutter-1.2.5
-PKGREVISION=	9
+DISTNAME=	cutter-1.2.6
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=cutter/}
 
