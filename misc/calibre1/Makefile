@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.35 2017/09/18 09:53:27 maya Exp $
+# $NetBSD: Makefile,v 1.37 2017/09/25 22:30:43 joerg Exp $
 
 DISTNAME=	calibre-1.48.0
-PKGREVISION=	30
+PKGREVISION=	31
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=calibre/}
 EXTRACT_SUFX=	.tar.xz
@@ -94,7 +94,7 @@ MAKE_ENV+=		PODOFO_LIB_DIR=${BUILDLINK_PREFIX.podofo}/lib
 
 # Let's depend on the ones we have in pkgsrc instead of the bundled ones.
 pre-configure:
-	cd ${WRKSRC} && rm -rf src/cherrypy src/html5lib src/chardet
+	cd ${WRKSRC} && rm -rf src/cherrypy src/html5lib src/chardet src/six.py
 
 # Turn off x bits on non-executable files.
 post-extract:

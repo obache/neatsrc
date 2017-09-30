@@ -1,8 +1,6 @@
-$NetBSD: distinfo,v 1.4 2015/11/04 01:32:25 agc Exp $
+$NetBSD: distinfo,v 1.6 2017/09/29 21:54:49 wiz Exp $
 
-SHA1 (Sys-Utmp-1.6.tar.gz) = 45548135e888d87f5c8f184b83048e04dadbfa5f
-RMD160 (Sys-Utmp-1.6.tar.gz) = fd3adb315ca2791e22054110127b85e3c54feacf
-SHA512 (Sys-Utmp-1.6.tar.gz) = 82124288f51947360c11bd944b754b22a21474352961cd522196cc3594302bcaa193a9350a9e8e152a6ddb12d105538da2dd9333c1ee2b46bbe19ed3cf3bd92c
-Size (Sys-Utmp-1.6.tar.gz) = 8818 bytes
-SHA1 (patch-aa) = fe8261da919ba380da862f47999f71fea6d9e983
-SHA1 (patch-ab) = 5a74869b9be0ecb97f8239a1ec7e65f8016e54e7
+SHA1 (Sys-Utmp-1.8.tar.gz) = 157e811732ca48eb32bcbdef86e96ae2de359765
+RMD160 (Sys-Utmp-1.8.tar.gz) = 9c07269271bd041e189b1f60cd68b521ce03ef0f
+SHA512 (Sys-Utmp-1.8.tar.gz) = 8ad82124547a40e53afdeb55beb9ea3c0cd068f38818cb6a388496c846cc7dcb761177e887d9aa345ee8b7967f05452680b4ad4aa6f13122447255864b1c6592
+Size (Sys-Utmp-1.8.tar.gz) = 9333 bytes

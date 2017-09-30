@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.343 2017/08/17 13:52:12 wen Exp $
+# $NetBSD: Makefile,v 1.345 2017/09/26 17:33:37 adam Exp $
 
 COMMENT=	Mathematics
 
@@ -142,7 +142,6 @@ SUBDIR+=	isl
 SUBDIR+=	itpp
 SUBDIR+=	kalgebra
 SUBDIR+=	kcalc
-SUBDIR+=	kseg
 SUBDIR+=	lapack
 SUBDIR+=	libffm
 SUBDIR+=	libint
@@ -249,7 +248,6 @@ SUBDIR+=	py-autograd
 SUBDIR+=	py-bottleneck
 SUBDIR+=	py-cdecimal
 SUBDIR+=	py-ephem
-SUBDIR+=	py-ephem3
 SUBDIR+=	py-fftw
 SUBDIR+=	py-fpconst
 SUBDIR+=	py-gmpy
@@ -278,7 +276,6 @@ SUBDIR+=	qalculate
 SUBDIR+=	qalculate-bases
 SUBDIR+=	qalculate-currency
 SUBDIR+=	qalculate-gtk
-SUBDIR+=	qalculate-kde
 SUBDIR+=	qalculate-units
 SUBDIR+=	qhull
 SUBDIR+=	quadpack

@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.44 2017/07/03 09:57:53 leot Exp $
+# $NetBSD: Makefile,v 1.47 2017/09/28 07:56:41 leot Exp $
 
 DISTNAME=		pkgsrc-guide-${PKGVERSION}
 CATEGORIES=		# empty
 MASTER_SITES=		${MASTER_SITE_LOCAL}
-DISTFILES=		htdocs-share-20170703.tar.gz
+DISTFILES=		htdocs-share-20170928.tar.gz
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.NetBSD.org/docs/pkgsrc/
@@ -108,7 +108,7 @@ regen-doc: build
 	cd .. && cvs update pkgsrc.*
 	${MAKE} ${MAKEFLAGS} install-doc
 	@${STEP_MSG} "Committing the files in pkgsrc/doc"
-	cd .. && cvs commit -m "regen" pkgsrc.*
+	cd .. && cvs commit -m "doc/pkgsrc.*: regen" pkgsrc.*
 
 regen-htdocs: build
 	@${STEP_MSG} "Updating the files in htdocs"
@@ -138,7 +138,7 @@ detab:
 
 # Generates a new htdocs-share-*.tar.gz archive from the current
 # contents of the htdocs directory. To make it available, it should
-# be copied to ftp.NetBSD.org/pub/pkgsrc/distfiles/LOCAL_PORTS/.
+# be copied to ftp.NetBSD.org:/pub/pkgsrc/distfiles/LOCAL_PORTS/.
 .PHONY: htdocs-share
 htdocs-share:
 	cd ${HTDOCSDIR}							\
