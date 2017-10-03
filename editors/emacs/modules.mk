@@ -33,6 +33,8 @@
 #	* Assume each ELP supports all Emacs versions by default.  If the
 #	  ELP supports only certain Emacs versions, define EMACS_VERSIONS
 #	  _ACCEPTED explicitly before including mk/emacs.mk.
+#	  If certain Emacs versions are known as not supported, define
+#	  EMACS_VERSIONS_INCOMPATIBLE too.
 #
 # Variables for users:
 #
@@ -66,6 +68,15 @@
 #		Default value:
 #			emacs25, emacs21, emacs21nox, emacs20,
 #			xemacs215, xemacs215nox, xemacs214, xemacs214nox
+#
+#	EMACS_VERSIONS_INCOMPATIBLE
+#		Description:
+#			Versions the ELP NOT accepts (unsupports).
+#		Possible values:
+#			emacs25, emacs21, emacs21nox, emacs20,
+#			xemacs215, xemacs215nox, xemacs214, xemacs214nox
+#		Default value:
+#			(empty)
 #
 #	EMACS_BUILDLINK
 #		Description:
@@ -261,8 +272,11 @@ _EMACS_LISPDIR.xemacs=		lib/xemacs/site-packages/lisp
 _EMACS_TYPE=	${EMACS_TYPE}
 
 EMACS_VERSIONS_ACCEPTED?=	${_EMACS_VERSIONS_ALL}
-.if empty(EMACS_VERSIONS_ACCEPTED:M${_EMACS_TYPE})
+EMACS_VERSIONS_INCOMPATIBLE?=	# empty
+.if empty(EMACS_VERSIONS_ACCEPTED:M${_EMACS_TYPE}) || \
+	!empty(EMACS_VERSIONS_INCOMPATIBLE:M${_EMACS_TYPE})
 PKG_FAIL_REASON+=	"Accepted versions are: ${EMACS_VERSIONS_ACCEPTED}"
+PKG_FAIL_REASON+=	"Incompatible versions are: ${EMACS_VERSIONS_INCOMPATIBLE}"
 PKG_FAIL_REASON+=	"No valid Emacs version installed found"
 .endif
 
