@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2017/09/29 14:31:29 joerg Exp $
+@comment $NetBSD: PLIST,v 1.3 2017/09/30 20:58:00 joerg Exp $
 bin/get-github-token
 bin/gist
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO

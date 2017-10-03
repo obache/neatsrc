@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2539 2017/09/30 04:45:20 ryoon Exp $
+# $NetBSD: Makefile,v 1.2542 2017/10/03 00:44:42 minskim Exp $
 #
 
 COMMENT=	Development utilities
@@ -1833,13 +1833,19 @@ SUBDIR+=	py-babel
 SUBDIR+=	py-backports.functools_lru_cache
 SUBDIR+=	py-backports.shutil_get_terminal_size
 SUBDIR+=	py-backports_abc
+SUBDIR+=	py-bcolz
 SUBDIR+=	py-binaryornot
 SUBDIR+=	py-blessings
 SUBDIR+=	py-blinker
 SUBDIR+=	py-boost
 SUBDIR+=	py-bugzilla
 SUBDIR+=	py-buildbot
+SUBDIR+=	py-buildbot-console-view
+SUBDIR+=	py-buildbot-grid-view
+SUBDIR+=	py-buildbot-pkg
+SUBDIR+=	py-buildbot-waterfall-view
 SUBDIR+=	py-buildbot-worker
+SUBDIR+=	py-buildbot-www
 SUBDIR+=	py-cached-property
 SUBDIR+=	py-cachetools
 SUBDIR+=	py-capstone
@@ -2379,6 +2385,7 @@ SUBDIR+=	sgi-stl-docs
 SUBDIR+=	shtk
 SUBDIR+=	shunit2
 SUBDIR+=	silc-toolkit
+SUBDIR+=	skalibs
 SUBDIR+=	slib
 SUBDIR+=	slibtool
 SUBDIR+=	sloccount

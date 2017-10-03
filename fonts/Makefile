@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.309 2017/09/07 10:36:32 wiz Exp $
+# $NetBSD: Makefile,v 1.311 2017/10/02 22:25:34 khorben Exp $
 #
 
 COMMENT=	Fonts
