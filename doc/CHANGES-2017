@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.4281 2017/10/03 00:45:14 minskim Exp $
+$NetBSD: CHANGES-2017,v 1.4298 2017/10/04 03:49:29 adam Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -6084,3 +6084,21 @@ Changes to the packages collection and infrastructure in 2017:
 	Added devel/skalibs version 2.6.0.0 [schmonz 2017-10-03]
 	Added sysutils/fdtools version 2015.03.28 [schmonz 2017-10-03]
 	Added devel/py-bcolz version 1.1.2 [minskim 2017-10-03]
+	Updated print/qpdf to 7.0.0nb1 [leot 2017-10-03]
+	Updated time/py-vdirsyncer to 0.16.3 [wiz 2017-10-03]
+	Updated net/libsoup to 2.60.0 [wiz 2017-10-03]
+	Updated devel/scons to 3.0.0 [wiz 2017-10-03]
+	Updated geography/mapcode to 2.5.4 [fhajny 2017-10-03]
+	Updated multimedia/ffmpeg2 to 2.8.13 [wiz 2017-10-03]
+	Updated lang/vala to 0.38.1 [wiz 2017-10-03]
+	Updated misc/goffice0.10 to 0.10.35 [wiz 2017-10-03]
+	Updated www/py-google-api-python-client to 1.6.4 [wiz 2017-10-03]
+	Updated security/py-oauthlib to 2.0.4 [wiz 2017-10-03]
+	Updated math/gnumeric112 to 1.12.35 [wiz 2017-10-03]
+	Added print/fig2dev version 3.2.6a [wiz 2017-10-03]
+	Updated graphics/xfig to 3.2.6a [wiz 2017-10-03]
+	Removed print/transfig [wiz 2017-10-03]
+	Added security/ruby-rubyntlm version 0.6.2 [minskim 2017-10-03]
+	Added misc/ruby-windows_error version 0.1.2 [minskim 2017-10-03]
+	Updated graphics/py-Pillow to 4.3.0 [adam 2017-10-03]
+	Updated devel/py-cython to 0.27.1 [adam 2017-10-03]

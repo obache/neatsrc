@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.698 2017/09/26 10:30:20 wiz Exp $
+# $NetBSD: Makefile,v 1.700 2017/10/03 15:17:02 wiz Exp $
 #
 
 COMMENT=	Desktop publishing
@@ -44,6 +44,7 @@ SUBDIR+=	epstool
 SUBDIR+=	evince
 SUBDIR+=	evince-nautilus
 SUBDIR+=	evince3
+SUBDIR+=	fig2dev
 SUBDIR+=	flpsed
 SUBDIR+=	foo2zjs
 SUBDIR+=	foomatic-filters
@@ -1364,7 +1365,6 @@ SUBDIR+=	tex-zxjafont
 SUBDIR+=	tex-zxjafont-doc
 SUBDIR+=	tex4ht
 #SUBDIR+=	texlive				# place holder directory
-SUBDIR+=	transfig
 SUBDIR+=	vlna
 SUBDIR+=	web2c
 SUBDIR+=	xdvik
