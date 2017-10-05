@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=	fonts-tlwg-0.6.3
+DISTNAME=	fonts-tlwg-0.6.4
 CATEGORIES=	fonts
 MASTER_SITES=	http://linux.thai.net/pub/thailinux/software/fonts-tlwg/
 EXTRACT_SUFX=	.tar.xz
