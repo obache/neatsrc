@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.37 2017/10/03 22:21:10 wiz Exp $
+# $NetBSD: Makefile,v 1.39 2017/10/04 13:13:59 wiz Exp $
 
 DISTNAME=	scons-3.0.0
 CATEGORIES=	devel
