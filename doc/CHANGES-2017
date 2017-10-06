@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.4310 2017/10/04 18:37:30 schmonz Exp $
+$NetBSD: CHANGES-2017,v 1.4320 2017/10/05 22:39:16 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -6115,3 +6115,17 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated lang/erlang to 20.1nb1 [jperkin 2017-10-04]
 	Updated lang/nodejs6 to 6.11.4 [fhajny 2017-10-04]
 	Updated mail/getmail to 5.2 [schmonz 2017-10-04]
+	Updated devel/py-hypothesis to 3.31.2 [adam 2017-10-05]
+	Updated devel/py-test to 3.2.3 [adam 2017-10-05]
+	Updated lang/python36 to 3.6.3 [adam 2017-10-05]
+	Updated math/py-numpy to 1.13.3 [adam 2017-10-05]
+	Updated net/py-cymruwhois to 1.6 [adam 2017-10-05]
+	Updated net/py-dnsdiag to 1.6.3 [adam 2017-10-05]
+	Updated devel/py-cffi to 1.11.1 [adam 2017-10-05]
+	Updated www/py-django-formtools to 2.1 [adam 2017-10-05]
+	Updated www/py-bleach to 2.1.1 [adam 2017-10-05]
+	Updated x11/xkeyboard-config to 2.22 [wiz 2017-10-05]
+	Updated x11/modular-xorg-server to 1.19.4 [wiz 2017-10-05]
+	Updated mail/getmail to 5.3 [schmonz 2017-10-05]
+	Added devel/jsonnet version 0.9.4 [seb 2017-10-05]
+	Updated time/khal to 0.9.8 [wiz 2017-10-05]
