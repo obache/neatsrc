@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2017/10/03 14:07:55 maya Exp $
+# $NetBSD: Makefile,v 1.13 2017/10/07 17:40:27 maya Exp $
 
 DISTNAME=	rustc-1.20.0-src
 PKGNAME=	${DISTNAME:S/rustc/rust/:S/-src//}
@@ -17,6 +17,9 @@ USE_TOOLS+=		bash gmake perl:build pkg-config
 UNLIMIT_RESOURCES+=	cputime
 
 TEST_TARGET=	check
+
+# bin/* lib/*, but names vary
+CHECK_RELRO_SUPPORTED=	no
 
 # Required for LLVM (-std=c++11)
 GCC_REQD+=	4.8
@@ -112,37 +115,16 @@ post-extract:
 	${MV} ${WRKDIR}/rust-std-${RUST_STAGE0_VER}-${RUST_ARCH}/rust-std-${RUST_ARCH}/lib/rustlib/${RUST_ARCH} \
 		${WRKDIR}/rust-${RUST_STAGE0_VER}-${RUST_ARCH}/rustc/lib/rustlib
 
+RUSTC=			${WRKDIR}/rust-${RUST_STAGE0_VER}-${RUST_ARCH}/rustc/bin/rustc
+CARGO=			${WRKDIR}/rust-${RUST_STAGE0_VER}-${RUST_ARCH}/cargo/bin/cargo
+
+SUBST_CLASSES+=		config
+SUBST_STAGE.config=	post-configure
+SUBST_FILES.config+=	config.toml
+SUBST_VARS.config+=	RUSTC CARGO PREFIX PYTHONBIN
+
 do-configure:
-	echo '[build]' > ${WRKSRC}/config.toml
-	echo 'rustc = "${WRKDIR}/rust-${RUST_STAGE0_VER}-${RUST_ARCH}/rustc/bin/rustc"' \
-		>> ${WRKSRC}/config.toml
-	echo 'cargo = "${WRKDIR}/rust-${RUST_STAGE0_VER}-${RUST_ARCH}/cargo/bin/cargo"' \
-		>> ${WRKSRC}/config.toml
-	echo 'python = "${PYTHONBIN}"' >> ${WRKSRC}/config.toml
-	echo 'vendor = true' >> ${WRKSRC}/config.toml
-	echo 'extended = true' >> ${WRKSRC}/config.toml
-	echo 'verbose = 2' >> ${WRKSRC}/config.toml
-
-	echo '[install]' >> ${WRKSRC}/config.toml
-	echo 'prefix = "${PREFIX}"' >> ${WRKSRC}/config.toml
-	echo 'sysconfdir = "${SYSCONFDIR}"' >> ${WRKSRC}/config.toml
-	echo 'mandir = "${PKGMANDIR}"' >> ${WRKSRC}/config.toml
-
-	echo '[rust]' >> ${WRKSRC}/config.toml
-	echo 'channel = "stable"' >> ${WRKSRC}/config.toml
-	echo 'rpath = true' >> ${WRKSRC}/config.toml
-	echo 'codegen-tests = false' >> ${WRKSRC}/config.toml
-
-	echo '[dist]' >> ${WRKSRC}/config.toml
-	echo 'src-tarball = false' >> ${WRKSRC}/config.toml
-
-	echo '[llvm]' >> ${WRKSRC}/config.toml
-	echo 'static-libstdcpp = false' >> ${WRKSRC}/config.toml
-	echo 'ninja = true' >> ${WRKSRC}/config.toml
-
-	echo '[target.${RUST_ARCH}]' >> ${WRKSRC}/config.toml
-	echo 'llvm-config = "${LOCALBASE}/bin/llvm-config"' \
-		>> ${WRKSRC}/config.toml
+	${CP} ${FILESDIR}/config.toml ${WRKSRC}/config.toml
 
 do-build:
 	cd ${WRKSRC} \
