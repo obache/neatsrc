@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (fcitx-skk-0.1.2.tar.xz) = 0837155f7c2d12b5c395b3e8addd7cf4737a7d62
-RMD160 (fcitx-skk-0.1.2.tar.xz) = e138d4f174253ba326b3c445ac64b4057a910fd8
-SHA512 (fcitx-skk-0.1.2.tar.xz) = 040ae86a687e036be724d856808dd0c713517c216a44fd9ec65d5da708115681d3a1865947db3fcc597dee19bc350a94114b1b780a90c3444309db15f1a3e868
-Size (fcitx-skk-0.1.2.tar.xz) = 31948 bytes
+SHA1 (fcitx-skk-0.1.3.tar.xz) = 44598737bf188b45ad72f68e2bb775df769e9193
+RMD160 (fcitx-skk-0.1.3.tar.xz) = 74b98b2171b0dd538c42cb1593f673f4d15f3fcc
+SHA512 (fcitx-skk-0.1.3.tar.xz) = 601263a164536f2eac76f2fd6e8861abda8faf47adb31b2475b509db2620e8791a11b626109c8b2b9e52fb571b2c483b5e272a6fb35f6f9a4c129b26a5851245
+Size (fcitx-skk-0.1.3.tar.xz) = 34464 bytes

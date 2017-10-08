@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-skk-0.1.2
+DISTNAME=	fcitx-skk-0.1.3
 CATEGORIES=	inputmethod japanese
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-skk/
 EXTRACT_SUFX=	.tar.xz
