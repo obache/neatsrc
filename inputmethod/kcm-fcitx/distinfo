@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (kcm-fcitx-0.5.4.tar.xz) = 51a970396decfe5710da87c1e35a140d6f0f50b5
-RMD160 (kcm-fcitx-0.5.4.tar.xz) = 8aa7a0843ee139ebe7d4f432749dd7fcb977c9ec
-SHA512 (kcm-fcitx-0.5.4.tar.xz) = 349fe50303e027f44b53d954c088e441450aad07dac3a1162a5dcf9c445ca9d04bd3c36475c17dab91ed2df9c3c71031d7582e39b85ad0465a816f7fc24ac0bd
-Size (kcm-fcitx-0.5.4.tar.xz) = 59744 bytes
+SHA1 (kcm-fcitx-0.5.5.tar.xz) = 06b4838696f056cbc392fe3ae0c32eace615ae36
+RMD160 (kcm-fcitx-0.5.5.tar.xz) = ddd5d126cfa8b7a0da096e772128ec9bc99d382e
+SHA512 (kcm-fcitx-0.5.5.tar.xz) = e6a7bcad10003a956389ee266cf6d2f3730dafafcdd0bb43de328397749775e5cd305f16fdca2365e246c903677dba042da81a6dfd873aa1be74174e2b0b372e
+Size (kcm-fcitx-0.5.5.tar.xz) = 63364 bytes

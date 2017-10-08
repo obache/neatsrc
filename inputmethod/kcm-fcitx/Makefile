@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	kcm-fcitx-0.5.4
+DISTNAME=	kcm-fcitx-0.5.5
 CATEGORIES=	inputmethod kde
 MASTER_SITES=	http://download.fcitx-im.org/kcm-fcitx/
 EXTRACT_SUFX=	.tar.xz
@@ -25,7 +25,6 @@ CONF_FILES+=	${PREFIX}/share/examples/${PKGBASE}/xdg/fcitx-skin.knsrc \
 
 MAKE_DIRS+=	${PKG_SYSCONFBASEDIR}/xdg
 
-.include "../../devel/kcmutils/buildlink3.mk"
 .include "../../devel/kcoreaddons/buildlink3.mk"
 .include "../../devel/ki18n/buildlink3.mk"
 .include "../../devel/kio/buildlink3.mk"
