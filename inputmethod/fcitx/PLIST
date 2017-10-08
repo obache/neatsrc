@@ -84,6 +84,7 @@ include/fcitx/module/x11/fcitx-x11.h
 include/fcitx/module/x11/x11stuff.h
 include/fcitx/module/xkb/fcitx-xkb.h
 include/fcitx/module/xkb/xkb.h
+include/fcitx/module/xkbdbus/fcitx-xkbdbus.h
 include/fcitx/profile.h
 include/fcitx/ui.h
 lib/fcitx/fcitx-autoeng.so
@@ -227,6 +228,7 @@ share/fcitx/data/gbks2t.tab
 share/fcitx/data/punc.mb.zh_CN
 share/fcitx/data/punc.mb.zh_HK
 share/fcitx/data/punc.mb.zh_TW
+share/fcitx/data/quickphrase.d/emoji-eac.mb
 share/fcitx/data/quickphrase.d/emoji.mb
 share/fcitx/data/quickphrase.d/latex.mb
 share/fcitx/data/vk.conf
@@ -241,8 +243,10 @@ share/fcitx/imicon/ziranma.png
 share/fcitx/inputmethod/pinyin.conf
 share/fcitx/inputmethod/qw.conf
 share/fcitx/inputmethod/shuangpin.conf
+share/fcitx/pinyin/pySym.mb
 share/fcitx/pinyin/pybase.mb
 share/fcitx/pinyin/pyphrase.mb
+share/fcitx/pinyin/sp.dat
 share/fcitx/py-enhance/py_stroke.mb
 share/fcitx/py-enhance/py_table.mb
 share/fcitx/skin/classic/active.png
@@ -431,10 +435,14 @@ share/icons/hicolor/scalable/apps/fcitx-vk-active.svg
 share/icons/hicolor/scalable/apps/fcitx-vk-inactive-symbolic.svg
 share/icons/hicolor/scalable/apps/fcitx-vk-inactive.svg
 share/icons/hicolor/scalable/apps/fcitx.svg
+share/locale/ca/LC_MESSAGES/fcitx.mo
+share/locale/da/LC_MESSAGES/fcitx.mo
 share/locale/de/LC_MESSAGES/fcitx.mo
 share/locale/es/LC_MESSAGES/fcitx.mo
+share/locale/fr/LC_MESSAGES/fcitx.mo
 share/locale/ja/LC_MESSAGES/fcitx.mo
 share/locale/ko/LC_MESSAGES/fcitx.mo
+share/locale/ru/LC_MESSAGES/fcitx.mo
 share/locale/zh_CN/LC_MESSAGES/fcitx.mo
 share/locale/zh_TW/LC_MESSAGES/fcitx.mo
 share/mime/packages/x-fskin.xml

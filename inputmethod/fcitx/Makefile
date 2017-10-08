@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.13 2017/08/01 17:40:12 wiz Exp $
 #
 
-PKGNAME=		fcitx-4.2.9.1
+PKGNAME=		fcitx-4.2.9.4
 DISTNAME=		${PKGNAME}_dict
 CATEGORIES=		inputmethod chinese
 MASTER_SITES=		http://download.fcitx-im.org/fcitx/
@@ -16,9 +16,9 @@ TOOL_DEPENDS+=	extra-cmake-modules>=0.0.11:../../devel/extra-cmake-modules
 DEPENDS+=	xdg-utils-[0-9]*:../../misc/xdg-utils # xdg-open
 
 USE_CMAKE=		yes
-USE_LANGUAGES=		c c++
+USE_LANGUAGES=		c99 c++
 USE_PKGLOCALEDIR=	yes
-USE_TOOLS+=		bash gmake intltool msgfmt pkg-config gettext:run
+USE_TOOLS+=		bash:run gmake intltool msgfmt pkg-config gettext:run
 
 PKGCONFIG_OVERRIDE+=	src/lib/*/*.pc.in
 
@@ -32,12 +32,14 @@ CMAKE_ARGS+=	-DMAN_INSTALL_DIR:PATH=${PREFIX}/${PKGMANDIR}
 WRKSRC=	${WRKDIR}/${PKGNAME_NOREV}
 
 REPLACE_BASH+=	data/script/fcitx-diagnose.sh
+REPLACE_BASH+=	cmake/fcitx-cmake-helper.sh
 REPLACE_BASH+=	cmake/fcitx-extract-confdesc.sh
 REPLACE_BASH+=	cmake/fcitx-extract-desktop.sh
 REPLACE_BASH+=	cmake/fcitx-extract-gettext.sh
 REPLACE_BASH+=	cmake/fcitx-extract-kde.sh
 REPLACE_BASH+=	cmake/fcitx-extract-po.sh
 REPLACE_BASH+=	cmake/fcitx-extract-qt.sh
+REPLACE_BASH+=	cmake/fcitx-merge-config.sh
 
 .include "options.mk"
 
@@ -65,6 +67,7 @@ BUILDLINK_API_DEPENDS.dbus+=	dbus>=1.1.0
 .include "../../x11/libXrender/buildlink3.mk"
 .include "../../x11/libxkbcommon/buildlink3.mk"
 .include "../../x11/libxkbfile/buildlink3.mk"
+.include "../../x11/xkeyboard-config/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../databases/shared-mime-info/mimedb.mk"
