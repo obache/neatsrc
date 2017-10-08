@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-configtool-0.4.9
+DISTNAME=	fcitx-configtool-0.4.10
 CATEGORIES=	inputmethod
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-configtool/
 EXTRACT_SUFX=	.tar.xz
@@ -17,5 +17,4 @@ USE_TOOLS+=	msgfmt pkg-config
 
 .include "../../inputmethod/fcitx/buildlink3.mk"
 .include "../../textproc/iso-codes/buildlink3.mk"
-.include "../../x11/gtk3/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
