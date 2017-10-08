@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-unikey-0.2.5
+DISTNAME=	fcitx-unikey-0.2.6
 CATEGORIES=	inputmethod
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-unikey/
 EXTRACT_SUFX=	.tar.xz
@@ -15,6 +15,6 @@ USE_TOOLS+=	msgfmt pkg-config
 
 .include "options.mk"
 
-.include "../../converters/libiconv/buildlink3.mk"
+.include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../inputmethod/fcitx/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
