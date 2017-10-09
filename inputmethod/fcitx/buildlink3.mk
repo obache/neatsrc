@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	fcitx
 .if !defined(FCITX_BUILDLINK3_MK)
 FCITX_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.fcitx+=	fcitx>=4.2.9
+BUILDLINK_API_DEPENDS.fcitx+=	fcitx>=4.2.9.2
 BUILDLINK_PKGSRCDIR.fcitx?=	../../inputmethod/fcitx
 
 .include "../../devel/gettext-lib/buildlink3.mk"
