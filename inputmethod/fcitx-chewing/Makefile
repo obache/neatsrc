@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-chewing-0.2.2
+DISTNAME=	fcitx-chewing-0.2.3
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-chewing/
 EXTRACT_SUFX=	.tar.xz
