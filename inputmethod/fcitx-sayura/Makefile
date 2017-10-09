@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-sayura-0.1.1
+DISTNAME=	fcitx-sayura-0.1.2
 CATEGORIES=	inputmethod
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-sayura/
 EXTRACT_SUFX=	.tar.xz
