@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-rime-0.3.1
+DISTNAME=	fcitx-rime-0.3.2
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-rime/
 EXTRACT_SUFX=	.tar.xz
@@ -8,6 +8,8 @@ EXTRACT_SUFX=	.tar.xz
 HOMEPAGE=	http://fcitx-im.org/
 COMMENT=	RIME support for Fcitx
 LICENSE=	gnu-gpl-v2
+
+DEPENDS+=	brise-[0-9]*:../../inputmethod/brise
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
