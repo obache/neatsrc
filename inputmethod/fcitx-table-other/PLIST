@@ -60,11 +60,14 @@ share/icons/hicolor/64x64/apps/fcitx-viqr.png
 share/locale/am/LC_MESSAGES/fcitx-table-other.mo
 share/locale/ar/LC_MESSAGES/fcitx-table-other.mo
 share/locale/bn/LC_MESSAGES/fcitx-table-other.mo
+share/locale/ca/LC_MESSAGES/fcitx-table-other.mo
+share/locale/da/LC_MESSAGES/fcitx-table-other.mo
 share/locale/de/LC_MESSAGES/fcitx-table-other.mo
 share/locale/gu/LC_MESSAGES/fcitx-table-other.mo
 share/locale/hi/LC_MESSAGES/fcitx-table-other.mo
 share/locale/ja/LC_MESSAGES/fcitx-table-other.mo
 share/locale/kn/LC_MESSAGES/fcitx-table-other.mo
+share/locale/ko/LC_MESSAGES/fcitx-table-other.mo
 share/locale/ml/LC_MESSAGES/fcitx-table-other.mo
 share/locale/ne/LC_MESSAGES/fcitx-table-other.mo
 share/locale/pa/LC_MESSAGES/fcitx-table-other.mo
