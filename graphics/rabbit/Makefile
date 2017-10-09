@@ -23,5 +23,7 @@ DEPENDS+=	${RUBY_PKGPREFIX}-kramdown-[0-9]*:../../textproc/ruby-kramdown
 DEPENDS+=	${RUBY_PKGPREFIX}-gettext>=3.0.1:../../devel/ruby-gettext
 DEPENDS+=	${RUBY_PKGPREFIX}-faraday-[0-9]*:../../www/ruby-faraday
 
+RUBYGEM_OPTIONS+=	--format-executable
+
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"
