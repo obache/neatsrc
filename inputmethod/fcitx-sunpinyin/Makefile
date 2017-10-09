@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-sunpinyin-0.4.1
+DISTNAME=	fcitx-sunpinyin-0.4.2
 CATEGORIES=	inputmethod
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-sunpinyin/
 EXTRACT_SUFX=	.tar.xz
