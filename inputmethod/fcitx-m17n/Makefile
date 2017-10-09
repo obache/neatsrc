@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-m17n-0.2.3
+DISTNAME=	fcitx-m17n-0.2.4
 CATEGORIES=	inputmethod
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-m17n/
 EXTRACT_SUFX=	.tar.xz

@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (fcitx-m17n-0.2.3.tar.xz) = 062ad5ccf4fd344cd972ed0091e09274b6510be1
-RMD160 (fcitx-m17n-0.2.3.tar.xz) = b92f3af79ec0c929912bbeab57d3817f045de5bf
-SHA512 (fcitx-m17n-0.2.3.tar.xz) = 6e78b70fb2e3139a59f49d25026c075893a8f192dd2083641ab3e56595a4f631ff13307dd647fd0eedd510dade690d97b44cbdeca96e086855f73910dc5d02af
-Size (fcitx-m17n-0.2.3.tar.xz) = 33504 bytes
+SHA1 (fcitx-m17n-0.2.4.tar.xz) = 0a7bb118092664dedab7b1ba0e1767c332575f77
+RMD160 (fcitx-m17n-0.2.4.tar.xz) = 99073e391eb9f707c88a396359324adfb6ffe8cf
+SHA512 (fcitx-m17n-0.2.4.tar.xz) = b7c483e9c88e58a47ead294c36ed182558f09b41996e97faaba9fd3a96612f6a0fc240fdcb95db9a08c1546abe5fc97337957e2124844bd011363b7468f6e112
+Size (fcitx-m17n-0.2.4.tar.xz) = 35076 bytes
