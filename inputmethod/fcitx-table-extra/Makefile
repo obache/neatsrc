@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-table-extra-0.3.7
+DISTNAME=	fcitx-table-extra-0.3.8
 CATEGORIES=	inputmethod
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-table-extra/
 EXTRACT_SUFX=	.tar.xz
