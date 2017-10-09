@@ -1,13 +1,12 @@
 # $NetBSD: Makefile,v 1.22 2017/09/18 09:53:23 maya Exp $
 
-DISTNAME=	ibus-array-0.1.0
-PKGREVISION=	6
+DISTNAME=	ibus-array-release-0.1.2
+PKGNAME=	${DISTNAME:S/-release-/-/}
 CATEGORIES=	inputmethod chinese
-MASTER_SITES=	http://ibus-array.googlecode.com/svn/tarballs/
-EXTRACT_SUFX=	.tgz
+MASTER_SITES=	-https://github.com/lexical/ibus-array/archive/release-${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://code.google.com/archive/p/ibus-array/
+HOMEPAGE=	https://github.com/lexical/ibus-array/
 COMMENT=	Array 30 Input Method for iBus
 LICENSE=	gnu-gpl-v3
 
@@ -17,8 +16,6 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=	gmake pkg-config automake autoconf autopoint msgfmt msgmerge
-
-WRKSRC=		${WRKDIR}
 
 pre-configure:
 	${RUN}cd ${WRKSRC};${PKGSRC_SETENV} ${CONFIGURE_ENV} ./autogen.sh
