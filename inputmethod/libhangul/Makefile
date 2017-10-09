@@ -2,7 +2,7 @@
 
 DISTNAME=	libhangul-0.1.0
 CATEGORIES=	inputmethod korean
-MASTER_SITES=	http://libhangul.googlecode.com/files/
+MASTER_SITES=	http://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/libhangul/
 
 MAINTAINER=	minskim@NetBSD.org
 HOMEPAGE=	https://code.google.com/archive/p/libhangul/
