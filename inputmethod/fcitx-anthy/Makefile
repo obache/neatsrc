@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-anthy-0.2.2
+DISTNAME=	fcitx-anthy-0.2.3
 CATEGORIES=	inputmethod japanese
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-anthy/
 EXTRACT_SUFX=	.tar.xz
