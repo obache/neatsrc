@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-hangul-0.3.0
+DISTNAME=	fcitx-hangul-0.3.1
 CATEGORIES=	inputmethod korean
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-hangul/
 EXTRACT_SUFX=	.tar.xz
