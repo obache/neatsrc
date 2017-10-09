@@ -2,6 +2,7 @@ package main
 
 import (
 	"netbsd.org/pkglint/line"
+	"netbsd.org/pkglint/linechecks"
 	"netbsd.org/pkglint/regex"
 	"netbsd.org/pkglint/trace"
 	"path"
@@ -14,7 +15,7 @@ func ChecklinesPlist(lines []line.Line) {
 		defer trace.Call1(lines[0].Filename())()
 	}
 
-	LineChecker{lines[0]}.CheckRcsid(`@comment `, "@comment ")
+	linechecks.CheckRcsid(lines[0], `@comment `, "@comment ")
 
 	if len(lines) == 1 {
 		lines[0].Warnf("PLIST files shouldn't be empty.")
@@ -33,14 +34,16 @@ func ChecklinesPlist(lines []line.Line) {
 	ck := &PlistChecker{
 		make(map[string]*PlistLine),
 		make(map[string]*PlistLine),
-		""}
+		"",
+		false}
 	ck.Check(lines)
 }
 
 type PlistChecker struct {
-	allFiles  map[string]*PlistLine
-	allDirs   map[string]*PlistLine
-	lastFname string
+	allFiles              map[string]*PlistLine
+	allDirs               map[string]*PlistLine
+	lastFname             string
+	warnedAboutIconThemes bool
 }
 
 type PlistLine struct {

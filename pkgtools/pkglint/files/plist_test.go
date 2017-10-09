@@ -124,7 +124,7 @@ func (s *Suite) Test_PlistLineSorter_Sort(c *check.C) {
 		"lib/before.la",
 		"lib/after.la",
 		"@exec echo \"after lib/after.la\"")
-	ck := &PlistChecker{nil, nil, ""}
+	ck := &PlistChecker{nil, nil, "", false}
 	plines := ck.NewLines(lines)
 
 	NewPlistLineSorter(plines).Sort()
