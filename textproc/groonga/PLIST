@@ -284,6 +284,7 @@ share/doc/groonga/en/html/_sources/reference/tuning.txt
 share/doc/groonga/en/html/_sources/reference/types.txt
 share/doc/groonga/en/html/_sources/reference/window_function.txt
 share/doc/groonga/en/html/_sources/reference/window_functions/record_number.txt
+share/doc/groonga/en/html/_sources/reference/window_functions/window_count.txt
 share/doc/groonga/en/html/_sources/reference/window_functions/window_record_number.txt
 share/doc/groonga/en/html/_sources/reference/window_functions/window_sum.txt
 share/doc/groonga/en/html/_sources/server.txt
@@ -559,6 +560,7 @@ share/doc/groonga/en/html/reference/tuning.html
 share/doc/groonga/en/html/reference/types.html
 share/doc/groonga/en/html/reference/window_function.html
 share/doc/groonga/en/html/reference/window_functions/record_number.html
+share/doc/groonga/en/html/reference/window_functions/window_count.html
 share/doc/groonga/en/html/reference/window_functions/window_record_number.html
 share/doc/groonga/en/html/reference/window_functions/window_sum.html
 share/doc/groonga/en/html/search.html
@@ -813,6 +815,7 @@ share/doc/groonga/ja/html/_sources/reference/tuning.txt
 share/doc/groonga/ja/html/_sources/reference/types.txt
 share/doc/groonga/ja/html/_sources/reference/window_function.txt
 share/doc/groonga/ja/html/_sources/reference/window_functions/record_number.txt
+share/doc/groonga/ja/html/_sources/reference/window_functions/window_count.txt
 share/doc/groonga/ja/html/_sources/reference/window_functions/window_record_number.txt
 share/doc/groonga/ja/html/_sources/reference/window_functions/window_sum.txt
 share/doc/groonga/ja/html/_sources/server.txt
@@ -1088,6 +1091,7 @@ share/doc/groonga/ja/html/reference/tuning.html
 share/doc/groonga/ja/html/reference/types.html
 share/doc/groonga/ja/html/reference/window_function.html
 share/doc/groonga/ja/html/reference/window_functions/record_number.html
+share/doc/groonga/ja/html/reference/window_functions/window_count.html
 share/doc/groonga/ja/html/reference/window_functions/window_record_number.html
 share/doc/groonga/ja/html/reference/window_functions/window_sum.html
 share/doc/groonga/ja/html/search.html
