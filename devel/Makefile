@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2544 2017/10/05 19:41:35 seb Exp $
+# $NetBSD: Makefile,v 1.2548 2017/10/13 15:44:29 prlw1 Exp $
 #
 
 COMMENT=	Development utilities
@@ -750,10 +750,12 @@ SUBDIR+=	ocaml-oasis
 SUBDIR+=	ocaml-odn
 SUBDIR+=	ocaml-optcomp
 SUBDIR+=	ocaml-ppx_ast
+SUBDIR+=	ocaml-ppx_compare
 SUBDIR+=	ocaml-ppx_core
 SUBDIR+=	ocaml-ppx_derivers
 SUBDIR+=	ocaml-ppx_deriving
 SUBDIR+=	ocaml-ppx_driver
+SUBDIR+=	ocaml-ppx_enumerate
 SUBDIR+=	ocaml-ppx_metaquot
 SUBDIR+=	ocaml-ppx_optcomp
 SUBDIR+=	ocaml-ppx_sexp_conv
@@ -1926,6 +1928,7 @@ SUBDIR+=	py-game
 SUBDIR+=	py-generate
 SUBDIR+=	py-gflags
 SUBDIR+=	py-gitinspector
+SUBDIR+=	py-glib2-tools
 SUBDIR+=	py-gobject
 SUBDIR+=	py-gobject-shared
 SUBDIR+=	py-gobject3
@@ -1986,6 +1989,7 @@ SUBDIR+=	py-memory-profiler
 SUBDIR+=	py-mercurial
 SUBDIR+=	py-meson
 SUBDIR+=	py-minimock
+SUBDIR+=	py-mixbox
 SUBDIR+=	py-mock
 SUBDIR+=	py-modulegraph
 SUBDIR+=	py-more-itertools
@@ -1999,6 +2003,7 @@ SUBDIR+=	py-nosexcover
 SUBDIR+=	py-ode
 SUBDIR+=	py-olefile
 SUBDIR+=	py-open-vcdiff
+SUBDIR+=	py-ordered-set
 SUBDIR+=	py-packaging
 SUBDIR+=	py-pathlib
 SUBDIR+=	py-pathlib2

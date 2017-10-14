@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.35 2017/10/03 12:36:52 wiz Exp $
+# $NetBSD: Makefile,v 1.37 2017/10/13 16:36:03 prlw1 Exp $
 
-DISTNAME=	dconf-0.26.0
-PKGREVISION=	2
+DISTNAME=	dconf-0.26.1
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/dconf/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -37,7 +36,6 @@ SUBST_FILES.libname+=	gsettings/Makefile.in
 SUBST_SED.libname=	-e "s|-Wl,-soname=|-install_name ${PREFIX}/lib/|g"
 SUBST_SED.libname+=	-e "/^libdconfsettings_so_LDFLAGS/s,$$, -install_name ${PREFIX}/lib/gio/modules/libdconfsettings.so,g"
 
-BUILD_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 BUILD_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 BUILD_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 
@@ -45,5 +43,6 @@ BUILDLINK_DEPMETHOD.vala=	build
 BUILDLINK_API_DEPENDS.vala+=	vala>=0.18.0
 .include "../../lang/vala/buildlink3.mk"
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.44.0
+.include "../../devel/glib2/buildtools.mk"
 .include "../../devel/glib2/modules.mk"
 .include "../../mk/bsd.pkg.mk"
