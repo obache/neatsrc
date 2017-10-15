@@ -2,7 +2,7 @@
 
 .include "../../devel/glib2/Makefile.common"
 
-PKGNAME:=	${PYPKGPREFIX}-${PKGNAME:S/glib2/glib2-tools/}
+PKGNAME:=	py-${PKGNAME:S/glib2/glib2-tools/}
 CATEGORIES=	devel gnome
 
 COMMENT=	GLib2 python-dependent tools
