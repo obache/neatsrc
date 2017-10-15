@@ -81,4 +81,8 @@ _check-interpreter: error-check .PHONY
 		     [ ! -f "$$interp" ]; }; then			\
 			${DELAYED_ERROR_MSG} "[check-interpreter.mk] The interpreter \"$$interp\" of \"${DESTDIR}${PREFIX}/$$file\" does not exist."; \
 		fi;							\
+		if { [ -f ${DESTDIR:Q}${PREFIX:Q}/libdata/pkg_alternatives/"$$interp" ] ||			\
+		     [ -f ${PREFIX:Q}/libdata/pkg_alternatives/"$$interp" ]; }; then			\
+			${DELAYED_ERROR_MSG} "[check-interpreter.mk] The interpreter \"$$interp\" of \"${DESTDIR}${PREFIX}/$$file\" is pkg_alternatives."; \
+		fi;							\
 	done
