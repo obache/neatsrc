@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.700 2017/10/03 15:17:02 wiz Exp $
+# $NetBSD: Makefile,v 1.702 2017/10/15 20:39:15 markd Exp $
 #
 
 COMMENT=	Desktop publishing
@@ -947,6 +947,8 @@ SUBDIR+=	tex-ntgclass
 SUBDIR+=	tex-ntgclass-doc
 SUBDIR+=	tex-ntheorem
 SUBDIR+=	tex-ntheorem-doc
+SUBDIR+=	tex-numprint
+SUBDIR+=	tex-numprint-doc
 SUBDIR+=	tex-oberdiek
 SUBDIR+=	tex-oberdiek-doc
 SUBDIR+=	tex-ocgx2
@@ -1272,6 +1274,8 @@ SUBDIR+=	tex-type1cm
 SUBDIR+=	tex-type1cm-doc
 SUBDIR+=	tex-typehtml
 SUBDIR+=	tex-typehtml-doc
+SUBDIR+=	tex-ucharcat
+SUBDIR+=	tex-ucharcat-doc
 SUBDIR+=	tex-ucs
 SUBDIR+=	tex-ucs-doc
 SUBDIR+=	tex-udesoftec

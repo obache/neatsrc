@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.101 2017/10/13 16:36:04 prlw1 Exp $
+# $NetBSD: Makefile,v 1.102 2017/10/15 22:31:02 prlw1 Exp $
 
 DISTNAME=	gtk+-3.22.21
 PKGNAME=	${DISTNAME:S/gtk/gtk3/}
@@ -16,6 +16,7 @@ USE_TOOLS+=		gmake msgfmt perl pkg-config bash
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 PTHREAD_AUTO_VARS=	yes
+TOOL_DEPENDS+=		gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 
 GNU_CONFIGURE=		yes
 # XXX there is a subtle bashism in "configure" or a bug in NetBSD's sh
@@ -77,7 +78,6 @@ BUILDLINK_API_DEPENDS.atk+=	atk>=2.15.1
 .include "../../devel/gettext-lib/buildlink3.mk"
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.49.4
 .include "../../devel/glib2/buildlink3.mk"
-.include "../../devel/glib2/buildtools.mk"
 BUILDLINK_API_DEPENDS.gdk-pixbuf2+=	gdk-pixbuf2>=2.30.0
 .include "../../graphics/gdk-pixbuf2/buildlink3.mk"
 BUILDLINK_DEPMETHOD.gobject-introspection:=	build
