@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1274 2017/10/09 22:39:57 brook Exp $
+# $NetBSD: Makefile,v 1.1277 2017/10/17 06:56:12 adam Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -628,6 +628,8 @@ SUBDIR+=	py-cookies
 SUBDIR+=	py-curl
 SUBDIR+=	py-daphne
 SUBDIR+=	py-django
+SUBDIR+=	py-django-admin-rangefilter
+SUBDIR+=	py-django-admin-sortable2
 SUBDIR+=	py-django-appconf
 SUBDIR+=	py-django-appmedia
 SUBDIR+=	py-django-classy-tags
@@ -639,6 +641,7 @@ SUBDIR+=	py-django-easy-thumbnails
 SUBDIR+=	py-django-filer
 SUBDIR+=	py-django-filter
 SUBDIR+=	py-django-formtools
+SUBDIR+=	py-django-import-export
 SUBDIR+=	py-django-inline-ordering
 SUBDIR+=	py-django-kronos
 SUBDIR+=	py-django-mezzanine-filebrowser

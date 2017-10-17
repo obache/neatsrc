@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2550 2017/10/15 14:10:39 prlw1 Exp $
+# $NetBSD: Makefile,v 1.2554 2017/10/16 18:10:41 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -736,6 +736,7 @@ SUBDIR+=	ocaml-batteries
 SUBDIR+=	ocaml-biniou
 SUBDIR+=	ocaml-cmdliner
 SUBDIR+=	ocaml-compiler-libs
+SUBDIR+=	ocaml-configurator
 SUBDIR+=	ocaml-cppo
 SUBDIR+=	ocaml-deriving-ocsigen
 SUBDIR+=	ocaml-extlib
@@ -758,6 +759,7 @@ SUBDIR+=	ocaml-ppx_derivers
 SUBDIR+=	ocaml-ppx_deriving
 SUBDIR+=	ocaml-ppx_driver
 SUBDIR+=	ocaml-ppx_enumerate
+SUBDIR+=	ocaml-ppx_hash
 SUBDIR+=	ocaml-ppx_metaquot
 SUBDIR+=	ocaml-ppx_optcomp
 SUBDIR+=	ocaml-ppx_sexp_conv
@@ -1957,6 +1959,7 @@ SUBDIR+=	py-ipykernel
 SUBDIR+=	py-ipython
 SUBDIR+=	py-ipython010
 SUBDIR+=	py-ipython1
+SUBDIR+=	py-ipython5
 SUBDIR+=	py-ipython_genutils
 SUBDIR+=	py-iso-639
 SUBDIR+=	py-iso3166
@@ -2206,6 +2209,7 @@ SUBDIR+=	ruby-amstd
 SUBDIR+=	ruby-assistance
 SUBDIR+=	ruby-atomic
 SUBDIR+=	ruby-backports
+SUBDIR+=	ruby-bindata
 SUBDIR+=	ruby-bit-struct
 SUBDIR+=	ruby-blankslate
 SUBDIR+=	ruby-bsearch
