@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.53 2017/09/18 09:53:25 maya Exp $
+# $NetBSD: Makefile,v 1.54 2017/10/18 12:06:31 gavan Exp $
 
 DISTNAME=	cyrus-imapd-2.4.20
 CATEGORIES=	mail
