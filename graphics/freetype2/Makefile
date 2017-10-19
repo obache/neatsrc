@@ -59,6 +59,6 @@ post-configure:
 .include "../../archivers/bzip2/buildlink3.mk"
 # Avoid creating a fake zlib.pc, because if it does
 # we will add a Requires for it to our .pc file
-CHECK_BUILTIN.zlib:=yes
+SKIP_FAKE_PC_FILES+=	zlib
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

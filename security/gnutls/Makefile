@@ -69,7 +69,7 @@ post-install:
 .include "../../devel/libcfg+/buildlink3.mk"
 # Avoid creating a fake zlib.pc, because if it does
 # gnutls will add a Requires.private for it in its .pc file
-CHECK_BUILTIN.zlib:=yes
+SKIP_FAKE_PC_FILES+=	zlib
 .include "../../devel/zlib/buildlink3.mk"
 # guile is useful for selftests, but bindings should be separate pkgs
 #.include "../../lang/guile20/buildlink3.mk"

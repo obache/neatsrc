@@ -21,6 +21,7 @@ create-fake-pc:
 	!exists(${BUILDLINK_X11_DIR}/lib/pkgconfig/${_pc_}.pc)
 	${MKDIR} ${BUILDLINK_DIR}/lib/pkgconfig
 .      if empty(BUILTIN_PKGCONFIG_FOUND.${_pc_}:M[Yy][Ee][Ss])
+.       if empty(SKIP_FAKE_PC_FILES:M${_pc_})
 .        if empty(FAKE_PC_SUBST_SED.${_pc_})
 	${CP} ${FAKE_PC_SRC.${_pc_}} ${BUILDLINK_DIR}/lib/pkgconfig/${_pc_}.pc
 .        else
@@ -28,6 +29,7 @@ create-fake-pc:
 		< ${FAKE_PC_SRC.${_pc_}} \
 		> ${BUILDLINK_DIR}/lib/pkgconfig/${_pc_}.pc
 .        endif
+.       endif
 .      else
 	${LN} -s ${BUILTIN_PKGCONFIG_FILE.${_pc_}} \
 		${BUILDLINK_DIR}/lib/pkgconfig/${_pc_}.pc
