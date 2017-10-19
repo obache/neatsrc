@@ -111,6 +111,7 @@ replace-interpreter:
 			${SHCOMMENT} "Ignore it, most probably comes from shell globs"; \
 		else							\
 			${ERROR_MSG} "[replace-interpreter] non-existent file \"$$f\"."; \
+			${FALSE};					\
 		fi;							\
 	done
 .  else

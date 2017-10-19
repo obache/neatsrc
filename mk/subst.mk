@@ -112,6 +112,7 @@ ${_SUBST_COOKIE.${_class_}}:
 		tmpfile="$$file"${_SUBST_BACKUP_SUFFIX:Q};		\
 		if [ ! -f "$$file" ]; then				\
 			${ERROR_MSG} "[subst.mk:${_class_}] non-existent file \"$$file\"."; \
+			${FALSE};					\
 		elif ${_SUBST_IS_TEXT_FILE.${_class_}}; then		\
 			${SUBST_FILTER_CMD.${_class_}}			\
 			< "$$file"					\
