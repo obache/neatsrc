@@ -9,7 +9,7 @@ CONFIGURE_ARGS+=	--enable-avfilter
 CONFIGURE_ARGS+=	--enable-avresample
 CONFIGURE_ARGS+=	--enable-postproc
 CONFIGURE_ARGS+=	--disable-ffplay
-CONFIGURE_ARGS+=	--disable-sdl
+CONFIGURE_ARGS+=	--disable-sdl2
 
 INSTALLATION_DIRS=	lib/ffmpeg3 share/doc/ffmpeg3 share/examples/ffmpeg3
 
