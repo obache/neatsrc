@@ -71,7 +71,7 @@ SUBST_SED.sunwspro+=	-e "s/-Wl,-rpath-link,/-L /g"
 BUILD_DEPENDS+=	nasm>=2.13:../../devel/nasm
 
 REPLACE_PERL+=	doc/texi2pod.pl
-REPLACE_SH+=	configure version.sh
+REPLACE_SH+=	configure ffbuild/version.sh
 
 SUBST_CLASSES+=		conf
 SUBST_STAGE.conf=	post-patch
