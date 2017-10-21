@@ -1,7 +1,6 @@
 # $NetBSD$
 #
 
-.if !empty(USE_TOOLS:Mpkg-config)
 BUILDLINK_TARGETS+=	create-fake-pc
 
 .for _pkg_ in ${_BUILTIN_PKGS}
@@ -37,5 +36,3 @@ create-fake-pc:
 .    endif
 .  endfor
 .endfor
-
-.endif
