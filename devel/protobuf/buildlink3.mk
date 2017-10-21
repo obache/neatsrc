@@ -6,6 +6,7 @@ BUILDLINK_TREE+=	protobuf
 PROTOBUF_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.protobuf+=	protobuf>=3.0.0
+BUILDLINK_API_DEPENDS.protobuf+=	protobuf>=3.4.0
 BUILDLINK_PKGSRCDIR.protobuf?=	../../devel/protobuf
 
 .include "../../devel/zlib/buildlink3.mk"
