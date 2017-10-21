@@ -12,6 +12,8 @@ HOMEPAGE=	https://gyp.gsrc.io/
 COMMENT=	GYP can Generate Your Projects
 LICENSE=	modified-bsd
 
+DEPENDS+=	${PYPKGPREFIX}-setuptools-[0-9]*:../../devel/py-setuptools
+
 PYTHON_VERSIONS_INCOMPATIBLE=  34 35 36 # not yet ported as of 0.1pre20161117.940a15ee3f1c89f193cb4c19373b3f6e9ad15b95
 EGG_NAME=	gyp-${DIST_VERSION}
 
