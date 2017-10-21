@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.12 2017/08/24 20:17:00 adam Exp $
+# $NetBSD: Makefile,v 1.14 2017/10/20 13:59:33 joerg Exp $
 
-DISTNAME=	zstd-1.3.1
+DISTNAME=	zstd-1.3.2
 CATEGORIES=	archivers
 MASTER_SITES=	${MASTER_SITE_GITHUB:=facebook/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -18,10 +18,6 @@ MAKE_FLAGS+=		INSTALL=${INSTALL:Q}
 
 BUILD_TARGET=		allmost
 TEST_TARGET=		test
-
-RESTRICTED=		LICENSE-examples does not permit redistribution of the examples
-NO_SRC_ON_CDROM=	${RESTRICTED}
-NO_SRC_ON_FTP=		${RESTRICTED}
 
 .include "../../archivers/xz/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
