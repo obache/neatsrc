@@ -7,7 +7,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=lame/}
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://lame.sourceforge.net/
 COMMENT=	Fast, high quality MP3 encoder
-LICENSE=	lame-license
+LICENSE=	gnu-lgpl-v2
 
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake
