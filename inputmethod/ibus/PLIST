@@ -47,6 +47,7 @@ lib/pkgconfig/ibus-1.0.pc
 libexec/ibus-dconf
 libexec/ibus-engine-simple
 libexec/ibus-gconf
+libexec/ibus-portal
 libexec/ibus-ui-emojier
 libexec/ibus-ui-gtk3
 libexec/ibus-x11
@@ -58,6 +59,7 @@ share/GConf/gsettings/ibus.convert
 share/applications/ibus-setup.desktop
 share/bash-completion/completions/ibus.bash
 share/dbus-1/services/org.freedesktop.IBus.service
+share/dbus-1/services/org.freedesktop.portal.IBus.service
 share/examples/ibus/dconf/db/ibus.d/00-upstream-settings
 share/examples/ibus/dconf/profile/ibus
 share/gconf/schemas/ibus.schemas
@@ -136,7 +138,6 @@ share/ibus/dicts/emoji-de.dict
 share/ibus/dicts/emoji-de_CH.dict
 share/ibus/dicts/emoji-el.dict
 share/ibus/dicts/emoji-en.dict
-share/ibus/dicts/emoji-en_001.dict
 share/ibus/dicts/emoji-es.dict
 share/ibus/dicts/emoji-es_419.dict
 share/ibus/dicts/emoji-et.dict
