@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.734 2017/10/12 05:12:14 jnemeth Exp $
+# $NetBSD: Makefile,v 1.737 2017/10/25 14:58:46 fhajny Exp $
 #
 
 COMMENT=	System utilities
@@ -42,6 +42,7 @@ SUBDIR+=	bchunk
 SUBDIR+=	bcmfw
 SUBDIR+=	bcollect
 SUBDIR+=	beats
+SUBDIR+=	bfs
 SUBDIR+=	bkpupsd
 SUBDIR+=	boxbackup-client
 SUBDIR+=	boxbackup-server
@@ -175,6 +176,7 @@ SUBDIR+=	fs-kit
 SUBDIR+=	fscd
 SUBDIR+=	fsviewer
 SUBDIR+=	ftwin
+SUBDIR+=	fzf
 SUBDIR+=	gamin
 SUBDIR+=	gcdmaster
 SUBDIR+=	gcombust
@@ -391,6 +393,7 @@ SUBDIR+=	open-vm-tools
 SUBDIR+=	openstack_init
 SUBDIR+=	openxenmanager
 SUBDIR+=	osname
+SUBDIR+=	ovmf
 SUBDIR+=	p5-Config-Augeas
 SUBDIR+=	p5-Config-Simple
 SUBDIR+=	p5-Daemon-Generic

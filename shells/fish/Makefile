@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2017/08/19 09:28:38 fhajny Exp $
+# $NetBSD: Makefile,v 1.14 2017/10/25 14:47:40 maya Exp $
 
 DISTNAME=		fish-2.6.0
+PKGREVISION=		3
 CATEGORIES=		shells
 MASTER_SITES=		http://fishshell.com/files/${PKGVERSION_NOREV}/
 
@@ -15,7 +16,7 @@ USE_LANGUAGES+=		c c++
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--without-xsel
-USE_TOOLS+=		gmake
+USE_TOOLS+=		gmake autoreconf autoconf automake
 
 EGDIR=			${PREFIX}/share/examples/fish
 INSTALL_ENV+=		EGDIR=${EGDIR}
@@ -42,6 +43,10 @@ PLIST_VARS+=	open
 PLIST.open=	yes
 .endif
 
+pre-configure:
+	${RUN} cd ${WRKSRC} && autoreconf -fiv
+
+.include "../../devel/pcre2/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/gettext-tools/buildlink3.mk"
 .include "../../lang/python/application.mk"

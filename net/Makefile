@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1186 2017/10/16 16:51:29 minskim Exp $
+# $NetBSD: Makefile,v 1.1188 2017/10/23 15:49:12 minskim Exp $
 #
 
 COMMENT=	Networking tools
@@ -202,6 +202,7 @@ SUBDIR+=	grilo-plugins
 SUBDIR+=	grilo-testui
 SUBDIR+=	grive
 SUBDIR+=	grive2
+SUBDIR+=	grpc
 SUBDIR+=	gsnmp
 SUBDIR+=	gssdp
 SUBDIR+=	gst-plugins0.10-mms
@@ -479,6 +480,7 @@ SUBDIR+=	p5-Net-CIDR-Set
 SUBDIR+=	p5-Net-DBus
 SUBDIR+=	p5-Net-DHCP
 SUBDIR+=	p5-Net-DNS
+SUBDIR+=	p5-Net-DNS-Resolver-Mock
 SUBDIR+=	p5-Net-DNS-Resolver-Programmable
 SUBDIR+=	p5-Net-DNS-Zone-Parser
 SUBDIR+=	p5-Net-DNSServer

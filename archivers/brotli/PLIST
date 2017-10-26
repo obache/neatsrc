@@ -1,4 +1,4 @@
-@comment $NetBSD$
+@comment $NetBSD: PLIST,v 1.1 2017/10/23 13:15:29 adam Exp $
 bin/brotli
 include/brotli/decode.h
 include/brotli/encode.h

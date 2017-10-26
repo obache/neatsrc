@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.155 2017/09/29 21:36:46 joerg Exp $
+# $NetBSD: Makefile,v 1.156 2017/10/23 13:15:29 adam Exp $
 #
 
 COMMENT=	Archivers
