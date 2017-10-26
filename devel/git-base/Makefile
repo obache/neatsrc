@@ -73,12 +73,6 @@ GIT_TEMPLATE_INSTDIR=	${EGDIR}/${GIT_TEMPLATEDIR}
 MAKE_ENV+=		GIT_TEMPLATE_INSTDIR=${GIT_TEMPLATE_INSTDIR}
 MESSAGE_SUBST+=		GIT_TEMPLATE_INSTDIR=${GIT_TEMPLATE_INSTDIR}
 
-SUBST_CLASSES+=		fix-paths
-SUBST_FILES.fix-paths=	templates/hooks--post-receive.sample
-SUBST_MESSAGE.fix-paths=Fixing hard-coded pathnames
-SUBST_STAGE.fix-paths=	pre-build
-SUBST_VARS.fix-paths=	PREFIX
-
 .include "../../mk/bsd.prefs.mk"
 
 .if ${OPSYS} == "NetBSD" || ${OPSYS} == "SunOS" || ${OPSYS} == "OSF1" || ${OPSYS} == "HPUX" || ${OPSYS} == "QNX" || ${OPSYS} == "UnixWare"
