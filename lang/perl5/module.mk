@@ -231,11 +231,14 @@ LDFLAGS+=	${PERL5_LDFLAGS}
 
 .include "../../lang/perl5/packlist.mk"
 
-.if ${PERL5_MODULE_TYPE} == "MakeMaker"
+.if ${PERL5_MODULE_TYPE} == "MakeMaker" && !empty(PERL5_PACKLIST)
 SUBST_CLASSES+=	_fix_mm_shebang
 SUBST_MESSAGE._fix_mm_shebang=	Fix shebang modified with MakeMaker
 SUBST_STAGE._fix_mm_shebang=	post-install
-SUBST_FILES._fix_mm_shebang=	${DESTDIR}${PERL5_INSTALLVENDORSCRIPT}/*
+_SUBST_FILES_FIX_MM_SHEBANG_FILES=	${ECHO} &&	\
+	${AWK} '/${PERL5_INSTALLVENDORSCRIPT:S/\//\\\//g}\// {print "${DESTDIR}" $$0; }' \
+	${_PERL5_PACKLIST}
+SUBST_FILES._fix_mm_shebang=	${_SUBST_FILES_FIX_MM_SHEBANG_FILES:sh}
 SUBST_SED._fix_mm_shebang=	-e '1s/${TOOLS_DIR:S/\//\\\//g}\/bin\/sh/${SH:S/\//\\\//g}/'
 
 install-clean: .PHONY eat-cookie._fix_mm_shebang
