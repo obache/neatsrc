@@ -1,8 +1,8 @@
 # $NetBSD: Makefile,v 1.18 2017/08/16 20:21:08 wiz Exp $
 
-DISTNAME=	libthai-0.1.26
+DISTNAME=	libthai-0.1.27
 CATEGORIES=	devel
-MASTER_SITES=	http://linux.thai.net/pub/thailinux/software/libthai/
+MASTER_SITES=	https://linux.thai.net/pub/thailinux/software/libthai/
 MASTER_SITES+=	ftp://linux.thai.net/pub/ThaiLinux/software/libthai/
 EXTRACT_SUFX=	.tar.xz
 
