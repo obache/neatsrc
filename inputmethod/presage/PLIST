@@ -1,0 +1,24 @@
+@comment $NetBSD$
+bin/presage_demo
+bin/presage_demo_text
+bin/presage_simulator
+bin/text2ngram
+include/presage.h
+include/presageCallback.h
+include/presageException.h
+lib/libpresage.la
+man/man1/presage_demo.1
+man/man1/presage_demo_text.1
+man/man1/presage_simulator.1
+man/man1/text2ngram.1
+share/examples/presage/presage.xml
+share/presage/abbreviations_en.txt
+share/presage/abbreviations_it.txt
+share/presage/database_en.db
+share/presage/database_es.db
+share/presage/database_it.db
+share/presage/getting_started.txt
+share/presage/presage.png
+share/presage/presage.svg
+share/presage/presage.xpm
+share/presage/python_binding.txt

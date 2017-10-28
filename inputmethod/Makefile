@@ -97,6 +97,7 @@ SUBDIR+=	multiskkserv
 SUBDIR+=	nabi
 SUBDIR+=	novel-pinyin
 SUBDIR+=	p5-zinnia
+SUBDIR+=	presage
 SUBDIR+=	py-cangjie
 SUBDIR+=	py-input-pad
 SUBDIR+=	py-zinnia

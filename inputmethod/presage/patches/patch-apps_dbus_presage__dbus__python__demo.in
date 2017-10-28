@@ -1,0 +1,89 @@
+$NetBSD$
+
+* fix deprecated syntax
+
+--- apps/dbus/presage_dbus_python_demo.in.orig	2012-05-25 08:50:55.000000000 +0000
++++ apps/dbus/presage_dbus_python_demo.in
+@@ -38,7 +38,7 @@ presage_service_interface = 'org.gnome.p
+ 
+ 
+ def disclaimer():
+-	print """
++	print ("""
+ Presage dbus python demo
+ ------------------------
+ 
+@@ -51,19 +51,19 @@ Its intent is NOT to provide a predictiv
+ 
+ Think of Presage as the predictive backend that sits behind a shiny
+ user interface and does all the predictive heavy lifting.
+-"""
++""")
+ 
+ def print_version():
+-	print """
++	print ("""
+ %s (%s) version %s
+ Copyright (C) 2010 Matteo Vescovi.
+ This is free software; see the source for copying conditions.  There is NO
+ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE,
+ to the extent permitted by law.
+-""" % (PROGRAM_NAME, '@PACKAGE_NAME@', '@PACKAGE_VERSION@')
++""" % (PROGRAM_NAME, '@PACKAGE_NAME@', '@PACKAGE_VERSION@'))
+ 
+ def print_usage():
+-	print """
++	print ("""
+ Usage: %s [OPTION]...
+ 
+ At the prompt, type in some text. Hit enter to generate a prediction.
+@@ -74,7 +74,7 @@ Any text input is valid, including no te
+   -v, --version        output version information and exit
+ 
+ Direct your bug reports to: %s
+-""" % (PROGRAM_NAME, '@PACKAGE_BUGREPORT@')
++""" % (PROGRAM_NAME, '@PACKAGE_BUGREPORT@'))
+ 
+ def parse_cmd_line_args():
+ 	global config
+@@ -84,8 +84,8 @@ def parse_cmd_line_args():
+ 	
+ 	try:
+ 		opts, args = getopt.getopt(sys.argv[1:], short_options, long_options)
+-	except getopt.GetoptError, err:
+-		print str(err)
++	except getopt.GetoptError as err:
++		print (str(err))
+ 		sys.exit(1)
+ 
+ 	for opt, arg in opts:
+@@ -113,13 +113,13 @@ def main():
+         # Get the Presage object
+         presage_object = bus.get_object(presage_service_name, presage_object_path)
+ 
+-        print 'D-BUS connection to presage object %s created' % presage_object_path
++        print ('D-BUS connection to presage object %s created' % presage_object_path)
+ 
+-    except Exception, e:
+-        print e
++    except Exception as e:
++        print (e)
+         sys.exit(1)
+ 
+-    print "Enter text at the prompt (press enter on empty line to exit):"
++    print ("Enter text at the prompt (press enter on empty line to exit):")
+     string = None
+     buffer = ""
+     while string != "":
+@@ -127,9 +127,9 @@ def main():
+         buffer += string
+         results = presage_object.get_prediction(buffer, '')
+         for result in results:
+-            print str(result)
++            print (str(result))
+     presage_object.destroy()
+-    print "Goodbye"
++    print ("Goodbye")
+ 
+ 
+ if __name__ == '__main__':
