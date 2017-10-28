@@ -1,0 +1,20 @@
+$NetBSD: patch-Makefile.in,v 1.1 2017/10/28 04:51:06 schmonz Exp $
+
+Override hard-coded user and group.
+
+--- Makefile.in.orig	2017-10-24 00:12:35.000000000 +0000
++++ Makefile.in
+@@ -790,10 +790,10 @@ install-data-local:
+ 	chmod 600 $(DESTDIR)$(localstatedir)/trigger
+ 
+ install-root:
+-	chown nullmail $(DESTDIR)$(localstatedir)/*
+-	chown nullmail $(DESTDIR)$(sbindir)/nullmailer-queue
++	chown ${NULLMAILER_USER}:${NULLMAILER_GROUP} $(DESTDIR)$(localstatedir)/*
++	chown ${NULLMAILER_USER}:${NULLMAILER_GROUP} $(DESTDIR)$(sbindir)/nullmailer-queue
+ 	chmod u+s $(DESTDIR)$(sbindir)/nullmailer-queue
+-	chown nullmail $(DESTDIR)$(bindir)/mailq
++	chown ${NULLMAILER_USER}:${NULLMAILER_GROUP} $(DESTDIR)$(bindir)/mailq
+ 	chmod u+s $(DESTDIR)$(bindir)/mailq
+ 
+ dist-hook:

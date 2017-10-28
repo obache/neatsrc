@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.29 2017/10/16 15:47:01 jperkin Exp $
+# $NetBSD: Makefile,v 1.32 2017/10/27 16:17:49 jperkin Exp $
 
 DISTNAME=	ghostscript-${GS_VERSION}
 PKGNAME=	${DISTNAME:S/ghostscript/ghostscript-gpl/}
-PKGREVISION=	13
+PKGREVISION=	15
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=ghostscript/}
 MASTER_SITES+=	https://ghostscript.com/releases/
@@ -34,6 +34,7 @@ UNLIMIT_RESOURCES+=	datasize	# gsromfs1.c
 BUILD_TARGET=		so
 INSTALL_TARGET=		soinstall
 CONFIGURE_ARGS+=	--with-omni=no	# otherwise pulls in libstdc++
+CONFIGURE_ARGS+=	--with-system-libtiff
 
 REPLACE_PERL+=		toolbin/localcluster/clusterpush.pl
 REPLACE_PERL+=		toolbin/checkdeps.pl
@@ -83,7 +84,8 @@ CPPFLAGS+=		-D_XOPEN_SOURCE=600 -D__EXTENSIONS__
 # require linking against libiconv when it should do so.
 BUILDLINK_TRANSFORM.IRIX+=	l:fontconfig:fontconfig:iconv
 
-CONFIGURE_ENV+=	LPLIBDIR=${PREFIX}/lib
+CONFIGURE_ENV+=		LPLIBDIR=${PREFIX}/lib
+CONFIGURE_ENV+=		ZLIB_DIR=${BUILDLINK_PREFIX.zlib}/lib
 
 # On OpenBSD 5.3, libxcb is required libXt.
 LDFLAGS.OpenBSD+=	-lxcb
@@ -100,11 +102,8 @@ post-extract:
 	${MKDIR} ${WRKSRC}/obj
 #	${RM} -rf ${WRKSRC}/jasper
 	${RM} -rf ${WRKSRC}/libpng
-#	${RM} -rf ${WRKSRC}/tiff
-# UX:i386ld: ERROR: symbol: 'deflate_copyright' defined in two shared objects: libgs.so: size = 53, libz.so.1: size = 68
-.if ${OS_VARIANT} == "SCOOSR5"
+	${RM} -rf ${WRKSRC}/tiff
 	${RM} -rf ${WRKSRC}/zlib
-.endif
 	${RM} -rf ${WRKSRC}/freetype
 #
 #  To allow outside customization, rename cidfmap

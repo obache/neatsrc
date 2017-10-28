@@ -1,0 +1,23 @@
+$NetBSD: patch-doc_nullmailer-queue.8,v 1.1 2017/10/28 04:51:06 schmonz Exp $
+
+Override hard-coded paths.
+
+--- doc/nullmailer-queue.8.orig	2017-10-24 00:12:30.000000000 +0000
++++ doc/nullmailer-queue.8
+@@ -35,13 +35,13 @@ If this file is not empty, its contents 
+ sender on all messages.
+ .SH OTHER FILES
+ .TP
+-.B /var/spool/nullmailer/queue
++.B @VARBASE@/spool/nullmailer/queue
+ The directory into which the completed messages are moved.
+ .TP
+-.B /var/spool/nullmailer/tmp
++.B @VARBASE@/spool/nullmailer/tmp
+ The directory in which messages are formed temporarily.
+ .TP
+-.B /var/spool/nullmailer/trigger
++.B @VARBASE@/spool/nullmailer/trigger
+ A pipe used to trigger
+ .BR nullmailer-send
+ to immediately start sending the message from the queue.

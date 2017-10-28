@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.4 2017/10/17 08:42:30 bouyer Exp $
+$NetBSD: distinfo,v 1.6 2017/10/28 04:08:46 khorben Exp $
 
 SHA1 (xen48/gmp-4.3.2.tar.bz2) = c011e8feaf1bb89158bd55eaabd7ef8fdd101a2c
 RMD160 (xen48/gmp-4.3.2.tar.bz2) = a8f3f41501ece290c348aeb4444bbea40bc53e71
@@ -74,6 +74,7 @@ SHA1 (patch-tools_Makefile) = 4277125963bf7521cc0f682bb48dd21b69998f3e
 SHA1 (patch-tools_Rules.mk) = 8ff6318747e3ddf703cb9b43b6405c7b0f22ee5c
 SHA1 (patch-tools_configure) = b7b26dec49388f543f42dcb389113d6a2ed96e1b
 SHA1 (patch-tools_console_daemon_utils.c) = 1c954e1edadad2607f7b87eaf2d6285be7f968ff
+SHA1 (patch-tools_debugger_gdbsx_Makefile) = bd419144660f19b13d6924dfa87f96a9eb6a3574
 SHA1 (patch-tools_examples_Makefile) = fe258fc26e4507ca2fb4363c5e2197ee06e89d64
 SHA1 (patch-tools_firmware_etherboot_Makefile) = 82aa5cb09a9654e27c4686a02a3eb1123a594342
 SHA1 (patch-tools_firmware_hvmloader_Makefile) = 02cac5e9314c4c71105f15a3c1c303c573d6583a

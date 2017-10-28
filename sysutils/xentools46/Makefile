@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.23 2017/10/17 11:10:36 bouyer Exp $
+# $NetBSD: Makefile,v 1.25 2017/10/28 01:46:11 khorben Exp $
 #
 # VERSION is set in version.mk as it is shared with other packages
 .include		"version.mk"
@@ -38,6 +38,7 @@ CONFLICTS+=		xenstoretools-[0-9]*
 XENTOP=			${WRKDIR}/xen-${VERSION}
 WRKSRC=			${XENTOP}/tools
 CHECK_PORTABILITY_SKIP=	examples/*
+CHECK_RELRO_SKIP=	libexec/xen/boot/hvmloader
 
 EGDIR=			${PREFIX}/share/examples/xen
 MESSAGE_SUBST+=		EGDIR=${EGDIR}
@@ -52,6 +53,7 @@ CONFIGURE_ARGS+=	--disable-seabios
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE}
 
 MAKE_ENV+=		PREFIX=${prefix:Q} WRKSRC=${WRKSRC}
+MAKE_ENV+=		APPEND_LIB=${LDFLAGS:Q}
 MAKE_ENV+=		XEN_EXAMPLES_DIR=${EGDIR}
 MAKE_ENV+=		MV=${MV:Q} PYTHON=${PYTHONBIN:Q} SED=${SED:Q}
 MAKE_ENV+=		V=YES
