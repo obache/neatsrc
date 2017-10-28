@@ -31,6 +31,8 @@ SUBST_STAGE.fixwrap=	post-build
 SUBST_FILES.fixwrap=	scripts/mysqlbug
 SUBST_SED.fixwrap=	-e "s,${WRAPPER_BINDIR}/,,g"
 
+SUBST_FILES.fixpaths+=	${DESTDIR}${PREFIX}/bin/mysqlbug
+
 # Replace manual pages which only include other ones with a symbolic link.
 # It is for manual compression is activated or mandoc(1) is used.
 post-install:

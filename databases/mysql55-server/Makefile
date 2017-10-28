@@ -68,6 +68,8 @@ REPLACE_PERL+=		sql-bench/*.sh
 REPLACE_SH+=		mysql-test/t/long_tmpdir-master.sh
 REPLACE_SH+=		mysql-test/t/lowercase_mixed_tmpdir-master.sh
 
+SUBST_FILES.fixpaths+=	${DESTDIR}${PREFIX}/share/doc/mysql/INFO_BIN
+
 INSTALLATION_DIRS+=	bin
 
 .include "../../mk/compiler.mk"
