@@ -1,8 +1,8 @@
 # $NetBSD$
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.fcitx
-PKG_SUPPORTED_OPTIONS=	gtk2 gtk3 qt4 introspection enchant opencc
-PKG_SUGGESTED_OPTIONS=	gtk2 gtk3 qt4 introspection enchant opencc
+PKG_SUPPORTED_OPTIONS=	gtk2 gtk3 qt4 introspection enchant opencc presage
+PKG_SUGGESTED_OPTIONS=	gtk2 gtk3 qt4 introspection enchant opencc presage
 
 .include "../../mk/bsd.options.mk"
 
@@ -54,6 +54,13 @@ CMAKE_ARGS+=	-DENABLE_ENCHANT:BOOL=OFF
 CMAKE_ARGS+=	-DENABLE_OPENCC:BOOL=ON
 .else
 CMAKE_ARGS+=	-DENABLE_OPENCC:BOOL=OFF
+.endif
+
+.if !empty(PKG_OPTIONS:Mpresage)
+.include "../../inputmethod/presage/buildlink3.mk"
+CMAKE_ARGS+=	-DENABLE_PRESAGE:BOOL=ON
+.else
+CMAKE_ARGS+=	-DENABLE_PRESAGE:BOOL=OFF
 .endif
 
 .if !empty(PKG_OPTIONS:Mintrospection)
