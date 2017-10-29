@@ -68,6 +68,8 @@ include/fcitx/module/dbus/fcitx-dbus.h
 include/fcitx/module/freedesktop-notify/fcitx-freedesktop-notify.h
 include/fcitx/module/freedesktop-notify/freedesktop-notify.h
 include/fcitx/module/ipc/ipc.h
+${PLIST.lua}include/fcitx/module/lua/fcitx-lua.h
+${PLIST.lua}include/fcitx/module/lua/luamod.h
 include/fcitx/module/notificationitem/fcitx-notificationitem.h
 include/fcitx/module/notificationitem/notificationitem.h
 include/fcitx/module/pinyin-enhance/fcitx-pinyin-enhance.h
@@ -98,6 +100,7 @@ lib/fcitx/fcitx-imselector.so
 lib/fcitx/fcitx-ipc.so
 lib/fcitx/fcitx-keyboard.so
 lib/fcitx/fcitx-kimpanel-ui.so
+${PLIST.lua}lib/fcitx/fcitx-lua.so
 lib/fcitx/fcitx-notificationitem.so
 lib/fcitx/fcitx-pinyin-enhance.so
 lib/fcitx/fcitx-pinyin.so
@@ -186,6 +189,7 @@ share/fcitx/addon/fcitx-imselector.conf
 share/fcitx/addon/fcitx-ipc.conf
 share/fcitx/addon/fcitx-keyboard.conf
 share/fcitx/addon/fcitx-kimpanel-ui.conf
+${PLIST.lua}share/fcitx/addon/fcitx-lua.conf
 share/fcitx/addon/fcitx-notificationitem.conf
 share/fcitx/addon/fcitx-pinyin-enhance.conf
 share/fcitx/addon/fcitx-pinyin.conf

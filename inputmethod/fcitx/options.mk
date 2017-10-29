@@ -1,12 +1,12 @@
 # $NetBSD$
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.fcitx
-PKG_SUPPORTED_OPTIONS=	gtk2 gtk3 qt4 introspection enchant opencc presage
+PKG_SUPPORTED_OPTIONS=	gtk2 gtk3 qt4 introspection enchant opencc presage lua
 PKG_SUGGESTED_OPTIONS=	gtk2 gtk3 qt4 introspection enchant opencc presage
 
 .include "../../mk/bsd.options.mk"
 
-PLIST_VARS+=		gtk2 gtk3 qt4 introspection
+PLIST_VARS+=		gtk2 gtk3 qt4 introspection lua
 
 .if !empty(PKG_OPTIONS:Mgtk2)
 PLIST.gtk2=		yes
@@ -79,3 +79,12 @@ CMAKE_ARGS+=	-DENABLE_BACKTRACE:BOOL=ON
 .else
 CMAKE_ARGS+=	-DENABLE_BACKTRACE:BOOL=OFF
 .endif
+
+.if !empty(PKG_OPTIONS:Mlua)
+PLIST.lua=		yes
+.include "../../lang/lua/buildlink3.mk"
+CMAKE_ARGS+=	-DENABLE_LUA:BOOL=ON
+.else
+CMAKE_ARGS+=	-DENABLE_LUA:BOOL=OFF
+.endif
+
