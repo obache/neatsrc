@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.4668 2017/10/28 18:20:55 bsiegert Exp $
+$NetBSD: CHANGES-2017,v 1.4674 2017/10/29 22:27:11 leot Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -6741,3 +6741,9 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated print/tex-beamer-doc to 3.43nb1 [leot 2017-10-28]
 	Updated net/gallery-dl to 1.0.0 [leot 2017-10-28]
 	Updated lang/go to 1.9.2 [chronos 2017-10-28]
+	Updated www/firefox to 56.0.2nb1 [ryoon 2017-10-29]
+	Updated net/youtube-dl to 20171029 [leot 2017-10-29]
+	Updated devel/objfw to 0.90.2 [bsiegert 2017-10-29]
+	Updated fonts/ttf-tlwg to 0.6.4 [scole 2017-10-29]
+	Updated lang/libduktape to 2.2.0 [leot 2017-10-29]
+	Updated lang/duktape to 2.2.0 [leot 2017-10-29]
