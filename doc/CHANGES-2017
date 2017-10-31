@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.4674 2017/10/29 22:27:11 leot Exp $
+$NetBSD: CHANGES-2017,v 1.4685 2017/10/31 08:29:15 adam Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -6747,3 +6747,19 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated fonts/ttf-tlwg to 0.6.4 [scole 2017-10-29]
 	Updated lang/libduktape to 2.2.0 [leot 2017-10-29]
 	Updated lang/duktape to 2.2.0 [leot 2017-10-29]
+	Updated graphics/libimagequant to 2.11.0 [adam 2017-10-30]
+	Updated textproc/py-openpyxl to 2.4.9 [adam 2017-10-30]
+	Updated pkgtools/pkg_install to 20171030 [jperkin 2017-10-30]
+	Updated textproc/libxml2 to 2.9.6 [fhajny 2017-10-30]
+	Updated graphics/ImageMagick to 7.0.7.8 [fhajny 2017-10-30]
+	Updated graphics/ImageMagick6 to 6.9.9.20 [fhajny 2017-10-30]
+	Updated net/gst-rtsp-server to 1.12.3 [prlw1 2017-10-30]
+	Added security/py-asyncssh version 1.11.0 [adam 2017-10-30]
+	Updated fonts/py-fonttools to 3.18.0 [adam 2017-10-30]
+	Updated time/py-pytz to 2017.3 [adam 2017-10-30]
+	Updated databases/sqlite3 to 3.21.0 [adam 2017-10-30]
+	Updated devel/py-dulwich to 0.18.5 [adam 2017-10-30]
+	Updated textproc/p5-XML-LibXML to 2.0132 [wen 2017-10-31]
+	Updated www/p5-HTML-Mason to 1.58 [wen 2017-10-31]
+	Updated security/py-ntlm-auth to 1.0.6 [adam 2017-10-31]
+	Updated security/py-requests-ntlm to 1.1.0 [adam 2017-10-31]
