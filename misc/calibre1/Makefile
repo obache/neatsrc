@@ -32,7 +32,7 @@ DEPENDS+=	${PYPKGPREFIX}-apsw-[0-9]*:../../databases/py-apsw
 
 # We also need the distfile for qt4-libs to extract some private header files
 # If QTVERSION changes, the distinfo file needs to be updated too.
-QTVERSION=	4.8.5	# from ../../x11/qt4/Makefile.common
+QTVERSION=	4.8.7	# from ../../x11/qt4/Makefile.common
 # Including that file to avoid hardcoding the version number won't work,
 # since it will occur in the distinfo anyway.
 QTNAME=		qt-everywhere-opensource-src-${QTVERSION}
