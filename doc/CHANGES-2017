@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.4685 2017/10/31 08:29:15 adam Exp $
+$NetBSD: CHANGES-2017,v 1.4693 2017/10/31 15:54:57 taca Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -6763,3 +6763,13 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated www/p5-HTML-Mason to 1.58 [wen 2017-10-31]
 	Updated security/py-ntlm-auth to 1.0.6 [adam 2017-10-31]
 	Updated security/py-requests-ntlm to 1.1.0 [adam 2017-10-31]
+	Updated devel/py-astor to 0.6 [adam 2017-10-31]
+	Updated devel/py-Pyro to 4.63 [adam 2017-10-31]
+	Updated devel/py-flake8-import-order to 0.14.2 [adam 2017-10-31]
+	Updated www/apache-tomcat7 to 7.0.82 [fhajny 2017-10-31]
+	Updated www/apache-tomcat8 to 8.0.47 [fhajny 2017-10-31]
+	Updated time/ruby-tzinfo to 1.2.4 [taca 2017-10-31]
+	Updated time/ruby-tzinfo-data to 1.2017.3 [taca 2017-10-31]
+	Updated databases/ruby-hiera to 3.4.2 [taca 2017-10-31]
+	Updated databases/ruby-sequel to 5.2.0 [taca 2017-10-31]
+	Updated databases/ruby-tiny_tds to 2.1.0 [taca 2017-10-31]
