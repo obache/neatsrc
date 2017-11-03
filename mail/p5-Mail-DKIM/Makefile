@@ -24,7 +24,7 @@ REPLACE_PERL+=		lib/Mail/DKIM.pm
 REPLACE_PERL+=		lib/Mail/DKIM/*.pm
 REPLACE_PERL+=		lib/Mail/DKIM/Algorithm/*.pm
 REPLACE_PERL+=		lib/Mail/DKIM/Canonicalization/*.pm
-REPLACE_PERL+=		sample_mime_lite.pl
+REPLACE_PERL+=		scripts/sample_mime_lite.pl
 
 .include "../../lang/perl5/module.mk"
 .include "../../mk/bsd.pkg.mk"
