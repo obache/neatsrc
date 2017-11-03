@@ -61,9 +61,6 @@ QMAKE_CONF=		qmake.conf
 QMAKE_RANLIB=		${TRUE}
 .endif
 
-# avoid creating a .qt directory in the users home directory
-SCRIPTS_ENV+=		HOME=${WRKDIR}
-
 .include "../../mk/compiler.mk"
 
 # We can't set USE_LANGUAGES+=c++11 yet because doing so breaks the GCC build
