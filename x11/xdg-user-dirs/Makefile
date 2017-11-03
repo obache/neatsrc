@@ -28,5 +28,4 @@ CONF_FILES+=	${EGDIR}/autostart/xdg-user-dirs.desktop \
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
-.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"
