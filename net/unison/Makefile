@@ -25,7 +25,6 @@ BUILDLINK_API_DEPENDS.ocaml-lablgtk+= ocaml-lablgtk>=2.16.0
 WRKSRC=		${WRKDIR}/src
 USE_TOOLS+=	gmake
 MAKE_FLAGS+=	CFLAGS=""
-MAKE_ENV+=	HOME=${WRKDIR:Q}
 
 .include "options.mk"
 .include "../../mk/bsd.prefs.mk"
