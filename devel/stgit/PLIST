@@ -11,7 +11,7 @@ bin/stg-show-old
 bin/stg-swallow
 bin/stg-unnew
 bin/stg-whatchanged
-${PYSITELIB}/${PKGNAME}_dirty-py2.7.egg-info
+${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/stgit/__init__.py
 ${PYSITELIB}/stgit/__init__.pyc
 ${PYSITELIB}/stgit/__init__.pyo

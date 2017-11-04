@@ -43,6 +43,7 @@ post-install:
 	${INSTALL_MAN} *.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1 && \
 	${INSTALL_DATA} *.html ${DESTDIR}/${PREFIX}/share/doc/${PKGBASE}/html
 
+EGG_NAME=	${DISTNAME}_dirty
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
