@@ -26,6 +26,8 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/Examples/*.py ${DESTDIR}${EXPDIR}
 	${INSTALL_DATA} ${WRKSRC}/README.rst ${DESTDIR}${DOCDIR}
 
+EGG_NAME=	${PKGNAME_NOREV}
+
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
