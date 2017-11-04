@@ -22,7 +22,8 @@ DEPENDS+= ${PYPKGPREFIX}-pip-[0-9]*:../../devel/py-pip
 
 post-install:
 	${MV} ${DESTDIR}${PREFIX}/bin/rst2pdf ${DESTDIR}${PREFIX}/bin/rst2pdf-${PYVERSSUFFIX} || ${TRUE}
-	${MV} ${DESTDIR}/${PREFIX}/${PYSITELIB}/rst2pdf-0.93.dev0-py2.7.egg-info ${DESTDIR}/${PREFIX}/${PYSITELIB}/rst2pdf-0.93-py2.7.egg-info
+
+EGG_NAME=	${DISTNAME}.dev0
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
