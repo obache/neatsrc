@@ -192,6 +192,11 @@ PYSITELIB!=	${PYTHONBIN} -c "import distutils.sysconfig; \
 	|| ${ECHO} lib/python${PYVERSSUFFIX}/site-packages
 .endif
 
+PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX}
+
+# mostly for ALTERNATIVES files
+FILES_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX}
+
 ALL_ENV+=		PYTHON=${PYTHONBIN}
 .if defined(USE_CMAKE)
 # used by FindPythonInterp.cmake and FindPythonLibs.cmake
