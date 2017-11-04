@@ -182,11 +182,14 @@ PY_COMPILE_O_ALL= \
 
 .if exists(${PYTHONBIN})
 PYINC!=	${PYTHONBIN} -c "import distutils.sysconfig; \
-	print (distutils.sysconfig.get_python_inc(0, \"\"))" || ${ECHO} ""
+	print (distutils.sysconfig.get_python_inc(0, \"\"))" \
+	|| ${ECHO} include/python${PYVERSSUFFIX}
 PYLIB!=	${PYTHONBIN} -c "import distutils.sysconfig; \
-	print (distutils.sysconfig.get_python_lib(0, 1, \"\"))" || ${ECHO} ""
+	print (distutils.sysconfig.get_python_lib(0, 1, \"\"))" \
+	|| ${ECHO} lib/python${PYVERSSUFFIX}
 PYSITELIB!=	${PYTHONBIN} -c "import distutils.sysconfig; \
-	print (distutils.sysconfig.get_python_lib(0, 0, \"\"))" || ${ECHO} ""
+	print (distutils.sysconfig.get_python_lib(0, 0, \"\"))" \
+	|| ${ECHO} lib/python${PYVERSSUFFIX}/site-packages
 .endif
 
 ALL_ENV+=		PYTHON=${PYTHONBIN}
