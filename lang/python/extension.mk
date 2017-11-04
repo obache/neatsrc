@@ -58,6 +58,13 @@ INSTALL_ENV+=		PKGSRC_PYTHON_NO_EGG=defined
 .if !empty(PY_PATCHPLIST:M[Yy][Ee][Ss])
 PLIST_SUBST+=	PYINC=${PYINC} PYLIB=${PYLIB} PYSITELIB=${PYSITELIB}
 PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX}
+
+PRINT_PLIST_AWK+=	/^${PYINC:S|/|\\/|g}/ \
+			{ gsub(/${PYINC:S|/|\\/|g}/, "$${PYINC}") }
+PRINT_PLIST_AWK+=	/^${PYSITELIB:S|/|\\/|g}/ \
+			{ gsub(/${PYSITELIB:S|/|\\/|g}/, "$${PYSITELIB}") }
+PRINT_PLIST_AWK+=	/^${PYLIB:S|/|\\/|g}/ \
+			{ gsub(/${PYLIB:S|/|\\/|g}/, "$${PYLIB}") }
 .endif
 
 # mostly for ALTERNATIVES files
