@@ -23,7 +23,7 @@ do-patch:
 # We just install a wrapper script. Also, threads are required now.
 # NOTE: if you add a new version of Python here, add to the following test
 #
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/pyversion.mk"
 
 .if ${_PYTHON_VERSION} >= 31
 IDLE_NAME=	idle3
