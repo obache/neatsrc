@@ -24,11 +24,11 @@ EGG_NAME?=	${DISTNAME:C/-([^0-9])/_\1/g}
 # Python distutils will create an eggfile.
 PY_NO_EGG?=	no
 
+.include "../../lang/python/extension.mk"
+
 # Egg files have the version encoded, so generalize in PLIST.
 PLIST_SUBST+=	EGG_FILE=${EGG_NAME}-py${PYVERSSUFFIX}.egg-info
 PRINT_PLIST_AWK+=	{ gsub("${EGG_NAME}-py${PYVERSSUFFIX}.egg-info", \
 				"$${EGG_FILE}") }
 PRINT_PLIST_AWK+=	{ gsub(/${PYVERSSUFFIX}/, \
 				"$${PYVERSSUFFIX}") }
-
-.include "../../lang/python/extension.mk"

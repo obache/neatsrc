@@ -28,12 +28,6 @@ PY_PATCHPLIST=	yes
 
 PLIST_SUBST+=	EGG_NAME=${EGG_NAME}-py${PYVERSSUFFIX}
 PLIST_SUBST+=	EGG_INFODIR=${EGG_INFODIR}
-PRINT_PLIST_AWK+=	{ gsub(/${EGG_NAME}-py${PYVERSSUFFIX}.egg-info/, \
-			       "$${EGG_INFODIR}") }
-PRINT_PLIST_AWK+=	{ gsub(/${EGG_NAME}-py${PYVERSSUFFIX}-nspkg.pth/, \
-			       "$${EGG_NAME}-nspkg.pth") }
-PRINT_PLIST_AWK+=	{ gsub(/${PYVERSSUFFIX}/, \
-			       "$${PYVERSSUFFIX}") }
 
 _PYSETUPTOOLSINSTALLARGS=	--single-version-externally-managed
 
@@ -64,3 +58,10 @@ fixup-egg-info:	# ensure egg-info directory contents are always 644
 	fi
 
 .include "../../lang/python/extension.mk"
+
+PRINT_PLIST_AWK+=	{ gsub(/${EGG_NAME}-py${PYVERSSUFFIX}.egg-info/, \
+			       "$${EGG_INFODIR}") }
+PRINT_PLIST_AWK+=	{ gsub(/${EGG_NAME}-py${PYVERSSUFFIX}-nspkg.pth/, \
+			       "$${EGG_NAME}-nspkg.pth") }
+PRINT_PLIST_AWK+=	{ gsub(/${PYVERSSUFFIX}/, \
+			       "$${PYVERSSUFFIX}") }
