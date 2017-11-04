@@ -82,6 +82,7 @@ INSTALL_MAKE_FLAGS+=	\
     configfile=${PREFIX}/share/examples/unbound/unbound.conf
 
 PKG_SYSCONFSUBDIR=	unbound
+PKG_SYSCONFDIR_PERMS=	${UNBOUND_USER} ${UNBOUND_GROUP} 755
 
 CONF_FILES+=	share/examples/unbound/unbound.conf \
 	${PKG_SYSCONFDIR}/unbound.conf
