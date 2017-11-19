@@ -19,10 +19,6 @@ USE_LIBTOOL=	yes
 .include "../../mk/bsd.prefs.mk"
 .include "../../mk/compiler.mk"
 
-.if ${OPSYS} == "Linux" || ${OPSYS} == "SunOS"
-.  include "../../devel/libuuid/buildlink3.mk"
-.endif
-
 .if (!empty(PKGSRC_COMPILER:Mgcc) && !empty(CC_VERSION:Mgcc-4.[4-9]*)) || !empty(PKGSRC_COMPILER:Mclang)
 CONFIGURE_ARGS+=	--disable-boost
 .else
