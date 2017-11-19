@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.8 2015/07/31 13:03:45 ryoon Exp $
+@comment $NetBSD: PLIST,v 1.9 2017/11/05 04:19:15 tsutsui Exp $
 bin/ibus
 bin/ibus-daemon
 bin/ibus-setup
@@ -138,6 +138,7 @@ share/ibus/dicts/emoji-de.dict
 share/ibus/dicts/emoji-de_CH.dict
 share/ibus/dicts/emoji-el.dict
 share/ibus/dicts/emoji-en.dict
+share/ibus/dicts/emoji-en_001.dict
 share/ibus/dicts/emoji-es.dict
 share/ibus/dicts/emoji-es_419.dict
 share/ibus/dicts/emoji-et.dict
@@ -182,6 +183,7 @@ share/ibus/dicts/emoji-pl.dict
 share/ibus/dicts/emoji-pt.dict
 share/ibus/dicts/emoji-pt_PT.dict
 share/ibus/dicts/emoji-ro.dict
+share/ibus/dicts/emoji-root.dict
 share/ibus/dicts/emoji-ru.dict
 share/ibus/dicts/emoji-si.dict
 share/ibus/dicts/emoji-sk.dict

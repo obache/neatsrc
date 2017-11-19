@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.967 2017/10/23 15:22:29 adam Exp $
+# $NetBSD: Makefile,v 1.969 2017/11/05 03:54:40 tsutsui Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -129,6 +129,7 @@ SUBDIR+=	cdif
 SUBDIR+=	chasen
 SUBDIR+=	chasen-base
 SUBDIR+=	cityhash
+SUBDIR+=	cldr-emoji-annotation
 SUBDIR+=	cmark
 SUBDIR+=	cmigemo
 SUBDIR+=	coccigrep
@@ -970,6 +971,7 @@ SUBDIR+=	troffcvt
 SUBDIR+=	unac
 SUBDIR+=	uncrustify
 SUBDIR+=	uni2ascii
+SUBDIR+=	unicode-emoji
 SUBDIR+=	unroff
 SUBDIR+=	untex
 SUBDIR+=	uriparser
