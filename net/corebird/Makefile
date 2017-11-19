@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.33 2017/10/03 12:36:54 wiz Exp $
+# $NetBSD: Makefile,v 1.34 2017/11/11 01:51:30 ryoon Exp $
 
 DISTNAME=	corebird-1.7.2
 CATEGORIES=	net

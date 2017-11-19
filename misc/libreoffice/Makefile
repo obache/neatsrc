@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.126 2017/10/08 04:51:35 ryoon Exp $
+# $NetBSD: Makefile,v 1.129 2017/11/12 16:03:34 khorben Exp $
 
-VERREL=		5.4.2
+VERREL=		5.4.3
 VERRC=		2
 VER=		${VERREL}.${VERRC}
 DISTNAME=	libreoffice-${VER}
+PKGREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	http://download.documentfoundation.org/libreoffice/src/${VERREL}/
 EXTRACT_SUFX=	.tar.xz
@@ -328,7 +329,7 @@ BUILDLINK_API_DEPENDS.libetonyek+=	libetonyek>=0.1.2
 .include "../../net/libcmis/buildlink3.mk"
 .include "../../net/mDNSResponder/buildlink3.mk"
 .if !empty(PKG_OPTIONS:Mcups)
-.include "../../print/cups/buildlink3.mk"
+.include "../../print/cups-base/buildlink3.mk"
 .endif
 .include "../../print/poppler-cpp/buildlink3.mk"
 .include "../../print/poppler-includes/buildlink3.mk"

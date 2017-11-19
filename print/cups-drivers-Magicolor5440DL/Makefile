@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.20 2017/08/16 20:45:43 wiz Exp $
+# $NetBSD: Makefile,v 1.22 2017/11/12 16:03:35 khorben Exp $
 #
 
 DISTNAME=	5440DL_lin64bit_1_2_1
 PKGNAME=	cups-drivers-Magicolor5440DL-1.2.1
-PKGREVISION=	13
+PKGREVISION=	14
 CATEGORIES=	print
 MASTER_SITES=	http://printer.konicaminolta.net/drivers/linux/
 EXTRACT_SUFX=	.zip
@@ -33,5 +33,5 @@ post-extract:
 
 .include "../../graphics/lcms/buildlink3.mk"
 .include "../../graphics/jbigkit/buildlink3.mk"
-.include "../../print/cups/buildlink3.mk"
+.include "../../print/cups-base/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

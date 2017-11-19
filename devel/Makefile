@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2565 2017/10/27 13:59:51 ryoon Exp $
+# $NetBSD: Makefile,v 1.2568 2017/11/15 09:23:17 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -958,6 +958,7 @@ SUBDIR+=	p5-Coro
 SUBDIR+=	p5-Curses
 SUBDIR+=	p5-Curses-UI
 SUBDIR+=	p5-Curses-UI-POE
+SUBDIR+=	p5-Cwd-Guard
 SUBDIR+=	p5-Data-Alias
 SUBDIR+=	p5-Data-Buffer
 SUBDIR+=	p5-Data-Compare
@@ -1004,6 +1005,7 @@ SUBDIR+=	p5-Declare-Constraints-Simple
 SUBDIR+=	p5-Devel-Autoflush
 SUBDIR+=	p5-Devel-BeginLift
 SUBDIR+=	p5-Devel-Caller
+SUBDIR+=	p5-Devel-Caller-IgnoreNamespaces
 SUBDIR+=	p5-Devel-CheckBin
 SUBDIR+=	p5-Devel-CheckCompiler
 SUBDIR+=	p5-Devel-CheckLib
@@ -2126,6 +2128,7 @@ SUBDIR+=	py-test-forked
 SUBDIR+=	py-test-isort
 SUBDIR+=	py-test-localserver
 SUBDIR+=	py-test-mock
+SUBDIR+=	py-test-relaxed
 SUBDIR+=	py-test-runner
 SUBDIR+=	py-test-timeout
 SUBDIR+=	py-test-utils

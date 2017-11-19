@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.4 2017/05/21 10:40:28 adam Exp $
+# $NetBSD: Makefile,v 1.6 2017/11/15 22:12:56 wiz Exp $
 
 DISTNAME=	liblinear-2.11
+PKGREVISION=	1
 CATEGORIES=	math
-MASTER_SITES=	http://www.csie.ntu.edu.tw/~cjlin/liblinear/
+MASTER_SITES=	https://www.csie.ntu.edu.tw/~cjlin/liblinear/
 
 MAINTAINER=	cheusov@NetBSD.org
-HOMEPAGE=	http://www.csie.ntu.edu.tw/~cjlin/liblinear/
+HOMEPAGE=	https://www.csie.ntu.edu.tw/~cjlin/liblinear/
 COMMENT=	Library for large linear classification
 LICENSE=	modified-bsd
 
@@ -14,6 +15,9 @@ USE_LIBTOOL=	yes
 
 BUILD_TARGET=	all lib
 AUTO_MKDIRS=	yes
+
+MAKE_FLAGS+=	CFLAGS=${CFLAGS:Q}
+MAKE_FLAGS+=	LDFLAGS=${LDFLAGS:Q}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/predict ${DESTDIR}${PREFIX}/bin/liblinear-predict

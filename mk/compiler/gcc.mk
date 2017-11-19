@@ -1,4 +1,4 @@
-# $NetBSD: gcc.mk,v 1.185 2017/10/03 09:38:16 jperkin Exp $
+# $NetBSD: gcc.mk,v 1.188 2017/11/15 19:04:24 khorben Exp $
 #
 # This is the compiler definition for the GNU Compiler Collection.
 #
@@ -346,6 +346,17 @@ _GCC_CFLAGS+=		${_MKPIE_CFLAGS.gcc}
 CWRAPPERS_APPEND.cc+=	${_MKPIE_CFLAGS.gcc}
 # this differs for libraries and executables (handled in mk/cwrappers.mk)
 # CWRAPPERS_APPEND.ld+=	${_MKPIE_LDFLAGS.gcc}
+.endif
+
+.if ${_PKGSRC_MKREPRO} == "yes"
+.export WRKDIR
+# XXX the dollar sign should not be expanded by the shell
+_GCC_CFLAGS+=		-fdebug-prefix-map=$$$$WRKDIR/=
+.endif
+
+.if ${_PKGSRC_MKREPRO} == "yes"
+_GCC_CFLAGS+=		${_MKREPRO_CFLAGS.gcc}
+CWRAPPERS_APPEND.cc+=	${_MKREPRO_CFLAGS.gcc}
 .endif
 
 # The user can choose the level of FORTIFY.

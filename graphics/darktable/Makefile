@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.75 2017/09/18 09:53:22 maya Exp $
+# $NetBSD: Makefile,v 1.77 2017/11/12 16:03:34 khorben Exp $
 
 DISTNAME=	darktable-2.2.5
-#PKGREVISION=	1
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=darktable-org/}
 GITHUB_PROJECT=	darktable
@@ -79,7 +78,7 @@ BUILDLINK_API_DEPENDS.sqlite3+= sqlite3>=3.7.14.1nb1
 .include "../../graphics/tiff/buildlink3.mk"
 .include "../../net/flickcurl/buildlink3.mk"
 .include "../../net/libsoup/buildlink3.mk"
-.include "../../print/cups/buildlink3.mk"
+.include "../../print/cups-base/buildlink3.mk"
 #.include "../../security/gnome-keyring/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../textproc/pugixml/buildlink3.mk"

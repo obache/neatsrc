@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2017/10/05 22:32:50 wiz Exp $
+# $NetBSD: Makefile,v 1.18 2017/11/07 15:33:24 wiz Exp $
 
 DISTNAME=	mercurial-${VERSION}
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
@@ -26,13 +26,15 @@ INSTALLATION_DIRS+=	share/doc/mercurial
 # Known test failures:
 # test-status-color.t:
 # https://bz.mercurial-scm.org/show_bug.cgi?id=5698
+# test-run-tests.t:
+# https://bz.mercurial-scm.org/show_bug.cgi?id=5735
 do-test:
 	cd ${WRKSRC} && make tests PYTHON=${PYTHONBIN}
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/*.1  ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 	${INSTALL_DATA} ${WRKSRC}/doc/*.5  ${DESTDIR}${PREFIX}/${PKGMANDIR}/man5
-	${INSTALL_DATA} ${WRKSRC}/README  \
+	${INSTALL_DATA} ${WRKSRC}/README.rst  \
 		${DESTDIR}${PREFIX}/share/doc/mercurial
 
 .include "../../lang/python/distutils.mk"

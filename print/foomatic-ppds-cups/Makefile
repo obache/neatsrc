@@ -1,16 +1,16 @@
-# $NetBSD: Makefile,v 1.16 2017/05/19 13:29:03 prlw1 Exp $
+# $NetBSD: Makefile,v 1.18 2017/11/12 16:03:37 khorben Exp $
 
 META_PACKAGE=	yes
 
 .include "../../print/foomatic-ppds/Makefile.common"
 
 DISTNAME=	foomatic-ppds-cups-${FOOMATIC_PPDS_VERSION}
-PKGREVISION=	2
+PKGREVISION=	3
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Foomatic PPD collection for CUPS servers
 
-DEPENDS+=	cups>=1.0:../../print/cups
+DEPENDS+=	cups-base>=1.0:../../print/cups-base
 DEPENDS+=	foomatic-ppds-${FOOMATIC_PPDS_VERSION}{,nb[0-9]*}:../../print/foomatic-ppds
 
 WRKSRC=		${WRKDIR}

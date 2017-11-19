@@ -1,4 +1,4 @@
-/* $NetBSD: common.c,v 1.7 2017/06/11 19:34:43 joerg Exp $ */
+/* $NetBSD: common.c,v 1.9 2017/11/07 22:26:38 joerg Exp $ */
 
 /*-
  * Copyright (c) 2009, 2017 Joerg Sonnenberger <joerg@NetBSD.org>.

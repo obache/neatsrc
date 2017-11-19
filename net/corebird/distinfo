@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.13 2017/09/09 06:18:53 ryoon Exp $
+$NetBSD: distinfo,v 1.14 2017/11/11 01:51:30 ryoon Exp $
 
 SHA1 (corebird-1.7.2.tar.xz) = 5c645349d0c20b4693c5356cb9bf0ea5d5fec7b7
 RMD160 (corebird-1.7.2.tar.xz) = 5a029b60f4d62aeb5c893867cc3c80070e32f1bd

@@ -1,4 +1,4 @@
-# $NetBSD: bsd.wrapper.mk,v 1.97 2016/03/11 23:03:31 khorben Exp $
+# $NetBSD: bsd.wrapper.mk,v 1.99 2017/11/16 02:16:56 khorben Exp $
 #
 # Copyright (c) 2005 The NetBSD Foundation, Inc.
 # All rights reserved.
@@ -313,6 +313,12 @@ _WRAP_TRANSFORM.CC=	${WRAPPER_TMPDIR}/transform-gcc
 _WRAP_TRANSFORM.CXX=	${_WRAP_TRANSFORM.CC}
 . if ${_PKGSRC_MKPIE} != "no"
 _WRAP_CMD_SINK.CC=	${WRAPPER_TMPDIR}/cmd-sink-mkpie-gcc
+_WRAP_CMD_SINK.CXX=	${_WRAP_CMD_SINK.CC}
+_WRAP_CMD_SINK.LD=	${WRAPPER_TMPDIR}/cmd-sink-mkpie-ld
+MKPIE_CFLAGS=		${_MKPIE_CFLAGS.gcc}
+.export MKPIE_CFLAGS
+MKPIE_LDFLAGS=		${_MKPIE_LDFLAGS.gcc}
+.export MKPIE_LDFLAGS
 . endif
 .endif
 
@@ -518,6 +524,7 @@ generate-wrappers: ${_target_}
 	cmd-sink-interix-gcc \
 	cmd-sink-ld \
 	cmd-sink-mkpie-gcc \
+	cmd-sink-mkpie-ld \
 	cmd-sink-osf1-cc \
 	cmd-sink-osf1-ld \
 	cmd-sink-hpux-cc \

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+PATH="$_PATH_ORIG"
+
+if [ $# -ge 2 ]; then
+	args="$1"
+	mod="$2"
+	shift 2
+
+	exec ar "$mod$args" "$@"
+else
+	exec ar "$@"
+fi
