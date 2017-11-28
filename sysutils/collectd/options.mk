@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.9 2017/01/19 17:20:42 he Exp $
+# $NetBSD: options.mk,v 1.11 2017/11/21 16:02:20 he Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.collectd
 PKG_SUPPORTED_OPTIONS=	cpu df interface load memory syslog uptime

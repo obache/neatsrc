@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.108 2017/02/12 06:24:57 ryoon Exp $
+# $NetBSD: Makefile,v 1.110 2017/11/25 08:58:56 wiz Exp $
 
 DISTNAME=	pygtk-2.24.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/pygtk/gtk2/}
@@ -24,7 +24,6 @@ CONFIGURE_ENV+=	PYTHON=${PYTHONBIN:Q}
 USE_TOOLS+=	gmake pkg-config
 
 PY_PATCHPLIST=	YES
-PYTHON_VERSIONED_DEPENDENCIES=	cairo:link
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 2.24.0
 
 REPLACE_PYTHON+=	examples/atk/atk-demo.py
@@ -78,9 +77,9 @@ REPLACE_PYTHON+=	tests/runtests.py
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
-.include "../../lang/python/versioned_dependencies.mk"
 
 .include "../../devel/libglade/buildlink3.mk"
+.include "../../graphics/py-cairo/buildlink3.mk"
 BUILDLINK_API_DEPENDS.pygobject+=	${PYPKGPREFIX}-gobject>=2.15.3
 .include "../../devel/py-gobject/buildlink3.mk"
 BUILDLINK_API_DEPENDS.gtk2+=		gtk2+>=2.16.0

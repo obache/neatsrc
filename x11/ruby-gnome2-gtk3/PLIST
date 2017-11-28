@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.10 2017/10/21 01:22:56 tsutsui Exp $
+@comment $NetBSD: PLIST,v 1.12 2017/11/22 17:05:54 tsutsui Exp $
 ${GEM_HOME}/cache/${GEM_NAME}.gem
 ${GEM_EXTSDIR}/gem.build_complete
 ${GEM_EXTSDIR}/gtk3.${RUBY_DLEXT}
@@ -12,6 +12,7 @@ ${GEM_LIBDIR}/ext/gtk3/rb-gtk3-spin-button.c
 ${GEM_LIBDIR}/ext/gtk3/rb-gtk3-tree-model.c
 ${GEM_LIBDIR}/ext/gtk3/rb-gtk3-tree-view.c
 ${GEM_LIBDIR}/ext/gtk3/rb-gtk3-widget.c
+${GEM_LIBDIR}/ext/gtk3/rb-gtk3-window.c
 ${GEM_LIBDIR}/ext/gtk3/rb-gtk3.c
 ${GEM_LIBDIR}/ext/gtk3/rb-gtk3.h
 ${GEM_LIBDIR}/extconf.rb
@@ -289,6 +290,7 @@ ${GEM_LIBDIR}/sample/gtk-demo/textview.rb
 ${GEM_LIBDIR}/sample/gtk-demo/theming.ui
 ${GEM_LIBDIR}/sample/gtk-demo/theming_style_classes.rb
 ${GEM_LIBDIR}/sample/gtk-demo/transparent.rb
+${GEM_LIBDIR}/sample/gtk-demo/tree_store.rb
 ${GEM_LIBDIR}/sample/gtk-demo/vertical_text_cursor.png
 ${GEM_LIBDIR}/sample/gtk-demo/w_resize_cursor.png
 ${GEM_LIBDIR}/sample/gtk-demo/wait_cursor.png
