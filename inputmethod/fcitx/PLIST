@@ -98,6 +98,7 @@ lib/fcitx/fcitx-freedesktop-notify.so
 lib/fcitx/fcitx-fullwidth-char.so
 lib/fcitx/fcitx-imselector.so
 lib/fcitx/fcitx-ipc.so
+lib/fcitx/fcitx-ipcportal.so
 lib/fcitx/fcitx-keyboard.so
 lib/fcitx/fcitx-kimpanel-ui.so
 ${PLIST.lua}lib/fcitx/fcitx-lua.so
@@ -120,7 +121,6 @@ lib/fcitx/libexec/comp-spell-dict
 lib/fcitx/libexec/fcitx-po-parser
 ${PLIST.qt4}lib/fcitx/libexec/fcitx-qt-gui-wrapper
 lib/fcitx/libexec/fcitx-scanner
-${PLIST.qt4}lib/fcitx/qt/libfcitx-quickphrase-editor.so
 ${PLIST.introspection}lib/girepository-1.0/Fcitx-1.0.typelib
 ${PLIST.gtk2}lib/gtk-2.0/2.10.0/immodules/im-fcitx.so
 ${PLIST.gtk3}lib/gtk-3.0/3.0.0/immodules/im-fcitx.so
@@ -131,8 +131,8 @@ lib/libfcitx-core.so
 lib/libfcitx-core.so.0
 lib/libfcitx-core.so.0.3
 lib/libfcitx-gclient.so
-lib/libfcitx-gclient.so.0
-lib/libfcitx-gclient.so.0.1
+lib/libfcitx-gclient.so.1
+lib/libfcitx-gclient.so.0.2
 ${PLIST.qt4}lib/libfcitx-qt.so
 ${PLIST.qt4}lib/libfcitx-qt.so.0
 ${PLIST.qt4}lib/libfcitx-qt.so.0.1
@@ -187,6 +187,7 @@ share/fcitx/addon/fcitx-freedesktop-notify.conf
 share/fcitx/addon/fcitx-fullwidth-char.conf
 share/fcitx/addon/fcitx-imselector.conf
 share/fcitx/addon/fcitx-ipc.conf
+share/fcitx/addon/fcitx-ipcportal.conf
 share/fcitx/addon/fcitx-keyboard.conf
 share/fcitx/addon/fcitx-kimpanel-ui.conf
 ${PLIST.lua}share/fcitx/addon/fcitx-lua.conf
