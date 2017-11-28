@@ -1,0 +1,15 @@
+$NetBSD$
+
+* Allow to build with Qt 5.5
+
+--- CMakeLists.txt.orig	2017-10-20 07:03:38.000000000 +0000
++++ CMakeLists.txt
+@@ -27,7 +27,7 @@ if(NOT DEFINED LOCALEDIR)
+ endif()
+ 
+ if (ENABLE_QT)
+-find_package(Qt5 5.7 REQUIRED COMPONENTS Core Gui Widgets)
++find_package(Qt5 5.5 REQUIRED COMPONENTS Core Gui Widgets)
+ find_package(FcitxQt5WidgetsAddons 1.1 REQUIRED)
+ endif ()
+ 
