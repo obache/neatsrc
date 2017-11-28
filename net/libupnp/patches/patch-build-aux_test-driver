@@ -1,0 +1,15 @@
+$NetBSD$
+
+* sh portability fix
+
+--- build-aux/test-driver.orig	2017-11-19 21:53:51.000000000 +0000
++++ build-aux/test-driver
+@@ -59,7 +59,7 @@ enable_hard_errors=yes
+ while test $# -gt 1; do
+  arg=${1%=*}
+  val=${1#*=}
+- if [ $arg == $val ]; then
++ if [ $arg = $val ]; then
+    val=$2
+    shift
+  fi

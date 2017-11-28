@@ -20,8 +20,6 @@ lib/libixml.la
 lib/libthreadutil.la
 lib/libupnp.la
 lib/pkgconfig/libupnp.pc
-share/doc/${PKGNAME}/IXML_Programming_Guide.pdf
-share/doc/${PKGNAME}/UPnP_Programming_Guide.pdf
 share/doc/${PKGNAME}/examples/sample_util.c
 share/doc/${PKGNAME}/examples/sample_util.h
 share/doc/${PKGNAME}/examples/tv_ctrlpt.c

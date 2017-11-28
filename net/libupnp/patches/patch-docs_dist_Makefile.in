@@ -1,0 +1,15 @@
+$NetBSD$
+
+* regen
+
+--- docs/dist/Makefile.in.orig	2017-11-19 21:53:51.000000000 +0000
++++ docs/dist/Makefile.in
+@@ -533,8 +533,6 @@ EXTRA_DIST = \
+ 
+ @WITH_DOCUMENTATION_TRUE@docsdir = @docdir@
+ @WITH_DOCUMENTATION_TRUE@nobase_docs_DATA = \
+-@WITH_DOCUMENTATION_TRUE@        ./UPnP_Programming_Guide.pdf \
+-@WITH_DOCUMENTATION_TRUE@        ./IXML_Programming_Guide.pdf \
+ @WITH_DOCUMENTATION_TRUE@        ./html/upnp/icon1.gif \
+ @WITH_DOCUMENTATION_TRUE@        ./html/upnp/icon2.gif \
+ @WITH_DOCUMENTATION_TRUE@        ./html/upnp/toc.html \
