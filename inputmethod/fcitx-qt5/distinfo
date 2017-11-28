@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (fcitx-qt5-1.1.1.tar.xz) = 94c2f974ef9b69e072771fd2531cee1435f4df7f
-RMD160 (fcitx-qt5-1.1.1.tar.xz) = c91781cd3cf40f25e46aa38070a2cd4b201d6124
-SHA512 (fcitx-qt5-1.1.1.tar.xz) = ea7faa953561527fd0f6224a06ab97ab84a9e36a06d44f9807e38e6d8e537ab2c7126c4cda2d4718473ace1245709ce6175ac9431b6f0527a63b2d6e92feb18c
-Size (fcitx-qt5-1.1.1.tar.xz) = 56352 bytes
+SHA1 (fcitx-qt5-1.2.0.tar.xz) = 178bbd996a2b3a7a393dcc5bdbb75c308792c7fe
+RMD160 (fcitx-qt5-1.2.0.tar.xz) = 7ce12fac6597ea9f65058058b1192ad3b014d88e
+SHA512 (fcitx-qt5-1.2.0.tar.xz) = 38d49d626e4aaee80f44ddeb627b07e45430c6eb1c1c37f2a5fb0c73d5dae6da5ed276366c40c3b6e8609543af95396091e240b5a88b684f399752b3eceee915
+Size (fcitx-qt5-1.2.0.tar.xz) = 134224 bytes

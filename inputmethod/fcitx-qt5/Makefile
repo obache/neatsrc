@@ -1,13 +1,13 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-qt5-1.1.1
+DISTNAME=	fcitx-qt5-1.2.0
 CATEGORIES=	inputmethod
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-qt5/
 EXTRACT_SUFX=	.tar.xz
 
 HOMEPAGE=	http://fcitx-im.org/
 COMMENT=	Fcitx Qt5 Input Context
-LICENSE=	gnu-gpl-v2
+LICENSE=	gnu-gpl-v2 AND modified-bsd
 
 TOOL_DEPENDS+=	extra-cmake-modules>=1.4.0:../../devel/extra-cmake-modules
 
