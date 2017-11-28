@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-cloudpinyin-0.3.5
+DISTNAME=	fcitx-cloudpinyin-0.3.6
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-cloudpinyin/
 EXTRACT_SUFX=	.tar.xz
