@@ -1,0 +1,15 @@
+$NetBSD$
+
+* Allow to build with Qt 5.5
+
+--- CMakeLists.txt.orig	2017-09-29 01:45:17.000000000 +0000
++++ CMakeLists.txt
+@@ -25,7 +25,7 @@ find_package(Gettext REQUIRED)
+ find_package(LibIntl REQUIRED)
+ 
+ if (ENABLE_QT)
+-find_package(Qt5 5.7 REQUIRED COMPONENTS Core Gui Widgets)
++find_package(Qt5 5.5 REQUIRED COMPONENTS Core Gui Widgets)
+ find_package(FcitxQt5WidgetsAddons 1.1 REQUIRED)
+ 
+ endif (ENABLE_QT)
