@@ -93,8 +93,6 @@ PLIST_SUBST+=		MH_NAME=mh-unknown
 
 PKGCONFIG_OVERRIDE+=	config/icu-i18n.pc
 PKGCONFIG_OVERRIDE+=	config/icu-io.pc
-PKGCONFIG_OVERRIDE+=	config/icu-le.pc
-PKGCONFIG_OVERRIDE+=	config/icu-lx.pc
 PKGCONFIG_OVERRIDE+=	config/icu-uc.pc
 PKGCONFIG_OVERRIDE+=	config/icu.pc
 PKGCONFIG_OVERRIDE_STAGE=	post-build
