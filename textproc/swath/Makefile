@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.6 2017/09/04 18:08:29 wiz Exp $
 #
 
-DISTNAME=	swath-0.5.5
+DISTNAME=	swath-0.6.0
 CATEGORIES=	textproc
 MASTER_SITES=	http://linux.thai.net/pub/ThaiLinux/software/swath/
 MASTER_SITES+=	ftp://linux.thai.net/pub/ThaiLinux/software/swath/
