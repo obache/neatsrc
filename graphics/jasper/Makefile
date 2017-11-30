@@ -13,7 +13,7 @@ USE_CMAKE=		yes
 USE_LANGUAGES=		c99 c++
 CMAKE_ARGS+=		-DALLOW_IN_SOURCE_BUILD=ON
 
-PKGCONFIG_OVERRIDE=	pkgconfig/jasper.pc
+PKGCONFIG_OVERRIDE=	build/jasper.pc.in
 
 .include "options.mk"
 
