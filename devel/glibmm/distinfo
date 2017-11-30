@@ -5,3 +5,4 @@ RMD160 (glibmm-2.54.1.tar.xz) = b83f6260a70e3ed10918d96dea37c6fc7bf40054
 SHA512 (glibmm-2.54.1.tar.xz) = 94f2a4d6972684e25e38ff2e6bcfc1e9c5e4d096856d3419320c14166e27e26b1ad69be434337e9b70c23842989988113521aae7a800ef2f29e81f1ae6c25a13
 Size (glibmm-2.54.1.tar.xz) = 6837384 bytes
 SHA1 (patch-glib_glibmm_ustring.cc) = b4fc8965bc5fc1bcc5ea1ac377a13b22659557ee
+SHA1 (patch-tools_extra__defs__gen_generate__extra__defs.cc) = 085993a996f82f567ced6b1799504056e507d95d
