@@ -29,8 +29,6 @@ DEPENDS+=	${PYPKGPREFIX}-funcsigs-[0-9]*:../../devel/py-funcsigs
 USE_LANGUAGES=	# none
 USE_TOOLS+=	bash:build
 
-REPLACE_PYTHON+=	_pytest/standalonetemplate.py
-
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && \
 		${MV} py.test py.test-${PYVERSSUFFIX} && \
