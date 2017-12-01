@@ -98,5 +98,5 @@ _check-shlibs: error-check .PHONY
 
 .else
 _check-shlibs: error-check .PHONY
-	@${WARNING_MSG} "Skipping missing run-time search-path check in DESTDIR mode."
+	@${WARNING_MSG} "Skipping missing run-time search-path check."
 .endif

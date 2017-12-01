@@ -85,5 +85,5 @@ _check-relro: error-check .PHONY
 
 .else
 _check-relro: error-check .PHONY
-	@${WARNING_MSG} "Skipping check for RELRO in DESTDIR mode."
+	@${WARNING_MSG} "Skipping check for RELRO."
 .endif

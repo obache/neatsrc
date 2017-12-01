@@ -85,5 +85,5 @@ _check-ssp: error-check .PHONY
 
 .else
 _check-ssp: error-check .PHONY
-	@${WARNING_MSG} "Skipping check for SSP in DESTDIR mode."
+	@${WARNING_MSG} "Skipping check for SSP."
 .endif
