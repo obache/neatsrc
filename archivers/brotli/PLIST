@@ -6,12 +6,15 @@ include/brotli/port.h
 include/brotli/types.h
 lib/libbrotlicommon-static.a
 lib/libbrotlicommon.so
+lib/libbrotlicommon.so.1
 lib/libbrotlicommon.so.${PKGVERSION}
 lib/libbrotlidec-static.a
 lib/libbrotlidec.so
+lib/libbrotlidec.so.1
 lib/libbrotlidec.so.${PKGVERSION}
 lib/libbrotlienc-static.a
 lib/libbrotlienc.so
+lib/libbrotlienc.so.1
 lib/libbrotlienc.so.${PKGVERSION}
 lib/pkgconfig/libbrotlicommon.pc
 lib/pkgconfig/libbrotlidec.pc
