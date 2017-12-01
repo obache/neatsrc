@@ -1132,7 +1132,6 @@ ${PLIST.httpd}share/examples/groonga/httpd/html/index.html
 ${PLIST.httpd}share/examples/groonga/httpd/koi-utf
 ${PLIST.httpd}share/examples/groonga/httpd/koi-win
 ${PLIST.httpd}share/examples/groonga/httpd/mime.types
-${PLIST.httpd}share/examples/groonga/httpd/nginx.conf
 ${PLIST.httpd}share/examples/groonga/httpd/scgi_params
 ${PLIST.httpd}share/examples/groonga/httpd/uwsgi_params
 ${PLIST.httpd}share/examples/groonga/httpd/win-utf
