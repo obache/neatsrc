@@ -4,4 +4,3 @@ SHA1 (groonga-7.0.8.tar.gz) = 6845fba142d4623bee2c3221c223d18f88f6f7ec
 RMD160 (groonga-7.0.8.tar.gz) = 164062ae3bce6db910b3e87ea0cc5167496ce71a
 SHA512 (groonga-7.0.8.tar.gz) = 2d07dfbc2cf83d355f1e78162e5ebe79ffd628d8b465a195a2540dd7f7f19e11cfccf65324da7209e0cbbb854743f1d10cb69b121c616ed74716be7dce83bbfb
 Size (groonga-7.0.8.tar.gz) = 14492659 bytes
-SHA1 (patch-vendor_nginx-1.13.6_src_os_unix_ngx__udp__sendmsg__chain.c) = ee48868baf364eee162a3f8eb53fab96c52de328
