@@ -14,6 +14,7 @@ SHA1 (patch-src_egl_main_eglglobals.c) = 2d81ae27f09162d23bc684456cc5fef48c04265
 SHA1 (patch-src_gallium_auxiliary_draw_draw__llvm.c) = fc1a313eed85042b7ac2db67c6fd1902074fb43a
 SHA1 (patch-src_gallium_auxiliary_gallivm_lp__bld__intr.c) = 4c40981645675cfeb55bf28317158ebb6332268d
 SHA1 (patch-src_gallium_auxiliary_gallivm_lp__bld__intr.h) = 07f2606d94b9af30df838206841cbcd8a198d799
+SHA1 (patch-src_gallium_auxiliary_gallivm_lp__bld__misc.cpp) = 6e84d0602c6f73cf85253fd1c9be51213042a060
 SHA1 (patch-src_gallium_auxiliary_gallivm_lp__bld__sample__soa.c) = e94692f8dbae1247e5780cebf24e4a333b1fcd0a
 SHA1 (patch-src_gallium_auxiliary_util_u__format__tests.c) = 4d5e4677c2825778c43440ab131b8807f6840975
 SHA1 (patch-src_gallium_auxiliary_util_u__math.h) = 812e4a5291aea47e06505f09891e0434c4d9c34d
