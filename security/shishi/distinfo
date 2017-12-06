@@ -1,0 +1,15 @@
+$NetBSD$
+
+SHA1 (shishi-1.0.2.tar.gz) = c065838baae18d2e39ccd0556e7b7364e2db48bb
+RMD160 (shishi-1.0.2.tar.gz) = e95620f739d9c17b48f0fb8c2a7c7a8afce053c8
+SHA512 (shishi-1.0.2.tar.gz) = 4f39b8d8cb5fbb9f2cedb55eb69620b0bc5d65a7859152db905aeafec7f2b93af459d427d06eb40fbd2870b18eb25e52c52ab0c0a265654f9ab2c3c0f7b98bab
+Size (shishi-1.0.2.tar.gz) = 4917167 bytes
+SHA1 (patch-configure) = 1aad964a6b11ec366d67abe42557a14a35359602
+SHA1 (patch-db_file.c) = 1749255aa50e75674220ea986f31e84ae5e5b2cf
+SHA1 (patch-examples_client-cksum.c) = dcbd10fe13948f5e174f3542dd408c289640ddd3
+SHA1 (patch-examples_client-priv.c) = 26e17ac0f98788e793406e2fe446500ce9596650
+SHA1 (patch-examples_client-safe.c) = 29ce274a9fb339c59232bf894eeb374c80573ccb
+SHA1 (patch-examples_client.c) = e7742e0bd4ed95151ecd2c824aea9db4f3b882de
+SHA1 (patch-examples_server.c) = 0dbcde43c5c7854f040d9ea33fcfde4cebe44e1b
+SHA1 (patch-gl_m4_gc.m4) = 47ebacb66be02f9a2742fd4e34d13d108d292d01
+SHA1 (patch-lib_asn1.c) = 5640e094c3536106e66d67e1b252904a6e38575b

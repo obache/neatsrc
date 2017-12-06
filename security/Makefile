@@ -517,6 +517,7 @@ SUBDIR+=	seahorse-plugins
 SUBDIR+=	seccure
 SUBDIR+=	secpanel
 SUBDIR+=	sfs
+SUBDIR+=	shishi
 SUBDIR+=	sign
 SUBDIR+=	skey
 SUBDIR+=	sks
