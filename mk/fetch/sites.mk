@@ -1,4 +1,4 @@
-# $NetBSD: sites.mk,v 1.155 2017/11/08 11:58:02 tnn Exp $
+# $NetBSD: sites.mk,v 1.156 2017/12/03 11:01:19 wiz Exp $
 #
 # This Makefile fragment defines read-only MASTER_SITE_* variables
 # representing some well-known master distribution sites for software.
@@ -69,7 +69,6 @@ MASTER_SITE_GNOME+=     \
 MASTER_SITE_KDE+=	\
 	http://download.kde.org/stable/ \
 	${MASTER_SITE_RING_SERVER:=X/kde/stable/} \
-	ftp://ftp.kddlabs.co.jp/pub/X/kde/stable/ \
 	ftp://ftp.gtlib.gatech.edu/pub/kde/stable/ \
 	ftp://kde.mirrors.tds.net/pub/kde/stable/ \
 	http://gd.tuwien.ac.at/kde/stable/ \
@@ -213,7 +212,6 @@ MASTER_SITE_OPENOFFICE+=	\
 	http://ftp.ntua.gr/pub/OpenOffice/ \
 	http://na.mirror.garr.it/mirrors/openoffice/ \
 	http://vlaai.snt.utwente.nl/pub/software/openoffice/ \
-	ftp://ftp.kddlabs.co.jp/office/openoffice/ \
 	${MASTER_SITE_RING_SERVER:=misc/openoffice/} \
 	ftp://ftp.kr.freebsd.org/pub/openoffice/
 
