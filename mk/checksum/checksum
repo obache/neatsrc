@@ -77,6 +77,7 @@ set -e		# exit on errors
 : ${CAT:=cat}
 : ${ECHO:=echo}
 : ${SED:=sed}
+: ${SED_BINMODE_ARG:=}
 : ${TEST:=test}
 
 self="${0##*/}"
@@ -174,7 +175,7 @@ fi
 		if ${TEST} -z "$patch"; then
 			checksum=`${DIGEST} $d_alg < $file`
 		else
-			checksum=`${SED} -e '/[$]NetBSD.*/d' $file | ${DIGEST} $d_alg`
+			checksum=`${SED} ${SED_BINMODE_ARG} -e '/[$]NetBSD.*/d' $file | ${DIGEST} $d_alg`
 		fi
 		if ${TEST} "$d_checksum" = "$checksum"; then
 			${ECHO} "=> Checksum $d_alg OK for $sfile"

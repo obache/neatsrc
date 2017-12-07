@@ -56,6 +56,7 @@ _OPSYS_PTHREAD_AUTO=	no	# -lpthread needed for pthreads
 _OPSYS_SHLIB_TYPE=	PEwin	# shared lib type
 _PATCH_CAN_BACKUP=	yes	# native patch(1) can make backups
 _PATCH_BACKUP_ARG?=	-b -V simple -z	# switch to patch(1) for backup suffix
+_SED_BINMODE_ARG?=	-b
 _USE_RPATH=		no	# add rpath to LDFLAGS
 
 _STRIPFLAG_CC?=		${_INSTALL_UNSTRIPPED:D:U-s}	# cc(1) option to strip

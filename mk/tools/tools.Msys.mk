@@ -139,7 +139,7 @@ TOOLS_PLATFORM.rmdir?=		/usr/bin/rmdir
 .if exists(/usr/bin/sdiff)
 TOOLS_PLATFORM.sdiff?=		/usr/bin/sdiff
 .endif
-TOOLS_PLATFORM.sed?=		/usr/bin/sed -b
+TOOLS_PLATFORM.sed?=		/usr/bin/sed
 TOOLS_PLATFORM.sh?=		/usr/bin/sh
 TOOLS_PLATFORM.sleep?=		/usr/bin/sleep
 .if exists(/usr/bin/soelim)
