@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2575 2017/12/03 00:36:36 maya Exp $
+# $NetBSD: Makefile,v 1.2577 2017/12/06 22:04:06 triaxx Exp $
 #
 
 COMMENT=	Development utilities
@@ -1789,6 +1789,7 @@ SUBDIR+=	php-sysvsem
 SUBDIR+=	php-sysvshm
 SUBDIR+=	php-xcache
 SUBDIR+=	php-xdebug
+SUBDIR+=	php-xdebug-devel
 SUBDIR+=	physfs
 SUBDIR+=	picasm
 SUBDIR+=	picopb
@@ -1917,6 +1918,7 @@ SUBDIR+=	py-extras
 SUBDIR+=	py-faker
 SUBDIR+=	py-falcon
 SUBDIR+=	py-fann2
+SUBDIR+=	py-fasteners
 SUBDIR+=	py-fastimport
 SUBDIR+=	py-filebytes
 SUBDIR+=	py-filechunkio
