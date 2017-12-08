@@ -1,6 +1,7 @@
 $NetBSD$
 
 * Fix iconv(3) usage
+  https://github.com/BoGoEngine/fcitx-bogo/pull/22
 
 --- src/bogo-im.c.orig	2014-08-10 06:36:29.000000000 +0000
 +++ src/bogo-im.c
@@ -22,16 +23,15 @@ $NetBSD$
  
      union {
          short s;
-@@ -661,9 +661,10 @@ uint32_t Utf8ToUtf32Char(char *src)
+@@ -661,9 +661,9 @@ uint32_t Utf8ToUtf32Char(char *src)
      
      size_t inLength = UTF8_MAX_LENGTH + 1;
      size_t outLength = sizeof(uint32_t);
 -    IconvStr buff = (IconvStr) output;
 +    char* buff = (char*) output;
-+    IconvStr str = (IconvStr) str;
  
 -    iconv(conv, &src, &inLength, &buff, &outLength);
-+    iconv(conv, &str, &inLength, &buff, &outLength);
++    iconv(conv, (IconvStr*)&src, &inLength, &buff, &outLength);
      
      iconv_close(conv);
      return output[0];

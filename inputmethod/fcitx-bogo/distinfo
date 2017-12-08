@@ -4,4 +4,4 @@ SHA1 (fcitx-bogo-0.1.2.tar.gz) = 91c08a904d85665e106391ad18853d8b93204c06
 RMD160 (fcitx-bogo-0.1.2.tar.gz) = 41ebc7c2f0ae9a8878baa40d4e3c00e1ecbb4849
 SHA512 (fcitx-bogo-0.1.2.tar.gz) = 7ca2c0b637ebe22b2d7152592f0503db2b5da0c8520557119a2f5beafd4bf2f289499b79a3d70abb91dac51bf06e35c6f4e1a2dfee99cba9cc62dff8ca77bbae
 Size (fcitx-bogo-0.1.2.tar.gz) = 724798 bytes
-SHA1 (patch-src_bogo-im.c) = c710f2055a871d88ab3d8ec6a82eeccb425140a7
+SHA1 (patch-src_bogo-im.c) = 9eb163f1517da53d510b897a6da4fd2f1a2c1035
