@@ -30,7 +30,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-batchmode
 CONFIGURE_ARGS+=	--libexecdir=${PREFIX:Q}/libexec/mh
 CONFIGURE_ARGS+=	--enable-jmandir=${PREFIX:Q}/${PKGMANDIR:Q}/ja_JP.EUC
-CONFIGURE_ARGS+=	--enable-apop=${PREFIX:Q}/etc/pop.auth
+CONFIGURE_ARGS+=	--enable-apop=${PKG_SYSCONFDIR:Q}/pop.auth
 CONFIGURE_ARGS+=	--enable-rpop
 
 INSTALLATION_DIRS=	bin lib
