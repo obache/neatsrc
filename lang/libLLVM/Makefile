@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.26 2017/12/01 19:22:13 adam Exp $
+# $NetBSD: Makefile,v 1.27 2017/12/08 02:14:44 gdt Exp $
 
-DISTNAME=	llvm-5.0.0.src
+DISTNAME=	llvm-4.0.1.src
 PKGNAME=	${DISTNAME:S/llvm/libLLVM/:S/.src//}
 CATEGORIES=	lang devel
 MASTER_SITES=	http://llvm.org/releases/${PKGVERSION_NOREV}/
@@ -122,7 +122,6 @@ OVERRIDE_GNU_CONFIG_SCRIPTS=	yes
 
 post-extract:
 	${RUN} mkdir -p ${WRKDIR}/build
-	${RM} ${WRKSRC}/tools/opt-viewer/CMakeLists.txt
 
 post-install:
 	${INSTALL_LIB_DIR} ${DESTDIR}${PREFIX}/lib/libLLVM
@@ -140,6 +139,5 @@ post-install:
 .endif
 
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../lang/python/application.mk"
 .include "../../lang/python/tool.mk"
 .include "../../mk/bsd.pkg.mk"

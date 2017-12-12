@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.2 2017/11/13 09:33:33 adam Exp $
+# $NetBSD: options.mk,v 1.3 2017/12/07 14:19:32 adam Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.postgresql96
 PKG_SUPPORTED_OPTIONS=	bonjour dtrace ldap pam

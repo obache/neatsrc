@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2015/12/06 13:51:30 taca Exp $
+# $NetBSD: Makefile,v 1.15 2017/12/09 02:25:35 taca Exp $
 
 MODNAME=		pdo
 CATEGORIES+=		databases
@@ -11,11 +11,5 @@ USE_PHP_EXT_PATCHES=	yes
 .include "../../lang/php/ext.mk"
 
 CONFIGURE_ARGS+=	--with-${MODNAME}
-
-PLIST_VARS+=		pdo_error
-
-.if ${PKG_PHP_VERSION} != "55"
-PLIST.pdo_error=	yes
-.endif
 
 .include "../../mk/bsd.pkg.mk"
