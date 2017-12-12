@@ -22,8 +22,6 @@ DEPENDS+=	ja-less>=332:../../misc/ja-less
 
 CONFLICTS=	nmh-[0-9]* ja-mh-*_JP_*
 
-PKG_DESTDIR_SUPPORT=	destdir
-
 .include "../../mk/bsd.prefs.mk"
 
 MAKE_JOBS_SAFE=	NO
@@ -39,5 +37,11 @@ INSTALLATION_DIRS=	bin lib
 
 post-install:
 	${LN} -sf libmh.so.3.2 ${DESTDIR}${PREFIX}/lib/libmh.so.3
+
+SPECIAL_PERMS+=	bin/inc ${SETUID_ROOT_PERMS}
+SPECIAL_PERMS+=	bin/msgchk ${SETUID_ROOT_PERMS}
+.if !empty(OPSYS:M*BSD*) || !empty(OPSYS:MDragonFly)
+SPECIAL_PERMS+=	libexec/mh/rcgtty ${REAL_ROOT_USER} tty 2555
+.endif
 
 .include "../../mk/bsd.pkg.mk"
