@@ -31,7 +31,7 @@
 #	Destination directory to install software. The default is ${PREFIX}.
 #
 
-_CMAKE_DIR=	${BUILDLINK_DIR}/cmake-Modules
+_CMAKE_DIR=	${BUILDLINK_DIR}/share/cmake/Modules
 
 CMAKE_USE_GNU_INSTALL_DIRS?=	yes
 
@@ -76,7 +76,7 @@ SUBST_SED.cmake=	\
 
 do-configure-pre-hook: __cmake-copy-module-tree
 __cmake-copy-module-tree: .PHONY
-	${RUN} cd ${PKGSRCDIR}/mk; ${CP} -R cmake-Modules ${_CMAKE_DIR}
+	${RUN} cd ${PKGSRCDIR}/mk; ${MKDIR} ${_CMAKE_DIR:H}; ${CP} -R cmake-Modules/* ${_CMAKE_DIR}
 
 ### The cmake function export_library_dependencies() writes out
 ### library dependency info to a file and this may contain buildlink
