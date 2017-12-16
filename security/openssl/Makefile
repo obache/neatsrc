@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.234 2017/12/09 18:02:02 fhajny Exp $
+# $NetBSD: Makefile,v 1.236 2017/12/14 20:44:20 tron Exp $
 
 DISTNAME=	openssl-1.0.2n
+PKGREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	https://www.openssl.org/source/
 
@@ -170,6 +171,18 @@ INSTALLATION_DIRS+=	share/examples/openssl
 # Fix the path to perl in various scripts.
 pre-configure:
 	cd ${WRKSRC} && ${PERL5} util/perlpath.pl ${PERL5}
+
+# BN_print.3 and bn_print.3 cannot co-exist on Darwin, we choose to remove
+# bn_print.3 simply because it has more aliases to the same manual page.
+PLIST_VARS+=	notmac
+.if ${OPSYS} == "Darwin"
+post-install:
+	${CP} -p ${DESTDIR}${PREFIX}/${PKGMANDIR}/man3/BN_print.3 ${WRKDIR}
+	${RM} ${DESTDIR}${PREFIX}/${PKGMANDIR}/man3/bn_print.3*
+	${MV} -f ${WRKDIR}/BN_print.3 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man3
+.else
+PLIST.notmac=	yes
+.endif
 
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

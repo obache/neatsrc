@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.4 2012/10/25 06:56:45 asau Exp $
+# $NetBSD: Makefile,v 1.5 2017/12/13 11:42:41 jperkin Exp $
 
 MODNAME=		json
+PKGREVISION=		1
 CATEGORIES+=		textproc
 COMMENT=		PHP extension for JSON serialization support
 
