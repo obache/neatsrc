@@ -1,30 +1,36 @@
 # $NetBSD: Makefile,v 1.12 2017/11/01 06:44:49 maya Exp $
 
-DISTNAME=	cmake-fedora-2.6.0-modules-only
-PKGNAME=	${DISTNAME:S/-modules-only//}
+DISTNAME=	cmake-fedora-2.9.2-Source
+PKGNAME=	${DISTNAME:S/-Source//}
 CATEGORIES=	devel
-# Doesn't host our old version, fedorahosted retired.
-#MASTER_SITES=	https://releases.pagure.org/cmake-fedora/
+MASTER_SITES=	https://releases.pagure.org/cmake-fedora/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://pagure.io/cmake-fedora
 COMMENT=	Set of cmake modules for fedora developers
 LICENSE=	modified-bsd
 
-WRKSRC=		${WRKDIR}/Modules
+USE_CMAKE=	yes
+USE_TOOLS+=	cmake:run
 USE_LANGUAGES=	# none
-USE_TOOLS+=	pax
+
+CMAKE_ARGS+=	-DCMAKE_FEDORA_ENABLE_FEDORA_BUILD=0
 
 NO_BUILD=	yes
 
-WRKSRC=		${WRKDIR}
+TEST_TARGET=	test_all
 
-.include "../../devel/cmake/Makefile.version"
-PLIST_SUBST+=	CMAKE_API=${CMAKE_API}
+SUBST_CLASSES+=		syscfdir
+SUBST_STAGE.syscfdir=	pre-configure
+SUBST_SED.syscfdir+=	-e 's,/etc,${PKG_SYSCONFDIR},g'
+SUBST_FILES.syscfdir+=	Modules/ManageFile.cmake
+SUBST_FILES.syscfdir+=	Modules/ManageEnvironmentCommon.cmake
 
-INSTALLATION_DIRS+=	share/cmake-${CMAKE_API}/Modules
+INSTALLATION_DIRS+=	share/examples
 
-do-install:
-	cd ${WRKSRC} && pax -rwpp -s '/.*\.orig//' Modules ${DESTDIR}${PREFIX}/share/cmake-${CMAKE_API}
+post-install:
+		${MV} ${DESTDIR}${PKG_SYSCONFDIR} ${DESTDIR}${PREFIX}/share/examples/cmake-fedora
+
+CONF_FILES+=	share/examples/cmake-fedora/cmake-fedora.conf ${PKG_SYSCONFDIR}/cmake-fedora.conf
 
 .include "../../mk/bsd.pkg.mk"

@@ -1,9 +1,9 @@
 $NetBSD: distinfo,v 1.7 2016/07/28 17:52:08 prlw1 Exp $
 
-SHA1 (cmake-fedora-2.6.0-modules-only.tar.gz) = 90fad24a15901df8830d4a1bc49fe4bab10e1e8d
-RMD160 (cmake-fedora-2.6.0-modules-only.tar.gz) = 820fd1f861ccaa596af317ac8cd3e24fb59b26bd
-SHA512 (cmake-fedora-2.6.0-modules-only.tar.gz) = db0f1193e653bbb860e31e698a254caf7193be51133f81acc01a001c43a850fec3939cee9bcec573fd07376a1d9fccec2db4220af7eb061f5817b2f2ae89388e
-Size (cmake-fedora-2.6.0-modules-only.tar.gz) = 59346 bytes
+SHA1 (cmake-fedora-2.9.2-Source.tar.gz) = ee2b6a0c59d10f5f1853750c9adbe8c19dd80a21
+RMD160 (cmake-fedora-2.9.2-Source.tar.gz) = 7e92f79b5ec30a5bf923cc2206107e02041f7b97
+SHA512 (cmake-fedora-2.9.2-Source.tar.gz) = 187637035c237c76ac53f859f142503437e7e45edcada918aedf76fae38ba1ddf2254ecd4c4ddc55e075f27e1e8fc11acd7fa45d106d4de507fa3ccc82b5c104
+Size (cmake-fedora-2.9.2-Source.tar.gz) = 128508 bytes
 SHA1 (patch-Modules_ManageEnvironment.cmake) = 213274162dca9e3fb4d54d494908a309b6819e51
 SHA1 (patch-Modules_ManageEnvironmentCommon.cmake) = 1d8bb1e91c448df5dc8c7e5b7aa1760bb637a9d0
 SHA1 (patch-Modules_ManageTranslation.cmake) = 4d682cea4cd079ad6a1ae754c7ce2cb8602e8646
