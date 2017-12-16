@@ -14,10 +14,10 @@ USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config
 
-BUILD_DEPENDS+=	cmake-fedora>=2.0:../../devel/cmake-fedora
-
 # iconv: unexpected end of file; the last character is incomplete.
 MAKE_JOBS_SAFE=	noo
+
+CMAKE_ARGS+=	-DCMAKE_FEDORA_ENABLE_FEDORA_BUILD=0
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -27,5 +27,6 @@ BUILD_DEPENDS+=		libiconv-[0-9]*:../../converters/libiconv
 CMAKE_ARGS+=		-DICONV_CMD:PATH=${LOCALBASE}/bin/iconv
 .endif
 
+.include "../../devel/cmake-fedora/buildlink3.mk"
 .include "../../inputmethod/ibus-table/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

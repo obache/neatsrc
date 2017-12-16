@@ -1,0 +1,17 @@
+$NetBSD$
+
+* for updated cmake-fedora
+
+--- CMakeLists.txt.orig	2014-06-10 05:24:57.000000000 +0000
++++ CMakeLists.txt
+@@ -4,8 +4,8 @@ cmake_minimum_required(VERSION 2.6.2)
+ # OLD: CMake policy in included script will affect the invoker.
+ # CMAKE_POLICY(SET CMP0011 OLD)
+ 
+-# Default CMAKE_INSTALL_PREFIX should be set before PROJECT()
+-SET(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "Install dir prefix")
++# Find cmake-fedora
++INCLUDE(ManageEnvironmentCommon)
+ 
+ # Whether to build on fedora
+ SET(CMAKE_FEDORA_ENABLE_FEDORA_BUILD "1" CACHE STRING "Enable fedora build")
