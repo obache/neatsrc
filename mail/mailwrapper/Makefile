@@ -27,13 +27,11 @@ INSTALLATION_DIRS=	${PKGMANDIR}/cat5 ${PKGMANDIR}/cat8 \
 			${PKGMANDIR}/man5 ${PKGMANDIR}/man8 sbin \
 			share/examples/mailwrapper
 
-do-configure:
-	cd ${WRKSRC};							\
-	for file in mailer.conf.5 mailwrapper.8 mailwrapper.c; do	\
-		${MV} $$file $$file.save;				\
-		${SED} -e "s|/etc/\(mailer.conf\)|${PKG_SYSCONFDIR}/\\1|g" \
-			$$file.save > $$file;				\
-	done
+SUBST_CLASSES+=		syscfdir
+SUBST_STAGE.syscfdir=	do-configure
+SUBST_MESSAGE.syscfdir=	replace hard coded "/etc" with PKG_SYSCONFDIR
+SUBST_FILES.syscfdir=	mailer.conf.5 mailwrapper.8 mailwrapper.c
+SUBST_SED.syscfdir=	-e "s|/etc/\\(mailer.conf\\)|${PKG_SYSCONFDIR}/\\1|g"
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/mailer.conf ${DESTDIR}${EGDIR}/mailer.conf.sendmail
