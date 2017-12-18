@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (portmaster-3.17.10.tar.gz) = 83a31de6616af6fabf4b22818e4ae4786771270b
-RMD160 (portmaster-3.17.10.tar.gz) = 265b04e7c4b7c4ca343cacc050a046b399b4d3d4
-SHA512 (portmaster-3.17.10.tar.gz) = 69e940fc8e71e342113eb779a1075bd5cce3d4ac78c6d8f76fa6e200ee586559c22800df212d0c76541b2b206a9f5ac49c31618b3ebd20be64124b45d8924517
-Size (portmaster-3.17.10.tar.gz) = 44745 bytes
+SHA1 (portmaster-3.17.11.tar.gz) = 286a24df882719ba57dab3aecaf3e0e854ad6099
+RMD160 (portmaster-3.17.11.tar.gz) = 8861bbbc7c1da1da051f0c1c3ac2cd91c14dc77e
+SHA512 (portmaster-3.17.11.tar.gz) = 0ce3faebeaa52e453552ccee1787d92946a589c360cd2119d637459dded8e4ac544cb6f320d73455715c50e074c40da2e9f1fd2f23e2372bb879815dd393fad6
+Size (portmaster-3.17.11.tar.gz) = 42939 bytes
