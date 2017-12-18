@@ -1,19 +1,21 @@
-$NetBSD: patch-session_session__test.cc,v 1.2 2016/05/16 11:51:49 ryoon Exp $
+$NetBSD: patch-session_session__test.cc,v 1.3 2017/12/17 14:15:43 tsutsui Exp $
 
---- session/session_test.cc.orig	2016-01-10 19:41:41.000000000 +0000
+* NetBSD support
+
+--- session/session_test.cc.orig	2016-05-15 08:11:12.000000000 +0000
 +++ session/session_test.cc
 @@ -2136,11 +2136,11 @@ TEST_F(SessionTest, UpdatePreferences) {
    const size_t cascading_cand_size =
        command.output().candidates().candidate_size();
  
 -#if defined(OS_LINUX) || defined(OS_ANDROID) || OS_NACL
-+#if defined(OS_LINUX) || defined(OS_ANDROID) || defined(OS_NACL) || defined(OS_NETBSD)
++#if defined(OS_LINUX) || defined(OS_ANDROID) || OS_NACL || defined(OS_NETBSD)
    EXPECT_EQ(no_cascading_cand_size, cascading_cand_size);
 -#else  // defined(OS_LINUX) || defined(OS_ANDROID) || OS_NACL
-+#else  // defined(OS_LINUX) || defined(OS_ANDROID) || OS_NACL || OS_NETBSD
++#else  // defined(OS_LINUX) || defined(OS_ANDROID) || OS_NACL || defined(OS_NETBSD)
    EXPECT_GT(no_cascading_cand_size, cascading_cand_size);
 -#endif  // defined(OS_LINUX) || defined(OS_ANDROID) || OS_NACL
-+#endif  // defined(OS_LINUX) || defined(OS_ANDROID) || OS_NACL || OS_NETBSD
++#endif  // defined(OS_LINUX) || defined(OS_ANDROID) || OS_NACL || defined(OS_NETBSD)
  
    command.Clear();
    session->ConvertCancel(&command);

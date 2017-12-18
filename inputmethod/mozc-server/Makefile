@@ -1,14 +1,8 @@
-# $NetBSD: Makefile,v 1.33 2017/08/24 20:03:26 adam Exp $
+# $NetBSD: Makefile,v 1.34 2017/12/17 14:15:43 tsutsui Exp $
 
 PKGNAME=	${DISTNAME:S/mozc-/mozc-server-/}
-PKGREVISION=	7
 
 INSTALLATION_DIRS+=	libexec
-
-post-extract:
-	rmdir ${WRKSRC}/third_party/japanese_usage_dictionary
-	mv ${WRKDIR}/${DISTFILES.usage_dict:R} \
-		${WRKSRC}/third_party/japanese_usage_dictionary
 
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \

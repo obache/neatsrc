@@ -1,12 +1,14 @@
-$NetBSD: patch-base_logging.cc,v 1.4 2016/05/16 11:51:49 ryoon Exp $
+$NetBSD: patch-base_logging.cc,v 1.5 2017/12/17 14:15:43 tsutsui Exp $
 
---- base/logging.cc.orig	2016-01-10 19:41:41.000000000 +0000
+* NetBSD support
+
+--- base/logging.cc.orig	2016-05-15 08:11:10.000000000 +0000
 +++ base/logging.cc
 @@ -61,6 +61,10 @@
  #include "base/mutex.h"
  #include "base/singleton.h"
  
-+#ifdef OS_NETBSD
++#if defined(OS_NETBSD)
 +#include <lwp.h>
 +#endif
 +
@@ -27,8 +29,8 @@ $NetBSD: patch-base_logging.cc,v 1.4 2016/05/16 11:51:49 ryoon Exp $
             // pthread_self() returns __nc_basic_thread_data*.
             static_cast<void*>(pthread_self())
 +#elif defined(OS_NETBSD)
-+           ::getpid(),
-+           (unsigned long)_lwp_self()
++          ::getpid(),
++          (unsigned long)_lwp_self()
  #else  // = OS_LINUX
             ::getpid(),
             // It returns unsigned long.

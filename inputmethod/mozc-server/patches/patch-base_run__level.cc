@@ -1,6 +1,8 @@
-$NetBSD: patch-base_run__level.cc,v 1.4 2016/05/16 11:51:49 ryoon Exp $
+$NetBSD: patch-base_run__level.cc,v 1.5 2017/12/17 14:15:43 tsutsui Exp $
 
---- base/run_level.cc.orig	2016-01-10 19:41:41.000000000 +0000
+* NetBSD support
+
+--- base/run_level.cc.orig	2016-05-15 08:11:10.000000000 +0000
 +++ base/run_level.cc
 @@ -38,10 +38,10 @@
  #include <unistd.h>
