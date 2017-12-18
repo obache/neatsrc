@@ -7,6 +7,7 @@ MASTER_SITES=	${MASTER_SITE_LOCAL}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Wrapper to support arbitrary Mail Transport Agents
+LICENSE=	original-bsd
 
 USE_FEATURES+=		cdefs
 USE_BSD_MAKEFILE=	yes
