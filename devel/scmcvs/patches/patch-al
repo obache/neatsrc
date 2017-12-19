@@ -1,4 +1,4 @@
-$NetBSD: patch-al,v 1.6 2013/10/14 06:51:02 adam Exp $
+$NetBSD: patch-al,v 1.8 2017/12/18 08:51:48 adam Exp $
 
 --- src/client.c.orig	2005-10-02 15:17:20.000000000 +0000
 +++ src/client.c

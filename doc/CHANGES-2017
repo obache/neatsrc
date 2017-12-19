@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2017,v 1.5302 2017/12/18 05:55:50 ryoon Exp $
+$NetBSD: CHANGES-2017,v 1.5317 2017/12/19 05:59:51 adam Exp $
 
 Changes to the packages collection and infrastructure in 2017:
 
@@ -7654,3 +7654,27 @@ Changes to the packages collection and infrastructure in 2017:
 	Updated print/cups-filters to 1.17.9nb4 [leot 2017-12-17]
 	Updated inputmethod/libskk to 1.0.3 [ryoon 2017-12-18]
 	Updated inputmethod/ibus-skk to 1.4.3 [ryoon 2017-12-18]
+	Added devel/py-clint version 0.5.1 [adam 2017-12-18]
+	Updated textproc/py-mistune to 0.8.3 [adam 2017-12-18]
+	Updated textproc/gtk-doc to 1.26nb1 [jperkin 2017-12-18]
+	Added textproc/py-jade version 4.0.0 [adam 2017-12-18]
+	Updated devel/py-buildbot to 0.9.14 [adam 2017-12-18]
+	Updated devel/py-buildbot-worker to 0.9.14 [adam 2017-12-18]
+	Updated devel/py-buildbot-console-view to 0.9.14 [adam 2017-12-18]
+	Updated devel/py-buildbot-grid-view to 0.9.14 [adam 2017-12-18]
+	Updated devel/py-buildbot-pkg to 0.9.14 [adam 2017-12-18]
+	Updated devel/py-buildbot-waterfall-view to 0.9.14 [adam 2017-12-18]
+	Updated devel/py-buildbot-www to 0.9.14 [adam 2017-12-18]
+	Updated lang/py-hy to 0.13.0 [adam 2017-12-18]
+	Updated sysutils/consul to 1.0.2 [fhajny 2017-12-18]
+	Updated databases/elasticsearch to 6.1.0 [fhajny 2017-12-18]
+	Updated sysutils/beats to 6.1.0 [fhajny 2017-12-18]
+	Updated print/mupdf to 1.12.0 [leot 2017-12-18]
+	Updated print/zathura-pdf-mupdf to 0.3.1nb8 [leot 2017-12-18]
+	Updated www/py-django-treebeard to 4.2.0 [adam 2017-12-18]
+	Updated lang/py-js2py to 0.58 [adam 2017-12-18]
+	Updated x11/libdrm to 2.4.89 [wiz 2017-12-18]
+	Updated finance/gnucash to 2.6.19 [wiz 2017-12-18]
+	Updated cad/qcad to 3.19.1.0 [plunky 2017-12-18]
+	Updated finance/gnucash-docs to 2.6.19 [wiz 2017-12-18]
+	Added devel/py-args version 0.1.0 [adam 2017-12-19]
