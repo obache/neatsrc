@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.172 2017/12/06 21:53:49 triaxx Exp $
+# $NetBSD: Makefile,v 1.174 2017/12/19 14:26:55 leot Exp $
 #
 
 COMMENT=	Clocks, calendars, daily planners and other time related applications
@@ -133,6 +133,7 @@ SUBDIR+=	py-icalendar
 SUBDIR+=	py-iso8601
 SUBDIR+=	py-isodate
 SUBDIR+=	py-jdcal
+SUBDIR+=	py-jrnl
 SUBDIR+=	py-ligotimegps
 SUBDIR+=	py-maya
 SUBDIR+=	py-monotonic
@@ -171,6 +172,7 @@ SUBDIR+=	tex-datenumber
 SUBDIR+=	tex-datenumber-doc
 SUBDIR+=	titrax
 SUBDIR+=	today
+SUBDIR+=	todotxt
 SUBDIR+=	vixie-cron
 SUBDIR+=	wmCalClock
 SUBDIR+=	wmclockmon
