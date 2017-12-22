@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=	portmaster-3.17.11
+DISTNAME=	portmaster-3.18
 CATEGORIES=	pkgtools
 MASTER_SITES=	-https://github.com/freebsd/${PKGBASE}/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX} \
 		${MASTER_SITE_FREEBSD_LOCAL:=bdrewery/${PKGBASE}/}
