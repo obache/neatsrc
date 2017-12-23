@@ -7,7 +7,7 @@ bin/rdic_conv
 bin/wx2_conv
 include/libkakasi.h
 lib/libkakasi.la
-man/ja_JP.EUC/man1/kakasi.1
+man/ja_JP.eucJP/man1/kakasi.1
 man/man1/kakasi-config.1
 man/man1/kakasi.1
 share/kakasi/itaijidict

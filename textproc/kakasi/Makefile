@@ -12,12 +12,12 @@ LICENSE=	gnu-gpl-v2
 GNU_CONFIGURE=		YES
 USE_TOOLS+=		gmake
 USE_LIBTOOL=		YES
-INSTALLATION_DIRS=	${PKGMANDIR}/ja_JP.EUC/man1
+INSTALLATION_DIRS=	${PKGMANDIR}/ja_JP.eucJP/man1
 
 TEST_TARGET=		check
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/man/kakasi.1.ja ${DESTDIR}${PREFIX}/${PKGMANDIR}/ja_JP.EUC/man1/kakasi.1
+	${INSTALL_MAN} ${WRKSRC}/man/kakasi.1.ja ${DESTDIR}${PREFIX}/${PKGMANDIR}/ja_JP.eucJP/man1/kakasi.1
 
 .include "options.mk"
 

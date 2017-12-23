@@ -16,7 +16,7 @@ $NetBSD: patch-aa,v 1.9 2013/08/01 12:41:01 obache Exp $
 +LSFMANDIR	= @mandir@
  MANDIR		= $(LSFMANDIR)/man1
 -JOMANDIR	= $(LSFMANDIR)/ja/man1
-+JOMANDIR	= $(LSFMANDIR)/ja_JP.EUC/man1
++JOMANDIR	= $(LSFMANDIR)/ja_JP.eucJP/man1
  JMANDIR		= $(LSFMANDIR)/ja_JP.UTF-8/man1
  SKFTUTDIR	= $(DOCDIR)/doc
 -LOCALEDIR	= @localedir@

@@ -20,13 +20,13 @@ BUILD_TARGET=	pdumpfs
 
 REPLACE_RUBY=	pdumpfs.in
 
-INSTALLATION_DIRS=	sbin ${PKGMANDIR}/man8 ${PKGMANDIR}/ja_JP.EUC/man8 \
+INSTALLATION_DIRS=	sbin ${PKGMANDIR}/man8 ${PKGMANDIR}/ja_JP.eucJP/man8 \
 			share/doc/pdumpfs
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/pdumpfs ${DESTDIR}${PREFIX}/sbin
 	${INSTALL_MAN} ${WRKSRC}/man/man8/pdumpfs.8 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
-	${INSTALL_MAN} ${WRKSRC}/man/ja/man8/pdumpfs.8 ${DESTDIR}${PREFIX}/${PKGMANDIR}/ja_JP.EUC/man8
+	${INSTALL_MAN} ${WRKSRC}/man/ja/man8/pdumpfs.8 ${DESTDIR}${PREFIX}/${PKGMANDIR}/ja_JP.eucJP/man8
 	cd ${WRKSRC}/doc && \
 		pax -rw -pp -pm . ${DESTDIR}${PREFIX}/share/doc/pdumpfs
 

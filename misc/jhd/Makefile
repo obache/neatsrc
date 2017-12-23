@@ -9,7 +9,7 @@ COMMENT=	Japanese Hexadecimal Dump
 
 BUILD_DEPENDS+=	nkf>=1.7:../../converters/nkf
 
-INSTALLATION_DIRS=	bin ${PKGMANDIR}/ja_JP.EUC/man1
+INSTALLATION_DIRS=	bin ${PKGMANDIR}/ja_JP.eucJP/man1
 
 post-build:
 	@(cd ${WRKSRC}; ${MV} jhd.1 jhd.1.org; nkf -e jhd.1.org > jhd.1)
@@ -17,6 +17,6 @@ post-build:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/jhd ${DESTDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/jhd.1 \
-		${DESTDIR}${PREFIX}/${PKGMANDIR}/ja_JP.EUC/man1
+		${DESTDIR}${PREFIX}/${PKGMANDIR}/ja_JP.eucJP/man1
 
 .include "../../mk/bsd.pkg.mk"

@@ -13,7 +13,7 @@ COMMENT=	Japanese on-line manual pages of NetBSD
 DEPENDS+=	ja-less>=332:../../misc/ja-less
 DEPENDS+=	ja-groff-0.99{,nb*}:../../textproc/ja-groff
 
-JAMANDIR=	ja_JP.EUC
+JAMANDIR=	ja_JP.eucJP
 PLIST_SUBST+=	JAMANDIR=${JAMANDIR:Q}
 MAKE_ENV+=	JAMANDIR=${JAMANDIR:Q}
 MAKE_ENV+=	PKGMANDIR=${PKGMANDIR}

@@ -11,7 +11,7 @@ MAINTAINER=	hiramatu@boreas.dti.ne.jp
 HOMEPAGE=	http://hp.vector.co.jp/authors/VA000501/
 COMMENT=	Quick Kanji code Converter
 
-INSTALLATION_DIRS=	bin ${PKGMANDIR}/ja_JP.EUC/man1
+INSTALLATION_DIRS=	bin ${PKGMANDIR}/ja_JP.eucJP/man1
 
 WRKSRC=		${WRKDIR}
 BUILD_TARGET=	qkc
@@ -19,6 +19,6 @@ BUILD_TARGET=	qkc
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/qkc ${DESTDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/qkc.1 \
-		${DESTDIR}${PREFIX}/${PKGMANDIR}/ja_JP.EUC/man1
+		${DESTDIR}${PREFIX}/${PKGMANDIR}/ja_JP.eucJP/man1
 
 .include "../../mk/bsd.pkg.mk"

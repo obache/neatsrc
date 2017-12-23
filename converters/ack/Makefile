@@ -11,10 +11,10 @@ COMMENT=	Japanese code converter
 
 BUILD_TARGET=	ack
 
-INSTALLATION_DIRS=	bin ${PKGMANDIR}/ja_JP.EUC/man1
+INSTALLATION_DIRS=	bin ${PKGMANDIR}/ja_JP.eucJP/man1
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/ack ${DESTDIR}${PREFIX}/bin/ack
-	${INSTALL_DATA} ${WRKSRC}/ack.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/ja_JP.EUC/man1/ack.1
+	${INSTALL_DATA} ${WRKSRC}/ack.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/ja_JP.eucJP/man1/ack.1
 
 .include "../../mk/bsd.pkg.mk"

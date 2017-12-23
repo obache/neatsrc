@@ -14,7 +14,7 @@ DEPENDS+=	ja-man-[0-9]*:../../misc/ja-man
 
 WRKSRC=		${WRKDIR}/man/ja_JP.eucJP
 PLIST_SRC=	${WRKDIR}/PLIST
-XJMANDIR=	man/ja_JP.EUC
+XJMANDIR=	man/ja_JP.eucJP
 MAKE_ENV+=	XJMANDIR=${XJMANDIR:Q}
 
 USE_BSD_MAKEFILE=	yes
@@ -65,9 +65,9 @@ post-build:
 		${SORT} >> ${PLIST_SRC})
 .endif
 
-INSTALLATION_DIRS=	${PKGMANDIR}/ja_JP.EUC/cat1 ${PKGMANDIR}/ja_JP.EUC/man1 \
-			${PKGMANDIR}/ja_JP.EUC/cat3 ${PKGMANDIR}/ja_JP.EUC/man3 \
-			${PKGMANDIR}/ja_JP.EUC/cat5 ${PKGMANDIR}/ja_JP.EUC/man5 \
+INSTALLATION_DIRS=	${PKGMANDIR}/ja_JP.eucJP/cat1 ${PKGMANDIR}/ja_JP.eucJP/man1 \
+			${PKGMANDIR}/ja_JP.eucJP/cat3 ${PKGMANDIR}/ja_JP.eucJP/man3 \
+			${PKGMANDIR}/ja_JP.eucJP/cat5 ${PKGMANDIR}/ja_JP.eucJP/man5 \
 			share/doc/xjman
 
 post-install:

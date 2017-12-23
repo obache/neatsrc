@@ -15,12 +15,12 @@ COMMENT=	Accessory with Bezier curve
 WRKSRC=		${WRKDIR}/gnyaclock
 USE_IMAKE=	YES
 
-INSTALLATION_DIRS=	bin ${PKGMANDIR}/ja_JP.EUC/man1
+INSTALLATION_DIRS=	bin ${PKGMANDIR}/ja_JP.eucJP/man1
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/gnyaclock ${DESTDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/gnyaclock.man \
-	    ${DESTDIR}${PREFIX}/${PKGMANDIR}/ja_JP.EUC/man1/gnyaclock.1
+	    ${DESTDIR}${PREFIX}/${PKGMANDIR}/ja_JP.eucJP/man1/gnyaclock.1
 
 .include "../../x11/libXaw/buildlink3.mk"
 .include "../../x11/libXpm/buildlink3.mk"

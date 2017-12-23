@@ -10,8 +10,8 @@ $NetBSD: patch-makerule.mk.in,v 1.2 2013/10/15 06:25:38 mef Exp $
  
 -           MANDIR = @mandir@/man$(MANSUFFIX)
 -        LIBMANDIR = @mandir@/man$(LIBMANSUFFIX)
-+           MANDIR = @mandir@/ja_JP.EUC/man$(MANSUFFIX)
-+        LIBMANDIR = @mandir@/ja_JP.EUC/man$(LIBMANSUFFIX)
++           MANDIR = @mandir@/ja_JP.eucJP/man$(MANSUFFIX)
++        LIBMANDIR = @mandir@/ja_JP.eucJP/man$(LIBMANSUFFIX)
  
          MANSUFFIX = 1
       LIBMANSUFFIX = 3
