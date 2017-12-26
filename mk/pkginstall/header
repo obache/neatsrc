@@ -67,7 +67,7 @@ case "${PKG_CONFIG:-@PKG_CONFIG@}" in
 	_PKG_CONFIG=yes
 	;;
 [Nn][Oo]|[Ff][Aa][Ll][Ss][Ee]|[Oo][Ff][Ff]|0)
-	_PKG_CONFIG=yes
+	_PKG_CONFIG=no
 	;;
 esac
 
