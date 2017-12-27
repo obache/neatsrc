@@ -51,7 +51,7 @@ BIGDECIMAL_EXAMPLES=	linear.rb nlsolve.rb pi.rb
 OPENSSL_EXAMPLES=	c_rehash.rb cert2text.rb certstore.rb cipher.rb \
 			crlstore.rb echo_cli.rb echo_svr.rb gen_csr.rb \
 			smime_read.rb smime_write.rb wget.rb
-REPLACE_RUBY=		bin/erb bin/gem bin/irb bin/rake bin/rdoc bin/ri \
+REPLACE_RUBY=		bin/erb bin/gem bin/irb bin/rdoc bin/ri \
 			gems/rake-10.4.2/bin/rake \
 			gems/net-telnet-0.1.1/bin/console \
 			gems/net-telnet-0.1.1/bin/setup
