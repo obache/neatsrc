@@ -108,7 +108,7 @@ CONF_FILES+=	${EXAMPLE_CONF_DIR}/httpd/win-utf \
 
 SUBST_CLASSES+=		confpath
 SUBST_STAGE.confpath=	pre-build
-SUBST_FILES.confpath=	vendor/nginx-1.13.7/objs/Makefile
+SUBST_FILES.confpath=	vendor/nginx-1.13.8/objs/Makefile
 SUBST_SED.confpath=	-e 's,\$$(DESTDIR)${PKG_SYSCONFDIR}/httpd,\$$(DESTDIR)${PREFIX}/share/examples/${PKGBASE}/httpd,g'
 
 post-install:
