@@ -1,6 +1,6 @@
 # $NetBSD$
 
-PKGNAME=	fcitx-mozc-2.17.2313.102.1
+PKGNAME=	fcitx-mozc-2.18.2612.102.1
 
 DISTFILES_VARS+=	icon
 DISTFILES.icon=	${PKGBASE}-icon.tar.gz
