@@ -16,7 +16,6 @@ DEPENDS+=	autoconf213>=2.13:../../devel/autoconf213
 CONFLICTS=	automake<1.6
 
 GNU_CONFIGURE=		YES
-_STRIPFLAG_INSTALL=	# none
 
 USE_TOOLS+=		makeinfo perl:run
 INFO_FILES=	yes
