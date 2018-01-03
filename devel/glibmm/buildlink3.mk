@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.15 2012/09/15 10:04:10 obache Exp $
+# $NetBSD: buildlink3.mk,v 1.17 2017/12/30 17:12:51 gdt Exp $
 
 BUILDLINK_TREE+=	glibmm
 

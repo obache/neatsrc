@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.23 2016/05/07 10:08:30 joerg Exp $
+# $NetBSD: Makefile,v 1.26 2017/12/29 17:55:13 maya Exp $
 #
 
 DISTNAME=	pkg_select-20090308
-PKGREVISION=	5
+PKGREVISION=	8
 CATEGORIES=	pkgtools
 MASTER_SITES=	ftp://ftp.NetBSD.org/pub/NetBSD/misc/imil/
 
@@ -10,7 +10,7 @@ MAINTAINER=	imil@gcu.info
 COMMENT=	Curses based pkgsrc system browser / manager
 LICENSE=	original-bsd
 
-USE_FEATURES+=		cdefs
+USE_FEATURES=		cdefs
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 INSTALLATION_DIRS+=	${EXAMPLEDIR} share/pkg_select
@@ -49,5 +49,5 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/pkg_select.1				\
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 
-.include "../../devel/ncurses/buildlink3.mk"
+.include "../../mk/curses.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

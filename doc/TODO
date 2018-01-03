@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.17968 2017/12/27 21:13:59 wiz Exp $
+$NetBSD: TODO,v 1.17978 2018/01/01 20:38:00 adam Exp $
 
 Suggested new packages
 ======================
@@ -341,7 +341,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o GMT-5.1.1
 	o GNUMail-1.2.2
 	o Gorm-1.2.22
-	o ImageMagick-7.0.7.15
+	o ImageMagick-7.0.7.18
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
 	o Mesa-17.3.1
@@ -456,7 +456,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o bochs-2.6.9
 	o boehm-gc-7.6.2
 	o boolean-7.1
-	o boost-1.66.0
 	o bos-2.5
 	o boson-0.13
 	o bottlerocket-0.05b3
@@ -669,7 +668,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o fuse-mp3fs-0.91 [needs fixes to work on NetBSD; started in wip]
 	o fvwm-devel-2.7.0
 	o fvwm2-themes-0.7.0
-	o gallery-dl-1.1.1
 	o gallery3-3.0.2
 	o ganglia-3.7.1
 	o gap-4r4p9
@@ -865,6 +863,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o html2wml-0.4.11
 	o htmldoc-1.8.28
 	o http_load-20140814
+	o hugo-0.32
 	o icbirc-2.0
 	o icc11-13.0
 	o icdprog-0.5
@@ -872,6 +871,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ices-mp3-2.0.2
 	o icinga-base-2.4.1
 	o ike-2.0.1 [pkg/37032]
+	o ilmbase-2.2.1
 	o imapsync-1.678
 	o imp-6.2.12
 	o ingo-3.2.8
@@ -946,7 +946,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o leafpad-0.8.18.1
 	o lgeneral-1.3.1
 	o libarchive-3.3.2
-	o libatomic_ops-7.6.2
 	o libbpg-0.9.6
 	o libburn-1.4.0
 	o libcaca-0.99.19
@@ -993,7 +992,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libunistring-0.9.8
 	o libv4l-0.8.5
 	o libvirt-2.3
-	o libwebp-0.6.1
 	o libxdg-basedir-1.2.0
 	o libxkbcommon-0.8.0
 	o libykneomgr-0.1.8
@@ -1005,7 +1003,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o liquidwar-6.0.0.11
 	o lirc-0.9.3
 	o lldpd-0.9.1
-	o llvm-5.0.1
 	o lmbench-3
 	o lohit-fonts-2.4.2
 	o lottanzb-0.6
@@ -1078,6 +1075,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mp3splt-2.6.2
 	o mp3splt-gtk-0.9.0
 	o mpdas-0.4.1
+	o mpfr-4.0.0
 	o mpv-0.28
 	o mserv-devel-0.41
 	o multitail-6.4.2
@@ -1248,9 +1246,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-input-pad-1.4.2
 	o py-jaraco_util-11.0
 	o py-keybinder-0.3.1
-	o py-lz4-0.13.0
 	o py-mercurial-4.4.2
-	o py-mezzanine-4.2.2
 	o py-musicbrainz-0.7.4
 	o py-ncclient-0.5.3
 	o py-newt-0.52.20
@@ -1338,7 +1334,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o scripts-1.0.1
 	o scrollz-2.3
 	o scsh-1.3.0
-	o scummvm-2.0
 	o seahorse-3.14
 	o seahorse-nautilus-3.10.1
 	o seccure-0.5a
@@ -1414,7 +1409,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o swi-prolog-packages-7.1.37
 	o swt-4.5
 	o sympa-6.2.14
-	o syncthing-0.14.42
 	o sysinfo-4.2.2
 	o system-tools-backends-2.10.1 [needs polkit|GNOME 2.30]
 	o systrace-1.6e
@@ -1493,7 +1487,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o vfu-4.09
 	o vicq-0.4.2
 	o vile-9.8q
-	o vim-8.0.1424
+	o vim-8.0.1427
 	o vinagre-3.16.1
 	o vino-3.16.0
 	o virt-manager-1.3.2
@@ -1505,7 +1499,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o vnstat-1.15
 	o vtk-5.10.1
 	o wMosaic-3.8.22
-	o waf-2.0.3
+	o waf-2.0.4
 	o wap-utils-1.4.1
 	o warmux-11.04.1
 	o warzone2100-2.3.8

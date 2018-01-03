@@ -428,6 +428,9 @@ func (gd *GlobalData) InitVartypes() {
 	pkglist("CHECK_PERMS_SKIP", lkShell, BtPathmask)
 	usr("CHECK_PORTABILITY", lkNone, BtYesNo)
 	pkglist("CHECK_PORTABILITY_SKIP", lkShell, BtPathmask)
+	usr("CHECK_RELRO", lkNone, BtYesNo)
+	pkglist("CHECK_RELRO_SKIP", lkShell, BtPathmask)
+	pkg("CHECK_RELRO_SUPPORTED", lkNone, BtYesNo)
 	acl("CHECK_SHLIBS", lkNone, BtYesNo, "Makefile: set")
 	pkglist("CHECK_SHLIBS_SKIP", lkShell, BtPathmask)
 	acl("CHECK_SHLIBS_SUPPORTED", lkNone, BtYesNo, "Makefile: set")
@@ -780,9 +783,9 @@ func (gd *GlobalData) InitVartypes() {
 	sys("PKGVERSION", lkNone, BtVersion)
 	sys("PKGWILDCARD", lkNone, BtFilemask)
 	sys("PKG_ADMIN", lkNone, BtShellCommand)
-	sys("PKG_APACHE", lkNone, enum("apache22 apache24"))
-	pkg("PKG_APACHE_ACCEPTED", lkShell, enum("apache22 apache24"))
-	usr("PKG_APACHE_DEFAULT", lkNone, enum("apache22 apache24"))
+	sys("PKG_APACHE", lkNone, enum("apache24"))
+	pkg("PKG_APACHE_ACCEPTED", lkShell, enum("apache24"))
+	usr("PKG_APACHE_DEFAULT", lkNone, enum("apache24"))
 	usr("PKG_CONFIG", lkNone, BtYes)
 	// ^^ No, this is not the popular command from GNOME, but the setting
 	// whether the pkgsrc user wants configuration files automatically

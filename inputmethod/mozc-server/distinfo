@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.20 2017/12/17 14:15:43 tsutsui Exp $
+$NetBSD: distinfo,v 1.21 2017/12/30 14:51:42 tsutsui Exp $
 
 SHA1 (fcitx-mozc-2.18.2612.102.1.patch) = afeef31bf3d640f9cc630c2187dbfd4507367d78
 RMD160 (fcitx-mozc-2.18.2612.102.1.patch) = 17032a37f592aef58a3f47c9cd1fa9cc0f1c88f2
@@ -50,7 +50,7 @@ SHA1 (patch-ipc_ipc__path__manager__test.cc) = 1b83b513383f184f5ab5a56cce734b793
 SHA1 (patch-ipc_named__event.cc) = 92283261e7580569587e43156f13567b593c9a32
 SHA1 (patch-ipc_unix__ipc.cc) = 25107c2e84844ecaa3445efb48cc3f2795579dec
 SHA1 (patch-net_net.gyp) = 61353724533f9239f4c58fa37f0a8fb2eb5552c3
-SHA1 (patch-prediction_user__history__predictor.cc) = 749d75622c0f16353c270b3682ab495c96a37ec6
+SHA1 (patch-prediction_user__history__predictor.cc) = 14e7a899c1c27108169de6571746d5fe4841630a
 SHA1 (patch-session_session.cc) = 773017ac54e79239f6734a124f457b0b81bb1ced
 SHA1 (patch-session_session__test.cc) = 99165b29555844a40d30cf5554cc5c66773b70ed
 SHA1 (patch-third__party_protobuf_post__process__dist.sh) = 8adc79d5d7eed3cbf406ebcfbd5832b7a050ced6
