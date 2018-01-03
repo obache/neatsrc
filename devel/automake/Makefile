@@ -20,7 +20,6 @@ USE_TOOLS+=	gm4:run perl:run autoconf:run
 
 PLIST_SUBST+=		PKG_DIR_VERSION=1.15
 GNU_CONFIGURE=		YES
-_STRIPFLAG_INSTALL=	# none
 INFO_FILES=		YES
 
 # doesn't work because buildlink3 hides scripts
