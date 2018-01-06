@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2012/10/04 09:19:21 asau Exp $
+# $NetBSD: Makefile,v 1.7 2018/01/03 00:21:01 rillig Exp $
 #
 
 DISTNAME=		shapelib-1.4.0

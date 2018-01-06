@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.3 2017/09/06 12:21:22 fhajny Exp $
+# $NetBSD: Makefile,v 1.5 2018/01/03 15:55:36 fhajny Exp $
 
 DISTNAME=	trafficserver-7.1.1
+PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE:=trafficserver/}
 EXTRACT_SUFX=	.tar.bz2
@@ -89,6 +90,7 @@ CONFIGURE_ARGS+=	--with-user=${TS_USER}
 CONFIGURE_ARGS+=	--with-xml=expat
 
 CONFIGURE_ENV.SunOS+=	ac_cv_func_epoll_ctl=no
+CONFIGURE_ENV.SunOS+=	ac_cv_func_inotify_init=no
 CONFIGURE_ENV+=		SPHINXBUILD=sphinx-build${PYVERSSUFFIX}
 
 REPLACE_BASH+=		tools/tsxs.in
@@ -101,6 +103,11 @@ PKGCONFIG_OVERRIDE+=	tools/trafficserver.pc.in
 
 SMF_SRCDIR=		${WRKSRC}/rc
 SMF_MANIFEST=		trafficserver.xml
+
+PLIST_VARS+=		inotify
+.if ${OPSYS} == "Linux"
+PLIST.inotify=		yes
+.endif
 
 TEST_TARGET=		check
 

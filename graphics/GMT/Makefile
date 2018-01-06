@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.49 2017/08/24 20:03:20 adam Exp $
+# $NetBSD: Makefile,v 1.51 2018/01/03 00:25:17 rillig Exp $
 
 DISTNAME=	GMT4.1.4
 PKGNAME=	GMT-4.1.4
-PKGREVISION=	11
+PKGREVISION=	12
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.scc.u-tokai.ac.jp/pub/gmt/4/
 MASTER_SITES+=	ftp://ftp.iris.washington.edu/pub/gmt/4/
@@ -16,6 +16,7 @@ DISTFILES=	GMT4.1.4_man.tar.bz2 GMT4.1.4_pdf.tar.bz2	\
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://gmt.soest.hawaii.edu/
 COMMENT=	Generic Mapping Tools
+LICENSE=	gnu-gpl-v2
 
 MAKE_JOBS_SAFE=		no
 
