@@ -33,15 +33,15 @@ func ChecklinesPlist(lines []Line) {
 		make(map[string]*PlistLine),
 		make(map[string]*PlistLine),
 		"",
-		false}
+		Once{}}
 	ck.Check(lines)
 }
 
 type PlistChecker struct {
-	allFiles              map[string]*PlistLine
-	allDirs               map[string]*PlistLine
-	lastFname             string
-	warnedAboutIconThemes bool
+	allFiles  map[string]*PlistLine
+	allDirs   map[string]*PlistLine
+	lastFname string
+	once      Once
 }
 
 type PlistLine struct {

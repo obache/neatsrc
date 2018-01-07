@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.59 2018/01/05 16:34:42 adam Exp $
+$NetBSD: CHANGES-2018,v 1.64 2018/01/07 01:31:31 wen Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -120,3 +120,9 @@ Changes to the packages collection and infrastructure in 2018:
 	Updated textproc/py-pyaml to 17.12.1 [adam 2018-01-05]
 	Updated math/py-pandas to 0.22.0 [adam 2018-01-05]
 	Updated sysutils/salt-docs to 2017.7.2 [adam 2018-01-05]
+	Updated sysutils/dtc to 1.4.6 [adam 2018-01-06]
+	Updated graphics/cairo to 1.14.12 [adam 2018-01-06]
+	Updated graphics/cairo-gobject to 1.14.12 [adam 2018-01-06]
+	Updated devel/php-xdebug-devel to 2.6.0beta1 [jdolecek 2018-01-06]
+	Updated pkgtools/pkglint to 5.4.25 [rillig 2018-01-07]
+	Updated devel/p5-Tree-Simple to 1.33 [wen 2018-01-07]

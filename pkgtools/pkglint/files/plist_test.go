@@ -23,6 +23,8 @@ func (s *Suite) Test_ChecklinesPlist(c *check.C) {
 		"${PLIST.obsolete}@unexec rmdir /tmp",
 		"sbin/clockctl",
 		"share/icons/gnome/delete-icon",
+		"share/icons/hicolor/icon1.png",
+		"share/icons/hicolor/icon2.png", // No additional warning
 		"share/tzinfo",
 		"share/tzinfo")
 
@@ -43,7 +45,7 @@ func (s *Suite) Test_ChecklinesPlist(c *check.C) {
 		"WARN: PLIST:11: IMAKE_MANNEWSUFFIX is not meant to appear in PLISTs.",
 		"WARN: PLIST:12: Please remove this line. It is no longer necessary.",
 		"WARN: PLIST:13: Manual page missing for sbin/clockctl.",
-		"ERROR: PLIST:16: Duplicate filename \"share/tzinfo\", already appeared in line 15.")
+		"ERROR: PLIST:18: Duplicate filename \"share/tzinfo\", already appeared in line 17.")
 }
 
 func (s *Suite) Test_ChecklinesPlist__empty(c *check.C) {
@@ -125,7 +127,7 @@ func (s *Suite) Test_PlistLineSorter_Sort(c *check.C) {
 		"${PLIST.linux}${PLIST.x86_64}lib/lib-linux-x86_64.so", // Double conditional, see graphics/graphviz
 		"lib/after.la",
 		"@exec echo \"after lib/after.la\"")
-	ck := &PlistChecker{nil, nil, "", false}
+	ck := &PlistChecker{nil, nil, "", Once{}}
 	plines := ck.NewLines(lines)
 
 	sorter1 := NewPlistLineSorter(plines)
@@ -133,7 +135,7 @@ func (s *Suite) Test_PlistLineSorter_Sort(c *check.C) {
 
 	cleanedLines := append(append(lines[0:5], lines[6:8]...), lines[9:]...) // Remove ${UNKNOWN} and @exec
 
-	sorter2 := NewPlistLineSorter((&PlistChecker{nil, nil, "", false}).NewLines(cleanedLines))
+	sorter2 := NewPlistLineSorter((&PlistChecker{nil, nil, "", Once{}}).NewLines(cleanedLines))
 
 	c.Check(sorter2.unsortable, check.IsNil)
 
