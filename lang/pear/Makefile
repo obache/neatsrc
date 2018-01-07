@@ -59,7 +59,9 @@ SUBST_SED.config=	-e "s|@WRKSRC@|${WRKSRC}|g"
 SUBST_SED.config+=	-e "s|@PREFIX@|${PREFIX}|g"
 SUBST_MESSAGE.config=	Fixing configuration files.
 
-REPLACE_SH+=		script/pear.sh
+REPLACE_SH+=		scripts/pear.sh
+REPLACE_SH+=		scripts/peardev.sh
+REPLACE_SH+=		scripts/pecl.sh
 
 INSTALLATION_DIRS+=	share/examples/pear
 
