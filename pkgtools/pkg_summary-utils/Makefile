@@ -40,8 +40,7 @@ EGDIR=		${PREFIX}/share/examples/pkg_summary-utils
 
 CONF_FILES=	${EGDIR}/pkg_digger.conf ${PKG_SYSCONFDIR}/pkg_digger.conf
 
-REPLACE_SH=	tests/test.sh scripts/pkg_digger.in scripts/pkg_digger_backend.in \
-		scripts/pkg_summary2build_graph.in
+REPLACE_SH=	tests/test.sh
 
 REPLACE_INTERPRETER+=	runawk
 REPLACE.runawk.old=	.*runawk
