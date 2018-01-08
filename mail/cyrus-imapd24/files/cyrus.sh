@@ -21,7 +21,6 @@ rcvar=$name
 command="@PREFIX@/cyrus/bin/master"
 command_args="-d"
 pidfile="@VARBASE@/run/cyrus-master.pid"
-sig_stop=QUIT
 required_files="@PKG_SYSCONFDIR@/cyrus.conf @IMAPDCONF@"
 extra_commands="mkimap reload"
 
