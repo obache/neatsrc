@@ -123,10 +123,10 @@ CONFIGURE_ARGS+=	--without-clamav
 .endif
 
 .if !empty(PKG_OPTIONS:Mhttp)
+BUILDLINK_API_DEPENDS.zlib+=	zlib>=1.2.5.3
 .include "../../archivers/brotli/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../geography/shapelib/buildlink3.mk"
-.include "../../textproc/icu/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../time/libical/buildlink3.mk"
 .include "../../www/nghttp2/buildlink3.mk"

@@ -120,8 +120,8 @@ post-install:
 		pax -rwpp . ${DESTDIR}${DOCDIR};		\
 	done
 
-BUILDLINK_API_DEPENDS.zlib+=	zlib>=1.2.5.3
 .include "../../devel/zlib/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib}
 .include "../../textproc/jansson/buildlink3.mk"
+.include "../../textproc/icu/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
