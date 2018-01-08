@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	cyrus-imapd-3.0.4
+DISTNAME=	cyrus-imapd-3.0.5
 CATEGORIES=	mail
 MASTER_SITES=	http://cyrusimap.org/releases/
 
