@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.18 2015/07/20 11:30:54 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.19 2018/01/07 13:04:19 rillig Exp $
 #
 # This is a fake buildlink3.mk file. It figures out the Lua version
 # and then includes the real buildlink3.mk file for that Lua version.
