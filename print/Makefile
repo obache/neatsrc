@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.705 2017/12/10 20:19:21 markd Exp $
+# $NetBSD: Makefile,v 1.707 2018/01/10 22:30:18 wiz Exp $
 #
 
 COMMENT=	Desktop publishing
@@ -33,7 +33,6 @@ SUBDIR+=	cups-filters
 SUBDIR+=	cups-pdf
 SUBDIR+=	cups15
 SUBDIR+=	deforaos-pdfviewer
-SUBDIR+=	diffpdf
 SUBDIR+=	dvidvi
 SUBDIR+=	dviljk
 SUBDIR+=	dvipdfmx
@@ -124,7 +123,6 @@ SUBDIR+=	poppler-cpp
 SUBDIR+=	poppler-data
 SUBDIR+=	poppler-glib
 SUBDIR+=	poppler-includes
-SUBDIR+=	poppler-qt4
 SUBDIR+=	poppler-qt5
 SUBDIR+=	poppler-utils
 SUBDIR+=	poster

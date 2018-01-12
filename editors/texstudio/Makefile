@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.16 2017/12/19 09:42:48 markd Exp $
+# $NetBSD: Makefile,v 1.18 2018/01/11 10:04:17 markd Exp $
 
 DISTNAME=	texstudio-2.12.6
+PKGREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=texstudio/}
 
@@ -31,8 +32,10 @@ do-configure:
 
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../x11/qt4-libs/buildlink3.mk"
-.include "../../x11/qt4-tools/buildlink3.mk"
-.include "../../print/poppler-qt4/buildlink3.mk"
+.include "../../x11/qt5-qtbase/buildlink3.mk"
+.include "../../x11/qt5-qtscript/buildlink3.mk"
+.include "../../x11/qt5-qtsvg/buildlink3.mk"
+.include "../../x11/qt5-qttools/buildlink3.mk"
+.include "../../print/poppler-qt5/buildlink3.mk"
 .include "../../print/poppler-includes/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.34 2018/01/01 21:18:55 adam Exp $
+# $NetBSD: Makefile,v 1.36 2018/01/09 17:55:54 jdolecek Exp $
 
 MODNAME=		curl
 CATEGORIES+=		www
