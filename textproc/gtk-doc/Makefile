@@ -47,7 +47,6 @@ REPLACE_PYTHON+=	tests/mk_to_db.py
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../textproc/libxslt/buildlink3.mk"
 .include "../../textproc/source-highlight/buildlink3.mk"
-.include "../../mk/omf-scrollkeeper.mk"
 .include "../../textproc/xmlcatmgr/catalogs.mk"
 .include "../../mk/bsd.pkg.mk"
 TEST_ENV+=	LC_ALL=en_US.UTF-8
