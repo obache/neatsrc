@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.191 2018/01/12 09:07:22 jperkin Exp $
+$NetBSD: CHANGES-2018,v 1.199 2018/01/12 23:44:15 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -267,3 +267,12 @@ Changes to the packages collection and infrastructure in 2018:
 	Updated math/py-ephem to 3.7.6.0nb1 [adam 2018-01-11]
 	Added www/py-django-celery-beat version 1.1.0 [adam 2018-01-11]
 	Added sysutils/rsyslog-omprog version 8.31.0 [jperkin 2018-01-12]
+	Updated lang/perl5 to 5.26.1nb2 [jperkin 2018-01-12]
+	Updated devel/py-cffi to 1.11.3 [adam 2018-01-12]
+	Updated devel/py-test-xdist to 1.22.0 [adam 2018-01-12]
+	Updated cad/py-gds to 1.2.1 [mef 2018-01-12]
+	Updated multimedia/adobe-flash-player to 28.0.0.137 [tsutsui 2018-01-12]
+	Updated www/contao45 to 4.5.2 [taca 2018-01-12]
+	Updated net/wireshark to 2.4.4 [ryoon 2018-01-12]
+	Updated graphics/icoutils to 0.32.2nb1 [ryoon 2018-01-12]
+	Updated print/poppler-glib to 0.62.0nb1 [wiz 2018-01-12]
