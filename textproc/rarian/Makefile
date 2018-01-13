@@ -20,6 +20,7 @@ USE_LIBTOOL=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	bash:run
 
+CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ENV+=	ac_cv_path_have_bash=${TOOLS_BASH:Q}
 
 PKGCONFIG_OVERRIDE+=	rarian.pc.in
@@ -27,6 +28,8 @@ PKGCONFIG_OVERRIDE+=	rarian.pc.in
 DEPENDS+=	getopt-[0-9]*:../../misc/getopt
 
 REQD_DIRS=	share/omf
+
+BUILD_DEFS+=	VARBASE
 
 .include "../../textproc/libxslt/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
