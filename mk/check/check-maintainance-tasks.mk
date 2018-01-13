@@ -57,6 +57,11 @@ _CHECK_MAINTAINANCE_TASKS+=	infodir
 _CHECK_MAINTAINANCE_TASKS_FILES_FILTER.infodir=	${AWK} '/^${PREFIX:S/\//\\\//g}\/${PKGINFODIR:S/\//\\\//g}\/.+\.info(\.gz)?$$/'
 _CHECK_MAINTAINANCE_TASKS_VARNAME.infodir=	INFO_FILES
 
+_CHECK_MAINTAINANCE_TASKS+=	omf
+_CHECK_MAINTAINANCE_TASKS_FILES_FILTER.omf=	${AWK} '/^${PREFIX:S/\//\\\//g}\/share\/omf\/.+\.omf$$/'
+_CHECK_MAINTAINANCE_TASKS_MAKEFILE.omf=	mk/omf-scrollkeeper.mk
+_CHECK_MAINTAINANCE_TASKS_VARNAME.omf=	SCROLLKEEPER_OMF_MK
+
 .if !empty(CHECK_MAINTAINANCE_TASKS:M[Yy][Ee][Ss])
 privileged-install-hook: _check-maintainance-tasks
 .endif
