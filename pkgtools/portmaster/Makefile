@@ -3,8 +3,7 @@
 
 DISTNAME=	portmaster-3.19
 CATEGORIES=	pkgtools
-MASTER_SITES=	-https://github.com/freebsd/${PKGBASE}/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX} \
-		${MASTER_SITE_FREEBSD_LOCAL:=bdrewery/${PKGBASE}/}
+MASTER_SITES=	-https://github.com/freebsd/${PKGBASE}/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
 HOMEPAGE=	http://portmaster.github.com/
 COMMENT=	FreeBSD port management script
