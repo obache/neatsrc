@@ -2,13 +2,13 @@
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.groonga
-PKG_SUPPORTED_OPTIONS=	mecab tests zlib lz4 zstd
+PKG_SUPPORTED_OPTIONS=	mecab kytea tests zlib lz4 zstd
 PKG_SUPPORTED_OPTIONS+=	groonga-suggest-learner groonga-httpd
 PKG_SUGGESTED_OPTIONS=	mecab zlib groonga-suggest-learner groonga-httpd
 
 .include "../../mk/bsd.options.mk"
 
-PLIST_VARS+=		mecab learner httpd
+PLIST_VARS+=		mecab kytea learner httpd
 
 .if !empty(PKG_OPTIONS:Mmecab)
 CONFIGURE_ARGS+=	--with-mecab
@@ -17,6 +17,14 @@ CONFIGURE_ARGS+=	--with-mecab-config=${BUILDLINK_PREFIX.mecab}/bin/mecab-config
 PLIST.mecab=		yes
 .else
 CONFIGURE_ARGS+=	--without-mecab
+.endif
+
+.if !empty(PKG_OPTIONS:Mkytea)
+CONFIGURE_ARGS+=	--with-kytea
+.include "../../textproc/kytea/buildlink3.mk"
+PLIST.kytea=		yes
+.else
+CONFIGURE_ARGS+=	--without-kytea
 .endif
 
 .if !empty(PKG_OPTIONS:Mtests)
