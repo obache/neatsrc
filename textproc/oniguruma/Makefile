@@ -1,22 +1,20 @@
-# $NetBSD: Makefile,v 1.5 2012/10/25 06:56:09 asau Exp $
-#
+# $NetBSD: Makefile,v 1.6 2018/01/15 08:49:04 adam Exp $
 
-DISTNAME=	onig-5.9.6
+DISTNAME=	onig-6.7.0
 PKGNAME=	${DISTNAME:S/onig/oniguruma/}
-CATEGORIES=	textproc
-MASTER_SITES=	https://github.com/kkos/oniguruma/releases/download/v${PKGVERSION_NOREV}/
+CATEGORIES=	devel
+MASTER_SITES=	${MASTER_SITE_GITHUB:=kkos/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://github.com/kkos/oniguruma/
+HOMEPAGE=	https://github.com/kkos/oniguruma
 COMMENT=	Regular expressions library
 LICENSE=	2-clause-bsd
 
-GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
-USE_TOOLS+=	gmake
+GITHUB_PROJECT=	oniguruma
+GITHUB_RELEASE=	v${PKGVERSION_NOREV}
 
-TEST_TARGET=	atest
-
-PKGCONFIG_OVERRIDE+=	oniguruma.pc.in
+USE_LIBTOOL=		yes
+GNU_CONFIGURE=		yes
+PKGCONFIG_OVERRIDE=	oniguruma.pc.in
 
 .include "../../mk/bsd.pkg.mk"

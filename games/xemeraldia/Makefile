@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.18 2012/10/06 11:55:00 asau Exp $
+# $NetBSD: Makefile,v 1.20 2018/01/14 17:34:02 rillig Exp $
 
 DISTNAME=	xemeraldia-0.3
 PKGNAME=	xemeraldia-0.31
@@ -6,8 +6,8 @@ PKGREVISION=	6
 CATEGORIES=	games
 MASTER_SITES=	ftp://ftp.lab.kdd.co.jp/Usenet/fj.sources/1995/mar/
 
-PATCH_SITES=	ftp://ftp.lab.kdd.co.jp/Usenet/fj.sources/1995/apr/
-PATCHFILES=	xemeraldia-0.3to0.31.patch.gz
+PATCH_SITES=		ftp://ftp.lab.kdd.co.jp/Usenet/fj.sources/1995/apr/
+PATCHFILES=		xemeraldia-0.3to0.31.patch.gz
 PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -17,8 +17,8 @@ USE_IMAKE=	yes
 BUILD_TARGET=	xemeraldia
 
 GAMES_DIR=	share/games
-MAKE_ENV+=	GAMES_DIR=${GAMES_DIR:Q}
-PLIST_SUBST=	GAMES_DIR=${GAMES_DIR:Q}
+MAKE_ENV+=	GAMES_DIR=${GAMES_DIR}
+PLIST_SUBST=	GAMES_DIR=${GAMES_DIR}
 
 SETGIDGAME=	yes
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.57 2017/08/16 20:45:38 wiz Exp $
+# $NetBSD: Makefile,v 1.58 2018/01/14 17:34:00 rillig Exp $
 
 DISTNAME=		kye-1.0
 PKGREVISION=		23

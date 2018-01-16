@@ -8,7 +8,7 @@ func (s *Suite) Test_ChecklinesPlist(c *check.C) {
 	s.Init(c)
 	s.UseCommandLine("-Wall")
 	G.Pkg = NewPackage("category/pkgbase")
-	lines := s.NewLines("PLIST",
+	lines := T.NewLines("PLIST",
 		"bin/i386/6c",
 		"bin/program",
 		"etc/my.cnf",
@@ -48,7 +48,7 @@ func (s *Suite) Test_ChecklinesPlist(c *check.C) {
 
 func (s *Suite) Test_ChecklinesPlist__empty(c *check.C) {
 	s.Init(c)
-	lines := s.NewLines("PLIST",
+	lines := T.NewLines("PLIST",
 		"@comment $"+"NetBSD$")
 
 	ChecklinesPlist(lines)
@@ -75,7 +75,7 @@ func (s *Suite) Test_ChecklinesPlist__conditional(c *check.C) {
 	s.Init(c)
 	G.Pkg = NewPackage("category/pkgbase")
 	G.Pkg.plistSubstCond["PLIST.bincmds"] = true
-	lines := s.NewLines("PLIST",
+	lines := T.NewLines("PLIST",
 		"@comment $"+"NetBSD$",
 		"${PLIST.bincmds}bin/subdir/command")
 
@@ -88,7 +88,7 @@ func (s *Suite) Test_ChecklinesPlist__conditional(c *check.C) {
 func (s *Suite) Test_ChecklinesPlist__sorting(c *check.C) {
 	s.Init(c)
 	s.UseCommandLine("-Wplist-sort")
-	lines := s.NewLines("PLIST",
+	lines := T.NewLines("PLIST",
 		"@comment $"+"NetBSD$",
 		"@comment Do not remove",
 		"sbin/i386/6c",
@@ -107,7 +107,7 @@ func (s *Suite) Test_PlistLineSorter_Sort(c *check.C) {
 	s.Init(c)
 	s.UseCommandLine("--autofix")
 	tmpfile := s.CreateTmpFile("PLIST", "dummy\n")
-	lines := s.NewLines(tmpfile,
+	lines := T.NewLines(tmpfile,
 		"@comment $"+"NetBSD$",
 		"@comment Do not remove",
 		"A",
@@ -168,7 +168,7 @@ func (s *Suite) Test_PlistChecker_checkpathShare_Desktop(c *check.C) {
 	s.UseCommandLine("-Wextra")
 	G.Pkg = NewPackage("category/pkgpath")
 
-	ChecklinesPlist(s.NewLines("PLIST",
+	ChecklinesPlist(T.NewLines("PLIST",
 		"@comment $"+"NetBSD$",
 		"share/applications/pkgbase.desktop"))
 
@@ -179,10 +179,11 @@ func (s *Suite) Test_PlistChecker_checkpathShare_Desktop(c *check.C) {
 func (s *Suite) Test_PlistChecker_checkpathMan_gz(c *check.C) {
 	s.Init(c)
 	G.Pkg = NewPackage("category/pkgbase")
-
-	ChecklinesPlist(s.NewLines("PLIST",
+	lines := T.NewLines("PLIST",
 		"@comment $"+"NetBSD$",
-		"man/man3/strerror.3.gz"))
+		"man/man3/strerror.3.gz")
+
+	ChecklinesPlist(lines)
 
 	s.CheckOutputLines(
 		"NOTE: PLIST:2: The .gz extension is unnecessary for manual pages.")
@@ -190,7 +191,7 @@ func (s *Suite) Test_PlistChecker_checkpathMan_gz(c *check.C) {
 
 func (s *Suite) TestPlistChecker_checkpath__PKGMANDIR(c *check.C) {
 	s.Init(c)
-	lines := s.NewLines("PLIST",
+	lines := T.NewLines("PLIST",
 		"@comment $"+"NetBSD$",
 		"${PKGMANDIR}/man1/sh.1")
 
@@ -202,7 +203,7 @@ func (s *Suite) TestPlistChecker_checkpath__PKGMANDIR(c *check.C) {
 
 func (s *Suite) TestPlistChecker_checkpath__python_egg(c *check.C) {
 	s.Init(c)
-	lines := s.NewLines("PLIST",
+	lines := T.NewLines("PLIST",
 		"@comment $"+"NetBSD$",
 		"${PYSITELIB}/gdspy-${PKGVERSION}-py${PYVERSSUFFIX}.egg-info/PKG-INFO")
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.157 2017/11/23 17:19:54 wiz Exp $
+# $NetBSD: Makefile,v 1.159 2018/01/14 17:33:59 rillig Exp $
 
 DISTNAME=		gnome-games-2.32.1
 PKGREVISION=		34
@@ -23,14 +23,14 @@ USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ENV+=		PKGLOCALEDIR=${PKGLOCALEDIR:Q}
+CONFIGURE_ENV+=		PKGLOCALEDIR=${PKGLOCALEDIR}
 CONFIGURE_ENV+=		ac_cv_path_MSGFMT=msgfmt
-CONFIGURE_ARGS+=	--localstatedir=${VARBASE:Q}
+CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=	--enable-omitgames=lightsoff
 
 FILES_SUBST+=		INSTALL=${INSTALL:Q}
 
-GCONF_SCHEMAS=		aisleriot.schemas
+GCONF_SCHEMAS=	aisleriot.schemas
 GCONF_SCHEMAS+=	glchess.schemas
 GCONF_SCHEMAS+=	glines.schemas
 GCONF_SCHEMAS+=	gnect.schemas
