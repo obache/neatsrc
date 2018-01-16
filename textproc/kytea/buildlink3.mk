@@ -1,0 +1,13 @@
+# $NetBSD$
+#
+
+BUILDLINK_TREE+=	kytea
+
+.if !defined(KYTEA_BUILDLINK3_MK)
+KYTEA_BUILDLINK3_MK:=
+
+BUILDLINK_API_DEPENDS.kytea+=	kytea>=0.4.7
+BUILDLINK_PKGSRCDIR.kytea?=	../../textproc/kytea
+.endif	# KYTEA_BUILDLINK3_MK
+
+BUILDLINK_TREE+=	-kytea

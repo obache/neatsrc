@@ -1,0 +1,10 @@
+$NetBSD$
+
+SHA1 (kytea-0.4.7.tar.gz) = 684f6b90bd4ae048ea3a6fc9762b1baecb006eb3
+RMD160 (kytea-0.4.7.tar.gz) = 156a22ba3645509eeae9fab34a77b95ceca79cba
+SHA512 (kytea-0.4.7.tar.gz) = 4e7d068850a25a3250d6d28fca277ad5eb49e310c777380b829f9993764148d9ffc4a32546c79afda3e61c64ee02930887327937585d566ab5db5da5ed0a0fcc
+Size (kytea-0.4.7.tar.gz) = 39133763 bytes
+SHA1 (patch-configure) = 49b1e64151123e640144880f988dbcf6f70163e7
+SHA1 (patch-configure.ac) = 1dc8380ee104fa99a315a053d205c924b999f4ee
+SHA1 (patch-src_api_Makefile.am) = 153807ffa31e97247838f4fff2fa410a4247628f
+SHA1 (patch-src_api_Makefile.in) = 8c754c815c9449978844bea58620896a4e4978c5

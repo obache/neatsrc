@@ -1,0 +1,16 @@
+$NetBSD$
+
+* prevent to install example program
+  https://github.com/neubig/kytea/pull/21
+
+--- src/api/Makefile.am.orig	2014-11-05 15:11:00.000000000 +0000
++++ src/api/Makefile.am
+@@ -5,7 +5,7 @@ KYTH = 
+ 
+ AM_CPPFLAGS = -I$(srcdir)/../include -DPKGDATADIR='"$(pkgdatadir)"'
+ 
+-bin_PROGRAMS = api-example
++noinst_PROGRAMS = api-example
+ 
+ api_example_SOURCES = api-example.cpp ${KYTH}
+ api_example_LDADD = ../lib/libkytea.la

@@ -1,0 +1,15 @@
+$NetBSD$
+
+* regen
+
+--- configure.orig	2014-12-18 08:23:19.000000000 +0000
++++ configure
+@@ -16152,7 +16152,7 @@ else
+   enable_quantize=yes
+ fi
+ 
+-if test "x$enable_quantize" == xno; then
++if test "x$enable_quantize" = xno; then
+ 
+ $as_echo "#define DISABLE_QUANTIZE 1" >>confdefs.h
+ 

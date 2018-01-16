@@ -349,6 +349,7 @@ SUBDIR+=	kapidox
 SUBDIR+=	kbanner
 SUBDIR+=	kcodecs
 SUBDIR+=	kcompletion
+SUBDIR+=	kytea
 SUBDIR+=	latex2html
 SUBDIR+=	libclucene
 SUBDIR+=	libcroco
