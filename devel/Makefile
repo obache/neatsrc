@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2590 2018/01/09 13:18:01 fhajny Exp $
+# $NetBSD: Makefile,v 1.2592 2018/01/18 10:56:54 markd Exp $
 #
 
 COMMENT=	Development utilities
@@ -375,6 +375,7 @@ SUBDIR+=	guile-gnome
 SUBDIR+=	guile-lib
 SUBDIR+=	guile-slib
 SUBDIR+=	guile-www
+SUBDIR+=	guile22-slib
 SUBDIR+=	gyp
 SUBDIR+=	happy
 SUBDIR+=	haskell-mode
@@ -2465,6 +2466,8 @@ SUBDIR+=	tcllib
 SUBDIR+=	tclreadline
 SUBDIR+=	teem
 SUBDIR+=	tet3
+SUBDIR+=	tex-doclicense
+SUBDIR+=	tex-doclicense-doc
 SUBDIR+=	tex-etoolbox
 SUBDIR+=	tex-etoolbox-doc
 SUBDIR+=	tex-l3experimental

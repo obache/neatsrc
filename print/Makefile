@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.707 2018/01/10 22:30:18 wiz Exp $
+# $NetBSD: Makefile,v 1.709 2018/01/18 10:31:39 markd Exp $
 #
 
 COMMENT=	Desktop publishing
@@ -627,6 +627,8 @@ SUBDIR+=	tex-framed
 SUBDIR+=	tex-framed-doc
 SUBDIR+=	tex-ftcap
 SUBDIR+=	tex-ftcap-doc
+SUBDIR+=	tex-fvextra
+SUBDIR+=	tex-fvextra-doc
 SUBDIR+=	tex-fwlw
 SUBDIR+=	tex-fwlw-doc
 SUBDIR+=	tex-g-brief
@@ -1198,6 +1200,8 @@ SUBDIR+=	tex-tex-ini-files
 SUBDIR+=	tex-tex-ini-files-doc
 SUBDIR+=	tex-tex-overview-doc
 SUBDIR+=	tex-tex-refs-doc
+SUBDIR+=	tex-tex4ebook
+SUBDIR+=	tex-tex4ebook-doc
 SUBDIR+=	tex-tex4ht
 SUBDIR+=	tex-tex4ht-doc
 SUBDIR+=	tex-texbytopic-doc
