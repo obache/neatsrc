@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.10 2017/01/01 14:01:49 wiz Exp $
+@comment $NetBSD: PLIST,v 1.12 2018/01/21 04:22:58 markd Exp $
 bin/kid3-cli
 bin/kid3-qt
 lib/kid3/libkid3-core.so
@@ -23,7 +23,6 @@ man/de/man1/kid3.1
 man/man1/kid3-cli.1
 man/man1/kid3-qt.1
 man/man1/kid3.1
-share/appdata/kid3-qt.appdata.xml
 share/applications/kid3-qt.desktop
 share/doc/kid3-qt/kid3_de.html
 share/doc/kid3-qt/kid3_en.html
@@ -44,6 +43,7 @@ share/kid3/qml/script/ReplayGain2SoundCheck.qml
 share/kid3/qml/script/ResizeAlbumArt.qml
 share/kid3/qml/script/ShowTextEncodingV1.qml
 share/kid3/translations/kid3_cs.qm
+share/kid3/translations/kid3_da.qm
 share/kid3/translations/kid3_de.qm
 share/kid3/translations/kid3_es.qm
 share/kid3/translations/kid3_et.qm
@@ -60,3 +60,4 @@ share/kid3/translations/kid3_sr@latin.qm
 share/kid3/translations/kid3_tr.qm
 share/kid3/translations/kid3_zh_CN.qm
 share/kid3/translations/kid3_zh_TW.qm
+share/metainfo/kid3-qt.appdata.xml

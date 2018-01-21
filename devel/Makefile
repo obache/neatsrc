@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2592 2018/01/18 10:56:54 markd Exp $
+# $NetBSD: Makefile,v 1.2593 2018/01/21 03:40:39 wen Exp $
 #
 
 COMMENT=	Development utilities
@@ -1729,6 +1729,7 @@ SUBDIR+=	p5-capitalization
 SUBDIR+=	p5-circular-require
 SUBDIR+=	p5-common-sense
 SUBDIR+=	p5-constant-def
+SUBDIR+=	p5-curry
 SUBDIR+=	p5-enum
 SUBDIR+=	p5-ex-lib
 SUBDIR+=	p5-experimental
