@@ -49,13 +49,6 @@ CONF_FILES=		${EGDIR}/ocamlfind.conf ${PKG_SYSCONFDIR}/ocamlfind.conf
 
 FILES_SUBST+=		OCAML_FINDLIB_DIRS="${OCAML_FINDLIB_DIRS}" OCAML_SITELIBDIR="${OCAML_SITELIBDIR}"
 
-SUBST_CLASSES+=		ofr
-SUBST_STAGE.ofr=	pre-configure
-SUBST_FILES.ofr=	ocaml-findlib-register.sh
-SUBST_SED.ofr=		-e 's,@SH@,'${SH:Q}','
-SUBST_SED.ofr+=		-e 's,@PREFIX@,${PREFIX},'
-SUBST_SED.ofr+=		-e 's,@FGREP@,'${FGREP:Q}','
-
 SUBST_CLASSES+=		pathes
 SUBST_STAGE.pathes=	post-install
 SUBST_FILES.pathes=	${DESTDIR}${PREFIX}/lib/ocaml/site-lib/findlib/Makefile.config
