@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.287 2018/01/21 04:19:36 markd Exp $
+$NetBSD: CHANGES-2018,v 1.298 2018/01/22 03:19:35 wen Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -510,3 +510,19 @@ Changes to the packages collection and infrastructure in 2018:
 	Updated databases/p5-DBIx-Class-Schema-Loader to 0.07048 [wen 2018-01-21]
 	Updated audio/kid3 to 3.5.1 [markd 2018-01-21]
 	Added x11/qt5-qtquickcontrols2 version 5.10.0 [markd 2018-01-21]
+	Updated www/py-google-api-python-client to 1.6.5 [adam 2018-01-21]
+	Updated www/py-yarl to 1.1.0 [adam 2018-01-21]
+	Updated www/py-pylint-django to 0.8.0 [adam 2018-01-21]
+	Updated finance/py-braintree to 3.40.0 [adam 2018-01-21]
+	Updated shells/mksh to 56c [bsiegert 2018-01-21]
+	Updated security/keychain to 2.8.4 [roy 2018-01-21]
+	Updated multimedia/libdvdcss to 1.4.1 [adam 2018-01-21]
+	Updated multimedia/libdvdread to 6.0.0 [adam 2018-01-21]
+	Updated multimedia/libdvdnav to 6.0.0 [adam 2018-01-21]
+	Updated x11/deforaos-libdesktop to 0.2.2nb1 [he 2018-01-21]
+	Updated multimedia/xine-ui to 0.99.8nb15 [wiz 2018-01-21]
+	Updated security/sqlmap to 1.2 [leot 2018-01-21]
+	Added x11/kirigami2 version 5.41.0 [markd 2018-01-22]
+	Updated math/R-RcppEigen to 0.3.3.3.1 [wen 2018-01-22]
+	Updated devel/R-Rcpp to 0.12.15 [wen 2018-01-22]
+	Added math/R-lme4 version 1.1.15 [wen 2018-01-22]
