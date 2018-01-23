@@ -12,5 +12,13 @@ LICENSE=	gnu-lgpl-v2.1
 
 PKGCONFIG_OVERRIDE+=	src/cmake/libKF5Attica.pc.cmake
 
+INSTALLATION_DIRS+=	share/examples/${PKGBASE}
+MAKE_DIRS+=		${PKG_SYSCONFDIR}/xdg
+
+post-install:
+	${MV} ${DESTDIR}${PKG_SYSCONFDIR}/xdg ${DESTDIR}${PREFIX}/share/examples/${PKGBASE}
+
+CONF_FILES+=	share/examples/${PKGBASE}/xdg/attica.categories ${PKG_SYSCONFDIR}/xdg/attica.categories
+
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
