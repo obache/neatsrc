@@ -13,6 +13,14 @@ BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
 
+INSTALLATION_DIRS+=	share/examples/${PKGBASE}
+MAKE_DIRS+=		${PKG_SYSCONFDIR}/xdg
+
+post-install:
+	${MV} ${DESTDIR}${PKG_SYSCONFDIR}/xdg ${DESTDIR}${PREFIX}/share/examples/${PKGBASE}
+
+CONF_FILES+=	share/examples/${PKGBASE}/xdg/${PKGBASE}.categories ${PKG_SYSCONFDIR}/xdg/${PKGBASE}.categories
+
 .include "../../lang/python/tool.mk"
 .include "../../devel/knotifications/buildlink3.mk"
 .include "../../devel/kservice/buildlink3.mk"
