@@ -15,6 +15,14 @@ USE_TOOLS+=	perl:run msgmerge
 
 REPLACE_PERL+=	src/preparetips5
 
+INSTALLATION_DIRS+=	share/examples/${PKGBASE}
+MAKE_DIRS+=		${PKG_SYSCONFDIR}/xdg
+
+post-install:
+	${MV} ${DESTDIR}${PKG_SYSCONFDIR}/xdg ${DESTDIR}${PREFIX}/share/examples/${PKGBASE}
+
+CONF_FILES+=	share/examples/${PKGBASE}/xdg/${PKGBASE}.categories ${PKG_SYSCONFDIR}/xdg/${PKGBASE}.categories
+
 .include "../../lang/python/tool.mk"
 .include "../../devel/kconfig/buildlink3.mk"
 .include "../../devel/ki18n/buildlink3.mk"

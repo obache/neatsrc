@@ -50,6 +50,7 @@ man/ru/man1/preparetips5.1
 man/sv/man1/preparetips5.1
 man/uk/man1/preparetips5.1
 qt5/mkspecs/modules/qt_KConfigWidgets.pri
+share/examples/kconfigwidgets/xdg/kconfigwidgets.categories
 share/locale/af/LC_MESSAGES/kconfigwidgets5.mo
 share/locale/af/kf5_entry.desktop
 share/locale/ar/LC_MESSAGES/kconfigwidgets5.mo
