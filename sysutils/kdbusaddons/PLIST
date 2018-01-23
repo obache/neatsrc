@@ -20,6 +20,7 @@ lib/libKF5DBusAddons.so
 lib/libKF5DBusAddons.so.5
 lib/libKF5DBusAddons.so.${PKGVERSION}
 qt5/mkspecs/modules/qt_KDBusAddons.pri
+share/examples/kdbusaddons/xdg/kdbusaddons.categories
 share/locale/ar/LC_MESSAGES/kdbusaddons5_qt.qm
 share/locale/ast/LC_MESSAGES/kdbusaddons5_qt.qm
 share/locale/bs/LC_MESSAGES/kdbusaddons5_qt.qm
