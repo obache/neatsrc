@@ -103,7 +103,6 @@ LDFLAGS.FreeBSD+=	-lutil
 
 REPLACE_PERL+=		bin/fixqt4headers.pl
 REPLACE_PERL+=		bin/syncqt.pl
-REPLACE_PERL+=		mkspecs/features/uikit/devices.pl
 
 PTHREAD_OPTS+=		require
 UNLIMIT_RESOURCES=	datasize
