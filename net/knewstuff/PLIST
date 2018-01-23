@@ -73,6 +73,7 @@ qt5/qml/org/kde/newstuff/libnewstuffqmlplugin.so
 qt5/qml/org/kde/newstuff/qml/NewStuffItem.qml
 qt5/qml/org/kde/newstuff/qml/NewStuffList.qml
 qt5/qml/org/kde/newstuff/qmldir
+share/examples/knewstuff/xdg/knewstuff.categories
 share/kf5/kmoretools/presets-kmoretools/_INFO
 share/kf5/kmoretools/presets-kmoretools/angrysearch.desktop
 share/kf5/kmoretools/presets-kmoretools/catfish.desktop
