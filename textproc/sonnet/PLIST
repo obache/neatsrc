@@ -36,6 +36,7 @@ qt5/mkspecs/modules/qt_SonnetCore.pri
 qt5/mkspecs/modules/qt_SonnetUi.pri
 qt5/plugins/kf5/sonnet/aspell.so
 qt5/plugins/kf5/sonnet/hunspell.so
+share/examples/sonnet/xdg/sonnet.categories
 share/kf5/sonnet/trigrams.map
 share/locale/af/LC_MESSAGES/sonnet5_qt.qm
 share/locale/ar/LC_MESSAGES/sonnet5_qt.qm

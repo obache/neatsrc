@@ -7,6 +7,14 @@ HOMEPAGE=	https://community.kde.org/Frameworks
 COMMENT=	Spelling framework for Qt5
 LICENSE=	gnu-lgpl-v2.1
 
+INSTALLATION_DIRS+=	share/examples/${PKGBASE}
+MAKE_DIRS+=		${PKG_SYSCONFDIR}/xdg
+
+post-install:
+	${MV} ${DESTDIR}${PKG_SYSCONFDIR}/xdg ${DESTDIR}${PREFIX}/share/examples/${PKGBASE}
+
+CONF_FILES+=	share/examples/${PKGBASE}/xdg/${PKGBASE}.categories ${PKG_SYSCONFDIR}/xdg/${PKGBASE}.categories
+
 .include "../../meta-pkgs/kf5/Makefile.common"
 
 .include "../../textproc/aspell/buildlink3.mk"
