@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.352 2018/01/22 03:17:48 wen Exp $
+# $NetBSD: Makefile,v 1.355 2018/01/23 01:52:53 minskim Exp $
 
 COMMENT=	Mathematics
 
@@ -19,6 +19,7 @@ SUBDIR+=	R-RandomFields
 SUBDIR+=	R-Rcmdr
 SUBDIR+=	R-RcppEigen
 SUBDIR+=	R-SparseM
+SUBDIR+=	R-VGAM
 SUBDIR+=	R-XML
 SUBDIR+=	R-abind
 SUBDIR+=	R-akima
@@ -49,6 +50,7 @@ SUBDIR+=	R-minqa
 SUBDIR+=	R-mvtnorm
 SUBDIR+=	R-ncdf
 SUBDIR+=	R-nloptr
+SUBDIR+=	R-pbkrtest
 SUBDIR+=	R-pixmap
 SUBDIR+=	R-plyr
 SUBDIR+=	R-quantreg
@@ -278,6 +280,7 @@ SUBDIR+=	py-scipy
 SUBDIR+=	py-simpleeval
 SUBDIR+=	py-statsmodels
 SUBDIR+=	py-sympy
+SUBDIR+=	py-tensorflow-tensorboard
 SUBDIR+=	qalculate
 SUBDIR+=	qalculate-bases
 SUBDIR+=	qalculate-currency
