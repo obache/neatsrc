@@ -14,4 +14,5 @@ LICENSE=	gnu-lgpl-v2 AND gnu-lgpl-v2.1 AND modified-bsd
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 BUILDLINK_DEPMETHOD.qt5-qttools= build
 .include "../../x11/qt5-qttools/buildlink3.mk"
+.include "../../databases/shared-mime-info/mimedb.mk"
 .include "../../mk/bsd.pkg.mk"
