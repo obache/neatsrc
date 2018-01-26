@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.355 2018/01/23 01:52:53 minskim Exp $
+# $NetBSD: Makefile,v 1.357 2018/01/24 23:48:50 minskim Exp $
 
 COMMENT=	Mathematics
 
@@ -37,6 +37,7 @@ SUBDIR+=	R-gdata
 SUBDIR+=	R-genetics
 SUBDIR+=	R-geoR
 SUBDIR+=	R-geoRglm
+SUBDIR+=	R-gss
 SUBDIR+=	R-gstat
 SUBDIR+=	R-gtools
 SUBDIR+=	R-httpRequest
@@ -269,6 +270,7 @@ SUBDIR+=	py-numpy
 SUBDIR+=	py-pandas
 SUBDIR+=	py-pandas-datareader
 SUBDIR+=	py-patsy
+SUBDIR+=	py-powerlaw
 SUBDIR+=	py-pytables
 SUBDIR+=	py-pywavelets
 SUBDIR+=	py-quadprog

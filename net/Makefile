@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1197 2018/01/08 19:01:20 bsiegert Exp $
+# $NetBSD: Makefile,v 1.1199 2018/01/24 20:46:42 bsiegert Exp $
 #
 
 COMMENT=	Networking tools
@@ -665,6 +665,7 @@ SUBDIR+=	py-libpcap
 SUBDIR+=	py-medusa
 SUBDIR+=	py-metar
 SUBDIR+=	py-moto
+SUBDIR+=	py-namecheap
 SUBDIR+=	py-ncclient
 SUBDIR+=	py-netaddr
 SUBDIR+=	py-netifaces
@@ -685,6 +686,7 @@ SUBDIR+=	py-smb
 SUBDIR+=	py-soaplib
 SUBDIR+=	py-soappy
 SUBDIR+=	py-socketpool
+SUBDIR+=	py-socksipy-branch
 SUBDIR+=	py-softlayer
 SUBDIR+=	py-softlayer_messaging
 SUBDIR+=	py-tldextract
