@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.40 2017/01/01 14:43:57 wiz Exp $
+# $NetBSD: Makefile,v 1.42 2018/01/26 17:21:46 triaxx Exp $
 
-DISTNAME=	duplicity-0.7.09
-PKGREVISION=	1
+DISTNAME=	duplicity-0.7.16
 CATEGORIES=	sysutils net
 MASTER_SITES=	http://code.launchpad.net/duplicity/0.7-series/${PKGVERSION_NOREV}/+download/
 
@@ -14,8 +13,19 @@ USE_PKGLOCALEDIR=	yes
 
 .include "options.mk"
 
-DEPENDS+=	${PYPKGPREFIX}-lockfile>=0.9.1:../../devel/py-lockfile
+DEPENDS+=	lftp-[0-9]*:../../net/lftp
+DEPENDS+=	ncftp3-[0-9]*:../../net/ncftp3
+DEPENDS+=	rsync-[0-9]*:../../net/rsync
+DEPENDS+=	${PYPKGPREFIX}-boto-[0-9]*:../../net/py-boto
+DEPENDS+=	${PYPKGPREFIX}-dropbox-[0-9]*:../../net/py-dropbox
 DEPENDS+=	${PYPKGPREFIX}-paramiko-[0-9]*:../../security/py-paramiko
+DEPENDS+=	${PYPKGPREFIX}-pexpect-[0-9]*:../../devel/py-pexpect
+DEPENDS+=	${PYPKGPREFIX}-requests-oauthlib-[0-9]*:../../security/py-requests-oauthlib
+DEPENDS+=	${PYPKGPREFIX}-fasteners-[0-9]*:../../devel/py-fasteners
+DEPENDS+=	${PYPKGPREFIX}-cloudfiles-[0-9]*:../../www/py-cloudfiles
+DEPENDS+=	${PYPKGPREFIX}-swiftclient-[0-9]*:../../www/py-swiftclient
+DEPENDS+=	${PYPKGPREFIX}-gdata-[0-9]*:../../www/py-gdata
+.include "../../net/librsync/buildlink3.mk"
 
 REPLACE_PYTHON+=	bin/duplicity \
 			bin/rdiffdir
@@ -34,12 +44,6 @@ SUBST_STAGE.gpgpath=		pre-configure
 SUBST_FILES.gpgpath=		duplicity/gpginterface.py
 SUBST_VARS.gpgpath=		GPGPATH
 
-# XXX in 0.7.07, executable bit set on duplicity.1
-post-extract:
-	${CHMOD} -x ${WRKSRC}/bin/duplicity.1
-	${CHMOD} go+r ${WRKSRC}/bin/*.1
-
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
-.include "../../net/librsync/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
