@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.7 2018/01/24 23:29:32 bouyer Exp $
+$NetBSD: distinfo,v 1.9 2018/01/27 17:37:51 abs Exp $
 
 SHA1 (xen48/gmp-4.3.2.tar.bz2) = c011e8feaf1bb89158bd55eaabd7ef8fdd101a2c
 RMD160 (xen48/gmp-4.3.2.tar.bz2) = a8f3f41501ece290c348aeb4444bbea40bc53e71
@@ -50,8 +50,6 @@ SHA1 (patch-.._newlib-1.16.0_newlib_libc_include_sys__types.h) = 65ff526aa26832b
 SHA1 (patch-._stubdom_vtpmmgr_tpm2_marshal.h) = 30c747a53e848387e4c8d6f4dcbcab7d1b46ed12
 SHA1 (patch-Config.mk) = 7976ce94c553c2fc6badc6d41e9cb8334fea40c8
 SHA1 (patch-Makefile) = fdcd5fbb22613e55ac1b000a46b1ecbbd99eef59
-SHA1 (patch-XSA233) = e6a7230035966d7d292ef3ca477f2eb3458ae12f
-SHA1 (patch-XSA240) = 754bbe5080a81e1526b7938fed01ba435e65e50b
 SHA1 (patch-docs_man_xl.cfg.pod.5.in) = e1ee6f2d48f6ce001c44c7ac688ea179b625b584
 SHA1 (patch-docs_man_xl.conf.pod.5) = d77e3313750db315d540d7713c95cd54d6f02938
 SHA1 (patch-docs_man_xl.pod.1.in) = 9b37ef724f2827bc05110e5456a8668257509cab
@@ -97,7 +95,7 @@ SHA1 (patch-tools_libxl_libxl_internal.h) = 613edc0fa055b23f5dc2a2448456d3d60053
 SHA1 (patch-tools_libxl_libxl_uuid.c) = 1eb8c027dbeb7e67df7475ee6e4d87220140c65b
 SHA1 (patch-tools_libxl_xl__cmdtable.c) = 073c08795af8ec828c60864a788c32e9cca31547
 SHA1 (patch-tools_libxl_xl_cmdimpl.c) = d43beffad3c6da70cb69b2b5d3cf0b48f614e2a6
-SHA1 (patch-tools_ocaml_common.make) = 961b2e23777ef39dec3ecde0d281705f960f4020
+SHA1 (patch-tools_ocaml_common.make) = 4b845bdf3a013852109749ee18dfe28e3440d951
 SHA1 (patch-tools_ocaml_xenstored_Makefile) = b267702cf4090c7b45bba530e60327fced24e3e5
 SHA1 (patch-tools_ocaml_xenstored_define.ml) = 1f12a8a853b847b80e2c3bb5919ed2410a70092f
 SHA1 (patch-tools_ocaml_xenstored_utils.ml) = 560b26b6d5030838721ddb4e3d819766c3db0349
