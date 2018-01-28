@@ -1,0 +1,4 @@
+@comment $NetBSD$
+bin/stemwords
+include/libstemmer.h
+lib/libstemmer.la

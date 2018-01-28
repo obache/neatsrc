@@ -1,0 +1,7 @@
+$NetBSD$
+
+SHA1 (libstemmer_c.tgz) = 1ac6bb16e829e9f3a58f62c27047c26784975aa1
+RMD160 (libstemmer_c.tgz) = 0b3af1bba968de34765a4d04e11e7a4199422d27
+SHA512 (libstemmer_c.tgz) = 9ab5b8bfd5b4071dbbd63d769e09fae3971b49ee441ad970aa95d90b3297f5ffc9deed1613d99974d1485bf3b69292663591957f52bbeddcadbf9d9a4af432f2
+Size (libstemmer_c.tgz) = 129584 bytes
+SHA1 (patch-Makefile) = cc67bd229b570dda9e1758915a35a444653c54e4

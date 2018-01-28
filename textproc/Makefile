@@ -362,6 +362,7 @@ SUBDIR+=	libnxml
 SUBDIR+=	libodfgen
 SUBDIR+=	libpinyin
 SUBDIR+=	libplist
+SUBDIR+=	libstemmer
 SUBDIR+=	libunicode
 SUBDIR+=	libunistring
 SUBDIR+=	libxml
