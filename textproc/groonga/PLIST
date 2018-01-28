@@ -55,6 +55,7 @@ lib/groonga/plugins/functions/time.la
 lib/groonga/plugins/functions/vector.la
 lib/groonga/plugins/query_expanders/tsv.la
 lib/groonga/plugins/suggest/suggest.la
+${PLIST.libstemmer}lib/groonga/plugins/token_filters/stem.la
 lib/groonga/plugins/token_filters/stop_word.la
 ${PLIST.kytea}lib/groonga/plugins/tokenizers/kytea.la
 ${PLIST.mecab}lib/groonga/plugins/tokenizers/mecab.la

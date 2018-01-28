@@ -2,13 +2,13 @@
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.groonga
-PKG_SUPPORTED_OPTIONS=	mecab kytea tests zlib lz4 zstd
+PKG_SUPPORTED_OPTIONS=	mecab kytea libstemmer tests zlib lz4 zstd
 PKG_SUPPORTED_OPTIONS+=	groonga-suggest-learner groonga-httpd
 PKG_SUGGESTED_OPTIONS=	mecab zlib groonga-suggest-learner groonga-httpd
 
 .include "../../mk/bsd.options.mk"
 
-PLIST_VARS+=		mecab kytea learner httpd
+PLIST_VARS+=		mecab kytea libstemmer learner httpd
 
 .if !empty(PKG_OPTIONS:Mmecab)
 CONFIGURE_ARGS+=	--with-mecab
@@ -25,6 +25,14 @@ CONFIGURE_ARGS+=	--with-kytea
 PLIST.kytea=		yes
 .else
 CONFIGURE_ARGS+=	--without-kytea
+.endif
+
+.if !empty(PKG_OPTIONS:Mlibstemmer)
+CONFIGURE_ARGS+=	--with-libstemmer=${BUILDLINK_PREFIX.libstemmer}
+.include "../../textproc/libstemmer/buildlink3.mk"
+PLIST.libstemmer=	yes
+.else
+CONFIGURE_ARGS+=	--without-libstemmer
 .endif
 
 .if !empty(PKG_OPTIONS:Mtests)
