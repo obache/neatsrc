@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.526 2018/01/27 18:50:36 rillig Exp $
+# $NetBSD: Makefile,v 1.528 2018/01/28 23:21:16 rillig Exp $
 
-PKGNAME=	pkglint-5.5.2
+PKGNAME=	pkglint-5.5.3
 DISTFILES=	# none
 CATEGORIES=	pkgtools
 
 MAINTAINER=	rillig@NetBSD.org
-HOMEPAGE=	http://www.NetBSD.org/docs/pkgsrc/
+HOMEPAGE=	https://github.com/rillig/pkglint
 COMMENT=	Verifier for NetBSD packages
 LICENSE=	2-clause-bsd
 CONFLICTS+=	pkglint4-[0-9]*
