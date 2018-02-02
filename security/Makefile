@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.666 2018/01/22 13:30:08 fhajny Exp $
+# $NetBSD: Makefile,v 1.669 2018/01/31 11:37:16 markd Exp $
 #
 
 COMMENT=	Security tools
@@ -395,6 +395,7 @@ SUBDIR+=	py-bcrypt
 SUBDIR+=	py-certbot
 SUBDIR+=	py-certifi
 SUBDIR+=	py-crack
+SUBDIR+=	py-crcmod
 SUBDIR+=	py-cryptkit
 SUBDIR+=	py-crypto
 SUBDIR+=	py-cryptodome
@@ -452,6 +453,10 @@ SUBDIR+=	pyca
 SUBDIR+=	qca2
 SUBDIR+=	qca2-gnupg
 SUBDIR+=	qca2-ossl
+SUBDIR+=	qca2-qt5
+SUBDIR+=	qca2-qt5-gnupg
+SUBDIR+=	qca2-qt5-ossl
+SUBDIR+=	qgpgme
 SUBDIR+=	qident
 SUBDIR+=	qoauth
 SUBDIR+=	qore-asn1-module
