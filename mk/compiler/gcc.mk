@@ -332,6 +332,11 @@ _LANGUAGES.gcc=		# empty
 _LANGUAGES.gcc+=	${LANGUAGES.gcc:M${_lang_}}
 .endfor
 
+.if !empty(USE_LANGUAGES:Mc99)
+_WRAP_EXTRA_ARGS.CC+=	-std=gnu99
+CWRAPPERS_APPEND.cc+=	-std=gnu99
+.endif
+
 .if ${OPSYS} == "NetBSD"
 _MKPIE_CFLAGS.gcc=	-fPIC
 # XXX for executables it should be:
@@ -962,32 +967,6 @@ _GCC_NEEDS_A_FORTRAN=	yes
 .endif
 .if !empty(_GCC_NEEDS_A_FORTRAN:M[yY][eE][sS])
 .  include "../../mk/compiler/${PKGSRC_FORTRAN}.mk"
-.endif
-
-.if !empty(USE_LANGUAGES:Mc99)
-_USE_STD_C11_DEFAULT!=	\
-	if ${PKG_ADMIN} pmatch 'gcc>=6.1' ${CC_VERSION} 2>/dev/null; then \
-		${ECHO} "YES";						\
-	else								\
-		${ECHO} "NO";						\
-	fi
-.  if empty(_USE_STD_C11_DEFAULT:M[Yy][Ee][Ss])
-_WRAP_EXTRA_ARGS.CC+=	-std=gnu99
-CWRAPPERS_APPEND.cc+=	-std=gnu99
-.  endif
-.endif
-
-.if !empty(USE_LANGUAGES:Mc++11)
-_USE_STD_CXX11_DEFAULT!=	\
-	if ${PKG_ADMIN} pmatch 'gcc>=6.1' ${CC_VERSION} 2>/dev/null; then \
-		${ECHO} "YES";						\
-	else								\
-		${ECHO} "NO";						\
-	fi
-.  if empty(_USE_STD_CXX11_DEFAULT:M[Yy][Ee][Ss])
-_WRAP_EXTRA_ARGS.CXX+=	-std=gnu++11
-CWRAPPERS_APPEND.cxx+=	-std=gnu++11
-.  endif
 .endif
 
 .if ${OPSYS} == "Interix" && !empty(_GCCBINDIR:M/opt/gcc.*)
