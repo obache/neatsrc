@@ -12,8 +12,6 @@ LICENSE=	epl-v1.0
 
 CHECK_FILES_SKIP+=	${PREFIX}/lib/graphviz/config6
 
-PRIVILEGED_STAGES+=	clean
-
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 USE_TOOLS+=		automake bison flex pkg-config
