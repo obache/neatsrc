@@ -1,6 +1,6 @@
 #! /bin/sh
 
-# $NetBSD: bootstrap,v 1.245 2017/12/09 00:33:36 sevan Exp $
+# $NetBSD: bootstrap,v 1.247 2018/02/03 09:53:03 bsiegert Exp $
 #
 # Copyright (c) 2001-2011 Alistair Crooks <agc@NetBSD.org>
 # All rights reserved.
@@ -774,6 +774,8 @@ Linux)
 	# Debian/Ubuntu's awk is mawk, and mawk does not understand
 	# some regexp used in pkgsrc/mk.
 	if [ -f /etc/debian_version ]; then
+		need_awk=yes
+	elif grep -sq '^CHROMEOS_RELEASE_NAME' /etc/lsb-release; then
 		need_awk=yes
 	else
 		need_awk=no

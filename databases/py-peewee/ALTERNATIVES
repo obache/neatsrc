@@ -1,2 +1,1 @@
-bin/pskel @PREFIX@/bin/pskel@PYVERSSUFFIX@
 bin/pwiz @PREFIX@/bin/pwiz@PYVERSSUFFIX@
