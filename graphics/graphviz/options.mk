@@ -101,6 +101,7 @@ CONFIGURE_ARGS+=	--with-wish=${WISH}
 CONFIGURE_ARGS+=	--with-tclsh=${TCLSH}
 PLIST.tcl=		yes
 PLIST_SUBST+=		TCL_BASEVER=${TCL_BASEVER}
+BUILDLINK_TRANSFORM+=	rm:-ltclstub${TCL_SONUM}
 .else
 CONFIGURE_ARGS+=	--disable-tcl
 .endif
