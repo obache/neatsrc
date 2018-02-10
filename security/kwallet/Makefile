@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.36 2018/01/24 19:06:09 markd Exp $
+# $NetBSD: Makefile,v 1.37 2018/02/08 13:49:03 jperkin Exp $
 
 DISTNAME=	kwallet-${KF5VER}
 PKGREVISION=	1
@@ -14,13 +14,15 @@ BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
 
-INSTALLATION_DIRS+=	share/examples/${PKGBASE}
-MAKE_DIRS+=		${PKG_SYSCONFDIR}/xdg
+SUBST_CLASSES+=		xdg
+SUBST_STAGE.xdg=	pre-configure
+SUBST_MESSAGE.xdg=	Install via examples dir.
+SUBST_FILES.xdg=	CMakeLists.txt
+SUBST_SED.xdg=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_DATAROOTDIR}/examples/kde-xdg:'
 
-post-install:
-	${MV} ${DESTDIR}${PKG_SYSCONFDIR}/xdg ${DESTDIR}${PREFIX}/share/examples/${PKGBASE}
-
-CONF_FILES+=	share/examples/${PKGBASE}/xdg/${PKGBASE}.categories ${PKG_SYSCONFDIR}/xdg/${PKGBASE}.categories
+MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg
+CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/kwallet.categories \
+		${PKG_SYSCONFDIR}/xdg/kwallet.categories
 
 .include "../../lang/python/tool.mk"
 .include "../../devel/knotifications/buildlink3.mk"
