@@ -15,7 +15,7 @@ LICENSE=	modified-bsd
 USE_LANGUAGES=		c fortran
 MAKE_ENV+=		ATLAS=None
 
-REPLACE_PYTHON+=	*.py */*.py */*/*.py */*/*/*.py */*/*/*/*.py
+REPLACE_PYTHON+=	*.py */*.py */*/*.py */*/*/*.py
 
 # XXX Avoid picking up other compilers when installed
 .include "../../mk/compiler.mk"
