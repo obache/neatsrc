@@ -36,3 +36,4 @@ ${PYSITELIB}/gflags/third_party/pep257/__init__.pyo
 ${PYSITELIB}/gflags/validators.py
 ${PYSITELIB}/gflags/validators.pyc
 ${PYSITELIB}/gflags/validators.pyo
+${PYSITELIB}/${EGG_FILE}

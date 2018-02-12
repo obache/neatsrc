@@ -11,10 +11,9 @@ COMMENT=	Python equivalent of gflags, a commandline flag implementation
 LICENSE=	modified-bsd
 
 REPLACE_PYTHON+=	*.py
-PYDISTUTILSPKG=	yes
 
 DEPENDS+=	${PYPKGPREFIX}-six-[0-9]*:../../lang/py-six
 
 .include "../../lang/python/application.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
