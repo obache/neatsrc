@@ -10,10 +10,8 @@ HOMEPAGE=	http://code.google.com/p/pymox/
 COMMENT=	Mox is a mock object framework for Python
 LICENSE=	apache-2.0
 
-PYDISTUTILSPKG=	yes
-
 do-test:
 	cd ${WRKSRC} && ${PYTHONBIN} mox_test.py
 
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
