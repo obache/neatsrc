@@ -53,7 +53,6 @@ do-test:
 #	cd ${WRKSRC} && ${PYTHONBIN} runtests.py -v
 
 .include "../../lang/python/distutils.mk"
-.include "../../devel/py-cython/buildlink3.mk"
 .include "../../math/fftw/buildlink3.mk"
 BUILDLINK_API_DEPENDS.py-numpy+=	${PYPKGPREFIX}-numpy>=1.8.2
 .include "../../math/py-numpy/buildlink3.mk"
