@@ -2,7 +2,6 @@
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.libupnp
 PKG_SUPPORTED_OPTIONS=	inet6 debug
-PKG_SUGGESTED_OPTIONS=	inet6
 
 .include "../../mk/bsd.options.mk"
 
