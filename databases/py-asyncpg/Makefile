@@ -14,6 +14,5 @@ PYTHON_VERSIONS_ACCEPTED=	36 35
 
 # Testing requires postgresql-contrib
 
-.include "../../devel/py-cython/buildlink3.mk"
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"
