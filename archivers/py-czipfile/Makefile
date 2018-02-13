@@ -12,5 +12,5 @@ LICENSE=	python-software-foundation
 
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36	# for 2.x only
 
-.include "../../lang/python/egg.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
