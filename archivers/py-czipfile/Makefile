@@ -13,5 +13,4 @@ LICENSE=	python-software-foundation
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36	# for 2.x only
 
 .include "../../lang/python/egg.mk"
-.include "../../devel/py-cython/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
