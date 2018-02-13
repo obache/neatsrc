@@ -45,7 +45,7 @@ MAKE_ENV.DragonFly+=	LDVER=ld.bfd
 BUILD_DEPENDS+=	${PYPKGPREFIX}-nose-[0-9]*:../../devel/py-nose
 
 do-test:
-	${RUN} PYTHONPATH=${DESTDIR}${PREFIX}/${PYSITELIB} ${PYTHONBIN} -c "import numpy; numpy.test()"
+	${RUN}cd ${WRKSRC};${PYTHONBIN} runtests.py
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
