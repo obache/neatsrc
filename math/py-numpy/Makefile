@@ -12,6 +12,8 @@ HOMEPAGE=	http://www.numpy.org/
 COMMENT=	Array processing for numbers, strings, records, and objects
 LICENSE=	modified-bsd
 
+BUILD_DEPENDS+=	${PYPKGPREFIX}-cython>=0.19:../../devel/py-cython
+
 USE_LANGUAGES=		c fortran
 MAKE_ENV+=		ATLAS=None
 
@@ -45,7 +47,6 @@ BUILD_DEPENDS+=	${PYPKGPREFIX}-nose-[0-9]*:../../devel/py-nose
 do-test:
 	${RUN} PYTHONPATH=${DESTDIR}${PREFIX}/${PYSITELIB} ${PYTHONBIN} -c "import numpy; numpy.test()"
 
-.include "../../devel/py-cython/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
 .if ${OPSYS} != "Darwin"
