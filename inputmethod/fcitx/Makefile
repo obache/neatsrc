@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.13 2017/08/01 17:40:12 wiz Exp $
 #
 
-PKGNAME=		fcitx-4.2.9.5
+PKGNAME=		fcitx-4.2.9.6
 DISTNAME=		${PKGNAME}_dict
 CATEGORIES=		inputmethod chinese
 MASTER_SITES=		http://download.fcitx-im.org/fcitx/
