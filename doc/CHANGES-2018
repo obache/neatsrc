@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.655 2018/02/15 21:27:30 maya Exp $
+$NetBSD: CHANGES-2018,v 1.666 2018/02/16 17:14:07 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -971,3 +971,18 @@ Changes to the packages collection and infrastructure in 2018:
 	Updated security/liboauth to 1.0.3nb7 [wiz 2018-02-15]
 	Added devel/py-restructuredtext_lint version 1.1.2 [minskim 2018-02-15]
 	Updated chat/irssi to 1.1.1 [maya 2018-02-15]
+	Updated www/php-apcu to 5.1.10 [jdolecek 2018-02-16]
+	Updated www/lynx to 2.8.8.2nb8 [wiz 2018-02-16]
+	Added security/duo-unix version 1.10.1 [fhajny 2018-02-16]
+	Updated x11/xf86-video-vesa to 2.4.0 [wiz 2018-02-16]
+	Updated lang/nodejs6 to 6.13.0 [fhajny 2018-02-16]
+	Updated net/py-botocore to 1.8.44 [adam 2018-02-16]
+	Updated net/py-s3transfer to 0.1.13 [adam 2018-02-16]
+	Updated net/py-boto3 to 1.5.30 [adam 2018-02-16]
+	Updated net/py-awscli to 1.14.40 [adam 2018-02-16]
+	Updated net/transmission to 2.92nb7 [wiz 2018-02-16]
+	Updated sysutils/dupeguru to 4.0.3nb1 [wiz 2018-02-16]
+	Updated sysutils/gnome-vfs to 2.24.4nb34 [wiz 2018-02-16]
+	Updated www/py-asgiref to 2.1.5 [adam 2018-02-16]
+	Updated archivers/py-lz4 to 0.23.2 [adam 2018-02-16]
+	Updated graphics/opencv2 to 2.4.11nb7 [wiz 2018-02-16]
