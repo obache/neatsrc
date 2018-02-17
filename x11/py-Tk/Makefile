@@ -13,13 +13,12 @@ USE_GCC_RUNTIME=	yes
 
 EXTRACT_ELEMENTS=	${PYSUBDIR}/Modules/_tkinter.c \
 			${PYSUBDIR}/Modules/tkappinit.c
+EXTRACT_ELEMENTS+=	${PYSUBDIR}/Modules/tkinter.h
 PYDISTUTILSPKG=		yes
-PY_PATCHPLIST=		yes
 PY_SETUP_SUBST+=	BLPREFIX=${LOCALBASE}
 PY_SETUP_SUBST+=	TCLRTPREFIX=${BUILDLINK_PREFIX.tcl}
 PY_SETUP_SUBST+=	TKRTPREFIX=${BUILDLINK_PREFIX.tk}
 PY_SETUP_SUBST+=	X11BASE=${X11BASE}
-PYSETUPINSTALLARGS+=	--install-lib ${PREFIX}/${PYLIB}/lib-dynload
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -28,18 +27,6 @@ PY_SETUP_SUBST+=	X11LIB=
 .else
 PY_SETUP_SUBST+=	X11LIB=\'X11\'
 .endif
-
-.include "../../lang/python/extension.mk"
-
-.if ${_PYTHON_VERSION} >= 27
-EXTRACT_ELEMENTS+=	${PYSUBDIR}/Modules/tkinter.h
-.endif
-
-# ignore errors due to missing files (EXTRACT_ELEMENTS!)
-do-patch:
-	set -e; cd ${WRKSRC} && for f in ${PATCHDIR}/patch-*; do \
-	${PATCH} ${PATCHARGS} --batch <$$f || ${TRUE}; \
-	done
 
 .include "../../lang/python/srcdist.mk"
 .include "../../lang/tcl/buildlink3.mk"

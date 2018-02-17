@@ -20,4 +20,19 @@ python-std-patchsetup:
 		<${FILESDIR}/setup.py >${WRKSRC}/setup.py
 
 post-extract: python-std-patchsetup
+
+PYSETUPINSTALLARGS+=	--install-lib ${PREFIX}/${PYLIB}/lib-dynload
+PY_NO_EGG?=	yes
+.include "../../lang/python/distutils.mk"
+
+.endif
+
+.if !empty(EXTRACT_ELEMENTS)
+USE_TOOLS+=	patch
+# ignore errors due to missing files (EXTRACT_ELEMENTS!)
+do-patch:
+	(cd ${WRKSRC}; \
+	for f in ${PATCHDIR}/patch-*;do \
+	${PATCH} --batch <$$f || ${TRUE}; \
+	done)
 .endif

@@ -9,11 +9,7 @@
 # use setuptools to create an egg.  Some distributions use distutils,
 # which creates an egg-info file; those should use distutils.mk
 
-EGG_NAME?=	${DISTNAME:C/-([^0-9])/_\1/g}
 EGG_INFODIR?=	${EGG_NAME}-py${PYVERSSUFFIX}.egg-info
-
-PYDISTUTILSPKG=	yes
-PY_PATCHPLIST=	yes
 
 # True eggs always have an egg-info directory, and thus there is no
 # PLIST conditional (as in distutils.mk for old versions of python).
@@ -57,11 +53,9 @@ fixup-egg-info:	# ensure egg-info directory contents are always 644
 		-exec ${CHMOD} ${SHAREMODE} '{}' +; \
 	fi
 
-.include "../../lang/python/extension.mk"
-
-PRINT_PLIST_AWK+=	{ gsub(/${EGG_NAME}-py${PYVERSSUFFIX}.egg-info/, \
-			       "$${EGG_INFODIR}") }
+PRINT_PLIST_AWK+=	{ gsub(/${EGG_NAME}-py${PYVERSSUFFIX}.egg-info\//, \
+			       "$${EGG_INFODIR}/") }
 PRINT_PLIST_AWK+=	{ gsub(/${EGG_NAME}-py${PYVERSSUFFIX}-nspkg.pth/, \
 			       "$${EGG_NAME}-nspkg.pth") }
-PRINT_PLIST_AWK+=	{ gsub(/${PYVERSSUFFIX}/, \
-			       "$${PYVERSSUFFIX}") }
+
+.include "../../lang/python/distutils.mk"

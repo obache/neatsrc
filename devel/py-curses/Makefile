@@ -10,7 +10,6 @@ COMMENT=	Curses module for Python
 
 EXTRACT_ELEMENTS=	${PYSUBDIR}/Modules/_cursesmodule.c
 PYDISTUTILSPKG=	yes
-PY_PATCHPLIST=	yes
 
 # NetBSD-8 curses has enough support for py-curses
 USE_CURSES=	getsyx
@@ -18,17 +17,7 @@ USE_CURSES=	getsyx
 FAKE_NCURSES=	yes
 
 PY_SETUP_SUBST=	NCURSESPREFIX=${BUILDLINK_PREFIX.ncurses}
-PYSETUPINSTALLARGS+=	--install-lib ${PREFIX}/${PYLIB}/lib-dynload
 
-# ignore errors due to missing files (EXTRACT_ELEMENTS!)
-do-patch:
-	set -e;								\
-	cd ${WRKSRC};							\
-	for f in ${PATCHDIR}/patch-*; do				\
-		${PATCH} --batch < "$$f" || ${TRUE};			\
-	done
-
-.include "../../lang/python/extension.mk"
 .include "../../lang/python/srcdist.mk"
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

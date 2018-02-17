@@ -14,16 +14,6 @@ ONLY_FOR_PLATFORM=	Linux-*-* SunOS-*-*
 EXTRACT_ELEMENTS=	${PYSUBDIR}/Modules/spwdmodule.c
 
 PYDISTUTILSPKG=	yes
-PY_PATCHPLIST=	yes
-PYSETUPINSTALLARGS+=	--install-lib ${PREFIX}/${PYLIB}/lib-dynload
 
-# ignore errors due to missing files (EXTRACT_ELEMENTS!)
-do-patch:
-	(cd ${WRKSRC}; \
-	for f in ${PATCHDIR}/patch-*;do \
-		${PATCH} --batch <$$f || ${TRUE}; \
-	done)
-
-.include "../../lang/python/extension.mk"
 .include "../../lang/python/srcdist.mk"
 .include "../../mk/bsd.pkg.mk"
