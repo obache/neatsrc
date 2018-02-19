@@ -139,6 +139,7 @@ share/skf/lib/${VERSION}/iNM35G.stb
 share/skf/lib/${VERSION}/iNS346.stb
 share/skf/lib/${VERSION}/iNS347.stb
 share/skf/lib/${VERSION}/iNS348.stb
+share/skf/lib/${VERSION}/iNS34A.stb
 share/skf/lib/${VERSION}/iNS34R.stb
 share/skf/lib/${VERSION}/iNS34S.stb
 share/skf/lib/${VERSION}/iNS34T.stb
@@ -238,7 +239,6 @@ share/skf/lib/${VERSION}/iOS44H.stb
 share/skf/lib/${VERSION}/iOS44I.stb
 share/skf/lib/${VERSION}/iOS45J.stb
 share/skf/lib/${VERSION}/iOS45K.stb
-share/skf/lib/${VERSION}/iOS45L.stb
 share/skf/lib/${VERSION}/iPM36@.stb
 share/skf/lib/${VERSION}/iPM44#.stb
 share/skf/lib/${VERSION}/iPM44Y.stb
@@ -326,6 +326,7 @@ share/skf/lib/${VERSION}/oIMNBG.stb
 share/skf/lib/${VERSION}/oIMNBK.stb
 share/skf/lib/${VERSION}/oIMNBL.stb
 share/skf/lib/${VERSION}/oIMNBN.stb
+share/skf/lib/${VERSION}/oIMNBP.stb
 share/skf/lib/${VERSION}/oIMNCB.stb
 share/skf/lib/${VERSION}/oIMNCC.stb
 share/skf/lib/${VERSION}/oIMNCG.stb
@@ -337,6 +338,7 @@ share/skf/lib/${VERSION}/oIMNIG.stb
 share/skf/lib/${VERSION}/oIMNIK.stb
 share/skf/lib/${VERSION}/oIMNIL.stb
 share/skf/lib/${VERSION}/oIMNIN.stb
+share/skf/lib/${VERSION}/oIMNIP.stb
 share/skf/lib/${VERSION}/oIMNJC.stb
 share/skf/lib/${VERSION}/oIMNJG.stb
 share/skf/lib/${VERSION}/oIMNJK.stb
@@ -378,8 +380,12 @@ share/skf/lib/${VERSION}/oIMSLG.stb
 share/skf/lib/${VERSION}/oIMSLL.stb
 share/skf/lib/${VERSION}/oIMSMG.stb
 share/skf/lib/${VERSION}/oIMSML.stb
+share/skf/lib/${VERSION}/oIMSQG.stb
+share/skf/lib/${VERSION}/oIMSQL.stb
 share/skf/lib/${VERSION}/oIMSTG.stb
 share/skf/lib/${VERSION}/oIMSTL.stb
+share/skf/lib/${VERSION}/oIMSUG.stb
+share/skf/lib/${VERSION}/oIMSUL.stb
 share/skf/lib/${VERSION}/oIMSVG.stb
 share/skf/lib/${VERSION}/oIMSVL.stb
 share/skf/lib/${VERSION}/oIMSYG.stb
@@ -388,6 +394,12 @@ share/skf/lib/${VERSION}/oIMTBG.stb
 share/skf/lib/${VERSION}/oIMTBL.stb
 share/skf/lib/${VERSION}/oIMTFG.stb
 share/skf/lib/${VERSION}/oIMTFL.stb
+share/skf/lib/${VERSION}/oIMTNG.stb
+share/skf/lib/${VERSION}/oIMTNL.stb
+share/skf/lib/${VERSION}/oIMTOG.stb
+share/skf/lib/${VERSION}/oIMTOL.stb
+share/skf/lib/${VERSION}/oIMTPG.stb
+share/skf/lib/${VERSION}/oIMTPL.stb
 share/skf/lib/${VERSION}/oNMMBC.stb
 share/skf/lib/${VERSION}/oNMMBG.stb
 share/skf/lib/${VERSION}/oNMMBK.stb
@@ -497,10 +509,6 @@ share/skf/lib/${VERSION}/oNMNGK.stb
 share/skf/lib/${VERSION}/oNMNGL.stb
 share/skf/lib/${VERSION}/oNMNGN.stb
 share/skf/lib/${VERSION}/oNMNGP.stb
-share/skf/lib/${VERSION}/oNMSQG.stb
-share/skf/lib/${VERSION}/oNMSQL.stb
-share/skf/lib/${VERSION}/oNMSUG.stb
-share/skf/lib/${VERSION}/oNMSUL.stb
 share/skf/lib/${VERSION}/oNMTMA.stb
 share/skf/lib/${VERSION}/oNMTMB.stb
 share/skf/lib/${VERSION}/oNMTMC.stb
@@ -510,8 +518,6 @@ share/skf/lib/${VERSION}/oNMTML.stb
 share/skf/lib/${VERSION}/oNMTMN.stb
 share/skf/lib/${VERSION}/oNMTMP.stb
 share/skf/lib/${VERSION}/oNMTMX.stb
-share/skf/lib/${VERSION}/oNMTNG.stb
-share/skf/lib/${VERSION}/oNMTNL.stb
 share/skf/lib/${VERSION}/oNMTVG.stb
 share/skf/lib/${VERSION}/oNMTVL.stb
 share/skf/lib/${VERSION}/readme.txt
