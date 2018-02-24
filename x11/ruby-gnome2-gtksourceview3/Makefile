@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.29 2017/11/23 17:20:20 wiz Exp $
+# $NetBSD: Makefile,v 1.30 2018/02/21 17:00:00 jperkin Exp $
 #
 
 DISTNAME=		gtksourceview3-${VERSION}

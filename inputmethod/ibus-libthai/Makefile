@@ -1,5 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2017/11/23 17:19:59 wiz Exp $
-#
+# $NetBSD: Makefile,v 1.14 2018/02/23 15:42:25 adam Exp $
 
 DISTNAME=	ibus-libthai-0.1.4
 PKGREVISION=	3
@@ -13,9 +12,9 @@ HOMEPAGE=	https://linux.thai.net/projects/ibus-libthai
 COMMENT=	Thai imput method engine for IBus based on libthai library
 LICENSE=	gnu-gpl-v2
 
-GNU_CONFIGURE=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		pkg-config
+GNU_CONFIGURE=		yes
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"

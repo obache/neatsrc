@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2609 2018/02/18 21:28:00 kamil Exp $
+# $NetBSD: Makefile,v 1.2617 2018/02/23 17:26:37 minskim Exp $
 #
 
 COMMENT=	Development utilities
@@ -878,6 +878,7 @@ SUBDIR+=	p5-Cache-Cache
 SUBDIR+=	p5-Cache-FastMmap
 SUBDIR+=	p5-Cache-LRU
 SUBDIR+=	p5-Cache-Memcached
+SUBDIR+=	p5-Cache-Memcached-Fast
 SUBDIR+=	p5-Cache-Simple-TimedExpiry
 SUBDIR+=	p5-Canary-Stability
 SUBDIR+=	p5-Capture-Tiny
@@ -1000,6 +1001,7 @@ SUBDIR+=	p5-Data-Structure-Util
 SUBDIR+=	p5-Data-Taxi
 SUBDIR+=	p5-Data-TemporaryBag
 SUBDIR+=	p5-Data-UUID
+SUBDIR+=	p5-Data-UUID-Base64URLSafe
 SUBDIR+=	p5-Data-Uniqid
 SUBDIR+=	p5-Data-Visitor
 SUBDIR+=	p5-Date-Business
@@ -2012,6 +2014,7 @@ SUBDIR+=	py-lupa
 SUBDIR+=	py-macholib
 SUBDIR+=	py-mako
 SUBDIR+=	py-mando
+SUBDIR+=	py-manticore
 SUBDIR+=	py-mccabe
 SUBDIR+=	py-memcached
 SUBDIR+=	py-memory-profiler
@@ -2049,6 +2052,7 @@ SUBDIR+=	py-pluggy
 SUBDIR+=	py-ply
 SUBDIR+=	py-polib
 SUBDIR+=	py-pqueue
+SUBDIR+=	py-prefixspan
 SUBDIR+=	py-pretend
 SUBDIR+=	py-prompt_toolkit
 SUBDIR+=	py-proteus
@@ -2146,7 +2150,6 @@ SUBDIR+=	py-pytemplate
 SUBDIR+=	py-pyutil
 SUBDIR+=	py-queuelib
 SUBDIR+=	py-quixote
-SUBDIR+=	py-radare2
 SUBDIR+=	py-radon
 SUBDIR+=	py-rauth
 SUBDIR+=	py-readlike
@@ -2253,7 +2256,7 @@ SUBDIR+=	qtscriptgenerator
 SUBDIR+=	quilt
 SUBDIR+=	radamsa
 SUBDIR+=	radare2
-SUBDIR+=	radare2-valabind
+SUBDIR+=	radare2-cutter
 SUBDIR+=	ragel
 SUBDIR+=	rainbow-delimiters-el
 SUBDIR+=	rapidsvn

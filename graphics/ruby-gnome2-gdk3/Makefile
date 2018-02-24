@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.26 2017/11/23 17:19:42 wiz Exp $
+# $NetBSD: Makefile,v 1.27 2018/02/21 16:59:59 jperkin Exp $
 #
 
 DISTNAME=		gdk3-${VERSION}

@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.18115 2018/02/18 23:18:56 wiz Exp $
+$NetBSD: TODO,v 1.18128 2018/02/24 05:32:53 taca Exp $
 
 Suggested new packages
 ======================
@@ -333,8 +333,6 @@ Suggested package updates
 =========================
 For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 
-	o 3proxy-0.8.7
-	o 9menu-1.9
 	o CSP-0.34
 	o Chinput-3.0.1
 	o DarwinStreamingServer-6.0.3
@@ -683,7 +681,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ghc-8.2
 	o ghc7-7.10.1
 	o ghdl-0.33
-	o git-base-2.16.2
 	o gkrellm-2.3.5
 	o gkrellm-multiping-2.0.13
 	o gkrellm-server-2.3.5
@@ -936,7 +933,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libcarddav-14.0.4
 	o libcares-1.14.0
 	o libconfuse-3.1
-	o libdatrie-0.2.10
 	o libextractor-1.2 [requires shm_open()]
 	o libffcall-2.1
 	o libfilezilla-0.12.0
@@ -949,7 +945,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libgnomedb-3.1.2
 	o libgnomekbd-3.4.0.2
 	o libgphoto2-2.5.15
-	o libgroove-4.2.1
 	o libisoburn-1.4.0
 	o libisofs-1.4.2
 	o libixp-0.5 [breaks wmii-3.6, wait for compatible version; see also wmii+ixp entry]
@@ -975,7 +970,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libstree-0.4.2
 	o libtcl-nothread-8.5.1
 	o libtecla-1.6.3
-	o libthai-0.1.24
 	o libthrift-0.9.3
 	o libtrace-3.0.22
 	o libv4l-0.8.5
@@ -1089,6 +1083,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o netio-1.32
 	o netramet-50
 	o newmail-1.0.2
+	o nginx-devel-1.13.9
 	o ng-spice-26
 	o nqp-2016.02
 	o ns-3.14.1
@@ -1149,6 +1144,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o phoronix-7.0
 	o phoronix-test-suite-7.4
 	o php-basercms-4.0.0
+	o php-concrete5-8.3.2
 	o php-excel-1.8.1
 	o php-jpgraph-3.5.0b1
 	o php-memcache-3.0.8
@@ -1164,7 +1160,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o php-tiki6-6.14
 	o php-tt-rss-1.15.3
 	o php-tt-rss-fever-plugin-1.4.7
-	o phpmyadmin-4.7.0
+	o phpmyadmin-4.7.8
 	o phraseanet-3.8.6
 	o phraseanet-indexer-3.8.6
 	o picocom-3.0
@@ -1212,7 +1208,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-HappyDoc-3.0
 	o py-Scientific-doc-2.5.5
 	o py-Send2Trash-1.5.0
-	o py-asttokens-1.1.10
 	o py-augeas-1.0.3
 	o py-cassa-1.11.0
 	o py-cssselect2-0.2.1
@@ -1226,7 +1221,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-input-pad-1.4.2
 	o py-jaraco_util-11.0
 	o py-keybinder-0.3.1
-	o py-m2r-0.1.13
 	o py-musicbrainz-0.7.4
 	o py-ncclient-0.5.3
 	o py-newt-0.52.20
@@ -1243,7 +1237,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-spf-2.0.12t
 	o py-suds-0.4.1
 	o py-sybase-0.37
-	o py-test-mock-1.7.0
 	o py-wxWidgets-3.0.0
 	o py-yubiauth-0.3.10
 	o pythontidy-1.23
@@ -1297,6 +1290,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ruby-redmine-3.4.4
 	o ruby-review-1.4.0 [wip]
 	o ruby-selenium-webdriver-3.8.0
+	o ruby-sinatra-2.0.1
 	o ruby-squib-0.14.0
 	o rump-20131213
 	o sabayon-2.30.1 [GNOME 2.30]
@@ -1368,7 +1362,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o statist-1.3.0
 	o stegavorto-2011.05.26
 	o stella-5.0.2
-	o stellarium-0.13.3
 	o stlport-4.6.2
 	o strace-4.18
 	o stratagus-2.2.5.5
@@ -1416,6 +1409,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o tfmxplay-1.1.6
 	o thaixfonts-1.2.7
 	o thttpd-2.27
+	o thunderbird-52.6.0
 	o tig-2.2
 	o tightvnc-2.7.10
 	o tile-0.7.4
@@ -1449,7 +1443,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o unison-2.51.2
 	o units-2.12
 	o unrealircd-4.0.6
-	o uriparser-0.8.2
 	o urlgrabber-3.10.1
 	o userppp-030706
 	o userspace-rcu-0.9.1

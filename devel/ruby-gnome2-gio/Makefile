@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2017/06/11 05:51:40 tsutsui Exp $
+# $NetBSD: Makefile,v 1.22 2018/02/21 16:59:59 jperkin Exp $
 #
 
 DISTNAME=		gio2-${VERSION}

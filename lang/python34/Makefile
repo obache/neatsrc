@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.24 2018/02/05 17:35:12 adam Exp $
+# $NetBSD: Makefile,v 1.26 2018/02/23 15:26:15 wiz Exp $
 
 .include "dist.mk"
 

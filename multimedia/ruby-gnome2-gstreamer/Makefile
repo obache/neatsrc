@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2017/06/11 05:51:41 tsutsui Exp $
+# $NetBSD: Makefile,v 1.26 2018/02/21 17:00:00 jperkin Exp $
 #
 
 DISTNAME=		gstreamer-${VERSION}

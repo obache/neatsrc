@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.65 2017/08/18 14:58:50 tsutsui Exp $
+# $NetBSD: Makefile,v 1.66 2018/02/21 17:00:00 jperkin Exp $
 #
 
 DISTNAME=		rsvg2-${VERSION}

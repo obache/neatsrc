@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.43 2017/06/11 05:51:40 tsutsui Exp $
+# $NetBSD: Makefile,v 1.44 2018/02/21 16:59:59 jperkin Exp $
 #
 
 DISTNAME=		gdk_pixbuf2-${VERSION}
