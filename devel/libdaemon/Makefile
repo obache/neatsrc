@@ -13,7 +13,8 @@ LICENSE=		gnu-lgpl-v2.1
 
 USE_PKGLOCALEDIR=	YES
 USE_LIBTOOL=		YES
-PKGCONFIG_OVERRIDE+=	${WRKSRC}/libdaemon.pc.in
+PKGCONFIG_OVERRIDE+=	pkgconfig/libdaemon.pc.in
+PKGCONFIG_OVERRIDE+=	pkgconfig/libdaemon-uninstalled.pc.in
 GNU_CONFIGURE=		YES
 
 CONFIGURE_ARGS+=	--disable-lynx
