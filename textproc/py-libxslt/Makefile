@@ -29,6 +29,8 @@ SUBST_SED.setup+=	-e "s,@LIBXML2DIR@,${BUILDLINK_PREFIX.libxml2},g"
 SUBST_SED.setup+=	-e "s,@LIBXSLTDIR@,${BUILDLINK_PREFIX.libxslt},g"
 SUBST_SED.setup+=	-e "s,@PYSHLIBDIR@,${PYSITEDIR},g"
 
+PY_NO_EGG=	yes
+
 post-extract: setuppy
 .PHONY: setuppy
 setuppy:
@@ -37,7 +39,6 @@ setuppy:
 .include "../../textproc/py-libxml2/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libxslt+=	libxslt>=${PKGVERSION}
 .include "../../textproc/libxslt/buildlink3.mk"
-.include "../../lang/python/extension.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
