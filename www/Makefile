@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1308 2018/02/11 13:59:18 ast Exp $
+# $NetBSD: Makefile,v 1.1310 2018/02/26 12:10:09 leot Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -690,6 +690,7 @@ SUBDIR+=	py-google-apitools
 SUBDIR+=	py-graphite-web
 SUBDIR+=	py-grappelli_safe
 SUBDIR+=	py-gunicorn
+SUBDIR+=	py-h11
 SUBDIR+=	py-h2
 SUBDIR+=	py-http-parser
 SUBDIR+=	py-httpbin
@@ -759,6 +760,7 @@ SUBDIR+=	py-websockets
 SUBDIR+=	py-werkzeug
 SUBDIR+=	py-werkzeug-docs
 SUBDIR+=	py-whitenoise
+SUBDIR+=	py-wsproto
 SUBDIR+=	py-wtforms
 SUBDIR+=	py-wtforms-alchemy
 SUBDIR+=	py-wtforms-components

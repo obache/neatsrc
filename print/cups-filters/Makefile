@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.88 2018/01/28 20:10:37 wiz Exp $
+# $NetBSD: Makefile,v 1.90 2018/02/27 17:48:20 leot Exp $
 
-DISTNAME=	cups-filters-1.17.9
-PKGREVISION=	6
+DISTNAME=	cups-filters-1.20.1
 CATEGORIES=	print
 MASTER_SITES=	http://openprinting.org/download/cups-filters/
 EXTRACT_SUFX=	.tar.xz
@@ -49,6 +48,8 @@ CONFIGURE_ARGS+=	--with-apple-raster-filter=rastertopdf
 CONFIGURE_ARGS+=	--with-shell=${TOOLS_PATH.bash}
 CONFIGURE_ARGS+=	--with-pdftops-path=${PREFIX}/bin/pdftops
 CONFIGURE_ARGS+=	--with-gs-path=${PREFIX}/bin/gs
+CONFIGURE_ARGS+=	--enable-ijs
+CONFIGURE_ARGS+=	--enable-opvp
 
 INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples/cups-filters
 

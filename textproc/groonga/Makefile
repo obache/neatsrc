@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.63 2017/08/29 13:35:54 fhajny Exp $
+# $NetBSD: Makefile,v 1.64 2018/02/25 12:25:48 taca Exp $
 #
 
 DISTNAME=	groonga-8.0.0

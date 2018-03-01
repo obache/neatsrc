@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1202 2018/02/20 14:11:06 fhajny Exp $
+# $NetBSD: Makefile,v 1.1205 2018/02/27 17:09:27 leot Exp $
 #
 
 COMMENT=	Networking tools
@@ -236,6 +236,7 @@ SUBDIR+=	hs-network
 SUBDIR+=	httping
 SUBDIR+=	httpstat
 SUBDIR+=	httptunnel
+SUBDIR+=	hub
 SUBDIR+=	iana-etc
 SUBDIR+=	icinga-base
 SUBDIR+=	icsi-finger
@@ -759,6 +760,7 @@ SUBDIR+=	ruby-twitter
 SUBDIR+=	ruby-twitter-stream
 SUBDIR+=	ruby-twitter-text
 SUBDIR+=	ruby-xdr
+SUBDIR+=	sacc
 SUBDIR+=	samba
 SUBDIR+=	samba4
 SUBDIR+=	sayaka
@@ -829,6 +831,7 @@ SUBDIR+=	tnftp
 SUBDIR+=	tnftpd
 SUBDIR+=	tor
 SUBDIR+=	torrentutils
+SUBDIR+=	torsocks
 SUBDIR+=	totd
 SUBDIR+=	traceroute-as
 SUBDIR+=	traceroute-nanog
