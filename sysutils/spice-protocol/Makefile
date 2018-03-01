@@ -15,7 +15,5 @@ USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	# none
 
 PKGCONFIG_OVERRIDE+=	spice-protocol.pc.in
-REPLACE_PYTHON+=	python_modules/*.py *.py
 
-.include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"
