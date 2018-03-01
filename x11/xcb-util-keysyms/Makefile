@@ -14,7 +14,7 @@ GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config gmake
 USE_LIBTOOL=	yes
 
-PKGCONFIG_OVERRIDE+=	xcb-keysyms.pc.in
+PKGCONFIG_OVERRIDE+=	keysyms/xcb-keysyms.pc.in
 
 .include "../../x11/libxcb/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
