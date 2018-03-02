@@ -10,6 +10,8 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.prelude-ids.com/download/releases/prelude-correlator/
 COMMENT=	Intrusion event correlation engine
 
+DEPENDS+=	libprelude-python>=0.9.23:../../security/libprelude-python
+
 BUILD_DEFS+=		VARBASE
 
 RCD_SCRIPTS=		preludecorrelator
@@ -66,7 +68,6 @@ post-install:
 	    ${WRKSRC}/PreludeCorrelator/plugins/spamhaus_drop.dat \
 	    ${DESTDIR}${EGDIR}
 
-.include "../../security/libprelude-python/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"
