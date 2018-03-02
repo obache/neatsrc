@@ -16,7 +16,7 @@ USE_TOOLS+=	gmake msgfmt msgmerge pkg-config xgettext
 
 CONFIGURE_ARGS+=	--disable-man
 
-PKGCONFIG_OVERRIDE+=	json-glib.pc.in
+PKGCONFIG_OVERRIDE+=	json-glib/json-glib.pc.in
 
 TEST_TARGET=		check
 
