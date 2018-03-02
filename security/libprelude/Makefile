@@ -7,10 +7,27 @@ LICENSE=	gnu-gpl-v2
 
 .include "../../security/libprelude/Makefile.common"
 
-CONF_FILES+=	${PREFIX}/share/examples/libprelude/client.conf ${PKG_SYSCONFDIR}/default/client.conf
-CONF_FILES+=	${PREFIX}/share/examples/libprelude/global.conf ${PKG_SYSCONFDIR}/default/global.conf
-CONF_FILES+=	${PREFIX}/share/examples/libprelude/idmef-client.conf ${PKG_SYSCONFDIR}/default/idmef-client.conf
-CONF_FILES+=	${PREFIX}/share/examples/libprelude/tls.conf ${PKG_SYSCONFDIR}/default/tls.conf
+PRELUDE_USER?=		_prelude
+PRELUDE_GROUP?=		_prelude
+PRELUDE_HOME?=		${VARBASE}/spool/prelude
+
+PKG_GROUPS=		${PRELUDE_GROUP}
+PKG_USERS=		${PRELUDE_USER}:${PRELUDE_GROUP}
+
+PKG_GROUPS_VARS+=	PRELUDE_GROUP
+PKG_USERS_VARS+=	PRELUDE_USER
+
+PKG_GECOS.${PRELUDE_USER}=	Prelude IDS
+PKG_HOME.${PRELUDE_USER}=	${PRELUDE_HOME}
+
+EGDIR=			${PREFIX}/share/examples/libprelude
+MAKE_DIRS=		${PKG_SYSCONFDIR}/default ${PKG_SYSCONFDIR}/profile
+MAKE_DIRS_PERMS+=	${PKG_SYSCONFDIR}/profile ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0711
+
+CONF_FILES+=	${EGDIR}/client.conf ${PKG_SYSCONFDIR}/default/client.conf
+CONF_FILES+=	${EGDIR}/global.conf ${PKG_SYSCONFDIR}/default/global.conf
+CONF_FILES+=	${EGDIR}/idmef-client.conf ${PKG_SYSCONFDIR}/default/idmef-client.conf
+CONF_FILES+=	${EGDIR}/tls.conf ${PKG_SYSCONFDIR}/default/tls.conf
 
 CONFIGURE_ARGS+=	--without-python --without-lua --without-perl --without-ruby
 
@@ -29,6 +46,12 @@ PKG_SUPPORTED_OPTIONS=	debug
 .if !empty(PKG_OPTIONS:Mdebug)
 CFLAGS=			-O0 -ggdb
 .endif
+
+INSTALLATION_DIRS+=	${EGDIR:H}
+
+post-install:
+	${RM} -rf ${DESTDIR}${EGDIR}
+	${MV} ${DESTDIR}${PKG_SYSCONFDIR}/default ${DESTDIR}${EGDIR}
 
 .include "../../devel/libltdl/convenience.mk"
 .include "../../security/gnutls/buildlink3.mk"

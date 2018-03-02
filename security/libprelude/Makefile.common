@@ -31,32 +31,6 @@ PKG_SYSCONFSUBDIR=	prelude
 
 .include "../../mk/bsd.prefs.mk"
 
-PRELUDE_USER?=		_prelude
-PRELUDE_GROUP?=		_prelude
-PRELUDE_HOME?=		${VARBASE}/spool/prelude
-
-PKG_GROUPS=		${PRELUDE_GROUP}
-PKG_USERS=		${PRELUDE_USER}:${PRELUDE_GROUP}
-
-PKG_GROUPS_VARS+=	PRELUDE_GROUP
-PKG_USERS_VARS+=	PRELUDE_USER
-
-PKG_GECOS.${PRELUDE_USER}=	Prelude IDS
-PKG_HOME.${PRELUDE_USER}=	${PRELUDE_HOME}
-
-EGDIR=			${PREFIX}/share/examples/libprelude
-MAKE_DIRS=		${PKG_SYSCONFDIR}/default ${PKG_SYSCONFDIR}/profile
-MAKE_DIRS_PERMS+=	${PKG_SYSCONFDIR}/profile ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0711
-
-SUBST_CLASSES+=		make
-SUBST_STAGE.make=	post-patch
-SUBST_FILES.make=	Makefile.in
-SUBST_SED.make=		-e 's,@EGDIR@,${EGDIR},g'
-
-INSTALLATION_DIRS=	share/examples/libprelude
-
-.include "../../mk/bsd.prefs.mk"
-
 .if ${PKGPATH} != "security/libprelude"
 BUILDLINK_API_DEPENDS.libprelude+=	libprelude>=${VERSION}
 .endif
