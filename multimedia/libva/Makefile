@@ -33,12 +33,13 @@ CONFIGURE_ARGS+=	--with-drivers-path=${DRIVER_SEARCH_PATH:Q}
 
 LIBS+=			${BUILDLINK_LDADD.dl}
 
-PKGCONFIG_OVERRIDE+=	libva-drm.pc.in
-PKGCONFIG_OVERRIDE+=	libva-egl.pc.in
-PKGCONFIG_OVERRIDE+=	libva-glx.pc.in
-PKGCONFIG_OVERRIDE+=	libva-tpi.pc.in
-PKGCONFIG_OVERRIDE+=	libva-x11.pc.in
-PKGCONFIG_OVERRIDE+=	libva.pc.in
+PKGCONFIG_OVERRIDE+=	pkgconfig/libva-drm.pc.in
+PKGCONFIG_OVERRIDE+=	pkgconfig/libva-egl.pc.in
+PKGCONFIG_OVERRIDE+=	pkgconfig/libva-glx.pc.in
+PKGCONFIG_OVERRIDE+=	pkgconfig/libva-tpi.pc.in
+PKGCONFIG_OVERRIDE+=	pkgconfig/libva-wayland.pc.in
+PKGCONFIG_OVERRIDE+=	pkgconfig/libva-x11.pc.in
+PKGCONFIG_OVERRIDE+=	pkgconfig/libva.pc.in
 
 
 pre-configure:
