@@ -1,13 +1,12 @@
 # $NetBSD: Makefile,v 1.43 2018/02/25 12:25:48 taca Exp $
 #
 
-DISTNAME=	milter-manager-2.0.9
-PKGREVISION=	1
+DISTNAME=	milter-manager-2.1.1
 CATEGORIES=	mail
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=milter-manager/}
+MASTER_SITES=	${MASTER_SITE_OSDN:=milter-manager/67935/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://milter-manager.sourceforge.net/
+HOMEPAGE=	http://milter-manager.osdn.jp/
 COMMENT=	Milter to use milters effectively
 
 GNU_CONFIGURE=	yes
@@ -67,6 +66,7 @@ OWN_DIRS_PERMS+=	${VARBASE}/run/milter-manager \
 
 .for conf in milter-manager.conf \
 	applicable-conditions/authentication.conf \
+	applicable-conditions/dnsbl.conf \
 	applicable-conditions/remote-network.conf \
 	applicable-conditions/restrict-accounts.conf \
 	applicable-conditions/s25r.conf \
