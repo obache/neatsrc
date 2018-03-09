@@ -9,10 +9,7 @@ PHPCOMMON_MK=	defined
 DISTNAME?=		php-${PHP_VERSION}
 
 .if !defined(PECL_VERSION)
-MASTER_SITES?=		http://www.php.net/distributions/ \
-			http://uk.php.net/distributions/ \
-			http://de.php.net/distributions/ \
-			http://us.php.net/distributions/
+MASTER_SITES?=		http://php.net/distributions/
 EXTRACT_SUFX?=		.tar.bz2
 .endif
 
