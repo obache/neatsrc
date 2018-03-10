@@ -25,4 +25,5 @@ SHA1 (patch-man_erb.1) = 2ae8a0400974922d6a637648ed0da2fedee98ed0
 SHA1 (patch-man_irb.1) = c6d127481fbc268efbd67fd273094363ca199c7f
 SHA1 (patch-man_ri.1) = d5a3479daa2d5e8185a186b5b450eec80fddbc57
 SHA1 (patch-man_ruby.1) = dcdb336ed5e5e2a4d07416f67c2f4a42c453d6f1
+SHA1 (patch-st.c) = 0d59cc1ea64462b021c8b1c1321412b4f2060eb4
 SHA1 (patch-test_rubygems_test__gem.rb) = 80d646b95df81bacca6d277d2801dba16df291f5
