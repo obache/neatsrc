@@ -2429,6 +2429,7 @@ SUBDIR+=	ruby-redmine_work_time
 SUBDIR+=	ruby-ref
 SUBDIR+=	ruby-rgl
 SUBDIR+=	ruby-ronn
+SUBDIR+=	ruby-rr
 SUBDIR+=	ruby-rspec
 SUBDIR+=	ruby-rspec-core
 SUBDIR+=	ruby-rspec-expectations
