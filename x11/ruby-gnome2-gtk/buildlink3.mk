@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	ruby-gnome2-gtk
 RUBY_GNOME2_GTK_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.ruby-gnome2-gtk+=	${RUBY_PKGPREFIX}-gnome2-gtk>=0.17.0
-BUILDLINK_ABI_DEPENDS.ruby-gnome2-gtk+=	ruby24-gnome2-gtk>=3.2.1nb1
+BUILDLINK_ABI_DEPENDS.ruby-gnome2-gtk+=	${RUBY_PKGPREFIX}-gnome2-gtk>=3.2.1nb1
 BUILDLINK_PKGSRCDIR.ruby-gnome2-gtk?=	../../x11/ruby-gnome2-gtk
 
 .include "../../devel/ruby-gnome2-pango/buildlink3.mk"
