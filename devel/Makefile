@@ -2458,6 +2458,7 @@ SUBDIR+=	ruby-termcolor
 SUBDIR+=	ruby-test-spec
 SUBDIR+=	ruby-test-unit
 SUBDIR+=	ruby-test-unit-notify
+SUBDIR+=	ruby-test-unit-rr
 SUBDIR+=	ruby-thor
 SUBDIR+=	ruby-thrift
 SUBDIR+=	ruby-thrift_client
