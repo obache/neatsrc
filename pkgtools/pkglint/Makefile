@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.529 2018/02/19 12:40:38 rillig Exp $
+# $NetBSD: Makefile,v 1.531 2018/03/04 20:34:32 rillig Exp $
 
-PKGNAME=	pkglint-5.5.5
+PKGNAME=	pkglint-5.5.6
 DISTFILES=	# none
 CATEGORIES=	pkgtools
 

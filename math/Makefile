@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.366 2018/03/03 01:23:31 minskim Exp $
+# $NetBSD: Makefile,v 1.372 2018/03/13 00:36:57 khorben Exp $
 
 COMMENT=	Mathematics
 
@@ -25,15 +25,18 @@ SUBDIR+=	R-XML
 SUBDIR+=	R-abind
 SUBDIR+=	R-akima
 SUBDIR+=	R-aplpack
+SUBDIR+=	R-bbmle
 SUBDIR+=	R-bitops
 SUBDIR+=	R-car
 SUBDIR+=	R-chron
 SUBDIR+=	R-circular
 SUBDIR+=	R-classInt
 SUBDIR+=	R-clim.pact
+SUBDIR+=	R-coda
 SUBDIR+=	R-combinat
 SUBDIR+=	R-date
 SUBDIR+=	R-e1071
+SUBDIR+=	R-emdbook
 SUBDIR+=	R-fracdiff
 SUBDIR+=	R-gdata
 SUBDIR+=	R-genetics
@@ -54,6 +57,7 @@ SUBDIR+=	R-minqa
 SUBDIR+=	R-mvtnorm
 SUBDIR+=	R-ncdf
 SUBDIR+=	R-nloptr
+SUBDIR+=	R-numDeriv
 SUBDIR+=	R-pbkrtest
 SUBDIR+=	R-pixmap
 SUBDIR+=	R-plyr
@@ -192,6 +196,7 @@ SUBDIR+=	openaxiom
 SUBDIR+=	openfst
 SUBDIR+=	ordCalc
 SUBDIR+=	otter
+SUBDIR+=	p5-Algorithm-BloomFilter
 SUBDIR+=	p5-Algorithm-Cluster
 SUBDIR+=	p5-Algorithm-Munkres
 SUBDIR+=	p5-Excel-Template
@@ -292,6 +297,7 @@ SUBDIR+=	py-simpleeval
 SUBDIR+=	py-statsmodels
 SUBDIR+=	py-sympy
 SUBDIR+=	py-tensorflow-tensorboard
+SUBDIR+=	py-z3
 SUBDIR+=	qalculate
 SUBDIR+=	qalculate-bases
 SUBDIR+=	qalculate-currency

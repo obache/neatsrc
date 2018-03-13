@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2017/07/22 19:32:40 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2018/03/11 19:45:21 bsiegert Exp $
 
 DISTNAME=		go-protobuf-20160829
-PKGREVISION=		4
+PKGREVISION=		5
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_GITHUB:=golang/}
 GITHUB_PROJECT=		protobuf
@@ -17,6 +17,9 @@ GO_DIST_BASE=		${GITHUB_PROJECT}-${GITHUB_TAG}*
 REPLACE_SH+=		ptypes/regen.sh
 
 CHECK_RELRO_SKIP+=	bin/protoc-gen-go
+
+pre-install:
+	${RM} -f ${WRKSRC}/pkg/${GO_PLATFORM}/github.com/golang/protobuf/proto/testdata.a
 
 .include "../../lang/go/go-package.mk"
 .include "../../mk/bsd.pkg.mk"

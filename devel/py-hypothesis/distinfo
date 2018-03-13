@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.45 2018/03/02 14:49:36 adam Exp $
+$NetBSD: distinfo,v 1.47 2018/03/06 08:06:37 adam Exp $
 
-SHA1 (hypothesis-3.47.0.tar.gz) = df8a1e87a6441bdab8a67df620b01d89dd618d19
-RMD160 (hypothesis-3.47.0.tar.gz) = fb565d25196cf68b87017fcb924f74b3c76c9c80
-SHA512 (hypothesis-3.47.0.tar.gz) = 14dd983fd7142df94cdb0564d439d0227f402c96c30509b0d755fbfd8142c0135fcbb379cd68e93bb4c8b622056c5e8881a17c2c5093b543974476a3bbf1ceb3
-Size (hypothesis-3.47.0.tar.gz) = 148696 bytes
+SHA1 (hypothesis-3.48.1.tar.gz) = ba73b49f30d19355dcddd4e98ad7fb6dc456d7ca
+RMD160 (hypothesis-3.48.1.tar.gz) = 8a598bb9d2bc25de7ae929c73db7f33b0c7ff059
+SHA512 (hypothesis-3.48.1.tar.gz) = a3e421821222d26f49009e4b545208552e4654ae0197a4c8a0ee8d2458d2881de22945c89b97764771185a8e4f135de053260050c29edad5c888f30d178310ca
+Size (hypothesis-3.48.1.tar.gz) = 150199 bytes

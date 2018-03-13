@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2018/02/28 08:36:12 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2018/03/11 10:18:41 wiz Exp $
 
-DISTNAME=		Module-FromPerlVer-0.0.1
+DISTNAME=		Module-FromPerlVer-0.004002
 PKGNAME=        	p5-${DISTNAME}
 CATEGORIES=		devel perl5
 MASTER_SITES=		${MASTER_SITE_PERL_CPAN:=Module/}
@@ -10,8 +10,10 @@ HOMEPAGE=		http://search.cpan.org/dist/Module-FromPerlVer/
 COMMENT=		Install modules compatible with the running perl
 LICENSE=		${PERL5_LICENSE}
 
-DEPENDS+=		p5-FindBin-libs-[0-9]*:../../devel/p5-FindBin-libs
 DEPENDS+=		p5-File-Copy-Recursive-[0-9]*:../../sysutils/p5-File-Copy-Recursive
+# TEST_DEPENDS
+BUILD_DEPENDS+=		p5-Test-Deep-[0-9]*:../../devel/p5-Test-Deep
+# 3 test failures in 0.004002
 
 PERL5_PACKLIST=		auto/Module/FromPerlVer/.packlist
 

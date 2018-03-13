@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.41 2017/11/30 16:45:27 adam Exp $
+# $NetBSD: Makefile,v 1.42 2018/03/12 11:16:56 wiz Exp $
 #
 
 DISTNAME=		scim-chewing-0.5.1
-PKGREVISION=		8
+PKGREVISION=		9
 CATEGORIES=		chinese inputmethod
 MASTER_SITES=		-https://github.com/chewing/scim-chewing/archive/v${PKGVERSION_NOREV}${EXTRACT_SUFX}
 

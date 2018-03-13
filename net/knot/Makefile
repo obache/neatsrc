@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.36 2017/08/16 20:21:13 wiz Exp $
+# $NetBSD: Makefile,v 1.38 2018/03/08 14:30:37 pettai Exp $
 
-DISTNAME=	knot-2.3.3
-PKGREVISION=	1
+DISTNAME=	knot-2.5.7
 CATEGORIES=	net
 MASTER_SITES=	https://secure.nic.cz/files/knot-dns/
 EXTRACT_SUFX=	.tar.xz
@@ -24,10 +23,22 @@ CONFIGURE_ARGS+=	--with-libidn=${BUILDLINK_PREFIX.libidn}
 
 CONFIGURE_ARGS.NetBSD+=	--enable-recvmmsg=no
 
+.include "../../mk/bsd.prefs.mk"
+
+.if ${MACHINE_ARCH} == "i386" 
+CFLAGS += -march=i586 
+.endif 
+
 USE_LIBTOOL=	yes
 USE_TOOLS+=	bison flex gmake pkg-config
 
+REPLACE_PYTHON=		src/utils/pykeymgr/pykeymgr.in
+
+.include "../../lang/python/extension.mk"
+.include "../../lang/python/application.mk"
+
 PKGCONFIG_OVERRIDE=	src/dnssec/libdnssec.pc.in
+PKGCONFIG_OVERRIDE+=	src/knotd.pc.in
 PKGCONFIG_OVERRIDE+=	src/libknot.pc.in
 PKGCONFIG_OVERRIDE+=	src/zscanner/libzscanner.pc.in
 

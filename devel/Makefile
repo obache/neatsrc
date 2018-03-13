@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2624 2018/03/02 16:00:59 joerg Exp $
+# $NetBSD: Makefile,v 1.2631 2018/03/11 11:20:13 maya Exp $
 #
 
 COMMENT=	Development utilities
@@ -13,8 +13,11 @@ SUBDIR+=	ObjectiveLib
 SUBDIR+=	ProjectCenter
 SUBDIR+=	R-IRdisplay
 SUBDIR+=	R-IRkernel
+SUBDIR+=	R-R6
 SUBDIR+=	R-Rcpp
 SUBDIR+=	R-assertthat
+SUBDIR+=	R-bit
+SUBDIR+=	R-bit64
 SUBDIR+=	R-crayon
 SUBDIR+=	R-evaluate
 SUBDIR+=	R-magrittr
@@ -760,7 +763,6 @@ SUBDIR+=	ocaml-lwt_react
 SUBDIR+=	ocaml-lwt_ssl
 SUBDIR+=	ocaml-migrate-parsetree
 SUBDIR+=	ocaml-oasis
-SUBDIR+=	ocaml-odn
 SUBDIR+=	ocaml-optcomp
 SUBDIR+=	ocaml-ppx_ast
 SUBDIR+=	ocaml-ppx_base
@@ -1077,6 +1079,7 @@ SUBDIR+=	p5-Exporter-Lite
 SUBDIR+=	p5-Exporter-Tiny
 SUBDIR+=	p5-ExtUtils-AutoInstall
 SUBDIR+=	p5-ExtUtils-CBuilder
+SUBDIR+=	p5-ExtUtils-CChecker
 SUBDIR+=	p5-ExtUtils-Command
 SUBDIR+=	p5-ExtUtils-Config
 SUBDIR+=	p5-ExtUtils-CppGuess
@@ -1565,6 +1568,7 @@ SUBDIR+=	p5-System-Command
 SUBDIR+=	p5-TAP-Formatter-HTML
 SUBDIR+=	p5-TAP-Harness-Archive
 SUBDIR+=	p5-Task-Weaken
+SUBDIR+=	p5-Taint-Util
 SUBDIR+=	p5-Tee
 SUBDIR+=	p5-Template-Plugin-Handy
 SUBDIR+=	p5-Template-Plugin-HashMerge
@@ -2063,7 +2067,6 @@ SUBDIR+=	py-protobuf
 SUBDIR+=	py-py
 SUBDIR+=	py-py2app
 SUBDIR+=	py-pydispatcher
-SUBDIR+=	py-pyev
 SUBDIR+=	py-pygit2
 SUBDIR+=	py-pylint
 SUBDIR+=	py-pylint-common

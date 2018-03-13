@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.152 2018/03/02 19:20:20 schmonz Exp $
+# $NetBSD: Makefile,v 1.155 2018/03/11 22:57:55 schmonz Exp $
 #
 
-DISTNAME=		ikiwiki_3.20180228.orig
+DISTNAME=		ikiwiki_3.20180311.orig
 PKGNAME=		${DISTNAME:S/_/-/:S/.orig//}
 CATEGORIES=		www textproc
 MASTER_SITES=		${MASTER_SITE_DEBIAN:=pool/main/i/ikiwiki/}
@@ -31,14 +31,13 @@ DEPENDS+=		p5-File-MimeInfo-[0-9]*:../../devel/p5-File-MimeInfo
 DEPENDS+=		p5-gettext-[0-9]*:../../devel/p5-gettext
 DEPENDS+=		p5-YAML-LibYAML-[0-9]*:../../textproc/p5-YAML-LibYAML
 
-WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
+WRKSRC=			${WRKDIR}/${PKGNAME_NOREV:S/ikiwiki-/IkiWiki-/}
 PERL5_PACKLIST=		auto/IkiWiki/.packlist
 USE_LANGUAGES=		c
 USE_TOOLS+=		gmake msgfmt perl:run xgettext
 
 REPLACE_PYTHON+=	plugins/proxy.py plugins/pythondemo plugins/rst
-
-BUILD_TARGET=		extra_build all
+REPLACE_PERL+=		pm_filter
 
 MAKE_FLAGS+=		W3M_CGI_BIN=${PREFIX:Q}/libexec/w3m/cgi-bin
 MAKE_FLAGS+=		SYSCONFDIR=${PKG_SYSCONFDIR:Q}

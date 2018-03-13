@@ -1,6 +1,6 @@
-$NetBSD$
+$NetBSD: patch-kcdbext.h,v 1.1 2018/03/06 15:20:27 wiz Exp $
 
-* Fix to return NULL on failure as documented above
+Fix compilation with gcc-6. 'false' is not a valid char *.
 
 --- kcdbext.h.orig	2012-05-24 16:27:59.000000000 +0000
 +++ kcdbext.h

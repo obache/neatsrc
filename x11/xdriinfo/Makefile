@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.7 2015/04/25 14:25:21 tnn Exp $
+# $NetBSD: Makefile,v 1.9 2018/03/07 12:20:11 wiz Exp $
 
-DISTNAME=	xdriinfo-1.0.5
-PKGREVISION=	1
+DISTNAME=	xdriinfo-1.0.6
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_XORG:=app/}
 EXTRACT_SUFX=	.tar.bz2
@@ -24,7 +23,6 @@ USE_TOOLS+=	pkg-config
 ###	graphics/MesaLib/builtin.mk?
 ###
 .include "../../graphics/MesaLib/buildlink3.mk"
-.include "../../x11/glproto/buildlink3.mk"
+.include "../../x11/xorgproto/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
-
 .include "../../mk/bsd.pkg.mk"

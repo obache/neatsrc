@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.12 2018/01/07 13:04:38 rillig Exp $
+# $NetBSD: buildlink3.mk,v 1.13 2018/03/07 11:57:35 wiz Exp $
 
 .include "../../mk/bsd.fast.prefs.mk"
 
@@ -24,7 +24,6 @@ X11_LDFLAGS+=	-L${BUILDLINK_PREFIX.libX11}/lib
 .include "../../mk/pthread.buildlink3.mk"
 .  endif
 
-.include "../../x11/kbproto/buildlink3.mk"
 .include "../../x11/libXau/buildlink3.mk"
 .include "../../x11/libXdmcp/buildlink3.mk"
 
@@ -34,7 +33,7 @@ X11_LDFLAGS+=	-L${BUILDLINK_PREFIX.libX11}/lib
 .include "../../x11/libxcb/buildlink3.mk"
 .  endif
 
-.include "../../x11/xproto/buildlink3.mk"
+.include "../../x11/xorgproto/buildlink3.mk"
 
 # http://cgit.freedesktop.org/xorg/lib/libX11/commit/?id=d0cbf388919364fe6b5b9127f36426eb744090a0
 SUBST_CLASSES+=	fx-libX11-h-guards

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.671 2018/02/20 14:08:29 fhajny Exp $
+# $NetBSD: Makefile,v 1.675 2018/03/11 20:49:04 bsiegert Exp $
 #
 
 COMMENT=	Security tools
@@ -101,7 +101,6 @@ SUBDIR+=	gnupg2
 SUBDIR+=	gnutls
 SUBDIR+=	go-crypt
 SUBDIR+=	go-crypto
-SUBDIR+=	go-crypto-acme
 SUBDIR+=	go-oauth2
 SUBDIR+=	go-sftp
 SUBDIR+=	google-authenticator
@@ -281,6 +280,7 @@ SUBDIR+=	p5-Crypt-Random-Seed
 SUBDIR+=	p5-Crypt-Random-TESHA2
 SUBDIR+=	p5-Crypt-Rijndael
 SUBDIR+=	p5-Crypt-SSLeay
+SUBDIR+=	p5-Crypt-SMIME
 SUBDIR+=	p5-Crypt-SmbHash
 SUBDIR+=	p5-Crypt-Twofish
 SUBDIR+=	p5-Crypt-URandom
@@ -288,6 +288,7 @@ SUBDIR+=	p5-Crypt-X509
 SUBDIR+=	p5-CryptX
 SUBDIR+=	p5-Dancer-Plugin-Auth-RBAC
 SUBDIR+=	p5-Data-SimplePassword
+SUBDIR+=	p5-Data-Password-passwdqc
 SUBDIR+=	p5-Digest
 SUBDIR+=	p5-Digest-BubbleBabble
 SUBDIR+=	p5-Digest-CRC
@@ -417,6 +418,7 @@ SUBDIR+=	py-kerberos
 SUBDIR+=	py-keyring
 SUBDIR+=	py-keyrings.alt
 SUBDIR+=	py-lasso
+SUBDIR+=	py-libnacl
 SUBDIR+=	py-libtaxii
 SUBDIR+=	py-m2crypto
 SUBDIR+=	py-mcrypt

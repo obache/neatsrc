@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.33 2017/10/21 18:07:33 tsutsui Exp $
-#
+# $NetBSD: Makefile,v 1.35 2018/03/12 11:17:43 wiz Exp $
 
 DISTNAME=		jwm-2.3.7
+PKGREVISION=		2
 CATEGORIES=		wm x11
 MASTER_SITES=		http://www.joewing.net/programs/jwm/releases/
 EXTRACT_SUFX=		.tar.xz
@@ -50,5 +50,5 @@ BUILDLINK_DEPMETHOD.libXt?=	build
 .include "../../x11/libXpm/buildlink3.mk"
 .include "../../x11/libXinerama/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
-.include "../../x11/xextproto/buildlink3.mk"
+.include "../../x11/xorgproto/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

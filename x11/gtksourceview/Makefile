@@ -1,15 +1,14 @@
-# $NetBSD: Makefile,v 1.88 2018/01/28 20:10:39 wiz Exp $
-#
+# $NetBSD: Makefile,v 1.90 2018/03/12 11:15:51 wiz Exp $
 
 DISTNAME=	gtksourceview-1.8.5
-PKGREVISION=	38
+PKGREVISION=	39
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtksourceview/1.8/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://gtksourceview.sourceforge.net/
-COMMENT=	Text widget that extends GTK2's GtkTextView widget
+COMMENT=	Text widget that extends GTK2's GtkTextView widget (v1)
 LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=		yes

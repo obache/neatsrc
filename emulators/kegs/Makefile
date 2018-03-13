@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.12 2016/07/09 06:38:15 wiz Exp $
-#
+# $NetBSD: Makefile,v 1.14 2018/03/07 11:57:29 wiz Exp $
 
 DISTNAME=	kegs.0.91
 PKGNAME=	kegs-0.91
-PKGREVISION=	5
+PKGREVISION=	7
 CATEGORIES=	emulators
 MASTER_SITES=	http://kegs.sourceforge.net/
 
@@ -54,7 +53,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/*txt ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 	${INSTALL_DATA} ${WRKSRC}/config.kegs ${DESTDIR}${PREFIX}/share/${PKGBASE}
 
-.include "../../x11/xproto/buildlink3.mk"
+.include "../../x11/xorgproto/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

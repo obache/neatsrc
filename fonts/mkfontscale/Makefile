@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.35 2015/01/17 09:12:53 wiz Exp $
+# $NetBSD: Makefile,v 1.37 2018/03/07 12:15:15 wiz Exp $
 
-DISTNAME=		mkfontscale-1.1.2
+DISTNAME=		mkfontscale-1.1.3
 CATEGORIES=		fonts x11
 MASTER_SITES=		${MASTER_SITE_XORG:=app/}
 EXTRACT_SUFX=		.tar.bz2
@@ -20,6 +20,5 @@ CONFIGURE_ARGS+=	--with-bzip2
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../fonts/libfontenc/buildlink3.mk"
-.include "../../x11/xproto/buildlink3.mk"
-
+.include "../../x11/xorgproto/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

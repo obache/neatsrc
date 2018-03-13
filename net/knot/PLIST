@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.12 2016/12/09 22:28:17 pettai Exp $
+@comment $NetBSD: PLIST,v 1.14 2018/03/08 14:30:37 pettai Exp $
 bin/kdig
 bin/khost
 bin/kjournalprint
@@ -9,8 +9,6 @@ include/dnssec/binary.h
 include/dnssec/crypto.h
 include/dnssec/dnssec.h
 include/dnssec/error.h
-include/dnssec/event.h
-include/dnssec/kasp.h
 include/dnssec/key.h
 include/dnssec/keyid.h
 include/dnssec/keystore.h
@@ -21,6 +19,7 @@ include/dnssec/random.h
 include/dnssec/sign.h
 include/dnssec/tsig.h
 include/dnssec/version.h
+include/knot/module.h
 include/libknot/attribute.h
 include/libknot/binary.h
 include/libknot/codes.h
@@ -64,20 +63,23 @@ include/libknot/rrtype/txt.h
 include/libknot/tsig-op.h
 include/libknot/tsig.h
 include/libknot/version.h
+include/libknot/yparser/yparser.h
+include/libknot/yparser/ypformat.h
+include/libknot/yparser/ypschema.h
+include/libknot/yparser/yptrafo.h
 include/zscanner/error.h
 include/zscanner/scanner.h
 include/zscanner/version.h
 lib/libdnssec.la
 lib/libknot.la
 lib/libzscanner.la
+lib/pkgconfig/knotd.pc
 lib/pkgconfig/libdnssec.pc
 lib/pkgconfig/libknot.pc
 lib/pkgconfig/libzscanner.pc
-libexec/knot1to2
 man/man1/kdig.1
 man/man1/khost.1
 man/man1/kjournalprint.1
-man/man1/knot1to2.1
 man/man1/knsec3hash.1
 man/man1/knsupdate.1
 man/man1/kzonecheck.1
@@ -85,9 +87,11 @@ man/man5/knot.conf.5
 man/man8/keymgr.8
 man/man8/knotc.8
 man/man8/knotd.8
+man/man8/pykeymgr.8
 sbin/keymgr
 sbin/knotc
 sbin/knotd
+sbin/pykeymgr
 share/examples/knot/example.com.zone
 share/examples/knot/knot.sample.conf
 @pkgdir etc/knot

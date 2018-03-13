@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.16 2018/02/28 13:38:00 adam Exp $
+$NetBSD: distinfo,v 1.18 2018/03/09 08:10:35 adam Exp $
 
-SHA1 (aiohttp-3.0.5.tar.gz) = 0b97ef05badacbc14339cb068c16f42964843bdf
-RMD160 (aiohttp-3.0.5.tar.gz) = 5ac71e5560a04b95436b7ba026fca459cc088ee9
-SHA512 (aiohttp-3.0.5.tar.gz) = 650dbe3e5363c259fc5ce95baec4fd16ca2fd0836236d7d8f65597346f72fec29f803e037ffd6fc4e726a28a973aa09b0a3874a685516fbc4e843ad7f0f08b7b
-Size (aiohttp-3.0.5.tar.gz) = 738000 bytes
+SHA1 (aiohttp-3.0.7.tar.gz) = 087d29745f68faee9f5847326e4d16a4e4506ea2
+RMD160 (aiohttp-3.0.7.tar.gz) = ca8b048668e02500752356a6c97b60fcaec45577
+SHA512 (aiohttp-3.0.7.tar.gz) = 53a44a4f83e4b460607322fb8ab6d179477d3d8a6790be8182ba5d8ac97e59e40412c587b7a5c79bc754a61c30d84d3286be0a88840ec56c96d519b3c737a723
+Size (aiohttp-3.0.7.tar.gz) = 747691 bytes

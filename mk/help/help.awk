@@ -1,4 +1,4 @@
-# $NetBSD: help.awk,v 1.28 2017/10/31 16:24:42 rillig Exp $
+# $NetBSD: help.awk,v 1.30 2018/03/07 00:14:57 rillig Exp $
 #
 
 # This program extracts the inline documentation from *.mk files.
@@ -9,6 +9,7 @@
 BEGIN {
 	no = 0; yes = 1; always = 1;
 
+	debug = ENVIRON["HELP_DEBUG"] != "";
 	topic = ENVIRON["TOPIC"];
 	uctopic = toupper(topic);
 	lctopic = tolower(topic);
@@ -36,6 +37,11 @@ BEGIN {
 function end_of_topic() {
 
 	if (comment_lines <= 2 || ignore_this_section) {
+		if (comment_lines <= 2) {
+			dprint("Ignoring section because of too small comment.");
+		} else {
+			dprint("Ignoring section because of a previous decision.");
+		}
 		cleanup();
 		return;
 	}
@@ -50,10 +56,7 @@ function end_of_topic() {
 			print "";
 		found_anything = yes;
 
-		kw = "";
-		for (i in keywords)
-			kw = kw " " i;
-		print "===> "last_fname " (keywords:" kw "):";
+		print "===> " last_fname " (keywords:" sorted_keys(keywords) "):";
 
 		for (i = 0; i < nlines; i++) {
 			if (print_noncomment_lines || (lines[i] ~ /^#/))
@@ -61,6 +64,28 @@ function end_of_topic() {
 		}
 	}
 	cleanup();
+}
+
+function sorted_keys(array,   elem, list, listlen, i, j, tmp, joined) {
+	listlen = 0;
+	for (elem in array)
+		list[listlen++] = elem;
+
+	for (i = 0; i < listlen; i++) {
+		for (j = i + 1; j < listlen; j++) {
+			if (list[j] < list[i]) {
+				tmp = list[i];
+				list[i] = list[j];
+				list[j] = tmp;
+			}
+		}
+	}
+
+	joined = "";
+	for (i = 0; i < listlen; i++) {
+		joined = joined " " list[i];
+	}
+	return joined;
 }
 
 function cleanup() {
@@ -71,6 +96,12 @@ function cleanup() {
 	comment_lines = 0;
 	print_noncomment_lines = yes;
 	ignore_this_section = no;
+}
+
+function dprint(msg) {
+	if (debug) {
+		print(FILENAME ":" FNR ": " msg);
+	}
 }
 
 always {
@@ -94,6 +125,7 @@ always {
 		w = ($i == toupper($i)) ? tolower($i) : $i;
 		sub(/,$/, "", w);
 		keywords[w] = yes;
+		dprint("Adding keyword " w);
 	}
 	ignore_this_line = yes;
 	ignore_next_empty_line = yes;
@@ -104,6 +136,7 @@ always {
 }
 
 $1 == "#" && $2 == "Copyright" {
+	dprint("Ignoring the section because it contains \"Copyright\".");
 	ignore_this_section = yes;
 }
 
@@ -123,7 +156,7 @@ $1 ~ /:$/ && $2 == ".PHONY" {
 # be all-lowercase (make targets) or all-uppercase (variable names).
 # Everything else is assumed to belong to the explaining text.
 #
-NF >= 1 && !/^[\t.]/ && !/^#*$/ {
+NF >= 1 && !/^[\t.]/ && !/^#*$/ && !/^#\t\t/ {
 	w = ($1 ~ /^\#[A-Z]/) ? substr($1, 2) : ($1 == "#") ? $2 : $1;
 
 	# Reduce VAR.<param>, VAR.${param} and VAR.* to VAR.

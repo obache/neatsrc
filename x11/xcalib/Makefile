@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.5 2014/12/10 23:27:31 joerg Exp $
-#
+# $NetBSD: Makefile,v 1.7 2018/03/07 11:57:40 wiz Exp $
 
 DISTNAME=	xcalib-source-0.8
-PKGREVISION=	1
+PKGREVISION=	3
 PKGNAME=	${DISTNAME:C/-source//}
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=xcalib/}
@@ -21,7 +20,7 @@ CFLAGS.SunOS+=		-Du_int16_t=uint16_t
 
 do-build:
 	cd ${WRKSRC} && ${LIBTOOL} --mode=compile ${CC} ${CFLAGS} -c xcalib.c
-	cd ${WRKSRC} && ${LIBTOOL} --mode=link ${CC} \
+	cd ${WRKSRC} && ${LIBTOOL} --mode=link ${CC} ${LDFLAGS} \
 		${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.libX11}/lib \
 		-L${BUILDLINK_PREFIX.libX11}/lib \
 		${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.libXxf86vm}/lib \
@@ -32,7 +31,7 @@ do-build:
 do-install:
 	${SETENV} ${MAKE_ENV} ${LIBTOOL} --tag=CC --mode=install ${INSTALL_PROGRAM} ${WRKSRC}/xcalib ${DESTDIR}${PREFIX}/bin/
 
-.include "../../x11/xproto/buildlink3.mk"
+.include "../../x11/xorgproto/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXxf86vm/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

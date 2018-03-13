@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.12 2016/02/26 11:27:16 jperkin Exp $
+# $NetBSD: Makefile,v 1.13 2018/03/12 11:15:54 wiz Exp $
 
 DISTNAME=	motif-2.3.7
+PKGREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=motif/}
 
