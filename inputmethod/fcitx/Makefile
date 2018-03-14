@@ -3,7 +3,7 @@
 
 PKGNAME=		fcitx-4.2.9.6
 PKGREVISION=		1
-DISTNAME=		${PKGNAME}_dict
+DISTNAME=		${PKGNAME_NOREV}_dict
 CATEGORIES=		inputmethod chinese
 MASTER_SITES=		http://download.fcitx-im.org/fcitx/
 EXTRACT_SUFX=		.tar.xz
