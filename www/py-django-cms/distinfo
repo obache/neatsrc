@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.36 2017/06/16 15:09:13 adam Exp $
+$NetBSD: distinfo,v 1.38 2018/03/13 09:52:48 adam Exp $
 
-SHA1 (django-cms-3.4.4.tar.gz) = 39fb018f6aa26f11730261a72917a67abd5e2ac8
-RMD160 (django-cms-3.4.4.tar.gz) = a91df78431b4db44378b333270073c229cfa30c8
-SHA512 (django-cms-3.4.4.tar.gz) = dd6b2b52873ba70d19b699141c1091aaa261a3b59838e96a017188d20b31caeb586bd28569e582dba152794f17c2ed3743fa6b12a2af517d63588dab76489576
-Size (django-cms-3.4.4.tar.gz) = 5255603 bytes
+SHA1 (django-cms-3.5.1.tar.gz) = 3316179ec6e908de372cb524c4ebc32b054058bc
+RMD160 (django-cms-3.5.1.tar.gz) = 3d20725a77ad29a21a5ba6d8d161b627e08a1f09
+SHA512 (django-cms-3.5.1.tar.gz) = cd7bd505f1e8cb224e21ea8ba556f36476b6a3366a748e3ea7650ec596a510b1444b2263246b29edb962831493a4536ae7ba30ae632fb180287f4ce0d607fdc8
+Size (django-cms-3.5.1.tar.gz) = 4821480 bytes

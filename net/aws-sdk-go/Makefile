@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.7 2018/03/04 15:52:17 bsiegert Exp $
+# $NetBSD: Makefile,v 1.9 2018/03/13 20:10:33 bsiegert Exp $
 #
 
 DISTNAME=		aws-sdk-go-${GITHUB_TAG:S/v//}
-PKGREVISION=		5
 CATEGORIES=		net www
 MASTER_SITES=		${MASTER_SITE_GITHUB:=aws/}
-GITHUB_TAG=		v1.4.3
+GITHUB_TAG=		v1.13.13
 
 HOMEPAGE=		https://aws.amazon.com/sdk-for-go/
 COMMENT=		Amazon AWS SDK for Go
@@ -15,6 +14,11 @@ GO_SRCPATH=		github.com/aws/aws-sdk-go
 GO_DIST_BASE=		${DISTNAME}
 GO_BUILD_PATTERN=	${GO_SRCPATH}/aws/... ${GO_SRCPATH}/service/...
 
+post-install:
+	${RM} -rf ${DESTDIR}${PREFIX}/gopkg/pkg/${GO_PLATFORM}/${GO_SRCPATH}/private
+	${RM} -rf ${DESTDIR}${PREFIX}/gopkg/pkg/${GO_PLATFORM}/${GO_SRCPATH}/vendor
+
+.include "../../net/go-net/buildlink3.mk"
 .include "../../devel/go-testify/buildlink3.mk"  # for tests
 .include "../../lang/go/go-package.mk"
 .include "../../mk/bsd.pkg.mk"
