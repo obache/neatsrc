@@ -1,21 +1,68 @@
-$NetBSD: patch-src_lib_keyring.c,v 1.1 2017/02/20 01:09:11 khorben Exp $
+$NetBSD: patch-src_lib_keyring.c,v 1.3 2018/03/15 20:00:43 khorben Exp $
 
-Do not crash when listing keys without a keyring
+Do not crash when listing keys without a keyring.
+Do not use random data for pass-phrases on EOF.
+Do not ask for a passphrase when empty.
 
---- src/lib/keyring.c.orig	2017-02-20 01:03:25.000000000 +0000
+--- src/lib/keyring.c.orig	2011-06-25 00:37:44.000000000 +0000
 +++ src/lib/keyring.c
-@@ -993,9 +993,12 @@ pgp_keyring_list(pgp_io_t *io, const pgp
- {
- 	pgp_key_t		*key;
- 	unsigned		 n;
-+	unsigned		 keyc = (keyring != NULL) ? keyring->keyc : 0;
+@@ -226,7 +226,7 @@ typedef struct {
+ 	pgp_seckey_t		*seckey;
+ } decrypt_t;
  
--	(void) fprintf(io->res, "%u key%s\n", keyring->keyc,
--		(keyring->keyc == 1) ? "" : "s");
-+	(void) fprintf(io->res, "%u key%s\n", keyc, (keyc == 1) ? "" : "s");
-+	if (keyring == NULL) {
-+		return 1;
+-static pgp_cb_ret_t 
++static pgp_cb_ret_t
+ decrypt_cb(const pgp_packet_t *pkt, pgp_cbdata_t *cbinfo)
+ {
+ 	const pgp_contents_t	*content = &pkt->u;
+@@ -244,7 +244,9 @@ decrypt_cb(const pgp_packet_t *pkt, pgp_
+ 		break;
+ 
+ 	case PGP_GET_PASSPHRASE:
+-		(void) pgp_getpassphrase(decrypt->passfp, pass, sizeof(pass));
++		if (pgp_getpassphrase(decrypt->passfp, pass, sizeof(pass)) == 0) {
++			pass[0] = '\0';
++		}
+ 		*content->skey_passphrase.passphrase = netpgp_strdup(pass);
+ 		pgp_forget(pass, (unsigned)sizeof(pass));
+ 		return PGP_KEEP_MEMORY;
+@@ -292,6 +294,20 @@ decrypt_cb(const pgp_packet_t *pkt, pgp_
+ 	return PGP_RELEASE_MEMORY;
+ }
+ 
++static pgp_cb_ret_t
++decrypt_cb_empty(const pgp_packet_t *pkt, pgp_cbdata_t *cbinfo)
++{
++	const pgp_contents_t	*content = &pkt->u;
++
++	switch (pkt->tag) {
++	case PGP_GET_PASSPHRASE:
++		*content->skey_passphrase.passphrase = netpgp_strdup("");
++		return PGP_KEEP_MEMORY;
++	default:
++		return decrypt_cb(pkt, cbinfo);
 +	}
- 	for (n = 0, key = keyring->keys; n < keyring->keyc; ++n, ++key) {
- 		if (pgp_is_key_secret(key)) {
- 			pgp_print_keydata(io, keyring, key, "sec",
++}
++
+ /**
+ \ingroup Core_Keys
+ \brief Decrypts secret key from given keydata with given passphrase
+@@ -306,8 +322,18 @@ pgp_decrypt_seckey(const pgp_key_t *key,
+ 	const int	 printerrors = 1;
+ 	decrypt_t	 decrypt;
+ 
++	/* first try with an empty passphrase */
+ 	(void) memset(&decrypt, 0x0, sizeof(decrypt));
+ 	decrypt.key = key;
++	stream = pgp_new(sizeof(*stream));
++	pgp_keydata_reader_set(stream, key);
++	pgp_set_callback(stream, decrypt_cb_empty, &decrypt);
++	stream->readinfo.accumulate = 1;
++	pgp_parse(stream, !printerrors);
++	if (decrypt.seckey != NULL) {
++		return decrypt.seckey;
++	}
++	/* ask for a passphrase */
+ 	decrypt.passfp = passfp;
+ 	stream = pgp_new(sizeof(*stream));
+ 	pgp_keydata_reader_set(stream, key);

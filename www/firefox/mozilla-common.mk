@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.105 2018/02/10 07:02:47 ryoon Exp $
+# $NetBSD: mozilla-common.mk,v 1.107 2018/03/17 17:55:13 maya Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -54,7 +54,8 @@ CONFIGURE_ARGS+=	--enable-default-toolkit=cairo-gtk3
 CONFIGURE_ARGS+=	--enable-pie
 CONFIGURE_ARGS+=	--disable-tests
 CONFIGURE_ARGS+=	--with-pthreads
-CONFIGURE_ARGS+=	--enable-system-cairo
+# Mozilla Bug 1432751
+#CONFIGURE_ARGS+=	--enable-system-cairo
 CONFIGURE_ARGS+=	--enable-system-pixman
 CONFIGURE_ARGS+=	--with-system-libvpx
 # textproc/hunspell 1.3 is too old
@@ -72,7 +73,6 @@ CONFIGURE_ARGS+=	--disable-necko-wifi
 CONFIGURE_ARGS+=	--enable-chrome-format=flat
 CONFIGURE_ARGS+=	--disable-libjpeg-turbo
 
-CONFIGURE_ARGS+=	--disable-elf-hack
 CONFIGURE_ARGS+=	--disable-gconf
 #CONFIGURE_ARGS+=	--enable-readline
 CONFIGURE_ARGS+=	--disable-icf
@@ -188,16 +188,16 @@ PLIST_SUBST+=	DLL_SUFFIX=".so"
 BUILDLINK_API_DEPENDS.libevent+=	libevent>=1.1
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../devel/libffi/buildlink3.mk"
-BUILDLINK_API_DEPENDS.nspr+=	nspr>=4.14
+BUILDLINK_API_DEPENDS.nspr+=	nspr>=4.18
 .include "../../devel/nspr/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
-BUILDLINK_API_DEPENDS.nss+=	nss>=3.32.1
+BUILDLINK_API_DEPENDS.nss+=	nss>=3.35
 .include "../../devel/nss/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
-BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.10.2nb4
-.include "../../graphics/cairo/buildlink3.mk"
+#BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.10.2nb4
+#.include "../../graphics/cairo/buildlink3.mk"
 BUILDLINK_DEPMETHOD.clang=	build
 .include "../../lang/clang/buildlink3.mk"
 BUILDLINK_API_DEPENDS.rust+=	rust>=1.23.0

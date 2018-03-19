@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.2 2018/03/12 11:15:37 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.3 2018/03/18 14:52:41 tsutsui Exp $
 
 BUILDLINK_TREE+=	ruby-cairo
 
