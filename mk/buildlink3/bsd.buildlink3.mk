@@ -691,7 +691,13 @@ ${_BLNK_COOKIE.${_pkg_}}:
 		[ -e "$$src" ] || ${FAIL_MSG} missing $$src;		\
 		dst=${BUILDLINK_DIR}/$$2;				\
 		shift 2;						\
-		[ -e "$$dst" ] || ${LN} -sf "$$src" "$$dst";		\
+		if [ ! -e "$$dst" ]; then				\
+			dir=`${DIRNAME} "$$dst"`;			\
+			if [ ! -d "$$dir" ]; then			\
+				${MKDIR} "$$dir";			\
+			fi;						\
+			${LN} -sf "$$src" "$$dst";			\
+		fi							\
 	done
 
 # _BLNK_LT_ARCHIVE_FILTER.${_pkg_} is a command-line filter used in
