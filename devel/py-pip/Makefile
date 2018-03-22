@@ -11,7 +11,9 @@ COMMENT=	Installs Python packages as an easy_install replacement
 LICENSE=	mit
 
 REPLACE_PYTHON+=	pip/__init__.py pip/_vendor/requests/certs.py
-REPLACE_PYTHON+=	pip/_vendor/requests/packages/chardet/chardetect.py
+REPLACE_PYTHON+=	pip/_vendor/appdirs.py
+REPLACE_PYTHON+=	pip/_vendor/certifi/core.py
+REPLACE_PYTHON+=	pip/_vendor/chardet/cli/chardetect.py
 
 post-install:
 	${RM} -f ${DESTDIR}${PREFIX}/bin/pip
