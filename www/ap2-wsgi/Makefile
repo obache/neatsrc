@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	mod_wsgi-4.5.20
+DISTNAME=	mod_wsgi-4.5.24
 PKGNAME=	${APACHE_PKG_PREFIX}-${PYPKGPREFIX}-${DISTNAME:S/mod_//}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=m/mod_wsgi/}
