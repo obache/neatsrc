@@ -48,8 +48,26 @@ BUILDLINK_TRANSFORM+=	l:history:edit:${BUILTIN_LIBNAME.termcap}
 BUILDLINK_TRANSFORM+=	l:readline:edit:${BUILTIN_LIBNAME.termcap}
 .  endif
 
+###
+### create readline compat headers for the case not using builtin editline and
+###  buitin editline with readline style header files
+###  using readline compat interfaces
+###
+.  if ( !empty(USE_BUILTIN.editline:M[nO][oO]) && \
+	(!empty(H_EDITLINE:M*/readline/readline.h) || \
+	 !empty(_PKG_USE_READLINE:U:M[yY][eE][sS])))
+BUILDLINK_FNAME_ALIASES.editline+=	include/editline/history.h include/readline/history.h
+BUILDLINK_FNAME_ALIASES.editline+=	include/editline/readline.h include/readline/readline.h
+.  endif
+
+###
+### create readline compat headers for the case using builtin editline and
+###  buitin editline with editline style header files and
+###  using readline compat interfaces
+###
 .  if !empty(USE_BUILTIN.editline:M[yY][eE][sS])
-.    if !empty(H_EDITLINE:M*/editline/readline.h)
+.    if !empty(H_EDITLINE:M*/editline/readline.h) && \
+	!empty(_PKG_USE_READLINE:U:M[yY][eE][sS])
 BUILDLINK_TARGETS+=	buildlink-readline-readline-h
 BUILDLINK_TARGETS+=	buildlink-readline-history-h
 .    endif
@@ -74,6 +92,43 @@ buildlink-readline-history-h:
 	${RUN}								\
 	src=${H_EDITLINE:Q};						\
 	dest=${BUILDLINK_DIR}"/include/readline/history.h";		\
+	if ${TEST} ! -f "$$dest" -a -f "$$src"; then			\
+		fname=`${BASENAME} $$src`;				\
+		${ECHO_BUILDLINK_MSG} "Linking $$fname -> history.h.";	\
+		${MKDIR} `${DIRNAME} "$$dest"`;				\
+		${LN} -s "$$src" "$$dest";				\
+	fi
+.    endif
+
+###
+### create missing pkg editline compat headers for buitin editline
+### with readline style header files
+###
+.    if !empty(H_EDITLINE:M*/readline/readline.h)
+BUILDLINK_TARGETS+=	buildlink-editline-readline-h
+BUILDLINK_TARGETS+=	buildlink-editline-history-h
+.    endif
+
+.    if !target(buildlink-editline-readline-h)
+.PHONY: buildlink-editline-readline-h
+buildlink-editline-readline-h:
+	${RUN}								\
+	src=${H_EDITLINE:Q};						\
+	dest=${BUILDLINK_DIR}"/include/editline/readline.h";		\
+	if ${TEST} ! -f "$$dest" -a -f "$$src"; then			\
+		fname=`${BASENAME} $$src`;				\
+		${ECHO_BUILDLINK_MSG} "Linking $$fname -> readline.h.";	\
+		${MKDIR} `${DIRNAME} "$$dest"`;				\
+		${LN} -s "$$src" "$$dest";				\
+	fi
+.    endif
+
+.    if !target(buildlink-editline-history-h)
+.PHONY: buildlink-editline-history-h
+buildlink-editline-history-h:
+	${RUN}								\
+	src=${H_EDITLINE:Q};						\
+	dest=${BUILDLINK_DIR}"/include/editline/history.h";		\
 	if ${TEST} ! -f "$$dest" -a -f "$$src"; then			\
 		fname=`${BASENAME} $$src`;				\
 		${ECHO_BUILDLINK_MSG} "Linking $$fname -> history.h.";	\
