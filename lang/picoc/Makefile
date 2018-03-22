@@ -18,8 +18,6 @@ AUTO_MKDIRS=		yes
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/picoc ${DESTDIR}${PREFIX}/bin/picoc
 
-.include "../../devel/editline/buildlink3.mk"
-
 .include "../../mk/readline.buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

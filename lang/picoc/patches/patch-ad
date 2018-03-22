@@ -2,15 +2,15 @@ $NetBSD: patch-ad,v 1.1.1.1 2012/04/27 04:48:44 agc Exp $
 
 Use a better (BSD) Makefile
 
---- Makefile	2012/04/26 13:04:31	1.1
-+++ Makefile	2012/04/26 13:04:39
+--- Makefile.orig	2011-02-21 05:27:03.000000000 +0000
++++ Makefile
 @@ -1,55 +1,18 @@
 -CC=gcc
 -CFLAGS=-Wall -pedantic -g -DUNIX_HOST
 -LIBS=-lm -lreadline
 +PROG=picoc
 +CPPFLAGS+= -DUNIX_HOST
-+LDADD+=-lm -ledit
++LDADD+=-lm -lreadline
 +# interpreter source
 +SRCS= picoc.c table.c lex.c parse.c expression.c heap.c type.c
 +SRCS+= variable.c clibrary.c platform.c include.c
