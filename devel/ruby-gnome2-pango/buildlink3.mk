@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.45 2018/03/12 11:15:31 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.46 2018/03/20 17:41:43 taca Exp $
 
 BUILDLINK_TREE+=	ruby-gnome2-pango
 

@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.19 2018/03/12 11:15:58 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.20 2018/03/20 17:33:31 taca Exp $
 
 BUILDLINK_TREE+=	ruby-gnome2-gtk3
 

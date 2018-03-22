@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.18194 2018/03/18 10:23:26 leot Exp $
+$NetBSD: TODO,v 1.18196 2018/03/21 06:56:22 prlw1 Exp $
 
 Suggested new packages
 ======================
@@ -488,7 +488,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cim-5.1
 	o cinepaint-1.3
 	o cjk-lyx-1.4.4
-	o clamav-0.99.4
 	o classpath-0.99
 	o classpath-gui-0.99
 	o claws-mail-3.16.0
@@ -1236,7 +1235,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-smb-1.1.17
 	o py-spf-2.0.12t
 	o py-suds-0.4.1
-	o py-sure-1.4.9
 	o py-sybase-0.37
 	o py-wxWidgets-4.0.0
 	o py-yubiauth-0.3.10

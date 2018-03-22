@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.13 2018/02/13 21:20:23 adam Exp $
+# $NetBSD: Makefile,v 1.15 2018/03/20 14:33:29 wiz Exp $
 
-DISTNAME=	pytest-runner-4.0
+DISTNAME=	pytest-runner-4.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pytest-runner/}
@@ -12,6 +12,8 @@ LICENSE=	mit
 
 DEPENDS+=	${PYPKGPREFIX}-setuptools_scm-[0-9]*:../../devel/py-setuptools_scm
 DEPENDS+=	${PYPKGPREFIX}-test>=2.8:../../devel/py-test
+# TEST_DEPENDS, but introduces dependency cycle
+#BUILD_DEPENDS+=	${PYPKGPREFIX}-test-flake8-[0-9]*:../../devel/py-test-flake8
 
 USE_LANGUAGES=	# none
 
