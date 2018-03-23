@@ -12,14 +12,9 @@ COMMENT=		X Event Interceptor Library
 
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
-USE_TOOLS+=		pkg-config autoconf
+USE_TOOLS+=		pkg-config
 
 PKGCONFIG_OVERRIDE+=	xevie.pc.in
-
-CONFIGURE_ARGS.NetBSD+=	--disable-malloc0returnsnull
-
-pre-configure:
-	cd ${WRKSRC} && autoconf -f
 
 .include "../../x11/evieext/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
