@@ -1,4 +1,4 @@
-# $NetBSD: check-shlibs-elf.awk,v 1.15 2017/05/03 13:46:53 jperkin Exp $
+# $NetBSD: check-shlibs-elf.awk,v 1.17 2018/03/23 04:31:53 triaxx Exp $
 #
 # Copyright (c) 2007 Joerg Sonnenberger <joerg@NetBSD.org>.
 # All rights reserved.
