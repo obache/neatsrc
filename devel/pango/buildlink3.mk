@@ -24,7 +24,6 @@ pkgbase := pango
 .endif
 
 .include "../../devel/glib2/buildlink3.mk"
-.include "../../devel/zlib/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"
 .include "../../fonts/harfbuzz/buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"
