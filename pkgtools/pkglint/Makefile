@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.531 2018/03/04 20:34:32 rillig Exp $
+# $NetBSD: Makefile,v 1.533 2018/03/25 07:37:39 rillig Exp $
 
-PKGNAME=	pkglint-5.5.6
+PKGNAME=	pkglint-5.5.7
 DISTFILES=	# none
 CATEGORIES=	pkgtools
 
@@ -21,7 +21,7 @@ CHECK_RELRO_SKIP+=	bin/plist-clash
 
 SUBST_CLASSES+=		pkglint
 SUBST_STAGE.pkglint=	post-configure
-SUBST_FILES.pkglint+=	pkglint.go package_test.go
+SUBST_FILES.pkglint+=	pkglint.go
 SUBST_SED.pkglint+=	-e s\|@VERSION@\|${PKGNAME:S/pkglint-//}\|g
 SUBST_SED.pkglint+=	-e s\|@BMAKE@\|${MAKE:Q}\|g
 

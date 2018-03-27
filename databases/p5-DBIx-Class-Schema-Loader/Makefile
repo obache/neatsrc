@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.34 2018/01/21 03:44:43 wen Exp $
+# $NetBSD: Makefile,v 1.36 2018/03/25 09:52:28 wiz Exp $
 
-DISTNAME=	DBIx-Class-Schema-Loader-0.07048
+DISTNAME=	DBIx-Class-Schema-Loader-0.07049
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	databases perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=DBIx/}
@@ -15,7 +15,6 @@ LICENSE=	${PERL5_LICENSE}
 BUILD_DEPENDS+=	p5-Config-Any-[0-9]*:../../devel/p5-Config-Any
 BUILD_DEPENDS+=	p5-Config-General-[0-9]*:../../devel/p5-Config-General
 BUILD_DEPENDS+=	p5-DBD-SQLite>=1.29:../../databases/p5-DBD-SQLite
-BUILD_DEPENDS+=	p5-DBIx-Class-IntrospectableM2M-[0-9]*:../../databases/p5-DBIx-Class-IntrospectableM2M
 #BUILD_DEPENDS+=	{perl>=5.10.1,p5-File-Path>=2.07}:../../devel/p5-File-Path
 BUILD_DEPENDS+=	p5-Moose>=1.1200:../../devel/p5-Moose
 BUILD_DEPENDS+=	p5-MooseX-MarkAsMethods>=0.13:../../devel/p5-MooseX-MarkAsMethods
