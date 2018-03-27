@@ -104,7 +104,6 @@ post-install:
 .if ${OPSYS} != "Darwin"
 .include "../../devel/libuuid/buildlink3.mk"
 .endif
-.include "../../devel/zlib/buildlink3.mk"
 BUILDLINK_API_DEPENDS.freetype2+=	freetype2>=2.8.1
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
