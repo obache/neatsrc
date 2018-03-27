@@ -9,6 +9,7 @@ BUILDLINK_API_DEPENDS.fontconfig+=	fontconfig>=2.10.93
 BUILDLINK_ABI_DEPENDS.fontconfig+=	fontconfig>=2.13.0
 BUILDLINK_PKGSRCDIR.fontconfig?=	../../fonts/fontconfig
 
+.include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/libuuid/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"

@@ -22,6 +22,7 @@ CONFIGURE_ARGS+=	--with-expat-includes=${BUILDLINK_PREFIX.expat}/include
 CONFIGURE_ARGS+=	--with-expat-lib=${BUILDLINK_PREFIX.expat}/lib
 CONFIGURE_ARGS+=	--with-baseconfigdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--with-cache-dir=${VARBASE}/cache/fontconfig
+CONFIGURE_ARGS+=	--enable-iconv
 CONFIGURE_ARGS+=	--enable-docs
 CONFIGURE_ENV+=		HASDOCBOOK=no
 
@@ -100,6 +101,7 @@ LDFLAGS+=	-L../src/.libs
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/30-pkgsrc-aliases.conf ${DESTDIR}${TMPLDIR}
 
+.include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .if ${OPSYS} != "Darwin"
 .include "../../devel/libuuid/buildlink3.mk"
