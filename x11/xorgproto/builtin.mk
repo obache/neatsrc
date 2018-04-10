@@ -1,4 +1,4 @@
-# $NetBSD: builtin.mk,v 1.3 2018/03/26 02:33:41 mrg Exp $
+# $NetBSD: builtin.mk,v 1.5 2018/03/31 17:13:30 maya Exp $
 
 BUILTIN_PKG:=	xorgproto
 

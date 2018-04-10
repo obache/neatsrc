@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2651 2018/03/24 06:50:49 adam Exp $
+# $NetBSD: Makefile,v 1.2657 2018/04/09 09:08:42 jaapb Exp $
 #
 
 COMMENT=	Development utilities
@@ -23,6 +23,8 @@ SUBDIR+=	R-crayon
 SUBDIR+=	R-evaluate
 SUBDIR+=	R-lazyeval
 SUBDIR+=	R-magrittr
+SUBDIR+=	R-memoise
+SUBDIR+=	R-pkgconfig
 SUBDIR+=	R-proto
 SUBDIR+=	R-repr
 SUBDIR+=	R-rlang
@@ -131,6 +133,7 @@ SUBDIR+=	cervisia
 SUBDIR+=	cfitsio
 SUBDIR+=	cflow
 SUBDIR+=	cflow-mode
+SUBDIR+=	cfr
 SUBDIR+=	cgdb
 SUBDIR+=	cgen
 SUBDIR+=	check
@@ -763,6 +766,7 @@ SUBDIR+=	ocaml-jbuilder
 SUBDIR+=	ocaml-js-build-tools
 SUBDIR+=	ocaml-lwt
 SUBDIR+=	ocaml-lwt_glib
+SUBDIR+=	ocaml-lwt_ppx
 SUBDIR+=	ocaml-lwt_react
 SUBDIR+=	ocaml-lwt_ssl
 SUBDIR+=	ocaml-migrate-parsetree
@@ -1849,6 +1853,7 @@ SUBDIR+=	py-ZopeEvent
 SUBDIR+=	py-ZopeI18NMessageid
 SUBDIR+=	py-ZopeInterface
 SUBDIR+=	py-ZopeSchema
+SUBDIR+=	py-absl-py
 SUBDIR+=	py-aiofiles
 SUBDIR+=	py-angr
 SUBDIR+=	py-apipkg
@@ -1870,6 +1875,7 @@ SUBDIR+=	py-attrs
 SUBDIR+=	py-automat
 SUBDIR+=	py-autopep8
 SUBDIR+=	py-babel
+SUBDIR+=	py-backcall
 SUBDIR+=	py-backports
 SUBDIR+=	py-backports.functools_lru_cache
 SUBDIR+=	py-backports.shutil_get_terminal_size

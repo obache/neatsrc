@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.5 2017/06/05 14:25:00 ryoon Exp $
+# $NetBSD: Makefile,v 1.7 2018/04/08 19:40:29 schmonz Exp $
 
-PKGREVISION= 3
+PKGREVISION=		5
 .include "../../textproc/highlight/Makefile.common"
 
 PKGNAME=		p5-highlight-${VERSION}
 COMMENT+=		 (Perl bindings)
 
 BUILD_DEPENDS+=		swig-[0-9]*:../../devel/swig
-DEPENDS+=		highlight-[0-9]*:../../textproc/highlight
 
 BUILD_DIRS=		examples/swig
 BUILD_TARGET=		perl
@@ -17,10 +16,25 @@ CFLAGS+=		-fPIC
 
 INSTALLATION_DIRS=	${PERL5_SUB_INSTALLVENDORARCH}/auto/highlight
 
+.include "../../mk/bsd.prefs.mk"
+
+.if ${OPSYS} == "Darwin"
+PERL_DLEXT=		bundle
+SUBST_CLASSES+=		load
+SUBST_STAGE.load=	pre-configure
+SUBST_FILES.load=	examples/swig/makefile
+SUBST_SED.load=		-e 's|-shared -s highlight_wrap\.o|-bundle -s highlight_wrap.o|g'
+.else
+PERL_DLEXT=		so
+.endif
+PLIST_SUBST+=		PERL_DLEXT=${PERL_DLEXT}
+
 do-install:
 	cd ${WRKSRC}/examples/swig && \
 	${INSTALL_DATA} highlight.pm ${DESTDIR}${PREFIX}/${PERL5_SUB_INSTALLVENDORARCH}/ && \
-	${INSTALL_DATA} highlight.so ${DESTDIR}${PREFIX}/${PERL5_SUB_INSTALLVENDORARCH}/auto/highlight/
+	${INSTALL_LIB} highlight.so ${DESTDIR}${PREFIX}/${PERL5_SUB_INSTALLVENDORARCH}/auto/highlight/highlight.${PERL_DLEXT}
 
-.include "../../lang/perl5/buildlink3.mk"
+PERL5_LDFLAGS=		-L${PERL5_INSTALLARCHLIB}/CORE
+.include "../../lang/perl5/module.mk"
+.include "../../textproc/libhighlight/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

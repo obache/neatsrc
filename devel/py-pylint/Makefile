@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.21 2018/03/17 06:57:25 adam Exp $
+# $NetBSD: Makefile,v 1.23 2018/04/06 12:13:15 adam Exp $
 
-DISTNAME=	pylint-1.8.3
+DISTNAME=	pylint-1.8.4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pylint/}
@@ -12,7 +12,7 @@ LICENSE=	gnu-gpl-v2
 
 .include "../../lang/python/pyversion.mk"
 
-DEPENDS+=	${PYPKGPREFIX}-astroid>=1.5.1:../../devel/py-astroid
+DEPENDS+=	${PYPKGPREFIX}-astroid>=1.6.0:../../devel/py-astroid
 DEPENDS+=	${PYPKGPREFIX}-isort>=4.2.5:../../devel/py-isort
 DEPENDS+=	${PYPKGPREFIX}-mccabe-[0-9]*:../../devel/py-mccabe
 DEPENDS+=	${PYPKGPREFIX}-six-[0-9]*:../../lang/py-six
@@ -22,6 +22,7 @@ DEPENDS+=	${PYPKGPREFIX}-configparser-[0-9]*:../../devel/py-configparser
 DEPENDS+=	${PYPKGPREFIX}-singledispatch-[0-9]*:../../devel/py-singledispatch
 .endif
 BUILD_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 
 USE_LANGUAGES=	# none
 

@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.146 2018/03/17 01:19:25 ryoon Exp $
+# $NetBSD: Makefile,v 1.148 2018/04/08 11:51:30 ryoon Exp $
 
-VERREL=		6.0.2
-VERRC=		1
+VERREL=		6.0.3
+VERRC=		2
 VER=		${VERREL}.${VERRC}
 DISTNAME=	libreoffice-${VER}
-PKGREVISION=	2
 CATEGORIES=	misc
 MASTER_SITES=	http://download.documentfoundation.org/libreoffice/src/${VERREL}/
 EXTRACT_SUFX=	.tar.xz
@@ -131,7 +130,7 @@ WRAPPER_SKIP_TRANSFORM=yes
 LDFLAGS+=		-lboost_system
 
 USE_LIBTOOL=		yes
-# Use GNU find fron findutils.
+# Use GNU find from findutils.
 TOOLS_PLATFORM.find=	# empty
 # GUN tar is really needed. Some Makefiles depends on GNUTAR.
 USE_TOOLS+=		automake bash bison gmake gtar perl pkg-config unzip zip

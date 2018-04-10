@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.676 2018/03/15 05:14:43 jnemeth Exp $
+# $NetBSD: Makefile,v 1.679 2018/04/05 05:20:59 jnemeth Exp $
 #
 
 COMMENT=	Security tools
@@ -133,6 +133,7 @@ SUBDIR+=	kauth
 SUBDIR+=	kdesu
 SUBDIR+=	keepassx
 SUBDIR+=	keepassx0
+SUBDIR+=	keepassxc
 SUBDIR+=	keychain
 SUBDIR+=	kgpg
 SUBDIR+=	knc
@@ -383,6 +384,7 @@ SUBDIR+=	pscan
 SUBDIR+=	putty
 SUBDIR+=	pwsafe
 SUBDIR+=	py-Des
+SUBDIR+=	py-OTXv2
 SUBDIR+=	py-OpenSSL
 SUBDIR+=	py-SSLCrypto
 SUBDIR+=	py-acme

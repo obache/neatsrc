@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.121 2018/03/13 16:22:00 fhajny Exp $
+# $NetBSD: Makefile,v 1.123 2018/04/06 16:24:40 fhajny Exp $
 
-DISTNAME=	node-v9.8.0
+DISTNAME=	node-v9.11.1
 
 # Stated by the changelog as of 8.2.0
 GCC_REQD+=	4.9.4

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.493 2018/03/16 16:19:08 minskim Exp $
+# $NetBSD: Makefile,v 1.495 2018/04/07 10:34:22 jaapb Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -193,6 +193,7 @@ SUBDIR+=	multitail
 SUBDIR+=	nxtvepg
 SUBDIR+=	nyancat
 SUBDIR+=	ocaml-cudf
+SUBDIR+=	ocaml-opaline
 SUBDIR+=	ocaml-opam
 SUBDIR+=	ocaml-opam-file-format
 SUBDIR+=	ocaml-topkg
@@ -305,6 +306,7 @@ SUBDIR+=	ruby-mini_portile2
 SUBDIR+=	ruby-naught
 SUBDIR+=	ruby-ohai
 SUBDIR+=	ruby-parallel
+SUBDIR+=	ruby-patch_finder
 SUBDIR+=	ruby-powerbar
 SUBDIR+=	ruby-progressbar
 SUBDIR+=	ruby-pry

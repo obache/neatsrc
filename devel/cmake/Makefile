@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.140 2018/03/17 08:03:09 adam Exp $
+# $NetBSD: Makefile,v 1.143 2018/04/08 21:47:15 wiz Exp $
 
 .include "Makefile.version"
 
 DISTNAME=	cmake-${CMAKE_VERSION}
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://cmake.org/files/v${CMAKE_API}/
 
@@ -27,6 +28,7 @@ CONFIGURE_ARGS+=	--system-libs
 CONFIGURE_ARGS+=	--no-system-jsoncpp
 
 LDFLAGS+=		-lcrypto # for rhash
+LDFLAGS.Darwin+=	-framework CoreServices # for LSOpenCFURLRef()
 LDFLAGS.SunOS+=		-lsocket -lnsl
 
 .include "../../mk/bsd.prefs.mk"
@@ -50,14 +52,8 @@ SUBST_FILES.cmake+=	Modules/FindX11.cmake
 SUBST_FILES.cmake+=	Modules/Platform/UnixPaths.cmake
 SUBST_VARS.cmake=	LOCALBASE X11BASE
 
-SUBST_CLASSES+=		flags
-SUBST_STAGE.flags=	pre-configure
-SUBST_MESSAGE.flags=	Fixing compiler flags.
-SUBST_FILES.flags=	Modules/Compiler/*.cmake
-SUBST_SED.flags=	-e 's,-O.,,'
-
 pre-configure:
-	${RM} -f ${WRKSRC}/Modules/*.orig ${WRKSRC}/Modules/Platform/*.orig
+	${RM} -f ${WRKSRC}/Modules/*.orig ${WRKSRC}/Modules/Compiler/*.orig ${WRKSRC}/Modules/Platform/*.orig
 	${LN} -f ${WRKSRC}/Modules/Platform/OpenBSD.cmake ${WRKSRC}/Modules/Platform/MirBSD.cmake
 .for lang in C CXX Fortran
 	${LN} -f ${WRKSRC}/Modules/Platform/SunOS-GNU-${lang}.cmake \
