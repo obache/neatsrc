@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.1 2018/04/06 03:41:07 maya Exp $
 
-DISTNAME=	release-0.3.0
+DISTNAME=	yaml-cpp-release-${PKGVERSION_NOREV}
 PKGNAME=	yaml-cpp-0.3.0
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=jbeder/}
@@ -10,7 +10,7 @@ HOMEPAGE=	https://github.com/jbeder/yaml-cpp
 COMMENT=	YAML parser and emitter for C++
 LICENSE=	mit
 
-GITHUB_TAG=	${DISTNAME}
+GITHUB_TAG=	release-${PKGVERSION_NOREV}
 EXTRACT_USING=	bsdtar
 
 USE_CMAKE=		yes
