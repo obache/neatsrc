@@ -1,16 +1,15 @@
-# $NetBSD: Makefile,v 1.51 2018/02/20 09:26:56 adam Exp $
+# $NetBSD: Makefile,v 1.55 2018/04/14 06:26:04 wiz Exp $
 
 .include "../../devel/git/Makefile.common"
 
 PKGNAME=	git-base-${GIT_VERSION}
+PKGREVISION=	1
 COMMENT=	GIT Tree History Storage Tool (base package)
 
 CONFLICTS+=		scmgit-base-[0-9]*
 SUPERSEDES+=		scmgit-base-[0-9]*
 
 DEPENDS+=		p5-Error>=0.17015:../../devel/p5-Error
-# for git-send-email
-#DEPENDS+=		{perl>=5.13.8,p5-MIME-Base64>=3.13}:../../converters/p5-MIME-Base64
 DEPENDS+=		p5-Email-Valid>=0.190:../../mail/p5-Email-Valid
 DEPENDS+=		p5-MailTools>=2.11:../../mail/p5-MailTools
 DEPENDS+=		p5-Net-SMTP-SSL>=1.01:../../mail/p5-Net-SMTP-SSL
@@ -19,8 +18,6 @@ DEPENDS+=		p5-Authen-SASL>=1.0:../../security/p5-Authen-SASL
 USE_LANGUAGES=		c99
 USE_TOOLS+=		perl:run sh:run msgfmt
 
-PERL5_CONFIGURE=	no
-PERL5_PACKLIST=		auto/Git/.packlist
 REPLACE_PERL+=		*.perl */*.perl */*/*.perl
 REPLACE_PERL+=		contrib/hooks/update-paranoid
 
@@ -32,6 +29,7 @@ CONFIGURE_ARGS+=	--with-iconv=${BUILDLINK_PREFIX.iconv}
 CONFIGURE_ARGS+=	--with-libpcre2=${BUILDLINK_PREFIX.pcre2}
 CONFIGURE_ARGS+=	--with-perl=${PERL5:Q}
 CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib}
+CONFIGURE_ARGS+=	--without-python # only needed for git-p4
 CONFIGURE_ARGS+=	--without-tcltk
 
 BUILD_TARGET=		all
@@ -52,8 +50,6 @@ GIT_TEMPLATES+=		hooks/post-update.sample hooks/pre-applypatch.sample
 GIT_TEMPLATES+=		hooks/pre-commit.sample hooks/pre-rebase.sample
 GIT_TEMPLATES+=		hooks/prepare-commit-msg.sample hooks/update.sample
 
-# XXX unused as of now
-#GIT_CORE_EXECDIR=	libexec/${GIT_COREDIR}
 GIT_CORE_DATADIR=	share/${GIT_COREDIR}
 GIT_CORE_TEMPLATEDIR=	${GIT_CORE_DATADIR}/${GIT_TEMPLATEDIR}
 
@@ -67,6 +63,7 @@ REQD_FILES+=		${GIT_TEMPLATES:@.t.@\
 			@:M*}
 
 MAKE_FLAGS+=		INSTALL=${INSTALL:Q}
+MAKE_ENV+=		PERLLIBDIR=${PERL5_INSTALLVENDORLIB}
 
 GIT_TEMPLATE_INSTDIR=	${EGDIR}/${GIT_TEMPLATEDIR}
 MAKE_ENV+=		GIT_TEMPLATE_INSTDIR=${GIT_TEMPLATE_INSTDIR}
@@ -108,7 +105,8 @@ post-install:
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/pcre2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../lang/perl5/module.mk"
+.include "../../lang/perl5/buildlink3.mk"
+.include "../../lang/perl5/vars.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

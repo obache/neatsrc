@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2018/03/12 11:15:39 wiz Exp $
+# $NetBSD: Makefile,v 1.13 2018/04/14 07:33:57 adam Exp $
 
 DISTNAME=	kemoticons-${KF5VER}
-PKGREVISION=	2
+PKGREVISION=	1
 CATEGORIES=	misc
 
 HOMEPAGE=	https://community.kde.org/Frameworks
@@ -17,7 +17,7 @@ SUBST_FILES.fix-moc+=	_KDE_build/src/providers/adium/CMakeFiles/emoticonstheme_a
 SUBST_FILES.fix-moc+=	_KDE_build/src/providers/pidgin/CMakeFiles/emoticonstheme_pidgin_autogen.dir/AutogenInfo.cmake
 SUBST_SED.fix-moc=	-e 's,;${PREFIX}/include;,;,g'
 
-.include "../../meta-pkgs/kf5/Makefile.common"
+.include "../../meta-pkgs/kde/kf5.mk"
 
 .include "../../archivers/karchive/buildlink3.mk"
 .include "../../devel/kservice/buildlink3.mk"

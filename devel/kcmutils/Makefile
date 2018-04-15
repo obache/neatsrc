@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.19 2018/03/12 11:15:27 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2018/04/14 07:33:53 adam Exp $
 
 DISTNAME=	kcmutils-${KF5VER}
-PKGREVISION=	3
+PKGREVISION=	1
 CATEGORIES=	devel
 
 HOMEPAGE=	https://community.kde.org/Frameworks
@@ -10,7 +10,7 @@ LICENSE=	gnu-lgpl-v2.1
 
 USE_TOOLS+=	msgmerge
 
-.include "../../meta-pkgs/kf5/Makefile.common"
+.include "../../meta-pkgs/kde/kf5.mk"
 
 .include "../../devel/kdeclarative/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"

@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.30 2018/04/04 12:31:19 fhajny Exp $
+# $NetBSD: Makefile,v 1.32 2018/04/14 07:34:14 adam Exp $
 
 DISTNAME=	peewee-3.2.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+PKGREVISION=	2
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GITHUB:=coleifer/}
 
@@ -41,6 +42,7 @@ post-install:
 do-test:
 	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHONBIN} runtests.py
 
+.include "../../databases/sqlite3/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

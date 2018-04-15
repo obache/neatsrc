@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.18225 2018/04/09 16:20:03 ryoon Exp $
+$NetBSD: TODO,v 1.18233 2018/04/14 12:29:06 adam Exp $
 
 Suggested new packages
 ======================
@@ -682,7 +682,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ghc-8.2
 	o ghc7-7.10.1
 	o ghdl-0.33
-	o git-2.17
 	o gkrellm-2.3.5
 	o gkrellm-multiping-2.0.13
 	o gkrellm-server-2.3.5
@@ -788,7 +787,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gzip-1.8
 	o h323plus-1.24.0 [replaces openh323, from http://www.h323plus.org/]
 	o hamster-applet-2.32.1 [GNOME 2.32]
-	o handbrake-1.0.0
+	o handbrake-1.1.0
 	o hanzim-3.5
 	o harminv-1.4
 	o haskell-mode-13.20
@@ -933,6 +932,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o lcc-4.2
 	o ldapsdk-6.0.7
 	o leafpad-0.8.18.1
+	o lf-2
 	o lgeneral-1.3.1
 	o libarchive-3.3.2
 	o libatomic_ops-7.6.4
@@ -1084,6 +1084,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o nas-auscope-1.9.4
 	o nautilus-actions-2.30.3 [GNOME 2.30]
 	o ncview-2.1.6
+	o neomutt-20180323
 	o nessus-4.4.1
 	o nestopia-1.46.2 [http://0ldsk00l.ca/nestopia/]
 	o netbt-hcidump-5.37
@@ -1176,6 +1177,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o picocom-3.0
 	o picp-0.6.8
 	o picprg-3.01
+	o pidgin-2.13.0
 	o pidgin-icb-20100207
 	o pim6dd-20040819a
 	o pim6sd-20040824a
@@ -1222,19 +1224,17 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-Scientific-doc-2.5.5
 	o py-augeas-1.0.3
 	o py-betamax-0.8.1
+	o py-borgbackup-1.1.5
 	o py-cassa-1.11.0
 	o py-cssselect2-0.2.1
 	o py-doctor-15.1.0
 	o py-ephem3-3.7.6.0
 	o py-gnome-menus-3.8.0
-	o py-gobject3-3.28.2
-	o py-gobject3-common-3.28.2
 	o py-google-api-python-client-1.6.6
 	o py-gstreamer1-1.14.0
 	o py-hgview-1.9.0
 	o py-hsm-1.1.1
 	o py-input-pad-1.4.2
-	o py-jaraco_util-11.0
 	o py-keybinder-0.3.1
 	o py-mercurial-4.5.3
 	o py-musicbrainz-0.7.4
@@ -1446,7 +1446,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o unicap-0.9.8
 	o unison-2.51.2
 	o units-2.12
-	o unixodbc-2.3.6
 	o unrealircd-4.0.6
 	o urlgrabber-3.10.1
 	o userppp-030706
@@ -1500,7 +1499,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o worker-3.12.0
 	o wxGTK-3.1.0
 	o wxRemind-101
-	o x264-devel-20180407
 	o x2vnc-1.31
 	o xa65-2.3.7
 	o xaric-0.13.7
@@ -1559,7 +1557,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o yabause-0.9.15
 	o yacas-1.6.1
 	o yafc-1.1
-	o yaws-2.0.2
 	o yed-3.17.1
 	o yodl-2.14.3
 	o yorick-2.1.05

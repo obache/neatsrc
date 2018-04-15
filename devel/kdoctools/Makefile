@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.13 2018/03/12 11:15:27 wiz Exp $
+# $NetBSD: Makefile,v 1.15 2018/04/14 07:33:54 adam Exp $
 
 DISTNAME=	kdoctools-${KF5VER}
-PKGREVISION=	2
+PKGREVISION=	1
 CATEGORIES=	devel
 
 HOMEPAGE=	https://community.kde.org/Frameworks
 COMMENT=	Documentation generation from docbook
 LICENSE=	gnu-lgpl-v2.1
 
-.include "../../meta-pkgs/kf5/Makefile.common"
+.include "../../meta-pkgs/kde/kf5.mk"
 
 USE_TOOLS+=	msgmerge perl
 

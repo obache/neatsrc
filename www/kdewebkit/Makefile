@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.17 2018/03/12 11:15:47 wiz Exp $
+# $NetBSD: Makefile,v 1.19 2018/04/14 07:34:03 adam Exp $
 
 DISTNAME=	kdewebkit-${KF5VER}
-PKGREVISION=	2
+PKGREVISION=	1
 CATEGORIES=	www
 
 HOMEPAGE=	https://community.kde.org/Frameworks
 COMMENT=	KDE Integration for QtWebKit
 LICENSE=	gnu-lgpl-v2.1
 
-.include "../../meta-pkgs/kf5/Makefile.common"
+.include "../../meta-pkgs/kde/kf5.mk"
 
 USE_TOOLS+=	msgmerge
 

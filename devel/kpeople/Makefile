@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.11 2018/03/12 11:15:28 wiz Exp $
+# $NetBSD: Makefile,v 1.13 2018/04/14 07:33:55 adam Exp $
 
 DISTNAME=	kpeople-${KF5VER}
-PKGREVISION=	2
+PKGREVISION=	1
 CATEGORIES=	devel
 
 HOMEPAGE=	https://community.kde.org/KTp/libkpeople
 COMMENT=	Provides access to all contacts and aggregates them by person
 LICENSE=	gnu-lgpl-v2.1
 
-.include "../../meta-pkgs/kf5/Makefile.common"
+.include "../../meta-pkgs/kde/kf5.mk"
 
 USE_TOOLS+=	msgmerge
 
@@ -16,5 +16,6 @@ USE_TOOLS+=	msgmerge
 .include "../../devel/kservice/buildlink3.mk"
 .include "../../x11/kitemviews/buildlink3.mk"
 .include "../../x11/kwidgetsaddons/buildlink3.mk"
+.include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtdeclarative/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

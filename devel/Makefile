@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2657 2018/04/09 09:08:42 jaapb Exp $
+# $NetBSD: Makefile,v 1.2661 2018/04/15 00:35:07 minskim Exp $
 #
 
 COMMENT=	Development utilities
@@ -11,6 +11,7 @@ SUBDIR+=	Gorm
 SUBDIR+=	MoarVM
 SUBDIR+=	ObjectiveLib
 SUBDIR+=	ProjectCenter
+SUBDIR+=	R-BH
 SUBDIR+=	R-IRdisplay
 SUBDIR+=	R-IRkernel
 SUBDIR+=	R-R6
@@ -18,9 +19,11 @@ SUBDIR+=	R-Rcpp
 SUBDIR+=	R-assertthat
 SUBDIR+=	R-bit
 SUBDIR+=	R-bit64
+SUBDIR+=	R-blob
 SUBDIR+=	R-cli
 SUBDIR+=	R-crayon
 SUBDIR+=	R-evaluate
+SUBDIR+=	R-iterators
 SUBDIR+=	R-lazyeval
 SUBDIR+=	R-magrittr
 SUBDIR+=	R-memoise
@@ -766,6 +769,7 @@ SUBDIR+=	ocaml-jbuilder
 SUBDIR+=	ocaml-js-build-tools
 SUBDIR+=	ocaml-lwt
 SUBDIR+=	ocaml-lwt_glib
+SUBDIR+=	ocaml-lwt_log
 SUBDIR+=	ocaml-lwt_ppx
 SUBDIR+=	ocaml-lwt_react
 SUBDIR+=	ocaml-lwt_ssl

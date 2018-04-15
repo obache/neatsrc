@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2018/03/12 11:15:37 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2018/04/14 07:33:56 adam Exp $
 
 DISTNAME=	prison-${KF5VER}
 PKGREVISION=	1
@@ -8,23 +8,24 @@ HOMEPAGE=	https://community.kde.org/Frameworks
 COMMENT=	Barcode API to produce QRCode barcodes and DataMatrix barcodes
 LICENSE=	mit
 
-.include "../../meta-pkgs/kf5/Makefile.common"
+.include "../../meta-pkgs/kde/kf5.mk"
 
 BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	pkg-config
 
-#SUBST_CLASSES+=		xdg
-#SUBST_STAGE.xdg=	pre-configure
-#SUBST_MESSAGE.xdg=	Install via examples dir.
-#SUBST_FILES.xdg=	CMakeLists.txt
-#SUBST_SED.xdg=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_DATAROOTDIR}/examples/kde-xdg:'
+SUBST_CLASSES+=		xdg
+SUBST_STAGE.xdg=	pre-configure
+SUBST_MESSAGE.xdg=	Install via examples dir.
+SUBST_FILES.xdg=	CMakeLists.txt
+SUBST_SED.xdg=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_XDG_EX_DIR}:'
 
-#MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg
-#CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/prison.categories \
-#		${PKG_SYSCONFDIR}/xdg/prison.categories
+MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg
+CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/prison.categories \
+		${PKG_SYSCONFDIR}/xdg/prison.categories
 
 .include "../../converters/qrencode/buildlink3.mk"
 .include "../../graphics/libdmtx/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
+.include "../../x11/qt5-qtdeclarative/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

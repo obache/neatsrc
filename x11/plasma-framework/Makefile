@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.18 2018/03/12 11:15:54 wiz Exp $
+# $NetBSD: Makefile,v 1.20 2018/04/14 07:34:06 adam Exp $
 
 DISTNAME=	plasma-framework-${KF5VER}
-PKGREVISION=	3
+PKGREVISION=	1
 CATEGORIES=	x11
 
 HOMEPAGE=	https://community.kde.org/Frameworks
 COMMENT=	Plasma library and runtime components based upon KF5 and Qt5
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
-.include "../../meta-pkgs/kf5/Makefile.common"
+.include "../../meta-pkgs/kde/kf5.mk"
 
 BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
 
@@ -21,7 +21,9 @@ SUBST_FILES.fix-moc=	_KDE_build/src/scriptengines/qml/CMakeFiles/plasma_appletsc
 SUBST_SED.fix-moc=	-e 's,;${PREFIX}/include;,;,g'
 
 .include "../../devel/kdeclarative/buildlink3.mk"
+#.include "../../wip/kwayland/buildlink3.mk"
 .include "../../x11/kactivities5/buildlink3.mk"
+.include "../../x11/kirigami2/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtquickcontrols/buildlink3.mk"
 .include "../../x11/qt5-qttools/buildlink3.mk"

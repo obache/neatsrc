@@ -1,10 +1,29 @@
-@comment $NetBSD: PLIST,v 1.18 2018/01/22 14:17:24 adam Exp $
+@comment $NetBSD: PLIST,v 1.20 2018/04/14 06:18:24 adam Exp $
 bin/git
 bin/git-cvsserver
 bin/git-receive-pack
 bin/git-shell
 bin/git-upload-archive
 bin/git-upload-pack
+${PERL5_SUB_INSTALLVENDORLIB}/FromCPAN/Error.pm
+${PERL5_SUB_INSTALLVENDORLIB}/FromCPAN/Mail/Address.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/I18N.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/IndexInfo.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/LoadCPAN.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/LoadCPAN/Error.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/LoadCPAN/Mail/Address.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/Packet.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/SVN.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/SVN/Editor.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/SVN/Fetcher.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/SVN/GlobSpec.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/SVN/Log.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/SVN/Memoize/YAML.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/SVN/Migration.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/SVN/Prompt.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/SVN/Ra.pm
+${PERL5_SUB_INSTALLVENDORLIB}/Git/SVN/Utils.pm
 libexec/git-core/git
 libexec/git-core/git-add
 libexec/git-core/git-add--interactive
@@ -97,7 +116,6 @@ libexec/git-core/git-mktree
 libexec/git-core/git-mv
 libexec/git-core/git-name-rev
 libexec/git-core/git-notes
-libexec/git-core/git-p4
 libexec/git-core/git-pack-objects
 libexec/git-core/git-pack-redundant
 libexec/git-core/git-pack-refs

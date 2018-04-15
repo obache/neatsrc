@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.15 2018/03/12 11:15:48 wiz Exp $
+# $NetBSD: Makefile,v 1.17 2018/04/14 07:34:03 adam Exp $
 
 DISTNAME=	kjsembed-${KF5VER}
-PKGREVISION=	3
+PKGREVISION=	1
 CATEGORIES=	www
 
 HOMEPAGE=	https://community.kde.org/Frameworks
 COMMENT=	Embedded JS
 LICENSE=	gnu-lgpl-v2.1
 
-.include "../../meta-pkgs/kf5/Makefile.common"
-MASTER_SITES=	${MASTER_SITE_KDE:=frameworks/5.41/portingAids/}
+.include "../../meta-pkgs/kde/kf5.mk"
+MASTER_SITES=	${MASTER_SITE_KDE:=frameworks/5.44/portingAids/}
 
 BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
 
