@@ -12,7 +12,6 @@ LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
 DEPENDS+=	qt5-qtgraphicaleffects-[0-9]*:../../x11/qt5-qtgraphicaleffects
 
-.include "../../x11/plasma-framework/buildlink3.mk"
 .include "../../x11/qt5-qtquickcontrols2/buildlink3.mk"
 .include "../../x11/qt5-qtsvg/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
