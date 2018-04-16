@@ -2,7 +2,7 @@ $NetBSD: patch-configure,v 1.4 2018/01/16 11:26:18 jperkin Exp $
 
 Don't automatically add libgcc on SunOS.
 
---- configure.orig	2018-01-02 08:51:27.000000000 +0000
+--- configure.orig	2018-03-27 14:26:12.000000000 +0000
 +++ configure
 @@ -5435,9 +5435,6 @@ fi
  case $host_alias in
@@ -14,6 +14,15 @@ Don't automatically add libgcc on SunOS.
      ;;
    *dgux*)
      CPPFLAGS="$CPPFLAGS -D_BSD_TIMEOFDAY_FLAVOR"
+@@ -5724,7 +5721,7 @@ if test "$ZEND_GCC_GLOBAL_REGS" != "no";
+ #else
+ # define ZEND_GCC_VERSION 0
+ #endif
+-#if defined(__GNUC__) && ZEND_GCC_VERSION >= 4008 && defined(i386)
++#if defined(__GNUC__) && ZEND_GCC_VERSION >= 4009 && defined(i386)
+ # define ZEND_VM_FP_GLOBAL_REG "%esi"
+ # define ZEND_VM_IP_GLOBAL_REG "%edi"
+ #elif defined(__GNUC__) && ZEND_GCC_VERSION >= 4008 && defined(__x86_64__)
 @@ -6908,27 +6905,6 @@ EOF
      ;;
    esac

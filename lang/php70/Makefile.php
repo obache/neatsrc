@@ -3,11 +3,6 @@
 # used by www/ap-php/Makefile
 # used by www/php-fpm/Makefile
 
-# PHP bug #74526 - segfaults on build with GCC 4.8.5 i386
-.if ${MACHINE_ARCH} == "i386"
-GCC_REQD+=              4.9
-.endif
-
 .include "../../lang/php70/Makefile.common"
 
 DISTINFO_FILE=	${.CURDIR}/../../lang/php70/distinfo
