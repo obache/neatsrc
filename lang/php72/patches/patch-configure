@@ -4,7 +4,7 @@ Don't automatically add libgcc on SunOS. Reported upstream as #75941.
 
 The meta_ccld removal reported upstream as #75940.
 
---- configure.orig	2018-01-30 10:33:52.000000000 +0000
+--- configure.orig	2018-03-27 13:10:58.000000000 +0000
 +++ configure
 @@ -5461,9 +5461,6 @@ fi
  case $host_alias in
@@ -16,7 +16,16 @@ The meta_ccld removal reported upstream as #75940.
      ;;
    *dgux*)
      CPPFLAGS="$CPPFLAGS -D_BSD_TIMEOFDAY_FLAVOR"
-@@ -96116,12 +96113,7 @@ old_CC=$CC
+@@ -5600,7 +5597,7 @@ if test "$ZEND_GCC_GLOBAL_REGS" != "no";
+ #else
+ # define ZEND_GCC_VERSION 0
+ #endif
+-#if defined(__GNUC__) && ZEND_GCC_VERSION >= 4008 && defined(i386)
++#if defined(__GNUC__) && ZEND_GCC_VERSION >= 4009 && defined(i386)
+ # define ZEND_VM_FP_GLOBAL_REG "%esi"
+ # define ZEND_VM_IP_GLOBAL_REG "%edi"
+ #elif defined(__GNUC__) && ZEND_GCC_VERSION >= 4008 && defined(__x86_64__)
+@@ -96719,12 +96716,7 @@ old_CC=$CC
  if test "$PHP_THREAD_SAFETY" = "yes" && test -n "$ac_cv_pthreads_cflags"; then
    CXXFLAGS="$CXXFLAGS $ac_cv_pthreads_cflags"
    INLINE_CFLAGS="$INLINE_CFLAGS $ac_cv_pthreads_cflags"

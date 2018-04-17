@@ -3,11 +3,6 @@
 # used by www/ap-php/Makefile
 # used by www/php-fpm/Makefile
 
-# PHP bug #74526 - segfaults on build with GCC 4.8.5 i386
-.if ${MACHINE_ARCH} == "i386"
-GCC_REQD+=              4.9
-.endif
-
 # the binary actually needs full dep on PCRE
 BUILDLINK_DEPMETHOD.pcre=	full
 
