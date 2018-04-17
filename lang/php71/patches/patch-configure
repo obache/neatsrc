@@ -2,9 +2,9 @@ $NetBSD: patch-configure,v 1.4 2018/01/16 11:04:54 jperkin Exp $
 
 Don't automatically add libgcc on SunOS.
 
---- configure.orig	2018-01-03 02:32:21.000000000 +0000
+--- configure.orig	2018-03-28 07:11:55.000000000 +0000
 +++ configure
-@@ -5436,9 +5436,6 @@ fi
+@@ -5448,9 +5448,6 @@ fi
  case $host_alias in
    *solaris*)
      CPPFLAGS="$CPPFLAGS -D_POSIX_PTHREAD_SEMANTICS"
@@ -14,7 +14,16 @@ Don't automatically add libgcc on SunOS.
      ;;
    *dgux*)
      CPPFLAGS="$CPPFLAGS -D_BSD_TIMEOFDAY_FLAVOR"
-@@ -6909,27 +6906,6 @@ EOF
+@@ -5737,7 +5734,7 @@ if test "$ZEND_GCC_GLOBAL_REGS" != "no";
+ #else
+ # define ZEND_GCC_VERSION 0
+ #endif
+-#if defined(__GNUC__) && ZEND_GCC_VERSION >= 4008 && defined(i386)
++#if defined(__GNUC__) && ZEND_GCC_VERSION >= 4009 && defined(i386)
+ # define ZEND_VM_FP_GLOBAL_REG "%esi"
+ # define ZEND_VM_IP_GLOBAL_REG "%edi"
+ #elif defined(__GNUC__) && ZEND_GCC_VERSION >= 4008 && defined(__x86_64__)
+@@ -6921,27 +6918,6 @@ EOF
      ;;
    esac
  
@@ -42,7 +51,7 @@ Don't automatically add libgcc on SunOS.
    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
  $as_echo "yes" >&6; }
  
-@@ -18391,7 +18367,7 @@ fi
+@@ -18465,7 +18441,7 @@ fi
      if test "$found_openssl" = "no"; then
  
      if test "$PHP_OPENSSL_DIR" = "yes"; then
@@ -51,7 +60,7 @@ Don't automatically add libgcc on SunOS.
      fi
  
      for i in $PHP_OPENSSL_DIR; do
-@@ -20745,7 +20721,7 @@ $as_echo "#define HAVE_SQLITE3_ERRSTR 1"
+@@ -20819,7 +20795,7 @@ $as_echo "#define HAVE_SQLITE3_ERRSTR 1"
      PHP_SQLITE3_CFLAGS="-I@ext_srcdir@/libsqlite $other_flags $threadsafe_flags $debug_flags"
  
  
@@ -60,7 +69,7 @@ Don't automatically add libgcc on SunOS.
  
  
    unique=`echo $header_file|$SED 's/[^a-zA-Z0-9]/_/g'`
-@@ -31966,7 +31942,7 @@ fi
+@@ -32102,7 +32078,7 @@ fi
      if test "$found_openssl" = "no"; then
  
      if test "$PHP_OPENSSL_DIR" = "yes"; then
@@ -69,7 +78,7 @@ Don't automatically add libgcc on SunOS.
      fi
  
      for i in $PHP_OPENSSL_DIR; do
-@@ -42858,7 +42834,7 @@ fi
+@@ -42994,7 +42970,7 @@ fi
      if test "$found_openssl" = "no"; then
  
      if test "$PHP_OPENSSL_DIR" = "yes"; then
@@ -78,7 +87,7 @@ Don't automatically add libgcc on SunOS.
      fi
  
      for i in $PHP_OPENSSL_DIR; do
-@@ -93979,7 +93955,7 @@ fi
+@@ -94551,7 +94527,7 @@ fi
      if test "$found_openssl" = "no"; then
  
      if test "$PHP_OPENSSL_DIR" = "yes"; then
@@ -87,7 +96,7 @@ Don't automatically add libgcc on SunOS.
      fi
  
      for i in $PHP_OPENSSL_DIR; do
-@@ -97605,12 +97581,7 @@ old_CC=$CC
+@@ -98181,12 +98157,7 @@ old_CC=$CC
  if test "$PHP_THREAD_SAFETY" = "yes" && test -n "$ac_cv_pthreads_cflags"; then
    CXXFLAGS="$CXXFLAGS $ac_cv_pthreads_cflags"
    INLINE_CFLAGS="$INLINE_CFLAGS $ac_cv_pthreads_cflags"
