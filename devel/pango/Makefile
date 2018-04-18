@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.210 2018/03/12 11:15:31 wiz Exp $
+# $NetBSD: Makefile,v 1.212 2018/04/18 05:38:07 snj Exp $
 
-DISTNAME=	pango-1.40.14
-PKGREVISION=	1
+DISTNAME=	pango-1.42.1
 CATEGORIES=	devel fonts
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/pango/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -33,16 +32,21 @@ CHECK_PORTABILITY_SKIP+= docs/check.docs
 
 .include "options.mk"
 
+BUILDLINK_API_DEPENDS.fribidi+=	fribidi>=0.19.7
+.include "../../converters/fribidi/buildlink3.mk"
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.33.12
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_DEPMETHOD.gobject-introspection:= build
 .include "../../devel/gobject-introspection/buildlink3.mk"
-BUILDLINK_API_DEPENDS.fontconfig+=	fontconfig>=2.10.91
+BUILDLINK_API_DEPENDS.fontconfig+=	fontconfig>=2.11.91
 .include "../../fonts/fontconfig/buildlink3.mk"
 BUILDLINK_API_DEPENDS.harfbuzz+= harfbuzz>=0.9.9
 .include "../../fonts/harfbuzz/buildlink3.mk"
 BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.12.10
 .include "../../graphics/cairo/buildlink3.mk"
 .include "../../graphics/cairo-gobject/buildlink3.mk"
+# XXX freetype versioning is insane. needs libtool version >= 21.0.15,
+# which corresponds to release version 2.8.1
+BUILDLINK_API_DEPENDS.freetype2+= freetype2>=2.8.1
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.14 2018/04/14 07:34:19 adam Exp $
+# $NetBSD: Makefile,v 1.16 2018/04/17 22:29:37 wiz Exp $
 
 DISTNAME=		verifast-18.02
-PKGREVISION=		2
+PKGREVISION=		4
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_GITHUB:=verifast/}
 GITHUB_PROJECT=		verifast

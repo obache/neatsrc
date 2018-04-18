@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.10 2018/03/12 11:17:22 wiz Exp $
+# $NetBSD: Makefile,v 1.12 2018/04/17 22:29:46 wiz Exp $
 
 DISTNAME=	netatalk-3.1.11
 PKGNAME=        ${DISTNAME:C/-/3-/}
-PKGREVISION=	4
+PKGREVISION=	6
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=netatalk/}
 EXTRACT_SUFX=	.tar.bz2

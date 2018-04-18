@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.70 2018/04/14 07:34:44 adam Exp $
+# $NetBSD: Makefile,v 1.74 2018/04/17 21:35:18 triaxx Exp $
 
 DISTNAME=	lighttpd-1.4.49
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
 EXTRACT_SUFX=	.tar.xz
@@ -33,10 +33,13 @@ CONF_FILES+=		${EGDIR}/${file:Q} ${PKG_SYSCONFDIR}/${file:Q}
 .endfor
 
 BUILD_DEFS+=		VARBASE LIGHTTPD_LOGDIR LIGHTTPD_STATEDIR
+BUILD_DEFS+=		LIGHTTPD_CACHEDIR LIGHTTPD_HOMEDIR
 BUILD_DEFS+=		LIGHTTPD_USER LIGHTTPD_GROUP
 
 .include "../../mk/bsd.prefs.mk"
 
+LIGHTTPD_CACHEDIR?=	${VARBASE}/cache/lighttpd
+LIGHTTPD_HOMEDIR?=	${VARBASE}/lib/lighttpd
 LIGHTTPD_LOGDIR?=	${VARBASE}/log/lighttpd
 LIGHTTPD_STATEDIR?=	${VARBASE}/run
 LIGHTTPD_USER?=		lighttpd
@@ -55,11 +58,12 @@ OWN_DIRS+=		${LIGHTTPD_STATEDIR}
 SUBST_CLASSES+=		path
 SUBST_MESSAGE.path=	Fixing config file paths
 SUBST_STAGE.path=	pre-configure
-SUBST_FILES.path=	doc/config/lighttpd.conf
+SUBST_FILES.path=	doc/config/lighttpd.conf doc/lighttpd.8
 SUBST_VARS.path=	LIGHTTPD_LOGDIR LIGHTTPD_STATEDIR LIGHTTPD_USER \
-			LIGHTTPD_GROUP PKG_SYSCONFDIR
+			LIGHTTPD_CACHEDIR LIGHTTPD_HOMEDIR              \
+			LIGHTTPD_GROUP PKG_SYSCONFDIR VARBASE
 
-PLIST_VARS+=		gdbm geoip gssapi ldap lua mysql ssl
+PLIST_VARS+=		gdbm geoip gssapi ldap lua memcached mysql ssl
 
 post-install:
 	set -e; cd ${WRKSRC}/doc;				\

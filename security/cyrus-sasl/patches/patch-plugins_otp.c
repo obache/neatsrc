@@ -1,11 +1,11 @@
-$NetBSD: patch-plugins_otp.c,v 1.1 2015/11/10 08:46:06 manu Exp $
+$NetBSD: patch-plugins_otp.c,v 1.2 2018/04/17 01:57:18 christos Exp $
 
 Fix the OTP plugin on 32 bit machines and add SHA2 support
 Submitted upstream as https://bugzilla.cyrusimap.org/show_bug.cgi?id=3914
 
---- plugins/otp.c.orig	2012-10-12 14:05:48.000000000 +0000
+--- plugins/otp.c.orig	2016-12-10 15:54:27.000000000 +0000
 +++ plugins/otp.c
-@@ -93,6 +93,10 @@ static algorithm_option_t algorithm_opti
+@@ -91,6 +91,10 @@ static algorithm_option_t algorithm_opti
      {"md4",	0,	"md4"},
      {"md5",	0,	"md5"},
      {"sha1",	4,	"sha1"},
@@ -16,7 +16,7 @@ Submitted upstream as https://bugzilla.cyrusimap.org/show_bug.cgi?id=3914
      {NULL,	0,	NULL}
  };
  
-@@ -615,8 +619,8 @@ static int make_secret(const sasl_utils_
+@@ -645,8 +649,8 @@ static int make_secret(const sasl_utils_
      bin2hex(otp, OTP_HASH_SIZE, buf);
      buf[2*OTP_HASH_SIZE] = '\0';
      
@@ -27,7 +27,7 @@ Submitted upstream as https://bugzilla.cyrusimap.org/show_bug.cgi?id=3914
      
      return SASL_OK;
  }
-@@ -663,6 +667,7 @@ static int parse_secret(const sasl_utils
+@@ -693,6 +697,7 @@ static int parse_secret(const sasl_utils
  
      else {
  	char buf[2*OTP_HASH_SIZE+1];
@@ -35,7 +35,7 @@ Submitted upstream as https://bugzilla.cyrusimap.org/show_bug.cgi?id=3914
  	
  	/*
  	 * new-style (ASCII) secret is stored as:
-@@ -676,8 +681,9 @@ static int parse_secret(const sasl_utils
+@@ -706,8 +711,9 @@ static int parse_secret(const sasl_utils
  	    return SASL_FAIL;
  	}
  	
