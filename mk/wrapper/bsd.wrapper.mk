@@ -676,16 +676,22 @@ ${_WRAP_SCAN.${_wrappee_}}: ${WRAPPER_SRCDIR}/scan
 
 # UNWRAP_PATTERNS and UNWRAP_FILES list shell globs and files relative to
 # ${WRKSRC} that need to be "unwrapped".
+# UNWRAP_SKIP_PATHS list paths relative to ${WRKSRC} that not need to be
+# "unwrapped".
 #
 UNWRAP_PATTERNS?=	# empty
 _UNWRAP_PATTERNS=	${UNWRAP_PATTERNS}
 _UNWRAP_PATTERNS+=	*-config
 _UNWRAP_PATTERNS+=	*Conf.sh
 _UNWRAP_PATTERNS+=	*.pc
+UNWRAP_SKIP_PATHS?=	# empty
+_UNWRAP_SKIP_PATHS=	${UNWRAP_SKIP_PATHS}
 _UNWRAP_PATTERNS_FIND_cmd=	\
 	cd ${WRKSRC} && \
 	${ECHO} "__dummy-entry__" && \
-	${FIND} . -type f \( ${_UNWRAP_PATTERNS:C/.*/-o -name "&"/g:S/-o//1} \) -print \
+	${FIND} . -type f \( ${_UNWRAP_PATTERNS:C/.*/-o -name "&"/g:S/-o//1} \) \
+		${empty(_UNWRAP_SKIP_PATHS):? :! \( ${_UNWRAP_SKIP_PATHS:@p@-o -path "${p}"@:S/-o//1} \)} \
+		-print \
 	| ${SED} -e 's|^\./||' \
 	| ${SORT} -u
 UNWRAP_FILES?=		# empty
