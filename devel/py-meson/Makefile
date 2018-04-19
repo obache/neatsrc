@@ -32,6 +32,8 @@ REPLACE_PYTHON+=	*/*/*/*.in
 REPLACE_PYTHON+=	*/*/*/*/*.py
 REPLACE_PYTHON+=	*/*/*/*/*/*.py
 
+UNWRAP_SKIP_PATHS+=	./test\ cases/*
+
 post-extract:
 	# see https://github.com/mesonbuild/meson/issues/695
 	# patching does not work, perhaps due to spaces in path?
