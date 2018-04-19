@@ -15,6 +15,7 @@ BUILDLINK_PKGSRCDIR.gnutls?=	../../security/gnutls
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/libtasn1/buildlink3.mk"
 .include "../../security/nettle/buildlink3.mk"
+.include "../../security/p11-kit/buildlink3.mk"
 .include "../../textproc/libunistring/buildlink3.mk"
 .endif # GNUTLS_BUILDLINK3_MK
 
