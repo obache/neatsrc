@@ -1,4 +1,4 @@
-$NetBSD: patch-src_plugins_task_cgroup_task__cgroup__memory.c,v 1.1 2018/03/25 14:55:30 bacon Exp $
+$NetBSD: patch-src_plugins_task_cgroup_task__cgroup__memory.c,v 1.1 2018/04/22 21:31:09 bacon Exp $
 
 # Guard Linuxism?
 --- src/plugins/task/cgroup/task_cgroup_memory.c.orig	2018-03-15 18:57:29.000000000 +0000

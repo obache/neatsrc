@@ -1,4 +1,4 @@
-# $NetBSD: sites.mk,v 1.157 2018/02/18 19:31:56 maya Exp $
+# $NetBSD: sites.mk,v 1.158 2018/04/21 13:38:05 wiz Exp $
 #
 # This Makefile fragment defines read-only MASTER_SITE_* variables
 # representing some well-known master distribution sites for software.
@@ -71,7 +71,6 @@ MASTER_SITE_KDE+=	\
 	${MASTER_SITE_RING_SERVER:=X/kde/stable/} \
 	ftp://ftp.gtlib.gatech.edu/pub/kde/stable/ \
 	ftp://kde.mirrors.tds.net/pub/kde/stable/ \
-	http://gd.tuwien.ac.at/kde/stable/ \
 	ftp://ftp-stud.fht-esslingen.de/pub/Mirrors/ftp.kde.org/pub/kde/stable/ \
 	ftp://mirrors.dotsrc.org/kde/stable/ \
 	ftp://ftp.fi.muni.cz/pub/kde/stable/
@@ -130,7 +129,6 @@ MASTER_SITE_APACHE+=    \
 	ftp://ftp.oregonstate.edu/pub/apache/ \
 	ftp://apache.mirrors.tds.net/pub/apache.org/ \
 	ftp://ftp.mirrorservice.org/sites/ftp.apache.org/ \
-	http://gd.tuwien.ac.at/pub/infosys/servers/http/apache/dist/ \
 	ftp://ftp.meisei-u.ac.jp/pub/www/apache/dist/ \
 	ftp://ftp.twaren.net/Unix/Web/apache/
 
@@ -206,7 +204,6 @@ MASTER_SITE_DEBIAN+= \
 
 MASTER_SITE_OPENOFFICE+=	\
 	ftp://ftp.ussg.iu.edu/pub/openoffice/ \
-	http://gd.tuwien.ac.at/office/openoffice/ \
 	ftp://sunsite.informatik.rwth-aachen.de/pub/mirror/OpenOffice/ \
 	ftp://ftp-stud.fht-esslingen.de/pub/Mirrors/ftp.openoffice.org/ \
 	http://ftp.ntua.gr/pub/OpenOffice/ \

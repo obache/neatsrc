@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.9 2018/02/23 15:02:14 adam Exp $
+$NetBSD: distinfo,v 1.10 2018/04/23 07:00:39 adam Exp $
 
 SHA1 (libdatrie-0.2.11.tar.xz) = 29689f5fcd4a6be42ea77edbbee6d4a421966084
 RMD160 (libdatrie-0.2.11.tar.xz) = 57d7d19ef9e38a0f231a2c2456ffed47b74d0cda
