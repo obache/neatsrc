@@ -1,7 +1,9 @@
-datrie is an implementation of double-array structure for representing trie, as
-proposed by Junichi Aoe.
+datrie is an implementation of double-array structure for representing trie,
+as proposed by Junichi Aoe.
 
-Trie is a kind of digital search tree, an efficient indexing method with O(1)
-time complexity for searching. Comparably as efficient as hashing, trie also
-provides flexibility on incremental matching and key spelling manipulation.
-This makes it ideal for lexical analyzers, as well as spelling dictionaries.
+Trie is a kind of digital search tree, an efficient indexing method in which
+search time is independent of database size. It only takes O(m) search time,
+where m is the length of the search string. Comparably as efficient as hashing,
+trie also provides flexibility on incremental matching and key spelling
+manipulation. This makes it ideal for lexical analyzers, as well as spelling
+dictionaries.
