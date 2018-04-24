@@ -13,5 +13,4 @@ post-extract:
 
 .include "../../lang/php/ext.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
