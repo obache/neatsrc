@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=	fonts-tlwg-0.6.4
+DISTNAME=	fonts-tlwg-0.6.5
 CATEGORIES=	fonts
 MASTER_SITES=	http://linux.thai.net/pub/thailinux/software/fonts-tlwg/
 EXTRACT_SUFX=	.tar.xz
@@ -13,10 +13,6 @@ TOOL_DEPENDS+=	fontforge>=20080110:../../fonts/fontforge
 
 USE_TOOLS+=	gmake
 GNU_CONFIGURE=	yes
-
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
-
-INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples/${PKGBASE}
 
 FONTDIR=		${PREFIX}/share/fonts/truetype/thai
 FONTS_DIRS.ttf+=	${FONTDIR}
@@ -38,7 +34,7 @@ FC_AVAILS+=	89-tlwg-laksaman-synthetic.conf
 FC_AVAILS+=	89-tlwg-umpush-synthetic.conf
 
 .for f in ${FC_AVAILS}
-CONF_FILES+=	${PREFIX}/share/examples/${PKGBASE}/fonts/conf.avail/${f} \
+CONF_FILES+=	${PREFIX}/share/fontconfig/conf.avail/${f} \
 		${PKG_SYSCONFDIR}/fontconfig/conf.d/${f}
 .endfor
 
@@ -47,7 +43,7 @@ post-extract:
 
 post-install:
 	${INSTALL_DATA} ${WRKDIR}/00-tlwg.conf \
-		${DESTDIR}${PREFIX}/share/examples/${PKGBASE}/fonts/conf.avail/00-tlwg.conf
+		${DESTDIR}${PREFIX}/share/fontconfig/conf.avail/00-tlwg.conf
 
 SUBST_CLASSES+=		fontdir
 SUBST_STAGE.fontdir=	post-configure
