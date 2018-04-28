@@ -5,7 +5,7 @@
 COMMENT=	Intelligent Input Bus
 
 DEPENDS+=	${PYPKGPREFIX}-gobject3-[0-9]*:../../devel/py-gobject3
-BUILD_DEPENDS+=	cldr-emoji-annotation-[0-9]*:../../textproc/cldr-emoji-annotation
+BUILD_DEPENDS+=	cldr-emoji-annotation>=33.0.0.1:../../textproc/cldr-emoji-annotation
 BUILD_DEPENDS+=	unicode-character-database-[0-9]*:../../textproc/unicode-character-database
 BUILD_DEPENDS+=	unicode-emoji-[0-9]*:../../textproc/unicode-emoji
 
