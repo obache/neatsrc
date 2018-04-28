@@ -37,8 +37,6 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-test-cov-[0-9]*:../../devel/py-test-cov
 USE_LANGUAGES=		# none
 USE_TOOLS+=		makeinfo
 
-REPLACE_PYTHON+=	sphinx/pycode/pgen2/token.py
-
 do-test:
 	cd ${WRKSRC} && py.test-${PYVERSSUFFIX}
 
