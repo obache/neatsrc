@@ -11,9 +11,11 @@ BUILD_DEPENDS+=	unicode-emoji-[0-9]*:../../textproc/unicode-emoji
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
-USE_TOOLS+=	pkg-config intltool gmsgfmt gmake
+USE_TOOLS+=	pkg-config intltool msgfmt gmake
 USE_LANGUAGES=	c c++
 USE_PKGLOCALEDIR=	yes
+
+GETTEXT_TOOLS_REQD=	0.19.7
 
 GCONF_SCHEMAS+=		ibus.schemas
 PKGCONFIG_OVERRIDE+=	ibus-1.0.pc.in
