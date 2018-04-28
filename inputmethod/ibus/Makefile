@@ -67,8 +67,6 @@ BUILDLINK_API_DEPENDS.glib2+=		glib2>=2.26.0
 PY_PATCHPLIST=	yes
 .include "../../sysutils/libnotify/buildlink3.mk"
 .include "../../textproc/iso-codes/buildlink3.mk"
-BUILDLINK_DEPMETHOD.json-glib+=	build
-.include "../../textproc/json-glib/buildlink3.mk"
 GTK2_IMMODULES=	yes
 .include "../../x11/gtk2/modules.mk"
 .include "../../x11/gtk2/buildlink3.mk"
