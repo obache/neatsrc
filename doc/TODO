@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.18285 2018/04/23 12:02:17 adam Exp $
+$NetBSD: TODO,v 1.18295 2018/04/27 15:09:05 wiz Exp $
 
 Suggested new packages
 ======================
@@ -416,7 +416,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o asn1c-0.9.27
 	o aspell-nb-2.0.10
 	o asterisk13-13.17.1
-	o asunder-2.8
 	o aterm-1.0.1
 	o attica-qt5-5.45.0
 	o aubio-0.4.2
@@ -465,7 +464,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cal3d-0.11.0
 	o calc-2.11.10.1
 	o calcoo-2.1.0
-	o calibre-3.22.1
 	o calligra-3.0.1 [in wip; koffice successor]
 	o cardboard-schedule-1.14c [at http://www.bright-green.com/downloads/]
 	o catdoc-1.1
@@ -623,7 +621,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o fet-5.28.6
 	o fetchmail-6.3.26
 	o fetchyahoo-2.14.0
-	o ffmpeg-4.0
 	o ffmpegthumbnailer-2.2.0
 	o file-5.33
 	o filerunner-14.06.18.10
@@ -758,12 +755,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o grilo-0.2.12
 	o grilo-plugins-0.2.14
 	o gromacs-5.1.2
-	o gsed-4.5
 	o gss-1.0.3
 	o gst-plugins1-omx-1.10.0
 	o gst123-0.3.5
 	o gthumb-3.4.0
-	o gtk3-3.22.30
 	o gtkglarea-2.1.0
 	o gtklevel9-5.1
 	o gtkmagnetic-23
@@ -968,7 +963,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libgnomedb-3.1.2
 	o libgnomekbd-3.4.0.2
 	o libgphoto2-2.5.16
-	o libgsf-1.14.43
 	o libisoburn-1.4.0
 	o libisofs-1.4.2
 	o libixp-0.5 [breaks wmii-3.6, wait for compatible version; see also wmii+ixp entry]
@@ -990,14 +984,12 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libquantum-1.1.0 [pkg/43728, development release]
 	o libressl-2.7.1
 	o librsvg-2.42.3 [needs rust+cargo]
-	o libsoup-2.62.1
 	o libstree-0.4.2
 	o libtcl-nothread-8.5.1
 	o libtecla-1.6.3
 	o libtrace-3.0.22
 	o libv4l-0.8.5
 	o libvirt-2.3
-	o libwebp-1.0.0
 	o libxdg-basedir-1.2.0
 	o libykneomgr-0.1.8
 	o libyubikey-1.13
@@ -1084,7 +1076,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mp3splt-2.6.2
 	o mp3splt-gtk-0.9.0
 	o mpdas-0.4.1
-	o mpv-0.28.2 [leot, needs a not-yet-released ffmpeg3]
+	o mpv-0.28.2 [leot]
 	o mserv-devel-0.41
 	o multitail-6.4.2
 	o munin-doc-1.4.6
@@ -1164,7 +1156,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o pcc-current-20160305
 	o pdmenu-1.2.87
 	o pen-0.32.0
-	o perl5-5.26.2
 	o pessulus-2.30.3 [GNOME 2.28]
 	o pflogsumm-1.1.5
 	o pgadmin4-1.0
@@ -1239,9 +1230,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-HappyDoc-3.0
 	o py-Scientific-doc-2.5.5
 	o py-augeas-1.0.3
-	o py-cairo-1.17.0
 	o py-cassa-1.11.0
-	o py-certifi-2018.4.16
 	o py-cssselect2-0.2.1
 	o py-doctor-15.1.0
 	o py-ephem3-3.7.6.0
@@ -1465,7 +1454,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o userppp-030706
 	o userspace-rcu-0.9.1
 	o utilisp-1.14
-	o vala-0.40.4
 	o valgrind-3.13
 	o varnish-6.0
 	o varnish-5.1.3

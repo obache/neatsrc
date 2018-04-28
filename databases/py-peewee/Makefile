@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.35 2018/04/23 15:28:54 fhajny Exp $
+# $NetBSD: Makefile,v 1.37 2018/04/27 13:52:59 fhajny Exp $
 
-DISTNAME=	peewee-3.2.5
+DISTNAME=	peewee-3.3.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-CATEGORIES=	databases
-MASTER_SITES=	${MASTER_SITE_GITHUB:=coleifer/}
+CATEGORIES=	databases python
+MASTER_SITES=	${MASTER_SITE_PYPI:=p/peewee/}
 
 MAINTAINER=	filip@joyent.com
 HOMEPAGE=	http://www.peewee-orm.com/
@@ -13,10 +13,6 @@ LICENSE=	mit
 GITHUB_PROJECT=	peewee
 
 DEPENDS+=	${PYPKGPREFIX}-cython>=0.22.1:../../devel/py-cython
-
-USE_LANGUAGES=	c
-USE_TOOLS+=	bash
-
 BUILD_DEPENDS+=	${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 TEST_DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
 
