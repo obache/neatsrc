@@ -20,6 +20,8 @@ NOT_FOR_PLATFORM=	Interix-*-* # taking nearly a day to build and crash!
 
 CONFLICTS=	static-ast-ksh-[0-9]*
 
+FORTIFY_SUPPORTED=	no
+
 ASTKSH_VERSION=	2012-08-01
 
 WRKSRC=		${WRKDIR}
