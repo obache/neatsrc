@@ -16,5 +16,5 @@ USE_TOOLS+=		pkg-config
 
 BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.13.1
 .include "../../graphics/cairo/buildlink3.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,5 +1,4 @@
 @comment $NetBSD: PLIST,v 1.7 2018/04/27 14:37:09 wiz Exp $
-${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/cairo/__init__.py
 ${PYSITELIB}/cairo/__init__.pyc
 ${PYSITELIB}/cairo/__init__.pyi
@@ -12,3 +11,7 @@ ${PLIST.py2x}include/pycairo/pycairo.h
 ${PLIST.py3x}include/pycairo/py3cairo.h
 ${PLIST.py2x}lib/pkgconfig/pycairo.pc
 ${PLIST.py3x}lib/pkgconfig/py3cairo.pc
+${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
+${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
+${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
+${PYSITELIB}/${EGG_INFODIR}/top_level.txt
