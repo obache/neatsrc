@@ -1,8 +1,20 @@
 $NetBSD$
 
---- imap/http_caldav.c.orig	2015-05-08 03:49:52.000000000 +0000
+* libical >= 3.0 API
+* fix type mismatch
+
+--- imap/http_caldav.c.orig	2017-05-09 00:40:13.000000000 +0000
 +++ imap/http_caldav.c
-@@ -3870,7 +3870,7 @@ static int propfind_timezone(const xmlCh
+@@ -2023,7 +2023,7 @@ static struct icaltimetype icaltime_from
+ 	goto fail;
+     }
+ 
+-    tt.is_utc = 1;
++    icaltime_set_timezone(&tt, icaltimezone_get_utc_timezone());
+     return tt;
+ 
+   fail:
+@@ -3894,7 +3894,7 @@ static int propfind_timezone(const xmlCh
  {
      xmlNodePtr prop = (xmlNodePtr) rock;
      const char *data = NULL, *msg_base = NULL;
