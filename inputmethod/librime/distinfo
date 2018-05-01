@@ -1,8 +1,7 @@
 $NetBSD: distinfo,v 1.5 2018/03/07 09:34:09 wiz Exp $
 
-SHA1 (rime-1.2.9.tar.gz) = 5fc325079051d34e66e84bc188ba08bb7b08ed71
-RMD160 (rime-1.2.9.tar.gz) = dbc6b07d350fc93b002a3fc878ba0b2a6a0bada5
-SHA512 (rime-1.2.9.tar.gz) = 2266ef96ad21ec5981b4ca5371d4e16eefed545ffbde07093ae0d0be070a64f9869baa09b6bdcee2522438e08c72a842a7e0b225a6ca1b661708a80cf3aba83a
-Size (rime-1.2.9.tar.gz) = 5516609 bytes
-SHA1 (patch-CMakeLists.txt) = f7dcb8b39f1ba0b7cf405dc8f3ccedaee1deb69c
-SHA1 (patch-src_gear_simplifier.cc) = f5aa97f914da882572c585fc2cd0cbfca1545ea5
+SHA1 (rime-1.2.10.tar.gz) = a0afb75afc27a867aa4cab998be695e5b6a08886
+RMD160 (rime-1.2.10.tar.gz) = 8cdbf75f38d5e1e0788d7fcef82a4f6356931098
+SHA512 (rime-1.2.10.tar.gz) = b4a0f21f43945205aabcda7af883965d2a09035700ad43d5491d7feb144d9b9e584fdf92476544eb90eb43baaaa42447bd5d42568e86f584f1be92f328c03cc8
+Size (rime-1.2.10.tar.gz) = 8597916 bytes
+SHA1 (patch-CMakeLists.txt) = 26f8f6e5e68da994613c02275fd94689ed9f0e56

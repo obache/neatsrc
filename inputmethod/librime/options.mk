@@ -8,6 +8,8 @@ PKG_SUPPORTED_OPTIONS=		tests
 
 .if !empty(PKG_OPTIONS:Mtests)
 .include "../../devel/googletest/buildlink3.mk"
-CMAKE_ARGS+=	-DBUILD_TEST=ON
+CMAKE_ARGS+=	-DBUILD_TEST:BOOL=ON
 TEST_TARGET=	test
+.else
+CMAKE_ARGS+=	-DBUILD_TEST:BOOL=OFF
 .endif

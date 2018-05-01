@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.14 2018/03/07 11:57:31 wiz Exp $
 
-DISTNAME=	rime-1.2.9
+DISTNAME=	rime-1.2.10
 PKGNAME=	lib${DISTNAME}
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	https://github.com/rime/librime/archive/
@@ -19,7 +19,10 @@ PKGCONFIG_OVERRIDE+=	rime.pc.in
 
 .include "options.mk"
 
+CHECK_PORTABILITY_SKIP+=	thirdparty/src/yaml-cpp/test/gmock-1.7.0/configure
+
 .include "../../converters/opencc/buildlink3.mk"
+.include "../../converters/libiconv/buildlink3.mk"
 .include "../../databases/leveldb/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/google-glog/buildlink3.mk"
