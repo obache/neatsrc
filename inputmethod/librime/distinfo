@@ -1,8 +1,8 @@
 $NetBSD: distinfo,v 1.5 2018/03/07 09:34:09 wiz Exp $
 
-SHA1 (librime-1.2.tar.gz) = 35539cae733adefc61f3b22a2c4f75110870ac53
-RMD160 (librime-1.2.tar.gz) = 18c656a5c7f09754327054ab27fb5feb54684ceb
-SHA512 (librime-1.2.tar.gz) = 75a771916a58b1ab678dbf05ac074a651cea077e81d25e4dfd0ea839fabe6cf606135851e72c19d6a8a9c6ed66b89928b90785f282e8786c375bc1d393059227
-Size (librime-1.2.tar.gz) = 5199581 bytes
+SHA1 (rime-1.2.9.tar.gz) = 5fc325079051d34e66e84bc188ba08bb7b08ed71
+RMD160 (rime-1.2.9.tar.gz) = dbc6b07d350fc93b002a3fc878ba0b2a6a0bada5
+SHA512 (rime-1.2.9.tar.gz) = 2266ef96ad21ec5981b4ca5371d4e16eefed545ffbde07093ae0d0be070a64f9869baa09b6bdcee2522438e08c72a842a7e0b225a6ca1b661708a80cf3aba83a
+Size (rime-1.2.9.tar.gz) = 5516609 bytes
 SHA1 (patch-CMakeLists.txt) = f7dcb8b39f1ba0b7cf405dc8f3ccedaee1deb69c
 SHA1 (patch-src_gear_simplifier.cc) = f5aa97f914da882572c585fc2cd0cbfca1545ea5

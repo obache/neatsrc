@@ -4,6 +4,6 @@ bin/rime_dict_manager
 include/rime_api.h
 lib/librime.so
 lib/librime.so.1
-lib/librime.so.${PKGVERSION}.0
+lib/librime.so.${PKGVERSION}
 lib/pkgconfig/rime.pc
 share/cmake/rime/RimeConfig.cmake
