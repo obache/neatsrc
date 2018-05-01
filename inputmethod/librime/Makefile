@@ -25,7 +25,6 @@ CHECK_PORTABILITY_SKIP+=	thirdparty/src/yaml-cpp/test/gmock-1.7.0/configure
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../databases/leveldb/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
-.include "../../devel/google-glog/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../textproc/yaml-cpp/buildlink3.mk"
 .include "../../textproc/marisa/buildlink3.mk"
