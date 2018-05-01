@@ -17,7 +17,6 @@ share/ibus-libpinyin/icons/ibus-bopomofo.svg
 share/ibus-libpinyin/icons/ibus-pinyin.svg
 share/ibus-libpinyin/icons/simp-chinese.svg
 share/ibus-libpinyin/icons/trad-chinese.svg
-share/ibus-libpinyin/phrases.txt
 share/ibus-libpinyin/setup/config.py
 share/ibus-libpinyin/setup/config.pyc
 share/ibus-libpinyin/setup/config.pyo
@@ -36,6 +35,7 @@ share/ibus-libpinyin/setup/shortcuteditor.pyc
 share/ibus-libpinyin/setup/shortcuteditor.pyo
 ${PLIST.lua}share/ibus-libpinyin/user.lua
 share/ibus/component/libpinyin.xml
+share/glib-2.0/schemas/com.github.libpinyin.ibus-libpinyin.gschema.xml
 share/locale/ca/LC_MESSAGES/ibus-libpinyin.mo
 share/locale/fr/LC_MESSAGES/ibus-libpinyin.mo
 share/locale/ru/LC_MESSAGES/ibus-libpinyin.mo
