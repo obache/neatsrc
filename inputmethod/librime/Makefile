@@ -1,16 +1,14 @@
 # $NetBSD: Makefile,v 1.14 2018/03/07 11:57:31 wiz Exp $
 
-DISTNAME=	rime-1.3.0
-PKGNAME=	lib${DISTNAME}
+DISTNAME=	librime-1.3.0
 CATEGORIES=	inputmethod chinese
-MASTER_SITES=	https://github.com/rime/librime/archive/
+MASTER_SITES=	-https://github.com/rime/librime/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://rime.im/
 COMMENT=	Rime input method engine
 LICENSE=	modified-bsd
 
-WRKSRC=		${WRKDIR}/librime-${DISTNAME}
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c c++
