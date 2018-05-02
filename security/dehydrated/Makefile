@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.2 2017/08/07 17:56:13 jlam Exp $
 
-DISTNAME=	dehydrated-0.6.0
+DISTNAME=	dehydrated-0.6.1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GITHUB:=lukas2511/}
 

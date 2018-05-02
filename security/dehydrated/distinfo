@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.1 2017/03/10 08:30:51 nils Exp $
 
-SHA1 (dehydrated-0.6.0.tar.gz) = 258bb39a72b64261396d2a6f16c4595416cc8543
-RMD160 (dehydrated-0.6.0.tar.gz) = 222cc8009aa5b2481f88fbce918e2ba647514ac0
-SHA512 (dehydrated-0.6.0.tar.gz) = ccedf2cdc1d7354b0bc318b8291db64d3c10bab43bba914e68e671d7aea82df0b7e8ed7074d1c4be6c7999479938e6ab7dcc283d96d99a4bbd78ff2e93061599
-Size (dehydrated-0.6.0.tar.gz) = 76650 bytes
+SHA1 (dehydrated-0.6.1.tar.gz) = 528fd04d4af4a433b38c308ac0d41b6f4dc3218b
+RMD160 (dehydrated-0.6.1.tar.gz) = 326bac5356ddec2fe001953798fe4cd91716f70d
+SHA512 (dehydrated-0.6.1.tar.gz) = c3ef92da4e0e12100d267422eb2667607842f6fb0fe10cbc4d10aee9b5137d292db2348eca34b1f492e21c6c325dcbb595a9ab4de634e4d4a43346be1e2ce0ad
+Size (dehydrated-0.6.1.tar.gz) = 76693 bytes
