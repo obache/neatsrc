@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.2 2017/08/07 17:56:13 jlam Exp $
 
-DISTNAME=	dehydrated-0.5.0
+DISTNAME=	dehydrated-0.6.0
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GITHUB:=lukas2511/}
 
@@ -17,7 +17,7 @@ NO_BUILD=	yes
 USE_LANGUAGES=	# none
 USE_TOOLS+=	bash:run sed:run awk:run curl:run pax openssl:run
 USE_TOOLS+=	grep:run mktemp:run diff:run readlink:run
-REPLACE_BASH=	dehydrated test.sh docs/examples/hook.sh
+REPLACE_BASH=	dehydrated docs/examples/hook.sh
 
 PKG_SYSCONFSUBDIR=	${PKGBASE}
 
@@ -25,7 +25,7 @@ EGDIR=			${PREFIX}/share/examples/dehydrated
 CONF_FILES=		${EGDIR}/config ${PKG_SYSCONFDIR}/config
 CONF_FILES+=		${EGDIR}/domains.txt ${PKG_SYSCONFDIR}/domains.txt
 DOCDIR=			share/doc/dehydrated
-INSTALLATION_DIRS+=	${EGDIR} ${DOCDIR} bin
+INSTALLATION_DIRS+=	${EGDIR} ${DOCDIR} bin man/man1
 
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	post-extract
@@ -34,6 +34,7 @@ SUBST_SED.paths=	-e 's|/usr/local/etc/${PKGBASE}|${PKG_SYSCONFDIR}|g'
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/dehydrated ${DESTDIR}${PREFIX}/bin/dehydrated
+	${INSTALL_MAN} ${WRKSRC}/docs/man/dehydrated.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 	${INSTALL_DATA} ${WRKSRC}/CHANGELOG ${DESTDIR}${PREFIX}/${DOCDIR}
 	${INSTALL_DATA} ${WRKSRC}/LICENSE ${DESTDIR}${PREFIX}/${DOCDIR}
 	${INSTALL_DATA} ${WRKSRC}/README.md ${DESTDIR}${PREFIX}/${DOCDIR}

@@ -1,5 +1,6 @@
 @comment $NetBSD: PLIST,v 1.1 2017/03/10 08:30:51 nils Exp $
 bin/dehydrated
+man/man1/dehydrated.1
 share/doc/dehydrated/CHANGELOG
 share/doc/dehydrated/LICENSE
 share/doc/dehydrated/README.md
