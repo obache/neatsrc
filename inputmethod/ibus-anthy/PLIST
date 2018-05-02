@@ -7,6 +7,7 @@ libexec/ibus-setup-anthy
 share/appdata/ibus-anthy.appdata.xml
 share/applications/ibus-setup-anthy.desktop
 share/gir-1.0/Anthy-9000.gir
+share/glib-2.0/schemas/org.freedesktop.ibus.engine.anthy.gschema.xml
 share/ibus-anthy/dicts/emoji.t
 share/ibus-anthy/dicts/era.t
 share/ibus-anthy/dicts/oldchar.t
@@ -59,7 +60,9 @@ share/ibus-anthy/setup/setup.ui
 share/ibus/component/anthy.xml
 share/icons/hicolor/scalable/apps/ibus-anthy.svg
 share/locale/ca/LC_MESSAGES/ibus-anthy.mo
+share/locale/cs/LC_MESSAGES/ibus-anthy.mo
 share/locale/el/LC_MESSAGES/ibus-anthy.mo
+share/locale/es/LC_MESSAGES/ibus-anthy.mo
 share/locale/fr/LC_MESSAGES/ibus-anthy.mo
 share/locale/ja/LC_MESSAGES/ibus-anthy.mo
 share/locale/pt_BR/LC_MESSAGES/ibus-anthy.mo

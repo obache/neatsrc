@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.21 2017/08/16 21:22:12 wiz Exp $
 
-DISTNAME=	ibus-anthy-1.5.9
+DISTNAME=	ibus-anthy-1.5.10
 CATEGORIES=	inputmethod japanese
 MASTER_SITES=	https://github.com/ibus/ibus-anthy/releases/download/${PKGVERSION_NOREV}/
 
@@ -30,8 +30,7 @@ BUILDLINK_API_DEPENDS.glib2+=		glib2>=2.26.0
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_DEPMETHOD.gobject-introspection=	build
 .include "../../devel/gobject-introspection/buildlink3.mk"
-PY_PATCHPLIST=		yes
-.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/application.mk"
 .include "../../inputmethod/anthy/buildlink3.mk"
+.include "../../devel/glib2/schemas.mk"
 .include "../../mk/bsd.pkg.mk"
