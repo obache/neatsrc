@@ -156,7 +156,6 @@ sbin/chk_cyrus
 sbin/ctl_conversationsdb
 sbin/ctl_cyrusdb
 sbin/ctl_deliver
-${PLIST.http}sbin/ctl_jmapauth
 sbin/ctl_mboxlist
 ${PLIST.http}sbin/ctl_zoneinfo
 sbin/cvt_cyrusdb
@@ -311,7 +310,6 @@ share/doc/cyrus-imapd/html/_sources/imap/download/installation/distributions/rhe
 share/doc/cyrus-imapd/html/_sources/imap/download/installation/distributions/ubuntu.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/installation/http/caldav.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/installation/http/carddav.txt
-share/doc/cyrus-imapd/html/_sources/imap/download/installation/http/jmap.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/installation/http/rss.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/installation/http/webdav.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/installation/manage-dav.txt
@@ -407,6 +405,7 @@ share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.1.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.2.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.3.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.4.txt
+share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.5.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/${PKGVERSION}.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/index.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/upgrade.txt
@@ -632,7 +631,6 @@ share/doc/cyrus-imapd/html/_static/event_notifications/QuotaWithin.json
 share/doc/cyrus-imapd/html/_static/favicon.ico
 share/doc/cyrus-imapd/html/_static/file.png
 share/doc/cyrus-imapd/html/_static/fonts/Inconsolata-Bold.ttf
-share/doc/cyrus-imapd/html/_static/fonts/Inconsolata-Regular.ttf
 share/doc/cyrus-imapd/html/_static/fonts/Inconsolata.ttf
 share/doc/cyrus-imapd/html/_static/fonts/Lato-Bold.ttf
 share/doc/cyrus-imapd/html/_static/fonts/Lato-Regular.ttf
@@ -723,7 +721,6 @@ share/doc/cyrus-imapd/html/imap/download/installation/distributions/rhel.html
 share/doc/cyrus-imapd/html/imap/download/installation/distributions/ubuntu.html
 share/doc/cyrus-imapd/html/imap/download/installation/http/caldav.html
 share/doc/cyrus-imapd/html/imap/download/installation/http/carddav.html
-share/doc/cyrus-imapd/html/imap/download/installation/http/jmap.html
 share/doc/cyrus-imapd/html/imap/download/installation/http/rss.html
 share/doc/cyrus-imapd/html/imap/download/installation/http/webdav.html
 share/doc/cyrus-imapd/html/imap/download/installation/manage-dav.html
@@ -819,6 +816,7 @@ share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.1.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.2.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.3.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.4.html
+share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.5.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/${PKGVERSION}.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/index.html
 share/doc/cyrus-imapd/html/imap/download/upgrade.html
@@ -1139,7 +1137,6 @@ share/doc/cyrus-imapd/text/imap/download/installation/distributions/rhel.txt
 share/doc/cyrus-imapd/text/imap/download/installation/distributions/ubuntu.txt
 share/doc/cyrus-imapd/text/imap/download/installation/http/caldav.txt
 share/doc/cyrus-imapd/text/imap/download/installation/http/carddav.txt
-share/doc/cyrus-imapd/text/imap/download/installation/http/jmap.txt
 share/doc/cyrus-imapd/text/imap/download/installation/http/rss.txt
 share/doc/cyrus-imapd/text/imap/download/installation/http/webdav.txt
 share/doc/cyrus-imapd/text/imap/download/installation/manage-dav.txt
@@ -1235,6 +1232,7 @@ share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.1.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.2.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.3.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.4.txt
+share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.5.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/${PKGVERSION}.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/index.txt
 share/doc/cyrus-imapd/text/imap/download/upgrade.txt
