@@ -1,9 +1,8 @@
 # $NetBSD: Makefile,v 1.10 2018/01/01 21:18:37 adam Exp $
 
-DISTNAME=	ibus-rime-1.2
-PKGREVISION=	6
+DISTNAME=	ibus-rime-1.3.0
 CATEGORIES=	inputmethod chinese
-MASTER_SITES=	http://dl.bintray.com/lotem/rime/
+MASTER_SITES=	-https://github.com/rime/ibus-rime/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://rime.im/
@@ -12,7 +11,6 @@ LICENSE=	gnu-gpl-v3
 
 DEPENDS+=	brise>=0.35:../../inputmethod/brise
 
-WRKSRC=		${WRKDIR}/ibus-rime
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config
@@ -24,12 +22,13 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/rime.xml ${DESTDIR}${PREFIX}/share/ibus/component/
 	${INSTALL_DATA} ${WRKSRC}/icons/*.png ${DESTDIR}${PREFIX}/share/ibus-rime/icons/
 
-SUBST_CLASSES+=		prefix
-SUBST_STAGE.prefix=	post-configure
-SUBST_FILES.prefix=	rime.xml
-SUBST_SED.prefix=	-e 's,/usr/,${PREFIX}/,g'
+SUBST_CLASSES+=	dl
+SUBST_STAGE.dl=	pre-configure
+SUBST_FILES.dl=	CMakeLists.txt
+SUBST_SED.dl=	-e 's,"dl",${BUILDLINK_LDADD.dl:S/-l//g},'
 
 .include "../../inputmethod/librime/buildlink3.mk"
 .include "../../inputmethod/ibus/buildlink3.mk"
 .include "../../sysutils/libnotify/buildlink3.mk"
+.include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
