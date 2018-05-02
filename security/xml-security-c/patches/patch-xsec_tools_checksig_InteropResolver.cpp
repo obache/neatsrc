@@ -1,4 +1,4 @@
-$NetBSD: patch-xsec_tools_checksig_InteropResolver.cpp,v 1.1 2017/09/23 15:30:01 joerg Exp $
+$NetBSD: patch-xsec_tools_checksig_InteropResolver.cpp,v 1.3 2018/04/30 06:50:58 ryoon Exp $
 
 false is a bad pointer value.
 

@@ -17,7 +17,7 @@ import (
 // InitVartypes initializes the long list of predefined pkgsrc variables.
 // After this is done, ${PKGNAME}, ${MAKE_ENV} and all the other variables
 // can be used in Makefiles without triggering warnings about typos.
-func (src *PkgsrcImpl) InitVartypes() {
+func (src *Pkgsrc) InitVartypes() {
 
 	acl := func(varname string, kindOfList KindOfList, checker *BasicType, aclentries string) {
 		m := mustMatch(varname, `^([A-Z_.][A-Z0-9_]*)(|\*|\.\*)$`)
@@ -938,6 +938,7 @@ func (src *PkgsrcImpl) InitVartypes() {
 	pkg("SMF_METHOD_SHELL", lkNone, BtShellCommand)
 	pkglist("SPECIAL_PERMS", lkShell, BtPerms)
 	sys("STEP_MSG", lkNone, BtShellCommand)
+	sys("STRIP", lkNone, BtShellCommand) // see mk/tools/strip.mk
 	acl("SUBDIR", lkShell, BtFilename, "Makefile: append; *:")
 	acl("SUBST_CLASSES", lkShell, BtIdentifier, "Makefile: set, append; *: append")
 	acl("SUBST_CLASSES.*", lkShell, BtIdentifier, "Makefile: set, append; *: append")

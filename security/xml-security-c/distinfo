@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.8 2017/09/23 15:30:01 joerg Exp $
+$NetBSD: distinfo,v 1.10 2018/04/30 06:50:58 ryoon Exp $
 
 SHA1 (xml-security-c-1.7.3.tar.gz) = bcbe98e0bd3695a0b961a223cce53e2f35c4681b
 RMD160 (xml-security-c-1.7.3.tar.gz) = f0c9c3668a3ff2e13647909b926e20fdba828ad2

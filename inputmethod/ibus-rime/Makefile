@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2018/01/01 21:18:37 adam Exp $
+# $NetBSD: Makefile,v 1.11 2018/04/29 21:31:48 adam Exp $
 
 DISTNAME=	ibus-rime-1.3.0
 CATEGORIES=	inputmethod chinese

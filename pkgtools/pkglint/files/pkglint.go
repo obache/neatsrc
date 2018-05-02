@@ -27,7 +27,7 @@ const confVersion = "@VERSION@"
 //  tracing.traceDepth (not thread-safe)
 type Pkglint struct {
 	opts   CmdOpts  // Command line options.
-	Pkgsrc Pkgsrc   // Global data, mostly extracted from mk/*.
+	Pkgsrc *Pkgsrc  // Global data, mostly extracted from mk/*.
 	Pkg    *Package // The package that is currently checked.
 	Mk     *MkLines // The Makefile (or fragment) that is currently checked.
 
@@ -119,8 +119,8 @@ func main() {
 }
 
 // Main runs the main program with the given arguments.
-// args[0] is the program name.
-func (pkglint *Pkglint) Main(args ...string) (exitcode int) {
+// argv[0] is the program name.
+func (pkglint *Pkglint) Main(argv ...string) (exitcode int) {
 	defer func() {
 		if r := recover(); r != nil {
 			if _, ok := r.(pkglintFatal); ok {
@@ -131,7 +131,7 @@ func (pkglint *Pkglint) Main(args ...string) (exitcode int) {
 		}
 	}()
 
-	if exitcode := pkglint.ParseCommandLine(args); exitcode != nil {
+	if exitcode := pkglint.ParseCommandLine(argv); exitcode != nil {
 		return *exitcode
 	}
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1212 2018/04/28 01:24:40 minskim Exp $
+# $NetBSD: Makefile,v 1.1214 2018/05/01 21:11:22 khorben Exp $
 #
 
 COMMENT=	Networking tools
@@ -164,6 +164,7 @@ SUBDIR+=	freeradius2
 SUBDIR+=	freerdp
 SUBDIR+=	ftplibpp
 SUBDIR+=	ftpproxy
+SUBDIR+=	fwknop
 SUBDIR+=	gallery-dl
 SUBDIR+=	gated
 SUBDIR+=	gcloud-golang-metadata
@@ -866,6 +867,7 @@ SUBDIR+=	unifi
 SUBDIR+=	unison
 SUBDIR+=	unison2.32
 SUBDIR+=	unison2.40
+SUBDIR+=	unison2.51
 SUBDIR+=	unworkable
 SUBDIR+=	upclient
 SUBDIR+=	upnpinspector

@@ -11,10 +11,7 @@ import (
 // Pkgsrc describes a pkgsrc installation.
 // In each pkglint run, only a single pkgsrc installation is ever loaded.
 // It just doesn't make sense to check multiple pkgsrc installations at once.
-type Pkgsrc = *PkgsrcImpl
-
-type PkgsrcImpl struct {
-
+type Pkgsrc struct {
 	// The top directory (PKGSRCDIR), either absolute or relative to
 	// the current working directory.
 	topdir string
@@ -40,8 +37,8 @@ type PkgsrcImpl struct {
 	vartypes        map[string]*Vartype // varcanon => type
 }
 
-func NewPkgsrc(dir string) Pkgsrc {
-	src := &PkgsrcImpl{
+func NewPkgsrc(dir string) *Pkgsrc {
+	src := &Pkgsrc{
 		dir,
 		make(map[string]bool),
 		NewToolRegistry(),
@@ -84,7 +81,7 @@ func NewPkgsrc(dir string) Pkgsrc {
 // This work is not done in the constructor to keep the tests
 // simple, since setting up a realistic pkgsrc environment requires
 // a lot of files.
-func (src *PkgsrcImpl) Load() {
+func (src *Pkgsrc) Load() {
 	src.InitVartypes()
 	src.loadMasterSites()
 	src.loadPkgOptions()
@@ -102,7 +99,7 @@ func (src *PkgsrcImpl) Load() {
 //
 // Example:
 //  Latest("lang", `^php[0-9]+$`, "../../lang/$0") => "../../lang/php72"
-func (src *PkgsrcImpl) Latest(category string, re regex.Pattern, repl string) string {
+func (src *Pkgsrc) Latest(category string, re regex.Pattern, repl string) string {
 	key := category + "/" + string(re) + " => " + repl
 	if latest, found := src.latest[key]; found {
 		return latest
@@ -142,10 +139,11 @@ func (src *PkgsrcImpl) Latest(category string, re regex.Pattern, repl string) st
 }
 
 // loadTools loads the tool definitions from `mk/tools/*`.
-func (src *PkgsrcImpl) loadTools() {
+func (src *Pkgsrc) loadTools() {
 	toolFiles := []string{"defaults.mk"}
 	{
-		lines := G.Pkgsrc.LoadExistingLines("mk/tools/bsd.tools.mk", true)
+		toc := G.Pkgsrc.File("mk/tools/bsd.tools.mk")
+		lines := LoadExistingLines(toc, true)
 		for _, line := range lines {
 			if m, _, _, includefile := MatchMkInclude(line.Text); m {
 				if !contains(includefile, "/") {
@@ -154,16 +152,16 @@ func (src *PkgsrcImpl) loadTools() {
 			}
 		}
 		if len(toolFiles) <= 1 {
-			lines[0].Fatalf("Too few tool files.")
+			NewLine(toc, 0, "", nil).Fatalf("Too few tool files.")
 		}
 	}
 
 	reg := src.Tools
-	reg.RegisterTool(&Tool{"echo", "ECHO", true, true, true})
-	reg.RegisterTool(&Tool{"echo -n", "ECHO_N", true, true, true})
-	reg.RegisterTool(&Tool{"false", "FALSE", true /*why?*/, true, false})
-	reg.RegisterTool(&Tool{"test", "TEST", true, true, true})
-	reg.RegisterTool(&Tool{"true", "TRUE", true /*why?*/, true, true})
+	reg.RegisterTool(&Tool{"echo", "ECHO", true, true, true}, dummyLine)
+	reg.RegisterTool(&Tool{"echo -n", "ECHO_N", true, true, true}, dummyLine)
+	reg.RegisterTool(&Tool{"false", "FALSE", true /*why?*/, true, false}, dummyLine)
+	reg.RegisterTool(&Tool{"test", "TEST", true, true, true}, dummyLine)
+	reg.RegisterTool(&Tool{"true", "TRUE", true /*why?*/, true, true}, dummyLine)
 
 	for _, basename := range toolFiles {
 		lines := G.Pkgsrc.LoadExistingLines("mk/tools/"+basename, true)
@@ -190,11 +188,10 @@ func (src *PkgsrcImpl) loadTools() {
 					if condDepth == 0 || condDepth == 1 && relativeName == "mk/bsd.prefs.mk" {
 						for _, toolname := range splitOnSpace(value) {
 							if !containsVarRef(toolname) {
-								for _, tool := range [...]*Tool{reg.Register(toolname), reg.Register("TOOLS_" + toolname)} {
-									tool.Predefined = true
-									if relativeName == "mk/bsd.prefs.mk" {
-										tool.UsableAtLoadtime = true
-									}
+								tool := reg.Register(toolname, line)
+								tool.Predefined = true
+								if relativeName == "mk/bsd.prefs.mk" {
+									tool.UsableAtLoadtime = true
 								}
 							}
 						}
@@ -222,12 +219,12 @@ func (src *PkgsrcImpl) loadTools() {
 	}
 }
 
-func (src *PkgsrcImpl) loadSuggestedUpdatesFile(fname string) []SuggestedUpdate {
+func (src *Pkgsrc) loadSuggestedUpdatesFile(fname string) []SuggestedUpdate {
 	lines := LoadExistingLines(fname, false)
 	return src.parseSuggestedUpdates(lines)
 }
 
-func (src *PkgsrcImpl) parseSuggestedUpdates(lines []Line) []SuggestedUpdate {
+func (src *Pkgsrc) parseSuggestedUpdates(lines []Line) []SuggestedUpdate {
 	var updates []SuggestedUpdate
 	state := 0
 	for _, line := range lines {
@@ -258,14 +255,14 @@ func (src *PkgsrcImpl) parseSuggestedUpdates(lines []Line) []SuggestedUpdate {
 	return updates
 }
 
-func (src *PkgsrcImpl) loadSuggestedUpdates() {
+func (src *Pkgsrc) loadSuggestedUpdates() {
 	src.suggestedUpdates = src.loadSuggestedUpdatesFile(G.Pkgsrc.File("doc/TODO"))
 	if wipFilename := G.Pkgsrc.File("wip/TODO"); fileExists(wipFilename) {
 		src.suggestedWipUpdates = src.loadSuggestedUpdatesFile(wipFilename)
 	}
 }
 
-func (src *PkgsrcImpl) loadDocChangesFromFile(fname string) []*Change {
+func (src *Pkgsrc) loadDocChangesFromFile(fname string) []*Change {
 	lines := LoadExistingLines(fname, false)
 
 	parseChange := func(line Line) *Change {
@@ -311,7 +308,7 @@ func (src *PkgsrcImpl) loadDocChangesFromFile(fname string) []*Change {
 	return changes
 }
 
-func (src *PkgsrcImpl) GetSuggestedPackageUpdates() []SuggestedUpdate {
+func (src *Pkgsrc) GetSuggestedPackageUpdates() []SuggestedUpdate {
 	if G.Wip {
 		return src.suggestedWipUpdates
 	} else {
@@ -319,7 +316,7 @@ func (src *PkgsrcImpl) GetSuggestedPackageUpdates() []SuggestedUpdate {
 	}
 }
 
-func (src *PkgsrcImpl) loadDocChanges() {
+func (src *Pkgsrc) loadDocChanges() {
 	docdir := G.Pkgsrc.File("doc")
 	files, err := ioutil.ReadDir(docdir)
 	if err != nil {
@@ -344,7 +341,7 @@ func (src *PkgsrcImpl) loadDocChanges() {
 	}
 }
 
-func (src *PkgsrcImpl) loadUserDefinedVars() {
+func (src *Pkgsrc) loadUserDefinedVars() {
 	lines := G.Pkgsrc.LoadExistingLines("mk/defaults/mk.conf", true)
 	mklines := NewMkLines(lines)
 
@@ -355,9 +352,8 @@ func (src *PkgsrcImpl) loadUserDefinedVars() {
 	}
 }
 
-func (src *PkgsrcImpl) initDeprecatedVars() {
+func (src *Pkgsrc) initDeprecatedVars() {
 	src.Deprecated = map[string]string{
-
 		// December 2003
 		"FIX_RPATH": "It has been removed from pkgsrc in 2003.",
 
@@ -519,15 +515,15 @@ func (src *PkgsrcImpl) initDeprecatedVars() {
 }
 
 // LoadExistingLines loads the file relative to the pkgsrc top directory.
-func (src *PkgsrcImpl) LoadExistingLines(fileName string, joinBackslashLines bool) []Line {
-	return LoadExistingLines(src.topdir+"/"+fileName, joinBackslashLines)
+func (src *Pkgsrc) LoadExistingLines(fileName string, joinBackslashLines bool) []Line {
+	return LoadExistingLines(src.File(fileName), joinBackslashLines)
 }
 
 // File resolves a file name relative to the pkgsrc top directory.
 //
 // Example:
 //  NewPkgsrc("/usr/pkgsrc").File("distfiles") => "/usr/pkgsrc/distfiles"
-func (src *PkgsrcImpl) File(relativeName string) string {
+func (src *Pkgsrc) File(relativeName string) string {
 	return src.topdir + "/" + relativeName
 }
 
@@ -535,19 +531,19 @@ func (src *PkgsrcImpl) File(relativeName string) string {
 //
 // Example:
 //  NewPkgsrc("/usr/pkgsrc").ToRel("/usr/pkgsrc/distfiles") => "distfiles"
-func (src *PkgsrcImpl) ToRel(fileName string) string {
+func (src *Pkgsrc) ToRel(fileName string) string {
 	return relpath(src.topdir, fileName)
 }
 
-func (src *PkgsrcImpl) AddBuildDef(varname string) {
+func (src *Pkgsrc) AddBuildDef(varname string) {
 	src.buildDefs[varname] = true
 }
 
-func (src *PkgsrcImpl) IsBuildDef(varname string) bool {
+func (src *Pkgsrc) IsBuildDef(varname string) bool {
 	return src.buildDefs[varname]
 }
 
-func (src *PkgsrcImpl) loadMasterSites() {
+func (src *Pkgsrc) loadMasterSites() {
 	lines := src.LoadExistingLines("mk/fetch/sites.mk", true)
 
 	nameToUrl := src.MasterSiteVarToURL
@@ -575,7 +571,7 @@ func (src *PkgsrcImpl) loadMasterSites() {
 	}
 }
 
-func (src *PkgsrcImpl) loadPkgOptions() {
+func (src *Pkgsrc) loadPkgOptions() {
 	lines := src.LoadExistingLines("mk/defaults/options.description", false)
 
 	for _, line := range lines {

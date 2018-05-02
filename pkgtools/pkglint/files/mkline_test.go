@@ -627,7 +627,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__tool_in_CONFIGURE_ENV(c *check
 
 	t.SetupCommandLine("-Wall")
 	t.SetupVartypes()
-	G.Pkgsrc.Tools.RegisterVarname("tar", "TAR")
+	G.Pkgsrc.Tools.RegisterVarname("tar", "TAR", dummyLine)
 	mklines := t.NewMkLines("Makefile",
 		MkRcsID,
 		"",
@@ -648,7 +648,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__backticks(c *check.C) {
 
 	t.SetupCommandLine("-Wall")
 	t.SetupVartypes()
-	G.Pkgsrc.Tools.RegisterVarname("cat", "CAT")
+	G.Pkgsrc.Tools.RegisterVarname("cat", "CAT", dummyLine)
 	mklines := t.NewMkLines("Makefile",
 		MkRcsID,
 		"",
@@ -850,12 +850,13 @@ func (s *Suite) Test_Indentation(c *check.C) {
 
 	ind.Push(0)
 
-	c.Check(ind.Depth(), equals, 0)
+	c.Check(ind.Depth("if"), equals, 0)
 	c.Check(ind.DependsOn("VARNAME"), equals, false)
 
 	ind.Push(2)
 
-	c.Check(ind.Depth(), equals, 2)
+	c.Check(ind.Depth("if"), equals, 2)
+	c.Check(ind.Depth("endfor"), equals, 0)
 
 	ind.AddVar("LEVEL1.VAR1")
 

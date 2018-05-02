@@ -1,6 +1,6 @@
-$NetBSD$
+$NetBSD: patch-filter_hnf.pl,v 1.1 2018/04/30 08:15:11 taca Exp $
 
-* Fix "Unescaped left brace in regex is deprecated" for perl-5.24
+Fix regular expression error with Perl 5.26.
 
 --- filter/hnf.pl.orig	2008-05-09 07:32:14.000000000 +0000
 +++ filter/hnf.pl
@@ -9,7 +9,7 @@ $NetBSD$
        }
        $uri =~ s/%%/\34/g;
 -      $uri =~ s/%{?([a-z]+)}?/$param{$1}/g;
-+      $uri =~ s/%\{?([a-z]+)}?/$param{$1}/g;
++      $uri =~ s/%\{?([a-z]+)\}?/$param{$1}/g;
        $uri =~ s/\34/%/g;
        $uri = $hnf::diary_uri . $uri;
        $uri =~ s/%7E/~/i;

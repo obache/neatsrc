@@ -1,4 +1,4 @@
-# $NetBSD: plugins.mk,v 1.1 2016/09/13 15:56:01 taca Exp $
+# $NetBSD: plugins.mk,v 1.2 2018/04/30 06:44:11 taca Exp $
 #
 
 # plugin's PKGNAME

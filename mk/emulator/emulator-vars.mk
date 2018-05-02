@@ -1,4 +1,4 @@
-# $NetBSD: emulator-vars.mk,v 1.9 2015/09/08 11:36:34 jperkin Exp $
+# $NetBSD: emulator-vars.mk,v 1.10 2018/04/30 10:41:35 wiz Exp $
 #
 # This file is included by bsd.prefs.mk only if EMUL_PLATFORMS is defined
 # and non-empty.

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.10 2018/04/28 01:40:07 tsutsui Exp $
+@comment $NetBSD: PLIST,v 1.11 2018/04/29 21:02:48 ryoon Exp $
 bin/ibus
 bin/ibus-daemon
 bin/ibus-setup
@@ -133,6 +133,7 @@ share/ibus/dicts/emoji-ast.dict
 share/ibus/dicts/emoji-am.dict
 share/ibus/dicts/emoji-ar.dict
 share/ibus/dicts/emoji-as.dict
+share/ibus/dicts/emoji-ast.dict
 share/ibus/dicts/emoji-az.dict
 share/ibus/dicts/emoji-be.dict
 share/ibus/dicts/emoji-bg.dict
