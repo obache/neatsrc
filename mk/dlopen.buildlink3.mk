@@ -37,6 +37,7 @@ BUILDLINK_AUTO_VARS.dl=		${DL_AUTO_VARS}
 .  include "../../devel/dlcompat/buildlink3.mk"
 BUILDLINK_AUTO_VARS.dlcompat=	${DL_AUTO_VARS}
 BUILDLINK_LDFLAGS.dl:=		${BUILDLINK_LDFLAGS.dlcompat}
+BUILDLINK_LDADD.dl:=		${BUILDLINK_LDFLAGS.dlcompat}
 .else
 PKG_FAIL_REASON+=	"${PKGNAME} requires a working dlopen()."
 .endif
