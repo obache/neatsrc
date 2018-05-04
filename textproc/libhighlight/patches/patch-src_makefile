@@ -1,0 +1,89 @@
+$NetBSD: patch-src_makefile,v 1.1 2018/05/03 13:13:51 schmonz Exp $
+
+Use pkgsrc-specified compiler and flags.
+
+--- src/makefile.orig	2018-04-30 12:17:04.000000000 +0000
++++ src/makefile
+@@ -13,19 +13,20 @@
+ # See src/gui-qt/highlight.pro for the Qt GUI compilation options
+ 
+ #CXX=clang++
+-CXX=g++
++#CXX=g++
+ 
+ # was: qmake-qt5
+ QMAKE=qmake
+ 
+ # Added -std=c++11 because of auto_ptr to unique_ptr transition
+-CFLAGS:=-Wall -O2 ${CFLAGS} -DNDEBUG -std=c++11
++#CFLAGS:=-Wall -O2 ${CFLAGS} -DNDEBUG -std=c++11
+ #CFLAGS:=-ggdb ${CFLAGS} -std=c++11
+ 
+ CFLAGS_DILU=-fno-strict-aliasing
+ 
+ SO_VERSION=3.43
+ 
++LSO_VERSION=$(shell echo ${SO_VERSION} | awk -F. '{ printf "%d:%d:0\n", $$1 - 1, $$2 }')
+ 
+ # Source paths
+ CORE_DIR=./core/
+@@ -66,14 +67,16 @@ ifdef PIC
+ 	CFLAGS+=-fPIC
+ endif
+ 
+-LDFLAGS = -ldl
++#LDFLAGS = -ldl
+ # Do not strip by default (Mac OS X lazy pointer issues)
+ # Add -static to avoid linking with shared libs (can cause trouble when highlight
+ # is run as service)
+ #LDFLAGS = ${LDFLAGS} -s
+ #LDFLAGS= -Wl,--as-needed
+ 
+-CXX_COMPILE=${CXX} ${CFLAGS} -c -I ${INCLUDE_DIR} ${LUA_CFLAGS}
++LIBTOOL=libtool --tag=CXX
++
++CXX_COMPILE=${LIBTOOL} --mode=compile ${CXX} ${CFLAGS} ${CXX_DIR} -I ${INCLUDE_DIR} ${LUA_CFLAGS} -c
+ 
+ # Data directories (data dir, configuration file dir)
+ CXX_DIR=-DHL_DATA_DIR=\"${HL_DATA_DIR}\" -DHL_CONFIG_DIR=\"${HL_CONFIG_DIR}\"
+@@ -101,18 +104,18 @@ GUI_OBJECTS:=${GUI_QT_DIR}main.cpp ${GUI
+ 	${GUI_QT_DIR}showtextfile.cpp
+ 
+ 
+-cli: libhighlight.a ${CLI_OBJECTS}
+-	${CXX} ${LDFLAGS} -o highlight ${CLI_OBJECTS} -L. -lhighlight ${LUA_LIBS}
++cli: ${CLI_OBJECTS}
++	${CXX} ${LDFLAGS} -o highlight ${CLI_OBJECTS} -lhighlight ${LUA_LIBS}
+ 
+ lib-static libhighlight.a: ${CORE_OBJECTS}
+ 	${AR} ${ARFLAGS} libhighlight.a ${CORE_OBJECTS} ${DILU_OBJECTS}
+ 
+ lib-shared libhighlight.so.1.0: ${CORE_OBJECTS}
+-	${CXX} -shared -Wl,-soname,libhighlight.so.${SO_VERSION} -o libhighlight.so.${SO_VERSION} -lc ${CORE_OBJECTS}
++	${LIBTOOL} --mode=link ${CXX} ${LDFLAGS} -o libhighlight.la ${CORE_OBJECTS:%.o=%.lo} ${DILU_OBJECTS:%.o=%.lo} -version-info ${LSO_VERSION} -rpath ${PREFIX}/lib
+ 
+ gui-qt: highlight-gui
+ 
+-highlight-gui: libhighlight.a ${GUI_OBJECTS}
++highlight-gui: ${GUI_OBJECTS}
+ 	cd gui-qt && \
+ 	${QMAKE} 'DEFINES+=DATA_DIR=\\\"${HL_DATA_DIR}\\\" CONFIG_DIR=\\\"${HL_CONFIG_DIR}\\\" DOC_DIR=\\\"${HL_DOC_DIR}\\\" ' && \
+ 	$(MAKE)
+@@ -121,7 +124,7 @@ $(OBJECTFILES) : makefile
+ 
+ 
+ datadir.o: ${CORE_DIR}datadir.cpp ${INCLUDE_DIR}datadir.h ${INCLUDE_DIR}platform_fs.h
+-	${CXX_COMPILE} ${CORE_DIR}datadir.cpp ${CXX_DIR}
++	${CXX_COMPILE} ${CORE_DIR}datadir.cpp
+ 
+ platform_fs.o: ${CORE_DIR}platform_fs.cpp ${INCLUDE_DIR}platform_fs.h
+ 	${CXX_COMPILE} ${CORE_DIR}platform_fs.cpp
+@@ -202,7 +205,7 @@ main.o: ${CLI_DIR}main.cpp ${CLI_DIR}mai
+   ${INCLUDE_DIR}syntaxreader.h ${INCLUDE_DIR}themereader.h ${INCLUDE_DIR}elementstyle.h \
+   ${INCLUDE_DIR}stylecolour.h  ${INCLUDE_DIR}preformatter.h \
+   ${CLI_DIR}help.h ${INCLUDE_DIR}version.h
+-	${CXX_COMPILE} ${CLI_DIR}main.cpp ${CXX_DIR}
++	${CXX_COMPILE} ${CLI_DIR}main.cpp
+ 
+ 
+ #3rd party libs

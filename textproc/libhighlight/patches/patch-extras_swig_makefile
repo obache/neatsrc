@@ -1,0 +1,48 @@
+$NetBSD: patch-extras_swig_makefile,v 1.1 2018/05/03 13:13:51 schmonz Exp $
+
+Use pkgsrc-specified compiler and flags.
+
+--- extras/swig/makefile.orig	2013-09-24 20:24:04.000000000 +0000
++++ extras/swig/makefile
+@@ -1,6 +1,6 @@
+ 
+-CXX=g++
+-CFLAGS=-g -O2 -fPIC
++#CXX=g++
++#CFLAGS=-g -O2 -fPIC
+ 
+ HL_INC=../../src/include/
+ HL_SRC=../../src/
+@@ -12,24 +12,24 @@ PERL_INC=$(shell perl -MExtUtils::Embed 
+ PHP_INC=$(shell php-config --includes)
+ 
+ lib-stamp:
+-	make -C ${HL_SRC} -f ./makefile clean
+-	PIC=1 make -C ${HL_SRC} -f ./makefile CFLAGS="${CFLAGS}" libhighlight.a
++	#make -C ${HL_SRC} -f ./makefile clean
++	#PIC=1 make -C ${HL_SRC} -f ./makefile CFLAGS="${CFLAGS}" libhighlight.a
+ 	touch $@
+ 
+ python: lib-stamp
+ 	swig -c++ -python -o highlight_wrap.cpp  highlight.i
+-	${CXX} ${CFLAGS} -c highlight_wrap.cpp ${LUA_CFLAGS} ${PYTHON_CFLAGS} -I${HL_INC} 
+-	${CXX} -shared -s highlight_wrap.o  -L${HL_SRC} -lhighlight ${LUA_LIBS} -lpython2.7 -o _highlight.so
++	${CXX} ${CFLAGS} ${LDFLAGS} -c highlight_wrap.cpp ${LUA_CFLAGS} ${PYTHON_CFLAGS} -I${HL_INC} 
++	${CXX} ${CXXFLAGS} ${LDFLAGS} -shared -s highlight_wrap.o  -L${HL_SRC} -lhighlight ${LUA_LIBS} -lpython2.7 -o _highlight.so
+ 
+ perl: lib-stamp
+ 	swig -c++ -perl -o highlight_wrap.cpp  highlight.i
+-	${CXX} ${CFLAGS} -c highlight_wrap.cpp ${LUA_CFLAGS} ${PERL_INC} -I${HL_INC} 
+-	${CXX} -shared -s highlight_wrap.o  -L${HL_SRC} -lhighlight ${LUA_LIBS} -o highlight.so
++	${CXX} ${CFLAGS} ${LDFLAGS} -c highlight_wrap.cpp ${LUA_CFLAGS} ${PERL_INC} -I${HL_INC} 
++	${CXX} ${CXXFLAGS} ${LDFLAGS} -shared -s highlight_wrap.o  -L${HL_SRC} -lhighlight ${LUA_LIBS} -lperl -o highlight.so
+ 
+ php: lib-stamp
+ 	swig -c++ -php -o highlight_wrap.cpp highlight.i
+-	${CXX} ${CFLAGS} -c highlight_wrap.cpp ${LUA_CFLAGS} ${PHP_INC} -I${HL_INC}
+-	${CXX} -shared -s highlight_wrap.o -L${HL_SRC} -lhighlight ${LUA_LIBS} -o highlight.so
++	${CXX} ${CFLAGS} ${LDFLAGS} -c highlight_wrap.cpp ${LUA_CFLAGS} ${PHP_INC} -I${HL_INC}
++	${CXX} ${CXXFLAGS} ${LDFLAGS} -shared -s highlight_wrap.o -L${HL_SRC} -lhighlight ${LUA_LIBS} -o highlight.so
+ 
+ clean: python-clean perl-clean php-clean
+ 	rm -f *-stamp
