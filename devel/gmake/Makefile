@@ -40,4 +40,8 @@ post-install:
 	${LN} -sf ${PREFIX}/bin/gmake ${DESTDIR}${PREFIX}/${PKGGNUDIR}/bin/make
 	${LN} -sf ${PREFIX}/${PKGMANDIR}/man1/gmake.1 ${DESTDIR}${PREFIX}/${PKGGNUDIR}${PKGMANDIR}/man1/make.1
 
+# prevent to regen info with patched configure script
+post-patch:
+	${TOUCH} -r ${WRKSRC}/configure ${WRKSRC}/doc/stamp-vti
+
 .include "../../mk/bsd.pkg.mk"
