@@ -9,7 +9,7 @@ HOMEPAGE=	http://rime.im/
 COMMENT=	Rime Input Method Engine for Linux/IBus
 LICENSE=	gnu-gpl-v3
 
-DEPENDS+=	brise>=0.35:../../inputmethod/brise
+DEPENDS+=	brise>=0.38:../../inputmethod/brise
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
