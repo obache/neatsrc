@@ -1,19 +1,28 @@
 # $NetBSD: Makefile,v 1.3 2017/08/01 16:52:55 wiz Exp $
 
-DISTNAME=	brise-0.35
+DISTNAME=	brise-0.38
 CATEGORIES=	inputmethod chinese
-MASTER_SITES=	http://dl.bintray.com/lotem/rime/
+MASTER_SITES=	https://github.com/rime/brise/releases/download/${DISTNAME}/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://rime.im/
 COMMENT=	Official Rime Schema repository
 LICENSE=	gnu-gpl-v3
 
-DEPENDS+=	librime>=1.2:../../inputmethod/librime
+DEPENDS+=	librime>=1.3:../../inputmethod/librime
+DEPENDS+=	opencc>=1.0.2:../../converters/opencc
 
 WRKSRC=		${WRKDIR}/brise
 USE_LANGUAGES=	# none
 
-USE_TOOLS+=	gmake
+USE_TOOLS+=	gmake bash
+
+MAKE_ENV+=	BASH=${BASH}
+
+MAKE_JOBS_SAFE=	no
+
+INSTALLATION_DIRS=	share/rime-data/build
+post-install:
+	${INSTALL_DATA} ${WRKSRC}/output/build/*.* ${DESTDIR}${PREFIX}/share/rime-data/build
 
 .include "../../mk/bsd.pkg.mk"
