@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.22 2017/08/16 21:22:13 wiz Exp $
 
-DISTNAME=	ibus-table-1.9.19
+DISTNAME=	ibus-table-1.9.20
 CATEGORIES=	inputmethod
 MASTER_SITES=	https://github.com/kaio/ibus-table/releases/download/${PKGVERSION_NOREV}/
 
