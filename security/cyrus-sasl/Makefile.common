@@ -4,6 +4,7 @@
 # used by security/cy2-anonymous/Makefile
 # used by security/cy2-crammd5/Makefile
 # used by security/cy2-digestmd5/Makefile
+# used by security/cy2-gs2/Makefile
 # used by security/cy2-gssapi/Makefile
 # used by security/cy2-ldapdb/Makefile
 # used by security/cy2-login/Makefile
