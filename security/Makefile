@@ -49,6 +49,7 @@ SUBDIR+=	cvm
 SUBDIR+=	cy2-anonymous
 SUBDIR+=	cy2-crammd5
 SUBDIR+=	cy2-digestmd5
+SUBDIR+=	cy2-gs2
 SUBDIR+=	cy2-gssapi
 SUBDIR+=	cy2-ldapdb
 SUBDIR+=	cy2-login
