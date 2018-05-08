@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.53 2018/04/17 01:57:18 christos Exp $
 
-PKGNAME=	${DISTNAME:S/sasl/saslauthd/}
-#PKGREVISION=	7
+PKGNAME=	${DISTPKGNAME:S/sasl/saslauthd/}
 CONFLICTS+=	cyrus-sasl<2.1.15nb2
 
 .include "../../security/cyrus-sasl/Makefile.common"

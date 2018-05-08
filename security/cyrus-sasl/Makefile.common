@@ -19,7 +19,7 @@
 # definition and _above_ any CONFIGURE_ARGS definitions.
 
 DISTNAME=	cyrus-sasl-2.1.27-rc7
-PKGNAME=	${DISTNAME:S/-rc/rc/}
+DISTPKGNAME=	${DISTNAME:S/-rc/rc/}
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.cyrusimap.org/cyrus-sasl/
 MASTER_SITES+=	https://www.cyrusimap.org/releases/

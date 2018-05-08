@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.74 2018/04/17 01:57:17 christos Exp $
 
-#PKGREVISION=	7
+PKGNAME=	${DISTPKGNAME}
 COMMENT=	Simple Authentication and Security Layer
 
 .include "Makefile.common"
