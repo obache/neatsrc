@@ -21,14 +21,10 @@ DISTNAME=	cyrus-sasl-2.1.27-rc7
 PKGNAME=	${DISTNAME:S/-rc/rc/}
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.cyrusimap.org/cyrus-sasl/
-#MASTER_SITES+=	ftp://ftp.cyrusimap.org/cyrus-sasl/OLD-VERSIONS/
-#PATCHFILES+=	cyrus-sasl-dedad73e5e7a75d01a5f3d5a6702ab8ccd2ff40d.patch.v2
-#SITES.cyrus-sasl-dedad73e5e7a75d01a5f3d5a6702ab8ccd2ff40d.patch.v2= \
-#		-https://cgit.cyrus.foundation/cyrus-sasl/patch/?id=dedad73e5e7a75d01a5f3d5a6702ab8ccd2ff40d
-#PATCH_DIST_STRIP=	-p1
+MASTER_SITES+=	https://www.cyrusimap.org/releases/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.cyrussasl.org/
+HOMEPAGE=	http://www.cyruimap.org/sasl/
 LICENSE=	original-bsd # CMU version
 
 DISTINFO_FILE=		${.CURDIR}/../cyrus-sasl/distinfo
