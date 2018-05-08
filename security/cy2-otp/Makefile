@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.22 2018/04/17 01:57:18 christos Exp $
 
 PKGNAME=	${DISTNAME:S/cyrus-sasl/cy2-otp/}
-#PKGREVISION=	5
 COMMENT=	Cyrus SASL OTP authentication plugin
 SASL_PLUGIN=	yes
 
@@ -13,13 +12,6 @@ CONFIGURE_ARGS+=	--enable-otp
 CONFIGURE_ARGS+=	--with-openssl=${SSLBASE:Q}
 
 BUILD_DIRS=	common plugins
-#BUILD_TARGET=	libotp.la
 
 .include "../../security/openssl/buildlink3.mk"
-
-do-install:
-	${INSTALL_DATA_DIR} ${DESTDIR}${PLUGINDIR}
-	cd ${WRKSRC}/plugins && ${SHLIBTOOL} --mode=install		\
-		${INSTALL_PROGRAM} libotp.la ${DESTDIR}${PLUGINDIR}
-
 .include "../../mk/bsd.pkg.mk"

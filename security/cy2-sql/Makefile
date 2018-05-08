@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.38 2018/04/17 01:57:19 christos Exp $
 
 PKGNAME=	${DISTNAME:S/cyrus-sasl/cy2-sql/}
-#PKGREVISION=	15
 COMMENT=	Cyrus SASL SQL authentication plugin
 SASL_PLUGIN=	yes
 
@@ -44,11 +43,5 @@ CONFIGURE_ARGS+=	--without-sqlite3
 CONFIGURE_ARGS+=	--enable-sql
 
 BUILD_DIRS=	common plugins
-BUILD_TARGET=	libsql.la
-
-do-install:
-	${INSTALL_DATA_DIR} ${DESTDIR}${PLUGINDIR}
-	cd ${WRKSRC}/plugins && ${SHLIBTOOL} --mode=install \
-		${INSTALL_PROGRAM} libsql.la ${DESTDIR}${PLUGINDIR}
 
 .include "../../mk/bsd.pkg.mk"
