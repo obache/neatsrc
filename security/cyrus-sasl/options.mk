@@ -3,7 +3,7 @@
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.cyrus-sasl
 PKG_OPTIONS_REQUIRED_GROUPS=	database
-PKG_OPTIONS_GROUP.database=	ndbm bdb gdbm
+PKG_OPTIONS_GROUP.database=	ndbm bdb gdbm lmdb
 
 .if defined(SASL_DBTYPE)
 PKG_OPTIONS_DEPRECATED_WARNINGS+=	"Deprecated SASL_DBTYPE variable used, use ${PKG_OPTIONS_VAR:Q} instead (${PKG_OPTIONS_GROUP.database:ts,:Q})."
@@ -35,6 +35,10 @@ CONFIGURE_ENV+=		with_bdb=${BDB_TYPE}
 SASL_DBTYPE=		gdbm
 FILES_SUBST+=		DBEXT=
 .  include "../../databases/gdbm/buildlink3.mk"
+.elif !empty(PKG_OPTIONS:Mlmdb)
+SASL_DBTYPE=		lmdb
+FILES_SUBST+=		DBEXT=
+.  include "../../databases/lmdb/buildlink3.mk"
 .endif
 
 CONFIGURE_ARGS+=	--with-dblib=${SASL_DBTYPE:Q}
