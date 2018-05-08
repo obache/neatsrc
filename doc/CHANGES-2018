@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.2214 2018/05/07 07:01:47 wiz Exp $
+$NetBSD: CHANGES-2018,v 1.2232 2018/05/08 04:54:50 adam Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -3158,3 +3158,24 @@ Changes to the packages collection and infrastructure in 2018:
 	Updated sysutils/intel-microcode-netbsd to 20180425 [msaitoh 2018-05-07]
 	Updated net/wget to 1.19.5 [wiz 2018-05-07]
 	Updated www/thttpd to 2.28 [wiz 2018-05-07]
+	Updated net/unbound to 1.7.1 [he 2018-05-07]
+	Updated print/cups-filters to 1.20.3 [leot 2018-05-07]
+	Updated lang/py35-html-docs to 3.5.5 [leot 2018-05-07]
+	Updated lang/py36-html-docs to 3.6.5 [leot 2018-05-07]
+	Updated finance/gnucash-docs to 3.1 [wiz 2018-05-07]
+	Updated audio/mpc to 0.30 [wiz 2018-05-07]
+	Updated archivers/brotli to 1.0.4 [wiz 2018-05-07]
+	Updated misc/calibre to 3.23.0 [wiz 2018-05-07]
+	Updated sysutils/dbus-python-common to 1.2.8 [wiz 2018-05-07]
+	Updated sysutils/py-dbus to 1.2.8 [wiz 2018-05-07]
+	Updated sysutils/dbus to 1.12.8 [wiz 2018-05-07]
+	Updated misc/goffice0.10 to 0.10.40 [wiz 2018-05-07]
+	Updated math/gnumeric112 to 1.12.40 [wiz 2018-05-07]
+	Added biology/samtools version 1.8 [bacon 2018-05-07]
+	Added devel/hyperscan version 4.7.0 [minskim 2018-05-07]
+	Updated textproc/p5-podlators to 4.11 [wen 2018-05-08]
+	Updated time/p5-DateTime-Locale to 1.20 [wen 2018-05-08]
+	Updated devel/libuv to 1.20.3 [adam 2018-05-08]
+	Updated databases/py-multidict to 4.3.1 [adam 2018-05-08]
+	Updated devel/py-async-timeout to 3.0.0 [adam 2018-05-08]
+	Updated www/py-aiohttp to 3.2.0 [adam 2018-05-08]

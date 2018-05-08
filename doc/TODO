@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.18327 2018/05/07 07:01:47 wiz Exp $
+$NetBSD: TODO,v 1.18335 2018/05/07 12:15:24 wiz Exp $
 
 Suggested new packages
 ======================
@@ -451,7 +451,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o boson-0.13
 	o bottlerocket-0.05b3
 	o brasero-3.4.0
-	o brotli-1.0.4
 	o bsdtar-3.3.2
 	o bwa-0.7.12 [needs shm_open(3), please contact MAINTAINER]
 	o byacc-20170201
@@ -464,7 +463,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cal3d-0.11.0
 	o calc-2.11.10.1
 	o calcoo-2.1.0
-	o calibre-3.23.0
 	o calligra-3.0.1 [in wip; koffice successor]
 	o cardboard-schedule-1.14c [at http://www.bright-green.com/downloads/]
 	o catdoc-1.1
@@ -528,8 +526,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o darcs-2.12.0
 	o darktable-2.4
 	o dasher-4.11
-	o dbus-1.12.8
-	o dbus-python-common-1.2.8
 	o dd_rescue-1.46
 	o dd_rhelp-0.3.0
 	o ddrescue-1.21
@@ -730,7 +726,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gnu-crypto-2.1.0
 	o gnu-pw-mgr-2.0
 	o gnucap-20130423
-	o gnumeric112-1.12.40
 	o gnustep-back-0.24.1
 	o gnustep-base-1.24.8
 	o gnustep-examples-1.4.0
@@ -740,7 +735,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o go-grpc-1.5.2
 	o gob-2.0.19
 	o gobby-0.5.0
-	o goffice0.10-0.10.40
 	o gok-2.30.1 [GNOME 2.32]
 	o golem-0.0.6
 	o goocanvas-2.0.2
@@ -1077,7 +1071,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mp3blaster-3.2.6
 	o mp3splt-2.6.2
 	o mp3splt-gtk-0.9.0
-	o mpc-0.30
 	o mpdas-0.4.1
 	o mserv-devel-0.41
 	o multitail-6.4.2
@@ -1232,7 +1225,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-augeas-1.0.3
 	o py-cassa-1.11.0
 	o py-cssselect2-0.2.1
-	o py-dbus-1.2.8
 	o py-doctor-15.1.0
 	o py-ephem3-3.7.6.0
 	o py-gnome-menus-3.8.0
