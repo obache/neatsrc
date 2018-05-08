@@ -39,6 +39,8 @@ BUILDLINK_ABI_DEPENDS.cyrus-sasl+=	\
 			cyrus-sasl>=${PKGVERSION_NOREV}
 .  include "../../security/cyrus-sasl/buildlink3.mk"
 CPPFLAGS+=		-I${BUILDLINK_PREFIX.cyrus-sasl}/include/sasl
+
+SHLIBTOOL_OVERRIDE=	# defined
 .endif
 
 GNU_CONFIGURE=		yes
