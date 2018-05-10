@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2018/05/05 23:58:26 maya Exp $
+# $NetBSD: Makefile,v 1.1 2018/05/08 07:48:39 maya Exp $
 
 GITHUB_PROJECT=	ripgrep
 DISTNAME=	0.8.1

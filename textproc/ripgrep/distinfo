@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.1 2018/05/05 23:58:26 maya Exp $
+$NetBSD: distinfo,v 1.1 2018/05/08 07:48:39 maya Exp $
 
 SHA1 (ripgrep/0.8.1.tar.gz) = b80b1e73bb0c1c18ab8a6715d695707a747041ac
 RMD160 (ripgrep/0.8.1.tar.gz) = eb9e2132e66704dc8f8118b1b38eef9d6fe7b016
