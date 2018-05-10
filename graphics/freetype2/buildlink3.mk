@@ -81,6 +81,7 @@ fake-freetype-config:
 			-e 's,%includedir%,${BUILDLINK_PREFIX.freetype2}/include,g' \
 			-e 's,%libdir%,${BUILDLINK_PREFIX.freetype2}/lib,g' \
 			-e 's,%ft_version%,${_FT2_VER},g' \
+			-e 's,%LIBSDYNAMIC_CONFIG%,${COMPILER_RPATH_FLAG:S/,/\\,/g}$$libdir -lfreetype,g' \
 			-e 's,%LIBSSTATIC_CONFIG%,-lfreetype -lz -lbz2,g' \
 		${BUILDLINK_PKGSRCDIR.freetype2}/files/freetype-config.in \
 			> ${BUILDLINK_BINDIR}/freetype-config; \

@@ -44,7 +44,7 @@ else
   version=%ft_version%
 
   cflags="-I${SYSROOT}$includedir/freetype2"
-  dynamic_libs="-lfreetype"
+  dynamic_libs="%LIBSDYNAMIC_CONFIG%"
   static_libs="%LIBSSTATIC_CONFIG%"
   if test "${SYSROOT}$libdir" != "/usr/lib"   &&
      test "${SYSROOT}$libdir" != "/usr/lib64" ; then
