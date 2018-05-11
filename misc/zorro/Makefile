@@ -22,9 +22,6 @@ INSTALLATION_DIRS=	bin share/zorro
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/zorro ${DESTDIR}${PREFIX}/bin/zorro
 	${INSTALL_DATA} ${WRKSRC}/DOTzorrorc ${DESTDIR}${PREFIX}/share/zorro
-	@${ECHO} ""
-	@${ECHO} "Take a look at ${PREFIX}/share/zorro/DOTzorrorc"
-	@${ECHO} ""
 
 .include "../../x11/tk/interpreter.mk"
 .include "../../mk/bsd.pkg.mk"
