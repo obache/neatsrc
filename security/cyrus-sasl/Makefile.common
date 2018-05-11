@@ -18,7 +18,7 @@
 # This Makefile fragment should be included _below_ any SASL_PLUGIN
 # definition and _above_ any CONFIGURE_ARGS definitions.
 
-DISTNAME=	cyrus-sasl-2.1.27-rc7
+DISTNAME=	cyrus-sasl-2.1.27-rc8
 DISTPKGNAME=	${DISTNAME:S/-rc/rc/}
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.cyrusimap.org/cyrus-sasl/
