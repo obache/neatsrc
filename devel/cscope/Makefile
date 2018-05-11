@@ -29,8 +29,7 @@ post-install:
 		${DESTDIR}${PREFIX}/share/emacs/site-lisp
 
 .include "../../mk/curses.buildlink3.mk"
-.include "../../mk/bsd.pkg.mk"
-
 .if ${CURSES_TYPE} == "ncurses"
 CONFIGURE_ARGS+=	--with-ncurses=${BUILDLINK_PREFIX.ncurses}
 .endif
+.include "../../mk/bsd.pkg.mk"
