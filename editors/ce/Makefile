@@ -6,10 +6,7 @@
 PKGREVISION=		1
 COMMENT+=		, tty version
 
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	.*/bin/bash
-REPLACE.bash.new=	${SH}
-REPLACE_FILES.bash=	teach-ce.in
+REPLACE_SH=		teach-ce.in
 
 BUILD_TARGET=		ce
 INSTALL_TARGET=		install man-install
