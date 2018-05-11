@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.2277 2018/05/10 00:09:46 minskim Exp $
+$NetBSD: CHANGES-2018,v 1.2288 2018/05/10 20:21:11 ryoon Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -3240,3 +3240,17 @@ Changes to the packages collection and infrastructure in 2018:
 	Updated math/R-DBI to 1.0.0 [minskim 2018-05-09]
 	Updated www/geckodriver to 0.20.1 [maya 2018-05-09]
 	Updated databases/R-RSQLite to 2.1.1 [minskim 2018-05-10]
+	Updated pkgtools/x11-links to 1.11 [maya 2018-05-10]
+	Updated net/py-netifaces to 0.10.7 [adam 2018-05-10]
+	Updated www/py-selenium to 3.12.0 [adam 2018-05-10]
+	Updated databases/pgadmin3 to 1.22.2 [adam 2018-05-10]
+	Updated devel/gperftools to 2.7 [adam 2018-05-10]
+	Updated devel/py-ZopeInterface to 4.5.0 [adam 2018-05-10]
+	Updated devel/py-attrs to 18.1.0 [adam 2018-05-10]
+	Updated archivers/lz4 to 1.8.2 [adam 2018-05-10]
+	Updated x11/sxhkd to 0.5.9 [leot 2018-05-10]
+	Updated multimedia/adobe-flash-player to 29.0.0.171 [tsutsui 2018-05-10]
+	Updated www/firefox to 60.0 [ryoon 2018-05-11]
+	Updated www/firefox-l10n to 60.0 [ryoon 2018-05-11]
+	Updated misc/libreoffice to 6.0.4.2 [ryoon 2018-05-11]
+	Updated devel/nss to 3.37 [ryoon 2018-05-11]
