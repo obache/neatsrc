@@ -13,10 +13,7 @@ COMMENT=		Utilities/libraries to make RAPI calls on WinCE devices
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 
-REPLACE_INTERPRETER+=	sh
-REPLACE.sh.old=		/bin/bash
-REPLACE.sh.new=		${SH}
-REPLACE_FILES.sh=	script/synce-*.in
+REPLACE_SH=		script/synce-*.in
 
 .include "../../comms/synce-libsynce/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
