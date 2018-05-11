@@ -11,16 +11,11 @@ MASTER_SITES+=	ftp://totem.fix.no/pub/mirrors/misc/
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Simple to-do list manager
 
-DEPENDS+=	tk>=8.3.2:../../x11/tk
-
 NO_BUILD=	yes
 
 USE_TOOLS+=	wish:run
 
-REPLACE_INTERPRETER+=	wish
-REPLACE.wish.old=	[^[:space:]]*wish
-REPLACE.wish.new=	${WISH}
-REPLACE_FILES.wish=	zorro
+REPLACE_WISH+=		zorro
 
 INSTALLATION_DIRS=	bin share/zorro
 
@@ -31,4 +26,5 @@ do-install:
 	@${ECHO} "Take a look at ${PREFIX}/share/zorro/DOTzorrorc"
 	@${ECHO} ""
 
+.include "../../x11/tk/interpreter.mk"
 .include "../../mk/bsd.pkg.mk"
