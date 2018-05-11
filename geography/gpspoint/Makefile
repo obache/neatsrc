@@ -17,9 +17,6 @@ USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	/bin/bash
-REPLACE.bash.new=	${SH}
-REPLACE_FILES.bash=	src/mgpspoint
+REPLACE_SH+=		src/mgpspoint
 
 .include "../../mk/bsd.pkg.mk"
