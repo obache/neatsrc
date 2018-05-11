@@ -13,7 +13,6 @@ LICENSE=	original-bsd
 GNU_CONFIGURE=		YES
 USE_TOOLS+=		byacc lex:run
 
-CONFIGURE_ARGS+=	--with-flex --with-yacc
 INSTALLATION_DIRS+=	share/emacs/site-lisp
 
 SUBST_CLASSES+=		path
