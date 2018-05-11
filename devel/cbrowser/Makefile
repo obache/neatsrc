@@ -11,16 +11,14 @@ HOMEPAGE=	http://cbrowser.sourceforge.net/
 COMMENT=	Graphical C/C++ source code browsing tool, and call graph viewer
 
 DEPENDS+=	cscope-[0-9]*:../../devel/cscope
-DEPENDS+=	tk-[0-9]*:../../x11/tk
+
+USE_TOOLS+=	wish:run
 
 NO_BUILD=	yes
 
 INSTALLATION_DIRS=	bin share/cbrowser
 
-REPLACE_INTERPRETER+=	wish
-REPLACE.wish.old=	/usr/local/bin/wish
-REPLACE.wish.new=	${LOCALBASE}/bin/wish
-REPLACE_FILES.wish=	ftcllib.tcl
+REPLACE_WISH=	ftcllib.tcl
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/cbrowser ${DESTDIR}${PREFIX}/bin
@@ -28,4 +26,5 @@ do-install:
 		${INSTALL_SCRIPT} ${WRKSRC}/$$f ${DESTDIR}${PREFIX}/share/cbrowser; \
 	done
 
+.include "../../x11/tk/interpreter.mk"
 .include "../../mk/bsd.pkg.mk"
