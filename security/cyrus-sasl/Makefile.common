@@ -36,11 +36,7 @@ PKG_SYSCONFSUBDIR=	sasl2
 .include "../../mk/bsd.prefs.mk"
 
 .if defined(SASL_PLUGIN) && !empty(SASL_PLUGIN:M[yY][eE][sS])
-BUILDLINK_ABI_DEPENDS.cyrus-sasl+=	\
-			cyrus-sasl>=${PKGVERSION_NOREV}
-.  include "../../security/cyrus-sasl/buildlink3.mk"
-CPPFLAGS+=		-I${BUILDLINK_PREFIX.cyrus-sasl}/include/sasl
-
+DEPENDS+=		cyrus-sasl>=${PKGVERSION_NOREV}:../../security/cyrus-sasl
 SHLIBTOOL_OVERRIDE=	# defined
 .endif
 
