@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.819 2018/03/11 20:25:22 wiz Exp $
+# $NetBSD: Makefile,v 1.820 2018/05/18 14:51:55 youri Exp $
 #
 
 COMMENT=	Packages to support the X window system
@@ -414,6 +414,7 @@ SUBDIR+=	rxvt-unicode
 SUBDIR+=	sakura
 SUBDIR+=	sessreg
 SUBDIR+=	setxkbmap
+SUBDIR+=	slim
 SUBDIR+=	slock
 SUBDIR+=	space_dapp
 SUBDIR+=	speyes
