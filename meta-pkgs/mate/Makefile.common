@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.2 2017/06/23 17:33:51 youri Exp $
+# $NetBSD: Makefile.common,v 1.5 2018/05/14 19:15:35 youri Exp $
 # used by meta-pkgs/mate/Makefile
 # used by print/atril/Makefile
 # used by sysutils/caja/Makefile
@@ -8,6 +8,7 @@
 # used by graphics/eom/Makefile
 # used by x11/libmatekbd/Makefile
 # used by audio/libmatemixer/Makefile
+# used by misc/mate-calc/Makefile
 # used by misc/libmateweather/Makefile
 # used by wm/marco/Makefile
 # used by x11/mate-applets/Makefile
@@ -37,13 +38,15 @@
 # used by x11/mozo/Makefile
 # used by editors/pluma/Makefile
 
-VERSION=	1.18.0
+VERSION=	1.20.0
 MASTER_SITES+=	http://pub.mate-desktop.org/releases/${VERSION:R}/
 EXTRACT_SUFX=	.tar.xz
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	gmake intltool msgfmt pkg-config
+
+MAINTAINER=	youri@NetBSD.org
 
 TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 TOOL_DEPENDS+=	${PYPKGPREFIX}-libxml2-[0-9]*:../../textproc/py-libxml2

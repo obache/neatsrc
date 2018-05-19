@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.9 2018/04/16 14:34:53 wiz Exp $
+# $NetBSD: Makefile,v 1.13 2018/05/16 10:56:03 youri Exp $
 
 MAINTAINER=	youri@NetBSD.org
 HOMEPAGE=	http://www.mate-desktop.org/
 LICENSE=	gnu-gpl-v3
 
 PKGNAME=	mate-${VERSION}
-PKGREVISION=	3
 CATEGORIES=	meta-pkgs
 
 COMMENT=	Meta-package for MATE desktop environment
@@ -25,6 +24,7 @@ DEPENDS+=	libmateweather>=${VERSION}:../../misc/libmateweather
 DEPENDS+=	marco>=${VERSION}:../../wm/marco
 DEPENDS+=	mate-applets>=${VERSION}:../../x11/mate-applets
 DEPENDS+=	mate-backgrounds>=${VERSION}:../../graphics/mate-backgrounds
+DEPENDS+=	mate-calc>=${VERSION}:../../misc/mate-calc
 DEPENDS+=	mate-common>=${VERSION}:../../devel/mate-common
 DEPENDS+=	mate-control-center>=${VERSION}:../../x11/mate-control-center
 DEPENDS+=	mate-desktop>=${VERSION}:../../x11/mate-desktop
@@ -42,12 +42,12 @@ DEPENDS+=	mate-screensaver>=${VERSION}:../../x11/mate-screensaver
 DEPENDS+=	mate-sensors-applet>=${VERSION}:../../sysutils/mate-sensors-applet
 DEPENDS+=	mate-session-manager>=${VERSION}:../../x11/mate-session-manager
 DEPENDS+=	mate-settings-daemon>=${VERSION}:../../x11/mate-settings-daemon
-DEPENDS+=	mate-system-monitor>=${VERSION}:../../sysutils/mate-system-monitor
+#DEPENDS+=	mate-system-monitor>=${VERSION}:../../sysutils/mate-system-monitor
 DEPENDS+=	mate-terminal>=${VERSION}:../../x11/mate-terminal
 DEPENDS+=	mate-themes>=${VERSION}:../../graphics/mate-themes
 DEPENDS+=	mate-user-share>=${VERSION}:../../net/mate-user-share
 DEPENDS+=	mate-utils>=${VERSION}:../../misc/mate-utils
-DEPENDS+=	mozo>=${VERSION}:../../x11/mozo
+#DEPENDS+=	mozo>=${VERSION}:../../x11/mozo
 DEPENDS+=	pluma>=${VERSION}:../../editors/pluma
 
 .include "../../mk/bsd.pkg.mk"

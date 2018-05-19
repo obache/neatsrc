@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.136 2018/04/28 19:10:13 wiz Exp $
+# $NetBSD: Makefile,v 1.138 2018/05/16 18:55:45 jperkin Exp $
 
-DISTNAME=	webkitgtk-2.20.1
+DISTNAME=	webkitgtk-2.20.2
 PKGNAME=	${DISTNAME:S/webkitgtk/webkit-gtk/}
 CATEGORIES=	www
 MASTER_SITES=	https://www.webkitgtk.org/releases/
@@ -28,8 +28,8 @@ GCC_REQD+=	5.0
 CMAKE_ARGS+=	-DUSE_LD_GOLD=OFF
 
 PKGCONFIG_OVERRIDE+=	Source/JavaScriptCore/javascriptcoregtk.pc.in
-PKGCONFIG_OVERIDE+=	Source/WebKit/gtk/webkit2gtk-web-extension.pc.in
-PKGCONFIG_OVERIDE+=	Source/WebKit/gtk/webkit2gtk.pc.in
+PKGCONFIG_OVERRIDE+=	Source/WebKit/gtk/webkit2gtk-web-extension.pc.in
+PKGCONFIG_OVERRIDE+=	Source/WebKit/gtk/webkit2gtk.pc.in
 
 CMAKE_ARGS+=		-DCMAKE_BUILD_TYPE=Release
 CMAKE_ARGS+=		-DPORT=GTK
@@ -157,6 +157,9 @@ CXXFLAGS.SunOS+=	-fpermissive
 .if !empty(PKGSRC_COMPILER:Mclang)
 CXXFLAGS+=	-Wno-c++11-narrowing
 .endif
+
+# This does not disable optimisations, merely avoids #error if there are none.
+CFLAGS+=	-DRELEASE_WITHOUT_OPTIMIZATIONS
 
 .include "options.mk"
 

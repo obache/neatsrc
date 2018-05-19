@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.30 2018/04/02 19:52:53 adam Exp $
+# $NetBSD: Makefile,v 1.33 2018/05/14 06:39:32 adam Exp $
 
-DISTNAME=	scipy-1.0.1
+DISTNAME=	scipy-1.1.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=s/scipy/}
@@ -34,7 +34,8 @@ FFLAGS+=	-fPIC
 .PHONY: fix-darwin-install-name
 post-install: fix-darwin-install-name
 fix-darwin-install-name:
-	${FIND} ${DESTDIR}${PREFIX} -name "*.so" | while read lib; do   \
+	${FIND} ${DESTDIR}${PREFIX} -name "*.so" |                      \
+		while read lib; do                                      \
 		libname=`basename $${lib}`;                             \
 		libdir=`dirname $${lib} | sed -e 's,${DESTDIR},,'`;     \
 		install_name_tool -id $${libdir}/$${libname} $${lib};   \
@@ -50,7 +51,6 @@ BUILD_DEPENDS+=	${PYPKGPREFIX}-nose-[0-9]*:../../devel/py-nose
 # https://github.com/scipy/scipy/issues/6499
 do-test:
 	${PYTHONBIN} -c "import scipy; scipy.test('full')"
-#	cd ${WRKSRC} && ${PYTHONBIN} runtests.py -v
 
 .include "../../lang/python/distutils.mk"
 .include "../../math/fftw/buildlink3.mk"

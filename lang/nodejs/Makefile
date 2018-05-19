@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.128 2018/05/04 04:29:46 minskim Exp $
+# $NetBSD: Makefile,v 1.130 2018/05/12 09:24:00 fhajny Exp $
 
-DISTNAME=	node-v10.0.0
+DISTNAME=	node-v10.1.0
 
 USE_LANGUAGES=	c gnu++14
 
@@ -9,7 +9,10 @@ GCC_REQD+=	4.9.4
 
 .include "../../mk/bsd.prefs.mk"
 
-CONFIGURE_ARGS+=	--shared-nghttp2
+# Optional OpenSSL support in nghttp2 conflicts with OpenSSL 1.1.x
+# bundled and built by lang/nodejs.
+# Uncomment when we switch to openssl>=1.1
+# CONFIGURE_ARGS+=	--shared-nghttp2
 CONFIGURE_ARGS+=	--with-intl=system-icu
 
 CHECK_PORTABILITY_SKIP+=	deps/openssl/openssl/.travis-create-release.sh
@@ -18,5 +21,6 @@ CHECK_PORTABILITY_SKIP+=	deps/openssl/openssl/.travis-create-release.sh
 
 .include "../../lang/nodejs/Makefile.common"
 .include "../../textproc/icu/buildlink3.mk"
-.include "../../www/nghttp2/buildlink3.mk"
+# Uncomment when we switch to openssl>=1.1
+# .include "../../www/nghttp2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

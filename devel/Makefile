@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2671 2018/05/09 14:49:00 jaapb Exp $
+# $NetBSD: Makefile,v 1.2674 2018/05/18 01:01:03 minskim Exp $
 #
 
 COMMENT=	Development utilities
@@ -24,6 +24,7 @@ SUBDIR+=	R-blob
 SUBDIR+=	R-cli
 SUBDIR+=	R-crayon
 SUBDIR+=	R-evaluate
+SUBDIR+=	R-glue
 SUBDIR+=	R-inline
 SUBDIR+=	R-iterators
 SUBDIR+=	R-lazyeval
@@ -2041,6 +2042,7 @@ SUBDIR+=	py-libmc
 SUBDIR+=	py-limits
 SUBDIR+=	py-line_profiler
 SUBDIR+=	py-linecache2
+SUBDIR+=	py-llvmlite
 SUBDIR+=	py-lockfile
 SUBDIR+=	py-logan
 SUBDIR+=	py-logbook
@@ -2252,6 +2254,7 @@ SUBDIR+=	py-test-utils
 SUBDIR+=	py-test-virtualenv
 SUBDIR+=	py-test-xdist
 SUBDIR+=	py-testpath
+SUBDIR+=	py-testrepository
 SUBDIR+=	py-testresources
 SUBDIR+=	py-testscenarios
 SUBDIR+=	py-testtools
