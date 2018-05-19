@@ -8,13 +8,14 @@ COMMENT=	Browser-based multilingual IMAP client
 LICENSE=	gnu-gpl-v3 AND mit AND gnu-lgpl-v2.1
 
 # JavaScript dependencies from bin/install-jsdeps.sh
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
-DISTFILES+=	jquery-3.2.1.min.js
-DISTFILES+=	jstz.min.js
-DISTFILES+=	publickey.js
-DISTFILES+=	tinymce_4.5.8.zip
-DISTFILES+=	tinymce_languages.zip
-DISTFILES+=	codemirror-5.21.0.zip
+DISTFILES_VARS+=js
+DISTFILES.js+=	jquery-3.2.1.min.js
+DISTFILES.js+=	jstz.min.js
+DISTFILES.js+=	publickey.js
+DISTFILES.js+=	tinymce_4.5.8.zip
+DISTFILES.js+=	tinymce_languages.zip
+DISTFILES.js+=	codemirror-5.21.0.zip
+SITES.js=	${MASTER_SITE_BACKUP:=roundcube/}
 
 DEPENDS+=	${PHP_PKG_PREFIX}-mbstring>=${PHP_BASE_VERS}:../../converters/php-mbstring
 DEPENDS+=	${PHP_PKG_PREFIX}-exif>=${PHP_BASE_VERS}:../../graphics/php-exif
