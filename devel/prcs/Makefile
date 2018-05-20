@@ -23,9 +23,6 @@ CONFIGURE_ENV+=		SYS_TAR_COMMAND_PATH=${TOOLS_TAR:Q}
 CONFIGURE_ENV+=		SYS_LS_COMMAND_PATH=${TOOLS_LS:Q}
 USE_TOOLS+=		diff:run gzip:run ls:run tar:run perl:run
 
-REPLACE_INTERPRETER+=	perl5
-REPLACE.perl5.old=	.*perl[^[:space:]]*
-REPLACE.perl5.new=	${PERL5}
-REPLACE_FILES.perl5=	emacs/prcs-ediff emacs/prcs-emerge
+REPLACE_PERL=		emacs/prcs-ediff emacs/prcs-emerge
 
 .include "../../mk/bsd.pkg.mk"
