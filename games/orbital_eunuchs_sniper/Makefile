@@ -16,10 +16,7 @@ CONFIGURE_ARGS+=	--with-games-dir=${PREFIX}/libexec
 INSTALLATION_DIRS=	share/doc/orbital_eunuchs_sniper
 
 USE_LANGUAGES=		c c++
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	.*/bin/bash
-REPLACE.bash.new=	${SH}
-REPLACE_FILES.bash=	src/snipe2d.in
+REPLACE_SH+=		src/snipe2d.in
 
 .include "../../mk/bsd.prefs.mk"
 
