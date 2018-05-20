@@ -16,10 +16,7 @@ USE_TOOLS+=		wish:run
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--without-ggi --without-directfb
 
-REPLACE_INTERPRETER+=	wish
-REPLACE.wish.old=	.*/bin/wish
-REPLACE.wish.new=	${PREFIX}/bin/wish
-REPLACE_FILES.wish=	conf/freesci-setup
+REPLACE_WISH=		conf/freesci-setup
 
 post-install:
 	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/examples/freesci
@@ -32,4 +29,5 @@ post-install:
 .include "../../x11/libXft/buildlink3.mk"
 #.include "../../mk/motif.buildlink3.mk"
 #.include "../../mk/oss.buildlink3.mk"
+.include "../../x11/tk/interpreter.mk"
 .include "../../mk/bsd.pkg.mk"
