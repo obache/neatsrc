@@ -66,7 +66,7 @@ devinfo_computer_add(HalDevice *parent, const char *devnode, char *devfs_path, c
 	char acpi_supported_states[20];
 	size_t len = sizeof(acpi_supported_states);
 
-	if (strcmp (devnode, "mainbus0") != 0) {
+	if (strcmp (devnode, "mainbus0") != 0 && strcmp (devnode, "armfdt0") != 0) {
 		return (NULL);
 	}
 
@@ -115,6 +115,9 @@ devinfo_cpu_add(HalDevice *parent, const char *devnode, char *devfs_path, char *
 	HalDevice *d;
 
 	if (strncmp(devnode, "cpu", 3) != 0) {
+		return (NULL);
+	}
+	if (devnode[3] < '0' || devnode[3] > '9') {
 		return (NULL);
 	}
 
