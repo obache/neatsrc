@@ -20,12 +20,10 @@ DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
 CFLAGS.SunOS+=	-std=c99 -D_XOPEN_SOURCE=600
 
-REPLACE_INTERPRETER+=  python
-REPLACE.python.old=    /usr/bin/env python
-REPLACE.python.new=    ${PYTHONBIN}
-REPLACE_FILES.python=  zfec/cmdline_zfec.py zfec/cmdline_zunfec.py zfec/test/test_zfec.py
+REPLACE_PYTHON=  zfec/cmdline_zfec.py zfec/cmdline_zunfec.py zfec/test/test_zfec.py
 
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-darcsver
 
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"
