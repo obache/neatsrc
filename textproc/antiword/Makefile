@@ -17,10 +17,7 @@ USE_TOOLS+=	mktemp:run
 CFLAGS.SunOS+=	-D__STDC_ISO_10646__
 MAKEFLAGS+=	LDFLAGS=${LDFLAGS:Q}
 
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	/bin/bash
-REPLACE.bash.new=	${SH}
-REPLACE_FILES.bash=	kantiword
+REPLACE_SH=	kantiword
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
