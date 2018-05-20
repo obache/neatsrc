@@ -21,11 +21,9 @@ REPLACE_SH=	kantiword
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
-post-patch:
-	cd ${WRKSRC} ; \
-	for pf in antiword.h Docs/antiword.1 ; do \
-	  ${MV} $${pf} $${pf}.old ; \
-	  ${SED} -e "s|/usr/share|${PREFIX}/share|g" $${pf}.old > $${pf} ; \
-	done
+SUBST_CLASSES+=		prefix
+SUBST_STAGE.prefix=	post-configure
+SUBST_FILES.prefix=	antiword.h Docs/antiword.1
+SUBST_SED.prefix=	-e "s|/usr/share|${PREFIX}/share|g"
 
 .include "../../mk/bsd.pkg.mk"
