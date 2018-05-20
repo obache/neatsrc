@@ -31,15 +31,9 @@ MAKE_ENV+=		ROOT=${PREFIX:Q}
 
 CONF_FILES=		${PREFIX}/share/lilo/lilo.conf.example	${PKG_SYSCONFDIR}/lilo.conf
 
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	.*/bin/bash
-REPLACE.bash.new=	${SH}
-REPLACE_FILES.bash=	mkrescue
+REPLACE_SH=		mkrescue
 
-REPLACE_INTERPRETER+=	perl
-REPLACE.perl.old=	.*/bin/perl
-REPLACE.perl.new=	${PERL5}
-REPLACE_FILES.perl=	keytab-lilo.pl
+REPLACE_PERL=		keytab-lilo.pl
 
 post-patch:
 	${CP} ${WRKSRC}/config.h ${WRKSRC}/config.h.orig
