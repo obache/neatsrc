@@ -17,13 +17,10 @@ GCC_REQD+=	4.8
 
 .include "options.mk"
 
-REPLACE_INTERPRETER+=	python
-REPLACE.python.old=	/usr/bin/env python
-REPLACE.python.new=	${PYTHONBIN}
-REPLACE_FILES.python+=	contrib/getquote-uk.py acprep python/demo.py
-REPLACE_FILES.python+=	test/DocTests.py test/LedgerHarness.py
-REPLACE_FILES.python+=	test/convert.py test/RegressTests.py test/convert.py
-REPLACE_FILES.python+=	tools/genuuid
+REPLACE_PYTHON+=	contrib/getquote-uk.py acprep python/demo.py
+REPLACE_PYTHON+=	test/DocTests.py test/LedgerHarness.py
+REPLACE_PYTHON+=	test/convert.py test/RegressTests.py test/convert.py
+REPLACE_PYTHON+=	tools/genuuid
 
 .include "../../devel/boost-headers/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
@@ -31,4 +28,5 @@ REPLACE_FILES.python+=	tools/genuuid
 .include "../../devel/gmp/buildlink3.mk"
 .include "../../lang/python/tool.mk"
 .include "../../math/mpfr/buildlink3.mk"
+.include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"
