@@ -24,6 +24,6 @@ INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	post-configure
 SUBST_FILES.prefix=	antiword.h Docs/antiword.1
-SUBST_SED.prefix=	-e "s|/usr/share|${PREFIX}/share|g"
+SUBST_SED.prefix=	-e "s|/[a-z/]*/antiword|${PREFIX}/share/antiword|g"
 
 .include "../../mk/bsd.pkg.mk"
