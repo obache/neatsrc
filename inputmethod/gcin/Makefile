@@ -24,13 +24,10 @@ USE_TOOLS+=		pkg-config gmake
 GTK2_IMMODULES=		yes
 .include "../../x11/gtk2/modules.mk"
 
-REPLACE_INTERPRETER+=	sh
-REPLACE.sh.old=		/bin/bash
-REPLACE.sh.new=		${SH}
-REPLACE_FILES.sh=	configure
-REPLACE_FILES.sh+=	scripts/gcin-user-setup
-REPLACE_FILES.sh+=	scripts/modify-XIM
-REPLACE_FILES.sh+=	scripts/utf8-edit
+REPLACE_SH=	configure
+REPLACE_SH+=	scripts/gcin-user-setup
+REPLACE_SH+=	scripts/modify-XIM
+REPLACE_SH+=	scripts/utf8-edit
 
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../x11/libXtst/buildlink3.mk"
