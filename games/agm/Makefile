@@ -10,6 +10,8 @@ HOMEPAGE=	${MASTER_SITE_SUNSITE:=games/amusements/}
 COMMENT=	Multiple-word anagram search program
 LICENSE=	generic-nonlicense
 
+USE_TOOLS+=	wish:run
+
 SUBST_CLASSES+=		rcsids
 SUBST_MESSAGE.rcsids=	Strip RCS IDs as they cause problems when patching.
 SUBST_STAGE.rcsids=	pre-patch
@@ -31,11 +33,7 @@ MAKE_FLAGS+=	CC=${CC:Q}
 
 INSTALL_TARGET=		install install-words
 
-REPLACE_INTERPRETER+=	wish
-REPLACE.wish.old=	/usr/bin/wish
-REPLACE.wish.new=	${PREFIX}/bin/wish
-REPLACE_FILES.wish=	xagm
+REPLACE_WISH+=		xagm
 
-DEPENDS+=	tk-[0-9]*:../../x11/tk
-
+.include "../../x11/tk/interpreter.mk"
 .include "../../mk/bsd.pkg.mk"
