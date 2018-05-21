@@ -82,11 +82,8 @@ CFLAGS.SunOS+=		-Du_int32_t=uint32_t
 
 BUILDLINK_TRANSFORM.SunOS+=	opt:-Wl,--as-needed:-Wl,-zignore
 
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	/bin/bash
-REPLACE.bash.new=	${SH}
 .for halscript in luks-remove luks-setup luks-teardown system-wol-enable system-wol-enabled system-wol-supported
-REPLACE_FILES.bash+=	tools/hal-${halscript}
+REPLACE_SH+=		tools/hal-${halscript}
 .endfor
 
 HAL_USER?=		haldaemon
