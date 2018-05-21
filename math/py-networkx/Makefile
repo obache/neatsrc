@@ -16,10 +16,7 @@ DEPENDS+=	${PYPKGPREFIX}-decorator>=4.1.0:../../devel/py-decorator
 
 USE_LANGUAGES=	# none
 
-REPLACE_INTERPRETER+=	python
-REPLACE.python.old=	/usr/bin/env python
-REPLACE.python.new=	${PYTHONBIN}
-REPLACE_FILES.python=	\
+REPLACE_PYTHON=	\
 examples/drawing/*.py \
 examples/advanced/*.py \
 examples/graph/*.py \
@@ -50,4 +47,5 @@ post-install:
 	${MV} ${DESTDIR}${PREFIX}/share/doc/${DISTNAME} ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"
