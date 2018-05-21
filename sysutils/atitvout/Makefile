@@ -25,10 +25,7 @@ do-configure:
 	${CP} ${FILESDIR}/Makefile.bsd ${WRKSRC}
 .endif
 
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	/bin/bash
-REPLACE.bash.new=	${SH}
-REPLACE_FILES.bash=	test.sh
+REPLACE_SH=	test.sh
 
 SUBST_CLASSES+=	sh
 SUBST_STAGE.sh=	pre-configure
