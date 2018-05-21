@@ -32,10 +32,7 @@ REPLACE_PYTHON+=	pelican/tools/pelican_themes.py
 REPLACE_PYTHON+=	pelican/tools/templates/pelicanconf.py.in
 REPLACE_PYTHON+=	pelican/tools/templates/publishconf.py.in
 
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	/usr/bin/env bash
-REPLACE.bash.new=	${TOOLS_PATH.bash}
-REPLACE_FILES.bash=	pelican/tools/templates/develop_server.sh.in
+REPLACE_BASH=		pelican/tools/templates/develop_server.sh.in
 
 SUBST_CLASSES+=		version
 SUBST_STAGE.version=	pre-build
