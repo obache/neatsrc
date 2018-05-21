@@ -23,12 +23,8 @@ CONFIGURE_ARGS+=	--disable-avahi
 CONFIGURE_ARGS+=	--with-fftw
 PLIST.fftw=		yes
 
-.include "../../lang/python/pyversion.mk"
-# manually replace since check_interpreter detests /usr/bin/env
-REPLACE_INTERPRETER+=	pulse_py
-REPLACE.pulse_py.old=	.*/usr/bin/env python[^ ]*
-REPLACE.pulse_py.new=	${PYTHONBIN}
-REPLACE_FILES.pulse_py=	src/utils/qpaeq
+REPLACE_PYTHON=		src/utils/qpaeq
+.include "../../lang/python/application.mk"
 
 .include "../../math/fftwf/buildlink3.mk"
 .include "../../sysutils/py-dbus/buildlink3.mk"
