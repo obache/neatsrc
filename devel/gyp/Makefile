@@ -30,10 +30,7 @@ SUBST_FILES.python+=	test/compiler-override/gyptest-compiler-global-settings.py
 SUBST_SED.python+=	-e 's,/usr/bin/python,${PYTHONBIN},g'
 SUBST_SED.python+=	-e 's,\([^/]\)python,\1${PYTHONBIN},g'
 
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	.*bash[^ ]*
-REPLACE.bash.new=	${PREFIX}/bin/bash
-REPLACE_FILES.bash=	gyp
+REPLACE_BASH=		gyp
 
 USE_TOOLS+=	bash:run
 
