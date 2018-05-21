@@ -106,10 +106,7 @@ RCD_SCRIPTS=	snmpd snmptrapd
 SMF_NAME=	snmp
 
 USE_TOOLS+=		sh:run
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	/bin/bash
-REPLACE.bash.new=	${SH}
-REPLACE_FILES.bash=	local/mib2c-update
+REPLACE_SH+=		local/mib2c-update
 
 INSTALLATION_DIRS+=	share/examples/net-snmp
 
