@@ -34,10 +34,7 @@ SUBST_SED.programs+=	-e 's,@BIN_PROGRAMS@,aview aaflip,g'
 SUBST_SED.programs+=	-e 's,@BIN_PROGRAMS@,aview,g'
 .endif
 
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	/bin/bash
-REPLACE.bash.new=	${SH}
-REPLACE_FILES.bash=	asciiview
+REPLACE_SH=		asciiview
 
 INSTALLATION_DIRS=	share/doc/aview
 
