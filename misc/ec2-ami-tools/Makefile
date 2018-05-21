@@ -26,10 +26,7 @@ NO_BUILD=	yes
 
 .include "../../mk/bsd.prefs.mk"
 
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	/bin/bash
-REPLACE.bash.new=	/bin/sh
-REPLACE_FILES.bash=	bin/*
+REPLACE_SH=		bin/*
 
 SUBST_CLASSES+=		ec2-home
 SUBST_STAGE.ec2-home=	pre-configure
