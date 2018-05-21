@@ -664,7 +664,7 @@ TOOLS_PATH.openssl=		${LOCALBASE}/bin/openssl
 .endif
 
 .if !defined(TOOLS_IGNORE.patch) && !empty(_USE_TOOLS:Mpatch)
-.  if !empty(PKGPATH:Mdevel/patch)
+.  if !empty(PKGPATH:Mdevel/nbpatch)
 MAKEFLAGS+=			TOOLS_IGNORE.patch=
 .  elif !empty(_TOOLS_USE_PKGSRC.patch:M[yY][eE][sS])
 TOOLS_DEPENDS.patch?=		nbpatch-[0-9]*:../../devel/nbpatch
