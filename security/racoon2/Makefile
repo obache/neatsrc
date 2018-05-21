@@ -16,12 +16,7 @@ INSTALL_UNSTRIPPED=	yes
 USE_TOOLS+=		grep sed flex yacc
 USE_TOOLS+=		gzip:run perl:run	# used by pskgen
 
-# @perl_bindir@ will be /usr/pkgsrc/security/racoon2/work/.tools/bin/perl.
-# REPLACE_PERL cannot be used, since @perl_bindir@ does not match its pattern.
-REPLACE_INTERPRETER+=	perl
-REPLACE.perl.old=	@perl_bindir@
-REPLACE.perl.new=	${PERL5}
-REPLACE_FILES.perl=	pskgen/pskgen.in
+CONFIGURE_ENV+=		perl_bindir=${PERL5}
 
 SUBST_CLASSES+=		cf-path
 SUBST_STAGE.cf-path=	pre-configure
