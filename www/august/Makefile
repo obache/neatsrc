@@ -18,10 +18,7 @@ USE_TOOLS+=		wish:run
 INSTALLATION_DIRS=	bin share/doc/august
 
 # needs Tcl/Tk version 8.0 or better
-REPLACE_INTERPRETER+=	wish
-REPLACE.wish.old=	/usr/bin/wish
-REPLACE.wish.new=	${WISH}
-REPLACE_FILES.wish=	august
+REPLACE_WISH=		august
 
 # ImageMagick and Weblint is also recommended (but not necessary).
 # August uses ImageMagick commands to determine width and
@@ -34,4 +31,5 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/specchars.txt ${DESTDIR}${PREFIX}/share/doc/august/
 	${INSTALL_MAN} ${WRKSRC}/keyname.tcl ${DESTDIR}${PREFIX}/share/doc/august/
 
+.include "../../x11/tk/interpreter.mk"
 .include "../../mk/bsd.pkg.mk"
