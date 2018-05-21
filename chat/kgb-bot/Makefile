@@ -32,12 +32,9 @@ DEPENDS+=		p5-YAML-[0-9]*:../../textproc/p5-YAML
 RCD_SCRIPTS=		kgb_bot
 RCD_SCRIPT_SRC.kgb_bot=	files/kgb_bot.sh
 
-REPLACE_INTERPRETER+=	perl
-REPLACE.perl.old=	/usr/bin/perl
-REPLACE.perl.new=	${TOOLS_PATH.perl}
-REPLACE_FILES.perl=	script/kgb-add-project script/kgb-bot
-REPLACE_FILES.perl+=	script/kgb-split-config script/kgb-client
-REPLACE_FILES.perl+=	eg/simple-soap-client eg/simple-soap-server
+REPLACE_PERL=		script/kgb-add-project script/kgb-bot
+REPLACE_PERL+=		script/kgb-split-config script/kgb-client
+REPLACE_PERL+=		eg/simple-soap-client eg/simple-soap-server
 
 SUBST_CLASSES+=		configs
 SUBST_STAGE.configs=	pre-configure
