@@ -14,10 +14,7 @@ DEPENDS+=	dar-[0-9]*:../../archivers/dar
 USE_TOOLS+=		bash:run
 PKG_SYSCONFSUBDIR=	sarab
 
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	/bin/bash
-REPLACE.bash.new=	${TOOLS_PATH.bash}
-REPLACE_FILES.bash=	sarab.sh
+REPLACE_BASH=		sarab.sh
 
 EGDIR=		${PREFIX}/share/examples/sarab
 CONF_FILES+= ${EGDIR}/rotation.schedule	${PKG_SYSCONFDIR}/rotation.schedule
