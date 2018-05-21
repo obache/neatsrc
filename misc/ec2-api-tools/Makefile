@@ -21,10 +21,7 @@ NO_BUILD=	yes
 USE_JAVA=	run
 USE_JAVA2=	1.5
 
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	/usr/bin/env.*bash
-REPLACE.bash.new=	/bin/sh
-REPLACE_FILES.bash=	bin/*
+REPLACE_SH=		bin/*
 
 SUBST_CLASSES+=		java-path
 SUBST_STAGE.java-path=	pre-configure
