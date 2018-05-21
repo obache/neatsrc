@@ -36,11 +36,6 @@ LIBS.SunOS+=		-lnsl -lsocket
 X11_LDFLAGS+=		${LIBS}
 MAKE_ENV+=		X11_LDFLAGS=${X11_LDFLAGS:Q}
 
-REPLACE_INTERPRETER+=	perl
-REPLACE.perl.old=	.*/bin/perl
-REPLACE.perl.new=	${PREFIX}/bin/perl
-REPLACE_FILES.perl=	auxil/astorb2edb.pl auxil/mpcorb2edb.pl
-
 .if ${MACHINE_ARCH} == "arm" || ${MACHINE_ARCH} == "arm32"
 GCC_REQD+=	2.95.3
 .endif
