@@ -14,8 +14,8 @@ LICENSE=	gnu-gpl-v2
 
 DEPENDS+=	mpg123-1.*:../../audio/mpg123
 DEPENDS+=	lame-3.*:../../audio/lame
-DEPENDS+=	tk>=8.0:../../x11/tk
 
+USE_TOOLS+=	wish:run
 GNU_CONFIGURE=	YES
 DIST_SUBDIR=	liveice-0.20001121
 LIBS+=		${LIBOSSAUDIO}
@@ -23,10 +23,7 @@ LIBS.SunOS+=	-lsocket
 
 INSTALLATION_DIRS=	bin
 
-REPLACE_INTERPRETER+=	wish
-REPLACE.wish.old=	/usr/bin/wish
-REPLACE.wish.new=	${LOCALBASE}/bin/wish
-REPLACE_FILES.wish=	liveiceconfigure.tk
+REPLACE_WISH=		liveiceconfigure.tk
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/liveice ${DESTDIR}${PREFIX}/bin
@@ -37,6 +34,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${PREFIX}/share/doc/liveice
 .endfor
 
+.include "../../x11/tk/interpreter.mk"
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mk/oss.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
