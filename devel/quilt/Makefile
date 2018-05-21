@@ -46,16 +46,7 @@ CONFIGURE_ARGS+=	--without-getopt
 
 INSTALL_MAKE_FLAGS+=	BUILD_ROOT=${DESTDIR:Q} etcdir=${PREFIX}/share/examples/quilt
 
-REPLACE_INTERPRETER+=	conf-bash
-REPLACE.conf-bash.old=	@BASH@
-REPLACE.conf-bash.new=	${BASH}
-REPLACE_FILES.conf-bash=*.in */*.in */*/*.in
-
-SUBST_CLASSES+=		bash
-SUBST_MESSAGE.bash=	Fixing non-shellbang references to bash.
-SUBST_STAGE.bash=	pre-configure
-SUBST_SED.bash=		-e 's,@BASH@,${BASH},g'
-SUBST_FILES.bash=	quilt/scripts/inspect.in
+CONFIGURE_ARGS+=	--with-bash=${BASH}
 
 SUBST_CLASSES+=		etc
 SUBST_MESSAGE.etc=	Fixing path to configuration file.

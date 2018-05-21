@@ -16,6 +16,7 @@ share/locale/ru/LC_MESSAGES/quilt.mo
 share/quilt/add
 share/quilt/annotate
 share/quilt/applied
+share/quilt/compat/bash
 share/quilt/compat/cp
 share/quilt/compat/date
 share/quilt/compat/getopt
