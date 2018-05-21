@@ -52,16 +52,14 @@ PLIST.natdynlink=	yes
 .  endif
 .endif
 
-.include "../../lang/python/pyversion.mk"
 
 REPLACE_SH=	configure install.sh
-REPLACE_INTERPRETER+=	python
-REPLACE.python.old=	python
-REPLACE.python.new=	${PYTHONBIN}
-REPLACE_FILES.python=	tools/TimeFileMaker.py \
+REPLACE_PYTHON=	tools/TimeFileMaker.py \
 	tools/make-both-single-timing-files.py \
 	tools/make-both-time-files.py \
 	tools/make-one-time-file.py
+
+.include "../../lang/python/application.mk"
 
 INSTALL_ENV+=	COQINSTALLPREFIX=${DESTDIR}
 
