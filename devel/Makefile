@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2675 2018/05/18 18:17:32 minskim Exp $
+# $NetBSD: Makefile,v 1.2678 2018/05/21 23:14:52 minskim Exp $
 #
 
 COMMENT=	Development utilities
@@ -78,6 +78,7 @@ SUBDIR+=	argp
 SUBDIR+=	argtable
 SUBDIR+=	as31
 SUBDIR+=	asio
+SUBDIR+=	aslc86k
 SUBDIR+=	asm2html
 SUBDIR+=	astyle
 SUBDIR+=	at-spi
@@ -520,6 +521,7 @@ SUBDIR+=	kservice
 SUBDIR+=	ktexteditor
 SUBDIR+=	kyua
 SUBDIR+=	lcc
+SUBDIR+=	lcdis
 SUBDIR+=	lcov
 SUBDIR+=	ldapsdk
 SUBDIR+=	ldpc
@@ -2271,6 +2273,7 @@ SUBDIR+=	py-trytond
 SUBDIR+=	py-txaio
 SUBDIR+=	py-txgithub
 SUBDIR+=	py-txrequests
+SUBDIR+=	py-typed-ast
 SUBDIR+=	py-typing
 SUBDIR+=	py-unit
 SUBDIR+=	py-unitgui

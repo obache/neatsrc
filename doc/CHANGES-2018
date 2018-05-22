@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.2491 2018/05/21 08:08:51 adam Exp $
+$NetBSD: CHANGES-2018,v 1.2505 2018/05/21 23:15:07 minskim Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -3585,3 +3585,24 @@ Changes to the packages collection and infrastructure in 2018:
 	Updated databases/p5-DBD-CSV to 0.53 [wen 2018-05-20]
 	Removed databases/postgresql92 [adam 2018-05-21]
 	Removed databases/jdbc-postgresql92 [adam 2018-05-21]
+	Updated devel/glib2 to 2.56.1nb1 [jperkin 2018-05-21]
+	Added lang/gcc7-libs version 7.3.0nb2 [jperkin 2018-05-21]
+	Updated databases/py-peewee to 3.4.0 [fhajny 2018-05-21]
+	Updated databases/pg_repack to 1.4.3 [fhajny 2018-05-21]
+	Updated textproc/py-xlsxwriter to 1.0.5 [fhajny 2018-05-21]
+	Updated mail/postfix to 3.3.1 [taca 2018-05-21]
+	Updated mail/postfix-cdb to 3.3.1 [taca 2018-05-21]
+	Updated mail/postfix-ldap to 3.3.1 [taca 2018-05-21]
+	Updated mail/postfix-lmdb to 3.3.1 [taca 2018-05-21]
+	Updated mail/postfix-mysql to 3.3.1 [taca 2018-05-21]
+	Updated mail/postfix-pcre to 3.3.1 [taca 2018-05-21]
+	Updated mail/postfix-pgsql to 3.3.1 [taca 2018-05-21]
+	Updated mail/postfix-sqlite to 3.3.1 [taca 2018-05-21]
+	Updated time/ruby-tzinfo-data to 1.2018.5 [taca 2018-05-21]
+	Updated time/ruby-tzinfo03 to 0.3.54 [taca 2018-05-21]
+	Added devel/lcdis version 1.04 [minskim 2018-05-21]
+	Added devel/aslc86k version 1.9 [minskim 2018-05-21]
+	Added graphics/R-Cairo version 1.5.9 [minskim 2018-05-21]
+	Updated multimedia/x265 to 2.8 [adam 2018-05-21]
+	Updated www/links to 2.16 [leot 2018-05-21]
+	Added devel/py-typed-ast version 1.1.0 [minskim 2018-05-21]
