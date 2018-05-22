@@ -14,6 +14,7 @@ BUILDLINK_API_DEPENDS.modular-xorg-server+=	modular-xorg-server>=1.12.4nb12<1.17
 BUILDLINK_PKGSRCDIR.modular-xorg-server?=	../../x11/modular-xorg-server112
 .else
 BUILDLINK_API_DEPENDS.modular-xorg-server+=	modular-xorg-server>=1.18
+BUILDLINK_ABI_DEPENDS.modular-xorg-server+=	modular-xorg-server>=1.20
 BUILDLINK_PKGSRCDIR.modular-xorg-server?=	../../x11/modular-xorg-server
 .endif
 
