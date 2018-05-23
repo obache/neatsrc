@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2678 2018/05/21 23:14:52 minskim Exp $
+# $NetBSD: Makefile,v 1.2680 2018/05/23 00:32:23 minskim Exp $
 #
 
 COMMENT=	Development utilities
@@ -347,6 +347,7 @@ SUBDIR+=	go-glog
 SUBDIR+=	go-gls
 SUBDIR+=	go-golang-lru
 SUBDIR+=	go-goorgeous
+SUBDIR+=	go-gopkgs
 SUBDIR+=	go-goptlib
 SUBDIR+=	go-homedir
 SUBDIR+=	go-i18n
@@ -1961,7 +1962,6 @@ SUBDIR+=	py-dogpile-cache
 SUBDIR+=	py-dulwich
 SUBDIR+=	py-editorconfig-core
 SUBDIR+=	py-entrypoints
-SUBDIR+=	py-enum
 SUBDIR+=	py-enum34
 SUBDIR+=	py-exam
 SUBDIR+=	py-execnet
