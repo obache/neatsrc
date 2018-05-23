@@ -13,6 +13,7 @@
 # used by security/cy2-plain/Makefile
 # used by security/cy2-scram/Makefile
 # used by security/cy2-sql/Makefile
+# used by security/cy2-srp/Makefile
 # used by security/cyrus-saslauthd/Makefile
 #
 # This Makefile fragment should be included _below_ any SASL_PLUGIN
