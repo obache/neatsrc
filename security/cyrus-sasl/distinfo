@@ -8,5 +8,5 @@ SHA1 (patch-configure) = cd61f5884358e3c8d24c42df4ae6bcba1df55d94
 SHA1 (patch-configure.ac) = 0e9efe40618afcad1940cc7fac4afe8907183e73
 SHA1 (patch-lib_saslutil.c) = 5f66f57e302d8d6518b912a5ad848a4bd96314f0
 SHA1 (patch-plugins_cram.c) = d37483fc9ff12adf00f460b1e85209680994f6d8
-SHA1 (patch-plugins_otp.c) = a6087300a7dd2d3da8e4928587418c29f2dabad0
+SHA1 (patch-plugins_otp.c) = 639f27eb0c1d16d540fd41dc3d24afcfcb72065e
 SHA1 (patch-saslauthd_Makefile.in) = 397bc893975ff4d8b0067dae571381f06486493d

@@ -1,7 +1,7 @@
 $NetBSD: patch-plugins_otp.c,v 1.2 2018/04/17 01:57:18 christos Exp $
 
 Fix the OTP plugin on 32 bit machines and add SHA2 support
-Submitted upstream as https://bugzilla.cyrusimap.org/show_bug.cgi?id=3914
+Submitted upstream as https://github.com/cyrusimap/cyrus-sasl/issues/404
 
 --- plugins/otp.c.orig	2016-12-10 15:54:27.000000000 +0000
 +++ plugins/otp.c
