@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.24 2018/04/14 07:34:26 adam Exp $
 
-DISTNAME=	ibus-array-release-0.1.2
+DISTNAME=	ibus-array-release-0.2.0
 PKGNAME=	${DISTNAME:S/-release-/-/}
-PKGREVISION=	2
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	-https://github.com/lexical/ibus-array/archive/release-${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
@@ -20,11 +19,6 @@ USE_TOOLS+=	gmake pkg-config automake autoconf autopoint msgfmt msgmerge
 
 pre-configure:
 	${RUN}cd ${WRKSRC};${PKGSRC_SETENV} ${CONFIGURE_ENV} ./autogen.sh
-
-SUBST_CLASSES+=		epython
-SUBST_STAGE.epython=	pre-configure
-SUBST_FILES.epython=	setup/ibus-setup-array.in
-SUBST_SED.epython=	-e 's;exec python;exec ${PYTHONBIN};g'
 
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
