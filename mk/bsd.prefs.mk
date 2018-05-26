@@ -1,4 +1,4 @@
-# $NetBSD: bsd.prefs.mk,v 1.396 2018/01/15 09:35:45 jperkin Exp $
+# $NetBSD: bsd.prefs.mk,v 1.397 2018/05/23 11:26:54 maya Exp $
 #
 # This file includes the mk.conf file, which contains the user settings.
 #
@@ -719,6 +719,10 @@ INIT_SYSTEM?=		rc.d
 _BUILD_DEFS+=		INIT_SYSTEM
 .endif
 
+# Build Position Independent Executables if supported
+# Allows the security mitigation of ASLR to be used.
+# Impact: very small performance drop.
+#
 _PKGSRC_MKPIE=	no
 .if ${PKGSRC_MKPIE:tl} == "yes" && \
     ${MKPIE_SUPPORTED:Uyes:tl} == "yes" && \
@@ -726,6 +730,9 @@ _PKGSRC_MKPIE=	no
 _PKGSRC_MKPIE=	yes
 .endif
 
+# Enable reproducible build flags
+# Adjusts debug symbols to omit workdir references
+#
 _PKGSRC_MKREPRO=	no
 .if ${PKGSRC_MKREPRO:tl} == "yes" && \
     ${MKREPRO_SUPPORTED:Uyes:tl} == "yes" && \
@@ -733,6 +740,10 @@ _PKGSRC_MKREPRO=	no
 _PKGSRC_MKREPRO=	yes
 .endif
 
+# Enable FORTIFY
+# Security mitigation: compile and run-time checks for buffer overflows.
+# Impact: performance drop
+#
 _PKGSRC_USE_FORTIFY=	no
 .if ${PKGSRC_USE_FORTIFY:tl} != "no" && \
     ${FORTIFY_SUPPORTED:Uyes:tl} == "yes" && \
@@ -740,6 +751,10 @@ _PKGSRC_USE_FORTIFY=	no
 _PKGSRC_USE_FORTIFY=	yes
 .endif
 
+# Use read-only relocations
+# Security mitigation: some ELF sections are mapped read-only.
+# Impact: increases program startup time as it disables lazy-binding
+#
 _PKGSRC_USE_RELRO=	no
 .if ${PKGSRC_USE_RELRO:tl} != "no" && \
     ${RELRO_SUPPORTED:Uyes:tl} == "yes" && \
@@ -747,6 +762,11 @@ _PKGSRC_USE_RELRO=	no
 _PKGSRC_USE_RELRO=	yes
 .endif
 
+# Enable Stack-Smashing Protection
+# Security mitigation: add and check canaries on the stack at runtime
+# to find buffer overruns.
+# Impact: performance drop
+#
 _PKGSRC_USE_SSP=	no
 .if ${PKGSRC_USE_SSP:tl} != "no" && \
     ${SSP_SUPPORTED:Uyes:tl} == "yes" && \
@@ -754,6 +774,10 @@ _PKGSRC_USE_SSP=	no
 _PKGSRC_USE_SSP=	yes
 .endif
 
+# Enable stack check
+# Generate code to ensure we don't exceed our given stack.
+# Impact: performance drop
+#
 _PKGSRC_USE_STACK_CHECK=no
 .if ${PKGSRC_USE_STACK_CHECK:tl} != "no" && \
     ${STACK_CHECK_SUPPORTED:Uyes:tl} == "yes" && \

@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2018/05/10 08:17:10 maya Exp $
+# $NetBSD: Makefile,v 1.13 2018/05/23 10:45:54 maya Exp $
 
-DISTNAME=		grub-2.00
+DISTNAME=		grub-2.02
 PKGNAME=		${DISTNAME:S/grub/grub2/}
-PKGREVISION=		6
 CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_GNU:=grub/}
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX}
@@ -16,15 +15,14 @@ CONFLICTS=		grub-[0-9]*
 
 ONLY_FOR_PLATFORM=	*-*-i386 *-*-x86_64
 
+USE_LANGUAGES+=		c c++
 USE_TOOLS+=		gmake flex bison gettext:run awk
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--disable-efiemu
-CONFIGURE_ARGS+=	--disable-grub-emu-usb
 CONFIGURE_ARGS+=	--disable-grub-emu-sdl
 CONFIGURE_ARGS+=	--disable-grub-emu-pci
-CONFIGURE_ARGS+=	--disable-werror
 INFO_FILES=		yes
 USE_PKGLOCALEDIR=	yes
 
@@ -45,11 +43,6 @@ FORTIFY_SUPPORTED=	no
 GCC_REQD+=		4.4
 FLEX_REQD=		2.5.35
 BUILD_DEPENDS+=		help2man>=1.36:../../converters/help2man
-
-# XXX Force use of pkgsrc's flex on NetBSD to prevent build failure.
-.if ${OPSYS} == "NetBSD"
-FLEX_REQD=		9
-.endif
 
 #
 # The configure script sets the variables `target_cpu' and `platform', which
@@ -131,7 +124,7 @@ SUBST_CLASSES+=			fix-dejavu
 SUBST_STAGE.fix-dejavu=		pre-configure
 SUBST_MESSAGE.fix-dejavu=	Fixing dejavu search paths in configure.
 SUBST_FILES.fix-dejavu=		configure
-SUBST_SED.fix-dejavu=		-e 's, \(/usr/share/fonts/dejavu\);, \1 ${PREFIX}/share/fonts/X11/TTF;,g'
+SUBST_SED.fix-dejavu=		-e 's, \(/usr/share/fonts/dejavu\), \1 ${PREFIX}/share/fonts/X11/TTF,g'
 
 #
 # Do not use `\t' with sed, as it's not portable.
@@ -141,15 +134,6 @@ SUBST_STAGE.fix-sed-tabs=	post-patch
 SUBST_MESSAGE.fix-sed-tabs=	Fixing tabulations for sed in scripts.
 SUBST_FILES.fix-sed-tabs=	util/grub.d/*.in
 SUBST_SED.fix-sed-tabs=		-e 's,\\t,	,g'
-
-#
-# grub-script-check crashes from enabling executable stack, paxctl +m it if possible.
-# XXX not needed with grub 2.02
-#
-post-configure:
-	${MV} ${WRKSRC}/Makefile ${WRKSRC}/Makefile.orig
-	${RUN}${AWK} '/^grub-script-check.1:/{print;print "\t-paxctl +m grub-script-check";next}1' \
-		${WRKSRC}/Makefile.orig > ${WRKSRC}/Makefile
 
 #
 # Remove executable bit from non-executable files.

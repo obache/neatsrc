@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2680 2018/05/23 00:32:23 minskim Exp $
+# $NetBSD: Makefile,v 1.2686 2018/05/25 16:01:10 minskim Exp $
 #
 
 COMMENT=	Development utilities
@@ -345,6 +345,7 @@ SUBDIR+=	go-fsync
 SUBDIR+=	go-gitmap
 SUBDIR+=	go-glog
 SUBDIR+=	go-gls
+SUBDIR+=	go-gocode
 SUBDIR+=	go-golang-lru
 SUBDIR+=	go-goorgeous
 SUBDIR+=	go-gopkgs
@@ -1949,6 +1950,7 @@ SUBDIR+=	py-d2to1
 SUBDIR+=	py-daemon
 SUBDIR+=	py-daemonize
 SUBDIR+=	py-darcsver
+SUBDIR+=	py-dash
 SUBDIR+=	py-ddt
 SUBDIR+=	py-decorator
 SUBDIR+=	py-deprecation
@@ -1968,6 +1970,8 @@ SUBDIR+=	py-execnet
 SUBDIR+=	py-expect
 SUBDIR+=	py-expressions
 SUBDIR+=	py-extras
+SUBDIR+=	py-extratools
+SUBDIR+=	py-fakefs
 SUBDIR+=	py-faker
 SUBDIR+=	py-falcon
 SUBDIR+=	py-fann2
@@ -2252,6 +2256,7 @@ SUBDIR+=	py-test-relaxed
 SUBDIR+=	py-test-runner
 SUBDIR+=	py-test-shutil
 SUBDIR+=	py-test-sugar
+SUBDIR+=	py-test-testmon
 SUBDIR+=	py-test-timeout
 SUBDIR+=	py-test-utils
 SUBDIR+=	py-test-virtualenv
@@ -2263,6 +2268,7 @@ SUBDIR+=	py-testscenarios
 SUBDIR+=	py-testtools
 SUBDIR+=	py-thrift
 SUBDIR+=	py-tlsh
+SUBDIR+=	py-toolz
 SUBDIR+=	py-tortoisehg
 SUBDIR+=	py-tox
 SUBDIR+=	py-traceback2

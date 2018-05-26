@@ -1,4 +1,4 @@
-# $NetBSD: check-shlibs-macho.awk,v 1.3 2016/08/20 18:52:42 adam Exp $
+# $NetBSD: check-shlibs-macho.awk,v 1.5 2018/05/25 10:57:28 jperkin Exp $
 
 #
 # Read a list of potential Mach-O binaries from stdin.
@@ -71,6 +71,8 @@ function check_pkg(DSO, 	pkg, found) {
 function checkshlib(DSO,	needed, found) {
 	cmd = "otool -XL " shquote(DSO) " 2>/dev/null"
 	while ((cmd | getline) > 0) {
+		if ($0 !~ /^\t/)
+			continue
 		needed[$1] = ""
 	}
 	close(cmd)
@@ -119,4 +121,4 @@ BEGIN {
 	depends_file = ENVIRON["DEPENDS_FILE"]
 }
 
-/\t/ { checkshlib($0); }
+{ checkshlib($0); }
