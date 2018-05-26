@@ -1,8 +1,8 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-qt5-1.2.2
+DISTNAME=	fcitx-qt5-1.2.3
 CATEGORIES=	inputmethod
-MASTER_SITES=	http://download.fcitx-im.org/fcitx-qt5/
+MASTER_SITES=	https://download.fcitx-im.org/fcitx-qt5/
 EXTRACT_SUFX=	.tar.xz
 
 HOMEPAGE=	http://fcitx-im.org/
