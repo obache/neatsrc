@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.2559 2018/05/26 01:00:00 ryoon Exp $
+$NetBSD: CHANGES-2018,v 1.2578 2018/05/27 05:18:02 tsutsui Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -3705,3 +3705,25 @@ Changes to the packages collection and infrastructure in 2018:
 	Added devel/py-extratools version 0.6.14.2 [minskim 2018-05-25]
 	Updated sysutils/u-boot-nanopi-neo-plus2 to 2018.05nb1 [jakllsch 2018-05-25]
 	Updated cross/arm-none-eabi-gcc to 8.1.0 [ryoon 2018-05-26]
+	Updated lang/php71 to 7.1.18 [taca 2018-05-26]
+	Updated lang/php72 to 7.2.6 [taca 2018-05-26]
+	Updated misc/tmux to 2.7 [leot 2018-05-26]
+	Updated sysutils/arm-trusted-firmware-sun50iw1p1 to 20180210 [jmcneill 2018-05-26]
+	Added sysutils/arm-trusted-firmware-sun50i-h6 version 20180207 [jmcneill 2018-05-26]
+	Added sysutils/u-boot-pine-h64 version 2018.03rc1 [jmcneill 2018-05-26]
+	Updated lang/openjdk8 to 1.8.172 [ryoon 2018-05-27]
+	Updated x11/libdrm to 2.4.92 [wiz 2018-05-26]
+	Updated mail/neomutt to 20180512 [wiz 2018-05-26]
+	Updated net/libsoup to 2.62.2 [wiz 2018-05-26]
+	Updated audio/id3 to 1.1.0 [wiz 2018-05-26]
+	Updated net/libfilezilla to 0.12.2 [wiz 2018-05-26]
+	Updated net/filezilla to 3.33.0 [wiz 2018-05-26]
+	Updated misc/goffice0.10 to 0.10.41 [wiz 2018-05-26]
+	Updated math/gnumeric112 to 1.12.41 [wiz 2018-05-26]
+	Updated misc/todoman to 3.4.0 [wiz 2018-05-26]
+	Updated devel/extra-cmake-modules to 5.46.0 [wiz 2018-05-26]
+	Updated graphics/oxygen-icons to 5.46.0 [wiz 2018-05-26]
+	Updated lang/oracle-jre8 to 8.0.172 [ryoon 2018-05-27]
+	Updated lang/oracle-jdk8 to 8.0.172 [ryoon 2018-05-27]
+	Added textproc/py-sphinx-autodoc-typehints version 1.3.0 [minskim 2018-05-27]
+	Updated net/mikutter to 3.7.1 [tsutsui 2018-05-27]

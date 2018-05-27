@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.18356 2018/05/25 10:45:20 wiz Exp $
+$NetBSD: TODO,v 1.18367 2018/05/26 22:19:47 wiz Exp $
 
 Suggested new packages
 ======================
@@ -464,7 +464,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cal3d-0.11.0
 	o calc-2.11.10.1
 	o calcoo-2.1.0
-	o calibre-3.24
+	o calibre-3.24.1
 	o calligra-3.0.1 [in wip; koffice successor]
 	o cardboard-schedule-1.14c [at http://www.bright-green.com/downloads/]
 	o catdoc-1.1
@@ -611,7 +611,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ex-20050325
 	o exaile-3.4.4
 	o exmh-2.8.0
-	o extra-cmake-modules-5.46.0
 	o faces-1.7.7
 	o facter-2.4.5
 	o fakeroot-1.6.5
@@ -623,7 +622,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o fetchyahoo-2.14.0
 	o file-5.33
 	o filerunner-14.06.18.10
-	o filezilla-3.33.0
 	o fillets-ng-0.7.4
 	o fillets-ng-data-0.7.4
 	o flashplayer-0.4.13
@@ -739,7 +737,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o go-grpc-1.5.2
 	o gob-2.0.19
 	o gobby-0.5.0
-	o goffice0.10-0.10.41
 	o gok-2.30.1 [GNOME 2.32]
 	o golem-0.0.6
 	o goocanvas-2.0.2
@@ -847,7 +844,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o icedtea-web-1.6.2
 	o ices-mp3-2.0.2
 	o icinga-base-2.4.1
-	o id3-1.1.0
 	o ike-2.0.1 [pkg/37032]
 	o imapsync-1.678
 	o imp-6.2.12
@@ -955,9 +951,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libcanberra-0.28 [drops support for GNOME2; don't update for now -- wiz]
 	o libcarddav-14.0.4
 	o libconfuse-3.1
-	o libdrm-2.4.92
 	o libextractor-1.2 [requires shm_open()]
-	o libfilezilla-0.12.2
 	o libflash-0.4.13
 	o libfolks-0.10.1 [wip]
 	o libgdiplus-4.2
@@ -988,7 +982,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libquantum-1.1.0 [pkg/43728, development release]
 	o libressl-2.7.3
 	o librsvg-2.42.4 [needs rust+cargo]
-	o libsoup-2.62.2
 	o libstree-0.4.2
 	o libtcl-nothread-8.5.1
 	o libtecla-1.6.3
@@ -1094,7 +1087,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o nas-auscope-1.9.4
 	o nautilus-actions-2.30.3 [GNOME 2.30]
 	o ncview-2.1.6
-	o neomutt-20180512
 	o nessus-4.4.1
 	o nestopia-1.46.2 [http://0ldsk00l.ca/nestopia/]
 	o netbt-hcidump-5.37
@@ -1137,7 +1129,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ortp-0.25.0
 	o osg-3.4.1
 	o oto-0.5
-	o oxygen-icons-5.46.0
 	o p0f-3.08b
 	o p5-Apache-Gallery-1.0.2
 	o p5-DBD-DB2-1.85
@@ -1372,7 +1363,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o strace-4.18
 	o stratagus-2.2.5.5
 	o streamtuner-2.2.0
-	o stunnel-5.43
+	o stunnel-5.45
 	o subtitleeditor-0.52.1
 	o subversion-1.10
 	o subversion-base-1.10.0
@@ -1427,7 +1418,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o tkpasman-2.2b
 	o tn5250-0.17.3 [at http://tn5250.sourceforge.net/]
 	o tob-0.26
-	o todoman-3.4.0
 	o tomboy-1.10.2
 	o top-3.8beta1
 	o topgit-0.8
