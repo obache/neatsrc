@@ -23,6 +23,7 @@ include/groonga/groonga/file_reader.h
 include/groonga/groonga/geo.h
 include/groonga/groonga/groonga.h
 include/groonga/groonga/hash.h
+include/groonga/groonga/highlighter.h
 include/groonga/groonga/id.h
 include/groonga/groonga/ii.h
 include/groonga/groonga/msgpack.h
@@ -45,6 +46,7 @@ include/groonga/groonga/time.h
 include/groonga/groonga/token.h
 include/groonga/groonga/token_filter.h
 include/groonga/groonga/tokenizer.h
+include/groonga/groonga/tokenizer_query_deprecated.h
 include/groonga/groonga/type.h
 include/groonga/groonga/util.h
 include/groonga/groonga/vector.h
@@ -128,6 +130,7 @@ share/doc/groonga/en/html/index.html
 share/doc/groonga/en/html/install.html
 share/doc/groonga/en/html/install/centos.html
 share/doc/groonga/en/html/install/debian.html
+share/doc/groonga/en/html/install/docker.html
 share/doc/groonga/en/html/install/fedora.html
 share/doc/groonga/en/html/install/mac_os_x.html
 share/doc/groonga/en/html/install/others.html
@@ -411,6 +414,7 @@ share/doc/groonga/ja/html/index.html
 share/doc/groonga/ja/html/install.html
 share/doc/groonga/ja/html/install/centos.html
 share/doc/groonga/ja/html/install/debian.html
+share/doc/groonga/ja/html/install/docker.html
 share/doc/groonga/ja/html/install/fedora.html
 share/doc/groonga/ja/html/install/mac_os_x.html
 share/doc/groonga/ja/html/install/others.html
