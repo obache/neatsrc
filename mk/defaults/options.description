@@ -105,6 +105,7 @@ curses			Enable curses support.
 cvs			Enable CVS support.
 cvsgraph		Enable cvsgraph support.
 cython			Enable Cython support.
+daap                    Enable Digital Audio Access Protocol support.
 daemontools-moresignals	Add options to send SIG{QUIT,USR1,USR2} to daemons.
 dante                   Enable Dante support.
 dar-int32		Use 32-bit integers for file lengths in Dar.
@@ -592,6 +593,7 @@ pinfo-native-curses	Use NetBSD native curses rather than ncurses.
 pkcs11			Use certificate-on-a-stick (or card) support.
 plotutils		Enable plotutils support.
 png			Enable PNG support.
+polkit                  Enable Polkit support.
 poppler			Enable poppler-utils support.
 portals			Enable BSD Portals support
 portaudio		Enable PortAudio audio library support.
