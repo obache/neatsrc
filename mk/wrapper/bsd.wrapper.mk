@@ -129,8 +129,6 @@ IMAKE?=		${X11BASE}/bin/imake
 WRAPPEES+=	IMAKE
 .endif
 WRAPPEES+=	LD
-WRAPPEES+=	AR
-WRAPPEES+=	RANLIB
 
 .if !empty(PKGSRC_COMPILER:Mxlc) && ${OPSYS} == "AIX"
 CC_R?=		${_XLC_DIR}/bin/cc_r
@@ -173,8 +171,6 @@ _WRAP_ALIASES.CPP=	cpp
 _WRAP_ALIASES.FC=	f77 g77 gfortran
 _WRAP_ALIASES.IMAKE=	imake
 _WRAP_ALIASES.LD=	ld
-_WRAP_ALIASES.AR=	ar
-_WRAP_ALIASES.RANLIB=	ranlib
 
 # _WRAP_*.<wrappee> variables represent "template methods" of the main
 # wrapper script.  This allows individual wrappers to be customized to
