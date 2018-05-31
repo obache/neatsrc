@@ -4,6 +4,7 @@ BUILTIN_PKG:=	libarchive
 
 BUILTIN_FIND_HEADERS_VAR:=	H_ARCHIVE
 BUILTIN_FIND_HEADERS.H_ARCHIVE=	archive.h
+BUILTIN_FIND_PKGCONFIGS:=	libarchive
 
 .include "../../mk/buildlink3/bsd.builtin.mk"
 
@@ -24,8 +25,10 @@ MAKEVARS+=	IS_BUILTIN.libarchive
 ### a package name to represent the built-in package.
 ###
 .if !defined(BUILTIN_PKG.libarchive) && \
-    !empty(IS_BUILTIN.libarchive:M[yY][eE][sS]) && \
-    empty(H_ARCHIVE:M__nonexistent__)
+    !empty(IS_BUILTIN.libarchive:M[yY][eE][sS])
+.  if ${BUILTIN_PKGCONFIG_FOUND.libarchive} == "yes"
+BUILTIN_VERSION.libarchive=	${BUILTIN_PKGCONFIG_VERSION.libarchive}
+.  elif empty(H_ARCHIVE:M__nonexistent__)
 BUILTIN_VERSION.libarchive!=						\
 	${AWK} '/\#define[ 	]*ARCHIVE_LIBRARY_VERSION/ {		\
 			lib_vers = $$4;					\
@@ -54,6 +57,7 @@ BUILTIN_VERSION.libarchive!=						\
 				print vers_str;				\
 		}							\
 	' ${H_ARCHIVE:Q}
+.  endif
 .  if !empty(BUILTIN_VERSION.libarchive)
 BUILTIN_PKG.libarchive=	libarchive-${BUILTIN_VERSION.libarchive}
 .  else
