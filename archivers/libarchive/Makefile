@@ -18,6 +18,8 @@ do-extract:
 # workaround for pkg/45491
 CONFIGURE_ENV.SunOS+=	ac_cv_header_ext2fs_ext2_fs_h=no
 
+PKGCONFIG_OVERRIDE+=	build/pkgconfig/libarchive.pc.in
+
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../archivers/xz/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
