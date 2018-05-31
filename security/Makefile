@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.681 2018/05/03 22:13:49 minskim Exp $
+# $NetBSD: Makefile,v 1.683 2018/05/30 16:26:31 bsiegert Exp $
 #
 
 COMMENT=	Security tools
@@ -414,6 +414,7 @@ SUBDIR+=	py-denyhosts
 SUBDIR+=	py-ecdsa
 SUBDIR+=	py-ezPyCrypto
 SUBDIR+=	py-gnupg
+SUBDIR+=	py-google-reauth
 SUBDIR+=	py-gssapi
 SUBDIR+=	py-hsm
 SUBDIR+=	py-itsdangerous
@@ -453,6 +454,7 @@ SUBDIR+=	py-smbpasswd
 SUBDIR+=	py-stix
 SUBDIR+=	py-tlslite
 SUBDIR+=	py-trytond-authentication-sms
+SUBDIR+=	py-u2f
 SUBDIR+=	py-urllib2-kerberos
 SUBDIR+=	py-xmlsec
 SUBDIR+=	py-yara
