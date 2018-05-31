@@ -1,7 +1,6 @@
 $NetBSD: distinfo,v 1.7 2015/11/03 22:13:34 agc Exp $
 
-SHA1 (ibus-array-release-0.2.0.tar.gz) = 7d49bbb3cee3f29f52552ea1958018f0574cb30f
-RMD160 (ibus-array-release-0.2.0.tar.gz) = f00aa7c635eb3252658391330059ee8da7d7496b
-SHA512 (ibus-array-release-0.2.0.tar.gz) = a8cab90bfc1893b2c0c71601278b87aa3e7b77fe7bfcb1b41a7d050a49eaa33f61b95c57f39a854637095c0fa599a5dd6f6dcd0fbc1d8b0aaf68883a45a625d0
-Size (ibus-array-release-0.2.0.tar.gz) = 2841744 bytes
-SHA1 (patch-setup_ibus-setup-array.in) = 3cda9a4cdffd882f3763803110cd855437891d45
+SHA1 (ibus-array-release-0.2.1.tar.gz) = 06c7bbc4506e6035bc7c2a5cc825b7cdaed03f22
+RMD160 (ibus-array-release-0.2.1.tar.gz) = 130a99a522938155228e468ab1e4839b44a13417
+SHA512 (ibus-array-release-0.2.1.tar.gz) = 2625d6aee815d06dfa1b618a10b11bd0ae166cde0e8fc192cbee0b4f1e6f03e29e6ebaa63ad4b3ead3b631dabf49a95477c8dd0ec0a75d5a79baf80d749ad6f1
+Size (ibus-array-release-0.2.1.tar.gz) = 2841528 bytes
