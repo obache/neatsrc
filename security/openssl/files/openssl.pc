@@ -1,0 +1,9 @@
+prefix=@BUILDLINK_PREFIX.openssl@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib@LIBABISUFFIX@
+includedir=${prefix}/include
+
+Name: OpenSSL
+Description: Secure Sockets Layer and cryptography libraries and tools
+Version: @BUILTIN_VERSION.openssl@
+Requires: libssl libcrypto

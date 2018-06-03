@@ -232,75 +232,12 @@ SSLKEYS=	${SSLDIR}/private
 
 BUILD_DEFS+=	SSLDIR SSLCERTS SSLKEYS
 
-# create pc files for builtin version; other versions assumed to contain them
-# If we are using the builtin version, check whether it has a *.pc
-# files or not.  If the latter, generate fake ones.
-.  if !empty(USE_BUILTIN.openssl:M[Yy][Ee][Ss])
-BUILDLINK_TARGETS+=	openssl-fake-pc
-
-.    if !defined(HAS_OPENSSL_FAKE_PC)
-HAS_OPENSSL_FAKE_PC=
-
-.PHONY: openssl-fake-pc
-openssl-fake-pc:
-	${RUN} \
-	src=${BUILDLINK_PREFIX.openssl}/lib${LIBABISUFFIX}/pkgconfig/libcrypto.pc; \
-	dst=${BUILDLINK_DIR}/lib/pkgconfig/libcrypto.pc; \
-	${MKDIR} ${BUILDLINK_DIR}/lib/pkgconfig; \
-	if ${TEST} -f $${src}; then \
-		${LN} -sf $${src} $${dst}; \
-	else \
-		{ ${ECHO} 'prefix=${BUILDLINK_PREFIX.openssl}'; \
-		${ECHO} 'exec_prefix=$${prefix}'; \
-		${ECHO} 'libdir=$${exec_prefix}/lib${LIBABISUFFIX}'; \
-		${ECHO} 'includedir=$${prefix}/include'; \
-		${ECHO}; \
-		${ECHO} 'Name: OpenSSL-libcrypto'; \
-		${ECHO} 'Description: OpenSSL cryptography library'; \
-		${ECHO} 'Version: ${BUILTIN_VERSION.openssl}'; \
-		${ECHO} 'Libs: -L$${libdir} -lcrypto'; \
-		${ECHO} 'Cflags: -I$${includedir}'; \
-		} >$${dst}; \
-	fi
-	${RUN} \
-	src=${BUILDLINK_PREFIX.openssl}/lib${LIBABISUFFIX}/pkgconfig/libssl.pc; \
-	dst=${BUILDLINK_DIR}/lib/pkgconfig/libssl.pc; \
-	${MKDIR} ${BUILDLINK_DIR}/lib/pkgconfig; \
-	if ${TEST} -f $${src}; then \
-		${LN} -sf $${src} $${dst}; \
-	else \
-		{ ${ECHO} 'prefix=${BUILDLINK_PREFIX.openssl}'; \
-		${ECHO} 'exec_prefix=$${prefix}'; \
-		${ECHO} 'libdir=$${exec_prefix}/lib${LIBABISUFFIX}'; \
-		${ECHO} 'includedir=$${prefix}/include'; \
-		${ECHO}; \
-		${ECHO} 'Name: OpenSSL'; \
-		${ECHO} 'Description: Secure Sockets Layer and cryptography libraries'; \
-		${ECHO} 'Version: ${BUILTIN_VERSION.openssl}'; \
-		${ECHO} 'Libs: -L$${libdir} -lssl -lcrypto'; \
-		${ECHO} 'Cflags: -I$${includedir}'; \
-		} >$${dst}; \
-	fi
-	${RUN} \
-	src=${BUILDLINK_PREFIX.openssl}/lib${LIBABISUFFIX}/pkgconfig/openssl.pc; \
-	dst=${BUILDLINK_DIR}/lib/pkgconfig/openssl.pc; \
-	${MKDIR} ${BUILDLINK_DIR}/lib/pkgconfig; \
-	if ${TEST} -f $${src}; then \
-		${LN} -sf $${src} $${dst}; \
-	else \
-		{ ${ECHO} 'prefix=${BUILDLINK_PREFIX.openssl}'; \
-		${ECHO} 'exec_prefix=$${prefix}'; \
-		${ECHO} 'libdir=$${exec_prefix}/lib${LIBABISUFFIX}'; \
-		${ECHO} 'includedir=$${prefix}/include'; \
-		${ECHO}; \
-		${ECHO} 'Name: OpenSSL'; \
-		${ECHO} 'Description: Secure Sockets Layer and cryptography libraries and tools'; \
-		${ECHO} 'Version: ${BUILTIN_VERSION.openssl}'; \
-		${ECHO} 'Libs: -L$${libdir} -lssl -lcrypto'; \
-		${ECHO} 'Cflags: -I$${includedir}'; \
-		} >$${dst}; \
-	fi
-.    endif
-.  endif
+BUILTIN_FAKE_PC_FILES.openssl=	libcrypto libssl openssl
+.  for pc in ${BUILTIN_FAKE_PC_FILES.openssl}
+FAKE_PC_SRC.${pc}=	../../security/openssl/files/${pc}.pc
+FAKE_PC_SUBST_VARS.${pc}=	BUILDLINK_PREFIX.openssl
+FAKE_PC_SUBST_VARS.${pc}+=	BUILTIN_VERSION.openssl
+FAKE_PC_SUBST_VARS.${pc}+=	LIBABISUFFIX
+.  endfor
 
 .endif	# CHECK_BUILTIN.openssl
