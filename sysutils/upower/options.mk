@@ -1,4 +1,4 @@
-# $NetBSD$
+# $NetBSD: options.mk,v 1.2 2018/05/31 21:00:23 youri Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.upower
 PKG_SUPPORTED_OPTIONS=	introspection
