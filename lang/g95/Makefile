@@ -14,7 +14,7 @@ HOMEPAGE=	http://www.g95.org/
 COMMENT=	Fortran 95 compiler from g95.org
 LICENSE=	gnu-gpl-v2
 
-USE_TOOLS+=		gmake gtar automake autoconf
+USE_TOOLS+=		gmake automake autoconf
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-gcc-dir=${GCC_DIR}
@@ -55,7 +55,8 @@ GCC_CONFIGURE_ARGS+=	--with-gnu-as --with-as=/usr/sfw/bin/gas
 
 post-extract:
 	${MKDIR} ${GCC_G95_DIR}
-	cd ${WRKSRC} && ${GTAR} -xzf libf95.a-${PKGVERSION_NOREV}.tar.gz
+	${RUN}cd ${WRKSRC:Q};extract_file=libf95.a-${PKGVERSION_NOREV}.tar.gz;\
+	export extract_file; ${EXTRACT_CMD}
 
 pre-configure:
 	cd ${WRKSRC}/libf95.a-${PKGVERSION_NOREV} && autoreconf -i
