@@ -25,6 +25,7 @@ GCC_VER=		4.1.2
 GCC_DIR=		${WRKDIR}/gcc-${GCC_VER}
 GCC_G95_DIR=		${GCC_DIR}/g95
 GCC_CONFIGURE_SCRIPT=	../configure
+GCC_CONFIGURE_ENV=	${CONFIGURE_ENV}
 GCC_CONFIGURE_ARGS=	${CONFIGURE_ARGS}
 GCC_CONFIGURE_ARGS+=	--enable-languages=c
 GCC_CONFIGURE_ARGS+=	--disable-multilib
@@ -63,7 +64,7 @@ pre-configure:
 	rm -f ${GCC_DIR}/config.sub ${GCC_DIR}/config.guess
 	ln -fs ${PKGSRCDIR}/mk/gnu-config/config.sub ${GCC_DIR}/config.sub
 	ln -fs ${PKGSRCDIR}/mk/gnu-config/config.guess ${GCC_DIR}/config.guess
-	cd ${GCC_G95_DIR} && ${SETENV} ${CONFIGURE_ENV} ${GCC_CONFIGURE_SCRIPT} ${GCC_CONFIGURE_ARGS}
+	cd ${GCC_G95_DIR} && ${SETENV} ${GCC_CONFIGURE_ENV} ${GCC_CONFIGURE_SCRIPT} ${GCC_CONFIGURE_ARGS}
 	cd ${GCC_G95_DIR} && ${SETENV} ${MAKE_ENV} ${GMAKE} -j${MAKE_JOBS:U1:Q}
 
 CONFIGURE_DIRS=	. libf95.a-${PKGVERSION_NOREV}
