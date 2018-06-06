@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.94 2018/05/15 15:29:44 jperkin Exp $
+# $NetBSD: Makefile,v 1.96 2018/06/03 22:13:08 youri Exp $
 #
 
 DISTNAME=	gvfs-1.6.7
-PKGREVISION=	35
+PKGREVISION=	36
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gvfs/1.6/}
 EXTRACT_SUFX=	.tar.bz2
@@ -22,7 +22,7 @@ CONFIGURE_ARGS+=	--disable-bash-completion
 
 PKG_OPTIONS_VAR=        PKG_OPTIONS.gvfs
 PKG_SUPPORTED_OPTIONS+= avahi hal fuse samba
-PKG_SUGGESTED_OPTIONS+= hal samba
+PKG_SUGGESTED_OPTIONS+= samba
 PLIST_VARS+=		${PKG_SUPPORTED_OPTIONS}
 
 # XXX fuse.bl3.mk will fail if we include it and fuse is not available

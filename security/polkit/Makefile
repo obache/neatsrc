@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.9 2018/04/29 05:14:36 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2018/06/04 01:23:41 youri Exp $
 
 DISTNAME=	polkit-0.114
+PKGREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/
 
@@ -11,6 +12,8 @@ LICENSE=	gnu-lgpl-v2
 
 BUILD_DEPENDS+=		libxslt-[0-9]*:../../textproc/libxslt
 BUILD_DEPENDS+=		docbook-xsl-[0-9]*:../../textproc/docbook-xsl
+
+NOT_PAX_MPROTECT_SAFE=	lib/polkit-1/polkitd
 
 GNU_CONFIGURE=		yes
 USE_LANGUAGES=		c c++11
@@ -63,6 +66,7 @@ SUBST_STAGE.paths=	pre-configure
 SUBST_FILES.paths+=	docs/man/pkexec.xml
 SUBST_FILES.paths+=	src/examples/org.freedesktop.policykit.examples.pkexec.policy.in
 SUBST_SED.paths+=	-e 's,/usr/bin/,${PREFIX}/bin/,g'
+
 
 .include "../../lang/spidermonkey52/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
