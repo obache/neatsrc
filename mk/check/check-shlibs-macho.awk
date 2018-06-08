@@ -1,4 +1,4 @@
-# $NetBSD: check-shlibs-macho.awk,v 1.5 2018/05/25 10:57:28 jperkin Exp $
+# $NetBSD: check-shlibs-macho.awk,v 1.7 2018/06/07 07:00:10 dbj Exp $
 
 #
 # Read a list of potential Mach-O binaries from stdin.
