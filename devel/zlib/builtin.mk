@@ -1,4 +1,4 @@
-# $NetBSD: builtin.mk,v 1.13 2017/04/04 08:57:33 adam Exp $
+# $NetBSD: builtin.mk,v 1.14 2018/06/08 07:51:33 leot Exp $
 
 BUILTIN_PKG:=	zlib
 
