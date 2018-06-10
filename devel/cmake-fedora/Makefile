@@ -11,7 +11,7 @@ COMMENT=	Set of cmake modules for fedora developers
 LICENSE=	modified-bsd
 
 USE_CMAKE=	yes
-USE_TOOLS+=	cmake:run
+USE_TOOLS+=	cmake:run bash:run
 USE_LANGUAGES=	# none
 
 CMAKE_ARGS+=	-DCMAKE_FEDORA_ENABLE_FEDORA_BUILD=0
@@ -25,6 +25,13 @@ SUBST_STAGE.syscfdir=	pre-configure
 SUBST_SED.syscfdir+=	-e 's,/etc,${PKG_SYSCONFDIR},g'
 SUBST_FILES.syscfdir+=	Modules/ManageFile.cmake
 SUBST_FILES.syscfdir+=	Modules/ManageEnvironmentCommon.cmake
+
+REPLACE_BASH+=	scripts/cmake-fedora-fedpkg
+REPLACE_BASH+=	scripts/cmake-fedora-koji
+REPLACE_BASH+=	scripts/cmake-fedora-pkgdb
+REPLACE_BASH+=	scripts/cmake-fedora-reset
+REPLACE_BASH+=	scripts/cmake-fedora-zanata
+REPLACE_BASH+=	scripts/koji-build-scratch
 
 INSTALLATION_DIRS+=	share/examples
 
