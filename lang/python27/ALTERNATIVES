@@ -1,5 +1,7 @@
 bin/2to3 @PREFIX@/bin/2to3-2.7
 bin/pydoc @PREFIX@/bin/pydoc2.7
+bin/pydoc2 @PREFIX@/bin/pydoc2.7
 bin/python @PREFIX@/bin/python2.7
 bin/python2 @PREFIX@/bin/python2.7
+bin/python2-config @PREFIX@/bin/python2.7-config
 bin/smtpd.py @PREFIX@/bin/smtpd2.7.py
