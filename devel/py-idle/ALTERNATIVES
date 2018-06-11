@@ -1,0 +1,1 @@
+bin/idle@PYVERS_MAJOR@ @PREFIX@/bin/idle@PYVERSSUFFIX@
