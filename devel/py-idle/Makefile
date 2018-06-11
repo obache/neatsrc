@@ -9,15 +9,6 @@ COMMENT=	IDLE - The Integrated DeveLopment Environment for Python
 
 DEPENDS+=	${PYPKGPREFIX}-Tk-[0-9]*:../../x11/py-Tk
 
-PY_PATCHPLIST=	yes
-
-# ignore errors due to missing files (EXTRACT_ELEMENTS!)
-do-patch:
-	(cd ${WRKSRC}; \
-	for f in ${PATCHDIR}/patch-*;do \
-	${PATCH} --batch <$$f || ${TRUE}; \
-	done)
-
 #
 # With Python-2.3 and up, the Idle code is part of the base library.
 # We just install a wrapper script. Also, threads are required now.
