@@ -8,13 +8,6 @@ DBUS_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.dbus+=	dbus>=0.91
 BUILDLINK_PKGSRCDIR.dbus?=	../../sysutils/dbus
 
-.if defined(USE_DBUS-ARCH-DEPS_H)
-.  if !empty(USE_DBUS-ARCH-DEPS_H:M[yY][eE][sS])
-BUILDLINK_INCDIRS.dbus+=		lib/dbus-1.0/include/dbus
-BUILDLINK_FNAME_TRANSFORM.dbus+=	-e "s|lib/dbus-1.0/||"
-.  endif
-.endif
-
 .include "../../textproc/expat/buildlink3.mk"
 .endif # DBUS_BUILDLINK3_MK
 
