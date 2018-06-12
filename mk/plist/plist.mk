@@ -76,19 +76,6 @@ PLIST_SRC_DFLT+=	${PKGDIR}/PLIST
 PLIST_SRC_DFLT+=	${PKGDIR}/PLIST.common_end
 .endif
 
-#
-# If the following 3 conditions hold, then fail the package build:
-#
-#    (1) The package doesn't set PLIST_SRC.
-#    (2) The package doesn't set GENERATE_PLIST.
-#    (3) There are no PLIST files.
-#
-.if !defined(PLIST_SRC) && !defined(GENERATE_PLIST)
-.  if !defined(PLIST_SRC_DFLT) || empty(PLIST_SRC_DFLT)
-PKG_FAIL_REASON+=      "Missing PLIST file or PLIST/GENERATE_PLIST definition."
-.  endif
-.endif
-
 PLIST_SRC?=		${PLIST_SRC_DFLT}
 
 # This is the path to the generated PLIST file.
