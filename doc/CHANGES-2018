@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.2778 2018/06/10 17:54:17 schnoebe Exp $
+$NetBSD: CHANGES-2018,v 1.2787 2018/06/12 01:01:04 youri Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -3967,3 +3967,12 @@ Changes to the packages collection and infrastructure in 2018:
 	Updated devel/p5-Config-AutoConf to 0.317 [wen 2018-06-10]
 	Updated devel/p5-glib2 to 1.327 [wen 2018-06-10]
 	Updated print/hplip to 3.18.5 [schnoebe 2018-06-10]
+	Updated multimedia/mkvtoolnix to 24.0.0 [adam 2018-06-11]
+	Updated print/cups to 2.2.8 [adam 2018-06-11]
+	Updated net/unbound to 1.7.2 [he 2018-06-11]
+	Updated net/mikutter to 3.7.2 [tsutsui 2018-06-11]
+	Updated devel/go-sanitized_anchor_name to 0.0.20170919 [minskim 2018-06-11]
+	Added sysutils/accountsservice version 0.6.42 [youri 2018-06-11]
+	Added x11/caribou version 0.4.21 [youri 2018-06-11]
+	Added x11/keybinder3 version 0.3.2 [youri 2018-06-12]
+	Added sysutils/py-pyinotify version 0.9.6 [youri 2018-06-12]
