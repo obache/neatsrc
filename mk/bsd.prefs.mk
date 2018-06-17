@@ -560,7 +560,7 @@ X11BASE?=	/opt/X11
 X11BASE?=	/usr/X11R7
 .  elif exists(/usr/X11R7/lib/libX11.so)
 X11BASE?=	/usr/X11R7
-.  elif exists(/usr/lib/libX11.so) || exists(/usr/lib64/libX11.so)
+.  elif exists(/usr/lib/libX11.so) || exists(/usr/lib${LIBABISUFFIX}/libX11.so)
 X11BASE?=	/usr
 .  else
 X11BASE?=	/usr/X11R6
