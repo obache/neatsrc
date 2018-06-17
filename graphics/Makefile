@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.794 2018/05/24 04:14:41 jnemeth Exp $
+# $NetBSD: Makefile,v 1.796 2018/06/13 16:19:34 minskim Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -72,6 +72,7 @@ SUBDIR+=	clutter-gtk0.10
 SUBDIR+=	clutter-mx
 SUBDIR+=	cnxtview
 SUBDIR+=	cogl
+SUBDIR+=	colord
 SUBDIR+=	comix
 SUBDIR+=	compface
 SUBDIR+=	cpia2view
@@ -204,6 +205,7 @@ SUBDIR+=	gnome-icon-theme-symbolic
 SUBDIR+=	gnome-themes-standard
 SUBDIR+=	gnuplot
 SUBDIR+=	go-image
+SUBDIR+=	go-resize
 SUBDIR+=	gocr
 SUBDIR+=	goocanvas
 SUBDIR+=	goocanvas2

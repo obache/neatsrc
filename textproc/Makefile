@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.990 2018/05/27 01:59:37 minskim Exp $
+# $NetBSD: Makefile,v 1.992 2018/06/15 13:17:51 prlw1 Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -117,6 +117,7 @@ SUBDIR+=	aspell-vi
 SUBDIR+=	aspell-wa
 SUBDIR+=	aspell-yi
 SUBDIR+=	aspell-zu
+SUBDIR+=	aspic
 SUBDIR+=	awf
 SUBDIR+=	bibclean
 SUBDIR+=	biblook
@@ -197,6 +198,7 @@ SUBDIR+=	glimpse
 SUBDIR+=	gnome-doc-utils
 SUBDIR+=	gnome-spell
 SUBDIR+=	gnome-subtitles
+SUBDIR+=	go-glob
 SUBDIR+=	go-inflect
 SUBDIR+=	go-md2man
 SUBDIR+=	go-mmark
@@ -938,6 +940,7 @@ SUBDIR+=	sary
 SUBDIR+=	saxon
 SUBDIR+=	scew
 SUBDIR+=	scrollkeeper-dtd
+SUBDIR+=	sdop
 SUBDIR+=	serd
 SUBDIR+=	sgrep
 SUBDIR+=	shared-desktop-ontologies
@@ -1006,6 +1009,7 @@ SUBDIR+=	xapian-omega
 SUBDIR+=	xerces-c
 SUBDIR+=	xerces-j
 SUBDIR+=	xfce4-dict
+SUBDIR+=	xfpt
 SUBDIR+=	xhtml
 SUBDIR+=	xml-coreutils
 SUBDIR+=	xml2

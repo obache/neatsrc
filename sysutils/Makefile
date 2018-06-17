@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.763 2018/06/12 01:01:30 youri Exp $
+# $NetBSD: Makefile,v 1.765 2018/06/14 00:25:21 markd Exp $
 #
 
 COMMENT=	System utilities
@@ -45,6 +45,7 @@ SUBDIR+=	bcmfw
 SUBDIR+=	bcollect
 SUBDIR+=	beats
 SUBDIR+=	bfs
+SUBDIR+=	binwalk
 SUBDIR+=	bkpupsd
 SUBDIR+=	boxbackup-client
 SUBDIR+=	boxbackup-server
@@ -481,6 +482,7 @@ SUBDIR+=	py-supervisor
 SUBDIR+=	py-syslog-ng
 SUBDIR+=	py-watchdog
 SUBDIR+=	py-xattr
+SUBDIR+=	qdirstat
 SUBDIR+=	qlogtools
 SUBDIR+=	radeontool
 SUBDIR+=	radmind
