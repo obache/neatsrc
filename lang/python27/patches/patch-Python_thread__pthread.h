@@ -1,0 +1,14 @@
+$NetBSD: patch-Python_thread__pthread.h,v 1.1 2018/06/17 19:21:21 adam Exp $
+
+--- Python/thread_pthread.h.orig	2014-12-10 15:59:59.000000000 +0000
++++ Python/thread_pthread.h
+@@ -46,6 +46,9 @@
+    we need to add 0 to make it work there as well. */
+ #if (_POSIX_SEMAPHORES+0) == -1
+ #define HAVE_BROKEN_POSIX_SEMAPHORES
++#elif defined(__NetBSD__)
++/* XXX accesses to closed file descriptors, needs debugging */
++#define HAVE_BROKEN_POSIX_SEMAPHORES
+ #else
+ #include <semaphore.h>
+ #include <errno.h>

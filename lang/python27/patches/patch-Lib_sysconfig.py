@@ -1,0 +1,15 @@
+$NetBSD: patch-Lib_sysconfig.py,v 1.1 2018/06/17 19:21:21 adam Exp $
+
+chop "-RELEASE" or "-DEVELOPMENT" from release for DragonFly.
+
+--- Lib/sysconfig.py.orig	2014-12-10 15:59:40.000000000 +0000
++++ Lib/sysconfig.py
+@@ -607,6 +607,8 @@ def get_platform():
+         osname, release, machine = _osx_support.get_platform_osx(
+                                             get_config_vars(),
+                                             osname, release, machine)
++    elif osname[:9] == "dragonfly":
++        release = str.split(release, '-')[0]
+ 
+     return "%s-%s-%s" % (osname, release, machine)
+ 

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.9 2017/09/16 19:27:08 wiz Exp $
+# $NetBSD: Makefile,v 1.10 2018/06/17 09:10:32 wiz Exp $
 
-DISTNAME=	spice-protocol-0.12.13
+DISTNAME=	spice-protocol-0.12.14
 CATEGORIES=	sysutils
 MASTER_SITES=	http://spice-space.org/download/releases/
 EXTRACT_SUFX=	.tar.bz2

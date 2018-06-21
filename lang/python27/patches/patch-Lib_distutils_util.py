@@ -1,0 +1,13 @@
+$NetBSD: patch-Lib_distutils_util.py,v 1.1 2018/06/17 19:21:21 adam Exp $
+
+--- Lib/distutils/util.py.orig	2014-12-10 15:59:35.000000000 +0000
++++ Lib/distutils/util.py
+@@ -101,6 +101,8 @@ def get_platform ():
+         osname, release, machine = _osx_support.get_platform_osx(
+                                         distutils.sysconfig.get_config_vars(),
+                                         osname, release, machine)
++    elif osname[:9] == "dragonfly":
++        release = str.split(release, "-")[0]
+ 
+     return "%s-%s-%s" % (osname, release, machine)
+ 

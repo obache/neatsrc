@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.27 2018/05/23 09:33:16 adam Exp $
+# $NetBSD: Makefile,v 1.29 2018/06/19 11:39:03 adam Exp $
 
-DISTNAME=	CherryPy-15.0.0
+DISTNAME=	CherryPy-16.0.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=C/CherryPy/}
@@ -20,6 +20,7 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-path.py-[0-9]*:../../devel/py-path.py
 TEST_DEPENDS+=	${PYPKGPREFIX}-test>=2.8:../../devel/py-test
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-cov-[0-9]*:../../devel/py-test-cov
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-sugar-[0-9]*:../../devel/py-test-sugar
+# missing requests_toolbelt
 
 USE_LANGUAGES=	# none
 

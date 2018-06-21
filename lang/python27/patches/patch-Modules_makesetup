@@ -1,0 +1,12 @@
+$NetBSD: patch-Modules_makesetup,v 1.1 2018/06/17 19:21:21 adam Exp $
+
+--- Modules/makesetup.orig	2014-12-10 15:59:55.000000000 +0000
++++ Modules/makesetup
+@@ -164,6 +164,7 @@ sed -e 's/[ 	]*#.*//' -e '/^[ 	]*$/d' |
+ 			-rpath)		libs="$libs $arg"; skip=libs;;
+ 			--rpath)	libs="$libs $arg"; skip=libs;;
+ 			-[A-Zl]*)	libs="$libs $arg";;
++			-pthread)	libs="$libs $arg";;
+ 			*.a)		libs="$libs $arg";;
+ 			*.so)		libs="$libs $arg";;
+ 			*.sl)		libs="$libs $arg";;
