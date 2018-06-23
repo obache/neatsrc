@@ -1,0 +1,14 @@
+$NetBSD$
+
+* install modules to cmake base module directory
+
+--- Modules/CMakeLists.txt.orig	2017-07-10 06:06:06.000000000 +0000
++++ Modules/CMakeLists.txt
+@@ -5,6 +5,6 @@ LIST(REMOVE_ITEM CMAKE_FEDORA_MODULES "C
+ 
+ LIST(APPEND CMAKE_FEDORA_MODULES cmake_uninstall.cmake.in)
+ INSTALL(FILES ${CMAKE_FEDORA_MODULES} 
+-    DESTINATION ${DATA_DIR}/cmake/Modules
++    DESTINATION ${DATA_DIR}/cmake-${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}/Modules
+     )
+ 

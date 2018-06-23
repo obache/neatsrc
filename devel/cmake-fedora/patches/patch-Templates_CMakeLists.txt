@@ -1,0 +1,9 @@
+$NetBSD$
+
+* install templates to cmake base template directory
+
+--- Templates/CMakeLists.txt.orig	2017-07-10 06:06:06.000000000 +0000
++++ Templates/CMakeLists.txt
+@@ -1 +1 @@
+-INSTALL(DIRECTORY fedora DESTINATION ${DATA_DIR}/cmake/Templates  PATTERN "*.sw[po]" EXCLUDE PATTERN "*~" EXCLUDE) 
++INSTALL(DIRECTORY fedora DESTINATION ${DATA_DIR}/cmake-${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}/Templates  PATTERN "*.sw[po]" EXCLUDE PATTERN "*~" EXCLUDE) 

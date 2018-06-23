@@ -20,6 +20,11 @@ NO_BUILD=	yes
 
 TEST_TARGET=	test_all
 
+.include "../../devel/cmake/Makefile.version"
+PLIST_SUBST+=	CMAKE_API=${CMAKE_API}
+PRINT_PLIST_AWK+=	/^share\/cmake-${CMAKE_API}/ \
+			{ gsub(/cmake-${CMAKE_API}/, "cmake-$${CMAKE_API}") }
+
 SUBST_CLASSES+=		syscfdir
 SUBST_STAGE.syscfdir=	pre-configure
 SUBST_SED.syscfdir+=	-e 's,/etc,${PKG_SYSCONFDIR},g'
