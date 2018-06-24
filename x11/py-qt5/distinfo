@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.8 2018/04/14 20:08:26 adam Exp $
+$NetBSD: distinfo,v 1.10 2018/06/23 17:49:36 wiz Exp $
 
 SHA1 (PyQt5_gpl-5.10.1.tar.gz) = 638a80519f3250e813ebd5a669651f43f416f14b
 RMD160 (PyQt5_gpl-5.10.1.tar.gz) = 4e0d454172288d26d40ebf2c15a70e0e271da57e
@@ -7,3 +7,4 @@ Size (PyQt5_gpl-5.10.1.tar.gz) = 3110469 bytes
 SHA1 (patch-configure.py) = d04e6be9b505a039b934a613de09becf127e1c64
 SHA1 (patch-designer_designer.pro-in) = 8b7d885c4a5c5336dbdbead2bd88a4da02026ee2
 SHA1 (patch-qmlscene_qmlscene.pro-in) = 055ad9670d9d67dd8fca2f293a0b8b8c71512a4d
+SHA1 (patch-sip_QtTest_qtestmouse.sip) = ed279d265dea44d43093cae0c501d512f588f2e5

@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.2954 2018/06/22 17:10:23 he Exp $
+$NetBSD: CHANGES-2018,v 1.2962 2018/06/23 22:09:04 youri Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -4268,3 +4268,11 @@ Changes to the packages collection and infrastructure in 2018:
 	Updated textproc/ruby-nokogiri to 1.8.3 [tsutsui 2018-06-22]
 	Updated x11/vte3 to 0.52.2nb1 [jperkin 2018-06-22]
 	Updated net/p5-Net-DRI to 0.96 [he 2018-06-22]
+	Updated security/keepassxc to 2.3.3 [wiz 2018-06-23]
+	Updated net/gallery-dl to 1.4.1 [leot 2018-06-23]
+	Added sysutils/u-boot-orangepi-zero version 2018.05 [jmcneill 2018-06-23]
+	Updated x11/py-qt5 to 5.10.1nb1 [wiz 2018-06-23]
+	Updated lang/nodejs to 10.5.0 [fhajny 2018-06-23]
+	Updated sysutils/xfce4-thunar to 1.8.1 [youri 2018-06-23]
+	Updated x11/xfce4-exo to 0.12.2 [youri 2018-06-23]
+	Updated x11/xfce4-settings to 4.13.4 [youri 2018-06-23]
