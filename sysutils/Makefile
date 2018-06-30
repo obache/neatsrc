@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.767 2018/06/23 10:49:13 jmcneill Exp $
+# $NetBSD: Makefile,v 1.769 2018/06/24 23:15:25 thorpej Exp $
 #
 
 COMMENT=	System utilities
@@ -131,6 +131,7 @@ SUBDIR+=	dmg2img
 SUBDIR+=	dmidecode
 SUBDIR+=	dmsdos
 SUBDIR+=	dog
+SUBDIR+=	dosfstools
 SUBDIR+=	dptutil
 SUBDIR+=	dtb-arm-exynos5422
 SUBDIR+=	dtb-arm-tegra124
@@ -625,6 +626,7 @@ SUBDIR+=	u-boot-orangepi-2
 SUBDIR+=	u-boot-orangepi-one
 SUBDIR+=	u-boot-orangepi-plus2e
 SUBDIR+=	u-boot-orangepi-zero
+SUBDIR+=	u-boot-orangepi-zero-plus
 SUBDIR+=	u-boot-pine-h64
 SUBDIR+=	u-boot-pine64
 SUBDIR+=	u-boot-pinebook

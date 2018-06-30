@@ -1,10 +1,16 @@
-# $NetBSD: options.mk,v 1.1 2017/11/12 14:10:15 khorben Exp $
+# $NetBSD: options.mk,v 1.3 2018/06/25 10:01:51 leot Exp $
 
-PKG_OPTIONS_VAR=	PKG_OPTIONS.cups
+PKG_OPTIONS_VAR=	PKG_OPTIONS.cups-base
 PKG_SUPPORTED_OPTIONS=	acl dnssd kerberos pam tcpwrappers
 PKG_SUGGESTED_OPTIONS=	dnssd kerberos
 
-PLIST_VARS+=		apple dbus dnssd ippfind libusb pam
+PLIST_VARS+=		apple dbus dnssd dnssd-backend ippfind libusb pam
+
+.if defined(PKG_OPTIONS.cups)
+PKG_LEGACY_OPTIONS+=		${PKG_OPTIONS.cups}
+PKG_OPTIONS_DEPRECATED_WARNINGS+= \
+	"Deprecated variable PKG_OPTIONS.cups used, use ${PKG_OPTIONS_VAR} instead."
+.endif
 
 .if ${OPSYS} == "Darwin"
 PLIST.apple=		yes
@@ -34,6 +40,7 @@ CONFIGURE_ARGS+=	--disable-acl
 .include "../../net/avahi/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-avahi
 PLIST.ippfind=		yes
+PLIST.dnssd-backend=	yes
 .else
 CONFIGURE_ARGS+=	--disable-avahi
 .endif
@@ -50,6 +57,7 @@ CONFIGURE_ARGS+=	--disable-dbus
 .include "../../net/mDNSResponder/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-dnssd
 PLIST.dnssd=		yes
+PLIST.dnssd-backend=	yes
 .else
 CONFIGURE_ARGS+=	--disable-dnssd
 .endif

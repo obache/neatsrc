@@ -1,38 +1,23 @@
-# $NetBSD: Makefile,v 1.91 2016/07/09 06:39:13 wiz Exp $
+# $NetBSD: Makefile,v 1.94 2018/06/28 15:45:46 jperkin Exp $
 
-DISTNAME=		w3c-libwww-5.4.0
-PKGNAME=		libwww-5.4.0
-PKGREVISION=		17
-CATEGORIES=		www devel
-MASTER_SITES=		http://www.w3.org/Library/Distribution/
-EXTRACT_SUFX=		.tgz
-DISTFILES=		${DISTNAME}${EXTRACT_SUFX} libwww-configure-5.4.0nb2.gz
+DISTNAME=	w3c-libwww-5.4.2
+PKGNAME=	${DISTNAME:S/^w3c-//}
+CATEGORIES=	www devel
+MASTER_SITES=	http://www.w3.org/Library/Distribution/
+EXTRACT_SUFX=	.tgz
 
-MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.w3.org/Library/
-COMMENT=		The W3C Reference Library
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	http://www.w3.org/Library/
+COMMENT=	The W3C Reference Library
+LICENSE=	w3c
 
-EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
-SITES.libwww-configure-5.4.0nb2.gz=	${MASTER_SITE_LOCAL}
-
-USE_TOOLS+=		automake14 gmake gzcat perl
-USE_LIBTOOL=		YES
-
-GNU_CONFIGURE=		YES
-CONFIGURE_ARGS+=	--with-zlib --without-x
-CONFIGURE_ARGS+=	--with-ssl=${SSLBASE:Q}
-
-.include "options.mk"
-
-post-extract:
-	gzcat ${DISTDIR}/libwww-configure-5.4.0nb2.gz > ${WRKSRC}/configure
-
-pre-configure:
-	chmod a+x ${WRKSRC}/configure
-.for f in aclocal.m4 configure stamp-h.in
-	touch ${WRKSRC}/${f}
-.endfor
-	cd ${WRKSRC} && automake
+USE_LIBTOOL=		yes
+USE_TOOLS+=		gmake gzcat perl
+GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--with-expat=${BUILDLINK_PREFIX.expat}
+CONFIGURE_ARGS+=	--with-ssl #=${SSLBASE:Q}
+CONFIGURE_ARGS+=	--with-zlib
+CONFIGURE_ARGS+=	--without-x
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -41,19 +26,13 @@ pre-configure:
 CONFIGURE_ARGS+=	--with-regex
 .endif
 
-PLIST_VARS+=		md5
-.if ${OPSYS} == "SunOS"
-# Solaris has a /usr/lib/libmd5 which seems to be enough, and
-# /usr/local/lib/libmd5 breaks /usr/lib/librt
-CONFIGURE_ARGS+=	--without-md5
-.else
-PLIST.md5=		yes
-.  if !exists(/usr/include/md5.h)
+.if !exists(/usr/include/md5.h)
 CONFIGURE_ARGS+=	--with-md5=${SSLBASE:Q}
-.  endif
 .endif
+
+.include "options.mk"
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
-
+.include "../../textproc/expat/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
