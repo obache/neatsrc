@@ -12,6 +12,8 @@
 #
 # Keywords: plist print-plist
 
+_GEN_PRINT_PLIST_VARS!=	${AWK} -f ${PKGSRCDIR}/mk/plist/print-plist-vars.awk /dev/null ${PLIST_SRC}
+
 _PRINT_PLIST_AWK_SUBST={
 _PRINT_PLIST_AWK_SUBST+=						\
 	gsub(/${PKGNAME_NOREV}/, "$${PKGNAME}");			\
@@ -20,6 +22,10 @@ _PRINT_PLIST_AWK_SUBST+=						\
 	gsub("^${PKGGNUDIR:S/\/$$//}/", "gnu/");			\
 	gsub("^${PKGINFODIR}/", "info/");				\
 	gsub("^${PKGMANDIR}/", "man/");
+
+_PRINT_PLIST_AWK_SUBST+=						\
+	${_GEN_PRINT_PLIST_VARS}
+	
 
 _PRINT_PLIST_AWK_SUBST+=}
 
