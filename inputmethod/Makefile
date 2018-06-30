@@ -81,6 +81,7 @@ SUBDIR+=	kinput2
 SUBDIR+=	libcangjie
 SUBDIR+=	libchewing
 SUBDIR+=	libchewing02
+SUBDIR+=	libfep
 SUBDIR+=	libgooglepinyin
 SUBDIR+=	libhangul
 SUBDIR+=	librime

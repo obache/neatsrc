@@ -1,0 +1,9 @@
+libfep -- a library to implement FEP (front end processor) on ANSI terminals
+
+Features:
+
+* Render text at the bottom of the terminal.
+* Render text at the cursor position.
+* Send text to the child process.
+* Monitor key strokes typed on the terminal.
+libskk -- a library to deal with Japanese kana-to-kanji conversion method

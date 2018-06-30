@@ -1,0 +1,23 @@
+@comment $NetBSD$
+bin/fep
+bin/fepcli
+${PLIST.glib}include/fep-1.0/libfep-glib/fepgattribute.h
+${PLIST.glib}include/fep-1.0/libfep-glib/fepgclient.h
+${PLIST.glib}include/fep-1.0/libfep-glib/fepgenumtypes.h
+${PLIST.glib}include/fep-1.0/libfep-glib/fepgevents.h
+${PLIST.glib}include/fep-1.0/libfep-glib/libfep-glib.h
+include/fep-1.0/libfep/attribute.h
+include/fep-1.0/libfep/client.h
+include/fep-1.0/libfep/keydefs.h
+include/fep-1.0/libfep/libfep.h
+include/fep-1.0/libfep/logger.h
+${PLIST.introspection}lib/girepository-1.0/Fep-1.0.typelib
+${PLIST.glib}lib/libfep-glib.la
+lib/libfep.la
+${PLIST.glib}lib/pkgconfig/libfep-glib.pc
+lib/pkgconfig/libfep.pc
+man/man1/fep.1
+man/man1/fepcli.1
+${PLIST.introspection}share/gir-1.0/Fep-1.0.gir
+${PLIST.vala}share/vala/vapi/libfep-glib.deps
+${PLIST.vala}share/vala/vapi/libfep-glib.vapi
