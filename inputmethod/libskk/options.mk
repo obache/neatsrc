@@ -2,12 +2,20 @@
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.libskk
-PKG_SUPPORTED_OPTIONS=	introspection
+PKG_SUPPORTED_OPTIONS=	fep introspection
 PKG_SUGGESTED_OPTIONS=	introspection
 
 .include "../../mk/bsd.options.mk"
 
 PLIST_VARS+=	introspection
+
+.if !empty(PKG_OPTIONS:Mfep)
+PLIST.fep=		yes
+.include "../../inputmethod/libfep/buildlink3.mk"
+CONFIGURE_ARGS+=	--enable-fep
+.else
+CONFIGURE_ARGS+=	--disable-fep
+.endif
 
 .if !empty(PKG_OPTIONS:Mintrospection)
 PLIST.introspection=		yes
