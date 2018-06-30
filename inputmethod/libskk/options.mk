@@ -7,7 +7,7 @@ PKG_SUGGESTED_OPTIONS=	introspection
 
 .include "../../mk/bsd.options.mk"
 
-PLIST_VARS+=	introspection
+PLIST_VARS+=	fep introspection
 
 .if !empty(PKG_OPTIONS:Mfep)
 PLIST.fep=		yes
