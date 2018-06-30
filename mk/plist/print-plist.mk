@@ -12,7 +12,9 @@
 #
 # Keywords: plist print-plist
 
-_GEN_PRINT_PLIST_VARS!=	${AWK} -f ${PKGSRCDIR}/mk/plist/print-plist-vars.awk /dev/null ${PLIST_SRC}
+_GEN_PRINT_PLIST_VARS_CMD=	${AWK} -f ${PKGSRCDIR}/mk/plist/print-plist-vars.awk /dev/null ${PLIST_SRC}
+_PRINT_PLIST_AWK_VARS_SUBST!=						\
+	${_GEN_PRINT_PLIST_VARS_CMD}
 
 _PRINT_PLIST_AWK_SUBST={
 _PRINT_PLIST_AWK_SUBST+=						\
@@ -24,8 +26,7 @@ _PRINT_PLIST_AWK_SUBST+=						\
 	gsub("^${PKGMANDIR}/", "man/");
 
 _PRINT_PLIST_AWK_SUBST+=						\
-	${_GEN_PRINT_PLIST_VARS}
-	
+	${_PRINT_PLIST_AWK_VARS_SUBST}
 
 _PRINT_PLIST_AWK_SUBST+=}
 

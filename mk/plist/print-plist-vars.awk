@@ -1,3 +1,4 @@
+BEGIN { print "# subst PLIST_VARS start" }
 /^\${PLIST\./ {
 	match($0, /^(\${PLIST\.[^}]+})+/);
 	c=substr($0, 1, RLENGTH);
@@ -6,3 +7,4 @@
 	gsub(/\$/, "$$", c);
 	print "gsub(/^" s "$$/,\"" c "&\");";
 }
+BEGIN { print "# subst PLIST_VARS end" }
