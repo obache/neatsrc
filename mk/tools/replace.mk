@@ -1222,6 +1222,20 @@ TOOLS_PATH.bdftopcf=		${LOCALBASE}/bin/bdftopcf
 .  endif
 .endif
 
+.if !defined(TOOLS_IGNORE.setxkbmap) && !empty(_USE_TOOLS:Msetxkbmap)
+.  if !empty(PKGPATH:Mx11/setxkbmap)
+MAKEFLAGS+=		TOOLS_IGNORE.setxkbmap=
+.  elif !empty(_TOOLS_USE_PKGSRC.setxkbmap:M[yY][eE][sS])
+TOOLS_CREATE+=			setxkbmap
+.    if !empty(X11_TYPE:Mnative) && exists(${X11BASE}/bin/setxkbmap)
+TOOLS_PATH.setxkbmap=	${X11BASE}/bin/setxkbmap
+.    else
+TOOLS_DEPENDS.setxkbmap?=		setxkbmap-[0-9]*:../../x11/setxkbmap
+TOOLS_PATH.setxkbmap=		${LOCALBASE}/bin/setxkbmap
+.    endif
+.  endif
+.endif
+
 .if !defined(TOOLS_IGNORE.ucs2any) && !empty(_USE_TOOLS:Mucs2any)
 .  if !empty(PKGPATH:Mfonts/font-util)
 MAKEFLAGS+=		TOOLS_IGNORE.ucs2any=
