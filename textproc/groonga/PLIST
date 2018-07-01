@@ -293,6 +293,7 @@ share/doc/groonga/en/html/reference/functions/time_classify_month.html
 share/doc/groonga/en/html/reference/functions/time_classify_second.html
 share/doc/groonga/en/html/reference/functions/time_classify_week.html
 share/doc/groonga/en/html/reference/functions/time_classify_year.html
+share/doc/groonga/en/html/reference/functions/vector_find.html
 share/doc/groonga/en/html/reference/functions/vector_new.html
 share/doc/groonga/en/html/reference/functions/vector_size.html
 share/doc/groonga/en/html/reference/functions/vector_slice.html
@@ -577,6 +578,7 @@ share/doc/groonga/ja/html/reference/functions/time_classify_month.html
 share/doc/groonga/ja/html/reference/functions/time_classify_second.html
 share/doc/groonga/ja/html/reference/functions/time_classify_week.html
 share/doc/groonga/ja/html/reference/functions/time_classify_year.html
+share/doc/groonga/ja/html/reference/functions/vector_find.html
 share/doc/groonga/ja/html/reference/functions/vector_new.html
 share/doc/groonga/ja/html/reference/functions/vector_size.html
 share/doc/groonga/ja/html/reference/functions/vector_slice.html
