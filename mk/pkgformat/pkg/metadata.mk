@@ -205,7 +205,7 @@ _METADATA_TARGETS+=	${_DESCR_FILE}
 ${_DESCR_FILE}: ${DESCR_SRC}
 	${RUN}${MKDIR} ${.TARGET:H}
 	${RUN}${RM} -f ${.TARGET}
-	${RUN}${CAT} ${.ALLSRC} > ${.TARGET}
+	${RUN}${SED} ${FILES_SUBST_SED} ${.ALLSRC} > ${.TARGET}
 .if defined(HOMEPAGE)
 	${RUN}${ECHO} >> ${.TARGET}
 	${RUN}${ECHO} "Homepage:" >> ${.TARGET}
