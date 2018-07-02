@@ -4,4 +4,4 @@ SHA1 (groonga-8.0.4.tar.gz) = 8fc74133f58d74f6a260a8df30de2333c91f2233
 RMD160 (groonga-8.0.4.tar.gz) = ab3d7084a9e6bea4cb48e35c83bccf75ab4ea4c2
 SHA512 (groonga-8.0.4.tar.gz) = 98e66e8083b1fb55c4c61a80f23daeda402cf85caa04f4d7fb7e4a339d5f47873c02f78439d5d0b2a03a1a8ba19db3a1f83d7b0b4430549e64d136ecae4c8114
 Size (groonga-8.0.4.tar.gz) = 15198474 bytes
-SHA1 (patch-lib_grn__msgpack.h) = 4c332bc2496c09e7500483ec2f61e4f275cfc288
+SHA1 (patch-lib_grn__msgpack.h) = d9f659bd7c410395f640fbf2bf92391ed1d8c8b7
