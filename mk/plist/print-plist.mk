@@ -13,8 +13,8 @@
 # Keywords: plist print-plist
 
 _GEN_PRINT_PLIST_VARS_CMD=	${AWK} -f ${PKGSRCDIR}/mk/plist/print-plist-vars.awk /dev/null ${PLIST_SRC}
-_PRINT_PLIST_AWK_VARS_SUBST!=						\
-	${_GEN_PRINT_PLIST_VARS_CMD}
+_PRINT_PLIST_AWK_VARS_SUBST=						\
+	${_GEN_PRINT_PLIST_VARS_CMD:sh}
 
 _PRINT_PLIST_AWK_SUBST={
 _PRINT_PLIST_AWK_SUBST+=						\

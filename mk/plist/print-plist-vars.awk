@@ -4,7 +4,7 @@ BEGIN { print "\n" }
 	c=substr($0, 1, RLENGTH);
 	s=substr($0, RLENGTH+1);
 	gsub(/\//, "\\/", s);
-	gsub(/\$/, "$$", c);
-	print "gsub(/^" s "$$/,\"" c "&\");";
+	gsub(/\$/, "\\$", s);
+	print "gsub(/^" s "$/,\"" c "&\");";
 }
 BEGIN { print "\n" }
