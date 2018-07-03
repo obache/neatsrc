@@ -25,7 +25,6 @@ REPLACE_PYTHON+=	asciidoc.py
 REPLACE_PYTHON+=	asciidocapi.py
 REPLACE_PYTHON+=	filters/code/code-filter.py
 REPLACE_PYTHON+=	filters/latex/latex2img.py
-REPLACE_PYTHON+=	filters/latex/latex2png.py
 REPLACE_PYTHON+=	filters/music/music2png.py
 REPLACE_PYTHON+=	filters/graphviz/graphviz2png.py
 REPLACE_PYTHON+=	filters/unwraplatex.py
