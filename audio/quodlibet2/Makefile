@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.24 2018/04/16 14:34:08 wiz Exp $
+# $NetBSD: Makefile,v 1.25 2018/07/03 05:03:03 adam Exp $
 
 DISTNAME=	quodlibet-2.6.3
 PKGREVISION=	15
@@ -34,7 +34,7 @@ DEPENDS+=	gst-plugins0.10-ogg>=0.10.0:../../multimedia/gst-plugins0.10-ogg
 DEPENDS+=	xine-lib>=1.1:../../multimedia/xine-lib
 .endif
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gtk2, py-gstreamer0.10
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2, py-gstreamer0.10
 REPLACE_PYTHON=	exfalso.py quodlibet.py operon.py
 
 .include "../../lang/python/distutils.mk"

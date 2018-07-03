@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2017/09/04 18:08:19 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2018/07/03 05:03:05 adam Exp $
 
 DISTNAME=	zfec-1.4.24
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
@@ -22,7 +22,7 @@ CFLAGS.SunOS+=	-std=c99 -D_XOPEN_SOURCE=600
 
 REPLACE_PYTHON=  zfec/cmdline_zfec.py zfec/cmdline_zunfec.py zfec/test/test_zfec.py
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-darcsver
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-darcsver
 
 .include "../../lang/python/egg.mk"
 .include "../../lang/python/application.mk"
