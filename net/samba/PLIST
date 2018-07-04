@@ -24,7 +24,6 @@ ${PLIST.winbind}bin/wbinfo
 include/libsmbclient.h
 include/netapi.h
 include/smb_share_modes.h
-include/talloc.h
 ${PLIST.winbind}include/wbclient.h
 include/tevent.h
 include/tevent_internal.h
@@ -34,9 +33,6 @@ lib/libsmbclient.${LIBEXT}
 lib/libsmbclient.${LIBEXT}.0
 lib/libsmbsharemodes.${LIBEXT}
 lib/libsmbsharemodes.${LIBEXT}.0
-lib/libtalloc.${LIBEXT}
-lib/libtalloc.${LIBEXT}.2
-lib/libtalloc.${LIBEXT}.2.0.5
 ${PLIST.winbind}lib/libwbclient.${LIBEXT}
 ${PLIST.winbind}lib/libwbclient.${LIBEXT}.0
 ${PLIST.winbind}${NSS_WINBIND}

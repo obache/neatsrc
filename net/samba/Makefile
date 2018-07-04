@@ -201,6 +201,8 @@ post-install:
 .include "../../devel/libuuid/buildlink3.mk"
 .endif
 .include "../../converters/libiconv/buildlink3.mk"
+BUILDLINK_API_DEPENDS.talloc+= talloc>=2.0.1
+.include "../../devel/talloc/buildlink3.mk"
 BUILDLINK_API_DEPENDS.tdb+= tdb>=1.2.10
 .include "../../databases/tdb/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
