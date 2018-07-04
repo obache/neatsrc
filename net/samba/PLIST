@@ -40,6 +40,10 @@ ${PLIST.winbind}${NSS_WINS}
 lib/libtevent.${LIBEXT}
 lib/libtevent.${LIBEXT}.0
 lib/libtevent.${LIBEXT}.0.9.11
+lib/pkgconfig/netapi.pc
+lib/pkgconfig/smbclient.pc
+lib/pkgconfig/smbsharemodes.pc
+lib/pkgconfig/wbclient.pc
 lib/samba/auth/script.${LIBEXT}
 lib/samba/charset/CP437.${LIBEXT}
 lib/samba/charset/CP850.${LIBEXT}

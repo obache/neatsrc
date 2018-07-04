@@ -105,7 +105,7 @@ MAKEFLAGS+=	PWD_MKDB=${PWD_MKDB:Q}
 FILES_SUBST+=	MKTEMP=${MKTEMP:Q}
 FILES_SUBST+=	PWD_MKDB=${PWD_MKDB:Q}
 
-INSTALLATION_DIRS+=	${DOCDIR} ${EGDIR}
+INSTALLATION_DIRS+=	${DOCDIR} ${EGDIR} lib/pkgconfig
 
 DOCDIR=		share/doc/${PKGBASE}
 EGDIR=		share/examples/${PKGBASE}
@@ -194,6 +194,9 @@ post-install:
 		install_name_tool -id ${PREFIX}/$${lib} $${lib}; \
 	done
 .endif
+	${RUN}cd ${WRKSRC}/source3/pkgconfig; for f in *.pc; do \
+		${INSTALL_DATA} $${f} ${DESTDIR}${PREFIX}/lib/pkgconfig/$${f}; \
+	done
 
 .include "../../net/samba/Makefile.mirrors"
 
