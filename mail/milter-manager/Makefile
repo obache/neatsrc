@@ -1,9 +1,9 @@
 # $NetBSD: Makefile,v 1.43 2018/02/25 12:25:48 taca Exp $
 #
 
-DISTNAME=	milter-manager-2.1.1
+DISTNAME=	milter-manager-2.1.2
 CATEGORIES=	mail
-MASTER_SITES=	${MASTER_SITE_OSDN:=milter-manager/67935/}
+MASTER_SITES=	${MASTER_SITE_OSDN:=milter-manager/69765/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://milter-manager.osdn.jp/
