@@ -21,9 +21,6 @@ PY_PATCHPLIST=		yes
 
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 2.1.0
 
-# include/talloc.h
-CONFLICTS+=	samba<=4.6.8nb3
-
 REPLACE_PYTHON+=	buildtools/bin/waf
 REPLACE_PYTHON+=	buildtools/wafsamba/__init__.py
 REPLACE_PYTHON+=	buildtools/wafsamba/samba_python.py
