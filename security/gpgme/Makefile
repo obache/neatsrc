@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.87 2017/12/21 09:47:31 adam Exp $
+# $NetBSD: Makefile,v 1.89 2018/07/04 13:40:34 jperkin Exp $
 
-DISTNAME=	gpgme-1.10.0
+DISTNAME=	gpgme-1.11.1
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/gpgme/
 EXTRACT_SUFX=	.tar.bz2
@@ -21,13 +21,12 @@ SUBST_CLASSES+=		pthread
 SUBST_FILES.pthread=	src/gpgme-config.in
 SUBST_SED.pthread+=	-e 's,@PTHREAD_LIBS@,${PTHREAD_LDFLAGS} ${PTHREAD_LIBS},g'
 SUBST_SED.pthread+=	-e 's,@PTHREAD_CFLAGS@,${PTHREAD_CFLAGS},g'
-SUBST_STAGE.pthread=	post-patch
+SUBST_STAGE.pthread=	pre-configure
 
 CPPFLAGS.Darwin=	-D_POSIX_C_SOURCE=200809L
 LIBS.SunOS+=		-lnsl -lsocket
 
 TEST_TARGET=		check
-#TEST_ENV+=		GPGME_DEBUG=9
 
 .include "options.mk"
 

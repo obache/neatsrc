@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.153 2018/06/07 19:04:59 ryoon Exp $
+# $NetBSD: Makefile,v 1.154 2018/07/04 13:40:15 jperkin Exp $
 
 DISTNAME=		nss-${NSS_RELEASE:S/.0$//}
 NSS_RELEASE=		3.37.3
