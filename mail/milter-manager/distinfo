@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.27 2015/11/03 23:27:10 agc Exp $
 
-SHA1 (milter-manager-2.1.3.tar.gz) = 5d1817509d5e58633cfc23ad249e042a0ad967de
-RMD160 (milter-manager-2.1.3.tar.gz) = fe9342b895aee75dec771688e60603351ff19ca7
-SHA512 (milter-manager-2.1.3.tar.gz) = 64f3e39a188213eab81333e78687836353a2be063130913569c1d6cfadd0093d9472dca863b74f775f3ac7720fa07842661ecdc0aa7d961f27b8d121844ba102
-Size (milter-manager-2.1.3.tar.gz) = 6566337 bytes
+SHA1 (milter-manager-2.1.4.tar.gz) = 72a56dbf8c6df2aea4636ce4a4c2322d251cb02b
+RMD160 (milter-manager-2.1.4.tar.gz) = c6ea0bec71a13420e55d2ef945705afbe1311e4f
+SHA512 (milter-manager-2.1.4.tar.gz) = b1e59fc2acd30334a471bf4e63570089e7ddf6a93f57db5b2f246570534d53b9f8f7b7feb725ee54763c81c20af594175762669b0500442e2239c48b6d20f0fc
+Size (milter-manager-2.1.4.tar.gz) = 6565929 bytes
