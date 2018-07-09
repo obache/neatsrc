@@ -264,6 +264,7 @@ SUBDIR+=	hs-stringsearch
 SUBDIR+=	hs-tagsoup
 SUBDIR+=	hs-texmath
 SUBDIR+=	hs-xml
+SUBDIR+=	hspell
 SUBDIR+=	html
 SUBDIR+=	html2text
 SUBDIR+=	html2wml

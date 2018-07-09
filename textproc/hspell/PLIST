@@ -1,0 +1,15 @@
+@comment $NetBSD$
+bin/hspell
+bin/hspell-i
+bin/multispell
+include/hspell.h
+include/linginfo.h
+lib/libhspell.a
+lib/libhspell.so
+lib/libhspell.so.0
+man/man1/hspell.1
+man/man3/hspell.3
+share/hspell/hebrew.wgz
+share/hspell/hebrew.wgz.hints
+share/hspell/hebrew.wgz.prefixes
+share/hspell/hebrew.wgz.sizes
