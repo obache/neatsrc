@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2694 2018/07/06 03:13:48 minskim Exp $
+# $NetBSD: Makefile,v 1.2697 2018/07/09 02:07:00 minskim Exp $
 #
 
 COMMENT=	Development utilities
@@ -1986,6 +1986,7 @@ SUBDIR+=	py-filebytes
 SUBDIR+=	py-filechunkio
 SUBDIR+=	py-fixtures
 SUBDIR+=	py-flake8
+SUBDIR+=	py-flake8-docstrings
 SUBDIR+=	py-flake8-import-order
 SUBDIR+=	py-flake8-polyfill
 SUBDIR+=	py-flakes
@@ -2014,6 +2015,7 @@ SUBDIR+=	py-grako
 SUBDIR+=	py-greenlet
 SUBDIR+=	py-h5py
 SUBDIR+=	py-hash
+SUBDIR+=	py-hg-evolve
 SUBDIR+=	py-hg-fastimport
 SUBDIR+=	py-hg-git
 SUBDIR+=	py-hglib
@@ -2037,6 +2039,7 @@ SUBDIR+=	py-iso-639
 SUBDIR+=	py-iso3166
 SUBDIR+=	py-isort
 SUBDIR+=	py-jaraco.classes
+SUBDIR+=	py-jaraco.functools
 SUBDIR+=	py-jaraco_util
 SUBDIR+=	py-jersey
 SUBDIR+=	py-joblib

@@ -1,4 +1,4 @@
-# $NetBSD: go-package.mk,v 1.12 2018/06/05 15:42:20 leot Exp $
+# $NetBSD: go-package.mk,v 1.14 2018/07/08 13:53:42 bsiegert Exp $
 #
 # This file implements common logic for compiling Go programs in pkgsrc.
 #
@@ -79,12 +79,12 @@ post-extract:
 
 .if !target(do-build)
 do-build:
-	${RUN} env GOPATH=${WRKDIR}:${BUILDLINK_DIR}/gopkg go install -v ${GO_BUILD_PATTERN}
+	${RUN} env GOPATH=${WRKDIR}:${BUILDLINK_DIR}/gopkg ${GO} install -v ${GO_BUILD_PATTERN}
 .endif
 
 .if !target(do-test)
 do-test:
-	${RUN} env GOPATH=${WRKDIR}:${BUILDLINK_DIR}/gopkg go test -v ${GO_BUILD_PATTERN}
+	${RUN} env GOPATH=${WRKDIR}:${BUILDLINK_DIR}/gopkg ${GO} test -v ${GO_BUILD_PATTERN}
 .endif
 
 .if !target(do-install)

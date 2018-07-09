@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.391 2018/07/04 06:46:49 adam Exp $
+# $NetBSD: Makefile,v 1.394 2018/07/07 04:15:24 minskim Exp $
 
 COMMENT=	Mathematics
 
@@ -274,6 +274,7 @@ SUBDIR+=	pspp
 SUBDIR+=	py-Numeric
 SUBDIR+=	py-Scientific
 SUBDIR+=	py-Scientific-doc
+SUBDIR+=	py-Theano
 SUBDIR+=	py-abcpmc
 SUBDIR+=	py-almost
 SUBDIR+=	py-asteval
@@ -301,6 +302,7 @@ SUBDIR+=	py-pandas
 SUBDIR+=	py-pandas-datareader
 SUBDIR+=	py-patsy
 SUBDIR+=	py-powerlaw
+SUBDIR+=	py-pymc3
 SUBDIR+=	py-pywavelets
 SUBDIR+=	py-quadprog
 SUBDIR+=	py-roman
@@ -334,6 +336,7 @@ SUBDIR+=	slatec
 SUBDIR+=	snns
 SUBDIR+=	speedcrunch
 SUBDIR+=	statist
+SUBDIR+=	sundials
 SUBDIR+=	superlu
 SUBDIR+=	svmlin
 SUBDIR+=	tasp-vsipl
