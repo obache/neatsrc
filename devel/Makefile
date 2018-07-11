@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2697 2018/07/09 02:07:00 minskim Exp $
+# $NetBSD: Makefile,v 1.2700 2018/07/11 00:05:44 minskim Exp $
 #
 
 COMMENT=	Development utilities
@@ -348,6 +348,7 @@ SUBDIR+=	go-gitmap
 SUBDIR+=	go-glog
 SUBDIR+=	go-gls
 SUBDIR+=	go-gocode
+SUBDIR+=	go-godef
 SUBDIR+=	go-golang-lru
 SUBDIR+=	go-goorgeous
 SUBDIR+=	go-gopkgs
@@ -2045,7 +2046,7 @@ SUBDIR+=	py-jersey
 SUBDIR+=	py-joblib
 SUBDIR+=	py-jupyter_client
 SUBDIR+=	py-jupyter_core
-SUBDIR+=	py-kafka
+SUBDIR+=	py-kafka-python
 SUBDIR+=	py-kaitaistruct
 SUBDIR+=	py-kjbuckets
 SUBDIR+=	py-kqueue

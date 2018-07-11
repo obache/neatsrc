@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.3137 2018/07/09 08:23:17 adam Exp $
+$NetBSD: CHANGES-2018,v 1.3150 2018/07/11 00:06:00 minskim Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -4515,3 +4515,19 @@ Changes to the packages collection and infrastructure in 2018:
 	Renamed audio/py-discogs_client to audio/py-discogs-client [adam 2018-07-09]
 	Updated audio/py-discogs-client to 2.2.1 [adam 2018-07-09]
 	Updated math/py-pandas to 0.23.3 [adam 2018-07-09]
+	Updated time/py-icalendar to 4.0.2 [adam 2018-07-09]
+	Updated time/py-jdcal to 1.4 [adam 2018-07-09]
+	Updated www/libsass to 3.5.4 [adam 2018-07-09]
+	Updated devel/py-rply to 0.7.6 [adam 2018-07-09]
+	Added devel/py-kafka-python version 1.4.3 [minskim 2018-07-10]
+	Removed devel/py-kafka successor devel/py-kafka-python [minskim 2018-07-10]
+	Updated www/moodle to 3.5.1 [wen 2018-07-10]
+	Updated devel/p5-Test-CleanNamespaces to 0.23 [wen 2018-07-10]
+	Updated devel/p5-Test-MockObject to 1.20180705 [wen 2018-07-10]
+	Updated devel/p5-Test-POE-Client-TCP to 1.18 [wen 2018-07-10]
+	Updated devel/libuv to 1.22.0 [adam 2018-07-10]
+	Updated devel/waf to 2.0.9 [adam 2018-07-10]
+	Updated sysutils/rsyslog to 8.36.0 [fhajny 2018-07-10]
+	Updated lang/npm to 6.1.0nb1 [jperkin 2018-07-10]
+	Updated lang/nodejs to 10.6.0 [fhajny 2018-07-10]
+	Added devel/go-godef version 0.0.20170920 [minskim 2018-07-11]

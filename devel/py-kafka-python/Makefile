@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.1 2018/04/29 23:20:41 minskim Exp $
+# $NetBSD: Makefile,v 1.1 2018/07/10 01:16:37 minskim Exp $
 
-DISTNAME=	kafka-1.3.5
+DISTNAME=	kafka-python-1.4.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
-MASTER_SITES=	${MASTER_SITE_PYPI:=k/kafka/}
+MASTER_SITES=	${MASTER_SITE_PYPI:=k/kafka-python/}
 
 MAINTAINER=	minskim@NetBSD.org
 HOMEPAGE=	https://github.com/dpkp/kafka-python

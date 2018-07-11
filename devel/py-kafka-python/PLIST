@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2018/04/29 23:20:41 minskim Exp $
+@comment $NetBSD: PLIST,v 1.1 2018/07/10 01:16:37 minskim Exp $
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
@@ -231,6 +231,9 @@ ${PYSITELIB}/kafka/protocol/metadata.pyo
 ${PYSITELIB}/kafka/protocol/offset.py
 ${PYSITELIB}/kafka/protocol/offset.pyc
 ${PYSITELIB}/kafka/protocol/offset.pyo
+${PYSITELIB}/kafka/protocol/parser.py
+${PYSITELIB}/kafka/protocol/parser.pyc
+${PYSITELIB}/kafka/protocol/parser.pyo
 ${PYSITELIB}/kafka/protocol/pickle.py
 ${PYSITELIB}/kafka/protocol/pickle.pyc
 ${PYSITELIB}/kafka/protocol/pickle.pyo
@@ -243,6 +246,27 @@ ${PYSITELIB}/kafka/protocol/struct.pyo
 ${PYSITELIB}/kafka/protocol/types.py
 ${PYSITELIB}/kafka/protocol/types.pyc
 ${PYSITELIB}/kafka/protocol/types.pyo
+${PYSITELIB}/kafka/record/__init__.py
+${PYSITELIB}/kafka/record/__init__.pyc
+${PYSITELIB}/kafka/record/__init__.pyo
+${PYSITELIB}/kafka/record/_crc32c.py
+${PYSITELIB}/kafka/record/_crc32c.pyc
+${PYSITELIB}/kafka/record/_crc32c.pyo
+${PYSITELIB}/kafka/record/abc.py
+${PYSITELIB}/kafka/record/abc.pyc
+${PYSITELIB}/kafka/record/abc.pyo
+${PYSITELIB}/kafka/record/default_records.py
+${PYSITELIB}/kafka/record/default_records.pyc
+${PYSITELIB}/kafka/record/default_records.pyo
+${PYSITELIB}/kafka/record/legacy_records.py
+${PYSITELIB}/kafka/record/legacy_records.pyc
+${PYSITELIB}/kafka/record/legacy_records.pyo
+${PYSITELIB}/kafka/record/memory_records.py
+${PYSITELIB}/kafka/record/memory_records.pyc
+${PYSITELIB}/kafka/record/memory_records.pyo
+${PYSITELIB}/kafka/record/util.py
+${PYSITELIB}/kafka/record/util.pyc
+${PYSITELIB}/kafka/record/util.pyo
 ${PYSITELIB}/kafka/serializer/__init__.py
 ${PYSITELIB}/kafka/serializer/__init__.pyc
 ${PYSITELIB}/kafka/serializer/__init__.pyo
