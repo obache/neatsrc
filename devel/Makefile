@@ -263,6 +263,7 @@ SUBDIR+=	etrace
 SUBDIR+=	exctags
 SUBDIR+=	exempi
 SUBDIR+=	extra-cmake-modules
+SUBDIR+=	facile
 SUBDIR+=	fann
 SUBDIR+=	fastdep
 SUBDIR+=	fhist

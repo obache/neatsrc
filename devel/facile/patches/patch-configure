@@ -1,0 +1,13 @@
+$NetBSD$
+
+* destdir support
+
+--- configure.orig	2016-12-15 16:10:07.000000000 +0000
++++ configure
+@@ -33,5 +33,5 @@ done
+ 
+ # Generates config_Makefile
+ 
+-echo FACILEDIR=$faciledir > config_Makefile
++echo FACILEDIR=\${DESTDIR}$faciledir > config_Makefile
+ echo FaCiLe directory: $faciledir
