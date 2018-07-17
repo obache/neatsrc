@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.php,v 1.4 2018/02/05 08:51:25 jdolecek Exp $
+# $NetBSD: Makefile.php,v 1.5 2018/07/16 10:58:50 maya Exp $
 # used by lang/php72/Makefile
 # used by www/ap-php/Makefile
 # used by www/php-fpm/Makefile

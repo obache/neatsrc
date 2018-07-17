@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.111 2018/07/06 20:50:03 ryoon Exp $
+# $NetBSD: mozilla-common.mk,v 1.113 2018/07/16 02:03:15 ryoon Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -48,7 +48,11 @@ test:
 TOOLS_PLATFORM.tar=	${TOOLS_PATH.bsdtar}
 USE_TOOLS+=		bsdtar
 .endif
-GCC_REQD+=		6.1
+GCC_REQD=		6.1
+.if !empty(MACHINE_PLATFORM:MNetBSD-[0-7]**-*) || \
+	!empty(MACHINE_PLATFORM:MNetBSD-8.[0-8]*-*)
+USE_PKGSRC_GCC_RUNTIME=	yes
+.endif
 .if ${MACHINE_ARCH} == "i386"
 # Fix for PR pkg/48152.
 CXXFLAGS+=		-march=i586
@@ -223,7 +227,7 @@ BUILDLINK_API_DEPENDS.libvpx+=	libvpx>=1.3.0
 .include "../../net/libIDL/buildlink3.mk"
 # textproc/hunspell 1.3 is too old
 #.include "../../textproc/hunspell/buildlink3.mk"
-.include "../../multimedia/ffmpeg3/buildlink3.mk"
+.include "../../multimedia/ffmpeg4/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
 BUILDLINK_API_DEPENDS.pixman+= pixman>=0.25.2
 .include "../../x11/pixman/buildlink3.mk"
