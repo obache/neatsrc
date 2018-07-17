@@ -1,0 +1,14 @@
+$NetBSD$
+
+SHA1 (gnokii-0.6.31.tar.gz) = 3910c62e4f7d26f14c327e4d768617dcca85a760
+RMD160 (gnokii-0.6.31.tar.gz) = 233af598e2aac4fb8e963d9d600894f6cf037df5
+SHA512 (gnokii-0.6.31.tar.gz) = d6cf7d3212ce6eeb6b35402d33c3254b7a952e8b71e0963b37b193eed71d3d78440927e03e149d4d183f62ea1753ded9876b8b5333afed1eb28924eabcddd173
+Size (gnokii-0.6.31.tar.gz) = 1675138 bytes
+SHA1 (patch-common_cfgreader.c) = 4d819a3c8ebca659522af5790acb1b1e47298dcb
+SHA1 (patch-common_data_at-emulator.c) = 99860aa5dc1d931f31daa3e59bac05fe9891fa82
+SHA1 (patch-common_gsm-common.c) = a98c97fe5b4c478751039312b949f26ef21ccb39
+SHA1 (patch-common_misc.c) = fa2a518b794e356edeecde07e24b900868f13638
+SHA1 (patch-common_phones_atgen.c) = 308800cea4bc013f4c75f56282dff181c2cf8d57
+SHA1 (patch-configure) = 6465e8c9e3a269924f5e64c8a1621cadd0439798
+SHA1 (patch-configure.in) = 13a136947619be6d7e4530324505d4a329454e53
+SHA1 (patch-gnokii_gnokii-sms.c) = ad5e5b572bb9b74a75cd2d4ef35e3e245375e257

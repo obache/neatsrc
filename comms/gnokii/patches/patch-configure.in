@@ -1,0 +1,15 @@
+$NetBSD$
+
+* fix a typo
+
+--- configure.in.orig	2011-12-02 14:53:04.000000000 +0000
++++ configure.in
+@@ -689,7 +689,7 @@ else
+    fi
+ fi
+ 
+-AM_CONDITIONAL(XGNOKII, test "x$_support" = "xyes")
++AM_CONDITIONAL(XGNOKII, test "x$x_support" = "xyes")
+ 
+ dnl ======================== Check for libsocket
+ AC_CHECK_LIB(socket, socket)

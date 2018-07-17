@@ -1,0 +1,3 @@
+Gnokii allows you to communicate with the phone over the serial cable
+connection, usb connection (support depends  mostly on the operating system
+level support), infrared connection and bluetooth connection.

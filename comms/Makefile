@@ -23,6 +23,7 @@ SUBDIR+=	estic
 SUBDIR+=	fidogate
 SUBDIR+=	gammu
 SUBDIR+=	gkermit
+SUBDIR+=	gnokii
 SUBDIR+=	gnome-pilot
 SUBDIR+=	gsmlib
 SUBDIR+=	hylafax
