@@ -41,11 +41,13 @@ INFO_FILES=		yes
 REPLACE_BASH+=		tests/danetool.sh
 REPLACE_BASH+=		tests/ocsp-tests/ocsp-must-staple-connection
 REPLACE_BASH+=		tests/ocsp-tests/ocsp-tls-connection
-REPLACE_BASH+=		tests/key-tests/dsa
 REPLACE_BASH+=		tests/suite/testcompat-main-polarssl
 REPLACE_BASH+=		tests/suite/testcompat-main-openssl
 REPLACE_BASH+=		tests/fastopen.sh
 REPLACE_BASH+=		tests/starttls.sh
+REPLACE_BASH+=		tests/sni-hostname.sh
+REPLACE_BASH+=		tests/gnutls-cli-save-data.sh
+REPLACE_BASH+=		tests/sni-resume.sh
 
 REPLACE_PERL+=	doc/scripts/gdoc doc/scripts/sort2.pl
 
