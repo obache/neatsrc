@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.27 2018/01/28 16:24:14 wiz Exp $
+# $NetBSD: Makefile,v 1.29 2018/07/18 22:42:57 maya Exp $
 
 GCC_PKGNAME=		gcc5
-PKGREVISION=		1
+PKGREVISION=		2
 .include		"version.mk"
 
 DISTNAME=	gcc-${GCC5_DIST_VERSION}
@@ -23,7 +23,7 @@ EXTRACT_ONLY=		${DEFAULT_DISTFILES}
 
 NOT_FOR_PLATFORM=	Interix-*-*
 
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c c++03
 USE_TOOLS+=		gmake makeinfo sed:run tar:build
 USE_TOOLS.NetBSD+=	gsed
 

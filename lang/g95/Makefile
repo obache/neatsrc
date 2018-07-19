@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.29 2017/10/18 09:38:23 maya Exp $
+# $NetBSD: Makefile,v 1.30 2018/07/17 21:38:39 joerg Exp $
 
 DISTNAME=	g95_source
 PKGNAME=	g95-0.93
-PKGREVISION=	9
+PKGREVISION=	10
 CATEGORIES=	lang
 MASTER_SITES=	http://ftp.g95.org/v${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tgz
@@ -54,12 +54,16 @@ GCC_CONFIGURE_ARGS+=	--with-gnu-as --with-as=/usr/sfw/bin/gas
 .  endif
 .endif
 
+LIBGCC_SPEC=	${CC} -dumpspecs 2> /dev/null | grep -A 1 '^\*libgcc:$$' | tail -1
+
 post-extract:
 	${MKDIR} ${GCC_G95_DIR}
 	${RUN}cd ${WRKSRC:Q};extract_file=libf95.a-${PKGVERSION_NOREV}.tar.gz;\
 	export extract_file; ${EXTRACT_CMD}
 
 pre-configure:
+	mv ${GCC_DIR}/gcc/gcc.c ${GCC_DIR}/gcc/gcc.c.patched
+	sed "s|%LIBGCC_SPEC%|\"${LIBGCC_SPEC:sh:Q}\"|" ${GCC_DIR}/gcc/gcc.c.patched > ${GCC_DIR}/gcc/gcc.c
 	cd ${WRKSRC}/libf95.a-${PKGVERSION_NOREV} && autoreconf -i
 	rm -f ${GCC_DIR}/config.sub ${GCC_DIR}/config.guess
 	ln -fs ${PKGSRCDIR}/mk/gnu-config/config.sub ${GCC_DIR}/config.sub

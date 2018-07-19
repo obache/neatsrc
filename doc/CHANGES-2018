@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.3215 2018/07/17 03:55:17 minskim Exp $
+$NetBSD: CHANGES-2018,v 1.3237 2018/07/19 04:07:05 tpaul Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -4612,3 +4612,31 @@ Changes to the packages collection and infrastructure in 2018:
 	Updated comms/asterisk to 11.25.3 [jnemeth 2018-07-16]
 	Updated devel/go-i18n to 1.10.0 [minskim 2018-07-17]
 	Added textproc/go-tablewriter version 0.0.20180506 [minskim 2018-07-17]
+	Updated net/tor to 0.3.3.9 [wiz 2018-07-17]
+	Updated devel/py-automat to 0.7.0 [adam 2018-07-17]
+	Updated security/libgpg-error to 1.32 [adam 2018-07-17]
+	Updated mail/mutt to 1.10.1 [tron 2018-07-17]
+	Updated math/octave to 4.2.0nb26 [maya 2018-07-17]
+	Updated devel/py-astroid to 2.0 [adam 2018-07-17]
+	Updated devel/py-pylint to 2.0.0 [adam 2018-07-17]
+	Updated graphics/mypaint to 1.2.1 [ryoon 2018-07-17]
+	Renamed graphics/py-graphviz to graphics/py-pygraphviz [adam 2018-07-17]
+	Added graphics/py-graphviz version 0.8.4 [adam 2018-07-17]
+	Added graphics/grafx2 version 2.5.1960 [ryoon 2018-07-17]
+	Updated net/py-lexicon to 2.7.0 [fhajny 2018-07-17]
+	Updated security/py-certbot to 0.26.0 [fhajny 2018-07-17]
+	Updated www/yaws to 2.0.6 [fhajny 2018-07-17]
+	Updated www/calamaris to 2.59nb5 [bsiegert 2018-07-17]
+	Updated x11/qt5-qtlocation to 5.11.1nb1 [maya 2018-07-17]
+	Updated lang/lua53 to 5.3.5 [alnsn 2018-07-17]
+	Updated devel/lua-rocks to 2.4.4 [alnsn 2018-07-17]
+	Added devel/go-sync version 0.0.20180314 [minskim 2018-07-18]
+	Updated textproc/go-md2man to 1.0.8 [minskim 2018-07-18]
+	Updated devel/gradle to 4.9 [fhajny 2018-07-18]
+	Updated sysutils/upower to 0.99.4nb4 [bsiegert 2018-07-18]
+	Updated lang/gcc5 to 5.5.0nb2 [maya 2018-07-18]
+	Updated lang/gcc6 to 6.4.0nb3 [maya 2018-07-18]
+	Updated lang/gcc7 to 7.3.0nb3 [maya 2018-07-18]
+	Updated lang/gcc8 to 8.1.0nb1 [maya 2018-07-18]
+	Updated lang/gcc48 to 4.8.5nb6 [maya 2018-07-18]
+	Updated emulators/softvms to 1.9 [tpaul 2018-07-19]

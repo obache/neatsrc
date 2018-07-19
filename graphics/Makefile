@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.797 2018/06/24 12:01:12 fhajny Exp $
+# $NetBSD: Makefile,v 1.799 2018/07/17 13:10:58 ryoon Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -216,6 +216,7 @@ SUBDIR+=	gpick
 SUBDIR+=	gpicview
 SUBDIR+=	gqview
 SUBDIR+=	gqview-devel
+SUBDIR+=	grafx2
 SUBDIR+=	grap
 SUBDIR+=	graphite2
 SUBDIR+=	graphviz
@@ -467,6 +468,7 @@ SUBDIR+=	py-piddle
 SUBDIR+=	py-piexif
 SUBDIR+=	py-pycha
 SUBDIR+=	py-pygal
+SUBDIR+=	py-pygraphviz
 SUBDIR+=	py-qrcode
 SUBDIR+=	py-seaborn
 SUBDIR+=	py-seqdiag
