@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.41 2018/07/04 03:56:46 adam Exp $
+# $NetBSD: Makefile,v 1.43 2018/07/20 09:38:49 adam Exp $
 
-DISTNAME=	peewee-3.5.2
+DISTNAME=	peewee-3.6.4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	databases python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/peewee/}
@@ -12,7 +12,7 @@ LICENSE=	mit
 
 DEPENDS+=	${PYPKGPREFIX}-cython>=0.22.1:../../devel/py-cython
 BUILD_DEPENDS+=	${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
-TEST_DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
+#TEST_DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
 
 MAKE_FLAGS+=	SPHINXBUILD=sphinx-build${PYVERSSUFFIX}
 
@@ -31,10 +31,12 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/docs/_build/man/peewee.1 \
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/peewee${PYVERSSUFFIX}.1
 
+# tests are not included in 3.6.4
 do-test:
-	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHONBIN} runtests.py
+#	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHONBIN} runtests.py
+	${DO_NADA}
 
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../lang/python/application.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"
