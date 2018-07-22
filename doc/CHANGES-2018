@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.3288 2018/07/21 06:16:08 wiz Exp $
+$NetBSD: CHANGES-2018,v 1.3295 2018/07/21 22:29:48 minskim Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -4697,3 +4697,10 @@ Changes to the packages collection and infrastructure in 2018:
 	Updated misc/udfclient to 0.8.9 [reinoud 2018-07-20]
 	Updated print/foomatic4-db-engine to 4.0.12nb9 [leot 2018-07-20]
 	Updated x11/xscreensaver to 5.39nb1 [wiz 2018-07-21]
+	Updated devel/cmake to 3.12.0 [ryoon 2018-07-21]
+	Updated ham/gnuradio-core to 3.7.13.4 [makoto 2018-07-21]
+	Updated print/foomatic4-db-engine to 4.0.13 [leot 2018-07-21]
+	Updated print/foomatic4-db to 20180721 [leot 2018-07-21]
+	Updated sysutils/extipl to 5.04nb2 [maya 2018-07-21]
+	Added devel/go-goreturns version 0.0.20180301 [minskim 2018-07-21]
+	Updated devel/go-pflag to 1.0.1 [minskim 2018-07-21]
