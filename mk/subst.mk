@@ -99,6 +99,9 @@ _SUBST_IS_TEXT_FILE.${_class_}=	${_SUBST_IS_TEXT_FILE}
 SUBST_TARGETS+=			subst-${_class_}
 
 .  if defined(SUBST_STAGE.${_class_})
+.    if empty(SUBST_STAGE.${_class_}:Mdo-*) && !target(${SUBST_STAGE.${_class_}})
+PKG_FAIL_REASON+=	"${SUBST_STAGE.${_class_}} target for SUBST_STAGE.${_class_} is not defined."
+.    endif
 ${SUBST_STAGE.${_class_}}: subst-${_class_}
 .  else
 # SUBST_STAGE.* does not need to be defined.
