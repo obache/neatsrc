@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2704 2018/07/21 22:07:46 minskim Exp $
+# $NetBSD: Makefile,v 1.2709 2018/07/26 11:47:32 jaapb Exp $
 #
 
 COMMENT=	Development utilities
@@ -66,6 +66,7 @@ SUBDIR+=	anjuta
 SUBDIR+=	ant-contrib
 SUBDIR+=	apache-ant
 SUBDIR+=	apache-ant15
+SUBDIR+=	apache-ant19
 SUBDIR+=	apache-ivy
 SUBDIR+=	apache-maven
 SUBDIR+=	apel
@@ -336,6 +337,7 @@ SUBDIR+=	go-cast
 SUBDIR+=	go-check
 SUBDIR+=	go-cli
 SUBDIR+=	go-cobra
+SUBDIR+=	go-colorable
 SUBDIR+=	go-consul-api
 SUBDIR+=	go-debounce
 SUBDIR+=	go-ed25519
@@ -746,8 +748,8 @@ SUBDIR+=	monotone
 SUBDIR+=	monotone-server
 SUBDIR+=	monotone-viz
 SUBDIR+=	mph
-SUBDIR+=	mr
 SUBDIR+=	msgpack
+SUBDIR+=	myrepos
 SUBDIR+=	nana
 SUBDIR+=	nant
 SUBDIR+=	nasm
@@ -2019,6 +2021,7 @@ SUBDIR+=	py-google-apputils
 SUBDIR+=	py-grako
 SUBDIR+=	py-greenlet
 SUBDIR+=	py-h5py
+SUBDIR+=	py-hamcrest
 SUBDIR+=	py-hash
 SUBDIR+=	py-hg-evolve
 SUBDIR+=	py-hg-fastimport
@@ -2097,6 +2100,7 @@ SUBDIR+=	py-ode
 SUBDIR+=	py-olefile
 SUBDIR+=	py-open-vcdiff
 SUBDIR+=	py-ordered-set
+SUBDIR+=	py-oset
 SUBDIR+=	py-packaging
 SUBDIR+=	py-parameterized
 SUBDIR+=	py-path.py

@@ -1,9 +1,7 @@
-# $NetBSD: Makefile,v 1.71 2018/01/28 20:10:53 wiz Exp $
+# $NetBSD: Makefile,v 1.73 2018/07/26 16:55:29 jperkin Exp $
 #
 
-DISTNAME=	Gauche-0.9.5
-#PKGREVISION=	1
-PKGREVISION=	1
+DISTNAME=	Gauche-0.9.6
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=gauche/}
 EXTRACT_SUFX=	.tgz
@@ -22,22 +20,11 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-slib=${LOCALBASE}/share/slib
 CONFIGURE_ARGS+=	--enable-threads=pthreads
 CONFIGURE_ARGS+=	--with-iconv=${BUILDLINK_PREFIX.iconv}
-
-CHECK_BUILTIN.iconv:=	yes
-.include "../../converters/libiconv/builtin.mk"
-CHECK_BUILTIN.iconv:=	no
-
-.if !empty(USE_BUILTIN.iconv:M[nN][oO])
-CONFIGURE_ARGS+=	--with-iconv-lib=${BUILDLINK_LIBNAME.iconv}
-ICONV_LDFLAGS=	${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.iconv}/lib \
-		-L${BUILDLINK_PREFIX.iconv}/lib
-ALL_ENV+=		\
-	ICONV_LDFLAGS=${ICONV_LDFLAGS:Q}
-.endif
+CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib}
 
 USE_LANGUAGES=	c c99
 USE_LIBTOOL=	yes
-USE_TOOLS+=	gzip makeinfo
+USE_TOOLS+=	gmake gzip makeinfo
 TEST_TARGET=	check
 INFO_FILES=	yes
 

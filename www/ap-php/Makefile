@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.41 2018/07/20 13:33:02 taca Exp $
+# $NetBSD: Makefile,v 1.43 2018/07/27 07:08:09 manu Exp $
 
 PKGNAME=		${APACHE_PKG_PREFIX}-${PHP_PKG_PREFIX}-${PHP_VERSION}
 COMMENT=		Apache (${PKG_APACHE}) module for ${PKG_PHP}
