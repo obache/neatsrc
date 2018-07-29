@@ -10,7 +10,10 @@
 # REPLACE_CSH
 # REPLACE_KSH
 # REPLACE_PERL
+# REPLACE_PHP
 # REPLACE_SH
+# REPLACE_TCLSH
+# REPLACE_WISH
 #	Lists of files relative to WRKSRC in which the #! interpreter
 #	should be replaced by the pkgsrc one. If any directories
 #	appear in the lists, they are silenty skipped, assuming that
@@ -47,7 +50,10 @@ REPLACE_BASH?=	# none
 REPLACE_CSH?=	# none
 REPLACE_KSH?=	# none
 REPLACE_PERL?=	# none
+REPLACE_PHP?=	# none
 REPLACE_SH?=	# none
+REPLACE_TCLSH?=	# none
+REPLACE_WISH?=	# none
 
 .if !empty(REPLACE_AWK:M*)
 REPLACE_INTERPRETER+=	sys-AWK
@@ -84,12 +90,34 @@ REPLACE.sys-Perl.new=	${PERL5}
 REPLACE_FILES.sys-Perl=	${REPLACE_PERL}
 .endif
 
+.if !empty(REPLACE_PHP:M*)
+REPLACE_INTERPRETER+=	sys-php
+REPLACE.sys-php.old=	.*php[^ ]*
+REPLACE.sys-php.new=	${LOCALBASE}/bin/php
+REPLACE_FILES.sys-php=	${REPLACE_PHP}
+.endif
+
 .if !empty(REPLACE_SH:M*)
 REPLACE_INTERPRETER+=	sys-sh
 REPLACE.sys-sh.old=	[^[:space:]]*sh
 REPLACE.sys-sh.new=	${SH}
 REPLACE_FILES.sys-sh=	${REPLACE_SH}
 .endif
+
+.if !empty(REPLACE_TCLSH:M*)
+REPLACE_INTERPRETER+=	sys-tclsh
+REPLACE.sys-tclsh.old=	.*tclsh
+REPLACE.sys-tclsh.new=	${TCLSH:U${LOCALBASE}/bin/tclsh}
+REPLACE_FILES.sys-tclsh=	${REPLACE_TCLSH}
+.endif
+
+.if !empty(REPLACE_WISH:M*)
+REPLACE_INTERPRETER+=	sys-wish
+REPLACE.sys-wish.old=	.*wish
+REPLACE.sys-wish.new=	${WISH:U${LOCALBASE}/bin/wish}
+REPLACE_FILES.sys-wish=	${REPLACE_WISH}
+.endif
+
 # sed regexp to match optional "/usr/bin/env" followed by one or more spaces
 REPLACE.optional-env-space= \(/usr/bin/env[[:space:]][[:space:]]*\)\{0,1\}
 
