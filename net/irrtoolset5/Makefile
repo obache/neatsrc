@@ -27,10 +27,6 @@ GCC_REQD+=		3.0
 CONFIG_GUESS_OVERRIDE=	config.guess
 CONFIG_SUB_OVERRIDE=	config.sub
 
-.if ${OPSYS} == "NetBSD"
-CONFIGURE_ENV+=		LEX="${PREFIX}/bin/flex"
 .include "../../devel/flex/buildlink3.mk"
-.endif
-
 .include "../../mk/readline.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
