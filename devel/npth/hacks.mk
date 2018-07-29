@@ -1,7 +1,7 @@
 # $NetBSD$
 
 SUBST_CLASSES+=		rs_sysp
-SUBST_STAGE.rs_sysp=	subst-unwrap
+SUBST_STAGE.rs_sysp=	post-build
 SUBST_MESSAGE.rs_sysp=	preserving syspath in npth-config
 SUBST_FILES.rs_sysp=	npth-config
 SUBST_SED.rs_sysp+=	-e 's,-I\/usr\/include|-I\/include),@SYS_INC_OR@),g'
@@ -14,4 +14,5 @@ SUBST_MESSAGE.rp_sysp=	putting syspath in npth-config
 SUBST_SED.rp_sysp=	-e 's,@SYS_INC_OR@,${COMPILER_INCLUDE_DIRS:S/^/-I/g:tW:S/ /|/g},g'
 SUBST_SED.rp_sysp+=	-e 's,@SYS_LIB_OR@,${COMPILER_LIB_DIRS:S/^/-L/g:tW:S/ /|/g},g'
 
+subst-unwrap:	subst-rs_sysp
 subst-rp_sysp:	subst-unwrap
