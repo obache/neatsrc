@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.3358 2018/07/27 08:47:08 jperkin Exp $
+$NetBSD: CHANGES-2018,v 1.3370 2018/07/29 03:00:17 wen Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -4787,3 +4787,16 @@ Changes to the packages collection and infrastructure in 2018:
 	Updated textproc/py-colored to 1.3.93 [nia 2018-07-27]
 	Added math/stan-math version 2.17.1 [minskim 2018-07-27]
 	Updated www/py-autobahn to 18.6.1 [jperkin 2018-07-27]
+	Updated devel/boehm-gc to 7.6.4nb3 [jperkin 2018-07-27]
+	Updated cad/qcad to 3.21.2.3 [plunky 2018-07-27]
+	Updated textproc/discount to 2.2.3anb4 [schmonz 2018-07-27]
+	Updated lang/mono to 4.0.4.1nb12 [jperkin 2018-07-27]
+	Updated editors/vim-share to 8.1.0216 [morr 2018-07-28]
+	Updated editors/vim-lang to 8.1.0216 [morr 2018-07-28]
+	Added www/libpsl version 0.20.2 [bsiegert 2018-07-28]
+	Updated graphics/libsixel to 1.8.2 [tsutsui 2018-07-28]
+	Updated net/mikutter to 3.7.4 [tsutsui 2018-07-28]
+	Added x11/slop version 7.4 [nia 2018-07-28]
+	Added x11/maim version 5.5.2 [nia 2018-07-28]
+	Updated pkgtools/pkglint to 5.5.15 [rillig 2018-07-13]
+	Updated devel/p5-Type-Tiny to 1.004001 [wen 2018-07-29]

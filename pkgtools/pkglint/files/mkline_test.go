@@ -150,6 +150,7 @@ func (s *Suite) Test_NewMkLine(c *check.C) {
 	c.Check(ln[4].Indent(), equals, "  ")
 	c.Check(ln[4].Directive(), equals, "if")
 	c.Check(ln[4].Args(), equals, "!empty(PKGNAME:M*-*) && ${RUBY_RAILS_SUPPORTED:[#]} == 1")
+	c.Check(ln[4].CondComment(), equals, "cond comment")
 
 	c.Check(ln[5].IsInclude(), equals, true)
 	c.Check(ln[5].Indent(), equals, "    ")
@@ -285,6 +286,7 @@ func (s *Suite) Test_MkLines_Check__extra(c *check.C) {
 		"COMMENT=\t# defined",
 		".endfor",
 		"GAMES_USER?=pkggames",
+		"GAMES_GROUP?=pkggames",
 		"PLIST_SUBST+= CONDITIONAL=${CONDITIONAL}",
 		"CONDITIONAL=\"@comment\"",
 		"BUILD_DIRS=\t${WRKSRC}/../build")
@@ -295,8 +297,8 @@ func (s *Suite) Test_MkLines_Check__extra(c *check.C) {
 		"WARN: options.mk:3: The values for PYTHON_VERSIONS_ACCEPTED should be in decreasing order.",
 		"NOTE: options.mk:5: Please use \"# empty\", \"# none\" or \"yes\" instead of \"# defined\".",
 		"WARN: options.mk:7: Please include \"../../mk/bsd.prefs.mk\" before using \"?=\".",
-		"WARN: options.mk:10: Building the package should take place entirely inside ${WRKSRC}, not \"${WRKSRC}/..\".",
-		"NOTE: options.mk:10: You can use \"../build\" instead of \"${WRKSRC}/../build\".")
+		"WARN: options.mk:11: Building the package should take place entirely inside ${WRKSRC}, not \"${WRKSRC}/..\".",
+		"NOTE: options.mk:11: You can use \"../build\" instead of \"${WRKSRC}/../build\".")
 }
 
 func (s *Suite) Test_MkLine_variableNeedsQuoting__unknown_rhs(c *check.C) {
@@ -800,6 +802,35 @@ func (s *Suite) Test_MkLine_ConditionVars(c *check.C) {
 	c.Check(mkline.ConditionVars(), equals, "OPSYS")
 }
 
+func (s *Suite) Test_MkLine_ValueSplit(c *check.C) {
+	t := s.Init(c)
+
+	checkSplit := func(value string, expected ...string) {
+		mkline := t.NewMkLine("Makefile", 1, "PATH=\t"+value)
+		split := mkline.ValueSplit(value, ":")
+		c.Check(split, deepEquals, expected)
+	}
+
+	checkSplit("#empty",
+		[]string(nil)...)
+
+	checkSplit("/bin",
+		"/bin")
+
+	checkSplit("/bin:/sbin",
+		"/bin",
+		"/sbin")
+
+	checkSplit("${DESTDIR}/bin:/bin/${SUBDIR}",
+		"${DESTDIR}/bin",
+		"/bin/${SUBDIR}")
+
+	checkSplit("/bin:${DESTDIR}${PREFIX}:${DESTDIR:S,/,\\:,:S,:,:,}/sbin",
+		"/bin",
+		"${DESTDIR}${PREFIX}",
+		"${DESTDIR:S,/,\\:,:S,:,:,}/sbin")
+}
+
 func (s *Suite) Test_MatchVarassign(c *check.C) {
 	s.Init(c)
 
@@ -846,16 +877,14 @@ func (s *Suite) Test_MatchVarassign(c *check.C) {
 }
 
 func (s *Suite) Test_Indentation(c *check.C) {
-	ind := &Indentation{}
-
-	ind.Push(0)
+	ind := NewIndentation()
 
 	c.Check(ind.Depth("if"), equals, 0)
 	c.Check(ind.DependsOn("VARNAME"), equals, false)
 
-	ind.Push(2)
+	ind.Push(2, "")
 
-	c.Check(ind.Depth("if"), equals, 2)
+	c.Check(ind.Depth("if"), equals, 0) // Because "if" is handled in MkLines.TrackBefore.
 	c.Check(ind.Depth("endfor"), equals, 0)
 
 	ind.AddVar("LEVEL1.VAR1")
@@ -868,7 +897,7 @@ func (s *Suite) Test_Indentation(c *check.C) {
 	c.Check(ind.DependsOn("LEVEL1.VAR1"), equals, true)
 	c.Check(ind.DependsOn("OTHER_VAR"), equals, false)
 
-	ind.Push(2)
+	ind.Push(2, "")
 
 	ind.AddVar("LEVEL2.VAR")
 

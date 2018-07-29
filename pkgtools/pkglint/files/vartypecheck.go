@@ -274,6 +274,14 @@ func (cv *VartypeCheck) Dependency() {
 	if m, inside := match1(wildcard, `^\[(.*)\]\*$`); m {
 		if inside != "0-9" {
 			line.Warnf("Only [0-9]* is allowed in the numeric part of a dependency.")
+			Explain(
+				"The pattern -[0-9] means any version.  All other version patterns",
+				"should be expressed using the comparison operators like < or >= or",
+				"even >=2<3.",
+				"",
+				"Patterns like -[0-7] will only match the first digit of the version",
+				"number and will not do the correct thing when the package reaches",
+				"version 10.")
 		}
 
 	} else if m, ver, suffix := match2(wildcard, `^(\d\w*(?:\.\w+)*)(\.\*|\{,nb\*\}|\{,nb\[0-9\]\*\}|\*|)$`); m {
@@ -661,19 +669,22 @@ func (cv *VartypeCheck) Option() {
 	line.Errorf("Invalid option name %q. Option names must start with a lowercase letter and be all-lowercase.", value)
 }
 
-// The PATH environment variable
+// Pathlist checks variables like the PATH environment variable.
 func (cv *VartypeCheck) Pathlist() {
+	// Sometimes, variables called PATH contain a single pathname,
+	// especially those with auto-guessed type from MkLineImpl.VariableType.
 	if !contains(cv.Value, ":") && cv.Guessed {
 		MkLineChecker{cv.MkLine}.CheckVartypePrimitive(cv.Varname, BtPathname, cv.Op, cv.Value, cv.MkComment, cv.Guessed)
 		return
 	}
 
-	for _, path := range strings.Split(cv.Value, ":") {
-		if contains(path, "${") {
+	for _, path := range cv.MkLine.ValueSplit(cv.Value, ":") {
+		if hasPrefix(path, "${") {
 			continue
 		}
 
-		if !matches(path, `^[-0-9A-Za-z._~+%/]*$`) {
+		pathNoVar := cv.MkLine.WithoutMakeVariables(path)
+		if !matches(pathNoVar, `^[-0-9A-Za-z._~+%/]*$`) {
 			cv.Line.Warnf("%q is not a valid pathname.", path)
 		}
 
@@ -956,10 +967,12 @@ func (cv *VartypeCheck) Tool() {
 		switch tooldep {
 		case "", "bootstrap", "build", "pkgsrc", "run", "test":
 		default:
-			cv.Line.Errorf("Unknown tool dependency %q. Use one of \"bootstrap\", \"build\", \"pkgsrc\" or \"run\" or \"test\".", tooldep)
+			cv.Line.Errorf("Unknown tool dependency %q. Use one of \"bootstrap\", \"build\", \"pkgsrc\", \"run\" or \"test\".", tooldep)
 		}
-	} else if cv.Op != opUseMatch {
-		cv.Line.Errorf("Invalid tool syntax: %q.", cv.Value)
+	} else if cv.Op != opUseMatch && cv.Value == cv.ValueNoVar {
+		cv.Line.Errorf("Malformed tool dependency: %q.", cv.Value)
+		Explain(
+			"A tool dependency typically looks like \"sed\" or \"sed:run\".")
 	}
 }
 
