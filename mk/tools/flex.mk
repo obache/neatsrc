@@ -49,6 +49,9 @@ _TOOLS_VERSION.flex!=							\
 	${TOOLS_PLATFORM.flex} --version |				\
 	${SED} -e 's/^[[:blank:]]*\([^[:blank:]]\{1,\}\)[[:blank:]]\{1,\}\([^[:blank:]]\{1,\}\).*$$/\2/'
 _TOOLS_PKG.flex=		flex-${_TOOLS_VERSION.flex}
+.   if !empty(USE_BUILTIN.flex:M[nN][oO])
+_TOOLS_USE_PKGSRC.flex=	yes
+.   else
 _TOOLS_USE_PKGSRC.flex=	no
 .    for _dep_ in flex>=${FLEX_REQD}
 .      if !empty(_TOOLS_USE_PKGSRC.flex:M[nN][oO])
@@ -60,6 +63,7 @@ _TOOLS_USE_PKGSRC.flex!=						\
 	fi
 .      endif
 .    endfor
+.   endif
 .  endif
 MAKEVARS+=	_TOOLS_USE_PKGSRC.flex
 .endif
