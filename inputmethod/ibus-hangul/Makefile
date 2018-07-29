@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.17 2017/08/16 21:22:12 wiz Exp $
 #
 
-DISTNAME=	ibus-hangul-1.5.0
+DISTNAME=	ibus-hangul-1.5.1
 CATEGORIES=	inputmethod korean
 MASTER_SITES=	https://github.com/choehwanjin/ibus-hangul/releases/download/${PKGVERSION_NOREV}/
 
@@ -21,4 +21,5 @@ BUILDLINK_API_DEPENDS.libhangul+=	libhangul>=0.1.0
 .include "../../inputmethod/libhangul/buildlink3.mk"
 .include "../../inputmethod/ibus/buildlink3.mk"
 .include "../../lang/python/application.mk"
+.include "../../devel/glib2/schemas.mk"
 .include "../../mk/bsd.pkg.mk"
