@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.4 2018/07/20 03:33:55 ryoon Exp $
 
-DISTNAME=	gpgme-1.10.0
-PKGNAME=	qgpgme-1.10.0
-PKGREVISION=	3
+DISTNAME=	gpgme-1.11.1
+PKGNAME=	qgpgme-1.11.1
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/gpgme/
 EXTRACT_SUFX=	.tar.bz2
@@ -15,11 +14,13 @@ LICENSE=	gnu-lgpl-v2.1
 USE_TOOLS+=	pkg-config gmake
 GNU_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
+USE_LIBTOOL=	yes
 
 BUILD_DIRS=	lang/qt/src
 
+CONFIGURE_ARGS+=	--enable-languages="cpp qt"
 CONFIGURE_ENV+=	MOC=${QTDIR}/bin/moc
 
-.include "../../security/gpgme/buildlink3.mk"
+.include "../../security/gpgme++/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
