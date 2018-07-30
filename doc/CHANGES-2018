@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.3375 2018/07/29 08:44:21 schmonz Exp $
+$NetBSD: CHANGES-2018,v 1.3384 2018/07/30 00:02:57 schmonz Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -4805,3 +4805,12 @@ Changes to the packages collection and infrastructure in 2018:
 	Updated textproc/p5-PPIx-QuoteLike to 0.006 [wen 2018-07-29]
 	Added math/djbsort version 20180717 [wiz 2018-07-29]
 	Updated mail/spamdyke to 5.0.1nb2 [schmonz 2018-07-29]
+	Updated devel/py-cffi to 1.11.5nb1 [leot 2018-07-29]
+	Updated mail/qmail-conf to 0.60nb5 [schmonz 2018-07-29]
+	Updated net/ucspi-ssl to 0.99enb2 [schmonz 2018-07-29]
+	Updated mail/qmail to 1.03nb35 [schmonz 2018-07-29]
+	Updated mail/qmail-run to 20180730 [schmonz 2018-07-29]
+	Updated net/publicfile to 0.52nb2 [schmonz 2018-07-29]
+	Updated net/publicfile-run to 20180730 [schmonz 2018-07-29]
+	Updated net/djbdns-run to 20180730 [schmonz 2018-07-29]
+	Updated sysutils/daemontools-run to 20180730 [schmonz 2018-07-30]
