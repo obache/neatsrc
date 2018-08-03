@@ -81,7 +81,6 @@ BUILDLINK_API_DEPENDS.libgweather+=	libgweather>=2.24.1
 #.include "../../security/policykit/buildlink3.mk"
 #.include "../../security/policykit-gnome/buildlink3.mk"
 .include "../../sysutils/dbus-glib/buildlink3.mk"
-.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 BUILDLINK_API_DEPENDS.gnome-menus+= gnome-menus>=2.28.0
 .include "../../sysutils/gnome-menus/buildlink3.mk"
 .include "../../textproc/gnome-doc-utils/buildlink3.mk"
