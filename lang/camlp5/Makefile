@@ -24,6 +24,8 @@ REPLACE_SH=	tools/*.sh meta/*.sh ocaml_src/tools/*.sh compile/*.sh
 
 INSTALLATION_DIRS+=	${OCAML_SITELIBDIR}/camlp5
 
+UNLIMIT_RESOURCES+=	stacksize
+
 .include "../../mk/bsd.prefs.mk"
 .include "../../mk/ocaml.mk"
 
