@@ -31,7 +31,6 @@ CONFIGURE_ARGS+=	--enable-gnome
 CONFIGURE_ARGS+=	--disable-gnome
 .endif
 
-.include "../../devel/GConf/schemas.mk"
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.19.7
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libsoup+=	libsoup>=2.26.0
