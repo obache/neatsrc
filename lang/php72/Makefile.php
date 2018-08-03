@@ -1,7 +1,14 @@
-# $NetBSD: Makefile.php,v 1.6 2018/07/18 07:33:12 manu Exp $
+# $NetBSD: Makefile.php,v 1.8 2018/07/31 01:17:56 maya Exp $
 # used by lang/php72/Makefile
 # used by www/ap-php/Makefile
 # used by www/php-fpm/Makefile
+
+# segfaults when buidling with many compilers
+# https://bugs.php.net/bug.php?id=74527
+# https://gcc.gnu.org/bugzilla/show_bug.cgi?id=86236
+.if ${MACHINE_ARCH} == "i386"
+CONFIGURE_ARGS+=	--disable-gcc-global-regs
+.endif
 
 # the binary actually needs full dep on PCRE
 BUILDLINK_DEPMETHOD.pcre=	full

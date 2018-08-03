@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2018/07/25 18:59:08 nia Exp $
+# $NetBSD: Makefile,v 1.5 2018/07/31 16:14:29 nia Exp $
 
 VERSION=	1.2.2
 DISTNAME=	Mastodon.py-${VERSION}
