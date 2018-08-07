@@ -8,6 +8,7 @@ CDPARANOIA_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.cdparanoia+=	cdparanoia>=3.0
 BUILDLINK_ABI_DEPENDS.cdparanoia+=	cdparanoia>=3.0.9.8nb5
 BUILDLINK_PKGSRCDIR.cdparanoia?=	../../audio/cdparanoia
+BUILDLINK_INCDIRS.cdparanoia=		include/cdparanoia
 .endif # CDPARANOIA_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-cdparanoia
