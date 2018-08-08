@@ -3,7 +3,7 @@
 DISTNAME=	libmusicbrainz-2.1.5
 PKGNAME=	${DISTNAME:S/lib//}
 CATEGORIES=	audio
-MASTER_SITES=	ftp://ftp.musicbrainz.org/pub/musicbrainz/
+MASTER_SITES=	ftp://ftp.musicbrainz.org/pub/musicbrainz/historical/
 
 MAINTAINER=	rxg@NetBSD.org
 HOMEPAGE=	http://musicbrainz.org/doc/libmusicbrainz
