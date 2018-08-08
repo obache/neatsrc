@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.253 2018/07/19 04:06:15 tpaul Exp $
+# $NetBSD: Makefile,v 1.258 2018/08/07 20:23:44 nia Exp $
 #
 
 COMMENT=	Emulators for other operating systems
@@ -89,8 +89,11 @@ SUBDIR+=	keystone
 SUBDIR+=	klh10
 SUBDIR+=	libdsk
 SUBDIR+=	libretro-catsfc
+SUBDIR+=	libretro-core-info
+SUBDIR+=	libretro-database
 SUBDIR+=	libretro-fceumm
 SUBDIR+=	libretro-gambatte
+SUBDIR+=	libretro-glsl-shaders
 SUBDIR+=	libretro-mednafen-pce-fast
 SUBDIR+=	libretro-mupen64plus
 SUBDIR+=	libretro-nestopia
@@ -131,6 +134,7 @@ SUBDIR+=	qemu
 SUBDIR+=	raine
 SUBDIR+=	realboy
 SUBDIR+=	retroarch
+SUBDIR+=	retroarch-assets
 SUBDIR+=	shoebill
 SUBDIR+=	simh
 SUBDIR+=	simulavr
