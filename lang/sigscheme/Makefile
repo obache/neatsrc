@@ -1,9 +1,9 @@
 # $NetBSD: Makefile,v 1.10 2017/09/04 18:55:09 wiz Exp $
 #
 
-DISTNAME=	sigscheme-0.8.5
+DISTNAME=	sigscheme-0.9.0
 CATEGORIES=	lang
-MASTER_SITES=	http://sigscheme.googlecode.com/files/
+MASTER_SITES=	https://github.com/uim/sigscheme/releases/download/${PKGVERSION_NOREV}/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/uim/sigscheme
