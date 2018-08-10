@@ -294,7 +294,6 @@ share/doc/cyrus-imapd/html/_sources/imap/developer/developer-tips.txt
 share/doc/cyrus-imapd/html/_sources/imap/developer/documentation.txt
 share/doc/cyrus-imapd/html/_sources/imap/developer/github-guide.txt
 share/doc/cyrus-imapd/html/_sources/imap/developer/install-xapian.txt
-share/doc/cyrus-imapd/html/_sources/imap/developer/jmap.txt
 share/doc/cyrus-imapd/html/_sources/imap/developer/libraries.txt
 share/doc/cyrus-imapd/html/_sources/imap/developer/libraries/imclient.txt
 share/doc/cyrus-imapd/html/_sources/imap/developer/namespaces.txt
@@ -407,6 +406,7 @@ share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.3.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.4.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.5.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.6.txt
+share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.7.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/${PKGVERSION}.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/index.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/upgrade.txt
@@ -706,7 +706,6 @@ share/doc/cyrus-imapd/html/imap/developer/developer-tips.html
 share/doc/cyrus-imapd/html/imap/developer/documentation.html
 share/doc/cyrus-imapd/html/imap/developer/github-guide.html
 share/doc/cyrus-imapd/html/imap/developer/install-xapian.html
-share/doc/cyrus-imapd/html/imap/developer/jmap.html
 share/doc/cyrus-imapd/html/imap/developer/libraries.html
 share/doc/cyrus-imapd/html/imap/developer/libraries/imclient.html
 share/doc/cyrus-imapd/html/imap/developer/namespaces.html
@@ -819,6 +818,7 @@ share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.3.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.4.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.5.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.6.html
+share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.7.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/${PKGVERSION}.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/index.html
 share/doc/cyrus-imapd/html/imap/download/upgrade.html
@@ -1123,7 +1123,6 @@ share/doc/cyrus-imapd/text/imap/developer/developer-tips.txt
 share/doc/cyrus-imapd/text/imap/developer/documentation.txt
 share/doc/cyrus-imapd/text/imap/developer/github-guide.txt
 share/doc/cyrus-imapd/text/imap/developer/install-xapian.txt
-share/doc/cyrus-imapd/text/imap/developer/jmap.txt
 share/doc/cyrus-imapd/text/imap/developer/libraries.txt
 share/doc/cyrus-imapd/text/imap/developer/libraries/imclient.txt
 share/doc/cyrus-imapd/text/imap/developer/namespaces.txt
@@ -1236,6 +1235,7 @@ share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.3.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.4.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.5.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.6.txt
+share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.7.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/${PKGVERSION}.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/index.txt
 share/doc/cyrus-imapd/text/imap/download/upgrade.txt
