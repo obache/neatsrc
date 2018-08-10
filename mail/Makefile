@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.508 2018/05/28 12:56:52 schmonz Exp $
+# $NetBSD: Makefile,v 1.510 2018/08/09 10:00:43 jperkin Exp $
 #
 
 COMMENT=	Electronic mail utilities

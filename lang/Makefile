@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.489 2018/08/07 09:24:35 adam Exp $
+# $NetBSD: Makefile,v 1.492 2018/08/09 14:16:08 jperkin Exp $
 #
 
 COMMENT=	Programming languages
@@ -33,6 +33,7 @@ SUBDIR+=	classpath
 SUBDIR+=	classpath-gui
 SUBDIR+=	clisp
 SUBDIR+=	clojure
+SUBDIR+=	compiler-rt
 SUBDIR+=	coq
 SUBDIR+=	coreclr
 SUBDIR+=	cparser
@@ -121,6 +122,8 @@ SUBDIR+=	ksi
 SUBDIR+=	libBlocksRuntime
 SUBDIR+=	libLLVM
 SUBDIR+=	libLLVM34
+SUBDIR+=	libcxx
+SUBDIR+=	libcxxabi
 SUBDIR+=	libduktape
 SUBDIR+=	librep
 SUBDIR+=	libtcl-nothread

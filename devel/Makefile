@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2710 2018/08/07 09:21:18 adam Exp $
+# $NetBSD: Makefile,v 1.2715 2018/08/09 11:50:17 jperkin Exp $
 #
 
 COMMENT=	Development utilities
@@ -899,6 +899,7 @@ SUBDIR+=	p5-CLASS
 SUBDIR+=	p5-CPAN
 SUBDIR+=	p5-CPAN-Changes
 SUBDIR+=	p5-CPAN-Checksums
+SUBDIR+=	p5-CPAN-Common-Index
 SUBDIR+=	p5-CPAN-DistnameInfo
 SUBDIR+=	p5-CPAN-FindDependencies
 SUBDIR+=	p5-CPAN-Inject
@@ -927,6 +928,7 @@ SUBDIR+=	p5-Carp-Assert
 SUBDIR+=	p5-Carp-Assert-More
 SUBDIR+=	p5-Carp-Clan
 SUBDIR+=	p5-Carp-REPL
+SUBDIR+=	p5-Carton
 SUBDIR+=	p5-Check-ISA
 SUBDIR+=	p5-Class-Accessor
 SUBDIR+=	p5-Class-Accessor-Chained
@@ -1312,6 +1314,8 @@ SUBDIR+=	p5-Make
 SUBDIR+=	p5-Memoize
 SUBDIR+=	p5-Memoize-ExpireLRU
 SUBDIR+=	p5-Memoize-Memcached
+SUBDIR+=	p5-Menlo
+SUBDIR+=	p5-Menlo-Legacy
 SUBDIR+=	p5-MetaCPAN-API
 SUBDIR+=	p5-MetaCPAN-Client
 SUBDIR+=	p5-Method-Signatures
@@ -1483,6 +1487,7 @@ SUBDIR+=	p5-Parse-CPAN-Packages
 SUBDIR+=	p5-Parse-ErrorString-Perl
 SUBDIR+=	p5-Parse-ExuberantCTags
 SUBDIR+=	p5-Parse-Method-Signatures
+SUBDIR+=	p5-Parse-PMFile
 SUBDIR+=	p5-Parse-RecDescent
 SUBDIR+=	p5-Parse-Yapp
 SUBDIR+=	p5-PatchReader
