@@ -1,0 +1,25 @@
+$NetBSD$
+
+* regen
+
+--- configure.orig	2018-08-10 05:01:22.000000000 +0000
++++ configure
+@@ -28969,7 +28969,7 @@ else
+   LIBPANEL_APPLET_DIR=""
+ fi
+ 
+-  if test "$LIBPANEL_APPLET_DIR" == ""; then
++  if test "$LIBPANEL_APPLET_DIR" = ""; then
+     LIBPANEL_APPLET_DIR=`$PKG_CONFIG --variable=libpanel_applet_dir libpanel-applet`
+   fi
+ 
+@@ -30385,8 +30385,8 @@ if test "x$with_libedit" != xno; then
+   if test "x$with_libedit" = xyes; then
+     libedit_path=/usr
+   else
+-    with_libedit=yes
+     libedit_path="$with_libedit"
++    with_libedit=yes
+   fi
+ 
+   saved_CPPFLAGS=$CPPFLAGS

@@ -1,13 +1,13 @@
 # $NetBSD: options.mk,v 1.34 2017/09/26 09:42:26 wiz Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.uim
-PKG_SUPPORTED_OPTIONS=	anthy canna curl eb expat ffi gnome gnome3 gtk gtk3 m17nlib mana openssl prime sj3 sqlite uim-fep wnn4 xim
-PKG_SUPPORTED_OPTIONS+=	editline kde qt
-PKG_SUGGESTED_OPTIONS=	anthy expat gtk gtk3 mana prime uim-fep xim
+PKG_SUPPORTED_OPTIONS=	anthy canna curl eb expat ffi gnome gnome3 gtk gtk3 m17nlib mana openssl prime sj3 sqlite uim-fep wnn4 xim xkb
+PKG_SUPPORTED_OPTIONS+=	editline kde4 qt4 qt5
+PKG_SUGGESTED_OPTIONS=	anthy expat gtk gtk3 mana prime uim-fep xim xkb
 
 # Store installed modules
 UIM_MODULES=		skk tutcode byeoru latin elatin xmload pyload \
-			viqr ipa-x-sampa look ajax-ime social-ime \
+			viqr ipa-x-sampa look ajax-ime \
 			google-cgiapi-jp baidu-olime-jp
 
 CHECK_BUILTIN.editline:=	yes
@@ -20,7 +20,7 @@ PKG_SUGGESTED_OPTIONS+=	editline
 .include "../../mk/bsd.options.mk"
 
 PLIST_VARS+=		helperdata uim-dict-gtk uim-dict-gtk3 uim-dict-helperdata fep
-PLIST_VARS+=		anthy curl eb expat ffi gnome gnome3 gtk gtk3 kde m17nlib openssl qt sqlite wnn xim
+PLIST_VARS+=		anthy curl eb expat ffi gnome gnome3 gtk gtk3 kde4 m17nlib openssl qt4 qt5 sqlite wnn xim xkb
 PLIST_VARS+=		canna mana prime sj3
 PLIST_VARS+=		editline
 
@@ -43,7 +43,18 @@ PLIST.xim=		yes
 SUBST_CLASSES+=		xim
 SUBST_STAGE.xim=	pre-configure
 SUBST_FILES.xim=	configure
-SUBST_SED.xim=		-e 's;use_xim="yes";use_xim="no";g'
+SUBST_SED.xim=		-e 's;use_xim=yes;use_xim=no;g'
+.endif
+
+.if !empty(PKG_OPTIONS:Mxim)
+.include "../../x11/libX11/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-x
+PLIST.xkb=		yes
+.else
+SUBST_CLASSES+=		xkb
+SUBST_STAGE.xim=	pre-configure
+SUBST_FILES.xim=	configure
+SUBST_SED.xim=		-e 's;use_xkb=true;use_xkb=false;g'
 .endif
 
 .if !empty(PKG_OPTIONS:Muim-fep)
@@ -151,11 +162,11 @@ PLIST.uim-dict-helperdata=	yes
 .endif
 
 
-.if !empty(PKG_OPTIONS:Mkde)
+.if !empty(PKG_OPTIONS:Mkde4)
 .  include "../../x11/kdelibs4/buildlink3.mk"
 .  include "../../x11/qt4-libs/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-kde4-applet
-PLIST.kde=		yes
+PLIST.kde4=		yes
 .else
 CONFIGURE_ARGS+=	--disable-kde4-applet
 .endif
@@ -182,19 +193,25 @@ UIM_MODULES+=		mana
 CONFIGURE_ARGS+=	--without-mana
 .endif
 
-.if !empty(PKG_OPTIONS:Mqt) || !empty(PKG_OPTIONS:Mkde)
+.if !empty(PKG_OPTIONS:Mqt4) || !empty(PKG_OPTIONS:Mkde4)
 .  include "../../x11/qt4-libs/buildlink3.mk"
 .  include "../../x11/qt4-tools/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-qt4 --with-qt4-immodule
 PLIST.helperdata=	yes
-PLIST.qt=		yes
+PLIST.qt4=		yes
+.endif
+
+.if !empty(PKG_OPTIONS:Mqt5)
+.  include "../../x11/qt5-qtbase/buildlink3.mk"
+.  include "../../x11/qt5-qtx11extras/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-qt5 --with-qt5-immodule
+PLIST.qt5=		yes
 .endif
 
 .if !empty(PKG_OPTIONS:Mopenssl)
 .  include "../../security/openssl/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-openssl
-# XXX: https://bugs.freedesktop.org/show_bug.cgi?id=30249
-#CONFIGURE_ARGS+=	--with-openssl-dir=${SSLBASE:Q}
+CONFIGURE_ARGS+=	--with-openssl-dir=${SSLBASE:Q}
 PLIST.openssl=		yes
 .endif
 
@@ -215,6 +232,8 @@ UIM_MODULES+=		sj3
 .  include "../../databases/sqlite3/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-sqlite3
 PLIST.sqlite=		yes
+.else
+CONFIGURE_ARGS+=	--without-sqlite3
 .endif
 
 .if !empty(PKG_OPTIONS:Mwnn4)
@@ -231,6 +250,8 @@ UIM_MODULES+=		wnn
 CONFIGURE_ARGS+=	--enable-default-toolkit=gtk
 .elif !empty(PKG_OPTIONS:Mgtk3) || !empty(PKG_OPTIONS:Mgnome3)
 CONFIGURE_ARGS+=	--enable-default-toolkit=gtk3
-.elif !empty(PKG_OPTIONS:Mqt) || !empty(PKG_OPTIONS:Mkde)
+.elif !empty(PKG_OPTIONS:Mqt4) || !empty(PKG_OPTIONS:Mkde4)
 CONFIGURE_ARGS+=	--enable-default-toolkit=qt4
+.elif !empty(PKG_OPTIONS:Mqt5)
+CONFIGURE_ARGS+=	--enable-default-toolkit=qt5
 .endif

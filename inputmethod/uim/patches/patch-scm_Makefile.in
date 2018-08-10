@@ -1,0 +1,107 @@
+$NetBSD$
+
+* regen
+
+--- scm/Makefile.in.orig	2018-05-11 21:27:48.000000000 +0000
++++ scm/Makefile.in
+@@ -181,8 +181,8 @@ am__uninstall_files_from_dir = { \
+     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
+          $(am__cd) "$$dir" && rm -f $$files; }; \
+   }
+-am__installdirs = "$(DESTDIR)$(scmdir)" "$(DESTDIR)$(scmdir)"
+-DATA = $(dist_scm_DATA) $(scm_DATA)
++am__installdirs = "$(DESTDIR)$(scmdir)" "$(DESTDIR)$(uimconfdir)"
++DATA = $(dist_scm_DATA) $(uimconf_DATA)
+ am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
+ # Read a list of newline-separated strings from the standard input,
+ # and print each of them once, without duplicates.  Input order is
+@@ -484,9 +484,10 @@ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ uim_pixmapsdir = @uim_pixmapsdir@
+ scmdir = $(pkgdatadir)
++uimconfdir = $(sysconfdir)/uim
+ MOSTLYCLEANFILES = $(GENERATED_SCM_FILES)
+ dist_scm_DATA = $(SCM_FILES)
+-scm_DATA = $(GENERATED_SCM_FILES)
++uimconf_DATA = $(GENERATED_SCM_FILES)
+ GENERATED_SCM_FILES = installed-modules.scm loader.scm
+ SCM_FILES = plugin.scm im.scm im-custom.scm lazy-load.scm init.scm \
+  im-switcher.scm \
+@@ -634,27 +635,27 @@ uninstall-dist_scmDATA:
+ 	@list='$(dist_scm_DATA)'; test -n "$(scmdir)" || list=; \
+ 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+ 	dir='$(DESTDIR)$(scmdir)'; $(am__uninstall_files_from_dir)
+-install-scmDATA: $(scm_DATA)
++install-uimconfDATA: $(uimconf_DATA)
+ 	@$(NORMAL_INSTALL)
+-	@list='$(scm_DATA)'; test -n "$(scmdir)" || list=; \
++	@list='$(uimconf_DATA)'; test -n "$(uimconfdir)" || list=; \
+ 	if test -n "$$list"; then \
+-	  echo " $(MKDIR_P) '$(DESTDIR)$(scmdir)'"; \
+-	  $(MKDIR_P) "$(DESTDIR)$(scmdir)" || exit 1; \
++	  echo " $(MKDIR_P) '$(DESTDIR)$(uimconfdir)'"; \
++	  $(MKDIR_P) "$(DESTDIR)$(uimconfdir)" || exit 1; \
+ 	fi; \
+ 	for p in $$list; do \
+ 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+ 	  echo "$$d$$p"; \
+ 	done | $(am__base_list) | \
+ 	while read files; do \
+-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(scmdir)'"; \
+-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(scmdir)" || exit $$?; \
++	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(uimconfdir)'"; \
++	  $(INSTALL_DATA) $$files "$(DESTDIR)$(uimconfdir)" || exit $$?; \
+ 	done
+ 
+-uninstall-scmDATA:
++uninstall-uimconfDATA:
+ 	@$(NORMAL_UNINSTALL)
+-	@list='$(scm_DATA)'; test -n "$(scmdir)" || list=; \
++	@list='$(uimconf_DATA)'; test -n "$(uimconfdir)" || list=; \
+ 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+-	dir='$(DESTDIR)$(scmdir)'; $(am__uninstall_files_from_dir)
++	dir='$(DESTDIR)$(uimconfdir)'; $(am__uninstall_files_from_dir)
+ 
+ ID: $(am__tagged_files)
+ 	$(am__define_uniq_tagged_files); mkid -fID $$unique
+@@ -742,7 +743,7 @@ check-am: all-am
+ check: check-am
+ all-am: Makefile $(DATA)
+ installdirs:
+-	for dir in "$(DESTDIR)$(scmdir)" "$(DESTDIR)$(scmdir)"; do \
++	for dir in "$(DESTDIR)$(scmdir)" "$(DESTDIR)$(uimconfdir)"; do \
+ 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
+ 	done
+ install: install-am
+@@ -796,7 +797,7 @@ info: info-am
+ 
+ info-am:
+ 
+-install-data-am: install-dist_scmDATA install-scmDATA
++install-data-am: install-dist_scmDATA install-uimconfDATA
+ 
+ install-dvi: install-dvi-am
+ 
+@@ -840,7 +841,7 @@ ps: ps-am
+ 
+ ps-am:
+ 
+-uninstall-am: uninstall-dist_scmDATA uninstall-scmDATA
++uninstall-am: uninstall-dist_scmDATA uninstall-uimconfDATA
+ 
+ .MAKE: install-am install-strip
+ 
+@@ -852,11 +853,11 @@ uninstall-am: uninstall-dist_scmDATA uni
+ 	install-dvi-am install-exec install-exec-am install-html \
+ 	install-html-am install-info install-info-am install-man \
+ 	install-pdf install-pdf-am install-ps install-ps-am \
+-	install-scmDATA install-strip installcheck installcheck-am \
++	install-strip install-uimconfDATA installcheck installcheck-am \
+ 	installdirs maintainer-clean maintainer-clean-generic \
+ 	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
+ 	ps ps-am tags tags-am uninstall uninstall-am \
+-	uninstall-dist_scmDATA uninstall-scmDATA
++	uninstall-dist_scmDATA uninstall-uimconfDATA
+ 
+ .PRECIOUS: Makefile
+ 

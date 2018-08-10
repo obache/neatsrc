@@ -2,12 +2,12 @@ $NetBSD: patch-af,v 1.2 2012/09/15 12:05:00 obache Exp $
 
 * Fix for SunOS
 
---- fep/uim-fep.h.orig	2011-01-07 03:09:56.000000000 +0100
-+++ fep/uim-fep.h	2011-09-13 16:13:02.686629427 +0200
+--- fep/uim-fep.h.orig	2017-08-14 00:07:26.000000000 +0000
++++ fep/uim-fep.h
 @@ -41,6 +41,9 @@
  #include <sys/ioctl.h>
  #endif
- /* solaris ¤Çwinsize¤ò»È¤¦¤¿¤á¤ËÉ¬Í× */
+ /* solaris ã§winsizeã‚’ä½¿ã†ãŸã‚ã«å¿…è¦ */
 +#ifdef __sun
 +#include <sys/termios.h>
 +#endif

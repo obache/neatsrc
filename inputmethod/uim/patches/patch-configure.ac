@@ -1,0 +1,26 @@
+$NetBSD$
+
+* test(1) portability fix
+* fix to set libedit prefix
+
+--- configure.ac.orig	2018-05-11 21:26:13.000000000 +0000
++++ configure.ac
+@@ -864,7 +864,7 @@ AM_CONDITIONAL(GNOME3_APPLET, test "x$en
+ 
+ if test "x$enable_gnome3_applet" = xyes; then
+   AC_ARG_WITH([libpanel-applet-dir], [], [LIBPANEL_APPLET_DIR=$withval], [LIBPANEL_APPLET_DIR=""])
+-  if test "$LIBPANEL_APPLET_DIR" == ""; then
++  if test "$LIBPANEL_APPLET_DIR" = ""; then
+     LIBPANEL_APPLET_DIR=`$PKG_CONFIG --variable=libpanel_applet_dir libpanel-applet`
+   fi
+   AC_SUBST(LIBPANEL_APPLET_DIR)
+@@ -1311,8 +1311,8 @@ if test "x$with_libedit" != xno; then
+   if test "x$with_libedit" = xyes; then
+     libedit_path=/usr
+   else
+-    with_libedit=yes
+     libedit_path="$with_libedit"
++    with_libedit=yes
+   fi
+ 
+   saved_CPPFLAGS=$CPPFLAGS

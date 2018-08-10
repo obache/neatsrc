@@ -1,0 +1,24 @@
+$NetBSD$
+
+* regen
+
+--- uim/Makefile.in.orig	2018-05-11 21:27:48.000000000 +0000
++++ uim/Makefile.in
+@@ -878,7 +875,7 @@ sscmlibdir = ${pkgdatadir}/lib
+ SSCM_DEFS = -DSCMLIBDIR="\"$(sscmlibdir)\""
+ AUTOMAKE_OPTIONS = foreign
+ EXTRA_DIST = encoding-table.c test-gc.c version.h.in
+-uim_defs = -DSCM_FILES=\"$(datadir)/uim\"
++uim_defs = -DSCM_FILES=\"$(sysconfdir)/uim:$(datadir)/uim\"
+ lib_LTLIBRARIES = libuim-scm.la libuim.la libuim-custom.la
+ noinst_LTLIBRARIES = libuim-bsdlook.la $(am__append_1) \
+ 	libuim-counted-init.la
+@@ -1067,7 +1064,7 @@ uim_help_SOURCES = uim-help.c
+ @LIBEDIT_TRUE@libuim_editline_la_LDFLAGS = -rpath $(uim_plugindir) -avoid-version -module
+ @LIBEDIT_TRUE@libuim_editline_la_CPPFLAGS = -I$(top_srcdir)
+ uim_module_manager_LIBS = 
+-uim_module_manager_CPPFLAGS = $(uim_defs) -I$(top_srcdir) -DUIM_DATADIR=\""$(datadir)/uim"\"
++uim_module_manager_CPPFLAGS = $(uim_defs) -I$(top_srcdir) -DUIM_DATADIR=\""$(datadir)/uim"\" -DUIM_CONFDIR=\""$(sysconfdir)/uim"\"
+ uim_module_manager_CFLAGS = 
+ uim_module_manager_LDADD = libuim-scm.la libuim.la
+ uim_module_manager_SOURCES = uim-module-manager.c

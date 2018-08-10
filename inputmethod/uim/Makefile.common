@@ -3,11 +3,11 @@
 # used by inputmethod/uim/Makefile
 # used by inputmethod/uim-elisp/Makefile
 
-UIM_VERSION=		1.8.6
+UIM_VERSION=		1.8.8
 DISTNAME=		uim-${UIM_VERSION}
 CATEGORIES=		inputmethod
 MASTER_SITES=		${MASTER_SITE_GITHUB:=uim/}
-GITHUB_RELEASE=		${DISTNAME}
+GITHUB_RELEASE=		${UIM_VERSION}
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		VEG03617@nifty.com
@@ -15,9 +15,3 @@ HOMEPAGE=		https://github.com/uim/uim/wiki
 
 DISTINFO_FILE=		${.CURDIR}/../../inputmethod/uim/distinfo
 PATCHDIR=		${.CURDIR}/../../inputmethod/uim/patches
-
-USE_TOOLS+=		automake
-
-pre-configure:
-	set -e; cd ${WRKSRC}; \
-	aclocal -I m4; autoheader; automake -a --foreign -i; autoconf
