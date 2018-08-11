@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.51 2018/06/18 06:47:03 adam Exp $
+# $NetBSD: Makefile,v 1.52 2018/08/10 08:59:08 adam Exp $
 
-DISTNAME=	numpy-1.14.5
+DISTNAME=	numpy-1.15.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=n/numpy/}
@@ -12,6 +12,8 @@ COMMENT=	Array processing for numbers, strings, records, and objects
 LICENSE=	modified-bsd
 
 BUILD_DEPENDS+=	${PYPKGPREFIX}-cython>=0.19:../../devel/py-cython
+TEST_DEPENDS+=	${PYPKGPREFIX}-nose-[0-9]*:../../devel/py-nose
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 
 USE_LANGUAGES=		c fortran
 MAKE_ENV+=		ATLAS=None
@@ -40,8 +42,10 @@ LDFLAGS+=		${_COMPILER_ABI_FLAG.${ABI}}
 # Work around it on DragonFly by specifying the classic gnu linker
 MAKE_ENV.DragonFly+=	LDVER=ld.bfd
 
-# TEST_DEPENDS
-BUILD_DEPENDS+=	${PYPKGPREFIX}-nose-[0-9]*:../../devel/py-nose
+post-install:
+	cd ${DESTDIR}${PREFIX}/bin && ${RM} f2py && \
+		${MV} conv-template conv-template${PYVERSSUFFIX} && \
+		${MV} from-template from-template${PYVERSSUFFIX} || ${TRUE}
 
 do-test:
 	${RUN}cd ${WRKSRC};${PYTHONBIN} runtests.py
