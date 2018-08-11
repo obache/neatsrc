@@ -129,7 +129,7 @@ PKG_FAIL_REASON+=	\
 .  include "curses.builtin.mk"
 BUILDLINK_TREE+=		curses -curses
 BUILDLINK_LDADD.curses?=	${BUILDLINK_LIBNAME.curses:S/^/-l/:S/^-l$//}
-BUSILDLINK_BUILTIN_MK.curses=	../../mk/curses.builtin.mk
+BUILDLINK_BUILTIN_MK.curses=	../../mk/curses.builtin.mk
 # Some packages only look for ncurses
 # The correct action would be to write a patch and pass it upstream
 # but by setting FAKE_NCURSES=yes in the package we can temporarily work
