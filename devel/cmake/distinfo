@@ -12,6 +12,7 @@ SHA1 (patch-Modules_FindPythonLibs.cmake) = b5cedc6a2354beaf08e06d416c150154a7dc
 SHA1 (patch-Modules_FindX11.cmake) = 124a2d51155cb4455e8b829dc74598cbd50a4e1c
 SHA1 (patch-Modules_Platform_UnixPaths.cmake) = 38720e11b7b62cb702e80da19e044f070298f2db
 SHA1 (patch-Source_CMakeLists.txt) = 533667d43048b8bc2be17a766b5dc32f3101866e
+SHA1 (patch-Source_Checks_Curses_CMakeLists.txt) = 42ad30c37ad34af61d9c23485b820d006723d232
 SHA1 (patch-Source_Checks_Curses_CheckCurses.c) = 8c62f7717bd6badeaea119c1fdcf2e18a9f95cce
 SHA1 (patch-Source_Checks_cm__cxx17__check.cpp) = 37772f3e7edc2413cb2e294462312aff18e5c989
 SHA1 (patch-Source_Checks_cm_cxx_features.cmake) = 3d6e3ac6ad25890d223601c15fb208b8e77ff77c
