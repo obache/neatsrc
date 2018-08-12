@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.3519 2018/08/11 01:22:38 taca Exp $
+$NetBSD: CHANGES-2018,v 1.3529 2018/08/11 20:26:23 nia Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -5031,3 +5031,11 @@ Changes to the packages collection and infrastructure in 2018:
 	Added emulators/libretro-beetle-ngp version 20180720 [nia 2018-08-11]
 	Added games/libretro-craft version 20180803 [nia 2018-08-11]
 	Updated www/squid3 to 3.5.28 [taca 2018-08-11]
+	Added emulators/libretro-desmume version 20180807 [nia 2018-08-11]
+	Added emulators/libretro-fuse version 20180419 [nia 2018-08-11]
+	Added emulators/libretro-genesis-plus-gx version 20180607 [nia 2018-08-11]
+	Added emulators/libretro-vecx version 20180412 [nia 2018-08-11]
+	Updated security/password-store to 1.7.3 [leot 2018-08-11]
+	Updated www/firefox to 61.0.2 [ryoon 2018-08-11]
+	Updated www/firefox-l10n to 61.0.2 [ryoon 2018-08-11]
+	Updated emulators/libretro-nestopia to 1.49 [nia 2018-08-11]
