@@ -8,6 +8,7 @@ FCITX_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.fcitx+=	fcitx>=4.2.9.2
 BUILDLINK_PKGSRCDIR.fcitx?=	../../inputmethod/fcitx
+BUILDLINK_FILES.fcitx+=		bin/fcitx4-config
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
