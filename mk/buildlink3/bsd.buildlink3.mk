@@ -611,7 +611,7 @@ buildlink-${_pkg_}-cookie:
 	${TOUCH} ${TOUCH_FLAGS} ${_BLNK_COOKIE.${_pkg_}}
 
 BUILDLINK_CONTENTS_FILTER.${_pkg_}?=					\
-	${EGREP} '(include.*/|\.h$$|\.idl$$|\.pc$$|/lib[^/]*\.[^/]*$$)'
+	${EGREP} '(include.*/|\.h$$|\.idl$$|\.pc$$|/lib[^/]*\.[^/]*$$|\.cmake$$)'
 
 BUILDLINK_FILES_CMD.${_pkg_}?=						\
 	${_BLNK_PKG_INFO.${_pkg_}} -qL ${BUILDLINK_PKGNAME.${_pkg_}} |	\
