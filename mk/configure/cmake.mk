@@ -46,7 +46,6 @@ CMAKE_USE_GNU_INSTALL_DIRS?=	yes
 CMAKE_INSTALL_PREFIX?=	${PREFIX}
 
 CMAKE_ARGS+=	-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
-CMAKE_ARGS+=	-DCMAKE_MODULE_PATH:PATH=${_CMAKE_DIR}
 .if empty(CMAKE_PKGSRC_BUILD_FLAGS:M[nN][oO])
 CMAKE_ARGS+=    -DCMAKE_PKGSRC_BUILD_FLAGS:BOOL=TRUE
 .endif
@@ -71,23 +70,18 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_LOCALEDIR:PATH=${PKGLOCALEDIR}/locale
 CMAKE_ARGS+=-DCMAKE_PREFIX_PATH:PATH=${CMAKE_PREFIX_PATH:ts;:Q}
 .endif
 
-CMAKE_MODULE_PATH_OVERRIDE+=	CMakeLists.txt
-
-### configure-cmake-override modifies the cmake CMakeLists.txt file in
-### ${WRKSRC} so that if CMAKE_MODULE_PATH is set we add our Module
-### directory before any others.
-###
-
-SUBST_CLASSES+=		cmake
-SUBST_STAGE.cmake=	do-configure-pre-hook
-SUBST_MESSAGE.cmake=	Fixing CMAKE_MODULE_PATH in CMakeLists.txt
-SUBST_FILES.cmake=	${CMAKE_MODULE_PATH_OVERRIDE}
-SUBST_SED.cmake=	\
-	's|set *( *CMAKE_MODULE_PATH |set (CMAKE_MODULE_PATH "${_CMAKE_DIR}" |'
-
-do-configure-pre-hook: __cmake-copy-module-tree
-__cmake-copy-module-tree: .PHONY
-	${RUN} cd ${PKGSRCDIR}/mk; ${MKDIR} ${_CMAKE_DIR:H}; ${CP} -R cmake-Modules/* ${_CMAKE_DIR}
+CMAKE_FIND_ROOT_PATH+=	${BUILDLINK_DIR} ${BUILDLINK_X11_DIR}
+CMAKE_ARGS+=-DCMAKE_FIND_ROOT_PATH:PATH=${CMAKE_FIND_ROOT_PATH:O:u:ts;:Q}
+CMAKE_SYSTEM_IGNORE_PATH+=	${LOCALBASE}/include ${LOCALBASE}/lib
+.if !empty(X11_TYPE:Mnative)
+.  if empty(COMPILER_INCLUDE_DIRS:M${X11BASE}/include)
+CMAKE_SYSTEM_IGNORE_PATH+=	${X11BASE}/include
+.  endif
+.  if empty(COMPILER_LIB_DIRS:M${X11BASE}/lib${LIBABISUFFIX})
+CMAKE_SYSTEM_IGNORE_PATH+=	${X11BASE}/lib${LIBABISUFFIX}
+.  endif
+.endif
+CMAKE_ARGS+=-DCMAKE_SYSTEM_IGNORE_PATH:PATH=${CMAKE_SYSTEM_IGNORE_PATH:O:u:ts;:Q}
 
 ### The cmake function export_library_dependencies() writes out
 ### library dependency info to a file and this may contain buildlink
