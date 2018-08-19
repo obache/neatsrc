@@ -99,8 +99,23 @@ _SUBST_IS_TEXT_FILE.${_class_}=	${_SUBST_IS_TEXT_FILE}
 SUBST_TARGETS+=			subst-${_class_}
 
 .  if defined(SUBST_STAGE.${_class_})
-.    if empty(SUBST_STAGE.${_class_}:Mdo-*) && !target(${SUBST_STAGE.${_class_}})
+.    if !target(${SUBST_STAGE.${_class_}})
+${SUBST_STAGE.${_class_}}:	.PHONY
+.      if !empty(SUBST_STAGE.${_class_}:Mdo-*) && !empty(_ALL_PHASES:M${SUBST_STAGE.${_class_}:S/do-//})
+${SUBST_STAGE.${_class_}:S/do-//}:	${SUBST_STAGE.${_class}}
+.      elif !empty(SUBST_STAGE.${_class_}:Mpre-*) && !empty(_ALL_PHASES:M${SUBST_STAGE.${_class_}:S/pre-//})
+${SUBST_STAGE.${_class_}:S/pre-//}:	${SUBST_STAGE.${_class_}}
+.        if target(${SUBST_STAGE.${_class_}:S/pre-/do-/})
+${SUBST_STAGE.${_class_}:S/pre-/do-/}:	${SUBST_STAGE.${_class_}}
+.        endif
+.      elif !empty(SUBST_STAGE.${_class_}:Mpost-*) && !empty(_ALL_PHASES:M${SUBST_STAGE.${_class_}:S/post-//})
+${SUBST_STAGE.${_class_}:S/post-//}:	${SUBST_STAGE.${_class_}}
+.        if target(${SUBST_STAGE.${_class_}:S/post-/do-/})
+${SUBST_STAGE.${_class_}}:		${SUBST_STAGE.${_class_}:S/post-/do-/}
+.        endif
+.      else
 PKG_FAIL_REASON+=	"${SUBST_STAGE.${_class_}} target for SUBST_STAGE.${_class_} is not defined."
+.      endif
 .    endif
 ${SUBST_STAGE.${_class_}}: subst-${_class_}
 .  else
