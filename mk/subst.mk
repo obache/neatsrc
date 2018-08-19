@@ -104,8 +104,7 @@ PKG_FAIL_REASON+=	"${SUBST_STAGE.${_class_}} target for SUBST_STAGE.${_class_} i
 .    endif
 ${SUBST_STAGE.${_class_}}: subst-${_class_}
 .  else
-# SUBST_STAGE.* does not need to be defined.
-#PKG_FAIL_REASON+=	"SUBST_STAGE missing for ${_class_}."
+PKG_FAIL_REASON+=	"SUBST_STAGE missing for ${_class_}."
 .  endif
 
 .PHONY: subst-${_class_}
