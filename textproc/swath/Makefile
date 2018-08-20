@@ -1,21 +1,23 @@
 # $NetBSD: Makefile,v 1.6 2017/09/04 18:08:29 wiz Exp $
 #
 
-DISTNAME=	swath-0.6.0
+DISTNAME=	swath-0.6.1
 CATEGORIES=	textproc
 MASTER_SITES=	http://linux.thai.net/pub/ThaiLinux/software/swath/
 MASTER_SITES+=	ftp://linux.thai.net/pub/ThaiLinux/software/swath/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://linux.thai.net/projects/thailatex
+HOMEPAGE=	https://linux.thai.net/projects/swath
 COMMENT=	Smart Word Analysis for THai
 LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_LANGUAGES=	c c++
-USE_TOOLS+=	pkg-config
+USE_TOOLS+=	pkg-config gmake
+
+TEST_TARGET=	check
 
 .include "../../devel/libdatrie/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

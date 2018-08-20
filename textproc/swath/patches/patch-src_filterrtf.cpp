@@ -2,9 +2,9 @@ $NetBSD$
 
 * NetBSD is missing wcpcpy(3) and wcpncpy(3).
 
---- src/filterrtf.cpp.orig	2013-10-30 05:24:43.000000000 +0000
+--- src/filterrtf.cpp.orig	2018-08-14 05:33:16.000000000 +0000
 +++ src/filterrtf.cpp
-@@ -10,6 +10,35 @@
+@@ -10,6 +10,36 @@
  #include "utils.h"
  #include "worddef.h"
  
@@ -12,7 +12,7 @@ $NetBSD$
 +static wchar_t*
 +wcpcpy (wchar_t* ws1, const wchar_t* ws2)
 +{
-+  while((*ws1 = *ws2) != (wchar_t)'\0')
++  while((*ws1 = *ws2) != L'\0')
 +    {
 +       ws1++;
 +       ws2++;
@@ -23,17 +23,18 @@ $NetBSD$
 +static wchar_t*
 +wcpncpy (wchar_t* ws1, const wchar_t* ws2, size_t n)
 +{
-+  while(n > 0 && (*ws1 = *ws2) != (wchar_t)'\0')
++  wchar_t* p;
++
++  while(n > 0 && (*ws1 = *ws2) != L'\0')
 +    {
 +       ws1++;
 +       ws2++;
 +       n--;
 +    }
++  p = ws1;
 +  for (; n > 0; n--)
-+    {
-+      *ws1++ = (wchar_t)'\0';
-+    }
-+  return ws1 - 1;
++    *(++ws1) = L'\0';
++  return p;
 +}
 +#endif
 +
