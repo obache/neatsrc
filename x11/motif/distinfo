@@ -1,14 +1,14 @@
 $NetBSD: distinfo,v 1.7 2015/11/04 03:28:49 agc Exp $
 
-SHA1 (motif-2.3.7.tar.gz) = be3e5a7e488f56cebfe3258c51938834effbbb6c
-RMD160 (motif-2.3.7.tar.gz) = 6d9b9d910458ef75c2002e64c10650c2f3a81c39
-SHA512 (motif-2.3.7.tar.gz) = 2485f6e111139d6815e8ac38630d082ac73474b033818b4a92b46f5e2213fa85030ef8095672b2e31b1ed5c207d3baf58f01ec5deec0cd3bd9527cb341f741f8
-Size (motif-2.3.7.tar.gz) = 5715478 bytes
+SHA1 (motif-2.3.8.tar.gz) = ca9d8d67544434c5883d8d0fb684a48f8b0108bd
+RMD160 (motif-2.3.8.tar.gz) = a4c10db68d880d3096c97cc1c995351616a90a57
+SHA512 (motif-2.3.8.tar.gz) = 1ab8e8eece25ef97e948592b5fa3e19d98e932695290a18b7a8e90f1aa2766bc4f082bdbc3999dff5660e684821178a149040f76bb477163e53ca06474d02b55
+Size (motif-2.3.8.tar.gz) = 5704328 bytes
 SHA1 (patch-clients_uil_UilDefI.h) = 6447a306809e65b4993d79e14a989a01aed2e0bc
 SHA1 (patch-clients_uil_UilDiags.c) = 39ac8307219b435baf3d1bf829809fcb6536b1a9
 SHA1 (patch-demos_unsupported_xmform_xmform.c) = e7a0c355bdb19abfd28fe776ba52787b33b39017
 SHA1 (patch-lib_Xm_TextF.c) = 1bd1801d708ff2c832c131c9954b3bbfd444ed42
-SHA1 (patch-lib_Xm_XmP.h) = e443d6955fcfedeb6a424a32cc6f82f4dd3a1bf1
+SHA1 (patch-lib_Xm_XmP.h) = bf51a457514827206c9a8707723fcc60256dabad
 SHA1 (patch-lib_Xm_Xmfuncs.h) = fef6a642988a8024da0bff00cdc40dc485695e2b
 SHA1 (patch-lib_Xm_XpmI.h) = b27e0156bc2dd990a4d9642186b1638276054314
 SHA1 (patch-tools_wml_wmluiltok.l) = 1e79df5605ad8b25a55fbb617a707d27d27e3f2a
