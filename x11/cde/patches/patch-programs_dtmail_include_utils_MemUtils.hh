@@ -1,5 +1,7 @@
 $NetBSD$
 
+* delete array properly
+
 --- programs/dtmail/include/utils/MemUtils.hh.orig	2015-05-09 23:09:11.000000000 +0000
 +++ programs/dtmail/include/utils/MemUtils.hh
 @@ -72,7 +72,7 @@ grow_region(void * old_region, const int

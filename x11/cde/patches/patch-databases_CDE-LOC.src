@@ -2,12 +2,12 @@ $NetBSD$
 
 * NetBSD locales
 
---- databases/CDE-LOC.src.orig	2015-05-09 23:09:11.000000000 +0000
+--- databases/CDE-LOC.src.orig	2018-07-06 18:05:20.000000000 +0000
 +++ databases/CDE-LOC.src
-@@ -2679,3 +2679,162 @@ programs/dtimsstart/conf/hpux/none
+@@ -1683,3 +1683,162 @@ programs/dtimsstart/conf/aix/none
  }
  #endif
- #endif /* __osf__ */
+ #endif /* _AIX */
 +XCOMM ##########################################################################
 +XCOMM 
 +XCOMM  NetBSD - Locale and platform specific entries

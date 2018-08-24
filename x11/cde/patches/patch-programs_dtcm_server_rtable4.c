@@ -1,5 +1,7 @@
 $NetBSD$
 
+* fix localtime(3) argment type
+
 --- programs/dtcm/server/rtable4.c.orig	2015-05-09 23:09:11.000000000 +0000
 +++ programs/dtcm/server/rtable4.c
 @@ -1413,6 +1413,7 @@ _DtCm_rtable_gmtoff_4_svc(void *args, st

@@ -1,5 +1,7 @@
 $NetBSD$
 
+* match to implementation
+
 --- lib/DtHelp/FormatI.h.orig	2015-05-09 23:09:11.000000000 +0000
 +++ lib/DtHelp/FormatI.h
 @@ -79,7 +79,7 @@ extern	int		 _DtHelpFormatToc (

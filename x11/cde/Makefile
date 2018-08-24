@@ -1,7 +1,6 @@
 # $NetBSD$
 #
-DISTNAME=	cde-src-2.2.4
-PKGNAME=	${DISTNAME:S/-src-/-/}
+DISTNAME=	cde-2.3.0
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=cdesktopenv/}
 
@@ -10,7 +9,7 @@ COMMENT=	Common Desktop Environment
 LICENSE=	gnu-lgpl-v2
 
 USE_LANGUAGES=	c c++
-USE_TOOLS+=     bison bdftopcf mkfontdir ksh awk:run sh:run xrdb:run
+USE_TOOLS+=     bison bdftopcf mkfontdir ksh awk:run sh:run xrdb:run tclsh:run
 BUILD_TARGET=	World
 
 MAKE_JOBS_SAFE=	no
@@ -21,22 +20,25 @@ WRKSRC=	${WRKDIR}/${PKGNAME_NOREV}
 
 PKG_SYSCONFSUBDIR=	dt
 
-CFLAGS+=		-I${X11BASE}/include/X11
-
 IMAKE_DEFINES+=		-DCplusplusCmd=${CXX}
 IMAKE_DEFINES+=		-DLibraryCplusplusCmd=${CXX}
 IMAKE_DEFINES+=		-DX11ProjectRoot=${X11BASE}
+IMAKE_DEFINES+=		-DMotifProjectRoot=${MOTIFBASE}
 IMAKE_DEFINES+=		-DProjectRoot=${PREFIX}
 IMAKE_DEFINES+=		-DTopMotifInclude=${MOTIFBASE}/include
 IMAKE_DEFINES+=		-DCDEProjectRoot=${PREFIX}/dt
 IMAKE_DEFINES+=		-DCdeInstallationTop=${PREFIX}/dt
 IMAKE_DEFINES+=		-DCdeConfigurationTop=${PKG_SYSCONFDIR}
-IMAKE_DEFINES+=		-DCdeLogfileTop=${VARBASE}/dt
+IMAKE_DEFINES+=		-DCdeLogFilesTop=${VARBASE}/dt
 #IMAKE_DEFINES+=		-DTclLibrary=${BUILDLINK_PREFIX.tcl}/lib
 IMAKE_DEFINES+=		-DUseInstalledX11=YES
 #IMAKE_DEFINES+=	-DKornShell=${TOOLS_PATH.ksh}
 IMAKE_DEFINES+=		-DDtKornShell=${PREFIX}/dt/bin/dtksh
-BUILD_MAKE_FLAGS+=	BOOTSTRAPCFLAGS=${CFLAGS:Q}
+#IMAKE_DEFINES+=		-DDtLocalesToBuild="de_DE.ISO8859-1 es_ES.ISO8859-1 fr_FR.ISO8859-1 it_IT.ISO8859-1 en_US.UTF-8"
+IMAKE_DEFINES+=		-DUTF8_NLS_SUPPORT
+BOOTSTRAP_CFLAGS+=	-I${X11BASE}/include/X11
+
+BUILD_MAKE_FLAGS+=	BOOTSTRAPCFLAGS=${BOOTSTRAP_CFLAGS:Q}
 BUILD_MAKE_FLAGS+=	IMAKE_DEFINES=${IMAKE_DEFINES:Q}
 #MAKE_ENV+=		MFLAGS=KORNSHELL=${TOOLS_PATH.ksh}
 
@@ -53,11 +55,6 @@ OWN_DIRS+=		${PKG_SYSCONFDIR}/config
 OWN_DIRS+=		${PKG_SYSCONFDIR}/config/Xsession.d
 BUILDLINK_PASSTHRU_RPATHDIRS+= ${PREFIX}/dt/lib
 
-SUBST_CLASSES+=		destdir
-SUBST_STAGE.destdir=	pre-configure
-SUBST_FILES.destdir=	admin/IntegTools/dbTools/installCDE.src
-SUBST_SED.destdir=	-e 's,-D / ,-D $$DESTDIR ,'
-
 SUBST_CLASSES+=		dtksh
 SUBST_STAGE.dtksh=	pre-configure
 SUBST_FILES.dtksh=	programs/dthelp/dthelpgen/dthelpgen.dtsh
@@ -68,7 +65,6 @@ SUBST_STAGE.prefix=	pre-configure
 SUBST_FILES.prefix+=	databases/*.udb databases/*.src
 SUBST_FILES.prefix+=	lib/DtHelp/Print.c
 SUBST_FILES.prefix+=	lib/tt/slib/mp_typedb.C
-SUBST_FILES.prefix+=	osf/xmbind/0040.xmbind
 SUBST_FILES.prefix+=	programs/dtappbuilder/src/ab/cgen_utils.c
 SUBST_FILES.prefix+=	programs/dtappbuilder/src/abmf/make_file.c
 SUBST_FILES.prefix+=	programs/dtcreate/cmnrtns.c
@@ -102,7 +98,6 @@ SUBST_FILES.prefix+=	programs/dtstyle/dtstyle.man
 SUBST_FILES.prefix+=	programs/dtudcfonted/include/udccom.h
 SUBST_FILES.prefix+=	programs/dtudcfonted/resource/Dtudcfonted
 SUBST_FILES.prefix+=	programs/dtwm/WmInitWs.c
-SUBST_FILES.prefix+=	programs/ttsnoop/ttsnoop_stubs.C.src
 SUBST_FILES.prefix+=	programs/tttypes/dtinfo.ptype
 SUBST_FILES.prefix+=	programs/tttypes/dtinfo_start.ptype
 SUBST_FILES.prefix+=	programs/types/datatypes.dt.src
@@ -149,12 +144,14 @@ SUBST_SED.fontsdir+=	-e 's,/lib/X11/fonts,/share/fonts/X11,g'
 
 FONTS_DIRS.x11+=	${PREFIX}/dt/config/xfonts/C
 
+REPLACE_TCLSH+=		programs/dtdocbook/doc2sdl/docbook.tcl
+
 RCD_SCRIPTS=		dtlogin
 
 do-install:
 	${RUN}cd ${WRKSRC}/admin/IntegTools/dbTools; \
 	${SETENV} ${MAKE_ENV} ${INSTALL_ENV} ./installCDE -s ${WRKSRC} \
-		-DontRunScripts
+		-DontRunScripts -pseudo -destdir ${DESTDIR}
 
 # from databases/CDE-RUN.*
 SPECIAL_PERMS+=	${PREFIX}/dt/bin/dtprintinfo ${SETUID_ROOT_PERMS}
