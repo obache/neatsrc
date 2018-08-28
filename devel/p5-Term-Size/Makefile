@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.17 2017/06/05 14:23:40 ryoon Exp $
+# $NetBSD: Makefile,v 1.19 2018/08/24 09:31:22 wiz Exp $
 
-DISTNAME=	Term-Size-0.207
+DISTNAME=	Term-Size-0.209
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	8
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Term/}
 

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.208 2018/07/20 03:34:20 ryoon Exp $
+# $NetBSD: Makefile,v 1.210 2018/08/16 13:56:25 wiz Exp $
 
-DISTNAME=	calibre-3.26.1
-PKGREVISION=	3
+DISTNAME=	calibre-3.29.0
+PKGREVISION=	1
 CATEGORIES=	misc
 #MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=calibre/}
 MASTER_SITES=	http://download.calibre-ebook.com/${PKGVERSION_NOREV}/
@@ -40,8 +40,8 @@ PYSETUPOPTARGS=			# empty
 PYSETUPINSTALLARGS=		--prefix=${PREFIX} --root=${DESTDIR:Q}${PREFIX}
 
 INSTALLATION_DIRS=	share/applications
-INSTALLATION_DIRS=	share/icons
-INSTALLATION_DIRS=	share/calibre/recipes
+INSTALLATION_DIRS+=	share/icons
+INSTALLATION_DIRS+=	share/calibre/recipes
 
 FIX_PYTHON_FILES+=	*.py
 FIX_PYTHON_FILES+=	recipes/*.recipe

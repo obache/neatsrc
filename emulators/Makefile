@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.267 2018/08/11 16:09:55 nia Exp $
+# $NetBSD: Makefile,v 1.282 2018/08/17 12:54:48 nia Exp $
 #
 
 COMMENT=	Emulators for other operating systems
@@ -91,18 +91,35 @@ SUBDIR+=	libdsk
 SUBDIR+=	libretro-beetle-ngp
 SUBDIR+=	libretro-beetle-pce-fast
 SUBDIR+=	libretro-beetle-psx
+SUBDIR+=	libretro-beetle-saturn
+SUBDIR+=	libretro-beetle-sgx
+SUBDIR+=	libretro-beetle-vb
+SUBDIR+=	libretro-beetle-wswan
+SUBDIR+=	libretro-bluemsx
+SUBDIR+=	libretro-bsnes-mercury
+SUBDIR+=	libretro-bsnes-mercury-accuracy
+SUBDIR+=	libretro-bsnes-mercury-performance
 SUBDIR+=	libretro-core-info
 SUBDIR+=	libretro-database
 SUBDIR+=	libretro-desmume
+SUBDIR+=	libretro-fbalpha
 SUBDIR+=	libretro-fceumm
+SUBDIR+=	libretro-freeintv
 SUBDIR+=	libretro-fuse
 SUBDIR+=	libretro-gambatte
 SUBDIR+=	libretro-genesis-plus-gx
 SUBDIR+=	libretro-glsl-shaders
+SUBDIR+=	libretro-mgba
 SUBDIR+=	libretro-mupen64plus
 SUBDIR+=	libretro-nestopia
+SUBDIR+=	libretro-np2kai
+SUBDIR+=	libretro-o2em
 SUBDIR+=	libretro-pcsx-rearmed
 SUBDIR+=	libretro-picodrive
+SUBDIR+=	libretro-ppsspp
+SUBDIR+=	libretro-prosystem
+SUBDIR+=	libretro-sameboy
+SUBDIR+=	libretro-snes9x
 SUBDIR+=	libretro-snes9x2005
 SUBDIR+=	libretro-snes9x2010
 SUBDIR+=	libretro-stella

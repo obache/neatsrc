@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2715 2018/08/09 11:50:17 jperkin Exp $
+# $NetBSD: Makefile,v 1.2721 2018/08/23 22:40:52 kamil Exp $
 #
 
 COMMENT=	Development utilities
@@ -309,6 +309,7 @@ SUBDIR+=	git-contrib
 SUBDIR+=	git-cvs
 SUBDIR+=	git-docs
 SUBDIR+=	git-gitk
+SUBDIR+=	git-lfs
 SUBDIR+=	git-remote-hg
 SUBDIR+=	git-svn
 SUBDIR+=	gitolite
@@ -421,6 +422,7 @@ SUBDIR+=	heirloom-getopt
 SUBDIR+=	heirloom-libcommon
 SUBDIR+=	heirloom-what
 SUBDIR+=	hoe
+SUBDIR+=	honggfuzz
 SUBDIR+=	hptools
 SUBDIR+=	hs-MonadRandom
 SUBDIR+=	hs-QuickCheck
@@ -852,7 +854,6 @@ SUBDIR+=	p5-Algorithm-Permute
 SUBDIR+=	p5-Alien-Base-ModuleBuild
 SUBDIR+=	p5-Alien-Build
 SUBDIR+=	p5-Alien-Packages
-SUBDIR+=	p5-Alien-Role-Alt
 SUBDIR+=	p5-Alien-SDL
 SUBDIR+=	p5-AnnoCPAN-Perldoc
 SUBDIR+=	p5-Any-Moose
@@ -1679,6 +1680,7 @@ SUBDIR+=	p5-Test-Inline
 SUBDIR+=	p5-Test-Inter
 SUBDIR+=	p5-Test-Kwalitee
 SUBDIR+=	p5-Test-LeakTrace
+SUBDIR+=	p5-Test-LectroTest
 SUBDIR+=	p5-Test-Log4perl
 SUBDIR+=	p5-Test-LongString
 SUBDIR+=	p5-Test-Manifest
@@ -2326,7 +2328,9 @@ SUBDIR+=	py-wrapt
 SUBDIR+=	py-xdg
 SUBDIR+=	py-xopen
 SUBDIR+=	py-zanata-python-client
+SUBDIR+=	py-zc.lockfile
 SUBDIR+=	py-zconfig
+SUBDIR+=	py-zope.testing
 SUBDIR+=	python-mode
 SUBDIR+=	pythontidy
 SUBDIR+=	qbzr
@@ -2351,6 +2355,7 @@ SUBDIR+=	readline
 SUBDIR+=	rebar
 SUBDIR+=	refinecvs
 SUBDIR+=	reposurgeon
+SUBDIR+=	rgbds
 SUBDIR+=	ropper
 SUBDIR+=	roundup
 SUBDIR+=	rox-lib

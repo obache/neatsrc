@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.186 2018/07/03 05:03:16 adam Exp $
+# $NetBSD: Makefile,v 1.191 2018/08/22 09:45:05 wiz Exp $
 
-DISTNAME=	qemu-2.12.0
-PKGREVISION=	1
+DISTNAME=	qemu-3.0.0
+PKGREVISION=	2
 CATEGORIES=	emulators
-MASTER_SITES=	http://download.qemu-project.org/
+MASTER_SITES=	https://download.qemu.org/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -91,14 +91,14 @@ UE_ARCHS+=		sparc64 x86_64 microblazeel s390x unicore32
 .if ${OPSYS} == "NetBSD"
 USER_EMUL=		i386 x86_64 sparc sparc64
 PLIST.nbd=		YES
-.elif !empty(OPSYS:M*BSD) || !empty(OPSYS:MDragonFly)
+.elif !empty(OPSYS:M*BSD) || ${OPSYS} == "DragonFly"
 USER_EMUL=		i386 x86_64 sparc sparc64
 PLIST.nbd=		YES
-.elif !empty(OPSYS:MDarwin)
+.elif ${OPSYS} == "Darwin"
 USER_EMUL=
 CONFIGURE_ARGS+=	--disable-bsd-user
 PLIST.nbd=		YES
-.elif !empty(OPSYS:MLinux)
+.elif ${OPSYS} == "Linux"
 USER_EMUL=		${UE_ARCHS}
 PLIST.nbd=		YES
 PLIST.ivshmem=		YES
@@ -108,8 +108,8 @@ CONFIGURE_ARGS+=	--disable-coroutine-pool
 .endif
 
 PLIST_VARS+=		${UE_ARCHS} nbd ivshmem
-.for _var_ in ${USER_EMUL}
-PLIST.${_var_}=		YES
+.for pvar in ${USER_EMUL}
+PLIST.${pvar}=		YES
 .endfor
 
 TEST_TARGET=		check
@@ -119,7 +119,7 @@ post-install:
 		${DESTDIR}${PREFIX}/share/doc/qemu/
 
 # On Darwin, qemu uses Cocoa and CoreAudio
-.if empty(OPSYS:MDarwin)
+.if ${OPSYS} != "Darwin"
 .include "../../mk/oss.buildlink3.mk"
 .endif
 .include "../../archivers/lzo/buildlink3.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.49 2018/04/27 09:44:27 adam Exp $
+# $NetBSD: Makefile,v 1.51 2018/08/22 09:43:40 wiz Exp $
 
 .include "../../lang/perl5/Makefile.common"
 PKGNAME=	p5-${DISTNAME:S/perl/gdbm/}

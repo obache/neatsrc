@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.94 2017/12/03 08:49:53 wiz Exp $
+# $NetBSD: Makefile,v 1.96 2018/08/22 09:47:29 wiz Exp $
 
-DISTNAME=	CGI-4.38
+DISTNAME=	CGI-4.40
 PKGNAME=	p5-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES+=	${MASTER_SITE_PERL_CPAN:=CGI/}
 
@@ -11,9 +12,9 @@ COMMENT=	Perl5 module for writing forms-based CGI programs
 LICENSE=	gnu-gpl-v2 OR artistic-2.0
 
 DEPENDS+=	p5-HTML-Parser-[0-9]*:../../www/p5-HTML-Parser
-BUILD_DEPENDS+=	p5-Test-Deep-[0-9]*:../../devel/p5-Test-Deep
-BUILD_DEPENDS+=	p5-Test-Warn-[0-9]*:../../devel/p5-Test-Warn
-BUILD_DEPENDS+=	p5-Test-NoWarnings-[0-9]*:../../devel/p5-Test-NoWarnings
+TEST_DEPENDS+=	p5-Test-Deep-[0-9]*:../../devel/p5-Test-Deep
+TEST_DEPENDS+=	p5-Test-Warn-[0-9]*:../../devel/p5-Test-Warn
+TEST_DEPENDS+=	p5-Test-NoWarnings-[0-9]*:../../devel/p5-Test-NoWarnings
 
 USE_LANGUAGES=		# empty
 USE_TOOLS+=		perl

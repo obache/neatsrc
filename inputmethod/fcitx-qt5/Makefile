@@ -1,4 +1,4 @@
-# $NetBSD$
+# $NetBSD: Makefile,v 1.1 2018/08/18 01:17:29 ryoon Exp $
 
 DISTNAME=	fcitx-qt5-1.2.3
 CATEGORIES=	inputmethod

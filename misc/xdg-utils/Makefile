@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.13 2018/05/12 10:11:49 leot Exp $
+# $NetBSD: Makefile,v 1.14 2018/08/20 00:43:33 leot Exp $
 
 DISTNAME=	xdg-utils-1.1.3
+PKGREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	https://portland.freedesktop.org/download/
 
@@ -31,6 +32,13 @@ SUBST_MESSAGE.xdgdir=	Insert our XDG_*_DIR to the default path.
 SUBST_SED.xdgdir+=	-e 's,/usr/local/share/:,${PREFIX}/share/:&,g'
 SUBST_SED.xdgdir+=	-e 's,/usr/local/share:,${PREFIX}/share:&,g'
 SUBST_SED.xdgdir+=	-e 's,/etc/xdg,${PKG_SYSCONFDIR}/xdg,g'
+
+SUBST_CLASSES+=		paths
+SUBST_FILES.paths=	scripts/xdg-*.in
+SUBST_STAGE.paths=	pre-configure
+SUBST_MESSAGE.paths=	Avoid hardcoded paths.
+SUBST_SED.paths+=	-e "s,/usr/local,${PREFIX},g"
+SUBST_SED.paths+=	-e "s,/etc,${PKG_SYSCONFDIR},g"
 
 # "foo > /dev/null 2> /dev/null" gives "foo: not found" with NetBSD's sh
 REPLACE_BASH+=	scripts/xdg-*.in

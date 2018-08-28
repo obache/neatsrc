@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.2 2009/06/14 18:01:29 joerg Exp $
+@comment $NetBSD: PLIST,v 1.3 2018/08/18 01:11:16 ryoon Exp $
 bin/createPYMB
 bin/fcitx
 bin/fcitx-autostart

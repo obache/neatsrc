@@ -1,4 +1,4 @@
-@comment $NetBSD$
+@comment $NetBSD: PLIST,v 1.1 2018/08/18 01:21:38 ryoon Exp $
 lib/fcitx/fcitx-skk.so
 lib/fcitx/qt/libfcitx-skk-config.so
 share/fcitx/addon/fcitx-skk.conf

@@ -105,32 +105,17 @@ func (ck MkLineChecker) checkInclude() {
 	}
 }
 
-func (ck MkLineChecker) checkCond(forVars map[string]bool, indentation *Indentation) {
+func (ck MkLineChecker) checkDirective(forVars map[string]bool, ind *Indentation) {
 	mkline := ck.MkLine
 
 	directive := mkline.Directive()
 	args := mkline.Args()
-	comment := mkline.CondComment()
 
-	expectedDepth := indentation.Depth(directive)
+	expectedDepth := ind.Depth(directive)
 	ck.checkDirectiveIndentation(expectedDepth)
 
 	if directive == "endfor" || directive == "endif" {
-		if directive == "endif" && comment != "" {
-			if condition := indentation.Condition(); !contains(condition, comment) {
-				mkline.Warnf("Comment %q does not match condition %q.", comment, condition)
-			}
-		}
-
-		if directive == "endfor" && comment != "" {
-			if condition := indentation.Condition(); !contains(condition, comment) {
-				mkline.Warnf("Comment %q does not match loop %q.", comment, condition)
-			}
-		}
-
-		if indentation.Len() <= 1 {
-			mkline.Errorf("Unmatched .%s.", directive)
-		}
+		ck.checkDirectiveEnd(ind)
 	}
 
 	needsArgument := false
@@ -150,54 +135,81 @@ func (ck MkLineChecker) checkCond(forVars map[string]bool, indentation *Indentat
 		}
 
 	} else if directive == "if" || directive == "elif" {
-		ck.CheckCond()
+		ck.checkDirectiveCond()
 
 	} else if directive == "ifdef" || directive == "ifndef" {
 		mkline.Warnf("The \".%s\" directive is deprecated. Please use \".if %sdefined(%s)\" instead.",
 			directive, ifelseStr(directive == "ifdef", "", "!"), args)
 
 	} else if directive == "for" {
-		if m, vars, values := match2(args, `^(\S+(?:\s*\S+)*?)\s+in\s+(.*)$`); m {
-			for _, forvar := range splitOnSpace(vars) {
-				indentation.AddVar(forvar)
-				if !G.Infrastructure && hasPrefix(forvar, "_") {
-					mkline.Warnf("Variable names starting with an underscore (%s) are reserved for internal pkgsrc use.", forvar)
-				}
+		ck.checkDirectiveFor(forVars, ind)
 
-				if matches(forvar, `^[_a-z][_a-z0-9]*$`) {
-					// Fine.
-				} else if matches(forvar, `[A-Z]`) {
-					mkline.Warnf(".for variable names should not contain uppercase letters.")
-				} else {
-					mkline.Errorf("Invalid variable name %q.", forvar)
-				}
+	} else if directive == "undef" && args != "" {
+		for _, varname := range splitOnSpace(args) {
+			if forVars[varname] {
+				mkline.Notef("Using \".undef\" after a \".for\" loop is unnecessary.")
+			}
+		}
+	}
+}
 
-				forVars[forvar] = true
+func (ck MkLineChecker) checkDirectiveEnd(ind *Indentation) {
+	mkline := ck.MkLine
+	directive := mkline.Directive()
+	comment := mkline.DirectiveComment()
+
+	if directive == "endif" && comment != "" {
+		if condition := ind.Condition(); !contains(condition, comment) {
+			mkline.Warnf("Comment %q does not match condition %q.", comment, condition)
+		}
+	}
+	if directive == "endfor" && comment != "" {
+		if condition := ind.Condition(); !contains(condition, comment) {
+			mkline.Warnf("Comment %q does not match loop %q.", comment, condition)
+		}
+	}
+	if ind.Len() <= 1 {
+		mkline.Errorf("Unmatched .%s.", directive)
+	}
+}
+
+func (ck MkLineChecker) checkDirectiveFor(forVars map[string]bool, indentation *Indentation) {
+	mkline := ck.MkLine
+	args := mkline.Args()
+
+	if m, vars, values := match2(args, `^(\S+(?:\s*\S+)*?)\s+in\s+(.*)$`); m {
+		for _, forvar := range splitOnSpace(vars) {
+			indentation.AddVar(forvar)
+			if !G.Infrastructure && hasPrefix(forvar, "_") {
+				mkline.Warnf("Variable names starting with an underscore (%s) are reserved for internal pkgsrc use.", forvar)
 			}
 
-			// Check if any of the value's types is not guessed.
-			guessed := true
-			for _, value := range splitOnSpace(values) {
-				if m, vname := match1(value, `^\$\{(.*)\}`); m {
-					vartype := mkline.VariableType(vname)
-					if vartype != nil && !vartype.guessed {
-						guessed = false
-					}
-				}
+			if matches(forvar, `^[_a-z][_a-z0-9]*$`) {
+				// Fine.
+			} else if matches(forvar, `[A-Z]`) {
+				mkline.Warnf(".for variable names should not contain uppercase letters.")
+			} else {
+				mkline.Errorf("Invalid variable name %q.", forvar)
 			}
 
-			forLoopType := &Vartype{lkSpace, BtUnknown, []ACLEntry{{"*", aclpAllRead}}, guessed}
-			forLoopContext := &VarUseContext{forLoopType, vucTimeParse, vucQuotFor, false}
-			for _, forLoopVar := range mkline.ExtractUsedVariables(values) {
-				ck.CheckVaruse(&MkVarUse{forLoopVar, nil}, forLoopContext)
+			forVars[forvar] = true
+		}
+
+		// Check if any of the value's types is not guessed.
+		guessed := true
+		for _, value := range splitOnSpace(values) {
+			if m, vname := match1(value, `^\$\{(.*)\}`); m {
+				vartype := mkline.VariableType(vname)
+				if vartype != nil && !vartype.guessed {
+					guessed = false
+				}
 			}
 		}
 
-	} else if directive == "undef" && args != "" {
-		for _, uvar := range splitOnSpace(args) {
-			if forVars[uvar] {
-				mkline.Notef("Using \".undef\" after a \".for\" loop is unnecessary.")
-			}
+		forLoopType := &Vartype{lkSpace, BtUnknown, []ACLEntry{{"*", aclpAllRead}}, guessed}
+		forLoopContext := &VarUseContext{forLoopType, vucTimeParse, vucQuotFor, false}
+		for _, forLoopVar := range mkline.ExtractUsedVariables(values) {
+			ck.CheckVaruse(&MkVarUse{forLoopVar, nil}, forLoopContext)
 		}
 	}
 }
@@ -257,7 +269,7 @@ func (ck MkLineChecker) checkDependencyRule(allowedTargets map[string]bool) {
 }
 
 func (ck MkLineChecker) checkVarassignDefPermissions() {
-	if !G.opts.WarnPerm {
+	if !G.opts.WarnPerm || G.Infrastructure {
 		return
 	}
 	if trace.Tracing {
@@ -330,11 +342,14 @@ func (ck MkLineChecker) CheckVaruse(varuse *MkVarUse, vuc *VarUseContext) {
 
 	varname := varuse.varname
 	vartype := mkline.VariableType(varname)
-	if G.opts.WarnExtra &&
-		(vartype == nil || vartype.guessed) &&
-		!varIsUsed(varname) &&
-		!(G.Mk != nil && G.Mk.forVars[varname]) &&
-		!containsVarRef(varname) {
+	switch {
+	case !G.opts.WarnExtra:
+	case vartype != nil && !vartype.guessed:
+		// Well-known variables are probably defined by the infrastructure.
+	case varIsUsed(varname):
+	case G.Mk != nil && G.Mk.forVars[varname]:
+	case containsVarRef(varname):
+	default:
 		mkline.Warnf("%s is used but not defined.", varname)
 	}
 
@@ -886,7 +901,7 @@ func (ck MkLineChecker) checkVarassignPlistComment(varname, value string) {
 		contains(value, "@comment") && !matches(value, `="@comment "`) {
 		ck.MkLine.Warnf("Please don't use @comment in %s.", varname)
 		Explain(
-			"If you are defining a PLIST conditional here, use one of the",
+			"If you are defining a PLIST condition here, use one of the",
 			"following patterns instead:",
 			"",
 			"1. The direct way, without intermediate variable",
@@ -1018,7 +1033,7 @@ func (ck MkLineChecker) checkText(text string) {
 	}
 }
 
-func (ck MkLineChecker) CheckCond() {
+func (ck MkLineChecker) checkDirectiveCond() {
 	mkline := ck.MkLine
 	if trace.Tracing {
 		defer trace.Call1(mkline.Args())()
@@ -1027,12 +1042,11 @@ func (ck MkLineChecker) CheckCond() {
 	p := NewMkParser(mkline.Line, mkline.Args(), false)
 	cond := p.MkCond()
 	if !p.EOF() {
-		mkline.Warnf("Invalid conditional %q.", mkline.Args())
+		mkline.Warnf("Invalid condition, unrecognized part: %q.", p.Rest())
 		return
 	}
 
-	cond.Visit("empty", func(node *Tree) {
-		varuse := node.args[0].(MkVarUse)
+	checkEmpty := func(varuse *MkVarUse) {
 		varname := varuse.varname
 		if matches(varname, `^\$.*:[MN]`) {
 			mkline.Warnf("The empty() function takes a variable name as parameter, not a variable expression.")
@@ -1049,24 +1063,42 @@ func (ck MkLineChecker) CheckCond() {
 				"\t!empty(VARNAME:Mpattern)",
 				"\t${VARNAME:Mpattern}")
 		}
-		for _, modifier := range varuse.modifiers {
-			if modifier[0] == 'M' || modifier[0] == 'N' {
+
+		modifiers := varuse.modifiers
+		for _, modifier := range modifiers {
+			if modifier[0] == 'M' || (modifier[0] == 'N' && len(modifiers) == 1) {
 				ck.CheckVartype(varname, opUseMatch, modifier[1:], "")
+
+				value := modifier[1:]
+				vartype := mkline.VariableType(varname)
+				if matches(value, `^[\w-/]+$`) && vartype != nil && !vartype.IsConsideredList() {
+					mkline.Notef("%s should be compared using == instead of the :M or :N modifier without wildcards.", varname)
+					Explain(
+						"This variable has a single value, not a list of values.  Therefore",
+						"it feels strange to apply list operators like :M and :N onto it.",
+						"A more direct approach is to use the == and != operators.",
+						"",
+						"An entirely different case is when the pattern contains wildcards",
+						"like ^, *, $.  In such a case, using the :M or :N modifiers is",
+						"useful and preferred.")
+				}
 			}
 		}
-	})
+	}
 
-	cond.Visit("compareVarStr", func(node *Tree) {
-		varuse := node.args[0].(MkVarUse)
+	checkCompareVarStr := func(varuse *MkVarUse, op string, value string) {
 		varname := varuse.varname
 		varmods := varuse.modifiers
-		value := node.args[2].(string)
 		if len(varmods) == 0 {
-			ck.checkCompareVarStr(varname, node.args[1].(string), value)
+			ck.checkCompareVarStr(varname, op, value)
 		} else if len(varmods) == 1 && matches(varmods[0], `^[MN]`) && value != "" {
 			ck.CheckVartype(varname, opUseMatch, value, "")
 		}
-	})
+	}
+
+	NewMkCondWalker().Walk(cond, &MkCondCallback{
+		Empty:         checkEmpty,
+		CompareVarStr: checkCompareVarStr})
 
 	if G.Mk != nil {
 		G.Mk.indentation.RememberUsedVariables(cond)
@@ -1120,24 +1152,24 @@ func (ck MkLineChecker) CheckRelativePkgdir(pkgdir string) {
 	}
 }
 
-func (ck MkLineChecker) CheckRelativePath(path string, mustExist bool) {
+func (ck MkLineChecker) CheckRelativePath(relativePath string, mustExist bool) {
 	if trace.Tracing {
-		defer trace.Call(path, mustExist)()
+		defer trace.Call(relativePath, mustExist)()
 	}
 
 	mkline := ck.MkLine
-	if !G.Wip && contains(path, "/wip/") {
+	if !G.Wip && contains(relativePath, "/wip/") {
 		mkline.Errorf("A main pkgsrc package must not depend on a pkgsrc-wip package.")
 	}
 
-	resolvedPath := mkline.ResolveVarsInRelativePath(path, true)
+	resolvedPath := mkline.ResolveVarsInRelativePath(relativePath, true)
 	if containsVarRef(resolvedPath) {
 		return
 	}
 
 	abs := resolvedPath
 	if !hasPrefix(abs, "/") {
-		abs = G.CurrentDir + "/" + abs
+		abs = path.Dir(mkline.Filename) + "/" + abs
 	}
 	if _, err := os.Stat(abs); err != nil {
 		if mustExist {
@@ -1146,10 +1178,15 @@ func (ck MkLineChecker) CheckRelativePath(path string, mustExist bool) {
 		return
 	}
 
-	if hasPrefix(path, "../") &&
-		!matches(path, `^\.\./\.\./[^/]+/[^/]`) &&
-		!(G.CurPkgsrcdir == ".." && hasPrefix(path, "../mk/")) && // For category Makefiles.
-		!hasPrefix(path, "../../mk/") {
-		mkline.Warnf("Invalid relative path %q.", path)
+	switch {
+	case !hasPrefix(relativePath, "../"):
+	case matches(relativePath, `^\.\./\.\./[^/]+/[^/]`):
+		// From a package to another package.
+	case hasPrefix(relativePath, "../../mk/"):
+		// From a package to the infrastructure.
+	case hasPrefix(relativePath, "../mk/") && relpath(path.Dir(mkline.Filename), G.Pkgsrc.File(".")) == "..":
+		// For category Makefiles.
+	default:
+		mkline.Warnf("Invalid relative path %q.", relativePath)
 	}
 }

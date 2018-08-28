@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.82 2018/07/04 12:54:32 wen Exp $
+# $NetBSD: Makefile,v 1.85 2018/08/24 09:30:24 wiz Exp $
 
-DISTNAME=	Module-CoreList-5.20180626
+DISTNAME=	Module-CoreList-5.20180820
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/B/BI/BINGOS/}

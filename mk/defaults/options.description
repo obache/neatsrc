@@ -149,7 +149,6 @@ dvdcss			Enable CSS support for DVDs.
 dvdnav			Enable libdvdnav support to navigate DVDs.
 dvdread			Enable reproduction of DVDs.
 dvi			Enable device independent file format (mostly TeX) support.
-dynarec			Enable dynamic recompilation.
 eaccelerator-disassembler	Include disassembler.
 eaccelerator-doc-comment-inclusion	Retain doc-comments in internal php structures.
 eai			Enable EAI (Email Address Internationalization) support.
@@ -193,6 +192,7 @@ farsight		Enable farsight2 support.
 farstream		Enable farstream support.
 fastcgi			Use FastCGI as the CGI manager.
 fax			Enable fax support
+fcitx			Enable Fcitx inputmethod support
 fd-small		Build smaller misc/fd package.
 ffmpeg			Enable ffmpeg support.
 fftw			Use the fftw library for Discrete Fourier Transforms.
@@ -834,6 +834,8 @@ xaw3d			Enable Xaw3D support.
 xblast-mini		Use a 480x392 window instead a 960x784 window in xblast.
 xcb			Enable XCB (libxcb) support.
 xcursor			Enable Xcursor support.
+xdbe			Use X11 Double Buffer Extension.
+xdg-utils		Enable xdg-utils support.
 xen			Use xen.
 xft2			Enable Xft support.
 xim			Enable X Input Method support.

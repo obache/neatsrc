@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.4 2018/05/07 11:03:42 wiz Exp $
+$NetBSD: distinfo,v 1.5 2018/08/16 08:44:21 wiz Exp $
 
 SHA1 (brotli-1.0.5.tar.gz) = 647133b7caa03f55c69c0ea35bb64d7d3f1b8cd3
 RMD160 (brotli-1.0.5.tar.gz) = a460d339ddbe825c2e5508b384d51c4518aafe57

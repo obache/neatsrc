@@ -1,8 +1,8 @@
-# $NetBSD$
+# $NetBSD: Makefile,v 1.1 2018/08/18 01:15:53 ryoon Exp $
 
 DISTNAME=	fcitx-configtool-0.4.10
 CATEGORIES=	inputmethod
-MASTER_SITES=	http://download.fcitx-im.org/fcitx-configtool/
+MASTER_SITES=	https://download.fcitx-im.org/fcitx-configtool/
 EXTRACT_SUFX=	.tar.xz
 
 HOMEPAGE=	http://fcitx-im.org/wiki/Configtool

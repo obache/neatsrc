@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: distinfo,v 1.1 2018/08/18 01:15:53 ryoon Exp $
 
 SHA1 (fcitx-configtool-0.4.10.tar.xz) = b9bba935b772d3535f710914694af667f0e6e27e
 RMD160 (fcitx-configtool-0.4.10.tar.xz) = 9935f040a799f165a26654104831b18a81dbc161

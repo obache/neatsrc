@@ -1,9 +1,6 @@
 package main
 
-import (
-	"gopkg.in/check.v1"
-	"netbsd.org/pkglint/trace"
-)
+import "gopkg.in/check.v1"
 
 // Ensures that pkglint can handle MASTER_SITES definitions with and
 // without line continuations.
@@ -33,7 +30,7 @@ func (s *Suite) Test_Pkgsrc_loadMasterSites(c *check.C) {
 func (s *Suite) Test_Pkgsrc_InitVartypes(c *check.C) {
 	t := s.Init(c)
 
-	src := NewPkgsrc(t.TmpDir())
+	src := NewPkgsrc(t.File("."))
 	src.InitVartypes()
 
 	c.Check(src.vartypes["BSD_MAKE_ENV"].basicType.name, equals, "ShellWord")
@@ -96,30 +93,29 @@ func (s *Suite) Test_Pkgsrc_loadTools(c *check.C) {
 		"USE_TOOLS+=\tm4:pkgsrc")
 	t.SetupFileLines("mk/bsd.pkg.mk",
 		"USE_TOOLS+=\tmv")
-	G.CurrentDir = t.TmpDir()
-	G.CurPkgsrcdir = "."
 
 	G.Pkgsrc.loadTools()
 
-	trace.Tracing = true
+	t.EnableTracingToLog()
 	G.Pkgsrc.Tools.Trace()
+	t.DisableTracing()
 
 	t.CheckOutputLines(
 		"TRACE: + (*ToolRegistry).Trace()",
-		"TRACE: 1   tool &{Name:bzcat Varname: MustUseVarForm:false Predefined:false UsableAtLoadtime:false}",
-		"TRACE: 1   tool &{Name:bzip2 Varname: MustUseVarForm:false Predefined:false UsableAtLoadtime:false}",
-		"TRACE: 1   tool &{Name:chown Varname:CHOWN MustUseVarForm:false Predefined:false UsableAtLoadtime:false}",
-		"TRACE: 1   tool &{Name:echo Varname:ECHO MustUseVarForm:true Predefined:true UsableAtLoadtime:true}",
-		"TRACE: 1   tool &{Name:echo -n Varname:ECHO_N MustUseVarForm:true Predefined:true UsableAtLoadtime:true}",
-		"TRACE: 1   tool &{Name:false Varname:FALSE MustUseVarForm:true Predefined:true UsableAtLoadtime:false}",
-		"TRACE: 1   tool &{Name:gawk Varname:AWK MustUseVarForm:false Predefined:false UsableAtLoadtime:false}",
-		"TRACE: 1   tool &{Name:m4 Varname: MustUseVarForm:false Predefined:true UsableAtLoadtime:true}",
-		"TRACE: 1   tool &{Name:msgfmt Varname: MustUseVarForm:false Predefined:false UsableAtLoadtime:false}",
-		"TRACE: 1   tool &{Name:mv Varname:MV MustUseVarForm:false Predefined:true UsableAtLoadtime:false}",
-		"TRACE: 1   tool &{Name:pwd Varname:PWD MustUseVarForm:false Predefined:true UsableAtLoadtime:true}",
-		"TRACE: 1   tool &{Name:strip Varname: MustUseVarForm:false Predefined:false UsableAtLoadtime:false}",
-		"TRACE: 1   tool &{Name:test Varname:TEST MustUseVarForm:true Predefined:true UsableAtLoadtime:true}",
-		"TRACE: 1   tool &{Name:true Varname:TRUE MustUseVarForm:true Predefined:true UsableAtLoadtime:true}",
+		"TRACE: 1   tool &{Name:bzcat Varname: MustUseVarForm:false Predefined:false UsableAtLoadTime:false}",
+		"TRACE: 1   tool &{Name:bzip2 Varname: MustUseVarForm:false Predefined:false UsableAtLoadTime:false}",
+		"TRACE: 1   tool &{Name:chown Varname:CHOWN MustUseVarForm:false Predefined:false UsableAtLoadTime:false}",
+		"TRACE: 1   tool &{Name:echo Varname:ECHO MustUseVarForm:true Predefined:true UsableAtLoadTime:true}",
+		"TRACE: 1   tool &{Name:echo -n Varname:ECHO_N MustUseVarForm:true Predefined:true UsableAtLoadTime:true}",
+		"TRACE: 1   tool &{Name:false Varname:FALSE MustUseVarForm:true Predefined:true UsableAtLoadTime:false}",
+		"TRACE: 1   tool &{Name:gawk Varname:AWK MustUseVarForm:false Predefined:false UsableAtLoadTime:false}",
+		"TRACE: 1   tool &{Name:m4 Varname: MustUseVarForm:false Predefined:true UsableAtLoadTime:true}",
+		"TRACE: 1   tool &{Name:msgfmt Varname: MustUseVarForm:false Predefined:false UsableAtLoadTime:false}",
+		"TRACE: 1   tool &{Name:mv Varname:MV MustUseVarForm:false Predefined:true UsableAtLoadTime:false}",
+		"TRACE: 1   tool &{Name:pwd Varname:PWD MustUseVarForm:false Predefined:true UsableAtLoadTime:true}",
+		"TRACE: 1   tool &{Name:strip Varname: MustUseVarForm:false Predefined:false UsableAtLoadTime:false}",
+		"TRACE: 1   tool &{Name:test Varname:TEST MustUseVarForm:true Predefined:true UsableAtLoadTime:true}",
+		"TRACE: 1   tool &{Name:true Varname:TRUE MustUseVarForm:true Predefined:true UsableAtLoadTime:true}",
 		"TRACE: - (*ToolRegistry).Trace()")
 }
 
@@ -135,7 +131,7 @@ func (s *Suite) Test_Pkgsrc_loadDocChangesFromFile(c *check.C) {
 		"\tRemoved category/package successor category/package2 [author6 2018-01-06]",
 		"\tDowngraded category/package to 1.2 [author7 2018-01-07]")
 
-	changes := G.Pkgsrc.loadDocChangesFromFile(t.TmpDir() + "/doc/CHANGES-2018")
+	changes := G.Pkgsrc.loadDocChangesFromFile(t.File("doc/CHANGES-2018"))
 
 	c.Assert(len(changes), equals, 7)
 	c.Check(*changes[0], equals, Change{changes[0].Line, "Added", "category/package", "1.0", "author1", "2015-01-01"})

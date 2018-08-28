@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.15 2017/06/05 14:23:30 ryoon Exp $
-#
+# $NetBSD: Makefile,v 1.17 2018/08/22 09:44:33 wiz Exp $
 
-DISTNAME=		Proc-PID-File-1.28
+DISTNAME=		Proc-PID-File-1.29
 PKGNAME=		p5-${DISTNAME}
 PKGREVISION=		1
 CATEGORIES=		devel perl5

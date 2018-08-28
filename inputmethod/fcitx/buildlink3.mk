@@ -1,5 +1,4 @@
-# $NetBSD$
-#
+# $NetBSD: buildlink3.mk,v 1.1 2018/08/18 01:11:16 ryoon Exp $
 
 BUILDLINK_TREE+=	fcitx
 

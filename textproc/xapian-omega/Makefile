@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.37 2017/09/06 09:03:05 wiz Exp $
+# $NetBSD: Makefile,v 1.39 2018/08/26 13:26:12 schmonz Exp $
 
 .include "../../textproc/xapian/Makefile.common"
 

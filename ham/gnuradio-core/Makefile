@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.61 2018/07/16 07:55:22 mef Exp $
+# $NetBSD: Makefile,v 1.63 2018/08/22 09:45:18 wiz Exp $
 
 PKGNAME=	gnuradio-core-${VERSION}
+PKGREVISION=	2
 COMMENT=	Core part of GNU Radio, all others need this
 
 PLIST_MINUS=	# empty

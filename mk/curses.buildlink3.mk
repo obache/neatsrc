@@ -1,4 +1,4 @@
-# $NetBSD: curses.buildlink3.mk,v 1.26 2017/03/20 00:30:30 roy Exp $
+# $NetBSD: curses.buildlink3.mk,v 1.28 2018/08/18 08:18:42 ryoon Exp $
 #
 # This Makefile fragment is meant to be included by packages that require
 # any curses implementation instead of one particular one.  The available
@@ -130,28 +130,30 @@ PKG_FAIL_REASON+=	\
 BUILDLINK_TREE+=		curses -curses
 BUILDLINK_LDADD.curses?=	${BUILDLINK_LIBNAME.curses:S/^/-l/:S/^-l$//}
 BUILDLINK_BUILTIN_MK.curses=	../../mk/curses.builtin.mk
-# Some packages only look for ncurses
-# The correct action would be to write a patch and pass it upstream
-# but by setting FAKE_NCURSES=yes in the package we can temporarily work
-# around the short-coming.
-.  if defined(FAKE_NCURSES) && !empty(FAKE_NCURSES:M[yY][eE][sS])
-BUILDLINK_TARGETS+=		buildlink-curses-ncurses-h
-BUILDLINK_TRANSFORM+=		l:ncurses:${BUILDLINK_LIBNAME.curses}
-BUILDLINK_TRANSFORM+=		l:ncursesw:${BUILDLINK_LIBNAME.curses}
-.  endif
 .else
 .  if ${CURSES_TYPE} == "ncurses"
 USE_NCURSES=			yes
 .    include "../../devel/ncurses/buildlink3.mk"
-
 .  elif ${CURSES_TYPE} == "ncursesw"
 .    include "../../devel/ncursesw/buildlink3.mk"
-
 .  elif ${CURSES_TYPE} == "pdcurses"
 .    include "../../devel/pdcurses/buildlink3.mk"
-
 .  endif
 .  for _var_ in PKGNAME PREFIX INCDIRS LIBDIRS LIBNAME LDADD
 BUILDLINK_${_var_}.curses=	${BUILDLINK_${_var_}.${CURSES_TYPE}}
 .  endfor
+.endif
+
+# Some packages only look for ncurses
+# The correct action would be to write a patch and pass it upstream
+# but by setting FAKE_NCURSES=yes in the package we can temporarily work
+# around the short-coming.
+.if defined(FAKE_NCURSES) && !empty(FAKE_NCURSES:M[yY][eE][sS])
+.  if ${CURSES_TYPE} != "ncurses"
+.    if ${CURSES_TYPE} != "ncursesw"
+BUILDLINK_TARGETS+=		buildlink-curses-ncurses-h
+BUILDLINK_TRANSFORM+=		l:ncursesw:${BUILDLINK_LIBNAME.curses}
+.    endif
+BUILDLINK_TRANSFORM+=		l:ncurses:${BUILDLINK_LIBNAME.curses}
+.  endif
 .endif

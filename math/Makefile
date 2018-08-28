@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.396 2018/07/29 07:39:03 wiz Exp $
+# $NetBSD: Makefile,v 1.400 2018/08/21 09:30:13 wiz Exp $
 
 COMMENT=	Mathematics
 
@@ -139,8 +139,6 @@ SUBDIR+=	geg
 SUBDIR+=	genius
 SUBDIR+=	glpk
 SUBDIR+=	gnome-calculator
-SUBDIR+=	gnumeric
-SUBDIR+=	gnumeric110
 SUBDIR+=	gnumeric112
 SUBDIR+=	go-stats
 SUBDIR+=	go-units
@@ -176,6 +174,7 @@ SUBDIR+=	libixion
 SUBDIR+=	liblbfgs
 SUBDIR+=	liblinear
 SUBDIR+=	libmatheval
+SUBDIR+=	libnumbertext
 SUBDIR+=	libshorttext
 SUBDIR+=	libsvm
 SUBDIR+=	linpack
@@ -248,6 +247,7 @@ SUBDIR+=	p5-Number-Compare
 SUBDIR+=	p5-Number-Latin
 SUBDIR+=	p5-Number-Range
 SUBDIR+=	p5-Number-Tolerant
+SUBDIR+=	p5-Number-WithError
 SUBDIR+=	p5-Roman
 SUBDIR+=	p5-Set-Crontab
 SUBDIR+=	p5-Set-Infinite
@@ -256,6 +256,7 @@ SUBDIR+=	p5-Spreadsheet-Read
 SUBDIR+=	p5-Spreadsheet-ReadSXC
 SUBDIR+=	p5-Spreadsheet-WriteExcel
 SUBDIR+=	p5-Spreadsheet-XLSX
+SUBDIR+=	p5-Statistics-CaseResampling
 SUBDIR+=	p5-Statistics-Descriptive
 SUBDIR+=	p5-Statistics-Distributions
 SUBDIR+=	p5-Statistics-TTest

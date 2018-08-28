@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.67 2018/07/24 12:58:45 jperkin Exp $
+# $NetBSD: Makefile,v 1.69 2018/08/20 17:24:00 tnn Exp $
 
 DISTNAME=	openjdk-1.8.172-20180527
 PKGNAME=	openjdk8-1.8.172
+PKGREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_LOCAL:=openjdk7/}
 EXTRACT_SUFX=	.tar.xz
@@ -114,9 +115,8 @@ MAKE_ENV+=	USE_GCC=1
 MAKE_ENV+=	ARCH_DATA_MODEL=${ABI:Q}
 .endif
 
-BUILDLINK_TRANSFORM+=	rm:-O2
-
 .if !empty(PKGSRC_COMPILER:Mclang)
+MAKE_ENV+=		USE_CLANG=true
 _WRAP_EXTRA_ARGS.CC+=	-Wno-return-type
 CWRAPPERS_APPEND.cc+=	-Wno-return-type
 _WRAP_EXTRA_ARGS.CXX+=	-Wno-parentheses -Wno-sign-conversion \
@@ -271,9 +271,8 @@ MAKE_ENV+=	STRIP=${PREFIX}/bin/gstrip
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
-# \todo Explain why cups needs to be included, because having the
-# package installed is unexpected for those who have not chosen to use
-# cups.
+# Headers from CUPS are required to build the native implementation of
+# sun.print.* which is used by java.awt.print.
 BUILDLINK_DEPMETHOD.cups-base?=	build
 .include "../../print/cups-base/buildlink3.mk"
 .include "../../mk/java-env.mk"

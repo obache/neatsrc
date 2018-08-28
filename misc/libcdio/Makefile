@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.54 2016/07/09 06:38:36 wiz Exp $
+# $NetBSD: Makefile,v 1.56 2018/08/22 09:45:43 wiz Exp $
 
 DISTNAME=	libcdio-0.93
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GNU:=libcdio/}
 EXTRACT_SUFX=	.tar.bz2
 
-MAINTAINER=	drochner@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.gnu.org/software/libcdio/
 COMMENT=	CD-ROM access library
 LICENSE=	gnu-gpl-v3

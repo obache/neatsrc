@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.24 2017/06/05 14:23:33 ryoon Exp $
+# $NetBSD: Makefile,v 1.26 2018/08/22 09:44:36 wiz Exp $
 
-DISTNAME=	SVN-Notify-2.86
+DISTNAME=	SVN-Notify-2.87
 PKGNAME=	p5-${DISTNAME}
 PKGREVISION=	1
 CATEGORIES=	devel perl5 scm
@@ -18,7 +18,7 @@ PERL5_MODULE_TYPE=	Module::Build
 DEPENDS+=	p5-HTML-Parser-[0-9]*:../../www/p5-HTML-Parser
 DEPENDS+=	p5-Net-SMTP_auth-[0-9]*:../../mail/p5-Net-SMTP_auth
 DEPENDS+=	p5-Text-Trac-[0-9]*:../../textproc/p5-Text-Trac
-DEPENDS+=	p5-Email-Address>=1.897:../../mail/p5-Email-Address
+DEPENDS+=	p5-Email-Address-XS-[0-9]*:../../mail/p5-Email-Address-XS
 
 .include "../../lang/perl5/module.mk"
 .include "../../mk/bsd.pkg.mk"

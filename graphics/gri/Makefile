@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.61 2018/07/18 00:06:18 joerg Exp $
+# $NetBSD: Makefile,v 1.63 2018/08/22 09:45:13 wiz Exp $
 
 DISTNAME=	gri-2.12.23
-PKGREVISION=	16
+PKGREVISION=	18
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=gri/}
 

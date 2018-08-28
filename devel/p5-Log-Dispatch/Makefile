@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.61 2017/09/27 19:54:02 wiz Exp $
+# $NetBSD: Makefile,v 1.63 2018/08/24 09:29:19 wiz Exp $
 
-DISTNAME=	Log-Dispatch-2.67
+DISTNAME=	Log-Dispatch-2.68
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Log/}
@@ -16,12 +16,10 @@ DEPENDS+=	p5-IPC-Run3-[0-9]*:../../devel/p5-IPC-Run3
 DEPENDS+=	p5-Dist-CheckConflicts>=0.02:../../devel/p5-Dist-CheckConflicts
 DEPENDS+=	p5-Params-ValidationCompiler-[0-9]*:../../devel/p5-Params-ValidationCompiler
 DEPENDS+=	p5-namespace-autoclean-[0-9]*:../../devel/p5-namespace-autoclean
-# Sys::Syslog >= 0.25 is in Perl core since 5.10.1
+DEPENDS+=	p5-Specio-[0-9]*:../../devel/p5-Specio
 
-# for make test
-BUILD_DEPENDS+=	p5-Test-Requires-[0-9]*:../../devel/p5-Test-Requires
-BUILD_DEPENDS+=	p5-Test-Needs-[0-9]*:../../devel/p5-Test-Needs
-BUILD_DEPENDS+=	p5-Specio-[0-9]*:../../devel/p5-Specio
+TEST_DEPENDS+=	p5-Test-Requires-[0-9]*:../../devel/p5-Test-Requires
+TEST_DEPENDS+=	p5-Test-Needs-[0-9]*:../../devel/p5-Test-Needs
 
 PERL5_PACKLIST=		auto/Log/Dispatch/.packlist
 

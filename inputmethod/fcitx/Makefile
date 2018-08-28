@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.14 2018/03/12 11:16:53 wiz Exp $
+# $NetBSD: Makefile,v 1.15 2018/08/18 01:11:16 ryoon Exp $
 #
 
 PKGNAME=		fcitx-4.2.9.6
 PKGREVISION=		1
 DISTNAME=		${PKGNAME_NOREV}_dict
 CATEGORIES=		inputmethod chinese
-MASTER_SITES=		http://download.fcitx-im.org/fcitx/
+MASTER_SITES=		https://download.fcitx-im.org/fcitx/
 EXTRACT_SUFX=		.tar.xz
 
 MAINTAINER=		rxg@NetBSD.org
@@ -14,6 +14,7 @@ COMMENT=		Flexible input method framework
 LICENSE=		gnu-gpl-v2 AND gnu-lgpl-v2.1
 
 TOOL_DEPENDS+=	extra-cmake-modules>=0.0.11:../../devel/extra-cmake-modules
+BUILD_DEPENDS+=	automoc4-[0-9]*:../../devel/automoc4
 DEPENDS+=	xdg-utils-[0-9]*:../../misc/xdg-utils # xdg-open
 
 USE_CMAKE=		yes

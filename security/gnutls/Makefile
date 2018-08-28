@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.183 2018/07/06 16:15:28 prlw1 Exp $
+# $NetBSD: Makefile,v 1.188 2018/08/22 09:46:18 wiz Exp $
 
-DISTNAME=	gnutls-3.6.2
+DISTNAME=	gnutls-3.6.3
+PKGREVISION=	2
 CATEGORIES=	security devel
 MASTER_SITES=	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.6/
 EXTRACT_SUFX=	.tar.xz
@@ -13,14 +14,13 @@ LICENSE=	gnu-gpl-v3 AND gnu-lgpl-v2.1
 USE_LANGUAGES=			c c++
 USE_LIBTOOL=			yes
 USE_PKGLOCALEDIR=		yes
-USE_TOOLS+=			gmake gsed perl pkg-config
+USE_TOOLS+=			gmake gsed perl pkg-config bash
 GNU_CONFIGURE=			yes
 # this library duplicates (and conflicts with) openssl
 CONFIGURE_ARGS+=		--disable-openssl-compatibility
 CONFIGURE_ARGS+=		--disable-guile
 CONFIGURE_ARGS+=		--disable-libdane
 CONFIGURE_ARGS+=		--without-tpm
-CONFIGURE_ARGS+=		--disable-destructive-tests
 CONFIGURE_ARGS+=		--disable-valgrind-tests
 CONFIGURE_ARGS+=		--with-libintl-prefix=${BUILDLINK_PREFIX.gettext}
 CONFIGURE_ARGS+=		--enable-local-libopts
@@ -38,24 +38,30 @@ TEST_TARGET=		check
 
 INFO_FILES=		yes
 
+REPLACE_BASH+=		tests/cert-tests/certtool
 REPLACE_BASH+=		tests/danetool.sh
+REPLACE_BASH+=		tests/fastopen.sh
+REPLACE_BASH+=		tests/gnutls-cli-debug.sh
 REPLACE_BASH+=		tests/ocsp-tests/ocsp-must-staple-connection
 REPLACE_BASH+=		tests/ocsp-tests/ocsp-tls-connection
-REPLACE_BASH+=		tests/suite/testcompat-main-polarssl
-REPLACE_BASH+=		tests/suite/testcompat-main-openssl
-REPLACE_BASH+=		tests/fastopen.sh
 REPLACE_BASH+=		tests/starttls.sh
-REPLACE_BASH+=		tests/sni-hostname.sh
-REPLACE_BASH+=		tests/gnutls-cli-save-data.sh
-REPLACE_BASH+=		tests/sni-resume.sh
+REPLACE_BASH+=		tests/suite/cbc-record-check.sh
+REPLACE_BASH+=		tests/suite/testcompat-main-openssl
+REPLACE_BASH+=		tests/suite/testcompat-main-polarssl
 
-REPLACE_PERL+=	doc/scripts/gdoc doc/scripts/sort2.pl
+REPLACE_PERL+=		doc/scripts/gdoc doc/scripts/sort2.pl
 
 PKGCONFIG_OVERRIDE=	lib/gnutls.pc.in
 PKGCONFIG_OVERRIDE+=	libdane/gnutls-dane.pc.in
 
 MAKE_ENV+=		RM=${RM:Q}
 MAKE_ENV+=		TZ=UTC
+
+SUBST_CLASSES+=		shell
+SUBST_SED.shell+=	-e 's,define POSIX_SHELL .*,define POSIX_SHELL "'${TOOLS_PATH.bash}'",'
+SUBST_STAGE.shell=	post-configure
+SUBST_FILES.shell+=	config.h
+SUBST_MESSAGE.shell=	Fixing path to bash.
 
 EGDIR=		${PREFIX}/share/examples/gnutls
 
