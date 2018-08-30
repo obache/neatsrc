@@ -5,8 +5,6 @@ BUILDLINK_TREE+=	atkmm
 .if !defined(ATKMM_BUILDLINK3_MK)
 ATKMM_BUILDLINK3_MK:=
 
-GCC_REQD+=	4.9
-
 BUILDLINK_API_DEPENDS.atkmm+=	atkmm>=2.22.1
 BUILDLINK_ABI_DEPENDS.atkmm+=	atkmm>=2.22.6nb3
 BUILDLINK_PKGSRCDIR.atkmm?=	../../devel/atkmm
