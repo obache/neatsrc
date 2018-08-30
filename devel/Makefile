@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2721 2018/08/23 22:40:52 kamil Exp $
+# $NetBSD: Makefile,v 1.2723 2018/08/29 06:16:40 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -1681,6 +1681,7 @@ SUBDIR+=	p5-Test-Inter
 SUBDIR+=	p5-Test-Kwalitee
 SUBDIR+=	p5-Test-LeakTrace
 SUBDIR+=	p5-Test-LectroTest
+SUBDIR+=	p5-Test-LoadAllModules
 SUBDIR+=	p5-Test-Log4perl
 SUBDIR+=	p5-Test-LongString
 SUBDIR+=	p5-Test-Manifest
@@ -1918,6 +1919,7 @@ SUBDIR+=	py-backports.functools_lru_cache
 SUBDIR+=	py-backports.shutil_get_terminal_size
 SUBDIR+=	py-backports_abc
 SUBDIR+=	py-bcolz
+SUBDIR+=	py-behave
 SUBDIR+=	py-binaryornot
 SUBDIR+=	py-blessings
 SUBDIR+=	py-blinker
