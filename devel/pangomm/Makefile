@@ -14,7 +14,6 @@ LICENSE=	gnu-lgpl-v2.1
 CONFLICTS+=		gtkmm<=2.13.5
 
 USE_LANGUAGES=		c c++11
-GCC_REQD+=		4.9
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake pkg-config perl:run
