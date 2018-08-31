@@ -27,11 +27,8 @@ USE_TOOLS.SunOS+=	gsed
 INSTALL_MAKE_FLAGS+=	prefix=${DESTDIR}${PREFIX}
 INSTALLATION_DIRS+=	bin lib
 
-pre-configure:
-	${ECHO} '#!${SH}' > ${BUILDLINK_DIR}/bin/glib-config-2.0
-	${ECHO} '${PREFIX}/bin/pkg-config glib-2.0 "$$@"'		\
-		>> ${BUILDLINK_DIR}/bin/glib-config-2.0
-	${CHMOD} +x ${BUILDLINK_DIR}/bin/glib-config-2.0
+TOOLS_CREATE+=			glib-config-2.0
+TOOLS_SCRIPT.glib-config-2.0=	pkg-config glib-2.0 "$$@"
 
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
