@@ -13,10 +13,7 @@ BUILDLINK_INCDIRS.apr?=		include/apr-1
 BUILDLINK_FILES.apr+=	bin/apr-1-config
 BUILDLINK_FILES.apr+=	lib/apr.exp
 
-${BUILDLINK_DIR}/bin/apr-config: buildlink-directories
-	${MKDIR} ${BUILDLINK_DIR}/bin && ${LN} -fs apr-1-config ${BUILDLINK_DIR}/bin/apr-config
-
-buildlink-apr-cookie: ${BUILDLINK_DIR}/bin/apr-config
+BUILDLINK_FNAME_ALIASES.apr+=	bin/apr-1-config bin/apr-config
 
 .include "../../mk/bsd.fast.prefs.mk"
 .if ${OPSYS} == "Linux" || ${OPSYS} == "SunOS"
