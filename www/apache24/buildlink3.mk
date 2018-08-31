@@ -14,10 +14,8 @@ BUILDLINK_DEPMETHOD.apache+=	full
 .endif
 
 BUILDLINK_FILES.apache+=	sbin/apxs
-${BUILDLINK_DIR}/bin/apxs: buildlink-directories
-	${MKDIR} ${BUILDLINK_DIR}/bin && ${LN} -fs ../sbin/apxs ${BUILDLINK_DIR}/bin/apxs
 
-buildlink-apache-cookie: ${BUILDLINK_DIR}/bin/apxs
+BUILDLINK_FNAME_ALIASES.apache+=	sbin/apxs bin/apxs
 
 USE_TOOLS+=		perl			# for "apxs"
 CONFIGURE_ENV+=		APR_LIBTOOL=${LIBTOOL:Q}	# make apxs use the libtool we specify
