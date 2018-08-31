@@ -12,10 +12,7 @@ BUILDLINK_PKGSRCDIR.apr-util?=		../../devel/apr-util
 BUILDLINK_FILES.apr-util+=	bin/apu-1-config
 BUILDLINK_FILES.apr-util+=	lib/aprutil.exp
 
-${BUILDLINK_DIR}/bin/apu-config: buildlink-directories
-	${MKDIR} ${BUILDLINK_DIR}/bin && ${LN} -fs apu-1-config ${BUILDLINK_DIR}/bin/apu-config
-
-buildlink-apr-util-cookie: ${BUILDLINK_DIR}/bin/apu-config
+BUILDLINK_FNAME_ALIASES.apr-utils+=	bin/apu-1-config bin/apu-config
 
 .include "../../mk/bsd.fast.prefs.mk"
 
