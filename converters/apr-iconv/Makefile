@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	apr-iconv-1.2.1
+DISTNAME=	apr-iconv-1.2.2
 CATEGORIES=	converters
 MASTER_SITES=	${MASTER_SITE_APACHE:=apr/}
 EXTRACT_SUFX=	.tar.bz2
