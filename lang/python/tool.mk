@@ -15,15 +15,16 @@ PYTHON_TOOL_MK=	defined
 .include "../../lang/python/pyversion.mk"
 .endif
 
-BUILDLINK_TARGETS+=	buildlink-bin-python
+BUILDLINK_TARGETS+=	buildlink-python-alternatives
 
-.PHONY: buildlink-bin-python
-buildlink-bin-python:
+.PHONY: buildlink-python-alternatives
+buildlink-python-alternatives:
 	${RUN} \
-	f="${PYTHONBIN}"; \
-	t="${BUILDLINK_DIR}/bin/python"; \
-	if ${TEST} -f $$f -a ! -f $$t ; then \
-		${LN} -sf $$f $$t; \
-	fi
+	${SED} ${FILES_SUBST_SED} < ${PYPKGSRCDIR}/ALTERNATIVES | \
+	while read t f; do \
+		if ${TEST} -f $$f -a ! -f $$t ; then \
+		${LN} -sf $$f ${BUILDLINK_DIR}/$$t; \
+		fi \
+	done
 
 .endif # PYTHON_TOOL_MK
