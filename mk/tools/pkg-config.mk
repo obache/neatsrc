@@ -32,10 +32,7 @@
 # Override the location where pkg-config searches for *.pc files in the
 # pkg-config wrapper script.
 #
-.if !empty(LIBABISUFFIX)
-_PKG_CONFIG_LIBDIR?=	${BUILDLINK_DIR}/lib${LIBABISUFFIX}/pkgconfig:${BUILDLINK_DIR}/lib/pkgconfig:${BUILDLINK_DIR}/share/pkgconfig
-.endif
-_PKG_CONFIG_LIBDIR?=	${BUILDLINK_DIR}/lib/pkgconfig:${BUILDLINK_DIR}/share/pkgconfig
+_PKG_CONFIG_LIBDIR?=	${BUILDLINK_PC_DIRS:S/^${LOCALBASE}/${BUILDLINK_DIR}/:S/^${X11BASE}/${BUILDLINK_X11_DIR}/:M${WRKDIR}/*:ts:}
 _PKG_CONFIG_LOG?=	${WRKDIR}/.pkg-config.log
 
 TOOLS_SCRIPT.pkg-config=	\

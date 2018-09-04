@@ -204,11 +204,11 @@ _BLNK_PACKAGES+=	${_pkg_}
 .endfor
 
 _VARGROUPS+=		bl3
-.for v in BINDIR CFLAGS CPPFLAGS DEPENDS LDFLAGS LIBS
+.for v in BINDIR CFLAGS CPPFLAGS DEPENDS LDFLAGS LIBS PC_DIRS
 _SYS_VARS.bl3+=		BUILDLINK_${v}
 .endfor
 .for p in ${_BUILDLINK_TREE}
-.  for v in AUTO_VARS BUILTIN_MK CONTENTS_FILTER CPPFLAGS DEPMETHOD FILES_CMD INCDIRS LDFLAGS LIBDIRS PKGNAME PREFIX RPATHDIRS
+.  for v in AUTO_VARS BUILTIN_MK CONTENTS_FILTER CPPFLAGS DEPMETHOD FILES_CMD INCDIRS LDFLAGS LIBDIRS PKGNAME PREFIX RPATHDIRS PC_DIRS
 _SYS_VARS.bl3+=		BUILDLINK_${v}.${p}
 .  endfor
 .  for v in IGNORE_PKG USE_BUILTIN
@@ -397,7 +397,7 @@ BUILDLINK_PREFIX.${_pkg_}=	BUILDLINK_PREFIX.${_pkg_}_not_found
 MAKEVARS+=	BUILDLINK_PREFIX.${_pkg_}
 .  endif
 
-.  if empty(BUILDLINK_PREFIX.${_pkg_}:N/usr:N/boot/common:N/)
+.  if !empty(USE_BUILTIN.${_pkg_}:M[yY][eE][sS])
 BUILDLINK_DIR.${_pkg_}=	${BUILDLINK_PREFIX.${_pkg_}}
 .  else
 BUILDLINK_DIR.${_pkg_}= ${BUILDLINK_DIR}
@@ -415,6 +415,7 @@ BUILDLINK_RPATHDIRS.${_pkg_}?=	${BUILDLINK_LIBDIRS.${_pkg_}}
 .  else
 BUILDLINK_RPATHDIRS.${_pkg_}?=	# empty
 .  endif
+BUILDLINK_PC_DIRS.${_pkg_}?=	${BUILDLINK_LIBDIRS.${_pkg_}:=/pkgconfig} share/pkgconfig
 .endfor
 
 # BUILDLINK_CPPFLAGS, BUILDLINK_LDFLAGS, and BUILDLINK_LIBS contain the
@@ -427,6 +428,7 @@ BUILDLINK_CPPFLAGS=	# empty
 BUILDLINK_LDFLAGS=	# empty
 BUILDLINK_LIBS=		# empty
 BUILDLINK_CFLAGS=	# empty
+BUILDLINK_PC_DIRS=	# empty
 
 .for _pkg_ in ${_BLNK_PACKAGES}
 .  if defined(BUILDLINK_AUTO_VARS.${_pkg_}) && \
@@ -482,6 +484,13 @@ BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${_dir_}
 .    endfor
 .  endif
 . endif
+.  if !empty(BUILDLINK_PC_DIRS.${_pkg_})
+.    for _dir_ in ${BUILDLINK_PC_DIRS.${_pkg_}:S/^/${BUILDLINK_PREFIX.${_pkg_}}\//}
+.      if empty(BUILDLINK_PC_DIRS:M${_dir_}) && exists(${_dir_})
+BUILDLINK_PC_DIRS+=	${_dir_}
+.      endif
+.    endfor
+.  endif
 .endfor
 #
 # Add the X11 library directory to the library search paths if the package
@@ -494,6 +503,8 @@ BUILDLINK_LDFLAGS+=	-L${X11BASE}/lib${LIBABISUFFIX}
 .  if empty(BUILDLINK_LDFLAGS:M${COMPILER_RPATH_FLAG}${X11BASE}/lib${LIBABISUFFIX})
 BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${X11BASE}/lib${LIBABISUFFIX}
 .  endif
+BUILDLINK_PC_DIRS+=	${X11BASE}/lib${LIBABISUFFIX}/pkgconfig
+BUILDLINK_PC_DIRS+=	${X11BASE}/share/pkgconfig
 .endif
 
 CFLAGS?=	# empty
