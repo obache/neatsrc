@@ -82,6 +82,8 @@ CMAKE_SYSTEM_IGNORE_PATH+=	${X11BASE}/lib${LIBABISUFFIX}
 .  endif
 .endif
 CMAKE_ARGS+=-DCMAKE_SYSTEM_IGNORE_PATH:PATH=${CMAKE_SYSTEM_IGNORE_PATH:O:u:ts;:Q}
+CMAKE_ARGS+=	-DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM:STRING=BOTH
+CMAKE_ARGS+=	-DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE:STRING=BOTH
 
 ### The cmake function export_library_dependencies() writes out
 ### library dependency info to a file and this may contain buildlink
