@@ -18,7 +18,9 @@ USE_TOOLS+=		pkg-config
 
 # optionally, but required by configure.
 #BUILD_DEPENDS+=		doxygen>=1.6:../../devel/doxygen
-TOOLS_NOOP=		doxygen
+TOOLS_NOOP+=		doxygen
+pre-configure:
+	${TOUCH} ${WRKSRC}/CMakeDoxyfile.tpl
 
 # avoid lib64
 CMAKE_ARGS+=		-DLIBDIR=lib
