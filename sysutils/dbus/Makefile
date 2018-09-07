@@ -32,6 +32,7 @@ MESSAGE_SRC+=	MESSAGE
 
 .include "../../mk/bsd.prefs.mk"
 
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE:Q}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE:Q}
 
 # Prevent the configure script from picking up a per-user tmp
