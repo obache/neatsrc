@@ -4,14 +4,8 @@ PKG_OPTIONS_VAR=	PKG_OPTIONS.dbus
 PKG_SUPPORTED_OPTIONS+=	debug x11
 PKG_SUGGESTED_OPTIONS=	x11
 
-.if (${OPSYS} == "NetBSD"  ||	\
-     ${OPSYS} == "FreeBSD" ||	\
-     ${OPSYS} == "OpenBSD" ||	\
-     ${OPSYS} == "Darwin" ||	\
-     ${OPSYS} == "DragonFly")
-PKG_SUPPORTED_OPTIONS+=	kqueue
-PKG_SUGGESTED_OPTIONS+=	kqueue
-.endif
+PKG_SUPPORTED_OPTIONS+=	${PKG_HAVE_KQUEUE:Dkqueue}
+PKG_SUGGESTED_OPTIONS+=	${PKG_HAVE_KQUEUE:Dkqueue}
 
 PLIST_VARS+=    	launchd
 # We may want to make it SUGGESTED once we have a framework for
