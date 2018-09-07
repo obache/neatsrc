@@ -5,6 +5,7 @@ libexec/ibus-engine-table
 libexec/ibus-setup-table
 man/man1/ibus-table-createdb.1
 share/applications/ibus-setup-table.desktop
+share/glib-2.0/schemas/org.freedesktop.ibus.engine.table.gschema.xml
 share/ibus-table/data/pinyin_table.txt.bz2
 share/ibus-table/engine/chinese_variants.py
 share/ibus-table/engine/chinese_variants.pyc
@@ -15,6 +16,9 @@ share/ibus-table/engine/factory.pyo
 share/ibus-table/engine/ibus_table_location.py
 share/ibus-table/engine/ibus_table_location.pyc
 share/ibus-table/engine/ibus_table_location.pyo
+share/ibus-table/engine/it_util.py
+share/ibus-table/engine/it_util.pyc
+share/ibus-table/engine/it_util.pyo
 share/ibus-table/engine/main.py
 share/ibus-table/engine/main.pyc
 share/ibus-table/engine/main.pyo

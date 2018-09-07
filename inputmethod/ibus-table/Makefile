@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.22 2017/08/16 21:22:13 wiz Exp $
 
-DISTNAME=	ibus-table-1.9.20
+DISTNAME=	ibus-table-1.9.21
 CATEGORIES=	inputmethod
 MASTER_SITES=	https://github.com/kaio/ibus-table/releases/download/${PKGVERSION_NOREV}/
 
@@ -29,4 +29,5 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
 .include "../../inputmethod/ibus/buildlink3.mk"
+.include "../../devel/glib2/schemas.mk"
 .include "../../mk/bsd.pkg.mk"
