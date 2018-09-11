@@ -9,6 +9,8 @@ BUILDLINK_API_DEPENDS.gtk2+=	gtk2+>=2.4.0
 BUILDLINK_ABI_DEPENDS.gtk2+=	gtk2+>=2.24.32nb3
 BUILDLINK_PKGSRCDIR.gtk2?=	../../x11/gtk2
 
+BUILDLINK_INCDIRS.gtk2=		include/gtk-2.0 lib/gtk-2.0/include
+
 .include "../../mk/bsd.fast.prefs.mk"
 
 pkgbase := gtk2
