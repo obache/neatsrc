@@ -95,8 +95,6 @@ generate-cwrappers:
 . endif
 .endfor
 
-PREPEND_PATH+=		${WRAPPER_BINDIR}
-
 _COOKIE.wrapper=	${WRKDIR}/.wrapper_done
 
 .PHONY: wrapper

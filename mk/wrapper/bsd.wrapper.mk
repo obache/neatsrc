@@ -46,11 +46,6 @@
 
 .include "../../mk/buildlink3/bsd.buildlink3.mk"
 
-# Prepend ${WRAPPER_BINDIR} to the PATH so that the wrappers are found
-# first when searching for executables.
-#
-PREPEND_PATH+=		${WRAPPER_BINDIR}
-
 ###
 ### BEGIN: after the barrier
 ###

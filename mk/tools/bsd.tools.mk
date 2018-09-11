@@ -40,7 +40,7 @@
 # first when searching for executables.
 #
 TOOLS_DIR=	${WRKDIR}/.tools
-PREPEND_PATH+=	${TOOLS_DIR}/bin
+TOOLS_BINDIR=	${TOOLS_DIR}/bin
 
 TOOLS_SHELL?=		${SH}
 _TOOLS_WRAP_LOG=	${WRKLOG}

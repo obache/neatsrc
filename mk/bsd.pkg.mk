@@ -442,7 +442,7 @@ _PATH_ORIG:=		${PATH}
 MAKEFLAGS+=		_PATH_ORIG=${_PATH_ORIG:Q}
 .endif
 
-_PATH_COMPONENTS=	${PREPEND_PATH:[-1..1]} ${_PATH_ORIG:C,:, ,}
+_PATH_COMPONENTS=	${WRAPPER_BINDIR} ${TOOLS_BINDIR} ${PREPEND_PATH:[-1..1]} ${_PATH_ORIG:C,:, ,}
 PATH=	${_PATH_COMPONENTS:ts:}
 
 ################################################################

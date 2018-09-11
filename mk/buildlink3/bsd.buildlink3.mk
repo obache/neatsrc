@@ -83,8 +83,8 @@ BUILDLINK_X11_DIR=	${BUILDLINK_DIR:H}/.x11-buildlink
 
 .PHONY: do-buildlink
 
-# Prepend ${BUILDLINK_BINDIR} to the PATH.
-PREPEND_PATH+=	${BUILDLINK_BINDIR}
+# Prepend ${BUILDLINK_PATH_DIRS} to the PATH.
+PREPEND_PATH+=	${BUILDLINK_PATH_DIRS}
 
 # _BUILDLINK_DEPENDS contains the list of packages for which we add
 # dependencies.  This is only done for direct dependencies.
@@ -204,7 +204,7 @@ _BLNK_PACKAGES+=	${_pkg_}
 .endfor
 
 _VARGROUPS+=		bl3
-.for v in BINDIR CFLAGS CPPFLAGS DEPENDS LDFLAGS LIBS PC_DIRS
+.for v in BINDIR CFLAGS CPPFLAGS DEPENDS LDFLAGS LIBS PATH_DIRS PC_DIRS
 _SYS_VARS.bl3+=		BUILDLINK_${v}
 .endfor
 .for p in ${_BUILDLINK_TREE}
@@ -315,17 +315,33 @@ ${_depmethod_}+=	${_BLNK_ADD_TO.${_depmethod_}}
 # BUILDLINK_INCDIRS.<pkg>,
 # BUILDLINK_LIBDIRS.<pkg>,
 # BUILDLINK_RPATHDIRS.<pkg>	subdirectories of BUILDLINK_PREFIX.<pkg>
-#				that should be added to the
+#				that should be contents and added to the
 #				compiler/linker search paths; these
 #				directories are checked to see if they
 #				exist before they're added to the search
 #				paths.
 #
-#  BUILDLINK_AUTO_DIRS.<pkg>	"yes" or "no" for whether BUILDLINK_{INCDIRS,
+# BUILDLINK_AUTO_DIRS.<pkg>	"yes" or "no" for whether BUILDLINK_{INCDIRS,
 #				LIBDIRS,RPATHDIRS}.<pkg> should automatically
 #				be added to the compiler/linker search paths.
-#				Defaults to "yes".
+#				Defaults to "no".
+#				Or you can restrict type of auto directries
+#				with list of "inc", "lib" and/or "rpath".
 #
+#
+# BUILDLINK_PC_DIRS.<pkg>	subdirectories of BUILDLINK_PREFIX.<pkg>
+#				that should be contents and added to the
+#				pkg-config search paths; these
+#				directories are checked to see if they
+#				exist before they're added to the search
+#				paths.
+#
+# BUILDLINK_BINDIRS.<pkg>	subdirectories of BUILDLINK_PREFIX.<pkg>
+#				that should be contents and added to the
+#				executable search paths (env PATH); these
+#				directories are checked to see if they
+#				exist before they're added to the search
+#				paths.
 .for _pkg_ in ${_BLNK_PACKAGES}
 #
 # If we're using the built-in package, then provide sensible defaults.
@@ -407,7 +423,7 @@ BUILDLINK_AUTO_VARS.${_pkg_}?=	yes
 BUILDLINK_CPPFLAGS.${_pkg_}?=	# empty
 BUILDLINK_LDFLAGS.${_pkg_}?=	# empty
 BUILDLINK_LIBS.${_pkg_}?=	# empty
-BUILDLINK_AUTO_DIRS.${_pkg_}?=	yes
+BUILDLINK_AUTO_DIRS.${_pkg_}?=	no
 BUILDLINK_INCDIRS.${_pkg_}?=	include
 BUILDLINK_LIBDIRS.${_pkg_}?=	lib
 .  if !empty(BUILDLINK_DEPMETHOD.${_pkg_}:Mfull)
@@ -416,6 +432,7 @@ BUILDLINK_RPATHDIRS.${_pkg_}?=	${BUILDLINK_LIBDIRS.${_pkg_}}
 BUILDLINK_RPATHDIRS.${_pkg_}?=	# empty
 .  endif
 BUILDLINK_PC_DIRS.${_pkg_}?=	${BUILDLINK_LIBDIRS.${_pkg_}:=/pkgconfig} share/pkgconfig
+BUILDLINK_BINDIRS.${_pkg_}?=	bin sbin
 .endfor
 
 # BUILDLINK_CPPFLAGS, BUILDLINK_LDFLAGS, and BUILDLINK_LIBS contain the
@@ -429,6 +446,7 @@ BUILDLINK_LDFLAGS=	# empty
 BUILDLINK_LIBS=		# empty
 BUILDLINK_CFLAGS=	# empty
 BUILDLINK_PC_DIRS=	# empty
+BUILDLINK_PATH_DIRS=	${BUILDLINK_BINDIR}
 
 .for _pkg_ in ${_BLNK_PACKAGES}
 .  if defined(BUILDLINK_AUTO_VARS.${_pkg_}) && \
@@ -455,8 +473,8 @@ BUILDLINK_LIBS+=	${_flag_}
 .    endfor
 .  endif
 . if defined(BUILDLINK_AUTO_DIRS.${_pkg_}) && \
-     !empty(BUILDLINK_AUTO_DIRS.${_pkg_}:M[yY][eE][sS])
-.  if !empty(BUILDLINK_INCDIRS.${_pkg_})
+     empty(BUILDLINK_AUTO_DIRS.${_pkg_}:M[nN][oO])
+.  if (!empty(BUILDLINK_AUTO_DIRS.${_pkg_}:M[yY][eE][sS]) || !empty(BUILDLINK_AUTO_DIRS.${_pkg_}:Minc)) && !empty(BUILDLINK_INCDIRS.${_pkg_})
 .    for _dir_ in ${BUILDLINK_INCDIRS.${_pkg_}:S/^/${BUILDLINK_PREFIX.${_pkg_}}\//}
 .      if exists(${_dir_}) && empty(COMPILER_INCLUDE_DIRS:M${_dir_})
 .        if empty(BUILDLINK_CPPFLAGS:M-I${_dir_})
@@ -465,7 +483,7 @@ BUILDLINK_CPPFLAGS+=	-I${_dir_}
 .      endif
 .    endfor
 .  endif
-.  if !empty(BUILDLINK_LIBDIRS.${_pkg_})
+.  if (!empty(BUILDLINK_AUTO_DIRS.${_pkg_}:M[yY][eE][sS]) || !empty(BUILDLINK_AUTO_DIRS.${_pkg_}:Mlib)) && !empty(BUILDLINK_LIBDIRS.${_pkg_})
 .    for _dir_ in ${BUILDLINK_LIBDIRS.${_pkg_}:S/^/${BUILDLINK_PREFIX.${_pkg_}}\//}
 .      if exists(${_dir_}) && empty(COMPILER_LIB_DIRS:M${_dir_})
 .        if empty(BUILDLINK_LDFLAGS:M-L${_dir_})
@@ -474,7 +492,7 @@ BUILDLINK_LDFLAGS+=	-L${_dir_}
 .      endif
 .    endfor
 .  endif
-.  if !empty(BUILDLINK_RPATHDIRS.${_pkg_})
+.  if (!empty(BUILDLINK_AUTO_DIRS.${_pkg_}:M[yY][eE][sS]) || !empty(BUILDLINK_AUTO_DIRS.${_pkg_}:Mrpath)) && !empty(BUILDLINK_RPATHDIRS.${_pkg_})
 .    for _dir_ in ${BUILDLINK_RPATHDIRS.${_pkg_}:S/^/${BUILDLINK_PREFIX.${_pkg_}}\//}
 .      if exists(${_dir_}) && empty(SYSTEM_DEFAULT_RPATH:S/:/ /g:M${_dir_})
 .        if empty(BUILDLINK_LDFLAGS:M${COMPILER_RPATH_FLAG}${_dir_})
@@ -488,6 +506,14 @@ BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${_dir_}
 .    for _dir_ in ${BUILDLINK_PC_DIRS.${_pkg_}:S/^/${BUILDLINK_PREFIX.${_pkg_}}\//}
 .      if empty(BUILDLINK_PC_DIRS:M${_dir_}) && exists(${_dir_})
 BUILDLINK_PC_DIRS+=	${_dir_}
+.      endif
+.    endfor
+.  endif
+.  if !empty(BUILDLINK_BINDIRS.${_pkg_})
+.    for _dir_ in ${BUILDLINK_BINDIRS.${_pkg_}}
+.      if empty(BUILDLINK_PATH_DIRS:M${BUILDLINK_DIR.${_pkg_}}/${_dir_}) && \
+	  exists(${BUILDLINK_PREFIX.${_pkg_}}/${_dir_})
+BUILDLINK_PATH_DIRS+=	${BUILDLINK_DIR.${_pkg_}}/${_dir_}
 .      endif
 .    endfor
 .  endif
@@ -615,7 +641,7 @@ buildlink-${_pkg_}-cookie:
 	${TOUCH} ${TOUCH_FLAGS} ${_BLNK_COOKIE.${_pkg_}}
 
 BUILDLINK_CONTENTS_FILTER.${_pkg_}?=					\
-	${EGREP} '(include.*/|\.h$$|\.idl$$|\.pc$$|/lib[^/]*\.[^/]*$$|\.cmake$$)'
+	${EGREP} '(${BUILDLINK_INCDIRS.${_pkg_}:S/^/^/:S/$$/\//:ts|}|^share/idl/.*\.idl$$|${BUILDLINK_PC_DIRS.${_pkg_}:S/^/^/:S/$$/\/.*\.pc$$/:ts|}|${BUILDLINK_LIBDIRS.${_pkg_}:S/^/^/:S/$$/\/lib[^\/]*\.[^\/]*$$/:ts|}|\.cmake$$|${BUILDLINK_BINDIRS.${_pkg_}:S/^/^/:S/$$/\//:ts|})'
 
 BUILDLINK_FILES_CMD.${_pkg_}?=						\
 	${_BLNK_PKG_INFO.${_pkg_}} -qL ${BUILDLINK_PKGNAME.${_pkg_}} |	\
