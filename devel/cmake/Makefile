@@ -64,6 +64,7 @@ INCOMPAT_CURSES=	NetBSD-[0-8].*-*
 BUILDLINK_API_DEPENDS.libarchive+=	libarchive>=3.0.0
 .include "../../archivers/libarchive/buildlink3.mk"
 .include "../../devel/libexecinfo/buildlink3.mk"
+BUILDLINK_AUTO_DIRS.libuv=	rpath
 .include "../../devel/libuv/buildlink3.mk"
 .include "../../misc/rhash/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
