@@ -8,6 +8,8 @@ DBUS_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.dbus+=	dbus>=0.91
 BUILDLINK_PKGSRCDIR.dbus?=	../../sysutils/dbus
 
+BUILDLINK_INCDIRS.dbus+=	include/dbus-1.0 lib/dbus-1.0/include
+
 .include "../../textproc/expat/buildlink3.mk"
 .endif # DBUS_BUILDLINK3_MK
 
