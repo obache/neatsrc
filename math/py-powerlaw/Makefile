@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2018/01/24 00:45:21 minskim Exp $
+# $NetBSD: Makefile,v 1.2 2018/08/30 11:14:05 adam Exp $
 
-DISTNAME=	powerlaw-1.4.3
+DISTNAME=	powerlaw-1.4.4
 PKGNAME=        ${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/powerlaw/}

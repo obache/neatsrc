@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2723 2018/08/29 06:16:40 wiz Exp $
+# $NetBSD: Makefile,v 1.2727 2018/09/04 12:44:58 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -121,7 +121,6 @@ SUBDIR+=	boost-libs
 SUBDIR+=	boost-mpi
 SUBDIR+=	bpython
 SUBDIR+=	buddy
-SUBDIR+=	bugs-everywhere
 SUBDIR+=	bugzilla
 SUBDIR+=	bugzilla3
 SUBDIR+=	bullet
@@ -1875,7 +1874,6 @@ SUBDIR+=	pstreams
 SUBDIR+=	psvn
 SUBDIR+=	pth
 SUBDIR+=	pthread-sem
-SUBDIR+=	pthread-stublib
 SUBDIR+=	ptlib
 SUBDIR+=	pvs
 SUBDIR+=	pwlib
@@ -1894,6 +1892,7 @@ SUBDIR+=	py-ZopeSchema
 SUBDIR+=	py-absl-py
 SUBDIR+=	py-aiofiles
 SUBDIR+=	py-angr
+SUBDIR+=	py-anytree
 SUBDIR+=	py-apipkg
 SUBDIR+=	py-appdirs
 SUBDIR+=	py-archinfo
@@ -2252,6 +2251,7 @@ SUBDIR+=	py-scandir
 SUBDIR+=	py-serpent
 SUBDIR+=	py-setuptools
 SUBDIR+=	py-setuptools_scm
+SUBDIR+=	py-setuptools_scm_git_archive
 SUBDIR+=	py-setuptools_trial
 SUBDIR+=	py-simplegeneric
 SUBDIR+=	py-singledispatch

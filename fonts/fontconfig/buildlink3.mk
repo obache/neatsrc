@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.35 2018/03/31 04:30:33 schmonz Exp $
+# $NetBSD: buildlink3.mk,v 1.36 2018/08/31 09:06:07 tnn Exp $
 
 BUILDLINK_TREE+=	fontconfig
 

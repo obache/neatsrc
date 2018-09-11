@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.773 2018/08/05 15:02:01 schmonz Exp $
+# $NetBSD: Makefile,v 1.775 2018/09/01 11:19:25 tnn Exp $
 #
 
 COMMENT=	System utilities
@@ -497,6 +497,7 @@ SUBDIR+=	rdiff-backup
 SUBDIR+=	rename
 SUBDIR+=	rfstool
 SUBDIR+=	riemann-client
+SUBDIR+=	rkdeveloptool
 SUBDIR+=	rkflashtool
 SUBDIR+=	rmtrash
 SUBDIR+=	roller
@@ -633,6 +634,7 @@ SUBDIR+=	u-boot-pine-h64
 SUBDIR+=	u-boot-pine64
 SUBDIR+=	u-boot-pinebook
 SUBDIR+=	u-boot-pocketchip
+SUBDIR+=	u-boot-rockpro64
 SUBDIR+=	u-boot-sopine-baseboard
 SUBDIR+=	upower
 SUBDIR+=	ups-nut

@@ -1,4 +1,4 @@
-# $NetBSD: extension.mk,v 1.53 2018/03/29 17:58:26 adam Exp $
+# $NetBSD: extension.mk,v 1.54 2018/09/02 21:53:03 wiz Exp $
 
 .include "../../lang/python/pyversion.mk"
 

@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2018/08/12 13:22:43 nia Exp $
+# $NetBSD: Makefile,v 1.3 2018/09/07 00:49:04 nia Exp $
 
 DISTNAME=	libretro-beetle-saturn-20180620
+PKGREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libretro/}
 GITHUB_PROJECT=	beetle-saturn-libretro

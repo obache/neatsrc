@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.142 2018/08/16 12:23:11 fhajny Exp $
+# $NetBSD: Makefile,v 1.144 2018/09/07 14:24:54 jperkin Exp $
 
-DISTNAME=	node-v10.9.0
+DISTNAME=	node-v10.10.0
 
 USE_LANGUAGES=	c gnu++14
 
@@ -8,9 +8,12 @@ USE_LANGUAGES=	c gnu++14
 GCC_REQD+=	4.9.4
 
 # Stated by the changelog
-BUILDLINK_API_DEPENDS.libuv+=   libuv>=1.22
+BUILDLINK_API_DEPENDS.libuv+=   libuv>=1.23
 
 .include "../../mk/bsd.prefs.mk"
+
+# XXX: figure out a way to add rpaths to torque
+MAKE_ENV+=	LD_LIBRARY_PATH=${PREFIX}/lib
 
 # Optional OpenSSL support in nghttp2 conflicts with OpenSSL 1.1.x
 # bundled and built by lang/nodejs.
