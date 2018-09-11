@@ -11,6 +11,8 @@ BUILDLINK_PKGSRCDIR.qt4-libs?=		../../x11/qt4-libs
 
 BUILDLINK_INCDIRS.qt4-libs+=	qt4/include
 BUILDLINK_LIBDIRS.qt4-libs+=	qt4/lib
+BUILDLINK_BINDIRS.qt4-libs+=	qt4/bin
+BUILDLINK_PC_DIRS.qt4-libs+=	lib/pkgconfig
 
 QTDIR=	${BUILDLINK_PREFIX.qt4-libs}/qt4
 
