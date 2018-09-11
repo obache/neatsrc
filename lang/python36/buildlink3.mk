@@ -13,6 +13,7 @@ BUILDLINK_DEPMETHOD.python36?=	${BUILDLINK_DEPMETHOD.python}
 .endif
 
 BUILDLINK_INCDIRS.python36+=	include/python3.6
+BUILDLINK_LIBDIRS.python36+=	lib
 BUILDLINK_LIBDIRS.python36+=	lib/python3.6/config
 BUILDLINK_TRANSFORM+=		l:python:python3.6
 
