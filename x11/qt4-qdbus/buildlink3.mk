@@ -9,6 +9,10 @@ BUILDLINK_API_DEPENDS.qt4-qdbus+=	qt4-qdbus>=4.3.2
 BUILDLINK_ABI_DEPENDS.qt4-qdbus+=	qt4-qdbus>=4.8.7nb2
 BUILDLINK_PKGSRCDIR.qt4-qdbus?=		../../x11/qt4-qdbus
 
+BUILDLINK_INCDIRS.qt4-qdbus=		${BUILDLINK_INCDIRS.qt4-libs}
+BUILDLINK_LIBDIRS.qt4-qdbus=		${BUILDLINK_LIBDIRS.qt4-libs}
+BUILDLINK_PC_DIRS.qt4-qdbus=		${BUILDLINK_PC_DIRS.qt4-libs}
+
 .include "../../x11/qt4-libs/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"
 .endif # QT4_QDBUS_BUILDLINK3_MK
