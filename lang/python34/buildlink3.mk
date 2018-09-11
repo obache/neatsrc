@@ -13,8 +13,9 @@ BUILDLINK_DEPMETHOD.python34?=	${BUILDLINK_DEPMETHOD.python}
 .endif
 
 BUILDLINK_INCDIRS.python34+=	include/python3.4
-BUILDLINK_LIBDIRS.python34+=	lib
-BUILDLINK_LIBDIRS.python34+=	lib/python3.4/config
+BUILDLINK_LIBDIRS.python34=	lib
+BUILDLINK_LIBDIRS.python34+=	lib/python3.4/config-3.4
+BUILDLINK_RPATHDIRS.python34=	lib
 BUILDLINK_TRANSFORM+=		l:python:python3.4
 
 .include "../../mk/dlopen.buildlink3.mk"
