@@ -12,3 +12,12 @@ https://bugs.gentoo.org/show_bug.cgi?id=582368
  use ExtUtils::MakeMaker;
  require 5;
  use Config;
+@@ -107,7 +108,7 @@ sub InitMakeParams {
+     else {
+ 	$opts = NetSNMPGetOpts();
+ 	$Params{'LDDLFLAGS'} = "$Config{lddlflags} " . `$opts->{'nsconfig'} --ldflags`;
+-	$Params{'LIBS'} = '-lnetsnmptrapd ' . `$opts->{'nsconfig'} --base-agent-libs`;
++	$Params{'LIBS'} = '-Wl,--no-copy-dt-needed-entries -lnetsnmptrapd ' . `$opts->{'nsconfig'} --base-agent-libs`;
+ 	chomp($Params{'LIBS'});
+ 	if (!$ENV{'NETSNMP_CCFLAGS'}) {
+ 	    $Params{'CCFLAGS'} = `$opts->{'nsconfig'} --cflags`;
