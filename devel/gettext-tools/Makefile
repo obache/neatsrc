@@ -29,7 +29,6 @@ LDFLAGS.AIX+=		-Wl,-brtl
 SHLIBTOOL_OVERRIDE=	# empty
 INFO_FILES=		yes
 
-BROKEN_GETTEXT_DETECTION=	yes
 USE_BUILTIN.gettext=	no # force use of pkgsrc gettext-lib
 
 BUILDLINK_TRANSFORM.Cygwin+=	rm:-Wl,--disable-auto-import
@@ -38,6 +37,9 @@ BUILDLINK_TRANSFORM.Cygwin+=	rm:-Wl,--disable-auto-import
 CONFIGURE_ENV.AIX+=	ac_cv_header_wctype_h=no
 
 PLIST_SUBST+=	ARCHIVE_VERSION=${PKGVERSION_NOREV:S/./ /g:[1..3]:ts.}
+
+post-configure:
+	${LN} -s ${BUILDLINK_DIR}/lib/libintl.la ${WRKSRC}/gettext-runtime/intl/libintl.la
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../mk/termcap.buildlink3.mk"
