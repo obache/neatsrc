@@ -18,7 +18,7 @@ CFLAGS.gnu-iconv+=	-DHAVE_GNU_ICONV
 INSTALL_MAKE_FLAGS=	${MAKE_FLAGS} localedir=${EGDIR}
 INSTALL_MAKE_FLAGS+=	includedir=${PREFIX}/include/gettext
 
-#CONFIGURE_DIRS=		gettext-runtime
+CONFIGURE_DIRS=		gettext-runtime
 BUILD_DIRS=		gettext-runtime/intl
 EGDIR=			${PREFIX}/share/examples/gettext
 LOCALEDIR=		${PREFIX}/${PKGLOCALEDIR}/locale
