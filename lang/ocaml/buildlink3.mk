@@ -27,13 +27,13 @@ ocaml-wrappers:
 			-e 's|@LDFLAGS@|'${LDFLAGS:M*:Q}'|g'		\
 			-e 's|@WRAPPEE@|'$$w'|g'			\
 			< ${.CURDIR}/../../lang/ocaml/files/wrapper.sh	\
-			> ${BUILDLINK_DIR}/bin/"$$w";			\
-		${CHMOD} +x ${BUILDLINK_DIR}/bin/"$$w";			\
+			> ${WRAPPER_BINDIR}/"$$w";			\
+		${CHMOD} +x ${WRAPPER_BINDIR}/"$$w";			\
 	done
 	${RUN}								\
 	for w in ${OCAMLBIN_WRAPPERS}; do				\
 		${LN} -s ${BUILDLINK_PREFIX.ocaml}/bin/"$$w"		\
-		         ${BUILDLINK_DIR}/bin/"$$w";			\
+		         ${WRAPPER_BINDIR}/"$$w";			\
 	done
 
 .include "../../mk/termcap.buildlink3.mk"
