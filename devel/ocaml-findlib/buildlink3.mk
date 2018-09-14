@@ -19,8 +19,8 @@ ocaml-findlib-wrappers:
 		-e 's|@OCAML_FINDLIB_PREFIX@|${BUILDLINK_PREFIX.ocaml-findlib}|g' \
 		-e 's|@BUILDLINK_DIR@|${BUILDLINK_DIR}|g'		\
 		< ${.CURDIR}/../../devel/ocaml-findlib/files/ocamlfind.sh \
-		> ${BUILDLINK_DIR}/bin/ocamlfind;			\
-	${CHMOD} +x ${BUILDLINK_DIR}/bin/ocamlfind
+		> ${WRAPPER_BINDIR}/ocamlfind;			\
+	${CHMOD} +x ${WRAPPER_BINDIR}/ocamlfind
 
 .PHONY: ocaml-findlib-ldconf
 ocaml-findlib-ldconf:
