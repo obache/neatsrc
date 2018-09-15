@@ -18,6 +18,7 @@ CONFIGURE_ARGS+=	--with-included-libcroco
 CONFIGURE_ARGS+=	--without-git
 CONFIGURE_ARGS+=	--with-xz
 CONFIGURE_ARGS+=	--without-included-gettext
+CONFIGURE_ARGS+=	--with-libintl-prefix=${BUILDLINK_PREFIX.gettext}
 CONFIGURE_ARGS+=	--without-emacs
 CONFIGURE_ARGS+=	--disable-openmp
 CONFIGURE_ENV+=		GCJ= ac_cv_prog_GCJ= ac_cv_prog_JAR=
@@ -38,9 +39,11 @@ CONFIGURE_ENV.AIX+=	ac_cv_header_wctype_h=no
 
 PLIST_SUBST+=	ARCHIVE_VERSION=${PKGVERSION_NOREV:S/./ /g:[1..3]:ts.}
 
-post-configure:
-	${LN} -s ${BUILDLINK_DIR}/lib/libintl.la ${WRKSRC}/gettext-runtime/intl/libintl.la
-
+SUBST_CLASSES+=			ext-gettext
+SUBST_STAGE.ext-gettext=	pre-configure
+SUBST_SED.ext-gettext=		-e 's/&& test "$$PACKAGE" != gettext-runtime//'
+SUBST_SED.ext-gettext+=		-e 's/&& test "$$PACKAGE" != gettext-tools//'
+SUBST_FILES.ext-gettext=	gettext-tools/configure gettext-runtime/configure
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../mk/termcap.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
