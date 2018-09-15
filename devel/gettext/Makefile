@@ -14,6 +14,7 @@ SHLIBTOOL_OVERRIDE=	# empty
 CONFIGURE_ARGS+=	--disable-csharp
 CONFIGURE_ARGS+=	--without-git
 CONFIGURE_ARGS+=	--without-included-gettext
+CONFIGURE_ARGS+=	--with-libintl-prefix=${BUILDLINK_PREFIX.gettext}
 CONFIGURE_ENV+=		GCJ= ac_cv_prog_GCJ=
 CONFIGURE_ENV+=		HAVE_GCJ_IN_PATH=
 CONFIGURE_ENV+=		HAVE_JAVAC_IN_PATH=
@@ -23,9 +24,13 @@ CONFIGURE_ENV+=		ac_cv_libexpat=no
 INSTALLATION_DIRS+=	lib/gettext ${PKGMANDIR}/man1
 TEST_TARGET=		check
 
-BROKEN_GETTEXT_DETECTION=	yes
 USE_BUILTIN.gettext=	no # force use of pkgsrc gettext-lib
 
+SUBST_CLASSES+=	ext-gettext
+SUBST_STAGE.ext-gettext=	pre-configure
+SUBST_SED.ext-gettext=		-e 's/&& test "$$PACKAGE" != gettext-runtime//'
+SUBST_SED.ext-gettext+=		-e 's/&& test "$$PACKAGE" != gettext-tools//'
+SUBST_FILES.ext-gettext=	gettext-tools/configure gettext-runtime/configure
 .include "../../mk/bsd.prefs.mk"
 
 PLIST_VARS+=	glibc
