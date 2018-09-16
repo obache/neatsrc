@@ -28,6 +28,8 @@ TEST_TARGET=		check
 PKGCONFIG_OVERRIDE=	hogweed.pc.in
 PKGCONFIG_OVERRIDE+=	nettle.pc.in
 
+BUILDLINK_TRANSFORM+=	rm:-ggdb3
+
 BUILDLINK_API_DEPENDS.gmp+=	gmp>=5.0
 .include "../../devel/gmp/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
