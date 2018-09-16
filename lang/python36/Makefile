@@ -30,6 +30,7 @@ CONFIGURE_ARGS+=	--without-pymalloc
 CONFIGURE_ENV+=		OPT=${CFLAGS:M*:Q}
 CONFIGURE_ENV+=		ac_cv_path_mkdir=${TOOLS_PATH.mkdir}
 PKGCONFIG_OVERRIDE+=	Misc/python.pc.in
+LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib
 
 PTHREAD_OPTS+=	require
 .include "../../mk/pthread.buildlink3.mk"
@@ -171,6 +172,11 @@ SUBST_MESSAGE.pfindlib=	Fixing find_library() on POSIX-like (excluding Darwin) s
 SUBST_STAGE.pfindlib=	pre-configure
 SUBST_FILES.pfindlib=	Lib/ctypes/util.py
 SUBST_SED.pfindlib=	-e "s!\('-Wl,-t', \)!'${COMPILER_RPATH_FLAG}${PREFIX}/lib', '-L${PREFIX}/lib', \1!"
+
+SUBST_CLASSES+=		addrpath
+SUBST_STAGE.addrpath=	pre-configure
+SUBST_FILES.addrpath=	Misc/python-config.sh.in
+SUBST_SED.addrpath=	's|-L\$$libdir |${COMPILER_RPATH_FLAG}$$libdir &|g'
 
 .include "options.mk"
 
