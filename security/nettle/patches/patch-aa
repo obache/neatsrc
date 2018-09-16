@@ -1,8 +1,16 @@
 $NetBSD: patch-aa,v 1.3 2013/11/26 09:22:19 martin Exp $
 
---- configure.orig	2013-05-28 16:21:53.000000000 +0200
-+++ configure	2013-11-26 10:12:32.000000000 +0100
-@@ -4903,6 +4903,7 @@
+--- configure.orig	2017-11-19 13:36:47.000000000 +0000
++++ configure
+@@ -2731,6 +2731,7 @@ case "$host_os" in
+     fi
+     ;;
+   linux*|freebsd*)	RPATHFLAG="-Wl,-rpath," ;;
++  netbsd*)		RPATHFLAG="-Wl,-R" ;;
+   *)			RPATHFLAG="" ;;
+ esac
+ 
+@@ -7094,6 +7095,7 @@ else
  	solaris*)	CCPIC="-fPIC" ;;
  	cygwin*)	CCPIC="" ;;
  	mingw32*)	CCPIC="" ;;
@@ -10,7 +18,7 @@ $NetBSD: patch-aa,v 1.3 2013/11/26 09:22:19 martin Exp $
  	*)		CCPIC="-fpic" ;;
        esac
      else
-@@ -7187,7 +7188,7 @@
+@@ -7613,7 +7615,7 @@ fi
      enable_documentation=yes
  
    else
