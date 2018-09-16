@@ -24,7 +24,8 @@ $NetBSD: patch-configure,v 1.1 2018/06/17 19:21:21 adam Exp $
 -    Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*|OpenBSD*)
 +    Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*|OpenBSD*|Interix*|MirBSD*)
  	  LDLIBRARY='libpython$(VERSION).so'
- 	  BLDLIBRARY='-L. -lpython$(VERSION)'
+-	  BLDLIBRARY='-L. -lpython$(VERSION)'
++	  BLDLIBRARY='-Wl,-R$(LIBDIR) -L. -lpython$(VERSION)'
  	  RUNSHARED=LD_LIBRARY_PATH=`pwd`${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 -	  case $ac_sys_system in
 -	      FreeBSD*)

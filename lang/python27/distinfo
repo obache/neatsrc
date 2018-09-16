@@ -27,6 +27,6 @@ SHA1 (patch-Modules_selectmodule.c) = 01e113b0bd251978b555caaaa60b79c372edebce
 SHA1 (patch-Modules_socketmodule.c) = 16848d90947b3de1f921a0813fa5c317f76961d4
 SHA1 (patch-Modules_sunaudiodev.c) = d836d77854a2b3d79fa34a06a8e2493bf0a503e6
 SHA1 (patch-Python_thread__pthread.h) = 517cfefc2f2e13631d22bad28c327513cdf17c10
-SHA1 (patch-configure) = 999700e96dd227cdd16cea3ae1001eb887ab8fee
+SHA1 (patch-configure) = 9f86742f9f1dc2a1dfef63e39487624d851ef51d
 SHA1 (patch-pyconfig.h.in) = a0143ecdc2a3fb10220d0e3ee94fb9779a45e9e1
 SHA1 (patch-setup.py) = bf9763d5a3584970474d5951ed1fc73eb03ea11c
