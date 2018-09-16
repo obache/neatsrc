@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.14 2018/07/07 07:21:34 ryoon Exp $
 #
 
-DISTNAME=	libskk-1.0.4
+DISTNAME=	libskk-1.0.5
 CATEGORIES=	inputmethod
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ueno/}
 GITHUB_PROJECT=	${PKGBASE}
@@ -30,4 +30,5 @@ BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.36.0
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/libgee/buildlink3.mk"
 .include "../../textproc/json-glib/buildlink3.mk"
+.include "../../x11/libxkbcommon/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
