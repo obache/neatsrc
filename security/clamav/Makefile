@@ -29,6 +29,7 @@ CONFIGURE_ARGS+=	--enable-readdir_r
 CONFIGURE_ARGS+=	--disable-zlib-vcheck
 
 CHECK_PORTABILITY_SKIP=	contrib/* unit_tests/* win32/*
+CHECK_WRKREF_SKIP=	bin/clamconf
 
 .include "../../mk/bsd.prefs.mk"
 
