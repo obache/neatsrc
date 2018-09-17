@@ -25,7 +25,6 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
 CONFIGURE_ARGS+=	--with-system-ffi
-CONFIGURE_ARGS+=	--with-threads
 CONFIGURE_ARGS+=	--without-ensurepip
 CONFIGURE_ARGS+=	--without-pymalloc
 CONFIGURE_ENV+=		OPT=${CFLAGS:M*:Q}
