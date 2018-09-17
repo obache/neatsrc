@@ -15,6 +15,7 @@ FAKE_PC_SUBST_SED.${_pc_}+=	-e s,@${_var_}@,${${_var_}},g
 
 create-fake-pc:
 .for _pkg_ in ${_BUILTIN_PKGS}
+. if !empty(USE_BUILTIN.${_pkg_}:M[yY][eE][sS])
 .  for _pc_ in ${BUILTIN_FAKE_PC_FILES.${_pkg_}}
 .    if !exists(${BUILDLINK_DIR}/lib/pkgconfig/${_pc_}.pc) && \
 	!exists(${BUILDLINK_X11_DIR}/lib/pkgconfig/${_pc_}.pc)
@@ -35,4 +36,5 @@ create-fake-pc:
 .      endif
 .    endif
 .  endfor
+. endif
 .endfor
