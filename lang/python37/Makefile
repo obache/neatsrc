@@ -169,6 +169,12 @@ SUBST_STAGE.pfindlib=	pre-configure
 SUBST_FILES.pfindlib=	Lib/ctypes/util.py
 SUBST_SED.pfindlib=	-e 's!\(-Wl,-t -o\)!${COMPILER_RPATH_FLAG}${PREFIX}/lib -L${PREFIX}/lib \1!'
 
+SUBST_CLASSES+=		setupdir
+SUBST_MESSAGE.setupdir=	Fixing paths in setup.py.
+SUBST_STAGE.setupdir=	post-configure
+SUBST_FILES.setupdir=	setup.py
+SUBST_VARS.setupdir=	BUILDLINK_DIR LOCALBASE
+
 .include "options.mk"
 
 CHECK_INTERPRETER_SKIP=	lib/python${PY_VER_SUFFIX}/venv/scripts/posix/pydoc

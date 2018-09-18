@@ -50,6 +50,17 @@ Also look for uuid/uuid.h.
          self.add_multiarch_paths()
  
          # Add paths specified in the environment variables LDFLAGS and
+@@ -600,8 +601,8 @@ class PyBuildExt(build_ext):
+         # if a file is found in one of those directories, it can
+         # be assumed that no additional -I,-L directives are needed.
+         if not cross_compiling:
+-            lib_dirs = self.compiler.library_dirs + system_lib_dirs
+-            inc_dirs = self.compiler.include_dirs + system_include_dirs
++            lib_dirs = [re.sub('^@LOCALBASE@/', '@BUILDLINK_DIR@/', dir) for dir in self.compiler.library_dirs] + system_lib_dirs
++            inc_dirs = [re.sub('^@LOCALBASE@/', '@BUILDLINK_DIR@/', dir) for dir in self.compiler.include_dirs] + system_include_dirs
+         else:
+             # Add the sysroot paths. 'sysroot' is a compiler option used to
+             # set the logical path of the standard system headers and
 @@ -814,8 +815,6 @@ class PyBuildExt(build_ext):
          # use the same library for the readline and curses modules.
          if 'curses' in readline_termcap_library:
