@@ -195,7 +195,9 @@ BUILDLINK_DEPMETHOD.readline=		build
 .include "../../archivers/xz/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/libffi/buildlink3.mk"
+.if ${OPSYS} == "Linux" || ${OPSYS} == "SunOS"
 .include "../../devel/libuuid/buildlink3.mk"
+.endif
 .include "../../devel/readline/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 BUILDLINK_API_DEPENDS.openssl+=	openssl>=1.0.2
