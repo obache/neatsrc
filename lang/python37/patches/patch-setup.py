@@ -130,6 +130,14 @@ Also look for uuid/uuid.h.
              libraries = ['m']
              sources = [
                '_decimal/_decimal.c',
+@@ -2170,6 +2187,7 @@ class PyBuildExt(build_ext):
+                 include_dirs=openssl_includes,
+                 library_dirs=openssl_libdirs,
+                 libraries=openssl_libs,
++                runtime_library_dirs=openssl_libdirs,
+                 depends=['socketmodule.h']
+             )
+         else:
 @@ -2358,7 +2379,7 @@ def main():
            # If you change the scripts installed here, you also need to
            # check the PyBuildScripts command above, and change the links
