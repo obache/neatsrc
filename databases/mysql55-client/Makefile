@@ -42,4 +42,9 @@ post-install:
 	${LN} -s ${mf:S/_embedded//} ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/${mf}
 .endfor
 
+SUBST_CLASSES+=		addrpath
+SUBST_STAGE.addrpath=	pre-configure
+SUBST_FILES.addrpath+=	scripts/CMakeLists.txt
+SUBST_SED.addrpath=	-e 's|SET(RPATH_OPTION "")|SET(RPATH_OPTION "${COMPILER_RPATH_FLAG}$$pkglibdir")|'
+
 .include "../../mk/bsd.pkg.mk"
