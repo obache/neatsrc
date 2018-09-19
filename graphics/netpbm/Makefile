@@ -55,7 +55,7 @@ TEST_TARGET=	test
 .include "../../mk/bsd.prefs.mk"
 
 # only used if NEED_RUNTIME_PATH is set, so set it unconditionally
-MAKE_FLAGS+=	NETPBMLIB_RUNTIME_PATH=${PREFIX}
+MAKE_FLAGS+=	NETPBMLIB_RUNTIME_PATH=${PREFIX}/lib
 
 MAKE_FLAGS.NetBSD+=	NEED_RUNTIME_PATH=Y
 MAKE_FLAGS.Darwin+=	NETPBMLIBTYPE=dylib
