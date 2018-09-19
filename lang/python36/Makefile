@@ -186,6 +186,10 @@ SUBST_FILES.sslbase=	setup.py
 SUBST_VARS.sslbase=	SSLBASE
 
 CHECK_INTERPRETER_SKIP=	lib/python${PY_VER_SUFFIX}/venv/scripts/posix/pydoc
+CHECK_WRKREF_SKIP+=	lib/python${PY_VER_SUFFIX}/__pycache__/_sysconfigdata_${PY_PLATNAME}.cpython-36.opt-1.pyc
+CHECK_WRKREF_SKIP+=	lib/python${PY_VER_SUFFIX}/__pycache__/_sysconfigdata_${PY_PLATNAME}.cpython-36.pyc
+CHECK_WRKREF_SKIP+=	lib/python${PY_VER_SUFFIX}/_sysconfigdata_${PY_PLATNAME}.py
+CHECK_WRKREF_SKIP+=	lib/python${PY_VER_SUFFIX}/config-${PY_VER_SUFFIX}/Makefile
 
 # Avoid error: Cannot generate ./Include/opcode.h, python not found !
 post-configure:
