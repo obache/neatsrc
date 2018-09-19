@@ -30,7 +30,6 @@ CONFIGURE_ARGS+=	--without-pymalloc
 CONFIGURE_ENV+=		OPT=${CFLAGS:M*:Q}
 CONFIGURE_ENV+=		ac_cv_path_mkdir=${TOOLS_PATH.mkdir}
 PKGCONFIG_OVERRIDE+=	Misc/python.pc.in
-LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib
 
 PTHREAD_OPTS+=	require
 .include "../../mk/pthread.buildlink3.mk"

@@ -50,6 +50,15 @@ Assume panel_library is correct; this is a fix for ncurses' gnupanel
          self.add_multiarch_paths()
  
          # Add paths specified in the environment variables LDFLAGS and
+@@ -566,6 +566,8 @@ class PyBuildExt(build_ext):
+             # the one that is currently installed (issue #7473)
+             add_dir_to_list(self.compiler.library_dirs,
+                             sysconfig.get_config_var("LIBDIR"))
++            add_dir_to_list(self.compiler.runtime_library_dirs,
++                            sysconfig.get_config_var("LIBDIR"))
+             add_dir_to_list(self.compiler.include_dirs,
+                             sysconfig.get_config_var("INCLUDEDIR"))
+ 
 @@ -776,8 +776,6 @@ class PyBuildExt(build_ext):
          # use the same library for the readline and curses modules.
          if 'curses' in readline_termcap_library:
