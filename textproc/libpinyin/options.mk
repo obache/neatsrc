@@ -10,6 +10,7 @@ PKG_SUGGESTED_OPTIONS=	bdb
 .if !empty(PKG_OPTIONS:Mbdb)
 BDB_INCOMPATIBLE+=	db1 db2 db3
 .include "../../mk/bdb.buildlink3.mk"
+BUILDLINK_AUTO_DIRS.${BDB_TYPE}=	yes
 BUILDLINK_TRANSFORM+=	l:db${BDB_LIBS:S/^-l/:/}
 CONFIGURE_ARGS+=	--with-dbm=BerkeleyDB
 .elif !empty(PKG_OPTIONS:Mkyotocabinet)
