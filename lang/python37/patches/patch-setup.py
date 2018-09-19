@@ -50,6 +50,15 @@ Also look for uuid/uuid.h.
          self.add_multiarch_paths()
  
          # Add paths specified in the environment variables LDFLAGS and
+@@ -591,6 +592,8 @@ class PyBuildExt(build_ext):
+             # the one that is currently installed (issue #7473)
+             add_dir_to_list(self.compiler.library_dirs,
+                             sysconfig.get_config_var("LIBDIR"))
++            add_dir_to_list(self.compiler.runtime_library_dirs,
++                            sysconfig.get_config_var("LIBDIR"))
+             add_dir_to_list(self.compiler.include_dirs,
+                             sysconfig.get_config_var("INCLUDEDIR"))
+ 
 @@ -600,8 +601,8 @@ class PyBuildExt(build_ext):
          # if a file is found in one of those directories, it can
          # be assumed that no additional -I,-L directives are needed.

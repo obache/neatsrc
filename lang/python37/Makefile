@@ -175,6 +175,11 @@ SUBST_STAGE.setupdir=	post-configure
 SUBST_FILES.setupdir=	setup.py
 SUBST_VARS.setupdir=	BUILDLINK_DIR LOCALBASE
 
+SUBST_CLASSES+=		addrpath
+SUBST_STAGE.addrpath=	pre-configure
+SUBST_FILES.addrpath=	Misc/python-config.sh.in
+SUBST_SED.addrpath=	's|-L\$$libdir |${COMPILER_RPATH_FLAG}$$libdir &|g'
+
 .include "options.mk"
 
 CHECK_INTERPRETER_SKIP=	lib/python${PY_VER_SUFFIX}/venv/scripts/posix/pydoc
