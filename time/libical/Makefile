@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.17 2018/08/22 09:47:14 wiz Exp $
 #
 
-DISTNAME=	libical-3.0.3
-PKGREVISION=	2
+DISTNAME=	libical-3.0.4
 CATEGORIES=	time
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libical/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -14,17 +13,17 @@ LICENSE=	gnu-lgpl-v2.1 OR mpl-2.0
 
 USE_TOOLS+=	perl pkg-config
 USE_CMAKE=	yes
-CMAKE_ARGS+= -DUSE_BUILTIN_TZDATA=false
-CMAKE_ARGS+= -DICAL_BUILD_DOCS=false
-MAKE_JOBS_SAFE=	no
+CMAKE_ARGS+= 	-DUSE_BUILTIN_TZDATA=false
+CMAKE_ARGS+= 	-DICAL_BUILD_DOCS=false
+CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=TRUE
+CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:PATH=${PREFIX}/lib
 
 PKGCONFIG_OVERRIDE+=	libical.pc.in src/libical-glib/libical-glib.pc.in
 
 .include "options.mk"
 
-# C++ is only needed for test
 USE_LANGUAGES=	c c++
-#TEST_TARGET=	check
+TEST_TARGET=	test
 
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"

@@ -1,9 +1,10 @@
 $NetBSD: distinfo,v 1.8 2018/05/14 08:34:56 jperkin Exp $
 
-SHA1 (libical-3.0.3.tar.gz) = 3ca0c859de22cf05e87f8139499ab1e3d8dd1d00
-RMD160 (libical-3.0.3.tar.gz) = 83960fbd48def56f9e5d4c472d637e210066303a
-SHA512 (libical-3.0.3.tar.gz) = 319a9e02b34835eb222728cb691b18e4f490b21f7faa55d266f298c07dafb5e15a492fb2105e2c3ab6d60d2affcf430b5b248cc38abc1e3bc29143662676fe70
-Size (libical-3.0.3.tar.gz) = 866624 bytes
-SHA1 (patch-src_libical_ical__file.cmake) = 95802673b41a6eea2ddf56ed933be5897d1f56dd
+SHA1 (libical-3.0.4.tar.gz) = 56bef5110c17053292f8ef36d09ba991908354ab
+RMD160 (libical-3.0.4.tar.gz) = 4d7d06407b650a067fcfe1a28ec1c8b429a2d976
+SHA512 (libical-3.0.4.tar.gz) = acb95bf3dba8e89c0cfb91023ae340478d695b50aad8c282acda33cab4712a12d55c6d3bf1b572e0e6eae162ef40fd783b47a05a7654fa9dde78a0542e3dad7a
+Size (libical-3.0.4.tar.gz) = 871853 bytes
+SHA1 (patch-cmake_modules_FindICU.cmake) = fe268ad492efa9282dbc20256035d05ff78b32e2
+SHA1 (patch-src_libical-glib_tools_generator.c) = 8e787aec59528313e97c56ecbbb6a3dd91207e22
 SHA1 (patch-src_libical_icalcomponent.c) = 6f86ee6e4daba04178f25f8d042dd4773dbb1cab
 SHA1 (patch-src_libical_icaltz-util.c) = 60a7359284a54d345ffe71f75081e9ac27b666b9
