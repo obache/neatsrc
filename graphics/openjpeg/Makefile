@@ -13,6 +13,8 @@ LICENSE=	2-clause-bsd
 USE_CMAKE=	yes
 USE_LANGUAGES=	c99 c++
 CMAKE_ARGS+=	-DOPENJPEG_INSTALL_MAN_DIR=${PKGMANDIR}
+CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH=${PREFIX}/lib
+CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=TRUE
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/lcms2/buildlink3.mk"
