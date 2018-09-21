@@ -20,6 +20,8 @@ FLEX_REQD=		2.5.31
 
 .include "options.mk"
 
+CONFIGURE_ARGS+=	--disable-debug
+
 PKGCONFIG_OVERRIDE+=	pkgconfig/gstreamer-controller.pc.in
 PKGCONFIG_OVERRIDE+=	pkgconfig/gstreamer-check.pc.in
 PKGCONFIG_OVERRIDE+=	pkgconfig/gstreamer-net.pc.in
