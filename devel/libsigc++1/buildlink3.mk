@@ -8,6 +8,9 @@ LIBSIGCPP1_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.libsigcpp1+=	libsigc++1>=1.2.3nb1
 BUILDLINK_ABI_DEPENDS.libsigcpp1+=	libsigc++1>=1.2.7nb1
 BUILDLINK_PKGSRCDIR.libsigcpp1?=	../../devel/libsigc++1
+BUILDLINK_INCDIRS.libsigcpp1=		include/sigc++-1.2
+BUILDLINK_INCDIRS.libsigcpp1+=		lib/sigc++-1.2/include
+
 .endif # LIBSIGCPP1_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-libsigcpp1
