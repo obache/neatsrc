@@ -641,7 +641,7 @@ buildlink-${_pkg_}-cookie:
 	${TOUCH} ${TOUCH_FLAGS} ${_BLNK_COOKIE.${_pkg_}}
 
 BUILDLINK_CONTENTS_FILTER.${_pkg_}?=					\
-	${EGREP} '(${BUILDLINK_INCDIRS.${_pkg_}:S/^/^/:S/$$/\//:ts|}|^share/idl/.*\.idl$$|${BUILDLINK_PC_DIRS.${_pkg_}:S/^/^/:S/$$/\/.*\.pc$$/:ts|}|${BUILDLINK_LIBDIRS.${_pkg_}:S/^/^/:S/$$/\/lib[^\/]*\.[^\/]*$$/:ts|}|\.cmake$$|${BUILDLINK_BINDIRS.${_pkg_}:S/^/^/:S/$$/\//:ts|})'
+	${EGREP} '(${BUILDLINK_INCDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\//:ts|}|^share/idl/.*\.idl$$|${BUILDLINK_PC_DIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\/.*\.pc$$/:ts|}|${BUILDLINK_LIBDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\/lib[^\/]*\.[^\/]*$$/:ts|}|\.cmake$$|${BUILDLINK_BINDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\//:ts|})'
 
 BUILDLINK_FILES_CMD.${_pkg_}?=						\
 	${_BLNK_PKG_INFO.${_pkg_}} -qL ${BUILDLINK_PKGNAME.${_pkg_}} |	\
