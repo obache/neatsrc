@@ -9,6 +9,8 @@ BUILDLINK_API_DEPENDS.ruby-gnome2-glib+=	${RUBY_PKGPREFIX}-gnome2-glib>=0.17.0
 BUILDLINK_ABI_DEPENDS.ruby-gnome2-glib+=	${RUBY_PKGPREFIX}-gnome2-glib>=2.2.7
 BUILDLINK_PKGSRCDIR.ruby-gnome2-glib?=		../../devel/ruby-gnome2-glib
 
+BUILDLINK_FILES.ruby-gnome2-glib=		${GEM_HOME}/gems/glib2-*/ext/glib2/*.h
+
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../lang/ruby/buildlink3.mk"
 .endif # RUBY_GNOME2_GLIB_BUILDLINK3_MK
