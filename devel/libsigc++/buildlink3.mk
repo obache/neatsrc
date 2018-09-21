@@ -8,6 +8,8 @@ LIBSIGCPP_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.libsigcpp+=	libsigc++>=2.0.3
 BUILDLINK_ABI_DEPENDS.libsigcpp+=	libsigc++>=2.0.17nb1
 BUILDLINK_PKGSRCDIR.libsigcpp?=		../../devel/libsigc++
+BUILDLINK_INCDIRS.libsigcpp=		include/sigc++-2.0
+BUILDLINK_INCDIRS.libsigcpp+=		lib/sigc++-2.0/include
 
 # needs C++11
 USE_LANGUAGES+=	c++11
