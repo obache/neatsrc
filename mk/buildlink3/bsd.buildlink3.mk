@@ -503,9 +503,9 @@ BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${_dir_}
 .  endif
 . endif
 .  if !empty(BUILDLINK_PC_DIRS.${_pkg_})
-.    for _dir_ in ${BUILDLINK_PC_DIRS.${_pkg_}:S/^/${BUILDLINK_PREFIX.${_pkg_}}\//}
-.      if empty(BUILDLINK_PC_DIRS:M${_dir_}) && exists(${_dir_})
-BUILDLINK_PC_DIRS+=	${_dir_}
+.    for _dir_ in ${BUILDLINK_PC_DIRS.${_pkg_}}
+.      if empty(BUILDLINK_PC_DIRS:M${BUILDLINK_DIR}/${_dir_}) && exists(${BUILDLINK_PREFIX.${_pkg_}}/${_dir_})
+BUILDLINK_PC_DIRS+=	${BUILDLINK_DIR}/${_dir_}
 .      endif
 .    endfor
 .  endif
