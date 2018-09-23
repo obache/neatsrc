@@ -24,6 +24,7 @@ CONFIGURE_ARGS+=	--with-system-nspr
 CONFIGURE_ARGS+=	--with-system-zlib
 CONFIGURE_ARGS+=	--with-pthreads
 CONFIGURE_ARGS+=	--disable-jemalloc
+CONFIGURE_ARGS+=	--disable-debug-symbols
 
 CONFIGURE_DIRS=		js/src
 
