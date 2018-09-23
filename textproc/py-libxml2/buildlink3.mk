@@ -9,6 +9,8 @@ PY_LIBXML2_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.py-libxml2+=	${PYPKGPREFIX}-libxml2>=2.6.27
 BUILDLINK_PKGSRCDIR.py-libxml2?=	../../textproc/py-libxml2
+BUILDLINK_FILES.py-libxml2+=		${PYSITELIB}/libxml2mod.so
+
 .endif # PY_LIBXML2_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-py-libxml2
