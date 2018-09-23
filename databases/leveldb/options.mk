@@ -9,5 +9,6 @@ PKG_SUGGESTED_OPTIONS=	snappy
 PLIST_VARS+=		snappy
 
 .if !empty(PKG_OPTIONS:Msnappy)
+BUILDLINK_AUTO_DIRS.snappy+=	rpath
 .include "../../devel/snappy/buildlink3.mk"
 .endif
