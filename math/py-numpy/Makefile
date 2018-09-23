@@ -54,5 +54,15 @@ do-test:
 # blas and lapack are not needed; numpy will use Accelerate.framework
 .include "../../math/blas/buildlink3.mk"
 .include "../../math/lapack/buildlink3.mk"
+
+post-patch:
+	${CP} ${FILESDIR}/site.cfg ${FAKEHOMEDIR}/site.cfg
+
+SUBST_CLASSES+=		site_cfg
+SUBST_STAGE.site_cfg=	pre-configure
+SUBST_VARS.site_cfg=	LOCALBASE BUILDLINK_PREFIX.blas BUILDLINK_PREFIX.lapack
+SUBST_VARS.site_cfg+=	X11BASE
+SUBST_FILES.site_cfg=	${FAKEHOMEDIR}/site.cfg
+
 .endif
 .include "../../mk/bsd.pkg.mk"
