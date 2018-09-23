@@ -21,6 +21,7 @@ CONFLICTS+=		gst-plugins0.10-base<0.10.26
 
 CONFIGURE_ARGS+=	--disable-examples
 CONFIGURE_ARGS+=	--disable-tests
+CONFIGURE_ARGS+=	--disable-debug
 CONFIGURE_ENV+=		ac_cv_path_PYTHON=${TRUE:Q}
 CONFIGURE_ENV+=		ac_cv_path_XSLTPROC=${TRUE:Q}
 
