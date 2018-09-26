@@ -60,6 +60,8 @@ OWN_DIRS_PERMS+=	${VARBASE}/lib/misc ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0755
 CONF_FILES_PERMS+=	/dev/null ${VARBASE}/lib/misc/PolicyKit.reload \
 				${POLICYKIT_USER} ${POLICYKIT_GROUP} 0664
 
+SPECIAL_PERMS+=		${PREFIX}/libexec/polkit-set-default-helper \
+				${POLICYKIT_USER} ${REAL_ROOT_GROUP} 4555
 SPECIAL_PERMS+=		${PREFIX}/libexec/polkit-explicit-grant-helper \
 				${REAL_ROOT_USER} ${POLICYKIT_GROUP} 2555
 SPECIAL_PERMS+=		${PREFIX}/libexec/polkit-grant-helper \
@@ -68,6 +70,10 @@ SPECIAL_PERMS+=		${PREFIX}/libexec/polkit-read-auth-helper \
 				${REAL_ROOT_USER} ${POLICYKIT_GROUP} 2555
 SPECIAL_PERMS+=		${PREFIX}/libexec/polkit-revoke-helper \
 				${REAL_ROOT_USER} ${POLICYKIT_GROUP} 2555
+SPECIAL_PERMS+=		${PREFIX}/libexec/polkit-grant-helper-pam \
+				${REAL_ROOT_USER} ${POLICYKIT_GROUP} 4554
+SPECIAL_PERMS+=		${PREFIX}/libexec/polkit-resolve-exe-helper \
+				${SETUID_ROOT_PERMS}
 
 .include "../../mk/bsd.prefs.mk"
 
