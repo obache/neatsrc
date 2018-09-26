@@ -19,6 +19,7 @@ PKGCONFIG_OVERRIDE+=	rime.pc.in
 .include "options.mk"
 
 CHECK_PORTABILITY_SKIP+=	thirdparty/src/yaml-cpp/test/gmock-1.7.0/configure
+CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=TRUE
 
 .include "../../converters/opencc/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
