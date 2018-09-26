@@ -9,6 +9,8 @@ PY_NUMPY_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.py-numpy+=	${PYPKGPREFIX}-numpy>=1.0
 BUILDLINK_PKGSRCDIR.py-numpy?=		../../math/py-numpy
+BUILDLINK_INCDIRS.py-numpy=		${PYSITELIB}/numpy/core/include
+BUILDLINK_LIBDIRS.py-numpy=		${PYSITELIB}/numpy/core/lib
 
 .include "../../mk/bsd.fast.prefs.mk"
 
