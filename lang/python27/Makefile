@@ -214,6 +214,12 @@ post-install:
 CONFIGURE_ENV+=		ac_cv_type_socklen_t=yes
 .endif
 
+# contains build time path related information
+CHECK_WRKREF_SKIP+=	lib/python${PY_VER_SUFFIX}/_sysconfigdata.py
+CHECK_WRKREF_SKIP+=	lib/python${PY_VER_SUFFIX}/_sysconfigdata.pyc
+CHECK_WRKREF_SKIP+=	lib/python${PY_VER_SUFFIX}/_sysconfigdata.pyo
+CHECK_WRKREF_SKIP+=	lib/python${PY_VER_SUFFIX}/config/Makefile
+
 BUILDLINK_DEPMETHOD.readline=		build
 
 .include "../../archivers/bzip2/buildlink3.mk"
