@@ -8,6 +8,7 @@ GLIB_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.glib+=	glib>=1.2.10nb5
 BUILDLINK_ABI_DEPENDS.glib+=	glib>=1.2.10nb7
 BUILDLINK_PKGSRCDIR.glib?=	../../devel/glib
+BUILDLINK_INCDIRS.glib=		include/glib/glib-1.2 lib/glib/include
 
 PTHREAD_OPTS+=	require
 
