@@ -24,9 +24,6 @@ CONFIGURE_ARGS+=	--with-threads
 CONFIGURE_ENV+=		MKDIR_P=${MKDIR:Q}
 CONFIGURE_ENV+=		OPT=${CFLAGS:Q}
 PKGCONFIG_OVERRIDE+=	Misc/python.pc.in
-LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib
-
-LDFLAGS+=		-L${WRKSRC}
 
 # $RANDOM usage there is fine
 CHECK_PORTABILITY_SKIP=	Tools/faqwiz/move-faqwiz.sh
