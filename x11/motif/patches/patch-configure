@@ -1,0 +1,15 @@
+$NetBSD$
+
+* prevent to add -g unconditionally
+
+--- configure.orig	2017-12-05 12:49:56.000000000 +0000
++++ configure
+@@ -14839,7 +14839,7 @@ fi
+ 
+ if test x$GCC = xyes
+ then
+-    CFLAGS="$CFLAGS -Wall -g -fno-strict-aliasing -Wno-unused -Wno-comment"
++    CFLAGS="$CFLAGS -Wall -fno-strict-aliasing -Wno-unused -Wno-comment"
+     if test ` $CC -dumpversion | sed -e 's/\(^.\).*/\1/'` = "4" ; then
+         CFLAGS="$CFLAGS -fno-tree-ter"
+     fi
