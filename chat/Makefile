@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.202 2018/08/20 05:21:04 wiz Exp $
+# $NetBSD: Makefile,v 1.205 2018/09/19 20:44:36 nia Exp $
 #
 
 COMMENT=	Communication programs
@@ -28,6 +28,7 @@ SUBDIR+=	farstream
 SUBDIR+=	finch
 SUBDIR+=	fisg
 SUBDIR+=	gajim
+SUBDIR+=	gajim-plugin-omemo
 SUBDIR+=	gale
 SUBDIR+=	gg2
 SUBDIR+=	gloox
@@ -102,8 +103,11 @@ SUBDIR+=	pircbot
 SUBDIR+=	prosody
 SUBDIR+=	psi
 SUBDIR+=	psybnc
+SUBDIR+=	py-axolotl
+SUBDIR+=	py-axolotl-curve25519
 SUBDIR+=	py-hangups
 SUBDIR+=	py-mastodon
+SUBDIR+=	py-nbxmpp
 SUBDIR+=	py-xmpppy
 SUBDIR+=	quirc
 SUBDIR+=	riece

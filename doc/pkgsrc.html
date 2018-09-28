@@ -1679,19 +1679,15 @@ spelling mistakes) takes place.</p>
 	    <code class="varname">MAKECONF</code> is set to
 	    <code class="filename">/dev/null</code> to avoid picking up
 	    settings used by builds in <code class="filename">/usr/src</code>.</p></li>
-<li class="listitem"><p><code class="varname">DEPENDS_TARGET</code>:
-	    By default, dependencies are only installed, and no binary
-	    package is created for them. You can set this variable to
-	    <code class="literal">package-install</code> to automatically create binary
-	    packages after installing dependencies. Please note that the
-	    <code class="varname">PKGSRC_KEEP_BIN_PKGS</code> can be set to
-	    <code class="literal">yes</code> to preserve binary packages when
-	    using the <code class="literal">install</code> as well.</p></li>
 </ul></div>
 </div>
 <div class="sect1">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
 <a name="variables-affecting-installation"></a>5.3. Variables affecting the installation process</h2></div></div></div>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="varname">PKGSRC_KEEP_BIN_PKGSRC</code>:
+                By default, binary packages of built packages are
+                preserved in <code class="varname">PACKAGES</code>/All. Setting
+		this variable to "no" prevents this.</p></li></ul></div>
 <p>Packages have to support installation into a
     subdirectory of <code class="varname">WRKDIR</code>. This allows a package
     to be built, before the actual filesystem is touched. DESTDIR
@@ -7109,25 +7105,31 @@ DEPENDS+=       ImageMagick&gt;=6.0:../../graphics/ImageMagick
     already have installed on his system, e.g. if your package
     installs the same set of files as another package in the pkgsrc
     tree or has the same <code class="varname">PKGNAME</code>.</p>
-<p>These cases are handled automatically by the packaging tools
-    at package installation time and do not need to be handled
-    manually.</p>
-<p>In case the conflicts can not be recognized automatically
-    (e.g., packages using the same config file location but no other
-    shared files), you can set <code class="varname">CONFLICTS</code> to a
-    space-separated list of packages (including version string) your
-    package conflicts with.</p>
-<p>For example, if both <a href="https://cdn.NetBSD.org/pub/pkgsrc/current/pkgsrc/foo/bar/README.html" target="_top"><code class="filename">foo/bar</code></a>
-    and <a href="https://cdn.NetBSD.org/pub/pkgsrc/current/pkgsrc/foo/baz/README.html" target="_top"><code class="filename">foo/baz</code></a>
-    use the same config file, you would set in
-    <code class="filename">foo/bar/Makefile</code>:</p>
+<p>For example, <a href="https://cdn.NetBSD.org/pub/pkgsrc/current/pkgsrc/x11/libXaw3d/README.html" target="_top"><code class="filename">x11/libXaw3d</code></a>
+    and <a href="https://cdn.NetBSD.org/pub/pkgsrc/current/pkgsrc/x11/Xaw-Xpm/README.html" target="_top"><code class="filename">x11/Xaw-Xpm</code></a>
+    install the same shared library, thus you set in
+    <code class="filename">pkgsrc/x11/libXaw3d/Makefile</code>:</p>
 <pre class="programlisting">
-CONFLICTS=      baz-[0-9]*
-</pre>
-<p>and in <code class="filename">pkgsrc/foo/baz/Makefile</code>:</p>
+CONFLICTS=      Xaw-Xpm-[0-9]*
+    </pre>
+<p>and in <code class="filename">pkgsrc/x11/Xaw-Xpm/Makefile</code>:</p>
 <pre class="programlisting">
-CONFLICTS=      bar-[0-9]*
-</pre>
+CONFLICTS=      libXaw3d-[0-9]*
+    </pre>
+<p><a class="citerefentry" href="http://netbsd.gw.com/cgi-bin/man-cgi?pkg_add+1.i386+NetBSD-7.1.2"><span class="citerefentry"><span class="refentrytitle">pkg_add</span>(1)</span></a> is able to detect attempts to install packages
+    that conflict with existing packages and abort. However, in many
+    situations this is too late in the process. Binary package managers
+    will not know about the conflict until they attempt to install the
+    package after already downloading it and all its dependencies.
+    Users may also waste time building a package and its dependencies
+    only to find out at the end that it conflicts with another package
+    they have installed.</p>
+<p>To avoid these issues <code class="varname">CONFLICTS</code> entries
+    should be added in all cases where it is known that packages conflict
+    with each other.  These <code class="varname">CONFLICTS</code> entries are
+    exported in <a class="citerefentry" href="http://netbsd.gw.com/cgi-bin/man-cgi?pkg_summary+5.i386+NetBSD-7.1.2"><span class="citerefentry"><span class="refentrytitle">pkg_summary</span>(5)</span></a> files and consumed by binary package
+    managers to inform users that packages cannot be installed onto
+    the target system.</p>
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
@@ -8833,7 +8835,7 @@ place.</p></li>
 	and if you still don't have the answer, ask on the
 	<code class="literal">pkgsrc-users</code> mailing list.</p>
 <div class="qandaset">
-<a name="idm79114832"></a><dl>
+<a name="idm79233488"></a><dl>
 <dt>22.1. <a href="#devfaq.makeflags">What is the difference between
 	MAKEFLAGS, .MAKEFLAGS and
 	MAKE_FLAGS?</a>
@@ -8878,7 +8880,7 @@ do?</a>
 <tbody>
 <tr class="question">
 <td align="left" valign="top">
-<a name="devfaq.makeflags"></a><a name="idm79114448"></a><p><b>22.1.</b></p>
+<a name="devfaq.makeflags"></a><a name="idm79233104"></a><p><b>22.1.</b></p>
 </td>
 <td align="left" valign="top"><p>What is the difference between
 	<code class="varname">MAKEFLAGS</code>, <code class="varname">.MAKEFLAGS</code> and
@@ -8894,7 +8896,7 @@ do?</a>
 </tr>
 <tr class="question">
 <td align="left" valign="top">
-<a name="devfaq.make"></a><a name="idm79102160"></a><p><b>22.2.</b></p>
+<a name="devfaq.make"></a><a name="idm79229008"></a><p><b>22.2.</b></p>
 </td>
 <td align="left" valign="top"><p>What is the difference between
 	<code class="varname">MAKE</code>, <code class="varname">GMAKE</code> and
@@ -8912,7 +8914,7 @@ do?</a>
 </tr>
 <tr class="question">
 <td align="left" valign="top">
-<a name="devfaq.cc"></a><a name="idm79097808"></a><p><b>22.3.</b></p>
+<a name="devfaq.cc"></a><a name="idm79224656"></a><p><b>22.3.</b></p>
 </td>
 <td align="left" valign="top"><p>What is the difference between
 	<code class="varname">CC</code>, <code class="varname">PKG_CC</code> and
@@ -8930,7 +8932,7 @@ do?</a>
 </tr>
 <tr class="question">
 <td align="left" valign="top">
-<a name="devfaq.bl3flags"></a><a name="idm79093584"></a><p><b>22.4.</b></p>
+<a name="devfaq.bl3flags"></a><a name="idm79212240"></a><p><b>22.4.</b></p>
 </td>
 <td align="left" valign="top"><p>What is the difference between
 	<code class="varname">BUILDLINK_LDFLAGS</code>,
@@ -8943,7 +8945,7 @@ do?</a>
 </tr>
 <tr class="question">
 <td align="left" valign="top">
-<a name="devfaq.bl3prefix"></a><a name="idm79091408"></a><p><b>22.5.</b></p>
+<a name="devfaq.bl3prefix"></a><a name="idm79210064"></a><p><b>22.5.</b></p>
 </td>
 <td align="left" valign="top"><p>Why does <span class="command"><strong>make show-var
 	VARNAME=BUILDLINK_PREFIX.<em class="replaceable"><code>foo</code></em></strong></span>
@@ -8959,7 +8961,7 @@ do?</a>
 </tr>
 <tr class="question">
 <td align="left" valign="top">
-<a name="devfaq.master_sites"></a><a name="idm79088336"></a><p><b>22.6.</b></p>
+<a name="devfaq.master_sites"></a><a name="idm79206992"></a><p><b>22.6.</b></p>
 </td>
 <td align="left" valign="top"><p>What does
 	<code class="code">${MASTER_SITE_SOURCEFORGE:=package/}</code> mean? I
@@ -8983,7 +8985,7 @@ do?</a>
 </tr>
 <tr class="question">
 <td align="left" valign="top">
-<a name="devfaq.mailinglists"></a><a name="idm79081424"></a><p><b>22.7.</b></p>
+<a name="devfaq.mailinglists"></a><a name="idm79200080"></a><p><b>22.7.</b></p>
 </td>
 <td align="left" valign="top"><p>Which mailing lists are there for package
 	developers?</p></td>
@@ -9008,7 +9010,7 @@ do?</a>
 </tr>
 <tr class="question">
 <td align="left" valign="top">
-<a name="devfaq.documentation"></a><a name="idm79077584"></a><p><b>22.8.</b></p>
+<a name="devfaq.documentation"></a><a name="idm79196240"></a><p><b>22.8.</b></p>
 </td>
 <td align="left" valign="top"><p>Where is the pkgsrc
 	documentation?</p></td>
@@ -9056,7 +9058,7 @@ do?</a>
 </tr>
 <tr class="question">
 <td align="left" valign="top">
-<a name="devfaq.too-much-time"></a><a name="idm79071184"></a><p><b>22.9.</b></p>
+<a name="devfaq.too-much-time"></a><a name="idm79189840"></a><p><b>22.9.</b></p>
 </td>
 <td align="left" valign="top"><p>I have a little time to kill.  What shall I
 do?</p></td>

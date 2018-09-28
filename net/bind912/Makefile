@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2018/09/09 13:16:01 taca Exp $
+# $NetBSD: Makefile,v 1.4 2018/09/27 04:24:18 wiz Exp $
 
 DISTNAME=	bind-${BIND_VERSION}
 PKGNAME=	${DISTNAME:S/-P/pl/}
@@ -15,7 +15,7 @@ CONFLICTS+=	host-[0-9]*
 MAKE_JOBS_SAFE=	no
 USE_CWRAPPERS=	no
 
-BIND_VERSION=	9.12.2-P1
+BIND_VERSION=	9.12.2-P2
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -34,7 +34,9 @@ CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=	--disable-openssl-version-check
 CONFIGURE_ARGS+=	--with-openssl=${SSLBASE:Q}
 CONFIGURE_ARGS+=	--with-python=no
-.if ${MACHINE_PLATFORM:MNetBSD-*-mipsel} != ""
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-m68k) || \
+    !empty(MACHINE_PLATFORM:MNetBSD-*-mipsel) || \
+    !empty(MACHINE_PLATFORM:MNetBSD-*-vax)
 CONFIGURE_ARGS+=	--disable-atomic
 .endif
 .if ${MACHINE_PLATFORM:MNetBSD-*-powerpc} != ""

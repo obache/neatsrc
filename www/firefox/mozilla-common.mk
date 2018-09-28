@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.114 2018/09/05 15:29:58 ryoon Exp $
+# $NetBSD: mozilla-common.mk,v 1.116 2018/09/21 10:11:19 jperkin Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -48,7 +48,7 @@ test:
 TOOLS_PLATFORM.tar=	${TOOLS_PATH.bsdtar}
 USE_TOOLS+=		bsdtar
 .endif
-GCC_REQD=		6.1
+GCC_REQD+=		6.1
 .if !empty(MACHINE_PLATFORM:MNetBSD-[0-7]**-*) || \
 	!empty(MACHINE_PLATFORM:MNetBSD-8.[0-8]*-*)
 USE_PKGSRC_GCC_RUNTIME=	yes
@@ -220,7 +220,7 @@ BUILDLINK_API_DEPENDS.nss+=	nss>=3.38
 #.include "../../graphics/cairo/buildlink3.mk"
 BUILDLINK_DEPMETHOD.clang=	build
 .include "../../lang/clang/buildlink3.mk"
-BUILDLINK_API_DEPENDS.rust+=	rust>=1.23.0
+BUILDLINK_API_DEPENDS.rust+=	rust>=1.24.0
 BUILDLINK_DEPMETHOD.rust=	build
 .include "../../lang/rust/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libvpx+=	libvpx>=1.3.0

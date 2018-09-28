@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.29 2018/07/17 16:14:46 fhajny Exp $
+# $NetBSD: Makefile,v 1.31 2018/09/17 11:14:52 fhajny Exp $
 
-DISTNAME=	lexicon-2.7.0
+DISTNAME=	lexicon-2.7.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=AnalogJ/}
@@ -16,6 +16,7 @@ GITHUB_TAG=	v${PKGVERSION_NOREV}
 DEPENDS+=	${PYPKGPREFIX}-future-[0-9]*:../../devel/py-future
 DEPENDS+=	${PYPKGPREFIX}-requests-[0-9]*:../../devel/py-requests
 DEPENDS+=	${PYPKGPREFIX}-tldextract-[0-9]*:../../net/py-tldextract
+DEPENDS+=	${PYPKGPREFIX}-cryptography-[0-9]*:../../security/py-cryptography
 
 MESSAGE_SUBST+=	PYPKGPREFIX=${PYPKGPREFIX}
 

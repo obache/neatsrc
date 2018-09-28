@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.492 2018/08/09 14:16:08 jperkin Exp $
+# $NetBSD: Makefile,v 1.497 2018/09/23 20:05:29 bsiegert Exp $
 #
 
 COMMENT=	Programming languages
@@ -81,14 +81,16 @@ SUBDIR+=	gcc6-libs
 SUBDIR+=	gcc7
 SUBDIR+=	gcc7-libs
 SUBDIR+=	gcc8
+SUBDIR+=	gcc8-libs
 SUBDIR+=	gforth
 SUBDIR+=	ghc
 SUBDIR+=	ghc-bootstrap
 SUBDIR+=	ghc7
 SUBDIR+=	gnat_util
 SUBDIR+=	gnucobol
-SUBDIR+=	go
 SUBDIR+=	go-hcl
+SUBDIR+=	go110
+SUBDIR+=	go111
 SUBDIR+=	go14
 SUBDIR+=	go19
 SUBDIR+=	gpc
@@ -201,6 +203,8 @@ SUBDIR+=	py-pyrex
 SUBDIR+=	py-python-lua
 SUBDIR+=	py-pythonz
 SUBDIR+=	py-six
+SUBDIR+=	py-spark-parser
+SUBDIR+=	py-uncompyle6
 SUBDIR+=	py27-html-docs
 SUBDIR+=	py34-html-docs
 SUBDIR+=	py35-html-docs

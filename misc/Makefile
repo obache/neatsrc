@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.499 2018/08/16 09:25:43 wiz Exp $
+# $NetBSD: Makefile,v 1.501 2018/09/23 05:58:48 taca Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -84,6 +84,7 @@ SUBDIR+=	gnome-user-docs
 SUBDIR+=	gnome-utils
 SUBDIR+=	gnuls
 SUBDIR+=	go-genproto
+SUBDIR+=	go-genproto-googleapis-rpc
 SUBDIR+=	goffice0.10
 SUBDIR+=	goffice0.8
 SUBDIR+=	gok
@@ -300,7 +301,6 @@ SUBDIR+=	ruby-daemons
 SUBDIR+=	ruby-equalizer
 SUBDIR+=	ruby-gem_plugin
 SUBDIR+=	ruby-hashie
-SUBDIR+=	ruby-hashie2
 SUBDIR+=	ruby-launchy
 SUBDIR+=	ruby-memoizable
 SUBDIR+=	ruby-method_source

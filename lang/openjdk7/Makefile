@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.128 2018/08/20 16:59:34 tnn Exp $
+# $NetBSD: Makefile,v 1.130 2018/09/19 18:18:56 abs Exp $
 
 JDK_MICRO=	141
 DISTNAME=	openjdk-1.7.${JDK_MICRO}-20170813
 PKGNAME=	openjdk7-1.7.${JDK_MICRO}
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_LOCAL:=openjdk7/}
 EXTRACT_SUFX=	.tar.xz
@@ -20,8 +20,8 @@ DIST_SUBDIR=	openjdk7
 
 JAVA_NAME=	openjdk7
 JAVA_HOME=	${PREFIX}/java/${JAVA_NAME}
-JAVA_WRAPPERS=	jar java javac javadoc javah javap jcmd jps jstack keytool \
-		orbd policytool rmid rmiregistry servertool tnameserv
+JAVA_WRAPPERS=	jar java javac javadoc javah javap jcmd jhat jps jstack \
+		keytool orbd policytool rmid rmiregistry servertool tnameserv
 
 NOT_PAX_MPROTECT_SAFE+=	java/openjdk7/bin/[a-ik-z]*
 NOT_PAX_MPROTECT_SAFE+=	java/openjdk7/bin/j[b-z]*
@@ -142,6 +142,11 @@ CFLAGS+=	-fno-lifetime-dse
 CFLAGS+=	-fno-delete-null-pointer-checks
 .endif
 
+# no multilib support on aarch64 yet
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-aarch64)
+BUILDLINK_TRANSFORM+=	rm:-m64
+.endif
+
 .if !empty(PKGSRC_COMPILER:Mclang)
 _WRAP_EXTRA_ARGS.CXX+=	-Wno-parentheses -Wno-sign-conversion \
 			-Wno-shorten-64-to-32 -Wno-conversion \
@@ -207,6 +212,7 @@ PLIST.alsa=	yes
 post-extract:
 	chmod +x ${ANT_BIN}/ant
 	${LN} -s mapfile-i586 ${WRKSRC}/jdk/make/java/main/java/mapfile-arm
+	${LN} -s mapfile-amd64 ${WRKSRC}/jdk/make/java/main/java/mapfile-aarch64
 # These libs are bundled w/ the netbsd-7 bootstrap to facilitate building with
 # MKLLVM=yes / MKGCC=no. Nuke them from bootstrap if they are present in base.
 .if exists(/lib/libgcc_s.so.1)

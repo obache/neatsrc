@@ -1,11 +1,9 @@
-# $NetBSD: Makefile,v 1.96 2018/08/22 09:45:52 wiz Exp $
+# $NetBSD: Makefile,v 1.98 2018/09/25 12:20:05 jperkin Exp $
 
-PKGREVISION= 1
 .include "Makefile.common"
 
 PKGNAME=		${DISTNAME:S/-server//}
 COMMENT=		Free RADIUS server implementation
-
 
 BUILD_DEFS+=		VARBASE
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
@@ -48,6 +46,7 @@ OPSYSVARS+=		SOEXT
 SOEXT.Darwin=		dylib
 SOEXT.*=		so
 PLIST_SUBST+=		SOEXT=${SOEXT}
+PRINT_PLIST_AWK+=	{gsub(/\.${SOEXT}$$/, ".$${SOEXT}");}
 
 FILES_SUBST+=		RADIUS_USER=${RADIUS_USER} RADIUS_GROUP=${RADIUS_GROUP}
 MESSAGE_SUBST+=		BOOTSTRAP=${PKG_SYSCONFDIR:Q}/certs/bootstrap

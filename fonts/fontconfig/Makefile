@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.113 2018/09/06 15:27:21 joerg Exp $
+# $NetBSD: Makefile,v 1.115 2018/09/17 06:56:22 maya Exp $
 
 DISTNAME=	fontconfig-2.13.1
 CATEGORIES=	fonts
@@ -94,6 +94,9 @@ TEST_TARGET=	check
 .if !empty(USE_CROSS_COMPILE:M[yY][eE][sS])
 CONFIGURE_ENV+=	CC_FOR_BUILD=${NATIVE_CC:Q}
 .endif
+
+pre-configure:
+	-cd ${BUILDLINK_X11_DIR:Q} && ${FIND} . -path "*fontconfig*" -type l -delete
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/30-pkgsrc-aliases.conf ${DESTDIR}${TMPLDIR}

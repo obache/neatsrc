@@ -1,29 +1,23 @@
-# $NetBSD: Makefile,v 1.6 2017/08/19 00:20:50 jlam Exp $
-#
+# $NetBSD: Makefile,v 1.8 2018/09/17 14:33:35 leot Exp $
 
-DISTNAME=	v1.0
-DIST_SUBDIR=	${PKGBASE}
-PKGNAME=	fuse-unionfs-${DISTNAME:S/v//}
+DISTNAME=	unionfs-fuse-2.0
+PKGNAME=	${DISTNAME:S/unionfs-fuse/fuse-unionfs/}
 CATEGORIES=	filesystems
-MASTER_SITES=	${MASTER_SITE_GITHUB:=rpodgorny/unionfs-fuse/archive/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=rpodgorny/}
+GITHUB_PROJECT=	unionfs-fuse
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/rpodgorny/unionfs-fuse
 COMMENT=	FUSE-based union filesystem
+LICENSE=	modified-bsd
 
 BUILD_TARGET=	build
-USE_TOOLS=	gmake pkg-config
-WRKSRC=		${WRKDIR}/unionfs-fuse-${DISTNAME:S/v//}
+USE_TOOLS+=	gmake pkg-config bash:run
 
-INSTALLATION_DIRS=	bin ${PKGMANDIR}/man8
+REPLACE_BASH+=	mount.unionfs
 
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/src/unionfs \
-		${DESTDIR}${PREFIX}/bin/unionfs
-	${INSTALL_PROGRAM} ${WRKSRC}/src/unionfsctl \
-		${DESTDIR}${PREFIX}/bin/unionfsctl
-	${INSTALL_MAN} ${WRKSRC}/man/unionfs.8 \
-		${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
+MAKE_ENV+=		MANDIR=${PKGMANDIR}
 
 .include "../../mk/fuse.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

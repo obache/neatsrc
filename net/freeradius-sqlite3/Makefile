@@ -1,6 +1,5 @@
-# $NetBSD: Makefile,v 1.6 2018/07/20 03:34:23 ryoon Exp $
+# $NetBSD: Makefile,v 1.8 2018/09/25 12:20:05 jperkin Exp $
 
-PKGREVISION= 2
 .include "../../net/freeradius/Makefile.module"
 
 PKGNAME=		${DISTNAME:S/-server/-sqlite3/}
@@ -8,6 +7,7 @@ COMMENT=		Free RADIUS SQLite support
 CATEGORIES=		net
 
 CONFIGURE_ARGS+=    --with-rlm_sql_iodbc
+CONFIGURE_ARGS+=    --without-rlm_ldap
 
 do-install:
 	${INSTALL_LIB} ${WRKSRC}/build/lib/.libs/rlm_sql_sqlite.so ${DESTDIR}${PREFIX}/lib

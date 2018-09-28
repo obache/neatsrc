@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.551 2018/07/09 08:16:50 adam Exp $
+# $NetBSD: Makefile,v 1.553 2018/09/21 13:25:08 maya Exp $
 #
 
 COMMENT=	Audio tools
@@ -26,6 +26,7 @@ SUBDIR+=	alsa-lib
 SUBDIR+=	alsa-plugins-oss
 SUBDIR+=	alsa-plugins-pulse
 SUBDIR+=	alsa-utils
+SUBDIR+=	alure
 SUBDIR+=	amaroc
 SUBDIR+=	amarok
 SUBDIR+=	amp
@@ -115,6 +116,7 @@ SUBDIR+=	festvox-tll
 SUBDIR+=	festvox-us1
 SUBDIR+=	festvox-us2
 SUBDIR+=	festvox-us3
+SUBDIR+=	filter_audio
 SUBDIR+=	flac
 SUBDIR+=	flac123
 SUBDIR+=	flac2mp3

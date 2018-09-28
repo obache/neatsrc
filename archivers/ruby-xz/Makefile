@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.13 2016/01/03 05:31:55 taca Exp $
+# $NetBSD: Makefile,v 1.15 2018/09/27 23:58:21 tnn Exp $
 
-DISTNAME=	ruby-xz-0.2.3
+DISTNAME=	ruby-xz-1.0.0
 PKGNAME=	${RUBY_PKGPREFIX}-${DISTNAME:S/ruby-//}
 CATEGORIES=	archivers
 
@@ -9,9 +9,9 @@ HOMEPAGE=	https://github.com/Quintus/ruby-xz
 COMMENT=	Ruby bindings for liblzma
 LICENSE=	mit
 
-DEPENDS+=	xz-[0-9]*:../../archivers/xz
-DEPENDS+=	${RUBY_PKGPREFIX}-ffi-[0-9]*:../../devel/ruby-ffi
-DEPENDS+=	${RUBY_PKGPREFIX}-io-like-[0-9]*:../../devel/ruby-io-like
+DEPENDS+=	${RUBY_NAME}-fiddle>=${RUBY_VERSION}:../../devel/ruby-fiddle
+
+RUBY_VERSIONS_ACCEPTED=	23 24 25
 
 SUBST_CLASSES+=		path
 SUBST_STAGE.path=	pre-configure

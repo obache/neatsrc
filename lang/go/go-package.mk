@@ -1,4 +1,4 @@
-# $NetBSD: go-package.mk,v 1.15 2018/08/29 10:11:57 leot Exp $
+# $NetBSD: go-package.mk,v 1.18 2018/09/22 19:44:21 bsiegert Exp $
 #
 # This file implements common logic for compiling Go programs in pkgsrc.
 #
@@ -41,12 +41,11 @@
 # 2. Install binaries into bin/.
 # 3. Install source code and packages into a separate gopkg tree.
 #
-# In the future, we may implement buildlink by creating a separate tree during
-# the build and linking only the packages explicitly mentioned in dependencies
-# there.
+# We implement buildlink by creating a separate tree during the build and
+# linking only the packages explicitly mentioned in dependencies there.
 #
-# All packages build-depend on the "master" Go release. Go packages
-# need to be revbumped when lang/go is updated.
+# All packages build-depend on the default Go release. Go packages should be
+# revbumped when that package is updated.
 #
 
 .include "../../lang/go/version.mk"
@@ -57,11 +56,11 @@ GO_BUILD_PATTERN?=	${GO_SRCPATH}/...
 
 WRKSRC=			${WRKDIR}/src/${GO_SRCPATH}
 
-BUILD_DEPENDS+=		go-${GO_VERSION}*:../../lang/go
-
 MAKE_JOBS_SAFE=		no
 INSTALLATION_DIRS+=	bin gopkg
 USE_TOOLS+=		pax
+
+BUILD_DEPENDS+=		${GO_PACKAGE_DEP}
 
 GO_PLATFORM=		${LOWER_OPSYS}_${GOARCH}
 GOTOOLDIR=		${PREFIX}/go/pkg/tool/${GO_PLATFORM}
@@ -69,6 +68,8 @@ GOTOOLDIR=		${PREFIX}/go/pkg/tool/${GO_PLATFORM}
 PRINT_PLIST_AWK+=	/${GO_PLATFORM}/ { gsub(/${GO_PLATFORM}/, \
 			"$${GO_PLATFORM}"); \
 			print; next; }
+PRINT_PLIST_AWK+=	/^@pkgdir bin$$/ { next; }
+PRINT_PLIST_AWK+=	/^@pkgdir gopkg$$/ { next; }
 
 MAKE_ENV+=	GOPATH=${WRKDIR}:${BUILDLINK_DIR}/gopkg 
 MAKE_ENV+=	GOCACHE=${WRKDIR}/.cache/go-build

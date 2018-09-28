@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.77 2018/04/16 14:34:39 wiz Exp $
+# $NetBSD: Makefile,v 1.79 2018/09/26 19:34:56 prlw1 Exp $
 
 DISTNAME=	opencv-3.4.1
 PKGREVISION=	2

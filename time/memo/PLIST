@@ -1,0 +1,4 @@
+@comment $NetBSD: PLIST,v 1.2 2018/09/15 15:51:14 khorben Exp $
+bin/memo
+man/man1/memo.1
+share/doc/memo/README.md
