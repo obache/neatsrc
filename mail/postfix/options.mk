@@ -28,7 +28,7 @@ CCARGS+=	-DNO_TLS
 PLIST_VARS+=	csasl
 .if !empty(PKG_OPTIONS:Msasl)
 .  include "../../security/cyrus-sasl/buildlink3.mk"
-BUILDLINK_INCDIRS.cyrus-sasl=	include/sasl
+CCARGS+=	-I${BUILDLINK_PREFIX.cyrus-sasl}/include/sasl
 SASLLIBDIR=	${PREFIX}/lib/sasl2
 PWCHECK_METHOD=	auxprop
 CCARGS+=	-DUSE_CYRUS_SASL
