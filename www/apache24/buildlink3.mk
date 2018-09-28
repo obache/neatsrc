@@ -13,10 +13,6 @@ BUILDLINK_DEPMETHOD.apache?=	build
 BUILDLINK_DEPMETHOD.apache+=	full
 .endif
 
-BUILDLINK_FILES.apache+=	sbin/apxs
-
-BUILDLINK_FNAME_ALIASES.apache+=	sbin/apxs bin/apxs
-
 USE_TOOLS+=		perl			# for "apxs"
 CONFIGURE_ENV+=		APR_LIBTOOL=${LIBTOOL:Q}	# make apxs use the libtool we specify
 MAKE_ENV+=		APR_LIBTOOL=${LIBTOOL:Q}
