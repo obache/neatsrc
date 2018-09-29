@@ -46,6 +46,7 @@ include/groonga/groonga/thread.h
 include/groonga/groonga/time.h
 include/groonga/groonga/token.h
 include/groonga/groonga/token_filter.h
+include/groonga/groonga/token_metadata.h
 include/groonga/groonga/tokenizer.h
 include/groonga/groonga/tokenizer_query_deprecated.h
 include/groonga/groonga/type.h
