@@ -67,6 +67,9 @@ PERL5_PACKLIST= \
 	auto/Cyrus/IMAP/.packlist			\
 	auto/Cyrus/SIEVE/managesieve/.packlist
 
+# contains build time buildlink include path information for debug output
+CHECK_WRKREF_SKIP+=	${PERL5_INSTALLVENDORARCH}/auto/Cyrus/SIEVE/managesieve/managesieve.so
+
 .include "../../lang/perl5/module.mk"
 BUILDLINK_API_DEPENDS.cyrus-sasl+=	cyrus-sasl>=2.1.17
 .include "../../security/cyrus-sasl/buildlink3.mk"
