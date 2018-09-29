@@ -1,0 +1,15 @@
+$NetBSD$
+
+* add rpath for libpython
+
+--- configure.ac.orig	2017-01-04 08:25:58.000000000 +0000
++++ configure.ac
+@@ -154,7 +154,7 @@ fi
+ 
+ if test "${PYTHONFRAMEWORKDIR}" = "no-framework" -o \
+         "${ENABLE_FRAMEWORK}" != "yes"; then
+-    LDFLAGS1="-L${PYTHONLIBDIR}"
++    LDFLAGS1="-Wl,-R${PYTHONLIBDIR} -L${PYTHONLIBDIR}"
+     LDFLAGS2="-L${PYTHONCFGDIR}"
+ 
+     LDLIBS1="-lpython${PYTHON_LDVERSION}"
