@@ -7,6 +7,8 @@ PKGREVISION=	6
 USE_TOOLS+=	msgfmt
 
 CONFIGURE_ARGS+=	--disable-esd
+CONFIGURE_ARGS+=	--with-vorbis=${BUILDLINK_PREFIX.libvorbis}
+CONFIGURE_ARGS+=	--with-ogg=${BUILDLINK_PREFIX.libogg}
 
 PLIST_VARS+=		cdaudio
 
