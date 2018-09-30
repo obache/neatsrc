@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2018/08/18 01:15:53 ryoon Exp $
+# $NetBSD: Makefile,v 1.2 2018/09/29 16:55:36 tnn Exp $
 
 DISTNAME=	fcitx-configtool-0.4.10
 CATEGORIES=	inputmethod
