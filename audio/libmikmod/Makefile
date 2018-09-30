@@ -18,5 +18,10 @@ CONFIGURE_ARGS+=	--disable-threads
 INFO_FILES=		yes
 PKGCONFIG_OVERRIDE=	libmikmod.pc.in
 
+SUBST_CLASSES+=		addrpath
+SUBST_STAGE.addrpath=	pre-configure
+SUBST_FILES.addrpath=	libmikmod-config.in
+SUBST_SED.addrpath=	-e '/^[ 	]*echo[ 	]/s|-L\([ 	]*[^ 	]*\)|${COMPILER_RPATH_FLAG}\1 -L\1|g'
+
 .include "options.mk"
 .include "../../mk/bsd.pkg.mk"
