@@ -99,7 +99,6 @@ LDFLAGS+=		-ldl
 .  if exists(/usr/lib/libexecinfo.so)
 LDFLAGS+=		-lexecinfo
 .  endif
-LDFLAGS.FreeBSD+=	-lutil
 .endif
 
 REPLACE_PERL+=		bin/fixqt4headers.pl
