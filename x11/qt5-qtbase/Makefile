@@ -83,21 +83,19 @@ CONFIGURE_ARGS+=	-platform interix-g++
 CFLAGS+=		-I/usr/local/include/bind
 LDFLAGS+=		-L/usr/local/lib/bind -lbind
 BUILDLINK_PASSTHRU_DIRS+=/usr/local/include/bind /usr/local/lib/bind
-SYS_LIBS=		-lbind -ldb -ldl
+SYS_LIBS=		-lbind -ldb
 .elif ${OPSYS} == "DragonFly"
 CONFIGURE_ARGS+=	-platform freebsd-g++
-LDFLAGS+=		-lexecinfo
+QMAKE_LIBS_EXECINFO=	-lexecinfo
 .elif ${OPSYS} == "Darwin"
 CONFIGURE_ARGS+=	-platform macx-clang
 CONFIGURE_ARGS+=	-no-framework
 .  if exists(/usr/lib/libresolv.dylib)
 LDFLAGS+=		-lresolv
 .  endif
-.elif ${OPSYS} == "Linux"
-LDFLAGS+=		-ldl
 .elif ${OPSYS} == "NetBSD" || ${OPSYS} == "FreeBSD"
 .  if exists(/usr/lib/libexecinfo.so)
-LDFLAGS+=		-lexecinfo
+QMAKE_LIBS_EXECINFO=	-lexecinfo
 .  endif
 .endif
 
@@ -169,6 +167,8 @@ pre-configure:
 		-e 's:@PTHREAD_LIBS@:${PTHREAD_LIBS:Q}:g' \
 		-e 's:@COMPILER_RPATH_FLAG@:${COMPILER_RPATH_FLAG}:g' \
 		-e 's:@QMAKE_RANLIB@:${QMAKE_RANLIB:Q}:g' \
+		-e 's:@QMAKE_LIBS_DYNLOAD@:${BUILDLINK_LDADD.ldd:Q}:g' \
+		-e 's:@QMAKE_LIBS_EXECINFO@:${QMAKE_LIBS_EXECINFO:Q}:g' \
 		${FILESDIR}/${QMAKE_CONF} > ${WRKSRC}/qmake.conf
 		for dir in ${WRKSRC}/mkspecs/*; do \
 			cp ${WRKSRC}/qmake.conf $${dir}; \
@@ -233,5 +233,6 @@ PLIST.egl=	yes
 .include "../../x11/libxkbcommon/buildlink3.mk"
 .endif
 .include "../../mk/jpeg.buildlink3.mk"
+.include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
