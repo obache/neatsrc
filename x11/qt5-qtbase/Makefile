@@ -32,6 +32,7 @@ CONFIGURE_ARGS+=	-no-strip
 CONFIGURE_ARGS+=	-no-use-gold-linker
 CONFIGURE_ARGS+=	-pkg-config
 CONFIGURE_ARGS+=	-release
+CONFIGURE_ARGS+=	-R ${LOCALBASE}/lib
 CONFIGURE_ARGS+=	-shared
 CONFIGURE_ARGS+=	-system-harfbuzz
 CONFIGURE_ARGS+=	-system-libjpeg
