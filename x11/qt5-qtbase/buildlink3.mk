@@ -9,9 +9,12 @@ BUILDLINK_API_DEPENDS.qt5-qtbase+=	qt5-qtbase>=5.9.1
 BUILDLINK_ABI_DEPENDS.qt5-qtbase+=	qt5-qtbase>=5.11.1nb1
 BUILDLINK_PKGSRCDIR.qt5-qtbase?=	../../x11/qt5-qtbase
 
-BUILDLINK_INCDIRS.qt5-qtbase+=	qt5/include
-BUILDLINK_LIBDIRS.qt5-qtbase+=	qt5/lib
-BUILDLINK_LIBDIRS.qt5-qtbase+=	qt5/plugins
+BUILDLINK_INCDIRS.qt5-qtbase=	qt5/include
+BUILDLINK_LIBDIRS.qt5-qtbase=	qt5/lib
+BUILDLINK_BINDIRS.qt5-qtbase=	qt5/bin
+BUILDLINK_PC_DIRS.qt5-qtbase=	lib/pkgconfig
+BUILDLINK_CONTENTS_PATTERNS.qt5-qtbase+=	^qt5/mkspecs/
+BUILDLINK_CONTENTS_PATTERNS.qt5-qtbase+=	^qt5/plugins/
 
 QTDIR=		${BUILDLINK_PREFIX.qt5-qtbase}/qt5
 CMAKE_PREFIX_PATH+=	${QTDIR}
