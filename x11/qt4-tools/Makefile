@@ -33,14 +33,15 @@ post-configure:
 	ln -sf ${QTPREFIX}/bin/uic ${WRKSRC}/bin/uic
 	ln -sf ${QTPREFIX}/bin/rcc ${WRKSRC}/bin/rcc
 
-QTPROG_BIN=	lconvert lrelease lupdate pixeltool qdoc3 qmake qt3to4
-QTPROG_BIN+=	qttracereplay xmlpatterns xmlpatternsvalidator
+QTPROG_BIN=	lrelease pixeltool qmake qt3to4
+QTPROG_BIN+=	qttracereplay
 QTPROG_LT=	qcollectiongenerator qhelpconverter qhelpgenerator
+QTPROG_LT+=	lconvert lupdate qdoc3 xmlpatterns xmlpatternsvalidator
 .if ${OPSYS} == "Darwin"
-QTPROG_BIN+=	QMLViewer macdeployqt
+QTPROG_LT+=	QMLViewer macdeployqt
 QTPROG_LT+=	Assistant Designer Linguist
 .else
-QTPROG_BIN+=	qmlviewer qtconfig
+QTPROG_LT+=	qmlviewer qtconfig
 QTPROG_LT+=	assistant designer linguist
 .endif
 
