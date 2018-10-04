@@ -612,6 +612,9 @@ buildlink-directories:
 #	BUILDLINK_CONTENTS_FILTER.<pkg> outputs the contents of the include
 #	and lib directories in the package +CONTENTS.
 #
+# BUILDLINK_CONTENS_PATTERNS.<pkg>
+#	additionaly filter patterns for BUILDLINK_CONTENTS_FILTER.
+#
 # BUILDLINK_FNAME_TRANSFORM.<pkg>
 #	sed arguments used to transform the name of the source filename
 #	into a destination filename, e.g. -e "s|/curses.h|/ncurses.h|g"
@@ -641,7 +644,7 @@ buildlink-${_pkg_}-cookie:
 	${TOUCH} ${TOUCH_FLAGS} ${_BLNK_COOKIE.${_pkg_}}
 
 BUILDLINK_CONTENTS_FILTER.${_pkg_}?=					\
-	${EGREP} '(${BUILDLINK_INCDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\//:ts|}|^share/idl/.*\.idl$$|${BUILDLINK_PC_DIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\/.*\.pc$$/:ts|}|${BUILDLINK_LIBDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\/lib[^\/]*\.[^\/]*$$/:ts|}|\.cmake$$|${BUILDLINK_BINDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\//:ts|})'
+	${EGREP} '(${BUILDLINK_INCDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\//:ts|}|^share/idl/.*\.idl$$|${BUILDLINK_PC_DIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\/.*\.pc$$/:ts|}|${BUILDLINK_LIBDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\/lib[^\/]*\.[^\/]*$$/:ts|}|\.cmake$$|${BUILDLINK_BINDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\//:ts|}${BUILDLINK_CONTENTS_PATTERNS.${_pkg_}:D|}${BUILDLINK_CONTENTS_PATTERNS.${_pkg_}:ts|})'
 
 BUILDLINK_FILES_CMD.${_pkg_}?=						\
 	${_BLNK_PKG_INFO.${_pkg_}} -qL ${BUILDLINK_PKGNAME.${_pkg_}} |	\
