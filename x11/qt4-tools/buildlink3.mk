@@ -10,6 +10,13 @@ BUILDLINK_ABI_DEPENDS.qt4-tools+=	qt4-tools>=4.8.7nb3
 BUILDLINK_PKGSRCDIR.qt4-tools?=		../../x11/qt4-tools
 BUILDLINK_DEPMETHOD.qt4-tools?=		build
 
+BUILDLINK_INCDIRS.qt4-tools+=	qt4/include
+BUILDLINK_LIBDIRS.qt4-tools+=	qt4/lib
+BUILDLINK_BINDIRS.qt4-tools+=	qt4/bin
+BUILDLINK_PC_DIRS.qt4-tools+=	lib/pkgconfig
+BUILDLINK_CONTENTS_PATTERNS.qt4-tools+=	^qt4/mkspecs/
+BUILDLINK_CONTENTS_PATTERNS.qt4-tools+=	^qt4/plugins/
+
 .include "../../x11/qt4-libs/buildlink3.mk"
 
 CONFIGURE_ENV+=		UIC="${QTDIR}/bin/uic"
