@@ -17,6 +17,17 @@ USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake pkg-config
 USE_LIBTOOL=		yes
 PKGCONFIG_OVERRIDE+=	libdrm.pc.in
+PKGCONFIG_OVERRIDE+=	amdgpu/libdrm_amdgpu.pc.in
+PKGCONFIG_OVERRIDE+=	etnaviv/libdrm_etnaviv.pc.in
+PKGCONFIG_OVERRIDE+=	exynos/libdrm_exynos.pc.in
+PKGCONFIG_OVERRIDE+=	freedreno/libdrm_freedreno.pc.in
+PKGCONFIG_OVERRIDE+=	intel/libdrm_intel.pc.in
+PKGCONFIG_OVERRIDE+=	libkms/libkms.pc.in
+PKGCONFIG_OVERRIDE+=	nouveau/libdrm_nouveau.pc.in
+PKGCONFIG_OVERRIDE+=	omap/libdrm_omap.pc.in
+PKGCONFIG_OVERRIDE+=	radeon/libdrm_radeon.pc.in
+PKGCONFIG_OVERRIDE+=	tegra/libdrm_tegra.pc.in
+PKGCONFIG_OVERRIDE+=	vc4/libdrm_vc4.pc.in
 GNU_CONFIGURE=		yes
 
 .include "../../mk/bsd.prefs.mk"
