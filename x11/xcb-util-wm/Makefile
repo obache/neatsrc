@@ -15,7 +15,7 @@ USE_LIBTOOL=	yes
 USE_TOOLS+=	gm4 gmake pkg-config
 
 PKGCONFIG_OVERRIDE=	ewmh/xcb-ewmh.pc.in
-PKGCONFIG_OVERRIDE=	icccm/xcb-icccm.pc.in
+PKGCONFIG_OVERRIDE+=	icccm/xcb-icccm.pc.in
 
 .include "../../x11/libxcb/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
