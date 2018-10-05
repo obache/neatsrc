@@ -35,6 +35,7 @@ TOOL_DEPENDS+=		xcb-proto-[0-9]*:../../x11/xcb-proto
 # Adds -Wl,-R to pkgconfig files automatically
 PKGCONFIG_OVERRIDE+=	xcb-composite.pc.in
 PKGCONFIG_OVERRIDE+=	xcb-damage.pc.in
+PKGCONFIG_OVERRIDE+=	xcb-dri2.pc.in
 PKGCONFIG_OVERRIDE+=	xcb-dri3.pc.in
 PKGCONFIG_OVERRIDE+=	xcb-dpms.pc.in
 PKGCONFIG_OVERRIDE+=	xcb-glx.pc.in
