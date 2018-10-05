@@ -13,7 +13,8 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config
 
-PKGCONFIG_OVERRIDE+=	pthread-stubs.pc.in
+PKGCONFIG_OVERRIDE+=		pthread-stubs.pc
+PKGCONFIG_OVERRIDE_STAGE=	post-configure
 
 OPSYSVARS+=	CONFIGURE_ENV
 CONFIGURE_ENV.NetBSD+=	ac_cv_func_pthread_self=yes
