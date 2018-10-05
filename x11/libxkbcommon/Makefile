@@ -15,6 +15,7 @@ USE_TOOLS+=	bison gmake pkg-config
 USE_LIBTOOL=	yes
 
 PKGCONFIG_OVERRIDE+=	xkbcommon.pc.in
+PKGCONFIG_OVERRIDE+=	xkbcommon-x11.pc.in
 
 .include "options.mk"
 
