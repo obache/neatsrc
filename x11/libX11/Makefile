@@ -18,6 +18,7 @@ CONFIGURE_ARGS+=	--enable-man-pages=3
 CONFIGURE_ARGS+=	--with-xcb
 CONFIGURE_ARGS+=	--disable-specs
 PKGCONFIG_OVERRIDE+=	x11.pc.in
+PKGCONFIG_OVERRIDE+=	x11-xcb.pc.in
 
 CONFIGURE_ENV+=		FILE_MAN_SUFFIX=5
 
