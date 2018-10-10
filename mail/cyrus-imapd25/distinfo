@@ -1,9 +1,9 @@
 $NetBSD: distinfo,v 1.20 2014/06/17 01:08:59 obache Exp $
 
-SHA1 (cyrus-imapd-2.5.11.tar.gz) = 5bf0e98b7b271e1793d3f9a0a58a1d3a91a371d2
-RMD160 (cyrus-imapd-2.5.11.tar.gz) = a5d1d31a11a4f1c60f42754deedec5d828340852
-SHA512 (cyrus-imapd-2.5.11.tar.gz) = bbb0e11f31d91d85037306321165e3608f8d5e2699b971fc4fbdd1630ec0a1485c8f6f17900142dec584ab41b0ec0c65c11cfaf8c5bbf1054b194a8f5f361538
-Size (cyrus-imapd-2.5.11.tar.gz) = 3109188 bytes
+SHA1 (cyrus-imapd-2.5.12.tar.gz) = 6297b8c6454391ca3f0e1467788e6fe2bac148b6
+RMD160 (cyrus-imapd-2.5.12.tar.gz) = 1cbc976833fd7f7d574d0130e80f656cd5f7a132
+SHA512 (cyrus-imapd-2.5.12.tar.gz) = cb49938b5f04857a3e6362feaf10ac6243b5c394c6e038a7e21650e4140ba6e277183ad258b810e438a5a2c6c146a413ed740bc0ff7d7952d83a3079ca1c3d6a
+Size (cyrus-imapd-2.5.12.tar.gz) = 3118995 bytes
 SHA1 (patch-configure) = 3d9c9af5bc4dc7e7b866269c34bc175799ff9e18
 SHA1 (patch-imap_ctl__zoneinfo.c) = 98ffa538c19ed4f8948d85532552e86590126a72
 SHA1 (patch-imap_http__caldav.c) = 94023eeb995ea9af1c757c6de7f16a195f3c074f

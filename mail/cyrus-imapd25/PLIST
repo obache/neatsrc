@@ -15,6 +15,7 @@ cyrus/bin/ctl_cyrusdb
 cyrus/bin/ctl_deliver
 cyrus/bin/ctl_mboxlist
 ${PLIST.http}cyrus/bin/ctl_zoneinfo
+cyrus/bin/cyr_buildinfo
 cyrus/bin/cvt_cyrusdb
 cyrus/bin/cyr_dbtool
 cyrus/bin/cyr_deny

@@ -119,7 +119,7 @@ CONFIGURE_ARGS+=	--disable-pcre
 
 .if !empty(PKG_OPTIONS:Mclamav)
 .  include "../../security/clamav/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-clamav=${BUILDLINK_PREFIX.clamav}
+CONFIGURE_ARGS+=	--with-clamav
 PLIST.clamav=		yes
 .else
 CONFIGURE_ARGS+=	--without-clamav
