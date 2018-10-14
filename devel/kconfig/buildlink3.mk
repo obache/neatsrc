@@ -8,6 +8,8 @@ KCONFIG_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.kconfig+=	kconfig>=5.18.0
 BUILDLINK_ABI_DEPENDS.kconfig?=	kconfig>=5.47.0nb2
 BUILDLINK_PKGSRCDIR.kconfig?=	../../devel/kconfig
+BUILDLINK_CONTENTS_PATTERNS.kconfig+=	^qt5/mkspecs/
+BUILDLINK_CONTENTS_PATTERNS.kconfig+=	^libexec/kf5/
 
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .endif	# KCONFIG_BUILDLINK3_MK
