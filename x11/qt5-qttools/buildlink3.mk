@@ -13,7 +13,7 @@ BUILDLINK_BINDIRS.qt5-qttools+=	qt5/bin
 BUILDLINK_INCDIRS.qt5-qttools+=	qt5/include
 BUILDLINK_LIBDIRS.qt5-qttools+=	qt5/lib
 BUILDLINK_CONTENTS_PATTERNS.qt5-qttools+=	^qt5/mkspecs/
-BUILDLINK_CONTENTS_PATTERNS.qt5-qtbase+=	^qt5/plugins/
+BUILDLINK_CONTENTS_PATTERNS.qt5-qttools+=	^qt5/plugins/
 
 .include "../../x11/qt5-qtxmlpatterns/buildlink3.mk"
 #.include "../../x11/qt5-qtwebkit/buildlink3.mk"
