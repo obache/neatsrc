@@ -11,7 +11,8 @@ BUILDLINK_PKGSRCDIR.qt5-qtsensors?=	../../x11/qt5-qtsensors
 
 BUILDLINK_INCDIRS.qt5-qtsensors+=	qt5/include
 BUILDLINK_LIBDIRS.qt5-qtsensors+=	qt5/lib
-BUILDLINK_LIBDIRS.qt5-qtsensors+=	qt5/plugins
+BUILDLINK_CONTENTS_PATTERNS.qt5-qtsensors+=	^qt5/mkspecs/
+BUILDLINK_CONTENTS_PATTERNS.qt5-qtsensors+=	^qt5/plugins/
 
 .include "../../x11/qt5-qtdeclarative/buildlink3.mk"
 .endif	# QT5_QTSENSORS_BUILDLINK3_MK
