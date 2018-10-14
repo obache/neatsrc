@@ -11,7 +11,7 @@ BUILDLINK_PKGSRCDIR.qt5-qtx11extras?=	../../x11/qt5-qtx11extras
 
 BUILDLINK_INCDIRS.qt5-qtx11extras+=	qt5/include
 BUILDLINK_LIBDIRS.qt5-qtx11extras+=	qt5/lib
-BUILDLINK_LIBDIRS.qt5-qtx11extras+=	qt5/plugins
+BUILDLINK_CONTENTS_PATTERNS.qt5-qtx11extras+=	^qt5/mkspecs/
 
 .include "../../x11/qt5-qtxmlpatterns/buildlink3.mk"
 .endif	# QT5_QTX11EXTRAS_BUILDLINK3_MK
