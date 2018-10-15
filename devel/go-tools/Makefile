@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.20 2018/06/12 17:50:23 bsiegert Exp $
+# $NetBSD: Makefile,v 1.22 2018/10/14 18:53:00 bsiegert Exp $
 
 DISTNAME=		tools
-PKGNAME=		go-tools-1.8
-PKGREVISION=		6
+PKGNAME=		go-tools-1.11.20181009
+PKGREVISION=		1
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_GITHUB:=golang/}
 GITHUB_PROJECT=		${DISTNAME}
-GITHUB_TAG=		2946dd1
+GITHUB_TAG=		34804b1
 
 MAINTAINER=		bsiegert@NetBSD.org
 HOMEPAGE=		http://golang.org/
@@ -17,8 +17,12 @@ GO_SRCPATH=		golang.org/x/tools
 GO_DIST_BASE=		${DISTNAME}-${GITHUB_TAG}*
 
 USE_TOOLS+=		bash
-REPLACE_BASH+=		cmd/godoc/setup-godoc-app.bash
+REPLACE_BASH+=		cmd/getgo/*.bash
+REPLACE_BASH+=		cmd/godoc/*.bash
 REPLACE_BASH+=		cmd/toolstash/buildall
+
+PLIST_SUBST+=		GOTOOLDIR=${GOTOOLDIR:Q}
+INSTALLATION_DIRS+=	${GOTOOLDIR}
 
 CHECK_RELRO_SKIP+=	bin/benchcmp
 CHECK_RELRO_SKIP+=	bin/bundle
@@ -43,6 +47,9 @@ CHECK_RELRO_SKIP+=	bin/stress
 CHECK_RELRO_SKIP+=	bin/stringer
 CHECK_RELRO_SKIP+=	bin/tip
 CHECK_RELRO_SKIP+=	bin/toolstash
+
+post-install:
+	cd ${DESTDIR}${PREFIX} && mv bin/analyze ${GOTOOLDIR}
 
 .include "../../lang/go/go-package.mk"
 .include "../../devel/google-api-go-client/buildlink3.mk"

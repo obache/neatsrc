@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.776 2018/09/11 00:30:46 minskim Exp $
+# $NetBSD: Makefile,v 1.780 2018/10/14 19:26:55 aymeric Exp $
 #
 
 COMMENT=	System utilities
@@ -226,6 +226,7 @@ SUBDIR+=	gworkspace
 SUBDIR+=	hal
 SUBDIR+=	hal-info
 SUBDIR+=	hddtemp
+SUBDIR+=	hivex
 SUBDIR+=	heirloom-basename
 SUBDIR+=	heirloom-cat
 SUBDIR+=	heirloom-chmod
@@ -618,6 +619,7 @@ SUBDIR+=	u-boot-chip-pro
 SUBDIR+=	u-boot-cubieboard2
 SUBDIR+=	u-boot-cubieboard4
 SUBDIR+=	u-boot-cubietruck
+SUBDIR+=	u-boot-de0-nanosoc
 SUBDIR+=	u-boot-hummingbird-a31
 SUBDIR+=	u-boot-jetson-tk1
 SUBDIR+=	u-boot-jetson-tx1
@@ -649,13 +651,13 @@ SUBDIR+=	user_interix
 SUBDIR+=	user_irix
 SUBDIR+=	vbetool
 SUBDIR+=	vcdimager
-SUBDIR+=	vcdimager-devel
 SUBDIR+=	vidc-tools
 SUBDIR+=	vifm
 SUBDIR+=	vip
 SUBDIR+=	virt-manager
 SUBDIR+=	virtinst
 SUBDIR+=	vobcopy
+SUBDIR+=	vultr
 SUBDIR+=	vxargs
 SUBDIR+=	watchman
 SUBDIR+=	wbm-apache

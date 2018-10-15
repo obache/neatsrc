@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2017/07/03 11:53:57 wiedi Exp $
+# $NetBSD: Makefile,v 1.4 2018/10/03 22:37:09 nia Exp $
 
-DISTNAME=	miniupnpc-2.0
-PKGREVISION=	1
+DISTNAME=	miniupnpc-2.1
 CATEGORIES=	net
 MASTER_SITES=	http://miniupnp.free.fr/files/download.php?file=
 
@@ -14,5 +13,6 @@ USE_TOOLS+=	gmake
 USE_LANGUAGES=	c99
 
 CPPFLAGS.SunOS+=	-D__EXTENSIONS__
+LDFLAGS.SunOS+=		-lsocket -lnsl
 
 .include "../../mk/bsd.pkg.mk"

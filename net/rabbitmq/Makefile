@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.39 2018/09/17 18:07:37 fhajny Exp $
+# $NetBSD: Makefile,v 1.41 2018/10/11 15:24:58 jperkin Exp $
 
 DISTNAME=		rabbitmq-server-3.7.7
 PKGNAME=		${DISTNAME:S/-server//}
@@ -24,10 +24,11 @@ DEPENDS+=		${PYPKGPREFIX}-simplejson>=2:../../converters/py-simplejson
 
 BUILD_DEFS+=		VARBASE
 
-.include		"../../mk/bsd.prefs.mk"
+# Create a mix tool to avoid nested interpreter issues.
+TOOLS_CREATE+=		mix
+TOOLS_SCRIPT.mix=	${PREFIX}/bin/elixir -r ${PREFIX}/bin/mix -- "$$@"
 
-# mix[2]: Mix.start: not found [No such file or directory]
-MAKE_JOBS_SAFE=		no
+.include		"../../mk/bsd.prefs.mk"
 
 RMQ_USER?=		rabbitmq
 RMQ_GROUP?=		${RMQ_USER}
@@ -91,6 +92,7 @@ MAKE_ENV+=		RSYNC="${PREFIX}/bin/rsync"
 MAKE_ENV+=		VERSION="${PKGVERSION_NOREV}"
 
 INSTALL_TARGET=		install-erlapp install-scripts install-bin install-man
+TEST_TARGET=		check
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/deps/rabbit/docs/rabbitmq.config.example		\

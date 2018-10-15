@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.47 2018/09/07 11:54:16 fhajny Exp $
+# $NetBSD: Makefile,v 1.49 2018/10/12 12:49:28 roy Exp $
 
-DISTNAME=	rspamd-1.7.9
+DISTNAME=	rspamd-1.8.0
+PKGREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_GITHUB:=vstakhov/}
 
@@ -82,7 +83,7 @@ CONF_FILES+=	${EGDIR}/${file} ${PKG_SYSCONFDIR}/${file}
 .PHONY: cfgfiles
 cfgfiles: do-extract
 	@${ECHO} "# \$$NetBSD\$$" > ${.CURDIR}/cfgfiles.mk
-	@${ECHO} "# Do not edit, regenerate using 'make cfgfiles'" >> ${.CURDIR}/cfgfiles.mk
+	@${ECHO} "# Do not edit, regenerate post-extract using 'make cfgfiles'" >> ${.CURDIR}/cfgfiles.mk
 	@${ECHO} "CFGFILES= \\" >> ${.CURDIR}/cfgfiles.mk
 	cd ${WRKSRC}/conf && ${FIND} * -type f | ${SORT} | ${TR} '\n' ' ' >> ${.CURDIR}/cfgfiles.mk
 	@${ECHO} >> ${.CURDIR}/cfgfiles.mk

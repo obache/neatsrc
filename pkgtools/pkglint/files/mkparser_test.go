@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"gopkg.in/check.v1"
+	"strings"
 )
 
 func (s *Suite) Test_MkParser_MkTokens(c *check.C) {
@@ -103,7 +105,9 @@ func (s *Suite) Test_MkParser_MkTokens(c *check.C) {
 	check("${${${PKG_INFO} -E ${d} || echo:L:sh}:L:C/[^[0-9]]*/ /g:[1..3]:ts.}",
 		varuse("${${PKG_INFO} -E ${d} || echo:L:sh}", "L", "C/[^[0-9]]*/ /g", "[1..3]", "ts."))
 
-	check("${VAR:S/-//S/.//}", varuseText("${VAR:S/-//S/.//}", "VAR", "S/-//", "S/.//")) // For :S and :C, the colon can be left out.
+	// For :S and :C, the colon can be left out.
+	check("${VAR:S/-//S/.//}",
+		varuseText("${VAR:S/-//S/.//}", "VAR", "S/-//", "S/.//"))
 
 	check("${VAR:ts}", varuse("VAR", "ts"))                 // The separator character can be left out.
 	check("${VAR:ts\\000012}", varuse("VAR", "ts\\000012")) // The separator character can be a long octal number.
@@ -129,12 +133,21 @@ func (s *Suite) Test_MkParser_MkTokens(c *check.C) {
 	checkRest("hello, ${W:L:tl}orld", []*MkToken{
 		literal("hello, "),
 		varuse("W", "L", "tl"),
-		literal("orld")}, "")
+		literal("orld")},
+		"")
 	checkRest("ftp://${PKGNAME}/ ${MASTER_SITES:=subdir/}", []*MkToken{
 		literal("ftp://"),
 		varuse("PKGNAME"),
 		literal("/ "),
-		varuse("MASTER_SITES", "=subdir/")}, "")
+		varuse("MASTER_SITES", "=subdir/")},
+		"")
+
+	// FIXME: Text must match modifiers.
+	checkRest("${VAR:S,a,b,c,d,e,f}",
+		[]*MkToken{{
+			Text:   "${VAR:S,a,b,c,d,e,f}",
+			Varuse: &MkVarUse{varname: "VAR", modifiers: []string{"S,a,b,"}}}},
+		"")
 }
 
 func (s *Suite) Test_MkParser_MkCond(c *check.C) {
@@ -229,7 +242,7 @@ func (s *Suite) Test_MkParser_MkCond(c *check.C) {
 		" || defined(PKG_OPTIONS:Msamplerate)")
 	checkRest("${LEFT} &&",
 		&mkCond{Not: &mkCond{Empty: varuse("LEFT")}},
-		" &&")
+		"&&")
 	checkRest("\"unfinished string literal",
 		nil,
 		"\"unfinished string literal")
@@ -257,4 +270,62 @@ func (s *Suite) Test_MkParser__varuse_parentheses_autofix(c *check.C) {
 	t.CheckFileLines("Makefile",
 		MkRcsID,
 		"COMMENT=${P1} ${P2}) ${P3:Q} ${BRACES}")
+}
+
+func (s *Suite) Test_MkCondWalker_Walk(c *check.C) {
+	t := s.Init(c)
+
+	mkline := t.NewMkLine("Makefile", 4, ""+
+		".if ${VAR:Mmatch} == ${OTHER} || "+
+		"${STR} == Str || "+
+		"${NUM} == 3 && "+
+		"defined(VAR) && "+
+		"!exists(file.mk) && "+
+		"(((${NONEMPTY})))")
+	var events []string
+
+	varuseStr := func(varuse *MkVarUse) string {
+		return strings.Join(append([]string{varuse.varname}, varuse.modifiers...), ":")
+	}
+
+	addEvent := func(name string, args ...string) {
+		events = append(events, fmt.Sprintf("%14s  %s", name, strings.Join(args, ", ")))
+	}
+
+	NewMkCondWalker().Walk(mkline.Cond(), &MkCondCallback{
+		Defined: func(varname string) {
+			addEvent("defined", varname)
+		},
+		Empty: func(varuse *MkVarUse) {
+			addEvent("empty", varuseStr(varuse))
+		},
+		CompareVarNum: func(varuse *MkVarUse, op string, num string) {
+			addEvent("compareVarNum", varuseStr(varuse), num)
+		},
+		CompareVarStr: func(varuse *MkVarUse, op string, str string) {
+			addEvent("compareVarStr", varuseStr(varuse), str)
+		},
+		CompareVarVar: func(left *MkVarUse, op string, right *MkVarUse) {
+			addEvent("compareVarVar", varuseStr(left), varuseStr(right))
+		},
+		Call: func(name string, arg string) {
+			addEvent("call", name, arg)
+		},
+		VarUse: func(varuse *MkVarUse) {
+			addEvent("varUse", varuseStr(varuse))
+		}})
+
+	c.Check(events, deepEquals, []string{
+		" compareVarVar  VAR:Mmatch, OTHER",
+		"        varUse  VAR:Mmatch",
+		"        varUse  OTHER",
+		" compareVarStr  STR, Str",
+		"        varUse  STR",
+		" compareVarNum  NUM, 3",
+		"        varUse  NUM",
+		"       defined  VAR",
+		"        varUse  VAR",
+		"          call  exists, file.mk",
+		"         empty  NONEMPTY",
+		"        varUse  NONEMPTY"})
 }

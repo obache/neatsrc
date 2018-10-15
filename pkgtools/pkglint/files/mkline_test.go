@@ -2,7 +2,7 @@ package main
 
 import "gopkg.in/check.v1"
 
-func (s *Suite) Test_VaralignBlock_Check_autofix(c *check.C) {
+func (s *Suite) Test_VaralignBlock_Check__autofix(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wspace", "--show-autofix")
@@ -68,7 +68,7 @@ func (s *Suite) Test_VaralignBlock_Check__reduce_indentation(c *check.C) {
 		"NOTE: file.mk:3: This variable value should be aligned to column 9.")
 }
 
-func (s *Suite) Test_VaralignBlock_Check_longest_line_no_space(c *check.C) {
+func (s *Suite) Test_VaralignBlock_Check__longest_line_no_space(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wspace")
@@ -91,7 +91,7 @@ func (s *Suite) Test_VaralignBlock_Check_longest_line_no_space(c *check.C) {
 		"NOTE: file.mk:4: This variable value should be aligned to column 33.")
 }
 
-func (s *Suite) Test_VaralignBlock_Check_only_spaces(c *check.C) {
+func (s *Suite) Test_VaralignBlock_Check__only_spaces(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wspace")
@@ -218,8 +218,20 @@ func (s *Suite) Test_NewMkLine__autofix_space_after_varname(c *check.C) {
 		"pkgbase := pkglint")
 }
 
+func (s *Suite) Test_MkLine_Cond(c *check.C) {
+	t := s.Init(c)
+
+	mkline := t.NewMkLine("Makefile", 2, ".if ${VAR} == Value")
+
+	cond := mkline.Cond()
+
+	c.Check(cond.CompareVarStr.Var.varname, equals, "VAR")
+	c.Check(cond.CompareVarStr.Str, equals, "Value")
+	c.Check(mkline.Cond(), equals, cond)
+}
+
 // Guessing the variable type works for both plain and parameterized variable names.
-func (s *Suite) Test_MkLine_VariableType_varparam(c *check.C) {
+func (s *Suite) Test_Pkgsrc_VariableType__varparam(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupVartypes()
@@ -242,13 +254,13 @@ func (s *Suite) Test_VarUseContext_String(c *check.C) {
 	vartype := G.Pkgsrc.VariableType("PKGNAME")
 	vuc := &VarUseContext{vartype, vucTimeUnknown, vucQuotBackt, false}
 
-	c.Check(vuc.String(), equals, "(PkgName time:unknown quoting:backt wordpart:false)")
+	c.Check(vuc.String(), equals, "(Pkgname time:unknown quoting:backt wordpart:false)")
 }
 
 // In variable assignments, a plain '#' introduces a line comment, unless
 // it is escaped by a backslash. In shell commands, on the other hand, it
 // is interpreted literally.
-func (s *Suite) Test_NewMkLine_numbersign(c *check.C) {
+func (s *Suite) Test_NewMkLine__number_sign(c *check.C) {
 	t := s.Init(c)
 
 	mklineVarassignEscaped := t.NewMkLine("fname", 1, "SED_CMD=\t's,\\#,hash,g'")
@@ -273,13 +285,50 @@ func (s *Suite) Test_NewMkLine_numbersign(c *check.C) {
 		"WARN: fname:1: The # character starts a comment.")
 }
 
-func (s *Suite) Test_NewMkLine_leading_space(c *check.C) {
+func (s *Suite) Test_NewMkLine__leading_space(c *check.C) {
 	t := s.Init(c)
 
 	_ = t.NewMkLine("rubyversion.mk", 427, " _RUBYVER=\t2.15")
+	_ = t.NewMkLine("bsd.buildlink3.mk", 132, "   ok:=yes")
 
+	// In mk/buildlink3/bsd.buildlink3.mk, the leading space is really helpful,
+	// therefore no warnings for that file.
 	t.CheckOutputLines(
 		"WARN: rubyversion.mk:427: Makefile lines should not start with space characters.")
+}
+
+// Exotic test cases from the pkgsrc infrastructure.
+// Hopefully, pkgsrc packages don't need such complicated code.
+func (s *Suite) Test_NewMkLine__infrastructure(c *check.C) {
+	t := s.Init(c)
+
+	mklines := t.NewMkLines("infra.mk",
+		MkRcsID,
+		"         USE_BUILTIN.${_pkg_:S/^-//}:=no",
+		".error \"Something went wrong\"",
+		".export WRKDIR",
+		".export",
+		".unexport-env WRKDIR",
+		"",
+		".ifmake target1",    // Luckily, this is not used in the wild.
+		".elifnmake target2", // Neither is this.
+		".endif")
+
+	c.Check(mklines.mklines[1].Varcanon(), equals, "USE_BUILTIN.*")
+	c.Check(mklines.mklines[2].Directive(), equals, "error")
+	c.Check(mklines.mklines[3].Directive(), equals, "export")
+
+	t.CheckOutputLines(
+		"WARN: infra.mk:2: Makefile lines should not start with space characters.",
+		"ERROR: infra.mk:8: Unknown Makefile line format: \".ifmake target1\".",
+		"ERROR: infra.mk:9: Unknown Makefile line format: \".elifnmake target2\".")
+
+	mklines.Check()
+
+	t.CheckOutputLines(
+		"WARN: infra.mk:2: USE_BUILTIN.${_pkg_:S/^-//} is defined but not used.",
+		"ERROR: infra.mk:5: \".export\" requires arguments.",
+		"ERROR: infra.mk:10: Unmatched .endif.")
 }
 
 func (s *Suite) Test_MkLines_Check__extra(c *check.C) {
@@ -311,7 +360,7 @@ func (s *Suite) Test_MkLines_Check__extra(c *check.C) {
 		"NOTE: options.mk:11: You can use \"../build\" instead of \"${WRKSRC}/../build\".")
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__unknown_rhs(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__unknown_rhs(c *check.C) {
 	t := s.Init(c)
 
 	mkline := t.NewMkLine("fname", 1, "PKGNAME := ${UNKNOWN}")
@@ -323,7 +372,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__unknown_rhs(c *check.C) {
 	c.Check(nq, equals, nqDontKnow)
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__append_URL_to_list_of_URLs(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__append_URL_to_list_of_URLs(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -341,7 +390,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__append_URL_to_list_of_URLs(c *
 	t.CheckOutputEmpty() // Up to pkglint 5.3.6, it warned about a missing :Q here, which was wrong.
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__append_list_to_list(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__append_list_to_list(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -355,7 +404,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__append_list_to_list(c *check.C
 	t.CheckOutputEmpty()
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__eval_shell(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__eval_shell(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -369,7 +418,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__eval_shell(c *check.C) {
 		"NOTE: builtin.mk:3: The :Q operator isn't necessary for ${BUILTIN_PKG.Xfixes} here.")
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__command_in_single_quotes(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__command_in_single_quotes(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -382,13 +431,13 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__command_in_single_quotes(c *ch
 		"WARN: Makefile:3: Please use ${INSTALL:Q} instead of ${INSTALL} and make sure the variable appears outside of any quoting characters.")
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__command_in_command(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__command_in_command(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
 	t.SetupVartypes()
-	t.SetupToolUsable("find", "FIND")
-	t.SetupToolUsable("sort", "SORT")
+	t.SetupTool("find", "FIND", AtRunTime)
+	t.SetupTool("sort", "SORT", AtRunTime)
 	G.Pkg = NewPackage(t.File("category/pkgbase"))
 	G.Mk = t.NewMkLines("Makefile",
 		MkRcsID,
@@ -401,7 +450,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__command_in_command(c *check.C)
 		"WARN: Makefile:2: The exitcode of \"${FIND}\" at the left of the | operator is ignored.")
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__word_as_part_of_word(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__word_as_part_of_word(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -421,12 +470,12 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__word_as_part_of_word(c *check.
 // therefore no warning is issued in both these cases.
 //
 // Based on graphics/circos/Makefile.
-func (s *Suite) Test_MkLine_variableNeedsQuoting__command_as_command_argument(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__command_as_command_argument(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
-	t.SetupToolUsable("perl", "PERL5")
-	t.SetupToolUsable("bash", "BASH")
+	t.SetupTool("perl", "PERL5", AtRunTime)
+	t.SetupTool("bash", "BASH", AtRunTime)
 	t.SetupVartypes()
 	mklines := t.NewMkLines("Makefile",
 		MkRcsID,
@@ -441,7 +490,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__command_as_command_argument(c 
 }
 
 // Based on mail/mailfront/Makefile.
-func (s *Suite) Test_MkLine_variableNeedsQuoting__URL_as_part_of_word_in_list(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__URL_as_part_of_word_in_list(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -460,13 +509,13 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__URL_as_part_of_word_in_list(c 
 // modifier.
 //
 // Based on www/firefox31/xpi.mk.
-func (s *Suite) Test_MkLine_variableNeedsQuoting__command_in_subshell(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__command_in_subshell(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
 	t.SetupVartypes()
-	t.SetupToolUsable("awk", "AWK")
-	t.SetupToolUsable("echo", "ECHO")
+	t.SetupTool("awk", "AWK", AtRunTime)
+	t.SetupTool("echo", "ECHO", AtRunTime)
 	G.Mk = t.NewMkLines("xpi.mk",
 		MkRcsID,
 		"\t id=$$(${AWK} '{print}' < ${WRKSRC}/idfile) && echo \"$$id\"",
@@ -483,7 +532,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__command_in_subshell(c *check.C
 // LDFLAGS (and even more so CPPFLAGS and CFLAGS) may contain special
 // shell characters like quotes or backslashes. Therefore, quoting them
 // correctly is more tricky than with other variables.
-func (s *Suite) Test_MkLine_variableNeedsQuoting__LDFLAGS_in_single_quotes(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__LDFLAGS_in_single_quotes(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -506,7 +555,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__LDFLAGS_in_single_quotes(c *ch
 // requires the variable to be declared as "lkSpace".
 // In this case it doesn't matter though since each option is an identifier,
 // and these do not pose any quoting or escaping problems.
-func (s *Suite) Test_MkLine_variableNeedsQuoting__package_options(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__package_options(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -542,12 +591,12 @@ func (s *Suite) Test_MkLines_Check__MASTER_SITE_in_HOMEPAGE(c *check.C) {
 		"WARN: devel/catch/Makefile:5: HOMEPAGE should not be defined in terms of MASTER_SITEs.")
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__tool_in_quotes_in_subshell_in_shellwords(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__tool_in_quotes_in_subshell_in_shellwords(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
-	t.SetupToolUsable("echo", "ECHO")
-	t.SetupToolUsable("sh", "SH")
+	t.SetupTool("echo", "ECHO", AtRunTime)
+	t.SetupTool("sh", "SH", AtRunTime)
 	t.SetupVartypes()
 	G.Mk = t.NewMkLines("x11/labltk/Makefile",
 		MkRcsID,
@@ -559,7 +608,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__tool_in_quotes_in_subshell_in_
 	t.CheckOutputEmpty()
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__LDADD_in_BUILDLINK_TRANSFORM(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__LDADD_in_BUILDLINK_TRANSFORM(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -574,7 +623,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__LDADD_in_BUILDLINK_TRANSFORM(c
 		"WARN: x11/qt5-qtbase/Makefile.common:1: Please use ${BUILDLINK_LDADD.dl:Q} instead of ${BUILDLINK_LDADD.dl:M*}.")
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__command_in_message(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__command_in_message(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -588,7 +637,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__command_in_message(c *check.C)
 	t.CheckOutputEmpty()
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__guessed_list_variable_in_quotes(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__guessed_list_variable_in_quotes(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -604,7 +653,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__guessed_list_variable_in_quote
 		"WARN: audio/jack-rack/Makefile:3: The variable LADSPA_PLUGIN_PATH should be quoted as part of a shell word.")
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__list_in_list(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__list_in_list(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -615,10 +664,12 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__list_in_list(c *check.C) {
 
 	G.Mk.Check()
 
-	t.CheckOutputEmpty() // Don't warn about missing :Q modifiers.
+	// Don't warn about missing :Q modifiers.
+	t.CheckOutputLines(
+		"WARN: x11/eterm/Makefile:2: PIXMAP_FILES is used but not defined.")
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__PKGNAME_and_URL_list_in_URL_list(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__PKGNAME_and_URL_list_in_URL_list(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -633,12 +684,12 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__PKGNAME_and_URL_list_in_URL_li
 	t.CheckOutputEmpty() // Don't warn about missing :Q modifiers.
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__tool_in_CONFIGURE_ENV(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__tool_in_CONFIGURE_ENV(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
 	t.SetupVartypes()
-	t.SetupToolUsable("tar", "TAR")
+	t.SetupTool("tar", "TAR", AtRunTime)
 	mklines := t.NewMkLines("Makefile",
 		MkRcsID,
 		"",
@@ -654,12 +705,12 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__tool_in_CONFIGURE_ENV(c *check
 		"NOTE: Makefile:3: The :Q operator isn't necessary for ${TOOLS_TAR} here.")
 }
 
-func (s *Suite) Test_MkLine_variableNeedsQuoting__backticks(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__backticks(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
 	t.SetupVartypes()
-	t.SetupToolUsable("cat", "CAT")
+	t.SetupTool("cat", "CAT", AtRunTime)
 	mklines := t.NewMkLines("Makefile",
 		MkRcsID,
 		"",
@@ -682,7 +733,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__backticks(c *check.C) {
 // the :Q modifier can be safely removed since pkgsrc will never support
 // having special characters in these directory names.
 // For guessed variable types be cautious and don't autofix them.
-func (s *Suite) Test_MkLine_variableNeedsQuoting__only_remove_known(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__only_remove_known(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall", "--autofix")
@@ -709,7 +760,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__only_remove_known(c *check.C) 
 
 // TODO: COMPILER_RPATH_FLAG and LINKER_RPATH_FLAG have different types
 // defined in vardefs.go; examine why.
-func (s *Suite) Test_MkLine_variableNeedsQuoting__shellword_part(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__shellword_part(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall,no-space")
@@ -729,12 +780,12 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__shellword_part(c *check.C) {
 }
 
 // Tools, when used in a shell command, must not be quoted.
-func (s *Suite) Test_MkLine_variableNeedsQuoting__tool_in_shell_command(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__tool_in_shell_command(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall,no-space")
 	t.SetupVartypes()
-	t.SetupToolUsable("bash", "BASH")
+	t.SetupTool("bash", "BASH", AtRunTime)
 
 	mklines := t.SetupFileMkLines("Makefile",
 		MkRcsID,
@@ -747,7 +798,7 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__tool_in_shell_command(c *check
 }
 
 // These examples from real pkgsrc end up in the final nqDontKnow case.
-func (s *Suite) Test_MkLine_variableNeedsQuoting__uncovered_cases(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__uncovered_cases(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall,no-space")
@@ -767,10 +818,13 @@ func (s *Suite) Test_MkLine_variableNeedsQuoting__uncovered_cases(c *check.C) {
 	t.CheckOutputLines(
 		"WARN: ~/Makefile:4: The variable LINKER_RPATH_FLAG may not be set by any package.",
 		"WARN: ~/Makefile:4: Please use ${LINKER_RPATH_FLAG:S/-rpath/& /:Q} instead of ${LINKER_RPATH_FLAG:S/-rpath/& /}.",
-		"WARN: ~/Makefile:4: LINKER_RPATH_FLAG should not be evaluated at load time.")
+		"WARN: ~/Makefile:4: LINKER_RPATH_FLAG should not be evaluated at load time.",
+		"WARN: ~/Makefile:6: The variable PATH may not be set by any package.",
+		"WARN: ~/Makefile:6: PREFIX should not be evaluated at load time.",
+		"WARN: ~/Makefile:6: PATH should not be evaluated at load time.")
 }
 
-func (s *Suite) Test_MkLine_Pkgmandir(c *check.C) {
+func (s *Suite) Test_ShellLine_CheckWord__PKGMANDIR(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
@@ -800,8 +854,9 @@ func (s *Suite) Test_MkLines_Check__VERSION_as_wordpart_in_MASTER_SITES(c *check
 	mklines.Check()
 
 	t.CheckOutputLines(
-		"WARN: geography/viking/Makefile:2: " +
-			"The list variable MASTER_SITE_SOURCEFORGE should not be embedded in a word.")
+		"WARN: geography/viking/Makefile:2: "+
+			"The list variable MASTER_SITE_SOURCEFORGE should not be embedded in a word.",
+		"WARN: geography/viking/Makefile:2: VERSION is used but not defined.")
 }
 
 func (s *Suite) Test_MkLines_Check__shell_command_as_wordpart_in_ENV_list(c *check.C) {
@@ -820,11 +875,12 @@ func (s *Suite) Test_MkLines_Check__shell_command_as_wordpart_in_ENV_list(c *che
 		"WARN: x11/lablgtk1/Makefile:2: Please use ${CC:Q} instead of ${CC}.")
 }
 
-func (s *Suite) Test_MkLine_shell_varuse_in_backt_dquot(c *check.C) {
+func (s *Suite) Test_MkLine__shell_varuse_in_backt_dquot(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupCommandLine("-Wall")
 	t.SetupVartypes()
+	t.SetupTool("grep", "GREP", AtRunTime)
 	mklines := t.NewMkLines("x11/motif/Makefile",
 		MkRcsID,
 		"post-patch:",
@@ -833,12 +889,11 @@ func (s *Suite) Test_MkLine_shell_varuse_in_backt_dquot(c *check.C) {
 	mklines.Check()
 
 	// Just ensure that there are no parse errors.
-	t.CheckOutputLines(
-		"WARN: x11/motif/Makefile:3: Unknown shell command \"${GREP}\".")
+	t.CheckOutputEmpty()
 }
 
 // See PR 46570, Ctrl+F "3. In lang/perl5".
-func (s *Suite) Test_MkLine_VariableType(c *check.C) {
+func (s *Suite) Test_Pkgsrc_VariableType(c *check.C) {
 	t := s.Init(c)
 
 	t.SetupVartypes()
@@ -1050,25 +1105,57 @@ func (s *Suite) Test_Indentation_RememberUsedVariables(c *check.C) {
 
 	mkline := t.NewMkLine("Makefile", 123, ".if ${PKGREVISION} > 0")
 	ind := NewIndentation()
-	cond := NewMkParser(mkline.Line, mkline.Args(), false)
 
-	ind.RememberUsedVariables(cond.MkCond())
+	ind.RememberUsedVariables(mkline.Cond())
 
 	t.CheckOutputEmpty()
 	c.Check(ind.Varnames(), equals, "PKGREVISION")
 }
 
-func (s *Suite) Test_MkLine_ExtractUsedVariables(c *check.C) {
+func (s *Suite) Test_MkLine_DetermineUsedVariables(c *check.C) {
 	t := s.Init(c)
 
-	mkline := t.NewMkLine("Makefile", 123, "")
+	mklines := t.NewMkLines("Makefile",
+		MkRcsID,
+		"VAR=\t${VALUE} # ${varassign.comment}",
+		".if ${OPSYS:M${endianness}} == ${Hello:L} # ${if.comment}",
+		".for var in one ${two} three # ${for.comment}",
+		"# ${empty.comment}",
+		"${TARGETS}: ${SOURCES} # ${dependency.comment}",
+		".include \"${OTHER_FILE}\"",
+		"",
+		"\t"+
+			"${VAR.${param}}"+
+			"${VAR}and${VAR2}"+
+			"${VAR:M${pattern}}"+
+			"$(ROUND_PARENTHESES)"+
+			"$$shellvar"+
+			"$<$@$x")
 
-	nestedVarnames := mkline.ExtractUsedVariables("${VAR.${param}}")
+	var varnames []string
+	for _, mkline := range mklines.mklines {
+		varnames = append(varnames, mkline.DetermineUsedVariables()...)
+	}
 
-	// ExtractUsedVariables is very old code, should be more advanced.
-	c.Check(nestedVarnames, check.IsNil)
+	c.Check(varnames, deepEquals, []string{
+		"VALUE",
+		"OPSYS",
+		"endianness",
+		// "Hello" is not a variable name, the :L modifier makes it an expression.
+		"two",
+		"TARGETS",
+		"SOURCES",
+		"OTHER_FILE",
 
-	plainVarnames := mkline.ExtractUsedVariables("${VAR}and${VAR2}")
-
-	c.Check(plainVarnames, deepEquals, []string{"VAR", "VAR2"})
+		"VAR.${param}",
+		"param",
+		"VAR",
+		"VAR2",
+		"VAR",
+		"pattern",
+		"ROUND_PARENTHESES",
+		// Shell variables are ignored here.
+		"<",
+		"@",
+		"x"})
 }

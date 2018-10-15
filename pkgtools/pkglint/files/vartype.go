@@ -70,9 +70,9 @@ func (perms ACLPermissions) HumanString() string {
 	return strings.TrimRight(result, ", ")
 }
 
-func (vt *Vartype) EffectivePermissions(fname string) ACLPermissions {
+func (vt *Vartype) EffectivePermissions(basename string) ACLPermissions {
 	for _, aclEntry := range vt.aclEntries {
-		if m, _ := path.Match(aclEntry.glob, path.Base(fname)); m {
+		if m, _ := path.Match(aclEntry.glob, basename); m {
 			return aclEntry.permissions
 		}
 	}
@@ -118,7 +118,7 @@ func (vt *Vartype) IsConsideredList() bool {
 }
 
 func (vt *Vartype) MayBeAppendedTo() bool {
-	return vt.kindOfList != lkNone || vt.IsConsideredList()
+	return vt.kindOfList != lkNone || vt.IsConsideredList() || vt.basicType == BtComment
 }
 
 func (vt *Vartype) String() string {
@@ -216,6 +216,7 @@ var (
 	BtFilename               = &BasicType{"Filename", (*VartypeCheck).Filename}
 	BtFilemask               = &BasicType{"Filemask", (*VartypeCheck).Filemask}
 	BtFileMode               = &BasicType{"FileMode", (*VartypeCheck).FileMode}
+	BtGccReqd                = &BasicType{"GccReqd", (*VartypeCheck).GccReqd}
 	BtHomepage               = &BasicType{"Homepage", (*VartypeCheck).Homepage}
 	BtIdentifier             = &BasicType{"Identifier", (*VartypeCheck).Identifier}
 	BtInteger                = &BasicType{"Integer", (*VartypeCheck).Integer}
@@ -232,7 +233,7 @@ var (
 	BtPathname               = &BasicType{"Pathname", (*VartypeCheck).Pathname}
 	BtPerl5Packlist          = &BasicType{"Perl5Packlist", (*VartypeCheck).Perl5Packlist}
 	BtPerms                  = &BasicType{"Perms", (*VartypeCheck).Perms}
-	BtPkgName                = &BasicType{"PkgName", (*VartypeCheck).PkgName}
+	BtPkgName                = &BasicType{"Pkgname", (*VartypeCheck).Pkgname}
 	BtPkgPath                = &BasicType{"PkgPath", (*VartypeCheck).PkgPath}
 	BtPkgOptionsVar          = &BasicType{"PkgOptionsVar", (*VartypeCheck).PkgOptionsVar}
 	BtPkgRevision            = &BasicType{"PkgRevision", (*VartypeCheck).PkgRevision}

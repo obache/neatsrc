@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.417 2018/08/11 00:48:50 nia Exp $
+# $NetBSD: Makefile,v 1.419 2018/10/04 15:47:28 roy Exp $
 #
 
 COMMENT=	Games
@@ -6,6 +6,7 @@ COMMENT=	Games
 SUBDIR+=	0verkill
 SUBDIR+=	2048-cli
 SUBDIR+=	4stAttack
+SUBDIR+=	AitDoB
 SUBDIR+=	InterLOGIC
 SUBDIR+=	KoboDeluxe
 SUBDIR+=	LostPixels
@@ -229,6 +230,10 @@ SUBDIR+=	lincity-ng
 SUBDIR+=	liquidwar
 SUBDIR+=	lmarbles
 SUBDIR+=	lnl
+SUBDIR+=	love010
+SUBDIR+=	love07
+SUBDIR+=	love08
+SUBDIR+=	love09
 SUBDIR+=	lpairs
 SUBDIR+=	lskat
 SUBDIR+=	ltris
@@ -237,11 +242,13 @@ SUBDIR+=	maelstrom-x11
 SUBDIR+=	majesty-demo
 SUBDIR+=	marathon-evil
 SUBDIR+=	marathon-trilogy
+SUBDIR+=	mari0
 SUBDIR+=	minami
 SUBDIR+=	mirrormagic
 SUBDIR+=	monsterz
 SUBDIR+=	moon-buggy
 SUBDIR+=	moria
+SUBDIR+=	mrrescue
 SUBDIR+=	nagi
 SUBDIR+=	nethack
 SUBDIR+=	nethack-lib
@@ -254,6 +261,8 @@ SUBDIR+=	neverball
 SUBDIR+=	newvox
 SUBDIR+=	nighthawk
 SUBDIR+=	ninvaders
+SUBDIR+=	not_pacman
+SUBDIR+=	not_tetris
 SUBDIR+=	omega
 SUBDIR+=	onscripter
 SUBDIR+=	openmortal
@@ -306,6 +315,7 @@ SUBDIR+=	scummvm-bass
 SUBDIR+=	scummvm-fotaq
 SUBDIR+=	scummvm-tools
 SUBDIR+=	sex
+SUBDIR+=	sienna
 SUBDIR+=	simgear
 SUBDIR+=	singularity
 SUBDIR+=	sirius

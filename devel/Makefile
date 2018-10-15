@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2736 2018/09/23 18:17:04 taca Exp $
+# $NetBSD: Makefile,v 1.2738 2018/10/10 09:55:32 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -2005,6 +2005,7 @@ SUBDIR+=	py-fasteners
 SUBDIR+=	py-fastimport
 SUBDIR+=	py-filebytes
 SUBDIR+=	py-filechunkio
+SUBDIR+=	py-filelock
 SUBDIR+=	py-fixtures
 SUBDIR+=	py-flake8
 SUBDIR+=	py-flake8-docstrings
@@ -2285,6 +2286,7 @@ SUBDIR+=	py-test-isort
 SUBDIR+=	py-test-localserver
 SUBDIR+=	py-test-mock
 SUBDIR+=	py-test-pythonpath
+SUBDIR+=	py-test-randomly
 SUBDIR+=	py-test-relaxed
 SUBDIR+=	py-test-runner
 SUBDIR+=	py-test-shutil

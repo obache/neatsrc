@@ -16,7 +16,7 @@ func ChecklinesOptionsMk(mklines *MkLines) {
 		exp.CurrentLine().Warnf("Expected definition of PKG_OPTIONS_VAR.")
 		Explain(
 			"The input variables in an options.mk file should always be",
-			"mentioned in the same order: PKG_OPTIONS_VAR, ",
+			"mentioned in the same order: PKG_OPTIONS_VAR,",
 			"PKG_SUPPORTED_OPTIONS, PKG_SUGGESTED_OPTIONS.  This way, the",
 			"options.mk files have the same structure and are easy to understand.")
 		return
@@ -37,7 +37,7 @@ loop:
 		case mkline.IsVarassign():
 			switch mkline.Varcanon() {
 			case "PKG_SUPPORTED_OPTIONS", "PKG_OPTIONS_GROUP.*", "PKG_OPTIONS_SET.*":
-				for _, option := range splitOnSpace(mkline.Value()) {
+				for _, option := range fields(mkline.Value()) {
 					if !containsVarRef(option) {
 						declaredOptions[option] = mkline
 						optionsInDeclarationOrder = append(optionsInDeclarationOrder, option)
@@ -49,14 +49,9 @@ loop:
 			// The conditionals are typically for OPSYS and MACHINE_ARCH.
 
 		case mkline.IsInclude():
-			includedFile := mkline.IncludeFile()
-			switch {
-			case matches(includedFile, `/[^/]+\.buildlink3\.mk$`):
-			case matches(includedFile, `/[^/]+\.builtin\.mk$`):
-			case includedFile == "../../mk/bsd.options.mk":
+			if mkline.IncludeFile() == "../../mk/bsd.options.mk" {
 				exp.Advance()
 				break loop
-			case IsPrefs(includedFile):
 			}
 
 		default:
@@ -73,7 +68,7 @@ loop:
 	for ; !exp.EOF(); exp.Advance() {
 		mkline := exp.CurrentMkLine()
 		if mkline.IsDirective() && (mkline.Directive() == "if" || mkline.Directive() == "elif") {
-			cond := NewMkParser(mkline.Line, mkline.Args(), false).MkCond()
+			cond := mkline.Cond()
 			if cond == nil {
 				continue
 			}

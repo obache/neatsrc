@@ -1,0 +1,34 @@
+# $NetBSD: Makefile,v 1.2 2018/10/01 03:25:46 ryoon Exp $
+
+PKGNAME=	libaom-1.0.0
+DISTNAME=	aom-d14c5bb4f336ef1842046089849dee4a301fbbf0
+CATEGORIES=	multimedia
+#MASTER_SITES=	-https://aomedia.googlesource.com/aom/+archive/d14c5bb4f336ef1842046089849dee4a301fbbf0.tar.gz
+MASTER_SITES=	${MASTER_SITE_LOCAL}
+
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://aomedia.googlesource.com/aom/+archive/
+COMMENT=	Library for using AV1, video coding format
+LICENSE=	2-clause-bsd
+
+WRKSRC=		${WRKDIR}
+USE_CMAKE=	yes
+USE_LANGUAGES=	c c++
+USE_TOOLS+=	perl
+
+CONFIGURE_DIRS=	build
+CMAKE_ARG_PATH=	../
+CMAKE_ARGS+=	-DBUILD_SHARED_LIBS:BOOL='ON'
+CMAKE_ARGS+=	-DCMAKE_COLOR_MAKEFILE:BOOL='ON'
+CMAKE_ARGS+=	-DENABLE_DECODE_PERF_TESTS:BOOL='OFF'
+CMAKE_ARGS+=	-DENABLE_EXAMPLES:BOOL='ON'
+CMAKE_ARGS+=	-DENABLE_DOCS:BOOL='ON'
+CMAKE_ARGS+=	-DENABLE_GOMA:BOOL='OFF'
+CMAKE_ARGS+=	-DENABLE_NASM:BOOL='ON'
+CMAKE_ARGS+=	-DENABLE_TESTS:BOOL='OFF'
+CMAKE_ARGS+=	-DENABLE_TOOLS:BOOL='ON'
+CMAKE_ARGS+=	-DENABLE_WERROR:BOOL='OFF'
+
+BUILD_DEPENDS+=	nasm>=2.13:../../devel/nasm
+
+.include "../../mk/bsd.pkg.mk"

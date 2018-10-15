@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.22 2016/10/01 11:32:57 adam Exp $
+# $NetBSD: Makefile,v 1.24 2018/10/07 22:26:42 maya Exp $
 
-DISTNAME=	miniupnpd-2.0
+DISTNAME=	miniupnpd-2.1
 CATEGORIES=	net
 MASTER_SITES=	http://miniupnp.free.fr/files/download.php?file=
 
@@ -12,7 +12,8 @@ LICENSE=	modified-bsd
 EGDIR=		${PREFIX}/share/examples/miniupnpd
 CONF_FILES=	${EGDIR}/miniupnpd.conf ${PKG_SYSCONFDIR}/miniupnpd.conf
 
-MAKE_JOBS_SAFE=	no # genconfig.sh run in parallel with users of config.h
+# miniupnpd.c:9:20: fatal error: config.h: No such file or directory
+MAKE_JOBS_SAFE=	no
 
 .include "../../mk/bsd.prefs.mk"
 .include "options.mk"

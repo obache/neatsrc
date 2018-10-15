@@ -17,10 +17,11 @@ type PrefixReplacer struct {
 	rest string
 	s    string
 	m    []string
+	res  *regex.Registry
 }
 
-func NewPrefixReplacer(s string) *PrefixReplacer {
-	return &PrefixReplacer{s, "", nil}
+func NewPrefixReplacer(s string, res *regex.Registry) *PrefixReplacer {
+	return &PrefixReplacer{s, "", nil, res}
 }
 
 func (pr *PrefixReplacer) EOF() bool {
@@ -79,11 +80,7 @@ func (pr *PrefixReplacer) AdvanceBytesFunc(fn func(c byte) bool) bool {
 
 // AdvanceHspace advances over as many spaces and tabs as possible.
 func (pr *PrefixReplacer) AdvanceHspace() bool {
-	i := 0
-	rest := pr.rest
-	for i < len(rest) && (rest[i] == ' ' || rest[i] == '\t') {
-		i++
-	}
+	i := initialHspace(pr.rest)
 	if i != 0 {
 		pr.s = pr.rest[:i]
 		pr.rest = pr.rest[i:]
@@ -98,10 +95,10 @@ func (pr *PrefixReplacer) AdvanceRegexp(re regex.Pattern) bool {
 	if !strings.HasPrefix(string(re), "^") {
 		panic(fmt.Sprintf("PrefixReplacer.AdvanceRegexp: regular expression %q must have prefix %q.", re, "^"))
 	}
-	if Testing && regex.Matches("", re) {
+	if Testing && pr.res.Matches("", re) {
 		panic(fmt.Sprintf("PrefixReplacer.AdvanceRegexp: the empty string must not match the regular expression %q.", re))
 	}
-	if m := regex.Match(pr.rest, re); m != nil {
+	if m := pr.res.Match(pr.rest, re); m != nil {
 		if trace.Tracing {
 			trace.Stepf("PrefixReplacer.AdvanceRegexp(%q, %q, %q)", pr.rest, re, m[0])
 		}
@@ -133,8 +130,8 @@ func (pr *PrefixReplacer) Skip(n int) {
 	pr.rest = pr.rest[n:]
 }
 
-func (pr *PrefixReplacer) SkipSpace() {
-	pr.rest = strings.TrimLeft(pr.rest, " \t")
+func (pr *PrefixReplacer) SkipHspace() {
+	pr.rest = pr.rest[initialHspace(pr.rest):]
 }
 
 // Since returns the substring between the mark and the current position.
@@ -153,5 +150,13 @@ func (pr *PrefixReplacer) HasPrefix(str string) bool {
 }
 
 func (pr *PrefixReplacer) HasPrefixRegexp(re regex.Pattern) bool {
-	return regex.Matches(pr.rest, re)
+	return pr.res.Matches(pr.rest, re)
+}
+
+func initialHspace(s string) int {
+	i := 0
+	for i < len(s) && (s[i] == ' ' || s[i] == '\t') {
+		i++
+	}
+	return i
 }

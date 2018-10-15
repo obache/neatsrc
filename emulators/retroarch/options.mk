@@ -1,11 +1,11 @@
-# $NetBSD: options.mk,v 1.5 2018/09/06 09:33:38 nia Exp $
+# $NetBSD: options.mk,v 1.7 2018/10/06 23:44:28 nia Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.retroarch
 
 PKG_SUPPORTED_OPTIONS+=		sdl2 ffmpeg freetype qt5 x11 caca
 PKG_SUPPORTED_OPTIONS+=		alsa jack openal pulseaudio libusb-1
 PKG_SUPPORTED_OPTIONS+=		libxml2 # Deprecated
-PKG_SUGGESTED_OPTIONS+=		sdl2 ffmpeg freetype x11 openal
+PKG_SUGGESTED_OPTIONS+=		sdl2 freetype x11
 
 .if ${OPSYS} == "Linux"
 PKG_SUPPORTED_OPTIONS+=		udev
@@ -22,9 +22,6 @@ PKG_OPTIONS_GROUP.gl+=		opengl
 CONFIGURE_ARGS+=		--enable-floathard
 PKG_OPTIONS_GROUP.gl+=		rpi
 PKG_SUPPORTED_OPTIONS+=		simd
-.  if !empty(MACHINE_ARCH:M*armv7*)
-PKG_SUGGESTED_OPTIONS+=		simd
-.  endif
 .endif
 
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-arm*)

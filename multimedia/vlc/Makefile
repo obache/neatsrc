@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.212 2018/08/22 09:45:50 wiz Exp $
+# $NetBSD: Makefile,v 1.214 2018/10/09 16:56:17 abs Exp $
 
+# (Intended to be upgraded to vlc3 when dependencies resolved)
 DISTNAME=		vlc-${VLC_VERSION}
 PKGREVISION=		9
 CATEGORIES=		multimedia
@@ -30,7 +31,6 @@ PLIST_VARS+=		altivec cdrom oss v4l2 x86simd
 .include "options.mk"
 
 BUILDLINK_API_DEPENDS.zlib+=		zlib>=1.2.0
-BUILDLINK_API_DEPENDS.vcdimager+=	vcdimager>=0.7.20nb1
 
 CONFIGURE_ARGS+=	--enable-dvdread
 CONFIGURE_ARGS+=	--enable-flac

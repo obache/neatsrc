@@ -1,7 +1,6 @@
 package main
 
 import (
-	"netbsd.org/pkglint/regex"
 	"netbsd.org/pkglint/trace"
 	"path"
 	"sort"
@@ -54,8 +53,8 @@ func (ck *PlistChecker) Check(plainLines []Line) {
 	plines := ck.NewLines(plainLines)
 	ck.collectFilesAndDirs(plines)
 
-	if fname := plines[0].Filename; path.Base(fname) == "PLIST.common_end" {
-		commonLines := Load(strings.TrimSuffix(fname, "_end"), NotEmpty)
+	if plines[0].Basename == "PLIST.common_end" {
+		commonLines := Load(strings.TrimSuffix(plines[0].Filename, "_end"), NotEmpty)
 		if commonLines != nil {
 			ck.collectFilesAndDirs(ck.NewLines(commonLines))
 		}
@@ -300,7 +299,7 @@ func (ck *PlistChecker) checkpathLib(pline *PlistLine, dirname, basename string)
 }
 
 func (ck *PlistChecker) checkpathMan(pline *PlistLine) {
-	m, catOrMan, section, manpage, ext, gz := regex.Match5(pline.text, `^man/(cat|man)(\w+)/(.*?)\.(\w+)(\.gz)?$`)
+	m, catOrMan, section, manpage, ext, gz := match5(pline.text, `^man/(cat|man)(\w+)/(.*?)\.(\w+)(\.gz)?$`)
 	if !m {
 		// maybe: line.Warnf("Invalid filename %q for manual page.", text)
 		return
@@ -430,7 +429,7 @@ func (pline *PlistLine) CheckDirective(cmd, arg string) {
 			"command in the PLIST")
 
 	case "imake-man":
-		args := splitOnSpace(arg)
+		args := fields(arg)
 		switch {
 		case len(args) != 3:
 			pline.Warnf("Invalid number of arguments for imake-man.")

@@ -15,7 +15,7 @@ func (s *Suite) Test_ChecklinesOptionsMk(c *check.C) {
 	t.SetupOption("sqlite", "")
 	t.SetupOption("x11", "")
 
-	t.SetupFileMkLines("mk/bsd.options.mk",
+	t.CreateFileLines("mk/bsd.options.mk",
 		MkRcsID)
 
 	mklines := t.SetupFileMkLines("category/package/options.mk",
@@ -54,6 +54,7 @@ func (s *Suite) Test_ChecklinesOptionsMk(c *check.C) {
 	ChecklinesOptionsMk(mklines)
 
 	t.CheckOutputLines(
+		"WARN: ~/category/package/options.mk:6: l is used but not defined.",
 		"WARN: ~/category/package/options.mk:18: Unknown option \"undeclared\".",
 		"NOTE: ~/category/package/options.mk:21: The positive branch of the .if/.else should be the one where the option is set.",
 		"WARN: ~/category/package/options.mk:6: Option \"mc-charset\" should be handled below in an .if block.",
@@ -70,7 +71,7 @@ func (s *Suite) Test_ChecklinesOptionsMk__unexpected_line(c *check.C) {
 	t.SetupOption("slang", "")
 	t.SetupOption("x11", "")
 
-	t.SetupFileMkLines("mk/bsd.options.mk",
+	t.CreateFileLines("mk/bsd.options.mk",
 		MkRcsID)
 
 	mklines := t.SetupFileMkLines("category/package/options.mk",
@@ -99,7 +100,7 @@ func (s *Suite) Test_ChecklinesOptionsMk__malformed_condition(c *check.C) {
 	t.SetupOption("slang", "")
 	t.SetupOption("x11", "")
 
-	t.SetupFileMkLines("mk/bsd.options.mk",
+	t.CreateFileLines("mk/bsd.options.mk",
 		MkRcsID)
 
 	mklines := t.SetupFileMkLines("category/package/options.mk",
@@ -109,6 +110,10 @@ func (s *Suite) Test_ChecklinesOptionsMk__malformed_condition(c *check.C) {
 		"PKG_SUPPORTED_OPTIONS=          # none",
 		"PKG_SUGGESTED_OPTIONS=          # none",
 		"",
+		"# Comment",
+		".if ${OPSYS} == NetBSD",
+		".endif",
+		"",
 		".include \"../../mk/bsd.options.mk\"",
 		"",
 		".if ${OPSYS} == 'Darwin'",
@@ -117,5 +122,5 @@ func (s *Suite) Test_ChecklinesOptionsMk__malformed_condition(c *check.C) {
 	ChecklinesOptionsMk(mklines)
 
 	t.CheckOutputLines(
-		"WARN: ~/category/package/options.mk:9: Invalid condition, unrecognized part: \"${OPSYS} == 'Darwin'\".")
+		"WARN: ~/category/package/options.mk:13: Invalid condition, unrecognized part: \"${OPSYS} == 'Darwin'\".")
 }

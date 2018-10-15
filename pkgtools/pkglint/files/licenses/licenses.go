@@ -1,6 +1,9 @@
 package licenses
 
-import "netbsd.org/pkglint/textproc"
+import (
+	"netbsd.org/pkglint/regex"
+	"netbsd.org/pkglint/textproc"
+)
 
 // Condition describes a complex license condition.
 // It has either `Name` or `Paren` or `Children` set.
@@ -14,10 +17,10 @@ type Condition struct {
 	Children []*Condition `json:",omitempty"`
 }
 
-func Parse(licenses string) *Condition {
-	lexer := &licenseLexer{repl: textproc.NewPrefixReplacer(licenses)}
+func Parse(licenses string, res *regex.Registry) *Condition {
+	lexer := &licenseLexer{repl: textproc.NewPrefixReplacer(licenses, res)}
 	result := liyyNewParser().Parse(lexer)
-	if result == 0 {
+	if result == 0 && lexer.repl.EOF() {
 		return lexer.result
 	}
 	return nil
@@ -61,7 +64,7 @@ type licenseLexer struct {
 
 func (lexer *licenseLexer) Lex(llval *liyySymType) int {
 	repl := lexer.repl
-	repl.AdvanceHspace()
+	repl.SkipHspace()
 	switch {
 	case repl.EOF():
 		return 0

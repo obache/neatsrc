@@ -9,21 +9,20 @@ func (s *Suite) Test_Vartype_EffectivePermissions(c *check.C) {
 
 	t.SetupVartypes()
 
-	if t := G.Pkgsrc.vartypes["PREFIX"]; c.Check(t, check.NotNil) {
-		c.Check(t.basicType.name, equals, "Pathname")
-		c.Check(t.aclEntries, check.DeepEquals, []ACLEntry{{glob: "*", permissions: aclpUse}})
-		c.Check(t.EffectivePermissions("Makefile"), equals, aclpUse)
+	if typ := G.Pkgsrc.vartypes["PREFIX"]; c.Check(typ, check.NotNil) {
+		c.Check(typ.basicType.name, equals, "Pathname")
+		c.Check(typ.aclEntries, check.DeepEquals, []ACLEntry{{glob: "*", permissions: aclpUse}})
+		c.Check(typ.EffectivePermissions("Makefile"), equals, aclpUse)
 	}
 
-	if t := G.Pkgsrc.vartypes["EXTRACT_OPTS"]; c.Check(t, check.NotNil) {
-		c.Check(t.basicType.name, equals, "ShellWord")
-		c.Check(t.EffectivePermissions("Makefile"), equals, aclpAppend|aclpSet)
-		c.Check(t.EffectivePermissions("../Makefile"), equals, aclpAppend|aclpSet)
-		c.Check(t.EffectivePermissions("options.mk"), equals, aclpUnknown)
+	if typ := G.Pkgsrc.vartypes["EXTRACT_OPTS"]; c.Check(typ, check.NotNil) {
+		c.Check(typ.basicType.name, equals, "ShellWord")
+		c.Check(typ.EffectivePermissions("Makefile"), equals, aclpAppend|aclpSet)
+		c.Check(typ.EffectivePermissions("options.mk"), equals, aclpUnknown)
 	}
 }
 
-func (s *Suite) Test_VarChecker_HasEnum(c *check.C) {
+func (s *Suite) Test_BasicType_HasEnum(c *check.C) {
 	vc := enum("catinstall middle maninstall")
 
 	c.Check(vc.HasEnum("catinstall"), equals, true)
@@ -31,7 +30,7 @@ func (s *Suite) Test_VarChecker_HasEnum(c *check.C) {
 	c.Check(vc.HasEnum("maninstall"), equals, true)
 }
 
-func (s *Suite) Test_AclPermissions_Contains(c *check.C) {
+func (s *Suite) Test_ACLPermissions_Contains(c *check.C) {
 	perms := aclpAllRuntime
 
 	c.Check(perms.Contains(aclpAllRuntime), equals, true)
@@ -39,7 +38,7 @@ func (s *Suite) Test_AclPermissions_Contains(c *check.C) {
 	c.Check(perms.Contains(aclpUseLoadtime), equals, false)
 }
 
-func (s *Suite) Test_AclPermissions_String(c *check.C) {
+func (s *Suite) Test_ACLPermissions_String(c *check.C) {
 	c.Check(ACLPermissions(0).String(), equals, "none")
 	c.Check(aclpAll.String(), equals, "set, set-default, append, use-loadtime, use")
 	c.Check(aclpUnknown.String(), equals, "unknown")

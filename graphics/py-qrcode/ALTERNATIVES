@@ -1,1 +1,1 @@
-bin/qr @PREFIX@/bin/qr@PYVERSSUFFIX@
+bin/qr @PREFIX@/bin/qr-@PYVERSSUFFIX@

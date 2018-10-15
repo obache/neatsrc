@@ -48,9 +48,9 @@ func (s *Suite) Test_VartypeCheck_Category(c *check.C) {
 	t := s.Init(c)
 	vt := NewVartypeCheckTester(t, (*VartypeCheck).Category)
 
-	t.SetupFileLines("filesyscategory/Makefile",
+	t.CreateFileLines("filesyscategory/Makefile",
 		"# empty")
-	t.SetupFileLines("wip/Makefile",
+	t.CreateFileLines("wip/Makefile",
 		"# empty")
 
 	vt.Varname("CATEGORIES")
@@ -413,6 +413,24 @@ func (s *Suite) Test_VartypeCheck_FileMode(c *check.C) {
 		"WARN: fname:11: Invalid file mode \"u+rwx\".")
 }
 
+func (s *Suite) Test_VartypeCheck_GccReqd(c *check.C) {
+	vt := NewVartypeCheckTester(s.Init(c), (*VartypeCheck).GccReqd)
+
+	vt.Varname("GCC_REQD")
+	vt.Op(opAssignAppend)
+	vt.Values(
+		"2.95",
+		"3.1.5",
+		"4.7",
+		"4.8",
+		"5.1",
+		"6",
+		"7.3")
+	vt.Output(
+		"WARN: fname:5: GCC version numbers should only contain the major version (5).",
+		"WARN: fname:7: GCC version numbers should only contain the major version (7).")
+}
+
 func (s *Suite) Test_VartypeCheck_Homepage(c *check.C) {
 	t := s.Init(c)
 	vt := NewVartypeCheckTester(t, (*VartypeCheck).Homepage)
@@ -669,7 +687,7 @@ func (s *Suite) Test_VartypeCheck_Perms(c *check.C) {
 }
 
 func (s *Suite) Test_VartypeCheck_Pkgname(c *check.C) {
-	vt := NewVartypeCheckTester(s.Init(c), (*VartypeCheck).PkgName)
+	vt := NewVartypeCheckTester(s.Init(c), (*VartypeCheck).Pkgname)
 
 	vt.Varname("PKGNAME")
 	vt.Values(
@@ -754,7 +772,8 @@ func (s *Suite) Test_VartypeCheck_MachinePlatformPattern(c *check.C) {
 		"NetBSD-1.6.2-i386",
 		"FreeBSD*",
 		"FreeBSD-*",
-		"${LINUX}")
+		"${LINUX}",
+		"NetBSD-[0-1]*-*")
 
 	vt.Output(
 		"WARN: fname:1: \"linux-i386\" is not a valid platform pattern.",
@@ -780,7 +799,8 @@ func (s *Suite) Test_VartypeCheck_MachinePlatformPattern(c *check.C) {
 			"i386 i586 i686 ia64 m68000 m68k m88k mips mips64 mips64eb mips64el mipseb mipsel mipsn32 "+
 			"mlrisc ns32k pc532 pmax powerpc powerpc64 rs6000 s390 sh3eb sh3el sparc sparc64 vax x86_64 "+
 			"} for the hardware architecture part of ONLY_FOR_PLATFORM.",
-		"WARN: fname:5: \"FreeBSD*\" is not a valid platform pattern.")
+		"WARN: fname:5: \"FreeBSD*\" is not a valid platform pattern.",
+		"WARN: fname:8: Please use \"[0-1].*\" instead of \"[0-1]*\" as the version pattern.")
 }
 
 func (s *Suite) Test_VartypeCheck_PythonDependency(c *check.C) {
@@ -905,9 +925,9 @@ func (s *Suite) Test_VartypeCheck_Tool(c *check.C) {
 	t := s.Init(c)
 	vt := NewVartypeCheckTester(t, (*VartypeCheck).Tool)
 
-	t.SetupToolUsable("tool1", "")
-	t.SetupToolUsable("tool2", "")
-	t.SetupToolUsable("tool3", "")
+	t.SetupTool("tool1", "", AtRunTime)
+	t.SetupTool("tool2", "", AtRunTime)
+	t.SetupTool("tool3", "", AtRunTime)
 
 	vt.Varname("USE_TOOLS")
 	vt.Op(opAssignAppend)
@@ -1015,10 +1035,16 @@ func (s *Suite) Test_VartypeCheck_Version(c *check.C) {
 	vt.Values(
 		"a*",
 		"1.2/456",
+		"4*",
+		"?.??",
+		"1.[234]*",
+		"1.[2-7].*",
 		"[0-9]*")
 	vt.Output(
 		"WARN: fname:11: Invalid version number pattern \"a*\".",
-		"WARN: fname:12: Invalid version number pattern \"1.2/456\".")
+		"WARN: fname:12: Invalid version number pattern \"1.2/456\".",
+		"WARN: fname:13: Please use \"4.*\" instead of \"4*\" as the version pattern.",
+		"WARN: fname:15: Please use \"1.[234].*\" instead of \"1.[234]*\" as the version pattern.")
 }
 
 func (s *Suite) Test_VartypeCheck_WrapperReorder(c *check.C) {
