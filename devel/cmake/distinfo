@@ -5,6 +5,7 @@ RMD160 (cmake-3.12.2.tar.gz) = cc9e81815a6edfbd5e08d6a4f25bcf3488009853
 SHA512 (cmake-3.12.2.tar.gz) = a2f44b2d77d9a3aa62273dbdeb94ad336c7430f41a31f48b4b395d170577b2b296d598ed9d1d548df95758b3fbf3ced193e1398fd701bc99792580798ec2a99d
 Size (cmake-3.12.2.tar.gz) = 8388114 bytes
 SHA1 (patch-CMakeLists.txt) = 933e640b89293754dc732167fc078a5656e02ec7
+SHA1 (patch-Modules_CMakeParseImplicitLinkInfo.cmake) = f8f4d2d7be328f3b578b6aa84bc01020e8deee0e
 SHA1 (patch-Modules_Compiler_GNU.cmake) = e091c53ac3f3a6cd811119d3231563df32e76bf9
 SHA1 (patch-Modules_FindCurses.cmake) = 09fcd7adfbc2dfc2cd8af4e047d870a5243d77dc
 SHA1 (patch-Modules_FindPythonInterp.cmake) = d1b39bdcd654f2a4fc63463cd20de656cce3cf8f
