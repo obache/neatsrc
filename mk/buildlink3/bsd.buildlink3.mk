@@ -643,8 +643,22 @@ buildlink-${_pkg_}-cookie:
 	${RUN}					\
 	${TOUCH} ${TOUCH_FLAGS} ${_BLNK_COOKIE.${_pkg_}}
 
+BUILDLINK_CONTENTS_PATTERNS.${_pkg_}?=
+BUILDLINK_CONTENTS_PATTERNS.${_pkg_}+=\
+	${BUILDLINK_INCDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\//} \
+	^share/idl/.*\.idl$$ \
+	${BUILDLINK_PC_DIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\/.*\.pc$$/} \
+	${BUILDLINK_LIBDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\/lib[^\/]*\.[^\/]*$$/} \
+	${BUILDLINK_LIBDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\/cmake\/[^\/]+\//} \
+	${BUILDLINK_LIBDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/([^\/]+\/)?\/(cmake|CMake)\//} \
+	${BUILDLINK_LIBDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/([^\/]+\/)?\/.*\.cmake$$/} \
+	^share/cmake/[^\/]+/ \
+	^share/([^/]+/)/(cmake|CMake)/ \
+	^share/([^/]+/)/.*\.cmake$$ \
+	${BUILDLINK_BINDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\//} \
+
 BUILDLINK_CONTENTS_FILTER.${_pkg_}?=					\
-	${EGREP} '(${BUILDLINK_INCDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\//:ts|}|^share/idl/.*\.idl$$|${BUILDLINK_PC_DIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\/.*\.pc$$/:ts|}|${BUILDLINK_LIBDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\/lib[^\/]*\.[^\/]*$$/:ts|}|\.cmake$$|${BUILDLINK_BINDIRS.${_pkg_}:S/+/\+/g:S/^/^/:S/$$/\//:ts|}${BUILDLINK_CONTENTS_PATTERNS.${_pkg_}:D|}${BUILDLINK_CONTENTS_PATTERNS.${_pkg_}:ts|})'
+	${EGREP} '(${BUILDLINK_CONTENTS_PATTERNS.${_pkg_}:ts|})'
 
 BUILDLINK_FILES_CMD.${_pkg_}?=						\
 	${_BLNK_PKG_INFO.${_pkg_}} -qL ${BUILDLINK_PKGNAME.${_pkg_}} |	\
