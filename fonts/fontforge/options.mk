@@ -14,6 +14,7 @@ PLIST.x11=	yes
 BUILDLINK_DEPMETHOD.libXt+=	build
 .include "../../x11/libSM/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
+#BUILDLINK_AUTO_DIRS.libX11+=	rpath
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXi/buildlink3.mk"
 .else
