@@ -93,3 +93,12 @@ __cmake-dependencies-rewrite: .PHONY
 		${MV} -f $$file.override $$file;			\
 	done
 .endif
+
+### simple unwrapp function for CMake
+### XXX: need to implement full unwrap same as in wrapper/bsd.wrapper.mk
+
+SUBST_CLASSES+=			_unwrap-cmake
+SUBST_STAGE._unwrap-cmake=	post-build
+SUBST_MESSAGE._unwrap-cmake=	Unwrapping CMake files to be installed
+SUBST_FILES._unwrap-cmake=	${UNWRAP_CMAKE_FILES}
+SUBST_SED._unwrap-cmake=	-e 's,${BUILDLINK_BASEDIR},,g'
