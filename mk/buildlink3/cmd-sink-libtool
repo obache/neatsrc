@@ -39,7 +39,21 @@ while ! queue_is_empty cmdbuf; do
 	-L*|-l*|-Wl,*)
 		case $lt_mode in
 		link)
-			. $buildcmd
+			case $arg in
+			-Wl,-R*|-Wl,-rpath,*|-Wl,--rpath,*)
+				case $arg in
+				-Wl,-R*)		R="-Wl,-R" ;;
+				-Wl,-rpath,*)		R="-Wl,-rpath," ;;
+				-Wl,--rpath,*)		R="-Wl,--rpath," ;;
+				esac
+				dir="${arg#$R}"
+				arg="-R$dir"
+				. $buildcmd
+				;;
+			*)
+				. $buildcmd
+				;;
+			esac
 			;;
 		*)
 			$debug_log $wrapperlog "    (cmd-sink-libtool) drop: $arg"
