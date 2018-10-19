@@ -71,7 +71,7 @@ CMAKE_ARGS+=-DCMAKE_PREFIX_PATH:PATH=${CMAKE_PREFIX_PATH:ts;:Q}
 .endif
 
 CMAKE_ARGS+=	-DCMAKE_FIND_ROOT_PATH:PATH=${BUILDLINK_BASEDIR:Q}
-CMAKE_ARGS+=	-DPKGSRC_BUILDLINK_BASEDIR:PATH=${PKGSRC_BUILDLINK_BASEDIR:Q}
+CMAKE_ARGS+=	-DPKGSRC_BUILDLINK_BASEDIR:PATH=${BUILDLINK_BASEDIR:Q}
 
 ### The cmake function export_library_dependencies() writes out
 ### library dependency info to a file and this may contain buildlink
