@@ -64,12 +64,6 @@ if $test -f $lafile; then
 	for i in ${dependency_libs}; do
 		case $i in
 		####################################################
-		# Skip all -R* options... rpath info shouldn't go into
-		# the dependency_libs line.
-		####################################################
-		-R*)
-			;;
-		####################################################
 		# Catch -L<dir> and remove redundant ones.
 		####################################################
 		-L*)
@@ -236,13 +230,6 @@ if $test -f $lafile; then
 				# "-lm -lm" becomes just "-lm".
 				######################################
 				$prev)
-					;;
-				######################################
-				# Skip all -R* options... rpath info
-				# shouldn't go into the dependency_libs
-				# line.
-				######################################
-				-R*)
 					;;
 				######################################
 				# Skip directories that should never
