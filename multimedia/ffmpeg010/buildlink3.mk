@@ -11,7 +11,6 @@ BUILDLINK_PKGSRCDIR.ffmpeg010?=		../../multimedia/ffmpeg010
 
 BUILDLINK_INCDIRS.ffmpeg010+=		include/ffmpeg010
 BUILDLINK_LIBDIRS.ffmpeg010+=		lib/ffmpeg010
-BUILDLINK_FNAME_TRANSFORM.ffmpeg010+=	-e 's|lib/ffmpeg010/pkgconfig/|lib/pkgconfig/|'
 
 pkgbase := ffmpeg010
 .include "../../mk/pkg-build-options.mk"
