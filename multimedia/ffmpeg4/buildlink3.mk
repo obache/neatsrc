@@ -52,7 +52,6 @@ pkgbase := ffmpeg4
 
 BUILDLINK_INCDIRS.ffmpeg4+=		include/ffmpeg4
 BUILDLINK_LIBDIRS.ffmpeg4+=		lib/ffmpeg4
-BUILDLINK_FNAME_TRANSFORM.ffmpeg4+=	-e 's|lib/ffmpeg4/pkgconfig/|lib/pkgconfig/|'
 
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../archivers/xz/buildlink3.mk"
