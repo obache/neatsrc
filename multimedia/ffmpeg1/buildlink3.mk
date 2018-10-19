@@ -36,7 +36,6 @@ pkgbase := ffmpeg1
 
 BUILDLINK_INCDIRS.ffmpeg1+=		include/ffmpeg1
 BUILDLINK_LIBDIRS.ffmpeg1+=		lib/ffmpeg1
-BUILDLINK_FNAME_TRANSFORM.ffmpeg1+=	-e 's|lib/ffmpeg1/pkgconfig/|lib/pkgconfig/|'
 
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../devel/libgetopt/buildlink3.mk"
