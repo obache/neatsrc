@@ -3,26 +3,30 @@
 .include "../../multimedia/xine-lib/Makefile.common"
 
 PKGNAME=	${XINE_PKGNAME:S/lib/v4l/}
-PKGREVISION=	8
 CATEGORIES=	multimedia
 COMMENT=	The v4l input plugin for xine-lib
 
 # NetBSD supports only v4l2, whose plugin is in ../xine-v4l2.
 NOT_FOR_PLATFORM=	NetBSD-*-*
 
-DEPENDS+=	xine-lib>=1rc3a:../../multimedia/xine-lib
-
 BUILD_DIRS=	src/input
+
 CONFIGURE_ARGS+=	--without-x --disable-xinerama
 CONFIGURE_ARGS+=	--disable-vcd
+CONFIGURE_ARGS+=	--disable-coreaudio
+CONFIGURE_ARGS+=	--disable-oss
+CONFIGURE_ARGS+=	--disable-sunaudio
+CONFIGURE_ARGS+=	--without-alsa
+CONFIGURE_ARGS+=	--without-jack
+CONFIGURE_ARGS+=	--without-pulseaudio
+CONFIGURE_ARGS+=	--without-esound
+CONFIGURE_ARGS+=	--disable-dvb
+CONFIGURE_ARGS+=	--disable-v4l2
+CONFIGURE_ARGS+=	--enable-v4l
 
-INSTALLATION_DIRS=	lib/xine/plugins/${XINE_MOD_DIR_VER}
+MAKE_FLAGS+=	xineplug_LTLIBRARIES="xineplug_inp_v4l.la"
 
-do-install:
-	cd ${WRKSRC}/src/input && \
-		${LIBTOOL} --mode=install ${INSTALL_DATA} \
-		xineplug_inp_v4l.la \
-		${DESTDIR}${PREFIX}/lib/xine/plugins/${XINE_MOD_DIR_VER}
+post-configure:
+	${LN} -s ${BUILDLINK_PREFIX.xine-lib}/lib/libxine.la ${WRKSRC}/src/xine-engine/
 
-.include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

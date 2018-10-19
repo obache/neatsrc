@@ -1,6 +1,5 @@
 # $NetBSD: Makefile,v 1.150 2018/10/09 15:15:20 abs Exp $
 
-PKGREVISION= 13
 .include "Makefile.common"
 
 COMMENT=		Multimedia player library
@@ -55,6 +54,29 @@ LDFLAGS.SunOS+=		-lresolv
 
 .include "options.mk"
 
+CONFIGURE_ARGS+=	--with-w32-path='${PREFIX}/lib/win32'
+
+.include "../../mk/bsd.prefs.mk"
+
+PLIST_VARS+=		xv xvmc
+.include "../../x11/libXv/buildlink3.mk"
+.include "../../x11/libXvMC/buildlink3.mk"
+
+.if ${X11_TYPE} == "modular"
+PLIST.xv=		yes
+PLIST.xvmc=		yes
+.else
+.if exists(${X11BASE}/lib/libXv.so)
+CONFIGURE_ARGS+=	--with-xv-path='${X11BASE}/lib'
+PLIST.xv=		yes
+.endif
+.if exists(${X11BASE}/lib/libXvMC.so)
+CONFIGURE_ARGS+=	--with-xvmc-path='${X11BASE}/lib'
+CONFIGURE_ARGS+=	--with-xxmc-path='${X11BASE}/lib'
+PLIST.xvmc=		yes
+.endif
+.endif # X11_TYPE
+
 # flac is supported internally; don't know what the plugin is good for
 # but until autodetection is turned off, force external flac for now.
 .include "../../audio/flac/buildlink3.mk"
@@ -72,9 +94,10 @@ LDFLAGS.SunOS+=		-lresolv
 CONFIGURE_ARGS+=	--disable-opengl
 #.include "../../graphics/aalib/buildlink3.mk"
 .include "../../graphics/mng/buildlink3.mk"
-.include "../../graphics/png/buildlink3.mk"
+.include "../../mk/jpeg.buildlink3.mk"
 .include "../../misc/libcdio/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-external-dvdnav
+.include "../../multimedia/ffmpeg3/buildlink3.mk"
 .include "../../multimedia/libdvdnav/buildlink3.mk"
 .include "../../multimedia/libtheora/buildlink3.mk"
 .include "../../sysutils/vcdimager/buildlink3.mk"
