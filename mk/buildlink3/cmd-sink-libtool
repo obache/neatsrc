@@ -38,7 +38,7 @@ while ! queue_is_empty cmdbuf; do
 	##############################################################
 	-L*|-l*|-Wl,*)
 		case $lt_mode in
-		link)
+		link|relink)
 			case $arg in
 			-Wl,-R*|-Wl,-rpath,*|-Wl,--rpath,*)
 				case $arg in
