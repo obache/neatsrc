@@ -43,19 +43,7 @@ Fix pkgconfig installation path.
  
  DESTDIR     ?=
  # directory variables : GNU conventions prefer lowercase
-@@ -180,11 +191,7 @@ LIBDIR      ?= $(libdir)
- includedir  ?= $(PREFIX)/include
- INCLUDEDIR  ?= $(includedir)
- 
--ifneq (,$(filter $(shell uname),FreeBSD NetBSD DragonFly))
--PKGCONFIGDIR ?= $(PREFIX)/libdata/pkgconfig
--else
- PKGCONFIGDIR ?= $(LIBDIR)/pkgconfig
--endif
- 
- ifneq (,$(filter $(shell uname),SunOS))
- INSTALL ?= ginstall
-@@ -244,4 +251,3 @@ uninstall:
+@@ -244,4 +255,3 @@ uninstall:
  	@$(RM) $(DESTDIR)$(INCLUDEDIR)/zdict.h
  	@echo zstd libraries successfully uninstalled
  
