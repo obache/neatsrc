@@ -18,7 +18,16 @@ Use zstd shared library.
  	windres/generate_res.bat
  endif
 -	$(CC) $(FLAGS) $^ $(RES_FILE) -o $@$(EXT) $(LDFLAGS)
-+	$(CC) $(FLAGS) $^ $(RES_FILE) -o $@$(EXT) $(LDFLAGS) -L$(ZSTDDIR) -lzstd
++	$(CC) $(FLAGS) $^ $(RES_FILE) -o $@$(EXT) $(LDFLAGS) -L$(ZSTDDIR) -lzstd -Wl,-R${LIBDIR}
  
  .PHONY: zstd-release
  zstd-release: DEBUGFLAGS := -DBACKTRACE_ENABLE=0
+@@ -307,6 +307,8 @@ exec_prefix ?= $(PREFIX)
+ bindir      ?= $(exec_prefix)/bin
+ BINDIR      ?= $(bindir)
+ datarootdir ?= $(PREFIX)/share
++libdir      ?= $(exec_prefix)/lib
++LIBDIR      ?= $(libdir)
+ mandir      ?= $(datarootdir)/man
+ man1dir     ?= $(mandir)/man1
+ 
