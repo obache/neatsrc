@@ -7,4 +7,6 @@ share/ibus-m17n/default.xml
 share/ibus-m17n/icons/ibus-m17n.svg
 share/ibus-m17n/setup/ibus-m17n-preferences.ui
 share/ibus/component/m17n.xml
+share/locale/de/LC_MESSAGES/ibus-m17n.mo
 share/locale/zh_CN/LC_MESSAGES/ibus-m17n.mo
+share/metainfo/m17n.appdata.xml
