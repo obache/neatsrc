@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1005 2018/10/07 08:20:49 adam Exp $
+# $NetBSD: Makefile,v 1.1007 2018/10/26 20:43:07 bsiegert Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -249,6 +249,7 @@ SUBDIR+=	heirloom-uniq
 SUBDIR+=	heirloom-wc
 SUBDIR+=	helpdeco
 SUBDIR+=	hevea
+SUBDIR+=	hfstospell
 SUBDIR+=	highlight
 SUBDIR+=	highway
 SUBDIR+=	hre
@@ -813,7 +814,7 @@ SUBDIR+=	py-pdf-parser
 SUBDIR+=	py-pdfrw
 SUBDIR+=	py-phonenumbers
 SUBDIR+=	py-poyo
-SUBDIR+=	py-prettytable
+SUBDIR+=	py-ptable
 SUBDIR+=	py-pyaml
 SUBDIR+=	py-pybtex
 SUBDIR+=	py-pybtex-docutils

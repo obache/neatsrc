@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.8 2018/10/12 18:00:55 he Exp $
+$NetBSD: distinfo,v 1.10 2018/10/23 12:26:06 jperkin Exp $
 
 SHA1 (blackbox-0.72.tar.gz) = 87e90c7d6da9f94a79100433490b33de4189f194
 RMD160 (blackbox-0.72.tar.gz) = 3991d8512703cceafcd93185978684441d06d7d7

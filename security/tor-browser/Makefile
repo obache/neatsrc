@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.29 2018/08/22 09:46:30 wiz Exp $
+# $NetBSD: Makefile,v 1.31 2018/10/24 15:42:47 bsiegert Exp $
 
 TORBVER=	6.0.8
 
 DISTNAME=	v6.0.8-esr45.6.0
 PKGNAME=	tor-browser-${TORBVER}
-PKGREVISION=	14
+PKGREVISION=	15
 CATEGORIES=	www
 # Use OpenBSD distfile
 MASTER_SITES=	${MASTER_SITE_OPENBSD:=distfiles/tor-browser/}
@@ -30,6 +30,8 @@ SUBST_SED.fix-build-dir+=	-e 's,mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-@CONFI
 
 MOZILLA_DIR=	# empty
 
+.include "../../mk/bsd.prefs.mk"
+
 CONFIGURE_ARGS+=	--enable-application=browser
 CONFIGURE_ARGS+=	--disable-tor-browser-update
 CONFIGURE_ARGS+=	--disable-webrtc
@@ -37,7 +39,9 @@ CONFIGURE_ARGS+=	--disable-gio
 CONFIGURE_ARGS+=	--disable-dbus
 CONFIGURE_ARGS+=	--disable-gnomeui
 CONFIGURE_ARGS+=        --disable-libnotify
+.if ${OPSYS} != "SunOS"
 CONFIGURE_ARGS+=        --enable-pie
+.endif
 CONFIGURE_ARGS+=        --enable-tor-data-in-home-dir
 CFLAGS+=		-DTOR_BROWSER_DATA_IN_HOME_DIR=1
 CFLAGS+=		-DTOR_BROWSER_DATA_OUTSIDE_APP_DIR=1

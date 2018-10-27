@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.65 2018/08/06 05:01:26 tpaul Exp $
+# $NetBSD: Makefile,v 1.67 2018/10/25 09:08:37 adam Exp $
 
-DISTNAME=	salt-2018.3.2
+DISTNAME=	salt-2018.3.3
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_PYPI:=s/salt/}
 
@@ -21,7 +21,7 @@ DEPENDS+=	${PYPKGPREFIX}-cryptodome-[0-9]*:../../security/py-cryptodome
 DEPENDS+=	${PYPKGPREFIX}-zmq>=2.2.0:../../net/py-zmq
 
 .include "../../lang/python/pyversion.mk"
-.if "${PYPKGPREFIX}" == "py27"
+.if ${_PYTHON_VERSION} == 27
 DEPENDS+= ${PYPKGPREFIX}-futures-[0-9]*:../../devel/py-futures
 .endif
 
@@ -36,7 +36,6 @@ PYSETUPARGS+=	--salt-logs-dir=${VARBASE}/log/salt
 PYSETUPARGS+=	--salt-pidfile-dir=${VARBASE}/run
 PYSETUPARGS+=	--salt-sock-dir=${VARBASE}/run/salt
 
-#REPLACE_PYTHON=		*.py */*.py */*/*.py
 REPLACE_SH=		salt/templates/git/ssh-id-wrapper
 
 RCD_SCRIPTS+=		salt_master salt_minion salt_syndic
@@ -73,10 +72,12 @@ SUBST_SED.fix-path+=	-e 's,/var/run,${VARBASE}/run,g'
 SUBST_SED.fix-path+=	-e 's,/var/cache,${VARBASE}/cache,g'
 SUBST_SED.fix-path+=	-e 's,/var/log,${VARBASE}/log,g'
 
+# Contains hardcoded paths to find installed libraries.
+CHECK_WRKREF_SKIP+=	*/salt/utils/rsax931.py
+
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/conf/master ${DESTDIR}${EGDIR}/
 	${INSTALL_DATA} ${WRKSRC}/conf/minion ${DESTDIR}${EGDIR}/
 
-#.include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

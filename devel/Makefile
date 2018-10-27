@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2738 2018/10/10 09:55:32 adam Exp $
+# $NetBSD: Makefile,v 1.2741 2018/10/23 09:39:59 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -1894,6 +1894,7 @@ SUBDIR+=	py-ZopeEvent
 SUBDIR+=	py-ZopeI18NMessageid
 SUBDIR+=	py-ZopeInterface
 SUBDIR+=	py-ZopeSchema
+SUBDIR+=	py-ZopeTestrunner
 SUBDIR+=	py-absl-py
 SUBDIR+=	py-aiofiles
 SUBDIR+=	py-angr
@@ -2255,6 +2256,7 @@ SUBDIR+=	py-ruamel-base
 SUBDIR+=	py-ruamel-ordereddict
 SUBDIR+=	py-ruamel-yaml
 SUBDIR+=	py-scandir
+SUBDIR+=	py-semantic_version
 SUBDIR+=	py-serpent
 SUBDIR+=	py-setuptools
 SUBDIR+=	py-setuptools_scm
@@ -2264,6 +2266,7 @@ SUBDIR+=	py-simplegeneric
 SUBDIR+=	py-singledispatch
 SUBDIR+=	py-sortedcontainers
 SUBDIR+=	py-speaklater
+SUBDIR+=	py-stem
 SUBDIR+=	py-stevedore
 SUBDIR+=	py-stompclient
 SUBDIR+=	py-stsci.distutils
@@ -2341,6 +2344,7 @@ SUBDIR+=	py-xopen
 SUBDIR+=	py-zanata-python-client
 SUBDIR+=	py-zc.lockfile
 SUBDIR+=	py-zconfig
+SUBDIR+=	py-zope.exceptions
 SUBDIR+=	py-zope.testing
 SUBDIR+=	python-mode
 SUBDIR+=	pythontidy

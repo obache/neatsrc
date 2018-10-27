@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.497 2018/09/23 20:05:29 bsiegert Exp $
+# $NetBSD: Makefile,v 1.499 2018/10/24 08:37:00 leot Exp $
 #
 
 COMMENT=	Programming languages
@@ -22,6 +22,7 @@ SUBDIR+=	bwbasic
 SUBDIR+=	caml-light
 SUBDIR+=	camlp4
 SUBDIR+=	camlp5
+SUBDIR+=	cbindgen
 SUBDIR+=	ccsh
 SUBDIR+=	cdl3
 SUBDIR+=	chicken
@@ -88,6 +89,7 @@ SUBDIR+=	ghc-bootstrap
 SUBDIR+=	ghc7
 SUBDIR+=	gnat_util
 SUBDIR+=	gnucobol
+#SUBDIR+=	go		# only contains Makefile fragments
 SUBDIR+=	go-hcl
 SUBDIR+=	go110
 SUBDIR+=	go111

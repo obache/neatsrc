@@ -1,19 +1,18 @@
-# $NetBSD: Makefile,v 1.26 2018/08/22 09:46:46 wiz Exp $
+# $NetBSD: Makefile,v 1.29 2018/10/26 07:43:05 leot Exp $
 
-DISTNAME=	hunspell-1.3.3
-PKGREVISION=	7
+DISTNAME=	hunspell-1.6.2
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=hunspell/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=hunspell/}
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	ahoka@NetBSD.org
-HOMEPAGE=	http://hunspell.sourceforge.net/
+HOMEPAGE=	https://hunspell.github.io/
 COMMENT=	Improved spellchecker
 LICENSE=	mpl-1.1 OR gnu-lgpl-v2.1 OR gnu-gpl-v2
 
-WRKSRC=			${WRKDIR}/${DISTNAME:C/-[0-9]+$//}
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
-USE_TOOLS+=		pkg-config perl:run
+USE_TOOLS+=		pkg-config perl:run autoreconf autoconf automake
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++03
 
@@ -33,6 +32,10 @@ PLIST_SRC=		PLIST
 PLIST_SUBST+=		DISTNAME=${DISTNAME}
 
 REPLACE_PERL=	src/tools/ispellaff2myspell
+
+post-patch:
+	cd ${WRKSRC} && ${TOOLS_PATH.autoreconf} -v -i
+	
 
 .include "options.mk"
 
