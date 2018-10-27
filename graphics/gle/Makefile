@@ -13,7 +13,6 @@ COMMENT=	GL subroutines for drawing tubing and extrusions
 
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
-LIBS+=			-lXext
 
 BUILDLINK_DEPMETHOD.libXt?=      build
 
