@@ -7,7 +7,7 @@ Fix pkgconfig installation path.
 
 --- lib/Makefile.orig	2018-10-17 03:58:52.000000000 +0000
 +++ lib/Makefile
-@@ -82,6 +82,40 @@ CPPFLAGS  += -DZSTD_LEGACY_SUPPORT=$(ZST
+@@ -82,6 +82,17 @@ CPPFLAGS  += -DZSTD_LEGACY_SUPPORT=$(ZST
  
  ZSTD_OBJ   := $(patsubst %.c,%.o,$(ZSTD_FILES))
  
@@ -22,43 +22,20 @@ Fix pkgconfig installation path.
 +THREAD_LD := -pthread
 +endif
 +
-+# zlib detection
-+HAVE_ZLIB := $(shell printf '\#include <zlib.h>\nint main(void) { return 0; }' | $(CC) $(FLAGS) -o have_zlib$(EXT) -x c - -lz 2> $(VOID) && rm have_zlib$(EXT) && echo 1 || echo 0)
-+ifeq ($(HAVE_ZLIB), 1)
-+ZLIB_MSG := ==> building zstd with .gz compression support
-+ZLIBCPP = -DZSTD_GZCOMPRESS -DZSTD_GZDECOMPRESS
-+ZLIBLD = -lz
-+endif
-+
-+# lzma detection
-+HAVE_LZMA := $(shell printf '\#include <lzma.h>\nint main(void) { return 0; }' | $(CC) $(FLAGS) -o have_lzma$(EXT) -x c - -llzma 2> $(VOID) && rm have_lzma$(EXT) && echo 1 || echo 0)
-+ifeq ($(HAVE_LZMA), 1)
-+LZMACPP = -DZSTD_LZMACOMPRESS -DZSTD_LZMADECOMPRESS
-+LZMALD = -llzma
-+endif
-+
-+# lz4 detection
-+HAVE_LZ4 := $(shell printf '\#include <lz4frame.h>\n\#include <lz4.h>\nint main(void) { return 0; }' | $(CC) $(FLAGS) -o have_lz4$(EXT) -x c - -llz4 2> $(VOID) && rm have_lz4$(EXT) && echo 1 || echo 0)
-+ifeq ($(HAVE_LZ4), 1)
-+LZ4CPP = -DZSTD_LZ4COMPRESS -DZSTD_LZ4DECOMPRESS
-+LZ4LD = -llz4
-+endif
-+
-+
  # macOS linker doesn't support -soname, and use different extension
  # see : https://developer.apple.com/library/mac/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/DynamicLibraryDesignGuidelines.html
  ifeq ($(shell uname), Darwin)
-@@ -122,7 +156,8 @@ $(LIBZSTD): $(ZSTD_FILES)
+@@ -122,7 +133,8 @@ $(LIBZSTD): $(ZSTD_FILES)
  else
  
  LIBZSTD = libzstd.$(SHARED_EXT_VER)
 -$(LIBZSTD): LDFLAGS += -shared -fPIC -fvisibility=hidden
-+$(LIBZSTD): CPPFLAGS += $(THREAD_CPP) $(ZLIBCPP) $(LZMACPP) $(LZ4CPP)
-+$(LIBZSTD): LDFLAGS += -shared -fPIC $(THREAD_LD) $(ZLIBLD) $(LZMALD) $(LZ4LD)
++$(LIBZSTD): CPPFLAGS += $(THREAD_CPP)
++$(LIBZSTD): LDFLAGS += -shared -fPIC $(THREAD_LD)
  $(LIBZSTD): $(ZSTD_FILES)
  	@echo compiling dynamic library $(LIBVER)
  	@$(CC) $(FLAGS) $^ $(LDFLAGS) $(SONAME_FLAGS) -o $@
-@@ -166,7 +201,6 @@ clean:
+@@ -166,7 +178,6 @@ clean:
  #-----------------------------------------------------------------------------
  # make install is validated only for Linux, macOS, BSD, Hurd and Solaris targets
  #-----------------------------------------------------------------------------
@@ -66,7 +43,7 @@ Fix pkgconfig installation path.
  
  DESTDIR     ?=
  # directory variables : GNU conventions prefer lowercase
-@@ -180,11 +214,7 @@ LIBDIR      ?= $(libdir)
+@@ -180,11 +191,7 @@ LIBDIR      ?= $(libdir)
  includedir  ?= $(PREFIX)/include
  INCLUDEDIR  ?= $(includedir)
  
@@ -78,7 +55,7 @@ Fix pkgconfig installation path.
  
  ifneq (,$(filter $(shell uname),SunOS))
  INSTALL ?= ginstall
-@@ -244,4 +274,3 @@ uninstall:
+@@ -244,4 +251,3 @@ uninstall:
  	@$(RM) $(DESTDIR)$(INCLUDEDIR)/zdict.h
  	@echo zstd libraries successfully uninstalled
  
