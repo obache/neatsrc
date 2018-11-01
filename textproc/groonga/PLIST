@@ -268,6 +268,7 @@ share/doc/groonga/en/html/reference/executables/groonga-suggest-learner.html
 share/doc/groonga/en/html/reference/executables/groonga.html
 share/doc/groonga/en/html/reference/function.html
 share/doc/groonga/en/html/reference/functions/between.html
+share/doc/groonga/en/html/reference/functions/cast_loose.html
 share/doc/groonga/en/html/reference/functions/edit_distance.html
 share/doc/groonga/en/html/reference/functions/fuzzy_search.html
 share/doc/groonga/en/html/reference/functions/geo_distance.html
@@ -554,6 +555,7 @@ share/doc/groonga/ja/html/reference/executables/groonga-suggest-learner.html
 share/doc/groonga/ja/html/reference/executables/groonga.html
 share/doc/groonga/ja/html/reference/function.html
 share/doc/groonga/ja/html/reference/functions/between.html
+share/doc/groonga/ja/html/reference/functions/cast_loose.html
 share/doc/groonga/ja/html/reference/functions/edit_distance.html
 share/doc/groonga/ja/html/reference/functions/fuzzy_search.html
 share/doc/groonga/ja/html/reference/functions/geo_distance.html
