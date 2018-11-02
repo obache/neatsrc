@@ -782,10 +782,6 @@ Linux)
 		need_awk=no
 		need_sed=no
 	fi
-  # Arch does not provide pax anymore
-	if [ -f /etc/arch-release ]; then
-		need_pax=yes
-	fi
 	machine_arch=`uname -m`
 	# Override machine_arch where required.
 	case "$machine_arch" in
@@ -803,12 +799,9 @@ Minix)
 	;;	
 MirBSD)
 	root_group=wheel
-	need_pax=yes
-	need_mtree=no
 	need_bsd_install=no
 	need_awk=no
 	need_sed=no
-	check_prog mtreeprog mtree
 	machine_arch=`arch -s`
 	# there is no /usr/bin/cc, so use mgcc if unset
 	test -n "$CC" || { CC=mgcc; export CC; }
@@ -1452,9 +1445,6 @@ yes)	build_package "textproc/nbsed";;
 esac
 case "$need_extras" in
 yes)	build_package "pkgtools/bootstrap-extras";;
-esac
-case "$need_pax" in
-yes)    build_package "archivers/pax"
 esac
 build_package "pkgtools/pkg_install"
 
