@@ -1,4 +1,4 @@
-# $NetBSD: tools.Minix.mk,v 1.4 2014/03/06 07:34:20 uebayasi Exp $
+# $NetBSD: tools.Minix.mk,v 1.7 2018/10/29 10:44:29 sevan Exp $
 #
 # System-supplied tools for the Minix operating system.
 
@@ -10,9 +10,9 @@ TOOLS_PLATFORM.bsdtar?=		/bin/tar
 TOOLS_PLATFORM.bzcat?=		/usr/bin/bzcat
 TOOLS_PLATFORM.bzip2?=		/usr/bin/bzip2
 TOOLS_PLATFORM.cat?=		/bin/cat
-TOOLS_PLATFORM.chgrp?=		/usr/bin/chgrp
+TOOLS_PLATFORM.chgrp?=		/bin/chgrp
 TOOLS_PLATFORM.chmod?=		/bin/chmod
-TOOLS_PLATFORM.chown?=		/usr/bin/chown
+TOOLS_PLATFORM.chown?=		/sbin/chown
 TOOLS_PLATFORM.cmp?=		/usr/bin/cmp
 TOOLS_PLATFORM.cp?=		/bin/cp 
 TOOLS_PLATFORM.cut?=		/usr/bin/cut
@@ -23,7 +23,7 @@ TOOLS_PLATFORM.echo?=		/bin/echo
 TOOLS_PLATFORM.egrep?=		/usr/bin/egrep
 TOOLS_PLATFORM.env?=		/usr/bin/env
 TOOLS_PLATFORM.expr?=		/bin/expr
-TOOLS_PLATFORM.false?=		/bin/false
+TOOLS_PLATFORM.false?=		/usr/bin/false
 TOOLS_PLATFORM.fetch?=		/usr/bin/fetch
 TOOLS_PLATFORM.fgrep?=		/usr/bin/fgrep
 TOOLS_PLATFORM.file?=		/usr/bin/file
@@ -58,7 +58,7 @@ TOOLS_PLATFORM.rm?=		/bin/rm
 TOOLS_PLATFORM.rmdir?=		/bin/rmdir
 TOOLS_PLATFORM.sed?=		/usr/bin/sed
 TOOLS_PLATFORM.sh?=		/bin/sh
-TOOLS_PLATFORM.sleep?=		/usr/bin/sleep
+TOOLS_PLATFORM.sleep?=		/bin/sleep
 TOOLS_PLATFORM.sort?=		/usr/bin/sort
 TOOLS_PLATFORM.strip?=		/usr/bin/strip
 TOOLS_PLATFORM.tail?=		/usr/bin/tail
@@ -67,7 +67,7 @@ TOOLS_PLATFORM.tee?=		/usr/bin/tee
 TOOLS_PLATFORM.test?=		/bin/test
 TOOLS_PLATFORM.touch?=		/usr/bin/touch
 TOOLS_PLATFORM.tr?=		/usr/bin/tr
-TOOLS_PLATFORM.true?=		/bin/true
+TOOLS_PLATFORM.true?=		/usr/bin/true
 TOOLS_PLATFORM.tsort?=		/usr/bin/tsort
 TOOLS_PLATFORM.uniq?=		/usr/bin/uniq
 TOOLS_PLATFORM.wc?=		/usr/bin/wc

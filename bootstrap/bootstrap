@@ -1,6 +1,6 @@
 #! /bin/sh
 
-# $NetBSD: bootstrap,v 1.251 2018/10/17 11:12:46 jperkin Exp $
+# $NetBSD: bootstrap,v 1.256 2018/10/30 15:22:53 sevan Exp $
 #
 # Copyright (c) 2001-2011 Alistair Crooks <agc@NetBSD.org>
 # All rights reserved.
@@ -782,6 +782,10 @@ Linux)
 		need_awk=no
 		need_sed=no
 	fi
+  # Arch does not provide pax anymore
+	if [ -f /etc/arch-release ]; then
+		need_pax=yes
+	fi
 	machine_arch=`uname -m`
 	# Override machine_arch where required.
 	case "$machine_arch" in
@@ -791,11 +795,11 @@ Linux)
 	;;
 Minix)
 	root_group=operator
-	need_bsd_install=yes
+	need_bsd_install=no
 	need_awk=no
 	need_sed=no
 	machine_arch=`uname -p`
-	LDFLAGS="-lcompat_minix -lminlib"
+	check_compiler=yes
 	;;	
 MirBSD)
 	root_group=wheel
@@ -1448,6 +1452,9 @@ yes)	build_package "textproc/nbsed";;
 esac
 case "$need_extras" in
 yes)	build_package "pkgtools/bootstrap-extras";;
+esac
+case "$need_pax" in
+yes)    build_package "archivers/pax"
 esac
 build_package "pkgtools/pkg_install"
 

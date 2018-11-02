@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2741 2018/10/23 09:39:59 adam Exp $
+# $NetBSD: Makefile,v 1.2744 2018/10/28 15:39:09 taca Exp $
 #
 
 COMMENT=	Development utilities
@@ -2344,7 +2344,10 @@ SUBDIR+=	py-xopen
 SUBDIR+=	py-zanata-python-client
 SUBDIR+=	py-zc.lockfile
 SUBDIR+=	py-zconfig
+SUBDIR+=	py-zope.deferredimport
+SUBDIR+=	py-zope.deprecation
 SUBDIR+=	py-zope.exceptions
+SUBDIR+=	py-zope.hookable
 SUBDIR+=	py-zope.testing
 SUBDIR+=	python-mode
 SUBDIR+=	pythontidy
@@ -2414,6 +2417,7 @@ SUBDIR+=	ruby-cmd
 SUBDIR+=	ruby-concurrent-ruby
 SUBDIR+=	ruby-contracts
 SUBDIR+=	ruby-cucumber-core
+SUBDIR+=	ruby-cucumber-messages
 SUBDIR+=	ruby-cucumber-tag_expressions
 SUBDIR+=	ruby-cucumber-wire
 SUBDIR+=	ruby-curses
@@ -2449,6 +2453,7 @@ SUBDIR+=	ruby-gnome2-gio
 SUBDIR+=	ruby-gnome2-glib
 SUBDIR+=	ruby-gnome2-gobject-introspection
 SUBDIR+=	ruby-gnome2-pango
+SUBDIR+=	ruby-google-protobuf
 SUBDIR+=	ruby-hashery
 SUBDIR+=	ruby-heckle
 SUBDIR+=	ruby-highline
