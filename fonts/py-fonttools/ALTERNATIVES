@@ -3,4 +3,3 @@ bin/pyftinspect bin/pyftinspect-@PYVERSSUFFIX@
 bin/pyftmerge bin/pyftmerge-@PYVERSSUFFIX@
 bin/pyftsubset bin/pyftsubset-@PYVERSSUFFIX@
 bin/ttx bin/ttx-@PYVERSSUFFIX@
-man/man1/ttx.1 man/man1/ttx-@PYVERSSUFFIX@.1
