@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (fonts-tlwg-0.7.0.tar.xz) = f09aba6395cc236658ec5795d9a467ac48996048
-RMD160 (fonts-tlwg-0.7.0.tar.xz) = d684f1e6697e09313a157caa243e86093b41ddc7
-SHA512 (fonts-tlwg-0.7.0.tar.xz) = 10dbe3a1c09ca6724e55794208f3de22a044d574a9de2041d4f177b2581c3bd2f56d6eb2771b3f3319adf948f8d3847355ac48b327e94ac51673d0ed83e7128e
-Size (fonts-tlwg-0.7.0.tar.xz) = 8208652 bytes
+SHA1 (fonts-tlwg-0.7.1.tar.xz) = 5a2c2090e92c382170808f5bb7d1518c57b8894e
+RMD160 (fonts-tlwg-0.7.1.tar.xz) = c69f40fd817a7e647ea46280a052c4cf765f5f6d
+SHA512 (fonts-tlwg-0.7.1.tar.xz) = f25e2a4837dfb9071d547046bcf50e906fb3802408aa243847a7eaf31d679be18594aded5279c25d9062da1e21c0a6aae93b2568d9055cb88a94438858e0934e
+Size (fonts-tlwg-0.7.1.tar.xz) = 8209956 bytes
