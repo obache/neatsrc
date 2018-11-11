@@ -1,10 +1,10 @@
-$NetBSD: patch-media_libcubeb_src_cubeb.c,v 1.7 2017/08/10 14:46:15 ryoon Exp $
+$NetBSD: patch-media_libcubeb_src_cubeb.c,v 1.9 2018/11/04 04:46:57 ryoon Exp $
 
 * Support OSS audio
 
---- media/libcubeb/src/cubeb.c.orig	2017-07-31 16:20:49.000000000 +0000
+--- media/libcubeb/src/cubeb.c.orig	2018-10-18 20:06:09.000000000 +0000
 +++ media/libcubeb/src/cubeb.c
-@@ -55,6 +55,9 @@ int audiotrack_init(cubeb ** context, ch
+@@ -60,6 +60,9 @@ int audiotrack_init(cubeb ** context, ch
  #if defined(USE_KAI)
  int kai_init(cubeb ** context, char const * context_name);
  #endif
@@ -14,7 +14,7 @@ $NetBSD: patch-media_libcubeb_src_cubeb.c,v 1.7 2017/08/10 14:46:15 ryoon Exp $
  
  static int
  validate_stream_params(cubeb_stream_params * input_stream_params,
-@@ -155,6 +158,10 @@ cubeb_init(cubeb ** context, char const 
+@@ -160,6 +163,10 @@ cubeb_init(cubeb ** context, char const 
  #if defined(USE_KAI)
        init_oneshot = kai_init;
  #endif
@@ -25,7 +25,7 @@ $NetBSD: patch-media_libcubeb_src_cubeb.c,v 1.7 2017/08/10 14:46:15 ryoon Exp $
      } else {
        /* Already set */
      }
-@@ -199,6 +206,9 @@ cubeb_init(cubeb ** context, char const 
+@@ -204,6 +211,9 @@ cubeb_init(cubeb ** context, char const 
  #if defined(USE_KAI)
      kai_init,
  #endif

@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.14 2018/09/11 14:25:41 fhajny Exp $
+$NetBSD: distinfo,v 1.16 2018/11/05 15:22:33 ryoon Exp $
 
 SHA1 (node-v8.12.0.tar.gz) = c83add7809c7f36c2afb81d96cde25f1534bbe27
 RMD160 (node-v8.12.0.tar.gz) = 576590ec1bc9801a1e4fd42b95b289182f1cd1b5

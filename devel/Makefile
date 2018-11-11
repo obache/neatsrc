@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2744 2018/10/28 15:39:09 taca Exp $
+# $NetBSD: Makefile,v 1.2746 2018/11/10 19:50:04 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -134,6 +134,7 @@ SUBDIR+=	c++gsl
 SUBDIR+=	calltree-perl
 SUBDIR+=	capstone
 SUBDIR+=	catch
+SUBDIR+=	cbindgen
 SUBDIR+=	cbrowser
 SUBDIR+=	ccache
 SUBDIR+=	cdecl
@@ -2604,6 +2605,7 @@ SUBDIR+=	skalibs
 SUBDIR+=	slib
 SUBDIR+=	slibtool
 SUBDIR+=	sloccount
+SUBDIR+=	smake
 SUBDIR+=	sml-mode
 SUBDIR+=	snappy
 SUBDIR+=	snappy-java10

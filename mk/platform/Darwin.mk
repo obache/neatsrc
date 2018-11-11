@@ -1,4 +1,4 @@
-# $NetBSD: Darwin.mk,v 1.88 2017/10/10 13:57:23 jperkin Exp $
+# $NetBSD: Darwin.mk,v 1.92 2018/11/09 13:32:59 schmonz Exp $
 #
 # Variable definitions for the Darwin operating system.
 
@@ -101,6 +101,10 @@ _OPSYS_INCLUDE_DIRS?=	/usr/include
 .elif exists(/usr/bin/xcrun)
 .  if !defined(OSX_SDK_PATH)
 OSX_SDK_PATH!=	/usr/bin/xcrun --sdk macosx${OSX_VERSION} --show-sdk-path 2>/dev/null || echo /nonexistent
+OSX_TOLERATE_SDK_SKEW?=	no
+.    if ${OSX_SDK_PATH} == "/nonexistent" && !empty(OSX_TOLERATE_SDK_SKEW:M[Yy][Ee][Ss])
+OSX_SDK_PATH!=	/usr/bin/xcrun --sdk macosx --show-sdk-path 2>/dev/null || echo /nonexistent
+.    endif
 MAKEFLAGS+=	OSX_SDK_PATH=${OSX_SDK_PATH:Q}
 .  endif
 .  if exists(${OSX_SDK_PATH}/usr/include/stdio.h)

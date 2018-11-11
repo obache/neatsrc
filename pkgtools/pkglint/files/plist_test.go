@@ -5,7 +5,6 @@ import "gopkg.in/check.v1"
 func (s *Suite) Test_ChecklinesPlist(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall")
 	G.Pkg = NewPackage(t.File("category/pkgbase"))
 	lines := t.NewLines("PLIST",
 		"bin/i386/6c",
@@ -43,7 +42,7 @@ func (s *Suite) Test_ChecklinesPlist(c *check.C) {
 		"WARN: PLIST:10: Preformatted manual pages should end in \".0\".",
 		"WARN: PLIST:11: IMAKE_MANNEWSUFFIX is not meant to appear in PLISTs.",
 		"WARN: PLIST:12: Please remove this line. It is no longer necessary.",
-		"ERROR: PLIST:18: Duplicate filename \"share/tzinfo\", already appeared in line 17.")
+		"ERROR: PLIST:18: Duplicate file name \"share/tzinfo\", already appeared in line 17.")
 }
 
 func (s *Suite) Test_ChecklinesPlist__empty(c *check.C) {
@@ -132,11 +131,11 @@ func (s *Suite) Test_plistLineSorter_Sort(c *check.C) {
 	plines := ck.NewLines(lines)
 
 	sorter1 := NewPlistLineSorter(plines)
-	c.Check(sorter1.unsortable, equals, lines[5])
+	c.Check(sorter1.unsortable, equals, lines.Lines[5])
 
-	cleanedLines := append(append(lines[0:5], lines[6:8]...), lines[9:]...) // Remove ${UNKNOWN} and @exec
+	cleanedLines := append(append(lines.Lines[0:5], lines.Lines[6:8]...), lines.Lines[9:]...) // Remove ${UNKNOWN} and @exec
 
-	sorter2 := NewPlistLineSorter((&PlistChecker{nil, nil, "", Once{}}).NewLines(cleanedLines))
+	sorter2 := NewPlistLineSorter((&PlistChecker{nil, nil, "", Once{}}).NewLines(NewLines(lines.FileName, cleanedLines)))
 
 	c.Check(sorter2.unsortable, check.IsNil)
 
@@ -205,8 +204,6 @@ func (s *Suite) Test_PlistChecker_checkpath__python_egg(c *check.C) {
 func (s *Suite) Test_PlistChecker__autofix(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall")
-
 	lines := t.SetupFileLines("PLIST",
 		PlistRcsID,
 		"lib/libvirt/connection-driver/libvirt_driver_storage.la",
@@ -274,7 +271,6 @@ func (s *Suite) Test_PlistChecker__autofix(c *check.C) {
 func (s *Suite) Test_PlistChecker__remove_same_entries(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall")
 	lines := t.SetupFileLines("PLIST",
 		PlistRcsID,
 		"${PLIST.option1}bin/true",
@@ -288,11 +284,11 @@ func (s *Suite) Test_PlistChecker__remove_same_entries(c *check.C) {
 	ChecklinesPlist(lines)
 
 	t.CheckOutputLines(
-		"ERROR: ~/PLIST:2: Duplicate filename \"bin/true\", already appeared in line 3.",
-		"ERROR: ~/PLIST:4: Duplicate filename \"bin/true\", already appeared in line 3.",
-		"ERROR: ~/PLIST:5: Duplicate filename \"bin/true\", already appeared in line 3.",
+		"ERROR: ~/PLIST:2: Duplicate file name \"bin/true\", already appeared in line 3.",
+		"ERROR: ~/PLIST:4: Duplicate file name \"bin/true\", already appeared in line 3.",
+		"ERROR: ~/PLIST:5: Duplicate file name \"bin/true\", already appeared in line 3.",
 		"WARN: ~/PLIST:6: \"bin/false\" should be sorted before \"bin/true\".",
-		"ERROR: ~/PLIST:8: Duplicate filename \"bin/true\", already appeared in line 3.")
+		"ERROR: ~/PLIST:8: Duplicate file name \"bin/true\", already appeared in line 3.")
 
 	t.SetupCommandLine("-Wall", "--autofix")
 
@@ -336,8 +332,6 @@ func (s *Suite) Test_PlistChecker__autofix_with_only(c *check.C) {
 func (s *Suite) Test_PlistChecker__exec_MKDIR(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall")
-
 	lines := t.SetupFileLines("PLIST",
 		PlistRcsID,
 		"bin/program",
@@ -350,8 +344,6 @@ func (s *Suite) Test_PlistChecker__exec_MKDIR(c *check.C) {
 
 func (s *Suite) Test_PlistChecker__empty_line(c *check.C) {
 	t := s.Init(c)
-
-	t.SetupCommandLine("-Wall")
 
 	lines := t.SetupFileLines("PLIST",
 		PlistRcsID,
@@ -421,17 +413,17 @@ func (s *Suite) Test_PlistChecker__unwanted_entries(c *check.C) {
 
 	lines := t.SetupFileLines("PLIST",
 		PlistRcsID,
+		"share/perllocal.pod",
 		"share/pkgbase/CVS/Entries",
-		"share/pkgbase/Makefile.orig",
-		"share/perllocal.pod")
+		"share/pkgbase/Makefile.orig")
 	G.Pkg = NewPackage(t.File("category/package"))
 
 	ChecklinesPlist(lines)
 
 	t.CheckOutputLines(
-		"WARN: ~/PLIST:2: CVS files should not be in the PLIST.",
-		"WARN: ~/PLIST:3: .orig files should not be in the PLIST.",
-		"WARN: ~/PLIST:4: perllocal.pod files should not be in the PLIST.")
+		"WARN: ~/PLIST:2: perllocal.pod files should not be in the PLIST.",
+		"WARN: ~/PLIST:3: CVS files should not be in the PLIST.",
+		"WARN: ~/PLIST:4: .orig files should not be in the PLIST.")
 }
 
 func (s *Suite) Test_PlistChecker_checkpathInfo(c *check.C) {
@@ -453,19 +445,19 @@ func (s *Suite) Test_PlistChecker_checkpathLib(c *check.C) {
 
 	lines := t.SetupFileLines("PLIST",
 		PlistRcsID,
-		"lib/package/liberty-1.0.so",
 		"lib/charset.alias",
+		"lib/liberty-1.0.la",
 		"lib/locale/de_DE/liberty.mo",
-		"lib/liberty-1.0.la")
+		"lib/package/liberty-1.0.so")
 	G.Pkg = NewPackage(t.File("category/package"))
 	G.Pkg.EffectivePkgbase = "package"
 
 	ChecklinesPlist(lines)
 
 	t.CheckOutputLines(
-		"ERROR: ~/PLIST:3: Only the libiconv package may install lib/charset.alias.",
-		"ERROR: ~/PLIST:4: \"lib/locale\" must not be listed. Use ${PKGLOCALEDIR}/locale and set USE_PKGLOCALEDIR instead.",
-		"WARN: ~/PLIST:5: Packages that install libtool libraries should define USE_LIBTOOL.")
+		"ERROR: ~/PLIST:2: Only the libiconv package may install lib/charset.alias.",
+		"WARN: ~/PLIST:3: Packages that install libtool libraries should define USE_LIBTOOL.",
+		"ERROR: ~/PLIST:4: \"lib/locale\" must not be listed. Use ${PKGLOCALEDIR}/locale and set USE_PKGLOCALEDIR instead.")
 }
 
 func (s *Suite) Test_PlistChecker_checkpathMan(c *check.C) {
@@ -473,20 +465,19 @@ func (s *Suite) Test_PlistChecker_checkpathMan(c *check.C) {
 
 	lines := t.SetupFileLines("PLIST",
 		PlistRcsID,
-		"man/manx/program.x",
-		"man/man1/program.8")
+		"man/man1/program.8",
+		"man/manx/program.x")
 
 	ChecklinesPlist(lines)
 
 	t.CheckOutputLines(
-		"WARN: ~/PLIST:2: Unknown section \"x\" for manual page.",
-		"WARN: ~/PLIST:3: Mismatch between the section (1) and extension (8) of the manual page.")
+		"WARN: ~/PLIST:2: Mismatch between the section (1) and extension (8) of the manual page.",
+		"WARN: ~/PLIST:3: Unknown section \"x\" for manual page.")
 }
 
 func (s *Suite) Test_PlistChecker_checkpathShare(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall")
 	lines := t.SetupFileLines("PLIST",
 		PlistRcsID,
 		"share/doc/html/package/index.html",
@@ -511,7 +502,6 @@ func (s *Suite) Test_PlistChecker_checkpathShare(c *check.C) {
 func (s *Suite) Test_PlistLine_CheckTrailingWhitespace(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall")
 	lines := t.SetupFileLines("PLIST",
 		PlistRcsID,
 		"bin/program \t")
@@ -525,7 +515,6 @@ func (s *Suite) Test_PlistLine_CheckTrailingWhitespace(c *check.C) {
 func (s *Suite) Test_PlistLine_CheckDirective(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall")
 	lines := t.SetupFileLines("PLIST",
 		PlistRcsID,
 		"@unexec rmdir %D/bin",

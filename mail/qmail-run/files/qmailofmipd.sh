@@ -1,6 +1,6 @@
 #!@RCD_SCRIPTS_SHELL@
 #
-# $NetBSD: qmailofmipd.sh,v 1.13 2018/10/28 16:38:36 schmonz Exp $
+# $NetBSD: qmailofmipd.sh,v 1.15 2018/11/08 20:57:28 schmonz Exp $
 #
 # @PKGNAME@ script to control ofmipd (SMTP submission service).
 #
@@ -11,8 +11,8 @@
 name="qmailofmipd"
 
 # User-settable rc.conf variables and their default values:
-: ${qmailofmipd_postenv:="SSL_UID=$(@ID@ -u @UCSPI_SSL_USER@) SSL_GID=$(@ID@ -g @UCSPI_SSL_GROUP@) DHFILE=@PKG_SYSCONFDIR@/control/dh2048.pem CERTFILE=@PKG_SYSCONFDIR@/control/servercert.pem"}
-: ${qmailofmipd_tcpflags:="-neV -vRl0"}
+: ${qmailofmipd_postenv:="SSL_UID=$(@ID@ -u @UCSPI_SSL_USER@) SSL_GID=$(@ID@ -g @UCSPI_SSL_GROUP@)"}
+: ${qmailofmipd_tcpflags:="-ne -vRl0"}
 : ${qmailofmipd_tcphost:="0.0.0.0"}
 : ${qmailofmipd_tcpport:="587"}
 : ${qmailofmipd_datalimit:="360000000"}
@@ -23,17 +23,18 @@ name="qmailofmipd"
 : ${qmailofmipd_checkpassword:="@PREFIX@/bin/nbcheckpassword"}
 : ${qmailofmipd_postofmipd:=""}
 : ${qmailofmipd_log:="YES"}
-: ${qmailofmipd_logcmd:="logger -t nb${name} -p mail.info"}
+: ${qmailofmipd_logcmd:="logger -t nbqmail/ofmipd -p mail.info"}
 : ${qmailofmipd_nologcmd:="@PREFIX@/bin/multilog -*"}
+: ${qmailofmipd_tls:="auto"}
+: ${qmailofmipd_tls_dhparams:="@PKG_SYSCONFDIR@/control/dh2048.pem"}
+: ${qmailofmipd_tls_cert:="@PKG_SYSCONFDIR@/control/servercert.pem"}
 
 if [ -f /etc/rc.subr ]; then
 	. /etc/rc.subr
 fi
 
 rcvar=${name}
-required_files="@PKG_SYSCONFDIR@/control/dh2048.pem"
-required_files="${required_files} @PKG_SYSCONFDIR@/control/servercert.pem"
-required_files="${required_files} @PKG_SYSCONFDIR@/control/me"
+required_files="@PKG_SYSCONFDIR@/control/me"
 required_files="${required_files} @PKG_SYSCONFDIR@/control/concurrencysubmission"
 required_files="${required_files} @PKG_SYSCONFDIR@/control/rcpthosts"
 required_files="${required_files} @PKG_SYSCONFDIR@/control/smtpcapabilities"
@@ -49,11 +50,35 @@ cont_cmd="qmailofmipd_cont"
 cdb_cmd="qmailofmipd_cdb"
 reload_cmd=${cdb_cmd}
 
+qmailofmipd_configure_tls() {
+	if [ "auto" = "${qmailofmipd_tls}" ]; then
+		if [ -f "${qmailofmipd_tls_dhparams}" ] && [ -f "${qmailofmipd_tls_cert}" ]; then
+			qmailofmipd_enable_tls
+		else
+			qmailofmipd_disable_tls
+		fi
+	elif [ -f /etc/rc.subr ] && checkyesno qmailofmipd_tls; then
+		qmailofmipd_enable_tls
+	else
+		qmailofmipd_disable_tls
+	fi
+}
+
+qmailofmipd_disable_tls() {
+	qmailofmipd_postenv="${qmailofmipd_postenv} DISABLETLS=1"
+}
+
+qmailofmipd_enable_tls() {
+	qmailofmipd_postenv="${qmailofmipd_postenv} DHFILE=${qmailofmipd_tls_dhparams}"
+	qmailofmipd_postenv="${qmailofmipd_postenv} CERTFILE=${qmailofmipd_tls_cert}"
+}
+
 qmailofmipd_precmd()
 {
 	if [ -f /etc/rc.subr ] && ! checkyesno qmailofmipd_log; then
 		qmailofmipd_logcmd=${qmailofmipd_nologcmd}
 	fi
+	qmailofmipd_configure_tls
 	# tcpserver(1) is akin to inetd(8), but runs one service per process.
 	# We want to signal only the tcpserver process responsible for this
 	# service. Use argv0(1) to set procname to "nbqmailofmipd".

@@ -1,8 +1,8 @@
-$NetBSD: patch-xpcom_build_BinaryPath.h,v 1.4 2018/02/10 07:02:47 ryoon Exp $
+$NetBSD: patch-xpcom_build_BinaryPath.h,v 1.6 2018/11/04 04:46:57 ryoon Exp $
 
 * Fix build under netbsd-7, PR pkg/52956
 
---- xpcom/build/BinaryPath.h.orig	2018-01-11 20:17:07.000000000 +0000
+--- xpcom/build/BinaryPath.h.orig	2018-10-18 20:06:16.000000000 +0000
 +++ xpcom/build/BinaryPath.h
 @@ -22,7 +22,8 @@
      defined(__OpenBSD__)
