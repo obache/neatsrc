@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.16 2018/08/16 18:54:30 adam Exp $
 
-DISTNAME=	librime-1.3.1
-PKGREVISION=	1
+DISTNAME=	librime-1.3.2
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	-https://github.com/rime/librime/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
