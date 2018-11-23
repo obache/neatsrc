@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.14 2018/07/06 15:06:48 ryoon Exp $
+# $NetBSD: Makefile,v 1.16 2018/11/14 22:22:06 kleink Exp $
 
-PKGREVISION= 1
+PKGREVISION= 3
 .include "../../meta-pkgs/mate/Makefile.common"
 
 DISTNAME=	mate-media-${VERSION}

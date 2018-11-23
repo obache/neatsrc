@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.7 2018/05/14 13:04:51 youri Exp $
+# $NetBSD: Makefile,v 1.9 2018/11/14 22:22:47 kleink Exp $
 
+PKGREVISION= 2
 .include "../../meta-pkgs/mate/Makefile.common"
 
 DISTNAME=	mate-menus-${VERSION}

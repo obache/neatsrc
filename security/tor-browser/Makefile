@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.31 2018/10/24 15:42:47 bsiegert Exp $
+# $NetBSD: Makefile,v 1.33 2018/11/14 22:22:22 kleink Exp $
 
 TORBVER=	6.0.8
 
 DISTNAME=	v6.0.8-esr45.6.0
 PKGNAME=	tor-browser-${TORBVER}
-PKGREVISION=	15
+PKGREVISION=	17
 CATEGORIES=	www
 # Use OpenBSD distfile
 MASTER_SITES=	${MASTER_SITE_OPENBSD:=distfiles/tor-browser/}

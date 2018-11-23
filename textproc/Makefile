@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1008 2018/11/01 09:36:47 bsiegert Exp $
+# $NetBSD: Makefile,v 1.1013 2018/11/20 14:09:58 adam Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -200,11 +200,14 @@ SUBDIR+=	glimpse
 SUBDIR+=	gnome-doc-utils
 SUBDIR+=	gnome-spell
 SUBDIR+=	gnome-subtitles
+SUBDIR+=	go-chroma
+SUBDIR+=	go-diff
 SUBDIR+=	go-glob
 SUBDIR+=	go-inflect
 SUBDIR+=	go-md2man
 SUBDIR+=	go-mmark
 SUBDIR+=	go-prose
+SUBDIR+=	go-regexp2
 SUBDIR+=	go-runewidth
 SUBDIR+=	go-sentences
 SUBDIR+=	go-tablewriter
@@ -765,6 +768,7 @@ SUBDIR+=	py-ejson
 SUBDIR+=	py-elementtree
 SUBDIR+=	py-empy
 SUBDIR+=	py-enchant
+SUBDIR+=	py-eradicate
 SUBDIR+=	py-expat
 SUBDIR+=	py-feedparser
 SUBDIR+=	py-ftfy
@@ -815,6 +819,7 @@ SUBDIR+=	py-pdf-parser
 SUBDIR+=	py-pdfrw
 SUBDIR+=	py-phonenumbers
 SUBDIR+=	py-poyo
+SUBDIR+=	py-precis-i18n
 SUBDIR+=	py-ptable
 SUBDIR+=	py-pyaml
 SUBDIR+=	py-pybtex

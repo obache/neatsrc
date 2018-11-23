@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.57 2018/07/20 03:34:16 ryoon Exp $
+# $NetBSD: Makefile,v 1.59 2018/11/14 22:21:50 kleink Exp $
 #
 
 DISTNAME=	ibus-chewing-1.6.1
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	-https://github.com/definite/ibus-chewing/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 

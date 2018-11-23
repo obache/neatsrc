@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.69 2018/04/17 22:29:39 wiz Exp $
+# $NetBSD: Makefile,v 1.71 2018/11/14 22:21:34 kleink Exp $
 
 DISTNAME=	autotrace-0.31.1
-PKGREVISION=	41
+PKGREVISION=	43
 CATEGORIES=	graphics cad
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=autotrace/}
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2018/08/22 09:45:50 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2018/11/13 11:11:43 markd Exp $
 
 .include "../../multimedia/xine-lib/Makefile.common"
 

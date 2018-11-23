@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.30 2018/04/16 14:33:58 wiz Exp $
+# $NetBSD: Makefile,v 1.32 2018/11/14 22:22:38 kleink Exp $
 #
 
 DISTNAME=	libDesktop-0.2.2
 PKGNAME=	deforaos-libdesktop-0.2.2
-PKGREVISION=	3
+PKGREVISION=	5
 CATEGORIES=	x11
 MASTER_SITES=	https://www.defora.org/os/download/download/4447/
 

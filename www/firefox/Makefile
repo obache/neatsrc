@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.345 2018/11/04 00:38:44 ryoon Exp $
+# $NetBSD: Makefile,v 1.350 2018/11/16 23:38:59 maya Exp $
 
 FIREFOX_VER=		${MOZ_BRANCH}${MOZ_BRANCH_MINOR}
 MOZ_BRANCH=		63.0
-MOZ_BRANCH_MINOR=	.1
+MOZ_BRANCH_MINOR=	.3
 
 DISTNAME=	firefox-${FIREFOX_VER}.source
 PKGNAME=	${DISTNAME:S/.source//:S/b/beta/:S/esr//}
@@ -26,6 +26,8 @@ CFLAGS+=	-I${PREFIX}/include/nspr
 # for lang/gcc6
 CFLAGS+=	-D_GLIBCXX_INCLUDE_NEXT_C_HEADERS
 
+CFLAGS.SunOS+=	-D_POSIX_PTHREAD_SEMANTICS
+
 # workround for link of libxul.so etc.
 LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib/firefox ${COMPILER_RPATH_FLAG}${PREFIX}/lib
 LDFLAGS.SunOS+=		-lm
@@ -44,7 +46,6 @@ SUBST_CLASSES+=			dfly_malloc_h
 SUBST_STAGE.dfly_malloc_h=	pre-configure
 SUBST_MESSAGE.dfly_malloc_h=	Dont include malloc.h on dragonflybsd
 SUBST_SED.dfly_malloc_h=	-e 's,HAVE_MALLOC_H,HAVE_MALLOC_H \&\& !defined(__DragonFly__),g'
-SUBST_FILES.dfly_malloc_h=	media/libav/libavutil/mem.c
 SUBST_FILES.dfly_malloc_h+=	media/ffvpx/libavutil/mem.c
 
 LDFLAGS.DragonFly=	-lplc4 -lnspr4

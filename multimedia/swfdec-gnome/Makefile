@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.67 2018/10/24 21:11:53 leot Exp $
+# $NetBSD: Makefile,v 1.69 2018/11/14 22:22:07 kleink Exp $
 #
 
 DISTNAME=	swfdec-gnome-2.28.0
-PKGREVISION=	60
+PKGREVISION=	62
 CATEGORIES=	multimedia gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/swfdec-gnome/2.28/}
 EXTRACT_SUFX=	.tar.bz2

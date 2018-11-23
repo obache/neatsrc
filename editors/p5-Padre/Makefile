@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.52 2018/08/22 09:45:02 wiz Exp $
+# $NetBSD: Makefile,v 1.54 2018/11/14 22:21:24 kleink Exp $
 
 DISTNAME=	Padre-1.00
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	4
+PKGREVISION=	6
 CATEGORIES=	editors perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Padre/}
 

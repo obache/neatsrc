@@ -1,4 +1,4 @@
-$NetBSD: patch-src-post-planar-noise.c,v 1.3 2014/06/27 12:17:22 jperkin Exp $
+$NetBSD: patch-src-post-planar-noise.c,v 1.5 2018/11/19 12:48:32 jperkin Exp $
 
 Disable MMX sections on SunOS.
 

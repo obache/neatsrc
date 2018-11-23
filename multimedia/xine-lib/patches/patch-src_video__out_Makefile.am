@@ -1,11 +1,10 @@
-$NetBSD: patch-src_video__out_Makefile.am,v 1.3 2016/05/23 16:30:31 wiz Exp $
+$NetBSD: patch-src_video__out_Makefile.am,v 1.4 2018/11/13 11:10:41 markd Exp $
 
-chunk 1: https://bugs.xine-project.org/show_bug.cgi?id=572
-chunk 2: Libtool is unable to infer ObjC by itself.
+chunk 1: Libtool is unable to infer ObjC by itself.
 
---- src/video_out/Makefile.am.orig	2018-01-11 12:49:47.000000000 +0000
+--- src/video_out/Makefile.am.orig	2014-06-09 16:08:42.000000000 +0000
 +++ src/video_out/Makefile.am
-@@ -236,3 +236,4 @@ xineplug_vo_out_raw_la_CFLAGS = $(AM_CFL
+@@ -241,3 +241,4 @@ xineplug_vo_out_raw_la_CFLAGS = $(AM_CFL
  xineplug_vo_out_macosx_la_SOURCES = video_out_macosx.m
  xineplug_vo_out_macosx_la_LIBADD = $(XINE_LIB) $(PTHREAD_LIBS)
  xineplug_vo_out_macosx_la_LDFLAGS = $(AM_LDFLAGS) -framework Cocoa -framework OpenGL

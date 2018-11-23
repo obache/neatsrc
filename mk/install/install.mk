@@ -1,4 +1,4 @@
-# $NetBSD: install.mk,v 1.72 2017/08/08 17:17:25 jlam Exp $
+# $NetBSD: install.mk,v 1.75 2018/11/12 14:22:58 jperkin Exp $
 #
 # This file provides the code for the "install" phase.
 #
@@ -55,6 +55,13 @@
 #	A variable name that should be set as staged installation location
 #	presented as ${DESTDIR} at install phase.
 #	"DESTDIR" is set by default.
+#
+# STRIP_DEBUG_SUPPORTED
+#	If set to anything other than "yes" (the default), stripping will
+#	be disabled for the package.
+#
+# STRIP_FILES_SKIP
+#	A list of files relative to ${PREFIX} that will not be stripped.
 
 ######################################################################
 ### install (PUBLIC)
@@ -176,7 +183,10 @@ _INSTALL_ALL_TARGETS+=		pre-install
 _INSTALL_ALL_TARGETS+=		do-install
 _INSTALL_ALL_TARGETS+=		post-install
 _INSTALL_ALL_TARGETS+=		plist
-.if !empty(STRIP_DEBUG:M[Yy][Ee][Ss])
+.if ${_PKGSRC_USE_CTF} == "yes"
+_INSTALL_ALL_TARGETS+=		install-ctf
+.endif
+.if ${STRIP_DEBUG:Uno:tl} == "yes" && ${STRIP_DEBUG_SUPPORTED:Uyes:tl} == "yes"
 _INSTALL_ALL_TARGETS+=		install-strip-debug
 .endif
 _INSTALL_ALL_TARGETS+=		install-doc-handling
@@ -330,6 +340,30 @@ post-install:
 .endif
 
 ######################################################################
+### install-ctf (PRIVATE)
+######################################################################
+### install-ctf creates CTF information from debug binaries.
+###
+.PHONY: install-ctf
+install-ctf: plist
+	@${STEP_MSG} "Generating CTF data"
+	${RUN}cd ${DESTDIR:Q}${PREFIX:Q};				\
+	${CAT} ${_PLIST_NOKEYWORDS} | while read f; do			\
+		[ ! -h "$${f}" ] || continue;				\
+		case "$${f}" in						\
+		${CTF_FILES_SKIP:@p@${p}) continue ;;@}			\
+		*) ;;							\
+		esac;							\
+		tmp_f="$${f}.XXX";					\
+		if ${CTFCONVERT} -o "$${tmp_f}" "$${f}" 2>/dev/null; then \
+			if [ -f "$${tmp_f}" -a -f "$${f}" ]; then	\
+				${MV} "$${tmp_f}" "$${f}";		\
+			fi;						\
+		fi;							\
+		${RM} -f "$${tmp_f}";					\
+	done
+
+######################################################################
 ### install-strip-debug (PRIVATE)
 ######################################################################
 ### install-strip-debug tries to strip debug information from
@@ -338,16 +372,20 @@ post-install:
 .PHONY: install-strip-debug
 install-strip-debug: plist
 	@${STEP_MSG} "Automatic stripping of debug information"
-	${RUN}${CAT} ${_PLIST_NOKEYWORDS} \
-	| ${SED} -e 's|^|${DESTDIR}${PREFIX}/|' \
-	| while read f; do \
-		tmp_f="$${f}.XXX"; \
-		if ${STRIP} -g -o "$${tmp_f}" "$${f}" 2> /dev/null; then \
-			[ ! -f "$${f}" ] || \
-			    ${MV} "$${tmp_f}" "$${f}"; \
-		else \
-			${RM} -f "$${tmp_f}"; \
-		fi \
+	${RUN}cd ${DESTDIR:Q}${PREFIX:Q};				\
+	${CAT} ${_PLIST_NOKEYWORDS} | while read f; do			\
+		[ ! -h "$${f}" ] || continue;				\
+		case "$${f}" in						\
+		${STRIP_FILES_SKIP:@p@${p}) continue;;@}		\
+		*) ;;							\
+		esac;							\
+		tmp_f="$${f}.XXX";					\
+		if ${STRIP_DBG} -o "$${tmp_f}" "$${f}" 2>/dev/null; then \
+			if [ -f "$${tmp_f}" -a -f "$${f}" ]; then	\
+				${MV} "$${tmp_f}" "$${f}";		\
+			fi;						\
+		fi;							\
+		${RM} -f "$${tmp_f}";					\
 	done
 
 ######################################################################

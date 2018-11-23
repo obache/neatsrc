@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1342 2018/10/28 15:08:16 taca Exp $
+# $NetBSD: Makefile,v 1.1349 2018/11/20 18:38:34 adam Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -118,8 +118,14 @@ SUBDIR+=	go-ace
 SUBDIR+=	go-cssmin
 SUBDIR+=	go-gogs-client
 SUBDIR+=	go-gohtml
+SUBDIR+=	go-libsass
+SUBDIR+=	go-minify
+SUBDIR+=	go-parse
+SUBDIR+=	go-spritewell
+SUBDIR+=	go-tocss
 SUBDIR+=	go-toml-burntsushi
 SUBDIR+=	go-toml-pelletier
+SUBDIR+=	go-urlesc
 SUBDIR+=	go-webhooks
 SUBDIR+=	goaccess
 SUBDIR+=	grafana
@@ -655,6 +661,7 @@ SUBDIR+=	py-django-treebeard
 SUBDIR+=	py-django14
 SUBDIR+=	py-django2
 SUBDIR+=	py-djangocms-admin-style
+SUBDIR+=	py-djangocms-attributes-field
 SUBDIR+=	py-djangocms-file
 SUBDIR+=	py-djangocms-flash
 SUBDIR+=	py-djangocms-googlemap

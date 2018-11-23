@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.16 2018/05/08 19:06:15 jaapb Exp $
+@comment $NetBSD: PLIST,v 1.18 2018/11/13 21:08:34 jperkin Exp $
 bin/ocamlfind
 ${OCAML_SITELIB}/bigarray/META
 ${OCAML_SITELIB}/bytes/META

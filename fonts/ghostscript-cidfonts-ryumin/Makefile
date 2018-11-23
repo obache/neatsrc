@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.21 2018/04/17 22:29:39 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2018/11/14 22:21:28 kleink Exp $
 
 DISTNAME=	ghostscript-cidfonts-ryumin-${GS_VERSION}
 DISTFILES=	# empty
-PKGREVISION=	14
+PKGREVISION=	16
 CATEGORIES=	fonts
 
 MAINTAINER=	makoto@ki.nu

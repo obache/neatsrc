@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.64 2018/10/01 17:44:47 adam Exp $
+# $NetBSD: Makefile,v 1.67 2018/11/14 22:22:49 kleink Exp $
 
 DISTNAME=	qtbase-everywhere-src-${QTVERSION}
 PKGNAME=	qt5-qtbase-${QTVERSION}
+PKGREVISION=	2
 COMMENT=	C++ X GUI toolkit
 
 .include "../../x11/qt5-qtbase/Makefile.common"
@@ -147,6 +148,12 @@ PC_FILES=		Qt5Concurrent.pc Qt5Core.pc Qt5DBus.pc \
 			Qt5OpenGLExtensions.pc \
 			Qt5PrintSupport.pc Qt5Sql.pc Qt5Test.pc \
 			Qt5Widgets.pc Qt5Xml.pc
+
+.if ${OPSYS} == "Linux"
+QMAKE_EXTRA=		QMAKE_PLATFORM += linux
+.else
+QMAKE_EXTRA=
+.endif
 
 pre-configure:
 	${SED}  -e 's:@LOCALBASE@:${LOCALBASE}:g' \

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.68 2018/04/16 14:34:11 wiz Exp $
+# $NetBSD: Makefile,v 1.70 2018/11/14 22:21:07 kleink Exp $
 #
 
 DISTNAME=	gerbv-2.6.2
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	cad
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=gerbv/}
 

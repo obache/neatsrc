@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.71 2018/09/19 18:18:30 abs Exp $
+# $NetBSD: Makefile,v 1.74 2018/11/14 22:21:55 kleink Exp $
 
 DISTNAME=	openjdk-1.8.181-20180914
 PKGNAME=	openjdk8-1.8.181
 CATEGORIES=	lang
-PKGREVISION=	1
+PKGREVISION=	3
 MASTER_SITES=	${MASTER_SITE_LOCAL:=openjdk7/}
 EXTRACT_SUFX=	.tar.xz
 
@@ -77,7 +77,7 @@ NOT_PAX_MPROTECT_SAFE+= java/openjdk8/jre/bin/*
 MAKE_ENV+=	JAVA_HOME=
 MAKE_ENV+=	CLASSPATH=
 
-BUILD_OPSYS=	${OPSYS:C/.*BSD/bsd/:S/DragonFly/bsd/:S/SunOS/solaris/}
+BUILD_OPSYS=	${OPSYS:C/.*BSD/bsd/:S/DragonFly/bsd/:S/SunOS/solaris/:S/Linux/linux/}
 BUILD_ARCH=	${MACHINE_ARCH:S/i386/x86/:S/sparc64/sparcv9/:C/^e?arm.*$/arm/}
 LIBDIR_ARCH=	${MACHINE_ARCH:S/x86_64/amd64/:S/sparc64/sparcv9/:C/^e?arm.*$/arm/}
 BUILDDIR=	${WRKSRC}/build/${BUILD_OPSYS}-${BUILD_ARCH}-normal-${BUILD_VARIANT}-${BUILD_DEBUG_LEVEL}
@@ -171,7 +171,7 @@ PLIST.i386=	yes
 .endif
 
 PLIST_VARS+=	sctp
-.if ${OPSYS} == "FreeBSD" || ${OPSYS} == "SunOS"
+.if ${OPSYS} == "FreeBSD" || ${OPSYS} == "SunOS" || ${OPSYS} == "Linux"
 PLIST.sctp=	yes
 .endif
 
@@ -266,7 +266,9 @@ MAKE_ENV+=	STRIP=${PREFIX}/bin/gstrip
 .endif
 
 # disabled the ALSA support for now on BSDs via patch
-#.include "../../audio/alsa-lib/buildlink3.mk"
+.if ${OPSYS} == "Linux"
+.include "../../audio/alsa-lib/buildlink3.mk"
+.endif
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"

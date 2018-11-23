@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.804 2018/10/22 14:40:33 schmonz Exp $
+# $NetBSD: Makefile,v 1.807 2018/11/19 16:55:35 nia Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -206,6 +206,7 @@ SUBDIR+=	gnome-icon-theme-symbolic
 SUBDIR+=	gnome-themes-standard
 SUBDIR+=	gnuplot
 SUBDIR+=	go-image
+SUBDIR+=	go-imaging
 SUBDIR+=	go-resize
 SUBDIR+=	go-smartcrop
 SUBDIR+=	gocr
@@ -408,6 +409,7 @@ SUBDIR+=	p5-cairo-gobject
 SUBDIR+=	p5-clutter
 SUBDIR+=	panomatic
 SUBDIR+=	paper-icon-theme
+SUBDIR+=	papirus-icon-theme
 SUBDIR+=	pdiff
 SUBDIR+=	pear-Image_Canvas
 SUBDIR+=	pear-Image_Color
@@ -514,6 +516,7 @@ SUBDIR+=	ruby-imlib2
 SUBDIR+=	ruby-mini-magick
 SUBDIR+=	ruby-oily_png
 SUBDIR+=	ruby-opengl
+SUBDIR+=	ruby-screengif
 SUBDIR+=	s10sh
 SUBDIR+=	sane-backends
 SUBDIR+=	sane-frontends

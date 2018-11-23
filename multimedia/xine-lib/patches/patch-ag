@@ -1,4 +1,4 @@
-$NetBSD: patch-ag,v 1.29 2016/06/19 23:05:17 joerg Exp $
+$NetBSD: patch-ag,v 1.30 2018/11/13 11:10:41 markd Exp $
 
 --- configure.ac.orig	2018-01-11 12:49:46.000000000 +0000
 +++ configure.ac

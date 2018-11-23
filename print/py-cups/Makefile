@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.38 2018/07/04 13:40:33 jperkin Exp $
+# $NetBSD: Makefile,v 1.40 2018/11/14 22:22:19 kleink Exp $
 
 DISTNAME=	pycups-1.9.73
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/^py//}
-PKGREVISION=	5
+PKGREVISION=	7
 CATEGORIES=	print python
 MASTER_SITES=	http://cyberelk.net/tim/data/pycups/
 MASTER_SITES+=	${MASTER_SITE_PYPI:=p/pycups/}

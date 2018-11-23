@@ -1,4 +1,4 @@
-$NetBSD: patch-src-post-planar-eq.c,v 1.3 2014/06/27 12:17:22 jperkin Exp $
+$NetBSD: patch-src-post-planar-eq.c,v 1.4 2018/11/13 11:10:41 markd Exp $
 
 Disable MMX sections on SunOS.
 

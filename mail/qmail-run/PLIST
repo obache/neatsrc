@@ -1,4 +1,5 @@
-@comment $NetBSD: PLIST,v 1.15 2018/11/10 15:31:18 schmonz Exp $
+@comment $NetBSD: PLIST,v 1.17 2018/11/14 16:46:58 schmonz Exp $
+bin/greylisting-spp-with-exemptions
 bin/ofmipd-with-user-cdb
 bin/qmail-isspam-rspamd
 bin/qmail-isspam-spamassassin
@@ -10,10 +11,15 @@ share/examples/qmail-run/concurrencypop3
 share/examples/qmail-run/concurrencysubmission
 share/examples/qmail-run/defaultdelivery
 share/examples/qmail-run/fixsmtpio
+share/examples/qmail-run/greylist-database
+share/examples/qmail-run/greylist-exemptrcpthosts
+share/examples/qmail-run/greylist-exemptrcpts
 share/examples/qmail-run/mailer.conf
 share/examples/qmail-run/pop3capabilities
+share/examples/qmail-run/rcptchecks
 share/examples/qmail-run/signatures
 share/examples/qmail-run/smtpcapabilities
+share/examples/qmail-run/smtpfilters
 share/examples/qmail-run/smtpplugins
 share/examples/qmail-run/tcp.ofmip
 share/examples/qmail-run/tcp.pop3

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.115 2018/04/16 14:33:47 wiz Exp $
+# $NetBSD: Makefile,v 1.117 2018/11/14 22:21:15 kleink Exp $
 #
 
 DISTNAME=	libbonoboui-2.24.4
-PKGREVISION=	33
+PKGREVISION=	35
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libbonoboui/2.24/}
 EXTRACT_SUFX=	.tar.bz2

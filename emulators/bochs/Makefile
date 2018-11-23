@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.90 2018/04/16 14:34:25 wiz Exp $
+# $NetBSD: Makefile,v 1.92 2018/11/14 22:21:25 kleink Exp $
 
 DISTNAME=		bochs-2.6.8
-PKGREVISION=		6
+PKGREVISION=		8
 CATEGORIES=		emulators
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=bochs/}
 

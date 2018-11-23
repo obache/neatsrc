@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.49 2018/08/22 09:47:21 wiz Exp $
+# $NetBSD: Makefile,v 1.51 2018/11/14 22:22:32 kleink Exp $
 
-PKGREVISION= 4
+PKGREVISION= 6
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
 DISTNAME=	xfce4-datetime-plugin-0.7.0

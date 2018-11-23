@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST.common,v 1.39 2016/04/19 13:48:31 jperkin Exp $
+@comment $NetBSD: PLIST.common,v 1.40 2018/11/13 11:10:41 markd Exp $
 bin/xine-config
 bin/xine-list-1.2
 include/xine.h

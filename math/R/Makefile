@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.189 2018/08/22 09:45:35 wiz Exp $
+# $NetBSD: Makefile,v 1.192 2018/11/14 22:21:59 kleink Exp $
 
 DISTNAME=	R-3.5.1
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_R_CRAN:=base/R-3/}
 
@@ -141,6 +141,9 @@ SUBST_FILES.fixwrap=	libtool
 SUBST_SED.fixwrap=	-e "s,${WRAPPER_BINDIR}/libtool,${PKG_LIBTOOL},g"
 
 BUILDLINK_API_DEPENDS.bzip2+=	bzip2>=1.0.5
+
+# failed to convert strong functions and variables: Invalid type identifier
+CTF_FILES_SKIP+=	lib/R/library/mgcv/libs/mgcv.so
 
 pre-configure:
 	${RUN} cd ${WRKSRC} && autoreconf -fvi

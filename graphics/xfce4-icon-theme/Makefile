@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.37 2018/08/22 09:45:18 wiz Exp $
+# $NetBSD: Makefile,v 1.39 2018/11/14 22:21:47 kleink Exp $
 
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
 XFCE4_VERSION=	4.4.3
 
 DISTNAME=	xfce4-icon-theme-${XFCE4_VERSION}
-PKGREVISION=	26
+PKGREVISION=	28
 CATEGORIES=	graphics
 COMMENT=	Xfce icon themes
 

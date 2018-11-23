@@ -1,4 +1,4 @@
-# $NetBSD: Minix.mk,v 1.7 2018/10/29 10:53:31 sevan Exp $
+# $NetBSD: Minix.mk,v 1.9 2018/11/15 01:05:09 sevan Exp $
 #
 # Variable definitions for the Minix operating system.
 
@@ -19,7 +19,7 @@ GROUPADD?=		/usr/sbin/groupadd
 NOLOGIN?=		/usr/bin/false
 PKG_TOOLS_BIN?=		${LOCALBASE}/sbin
 ROOT_CMD?=		${SU} - root -c
-ROOT_GROUP?=	operator
+ROOT_GROUP?= 		wheel
 ROOT_USER?=		root
 SERIAL_DEVICES?=	/dev/null
 USERADD?=		/usr/sbin/useradd
@@ -30,7 +30,7 @@ _OPSYS_SYSTEM_RPATH?=	/usr/lib
 _OPSYS_LIB_DIRS?=	/usr/lib
 _OPSYS_INCLUDE_DIRS?=	/usr/include
 
-_OPSYS_HAS_INET6=	no	# IPv6 is not standard
+_OPSYS_HAS_INET6=	yes	# IPv6 is standard
 _OPSYS_HAS_JAVA=	no	# Java is not standard
 _OPSYS_HAS_MANZ=	no	# no MANZ for gzipping of man pages
 _OPSYS_HAS_OSSAUDIO=	no	# libossaudio is available

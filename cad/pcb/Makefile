@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.90 2018/04/16 14:34:12 wiz Exp $
+# $NetBSD: Makefile,v 1.93 2018/11/14 22:21:07 kleink Exp $
 #
 
-DISTNAME=	pcb-4.0.1
-PKGREVISION=	2
+DISTNAME=	pcb-4.1.3
+PKGREVISION=	1
 CATEGORIES=	cad
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pcb/}
 
@@ -68,7 +68,7 @@ PKG_FAIL_REASON+=	Invalid options
 .include "../../sysutils/dbus/buildlink3.mk"
 .endif
 
-EXPORTERS=	bom gcode gerber ipcd356 ps
+EXPORTERS=	bom gcode gerber gsvit ipcd356 ps
 .if !empty(PKG_OPTIONS:Mpng)
 # these three need gd
 EXPORTERS+=	gcode nelma png
@@ -76,7 +76,6 @@ EXPORTERS+=	gcode nelma png
 .endif
 
 CONFIGURE_ARGS+=	--with-exporters=${EXPORTERS:Q}
-
 
 post-extract:
 	${CHMOD} -R go-w ${WRKSRC}

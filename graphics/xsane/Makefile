@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.122 2018/10/09 20:05:43 maya Exp $
+# $NetBSD: Makefile,v 1.124 2018/11/14 22:21:47 kleink Exp $
 
 DISTNAME=	xsane-0.999
 PKGNAME=	xsane-0.99.9
-PKGREVISION=	8
+PKGREVISION=	10
 CATEGORIES=	graphics
 #MASTER_SITES=	http://www.xsane.org/download/
 MASTER_SITES=	https://ftp.osuosl.org/pub/blfs/conglomeration/xsane/
