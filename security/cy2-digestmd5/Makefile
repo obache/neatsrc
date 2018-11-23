@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.21 2018/04/17 01:57:18 christos Exp $
 
-PKGNAME=	${DISTPKGNAME:S/cyrus-sasl/cy2-digestmd5/}
+PKGNAME=	${DISTNAME:S/cyrus-sasl/cy2-digestmd5/}
 COMMENT=	Cyrus SASL DIGEST-MD5 authentication plugin
 SASL_PLUGIN=	yes
 

@@ -1,6 +1,6 @@
 # $NetBSD$
 
-PKGNAME=	${DISTPKGNAME:S/cyrus-sasl/cy2-otp/}
+PKGNAME=	${DISTNAME:S/cyrus-sasl/cy2-otp/}
 COMMENT=	Cyrus SASL SRP authentication plugin
 SASL_PLUGIN=	yes
 

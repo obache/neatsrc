@@ -1,6 +1,6 @@
 # $NetBSD$
 
-PKGNAME=	${DISTPKGNAME:S/cyrus-sasl/cy2-gs2/}
+PKGNAME=	${DISTNAME:S/cyrus-sasl/cy2-gs2/}
 COMMENT=	Cyrus SASL GS2 authentication plugin
 SASL_PLUGIN=	yes
 
@@ -14,7 +14,7 @@ GSSIMPL.mit-krb5=	mit
 
 BUILD_DIRS=	common plugins
 
-MAKE_FLAGS+=	sasl_LTLIBRARIES=libgs2.la
+MAKE_FLAGS+=	plugin_LTLIBRARIES=libgs2.la
 
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/krb5.buildlink3.mk"
