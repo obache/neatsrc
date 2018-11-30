@@ -11,7 +11,7 @@ HOMEPAGE=	https://nghttp2.org/
 COMMENT=	Implementation of HTTP/2 in C
 LICENSE=	mit
 
-USE_LANGUAGES=		c c++14
+USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake pkg-config
 GNU_CONFIGURE=		yes
