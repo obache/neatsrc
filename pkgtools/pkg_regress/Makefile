@@ -1,24 +1,23 @@
-# $NetBSD: Makefile,v 1.14 2016/06/11 09:37:16 rillig Exp $
+# $NetBSD: Makefile,v 1.16 2018/11/30 19:07:37 rillig Exp $
 
-PKGNAME=	pkg_regress-0.3
+PKGNAME=	pkg_regress-0.4
 CATEGORIES=	pkgtools
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Run pkgsrc infrastructure regression test suite
 
 WRKSRC=		${WRKDIR}
-USE_LANGUAGES=	# empty
+USE_LANGUAGES=	# none
+NO_BUILD=	yes
+AUTO_MKDIRS=	yes
 
-INSTALLATION_DIRS=	sbin
+SUBST_CLASSES+=		regress
+SUBST_STAGE.regress=	pre-configure
+SUBST_FILES.regress=	pkg_regress.sh
+SUBST_VARS.regress=	MAKE PKGSRCDIR SH EGREP
 
-.include "../../mk/bsd.prefs.mk"
-
-do-build:
-	${SED} -e 's#@MAKE@#${MAKE}#g' \
-	  -e 's#@PKGSRCDIR@#${PKGSRCDIR}#g' \
-	  -e 's#@SH@#${SH}#g' \
-	  -e 's#@EGREP@#${EGREP}#g' \
-	  ${FILESDIR}/pkg_regress.sh >${WRKSRC}/pkg_regress.sh
+do-extract:
+	${CP} ${FILESDIR}/pkg_regress.sh ${WRKSRC}
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/pkg_regress.sh \

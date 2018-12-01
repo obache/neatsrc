@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.808 2018/11/23 10:30:45 nia Exp $
+# $NetBSD: Makefile,v 1.810 2018/11/30 16:42:33 nia Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -34,8 +34,8 @@ SUBDIR+=	R-viridisLite
 SUBDIR+=	SDL2_image
 SUBDIR+=	SDL_image
 SUBDIR+=	aalib
-SUBDIR+=	adaptagrams
 SUBDIR+=	adapta-gtk-theme
+SUBDIR+=	adaptagrams
 SUBDIR+=	adwaita-icon-theme
 SUBDIR+=	agg
 SUBDIR+=	ansilove
@@ -410,6 +410,7 @@ SUBDIR+=	p5-cairo-gobject
 SUBDIR+=	p5-clutter
 SUBDIR+=	panomatic
 SUBDIR+=	paper-icon-theme
+SUBDIR+=	papirus-folders
 SUBDIR+=	papirus-icon-theme
 SUBDIR+=	pdiff
 SUBDIR+=	pear-Image_Canvas

@@ -1,4 +1,4 @@
-# $NetBSD: cargo.mk,v 1.4 2018/10/23 16:39:29 minskim Exp $
+# $NetBSD: cargo.mk,v 1.6 2018/11/27 15:45:23 adam Exp $
 #
 # Common logic that can be used by packages that depend on cargo crates
 # from crates.io. This lets existing pkgsrc infrastructure fetch and verify
@@ -28,7 +28,7 @@ CARGO_VENDOR_DIR=	${WRKDIR}/vendor
 DISTFILES?=	${DEFAULT_DISTFILES}
 .for _crate in ${CARGO_CRATE_DEPENDS}
 DISTFILES+=	${_crate}.crate
-SITES.${_crate}.crate+= -${MASTER_SITE_CRATESIO}${_crate:C/-[0-9.]+$//}/${_crate:C/^.*-([0-9.]+)$/\1/}/download
+SITES.${_crate}.crate+=	-${MASTER_SITE_CRATESIO}${_crate:C/-[0-9.]+$//}/${_crate:C/^.*-([0-9.]+)$/\1/}/download
 EXTRACT_DIR.${_crate}.crate?=	${CARGO_VENDOR_DIR}
 .endfor
 
@@ -37,7 +37,7 @@ post-extract: cargo-vendor-crates
 cargo-vendor-crates:
 	@${STEP_MSG} "Extracting local cargo crates"
 	${RUN}${MKDIR} ${WRKSRC}/.cargo
-	${RUN}${PRINTF} "[source.crates-io]\nreplace-with = \"vendored-sources\"\n[source.vendored-sources]\ndirectory = \"${CARGO_VENDOR_DIR}\"\n" >> ${WRKSRC}/.cargo/config
+	${RUN}${PRINTF} "[source.crates-io]\nreplace-with = \"vendored-sources\"\n[source.vendored-sources]\ndirectory = \"${CARGO_VENDOR_DIR}\"\n" > ${WRKSRC}/.cargo/config
 	${RUN}${MKDIR} ${CARGO_VENDOR_DIR}
 .for _crate in ${CARGO_CRATE_DEPENDS}
 	${RUN}${PRINTF} '{"package":"%s","files":{}}'	\

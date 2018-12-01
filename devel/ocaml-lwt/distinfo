@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.19 2018/07/19 14:14:28 jaapb Exp $
+$NetBSD: distinfo,v 1.21 2018/11/29 11:58:00 jaapb Exp $
 
 SHA1 (lwt-4.1.0.tar.gz) = 2a780c8be6022967d94e069fa132933a8d14e6ff
 RMD160 (lwt-4.1.0.tar.gz) = 17c0175cb745a30e9786ed78fccb15d9b78ca561

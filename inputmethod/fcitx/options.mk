@@ -43,7 +43,7 @@ CMAKE_ARGS+=	-DENABLE_QT_IM_MODULE:BOOL=OFF
 .endif
 
 .if !empty(PKG_OPTIONS:Menchant)
-.include "../../textproc/enchant/buildlink3.mk"
+.include "../../textproc/enchant2/buildlink3.mk"
 CMAKE_ARGS+=	-DENABLE_ENCHANT:BOOL=ON
 .else
 CMAKE_ARGS+=	-DENABLE_ENCHANT:BOOL=OFF

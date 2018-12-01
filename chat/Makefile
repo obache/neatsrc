@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.205 2018/09/19 20:44:36 nia Exp $
+# $NetBSD: Makefile,v 1.209 2018/11/28 15:12:27 nia Exp $
 #
 
 COMMENT=	Communication programs
@@ -10,7 +10,9 @@ SUBDIR+=	bitchx
 SUBDIR+=	bitlbee
 SUBDIR+=	bnc
 SUBDIR+=	bsflite
+SUBDIR+=	carbons-purple
 SUBDIR+=	centerim
+SUBDIR+=	centerim5
 SUBDIR+=	cgiirc
 SUBDIR+=	climm
 SUBDIR+=	ctrlproxy
@@ -76,8 +78,8 @@ SUBDIR+=	libtelepathy
 SUBDIR+=	libtlen
 SUBDIR+=	licq-core
 SUBDIR+=	licq-gui-console
-SUBDIR+=	line-purple
 SUBDIR+=	loudmouth
+SUBDIR+=	lurch-purple
 SUBDIR+=	matterircd
 SUBDIR+=	mcabber
 SUBDIR+=	meanwhile

@@ -1,6 +1,6 @@
 #!@RCD_SCRIPTS_SHELL@
 #
-# $NetBSD: qmailofmipd.sh,v 1.16 2018/11/13 16:34:58 schmonz Exp $
+# $NetBSD: qmailofmipd.sh,v 1.18 2018/11/28 16:42:44 schmonz Exp $
 #
 # @PKGNAME@ script to control ofmipd (SMTP submission service).
 #
@@ -12,15 +12,16 @@ name="qmailofmipd"
 
 # User-settable rc.conf variables and their default values:
 : ${qmailofmipd_postenv:="SSL_UID=$(@ID@ -u @UCSPI_SSL_USER@) SSL_GID=$(@ID@ -g @UCSPI_SSL_GROUP@)"}
-: ${qmailofmipd_tcpflags:="-ne -vRl0"}
-: ${qmailofmipd_tcphost:="0.0.0.0"}
-: ${qmailofmipd_tcpport:="587"}
 : ${qmailofmipd_datalimit:="360000000"}
 : ${qmailofmipd_pretcpserver:=""}
 : ${qmailofmipd_tcpserver:="@PREFIX@/bin/sslserver"}
-: ${qmailofmipd_preofmipd:=""}
-: ${qmailofmipd_ofmipdcmd:="@PREFIX@/bin/ofmipd-with-user-cdb"}
+: ${qmailofmipd_tcpflags:="-ne -vRl0"}
+: ${qmailofmipd_tcphost:="0.0.0.0"}
+: ${qmailofmipd_tcpport:="587"}
+: ${qmailofmipd_precheckpassword:="@PREFIX@/bin/reup -t 5 @PREFIX@/bin/authup smtp"}
 : ${qmailofmipd_checkpassword:="@PREFIX@/bin/nbcheckpassword"}
+: ${qmailofmipd_preofmipd:="@PREFIX@/bin/checknotroot @PREFIX@/bin/fixsmtpio"}
+: ${qmailofmipd_ofmipdcmd:="@PREFIX@/bin/ofmipd-with-user-cdb"}
 : ${qmailofmipd_postofmipd:=""}
 : ${qmailofmipd_log:="YES"}
 : ${qmailofmipd_logcmd:="logger -t nbqmail/ofmipd -p mail.info"}
@@ -28,6 +29,7 @@ name="qmailofmipd"
 : ${qmailofmipd_tls:="auto"}
 : ${qmailofmipd_tls_dhparams:="@PKG_SYSCONFDIR@/control/dh2048.pem"}
 : ${qmailofmipd_tls_cert:="@PKG_SYSCONFDIR@/control/servercert.pem"}
+: ${qmailofmipd_tls_key:=""}
 
 if [ -f /etc/rc.subr ]; then
 	. /etc/rc.subr
@@ -71,6 +73,9 @@ qmailofmipd_disable_tls() {
 qmailofmipd_enable_tls() {
 	qmailofmipd_postenv="${qmailofmipd_postenv} DHFILE=${qmailofmipd_tls_dhparams}"
 	qmailofmipd_postenv="${qmailofmipd_postenv} CERTFILE=${qmailofmipd_tls_cert}"
+	if [ -f "${qmailofmipd_tls_key}" ]; then
+		qmailofmipd_postenv="${qmailofmipd_postenv} KEYFILE=${qmailofmipd_tls_key}"
+	fi
 }
 
 qmailofmipd_precmd()
@@ -88,8 +93,7 @@ qmailofmipd_precmd()
 ${qmailofmipd_tcpflags} -x @PKG_SYSCONFDIR@/tcp.ofmip.cdb
 -c `@HEAD@ -1 @PKG_SYSCONFDIR@/control/concurrencysubmission`
 ${qmailofmipd_tcphost} ${qmailofmipd_tcpport}
-@PREFIX@/bin/reup -t 5 @PREFIX@/bin/authup smtp
-${qmailofmipd_checkpassword} @PREFIX@/bin/checknotroot @PREFIX@/bin/fixsmtpio
+${qmailofmipd_precheckpassword} ${qmailofmipd_checkpassword}
 ${qmailofmipd_preofmipd} ${qmailofmipd_ofmipdcmd} ${qmailofmipd_postofmipd}
 2>&1 |
 @PREFIX@/bin/pgrphack @PREFIX@/bin/setuidgid @QMAIL_LOG_USER@ ${qmailofmipd_logcmd}"

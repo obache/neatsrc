@@ -1,6 +1,6 @@
 #!@RCD_SCRIPTS_SHELL@
 #
-# $NetBSD: qmailsmtpd.sh,v 1.21 2018/11/13 16:34:58 schmonz Exp $
+# $NetBSD: qmailsmtpd.sh,v 1.23 2018/11/28 16:42:44 schmonz Exp $
 #
 # @PKGNAME@ script to control qmail-smtpd (SMTP service).
 #
@@ -12,12 +12,12 @@ name="qmailsmtpd"
 
 # User-settable rc.conf variables and their default values:
 : ${qmailsmtpd_postenv:="SSL_UID=$(@ID@ -u @UCSPI_SSL_USER@) SSL_GID=$(@ID@ -g @UCSPI_SSL_GROUP@)"}
-: ${qmailsmtpd_tcpflags:="-ne -vRl0"}
-: ${qmailsmtpd_tcphost:="0.0.0.0"}
-: ${qmailsmtpd_tcpport:="25"}
 : ${qmailsmtpd_datalimit:="540000000"}
 : ${qmailsmtpd_pretcpserver:=""}
 : ${qmailsmtpd_tcpserver:="@PREFIX@/bin/sslserver"}
+: ${qmailsmtpd_tcpflags:="-ne -vRl0"}
+: ${qmailsmtpd_tcphost:="0.0.0.0"}
+: ${qmailsmtpd_tcpport:="25"}
 : ${qmailsmtpd_presmtpd:="@PREFIX@/bin/greetdelay @PREFIX@/bin/rblsmtpd -r zen.spamhaus.org @PREFIX@/bin/fixsmtpio"}
 : ${qmailsmtpd_smtpdcmd:="@PREFIX@/bin/qmail-smtpd"}
 : ${qmailsmtpd_postsmtpd:=""}
@@ -27,6 +27,7 @@ name="qmailsmtpd"
 : ${qmailsmtpd_tls:="auto"}
 : ${qmailsmtpd_tls_dhparams:="@PKG_SYSCONFDIR@/control/dh2048.pem"}
 : ${qmailsmtpd_tls_cert:="@PKG_SYSCONFDIR@/control/servercert.pem"}
+: ${qmailsmtpd_tls_key:=""}
 
 if [ -f /etc/rc.subr ]; then
 	. /etc/rc.subr
@@ -68,6 +69,9 @@ qmailsmtpd_disable_tls() {
 qmailsmtpd_enable_tls() {
 	qmailsmtpd_postenv="${qmailsmtpd_postenv} DHFILE=${qmailsmtpd_tls_dhparams}"
 	qmailsmtpd_postenv="${qmailsmtpd_postenv} CERTFILE=${qmailsmtpd_tls_cert}"
+	if [ -f "${qmailsmtpd_tls_key}" ]; then
+		qmailsmtpd_postenv="${qmailsmtpd_postenv} KEYFILE=${qmailsmtpd_tls_key}"
+	fi
 }
 
 qmailsmtpd_precmd()
