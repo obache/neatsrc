@@ -19,4 +19,5 @@ TEST_TARGET=	check
 # rl_reset_after_signal, rl_echo_signal_char are missing in libedit as of 2018/12/02
 #.include "../../mk/readline.buildlink3.mk"
 .include "../../devel/readline/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-readline=${BUILDLINK_PREFIX.readline}
 .include "../../mk/bsd.pkg.mk"
