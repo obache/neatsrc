@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2018/08/16 08:44:21 wiz Exp $
+# $NetBSD: Makefile,v 1.6 2018/12/01 17:22:04 wiz Exp $
 
 DISTNAME=	brotli-1.0.7
 CATEGORIES=	archivers

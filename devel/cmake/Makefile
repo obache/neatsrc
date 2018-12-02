@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.153 2018/11/21 16:58:52 adam Exp $
+# $NetBSD: Makefile,v 1.154 2018/12/02 03:01:39 sevan Exp $
 
 .include "Makefile.version"
 
@@ -77,4 +77,5 @@ CFLAGS+=	-I${BUILDLINK_INCDIRS.curses}/ncurses
 CXXFLAGS+=	-I${BUILDLINK_INCDIRS.curses}/ncurses
 .endif
 
+.include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
