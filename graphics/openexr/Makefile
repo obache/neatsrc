@@ -14,7 +14,6 @@ USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake pkg-config
 GNU_CONFIGURE=		yes
-GCC_REQD+=		6
 PKGCONFIG_OVERRIDE=	OpenEXR.pc.in
 TEST_TARGET=		check
 
