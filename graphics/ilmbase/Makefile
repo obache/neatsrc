@@ -15,7 +15,6 @@ USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 USE_TOOLS+=		bash gmake
 GNU_CONFIGURE=		yes
-GCC_REQD+=		6
 TEST_TARGET=		check
 LIBS.SunOS=		-lm
 CONFIG_SHELL=		bash
