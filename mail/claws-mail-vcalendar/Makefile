@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.73 2018/12/01 17:31:08 bsiegert Exp $
+# $NetBSD: Makefile,v 1.75 2018/12/13 19:52:07 adam Exp $
 #
 
 PLUGIN_NAME=    vcalendar
-PKGREVISION= 3
+PKGREVISION= 5
 .include "../../mail/claws-mail/plugins.mk"
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

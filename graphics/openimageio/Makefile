@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.51 2018/11/12 03:52:16 ryoon Exp $
+# $NetBSD: Makefile,v 1.53 2018/12/13 19:51:35 adam Exp $
 
 OIIOVER=	1.8.15
 DISTNAME=	oiio-Release-${OIIOVER}
 PKGNAME=	${DISTNAME:S/oiio-Release/openimageio/}
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	-https://github.com/OpenImageIO/oiio/archive/Release-${OIIOVER}.tar.gz
 

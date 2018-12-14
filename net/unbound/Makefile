@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.59 2018/10/08 12:26:17 he Exp $
+# $NetBSD: Makefile,v 1.61 2018/12/11 17:06:46 he Exp $
 
-DISTNAME=	unbound-1.8.1
+DISTNAME=	unbound-1.8.3
 CATEGORIES=	net
 MASTER_SITES=	http://www.nlnetlabs.nl/downloads/unbound/
 

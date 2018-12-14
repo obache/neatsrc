@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.53 2018/04/17 01:57:18 christos Exp $
+# $NetBSD: Makefile,v 1.54 2018/12/09 21:05:35 adam Exp $
 
-PKGNAME=	${DISTPKGNAME:S/sasl/saslauthd/}
+PKGNAME=	${DISTNAME:S/sasl/saslauthd/}
 CONFLICTS+=	cyrus-sasl<2.1.15nb2
 
 .include "../../security/cyrus-sasl/Makefile.common"

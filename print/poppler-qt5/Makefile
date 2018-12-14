@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.27 2018/11/12 03:52:49 ryoon Exp $
+# $NetBSD: Makefile,v 1.29 2018/12/09 18:52:44 adam Exp $
 
 PKGREVISION= 1
 .include "../../print/poppler/Makefile.common"
@@ -19,7 +19,7 @@ CMAKE_ARGS+=    -DENABLE_LIBCURL=OFF
 BUILDLINK_API_DEPENDS.poppler+= poppler>=${POPPLER_VERS}
 .include "../../print/poppler/buildlink3.mk"
 
-PKGCONFIG_OVERRIDE+=	${WRKSRC}/poppler-qt5.pc.in
+PKGCONFIG_OVERRIDE+=	${WRKSRC}/poppler-qt5.pc.cmake
 
 INSTALLATION_DIRS+=	lib include/poppler lib/pkgconfig
 

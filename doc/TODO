@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.18672 2018/12/02 15:04:12 wiz Exp $
+$NetBSD: TODO,v 1.18707 2018/12/13 01:05:07 pho Exp $
 
 Suggested new packages
 ======================
@@ -179,18 +179,6 @@ Suggested new packages
 	Raster3D [pkg/34225]
 	http://skuld.bmsc.washington.edu/raster3d/
 
-	libpcapnav [pkg/34473]
-	http://netdude.sourceforge.net/
-	Wrapper library that allows navigation in tcpdump traces
-
-	libnetdude [pkg/34473]
-	http://netdude.sourceforge.net/
-	Library for manipulating libpcap/tcpdump trace files
-
-	netdude [pkg/34473]
-	http://netdude.sourceforge.net/
-	NETwork DUmp data Displayer and Editor for tcpdump tracefiles
-
 	BennuGD
 	http://www.bennugd.org/
 	Cross-platform game development suite (fork of Fenix Project).
@@ -355,7 +343,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
 	o MesaDemos-8.3.0
-	o MesaLib-18.2.6
+	o MesaLib-18.3.0
 	o OdfConverter-4.0
 	o PACK-0.0.4
 	o PAM-0.99.7.1
@@ -377,7 +365,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o adms-2.3.5
 	o adocman-0.13
 	o adodb-5.20.7 [security]
-	o adplug-2.2.1
 	o aegis-4.25
 	o aewm++-1.1.5
 	o afbinit-1.0.1
@@ -460,7 +447,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o brasero-3.4.0
 	o bsdtar-3.3.3
 	o bwa-0.7.12 [needs shm_open(3), please contact MAINTAINER]
-	o byacc-20170201
 	o bzr-2.7.0
 	o bzr-explorer-1.3.0
 	o bzr-gtk-0.103.0
@@ -470,6 +456,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cal3d-0.11.0
 	o calc-2.11.10.1
 	o calcoo-2.1.0
+	o calibre-3.35.0
 	o calligra-3.0.1 [in wip; koffice successor]
 	o cardboard-schedule-1.14c [at http://www.bright-green.com/downloads/]
 	o catdoc-1.1
@@ -624,16 +611,12 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o fillets-ng-data-0.7.4
 	o flashplayer-0.4.13
 	o flashrom-0.9.8
-	o flightgear-2.12
-	o flightgear-data-3.4.0
 	o flite-1.4
 	o flow-tools-0.411
 	o flpsed-0.7.3
 	o fltk2-2.0pre8323
 	o fop-2.1
 	o fortunes-calvin-0.3
-	o fox-1.6.56 [pkg/52967]
-	o fox-1.7.61
 	o freeciv-2.6.0
 	o freedv-1.2.2
 	o freenet-0.7
@@ -690,7 +673,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gliv-1.9.7
 	o glom-1.14.2 [GNOME 2.26]
 	o glx-utils-8.3.0
-	o gmime3-3.2.3
 	o gnet1-1.1.9
 	o gnetman-20050429
 	o gnome-3.30.1
@@ -777,7 +759,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o hamster-applet-2.32.1 [GNOME 2.32]
 	o handbrake-1.1.0
 	o hanzim-3.5
-	o harfbuzz-2.2.0
 	o harminv-1.4
 	o haskell-mode-13.20
 	o hdevtools-0.1.3.0
@@ -947,7 +928,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o lgeneral-1.3.1
 	o libarchive-3.3.2
 	o libbpg-0.9.6
-	o libburn-1.4.0
 	o libcaca-0.99.19
 	o libcarddav-14.0.4
 	o libconfuse-3.1
@@ -961,8 +941,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libgnomedb-3.1.2
 	o libgnomekbd-3.4.0.2
 	o libgphoto2-2.5.16
-	o libisoburn-1.4.0
-	o libisofs-1.4.2
 	o libixp-0.5 [breaks wmii-3.6, wait for compatible version; see also wmii+ixp entry]
 	o libjit-1.0.2
 	o libjpeg-turbo-2.0
@@ -997,7 +975,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o linpsk-1.2 [ld: cannot find -lqt-mt with qt4]
 	o liquidwar-6.0.0.11
 	o lirc-0.9.3
-	o llvm-7.0.0
 	o lmbench-3
 	o lohit-fonts-2.4.2
 	o lottanzb-0.6
@@ -1072,7 +1049,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o munin-node-1.4.6
 	o munin-server-1.4.6
 	o muse-0.9.2
-	o musicpd-0.21.3
 	o myodbc-5.3.4
 	o mysql-server-8.0.13
 	o mysql-workbench-6.3
@@ -1155,7 +1131,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o php-memcache-3.0.8
 	o php-mrbs-1.5.0
 	o php-orangehrm-3.3.1
-	o php-pdflib-3.0.4 (require pdflib 7 or later)
 	o php-phrasea2-3.8.6 (php-phrasea-3.8.6?)
 	o php-pthread-3.1.6
 	o php-pthreads-3.1.6
@@ -1164,7 +1139,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o php-tiki6-6.14
 	o php-tt-rss-1.15.3
 	o php-tt-rss-fever-plugin-1.4.7
-	o phpmyadmin-4.8
 	o phraseanet-3.8.6
 	o phraseanet-indexer-3.8.6
 	o picocom-3.0
@@ -1187,7 +1161,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o policyd-weight-0.1.15.2
 	o polsms-2.1.0
 	o poppass-4.0.14
-	o poppler-0.71.0
 	o postal-0.72
 	o pound-2.8a
 	o povray-3.7.0.0
@@ -1216,8 +1189,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-doctor-15.1.0
 	o py-ephem3-3.7.6.0
 	o py-gnome-menus-3.8.0
-	o py-gobject3-3.30.2
-	o py-google-api-python-client-1.7.5
+	o py-gobject3-3.30.4
 	o py-hgview-1.9.0
 	o py-hsm-1.1.1
 	o py-input-pad-1.4.2
@@ -1226,10 +1198,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-newt-0.52.20
 	o py-omniORBpy-3.7
 	o py-pendrell-0.3.7
-	o py-postgresql-5.0.6
 	o py-ptt-1.10.2
 	o py-pycountry-1.20
-	o py-simplejson-3.16.1
 	o py-simpletal-5.1
 	o py-spf-2.0.12t
 	o py-sybase-0.37
@@ -1307,6 +1277,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o sge-8.1.8
 	o sharity-3.7
 	o shc-3.8.9b
+	o shine-3.1.1
 	o shotwell-0.27.2
 	o showfont-1.0.4 [wip]
 	o siege-3.1.4
@@ -1342,7 +1313,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ssh-askpass-1.2.4.1
 	o sshfp-1.2.2
 	o sshguard-1.6.4
-	o sslh-1.20
 	o sslsplit-0.4.11
 	o stalin-0.11
 	o statist-1.3.0
@@ -1360,10 +1330,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o swapd-1.0.5
 	o swath-0.5.2
 	o swfdec-gnome-2.30.1
-	o swi-prolog-7.3.14
-	o swi-prolog-jpl-7.1.37
-	o swi-prolog-lite-7.1.37
-	o swi-prolog-packages-7.1.37
 	o swt-4.5
 	o sympa-6.2.14
 	o sysinfo-4.2.2
@@ -1459,12 +1425,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o websvn-2.3.3
 	o weewm-0.01
 	o wgetpaste-2.26
-	o whohas-0.29.1
 	o whowatch-1.8.5
 	o windowlab-1.40
 	o wine-3.0.3
 	o wine-devel-3.7
-	o wireshark-2.6.5
 	o wkhtmltopdf-0.12.5
 	o wmi-11
 	o wmx-8

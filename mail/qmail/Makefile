@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.103 2018/11/14 16:43:17 schmonz Exp $
+# $NetBSD: Makefile,v 1.105 2018/12/13 05:05:05 schmonz Exp $
 #
 
 DISTNAME=		netqmail-1.06
 PKGNAME=		qmail-1.03
-PKGREVISION=		41
+PKGREVISION=		42
 CATEGORIES=		mail
 MASTER_SITES=		http://qmail.org/
 
@@ -38,6 +38,8 @@ DJB_CONFIG_CMDS+=	${ECHO} ${QMAIL_NOFILES_GROUP:Q} >> conf-groups;
 DJB_BUILD_TARGETS=	man
 INSTALL_TARGET=		setup
 DJB_RESTRICTED=		no
+
+CFLAGS.Darwin+=		-DBIND_8_COMPAT=1
 
 PKG_SYSCONFSUBDIR=	qmail
 OWN_DIRS+=		${PKG_SYSCONFDIR} ${PKG_SYSCONFDIR}/alias

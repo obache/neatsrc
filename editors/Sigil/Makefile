@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.115 2018/11/16 13:02:44 bsiegert Exp $
+# $NetBSD: Makefile,v 1.117 2018/12/13 19:51:49 adam Exp $
 
 DISTNAME=	Sigil-0.9.10
-PKGREVISION=	3
+PKGREVISION=	5
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Sigil-Ebook/}
 GITHUB_PROJECT=	Sigil

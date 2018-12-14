@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.72 2018/09/24 00:04:53 gdt Exp $
+# $NetBSD: Makefile,v 1.74 2018/12/13 19:22:56 adam Exp $
 
 BOOST_PACKAGE=		libs
 BOOST_COMMENT=		(binary libraries)

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.78 2018/11/23 08:06:28 ryoon Exp $
+# $NetBSD: Makefile,v 1.82 2018/12/13 19:51:34 adam Exp $
 
 DISTNAME=	simgear-2018.2.2
-PKGREVISION=	6
+PKGREVISION=	9
 CATEGORIES=	games devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=flightgear/release-2018.2/}
 EXTRACT_SUFX=	.tar.bz2
@@ -19,6 +19,7 @@ LDFLAGS.SunOS+=		-lsocket -lnsl
 
 .include "../../audio/openal-soft/buildlink3.mk"
 .include "../../devel/boost-headers/buildlink3.mk"
+.include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../graphics/glu/buildlink3.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.34 2018/08/09 14:57:30 jperkin Exp $
+# $NetBSD: Makefile,v 1.35 2018/12/09 20:04:38 adam Exp $
 #
 # when updating this, please also update:
 # devel/include-what-you-use
@@ -19,7 +19,7 @@
 # Always update all */buildlink3.mk to require the latest stable release
 # version in BUILDLINK_API_DEPENDS, as there is no backwards compatibility
 
-DISTNAME=	llvm-6.0.1.src
+DISTNAME=	llvm-7.0.0.src
 PKGNAME=	${DISTNAME:S/.src//}
 CATEGORIES=	lang devel
 MASTER_SITES=	http://llvm.org/releases/${PKGVERSION_NOREV}/
@@ -101,7 +101,7 @@ OVERRIDE_GNU_CONFIG_SCRIPTS=	yes
 CONFIG_OVERRIDE_DIRS=		${WRKSRC}/cmake
 
 post-extract:
-	${RUN} mkdir -p ${WRKDIR}/build
+	${MKDIR} ${WRKDIR}/build
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/application.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2762 2018/12/02 06:47:49 taca Exp $
+# $NetBSD: Makefile,v 1.2766 2018/12/06 14:39:18 taca Exp $
 #
 
 COMMENT=	Development utilities
@@ -2427,6 +2427,7 @@ SUBDIR+=	ruby-cmd
 SUBDIR+=	ruby-concurrent-ruby
 SUBDIR+=	ruby-contracts
 SUBDIR+=	ruby-cucumber-core
+SUBDIR+=	ruby-cucumber-expressions
 SUBDIR+=	ruby-cucumber-messages
 SUBDIR+=	ruby-cucumber-tag_expressions
 SUBDIR+=	ruby-cucumber-wire
@@ -2470,6 +2471,7 @@ SUBDIR+=	ruby-highline
 SUBDIR+=	ruby-highline17
 SUBDIR+=	ruby-hike
 SUBDIR+=	ruby-hike1
+SUBDIR+=	ruby-hocon
 SUBDIR+=	ruby-i18n
 SUBDIR+=	ruby-idn
 SUBDIR+=	ruby-iniparse
@@ -2486,6 +2488,7 @@ SUBDIR+=	ruby-lockfile
 SUBDIR+=	ruby-log4r
 SUBDIR+=	ruby-logging
 SUBDIR+=	ruby-loquacious
+SUBDIR+=	ruby-marcel
 SUBDIR+=	ruby-memcache
 SUBDIR+=	ruby-memoist
 SUBDIR+=	ruby-mercenary
@@ -2560,6 +2563,7 @@ SUBDIR+=	ruby-rspec-rails
 SUBDIR+=	ruby-rspec-support
 SUBDIR+=	ruby-rspec_junit_formatter
 SUBDIR+=	ruby-rugged
+SUBDIR+=	ruby-semantic_puppet
 SUBDIR+=	ruby-setup
 SUBDIR+=	ruby-sexp-processor
 SUBDIR+=	ruby-shoulda-context

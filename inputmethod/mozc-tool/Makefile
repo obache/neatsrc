@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.41 2018/11/14 22:21:52 kleink Exp $
+# $NetBSD: Makefile,v 1.43 2018/12/13 19:52:05 adam Exp $
 
 PKGNAME=	${DISTNAME:S/mozc-/mozc-tool-/}
-PKGREVISION=	10
+PKGREVISION=	12
 
 DEPENDS+=	tegaki-zinnia-japanese{,-light}-[0-9]*:../../inputmethod/tegaki-zinnia-japanese
 

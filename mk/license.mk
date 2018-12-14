@@ -1,4 +1,4 @@
-# $NetBSD: license.mk,v 1.89 2018/11/30 18:38:19 rillig Exp $
+# $NetBSD: license.mk,v 1.95 2018/12/10 15:50:10 gdt Exp $
 #
 # This file handles everything about the LICENSE variable. It is
 # included automatically by bsd.pkg.mk.
@@ -19,11 +19,6 @@
 #	build the package and instead print an error message.
 #	(pkg_install has code to behave the same way, but it is not
 #	yet turned on.)
-#
-#	XXX: Perhaps there should be some mechanism to prevent running
-#	programs that are part of packages that declare LICENSEs that
-#	are not in ACCEPTABLE_LICENSES or some per-user variable.
-#	This is surely controversial and requires discussion.
 #
 #	To include the default licenses, you can use the += operator
 #	in mk.conf. To override it, use the plain = operator.
@@ -66,22 +61,37 @@
 #	The list of licenses that will be the default value of
 #	ACCEPTABLE_LICENSES.  Adapting the longstanding policy of Open
 #	Source or Free licenses not requiring tags, it should contain
-#	almost all licenses that are Open Source or Free, so as to provide
-#	the most expansive default that almost all people find
-#	acceptable.  (Many people will want to add more licenses to
-#	ACCEPTABLE_LICENSES; the point is to have a default that very
-#	few people want to shrink.)
+#	all licenses that are definitively Free or Open Source --
+#	except those specifically excluded by the TNF board -- so as
+#	to provide the most expansive default that almost all people
+#	find acceptable.  (Many people will want to add more licenses
+#	to ACCEPTABLE_LICENSES; the point is to have a default that
+#	very few people want to shrink.)
 #
-#	As an exception to the Open Source or Free policy, the board
-#	of The NetBSD Foundation has decided that licenses that
-#	trigger obligations from use (rather than redistribution),
-#	such as the Affero GPL, should not be in
+#	Licenses approved by FSF as Free and by OSI as Open Source
+#	will be added by default, without annotation, as these
+#	organizations publish lists of approved licenses.
+#
+#	Licenses approved by Debian as meeting the Debian Free
+#	Software Guidelines will also be added by default.  They
+#	should be in a second section with a comment about each one,
+#	because Debian does not publish an accepted license list and
+#	acceptability must be inferred from inclusion in main.
+#
+#	The board of The NetBSD Foundation is the final arbiter of
+#	which licenses may be in DEFAULT_ACCEPTABLE_LICENSES.  As an
+#	exception to the above policy on treating Free, Open Source,
+#	and DFSG licenses as acceptable, the board has decided that
+#	licenses that trigger obligations from use (rather than
+#	redistribution), such as the Affero GPL, should not be in
 #	DEFAULT_ACCEPTABLE_LICENSES.
 #
 #	Licenses not formally approved as Free or Open Source may be
-#	added if they have terms that would obviously be approved if
-#	the effort were made.  Such license names will have a comment
-#	near them in the assignment to DEFAULT_ACCEPTABLE_LICENSES.
+#	added if they have terms that would 1) obviously be approved
+#	by FSF or OSI if the effort were made and 2) obviously not
+#	trigger the above issue with AGPL-type licenses.  Such license
+#	names will be in an additional section and have a comment near
+#	them in the assignment to DEFAULT_ACCEPTABLE_LICENSES.
 #
 #	The pkg_install sources also have a
 #	DEFAULT_ACCEPTABLE_LICENSES list, and that should be updated
@@ -95,12 +105,14 @@
 # Keywords: licence license
 #
 
-# This list is not complete.  Free and Open Source licenses should be
-# added to the list as they are added to pkgsrc.
+# The convention is that Free and Open Source licenses do not have a
+# -license suffix, and non-Free licenses end in -license.  Thus,
+# license in DEFAULT_ACCEPTABLE_LICENSES should not end in -license.
 #
-# The convention is that Free or Open Source licenses do not have a
-# -license suffix, and nonfree licenses end in -license.
-#
+# First, we set DEFAULT_ACCEPTABLE_LICENSES to the set of licenses
+# formally approved as Free Software by FSF or Open Source by OSI,
+# except that we exclude the AGPL (clearly a Free license), following
+# the decision of the board of TNF.
 DEFAULT_ACCEPTABLE_LICENSES= \
 	apache-1.1 apache-2.0 \
 	arphic-public \
@@ -154,15 +166,26 @@ DEFAULT_ACCEPTABLE_LICENSES= \
 	zpl-2.1 \
 	zsh
 
-# not approved by OSI, derived from BSD
+# The following licenses meet the DFSG (but are not formally approved
+# by FSF/OSI) as evidenced by inclusion in Debian main.
+#
+# \todo reference to package
+DEFAULT_ACCEPTABLE_LICENSES+=	happy
+# used in https://sources.debian.org/copyright/license/lsof/
+DEFAULT_ACCEPTABLE_LICENSES+=	purdue
+
+# The following licenses are included based on it being obvious they
+# would be approved.
+#
+# derived from BSD
 DEFAULT_ACCEPTABLE_LICENSES+=	info-zip
 
-# not approved by OSI, in line with Free Software principles but with rename
-# restrictions and typefaces can not be sold by itself.
-DEFAULT_ACCEPTABLE_LICENSES+=	vera-ttf-license
+# The following licenses do not currently meet our standards for
+# inclusion.
 
-# DFSG, not evaluated by OSI/FSF
-DEFAULT_ACCEPTABLE_LICENSES+=	happy
+# mostly inline with Free Software principles and typefaces can not be
+# sold by itself.
+DEFAULT_ACCEPTABLE_LICENSES+=	vera-ttf-license
 
 ##### Variant spellings
 

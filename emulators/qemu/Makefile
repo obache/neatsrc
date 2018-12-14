@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.194 2018/11/14 22:21:26 kleink Exp $
+# $NetBSD: Makefile,v 1.197 2018/12/13 19:51:50 adam Exp $
 
-DISTNAME=	qemu-3.0.0
-PKGREVISION=	5
+DISTNAME=	qemu-3.1.0
+PKGREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 EXTRACT_SUFX=	.tar.xz
@@ -64,7 +64,6 @@ NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-moxie
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-or1k
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-ppc
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-ppc64
-NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-ppcemb
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-s390x
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-sh4
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-sh4eb

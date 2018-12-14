@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.191 2018/11/09 18:03:45 nia Exp $
+# $NetBSD: Makefile,v 1.193 2018/12/13 00:10:12 leot Exp $
 
-DISTNAME=	gnutls-3.6.4
+DISTNAME=	gnutls-3.6.5
+PKGREVISION=	1
 CATEGORIES=	security devel
 MASTER_SITES=	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.6/
 EXTRACT_SUFX=	.tar.xz
@@ -9,6 +10,8 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.gnutls.org/
 COMMENT=	GNU Transport Layer Security library
 LICENSE=	gnu-gpl-v3 AND gnu-lgpl-v2.1
+
+DEPENDS+=	mozilla-rootcerts-[0-9]*:../../security/mozilla-rootcerts
 
 USE_LANGUAGES=			c c++
 USE_LIBTOOL=			yes
@@ -22,19 +25,14 @@ CONFIGURE_ARGS+=		--disable-libdane
 CONFIGURE_ARGS+=		--without-idn
 CONFIGURE_ARGS+=		--without-tpm
 CONFIGURE_ARGS+=		--disable-valgrind-tests
+CONFIGURE_ARGS+=		--with-default-trust-store-file=${PREFIX}/share/mozilla-rootcerts/cacert.pem
 CONFIGURE_ARGS+=		--with-libintl-prefix=${BUILDLINK_PREFIX.gettext}
 CONFIGURE_ARGS+=		--enable-local-libopts
 # Assembler support is broken for SunOS in 3.2.9.
 CONFIGURE_ARGS.SunOS+=		--disable-hardware-acceleration
 CONFIGURE_ARGS.FreeBSD+=	ac_cv_type_max_align_t=yes
 
-# as of 3.5.8, 0 test failures
 TEST_TARGET=		check
-# without the USE_TOOLS line below, the fastopen.sh test fails
-# but when this line is added, the tool path for bash is embedded
-# in to the binaries, so only enable this for testing and
-# disable before commit
-#USE_TOOLS+=		bash
 
 INFO_FILES=		yes
 
@@ -85,7 +83,7 @@ SKIP_FAKE_PC_FILES+=	zlib
 #.include "../../lang/guile20/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libtasn1+=	libtasn1>=4.9
 .include "../../security/libtasn1/buildlink3.mk"
-BUILDLINK_API_DEPENDS.nettle+=		nettle>=3.1
+BUILDLINK_API_DEPENDS.nettle+=		nettle>=3.4.1
 .include "../../security/nettle/buildlink3.mk"
 BUILDLINK_API_DEPENDS.p11-kit+=	p11-kit>=0.23.1
 .include "../../security/p11-kit/buildlink3.mk"

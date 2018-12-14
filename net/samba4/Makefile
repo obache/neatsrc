@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.52 2018/11/29 14:46:46 taca Exp $
+# $NetBSD: Makefile,v 1.55 2018/12/10 00:14:23 ryoon Exp $
 
 DISTNAME=	samba-${VERSION}
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://download.samba.org/pub/samba/stable/
 
@@ -31,7 +32,7 @@ SMB_LOCALSTATE?=	${VARBASE}
 SMB_INFO?=		${PREFIX}/info
 SMB_MAN?=		${PREFIX}/${PKGMANDIR}
 SMB_STATE?=		${VARBASE}/run
-SMB_PRIVATE?=		${SMB_LIB}/samba/private
+SMB_PRIVATE?=		${PKG_SYSCONFDIR}/private
 SMB_PID?=		${VARBASE}/run
 SMB_CACHE?=		${VARBASE}/run
 SMB_LOCK?=		${VARBASE}/run
@@ -137,6 +138,15 @@ MAKEFLAGS+=	PWD_MKDB=${PWD_MKDB:Q}
 FILES_SUBST+=	MKTEMP=${MKTEMP:Q}
 FILES_SUBST+=	PWD_MKDB=${PWD_MKDB:Q}
 
+PLIST_VARS+=	64bit
+.if !empty(LP64PLATFORMS:@.PLAT.@${MACHINE_PLATFORM:M${.PLAT.}}@) || \
+	(defined(ABI) && ${ABI} == "64")
+CONFIGURE_ARGS+=	--with-ldb-lmdb
+PLIST.64bit=		yes
+.else
+CONFIGURE_ARGS+=	--without-ldb-lmdb
+.endif
+
 INSTALLATION_DIRS+=	${DOCDIR} ${EGDIR}
 
 DOCDIR=		share/doc/${PKGBASE}
@@ -183,7 +193,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/examples/smb.conf.default \
 		${DESTDIR}${PREFIX}/${EGDIR}
 
-REPLACE_PERL=	pidl/pidl
+REPLACE_PERL+=	pidl/pidl
 REPLACE_PYTHON=	buildtools/bin/waf \
 		source4/setup/* \
 		source4/scripting/bin/* \

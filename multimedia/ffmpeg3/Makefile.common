@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.33 2018/11/03 08:06:46 adam Exp $
+# $NetBSD: Makefile.common,v 1.35 2018/12/10 16:23:50 maya Exp $
 # used by multimedia/ffmpeg3/Makefile
 # used by multimedia/ffplay3/Makefile
 

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.107 2018/11/14 22:22:16 kleink Exp $
+# $NetBSD: Makefile,v 1.111 2018/12/10 10:59:25 wiz Exp $
 
-DISTNAME=	cups-filters-1.21.3
-PKGREVISION=	2
+DISTNAME=	cups-filters-1.21.5
+PKGREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	http://openprinting.org/download/cups-filters/
 EXTRACT_SUFX=	.tar.xz
@@ -13,23 +13,28 @@ LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND mit
 
 TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 DEPENDS+=	poppler-utils-[0-9]*:../../print/poppler-utils
+TEST_DEPENDS+=	dejavu-ttf-[0-9]*:../../fonts/dejavu-ttf
 
 USE_LANGUAGES=		c c++11
 USE_LIBTOOL=		yes
 USE_TOOLS+=		bash:run pkg-config gmake
 GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--disable-braille
 CONFIGURE_ARGS+=	--disable-ldap
 CONFIGURE_ARGS+=	--disable-mutool
 CONFIGURE_ARGS+=	--enable-ijs
-CONFIGURE_ARGS+=	--enable-opvp
+# XXX: Temporary disable opvp filters: not yet ported to poppler 0.71.0.
+# XXX: Upstream bug report:
+# XXX:  <https://github.com/OpenPrinting/cups-filters/issues/75>
+CONFIGURE_ARGS+=	--disable-opvp
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=	--with-apple-raster-filter=rastertopdf
 CONFIGURE_ARGS+=	--with-gs-path=${PREFIX}/bin/gs
 CONFIGURE_ARGS+=	--with-pdftops-path=${PREFIX}/bin/pdftops
 CONFIGURE_ARGS+=	--with-shell=${TOOLS_PATH.bash}
+CONFIGURE_ARGS+=	--with-test_font_path=${PREFIX}/share/fonts/X11/TTF/DejaVuSans.ttf
 
-INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples/cups-filters
 PKGCONFIG_OVERRIDE+=	libcupsfilters.pc.in
 PKGCONFIG_OVERRIDE+=	libfontembed.pc.in
 
@@ -53,7 +58,6 @@ CPPFLAGS.SunOS+=	-D_POSIX_PTHREAD_SEMANTICS
 BUILD_DEFS+=		VARBASE
 
 RCD_SCRIPTS=		cups-browsed
-CONF_FILES=		${PREFIX}/share/examples/cups-filters/fonts/conf.d/99pdftoopvp.conf ${PKG_SYSCONFDIR}/fontconfig/conf.d/99pdftoopvp.conf
 CONF_FILES+=		${PREFIX}/share/examples/cups-filters/cups-browsed.conf ${PKG_SYSCONFDIR}/cups/cups-browsed.conf
 
 TEST_TARGET=		check
@@ -65,8 +69,9 @@ SUBST_CLASSES+=			daemonize
 SUBST_STAGE.daemonize=		pre-configure
 SUBST_MESSAGE.daemonize=	Customizing daemonizing script
 SUBST_FILES.daemonize=		cups-browsed-daemonize.sh
-SUBST_SED.daemonize=		-e 's|@PREFIX@|${PREFIX}|g'
-SUBST_SED.daemonize+=		-e 's|@VARBASE@|${VARBASE}|g'
+SUBST_VARS.daemonize=		PREFIX VARBASE
+
+INSTALLATION_DIRS+=		share/examples/cups-filters
 
 post-install:
 	${MV} ${DESTDIR}${PKG_SYSCONFDIR}/cups/cups-browsed.conf \
@@ -85,13 +90,11 @@ post-install:
 .include "../../graphics/lcms2/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
-BUILDLINK_ABI_DEPENDS.cups-base+=	cups-base>=1.7.4nb1
 .include "../../print/cups-base/buildlink3.mk"
 .include "../../print/ghostscript/buildlink3.mk"
 .include "../../print/ijs/buildlink3.mk"
 .include "../../print/poppler-cpp/buildlink3.mk"
 .include "../../print/poppler-glib/buildlink3.mk"
-BUILDLINK_ABI_DEPENDS.poppler-includes?=	poppler-includes>=0.26.1nb1
 .include "../../print/poppler-includes/buildlink3.mk"
 .include "../../print/qpdf/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
