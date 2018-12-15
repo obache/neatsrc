@@ -1,4 +1,4 @@
-# $NetBSD: extension.mk,v 1.54 2018/09/02 21:53:03 wiz Exp $
+# $NetBSD: extension.mk,v 1.55 2018/12/14 13:09:10 adam Exp $
 
 .include "../../lang/python/pyversion.mk"
 
@@ -23,9 +23,6 @@ PRINT_PLIST_AWK+=	/^${PYLIB:S|/|\\/|g}/ \
 # prepare Python>=3.2 bytecode file location change
 # http://www.python.org/dev/peps/pep-3147/
 .if empty(_PYTHON_VERSION:M2?)
-PY_PEP3147?=		yes
-.endif
-.if defined(PY_PEP3147) && !empty(PY_PEP3147:M[yY][eE][sS])
 PLIST_AWK+=		-f ${PKGSRCDIR}/lang/python/plist-python.awk
 PLIST_AWK_ENV+=		PYVERS="${PYVERSSUFFIX:S/.//}"
 PRINT_PLIST_AWK+=	/^[^@]/ && /[^\/]+\.py[co]$$/ {
