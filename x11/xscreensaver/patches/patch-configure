@@ -1,0 +1,24 @@
+$NetBSD$
+
+* exactly delare main() to prevent unwanted warning as error
+
+--- configure.orig	2018-08-12 23:36:32.000000000 +0000
++++ configure
+@@ -6383,7 +6383,7 @@ $as_echo_n "checking whether -R must be 
+ /* end confdefs.h.  */
+ 
+ int
+-main ()
++main (int ac, char** av)
+ {
+ 
+   ;
+@@ -6400,7 +6400,7 @@ else
+ /* end confdefs.h.  */
+ 
+ int
+-main ()
++main (int argc, char** argv)
+ {
+ 
+   ;

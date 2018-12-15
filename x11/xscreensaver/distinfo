@@ -6,4 +6,5 @@ SHA512 (xscreensaver/xscreensaver-5.40.tar.gz) = e3b5fe03ee56596fd5b0bf4e805ec34
 Size (xscreensaver/xscreensaver-5.40.tar.gz) = 12248135 bytes
 SHA1 (patch-ad) = ff03b044ca82964c3b9535b84a7dcca6d5f8f1bb
 SHA1 (patch-af) = 4ee300a205a0ac448939ac2776087db48d808ad8
+SHA1 (patch-configure) = 1e6a6cda710e541ba3f82914a9b423dd01165e29
 SHA1 (patch-utils_Makefile.in) = 1a493bc42689be5c03c54c97f316c2638dae25e3
