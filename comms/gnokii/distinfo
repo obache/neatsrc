@@ -12,3 +12,5 @@ SHA1 (patch-common_phones_atgen.c) = 308800cea4bc013f4c75f56282dff181c2cf8d57
 SHA1 (patch-configure) = 6465e8c9e3a269924f5e64c8a1621cadd0439798
 SHA1 (patch-configure.in) = 13a136947619be6d7e4530324505d4a329454e53
 SHA1 (patch-gnokii_gnokii-sms.c) = ad5e5b572bb9b74a75cd2d4ef35e3e245375e257
+SHA1 (patch-xgnokii_xgnokii.c) = 0fc713897c0630fda51432377d47e2e06938241b
+SHA1 (patch-xgnokii_xgnokii__logos.c) = 5ef64e05cd677c00c301d4e894d1a7dfc86934d1
