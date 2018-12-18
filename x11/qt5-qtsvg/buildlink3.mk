@@ -11,7 +11,8 @@ BUILDLINK_PKGSRCDIR.qt5-qtsvg?=	../../x11/qt5-qtsvg
 
 BUILDLINK_INCDIRS.qt5-qtsvg+=	qt5/include
 BUILDLINK_LIBDIRS.qt5-qtsvg+=	qt5/lib
-BUILDLINK_LIBDIRS.qt5-qtsvg+=	qt5/plugins
+BUILDLINK_LIBDIRS.qt5-qtsvg+=	qt5/plugins/iconengines
+BUILDLINK_LIBDIRS.qt5-qtsvg+=	qt5/plugins/imageformats
 
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .endif	# QT5_QTSVG_BUILDLINK3_MK
