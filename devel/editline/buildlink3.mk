@@ -5,7 +5,7 @@ BUILDLINK_TREE+=	editline
 .if !defined(EDITLINE_BUILDLINK3_MK)
 EDITLINE_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.editline+=	editline>=3.0.20130712nb1
+BUILDLINK_API_DEPENDS.editline+=	editline>=3.0
 BUILDLINK_PKGSRCDIR.editline?=		../../devel/editline
 
 BUILDLINK_FILES.editline+=	include/history.h
