@@ -74,6 +74,12 @@ SUBST_FILES.perlpath+=	scripts/mysqld_multi.sh
 SUBST_FILES.perlpath+=	scripts/mysqldumpslow.sh
 SUBST_SED.perlpath=	-e 's,@PERL_PATH@,${PERL5},g'
 
+SUBST_CLASSES+=		fixpaths
+SUBST_STAGE.fixpaths=	post-install
+SUBST_FILES.fixpaths+=	${DESTDIR}${PREFIX}/share/doc/mysql/INFO_BIN
+SUBST_SED.fixpaths=	-e "s,${WRAPPER_BINDIR}/${CC},${CCPATH},g"
+SUBST_SED.fixpaths+=	-e "s,${WRAPPER_BINDIR}/${CXX},${CXXPATH},g"
+
 INSTALLATION_DIRS+=	bin
 TEST_TARGET=		test
 
