@@ -1,0 +1,19 @@
+$NetBSD$
+
+* fix to detect proper boost flags
+
+--- client/dump/CMakeLists.txt.orig	2018-10-04 05:48:22.000000000 +0000
++++ client/dump/CMakeLists.txt
+@@ -140,8 +140,10 @@ MYSQL_ADD_EXECUTABLE(mysqlpump  program.
+ 
+ TARGET_LINK_LIBRARIES(mysqlpump mysqlpump_lib ${LOCAL_BOOST_LIB})
+ IF(USING_SYSTEM_BOOST)
+-  TARGET_LINK_LIBRARIES(mysqlpump "-lboost_system")
+-  TARGET_LINK_LIBRARIES(mysqlpump "-lboost_chrono")
++  find_package(Boost 1.59 REQUIRED COMPONENTS
++               system chrono)
++  TARGET_LINK_LIBRARIES(mysqlpump Boost::system)
++  TARGET_LINK_LIBRARIES(mysqlpump Boost::chrono)
+ ENDIF()
+ 
+ SET_TARGET_PROPERTIES(mysqlpump PROPERTIES HAS_CXX TRUE)

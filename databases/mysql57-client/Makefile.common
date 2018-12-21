@@ -69,6 +69,7 @@ CMAKE_ARGS+=		-DDEFAULT_CHARSET=${MYSQL_CHARSET:Q}
 CMAKE_ARGS+=		-DDEFAULT_COLLATION=${MYSQL_COLLATION:Q}
 CMAKE_ARGS+=		-DWITH_EXTRA_CHARSETS=${MYSQL_EXTRA_CHARSET:Q}
 
+CMAKE_ARGS+=		-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=True
 
 # we need atomic builtins
 .if ${OPSYS} == "NetBSD" && !empty(MACHINE_ARCH:Mi386)
@@ -101,8 +102,6 @@ CFLAGS+=		-DSIGNALS_DONT_BREAK_READ
 CXXFLAGS+=		-DSIGNALS_DONT_BREAK_READ
 .endif
 
-LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib/mysql
-
 SUBST_CLASSES+=		scr
 SUBST_STAGE.scr=	pre-configure
 SUBST_FILES.scr=	scripts/mysqld_safe.sh
@@ -111,6 +110,11 @@ SUBST_SED.scr=		-e "s,chown,${CHOWN},g"
 SUBST_SED.scr+=		-e "s,/bin/sh,${RCD_SCRIPTS_SHELL},g"
 SUBST_SED.scr+=		-e "s,@SHELL_PATH@,${RCD_SCRIPTS_SHELL},g"
 SUBST_MESSAGE.scr=	Fixing scripts.
+
+SUBST_CLASSES+=		addrpath
+SUBST_STAGE.addrpath=	pre-configure
+SUBST_FILES.addrpath+=	scripts/CMakeLists.txt
+SUBST_VARS.addrpath=	COMPILER_RPATH_FLAG
 
 .include "../../mk/readline.buildlink3.mk"
 .if ${READLINE_TYPE} == "readline"

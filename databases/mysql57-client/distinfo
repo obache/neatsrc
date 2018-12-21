@@ -7,6 +7,7 @@ Size (mysql-5.7.24.tar.gz) = 52052796 bytes
 SHA1 (patch-CMakeLists.txt) = b47592cf8801538375da3df2990fde4d292fc365
 SHA1 (patch-client_CMakeLists.txt) = 990d6df52380981f11a4ac5aafe48f34a3b2097f
 SHA1 (patch-client_completion_hash.cc) = b86ec80beac624b2aa21c7587e351ff126400ecb
+SHA1 (patch-client_dump_CMakeLists.txt) = 177f2b38095ad82180dca7a1d045cc3bccb0130f
 SHA1 (patch-client_mysqladmin.cc) = e1650ef3695675bcc01375bacdebcb7318218b93
 SHA1 (patch-cmake_boost.cmake) = cab30ebdff1e773d6970f541f96fce8ed51257f8
 SHA1 (patch-cmake_os_SunOS.cmake) = 06e290820a75d68931fce6dfd70a0b5edd548320
@@ -31,7 +32,7 @@ SHA1 (patch-rapid_plugin_group__replication_libmysqlgcs_src_bindings_xcom_xcom_x
 SHA1 (patch-rapid_plugin_group__replication_rpcgen.cmake) = ff0679ed644d79abe52b208f6b60b5a4e480ed3f
 SHA1 (patch-rapid_plugin_x_CMakeLists.txt) = 4f548abab6917c2bedd970abdffe4e87c460667e
 SHA1 (patch-rapid_unittest_gunit_xplugin_CMakeLists.txt) = c0ae4570e138869a3203f7d4704a0b6b5c19e517
-SHA1 (patch-scripts_CMakeLists.txt) = b149f40f65c4ce8f6f4a7adf75f5ec4be44319f1
+SHA1 (patch-scripts_CMakeLists.txt) = fb9fa33aba1d157f74749933b1a09dcd25ba0759
 SHA1 (patch-scripts_mysqld_safe.sh) = 0784314227657aa0bc3f4a0b4e21c173a86fa94b
 SHA1 (patch-sql_CMakeLists.txt) = 697add15adb66bf55cf561a6e43e0bf514d1e068
 SHA1 (patch-sql_conn__handler_socket__connection.cc) = 12cf83e061edbe59eb073037b1036903b7ba4b00
