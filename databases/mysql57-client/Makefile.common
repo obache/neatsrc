@@ -112,12 +112,6 @@ SUBST_SED.scr+=		-e "s,/bin/sh,${RCD_SCRIPTS_SHELL},g"
 SUBST_SED.scr+=		-e "s,@SHELL_PATH@,${RCD_SCRIPTS_SHELL},g"
 SUBST_MESSAGE.scr=	Fixing scripts.
 
-# Don't use the base system "libedit" under NetBSD because MySQL expects
-# an incompatible prototype for "rl_completion_entry_function".
-.if ${OPSYS} == "NetBSD"
-USE_BUILTIN.editline=	no
-.endif
-
 .include "../../mk/readline.buildlink3.mk"
 .if ${READLINE_TYPE} == "readline"
 CMAKE_ARGS+=		-DWITH_READLINE="system"
