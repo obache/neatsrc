@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.419 2018/10/04 15:47:28 roy Exp $
+# $NetBSD: Makefile,v 1.421 2018/12/21 16:57:35 nia Exp $
 #
 
 COMMENT=	Games
@@ -85,6 +85,7 @@ SUBDIR+=	doom1
 SUBDIR+=	dopewars
 SUBDIR+=	duckmaze
 SUBDIR+=	dungeon
+SUBDIR+=	easyrpg-player
 SUBDIR+=	eboard
 SUBDIR+=	einstein-puzzle
 SUBDIR+=	enigma
@@ -224,6 +225,7 @@ SUBDIR+=	lgogdownloader
 SUBDIR+=	libggz
 SUBDIR+=	libkdegames
 SUBDIR+=	libkmahjongg
+SUBDIR+=	liblcf
 SUBDIR+=	libretro-craft
 SUBDIR+=	lincity
 SUBDIR+=	lincity-ng

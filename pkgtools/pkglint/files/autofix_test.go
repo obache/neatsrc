@@ -1,4 +1,4 @@
-package main
+package pkglint
 
 import (
 	"gopkg.in/check.v1"
@@ -865,8 +865,8 @@ func (s *Suite) Test_Autofix__lonely_source(c *check.C) {
 	G.Pkgsrc.LoadInfrastructure()
 	t.Chdir(".")
 
-	G.CheckDirent("x11/xorg-cf-files")
-	G.CheckDirent("x11/xorgproto")
+	G.Check("x11/xorg-cf-files")
+	G.Check("x11/xorgproto")
 
 	t.CheckOutputLines(
 		">\tPRE_XORGPROTO_LIST_MISSING =\tapplewmproto",
@@ -886,7 +886,7 @@ func (s *Suite) Test_Autofix__lonely_source_2(c *check.C) {
 	G.Pkgsrc.LoadInfrastructure()
 	t.Chdir(".")
 
-	G.CheckDirent("print/tex-bibtex8")
+	G.Check("print/tex-bibtex8")
 
 	t.CheckOutputLines(
 		">\tMAKE_FLAGS+=\tCFLAGS=${CFLAGS.${PKGSRC_COMPILER}}",
@@ -905,15 +905,15 @@ func (s *Suite) Test_Autofix__lonely_source_2(c *check.C) {
 		"",
 		"\t\thttps://mirror1.sf.net/ https://mirror2.sf.net/directory/",
 		"",
-		"\tThe first URL is missing the directory.  To fix this, write",
+		"\tThe first URL is missing the directory. To fix this, write",
 		"\t\t${MASTER_SITE_SOURCEFORGE:=directory/}.",
 		"",
 		"\tExample: -l${LIBS} expands to",
 		"",
 		"\t\t-llib1 lib2",
 		"",
-		"\tThe second library is missing the -l.  To fix this, write",
-		"\t${LIBS:@lib@-l${lib}@}.",
+		"\tThe second library is missing the -l. To fix this, write",
+		"\t${LIBS:S,^,-l,}.",
 		"")
 }
 

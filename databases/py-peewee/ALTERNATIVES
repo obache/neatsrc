@@ -1,1 +1,1 @@
-bin/pwiz @PREFIX@/bin/pwiz@PYVERSSUFFIX@
+bin/pwiz @PREFIX@/bin/pwiz-@PYVERSSUFFIX@

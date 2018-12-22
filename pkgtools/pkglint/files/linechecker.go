@@ -1,4 +1,4 @@
-package main
+package pkglint
 
 import (
 	"fmt"
@@ -41,12 +41,20 @@ func (ck LineChecker) CheckAbsolutePathname(text string) {
 }
 
 func (ck LineChecker) CheckLength(maxLength int) {
-	if len(ck.line.Text) > maxLength {
-		ck.line.Warnf("Line too long (should be no more than %d characters).", maxLength)
-		G.Explain(
-			"Back in the old time, terminals with 80x25 characters were common.",
-			"And this is still the default size of many terminal emulators.",
-			"Moderately short lines also make reading easier.")
+	if len(ck.line.Text) <= maxLength {
+		return
+	}
+
+	prefix := ck.line.Text[0:maxLength]
+	for i := 0; i < len(prefix); i++ {
+		if isHspace(prefix[i]) {
+			ck.line.Warnf("Line too long (should be no more than %d characters).", maxLength)
+			G.Explain(
+				"Back in the old time, terminals with 80x25 characters were common.",
+				"And this is still the default size of many terminal emulators.",
+				"Moderately short lines also make reading easier.")
+			return
+		}
 	}
 }
 
@@ -117,20 +125,20 @@ func (ck LineChecker) CheckWordAbsolutePathname(word string) {
 		ck.line.Warnf("Found absolute pathname: %s", word)
 		if contains(ck.line.Text, "DESTDIR") {
 			G.Explain(
-				"Absolute pathnames are often an indicator for unportable code.  As",
-				"pkgsrc aims to be a portable system, absolute pathnames should be",
-				"avoided whenever possible.",
+				"Absolute pathnames are often an indicator for unportable code.",
+				"As pkgsrc aims to be a portable system,",
+				"absolute pathnames should be avoided whenever possible.",
 				"",
-				"A special variable in this context is ${DESTDIR}, which is used in",
-				"GNU projects to specify a different directory for installation than",
-				"what the programs see later when they are executed.  Usually it is",
-				"empty, so if anything after that variable starts with a slash, it is",
-				"considered an absolute pathname.")
+				"A special variable in this context is ${DESTDIR},",
+				"which is used in GNU projects to specify a different directory",
+				"for installation than what the programs see later when they are executed.",
+				"Usually it is empty, so if anything after that variable starts with a slash,",
+				"it is considered an absolute pathname.")
 		} else {
 			G.Explain(
-				"Absolute pathnames are often an indicator for unportable code.  As",
-				"pkgsrc aims to be a portable system, absolute pathnames should be",
-				"avoided whenever possible.")
+				"Absolute pathnames are often an indicator for unportable code.",
+				"As pkgsrc aims to be a portable system,",
+				"absolute pathnames should be avoided whenever possible.")
 
 			// TODO: Explain how to actually fix this warning properly.
 		}

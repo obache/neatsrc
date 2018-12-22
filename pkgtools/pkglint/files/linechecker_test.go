@@ -1,4 +1,4 @@
-package main
+package pkglint
 
 import (
 	"gopkg.in/check.v1"
@@ -37,7 +37,7 @@ func (s *Suite) Test_LineChecker_CheckAbsolutePathname(c *check.C) {
 	t.CheckOutputLines(
 		"WARN: Makefile:2: Found absolute pathname: /bin",
 		"",
-		"\tAbsolute pathnames are often an indicator for unportable code.  As",
+		"\tAbsolute pathnames are often an indicator for unportable code. As",
 		"\tpkgsrc aims to be a portable system, absolute pathnames should be",
 		"\tavoided whenever possible.",
 		"",
@@ -53,13 +53,13 @@ func (s *Suite) Test_LineChecker_CheckAbsolutePathname(c *check.C) {
 		"WARN: Makefile:9: The \"/dev/stderr\" file is not portable.",
 		"WARN: Makefile:14: Found absolute pathname: /bin",
 		"",
-		"\tAbsolute pathnames are often an indicator for unportable code.  As",
+		"\tAbsolute pathnames are often an indicator for unportable code. As",
 		"\tpkgsrc aims to be a portable system, absolute pathnames should be",
 		"\tavoided whenever possible.",
 		"",
 		"\tA special variable in this context is ${DESTDIR}, which is used in",
 		"\tGNU projects to specify a different directory for installation than",
-		"\twhat the programs see later when they are executed.  Usually it is",
+		"\twhat the programs see later when they are executed. Usually it is",
 		"\tempty, so if anything after that variable starts with a slash, it is",
 		"\tconsidered an absolute pathname.",
 		"")
@@ -78,6 +78,19 @@ func (s *Suite) Test_LineChecker_CheckAbsolutePathname__disabled_by_default(c *c
 	LineChecker{line}.CheckAbsolutePathname("bindir=/bin")
 
 	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_LineChecker_CheckLength(c *check.C) {
+	t := s.Init(c)
+
+	line1 := t.NewLine("DESCR", 1, "A very long line with spaces")
+	line2 := t.NewLine("DESCR", 2, "A_very_long_line_without_spaces")
+
+	LineChecker{line1}.CheckLength(20)
+	LineChecker{line2}.CheckLength(20)
+
+	t.CheckOutputLines(
+		"WARN: DESCR:1: Line too long (should be no more than 20 characters).")
 }
 
 func (s *Suite) Test_LineChecker_CheckTrailingWhitespace(c *check.C) {

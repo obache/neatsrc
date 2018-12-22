@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.401 2018/09/17 13:24:17 maya Exp $
+# $NetBSD: Makefile,v 1.403 2018/12/21 10:38:46 wen Exp $
 
 COMMENT=	Mathematics
 
@@ -30,6 +30,7 @@ SUBDIR+=	R-aplpack
 SUBDIR+=	R-bbmle
 SUBDIR+=	R-bitops
 SUBDIR+=	R-car
+SUBDIR+=	R-carData
 SUBDIR+=	R-chron
 SUBDIR+=	R-circular
 SUBDIR+=	R-classInt
@@ -97,6 +98,7 @@ SUBDIR+=	antixls
 SUBDIR+=	aribas
 SUBDIR+=	arpack
 SUBDIR+=	bc
+SUBDIR+=	bcal
 SUBDIR+=	blas
 SUBDIR+=	blitz++
 SUBDIR+=	boolstuff

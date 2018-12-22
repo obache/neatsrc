@@ -3,6 +3,8 @@ package pkgver
 // See pkgtools/pkg_install/files/lib/dewey.c
 
 import (
+	"netbsd.org/pkglint/textproc"
+	"strconv"
 	"strings"
 )
 
@@ -12,6 +14,7 @@ func imax(a, b int) int {
 	}
 	return b
 }
+
 func icmp(a, b int) int {
 	if a < b {
 		return -1
@@ -42,50 +45,34 @@ type version struct {
 
 func newVersion(vstr string) *version {
 	v := new(version)
-	rest := strings.ToLower(vstr)
-	for rest != "" {
+	lex := textproc.NewLexer(strings.ToLower(vstr))
+	for !lex.EOF() {
+
 		switch {
-		case isdigit(rest[0]):
-			n := 0
-			i := 0
-			for i < len(rest) && isdigit(rest[i]) {
-				n = 10*n + int(rest[i]-'0')
-				i++
-			}
-			rest = rest[i:]
+		case lex.TestByteSet(textproc.Digit):
+			num := lex.NextBytesSet(textproc.Digit)
+			n, _ := strconv.Atoi(num)
 			v.Add(n)
-		case rest[0] == '_' || rest[0] == '.':
+		case lex.SkipByte('_') || lex.SkipByte('.'):
 			v.Add(0)
-			rest = rest[1:]
-		case strings.HasPrefix(rest, "alpha"):
+		case lex.SkipString("alpha"):
 			v.Add(-3)
-			rest = rest[5:]
-		case strings.HasPrefix(rest, "beta"):
+		case lex.SkipString("beta"):
 			v.Add(-2)
-			rest = rest[4:]
-		case strings.HasPrefix(rest, "pre"):
+		case lex.SkipString("pre"):
 			v.Add(-1)
-			rest = rest[3:]
-		case strings.HasPrefix(rest, "rc"):
+		case lex.SkipString("rc"):
 			v.Add(-1)
-			rest = rest[2:]
-		case strings.HasPrefix(rest, "pl"):
+		case lex.SkipString("pl"):
 			v.Add(0)
-			rest = rest[2:]
-		case strings.HasPrefix(rest, "nb"):
-			i := 2
-			n := 0
-			for i < len(rest) && isdigit(rest[i]) {
-				n = 10*n + int(rest[i]-'0')
-				i++
-			}
-			v.nb = n
-			rest = rest[i:]
-		case rest[0]-'a' <= 'z'-'a':
-			v.Add(int(rest[0] - 'a' + 1))
-			rest = rest[1:]
+		case lex.SkipString("nb"):
+			num := lex.NextBytesSet(textproc.Digit)
+			v.nb, _ = strconv.Atoi(num)
+		case lex.TestByteSet(textproc.Lower):
+			v.Add(int(lex.Rest()[0] - 'a' + 1))
+			lex.Skip(1)
 		default:
-			rest = rest[1:]
+			lex.Skip(1)
 		}
 	}
 	return v
@@ -94,9 +81,7 @@ func newVersion(vstr string) *version {
 func (v *version) Add(i int) {
 	v.v = append(v.v, i)
 }
-func isdigit(b byte) bool {
-	return '0' <= b && b <= '9'
-}
+
 func (v *version) Place(i int) int {
 	if i < len(v.v) {
 		return v.v[i]

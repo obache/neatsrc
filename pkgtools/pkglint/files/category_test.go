@@ -1,4 +1,4 @@
-package main
+package pkglint
 
 import "gopkg.in/check.v1"
 
@@ -84,7 +84,7 @@ func (s *Suite) Test_CheckdirCategory__wip(c *check.C) {
 		"",
 		".include \"../mk/misc/category.mk\"")
 
-	G.CheckDirent(t.File("wip"))
+	G.Check(t.File("wip"))
 
 	t.CheckOutputLines(
 		"WARN: ~/wip/Makefile:8: Unknown shell command \"wip-specific-command\".")

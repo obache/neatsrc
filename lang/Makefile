@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.501 2018/11/28 08:15:31 adam Exp $
+# $NetBSD: Makefile,v 1.505 2018/12/21 12:35:59 leot Exp $
 #
 
 COMMENT=	Programming languages
@@ -22,10 +22,10 @@ SUBDIR+=	bwbasic
 SUBDIR+=	caml-light
 SUBDIR+=	camlp4
 SUBDIR+=	camlp5
-SUBDIR+=	cbindgen
 SUBDIR+=	ccsh
 SUBDIR+=	cdl3
 SUBDIR+=	chicken
+SUBDIR+=	chicken5
 SUBDIR+=	cim
 SUBDIR+=	cint
 SUBDIR+=	clang
@@ -188,6 +188,7 @@ SUBDIR+=	php56
 SUBDIR+=	php70
 SUBDIR+=	php71
 SUBDIR+=	php72
+SUBDIR+=	php73
 SUBDIR+=	picoc
 SUBDIR+=	pict
 SUBDIR+=	polyml
@@ -251,6 +252,7 @@ SUBDIR+=	sablevm-classpath-gui
 SUBDIR+=	sather
 SUBDIR+=	sbcl
 SUBDIR+=	scala
+SUBDIR+=	scala-sbt
 SUBDIR+=	scheme48
 SUBDIR+=	scm
 SUBDIR+=	see

@@ -1,4 +1,4 @@
-package main
+package pkglint
 
 import "gopkg.in/check.v1"
 
@@ -500,7 +500,7 @@ func (s *Suite) Test_Tools__cmake(c *check.C) {
 		".endif")
 	G.Pkgsrc.LoadInfrastructure()
 
-	G.CheckDirent(t.File("category/package"))
+	G.Check(t.File("category/package"))
 
 	t.CheckOutputEmpty()
 }

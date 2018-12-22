@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.788 2018/12/06 20:04:25 leot Exp $
+# $NetBSD: Makefile,v 1.790 2018/12/20 07:04:25 jnemeth Exp $
 #
 
 COMMENT=	System utilities
@@ -392,6 +392,7 @@ SUBDIR+=	neb-wipe
 SUBDIR+=	netbsd-kmod-tools
 SUBDIR+=	netbt-hcidump
 SUBDIR+=	news
+SUBDIR+=	nnn
 SUBDIR+=	noice
 SUBDIR+=	notification-daemon
 SUBDIR+=	nrg2iso
@@ -440,6 +441,7 @@ SUBDIR+=	p5-UPS-Nut
 SUBDIR+=	p5-Unburden-Home-Dir
 SUBDIR+=	p5-Unix-ConfigFile
 SUBDIR+=	p5-Unix-Process
+SUBDIR+=	p5-Unix-Processors
 SUBDIR+=	p5-Unix-Statgrab
 SUBDIR+=	p5-Unix-Syslog
 SUBDIR+=	p5-collectd
