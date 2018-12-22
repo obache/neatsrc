@@ -47,7 +47,6 @@ TOOLS_PLATFORM.date=
 .include "../../databases/shared-mime-info/mimedb.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
-#BUILDLINK_AUTO_DIRS.libltdl=	rpath
 .include "../../devel/libltdl/buildlink3.mk"
 .include "../../devel/pango/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
