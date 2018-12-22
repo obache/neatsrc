@@ -8,6 +8,9 @@ CONFLICTS=	mysql3-server-[0-9]*
 
 .include "../../databases/mysql57-client/Makefile.common"
 
+# "c++11" from protobuf + "gnu" from alloca() usage
+USE_LANGUAGES+=	gnu++11
+
 .if !empty(PKG_OPTIONS:Membedded-server)
 CMAKE_ARGS+=		-DWITH_EMBEDDED_SERVER=ON
 PLIST.embedded=		yes
@@ -18,6 +21,7 @@ CMAKE_ARGS+=		-DWITH_EMBEDDED_SERVER=OFF
 BUILDLINK_DEPMETHOD.editline=	build
 BUILDLINK_DEPMETHOD.readline=	build
 .endif
+CMAKE_ARGS+=		-DWITH_PROTOBUF=system
 
 PLIST_VARS+=		embedded ndb auth_socket
 
@@ -92,5 +96,6 @@ CXXFLAGS+=		-D_POSIX_C_SOURCE=199506L -D__EXTENSIONS__
 .include "../../archivers/lz4/buildlink3.mk"
 BUILDLINK_AUTO_DIRS.mysql-client=	no
 .include "../../databases/mysql57-client/buildlink3.mk"
+.include "../../devel/protobuf/buildlink3.mk"
 .include "../../security/tcp_wrappers/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
