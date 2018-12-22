@@ -28,7 +28,7 @@ procname="@PREFIX@/sbin/${name}"
 : ${mysqld_user:=@MYSQL_USER@}
 : ${mysqld_group:=@MYSQL_GROUP@}
 : ${mysqld_datadir:=@MYSQL_DATADIR@}
-: ${mysqld_pidfile:=@MYSQL_PIDFILE@}
+: ${mysqld_pidfile:=@MYSQL_DATADIR@/`@HOSTNAME_CMD@`.pid}
 
 extra_commands="initdb"
 initdb_cmd="mysqld_initdb"
