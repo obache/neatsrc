@@ -15,3 +15,4 @@ SHA1 (patch-sigscheme_configure.ac) = 39ad968082dd90da4b3f01e096cb1e089090749c
 SHA1 (patch-uim_Makefile.am) = 5374590ebd10b722f69a2c3034588d0c7b51a3c5
 SHA1 (patch-uim_Makefile.in) = 5cec0cc4f34866f3924dac44aff4fd2fad7b2adb
 SHA1 (patch-uim_uim-module-manager.c) = 8c81edd3af3de7a2f7b7158d8c66e2082327b931
+SHA1 (patch-uim_uim-x-util.c) = ffa78845f49351a2f67ee45ef66eae654b9d8879
