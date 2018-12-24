@@ -29,6 +29,14 @@ KSH93_MAKEFLAGS+=	CC=${CC:Q} CCFLAGS=${CFLAGS:M*:Q} LDFLAGS=${LDFLAGS:M*:Q}
 
 .include "../../mk/bsd.prefs.mk"
 
+.if ${OPSYS} == "NetBSD"
+USE_TOOLS+=	bash
+PDKSH=		${BASH}
+.else
+USE_TOOLS+=	sh
+PDKSH=		${SH}
+.endif
+
 # Link with libm to fix sfcvt link error -
 # this is kind of a hack -
 # better would be to fix the 'meta makefile' to pass this
@@ -54,8 +62,8 @@ INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 # name which the ./bin/package script uses.
 do-build:
 	${RUN}cd ${WRKSRC:Q}; \
-		${SETENV} ${MAKE_ENV} SHELL=${SH:Q} \
-			${SH:Q} ./bin/package flat make ${KSH93_MAKEFLAGS}
+		${SETENV} ${MAKE_ENV} SHELL=${PDKSH} _AST_BIN_PACKAGE_=1 \
+			${PDKSH} ./bin/package flat make ${KSH93_MAKEFLAGS} SHELL=${PDKSH}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/ksh				\
@@ -70,4 +78,4 @@ do-test:
 			${WRKSRC}/bin/ksh shtests
 # XXX Their 'test' target needs nmake (Korn's another tool)
 #	${RUN}cd ${WRKSRC}; \
-#		${SETENV} SHELL=${SH:Q} ${SH:Q} ./bin/package test
+#		${SETENV} SHELL=${PDKSH:Q} ${PDKSH:Q} ./bin/package test
