@@ -33,6 +33,7 @@ include/groonga/groonga/obj.h
 include/groonga/groonga/operator.h
 include/groonga/groonga/option.h
 include/groonga/groonga/output.h
+include/groonga/groonga/output_columns.h
 include/groonga/groonga/pat.h
 include/groonga/groonga/plugin.h
 include/groonga/groonga/portability.h
@@ -328,6 +329,8 @@ share/doc/groonga/en/html/reference/suggest/suggestion.html
 share/doc/groonga/en/html/reference/tables.html
 share/doc/groonga/en/html/reference/token_filters.html
 share/doc/groonga/en/html/reference/tokenizers.html
+share/doc/groonga/en/html/reference/tokenizers/token_delimit.html
+share/doc/groonga/en/html/reference/tokenizers/token_mecab.html
 share/doc/groonga/en/html/reference/tuning.html
 share/doc/groonga/en/html/reference/types.html
 share/doc/groonga/en/html/reference/window_function.html
@@ -615,6 +618,8 @@ share/doc/groonga/ja/html/reference/suggest/suggestion.html
 share/doc/groonga/ja/html/reference/tables.html
 share/doc/groonga/ja/html/reference/token_filters.html
 share/doc/groonga/ja/html/reference/tokenizers.html
+share/doc/groonga/ja/html/reference/tokenizers/token_delimit.html
+share/doc/groonga/ja/html/reference/tokenizers/token_mecab.html
 share/doc/groonga/ja/html/reference/tuning.html
 share/doc/groonga/ja/html/reference/types.html
 share/doc/groonga/ja/html/reference/window_function.html
