@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.12 2017/07/30 22:32:19 wiz Exp $
+# $NetBSD: Makefile,v 1.15 2018/12/24 02:06:59 tsutsui Exp $
 #
 
 DISTNAME=	userland-20170109
-PKGREVISION=	1
+PKGREVISION=	3
 PKGNAME=	raspberrypi-${DISTNAME}
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=jaredmcneill/}
@@ -22,12 +22,17 @@ USE_LANGUAGES=	c c++
 
 USE_CMAKE=	yes
 CMAKE_ARGS+=	-DCMAKE_TOOLCHAIN_FILE=${WRKSRC}/makefiles/cmake/toolchains/arm-netbsdelf.cmake
+USE_TOOLS+=		bash:run
 
 SUBST_CLASSES+=		vc
 SUBST_STAGE.vc=		pre-configure
 SUBST_MESSAGE.vc=	Fixing hard-coded install paths.
 SUBST_FILES.vc=		makefiles/cmake/vmcs.cmake
 SUBST_SED.vc=		-e 's,/opt/vc,${PREFIX},g'
+
+REPLACE_BASH+=		buildme \
+			host_applications/linux/apps/dtoverlay/dtoverlay-post \
+			host_applications/linux/apps/dtoverlay/dtoverlay-pre
 
 .include "options.mk"
 

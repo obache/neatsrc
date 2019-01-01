@@ -1,5 +1,5 @@
-bin/fonttools bin/fonttools-@PYVERSSUFFIX@
-bin/pyftinspect bin/pyftinspect-@PYVERSSUFFIX@
-bin/pyftmerge bin/pyftmerge-@PYVERSSUFFIX@
-bin/pyftsubset bin/pyftsubset-@PYVERSSUFFIX@
-bin/ttx bin/ttx-@PYVERSSUFFIX@
+bin/fonttools @PREFIX@/bin/fonttools-@PYVERSSUFFIX@
+bin/pyftinspect @PREFIX@/bin/pyftinspect-@PYVERSSUFFIX@
+bin/pyftmerge @PREFIX@/bin/pyftmerge-@PYVERSSUFFIX@
+bin/pyftsubset @PREFIX@/bin/pyftsubset-@PYVERSSUFFIX@
+bin/ttx @PREFIX@/bin/ttx-@PYVERSSUFFIX@

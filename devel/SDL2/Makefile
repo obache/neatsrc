@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.32 2018/12/05 10:46:15 bsiegert Exp $
+# $NetBSD: Makefile,v 1.34 2018/12/30 14:47:04 maya Exp $
 
 DISTNAME=	SDL2-2.0.9
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.libsdl.org/release/
 
@@ -16,6 +16,9 @@ USE_TOOLS+=		gmake pkg-config autoconf automake autoreconf
 GNU_CONFIGURE=		yes
 PKGCONFIG_OVERRIDE+=	sdl2.pc.in
 
+CONFIGURE_ENV+=	SDL_RLD_FLAGS="${COMPILER_RPATH_FLAG}${PREFIX}/lib \
+		${COMPILER_RPATH_FLAG}${X11BASE}/lib"
+
 CHECK_PORTABILITY_SKIP+=build-scripts/androidbuildlibs.sh
 CHECK_PORTABILITY_SKIP+=build-scripts/iosbuild.sh
 
@@ -24,12 +27,6 @@ CHECK_PORTABILITY_SKIP+=build-scripts/iosbuild.sh
 .if ${OPSYS} != "Linux"
 BUILDLINK_TRANSFORM+=	rm:-ldl
 .endif
-
-SUBST_CLASSES+=		vc
-SUBST_STAGE.vc=		pre-configure
-SUBST_MESSAGE.vc=	Fixing path to VideoCore libraries.
-SUBST_FILES.vc=		configure
-SUBST_SED.vc+=		-e 's;/opt/vc;${PREFIX};g'
 
 CFLAGS+=	-DPREFIX=\"${PREFIX}\"
 

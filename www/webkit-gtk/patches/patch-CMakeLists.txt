@@ -1,9 +1,9 @@
-$NetBSD: patch-CMakeLists.txt,v 1.5 2018/10/24 18:31:07 leot Exp $
+$NetBSD: patch-CMakeLists.txt,v 1.7 2018/12/23 22:22:47 roy Exp $
 
 - Fix support for arm
 - Fix support for ppc, from FreeBSD.
 
---- CMakeLists.txt.orig	2018-09-06 11:51:31.000000000 +0000
+--- CMakeLists.txt.orig	2018-12-13 01:57:34.000000000 +0000
 +++ CMakeLists.txt
 @@ -85,6 +85,8 @@ else ()
  endif ()

@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.7 2015/11/04 03:28:49 agc Exp $
+$NetBSD: distinfo,v 1.8 2018/12/22 09:42:41 wiz Exp $
 
 SHA1 (motif-2.3.8.tar.gz) = ca9d8d67544434c5883d8d0fb684a48f8b0108bd
 RMD160 (motif-2.3.8.tar.gz) = a4c10db68d880d3096c97cc1c995351616a90a57

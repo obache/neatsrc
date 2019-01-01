@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.13 2018/03/12 11:15:54 wiz Exp $
+# $NetBSD: Makefile,v 1.14 2018/12/22 09:42:41 wiz Exp $
 
-DISTNAME=	motif-2.3.8
-CATEGORIES=	x11
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=motif/}
+DISTNAME=		motif-2.3.8
+CATEGORIES=		x11
+MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=motif/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://motif.ics.com/
@@ -20,13 +20,13 @@ USE_X11_RGB_TXT=	yes
 
 CFLAGS.SunOS+=		-Dsun
 
-CONFIGURE_ARGS+= \
-		--enable-jpeg --enable-png \
-		--with-libjpeg-includes=${JPEGBASE}/include \
-		--with-libjpeg-lib=${JPEGBASE}/lib \
-		--with-libpng-includes=${BUILDLINK_PREFIX.png}/include \
-		--with-libpng-lib=${BUILDLINK_PREFIX.png}/lib \
-		--x-libraries=${X11BASE}/lib
+CONFIGURE_ARGS+= --enable-jpeg
+CONFIGURE_ARGS+= --enable-png
+CONFIGURE_ARGS+= --with-libjpeg-includes=${JPEGBASE}/include
+CONFIGURE_ARGS+= --with-libjpeg-lib=${JPEGBASE}/lib
+CONFIGURE_ARGS+= --with-libpng-includes=${BUILDLINK_PREFIX.png}/include
+CONFIGURE_ARGS+= --with-libpng-lib=${BUILDLINK_PREFIX.png}/lib
+CONFIGURE_ARGS+= --x-libraries=${X11BASE}/lib
 
 CONFIGURE_ARGS+=	--enable-xft
 CFLAGS.SunOS+=		-D_POSIX_PTHREAD_SEMANTICS

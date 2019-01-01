@@ -1,6 +1,7 @@
-# $NetBSD: INSTALL,v 1.4 2018/12/16 05:41:01 schmonz Exp $
+# $NetBSD: INSTALL,v 1.6 2018/12/28 20:24:02 schmonz Exp $
 
 RCDBOOT_STYLE=@RCDBOOT_STYLE@
+RCD_SCRIPTS_DIR=@RCD_SCRIPTS_DIR@
 
 case "${STAGE}" in
 
@@ -14,7 +15,23 @@ POST-INSTALL)
 	linux-systemd)
 		systemctl enable --now /etc/systemd/system/pkgsrc-rc.d-boot.service
 		;;
+	linux-sysv-debian)
+		update-rc.d pkgsrc-rc.d-boot defaults
+		;;
+	linux-sysv-redhat)
+		chkconfig --add pkgsrc-rc.d-boot
+		chkconfig pkgsrc-rc.d-boot on
+		;;
 	netbsd-native)
+		;;
+	openbsd-rcd)
+		short_order=$(rc.d-boot list | ${SED} -e "s|^${RCD_SCRIPTS_DIR}/||" | ${GREP} -v '^[A-Z]*$')
+		rcctl enable ${short_order}
+		rcctl order ${short_order}
+		${SED} -e 's|^pkg_scripts=\([a-z]*.*\)$|pkg_scripts="\1"|' \
+			< /etc/rc.conf.local \
+			> /etc/rc.conf.local.tmp \
+			&& ${MV} /etc/rc.conf.local.tmp /etc/rc.conf.local
 		;;
 	esac
 
