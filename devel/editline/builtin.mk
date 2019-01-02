@@ -24,6 +24,20 @@ IS_BUILTIN.editline=	yes
 MAKEVARS+=	IS_BUILTIN.editline
 
 ###
+### If there is a built-in implementation, then set BUILTIN_PKG.<pkg> to
+### a package name to represent the built-in package.
+###
+.if !defined(BUILTIN_PKG.editline) && \
+     !empty(IS_BUILTIN.editline:M[yY][eE][sS])
+.  if ${BUILTIN_PKGCONFIG_FOUND.libedit} == "yes"
+BUILTIN_VERSION.editline?=	${BUILTIN_PKGCONFIG_VERSION.libedit}
+.  endif
+BUILTIN_VERSION.editline?=	3.0
+BUILTIN_PKG.editline?=		editline-${BUILTIN_VERSION.editline}
+.endif
+MAKEVARS+=	BUILTIN_PKG.editline
+
+###
 ### Determine whether we should use the built-in implementation if it
 ### exists, and set USE_BUILTIN.<pkg> appropriate ("yes" or "no").
 ###
@@ -35,10 +49,20 @@ USE_BUILTIN.editline=	${IS_BUILTIN.editline}
 .    if defined(BUILTIN_PKG.editline) && \
         !empty(IS_BUILTIN.editline:M[yY][eE][sS])
 USE_BUILTIN.editline=	yes
+.      for _dep_ in ${BUILDLINK_API_DEPENDS.editline}
+.        if !empty(USE_BUILTIN.editline:M[yY][eE][sS])
+USE_BUILTIN.editline!=							\
+	if ${PKG_ADMIN} pmatch ${_dep_:Q} ${BUILTIN_PKG.editline:Q}; then	\
+		${ECHO} "yes";						\
+else									\
+		${ECHO} "no";						\
+	fi
+.        endif
+.      endfor
 .    endif
-MAKEVARS+=	USE_BUILTIN.editline
 .  endif
 .endif
+MAKEVARS+=	USE_BUILTIN.editline
 
 CHECK_BUILTIN.editline?=	no
 .if !empty(CHECK_BUILTIN.editline:M[nN][oO])
@@ -138,10 +162,7 @@ buildlink-editline-history-h:
 .    endif
 .    if ${BUILTIN_PKGCONFIG_FOUND.libedit} == "yes"
 BUIDLINK_PREFIX.editline?=	${BUILTIN_PKGCONFIG_PREFIX.libedit}
-BUILTIN_VERSION.editline?=	${BUILTIN_PKGCONFIG_VERSION.libedit}
 .    endif
-BUILTIN_VERSION.editline?=	3.0
-BUILTIN_PKG.editline?=		editline-${BUILTIN_VERSION.editline}
 BUILTIN_FAKE_PC_FILES.editline=	libedit
 FAKE_PC_SRC.libedit=	../../devel/editline/files/libedit.pc.in
 FAKE_PC_SUBST_SED.libedit+=	-e s,@VERSION@,${BUILTIN_VERSION.editline},g
