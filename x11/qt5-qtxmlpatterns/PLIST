@@ -417,3 +417,6 @@ qt5/lib/libQt5XmlPatterns.so.5.12
 qt5/lib/pkgconfig/Qt5XmlPatterns.pc
 qt5/mkspecs/modules/qt_lib_xmlpatterns.pri
 qt5/mkspecs/modules/qt_lib_xmlpatterns_private.pri
+qt5/qml/QtQuick/XmlListModel/libqmlxmllistmodelplugin.so
+qt5/qml/QtQuick/XmlListModel/plugins.qmltypes
+qt5/qml/QtQuick/XmlListModel/qmldir

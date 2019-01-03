@@ -15,7 +15,7 @@ BUILDLINK_LIBDIRS.qt5-qtdeclarative+=	qt5/lib
 BUILDLINK_CONTENTS_PATTERNS.qt5-qtdeclarative+=	^qt5/mkspecs/
 BUILDLINK_CONTENTS_PATTERNS.qt5-qtdeclarative+=	^qt5/plugins/
 
-.include "../../x11/qt5-qtxmlpatterns/buildlink3.mk"
+.include "../../x11/qt5-qtbase/buildlink3.mk"
 .endif	# QT5_QTDECLARATIVE_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-qt5-qtdeclarative
