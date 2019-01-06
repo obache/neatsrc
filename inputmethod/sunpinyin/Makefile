@@ -16,7 +16,7 @@ USE_TOOLS+=	gmake:run pkg-config scons pod2man
 pre-build:
 	${RUN}cd ${WRKSRC}; \
 		${SETENV} ${MAKE_ENV} \
-		${SCONS} --prefix=${PREFIX}
+		${SCONSBIN} --prefix=${PREFIX}
 	${LN} -sf ${WRKSRC}/src/slmpack ${TOOLS_DIR}/bin/slmpack
 	${LN} -sf ${WRKSRC}/src/slmthread ${TOOLS_DIR}/bin/slmthread
 	${LN} -sf ${WRKSRC}/src/tslmendian ${TOOLS_DIR}/bin/tslmendian
@@ -28,7 +28,7 @@ MAKE_FILE=	../doc/SLM-inst.mk
 pre-install:
 	cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} \
-		${SCONS} install --prefix=${PREFIX} --install-sandbox=${DESTDIR}
+		${SCONSBIN} install --prefix=${PREFIX} --install-sandbox=${DESTDIR}
 
 REPLACE_PYTHON=	python/*.py
 

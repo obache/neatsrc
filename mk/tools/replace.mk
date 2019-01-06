@@ -717,7 +717,9 @@ _TOOLS.scons=	scons sconsign scons-time
 .    if !empty(PKGPATH:Mdevel/scons)
 MAKEFLAGS+=			TOOLS_IGNORE.${_t_}=
 .    elif !empty(_TOOLS_USE_PKGSRC.${_t_}:M[yY][eE][sS])
-TOOLS_DEPENDS.${_t_}?=		scons>=1.1:../../devel/scons
+PYTHON_FOR_BUILD_ONLY?=	yes
+.      include "../../lang/python/pyversion.mk"
+TOOLS_DEPENDS.${_t_}?=		${PYPKGPREFIX}-scons>=3.0:../../devel/scons
 TOOLS_CREATE+=			${_t_}
 TOOLS_PATH.${_t_}=		${LOCALBASE}/bin/${_t_}
 .    endif

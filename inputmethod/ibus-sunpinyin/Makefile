@@ -14,12 +14,12 @@ BUILD_DIRS+=	wrapper/ibus
 do-build:
 	cd ${WRKSRC} && cd ${BUILD_DIRS} && \
 		${SETENV} ${MAKE_ENV} \
-		${SCONS} --prefix=${PREFIX}
+		${SCONSBIN} --prefix=${PREFIX}
 
 do-install:
 	cd ${WRKSRC} && cd ${BUILD_DIRS} && \
 		${SETENV} ${MAKE_ENV} \
-		${SCONS} install --prefix=${PREFIX} --install-sandbox=${DESTDIR}
+		${SCONSBIN} install --prefix=${PREFIX} --install-sandbox=${DESTDIR}
 
 .include "../../inputmethod/ibus/buildlink3.mk"
 .include "../../inputmethod/sunpinyin/buildlink3.mk"

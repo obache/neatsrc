@@ -14,12 +14,12 @@ BUILD_DIRS+=	wrapper/xim
 do-build:
 	cd ${WRKSRC} && cd ${BUILD_DIRS} && \
 		${SETENV} ${MAKE_ENV} \
-		${SCONS} --prefix=${PREFIX}
+		${SCONSBIN} --prefix=${PREFIX}
 
 do-install:
 	cd ${WRKSRC} && cd ${BUILD_DIRS} && \
 		${SETENV} ${MAKE_ENV} \
-		${SCONS} install --prefix=${PREFIX} --install-sandbox=${DESTDIR}
+		${SCONSBIN} install --prefix=${PREFIX} --install-sandbox=${DESTDIR}
 
 .include "../../inputmethod/sunpinyin/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
