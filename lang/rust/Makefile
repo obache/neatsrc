@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.70 2018/12/21 23:12:34 he Exp $
+# $NetBSD: Makefile,v 1.73 2019/01/05 23:29:40 tnn Exp $
 
 DISTNAME=	rustc-1.31.1-src
+PKGREVISION=	1
 PKGNAME=	${DISTNAME:S/rustc/rust/:S/-src//}
 CATEGORIES=	lang
 MASTER_SITES=	http://static.rust-lang.org/dist/
@@ -18,6 +19,7 @@ USE_TOOLS+=		bash ggrep gmake perl:build pkg-config
 BUILD_DEPENDS+=		cmake-[0-9]*:../../devel/cmake
 
 HAS_CONFIGURE=		yes
+PYTHON_FOR_BUILD_ONLY=	yes
 CONFIG_SHELL=		${PYTHONBIN}
 CONFIGURE_SCRIPT=	src/bootstrap/configure.py
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
@@ -102,8 +104,6 @@ MAKE_ENV+=		CARGO_BUILD_JOBS=${MAKE_JOBS:U1}
 CFLAGS.SunOS+=		-D_POSIX_PTHREAD_SEMANTICS
 
 UNLIMIT_RESOURCES+=	cputime
-
-PYTHON_VERSIONS_ACCEPTED=	27
 
 TEST_TARGET=	check
 
@@ -308,10 +308,18 @@ post-extract:
 MAKE_ENV+=		OPENSSL_DIR=${SSLBASE}
 .endif
 
+.if ${OPSYS} == "NetBSD" && !empty(PKGSRC_COMPILER:Mclang) && !exists(/lib/libgcc_s.so)
+BUILDLINK_TRANSFORM+=	rm:-lgcc_s
+MAKE_ENV+=		PKGSRC_HAVE_LIBCPP=yes
+.endif
+
 pre-build: pre-build-fix
-	# Requires libssh2 defines only available in master.
+#	Requires libssh2 defines only available in master.
 	${CP} -f ${WRKSRC}/src/vendor/libssh2-sys/libssh2/include/libssh2.h \
 		${BUILDLINK_DIR}/include/
+.if ${OPSYS} == "NetBSD" && !empty(PKGSRC_COMPILER:Mclang) && !exists(/lib/libgcc_s.so)
+	cp ${FILESDIR}/libgcc_s.so.1 ${RUST_BOOTSTRAP_PATH}/lib/.
+.endif
 
 do-build:
 	cd ${WRKSRC} \

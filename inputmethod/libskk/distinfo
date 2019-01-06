@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.10 2018/07/07 07:21:34 ryoon Exp $
+$NetBSD: distinfo,v 1.11 2019/01/04 23:37:08 ryoon Exp $
 
 SHA1 (libskk-1.0.5.tar.xz) = 7a9c43b3396b57fc4e10cb97cb3c27ddc0081e66
 RMD160 (libskk-1.0.5.tar.xz) = ca765db430309a2936f858cc9c1495f902fa0aa7

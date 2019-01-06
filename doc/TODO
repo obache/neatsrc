@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.18731 2019/01/01 22:16:27 nia Exp $
+$NetBSD: TODO,v 1.18742 2019/01/05 21:46:09 schmonz Exp $
 
 Suggested new packages
 ======================
@@ -323,8 +323,7 @@ Suggested new packages
 	libretro-atari800, libretro-dosbox, libretro-uae?, libretro-vice,
 	libretro-81
 	Video game system emulators: libretro-citra, libretro-beetle-pcfx,
-	libretro-beetle-lynx (or Handy, too buggy?), libretro-kronos,
-	some version of MAME
+	libretro-beetle-lynx (or Handy, too buggy?), libretro-kronos
 	Standalone games: libretro-2048, libretro-dinothawr, libretro-mrboom,
 	libretro-thepowdertoy, libretro-openlara, libretro-gw,
 	libretro-tyrquake (wip), libretro-prboom (wip), libretro-easyrpg,
@@ -343,7 +342,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ImageMagick-7.0.8.21
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
-	o MesaDemos-8.3.0
 	o MesaLib-18.3.1
 	o OdfConverter-4.0
 	o PACK-0.0.4
@@ -677,7 +675,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o glib2-tools-2.58.1
 	o gliv-1.9.7
 	o glom-1.14.2 [GNOME 2.26]
-	o glx-utils-8.3.0
 	o gnet1-1.1.9
 	o gnetman-20050429
 	o gnome-3.30.1
@@ -747,7 +744,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gss-1.0.3
 	o gst-plugins1-omx-1.10.0
 	o gthumb-3.4.0
-	o gtk3-3.24.2
 	o gtkglarea-2.1.0
 	o gtklevel9-5.1
 	o gtkmagnetic-23
@@ -944,7 +940,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libcmis-0.5.2
 	o libconfuse-3.1
 	o libetonyek-0.1.9
-	o libev-4.25
 	o libextractor-1.2 [requires shm_open()]
 	o libflash-0.4.13
 	o libfolks-0.10.1 [wip]
@@ -991,7 +986,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libykneomgr-0.1.8
 	o libyubikey-1.13
 	o licq-1.3.8
-	o lilv-0.22.0
 	o lincvs-2.1.4 [now called CrossVC]
 	o linpsk-1.2 [ld: cannot find -lqt-mt with qt4]
 	o liquidwar-6.0.0.11
@@ -1046,7 +1040,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mined-2015.25
 	o mini_sendmail-1.3.9
 	o minivmac-3.2.3
-	o miredo-1.2.4
 	o mit-scheme-bin-9.2
 	o modular-xorg-xquartz-1.18.0
 	o molden-4.8 [after which PR 40252 can be closed]
@@ -1084,7 +1077,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o netio-1.32
 	o netramet-50
 	o newmail-1.0.2
-	o nginx-devel-1.13.9
 	o ns-3.14.1
 	o ns-plugger-common-5.1.3
 	o ntop-5.0
@@ -1204,7 +1196,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-Scientific-doc-2.5.5
 	o py-augeas-1.0.3
 	o py-cassa-1.11.0
-	o py-cssselect2-0.2.1
 	o py-doctor-15.1.0
 	o py-ephem3-3.7.6.0
 	o py-gnome-menus-3.8.0
@@ -1242,7 +1233,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o rasmol-2.7.5.2
 	o rat-4.2.25
 	o ratmen-2.2.3
-	o rawtherapee-5.4
 	o razor-qt-0.5.2
 	o rbldnsd-0.998
 	o rdp-1.6
@@ -1250,7 +1240,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o rep-gtk-0.90.8.1
 	o resize_image-0.7
 	o rexx-regina-3.9.0
-	o rhash-1.3.7
 	o rio500-0.8.1
 	o ripgrep-0.10.0
 	o robodoc-4.99.6
@@ -1268,6 +1257,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o rtcw-1.41.3
 	o rtty-4.0 [at ftp://ftp.isc.org/isc/rtty/]
 	o rubber-1.4
+	o ruby-2.6.0
 	o ruby-jquery-rails-4.2.1
 	o ruby-redmine-3.3.7
 	o ruby-redmine-3.4.5
@@ -1276,7 +1266,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o sabayon-2.30.1 [GNOME 2.30]
 	o sablecc-3.7
 	o sarg-2.2.5
-	o sawfish-1.12.0
 	o scew-1.1.7
 	o scilab-5.5.2
 	o scm-5f2
@@ -1295,7 +1284,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o sendmail-cidrexpand-8.16.0.16
 	o sendmail-qtool-8.16.0.16
 	o ser-0.9.6
-	o serd-0.22.0
 	o sgb-20090810
 	o sge-8.1.8
 	o sharity-3.7
@@ -1321,7 +1309,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o solid-5.45.0
 	o sonnet-5.45.0
 	o sope-4.6
-	o sord-0.14.0
 	o sound-juicer-3.16.1
 	o sparse-0.5.0
 	o spcaview-20060501
