@@ -91,7 +91,7 @@ _DEF_VARS.gcc=	\
 
 .include "../../mk/bsd.prefs.mk"
 
-USE_NATIVE_GCC?=	no
+USE_NATIVE_GCC?=	yes
 USE_PKGSRC_GCC?=	no
 USE_PKGSRC_GCC_RUNTIME?=no
 
@@ -679,6 +679,16 @@ _USE_GCC_SHLIB= yes
 
 .if !empty(USE_NATIVE_GCC:M[yY][eE][sS]) && !empty(_IS_BUILTIN_GCC:M[yY][eE][sS])
 _USE_PKGSRC_GCC=	no
+_GCC_TEST_DEPENDS=	gcc>=${_GCC_REQD}
+_NEED_NEWER_GCC!=	\
+	if ${PKG_ADMIN} pmatch '${_GCC_TEST_DEPENDS}' ${_GCC_PKG} 2>/dev/null; then \
+		${ECHO} "NO";						\
+	else								\
+		${ECHO} "YES";						\
+	fi
+.  if !empty(_NEED_NEWER_GCC:M[yY][eE][sS])
+PKG_FAIL_REASON+=	"Unable to satisfy ${_GCC_TEST_DEPENDS}: ${_GCC_PKG}"
+.  endif
 .elif !empty(USE_PKGSRC_GCC:M[yY][eE][sS])
 # For environments where there is an external gcc too, but pkgsrc
 # should use the pkgsrc one for consistency.
