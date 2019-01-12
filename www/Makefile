@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1356 2019/01/02 10:34:20 adam Exp $
+# $NetBSD: Makefile,v 1.1358 2019/01/07 18:03:27 kleink Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -659,6 +659,7 @@ SUBDIR+=	py-django-south
 SUBDIR+=	py-django-sql-explorer
 SUBDIR+=	py-django-tagging
 SUBDIR+=	py-django-tastypie
+SUBDIR+=	py-django-timezone-field
 SUBDIR+=	py-django-treebeard
 SUBDIR+=	py-django14
 SUBDIR+=	py-django2
@@ -691,6 +692,7 @@ SUBDIR+=	py-flask-bootstrap
 SUBDIR+=	py-flask-cache
 SUBDIR+=	py-flask-caching
 SUBDIR+=	py-flask-common
+SUBDIR+=	py-flask-cors
 SUBDIR+=	py-flask-debugtoolbar
 SUBDIR+=	py-flask-flatpages
 SUBDIR+=	py-flask-frozen

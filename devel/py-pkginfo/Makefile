@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.7 2018/03/23 10:56:11 adam Exp $
+# $NetBSD: Makefile,v 1.9 2019/01/09 08:35:32 adam Exp $
 
-DISTNAME=	pkginfo-1.4.2
+DISTNAME=	pkginfo-1.5.0.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pkginfo/}
 
 MAINTAINER=	kamel.derouiche@gmail.com
-HOMEPAGE=	https://pypi.python.org/pypi/pkginfo/
+HOMEPAGE=	https://code.launchpad.net/~tseaver/pkginfo/trunk
 COMMENT=	Query metadatdata from sdists / bdists / installed packages
 LICENSE=	mit
 

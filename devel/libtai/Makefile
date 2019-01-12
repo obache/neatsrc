@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.14 2017/07/26 00:29:53 schmonz Exp $
+# $NetBSD: Makefile,v 1.16 2019/01/10 03:12:46 schmonz Exp $
 #
 
 DISTNAME=		libtai-0.60
-PKGREVISION=		5
+PKGREVISION=		7
 CATEGORIES=		devel
 MASTER_SITES=		http://cr.yp.to/libtai/
 
@@ -16,17 +16,19 @@ CONFLICTS=		libowfat-[0-9]*
 DJB_RESTRICTED=		NO
 
 EGDIR=			share/examples/${PKGBASE}
-CONF_FILES+=		${EGDIR}/leapsecs.dat ${PKG_SYSCONFDIR}/leapsecs.dat
 
 SUBST_FILES.djbware+=	leapsecs_read.c
 
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	do-configure
 SUBST_FILES.paths=	leapsecs.3 leapsecs_read.c
-SUBST_SED.paths=	-e 's,@PKG_SYSCONFDIR@,${PKG_SYSCONFDIR:Q},g'
+SUBST_VARS.paths=	PKG_SYSCONFDIR
 
 INSTALLATION_DIRS=	bin include lib ${EGDIR}
 INSTALLATION_DIRS+=	${PKGMANDIR}/man3
+
+post-build:
+	cd ${WRKSRC} && ./leapsecs < leapsecs.txt > leapsecs.dat
 
 do-install:
 	set -e; cd ${WRKSRC};						\
@@ -40,7 +42,7 @@ do-install:
 		${INSTALL_DATA} "$${f}" ${DESTDIR}${PREFIX}/include;	\
 	done;								\
 	for f in libtai.a; do						\
-		${INSTALL_LIB} "$${f}" ${DESTDIR}${PREFIX}/lib;		\
+		${INSTALL_DATA} "$${f}" ${DESTDIR}${PREFIX}/lib;		\
 	done;								\
 	for f in leapsecs.dat leapsecs.txt; do				\
 		${INSTALL_DATA} "$${f}" ${DESTDIR}${PREFIX}/${EGDIR};	\

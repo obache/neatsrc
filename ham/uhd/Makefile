@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.37 2018/12/13 19:52:04 adam Exp $
+# $NetBSD: Makefile,v 1.40 2019/01/09 19:21:37 gdt Exp $
 
+# 3.13.0.1 is missing *_firmware_burner, and it's not clear that is correct.
 DISTNAME=		uhd-3.11.1.0
 PKGREVISION=		2
 CATEGORIES=		ham
