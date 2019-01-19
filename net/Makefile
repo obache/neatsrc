@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1237 2019/01/08 10:45:02 markd Exp $
+# $NetBSD: Makefile,v 1.1239 2019/01/16 15:18:46 he Exp $
 #
 
 COMMENT=	Networking tools
@@ -196,6 +196,8 @@ SUBDIR+=	gnome-online-accounts
 SUBDIR+=	gnome-vfs-smb
 SUBDIR+=	gnugk
 SUBDIR+=	go-dns
+SUBDIR+=	go-dnstap
+SUBDIR+=	go-framestream
 SUBDIR+=	go-grpc
 SUBDIR+=	go-net
 SUBDIR+=	go-ovh
@@ -694,7 +696,9 @@ SUBDIR+=	py-prometheus_client
 SUBDIR+=	py-ptt
 SUBDIR+=	py-py3dns
 SUBDIR+=	py-pydns
+SUBDIR+=	py-pyftpdlib
 SUBDIR+=	py-pylint-celery
+SUBDIR+=	py-pysendfile
 SUBDIR+=	py-requestbuilder
 SUBDIR+=	py-responses
 SUBDIR+=	py-rt

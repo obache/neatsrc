@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.690 2018/12/11 12:36:28 bsiegert Exp $
+# $NetBSD: Makefile,v 1.694 2019/01/18 04:44:28 tpaul Exp $
 #
 
 COMMENT=	Security tools
@@ -104,6 +104,7 @@ SUBDIR+=	gnupg2
 SUBDIR+=	gnutls
 SUBDIR+=	go-crypt
 SUBDIR+=	go-crypto
+SUBDIR+=	go-mkcert
 SUBDIR+=	go-oauth2
 SUBDIR+=	go-sftp
 SUBDIR+=	google-authenticator
@@ -403,7 +404,11 @@ SUBDIR+=	py-asyncssh
 SUBDIR+=	py-backports.ssl_match_hostname
 SUBDIR+=	py-bcrypt
 SUBDIR+=	py-certbot
+SUBDIR+=	py-certbot-dns-ovh
 SUBDIR+=	py-certbot-dns-rfc2136
+SUBDIR+=	py-certbot-dns-route53
+SUBDIR+=	py-certbot-dns-sakuracloud
+SUBDIR+=	py-certbot-nginx
 SUBDIR+=	py-certifi
 SUBDIR+=	py-crack
 SUBDIR+=	py-crcmod
@@ -534,6 +539,7 @@ SUBDIR+=	ruby-tcpwrap
 SUBDIR+=	ruby-twitter_oauth
 SUBDIR+=	sbd
 SUBDIR+=	scanssh
+SUBDIR+=	scm-blackbox
 SUBDIR+=	scrypt
 SUBDIR+=	seahorse
 SUBDIR+=	seahorse-plugins
