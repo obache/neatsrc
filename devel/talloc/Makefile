@@ -12,9 +12,6 @@ LICENSE=	gnu-gpl-v3 AND gnu-lgpl-v3
 BUILD_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 BUILD_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 
-# include/talloc.h
-CONFLICTS+=	samba<=4.6.8nb3
-
 USE_TOOLS+=		pkg-config
 HAS_CONFIGURE=		yes
 CONFIG_SHELL=		${PYTHONBIN}
