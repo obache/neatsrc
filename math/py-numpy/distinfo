@@ -6,6 +6,6 @@ SHA512 (numpy-1.16.0.zip) = a252748c54b349319c8b8b69aae8f58853ac698a9ad0fb04fd11
 Size (numpy-1.16.0.zip) = 5052439 bytes
 SHA1 (patch-aa) = c964fa13fb120b1b0f9d0bf5bc713507cd60b945
 SHA1 (patch-ab) = b421455fdbb666c8075d8bffbeb59533434d23e6
-SHA1 (patch-numpy_distutils_fcompiler_g95.py) = 456c1c752176901afed42a2b621e450476cb482b
+SHA1 (patch-numpy_distutils_fcompiler_g95.py) = d999893da6dc16a3f9bb876fadb3fbd7648a8a2b
 SHA1 (patch-numpy_distutils_fcompiler_gnu.py) = db8d3238c618ecd5900650a2150efb9459e94e96
 SHA1 (patch-numpy_distutils_system__info.py) = dfd88a140b65a66c222a95ea4be6f20a33702e3b

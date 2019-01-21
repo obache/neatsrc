@@ -56,13 +56,13 @@ do-test:
 .include "../../math/lapack/buildlink3.mk"
 
 post-patch:
-	${CP} ${FILESDIR}/site.cfg ${FAKEHOMEDIR}/site.cfg
+	${CP} ${FILESDIR}/site.cfg ${FAKEHOMEDIR}/numpy-site.cfg
 
 SUBST_CLASSES+=		site_cfg
 SUBST_STAGE.site_cfg=	pre-configure
 SUBST_VARS.site_cfg=	LOCALBASE BUILDLINK_PREFIX.blas BUILDLINK_PREFIX.lapack
 SUBST_VARS.site_cfg+=	X11BASE
-SUBST_FILES.site_cfg=	${FAKEHOMEDIR}/site.cfg
+SUBST_FILES.site_cfg=	${FAKEHOMEDIR}/numpy-site.cfg
 
 .endif
 .include "../../mk/bsd.pkg.mk"

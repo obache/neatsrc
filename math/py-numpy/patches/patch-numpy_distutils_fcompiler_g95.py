@@ -31,7 +31,7 @@ Band aid to make sure that pic_flags is actually used.
  
 +    def runtime_library_dir_option(self, dir):
 +        sep = ',' if sys.platform == 'darwin' else '='
-+        return '-Wl,-rpath%s"%s"' % (sep, dir)
++        return '-Wl,-rpath%s%s' % (sep, dir)
 +
  if __name__ == '__main__':
      from distutils import log
