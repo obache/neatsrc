@@ -26,7 +26,6 @@ CONFIGURE_ARGS+=	--disable-lua-extension
 .if !empty(PKG_OPTIONS:Mopencc)
 .include "../../converters/opencc/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-opencc
-PLIST.lua=		yes
 .else
 CONFIGURE_ARGS+=	--disable-opencc
 .endif
