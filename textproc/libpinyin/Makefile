@@ -2,7 +2,8 @@
 
 DISTNAME=	libpinyin-2.2.2
 CATEGORIES=	textproc chinese
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libpinyin/}
+MASTER_SITES=	https://github.com/libpinyin/libpinyin/releases/download/${PKGVERSION_NOREV}/ \
+		${MASTER_SITE_SOURCEFORGE:=libpinyin/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/libpinyin/libpinyin/
