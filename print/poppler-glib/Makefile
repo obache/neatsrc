@@ -46,8 +46,10 @@ post-install:
 .include "../../lang/python/tool.mk"
 BUILDLINK_ABI_DEPENDS.glib2+=	glib2>=2.41.0
 .include "../../devel/glib2/buildlink3.mk"
+BUILDLINK_DEPMETHOD.gobject-introspection+=	build
+.include "../../devel/gobject-introspection/buildlink3.mk"
 #.include "../../textproc/gtk-doc/buildlink3.mk"
-.include "../../graphics/cairo/buildlink3.mk"
+.include "../../graphics/cairo-gobject/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
