@@ -104,16 +104,6 @@ case $arg in
 	argmatch=yes
 	;;
 ######################################################################
-# Remove rpath options that try to add relative paths to the runtime
-# library search path.  This basically cleans up after lazy programmers
-# who can't write Makefiles.
-######################################################################
--R[!/]*|-Wl,-R[!/]*|\
--Wl,-rpath,[!/]*|-Wl,-rpath-link,[!/]*|-Wl,--rpath,[!/]*)
-	$debug_log $wrapperlog "    (arg-pp-main) drop: $arg"
-	argmatch=yes
-	;;
-######################################################################
 # Remove consecutive, repeated library options.
 ######################################################################
 -l*)
