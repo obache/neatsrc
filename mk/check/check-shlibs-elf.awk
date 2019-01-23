@@ -126,6 +126,9 @@ function checkshlib(DSO, needed, rpath, found, dso_rpath, got_rpath, nrpath) {
 		    substr(rpath[p], 1, length(wrkdir) + 1) == wrkdir "/") {
 			print DSO ": rpath relative to WRKDIR"
 		}
+		if (substr(rpath[p], 1, 1) != "/") {
+			print DSO ": relative rpath " rpath
+		}
 	}
 	nblist = split(blacklist, blist, " ")
 	nedirs = split(extradirs, edirs, " ")
