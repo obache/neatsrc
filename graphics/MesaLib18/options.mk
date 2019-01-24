@@ -1,16 +1,15 @@
-# $NetBSD: options.mk,v 1.6 2019/01/18 19:35:30 tnn Exp $
+# $NetBSD: options.mk,v 1.10 2019/01/19 21:54:03 tnn Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.MesaLib
 PKG_SUPPORTED_OPTIONS=		llvm dri
 PKG_SUGGESTED_OPTIONS=
 
-PKG_SUPPORTED_OPTIONS+=		dri3 glx-tls xvmc debug
+PKG_SUPPORTED_OPTIONS+=		glx-tls xvmc debug
 PKG_SUPPORTED_OPTIONS+=		vdpau vaapi
 PKG_SUPPORTED_OPTIONS+=		osmesa
 PKG_SUPPORTED_OPTIONS+=		glesv1 glesv2
 PKG_SUPPORTED_OPTIONS+=		xa
 PKG_SUPPORTED_OPTIONS+=		noatexit
-PKG_SUPPORTED_OPTIONS+=		libelf
 PKG_SUPPORTED_OPTIONS+=		vulkan
 
 # PKG_SUGGESTED_OPTIONS+=		xvmc
@@ -32,9 +31,7 @@ PKG_SUGGESTED_OPTIONS+=		llvm
 	${OPSYS} == "DragonFly" || ${OPSYS} == "Linux" ||	\
 	${OPSYS} == "SunOS" || ${OPSYS} == "NetBSD" ||		\
 	${OPSYS} == "Darwin"
-# Having DRI3 compiled in by default doesn't hurt, the X server
-# will only use it if it is supported at run time.
-PKG_SUGGESTED_OPTIONS+=		dri dri3
+PKG_SUGGESTED_OPTIONS+=		dri
 .endif
 
 
@@ -49,12 +46,6 @@ PKG_SUGGESTED_OPTIONS+=		dri dri3
 PKG_SUGGESTED_OPTIONS+=		glx-tls
 .endif
 
-# segfault starting x on FreeBSD 12 (current) if not using base libelf
-# WebGL demos and mpv not working for radeonsi on NetBSD
-.if ${OPSYS} != "FreeBSD" && ${OPSYS} != "NetBSD"
-PKG_SUGGESTED_OPTIONS+=		libelf
-.endif
-
 .include "../../mk/bsd.options.mk"
 
 # gallium
@@ -63,24 +54,24 @@ PLIST_VARS+=	freedreno i915 i965 nouveau r300 r600 radeonsi	\
 # classic DRI
 PLIST_VARS+=	dri swrast_dri nouveau_dri radeon_dri r200
 # other features
-PLIST_VARS+=	gbm vaapi vdpau wayland xatracker
+PLIST_VARS+=	egl gbm vaapi vdpau wayland xatracker
 PLIST_VARS+=	osmesa xvmc
 PLIST_VARS+=	glesv1 glesv2
 
 .if !empty(PKG_OPTIONS:Mdri)
 
 CONFIGURE_ARGS+=	--enable-dri
-CONFIGURE_ARGS+=	--enable-egl
-
-.if !empty(PKG_OPTIONS:Mdri3)
+# Having DRI3 and egl compiled in by default doesn't hurt, the X server
+# will only use it if it is supported at run time.
 CONFIGURE_ARGS+=	--enable-dri3
-.else # !dri3
-CONFIGURE_ARGS+=	--disable-dri3
-.endif # dri3
-
 .if ${OPSYS} != "Darwin"
+CONFIGURE_ARGS+=	--enable-egl
 CONFIGURE_ARGS+=	--enable-gbm
+PLIST.egl=		yes
 PLIST.gbm=		yes
+.else
+CONFIGURE_ARGS+=	--disable-egl
+CONFIGURE_ARGS+=	--disable-gbm
 .endif
 
 .if !empty(PKG_OPTIONS:Mosmesa)
@@ -156,8 +147,7 @@ DRI_DRIVERS+=		i965
 .if !empty(PKG_OPTIONS:Mvulkan)
 VULKAN_DRIVERS+=	intel
 VULKAN_DRIVERS+=	radeon
-PLIST.intel_vulkan=	yes
-PLIST.radeon_vulkan=	yes
+PLIST.vulkan=		yes
 .endif
 
 # ARM drivers
@@ -254,9 +244,8 @@ GALLIUM_DRIVERS+=	radeonsi
 CONFIGURE_ARGS+=	--enable-llvm
 CONFIGURE_ARGS+=	--enable-llvm-shared-libs
 
-.if !empty(PKG_OPTIONS:Mlibelf)
+.if !exists(/usr/include/libelf.h)
 .include "../../devel/libelf/buildlink3.mk"
-CPPFLAGS+=		-I${BUILDLINK_PREFIX.libelf}/include/libelf
 .endif
 
 # XXX update libLLVM to use it instead
@@ -284,6 +273,9 @@ CONFIGURE_ARGS+=	--disable-gbm
 CONFIGURE_ARGS+=	--disable-gles1
 CONFIGURE_ARGS+=	--disable-gles2
 CONFIGURE_ARGS+=	--enable-xlib-glx
+CONFIGURE_ARGS+=	--with-platforms=x11
+# XXX configure looks for expat but doesn't actually need it in non-dri case
+CONFIGURE_ENV+=		EXPAT_CFLAGS=" " EXPAT_LIBS=" "
 .if !empty(PKG_OPTIONS:Mllvm)
 PKG_FAIL_REASON+=	"The llvm PKG_OPTION must also be disabled when dri is disabled"
 .endif

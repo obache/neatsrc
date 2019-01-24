@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2019/01/18 14:43:59 tnn Exp $
+# $NetBSD: Makefile,v 1.15 2019/01/19 23:21:43 tnn Exp $
 
 DISTNAME=	mesa-18.3.2
 PKGNAME=	${DISTNAME:S/mesa/MesaLib/}
@@ -87,23 +87,15 @@ CFLAGS.NetBSD+=		-Dalloca=__builtin_alloca
 CXXFLAGS.NetBSD+=	-Dalloca=__builtin_alloca
 
 pre-configure:
+	touch ${WRKSRC}/src/glx/apple_dummy.cpp
 	cd ${WRKSRC} && autoreconf -vif
-# Manual patch for FDO bug 90311. Don't apply if not on Darwin as there could
-# be side effects.
-.if ${OPSYS} == "Darwin"
-pre-configure: ${WRKDIR}/.manual_patch_done
-${WRKDIR}/.manual_patch_done:
-	cd ${WRKSRC} && ${TOOLS_PATCH} -z .manual -p0 < ${FILESDIR}/patch-manual_fdo90311
-	touch ${WRKSRC}/src/glx/dummy.cpp
-	touch ${.TARGET}
-.endif
 
 DRIRC_DIR=		${PKG_SYSCONFDIR}/drirc.d
 EGDIR=			${PREFIX}/share/examples/mesa
 OWN_DIRS+=		${DRIRC_DIR}
 INSTALLATION_DIRS+=	${EGDIR}
 CONF_FILES+=		${EGDIR}/00-mesa-defaults.conf	\
-	${DRIRC_DIR}/00-mesa-defaults.conf
+			  ${DRIRC_DIR}/00-mesa-defaults.conf
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/src/util/00-mesa-defaults.conf ${DESTDIR}${EGDIR}

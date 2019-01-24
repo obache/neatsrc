@@ -1,4 +1,4 @@
-# $NetBSD: replace.mk,v 1.18 2016/04/10 15:58:02 joerg Exp $
+# $NetBSD: replace.mk,v 1.19 2019/01/22 14:29:44 roy Exp $
 #
 # Public targets:
 #
@@ -24,6 +24,7 @@
 
 _PRE_REPLACE_TARGETS+=	stage-package-create
 _PRE_REPLACE_TARGETS+=	replace-message
+_PRE_REPLACE_TARGETS+=	replace-names
 _PRE_REPLACE_TARGETS+=	unprivileged-install-hook
 .if ${_CREATE_BIN_PKGS} == "yes"
 _POST_REPLACE_TARGETS+=	package
