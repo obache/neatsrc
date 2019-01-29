@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.75 2019/01/12 21:18:16 leot Exp $
+@comment $NetBSD: PLIST,v 1.77 2019/01/27 15:42:00 leot Exp $
 bin/youtube-dl
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
@@ -830,6 +830,9 @@ ${PYSITELIB}/youtube_dl/extractor/hitbox.pyo
 ${PYSITELIB}/youtube_dl/extractor/hitrecord.py
 ${PYSITELIB}/youtube_dl/extractor/hitrecord.pyc
 ${PYSITELIB}/youtube_dl/extractor/hitrecord.pyo
+${PYSITELIB}/youtube_dl/extractor/hketv.py
+${PYSITELIB}/youtube_dl/extractor/hketv.pyc
+${PYSITELIB}/youtube_dl/extractor/hketv.pyo
 ${PYSITELIB}/youtube_dl/extractor/hornbunny.py
 ${PYSITELIB}/youtube_dl/extractor/hornbunny.pyc
 ${PYSITELIB}/youtube_dl/extractor/hornbunny.pyo
@@ -2258,6 +2261,9 @@ ${PYSITELIB}/youtube_dl/extractor/vyborymos.pyo
 ${PYSITELIB}/youtube_dl/extractor/vzaar.py
 ${PYSITELIB}/youtube_dl/extractor/vzaar.pyc
 ${PYSITELIB}/youtube_dl/extractor/vzaar.pyo
+${PYSITELIB}/youtube_dl/extractor/wakanim.py
+${PYSITELIB}/youtube_dl/extractor/wakanim.pyc
+${PYSITELIB}/youtube_dl/extractor/wakanim.pyo
 ${PYSITELIB}/youtube_dl/extractor/walla.py
 ${PYSITELIB}/youtube_dl/extractor/walla.pyc
 ${PYSITELIB}/youtube_dl/extractor/walla.pyo

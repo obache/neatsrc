@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.721 2019/01/22 11:54:19 markd Exp $
+# $NetBSD: Makefile,v 1.724 2019/01/27 13:25:38 jperkin Exp $
 #
 
 COMMENT=	Desktop publishing
@@ -400,6 +400,8 @@ SUBDIR+=	tex-cnbwp
 SUBDIR+=	tex-cnbwp-doc
 SUBDIR+=	tex-collectbox
 SUBDIR+=	tex-collectbox-doc
+SUBDIR+=	tex-colorprofiles
+SUBDIR+=	tex-colorprofiles-doc
 SUBDIR+=	tex-colortbl
 SUBDIR+=	tex-colortbl-doc
 SUBDIR+=	tex-comment
@@ -508,6 +510,7 @@ SUBDIR+=	tex-datetime
 SUBDIR+=	tex-datetime-doc
 SUBDIR+=	tex-dblfloatfix
 SUBDIR+=	tex-dblfloatfix-doc
+SUBDIR+=	tex-dehyph
 SUBDIR+=	tex-dehyph-exptl
 SUBDIR+=	tex-dehyph-exptl-doc
 SUBDIR+=	tex-dhua
@@ -568,10 +571,10 @@ SUBDIR+=	tex-etex
 SUBDIR+=	tex-etex-doc
 SUBDIR+=	tex-etex-pkg
 SUBDIR+=	tex-etex-pkg-doc
-SUBDIR+=	tex-etoc
-SUBDIR+=	tex-etoc-doc
 SUBDIR+=	tex-ethiop
 SUBDIR+=	tex-ethiop-doc
+SUBDIR+=	tex-etoc
+SUBDIR+=	tex-etoc-doc
 SUBDIR+=	tex-etoolbox-de-doc
 SUBDIR+=	tex-euler
 SUBDIR+=	tex-euler-doc

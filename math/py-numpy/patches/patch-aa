@@ -1,8 +1,11 @@
-$NetBSD: patch-aa,v 1.5 2016/07/24 15:25:22 kamil Exp $
+$NetBSD: patch-aa,v 1.6 2019/01/24 22:27:10 maya Exp $
 
 Recognize g95
 
---- numpy/distutils/fcompiler/__init__.py.orig	2019-01-05 06:25:48.000000000 +0000
+Backport upstream commit (fixes hang):
+https://github.com/numpy/numpy/commit/5aa8b84aca5fda0438c4357d7d17ae4fcc926a46
+
+--- numpy/distutils/fcompiler/__init__.py.orig	2013-04-07 05:04:05.000000000 +0000
 +++ numpy/distutils/fcompiler/__init__.py
 @@ -466,10 +466,8 @@ class FCompiler(CCompiler):
          noarch = self.distutils_vars.get('noarch', noopt)

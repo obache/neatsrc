@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2019/01/22 12:45:08 markd Exp $
+# $NetBSD: Makefile,v 1.4 2019/01/24 11:58:02 markd Exp $
 
 DISTNAME=	mathalfa
 PKGNAME=	tex-${DISTNAME}-1.10
