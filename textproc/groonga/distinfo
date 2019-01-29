@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.44 2017/08/29 13:35:54 fhajny Exp $
 
-SHA1 (groonga-8.1.0.tar.gz) = 535e6591fe07f061b994dc8fe904c44032a021e5
-RMD160 (groonga-8.1.0.tar.gz) = d7f078c6c3c6cff9652928a3a2472c896f9119cc
-SHA512 (groonga-8.1.0.tar.gz) = 67f828089a11752ba3c6d063ecfd4f853a0da4c1ff2034932595b3113d00d999830991a23ece591950653e4de2a13731d755ce2cab19be275e35ff841419f8f0
-Size (groonga-8.1.0.tar.gz) = 15303966 bytes
+SHA1 (groonga-8.1.1.tar.gz) = 8a7dc9bc0ffd7cae27ceeba6c2d9c7bea389aea2
+RMD160 (groonga-8.1.1.tar.gz) = 54e57193f3814cc28851cc789bbd3c8e71f97450
+SHA512 (groonga-8.1.1.tar.gz) = 205fd59c39b3cc8de8c3e7d5f6976b6d69eb97081e327b574ba03a6449e709bbddc53df5fc0baca87ac77578cecd57dda56cbc00cc432bb7e6db0819fcf01a5c
+Size (groonga-8.1.1.tar.gz) = 15381006 bytes
