@@ -39,7 +39,7 @@ MASTER_SITE_OSDN+=	\
 	http://osdn.dl.osdn.jp/
 
 MASTER_SITE_PERL_CPAN+= \
-	https://cpan.perl.org/CPAN/modules/by-module/ \
+	http://www.cpan.org/modules/by-module/ \
 	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/ \
 	http://ftp.cpan.org/pub/CPAN/modules/by-module/
 
