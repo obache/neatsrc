@@ -11,8 +11,6 @@ HOMEPAGE=	http://search.cpan.org/dist/Parse-Dia-SQL
 COMMENT=	Perl module to convert Dia diagrams to SQL
 LICENSE=	gnu-gpl-v2 OR gnu-gpl-v3
 
-BUILD_DEPENDS+= p5-CPAN-Meta-[0-9]*:../../devel/p5-CPAN-Meta
-
 DEPENDS+=	p5-Log-Log4perl-[0-9]*:../../devel/p5-Log-Log4perl
 DEPENDS+=	p5-Test-Exception-[0-9]*:../../devel/p5-Test-Exception
 DEPENDS+=	p5-Text-Table-[0-9]*:../../textproc/p5-Text-Table
