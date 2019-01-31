@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=	onigmo-6.1.3
+DISTNAME=	onigmo-6.2.0
 CATEGORIES=	textproc
 MASTER_SITES=	https://github.com/k-takata/Onigmo/releases/download/Onigmo-${PKGVERSION_NOREV}/
 
