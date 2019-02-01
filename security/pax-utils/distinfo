@@ -1,0 +1,7 @@
+$NetBSD$
+
+SHA1 (pax-utils-1.2.4.tar.xz) = 1c1921876ebac42babc5c72d54f216cf276b5ef4
+RMD160 (pax-utils-1.2.4.tar.xz) = f1ea507004145a81c4cddfb036d4e008122efcd4
+SHA512 (pax-utils-1.2.4.tar.xz) = 03b84054c59e8ce64d2c07276c61245c8e9b3eca2fc430269531e2dafe120009b541ebb6adc4ff54c13a1da63caf0755fb026ba272cf17d04f75e06b893a3e95
+Size (pax-utils-1.2.4.tar.xz) = 665648 bytes
+SHA1 (patch-porting.h) = 342efc7587726d17aa8ba9f37bc641826962bf09

@@ -1,0 +1,11 @@
+@comment $NetBSD$
+bin/dumpelf
+bin/lddtree
+bin/pspax
+bin/scanelf
+bin/scanmacho
+bin/symtree
+man/man1/dumpelf.1
+man/man1/pspax.1
+man/man1/scanelf.1
+man/man1/scanmacho.1
