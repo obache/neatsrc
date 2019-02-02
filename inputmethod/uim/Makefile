@@ -19,6 +19,8 @@ CONFIGURE_ARGS+=	--disable-emacs
 CONFIGURE_ARGS+=	--with-libgcroots=installed
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE}
 
+BUILDLINK_TRANSFORM+=	rm:-fno-strict-aliasing
+
 LDFLAGS.SunOS+=	-mimpure-text
 CFLAGS.SunOS+=	-D__EXTENSIONS__
 
