@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.724 2019/01/27 13:25:38 jperkin Exp $
+# $NetBSD: Makefile,v 1.726 2019/02/02 02:49:43 markd Exp $
 #
 
 COMMENT=	Desktop publishing
@@ -313,6 +313,8 @@ SUBDIR+=	tex-bibtopic
 SUBDIR+=	tex-bibtopic-doc
 SUBDIR+=	tex-bibunits
 SUBDIR+=	tex-bibunits-doc
+SUBDIR+=	tex-bigfoot
+SUBDIR+=	tex-bigfoot-doc
 SUBDIR+=	tex-blindtext
 SUBDIR+=	tex-blindtext-doc
 SUBDIR+=	tex-blkarray
@@ -796,6 +798,8 @@ SUBDIR+=	tex-js-misc-doc
 SUBDIR+=	tex-jsclasses
 SUBDIR+=	tex-jurabib
 SUBDIR+=	tex-jurabib-doc
+SUBDIR+=	tex-keycommand
+SUBDIR+=	tex-keycommand-doc
 SUBDIR+=	tex-kix
 SUBDIR+=	tex-kix-doc
 SUBDIR+=	tex-knuth-doc
@@ -1138,6 +1142,8 @@ SUBDIR+=	tex-section-doc
 SUBDIR+=	tex-sectsty
 SUBDIR+=	tex-sectsty-doc
 SUBDIR+=	tex-selectp
+SUBDIR+=	tex-semantic
+SUBDIR+=	tex-semantic-doc
 SUBDIR+=	tex-seminar
 SUBDIR+=	tex-seminar-doc
 SUBDIR+=	tex-sepnum
@@ -1236,6 +1242,8 @@ SUBDIR+=	tex-tex4ht-doc
 SUBDIR+=	tex-texbytopic-doc
 SUBDIR+=	tex-texdoc
 SUBDIR+=	tex-texdoc-doc
+SUBDIR+=	tex-texdoctk
+SUBDIR+=	tex-texdoctk-doc
 SUBDIR+=	tex-texinfo
 SUBDIR+=	tex-texlive-common-doc
 SUBDIR+=	tex-texlive-docindex

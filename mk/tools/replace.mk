@@ -1,4 +1,4 @@
-# $NetBSD: replace.mk,v 1.285 2018/10/17 08:22:19 jperkin Exp $
+# $NetBSD: replace.mk,v 1.286 2019/01/29 22:41:00 leot Exp $
 #
 # Copyright (c) 2005 The NetBSD Foundation, Inc.
 # All rights reserved.

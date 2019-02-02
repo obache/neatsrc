@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2769 2019/01/26 08:10:11 wen Exp $
+# $NetBSD: Makefile,v 1.2772 2019/02/01 16:30:54 mgorny Exp $
 #
 
 COMMENT=	Development utilities
@@ -707,6 +707,7 @@ SUBDIR+=	libxenserver
 SUBDIR+=	libzen
 SUBDIR+=	libzookeeper
 SUBDIR+=	linenoise
+SUBDIR+=	lld
 SUBDIR+=	lldb
 SUBDIR+=	lmdbg
 SUBDIR+=	locktests
@@ -719,6 +720,7 @@ SUBDIR+=	lua-BitOp
 SUBDIR+=	lua-alt-getopt
 SUBDIR+=	lua-bitlib
 SUBDIR+=	lua-coxpcall
+SUBDIR+=	lua-cqueues
 SUBDIR+=	lua-filesystem
 SUBDIR+=	lua-gi
 SUBDIR+=	lua-ljsyscall
@@ -831,6 +833,7 @@ SUBDIR+=	ocaml-ppxlib
 SUBDIR+=	ocaml-re
 SUBDIR+=	ocaml-react
 SUBDIR+=	ocaml-reactiveData
+SUBDIR+=	ocaml-resource-pooling
 SUBDIR+=	ocaml-result
 SUBDIR+=	ocaml-sexplib
 SUBDIR+=	ocaml-sexplib0
