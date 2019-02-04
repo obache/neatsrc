@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (TracAccountManager-0.4.4.tar.gz) = 07564289a0644111e5323a5528f0ecaca53c251e
-RMD160 (TracAccountManager-0.4.4.tar.gz) = 4c4380c4908fe6b844cf0d808daad7481965fd99
-SHA512 (TracAccountManager-0.4.4.tar.gz) = 622e011c5cd956c3e32fe578b60d0cc060b109893a6bbd5ea12dea36373a9a47a8a226ae6a297d69a22f9d1d1deae686ccdf2258623877ee794febb99c9a99e4
-Size (TracAccountManager-0.4.4.tar.gz) = 157666 bytes
+SHA1 (TracAccountManager-0.5.0.tar.gz) = 80f61ef97f8aebc2b354ed356838608876a645b7
+RMD160 (TracAccountManager-0.5.0.tar.gz) = 301dfe5fea5e56dad7bb0c37b5d3523a36a3c0fd
+SHA512 (TracAccountManager-0.5.0.tar.gz) = 6a6edf9b2c581638a0d5e34584e8457887c56c24721495d1b3c8e453adea53de5065f5941718c6554048bb42e6377064da19e4b4846618b7e10e669deb9eb30d
+Size (TracAccountManager-0.5.0.tar.gz) = 360258 bytes
