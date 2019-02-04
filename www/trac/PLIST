@@ -801,6 +801,7 @@ share/examples/trac/appveyor.ps1
 share/examples/trac/bugzilla2trac.py
 share/examples/trac/cgi-bin/trac.cgi
 share/examples/trac/cgi-bin/trac.fcgi
+share/examples/trac/checksum.py
 share/examples/trac/checkwiki.py
 share/examples/trac/emailfilter.py
 share/examples/trac/htdigest.py
@@ -809,6 +810,7 @@ share/examples/trac/l10n_diff_index.py
 share/examples/trac/l10n_reset_en_GB.py
 share/examples/trac/l10n_revert_lineno_conflicts.py
 share/examples/trac/make_status.py
+share/examples/trac/merge_catalog.py
 share/examples/trac/migrateticketmodel.py
 share/examples/trac/sourceforge2trac.py
 share/examples/trac/trac-pre-commit-hook
