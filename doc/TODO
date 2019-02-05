@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.18779 2019/02/01 14:04:08 tnn Exp $
+$NetBSD: TODO,v 1.18785 2019/02/04 19:37:27 leot Exp $
 
 Suggested new packages
 ======================
@@ -449,6 +449,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o bzr-svn-1.2.2
 	o bzrtools-2.6.0
 	o c4-1.10
+	o caff-2.8
 	o cal3d-0.11.0
 	o calc-2.11.10.1
 	o calcoo-2.1.0
@@ -458,6 +459,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o catdoc-1.1
 	o catdoc-tk-1.1
 	o cbindgen-0.7.1
+	o cc65-2.17
 	o cddbd-1.5.2
 	o cdk-5.0.20120323
 	o cdrkit-1.1.10
@@ -742,7 +744,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gssdp-1.0.3
 	o gst-plugins1-omx-1.10.0
 	o gthumb-3.4.0
-	o gtk3-3.24.4
 	o gtkglarea-2.1.0
 	o gtklevel9-5.1
 	o gtkmagnetic-23
@@ -760,6 +761,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o hamster-applet-2.32.1 [GNOME 2.32]
 	o handbrake-1.1.0
 	o hanzim-3.5
+	o harfbuzz-2.3.1
 	o harminv-1.4
 	o haskell-mode-13.20
 	o hdevtools-0.1.3.0
@@ -913,6 +915,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libgee-0.20.0
 	o libgfshare-2.0.0
 	o libgiigic-1.1.2
+	o libgit2-0.27.8
 	o libgnomedb-3.1.2
 	o libgnomekbd-3.4.0.2
 	o libgphoto2-2.5.16
@@ -988,6 +991,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mcollective-2.3.2
 	o mcsim-5.6.5
 	o mecab-ipadic-2.7.0.20070801
+	o mednafen-1.22.1
 	o meld-3.20.0
 	o memached-1.5.6
 	o mergeant-0.67
@@ -1019,10 +1023,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mono2-4.0.4.1
 	o monodevelop-5.10.1.6
 	o mopher-0.6.0
-	o moreutils-0.63
 	o moserial-2.30.0 [GNOME 2.30]
 	o mousetweaks-3.12.0 [wip]
 	o mpdas-0.4.1
+	o mpfr-4.0.2
 	o mserv-devel-0.41
 	o multitail-6.4.2
 	o munin-doc-1.4.6
@@ -1030,7 +1034,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o munin-server-1.4.6
 	o muse-0.9.2
 	o myodbc-5.3.4
-	o mysql-server-8.0.13
+	o mysql-server-5.6.43
+	o mysql-server-5.7.25
+	o mysql-server-8.0.14
 	o mysql-workbench-6.3
 	o nant-0.92
 	o nap-1.5.3
@@ -1043,6 +1049,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o netio-1.32
 	o netramet-50
 	o newmail-1.0.2
+	o ninja-build-1.9.0
+	o notmuch-0.28.1
 	o ns-3.14.1
 	o ns-plugger-common-5.1.3
 	o ntop-5.0
@@ -1160,12 +1168,13 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-ephem3-3.7.6.0
 	o py-gnome-menus-3.8.0
 	o py-gobject3-3.30.4
-	o py-google-api-python-client-1.7.7
+	o py-google-api-python-client-1.7.8
 	o py-hgview-1.9.0
 	o py-hsm-1.1.1
 	o py-input-pad-1.4.2
 	o py-keybinder-0.3.1
 	o py-mechanize-0.4.0
+	o py-mercurial-4.9
 	o py-musicbrainz-0.7.4
 	o py-newt-0.52.20
 	o py-omniORBpy-3.7
@@ -1173,6 +1182,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-ptt-1.10.2
 	o py-pycountry-1.20
 	o py-pygit2-0.27.4
+	o py-requests-toolbelt-0.9.1
 	o py-simpletal-5.1
 	o py-spf-2.0.12t
 	o py-sybase-0.37
@@ -1219,10 +1229,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o rtcw-1.41.3
 	o rtty-4.0 [at ftp://ftp.isc.org/isc/rtty/]
 	o rubber-1.4
-	o ruby-2.6.0
 	o ruby-jquery-rails-4.2.1
-	o ruby-redmine-3.3.7
-	o ruby-redmine-3.4.5
+	o ruby-redmine-3.3.9
+	o ruby-redmine-3.4.8
+	o ruby-redmine-4.0.1
 	o ruby-review-1.4.0 [wip]
 	o rump-20131213
 	o sabayon-2.30.1 [GNOME 2.30]
@@ -1342,7 +1352,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o tomboy-1.10.2
 	o top-3.8beta1
 	o topgit-0.8
-	o tor-browser-8.0.4
+	o tor-browser-8.0.5
 	o totem-3.14.1
 	o totem-pl-parser-3.10.3
 	o tripwire-2.3.1 [see also pkg/22362]
@@ -1410,6 +1420,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o xerces-j-2.9.0
 	o xf86-video-geode-2.11.9 [wip]
 	o xf86-video-glide-1.2.2
+	o xf86-video-nouveau-1.0.16
 	o xf86-video-sisusb-0.9.4
 	o xfe-1.42 [pkg/52968]
 	o xforms-1.2.4
@@ -1418,6 +1429,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o xhippo-3.5
 	o xine-1.2.3
 	o xjman-0.7
+	o xkeyboard-config-2.26
 	o xli-2006.11.10
 	o xlockmore-5.55
 	o xmake-2.0.5

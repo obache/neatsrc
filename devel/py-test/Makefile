@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.71 2019/02/01 11:52:22 adam Exp $
+# $NetBSD: Makefile,v 1.72 2019/02/03 11:07:39 leot Exp $
 
 DISTNAME=	pytest-4.2.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
