@@ -12,7 +12,7 @@ name="nlnsd"
 rcvar=${name}
 
 command=@PREFIX@/sbin/nsd
-pidfile=/var/run/nsd/nsd.pid
+pidfile=@VARBASE@/run/nsd/nsd.pid
 required_files="@PKG_SYSCONFDIR@/nsd.conf"
 start_precmd="nsd_precmd"
 extra_commands="reload"
