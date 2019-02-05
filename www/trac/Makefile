@@ -1,9 +1,9 @@
 # $NetBSD: Makefile,v 1.83 2018/07/03 05:03:41 adam Exp $
 
-DISTNAME=	Trac-1.0.17
+DISTNAME=	Trac-1.2.3
 PKGNAME=	${DISTNAME:tl}
 CATEGORIES=	devel www
-MASTER_SITES=	http://ftp.edgewall.org/pub/trac/
+MASTER_SITES=	https://download.edgewall.org/trac/
 
 MAINTAINER=	gdt@NetBSD.org
 HOMEPAGE=	http://trac.edgewall.org/
@@ -18,7 +18,7 @@ LICENSE=	modified-bsd
 # not depend on svn or git to avoid installing them for trac installs
 # that use the other.
 
-DEPENDS+=	${PYPKGPREFIX}-setuptools>=0.6b1:../../devel/py-setuptools
+DEPENDS+=	${PYPKGPREFIX}-setuptools>=0.6:../../devel/py-setuptools
 DEPENDS+=	${PYPKGPREFIX}-genshi>=0.6:../../www/py-genshi
 
 USE_TOOLS+=	pax
@@ -26,7 +26,8 @@ USE_TOOLS+=	pax
 # The Trac 1.0 series does not support python 3.
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37
 
-REPLACE_PYTHON=	contrib/cgi-bin/trac.* contrib/*.py contrib/*-hook
+REPLACE_PYTHON=		contrib/*.py contrib/*-hook
+REPLACE_PYTHON=		contrib/workflow/*.py
 REPLACE_PYTHON+=	trac/tests/functional/*.py
 .include "../../lang/python/application.mk"
 
@@ -35,8 +36,6 @@ CGIBINDIR=	${PREFIX}/libexec/trac
 
 post-install:
 	${INSTALL_DATA_DIR} ${DESTDIR}${EGDIR}
-	${INSTALL_PROGRAM_DIR} ${DESTDIR}${CGIBINDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/contrib/cgi-bin/trac.* ${DESTDIR}${CGIBINDIR}
 	cd ${WRKSRC}/contrib && pax -rwppm -s ',./rpm/.*$$,,' -s ',./rpm$$,,' \
 		. ${DESTDIR}${EGDIR}
 
