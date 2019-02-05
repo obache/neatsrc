@@ -1,8 +1,8 @@
 $NetBSD$
 
-SHA1 (mod_wsgi-4.5.24.tar.gz) = aa79e6ba516902c667e989b2b22a193929264029
-RMD160 (mod_wsgi-4.5.24.tar.gz) = 5e08e31b4c5cdf874d8bd96dc84ca9755faadf83
-SHA512 (mod_wsgi-4.5.24.tar.gz) = ad61c4e3c807297eedb6640c2b309c621fcc2eb5b2f23aa52e0d0ef418b3f13dd4f5a688bd368b4b41839396c5791e17bd266a19b5690975bef1d6acf81b4ac6
-Size (mod_wsgi-4.5.24.tar.gz) = 2551779 bytes
+SHA1 (mod_wsgi-4.6.5.tar.gz) = 90528c8986c65360ac31a28cc8a6047aca4bd2f3
+RMD160 (mod_wsgi-4.6.5.tar.gz) = 7d9b99dd26c8370b88ddf0fff921926ca331e4bc
+SHA512 (mod_wsgi-4.6.5.tar.gz) = f09e342cec1e0ba531bf504feaf9544465dab8095aad796d7397e74cbdc1e43c2026d45bdeffc9d7f4f40986e2a5a11abdcc3476ad05edcb61b76f83445784f6
+Size (mod_wsgi-4.6.5.tar.gz) = 490018 bytes
 SHA1 (patch-configure) = 5f86388a93709e3c207fb3ac29493711aa3b7288
 SHA1 (patch-configure.ac) = 4eda6d4b322e192ce5c83e13d9c5710a29be1d1a
