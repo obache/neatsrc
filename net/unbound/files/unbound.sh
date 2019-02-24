@@ -2,8 +2,9 @@
 #
 # $NetBSD: unbound.sh,v 1.5 2015/12/28 13:48:30 bsiegert Exp $
 #
-# PROVIDE: unbound
-# REQUIRE: DAEMON
+# PROVIDE: unbound named
+# REQUIRE: NETWORKING
+# BEFORE: DAEMON
 #
 
 . /etc/rc.subr
