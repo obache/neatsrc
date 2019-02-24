@@ -3,7 +3,8 @@
 # $NetBSD: nlnsd.sh,v 1.1 2019/01/29 14:54:03 ryoon Exp $
 #
 # PROVIDE: nlnsd
-# REQUIRE: DAEMON
+# REQUIRE: NETWORKING SERVERS
+# BEFORE: DAEMON
 #
 
 . /etc/rc.subr
