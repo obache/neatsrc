@@ -4,6 +4,7 @@ import (
 	"netbsd.org/pkglint/regex"
 	"os"
 	"path"
+	"path/filepath"
 	"strconv"
 	"strings"
 )
@@ -298,9 +299,6 @@ func (ck MkLineChecker) checkVarassignLeftPermissions() {
 	op := mkline.Op()
 	vartype := G.Pkgsrc.VariableType(varname)
 	if vartype == nil {
-		if trace.Tracing {
-			trace.Step1("No type definition found for %q.", varname)
-		}
 		return
 	}
 
@@ -308,7 +306,7 @@ func (ck MkLineChecker) checkVarassignLeftPermissions() {
 
 	// E.g. USE_TOOLS:= ${USE_TOOLS:Nunwanted-tool}
 	if op == opAssignEval && perms&aclpAppend != 0 {
-		tokens := mkline.ValueTokens()
+		tokens, _ := mkline.ValueTokens()
 		if len(tokens) == 1 && tokens[0].Varuse != nil && tokens[0].Varuse.varname == varname {
 			return
 		}
@@ -424,7 +422,7 @@ func (ck MkLineChecker) CheckVaruse(varuse *MkVarUse, vuc *VarUseContext) {
 
 	if G.Opts.WarnQuoting && vuc.quoting != VucQuotUnknown && needsQuoting != unknown {
 		// FIXME: Why "Shellword" when there's no indication that this is actually a shell type?
-		// It's for splitting the value into tokens, taking "double" and 'single' quotes into account.
+		//  It's for splitting the value into tokens, taking "double" and 'single' quotes into account.
 		ck.CheckVaruseShellword(varname, vartype, vuc, varuse.Mod(), needsQuoting)
 	}
 
@@ -563,15 +561,8 @@ func (ck MkLineChecker) checkVarusePermissions(varname string, vartype *Vartype,
 			if !tool.UsableAtLoadTime(G.Mk.Tools.SeenPrefs) {
 				ck.warnVaruseToolLoadTime(varname, tool)
 			}
-
 		} else {
-			// Might the variable be used indirectly at load time, for example
-			// by assigning it to another variable which then gets evaluated?
-			isIndirect := vuc.time != vucTimeParse && // Otherwise it would be directly.
-				// The context might be used at load time somewhere.
-				vuc.vartype != nil && vuc.vartype.Union().Contains(aclpUseLoadtime)
-
-			ck.warnVaruseLoadTime(varname, isIndirect)
+			ck.warnVaruseLoadTime(varname, indirectly)
 		}
 	}
 
@@ -596,11 +587,11 @@ func (ck MkLineChecker) checkVarusePermissions(varname string, vartype *Vartype,
 // may not be used at load time.
 func (ck MkLineChecker) warnVaruseToolLoadTime(varname string, tool *Tool) {
 	// TODO: While using a tool by its variable name may be ok at load time,
-	// doing the same with the plain name of a tool is never ok.
-	// "VAR!= cat" is never guaranteed to call the correct cat.
-	// Even for shell builtins like echo and printf, bmake may decide
-	// to skip the shell and execute the commands via execve, which
-	// means that even echo is not a shell-builtin anymore.
+	//  doing the same with the plain name of a tool is never ok.
+	//  "VAR!= cat" is never guaranteed to call the correct cat.
+	//  Even for shell builtins like echo and printf, bmake may decide
+	//  to skip the shell and execute the commands via execve, which
+	//  means that even echo is not a shell-builtin anymore.
 
 	// TODO: Replace "parse time" with "load time" everywhere.
 
@@ -1051,10 +1042,6 @@ func (ck MkLineChecker) checkVartype(varname string, op MkOperator, value, comme
 		defer trace.Call(varname, op, value, comment)()
 	}
 
-	if !G.Opts.WarnTypes {
-		return
-	}
-
 	mkline := ck.MkLine
 	vartype := G.Pkgsrc.VariableType(varname)
 
@@ -1191,6 +1178,7 @@ func (ck MkLineChecker) checkDirectiveCond() {
 
 	cond.Walk(&MkCondCallback{
 		Empty:         ck.checkDirectiveCondEmpty,
+		Var:           ck.checkDirectiveCondEmpty,
 		CompareVarStr: checkCompareVarStr,
 		VarUse:        checkVarUse})
 }
@@ -1298,11 +1286,11 @@ func (ck MkLineChecker) CheckRelativePath(relativePath string, mustExist bool) {
 	}
 
 	abs := resolvedPath
-	if !hasPrefix(abs, "/") {
+	if !filepath.IsAbs(abs) {
 		abs = path.Dir(mkline.Filename) + "/" + abs
 	}
 	if _, err := os.Stat(abs); err != nil {
-		if mustExist {
+		if mustExist && !(G.Mk != nil && G.Mk.indentation.IsCheckedFile(resolvedPath)) {
 			mkline.Errorf("Relative path %q does not exist.", resolvedPath)
 		}
 		return

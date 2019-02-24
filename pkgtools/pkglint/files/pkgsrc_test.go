@@ -161,7 +161,7 @@ func (s *Suite) Test_Pkgsrc_loadTools__BUILD_DEFS(c *check.C) {
 	c.Check(G.Pkgsrc.IsBuildDef("VARBASE"), equals, false)
 
 	// FIXME: There should be a warning for VARBASE, but G.Pkgsrc.UserDefinedVars
-	// does not contain anything at mklinechecker.go:/UserDefinedVars/.
+	//  does not contain anything at mklinechecker.go:/UserDefinedVars/.
 }
 
 func (s *Suite) Test_Pkgsrc_loadDocChanges__not_found(c *check.C) {
@@ -433,6 +433,50 @@ func (s *Suite) Test_Pkgsrc_ListVersions__postgresql(c *check.C) {
 		"postgresql97",
 		"postgresql10",
 		"postgresql11"})
+}
+
+func (s *Suite) Test_Pkgsrc_ListVersions__ensure_transitive(c *check.C) {
+	names := []string{
+		"base",
+		"base0",
+		"base000",
+		"base-client",
+		"base1",
+		"base01",
+		"base-client1",
+		"base5",
+		"base10"}
+
+	keys := make(map[string]int)
+	for _, name := range names {
+		if m, _, versionStr := match2(name, `^(\D+)(\d+)$`); m {
+			keys[name] = toInt(versionStr, 0)
+		}
+	}
+
+	less := func(a, b string) bool {
+		if keyI, keyJ := keys[a], keys[b]; keyI != keyJ {
+			return keyI < keyJ
+		}
+		return naturalLess(a, b)
+	}
+
+	test := func(i int, j int) {
+		actual := less(names[i], names[j])
+		expected := i < j
+		if actual != expected {
+			c.Check(
+				[]interface{}{names[i], ifelseStr(actual, "<", "!<"), names[j]},
+				check.DeepEquals,
+				[]interface{}{names[i], ifelseStr(expected, "<", "!<"), names[j]})
+		}
+	}
+
+	for i := range names {
+		for j := range names {
+			test(i, j)
+		}
+	}
 }
 
 func (s *Suite) Test_Pkgsrc_ListVersions__numeric_multiple_numbers(c *check.C) {

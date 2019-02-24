@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.90 2019/01/10 19:30:10 maya Exp $
+# $NetBSD: Makefile,v 1.92 2019/02/18 16:30:26 schmonz Exp $
 
 DISTNAME=		${IRSSI_DISTNAME}
 CATEGORIES=		chat
@@ -23,6 +23,11 @@ CONFIGURE_ARGS+=	--with-proxy \
 EGDIR=		${PREFIX}/share/examples/irssi
 CONF_FILES=	${EGDIR}/irssi.conf ${PKG_SYSCONFDIR}/irssi.conf
 
+OPSYSVARS+=		MODULEEXT
+MODULEEXT.Darwin=	bundle
+MODULEEXT.*=		so
+PLIST_SUBST+=		MODULEEXT=${MODULEEXT}
+
 INSTALL_MAKE_FLAGS+=	sysconfdir=${EGDIR}
 
 .include "options.mk"
@@ -31,6 +36,7 @@ INSTALL_MAKE_FLAGS+=	sysconfdir=${EGDIR}
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/irssi-config ${DESTDIR}${IRSSI_CONFIG}
 
+.include "../../security/openssl/buildlink3.mk"
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mk/terminfo.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

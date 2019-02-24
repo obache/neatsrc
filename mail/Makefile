@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.517 2019/01/22 06:14:58 plunky Exp $
+# $NetBSD: Makefile,v 1.520 2019/02/24 04:32:03 wen Exp $
 #
 
 COMMENT=	Electronic mail utilities
@@ -225,6 +225,8 @@ SUBDIR+=	p5-MIME-tools
 SUBDIR+=	p5-Mail-Alias
 SUBDIR+=	p5-Mail-Audit
 SUBDIR+=	p5-Mail-Box
+SUBDIR+=	p5-Mail-Box-IMPAP4
+SUBDIR+=	p5-Mail-Box-POP3
 SUBDIR+=	p5-Mail-ClamAV
 SUBDIR+=	p5-Mail-DKIM
 SUBDIR+=	p5-Mail-DeliveryStatus-BounceParser
@@ -242,6 +244,7 @@ SUBDIR+=	p5-Mail-SRS
 SUBDIR+=	p5-Mail-Sender
 SUBDIR+=	p5-Mail-Sender-Easy
 SUBDIR+=	p5-Mail-Sendmail
+SUBDIR+=	p5-Mail-Transport
 SUBDIR+=	p5-Mail-Webmail-Gmail
 SUBDIR+=	p5-MailTools
 SUBDIR+=	p5-Net-LMTP

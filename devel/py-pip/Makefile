@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.27 2019/01/24 08:29:39 adam Exp $
+# $NetBSD: Makefile,v 1.29 2019/02/21 08:32:21 adam Exp $
 
-DISTNAME=	pip-19.0.1
+DISTNAME=	pip-19.0.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pip/}
@@ -19,8 +19,6 @@ REPLACE_PYTHON+=	src/pip/_vendor/requests/certs.py
 
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && ${RM} -f pip pip[2-3]
-	cd ${DESTDIR}${PREFIX}/${PYSITELIB}/pip/_vendor && \
-		chmod -R go-w .
 
 # no tests included
 do-test:

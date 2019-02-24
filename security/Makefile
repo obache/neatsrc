@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.694 2019/01/18 04:44:28 tpaul Exp $
+# $NetBSD: Makefile,v 1.698 2019/02/23 20:33:16 triaxx Exp $
 #
 
 COMMENT=	Security tools
@@ -368,6 +368,7 @@ SUBDIR+=	php-ssh2
 SUBDIR+=	php-ssh2-0
 SUBDIR+=	php-suhosin
 SUBDIR+=	pinentry
+SUBDIR+=	pinentry-fltk
 SUBDIR+=	pinentry-gtk2
 SUBDIR+=	pinentry-mac
 SUBDIR+=	pinentry-qt4
@@ -404,6 +405,9 @@ SUBDIR+=	py-asyncssh
 SUBDIR+=	py-backports.ssl_match_hostname
 SUBDIR+=	py-bcrypt
 SUBDIR+=	py-certbot
+SUBDIR+=	py-certbot-apache
+SUBDIR+=	py-certbot-dns-luadns
+SUBDIR+=	py-certbot-dns-nsone
 SUBDIR+=	py-certbot-dns-ovh
 SUBDIR+=	py-certbot-dns-rfc2136
 SUBDIR+=	py-certbot-dns-route53
