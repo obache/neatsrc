@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.32 2018/12/13 19:51:48 adam Exp $
+# $NetBSD: Makefile,v 1.34 2019/02/25 09:21:36 jperkin Exp $
 
-DISTNAME=	libgit2-0.27.7
-PKGREVISION=	1
+DISTNAME=	libgit2-0.28.1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libgit2/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -12,8 +11,9 @@ COMMENT=	Portable, pure C implementation of the Git core methods
 LICENSE=	gnu-gpl-v2 # linking exception (linking allowed in more ways)
 
 EXTRACT_USING=	bsdtar
-USE_TOOLS+=	pkg-config
 USE_CMAKE=	yes
+USE_LANGUAGES=	c99
+USE_TOOLS+=	pkg-config
 
 PKGCONFIG_OVERRIDE+=	libgit2.pc.in
 

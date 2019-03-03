@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.160 2019/02/07 15:47:32 schmonz Exp $
+# $NetBSD: Makefile,v 1.162 2019/02/28 22:20:01 schmonz Exp $
 #
 
-DISTNAME=		ikiwiki_3.20190207.orig
+DISTNAME=		ikiwiki_3.20190228.orig
 PKGNAME=		${DISTNAME:S/_/-/:S/.orig//}
 CATEGORIES=		www textproc
 MASTER_SITES=		${MASTER_SITE_DEBIAN:=pool/main/i/ikiwiki/}
@@ -30,6 +30,7 @@ DEPENDS+=		p5-XML-RSS-[0-9]*:../../textproc/p5-XML-RSS
 DEPENDS+=		p5-File-MimeInfo-[0-9]*:../../devel/p5-File-MimeInfo
 DEPENDS+=		p5-gettext-[0-9]*:../../devel/p5-gettext
 DEPENDS+=		p5-YAML-LibYAML-[0-9]*:../../textproc/p5-YAML-LibYAML
+DEPENDS+=		p5-LWPx-ParanoidAgent-[0-9]*:../../www/p5-LWPx-ParanoidAgent
 
 WRKSRC=			${WRKDIR}/${PKGNAME_NOREV:S/ikiwiki-/IkiWiki-/}
 PERL5_PACKLIST=		auto/IkiWiki/.packlist

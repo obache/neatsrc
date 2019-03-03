@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1363 2019/02/22 21:24:19 leot Exp $
+# $NetBSD: Makefile,v 1.1368 2019/02/28 03:29:21 gutteridge Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -19,7 +19,6 @@ SUBDIR+=	ap-authnz-crowd
 SUBDIR+=	ap-mono
 SUBDIR+=	ap-php
 SUBDIR+=	ap-rpaf
-SUBDIR+=	ap-uwsgi
 SUBDIR+=	ap2-auth-mellon
 SUBDIR+=	ap2-encoding
 SUBDIR+=	ap2-fcgid
@@ -898,7 +897,10 @@ SUBDIR+=	ruby-rest-client
 SUBDIR+=	ruby-robots
 SUBDIR+=	ruby-rouge
 SUBDIR+=	ruby-sass
+SUBDIR+=	ruby-sass-listen
+SUBDIR+=	ruby-sass-rails
 SUBDIR+=	ruby-sass-rails32
+SUBDIR+=	ruby-sass34
 SUBDIR+=	ruby-sawyer
 SUBDIR+=	ruby-selenium-webdriver
 SUBDIR+=	ruby-sinatra

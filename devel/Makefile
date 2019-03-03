@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2776 2019/02/16 16:34:09 bsiegert Exp $
+# $NetBSD: Makefile,v 1.2778 2019/03/02 14:27:15 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -2243,6 +2243,7 @@ SUBDIR+=	py-pyobjc-framework-WebKit
 SUBDIR+=	py-pyobjc-framework-iTunesLibrary
 SUBDIR+=	py-pyobjc-framework-libdispatch
 SUBDIR+=	py-pyparsing
+SUBDIR+=	py-pyrsistent
 SUBDIR+=	py-pysha3
 SUBDIR+=	py-pysvn
 SUBDIR+=	py-pytemplate
@@ -2316,6 +2317,7 @@ SUBDIR+=	py-test-timeout
 SUBDIR+=	py-test-utils
 SUBDIR+=	py-test-virtualenv
 SUBDIR+=	py-test-xdist
+SUBDIR+=	py-test-xprocess
 SUBDIR+=	py-testpath
 SUBDIR+=	py-testrepository
 SUBDIR+=	py-testresources
