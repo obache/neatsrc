@@ -26,37 +26,18 @@ MAKEVARS+=	IS_BUILTIN.mDNSResponder
 .if !defined(BUILTIN_PKG.mDNSResponder) && \
     !empty(IS_BUILTIN.mDNSResponder:M[yY][eE][sS]) && \
     empty(H_DNSSD:M__nonexistent__)
-_BLTN_DNSSD_212_1!= \
-	${GREP} -c 2120100 ${H_DNSSD} || ${TRUE}
-_BLTN_DNSSD_214_3_2!= \
-	${GREP} -c 2140302 ${H_DNSSD} || ${TRUE}
-_BLTN_DNSSD_258_14!= \
-	${GREP} -c 2581400 ${H_DNSSD} || ${TRUE}
-_BLTN_DNSSD_320_5!= \
-	${GREP} -c 3200500 ${H_DNSSD} || ${TRUE}
-_BLTN_DNSSD_320_16!= \
-	${GREP} -c 3201600 ${H_DNSSD} || ${TRUE}
-_BLTN_DNSSD_878_1_1!= \
-	${GREP} -c 8780101 ${H_DNSSD} || ${TRUE}
-_BLTN_DNSSD_878_30_4!= \
-	${GREP} -c 8783004 ${H_DNSSD} || ${TRUE}
-.  if ${_BLTN_DNSSD_320_16} == "1"
-BUILTIN_VERSION.mDNSResponder=	320.16
-.  elif ${_BLTN_DNSSD_320_5} == "1"
-BUILTIN_VERSION.mDNSResponder=	320.5
-.  elif ${_BLTN_DNSSD_258_14} == "1"
-BUILTIN_VERSION.mDNSResponder=	258.14
-.  elif ${_BLTN_DNSSD_214_3_2} == "1"
-BUILTIN_VERSION.mDNSResponder=	214.3.2
-.  elif ${_BLTN_DNSSD_212_1} == "1"
-BUILTIN_VERSION.mDNSResponder=	212.1
-.  elif ${_BLTN_DNSSD_878_1_1} == "1"
-BUILTIN_VERSION.mDNSResponder=	878.1.1
-.  elif ${_BLTN_DNSSD_878_30_4} == "1"
-BUILTIN_VERSION.mDNSResponder=	878.30.4
-.  else
-BUILTIN_VERSION.mDNSResponder=	0 #unknown
-.  endif
+BUILTIN_VERSION.mDNSResponder!=						\
+	${AWK} 'BEGIN { version_str = "0"; }				\
+		/\#define[ 	]+_DNS_SD_H[ 	]+[0-9]+/ {		\
+			major = $$3 / 10000;				\
+			minor = ( $$3 % 10000 ) / 100;			\
+			teeny = $$3 % 100;				\
+			version_str = sprintf ( "%d.%d.%d",		\
+				 major, minor, teeny); 			\
+			exit 0;						\
+		}							\
+		END { print version_str; }				\
+	' ${H_DNSSD}
 BUILTIN_PKG.mDNSResponder=	mDNSResponder-${BUILTIN_VERSION.mDNSResponder}
 .endif
 
