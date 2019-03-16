@@ -1,8 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	cyrus-imapd-3.0.8
+DISTNAME=	cyrus-imapd-3.0.9
 CATEGORIES=	mail
-MASTER_SITES=	https://www.cyrusimap.org/releases/
+MASTER_SITES=	https://github.com/cyrusimap/cyrus-imapd/releases/download/${DISTNAME}/
+MASTER_SITES+=	https://www.cyrusimap.org/releases/
 MASTER_SITES+=	ftp://ftp.cyrusimap.org/cyrus-imapd/ 
 
 HOMEPAGE=	http://www.cyrusimap.org/
@@ -34,7 +35,6 @@ FILES_SUBST+=		CYRUS_GROUP=${CYRUS_GROUP}
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--libexecdir=${PREFIX}/libexec/cyrus
 CONFIGURE_ARGS+=	--with-cyrus-user=${CYRUS_USER}
-CONFIGURE_ARGS+=	--with-cyrus-group=${CYRUS_GROUP}
 CONFIGURE_ARGS+=	--with-pidfile=${VARBASE}/run/cyrus-master.pid
 CONFIGURE_ARGS+=	--with-openssl=${SSLBASE:Q}
 CONFIGURE_ARGS+=	--with-sasl=${BUILDLINK_PREFIX.cyrus-sasl}
