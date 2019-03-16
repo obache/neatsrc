@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.2 2018/07/07 21:17:02 joerg Exp $
+# $NetBSD: Makefile,v 1.4 2019/03/06 14:09:10 wiz Exp $
 
-DISTNAME=	hg-evolve-8.0.1
+DISTNAME=	hg-evolve-8.4.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	devel scm
 MASTER_SITES=	${MASTER_SITE_PYPI:=h/hg-evolve/}
 
@@ -13,10 +14,9 @@ LICENSE=	gnu-gpl-v2
 DEPENDS+=	${PYPKGPREFIX}-mercurial>=4.3.1:../../devel/py-mercurial
 
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # See Mercurial itself.
-PYDISTUTILSPKG=	YES
 
 post-install:
 	rm -f ${DESTDIR}${PREFIX}/${PYSITELIB}/hgext3rd/__init__.py*
 
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

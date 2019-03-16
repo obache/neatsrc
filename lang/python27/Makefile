@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.75 2018/09/28 11:01:37 adam Exp $
+# $NetBSD: Makefile,v 1.77 2019/03/05 12:43:40 adam Exp $
 
 .include "dist.mk"
 
 PKGNAME=	python27-${PY_DISTVERSION}
-PKGREVISION=	1
 CATEGORIES=	lang python
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -22,7 +21,7 @@ CONFIGURE_ARGS+=	--with-dbmliborder=ndbm:bdb
 CONFIGURE_ARGS+=	--with-system-ffi
 CONFIGURE_ARGS+=	--with-threads
 CONFIGURE_ENV+=		MKDIR_P=${MKDIR:Q}
-CONFIGURE_ENV+=		OPT=${CFLAGS:Q}
+CONFIGURE_ENV+=		OPT=${CFLAGS:M*:Q}
 PKGCONFIG_OVERRIDE+=	Misc/python.pc.in
 
 # $RANDOM usage there is fine
@@ -153,7 +152,7 @@ REPLACE_FILES.py27+=	Lib/smtpd.py
 REPLACE_FILES.py27+=	Lib/smtplib.py
 REPLACE_FILES.py27+=	Lib/symbol.py
 REPLACE_FILES.py27+=	Lib/tabnanny.py
-REPLACE_FILES.py27+=	Lib/test/bisect.py
+REPLACE_FILES.py27+=	Lib/test/bisect_cmd.py
 REPLACE_FILES.py27+=	Lib/test/curses_tests.py
 REPLACE_FILES.py27+=	Lib/test/re_tests.py
 REPLACE_FILES.py27+=	Lib/test/pystone.py
@@ -169,23 +168,16 @@ SUBST_STAGE.libffi=	pre-configure
 SUBST_FILES.libffi=	setup.py
 SUBST_SED.libffi=	-e 's,/usr/include/ffi,${BUILDLINK_PREFIX.libffi}/include,'
 
-SUBST_CLASSES+=		findlib
-SUBST_MESSAGE.findlib=	Fixing find_library_file on Darwin.
-SUBST_STAGE.findlib=	pre-configure
-SUBST_FILES.findlib=	Lib/distutils/unixccompiler.py
-SUBST_SED.findlib=	-e 's,/usr/local,${PREFIX},'
-
 # XXX: It might be needed to add manually more paths like ${PREFIX}/qt5/lib
-# Testing:
-# >>> from ctypes.util import find_library
-# >>> find_library("m")
-# 'libm.so.0'
-
-SUBST_CLASSES+=		pfindlib
-SUBST_MESSAGE.pfindlib=	Fixing find_library() on POSIX-like (excluding Darwin) systems.
-SUBST_STAGE.pfindlib=	pre-configure
-SUBST_FILES.pfindlib=	Lib/ctypes/util.py
-SUBST_SED.pfindlib=	-e 's!\(-Wl,-t -o\)!${COMPILER_RPATH_FLAG}${PREFIX}/lib -L${PREFIX}/lib \1!'
+# Test: python -c 'from ctypes.util import find_library; print(find_library("ffi"));'
+SUBST_CLASSES+=		findlib
+SUBST_MESSAGE.findlib=	Fixing find_library().
+SUBST_STAGE.findlib=	pre-configure
+SUBST_FILES.findlib=	Lib/ctypes/macholib/dyld.py
+SUBST_FILES.findlib+=	Lib/ctypes/util.py
+SUBST_FILES.findlib+=	Lib/distutils/unixccompiler.py
+SUBST_SED.findlib=	-e 's,/usr/local,${PREFIX},'
+SUBST_SED.findlib+=	-e 's!\(-Wl,-t -o\)!${COMPILER_RPATH_FLAG}${PREFIX}/lib -L${PREFIX}/lib \1!'
 
 .include "options.mk"
 
@@ -199,7 +191,7 @@ SUBST_CLASSES+=		cacert
 SUBST_MESSAGE.cacert=	Configuring location of default CA certificate file.
 SUBST_STAGE.cacert=	pre-configure
 SUBST_FILES.cacert=	Modules/_ssl.c
-SUBST_SED.cacert=	-e 's,@PREFIX@,${PREFIX},'
+SUBST_VARS.cacert=	PREFIX
 
 post-extract:
 	${LN} -s ${WRKSRC}/Lib/smtpd.py ${WRKSRC}/Tools/scripts/smtpd${PY_VER_SUFFIX}.py

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.6 2018/08/04 04:04:28 nia Exp $
+@comment $NetBSD: PLIST,v 1.8 2019/03/15 13:59:05 nia Exp $
 include/simgear/bucket/newbucket.hxx
 include/simgear/bvh/BVHBoundingBoxVisitor.hxx
 include/simgear/bvh/BVHGroup.hxx
@@ -55,6 +55,7 @@ include/simgear/canvas/layout/SpacerItem.hxx
 include/simgear/compiler.h
 include/simgear/constants.h
 include/simgear/debug/BufferedLogCallback.hxx
+include/simgear/debug/OsgIoCapture.hxx
 include/simgear/debug/debug_types.h
 include/simgear/debug/logstream.hxx
 include/simgear/embedded_resources/EmbeddedResource.hxx
@@ -334,7 +335,7 @@ include/simgear/version.h
 include/simgear/xml/easyxml.hxx
 lib/cmake/SimGear/SimGearConfig.cmake
 lib/cmake/SimGear/SimGearConfigVersion.cmake
-lib/cmake/SimGear/SimGearTargets-debug.cmake
+lib/cmake/SimGear/SimGearTargets-release.cmake
 lib/cmake/SimGear/SimGearTargets.cmake
-lib/libSimGearCored.a
-lib/libSimGearScened.a
+lib/libSimGearCore.a
+lib/libSimGearScene.a

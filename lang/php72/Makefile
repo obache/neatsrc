@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2019/01/12 14:59:03 taca Exp $
+# $NetBSD: Makefile,v 1.18 2019/03/12 04:13:42 taca Exp $
 
 #
 # We can't omit PKGNAME here to handle PKG_OPTIONS.

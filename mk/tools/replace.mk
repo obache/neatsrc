@@ -1,4 +1,4 @@
-# $NetBSD: replace.mk,v 1.286 2019/01/29 22:41:00 leot Exp $
+# $NetBSD: replace.mk,v 1.288 2019/03/10 19:52:18 joerg Exp $
 #
 # Copyright (c) 2005 The NetBSD Foundation, Inc.
 # All rights reserved.
@@ -1160,8 +1160,7 @@ MAKEVARS+=			TOOLS_DEPENDS.ghostscript
 
 .for _t_ in ${_TOOLS.ghostscript}
 .  if !defined(TOOLS_IGNORE.${_t_}) && !empty(_USE_TOOLS:M${_t_})
-.    if !empty(PKGPATH:Mprint/ghostscript) || \
-        !empty(PKGPATH:Mprint/ghostscript-esp)
+.    if !empty(PKGPATH:Mprint/ghostscript)
 MAKEFLAGS+=		TOOLS_IGNORE.${_t_}=
 .    elif !empty(_TOOLS_USE_PKGSRC.${_t_}:M[yY][eE][sS])
 TOOLS_DEPENDS.${_t_}?=	${TOOLS_DEPENDS.ghostscript}
@@ -1190,14 +1189,14 @@ TOOLS_PATH.iceauth=		${LOCALBASE}/bin/iceauth
 .endif
 
 .if !defined(TOOLS_IGNORE.mkfontdir) && !empty(_USE_TOOLS:Mmkfontdir)
-.  if !empty(PKGPATH:Mfonts/mkfontdir)
+.  if !empty(PKGPATH:Mfonts/mkfontscale)
 MAKEFLAGS+=		TOOLS_IGNORE.mkfontdir=
 .  elif !empty(_TOOLS_USE_PKGSRC.mkfontdir:M[yY][eE][sS])
 TOOLS_CREATE+=			mkfontdir
 .    if !empty(X11_TYPE:Mnative)
 TOOLS_PATH.mkfontdir=	${X11BASE}/bin/mkfontdir
 .    else
-TOOLS_DEPENDS.mkfontdir?=	mkfontdir-[0-9]*:../../fonts/mkfontdir
+TOOLS_DEPENDS.mkfontdir?=	mkfontscale>=1.2:../../fonts/mkfontscale
 TOOLS_PATH.mkfontdir=		${LOCALBASE}/bin/mkfontdir
 .    endif
 .  endif

@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.37 2019/02/16 13:26:49 wiz Exp $
+# $NetBSD: Makefile,v 1.39 2019/03/06 06:08:16 gutteridge Exp $
 
-PKGREVISION= 1
 .include "../../meta-pkgs/mate/Makefile.common"
 
-DISTNAME=	atril-${VERSION:R}.1
+DISTNAME=	atril-${VERSION}
 CATEGORIES=	print
 
 COMMENT=	Simple multi-page document viewer for the MATE environment
@@ -14,8 +13,6 @@ TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 
 PKGCONFIG_OVERRIDE+=	atril-document.pc.in
 PKGCONFIG_OVERRIDE+=	atril-view.pc.in
-
-CONFIGURE_ARGS+=	--disable-introspection
 
 .include "options.mk"
 

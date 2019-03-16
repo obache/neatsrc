@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.504 2019/01/16 14:44:34 martin Exp $
+# $NetBSD: Makefile,v 1.506 2019/03/05 07:47:31 taca Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -293,6 +293,7 @@ SUBDIR+=	rpm
 SUBDIR+=	ruby-ansi
 SUBDIR+=	ruby-args_parser
 SUBDIR+=	ruby-bundler
+SUBDIR+=	ruby-bundler1
 SUBDIR+=	ruby-colorator
 SUBDIR+=	ruby-colorize
 SUBDIR+=	ruby-columnize
@@ -318,7 +319,6 @@ SUBDIR+=	ruby-rainbow
 SUBDIR+=	ruby-slop
 SUBDIR+=	ruby-sprockets
 SUBDIR+=	ruby-sprockets-rails
-SUBDIR+=	ruby-sprockets22
 SUBDIR+=	ruby-systemu
 SUBDIR+=	ruby-thread_safe
 SUBDIR+=	ruby-transaction-simple

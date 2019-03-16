@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2015/03/15 19:51:08 hiramatsu Exp $
+# $NetBSD: Makefile,v 1.13 2019/03/04 12:04:22 adam Exp $
 
 DISTNAME=	Genshi-0.7.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
@@ -13,11 +13,6 @@ LICENSE=	modified-bsd
 DEPENDS+=	${PYPKGPREFIX}-setuptools>=0.6a2:../../devel/py-setuptools
 DEPENDS+=	${PYPKGPREFIX}-babel>=0.8:../../devel/py-babel
 DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
-
-USE_LANGUAGES=	c
-
-do-test:
-		${RUN}cd ${WRKSRC};${PYTHONBIN} setup.py test
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

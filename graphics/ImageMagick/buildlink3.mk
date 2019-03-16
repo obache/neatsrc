@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.70 2019/02/26 17:33:19 leot Exp $
+# $NetBSD: buildlink3.mk,v 1.72 2019/03/06 22:04:55 joerg Exp $
 
 BUILDLINK_TREE+=	ImageMagick
 

@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.126 2019/02/26 12:14:12 rin Exp $
+# $NetBSD: mozilla-common.mk,v 1.128 2019/03/15 12:52:42 ryoon Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -76,15 +76,16 @@ CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}browser/extensions/loop/run-all-loop-tests
 
 CONFIGURE_ARGS+=	--enable-default-toolkit=cairo-gtk3
 CONFIGURE_ARGS+=	--enable-release
-CONFIGURE_ARGS+=	--enable-rust-simd
+# Disable Rust SIMD option to fix build with lang/rust-1.33.0
+# This should be enabled later again.
+#CONFIGURE_ARGS+=	--enable-rust-simd
 CONFIGURE_ARGS+=	--enable-webrender=build
 CONFIGURE_ARGS+=	--disable-tests
 # Mozilla Bug 1432751
 #CONFIGURE_ARGS+=	--enable-system-cairo
 CONFIGURE_ARGS+=	--enable-system-pixman
-CONFIGURE_ARGS+=	--with-system-libvpx
-# textproc/hunspell 1.3 is too old
-#CONFIGURE_ARGS+=	--enable-system-hunspell
+# webrtc option requires internal libvpx
+#CONFIGURE_ARGS+=	--with-system-libvpx
 CONFIGURE_ARGS+=	--enable-system-ffi
 CONFIGURE_ARGS+=	--with-system-icu
 CONFIGURE_ARGS+=	--with-system-nss
@@ -231,8 +232,9 @@ BUILDLINK_API_DEPENDS.clang+=	clang>=6.0.1nb1
 BUILDLINK_DEPMETHOD.rust=	build
 BUILDLINK_API_DEPENDS.rust+=	rust>=1.24.0
 .include "../../lang/rust/buildlink3.mk"
-BUILDLINK_API_DEPENDS.libvpx+=	libvpx>=1.3.0
-.include "../../multimedia/libvpx/buildlink3.mk"
+# webrtc option requires internal libvpx
+#BUILDLINK_API_DEPENDS.libvpx+=	libvpx>=1.3.0
+#.include "../../multimedia/libvpx/buildlink3.mk"
 .include "../../net/libIDL/buildlink3.mk"
 # textproc/hunspell 1.3 is too old
 #.include "../../textproc/hunspell/buildlink3.mk"

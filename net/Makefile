@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1241 2019/02/16 16:23:04 bsiegert Exp $
+# $NetBSD: Makefile,v 1.1243 2019/03/13 18:02:31 adam Exp $
 #
 
 COMMENT=	Networking tools
@@ -454,6 +454,7 @@ SUBDIR+=	openh323
 SUBDIR+=	openntpd
 SUBDIR+=	openpgm
 SUBDIR+=	openresolv
+SUBDIR+=	openrsync
 SUBDIR+=	openslp
 SUBDIR+=	openvmps
 SUBDIR+=	openvpn
@@ -718,6 +719,7 @@ SUBDIR+=	py-softlayer_messaging
 SUBDIR+=	py-subunit
 SUBDIR+=	py-tldextract
 SUBDIR+=	py-tweepy
+SUBDIR+=	py-twine
 SUBDIR+=	py-twisted
 SUBDIR+=	py-twisted-docs
 SUBDIR+=	py-twython

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.322 2019/01/10 14:58:10 tnn Exp $
+# $NetBSD: Makefile,v 1.324 2019/03/05 21:02:50 maya Exp $
 #
 
 COMMENT=	Fonts
@@ -170,7 +170,6 @@ SUBDIR+=	mglfonts
 SUBDIR+=	migu-ttf
 SUBDIR+=	misaki-fonts
 SUBDIR+=	mkfontalias
-SUBDIR+=	mkfontdir
 SUBDIR+=	mkfontscale
 SUBDIR+=	mminstance
 SUBDIR+=	monafonts
@@ -187,6 +186,7 @@ SUBDIR+=	noto-ttf
 SUBDIR+=	ohruri-ttf
 SUBDIR+=	otf2bdf
 SUBDIR+=	oto
+SUBDIR+=	overpass
 SUBDIR+=	oxygen-fonts
 SUBDIR+=	p5-Font-AFM
 SUBDIR+=	p5-Font-FreeType

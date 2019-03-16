@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.66 2018/07/14 13:47:32 adam Exp $
+# $NetBSD: Makefile,v 1.68 2019/03/05 16:58:31 hauke Exp $
 
 DISTNAME=	gawk-4.2.1
 CATEGORIES=	lang

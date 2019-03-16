@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.9 2018/10/11 12:19:04 leot Exp $
+# $NetBSD: Makefile,v 1.11 2019/03/10 11:52:56 wiz Exp $
 
-DISTNAME=	mandoc-1.14.4
-PKGREVISION=	2
+DISTNAME=	mandoc-1.14.5
 CATEGORIES=	textproc devel
-MASTER_SITES=	http://mdocml.bsd.lv/snapshots/
+MASTER_SITES=	http://mandoc.bsd.lv/snapshots/
 
 MAINTAINER=	schwarze@usta.de
-HOMEPAGE=	http://mdocml.bsd.lv/
+HOMEPAGE=	http://mandoc.bsd.lv/
 COMMENT=	Convert man pages from mdoc, man, eqn and tbl to txt, html, ps, or pdf
 LICENSE=	2-clause-bsd # not exactly, but near enough
 
@@ -18,10 +17,9 @@ SUBST_FILES.roff=	mandoc.1 mandoc.3
 SUBST_FILES.roff+=	eqn.7 man.7 mdoc.7 tbl.7
 SUBST_SED.roff=		-e 's,Xr roff,Xr mandoc-roff,g'
 
-CFLAGS.NetBSD+=	-D_OPENBSD_SOURCE
+#CFLAGS.NetBSD+=	-D_OPENBSD_SOURCE
 
-# test needs perl
-USE_TOOLS+=	perl:build
+USE_TOOLS+=	perl:test
 TEST_TARGET=	regress
 
 .include "../../mk/bsd.fast.prefs.mk"
