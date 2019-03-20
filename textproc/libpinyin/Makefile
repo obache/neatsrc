@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.6 2016/02/26 12:17:18 jperkin Exp $
 
-DISTNAME=	libpinyin-2.2.2
+DISTNAME=	libpinyin-2.3.0
 CATEGORIES=	textproc chinese
 MASTER_SITES=	https://github.com/libpinyin/libpinyin/releases/download/${PKGVERSION_NOREV}/ \
 		${MASTER_SITE_SOURCEFORGE:=libpinyin/}
