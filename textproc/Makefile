@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1027 2019/03/13 18:00:02 adam Exp $
+# $NetBSD: Makefile,v 1.1029 2019/03/19 10:56:39 jaapb Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -134,6 +134,7 @@ SUBDIR+=	cdif
 SUBDIR+=	chasen
 SUBDIR+=	chasen-base
 SUBDIR+=	cityhash
+SUBDIR+=	cjose
 SUBDIR+=	cldr-emoji-annotation
 SUBDIR+=	cmark
 SUBDIR+=	cmigemo
@@ -432,6 +433,7 @@ SUBDIR+=	ocaml-expat
 SUBDIR+=	ocaml-jsonm
 SUBDIR+=	ocaml-markup
 SUBDIR+=	ocaml-text
+SUBDIR+=	ocaml-textutils
 SUBDIR+=	ocaml-tyxml
 SUBDIR+=	ocaml-uchar
 SUBDIR+=	ocaml-uutf

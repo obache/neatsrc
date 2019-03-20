@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.70 2019/02/04 09:36:42 wiz Exp $
+# $NetBSD: Makefile,v 1.71 2019/03/20 05:43:20 adam Exp $
 
-DISTNAME=	libgpg-error-1.35
+DISTNAME=	libgpg-error-1.36
 CATEGORIES=	security
 MASTER_SITES=	https://www.gnupg.org/ftp/gcrypt/libgpg-error/
 MASTER_SITES+=	ftp://ftp.gnupg.org/gcrypt/libgpg-error/
@@ -16,7 +16,6 @@ USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake
 GNU_CONFIGURE=		yes
-MAKE_ENV+=		LC_ALL="C"
 INFO_FILES=		yes
 TEST_TARGET=		check
 
