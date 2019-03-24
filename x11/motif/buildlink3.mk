@@ -11,7 +11,7 @@ BUILDLINK_PKGSRCDIR.motif?=	../../x11/motif
 
 _MOTIFBASE=	${BUILDLINK_PREFIX.motif}
 MOTIFLIB=	${COMPILER_RPATH_FLAG}${_MOTIFBASE}/lib \
-		-L${_MOTIFBASE}/lib -lXm -lXp -lXft
+		-L${_MOTIFBASE}/lib -lXm -lXft
 
 BUILDLINK_TRANSFORM+=	l:Xm:Xm:Xft
 
@@ -22,7 +22,6 @@ BUILDLINK_TRANSFORM+=	l:Xm:Xm:Xft
 .include "../../x11/libXmu/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../x11/libXft/buildlink3.mk"
-.include "../../x11/libXp/buildlink3.mk"
 .endif # X11MOTIF_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-motif

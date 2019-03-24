@@ -28,6 +28,8 @@ CONFIGURE_ARGS+= --with-libpng-includes=${BUILDLINK_PREFIX.png}/include
 CONFIGURE_ARGS+= --with-libpng-lib=${BUILDLINK_PREFIX.png}/lib
 CONFIGURE_ARGS+= --x-libraries=${X11BASE}/lib
 
+CONFIGURE_ARGS+= --disable-printing
+
 CONFIGURE_ARGS+=	--enable-xft
 CFLAGS.SunOS+=		-D_POSIX_PTHREAD_SEMANTICS
 
@@ -49,6 +51,5 @@ SUBST_SED.rgb=		-e 's,/usr/lib/X11/rgb.txt,${PKG_RGB_TXT_PATH},'
 .include "../../x11/libXmu/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../x11/libXft/buildlink3.mk"
-.include "../../x11/libXp/buildlink3.mk"
 .include "../../x11/xbitmaps/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
