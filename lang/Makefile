@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.510 2019/03/09 09:31:41 bsiegert Exp $
+# $NetBSD: Makefile,v 1.512 2019/03/27 06:24:22 adam Exp $
 #
 
 COMMENT=	Programming languages
@@ -30,6 +30,7 @@ SUBDIR+=	cim
 SUBDIR+=	cint
 SUBDIR+=	clang
 SUBDIR+=	clang-static-analyzer
+SUBDIR+=	clang-tools-extra
 SUBDIR+=	classpath
 SUBDIR+=	classpath-gui
 SUBDIR+=	clisp
@@ -168,6 +169,7 @@ SUBDIR+=	ocaml
 SUBDIR+=	oo2c
 SUBDIR+=	open-cobol-ce
 SUBDIR+=	opencobol
+SUBDIR+=	openjdk-bin
 SUBDIR+=	openjdk7
 SUBDIR+=	openjdk8
 SUBDIR+=	opensource-cobol

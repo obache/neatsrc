@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.43 2019/02/16 13:26:48 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.45 2019/03/27 11:18:38 wiz Exp $
 
 BUILDLINK_TREE+=	poppler-cpp
 

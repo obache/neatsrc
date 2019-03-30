@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2018/11/21 00:16:04 ryoon Exp $
+# $NetBSD: Makefile,v 1.24 2019/03/23 14:16:11 tnn Exp $
 
 DISTNAME=		gcc-8.2.0
 PKGNAME=		cross-arm-none-eabi-${DISTNAME}
@@ -9,8 +9,7 @@ MASTER_SITES=		${MASTER_SITE_GNU:=gcc/gcc-${PKGVERSION_NOREV}/}
 EXTRACT_SUFX=		.tar.xz
 DISTFILES=		${DEFAULT_DISTFILES} \
 			newlib-${NEWLIBVER}.tar.gz
-SITES.newlib-${NEWLIBVER}.tar.gz= ftp://sources.redhat.com/pub/newlib/
-
+SITES.newlib-${NEWLIBVER}.tar.gz=	https://www.sourceware.org/pub/newlib/
 
 MAINTAINER=		ryoon@NetBSD.org
 HOMEPAGE=		# none
@@ -30,7 +29,7 @@ USE_LANGUAGES+=		c c++
 ARMELF_PREFIX=		${PREFIX}/cross-arm-none-eabi
 OBJDIR=			../build
 CONFIGURE_DIRS=		${OBJDIR}
-CONFIGURE_SCRIPT=	../${DISTNAME}/configure
+CONFIGURE_SCRIPT=	${WRKSRC}/configure
 
 CONFIG_SHELL=		${TOOLS_PATH.bash}
 WRAPPER_SHELL=		${TOOLS_PATH.bash}
@@ -39,8 +38,6 @@ USE_TOOLS+=		bash gmake gsed makeinfo perl
 GNU_CONFIGURE=		yes
 
 GNU_CONFIGURE_PREFIX=	${ARMELF_PREFIX}
-
-HOSTDIR=		build-${MACHINE_ARCH}--${LOWER_OPSYS}
 
 CONFIGURE_ARGS+=	--target=arm-none-eabi
 CONFIGURE_ARGS+=	--enable-languages=c,c++

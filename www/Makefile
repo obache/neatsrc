@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1377 2019/03/19 14:27:18 jaapb Exp $
+# $NetBSD: Makefile,v 1.1379 2019/03/24 21:34:23 nia Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -113,6 +113,7 @@ SUBDIR+=	gallery2
 SUBDIR+=	ganglia-webfrontend
 SUBDIR+=	geckodriver
 SUBDIR+=	geeklog
+SUBDIR+=	gitea
 SUBDIR+=	gitweb
 SUBDIR+=	gnurl
 SUBDIR+=	go-ace
@@ -215,7 +216,6 @@ SUBDIR+=	npm-emojione
 SUBDIR+=	ns-plugger-common
 SUBDIR+=	ns-remote
 SUBDIR+=	nspluginwrapper
-SUBDIR+=	nvu
 SUBDIR+=	ocaml-curl
 SUBDIR+=	ocaml-http
 SUBDIR+=	ocaml-uri

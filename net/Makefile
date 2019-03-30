@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1243 2019/03/13 18:02:31 adam Exp $
+# $NetBSD: Makefile,v 1.1247 2019/03/25 09:20:19 jaapb Exp $
 #
 
 COMMENT=	Networking tools
@@ -440,6 +440,7 @@ SUBDIR+=	ntp4
 SUBDIR+=	nyx
 SUBDIR+=	obfs4proxy
 SUBDIR+=	ocaml-ipaddr
+SUBDIR+=	ocaml-protocol_version_header
 SUBDIR+=	ocamlnet
 SUBDIR+=	ocsinventory-agent
 SUBDIR+=	ocsync
@@ -481,6 +482,9 @@ SUBDIR+=	p5-IO-Socket-INET6
 SUBDIR+=	p5-IO-Socket-Multicast
 SUBDIR+=	p5-IO-Socket-Timeout
 SUBDIR+=	p5-IP-Country
+SUBDIR+=	p5-MaxMind-DB-Common
+SUBDIR+=	p5-MaxMind-DB-Reader
+SUBDIR+=	p5-MaxMind-DB-Writer
 SUBDIR+=	p5-Net
 SUBDIR+=	p5-Net-AMQP
 SUBDIR+=	p5-Net-Akismet
@@ -545,6 +549,7 @@ SUBDIR+=	p5-Net-Telnet
 SUBDIR+=	p5-Net-Telnet-Cisco
 SUBDIR+=	p5-Net-Trac
 SUBDIR+=	p5-Net-Twitter
+SUBDIR+=	p5-Net-Works
 SUBDIR+=	p5-Net-Write
 SUBDIR+=	p5-Net-XMPP
 SUBDIR+=	p5-Net-XWhois

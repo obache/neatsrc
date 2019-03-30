@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.69 2018/12/18 09:57:18 adam Exp $
+# $NetBSD: Makefile,v 1.71 2019/03/27 10:16:34 markd Exp $
 
 DISTNAME=	qtbase-everywhere-src-${QTVERSION}
 PKGNAME=	qt5-qtbase-${QTVERSION}
@@ -8,6 +8,8 @@ COMMENT=	C++ X GUI toolkit
 
 HAS_CONFIGURE=		yes
 CONFIGURE_ARGS+=	-prefix "${QTPREFIX}"
+CONFIGURE_ARGS+=	-I "${PREFIX}/include"
+CONFIGURE_ARGS+=	-L "${PREFIX}/lib"
 CONFIGURE_ARGS+=	-opensource -confirm-license
 CONFIGURE_ARGS+=	-sysconfdir "${PKG_SYSCONFDIR}/xdg"
 CONFIGURE_ARGS+=	-accessibility
@@ -24,10 +26,10 @@ CONFIGURE_ARGS+=	-no-sql-mysql
 CONFIGURE_ARGS+=	-no-sql-oci
 CONFIGURE_ARGS+=	-no-sql-odbc
 CONFIGURE_ARGS+=	-no-sql-psql
-#CONFIGURE_ARGS+=	-no-sql-sqlite
 CONFIGURE_ARGS+=	-no-sql-sqlite2
 CONFIGURE_ARGS+=	-no-sql-tds
 CONFIGURE_ARGS+=	-no-strip
+CONFIGURE_ARGS+=	-no-tslib
 CONFIGURE_ARGS+=	-no-use-gold-linker
 CONFIGURE_ARGS+=	-pkg-config
 CONFIGURE_ARGS+=	-release

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.31 2019/03/02 14:05:04 adam Exp $
+# $NetBSD: Makefile,v 1.35 2019/03/27 10:12:01 ryoon Exp $
 
-DISTNAME=	talloc-2.1.16
+DISTNAME=	talloc-2.2.0
 CATEGORIES=	devel
 MASTER_SITES=	http://www.samba.org/ftp/talloc/
 
@@ -11,6 +11,8 @@ LICENSE=	gnu-gpl-v3 AND gnu-lgpl-v3
 
 BUILD_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 BUILD_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 USE_TOOLS+=		pkg-config
 HAS_CONFIGURE=		yes

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2019/03/19 11:02:59 jaapb Exp $
+# $NetBSD: Makefile,v 1.3 2019/03/25 09:39:40 jaapb Exp $
 
 GITHUB_PROJECT=	async
 GITHUB_TAG=	v${PKGVERSION_NOREV}
