@@ -2,9 +2,7 @@
 
 DISTNAME=	libgpg-error-1.36
 CATEGORIES=	security
-MASTER_SITES=	https://www.gnupg.org/ftp/gcrypt/libgpg-error/
-MASTER_SITES+=	ftp://ftp.gnupg.org/gcrypt/libgpg-error/
-MASTER_SITES+=	${MASTER_SITE_RING_SERVER:=net/gnupg/libgpg-error/}
+MASTER_SITES=	${MASTER_SITE_GNUPG:=libgpg-error/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	minskim@NetBSD.org

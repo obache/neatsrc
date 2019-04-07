@@ -2,8 +2,7 @@
 
 DISTNAME=	libassuan-2.5.3
 CATEGORIES=	security
-MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/libassuan/
-MASTER_SITES+=	http://mirrors.dotsrc.org/gcrypt/libassuan/
+MASTER_SITES=	${MASTER_SITE_GNUPG:=libassuan/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

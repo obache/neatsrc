@@ -3,7 +3,7 @@
 DISTNAME=	libksba-1.3.5
 PKGREVISION=	1
 CATEGORIES=	security
-MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/libksba/
+MASTER_SITES=	${MASTER_SITE_GNUPG:=libksba/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

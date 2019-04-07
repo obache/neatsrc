@@ -3,8 +3,7 @@
 DISTNAME=	gnupg-1.4.23
 PKGREVISION=	2
 CATEGORIES=	security
-MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/gnupg/
-MASTER_SITES+=	${MASTER_SITE_RING_SERVER:=net/gnupg/gnupg/}
+MASTER_SITES=	${MASTER_SITE_GNUPG:=gnupg/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

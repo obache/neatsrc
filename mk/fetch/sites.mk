@@ -22,6 +22,10 @@ MASTER_SITE_GNU+=       \
 MASTER_SITE_GITHUB+=    \
 	https://github.com/
 
+MASTER_SITE_GNUPG+=	\
+	https://www.gnupg.org/ftp/gcrypt/ \
+	ftp://ftp.gnupg.org/gcrypt/
+
 MASTER_SITE_GNUSTEP+=   \
 	ftp://ftp.gnustep.org/pub/gnustep/
 

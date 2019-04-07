@@ -3,7 +3,7 @@
 DISTNAME=	gpgme-1.11.1
 PKGNAME=	${DISTNAME:S/gpgme/gpgme++/}
 CATEGORIES=	security
-MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/gpgme/
+MASTER_SITES=	${MASTER_SITE_GNUPG:=gpgme/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

@@ -4,8 +4,7 @@ DISTNAME=	gnupg-2.2.15
 PKGNAME=	${DISTNAME:S/gnupg-/gnupg2-/}
 PKGREVISION=	1
 CATEGORIES=	security
-MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/gnupg/
-MASTER_SITES+=	http://mirrors.dotsrc.org/gcrypt/gnupg/
+MASTER_SITES=	${MASTER_SITE_GNUPG:=gnupg/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	ada@netbsdfr.org

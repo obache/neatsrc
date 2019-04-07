@@ -9,7 +9,7 @@ PINENTRY_VERSION=	1.1.0
 DISTNAME=		pinentry-${PINENTRY_VERSION}
 
 CATEGORIES=		security
-MASTER_SITES=		ftp://ftp.gnupg.org/gcrypt/pinentry/
+MASTER_SITES=		${MASTER_SITE_GNUPG:=pinentry/}
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org

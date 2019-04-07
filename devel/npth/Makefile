@@ -2,7 +2,7 @@
 
 DISTNAME=	npth-1.6
 CATEGORIES=	devel
-MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/npth/
+MASTER_SITES=	${MASTER_SITE_GNUPG:=npth/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	ada@netbsdfr.org
