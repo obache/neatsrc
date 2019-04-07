@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.135 2018/11/01 09:25:29 bsiegert Exp $
+# $NetBSD: Makefile,v 1.137 2019/04/02 01:50:30 jmmv Exp $
 #
 
 COMMENT=	X11 window managers, configuration tools, and themes
@@ -22,6 +22,7 @@ SUBDIR+=	bmpanel2
 SUBDIR+=	bsetroot
 SUBDIR+=	bspwm
 SUBDIR+=	ccsm
+SUBDIR+=	chunkwm
 SUBDIR+=	compiz
 SUBDIR+=	compiz-fusion-plugins-extra
 SUBDIR+=	compiz-fusion-plugins-main
@@ -75,6 +76,7 @@ SUBDIR+=	quartz-wm
 SUBDIR+=	ratpoison
 SUBDIR+=	sawfish
 SUBDIR+=	selectwm
+SUBDIR+=	skhd
 SUBDIR+=	skippy
 SUBDIR+=	spectrwm
 SUBDIR+=	trayer

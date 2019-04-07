@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.45 2019/03/11 14:41:05 ryoon Exp $
+# $NetBSD: Makefile,v 1.48 2019/04/05 09:59:01 ryoon Exp $
 
 DISTNAME=	notmuch-0.28.3
+PKGREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	https://notmuchmail.org/releases/
 
@@ -8,8 +9,6 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://notmuchmail.org/
 COMMENT=	Mail indexer
 LICENSE=	gnu-gpl-v3
-
-BUILD_DEPENDS+=	${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 
 HAS_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
