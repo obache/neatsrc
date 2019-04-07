@@ -6,7 +6,7 @@ MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/npth/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	ada@netbsdfr.org
-HOMEPAGE=	ftp://ftp.gnupg.org/gcrypt/npth/
+HOMEPAGE=	https://www.gnupg.org/software/npth/index.html
 COMMENT=	New Portable Threads Library (nPth)
 LICENSE=	gnu-lgpl-v2.1
 
