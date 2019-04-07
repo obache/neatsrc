@@ -7,7 +7,7 @@ MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/libksba/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://www.gnupg.org/(fr)/related_software/libksba/index.html
+HOMEPAGE=	https://www.gnupg.org/software/libksba/index.html
 COMMENT=	X.509 library
 LICENSE=	gnu-lgpl-v3 AND gnu-gpl-v2
 
