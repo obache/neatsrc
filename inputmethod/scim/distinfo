@@ -1,9 +1,9 @@
 $NetBSD: distinfo,v 1.10 2015/11/03 22:13:38 agc Exp $
 
-SHA1 (scim-1.4.17.tar.gz) = fd5a1078cb6c8d67f8bbf79969b8c5db033a0cda
-RMD160 (scim-1.4.17.tar.gz) = e46cbd5e883a282cc8fc4491a0f62cba149e7870
-SHA512 (scim-1.4.17.tar.gz) = a7e0696330bca6fdf929ec0565ab4af1b4d0e5f73592cf5cccf1af6412eb351cd5a5ec9a3e5b83b24d6abad89bbb38a375cbbb0fd978f2fa17f6d64b69da0e3a
-Size (scim-1.4.17.tar.gz) = 1285383 bytes
+SHA1 (scim-1.4.18.tar.gz) = 6fee79db6888738d8719ee72944d5ff5c96a06df
+RMD160 (scim-1.4.18.tar.gz) = bee5e5470aaf78417ba1a38ae9166746b071d5ac
+SHA512 (scim-1.4.18.tar.gz) = 9a6090fc1ab950905a9c54d6678ce3d2a44297d1a992a3e933b0466688638e6cf470c1682daa58a6fbb6de3216b649273faf7edff1ac0ecca1c2c77fc19108fb
+Size (scim-1.4.18.tar.gz) = 1288060 bytes
 SHA1 (patch-ab) = 1e10dfb2405849daceda2b3e15835f6a84d8990a
 SHA1 (patch-ac) = c8c4a54b1b6ffd82211616c3b99de1239b29c652
 SHA1 (patch-ad) = 2812ded533f29bd69bad180c33c81fd49e6213e6
