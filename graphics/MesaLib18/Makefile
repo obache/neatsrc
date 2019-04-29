@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.18 2019/02/22 15:40:35 tnn Exp $
+# $NetBSD: Makefile,v 1.20 2019/04/25 07:32:56 maya Exp $
 
 DISTNAME=	mesa-18.3.4
 PKGNAME=	${DISTNAME:S/mesa/MesaLib/}
+PKGREVISION=	1
 CATEGORIES=	graphics x11
 MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/
 # MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/${PKGVERSION_NOREV}/
@@ -105,4 +106,5 @@ post-install:
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../x11/libxcb/buildlink3.mk"
+.include "../../textproc/expat/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

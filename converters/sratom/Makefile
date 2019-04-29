@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2019/01/02 20:20:00 bsiegert Exp $
+# $NetBSD: Makefile,v 1.13 2019/04/25 07:32:40 maya Exp $
 
 DISTNAME=	sratom-0.6.2
+PKGREVISION=	1
 CATEGORIES=	converters
 MASTER_SITES=	http://download.drobilla.net/
 EXTRACT_SUFX=	.tar.bz2
@@ -10,6 +11,7 @@ HOMEPAGE=	http://drobilla.net/software/sratom/
 COMMENT=	Library for serialising LV2 atoms to/from RDF
 LICENSE=	isc
 
+USE_LANGUAGES=	c99
 USE_TOOLS+=	gsed pkg-config
 
 PKGCONFIG_OVERRIDE+=	sratom.pc.in

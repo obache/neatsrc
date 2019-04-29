@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ -n "${XDG_DATA_HOME}" ]; then
+	DIR=${XDG_DATA_HOME}/powder-toy
+else
+	DIR=${HOME}/.local/share/powder-toy
+fi
+mkdir -p "${DIR}" && cd "${DIR}" && exec "@PREFIX@/libexec/powder-toy" "$@"

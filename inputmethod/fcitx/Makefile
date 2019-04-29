@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.18 2018/11/27 13:07:25 bsiegert Exp $
+# $NetBSD: Makefile,v 1.19 2019/04/27 03:20:32 ryoon Exp $
 #
 
 PKGNAME=		fcitx-4.2.9.6
@@ -14,7 +14,6 @@ COMMENT=		Flexible input method framework
 LICENSE=		gnu-gpl-v2 AND gnu-lgpl-v2.1
 
 TOOL_DEPENDS+=	extra-cmake-modules>=0.0.11:../../devel/extra-cmake-modules
-BUILD_DEPENDS+=	automoc4-[0-9]*:../../devel/automoc4
 DEPENDS+=	xdg-utils-[0-9]*:../../misc/xdg-utils # xdg-open
 
 USE_CMAKE=		yes

@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.14 2018/11/05 16:50:48 bsiegert Exp $
+# $NetBSD: options.mk,v 1.17 2019/04/20 16:39:13 leot Exp $
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.webkit-gtk
@@ -12,14 +12,16 @@ PLIST_VARS=	introspection
 #
 # Platforms that support the webkit-jit option
 #
+# Please see:
+#  Source/cmake/WebKitFeatures.cmake
+#  Source/WTF/wtf/Platform.h
+#
 WEBKIT_JIT_MACHINE_PLATFORMS+=	Darwin-*-*
 WEBKIT_JIT_MACHINE_PLATFORMS+=	DragonFly-*-*
-WEBKIT_JIT_MACHINE_PLATFORMS+=	FreeBSD-*-x86_64 FreeBSD-*-i386 FreeBSD-*-arm*
-WEBKIT_JIT_MACHINE_PLATFORMS+=	FreeBSD-*-aarch64 FreeBSD-*-mips*
-WEBKIT_JIT_MACHINE_PLATFORMS+=	Linux-*-x86_64 Linux-*-i386 Linux-*-arm*
+WEBKIT_JIT_MACHINE_PLATFORMS+=	FreeBSD-*-x86_64 FreeBSD-*-aarch64
+WEBKIT_JIT_MACHINE_PLATFORMS+=	Linux-*-x86_64 Linux-*-arm*
 WEBKIT_JIT_MACHINE_PLATFORMS+=	Linux-*-aarch64 Linux-*-mips*
-WEBKIT_JIT_MACHINE_PLATFORMS+=	NetBSD-*-x86_64 NetBSD-*-i386 NetBSD-*-arm*
-WEBKIT_JIT_MACHINE_PLATFORMS+=	NetBSD-*-aarch64 NetBSD-*-mips*
+WEBKIT_JIT_MACHINE_PLATFORMS+=	NetBSD-*-x86_64 NetBSD-*-aarch64
 
 .if !empty(WEBKIT_JIT_MACHINE_PLATFORMS:@.PLAT.@${MACHINE_PLATFORM:M${.PLAT.}}@)
 PKG_SUGGESTED_OPTIONS+=	webkit-jit
@@ -32,6 +34,7 @@ PKG_SUGGESTED_OPTIONS+=	webkit-jit
 #
 .if !empty(PKG_OPTIONS:Mwebkit-jit)
 CMAKE_ARGS+=	-DENABLE_JIT=ON
+CMAKE_ARGS+=	-DENABLE_C_LOOP=OFF
 .else
 CMAKE_ARGS+=	-DENABLE_JIT=OFF
 .endif
@@ -40,9 +43,9 @@ CMAKE_ARGS+=	-DENABLE_JIT=OFF
 # OpenGL support: enable support for GLX, WebGL and accelerated compositing
 #
 .if !empty(PKG_OPTIONS:Mopengl)
-CMAKE_ARGS+=	-DENABLE_WEBGL=ON
+CMAKE_ARGS+=	-DENABLE_OPENGL=ON
 .else
-CMAKE_ARGS+=	-DENABLE_WEBGL=OFF
+CMAKE_ARGS+=	-DENABLE_OPENGL=OFF
 .endif
 
 #

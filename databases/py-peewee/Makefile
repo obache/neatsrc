@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.55 2019/04/03 00:32:31 ryoon Exp $
+# $NetBSD: Makefile,v 1.57 2019/04/27 09:33:07 adam Exp $
 
-DISTNAME=	peewee-3.9.3
+DISTNAME=	peewee-3.9.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	databases python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/peewee/}
 
@@ -14,7 +13,6 @@ LICENSE=	mit
 DEPENDS+=	${PYPKGPREFIX}-cython>=0.22.1:../../devel/py-cython
 BUILD_DEPENDS+=	${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
-#DEPENDS+=	sqlite3-[0-9]*
 
 MAKE_FLAGS+=	SPHINXBUILD=sphinx-build${PYVERSSUFFIX}
 

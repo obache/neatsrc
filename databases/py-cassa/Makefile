@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2018/07/03 05:03:06 adam Exp $
+# $NetBSD: Makefile,v 1.14 2019/04/26 13:13:46 maya Exp $
 
 DISTNAME=	pycassa-0.3.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/^py//}
@@ -9,7 +9,7 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/pycassa/pycassa
 COMMENT=	Python client library for Cassandra
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37
 
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

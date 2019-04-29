@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.54 2018/11/14 22:21:31 kleink Exp $
+# $NetBSD: Makefile,v 1.56 2019/04/26 13:13:59 maya Exp $
 
 DISTNAME=	pytraffic-2.5.4
-PKGREVISION=	35
+PKGREVISION=	36
 CATEGORIES=	games
 MASTER_SITES=	http://alpha.uhasselt.be/Research/Algebra/Members/pytraffic/
 
@@ -14,7 +14,7 @@ DIST_SUBDIR=	pytraffic-2.5.4-070313
 
 DEPENDS+=	${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 37 # py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-gtk2
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"

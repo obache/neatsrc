@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.28 2018/11/23 08:06:29 ryoon Exp $
+# $NetBSD: Makefile,v 1.30 2019/04/26 13:13:43 maya Exp $
 
 DISTNAME=	quodlibet-2.6.3
-PKGREVISION=	18
+PKGREVISION=	19
 CATEGORIES=	audio
 MASTER_SITES=	https://bitbucket.org/lazka/quodlibet-files/raw/default/releases/
 
@@ -34,7 +34,7 @@ DEPENDS+=	gst-plugins0.10-ogg>=0.10.0:../../multimedia/gst-plugins0.10-ogg
 DEPENDS+=	xine-lib>=1.1:../../multimedia/xine-lib
 .endif
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2, py-gstreamer0.10
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-gtk2, py-gstreamer0.10
 REPLACE_PYTHON=	exfalso.py quodlibet.py operon.py
 
 .include "../../lang/python/distutils.mk"

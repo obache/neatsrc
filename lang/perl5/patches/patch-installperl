@@ -1,0 +1,26 @@
+$NetBSD: patch-installperl,v 1.1 2019/04/23 09:27:46 adam Exp $
+
+* XXX
+* Tell perl that Haiku need haikuish.h installed as well
+
+--- installperl.orig	2016-03-01 12:33:02.000000000 +0000
++++ installperl
+@@ -335,7 +335,6 @@ $do_installprivlib = 0 if $versiononly &
+ mkpath($installprivlib);
+ mkpath($installarchlib);
+ mkpath($installsitelib, $opts{verbose}, 0777) if ($installsitelib);
+-mkpath($installsitearch, $opts{verbose}, 0777) if ($installsitearch);
+ 
+ if (-d 'lib') {
+     find({no_chdir => 1, wanted => \&installlib}, 'lib')
+@@ -381,6 +380,10 @@ elsif ($Is_Cygwin) { # On Cygwin symlink
+ 
+     # AIX needs perl.exp installed as well.
+     push(@corefiles,'perl.exp') if $^O eq 'aix';
++    if ($^O eq 'haiku') {
++        mkpath("$installarchlib/CORE/haiku");
++        push(@corefiles, 'haiku/haikuish.h');
++    }
+ }
+ 
+ 

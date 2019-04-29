@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.81 2017/12/04 08:20:37 he Exp $
+# $NetBSD: Makefile,v 1.82 2019/04/20 06:39:49 maya Exp $
 
 DISTNAME=	lame-3.100
 CATEGORIES=	audio

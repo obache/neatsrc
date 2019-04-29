@@ -74,7 +74,7 @@ _SCRIPT.configure-scripts-osdep.MirBSD=					\
 				found = 0;				\
 			}						\
 		}							\
-		{ print $0 }'
+		{ print $$0 }'
 
 _SCRIPT.configure-scripts-osdep.skyos=					\
 	| ${SED} -e 's,test -x / ,test -x ./ ,g'

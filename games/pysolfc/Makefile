@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.25 2018/07/04 13:40:19 jperkin Exp $
+# $NetBSD: Makefile,v 1.27 2019/04/26 13:13:59 maya Exp $
 
 DISTNAME=	PySolFC-2.0
 PKGNAME=	${DISTNAME:tl}
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	games python
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pysolfc/}
 EXTRACT_SUFX=	.tar.bz2
@@ -15,7 +15,7 @@ LICENSE=	gnu-gpl-v3
 DEPENDS+=	${PYPKGPREFIX}-Tk-[0-9]*:../../x11/py-Tk
 DEPENDS+=	${PYPKGPREFIX}-imagingtk>=1.1.7:../../graphics/py-imagingtk
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-imaging
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-imaging
 
 REPLACE_PYTHON+= \
 	data/themes/clearlooks/create_imgs.py \

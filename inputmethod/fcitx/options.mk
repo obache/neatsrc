@@ -1,4 +1,4 @@
-# $NetBSD$
+# $NetBSD: options.mk,v 1.1 2019/04/27 03:20:32 ryoon Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.fcitx
 PKG_SUPPORTED_OPTIONS=	gtk2 gtk3 qt4 introspection enchant opencc presage lua
@@ -29,10 +29,11 @@ CMAKE_ARGS+=	-DENABLE_GTK3_IM_MODULE:BOOL=OFF
 .endif
 
 .if !empty(PKG_OPTIONS:Mqt4)
-PLIST.qt4=		yes
+BUILD_DEPENDS+=	automoc4-[0-9]*:../../devel/automoc4
 .include "../../x11/qt4-libs/buildlink3.mk"
-.include "../../x11/qt4-tools/buildlink3.mk"
 .include "../../x11/qt4-qdbus/buildlink3.mk"
+.include "../../x11/qt4-tools/buildlink3.mk"
+PLIST.qt4=	yes
 CMAKE_ARGS+=	-DENABLE_QT:BOOL=ON
 CMAKE_ARGS+=	-DENABLE_QT_GUI:BOOL=ON
 CMAKE_ARGS+=	-DENABLE_QT_IM_MODULE:BOOL=ON
@@ -87,4 +88,3 @@ CMAKE_ARGS+=	-DENABLE_LUA:BOOL=ON
 .else
 CMAKE_ARGS+=	-DENABLE_LUA:BOOL=OFF
 .endif
-

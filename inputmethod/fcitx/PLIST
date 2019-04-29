@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.3 2018/08/18 01:11:16 ryoon Exp $
+@comment $NetBSD: PLIST,v 1.4 2019/04/27 03:20:32 ryoon Exp $
 bin/createPYMB
 bin/fcitx
 bin/fcitx-autostart
@@ -131,8 +131,8 @@ lib/libfcitx-core.so
 lib/libfcitx-core.so.0
 lib/libfcitx-core.so.0.3
 lib/libfcitx-gclient.so
-lib/libfcitx-gclient.so.1
 lib/libfcitx-gclient.so.0.2
+lib/libfcitx-gclient.so.1
 ${PLIST.qt4}lib/libfcitx-qt.so
 ${PLIST.qt4}lib/libfcitx-qt.so.0
 ${PLIST.qt4}lib/libfcitx-qt.so.0.1
