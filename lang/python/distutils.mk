@@ -14,7 +14,7 @@ PYSETUP?=		setup.py
 PYSETUPBUILDTARGET?=	build
 PYSETUPBUILDARGS?=	#empty
 # Python 3.5+ supports parallel building
-.if defined(MAKE_JOBS) && ${_PYTHON_VERSION} != 27 && ${_PYTHON_VERSION} != 34
+.if defined(MAKE_JOBS) && ${_PYTHON_VERSION} != 27
 .  if !defined(MAKE_JOBS_SAFE) || empty(MAKE_JOBS_SAFE:M[nN][oO])
 PYSETUPBUILDARGS+=	-j${MAKE_JOBS}
 .  endif
