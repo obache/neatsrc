@@ -23,3 +23,5 @@ REPLACE.python.old=	.*python3\{0,1\}[^ ]*
 REPLACE.python.new=	${PYTHONBIN}
 REPLACE_FILES.python=	${REPLACE_PYTHON}
 .endif
+
+.include "../../lang/python/pep-3147.mk"
