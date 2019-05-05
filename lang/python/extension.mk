@@ -1,4 +1,4 @@
-# $NetBSD: extension.mk,v 1.55 2018/12/14 13:09:10 adam Exp $
+# $NetBSD: extension.mk,v 1.56 2019/05/02 22:06:15 wiz Exp $
 
 .include "../../lang/python/pyversion.mk"
 
@@ -7,7 +7,6 @@
 # in ${PYSITELIB}.  Extensions can be implemented via setuptools as
 # eggs (see egg.mk), via distutils (confusing, with an egg-info file,
 # even though they are not eggs, see distuilts.mk), or via more ad hocs methods.
-
 
 .if !empty(PY_PATCHPLIST:M[Yy][Ee][Ss])
 PLIST_SUBST+=	PYINC=${PYINC} PYLIB=${PYLIB} PYSITELIB=${PYSITELIB}

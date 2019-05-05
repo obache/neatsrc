@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.9 2015/12/29 04:54:37 dholland Exp $
+# $NetBSD: Makefile,v 1.10 2019/05/02 08:36:10 wiz Exp $
 #
 
 DISTNAME=	rxtx-2.1-7r2
@@ -21,7 +21,7 @@ MAKE_JOBS_SAFE=	no
 
 # Configuration looks for certain versions of JDK - this list can be expanded
 # if the patches are also appropriately updated.
-PKG_JVMS_ACCEPTED= oracle-jdk8 openjdk8 openjdk7 sun-jdk7 sun-jdk6 sun-jdk15 sun-jdk14
+PKG_JVMS_ACCEPTED= oracle-jdk8 openjdk8 openjdk7 sun-jdk7
 
 .include "../../mk/bsd.prefs.mk"
 
