@@ -134,5 +134,6 @@ SUBST_SED.icu-config+=	-e '/l$${ICUPREFIX}/ s/$${ICULIBSUFFIX_VERSION}//g'
 CONFIGURE_ARGS+=	--enable-rpath
 .endif
 
+PYTHON_FOR_BUILD_ONLY=	test
 .include "../../lang/python/tool.mk"
 .include "../../mk/bsd.pkg.mk"
