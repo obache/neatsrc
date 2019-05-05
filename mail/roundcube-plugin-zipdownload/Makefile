@@ -13,5 +13,4 @@ PLUGIN=		zipdownload
 do-install: plugin-install
 
 .include "../../mail/roundcube/plugins.mk"
-.include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"
