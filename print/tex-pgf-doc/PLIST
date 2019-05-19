@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2019/01/29 19:54:29 markd Exp $
+@comment $NetBSD: PLIST,v 1.7 2019/05/13 21:18:12 markd Exp $
 share/texmf-dist/doc/generic/pgf/AUTHORS
 share/texmf-dist/doc/generic/pgf/ChangeLog
 share/texmf-dist/doc/generic/pgf/FILES
@@ -97,6 +97,7 @@ share/texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-math.tex
 share/texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-matrices.tex
 share/texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-mindmaps.tex
 share/texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-patterns.tex
+share/texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-perspective.tex
 share/texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-petri.tex
 share/texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-plot-handlers.tex
 share/texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-plot-marks.tex
@@ -178,11 +179,9 @@ share/texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/pgfmanual-test.tex
 share/texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/pgfmanual.tex
 share/texmf-dist/doc/generic/pgf/version-for-dvipdfmx/pgfmanual-dvipdfmx.cfg
 share/texmf-dist/doc/generic/pgf/version-for-dvips/en/Makefile
-share/texmf-dist/doc/generic/pgf/version-for-dvips/en/pgfmanual-test.tex
 share/texmf-dist/doc/generic/pgf/version-for-dvips/en/pgfmanual.tex
 share/texmf-dist/doc/generic/pgf/version-for-dvips/pgfmanual-dvips.cfg
 share/texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/Makefile
-share/texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/color.cfg
 share/texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/pgfmanual-test.html
 share/texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/pgfmanual-test.tex
 share/texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/pgfmanual.html

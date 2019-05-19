@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.28 2019/04/25 07:33:00 maya Exp $
+# $NetBSD: Makefile,v 1.32 2019/05/15 14:23:15 leot Exp $
 
 DISTNAME=	ibus-array-release-0.2.1
 PKGNAME=	${DISTNAME:S/-release-/-/}

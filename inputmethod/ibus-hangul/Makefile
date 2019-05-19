@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.18 2019/04/25 07:33:00 maya Exp $
+# $NetBSD: Makefile,v 1.21 2019/05/15 14:33:13 leot Exp $
 #
 
 DISTNAME=	ibus-hangul-1.5.1
 PKGREVISION=	1
 CATEGORIES=	inputmethod korean
-MASTER_SITES=	https://github.com/choehwanjin/ibus-hangul/releases/download/${PKGVERSION_NOREV}/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=choehwanjin/}
+GITHUB_RELEASE=	${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/ibus/ibus/wiki

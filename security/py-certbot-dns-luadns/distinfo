@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.3 2019/04/08 15:48:31 adam Exp $
+$NetBSD: distinfo,v 1.5 2019/05/17 06:46:30 adam Exp $
 
-SHA1 (certbot-dns-luadns-0.33.1.tar.gz) = 17be2df3889a458ac01cb0eefe240ea8a6c05adc
-RMD160 (certbot-dns-luadns-0.33.1.tar.gz) = 713d511a63c0e9822da591ee3b1e52b67b5830f1
-SHA512 (certbot-dns-luadns-0.33.1.tar.gz) = c0286c69d61d6cee1d5644f19cf77060c861f5050ecc459b3e824ee57b3352ebed739813409eab6991c1f0a7dcdf102006e38f75e85c1a643a64afb7a1e14b37
-Size (certbot-dns-luadns-0.33.1.tar.gz) = 11617 bytes
+SHA1 (certbot-dns-luadns-0.34.2.tar.gz) = 09e0bcfa0a0524c825a58f25e1479057f248142d
+RMD160 (certbot-dns-luadns-0.34.2.tar.gz) = e217c90c7e112327ef03eef240d9f8c4eef52b4e
+SHA512 (certbot-dns-luadns-0.34.2.tar.gz) = 593b646abce970eb32d43db9065aabc21ae6593c73f6bbff965925a67918510bcab8bca91e4884ce3b0ef02292591c832a71346f4deeb8980b2da127fa6f823b
+Size (certbot-dns-luadns-0.34.2.tar.gz) = 11351 bytes

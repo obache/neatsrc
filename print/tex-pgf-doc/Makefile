@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.6 2019/01/29 19:54:29 markd Exp $
+# $NetBSD: Makefile,v 1.8 2019/05/13 21:18:12 markd Exp $
 
 DISTNAME=	pgf.doc
-PKGNAME=	tex-${DISTNAME:S/./-/}-3.1
-TEXLIVE_REV=	49607
+PKGNAME=	tex-${DISTNAME:S/./-/}-3.1.2
+TEXLIVE_REV=	51018
 
 MAINTAINER=	minskim@NetBSD.org
+HOMEPAGE=	http://ctan.org/pkg/pgf
 COMMENT=	Documentation for tex-pgf
 LICENSE=	lppl-1.3c
 

@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.164 2019/04/03 00:32:38 ryoon Exp $
+# $NetBSD: Makefile,v 1.166 2019/05/16 14:08:16 ryoon Exp $
 
 DISTNAME=		nss-${NSS_RELEASE:S/.0$//}
-NSS_RELEASE=		3.43.0
-PKGREVISION=		1
+NSS_RELEASE=		3.44.0
 CATEGORIES=		security
 MASTER_SITES=		${MASTER_SITE_MOZILLA_ALL:=security/nss/releases/NSS_${NSS_DIST_DIR_VERSION:S/_0$//}_RTM/src/}
 
@@ -11,10 +10,10 @@ HOMEPAGE=		http://www.mozilla.org/projects/security/pki/nss/
 COMMENT=		Libraries to support development of security-enabled applications
 LICENSE=		mpl-2.0
 
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}nss/tests/libpkix/libpkix.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}nss/tests/multinit/multinit.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}js/src/configure
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}configure
+CHECK_PORTABILITY_SKIP+=	nss/tests/libpkix/libpkix.sh
+CHECK_PORTABILITY_SKIP+=	nss/tests/multinit/multinit.sh
+CHECK_PORTABILITY_SKIP+=	js/src/configure
+CHECK_PORTABILITY_SKIP+=	configure
 
 CTF_SUPPORTED=		no # https://smartos.org/bugview/OS-6510
 

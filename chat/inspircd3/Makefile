@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.3 2019/05/04 10:50:04 nia Exp $
+# $NetBSD: Makefile,v 1.7 2019/05/17 09:59:18 nia Exp $
 
-DISTNAME=	inspircd-3.0.0
-PKGREVISION=	2
+DISTNAME=	inspircd-3.1.0
 CATEGORIES=	chat
 MASTER_SITES=	${MASTER_SITE_GITHUB:=inspircd/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -13,9 +12,10 @@ LICENSE=	gnu-gpl-v2
 
 EXTRACT_USING=	bsdtar
 USE_TOOLS+=	gmake perl pkg-config
-USE_LANGUAGES=	c c++11
+USE_LANGUAGES=	c99 c++03
 HAS_CONFIGURE=	yes
 MAKE_FILE=	GNUmakefile
+MAKE_ENV+=	INSTALL=${INSTALL:Q}
 
 BUILD_DEFS+=	PKG_SYSCONFDIR
 
@@ -27,6 +27,10 @@ CONFIGURE_ARGS+=	--module-dir=${PREFIX}/lib/inspircd/modules
 CONFIGURE_ARGS+=	--config-dir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--data-dir=${PREFIX}/inspircd/data
 CONFIGURE_ARGS+=	--log-dir=${PREFIX}/inspircd/logs
+CONFIGURE_ARGS+=	--script-dir=${PREFIX}/inspircd/scripts
+CONFIGURE_ARGS+=	--disable-auto-extras
+CONFIGURE_ARGS+=	--distribution-label=pkgsrc
+
 CONFIG_SHELL=		${PERL5}
 
 REPLACE_PERL+=		tools/genssl
@@ -88,31 +92,22 @@ INSTALLATION_DIRS+=	${EGDIR}
 INSTALLATION_DIRS+=	${EGDIR}/sql
 INSTALLATION_DIRS+=	${EGDIR}/services
 
-INSPIRCD_EXTRAS_OFF+=	m_regex_re2.cpp
-INSPIRCD_EXTRAS_OFF+=	m_regex_tre.cpp
-
-CONFIGURE_ARGS+=	--distribution-label=pkgsrc
-
-# https://github.com/inspircd/inspircd/commit/044fa999680888267e07dc7b69028b18efbac818
-# this has no side-effects other than allowing the build to proceed with
-# distribution-label set
-CONFIGURE_ARGS+=	--development
+INSPIRCD_EXTRAS+=	m_regex_posix.cpp
 
 .include "options.mk"
 
+.if !empty(PKG_OPTIONS:Mopenssl) || !empty(PKG_OPTIONS:Mgnutls) || \
+    !empty(PKG_OPTIONS:Mmbedtls)
+INSPIRCD_EXTRAS+=	m_sslrehashsignal.cpp
+.endif
+
 post-configure:
 	cd ${WRKSRC} && ${CONFIGURE_ENV} ${PERL5} ./configure \
-	    --enable-extras=${INSPIRCD_EXTRAS_ON:C/\.cpp[ ]* m_/.cpp,m_/gW} \
-	    --disable-extras=${INSPIRCD_EXTRAS_OFF:C/\.cpp[ ]* m_/.cpp,m_/gW}
+	    --enable-extras=${INSPIRCD_EXTRAS:S/.cpp m_/.cpp,m_/gW}
 
 post-install:
-	${MV} ${DESTDIR}${PREFIX}/etc/inspircd/examples/* \
-	    ${DESTDIR}${PREFIX}/share/examples/inspircd
-	${RM} -rf ${DESTDIR}${PREFIX}/etc/inspircd/examples
-	${RM} -f ${DESTDIR}${PREFIX}/.gdbargs
-	${CHMOD} ${BINMODE} ${DESTDIR}${PREFIX}/bin/inspircd
-	${CHMOD} ${BINMODE} ${DESTDIR}${PREFIX}/bin/inspircd-genssl
-	${CHMOD} ${BINMODE} ${DESTDIR}${PREFIX}/lib/inspircd/modules/*.so
+	${MV} ${DESTDIR}${PKG_SYSCONFDIR}/examples/* ${DESTDIR}${EGDIR}
+	${RM} -rf ${DESTDIR}${PKG_SYSCONFDIR}/examples
 
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

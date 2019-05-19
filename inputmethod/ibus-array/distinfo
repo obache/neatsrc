@@ -1,6 +1,7 @@
-$NetBSD: distinfo,v 1.7 2015/11/03 22:13:34 agc Exp $
+$NetBSD: distinfo,v 1.8 2019/05/15 14:23:15 leot Exp $
 
 SHA1 (ibus-array-release-0.2.1.tar.gz) = 06c7bbc4506e6035bc7c2a5cc825b7cdaed03f22
 RMD160 (ibus-array-release-0.2.1.tar.gz) = 130a99a522938155228e468ab1e4839b44a13417
 SHA512 (ibus-array-release-0.2.1.tar.gz) = 2625d6aee815d06dfa1b618a10b11bd0ae166cde0e8fc192cbee0b4f1e6f03e29e6ebaa63ad4b3ead3b631dabf49a95477c8dd0ec0a75d5a79baf80d749ad6f1
 Size (ibus-array-release-0.2.1.tar.gz) = 2841528 bytes
+SHA1 (patch-setup_main.py) = 3f6a2dc0e93c86b5e8f1b1cbc7cae77043ad9c1a

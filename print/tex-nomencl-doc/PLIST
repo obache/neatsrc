@@ -1,5 +1,4 @@
-@comment $NetBSD: PLIST,v 1.2 2019/01/29 08:03:36 markd Exp $
-share/texmf-dist/doc/latex/nomencl/Makefile
+@comment $NetBSD: PLIST,v 1.4 2019/05/14 09:54:13 markd Exp $
 share/texmf-dist/doc/latex/nomencl/README
 share/texmf-dist/doc/latex/nomencl/nomencl.pdf
 share/texmf-dist/doc/latex/nomencl/sample01.pdf

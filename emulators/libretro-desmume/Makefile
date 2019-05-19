@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.6 2019/01/03 21:51:52 nia Exp $
+# $NetBSD: Makefile,v 1.9 2019/05/12 09:49:39 nia Exp $
 
-DISTNAME=	libretro-desmume-20181207
+DISTNAME=	libretro-desmume-20190426
+PKGREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libretro/}
 GITHUB_PROJECT=	desmume
-GITHUB_TAG=	48975f33baeb982795f08bf5bb19d8ecae9859b9
+GITHUB_TAG=	3069551c2e1de633c333739cca8bb7108ca3d3e9
 
 MAINTAINER=	nia@NetBSD.org
 HOMEPAGE=	https://docs.libretro.com/library/desmume/
