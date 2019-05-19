@@ -4,7 +4,6 @@ lib/girepository-1.0/Anthy-9000.typelib
 lib/libanthygobject-1.0.la
 libexec/ibus-engine-anthy
 libexec/ibus-setup-anthy
-share/appdata/ibus-anthy.appdata.xml
 share/applications/ibus-setup-anthy.desktop
 share/gir-1.0/Anthy-9000.gir
 share/glib-2.0/schemas/org.freedesktop.ibus.engine.anthy.gschema.xml
@@ -68,3 +67,4 @@ share/locale/ja/LC_MESSAGES/ibus-anthy.mo
 share/locale/pt_BR/LC_MESSAGES/ibus-anthy.mo
 share/locale/uk/LC_MESSAGES/ibus-anthy.mo
 share/locale/zh_CN/LC_MESSAGES/ibus-anthy.mo
+share/metainfo/org.freedesktop.ibus.engine.anthy.metainfo.xml

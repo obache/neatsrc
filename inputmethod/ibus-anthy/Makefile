@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.22 2019/04/25 07:33:00 maya Exp $
 
-DISTNAME=	ibus-anthy-1.5.10
-PKGREVISION=	1
+DISTNAME=	ibus-anthy-1.5.11
 CATEGORIES=	inputmethod japanese
 MASTER_SITES=	https://github.com/ibus/ibus-anthy/releases/download/${PKGVERSION_NOREV}/
 
@@ -18,7 +17,9 @@ GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c
-USE_TOOLS+=		pkg-config msgfmt gmake intltool
+USE_TOOLS+=		pkg-config msgfmt gmake
+
+GETTEXT_TOOLS_REQD=	0.19.7
 
 CONFIGURE_ARGS+=	--localedir=${PREFIX}/${PKGLOCALEDIR}/locale
 CONFIGURE_ARGS+=	--with-kasumi-exec=${LOCALBASE}/bin/kasumi
