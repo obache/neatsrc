@@ -21,8 +21,10 @@ ${GEM_LIBDIR}/lib/groonga/command/delete.rb
 ${GEM_LIBDIR}/lib/groonga/command/dump.rb
 ${GEM_LIBDIR}/lib/groonga/command/error.rb
 ${GEM_LIBDIR}/lib/groonga/command/format/command.rb
+${GEM_LIBDIR}/lib/groonga/command/format/elasticsearch.rb
 ${GEM_LIBDIR}/lib/groonga/command/format/uri.rb
 ${GEM_LIBDIR}/lib/groonga/command/get.rb
+${GEM_LIBDIR}/lib/groonga/command/index-column-diff.rb
 ${GEM_LIBDIR}/lib/groonga/command/io-flush.rb
 ${GEM_LIBDIR}/lib/groonga/command/load.rb
 ${GEM_LIBDIR}/lib/groonga/command/log-level.rb
@@ -50,6 +52,7 @@ ${GEM_LIBDIR}/lib/groonga/command/request-cancel.rb
 ${GEM_LIBDIR}/lib/groonga/command/ruby-eval.rb
 ${GEM_LIBDIR}/lib/groonga/command/ruby-load.rb
 ${GEM_LIBDIR}/lib/groonga/command/schema.rb
+${GEM_LIBDIR}/lib/groonga/command/searchable.rb
 ${GEM_LIBDIR}/lib/groonga/command/select.rb
 ${GEM_LIBDIR}/lib/groonga/command/shutdown.rb
 ${GEM_LIBDIR}/lib/groonga/command/status.rb
@@ -77,6 +80,7 @@ ${GEM_LIBDIR}/test/command/test-config-set.rb
 ${GEM_LIBDIR}/test/command/test-delete.rb
 ${GEM_LIBDIR}/test/command/test-dump.rb
 ${GEM_LIBDIR}/test/command/test-get.rb
+${GEM_LIBDIR}/test/command/test-index-column-diff.rb
 ${GEM_LIBDIR}/test/command/test-io-flush.rb
 ${GEM_LIBDIR}/test/command/test-load.rb
 ${GEM_LIBDIR}/test/command/test-log-level.rb

@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (groonga-command-1.3.5.gem) = 62a6c9110330840d4c54c64e1237a6f951e38233
-RMD160 (groonga-command-1.3.5.gem) = b7b149279464be4d71189662e553d1bf0d4c1555
-SHA512 (groonga-command-1.3.5.gem) = 55f0d3aa8abe64c04bb8b2ffb32894bed475456248e3f657be9f13c50610b779ddb9aed247965f2686ced41caee27f3a5b1133d48f517409cfe79d190e6eab44
-Size (groonga-command-1.3.5.gem) = 40960 bytes
+SHA1 (groonga-command-1.4.1.gem) = 1992e503b8244eafd9a73f2c2753fb424e8364e3
+RMD160 (groonga-command-1.4.1.gem) = 052f52cdc9da6f45e060ade059b2df8fe02ec872
+SHA512 (groonga-command-1.4.1.gem) = d92008d530a37c8166360a7db745400f7e6decb253192257ddb1aea82dfcdb434c8f98d0713d545a51f41a576bc7900f262b61b85699815e944caf5aff78024b
+Size (groonga-command-1.4.1.gem) = 41984 bytes
