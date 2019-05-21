@@ -1,5 +1,6 @@
 @comment $NetBSD$
 bin/groonga-command-convert-format
+bin/groonga-command-filter
 bin/groonga-command-logicalify
 ${GEM_HOME}/cache/${GEM_NAME}.gem
 ${GEM_LIBDIR}/.yardopts
@@ -7,6 +8,7 @@ ${GEM_LIBDIR}/Gemfile
 ${GEM_LIBDIR}/README.md
 ${GEM_LIBDIR}/Rakefile
 ${GEM_LIBDIR}/bin/groonga-command-convert-format
+${GEM_LIBDIR}/bin/groonga-command-filter
 ${GEM_LIBDIR}/bin/groonga-command-logicalify
 ${GEM_LIBDIR}/doc/text/lgpl-2.1.txt
 ${GEM_LIBDIR}/doc/text/news.md
@@ -14,6 +16,7 @@ ${GEM_LIBDIR}/groonga-command-parser.gemspec
 ${GEM_LIBDIR}/lib/groonga/command/parser.rb
 ${GEM_LIBDIR}/lib/groonga/command/parser/command-line-splitter.rb
 ${GEM_LIBDIR}/lib/groonga/command/parser/command/groonga-command-convert-format.rb
+${GEM_LIBDIR}/lib/groonga/command/parser/command/groonga-command-filter.rb
 ${GEM_LIBDIR}/lib/groonga/command/parser/command/groonga-command-logicalify.rb
 ${GEM_LIBDIR}/lib/groonga/command/parser/error.rb
 ${GEM_LIBDIR}/lib/groonga/command/parser/load-values-parser.rb
