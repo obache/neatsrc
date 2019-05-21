@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.16 2019/04/25 07:33:00 maya Exp $
 
-DISTNAME=	ibus-libpinyin-1.11.0
-PKGREVISION=	2
+DISTNAME=	ibus-libpinyin-1.11.1
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libpinyin/}
 
@@ -11,9 +10,11 @@ COMMENT=	Intelligent Pinyin engine based on libpinyin for IBus
 LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	yes
-USE_TOOLS+=	gmake intltool msgfmt pkg-config
+USE_TOOLS+=	gmake msgfmt pkg-config
 USE_LANGUAGES=	c c++
 USE_LIBTOOL=	yes
+
+GETTEXT_TOOLS_REQD=	0.19.7
 
 .include "options.mk"
 
