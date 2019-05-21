@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.165 2019/05/17 16:11:17 leot Exp $
+# $NetBSD: Makefile,v 1.167 2019/05/20 11:46:57 leot Exp $
 
 DISTNAME=	webkitgtk-2.24.2
 PKGNAME=	${DISTNAME:S/webkitgtk/webkit-gtk/}
@@ -23,6 +23,7 @@ USE_TOOLS+=	automake bison flex gmake perl pkg-config msgfmt
 # Enabling -gdwarf-2 hits GNU ar limits on file size.
 CTF_SUPPORTED=	no
 
+# GCC >= 6.0.0 is required, checked via CMakeLists.txt
 GCC_REQD+=		6
 USE_GCC_RUNTIME=	yes
 
@@ -96,6 +97,7 @@ CXXFLAGS+=	-Wno-c++11-narrowing
 # This does not disable optimisations, merely avoids #error if there are none.
 CFLAGS+=	-DRELEASE_WITHOUT_OPTIMIZATIONS
 
+# Needed for JavaScript JIT
 NOT_PAX_MPROTECT_SAFE+=	libexec/webkit2gtk-4.0/WebKitWebProcess
 NOT_PAX_MPROTECT_SAFE+=	libexec/webkit2gtk-4.0/jsc
 
