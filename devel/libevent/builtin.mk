@@ -5,6 +5,10 @@ BUILTIN_PKG:=	libevent
 BUILTIN_FIND_HEADERS_VAR:=		H_LIBEVENT H_LIBEVENTCONFIG
 BUILTIN_FIND_HEADERS.H_LIBEVENT=	event.h
 BUILTIN_FIND_HEADERS.H_LIBEVENTCONFIG=	event-config.h event2/event-config.h
+BUILTIN_FIND_LIBS:=			event
+BUILTIN_FIND_LIBS+=			event_openssl event_pthreads
+BUILTIN_FIND_LIBS+=			event_core event_extra
+BUILTIN_FIND_PKGCONFIGS:=		${BUILTIN_FIND_LIBS:S/^/lib/}
 
 .include "../../mk/buildlink3/bsd.builtin.mk"
 
@@ -27,26 +31,16 @@ MAKEVARS+=	IS_BUILTIN.libevent
 .if !defined(BUILTIN_PKG.libevent) && \
     !empty(IS_BUILTIN.libevent:M[yY][eE][sS]) && \
     empty(H_LIBEVENT:M__nonexistent__)
-.  if empty(H_LIBEVENTCONFIG:M__nonexistent__)
-_BLTN_EVENT_1_4_11!= \
-	${GREP} -c 1.4.11-stable ${H_LIBEVENTCONFIG} || ${TRUE}
-_BLTN_EVENT_1_4_12!= \
-	${GREP} -c 1.4.12-stable ${H_LIBEVENTCONFIG} || ${TRUE}
-_BLTN_EVENT_2_0_21!= \
-	${GREP} -c 2.0.21-stable ${H_LIBEVENTCONFIG} || ${TRUE}
-_BLTN_EVENT_2_0_22!= \
-	${GREP} -c 2.0.22-stable ${H_LIBEVENTCONFIG} || ${TRUE}
-.    if ${_BLTN_EVENT_2_0_22} == "1"
-BUILTIN_VERSION.libevent=	2.0.22
-.    elif ${_BLTN_EVENT_2_0_21} == "1"
-BUILTIN_VERSION.libevent=	2.0.21
-.    elif ${_BLTN_EVENT_1_4_12} == "1"
-BUILTIN_VERSION.libevent=	1.4.12
-.    elif ${_BLTN_EVENT_1_4_11} == "1"
-BUILTIN_VERSION.libevent=	1.4.11
-.    else
-BUILTIN_VERSION.libevent=	1.4.4
-.    endif
+.  if ${BUILTIN_PKGCONFIG_FOUND.libevent} == "yes"
+BUILTIN_VERSION_STRING.libevent=	${BUILTIN_PKGCONFIG_VERSION.libevent}
+.  elif empty(H_LIBEVENTCONFIG:M__nonexistent__)
+BUILTIN_VERSION_STRING.libevent!=					\
+	${AWK} '/\#define[ 	]*EVENT__PACKAGE_VERSION/ {		\
+			vers = $$3;					\
+			gsub("\"", "", vers);				\
+			print vers;					\
+		}							\
+	' ${H_LIBEVENTCONFIG:Q}
 .  else
 # libevent>=1.3: bufferevent_base_set added
 _BLTN_EVENT_13!=	\
@@ -104,6 +98,8 @@ BUILTIN_VERSION.libevent=	0.6
 BUILTIN_VERSION.libevent=	0.5
 .    endif
 .  endif
+BUILTIN_VERSION_STRING.libevent?=	${BUILTIN_VERSION.libevent:U1.4.4}
+BUILTIN_VERSION.libevent?=	${BUILTIN_VERSION_STRING.libevent:C/-[a-zA-Z]*$//}
 BUILTIN_PKG.libevent=	libevent-${BUILTIN_VERSION.libevent}
 .endif
 MAKEVARS+=	BUILTIN_PKG.libevent
@@ -135,63 +131,34 @@ USE_BUILTIN.libevent!=							\
 .endif
 MAKEVARS+=	USE_BUILTIN.libevent
 
-# Fake pkg-config for builtin libevent on NetBSD
-
-.if !empty(USE_BUILTIN.libevent:M[yY][eE][sS])
-.  if !empty(USE_TOOLS:C/:.*//:Mpkg-config)
-do-configure-pre-hook: override-libevent-pkgconfig
-
-BLKDIR_PKGCFG=	${BUILDLINK_DIR}/lib/pkgconfig
-LIBEVENT_PKGCFGF=	libevent.pc
-LIBEVENT_OPENSSL_PKGCFGF=	libevent_openssl.pc
-LIBEVENT_PTHREADS_PKGCFGF=	libevent_pthreads.pc
-
-override-libevent-pkgconfig: override-message-libevent-pkgconfig
-override-message-libevent-pkgconfig:
-	@${STEP_MSG} "Generating pkg-config files for builtin libevent package."
-
-override-libevent-pkgconfig:
-	${RUN}						\
-	${MKDIR} ${BLKDIR_PKGCFG};			\
-	{						\
-	${ECHO} "prefix=${LIBEVENT_PREFIX}";		\
-	${ECHO} "exec_prefix=\$${prefix}";		\
-	${ECHO} "libdir=\$${exec_prefix}/lib";		\
-	${ECHO} "includedir=\$${prefix}/include";	\
-	${ECHO} "";					\
-	${ECHO} "Name: libevent";			\
-	${ECHO} "Description: libevent is an asynchronous notification event loop library"; \
-	${ECHO} "Version: ${BUILTIN_VERSION.libevent}";	\
-	${ECHO} "Libs: ${COMPILER_RPATH_FLAG}\$${libdir} -L\$${libdir} -levent";	\
-	${ECHO} "Cflags: -I\$${includedir}";		\
-	} >> ${BLKDIR_PKGCFG}/${LIBEVENT_PKGCFGF};
-	${RUN}						\
-	{						\
-	${ECHO} "prefix=${LIBEVENT_PREFIX}";		\
-	${ECHO} "exec_prefix=\$${prefix}";		\
-	${ECHO} "libdir=\$${exec_prefix}/lib";		\
-	${ECHO} "includedir=\$${prefix}/include";	\
-	${ECHO} "";					\
-	${ECHO} "Name: libevent_openssl";			\
-	${ECHO} "Description: libevent_openssl adds openssl-based TLS support to libevent"; \
-	${ECHO} "Version: ${BUILTIN_VERSION.libevent}";	\
-	${ECHO} "Requires: libevent";	\
-	${ECHO} "Libs: ${COMPILER_RPATH_FLAG}\$${libdir} -L\$${libdir} -levent_openssl";	\
-	${ECHO} "Cflags: -I\$${includedir}";		\
-	} >> ${BLKDIR_PKGCFG}/${LIBEVENT_OPENSSL_PKGCFGF};
-	${RUN}						\
-	{						\
-	${ECHO} "prefix=${LIBEVENT_PREFIX}";		\
-	${ECHO} "exec_prefix=\$${prefix}";		\
-	${ECHO} "libdir=\$${exec_prefix}/lib";		\
-	${ECHO} "includedir=\$${prefix}/include";	\
-	${ECHO} "";					\
-	${ECHO} "Name: libevent_pthreads";			\
-	${ECHO} "Description: libevent_pthreads adds pthreads-based threading support to libevent"; \
-	${ECHO} "Version: ${BUILTIN_VERSION.libevent}";	\
-	${ECHO} "Requires: libevent";	\
-	${ECHO} "Libs: ${COMPILER_RPATH_FLAG}\$${libdir} -L\$${libdir} -levent_pthreads";	\
-	${ECHO} "Cflags: -I\$${includedir} -pthread";		\
-	} >> ${BLKDIR_PKGCFG}/${LIBEVENT_PTHREADS_PKGCFGF};
+###
+### The section below only applies if we are not including this file
+### solely to determine whether a built-in implementation exists.
+###
+CHECK_BUILTIN.libevent?=	no
+.if !empty(CHECK_BUILTIN.libevent:M[nN][oO])
+.  if !empty(USE_BUILTIN.libevent:M[yY][eE][sS])
+.    if ${BUILTIN_PKGCONFIG_FOUND.libevent} == "yes"
+BUIDLINK_PREFIX.libevent?=	${BUILTIN_PKGCONFIG_PREFIX.libevent}
+.    endif
+BUILTIN_FAKE_PC_FILES.libevent=	libevent
+FAKE_PC_SRC.libevent:=		${.PARSEDIR}/files/libevent.pc.in
+FAKE_PC_SUBST_SED.libevent+=	-e s,@VERSION@,${BUILTIN_VERSION_STRING.libevent},g
+FAKE_PC_SUBST_SED.libevent+=	-e s,@prefix@,${BUILDLINK_PREFIX.libevent},g
+FAKE_PC_SUBST_SED.libevent+=	-e s,@exec_prefix@,${BUILDLINK_PREFIX.libevent},g
+FAKE_PC_SUBST_SED.libevent+=	-e s,@includedir@,${BUILTIN_HEADER_FOUND_DIR.H_LIBEVENT},g
+FAKE_PC_SUBST_SED.libevent+=	-e s,@libdir@,${BUILTIN_LIB_FOUND_DIR.event},g
+FAKE_PC_SUBST_SED.libevent+=	-e s,@LIBS@,-lcrypto,g
+.    for l in openssl pthreads core extra
+.      if ${BUILTIN_LIB_FOUND.event_${l}} == "yes"
+BUILTIN_FAKE_PC_FILES.libevent+=	libevent_${l}
+FAKE_PC_SRC.libevent_${l}:=		${.PARSEDIR}/files/libevent_${l}.pc.in
+FAKE_PC_SUBST_SED.libevent_${l}=	${FAKE_PC_SUBST_SED.libevent}
+.      endif
+.    endfor
+FAKE_PC_SUBST_SED.libevent_openssl+=	-e 's,@OPENSSL_LIBS@,-lssl -lcrypto,g'
+FAKE_PC_SUBST_SED.libevent_openssl+=	-e 's,@OPENSSL_INCS@,,g'
+FAKE_PC_SUBST_SED.libevent_pthreads+=	-e 's,@PTHREAD_LIBS@,${PTHREAD_LIBS},g'
+FAKE_PC_SUBST_SED.libevent_pthreads+=	-e 's,@PTHREAD_CFLAGS@,${PTHREAD_CFLAGS},g'
 .  endif
-.endif
+.endif # CHECK_BUILTIN.libevent
