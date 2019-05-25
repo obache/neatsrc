@@ -35,7 +35,7 @@ MAKEVARS+=	IS_BUILTIN.libevent
 BUILTIN_VERSION_STRING.libevent=	${BUILTIN_PKGCONFIG_VERSION.libevent}
 .  elif empty(H_LIBEVENTCONFIG:M__nonexistent__)
 BUILTIN_VERSION_STRING.libevent!=					\
-	${AWK} '/\#define[ 	]*EVENT__PACKAGE_VERSION/ {		\
+	${AWK} '/\#define[ 	]+(_EVENT|EVENT_)_VERSION[ 	]+/ {	\
 			vers = $$3;					\
 			gsub("\"", "", vers);				\
 			print vers;					\
