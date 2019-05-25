@@ -11,7 +11,6 @@ BUILDLINK_PKGSRCDIR.mysql-client?=	../../databases/mysql57-client
 BUILDLINK_INCDIRS.mysql-client?=	include/mysql
 BUILDLINK_LIBDIRS.mysql-client?=	lib
 
-.include "../../devel/libevent/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .endif # MYSQL_CLIENT_BUILDLINK3_MK
