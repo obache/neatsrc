@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2018/08/22 09:44:59 wiz Exp $
+# $NetBSD: Makefile,v 1.22 2019/05/23 19:22:59 rillig Exp $
 #
 
 DISTNAME=	quilt-0.64

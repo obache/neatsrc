@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.27 2017/08/16 20:21:16 wiz Exp $
+# $NetBSD: Makefile,v 1.28 2019/05/23 19:23:18 rillig Exp $
 
 DISTNAME=	kronolith-h3-${KRONOLITHVER}
 PKGNAME=	kronolith-${KRONOLITHVER}
@@ -49,7 +49,7 @@ PKG_SYSCONFSUBDIR?=	httpd
 SUBST_CLASSES+=		files
 SUBST_STAGE.files=	post-build
 SUBST_FILES.files=	kronolith.conf.dist
-SUBST_SED.files=	-e "s|@KRONOLITHDIR@|${KRONOLITHDIR}|g"
+SUBST_VARS.files=	KRONOLITHDIR
 SUBST_MESSAGE.files=	Fixing configuration files.
 
 PKG_USERS_VARS+=	APACHE_USER

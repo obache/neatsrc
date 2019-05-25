@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2015/12/29 04:54:39 dholland Exp $
+# $NetBSD: Makefile,v 1.26 2019/05/23 19:23:23 rillig Exp $
 
 DISTNAME=	xcolorsel-1.1a-src
 PKGNAME=	xcolorsel-1.1a

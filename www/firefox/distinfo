@@ -1,9 +1,9 @@
-$NetBSD: distinfo,v 1.349 2019/05/10 19:44:11 ryoon Exp $
+$NetBSD: distinfo,v 1.351 2019/05/22 13:32:51 ryoon Exp $
 
-SHA1 (firefox-66.0.5.source.tar.xz) = f2704b63626a6305ce93ee201997d641a9f71ad4
-RMD160 (firefox-66.0.5.source.tar.xz) = 3a595a011b14bc19237717531836507204e3d71c
-SHA512 (firefox-66.0.5.source.tar.xz) = 6e62e7bb95a7341471521c372506d9df276249d0c0863d059b0bd27537cddb1060c51f0ee103f79239226d34c6277f3855e1511a083bc4cc442718fc7c5db650
-Size (firefox-66.0.5.source.tar.xz) = 282561836 bytes
+SHA1 (firefox-67.0.source.tar.xz) = c7a5f3182999e5efed5c714653adc538bb75aa53
+RMD160 (firefox-67.0.source.tar.xz) = 48e96058ef1bfb2939d8da93fd6807d212d0df4e
+SHA512 (firefox-67.0.source.tar.xz) = a1000d6ca8146a9a3c74a3f69041b755c0c5014c8a608298d9c4cbe39577939d43139a7ad742983697ae90b635d3f5d8f9a008fcc2b3778adaadc25acc49ca29
+Size (firefox-67.0.source.tar.xz) = 282874008 bytes
 SHA1 (patch-aa) = 66c2e96c199ed4b0007c9b8b3dd431305502d427
 SHA1 (patch-browser_app_profile_firefox.js) = 2ea08bf7030853fe9aff3c43c69266c07f0b0b14
 SHA1 (patch-build_moz.configure_old.configure) = 91bab1cbbe02332ec076b49b6e598730202fbc99
@@ -15,6 +15,7 @@ SHA1 (patch-gfx_skia_skia_src_core_SkCpu.cpp) = 36218819254f3681b9c717d652ea78c9
 SHA1 (patch-ipc_chromium_src_base_lock__impl__posix.cc) = d84d9b4d416e049423120dcbf9199644ce1c93ab
 SHA1 (patch-ipc_chromium_src_base_message__pump__libevent.cc) = 4a6606da590cfb8d855bde58b9c6f90e98d0870c
 SHA1 (patch-ipc_chromium_src_base_platform__thread__posix.cc) = 35d20981d33ccdb1d8ffb8039e48798777f11658
+SHA1 (patch-ipc_chromium_src_chrome_common_ipc__channel__posix.cc) = d634805bf3b02475081cb2f263e91e3f4c481a29
 SHA1 (patch-ipc_glue_CrossProcessSemaphore.h) = 25e24743060acf10c776c6b3b3660f52a2e9fbe8
 SHA1 (patch-ipc_glue_CrossProcessSemaphore__posix.cpp) = f8d155ee66008b7cc4052b6a889327543b89e0bb
 SHA1 (patch-ipc_glue_GeckoChildProcessHost.cpp) = 260c29bacd8bf265951b7a412f850bf2b292c836

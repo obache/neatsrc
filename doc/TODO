@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.19005 2019/05/20 14:58:30 ryoon Exp $
+$NetBSD: TODO,v 1.19024 2019/05/24 13:18:24 hauke Exp $
 
 Suggested new packages
 ======================
@@ -339,7 +339,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o GMT-5.1.1
 	o GNUMail-1.2.2
 	o Gorm-1.2.22
-	o ImageMagick-7.0.8.45
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
 	o MesaLib-19.0.4
@@ -447,7 +446,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o bzr-svn-1.2.2
 	o bzrtools-2.6.0
 	o c4-1.10
-	o caff-2.10
 	o cal3d-0.11.0
 	o calc-2.11.10.1
 	o calcoo-2.1.0
@@ -549,7 +547,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o elfsh-0.78
 	o elm-me-2.4.127
 	o elscreen-1.5.3
-	o emacs-26.1
 	o embryo-1.7.10
 	o emerillon-0.1.90
 	o enigma-1.21
@@ -639,7 +636,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gdb-8.3
 	o gdeskcal-1.01
 	o gdk-pixbuf2-2.38.0
-	o gdl-3.16.0
 	o gdm-2.32.2
 	o gdm-3.0.3
 	o geany-plugins-1.34.1
@@ -725,7 +721,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gperiodic-3.0.2
 	o gps-6.1.1
 	o gpsdrive-2.11
-	o grafana-6.1.6
 	o gramofile-1.6P
 	o gramps-4.1.0
 	o grantlee-5.0.0
@@ -914,7 +909,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libmediawiki-4.14.0
 	o libmilter-8.16.0.16
 	o libmtag-0.3.6
-	o libnice-0.1.16
 	o liboobs-2.32.0
 	o liboop-1.0.1
 	o libpcap-1.9.0
@@ -923,7 +917,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libpreludedb-3.1.0
 	o libquantum-1.1.0 [pkg/43728, development release]
 	o librsvg-2.44.13 [wip]
-	o libshout-2.4.2
 	o libstree-0.4.2
 	o libtcl-nothread-8.5.1
 	o libtecla-1.6.3
@@ -955,7 +948,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o maelstrom-x11-2.0.7
 	o magic-8.1.89
 	o magit-2.5
-	o maildrop-2.8.2
 	o mailman-3.0.3
 	o mailscanner-4.74
 	o mailutis-2.2 [wip]
@@ -1035,7 +1027,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ocrad-0.25
 	o odbc-postgresql-09.03.0400
 	o olvwm-4.5
-	o oniguruma-6.9.2
 	o oo2c-2.1.7
 	o opal-3.16.2
 	o openafs-1.8
@@ -1044,7 +1035,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o openh323-1.19.1
 	o openmortal-0.7.1
 	o openoffice-4.1
-	o openoffice3-3.3
 	o opensc-0.19.0
 	o openslp-2.0.0
 	o opensmtpd-6.0.0
@@ -1104,10 +1094,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o plan-1.10.1
 	o plasma-5.11
 	o ploticus-examples-230
-	o po4a-0.55
 	o poco-1.7.5
 	o podcastdl-0.3.3
-	o poedit-2.2.1
 	o pokerth-1.0.1
 	o policyd-weight-0.1.15.2
 	o polkit-0.116 [needs mozjs-60]
@@ -1140,18 +1128,15 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-gobject3-3.30.4
 	o py-hgview-1.9.0
 	o py-hsm-1.1.1
-	o py-html5-parser-0.4.6
 	o py-input-pad-1.4.2
 	o py-keybinder-0.3.1
 	o py-matplotlib-3.0.3
-	o py-mercurial-5.0
 	o py-musicbrainz-0.7.4
 	o py-newt-0.52.20
 	o py-omniORBpy-3.7
 	o py-pendrell-0.3.7
 	o py-ptt-1.10.2
 	o py-pycountry-1.20
-	o py-setuptools_scm-3.3.3
 	o py-simpletal-5.1
 	o py-spf-2.0.12t
 	o py-sybase-0.37
@@ -1333,12 +1318,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ufoai-2.3.1
 	o uhttpmock-0.5.0
 	o unicap-0.9.8
-	o unifont-12.1.01
 	o units-2.12
 	o urlgrabber-3.10.1
 	o userppp-030706
 	o userspace-rcu-0.9.1
-	o utf8proc-2.4.0
 	o utilisp-1.14
 	o varnish-5.1.3
 	o varnish-6.0
@@ -1374,7 +1357,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o wmx-8
 	o wmx-gnome-8
 	o worker-3.12.0
-	o wxGTK-3.1.0
+	o wxGTK-3.1.2
 	o wxRemind-101
 	o x2vnc-1.31
 	o xa65-2.3.7
@@ -1405,7 +1388,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o xorp-1.8.5
 	o xosview-1.19
 	o xpaint-2.9.9
-	o xpdf-4.0
+	o xpdf-4.01.01
 	o xpmroot-2.7.0
 	o xrmap-base-2.33.1
 	o xrmap-factbook_html-2008

@@ -285,16 +285,16 @@ func (pkg *Package) loadPackageMakefile() (MkLines, MkLines) {
 	//  a single string. Maybe it makes sense to print the file inclusion hierarchy
 	//  to quickly see files that cannot be included because of unresolved variables.
 	if G.Opts.DumpMakefile {
-		G.out.WriteLine("Whole Makefile (with all included files) follows:")
+		G.Logger.out.WriteLine("Whole Makefile (with all included files) follows:")
 		for _, line := range allLines.lines.Lines {
-			G.out.WriteLine(line.String())
+			G.Logger.out.WriteLine(line.String())
 		}
 	}
 
 	// See mk/tools/cmake.mk
 	if pkg.vars.Defined("USE_CMAKE") {
-		mainLines.Tools.def("cmake", "", false, AtRunTime, nil)
-		mainLines.Tools.def("cpack", "", false, AtRunTime, nil)
+		allLines.Tools.def("cmake", "", false, AtRunTime, nil)
+		allLines.Tools.def("cpack", "", false, AtRunTime, nil)
 	}
 
 	allLines.collectUsedVariables()
@@ -600,6 +600,8 @@ func (pkg *Package) checkfilePackageMakefile(filename string, mklines MkLines, a
 	}
 
 	pkg.checkUpdate()
+	allLines.collectDefinedVariables() // To get the tool definitions
+	mklines.Tools = allLines.Tools     // TODO: also copy the other collected data
 	mklines.Check()
 	pkg.CheckVarorder(mklines)
 	SaveAutofixChanges(mklines.lines)

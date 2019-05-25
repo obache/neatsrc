@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.43 2019/05/14 15:55:44 jaapb Exp $
+# $NetBSD: Makefile,v 1.44 2019/05/23 19:22:58 rillig Exp $
 
 DISTNAME=		findlib-1.8.0
 PKGNAME=		ocaml-${DISTNAME}

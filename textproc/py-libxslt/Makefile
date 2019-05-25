@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.54 2019/03/19 17:25:40 prlw1 Exp $
+# $NetBSD: Makefile,v 1.55 2019/05/21 21:56:57 schmonz Exp $
 
 .include "../../textproc/libxslt/Makefile.common"
 
