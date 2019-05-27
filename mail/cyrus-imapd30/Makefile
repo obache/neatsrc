@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	cyrus-imapd-3.0.9
+DISTNAME=	cyrus-imapd-3.0.10
 CATEGORIES=	mail
 MASTER_SITES=	https://github.com/cyrusimap/cyrus-imapd/releases/download/${DISTNAME}/
 MASTER_SITES+=	https://www.cyrusimap.org/releases/
@@ -18,7 +18,10 @@ USE_LIBTOOL=		yes
 
 BUILD_DEFS+=		VARBASE
 
-PKGCONFIG_OVERRIDE+= libcyrus.pc.in libcyrus_min.pc.in libcyrus_sieve.pc.in
+PKGCONFIG_OVERRIDE+=	libcyrus.pc.in
+PKGCONFIG_OVERRIDE+=	libcyrus_imap.pc.in
+PKGCONFIG_OVERRIDE+=	libcyrus_min.pc.in
+PKGCONFIG_OVERRIDE+=	libcyrus_sieve.pc.in
 
 .include "../../mk/bsd.prefs.mk"
 

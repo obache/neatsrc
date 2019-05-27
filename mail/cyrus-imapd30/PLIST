@@ -72,6 +72,7 @@ lib/libcyrus_imap.la
 lib/libcyrus_min.la
 lib/libcyrus_sieve.la
 lib/pkgconfig/libcyrus.pc
+lib/pkgconfig/libcyrus_imap.pc
 lib/pkgconfig/libcyrus_min.pc
 lib/pkgconfig/libcyrus_sieve.pc
 libexec/cyrus/fud
@@ -142,7 +143,6 @@ man/man8/mbpath.8
 man/man8/mbtool.8
 man/man8/reconstruct.8
 man/man8/restore.8
-man/man8/rmnews.8
 man/man8/smmapd.8
 man/man8/squatter.8
 man/man8/sync_client.8
@@ -409,6 +409,7 @@ share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.5.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.6.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.7.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.8.txt
+share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.9.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/${PKGVERSION}.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/index.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/upgrade.txt
@@ -553,7 +554,6 @@ share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/quota
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/reconstruct.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/rehash.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/restore.txt
-share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/rmnews.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/sievec.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/sieved.txt
 share/doc/cyrus-imapd/html/_sources/imap/reference/manpages/systemcommands/smmapd.txt
@@ -823,6 +823,7 @@ share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.5.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.6.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.7.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.8.html
+share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.9.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/${PKGVERSION}.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/index.html
 share/doc/cyrus-imapd/html/imap/download/upgrade.html
@@ -967,7 +968,6 @@ share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/quota.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/reconstruct.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/rehash.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/restore.html
-share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/rmnews.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/sievec.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/sieved.html
 share/doc/cyrus-imapd/html/imap/reference/manpages/systemcommands/smmapd.html
@@ -1242,6 +1242,7 @@ share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.5.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.6.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.7.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.8.txt
+share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.9.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/${PKGVERSION}.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/index.txt
 share/doc/cyrus-imapd/text/imap/download/upgrade.txt
@@ -1386,7 +1387,6 @@ share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/quota.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/reconstruct.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/rehash.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/restore.txt
-share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/rmnews.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/sievec.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/sieved.txt
 share/doc/cyrus-imapd/text/imap/reference/manpages/systemcommands/smmapd.txt
