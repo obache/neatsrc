@@ -92,7 +92,12 @@ _PRINT_PLIST_LIBTOOLIZE_FILTER?=	${CAT}
 .PHONY: print-PLIST
 .if !target(print-PLIST)
 print-PLIST:
-	${RUN} ${ECHO} '@comment $$'NetBSD'$$'
+	${RUN} ${ECHO} '@comment $$'NetBSD'$$'				\
+	 | ${CAT} ${PLIST_SRC} -					\
+	 | ${AWK} '							\
+		BEGIN { comment = "@comment $$NetBSD$$";}		\
+		/^@comment \$$NetBSD.*\$$$$/ { comment=$$0; exit;} 	\
+		END { print comment; }'
 	${RUN} ${ALL_ENV};					\
 	shlib_type=${SHLIB_TYPE:Q};					\
 	case $$shlib_type in 						\
