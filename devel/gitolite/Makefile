@@ -22,6 +22,7 @@ NO_BUILD=	yes
 
 REPLACE_PERL=	src/lib/* src/VREF/* src/triggers/* src/triggers/*/* \
 		src/commands/* src/gitolite* src/lib/Gitolite/*/*
+REPLACE_PERL+=	install
 REPLACE_SH=	src/VREF/* src/triggers/* src/triggers/post-compile/* \
 		src/commands/*
 
@@ -32,18 +33,20 @@ SUBST_FILES.perl=	src/gitolite
 SUBST_FILES.perl+=	src/lib/Gitolite/Hooks/*
 SUBST_SED.perl=		-e 's,/usr/bin/perl,${PERL5},g'
 
-INSTALLATION_DIRS+=	bin lib \
+# fake git command only for `git describe --tags ...` to retrieve VERSION
+TOOLS_CREATE+=		git
+TOOLS_SCRIPT.git=	${ECHO} ${GITHUB_TAG}
+
+INSTALLATION_DIRS+=	bin \
 			share/doc/gitolite \
 			libexec/gitolite \
-			${PERL5_INSTALLVENDORARCH}
 
 pre-install:
 	${FIND} ${WRKSRC} -type f \
 		-name "*.orig" -exec ${RM} -f {} \;
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/src/gitolite ${DESTDIR}${PREFIX}/libexec/gitolite
-	${INSTALL_SCRIPT} ${WRKSRC}/src/gitolite-shell ${DESTDIR}${PREFIX}/libexec/gitolite
+	${RUN} cd ${WRKSRC};./install -to ${DESTDIR}${PREFIX}/libexec/gitolite
 
 	cd ${DESTDIR}${PREFIX}/bin && ${LN} -s ../libexec/gitolite/gitolite gitolite
 
@@ -51,17 +54,4 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/COPYING ${DESTDIR}${PREFIX}/share/doc/gitolite
 	${INSTALL_DATA} ${WRKSRC}/README.markdown ${DESTDIR}${PREFIX}/share/doc/gitolite
 
-	cd ${WRKSRC}/src/lib && pax -rw -pmp Gitolite \
-		${DESTDIR}${PERL5_INSTALLVENDORARCH}
-
-	cd ${WRKSRC}/src && pax -rw -pmp triggers \
-		${DESTDIR}${PREFIX}/libexec/gitolite
-	cd ${WRKSRC}/src && pax -rw -pmp syntactic-sugar \
-		${DESTDIR}${PREFIX}/libexec/gitolite
-	cd ${WRKSRC}/src && pax -rw -pmp VREF \
-		${DESTDIR}${PREFIX}/libexec/gitolite
-	cd ${WRKSRC}/src && pax -rw -pmp commands \
-		${DESTDIR}${PREFIX}/libexec/gitolite
-
-.include "../../lang/perl5/dirs.mk"
 .include "../../mk/bsd.pkg.mk"
