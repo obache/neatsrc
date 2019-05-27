@@ -47,9 +47,9 @@ do-install:
 
 	cd ${DESTDIR}${PREFIX}/bin && ${LN} -s ../libexec/gitolite/gitolite gitolite
 
-	${INSTALL_DATA} ${WRKSRC}/CHANGELOG ${DESTDIR}${PREFIX}/share/gitolite
-	${INSTALL_DATA} ${WRKSRC}/COPYING ${DESTDIR}${PREFIX}/share/gitolite
-	${INSTALL_DATA} ${WRKSRC}/README.markdown ${DESTDIR}${PREFIX}/share/gitolite
+	${INSTALL_DATA} ${WRKSRC}/CHANGELOG ${DESTDIR}${PREFIX}/share/doc/gitolite
+	${INSTALL_DATA} ${WRKSRC}/COPYING ${DESTDIR}${PREFIX}/share/doc/gitolite
+	${INSTALL_DATA} ${WRKSRC}/README.markdown ${DESTDIR}${PREFIX}/share/doc/gitolite
 
 	cd ${WRKSRC}/src/lib && pax -rw -pmp Gitolite \
 		${DESTDIR}${PERL5_INSTALLVENDORARCH}

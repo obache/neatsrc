@@ -89,5 +89,6 @@ libexec/gitolite/triggers/renice
 libexec/gitolite/triggers/repo-specific-hooks
 libexec/gitolite/triggers/set-default-roles
 libexec/gitolite/triggers/upstream
-share/gitolite
-@pkgdir share/doc/gitolite
+share/doc/gitolite/CHANGELOG
+share/doc/gitolite/COPYING
+share/doc/gitolite/README.markdown
