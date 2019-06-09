@@ -78,8 +78,6 @@ BUILDLINK_API_DEPENDS.expat+=	expat>=1.95.4
 .      include "../../mk/x11.builtin.mk"
 .    elif !empty(H_EXPAT:M/usr/*)
 BUILDLINK_PREFIX.expat=	/usr
-.    elif !empty(H_EXPAT:M/boot/common/*)
-BUILDLINK_PREFIX.expat=	/boot/common
 .    endif
 .  endif
 

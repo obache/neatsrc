@@ -133,8 +133,6 @@ BUILDLINK_PASSTHRU_DIRS+=	/usr/sfw
 BUILDLINK_PREFIX.openssl=	/usr
 .      elif !empty(H_OPENSSLV:M/boot/system/develop/*)
 BUILDLINK_PREFIX.openssl=	/boot/system/develop
-.      elif !empty(H_OPENSSLV:M/boot/common/*)
-BUILDLINK_PREFIX.openssl=	/boot/common
 .      endif
 .    endif
 .  endif
@@ -215,11 +213,7 @@ SSLDIR=	${PKG_SYSCONFDIR.openssl}
 .    if ${OPSYS} == "NetBSD"
 SSLDIR=	/etc/openssl
 .    elif ${OPSYS} == "Haiku"
-.      if exists(/boot/system/data/ssl)
 SSLDIR=	/boot/system/data/ssl
-.      else
-SSLDIR=	/boot/common/data/ssl
-.      endif
 .    else
 SSLDIR=	/etc/ssl 		# most likely place
 .    endif

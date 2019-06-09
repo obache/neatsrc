@@ -355,11 +355,9 @@ BUILDLINK_PKGNAME.${_pkg_}?=	${_pkg_}
 # Usual systems has builtin packages in /usr
 .    if exists(/usr)
 BUILDLINK_PREFIX.${_pkg_}?=	/usr
-# Haiku OS has posix packages in /boot/sytem/develop (or /boot/common)
+# Haiku OS has development tools in /boot/sytem/develop
 .    elif exists(/boot/system/develop)
 BUILDLINK_PREFIX.${_pkg_}?=	/boot/system/develop
-.    elif exists(/boot/common)
-BUILDLINK_PREFIX.${_pkg_}?=	/boot/common
 .    else
 # XXX: elsewhere?
 BUILDLINK_PREFIX.${_pkg_}?=	# empty

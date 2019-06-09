@@ -21,7 +21,7 @@ EXPORT_SYMBOLS_LDFLAGS?=	# Don't add symbols to the dynamic symbol table
 MOTIF_TYPE_DEFAULT?=	motif	# default 2.0 compatible libs type
 NOLOGIN?=		/bin/false
 PKG_TOOLS_BIN?=		${LOCALBASE}/sbin
-ROOT_CMD?=		${SU} - root -c
+ROOT_CMD?=		${SU} -c
 ROOT_GROUP?=		root
 ROOT_USER?=		user
 SERIAL_DEVICES?=	/dev/tty
@@ -33,7 +33,6 @@ USERADD?=		/bin/useradd
 GROUPADD?=		/bin/groupadd
 .endif
 
-.if exists(/boot/system/develop)
 _SYSTEM_ARCH!=		/bin/getarch
 _SYSTEM_BIN_DIRECTORY!=	/bin/finddir B_SYSTEM_BIN_DIRECTORY
 .if exists(${_SYSTEM_BIN_DIRECTORY}/${_SYSTEM_ARCH})
@@ -45,13 +44,6 @@ _OPSYS_LIB_DIRS?=	/boot/system/develop/lib${LIBABISUFFIX} \
 _OPSYS_INCLUDE_DIRS?=	/boot/system/develop/headers${LIBABISUFFIX} \
 			/boot/system/develop/headers \
 			/boot/system/develop/headers/posix
-.else
-_OPSYS_SYSTEM_RPATH?=	/boot/common/lib:/boot/system/lib
-_OPSYS_LIB_DIRS?=	/boot/common/lib /boot/system/lib
-_OPSYS_INCLUDE_DIRS?=	/boot/common/include \
-			/boot/develop/headers/posix \
-			/boot/develop/headers/3rdparty
-.endif
 
 _OPSYS_HAS_INET6=	yes	# IPv6 is standard
 _OPSYS_HAS_JAVA=	no	# Java is not standard
