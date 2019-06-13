@@ -87,10 +87,18 @@ CONFIGURE_ARGS+=	--enable-maintainer-zts
 
 .if !empty(PKG_OPTIONS:Mreadline)
 USE_GNU_READLINE=	yes
-.include "../../devel/readline/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-readline=${BUILDLINK_PREFIX.readline}
+.include "../../mk/readline.buildlink3.mk"
+CONFIGURE_ARGS.readline+=	--with-readline=${BUILDLINK_PREFIX.readline}
+CONFIGURE_ARGS.readlinke+=	--without-libedit
+CONFIGURE_ENV.readline+=	READLINE_DIR=${BUILDLINK_DIR}
+CONFIGURE_ARGS.editline+=	--with-libedit=${BUILDLINK_PREFIX.editline}
+CONFIGURE_ARGS.editline+=	--without-readline
+CONFIGURE_ENV.editline+=	LIBEDIT_DIR=${BUILDLINK_DIR}
+CONFIGURE_ARGS+=	${CONFIGURE_ARGS.${READLINE_TYPE}}
+CONFIGURE_ENV+=		${CONFIGURE_ENV.${READLINE_TYPE}}
 .else
 CONFIGURE_ARGS+=	--without-readline
+CONFIGURE_ARGS+=	--without-libedit
 .endif
 
 .if !empty(PKG_OPTIONS:Mdtrace)
