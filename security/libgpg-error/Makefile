@@ -29,6 +29,11 @@ CONFIGURE_ENV+=		CC_FOR_BUILD=${CC:Q}\ ${CFLAGS:M*:Q}
 LIBS+=	-lrt
 .endif
 
+SUBST_CLASSES+=		add-rpath
+SUBST_STAGE.add-rpath=	pre-configure
+SUBST_FILES.add-rpath=	configure
+SUBST_SED.add-rpath=	'/GPG_ERROR_CONFIG_LIBS="/s|-L\([^ 	]*\)|${COMPILER_RPATH_FLAG}\1 -L\1|g'
+
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
