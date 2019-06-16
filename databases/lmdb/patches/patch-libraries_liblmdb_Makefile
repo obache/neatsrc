@@ -12,10 +12,10 @@ Use proper install commands.
 -	for f in $(ILIBS); do cp $$f $(DESTDIR)$(libdir); done
 -	for f in $(IHDRS); do cp $$f $(DESTDIR)$(includedir); done
 -	for f in $(IDOCS); do cp $$f $(DESTDIR)$(mandir)/man1; done
-+	for f in $(IPROGS); do $(BSD_INSTALL_PROGRAM) $$f $(DESTDIR)$(prefix)/bin; done
-+	for f in $(ILIBS); do $(BSD_INSTALL_LIB) $$f $(DESTDIR)$(prefix)/lib; done
-+	for f in $(IHDRS); do $(BSD_INSTALL_DATA) $$f $(DESTDIR)$(prefix)/include; done
-+	for f in $(IDOCS); do $(BSD_INSTALL_MAN) $$f $(DESTDIR)$(prefix)/$(PKGMANDIR)/man1; done
++	for f in $(IPROGS); do $(BSD_INSTALL_PROGRAM) $$f $(DESTDIR)$(bindir); done
++	for f in $(ILIBS); do $(BSD_INSTALL_LIB) $$f $(DESTDIR)$(libdir); done
++	for f in $(IHDRS); do $(BSD_INSTALL_DATA) $$f $(DESTDIR)$(includedir); done
++	for f in $(IDOCS); do $(BSD_INSTALL_MAN) $$f $(DESTDIR)$(mandir)/man1; done
  
  clean:
  	rm -rf $(PROGS) *.[ao] *.[ls]o *~ testdb
@@ -28,13 +28,13 @@ Use proper install commands.
 -mdb_dump: mdb_dump.o liblmdb.a
 -mdb_load: mdb_load.o liblmdb.a
 +mdb_stat: mdb_stat.o liblmdb${SOEXT}
-+	$(CC) $(LDFLAGS) -L. -Wl,-R. -llmdb -o $@ $<
++	$(CC) $(LDFLAGS) -L. -Wl,-R$(libdir) -llmdb -o $@ $<
 +mdb_copy: mdb_copy.o liblmdb${SOEXT}
-+	$(CC) $(LDFLAGS) -L. -Wl,-R.  -llmdb -o $@ $<
++	$(CC) $(LDFLAGS) -L. -Wl,-R$(libdir)  -llmdb -o $@ $<
 +mdb_dump: mdb_dump.o liblmdb${SOEXT}
-+	$(CC) $(LDFLAGS) -L. -Wl,-R. -llmdb -o $@ $<
++	$(CC) $(LDFLAGS) -L. -Wl,-R$(libdir) -llmdb -o $@ $<
 +mdb_load: mdb_load.o liblmdb${SOEXT}
-+	$(CC) $(LDFLAGS) -L. -Wl,-R. -llmdb -o $@ $<
++	$(CC) $(LDFLAGS) -L. -Wl,-R$(libdir) -llmdb -o $@ $<
  mtest:    mtest.o    liblmdb.a
  mtest2:	mtest2.o liblmdb.a
  mtest3:	mtest3.o liblmdb.a
