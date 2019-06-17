@@ -1,0 +1,23 @@
+$NetBSD$
+
+* pythn2to3
+
+--- SConstruct.orig	2019-06-17 04:59:39.933614520 +0000
++++ SConstruct
+@@ -1,6 +1,7 @@
+ import platform
+ import os
+ import sys
++from functools import reduce
+ 
+ 
+ version = "2.0.4"
+@@ -227,7 +228,7 @@ def CreateEnvironment():
+ def PassVariables(envvar, env):
+     for (x, y) in envvar:
+         if x in os.environ:
+-            print 'Warning: you\'ve set %s in the environmental variable!' % x
++            print ('Warning: you\'ve set %s in the environmental variable!' % x)
+             env[y] = os.environ[x]
+ 
+ env = CreateEnvironment()
