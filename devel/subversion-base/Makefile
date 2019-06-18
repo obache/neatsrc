@@ -13,6 +13,10 @@ BROKEN_GETTEXT_DETECTION=	yes
 USE_TOOLS+=		msgfmt pkg-config
 
 CONFIGURE_ARGS+=	--without-apxs
+CONFIGURE_ARGS+=	--with-swig=no
+CONFIGURE_ENV+=		ac_cv_path_PERL=none
+CONFIGURE_ENV+=		ac_cv_path_PYTHON=none
+CONFIGURE_ENV+=		ac_cv_path_RUBY=none
 
 APU_OPTIONS=		PKG_BUILD_OPTIONS.apr-util
 BUILD_DEFS+=		${APU_OPTIONS}
