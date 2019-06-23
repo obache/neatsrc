@@ -39,9 +39,9 @@ PLIST.glibc=	yes
 .endif
 
 do-install:
-	cd ${WRKSRC}/gettext-tools && ${MAKE} install-gettextsrcSCRIPTS DESTDIR=${DESTDIR}
-	cd ${WRKSRC}/gettext-tools/projects && ${MAKE} install DESTDIR=${DESTDIR}
-	cd ${WRKSRC}/gettext-runtime && ${MAKE} install-gettextsrcDATA DESTDIR=${DESTDIR}
+	cd ${WRKSRC}/gettext-tools && ${SETENV} ${INSTALL_ENV} ${MAKE_ENV} ${MAKE_PROGRAM} ${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS} install-gettextsrcSCRIPTS
+	cd ${WRKSRC}/gettext-tools/projects && ${SETENV} ${INSTALL_ENV} ${MAKE_ENV} ${MAKE_PROGRAM} ${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS} install
+	cd ${WRKSRC}/gettext-runtime && ${SETENV} ${INSTALL_ENV} ${MAKE_ENV} ${MAKE_PROGRAM} ${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS} install-gettextsrcDATA
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/gettext-asprintf/buildlink3.mk"
