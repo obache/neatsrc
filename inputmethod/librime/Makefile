@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.17 2018/12/13 19:51:35 adam Exp $
 
-DISTNAME=	librime-1.4.0
+DISTNAME=	librime-1.5.3
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	-https://github.com/rime/librime/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
@@ -17,7 +17,6 @@ PKGCONFIG_OVERRIDE+=	rime.pc.in
 
 .include "options.mk"
 
-CHECK_PORTABILITY_SKIP+=	thirdparty/src/yaml-cpp/test/gmock-1.7.0/configure
 CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=TRUE
 
 .include "../../converters/opencc/buildlink3.mk"

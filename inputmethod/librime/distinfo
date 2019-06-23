@@ -1,7 +1,8 @@
 $NetBSD: distinfo,v 1.5 2018/03/07 09:34:09 wiz Exp $
 
-SHA1 (librime-1.4.0.tar.gz) = e7163d0a6388bc4475820d4a2467a999305ef0ff
-RMD160 (librime-1.4.0.tar.gz) = 4908b1016b5ba39ee13dc1d2e3a038d391d86bc6
-SHA512 (librime-1.4.0.tar.gz) = da68983638c6f25d994060a607f2ccab8917a71dbf10b9c6f1140c87c9ef4124e29a1d0ef16bbd0edc9a3a22bd5845aa894888d678607db372750f300638f562
-Size (librime-1.4.0.tar.gz) = 8609316 bytes
-SHA1 (patch-CMakeLists.txt) = 26f8f6e5e68da994613c02275fd94689ed9f0e56
+SHA1 (librime-1.5.3.tar.gz) = 2988a17367fd85587079da7e6a9e136fa7fdef20
+RMD160 (librime-1.5.3.tar.gz) = acc416c4af304b16bd802339fbd1393022872fca
+SHA512 (librime-1.5.3.tar.gz) = 4d7f6ec43bd5728f59f0b3581bcd8a46128651430b6873017d80659942b8f6aa1a2f25f439ba8fba461fe22acbf701c2da7a786104a2e4852a70a89cdc0452d3
+Size (librime-1.5.3.tar.gz) = 2847083 bytes
+SHA1 (patch-CMakeLists.txt) = b81c5f142307a73b76fa4d7cad59f630663f15ee
+SHA1 (patch-plugins_CMakeLists.txt) = d0b7ef88a3c0bde59c7ded1442b536046a62ac72

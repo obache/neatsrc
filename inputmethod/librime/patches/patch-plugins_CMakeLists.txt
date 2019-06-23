@@ -1,0 +1,15 @@
+$NetBSD$
+
+* preven to build with bogus directory
+
+--- plugins/CMakeLists.txt.orig	2019-06-22 10:47:49.000000000 +0000
++++ plugins/CMakeLists.txt
+@@ -9,7 +9,7 @@ unset(plugins_deps)
+ unset(plugins_modules)
+ file(GLOB plugin_files "*")
+ foreach(file ${plugin_files})
+-  if (IS_DIRECTORY ${file})
++  if (IS_DIRECTORY ${file} AND EXISTS "${file}/CMakeLists.txt")
+     message(STATUS "Found plugin: ${file}")
+     unset(plugin_name)
+     unset(plugin_objs)
