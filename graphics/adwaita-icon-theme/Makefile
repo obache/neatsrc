@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2018/12/02 10:09:41 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2019/06/08 19:56:23 leot Exp $
 
 DISTNAME=		adwaita-icon-theme-3.30.1
 CATEGORIES=		graphics gnome
@@ -27,4 +27,5 @@ INSTALLATION_DIRS+=	share/icons/Adwaita/96x96/places
 
 BUILDLINK_DEPMETHOD.gettext-lib=        build
 .include "../../devel/gettext-lib/buildlink3.mk"
+.include "../../graphics/librsvg/tool.mk"
 .include "../../mk/bsd.pkg.mk"

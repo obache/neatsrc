@@ -500,10 +500,31 @@ func (s *Suite) Test_VartypeCheck_FetchURL(c *check.C) {
 	vt.Values(
 		"${MASTER_SITE_GITHUB:S,^,-,:=project/archive/${DISTFILE}}")
 
-	// No warning since there is more than a single := modifier.
-	// In this case, because of the hyphen that is added at the beginning,
-	// the URL is not required to end with a slash anymore.
+	// No warning that the part after the := must end with a slash,
+	// since there is another modifier in the variable use, in this case :S.
+	//
+	// That modifier adds a hyphen at the beginning (but pkglint doesn't
+	// inspect this), therefore the URL is not required to end with a slash anymore.
 	vt.OutputEmpty()
+
+	// As of June 2019, the :S modifier is not analyzed since it is unusual.
+	vt.Values(
+		"${MASTER_SITE_GNU:S,$,subdir/,}")
+	vt.OutputEmpty()
+}
+
+func (s *Suite) Test_VartypeCheck_FetchURL__without_package(c *check.C) {
+	t := s.Init(c)
+
+	vt := NewVartypeCheckTester(t, (*VartypeCheck).FetchURL)
+
+	vt.Varname("MASTER_SITES")
+	vt.Values(
+		"https://github.com/example/project/",
+		"${MASTER_SITE_OWN}")
+
+	vt.Output(
+		"ERROR: filename.mk:2: The site MASTER_SITE_OWN does not exist.")
 }
 
 func (s *Suite) Test_VartypeCheck_Filename(c *check.C) {
@@ -534,13 +555,18 @@ func (s *Suite) Test_VartypeCheck_FileMask(c *check.C) {
 
 	vt.Varname("FNAME")
 	vt.Values(
+		"filename.txt",
+		"*.txt",
+		"[12345].txt",
+		"[0-9].txt",
+		"???.txt",
 		"FileMask with spaces.docx",
 		"OS/2-manual.txt")
 
 	vt.Output(
-		"WARN: filename.mk:1: The filename pattern \"FileMask with spaces.docx\" "+
+		"WARN: filename.mk:6: The filename pattern \"FileMask with spaces.docx\" "+
 			"contains the invalid characters \"  \".",
-		"WARN: filename.mk:2: The filename pattern \"OS/2-manual.txt\" "+
+		"WARN: filename.mk:7: The filename pattern \"OS/2-manual.txt\" "+
 			"contains the invalid character \"/\".")
 
 	vt.Op(opUseMatch)

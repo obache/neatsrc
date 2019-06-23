@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.68 2019/05/22 19:57:12 adam Exp $
+# $NetBSD: Makefile,v 1.71 2019/06/22 16:11:49 jmcneill Exp $
 
-DISTNAME=	samba-4.10.4
+DISTNAME=	samba-4.10.5
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://download.samba.org/pub/samba/stable/
 
@@ -167,10 +168,6 @@ SUBST_MESSAGE.logpath=	Fixing log path.
 SUBST_FILES.logpath=	examples/smb.conf.default
 SUBST_STAGE.logpath=	pre-configure
 SUBST_SED.logpath+=	-e 's,/usr/local/samba/var/log.%m,${SMB_LOGFILEBASE}/log.%m,g'
-
-.if ${INIT_SYSTEM} == "rc.d"
-MESSAGE_SRC=		${PKGDIR}/MESSAGE.rcd
-.endif
 
 SMF_INSTANCES=	smbd nmbd
 

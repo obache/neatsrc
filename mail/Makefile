@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.526 2019/05/02 22:12:33 wiz Exp $
+# $NetBSD: Makefile,v 1.529 2019/06/12 18:23:59 ryoon Exp $
 #
 
 COMMENT=	Electronic mail utilities
@@ -161,6 +161,7 @@ SUBDIR+=	mess822
 SUBDIR+=	metamail
 SUBDIR+=	mew
 SUBDIR+=	mhonarc
+SUBDIR+=	mhpgp
 SUBDIR+=	milter-greylist
 SUBDIR+=	milter-manager
 SUBDIR+=	milter-regex
@@ -223,6 +224,7 @@ SUBDIR+=	p5-MIME-Types
 SUBDIR+=	p5-MIME-tools
 SUBDIR+=	p5-Mail-Alias
 SUBDIR+=	p5-Mail-Audit
+SUBDIR+=	p5-Mail-AuthenticationResults
 SUBDIR+=	p5-Mail-Box
 SUBDIR+=	p5-Mail-Box-IMAP4
 SUBDIR+=	p5-Mail-Box-POP3
@@ -378,8 +380,6 @@ SUBDIR+=	teapop
 SUBDIR+=	thunderbird
 SUBDIR+=	thunderbird-enigmail
 SUBDIR+=	thunderbird-l10n
-SUBDIR+=	thunderbird45
-SUBDIR+=	thunderbird45-l10n
 SUBDIR+=	thunderbird52
 SUBDIR+=	thunderbird52-l10n
 SUBDIR+=	tmda

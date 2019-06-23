@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.16 2018/06/24 06:55:47 wiz Exp $
+$NetBSD: distinfo,v 1.18 2019/06/08 03:10:25 wen Exp $
 
-SHA1 (Devel-PatchPerl-1.52.tar.gz) = fc292a8747eec2435f9c09afd8a38c12b1488907
-RMD160 (Devel-PatchPerl-1.52.tar.gz) = 1be733356ce9a76df2f45ca995581dd3e9afc944
-SHA512 (Devel-PatchPerl-1.52.tar.gz) = c08783fa087a2f6e55cc25665e429373c46fdb97ba0f08a4f20f71e8970d188281b41c04ed3d39c6fe7ea4b642cd6c3c08116bdbe0c9de0d4ce9fe64971d767f
-Size (Devel-PatchPerl-1.52.tar.gz) = 123142 bytes
+SHA1 (Devel-PatchPerl-1.62.tar.gz) = 29bbe3f8572d6d16f1f3e48600f35830227d39e3
+RMD160 (Devel-PatchPerl-1.62.tar.gz) = 9fdafa09916d8e3ae32bbb2d8cff5cf519e63a2c
+SHA512 (Devel-PatchPerl-1.62.tar.gz) = f878bf221886128fc618c2dc5be5ec53d4a8a3fda1925571e9e2f55066e25f044b5d9502c357597df77f6a1693baf60ec266e79860725926ef518c9d8de5a5c1
+Size (Devel-PatchPerl-1.62.tar.gz) = 130282 bytes

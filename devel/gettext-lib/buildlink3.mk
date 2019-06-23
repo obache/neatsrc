@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.37 2014/01/04 11:14:37 richard Exp $
+# $NetBSD: buildlink3.mk,v 1.39 2019/06/18 10:36:04 jperkin Exp $
 
 BUILDLINK_TREE+=	gettext
 

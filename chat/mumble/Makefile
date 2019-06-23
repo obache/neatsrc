@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.2 2018/12/22 18:28:07 nia Exp $
+# $NetBSD: Makefile,v 1.4 2019/06/22 09:46:58 nia Exp $
 
 DISTNAME=	mumble-1.2.19
+PKGREVISION=	1
 CATEGORIES=	chat audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mumble-voip/}
 GITHUB_PROJECT=	mumble
@@ -86,6 +87,7 @@ do-install:
 .include "../../devel/libltdl/buildlink3.mk"
 .include "../../devel/protobuf/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
+.include "../../net/mDNSResponder/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../x11/libXi/buildlink3.mk"
 .include "../../x11/qt4-libs/buildlink3.mk"

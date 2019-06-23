@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.295 2019/03/21 13:58:55 wiz Exp $
+# $NetBSD: Makefile,v 1.298 2019/06/18 20:50:05 nia Exp $
 #
 
 COMMENT=	Emulators for other operating systems
@@ -20,6 +20,7 @@ SUBDIR+=	arcem
 SUBDIR+=	arnold
 SUBDIR+=	atari800
 SUBDIR+=	b-em
+SUBDIR+=	blastem
 SUBDIR+=	blinkensim
 SUBDIR+=	bochs
 SUBDIR+=	ckmame
@@ -47,7 +48,6 @@ SUBDIR+=	compat61-x11
 #SUBDIR+=	compat_netbsd		# only contains Makefile fragments
 SUBDIR+=	cygwin_esound
 SUBDIR+=	cygwin_lib
-SUBDIR+=	darcnes
 SUBDIR+=	darwin_lib
 SUBDIR+=	dega
 SUBDIR+=	dgen
@@ -138,6 +138,7 @@ SUBDIR+=	m1
 SUBDIR+=	makeppf
 SUBDIR+=	mame
 SUBDIR+=	mednafen
+SUBDIR+=	mgba
 SUBDIR+=	minivmac
 SUBDIR+=	mmix
 SUBDIR+=	nestopia

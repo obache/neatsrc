@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.4 2016/04/21 11:17:26 jperkin Exp $
+$NetBSD: distinfo,v 1.6 2019/06/11 23:50:13 kamil Exp $
 
 SHA1 (terminator-0.98.tar.gz) = a35561ef4fec3d2f34e909bb7284f0b770a4e607
 RMD160 (terminator-0.98.tar.gz) = cddb24240b74fba3eb6694d9d4aaff11329a14b6

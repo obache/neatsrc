@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.581 2019/05/22 16:07:16 rillig Exp $
+# $NetBSD: Makefile,v 1.585 2019/06/10 19:51:57 rillig Exp $
 
-PKGNAME=	pkglint-5.7.11
+PKGNAME=	pkglint-5.7.13
 CATEGORIES=	pkgtools
 DISTNAME=	tools
 MASTER_SITES=	${MASTER_SITE_GITHUB:=golang/}
@@ -27,7 +27,7 @@ SUBST_FILES.pkglint+=	${WRKSRC.pkglint}/pkglint.go
 SUBST_SED.pkglint+=	-e s\|@VERSION@\|${PKGVERSION}\|g
 SUBST_SED.pkglint+=	-e s\|@BMAKE@\|${MAKE:T:Q}\|g
 
-EXTRACT_PAX_ARGS=	-s ',.*/CVS$$,,' -s ',.*/CVS/.*,,'
+EXTRACT_PAX_ARGS=	-s ',.*/CVS$$,,' -s ',.*/CVS/.*,,' -s ',.*/\..*,,'
 
 WRKSRC.tools=		${WRKSRC}/golang.org/x/tools
 WRKSRC.pkglint=		${WRKSRC}/netbsd.org/pkglint

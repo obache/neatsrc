@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.9 2019/05/02 09:16:47 adam Exp $
+# $NetBSD: Makefile,v 1.11 2019/06/18 08:02:35 adam Exp $
 
-DISTNAME=	django-extensions-2.1.6
+DISTNAME=	django-extensions-2.1.9
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=d/django-extensions/}

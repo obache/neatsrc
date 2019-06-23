@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.36 2019/05/23 17:39:53 rillig Exp $
+# $NetBSD: Makefile,v 1.38 2019/06/04 17:22:22 nia Exp $
 
 .include "../../devel/gettext/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/-/-tools-/}
-PKGREVISION=	1
 COMMENT=	Tools for providing messages in different languages
 
 DISTINFO_FILE=	${.CURDIR}/../../devel/gettext/distinfo
@@ -38,7 +37,13 @@ BUILDLINK_TRANSFORM.Cygwin+=	rm:-Wl,--disable-auto-import
 #bug 20453 in bug-gzip list, passed onto gnulib
 CONFIGURE_ENV.AIX+=	ac_cv_header_wctype_h=no
 
-PLIST_SUBST+=	ARCHIVE_VERSION=${PKGVERSION_NOREV:S/./ /g:[1..3]:ts.}
+PLIST_VARS+=	glibc
+
+.include "../../mk/bsd.prefs.mk"
+
+.if ${OPSYS} == "Linux"
+PLIST.glibc=	yes
+.endif
 
 SUBST_CLASSES+=			ext-gettext
 SUBST_STAGE.ext-gettext=	pre-configure

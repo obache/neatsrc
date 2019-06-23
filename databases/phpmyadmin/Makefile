@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.157 2019/05/23 19:22:57 rillig Exp $
+# $NetBSD: Makefile,v 1.159 2019/06/16 09:13:11 tm Exp $
 
-DISTNAME=	phpMyAdmin-4.8.4-all-languages
+DISTNAME=	phpMyAdmin-4.9.0.1-all-languages
 PKGNAME=	${PHP_PKG_PREFIX}-${DISTNAME:S/-all-languages//:tl}
 CATEGORIES=	databases www
 MASTER_SITES=	https://files.phpmyadmin.net/phpMyAdmin/${PKGVERSION_NOREV}/
@@ -63,7 +63,7 @@ REPLACE_FILES.php+=	vendor/phpmyadmin/sql-parser/bin/highlight-query
 REPLACE_FILES.php+=	vendor/phpmyadmin/sql-parser/bin/lint-query
 REPLACE_FILES.php+=	vendor/phpmyadmin/sql-parser/bin/tokenize-query
 
-REPLACE_SH+=	vendor/paragonie/random_compat/build-phar.sh
+REPLACE_SH+=	vendor/twig/twig/drupal_test.sh
 
 CONF_FILES+=	${EXDIR}/apache.conf ${PKG_SYSCONFDIR}/apache.conf
 

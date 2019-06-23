@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.104 2018/08/22 09:42:52 wiz Exp $
+# $NetBSD: Makefile,v 1.105 2019/06/08 19:56:24 leot Exp $
 
 DISTNAME=		gnome-icon-theme-3.12.0
 PKGREVISION=		3
@@ -28,4 +28,5 @@ BUILDLINK_API_DEPENDS.icon-naming-utils+=	icon-naming-utils>=0.8.90
 BUILDLINK_DEPMETHOD.gettext-lib=	build
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../graphics/icon-naming-utils/buildlink3.mk"
+.include "../../graphics/librsvg/tool.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.1 2019/05/22 11:54:06 jperkin Exp $
+# $NetBSD: Makefile,v 1.3 2019/06/05 19:19:38 adam Exp $
 
-DISTNAME=	node_exporter-0.18.0
+DISTNAME=	node_exporter-0.18.1
 MASTER_SITES=	${MASTER_SITE_GITHUB:=prometheus/}
 CATEGORIES=	sysutils
-GITHUB_PROJECT=	node_exporter
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@pkgsrc.org
-HOMEPAGE=	https://github.com/prometheus/node_exporter/
+HOMEPAGE=	https://github.com/prometheus/node_exporter
 COMMENT=	Prometheus exporter for hardware and OS metrics
 LICENSE=	apache-2.0
 

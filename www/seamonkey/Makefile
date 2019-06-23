@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.189 2019/05/05 22:49:53 ryoon Exp $
+# $NetBSD: Makefile,v 1.193 2019/06/13 23:08:05 nia Exp $
 
 DISTNAME=	seamonkey-${SM_VER}.source
 PKGNAME=	seamonkey-${SM_VER:S/b/beta/}
-PKGREVISION=	7
+PKGREVISION=	11
 SM_VER=		2.49.4
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_MOZILLA:=seamonkey/releases/${SM_VER}/source/}
@@ -63,6 +63,7 @@ CHECK_WRKREF_SKIP=	lib/seamonkey/chrome/toolkit/content/global/buildconfig.html
 
 post-extract:
 	mv ${WRKSRC}/mozilla/gfx/ycbcr/yuv_row_arm.s ${WRKSRC}/mozilla/gfx/ycbcr/yuv_row_arm.S
+	${CP} ${FILESDIR}/cubeb_sun.c ${WRKSRC}/mozilla/media/libcubeb/src
 
 pre-configure:
 	cd ${WRKSRC} && mkdir ${OBJDIR}

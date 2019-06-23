@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.817 2019/05/15 08:48:08 markd Exp $
+# $NetBSD: Makefile,v 1.821 2019/06/17 16:42:29 adam Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -330,6 +330,7 @@ SUBDIR+=	libpuzzle
 SUBDIR+=	libraw
 SUBDIR+=	libraw013
 SUBDIR+=	librsvg
+SUBDIR+=	librsvg-c
 SUBDIR+=	libscigraphica
 SUBDIR+=	libsixel
 SUBDIR+=	libspiro
@@ -467,10 +468,7 @@ SUBDIR+=	py-gtkglext
 SUBDIR+=	py-imageio
 SUBDIR+=	py-imagesize
 SUBDIR+=	py-imaging
-SUBDIR+=	py-imagingtk
 SUBDIR+=	py-matplotlib
-SUBDIR+=	py-matplotlib-gtk2
-SUBDIR+=	py-matplotlib-tk
 SUBDIR+=	py-mcomix
 SUBDIR+=	py-nwdiag
 SUBDIR+=	py-objgraph
@@ -561,6 +559,8 @@ SUBDIR+=	tex-circuitikz
 SUBDIR+=	tex-circuitikz-doc
 SUBDIR+=	tex-cmarrows
 SUBDIR+=	tex-cmarrows-doc
+SUBDIR+=	tex-contour
+SUBDIR+=	tex-contour-doc
 SUBDIR+=	tex-drv
 SUBDIR+=	tex-drv-doc
 SUBDIR+=	tex-dviincl

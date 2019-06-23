@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1249 2019/04/30 03:54:42 taca Exp $
+# $NetBSD: Makefile,v 1.1256 2019/06/22 00:33:33 tsutsui Exp $
 #
 
 COMMENT=	Networking tools
@@ -410,7 +410,6 @@ SUBDIR+=	net-snmp
 SUBDIR+=	net6
 SUBDIR+=	netatalk22
 SUBDIR+=	netatalk3
-SUBDIR+=	netatalk30
 SUBDIR+=	netbsd-iscsi-initiator
 SUBDIR+=	netbsd-iscsi-target
 SUBDIR+=	netcat
@@ -537,6 +536,7 @@ SUBDIR+=	p5-Net-Packet
 SUBDIR+=	p5-Net-Patricia
 SUBDIR+=	p5-Net-Pcap
 SUBDIR+=	p5-Net-RawIP
+SUBDIR+=	p5-Net-SFTP-Foreign
 SUBDIR+=	p5-Net-SMTP-TLS
 SUBDIR+=	p5-Net-SNMP
 SUBDIR+=	p5-Net-SNMP-Mixin
@@ -704,6 +704,7 @@ SUBDIR+=	py-py3dns
 SUBDIR+=	py-pydns
 SUBDIR+=	py-pyftpdlib
 SUBDIR+=	py-pylint-celery
+SUBDIR+=	py-pypiserver
 SUBDIR+=	py-pysendfile
 SUBDIR+=	py-requestbuilder
 SUBDIR+=	py-responses
@@ -758,6 +759,7 @@ SUBDIR+=	rootprobe
 SUBDIR+=	rp-l2tp
 SUBDIR+=	rp-pppoe
 SUBDIR+=	rsync
+SUBDIR+=	rt4-cli
 SUBDIR+=	rtmpdump
 SUBDIR+=	rtorrent
 SUBDIR+=	ruby-addressable
@@ -830,6 +832,7 @@ SUBDIR+=	srsh
 SUBDIR+=	sslh
 SUBDIR+=	ssmping
 SUBDIR+=	ssync
+SUBDIR+=	stagit-gopher
 SUBDIR+=	stripes
 SUBDIR+=	stund
 SUBDIR+=	sup

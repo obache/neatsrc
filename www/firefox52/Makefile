@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.40 2019/05/05 22:49:52 ryoon Exp $
+# $NetBSD: Makefile,v 1.43 2019/06/14 08:11:34 nia Exp $
 
 FIREFOX_VER=		${MOZ_BRANCH}${MOZ_BRANCH_MINOR}
 MOZ_BRANCH=		52.9
@@ -6,7 +6,7 @@ MOZ_BRANCH_MINOR=	.0esr
 
 DISTNAME=	firefox-${FIREFOX_VER}.source
 PKGNAME=	firefox${MOZ_BRANCH:C/\..*$//}-${MOZ_BRANCH}${MOZ_BRANCH_MINOR:S/b/beta/:S/esr//}
-PKGREVISION=	14
+PKGREVISION=	16
 CATEGORIES=	www
 MASTER_SITES+=	${MASTER_SITE_MOZILLA:=firefox/releases/${FIREFOX_VER}/source/}
 MASTER_SITES+=	${MASTER_SITE_MOZILLA_ALL:=firefox/releases/${FIREFOX_VER}/source/}
@@ -15,7 +15,7 @@ EXTRACT_SUFX=	.tar.xz
 WRKSRC=		${WRKDIR}/${DISTNAME:S/.source//}
 
 MAINTAINER=	ryoon@NetBSD.org
-HOMEPAGE=	http://www.mozilla.com/en-US/firefox/
+HOMEPAGE=	https://www.mozilla.com/en-US/firefox/
 COMMENT=	Web browser with support for extensions (version ${MOZ_BRANCH:C/\..*//})
 LICENSE=	mpl-1.1
 
@@ -74,6 +74,7 @@ SUBST_VARS.sys-dic=	PREFIX
 
 post-extract:
 	mv ${WRKSRC}/gfx/ycbcr/yuv_row_arm.s ${WRKSRC}/gfx/ycbcr/yuv_row_arm.S
+	${CP} ${FILESDIR}/cubeb_sun.c ${WRKSRC}/media/libcubeb/src
 
 pre-configure:
 	cd ${WRKSRC} && autoconf

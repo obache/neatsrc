@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.1 2019/04/24 23:43:22 fox Exp $
+# $NetBSD: Makefile,v 1.3 2019/06/02 13:41:31 fox Exp $
 
 DISTNAME=	coyim-0.3.11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=coyim/}
+PKGREVISION=	2
 CATEGORIES=	chat
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 EXTRACT_USING=	bsdtar
@@ -27,8 +28,11 @@ CHECK_PORTABILITY_SKIP+=	build/mac-bundle/coyim-launcher.sh
 COYIM_ICON=		coyim.png
 COYIM_ICON_SRC=		${WRKSRC}/build/mac-bundle/coy.iconset/icon_32x32@2x.png
 COYIM_DESKTOP=		${WRKSRC}/build/coyim.desktop
+COYIM_VERSION_FILE=	${WRKSRC}/gen_version_file.sh
 
 INSTALLATION_DIRS+=	share/applications share/pixmaps
+
+REPLACE_SH+=		gen_version_file.sh
 
 SUBST_CLASSES+=			desktop-entry
 SUBST_STAGE.desktop-entry=	post-build
@@ -40,6 +44,9 @@ SUBST_SED.desktop-entry+=	-e '/^\#/d'
 SUBST_SED.desktop-entry+=	-e '/^$$/d'
 
 CHECK_RELRO_SKIP=	bin/coyim
+
+pre-build:
+	${RUN} cd ${WRKSRC} && ${COYIM_VERSION_FILE} ${GITHUB_TAG}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKDIR}/bin/coyim ${DESTDIR}${PREFIX}/bin

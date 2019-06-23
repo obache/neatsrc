@@ -1,7 +1,6 @@
-$NetBSD: distinfo,v 1.8 2018/09/25 12:59:25 wiz Exp $
+$NetBSD: distinfo,v 1.10 2019/06/02 18:45:06 wiz Exp $
 
-SHA1 (freeDiameter/1.2.0.tar.gz) = 687bd9d551eb4261c3600fcbe35ea519b711e9f7
-RMD160 (freeDiameter/1.2.0.tar.gz) = c998ef87eb5ba00d58723a545d30c9d0d53be50e
-SHA512 (freeDiameter/1.2.0.tar.gz) = 4dbb56107b82c521218a01488955722a38518fb0dc2e2920fc07b35409cb86604de29ce296da3f0043b4bf0215f6acfd397608078611ddcfde3e4c2f1d202ea3
-Size (freeDiameter/1.2.0.tar.gz) = 855257 bytes
-SHA1 (patch-cmake_Modules_FindMySQL.cmake) = adc23081a5f99331f97a68959e252a008a939513
+SHA1 (freeDiameter/1.3.2.tar.gz) = 809344c5a39906b67d36d868e0471058039c4095
+RMD160 (freeDiameter/1.3.2.tar.gz) = 4292222731e9d64b2109623a63d4f798dbe5d7e4
+SHA512 (freeDiameter/1.3.2.tar.gz) = ab89c5ca4163edb6c0711691d468a2c7bd912eec245ea4e70f9985cf7e47b9ab57647166e54efe35e42174f9c71c74dcff33e4be98e164c0bf35ab3ab011c16f
+Size (freeDiameter/1.3.2.tar.gz) = 933237 bytes

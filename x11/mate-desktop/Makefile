@@ -1,15 +1,14 @@
-# $NetBSD: Makefile,v 1.18 2019/05/13 02:07:42 gutteridge Exp $
+# $NetBSD: Makefile,v 1.21 2019/06/08 19:57:28 leot Exp $
 
 .include "../../meta-pkgs/mate/Makefile.common"
 
-PKGREVISION=	1
+PKGREVISION=	2
 DISTNAME=	mate-desktop-${VERSION:R}.1
 CATEGORIES=	x11
 
 COMMENT=	MATE desktop library
 
 TOOL_DEPENDS+=		itstool-[0-9]*:../../textproc/itstool
-TOOL_DEPENDS+=		librsvg-[0-9]*:../../graphics/librsvg # for rsvg-convert
 TOOL_DEPENDS+=		libxml2-[0-9]*:../../textproc/libxml2 # for xmllint
 
 PKGCONFIG_OVERRIDE+=	libmate-desktop/mate-desktop-2.0.pc.in
@@ -23,6 +22,7 @@ SUBST_STAGE.prefix=	pre-install
 SUBST_SED.prefix=	-e 's,$${prefix},${PREFIX},'
 
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
+.include "../../graphics/librsvg/tool.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../textproc/iso-codes/buildlink3.mk"
 .include "../../devel/dconf/buildlink3.mk"

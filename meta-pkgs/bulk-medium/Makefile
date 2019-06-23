@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.58 2019/05/18 08:37:10 wiz Exp $
+# $NetBSD: Makefile,v 1.60 2019/06/16 19:25:10 adam Exp $
 
 DISTNAME=	bulk-medium-20190518
 CATEGORIES=	meta-pkgs
@@ -9,8 +9,6 @@ MAINTAINER=	dholland@NetBSD.org
 COMMENT=	Meta-package for a standard medium-sized limited bulk build
 
 META_PACKAGE=	yes
-
-PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-matplotlib-gtk2
 
 RESTRICTED=		Just for test build purpose
 NO_BIN_ON_CDROM=	${RESTRICTED}
@@ -78,7 +76,6 @@ BUILD_DEPENDS+=	ImageMagick-[0-9]*:../../graphics/ImageMagick
 BUILD_DEPENDS+=	gnuplot-[0-9]*:../../graphics/gnuplot
 BUILD_DEPENDS+=	netpbm-[0-9]*:../../graphics/netpbm
 BUILD_DEPENDS+=	${PYPKGPREFIX}-matplotlib-[0-9]*:../../graphics/py-matplotlib
-BUILD_DEPENDS+=	${PYPKGPREFIX}-matplotlib-gtk-[0-9]*:../../graphics/py-matplotlib-gtk2
 BUILD_DEPENDS+=	gawk-[0-9]*:../../lang/gawk
 BUILD_DEPENDS+=	php>=7.1<7.2:../../lang/php71
 BUILD_DEPENDS+=	ruby24-base-[0-9]*:../../lang/ruby24-base
@@ -174,7 +171,12 @@ BUILD_DEPENDS+=	glew-[0-9]*:../../graphics/glew
 BUILD_DEPENDS+=	jasper-[0-9]*:../../graphics/jasper
 BUILD_DEPENDS+=	lcms-[0-9]*:../../graphics/lcms
 BUILD_DEPENDS+=	lcms2-[0-9]*:../../graphics/lcms2
+.include "../../graphics/librsvg/available.mk"
+.if ${LIBRSVG_TYPE} == "rust"
 BUILD_DEPENDS+=	librsvg-[0-9]*:../../graphics/librsvg
+.else
+BUILD_DEPENDS+=	librsvg-[0-9]*:../../graphics/librsvg-c
+.endif
 BUILD_DEPENDS+=	blas-[0-9]*:../../math/blas
 BUILD_DEPENDS+=	lapack-[0-9]*:../../math/lapack
 BUILD_DEPENDS+=	boost-[0-9]*:../../meta-pkgs/boost

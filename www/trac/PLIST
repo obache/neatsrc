@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.27 2016/07/05 15:57:44 gdt Exp $
+@comment $NetBSD: PLIST,v 1.28 2019/06/11 05:30:23 maya Exp $
 bin/trac-admin
 bin/tracd
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO

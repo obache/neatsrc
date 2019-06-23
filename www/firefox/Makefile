@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.375 2019/05/22 13:32:51 ryoon Exp $
+# $NetBSD: Makefile,v 1.387 2019/06/21 16:35:32 ryoon Exp $
 
 FIREFOX_VER=		${MOZ_BRANCH}${MOZ_BRANCH_MINOR}
 MOZ_BRANCH=		67.0
-MOZ_BRANCH_MINOR=	
+MOZ_BRANCH_MINOR=	.4
 
 DISTNAME=	firefox-${FIREFOX_VER}.source
 PKGNAME=	${DISTNAME:S/.source//:S/b/beta/:S/esr//}
@@ -11,7 +11,7 @@ MASTER_SITES+=	${MASTER_SITE_MOZILLA:=firefox/releases/${FIREFOX_VER}/source/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	ryoon@NetBSD.org
-HOMEPAGE=	http://www.mozilla.com/en-US/firefox/
+HOMEPAGE=	https://www.mozilla.com/en-US/firefox/
 COMMENT=	Web browser with support for extensions (version ${FIREFOX_VER:C/\..*//})
 LICENSE=	mpl-1.1
 
@@ -68,6 +68,7 @@ MOZILLA_NAME=	Browser
 .endif
 
 post-extract:
+	${CP} ${FILESDIR}/cubeb_sun.c ${WRKSRC}/media/libcubeb/src/cubeb_sun.c
 	mv ${WRKSRC}/gfx/ycbcr/yuv_row_arm.s ${WRKSRC}/gfx/ycbcr/yuv_row_arm.S
 # XXX Hack taken from lang/rust.
 # patch(1) in NetBSD does not handle .cargo-checksum.json like long width file.
