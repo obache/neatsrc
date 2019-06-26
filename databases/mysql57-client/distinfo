@@ -32,7 +32,7 @@ SHA1 (patch-rapid_plugin_group__replication_libmysqlgcs_src_bindings_xcom_xcom_x
 SHA1 (patch-rapid_plugin_group__replication_libmysqlgcs_src_bindings_xcom_xcom_xcom__transport.c) = d7f87bff5a41ff6a130fcf74dc520b38cedf5924
 SHA1 (patch-rapid_plugin_group__replication_rpcgen.cmake) = ff0679ed644d79abe52b208f6b60b5a4e480ed3f
 SHA1 (patch-rapid_plugin_x_CMakeLists.txt) = 69cebda59cdeb5f7d8ece4386a70ca38423e7707
-SHA1 (patch-rapid_unittest_gunit_xplugin_CMakeLists.txt) = c24c8fc011dcabf8e9bdfc3bfe3119a28704a466
+SHA1 (patch-rapid_plugin_x_ngs_include_ngs__common_protocol__protobuf.h) = 07edda55c5c0eff06465d3d1fa816f79f92814bd
 SHA1 (patch-scripts_CMakeLists.txt) = fb9fa33aba1d157f74749933b1a09dcd25ba0759
 SHA1 (patch-scripts_mysqld_safe.sh) = 0784314227657aa0bc3f4a0b4e21c173a86fa94b
 SHA1 (patch-sql_CMakeLists.txt) = 697add15adb66bf55cf561a6e43e0bf514d1e068
