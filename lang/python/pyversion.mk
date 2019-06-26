@@ -5,11 +5,19 @@
 #
 # === User-settable variables ===
 #
-# PYTHON_VERSION_DEFAULT
-#	The preferred Python version to use.
+# PYTHON_VERSIONS_PREFERRED
+#	The preferred Python versions to use. The order of the
+#	entries matters, since earlier entries are preferred over
+#	later ones.
 #
 #	Possible values: 27 36 37
-#	Default: 37
+#	Default: 37 36 27
+#
+# PYTHON_VERSION_DEFAULT
+#	The default Python version to use.
+#
+#	Possible values: 27 36 37
+#	Default: ${PYTHON_VERSIONS_PREFERRED:[1]}
 #
 # === Infrastructure variables ===
 #
@@ -82,9 +90,11 @@ PYTHON_VERSION_REQD?=	${PKGNAME_OLD:C/(^.*-|^)py([0-9][0-9])-.*/\2/}
 .include "../../mk/bsd.prefs.mk"
 
 BUILD_DEFS+=		PYTHON_VERSION_DEFAULT
+BUILD_DEFS+=		PYTHON_VERSIONS_PREFERRED
 BUILD_DEFS_EFFECTS+=	PYPACKAGE
 
-PYTHON_VERSION_DEFAULT?=		37
+PYTHON_VERSIONS_PREFERRED?=		37 36 27
+PYTHON_VERSION_DEFAULT?=		${PYTHON_VERSIONS_PREFERRED:[1]}
 PYTHON_VERSIONS_ACCEPTED?=		37 36 27
 PYTHON_VERSIONS_INCOMPATIBLE?=		# empty by default
 
@@ -112,6 +122,14 @@ _PYTHON_VERSION=	${PYTHON_VERSION_REQD}
 .    if defined(_PYTHON_VERSION_${PYTHON_VERSION_DEFAULT}_OK)
 _PYTHON_VERSION=	${PYTHON_VERSION_DEFAULT}
 .    endif
+.  endif
+# preferred versions, in order of "preferred"
+.  if !defined(_PYTHON_VERSION)
+.    for pv in ${PYTHON_VERSIONS_PREFERRED:U${PYTHON_VERSION_DEFAULT}}
+.      if defined(_PYTHON_VERSION_${pv}_OK)
+_PYTHON_VERSION?=	${pv}
+.      endif
+.    endfor
 .  endif
 # prefer an already installed version, in order of "accepted"
 .  if !defined(_PYTHON_VERSION)
