@@ -119,7 +119,6 @@ CONFIGURE_ARGS+=	--disable-xml2enc
 .if !empty(PKG_OPTIONS:Mbrotli)
 .include "../../archivers/brotli/buildlink3.mk"
 CONFIGURE_ARGS+=       --enable-brotli
-CONFIGURE_ARGS+=       --with-brotli=${PREFIX}
 PLIST.brotli=          yes
 .endif
 
