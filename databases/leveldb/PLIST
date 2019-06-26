@@ -18,4 +18,6 @@ lib/cmake/leveldb/leveldbConfig.cmake
 lib/cmake/leveldb/leveldbConfigVersion.cmake
 lib/cmake/leveldb/leveldbTargets-noconfig.cmake
 lib/cmake/leveldb/leveldbTargets.cmake
-lib/libleveldb.a
+lib/libleveldb.so
+lib/libleveldb.so.1
+lib/libleveldb.so.${PKGVERSION}.0

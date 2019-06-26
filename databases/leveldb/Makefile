@@ -12,7 +12,11 @@ LICENSE=	modified-bsd
 USE_CMAKE=	yes
 USE_LANGUAGES+=	c c++11
 CMAKE_ARGS+=	-DLEVELDB_BUILD_BENCHMARKS=OFF
+CMAKE_ARGS+=	-DBUILD_SHARED_LIBS:BOOL=ON
+CMAKE_ARGS+=	-DTHREADS_PREFER_PTHREAD_FLAG:BOOL=ON
 TEST_TARGET=	test
 
+BUILDLINK_AUTO_DIRS.snappy+=	rpath
 .include "../../devel/snappy/buildlink3.mk"
+.include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
