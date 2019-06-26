@@ -19,6 +19,6 @@ meson-install:
 	fi
 	cd ${WRKSRC} && ${SETENV} ${INSTALL_ENV} ${MAKE_ENV} ninja -C output install
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27
+PYTHON_VERSIONS_INCOMPATIBLE+=	27
 
 .include "../../lang/python/application.mk"
