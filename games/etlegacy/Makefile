@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.3 2019/05/29 19:52:49 adam Exp $
+# $NetBSD: Makefile,v 1.6 2019/06/27 16:05:11 nia Exp $
 
 PKGNAME=	etlegacy-2.76
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	games
 
 DIST_SUBDIR=	etlegacy-${PKGVERSION_NOREV}
@@ -25,12 +25,14 @@ LICENSE=	gnu-gpl-v3
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 
-CMAKE_ARGS+=	-DRENDERER_DYNAMIC=OFF # doesn't work with builtin MesaLib
+CMAKE_ARGS+=	-DRENDERER_DYNAMIC=OFF
 CMAKE_ARGS+=	-DFEATURE_RENDERER2=OFF # experimental, buggy
 
+# use libraries from pkgsrc
 CMAKE_ARGS+=	-DBUNDLED_CURL=OFF
 CMAKE_ARGS+=	-DBUNDLED_FREETYPE=OFF
 CMAKE_ARGS+=	-DBUNDLED_GLEW=OFF
+CMAKE_ARGS+=	-DBUNDLED_JANSSON=OFF
 CMAKE_ARGS+=	-DBUNDLED_JPEG=OFF
 CMAKE_ARGS+=	-DBUNDLED_LUA=OFF
 CMAKE_ARGS+=	-DBUNDLED_OGG_VORBIS=OFF
@@ -41,23 +43,53 @@ CMAKE_ARGS+=	-DBUNDLED_SQLITE3=OFF
 CMAKE_ARGS+=	-DBUNDLED_THEORA=OFF
 CMAKE_ARGS+=	-DBUNDLED_ZLIB=OFF
 
+# don't try to build i386 binaries on amd64
 CMAKE_ARGS+=	-DCROSS_COMPILE32=OFF
 
 CMAKE_ARGS+=	-DFEATURE_AUTOUPDATE=OFF
 
+# tries to install binaries
+# but maybe this can be built from source separately
 CMAKE_ARGS+=	-DFEATURE_OMNIBOT=OFF
 CMAKE_ARGS+=	-DINSTALL_OMNIBOT=OFF
-
-CMAKE_ARGS+=	-DFEATURE_OPENAL=ON
 
 CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE="Release"
 CMAKE_ARGS+=	-DINSTALL_DEFAULT_BASEDIR="${PREFIX}/share/etlegacy"
 CMAKE_ARGS+=	-DINSTALL_DEFAULT_BINDIR="bin"
 CMAKE_ARGS+=	-DINSTALL_DEFAULT_MODDIR="share/etlegacy"
 
+# don't use fopen64 etc
 CFLAGS+=	-DIOAPI_NO_64
 
 CHECK_PORTABILITY_SKIP+=	libs/sdl2/build-scripts/*
+
+.include "../../mk/bsd.prefs.mk"
+
+.if ${MACHINE_ARCH} == "x86_64"
+PLIST_SUBST+=	ARCH_STRING="x86_64"
+.elif ${MACHINE_ARCH} == "i386"
+PLIST_SUBST+=	ARCH_STRING="i386"
+.elif ${MACHINE_ARCH} == "alpha"
+PLIST_SUBST+=	ARCH_STRING="alpha"
+.elif ${MACHINE_ARCH} == "hppa"
+PLIST_SUBST+=	ARCH_STRING="hppa"
+.elif !empty(MACHINE_ARCH:Mpowerpc64*)
+PLIST_SUBST+=	ARCH_STRING="ppc64"
+.elif !empty(MACHINE_ARCH:Mpowerpc*)
+PLIST_SUBST+=	ARCH_STRING="ppc"
+.elif !empty(MACHINE_ARCH:Msh3*)
+PLIST_SUBST+=	ARCH_STRING="sh"
+.elif !empty(MACHINE_ARCH:Mmips*)
+PLIST_SUBST+=	ARCH_STRING="mips"
+.elif !empty(MACHINE_ARCH:Msparc*)
+PLIST_SUBST+=	ARCH_STRING="sparc"
+.elif !empty(MACHINE_ARCH:M*arm*)
+PLIST_SUBST+=	ARCH_STRING="arm"
+.else
+# maybe architecture-neutral shared objects could be generated
+PKG_SKIP_REASON+=\
+	"unsupported MACHINE_ARCH, maybe needs to be added to q_platform.h"
+.endif
 
 post-extract:
 	${MV} ${WRKDIR}/etlegacy-libs-${LIBS_TAG}/* \
@@ -73,7 +105,6 @@ post-extract:
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libICE/buildlink3.mk"
-BUILDLINK_TRANSFORM+=	rm:-ldl
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

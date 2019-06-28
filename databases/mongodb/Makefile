@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.35 2019/04/25 07:32:41 maya Exp $
+# $NetBSD: Makefile,v 1.39 2019/06/27 01:02:22 gdt Exp $
 
 DISTNAME=	mongodb-src-r4.0.6
 PKGNAME=	${DISTNAME:S/src-r//}
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	databases
 MASTER_SITES=	http://fastdl.mongodb.org/src/
 
-MAINTAINER=	bartosz.kuzma@gmail.com
+MAINTAINER=	pkgsrc-users@netbsd.org
 HOMEPAGE=	https://www.mongodb.com/
 COMMENT=	NoSQL distributed document-oriented database
 LICENSE=	gnu-agpl-v3 # Client and tools licensed under apache-2.0
@@ -22,7 +22,10 @@ BUILD_DEPENDS+=	${PYPKGPREFIX}-regex-[0-9]*:../../textproc/py-regex
 BUILD_DEPENDS+=	${PYPKGPREFIX}-yaml-[0-9]*:../../textproc/py-yaml
 
 NO_CONFIGURE=	yes
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c99 c++14
+# USE_LANGUAGES+=	c11
+GCC_REQD+=	6
+
 USE_TOOLS+=	pkg-config
 
 SCONS_ARGS=	${_MAKE_JOBS}
@@ -31,7 +34,7 @@ SCONS_ARGS+=	--release
 SCONS_ARGS+=	--runtime-hardening=off # does not produce executables
 #SCONS_ARGS+=	--use-system-asio
 SCONS_ARGS+=	--use-system-boost
-#SCONS_ARGS+=	--use-system-icu # fails with >57.1
+SCONS_ARGS+=	--use-system-icu
 SCONS_ARGS+=	--use-system-mongo-c
 SCONS_ARGS+=	--use-system-pcre
 SCONS_ARGS+=	--use-system-snappy
@@ -170,7 +173,7 @@ post-install:
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/pyversion.mk"
 .include "../../net/libpcap/buildlink3.mk"
-#.include "../../textproc/icu/buildlink3.mk"
+.include "../../textproc/icu/buildlink3.mk"
 .include "../../textproc/yaml-cpp/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

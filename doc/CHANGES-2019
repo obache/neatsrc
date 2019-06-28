@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2019,v 1.2660 2019/06/22 18:54:52 bsiegert Exp $
+$NetBSD: CHANGES-2019,v 1.2680 2019/06/26 13:23:43 sevan Exp $
 
 Changes to the packages collection and infrastructure in 2019:
 
@@ -4353,7 +4353,6 @@ Changes to the packages collection and infrastructure in 2019:
 	Updated textproc/highlight to 3.52 [schmonz 2019-06-20]
 	Updated textproc/p5-highlight to 3.52 [schmonz 2019-06-20]
 	Updated editors/leafpad to 0.8.18.1 [nia 2019-06-20]
-	Updated x11/xorgproto to 2019.1 [wiz 2019-06-20]
 	Updated security/py-bcrypt to 3.1.7 [adam 2019-06-20]
 	Updated lang/py-mypy to 0.710 [adam 2019-06-20]
 	Updated fonts/terminus-font to 4.47 [nia 2019-06-20]
@@ -4420,3 +4419,26 @@ Changes to the packages collection and infrastructure in 2019:
 	Updated net/bftpd to 5.1 [nia 2019-06-22]
 	Updated games/bzflag to 2.4.18 [nia 2019-06-22]
 	Added security/libb2 version 0.98.1 [bsiegert 2019-06-22]
+	Updated databases/postgresql94 to 9.4.23 [adam 2019-06-23]
+	Updated databases/postgresql95 to 9.5.18 [adam 2019-06-23]
+	Updated databases/postgresql96 to 9.6.14 [adam 2019-06-23]
+	Updated databases/postgresql10 to 10.9 [adam 2019-06-23]
+	Updated databases/postgresql11 to 11.4 [adam 2019-06-23]
+	Updated audio/mpc to 0.32 [wiz 2019-06-23]
+	Updated lang/guile22 to 2.2.5 [wiz 2019-06-23]
+	Removed www/amaya [nia 2019-06-23]
+	Added devel/unittest-cpp version 2.0.0 [wiz 2019-06-23]
+	Updated textproc/enchant2 to 2.2.4 [wiz 2019-06-23]
+	Updated editors/Sigil to 0.9.14 [wiz 2019-06-23]
+	Added games/oshu version 2.0.0 [nia 2019-06-23]
+	Updated emulators/mame to 0.210 [wiz 2019-06-23]
+	mk/bsd.pkg.mk: started freeze for pkgsrc-2019Q2 branch [jperkin 2019-06-24]
+	Updated pkgtools/R2pkg to 0.4 [brook 2019-06-24]
+	Updated comms/lirc to 0.9.0nb4 [triaxx 2019-06-24]
+	Updated net/vpnc-script to 20190606 [schmonz 2019-06-24]
+	Updated devel/glib2 to 2.60.4nb3 [prlw1 2019-06-25]
+	Updated x11/tk to 8.6.9.1 [bsiegert 2019-06-25]
+	Updated mail/ezmlm-idx to 7.2.2nb10 [schmonz 2019-06-25]
+	Updated net/dhcpcd to 7.2.3 [roy 2019-06-26]
+	Updated devel/glib2 to 2.60.4nb4 [prlw1 2019-06-26]
+	Updated games/wtf to 20190623 [sevan 2019-06-26]
