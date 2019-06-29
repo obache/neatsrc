@@ -1,10 +1,10 @@
 # $NetBSD: Makefile,v 1.56 2018/08/22 09:43:09 wiz Exp $
 
-DISTNAME=	skf_${VERSION}.9
+DISTNAME=	skf_${VERSION}.10
 VERSION=	2.10
 PKGNAME=	${DISTNAME:S/_/-/}
 CATEGORIES=	japanese converters
-MASTER_SITES=	${MASTER_SITE_OSDN:=skf/70939/}
+MASTER_SITES=	${MASTER_SITE_OSDN:=skf/71279/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -20,6 +20,8 @@ USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		msgfmt perl gzip
 GNU_CONFIGURE=		yes
 MAKE_JOBS_SAFE=		no
+
+CONFIGURE_ARGS+=	--localedir=${PREFIX}/${PKGLOCALEDIR}/locale
 
 REPLACE_PERL=	scripts/parse_uni.p
 
