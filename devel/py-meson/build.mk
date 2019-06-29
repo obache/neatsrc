@@ -4,6 +4,11 @@ BUILD_DEPENDS+=	${PYPKGPREFIX}-meson-[0-9]*:../../devel/py-meson
 
 .PHONY: meson-configure meson-build meson-install
 
+_CONFIGURE_HELP_TARGETS+=	configure-help-meson
+
+configure-help-meson: .PHONY
+	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} meson configure
+
 do-configure: meson-configure
 meson-configure:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} meson --prefix ${PREFIX} --libdir lib --mandir ${PKGMANDIR} --buildtype=plain ${MESON_ARGS} . output
