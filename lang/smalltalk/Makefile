@@ -24,7 +24,6 @@ CONFIGURE_ARGS+=	--with-lispdir=${PREFIX}/share/emacs/site-lisp
 CONFIGURE_ARGS+=	--without-emacs
 #CONFIGURE_ENV+=		CFLAGS="-O2 -fsigned-char"
 
-IGNORE_LIBTOOLIZE=	lib/smalltalk/libc.la
 INFO_FILES=		YES
 TEST_TARGET=		check
 
