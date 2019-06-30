@@ -344,7 +344,10 @@ share/doc/groonga/en/html/reference/tokenizers/token_bigram_split_symbol_alpha_d
 share/doc/groonga/en/html/reference/tokenizers/token_delimit.html
 share/doc/groonga/en/html/reference/tokenizers/token_delimit_null.html
 share/doc/groonga/en/html/reference/tokenizers/token_mecab.html
+share/doc/groonga/en/html/reference/tokenizers/token_ngram.html
+share/doc/groonga/en/html/reference/tokenizers/token_pattern.html
 share/doc/groonga/en/html/reference/tokenizers/token_regexp.html
+share/doc/groonga/en/html/reference/tokenizers/token_table.html
 share/doc/groonga/en/html/reference/tokenizers/token_trigram.html
 share/doc/groonga/en/html/reference/tokenizers/token_unigram.html
 share/doc/groonga/en/html/reference/tuning.html
@@ -646,7 +649,10 @@ share/doc/groonga/ja/html/reference/tokenizers/token_bigram_split_symbol_alpha_d
 share/doc/groonga/ja/html/reference/tokenizers/token_delimit.html
 share/doc/groonga/ja/html/reference/tokenizers/token_delimit_null.html
 share/doc/groonga/ja/html/reference/tokenizers/token_mecab.html
+share/doc/groonga/ja/html/reference/tokenizers/token_ngram.html
+share/doc/groonga/ja/html/reference/tokenizers/token_pattern.html
 share/doc/groonga/ja/html/reference/tokenizers/token_regexp.html
+share/doc/groonga/ja/html/reference/tokenizers/token_table.html
 share/doc/groonga/ja/html/reference/tokenizers/token_trigram.html
 share/doc/groonga/ja/html/reference/tokenizers/token_unigram.html
 share/doc/groonga/ja/html/reference/tuning.html
