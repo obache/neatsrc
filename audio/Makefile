@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.557 2019/06/09 15:46:52 wiz Exp $
+# $NetBSD: Makefile,v 1.559 2019/07/08 16:46:31 nia Exp $
 #
 
 COMMENT=	Audio tools
@@ -306,6 +306,7 @@ SUBDIR+=	mbrolavox-us3
 SUBDIR+=	mikmod
 SUBDIR+=	milkytracker
 SUBDIR+=	mixer.app
+SUBDIR+=	mixxx
 SUBDIR+=	mkcdtoc
 SUBDIR+=	moc
 SUBDIR+=	moodbar
@@ -351,7 +352,6 @@ SUBDIR+=	nosefart
 SUBDIR+=	nspmod
 SUBDIR+=	ocp
 SUBDIR+=	oggasm
-SUBDIR+=	openal
 SUBDIR+=	openal-soft
 SUBDIR+=	opencore-amr
 SUBDIR+=	opus-tools

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.818 2019/06/13 03:29:28 jnemeth Exp $
+# $NetBSD: Makefile,v 1.821 2019/07/18 00:25:50 fox Exp $
 #
 
 COMMENT=	System utilities
@@ -164,6 +164,7 @@ SUBDIR+=	etckeeper
 SUBDIR+=	etcmanage
 SUBDIR+=	etcutils
 SUBDIR+=	eventlog
+SUBDIR+=	exa
 SUBDIR+=	extipl
 SUBDIR+=	fabric
 SUBDIR+=	facette
@@ -620,6 +621,8 @@ SUBDIR+=	tsm8
 SUBDIR+=	tw_cli
 #SUBDIR+=	u-boot			# only contains Makefile fragments
 SUBDIR+=	u-boot-a10-olinuxino-lime
+SUBDIR+=	u-boot-a20-olinuxino-lime2
+SUBDIR+=	u-boot-a20-olinuxino-lime2-emmc
 SUBDIR+=	u-boot-bananapi
 SUBDIR+=	u-boot-bananapi-m2-zero
 SUBDIR+=	u-boot-bananapi-m3
@@ -666,6 +669,7 @@ SUBDIR+=	ups-nut
 SUBDIR+=	ups-nut-cgi
 SUBDIR+=	ups-nut-snmp
 SUBDIR+=	ups-nut-usb
+SUBDIR+=	usbhid-dump
 SUBDIR+=	usbutil
 SUBDIR+=	user_cygwin
 SUBDIR+=	user_darwin

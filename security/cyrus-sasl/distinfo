@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.36 2018/07/25 01:16:04 manu Exp $
+$NetBSD: distinfo,v 1.37 2019/07/09 11:55:56 jperkin Exp $
 
 SHA1 (cyrus-sasl-2.1.27.tar.gz) = fbfe6f298b0d2efcdab6a40bf47e16d003ae5dc6
 RMD160 (cyrus-sasl-2.1.27.tar.gz) = 7f5e4bd2ba1974f0b96ba5a659165f4484d550ce

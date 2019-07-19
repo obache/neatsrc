@@ -1,4 +1,4 @@
-# $NetBSD: gcc.mk,v 1.198 2018/11/12 14:22:58 jperkin Exp $
+# $NetBSD: gcc.mk,v 1.201 2019/07/15 16:06:19 ryoon Exp $
 #
 # This is the compiler definition for the GNU Compiler Collection.
 #
@@ -167,7 +167,11 @@ _CC:=	${_dir_}/${CC:[1]}
 .      endif
 .    endif
 .  endfor
+.  if empty(USE_CROSS_COMPILE:M[yY][eE][sS])
+# Pass along _CC only if we're working on native packages -- don't pass
+# the cross-compiler on to submakes for building native packages.
 MAKEFLAGS+=	_CC=${_CC:Q}
+.  endif
 .endif
 
 .if !defined(_GCC_VERSION)
@@ -190,6 +194,14 @@ _GCC_VERSION=	0
 .  endif
 .endif
 _GCC_PKG=	gcc-${_GCC_VERSION:C/-.*$//}
+
+.for _version_ in ${_CXX_STD_VERSIONS}
+_CXX_STD_FLAG.${_version_}?=	-std=${_version_}
+.  if !empty(_GCC_VERSION:M[34].[1234].*)
+_CXX_STD_FLAG.c++03=	-std=c++0x
+_CXX_STD_FLAG.gnu++03=	-std=gnu++0x
+.  endif
+.endfor
 
 .if !empty(_CC:M${LOCALBASE}/*)
 _IS_BUILTIN_GCC=	NO
@@ -905,6 +917,9 @@ _COMPILER_ABI_FLAG.32=	-mabi=n32	# ABI == "32" == "n32"
 _COMPILER_ABI_FLAG.n32=	-mabi=n32
 _COMPILER_ABI_FLAG.o32=	-mabi=32
 _COMPILER_ABI_FLAG.64=	-mabi=64
+.elif !empty(MACHINE_ARCH:Maarch64*)
+_COMPILER_ABI_FLAG.32=	-m32
+_COMPILER_ABI_FLAG.64=	# empty
 .else
 _COMPILER_ABI_FLAG.32=	-m32
 _COMPILER_ABI_FLAG.64=	-m64

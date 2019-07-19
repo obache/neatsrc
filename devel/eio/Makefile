@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.16 2019/03/20 12:13:21 wiz Exp $
+# $NetBSD: Makefile,v 1.18 2019/07/06 16:46:10 nia Exp $
 
 DISTNAME=	eio-1.7.7
-PKGREVISION=	13
+PKGREVISION=	14
 CATEGORIES=	devel
 MASTER_SITES=	http://download.enlightenment.org/releases/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	joerg@NetBSD.org
-HOMEPAGE=	http://enlightenment.org/
+HOMEPAGE=	https://enlightenment.org/
 COMMENT=	Enlightenned Asynchronous Input Output library
 LICENSE=	gnu-lgpl-v2.1
 

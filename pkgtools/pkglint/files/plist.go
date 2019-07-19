@@ -7,14 +7,14 @@ import (
 	"strings"
 )
 
-func CheckLinesPlist(pkg *Package, lines Lines) {
+func CheckLinesPlist(pkg *Package, lines *Lines) {
 	if trace.Tracing {
-		defer trace.Call1(lines.FileName)()
+		defer trace.Call1(lines.Filename)()
 	}
 
-	lines.CheckRcsID(0, `@comment `, "@comment ")
+	idOk := lines.CheckCvsID(0, `@comment `, "@comment ")
 
-	if lines.Len() == 1 {
+	if idOk && lines.Len() == 1 {
 		line := lines.Lines[0]
 		line.Warnf("PLIST files shouldn't be empty.")
 		line.Explain(
@@ -26,6 +26,7 @@ func CheckLinesPlist(pkg *Package, lines Lines) {
 			"",
 			"Meta packages also don't need a PLIST file",
 			"since their only purpose is to declare dependencies.")
+		return
 	}
 
 	ck := PlistChecker{
@@ -48,21 +49,27 @@ type PlistChecker struct {
 }
 
 type PlistLine struct {
-	Line
+	*Line
 	conditions []string // e.g. PLIST.docs
 	text       string   // Line.Text without any conditions of the form ${PLIST.cond}
 }
 
-func (ck *PlistChecker) Check(plainLines Lines) {
-	plines := ck.NewLines(plainLines)
+func (ck *PlistChecker) Load(lines *Lines) []*PlistLine {
+	plines := ck.NewLines(lines)
 	ck.collectFilesAndDirs(plines)
 
-	if plines[0].Basename == "PLIST.common_end" {
-		commonLines := Load(strings.TrimSuffix(plines[0].Filename, "_end"), NotEmpty)
+	if lines.BaseName == "PLIST.common_end" {
+		commonLines := Load(strings.TrimSuffix(lines.Filename, "_end"), NotEmpty)
 		if commonLines != nil {
 			ck.collectFilesAndDirs(ck.NewLines(commonLines))
 		}
 	}
+
+	return plines
+}
+
+func (ck *PlistChecker) Check(plainLines *Lines) {
+	plines := ck.Load(plainLines)
 
 	for _, pline := range plines {
 		ck.checkLine(pline)
@@ -77,7 +84,7 @@ func (ck *PlistChecker) Check(plainLines Lines) {
 	}
 }
 
-func (ck *PlistChecker) NewLines(lines Lines) []*PlistLine {
+func (ck *PlistChecker) NewLines(lines *Lines) []*PlistLine {
 	plines := make([]*PlistLine, lines.Len())
 	for i, line := range lines.Lines {
 		var conditions []string
@@ -306,26 +313,12 @@ func (ck *PlistChecker) checkPathInfo(pline *PlistLine, dirname, basename string
 }
 
 func (ck *PlistChecker) checkPathLib(pline *PlistLine, dirname, basename string) {
-	pkg := ck.pkg
 
 	switch {
-	case pkg != nil && pkg.EffectivePkgbase != "" && hasPrefix(pline.text, "lib/"+pkg.EffectivePkgbase+"/"):
-		return
-
-	case pline.text == "lib/charset.alias" && (pkg == nil || pkg.Pkgpath != "converters/libiconv"):
-		pline.Errorf("Only the libiconv package may install lib/charset.alias.")
-		return
 
 	case hasPrefix(pline.text, "lib/locale/"):
 		pline.Errorf("\"lib/locale\" must not be listed. Use ${PKGLOCALEDIR}/locale and set USE_PKGLOCALEDIR instead.")
 		return
-	}
-
-	switch ext := path.Ext(basename); ext {
-	case ".la":
-		if pkg != nil && !pkg.vars.Defined("USE_LIBTOOL") && ck.once.FirstTime("USE_LIBTOOL") {
-			pline.Warnf("Packages that install libtool libraries should define USE_LIBTOOL.")
-		}
 	}
 
 	if contains(basename, ".a") || contains(basename, ".so") {
@@ -333,6 +326,21 @@ func (ck *PlistChecker) checkPathLib(pline *PlistLine, dirname, basename string)
 			if laLine := ck.allFiles[noext+".la"]; laLine != nil {
 				pline.Warnf("Redundant library found. The libtool library is in %s.", pline.RefTo(laLine.Line))
 			}
+		}
+	}
+
+	pkg := ck.pkg
+	if pkg == nil {
+		return
+	}
+
+	if pline.text == "lib/charset.alias" && pkg.Pkgpath != "converters/libiconv" {
+		pline.Errorf("Only the libiconv package may install lib/charset.alias.")
+	}
+
+	if hasSuffix(basename, ".la") && !pkg.vars.Defined("USE_LIBTOOL") {
+		if ck.once.FirstTime("USE_LIBTOOL") {
+			pline.Warnf("Packages that install libtool libraries should define USE_LIBTOOL.")
 		}
 	}
 }
@@ -380,42 +388,11 @@ func (ck *PlistChecker) checkPathShare(pline *PlistLine) {
 	text := pline.text
 
 	switch {
-	case hasPrefix(text, "share/icons/") && pkg != nil:
-		if hasPrefix(text, "share/icons/hicolor/") && pkg.Pkgpath != "graphics/hicolor-icon-theme" {
-			f := "../../graphics/hicolor-icon-theme/buildlink3.mk"
-			if !pkg.included.Seen(f) && ck.once.FirstTime("hicolor-icon-theme") {
-				pline.Errorf("Packages that install hicolor icons must include %q in the Makefile.", f)
-			}
-		}
-
-		if text == "share/icons/hicolor/icon-theme.cache" && pkg.Pkgpath != "graphics/hicolor-icon-theme" {
-			pline.Errorf("The file icon-theme.cache must not appear in any PLIST file.")
-			pline.Explain(
-				"Remove this line and add the following line to the package Makefile.",
-				"",
-				".include \"../../graphics/hicolor-icon-theme/buildlink3.mk\"")
-		}
-
-		if hasPrefix(text, "share/icons/gnome") && pkg.Pkgpath != "graphics/gnome-icon-theme" {
-			f := "../../graphics/gnome-icon-theme/buildlink3.mk"
-			if !pkg.included.Seen(f) {
-				pline.Errorf("The package Makefile must include %q.", f)
-				pline.Explain(
-					"Packages that install GNOME icons must maintain the icon theme",
-					"cache.")
-			}
-		}
-
-		if contains(text[12:], "/") && !pkg.vars.Defined("ICON_THEMES") && ck.once.FirstTime("ICON_THEMES") {
-			pline.Warnf("Packages that install icon theme files should set ICON_THEMES.")
-		}
+	case pkg != nil && hasPrefix(text, "share/icons/"):
+		ck.checkPathShareIcons(pline)
 
 	case hasPrefix(text, "share/doc/html/"):
 		pline.Warnf("Use of \"share/doc/html\" is deprecated. Use \"share/doc/${PKGBASE}\" instead.")
-
-	case pkg != nil && pkg.EffectivePkgbase != "" && (hasPrefix(text, "share/doc/"+pkg.EffectivePkgbase+"/") ||
-		hasPrefix(text, "share/examples/"+pkg.EffectivePkgbase+"/")):
-		// Fine.
 
 	case hasPrefix(text, "share/info/"):
 		pline.Warnf("Info pages should be installed into info/, not share/info/.")
@@ -424,6 +401,40 @@ func (ck *PlistChecker) checkPathShare(pline *PlistLine) {
 
 	case hasPrefix(text, "share/man/"):
 		pline.Warnf("Man pages should be installed into man/, not share/man/.")
+	}
+}
+
+func (ck *PlistChecker) checkPathShareIcons(pline *PlistLine) {
+	pkg := ck.pkg
+	text := pline.text
+
+	if hasPrefix(text, "share/icons/hicolor/") && pkg.Pkgpath != "graphics/hicolor-icon-theme" {
+		f := "../../graphics/hicolor-icon-theme/buildlink3.mk"
+		if !pkg.included.Seen(f) && ck.once.FirstTime("hicolor-icon-theme") {
+			pline.Errorf("Packages that install hicolor icons must include %q in the Makefile.", f)
+		}
+	}
+
+	if text == "share/icons/hicolor/icon-theme.cache" && pkg.Pkgpath != "graphics/hicolor-icon-theme" {
+		pline.Errorf("The file icon-theme.cache must not appear in any PLIST file.")
+		pline.Explain(
+			"Remove this line and add the following line to the package Makefile.",
+			"",
+			".include \"../../graphics/hicolor-icon-theme/buildlink3.mk\"")
+	}
+
+	if hasPrefix(text, "share/icons/gnome") && pkg.Pkgpath != "graphics/gnome-icon-theme" {
+		f := "../../graphics/gnome-icon-theme/buildlink3.mk"
+		if !pkg.included.Seen(f) {
+			pline.Errorf("The package Makefile must include %q.", f)
+			pline.Explain(
+				"Packages that install GNOME icons must maintain the icon theme",
+				"cache.")
+		}
+	}
+
+	if contains(text[12:], "/") && !pkg.vars.Defined("ICON_THEMES") && ck.once.FirstTime("ICON_THEMES") {
+		pline.Warnf("Packages that install icon theme files should set ICON_THEMES.")
 	}
 }
 
@@ -499,7 +510,7 @@ type plistLineSorter struct {
 	header     []*PlistLine // Does not take part in sorting
 	middle     []*PlistLine // Only this part is sorted
 	footer     []*PlistLine // Does not take part in sorting, typically contains @exec or @pkgdir
-	unsortable Line         // Some lines are so difficult to sort that only humans can do that
+	unsortable *Line        // Some lines are so difficult to sort that only humans can do that
 	changed    bool         // Whether the sorting actually changed something
 	autofixed  bool         // Whether the newly sorted file has been written to disk
 }
@@ -518,7 +529,7 @@ func NewPlistLineSorter(plines []*PlistLine) *plistLineSorter {
 	header := plines[0:headerEnd]
 	middle := plines[headerEnd:footerStart]
 	footer := plines[footerStart:]
-	var unsortable Line
+	var unsortable *Line
 
 	for _, pline := range middle {
 		if unsortable == nil && (hasPrefix(pline.text, "@") || contains(pline.text, "$")) {
@@ -564,7 +575,7 @@ func (s *plistLineSorter) Sort() {
 	fix.Describef(int(firstLine.firstLine), "Sorting the whole file.")
 	fix.Apply()
 
-	var lines []Line
+	var lines []*Line
 	for _, pline := range s.header {
 		lines = append(lines, pline.Line)
 	}

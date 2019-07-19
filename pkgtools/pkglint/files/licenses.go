@@ -3,13 +3,13 @@ package pkglint
 import "netbsd.org/pkglint/licenses"
 
 type LicenseChecker struct {
-	MkLines MkLines
-	MkLine  MkLine
+	MkLines *MkLines
+	MkLine  *MkLine
 }
 
 func (lc *LicenseChecker) Check(value string, op MkOperator) {
 	expanded := resolveVariableRefs(lc.MkLines, value) // For ${PERL5_LICENSE}
-	cond := licenses.Parse(ifelseStr(op == opAssignAppend, "append-placeholder ", "") + expanded)
+	cond := licenses.Parse(condStr(op == opAssignAppend, "append-placeholder ", "") + expanded)
 
 	if cond == nil {
 		if op == opAssign {

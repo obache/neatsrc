@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.77 2019/06/21 13:46:04 nia Exp $
+# $NetBSD: Makefile,v 1.81 2019/07/15 19:12:19 nia Exp $
 
 DISTNAME=		cmus-2.8.0
 CATEGORIES=		audio
@@ -20,7 +20,10 @@ REPLACE_SH+=		cmus-status-display
 GCC_REQD+=		4.9
 
 CONFIGURE_ARGS+=	prefix=${PREFIX}
-CONFIGURE_ARGS+=	CONFIG_ALSA=n
+# not in pkgsrc yet
+CONFIGURE_ARGS+=	CONFIG_ROAR=n
+# requires systemd
+CONFIGURE_ARGS+=	CONFIG_MPRIS=n
 CONFIGURE_ARGS+=	mandir=${PREFIX}/${PKGMANDIR}
 PLIST_VARS+=		coreaudio sunaudio oss
 
@@ -42,6 +45,11 @@ CONFIGURE_ARGS+=	CONFIG_SUN=n
 
 .if ${OPSYS} == "Darwin"
 PLIST.coreaudio=	yes
+.endif
+
+.if ${MACHINE_ARCH} == "i386"
+# 64 bit atomic ops are required
+CFLAGS+=	-march=i586
 .endif
 
 NOT_PAX_MPROTECT_SAFE+=	bin/cmus

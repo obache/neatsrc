@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.17 2019/06/20 19:56:24 jmcneill Exp $
+# $NetBSD: Makefile,v 1.19 2019/07/13 17:42:01 jmcneill Exp $
 #
 
 .include "../../sysutils/u-boot/u-boot-version.mk"
 
 DISTNAME=	u-boot-${UBOOT_VERSION}
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	meta-pkgs sysutils u-boot
 MASTER_SITES=	# empty
 
@@ -18,6 +18,8 @@ META_PACKAGE=	yes
 .include "../../mk/bsd.prefs.mk"
 
 DEPENDS+=	u-boot-a10-olinuxino-lime-[0-9]*:../../sysutils/u-boot-a10-olinuxino-lime
+DEPENDS+=	u-boot-a20-olinuxino-lime2-[0-9]*:../../sysutils/u-boot-a20-olinuxino-lime2
+DEPENDS+=	u-boot-a20-olinuxino-lime2-emmc-[0-9]*:../../sysutils/u-boot-a20-olinuxino-lime2-emmc
 DEPENDS+=	u-boot-bananapi-m2-zero-[0-9]*:../../sysutils/u-boot-bananapi-m2-zero
 DEPENDS+=	u-boot-bananapi-m3-[0-9]*:../../sysutils/u-boot-bananapi-m3
 DEPENDS+=	u-boot-bananapi-p2-zero-[0-9]*:../../sysutils/u-boot-bananapi-p2-zero

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.119 2019/06/04 23:09:51 nia Exp $
+# $NetBSD: Makefile,v 1.121 2019/07/17 11:58:23 nia Exp $
 
 DISTNAME=		audacity-2.3.2
 CATEGORIES=		audio
@@ -21,9 +21,14 @@ USE_TOOLS+=		automake autoreconf bash
 USE_TOOLS+=		gmake intltool msgfmt msgmerge pkg-config
 USE_TOOLS+=		xgettext zip:run
 USE_LANGUAGES=		c c++
+# configure: error: Audacity requires at least GCC 4.9
+GCC_REQD+=		4.9
+
 WRAPPER_SHELL=		${BASH}
 CONFIG_SHELL=		${BASH}
+
 GNU_CONFIGURE=		yes
+
 CONFIGURE_ARGS+=	--enable-nyquist=yes
 CONFIGURE_ARGS+=	--with-expat=system
 CONFIGURE_ARGS+=	--with-ffmpeg=system
@@ -46,12 +51,16 @@ CONFIGURE_ARGS+=	--with-libsoxr=system
 CONFIGURE_ARGS+=	--with-widgetextra=local
 
 # for internal portaudio...
-
 .if ${OPSYS} == "Linux"
 CONFIGURE_ARGS+=	--with-alsa
 .else
 CONFIGURE_ARGS+=	--without-alsa
 CONFIGURE_ENV+=		ac_cv_header_pa_linux_alsa_h=no
+.endif
+
+.if ${MACHINE_ARCH} == "i386"
+# 64 bit atomic ops are required
+CXXFLAGS+=	-march=i586
 .endif
 
 .include "../../mk/oss.buildlink3.mk"

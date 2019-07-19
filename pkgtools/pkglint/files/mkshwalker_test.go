@@ -3,13 +3,12 @@ package pkglint
 import "gopkg.in/check.v1"
 
 func (s *Suite) Test_MkShWalker_Walk(c *check.C) {
+	t := s.Init(c)
 
 	pathFor := map[string]bool{}
 
 	outputPathFor := func(kinds ...string) {
-		for key := range pathFor {
-			pathFor[key] = false
-		}
+		pathFor = make(map[string]bool)
 		for _, kind := range kinds {
 			pathFor[kind] = true
 		}
@@ -69,13 +68,13 @@ func (s *Suite) Test_MkShWalker_Walk(c *check.C) {
 		//    Case with 1 item(s)
 		//      ...
 
-		c.Check(commands, deepEquals, output)
+		t.CheckDeepEquals(commands, output)
 
 		// After parsing, there is not a single level of indentation,
 		// therefore even Parent(0) returns nil.
 		//
 		// This ensures that the w.push/w.pop calls are balanced.
-		c.Check(walker.Parent(0), equals, nil)
+		t.CheckEquals(walker.Parent(0), nil)
 	}
 
 	outputPathFor("SimpleCommand")
@@ -212,7 +211,7 @@ func (s *Suite) Test_MkShWalker_Walk(c *check.C) {
 		"            Word 2")
 
 	outputPathFor("Redirects", "Redirect", "Word")
-	test(""+
+	test(
 		"echo 'hello world' 1>/dev/null 2>&1 0</dev/random",
 
 		"            List with 1 andOrs",
@@ -239,4 +238,57 @@ func (s *Suite) Test_MkShWalker_Walk(c *check.C) {
 		"            Path List.AndOr[0].Pipeline[0].Command[0].SimpleCommand.[]MkShRedirection.Redirection[2]",
 		"            Word /dev/random",
 		"            Path List.AndOr[0].Pipeline[0].Command[0].SimpleCommand.[]MkShRedirection.Redirection[2].ShToken[2]")
+}
+
+func (s *Suite) Test_MkShWalker_Walk__empty_callback(c *check.C) {
+	t := s.Init(c)
+
+	test := func(program string) {
+		list, err := parseShellProgram(dummyLine, program)
+		assertNil(err, "")
+
+		walker := NewMkShWalker()
+		walker.Walk(list)
+
+		t.CheckEquals(walker.Parent(0), nil)
+	}
+
+	test("" +
+		"if condition; then action; else case selector in pattern) case-item-action ;; esac; fi; " +
+		"set -e; " +
+		"cd ${WRKSRC}/locale; " +
+		"for lang in *.po; do " +
+		"  [ \"$${lang}\" = \"wxstd.po\" ] && continue; " +
+		"  ${TOOLS_PATH.msgfmt} -c -o \"$${lang%.po}.mo\" \"$${lang}\"; " +
+		"done; " +
+		"while :; do fun() { :; } 1>&2; done")
+
+	test(
+		"echo 'hello world' 1>/dev/null 2>&1 0</dev/random")
+}
+
+func (s *Suite) Test_MkShWalker_Walk__assertion(c *check.C) {
+	t := s.Init(c)
+
+	list, err := parseShellProgram(dummyLine, "echo \"hello, world\"")
+	assertNil(err, "")
+
+	walker := NewMkShWalker()
+
+	// This callback intentionally breaks the assertion.
+	walker.Callback.Word = func(word *ShToken) { walker.push(0, "extra word") }
+
+	t.ExpectAssert(func() { walker.Walk(list) })
+}
+
+// Just for code coverage, to keep the main code symmetrical.
+func (s *Suite) Test_MkShWalker_walkCommand__empty(c *check.C) {
+	walker := NewMkShWalker()
+	walker.walkCommand(0, &MkShCommand{})
+}
+
+// Just for code coverage, to keep the main code symmetrical.
+func (s *Suite) Test_MkShWalker_walkCompoundCommand__empty(c *check.C) {
+	walker := NewMkShWalker()
+	walker.walkCompoundCommand(0, &MkShCompoundCommand{})
 }

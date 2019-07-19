@@ -16,15 +16,16 @@ import (
 // Or it is a variable assignment line from a Makefile with a left-hand
 // side variable that is of some shell-like type; see Vartype.IsShell.
 type ShellLineChecker struct {
-	MkLines MkLines
-	mkline  MkLine
+	MkLines *MkLines
+	mkline  *MkLine
 
 	// checkVarUse is set to false when checking a single shell word
 	// in order to skip duplicate warnings in variable assignments.
 	checkVarUse bool
 }
 
-func NewShellLineChecker(mklines MkLines, mkline MkLine) *ShellLineChecker {
+func NewShellLineChecker(mklines *MkLines, mkline *MkLine) *ShellLineChecker {
+	assertNotNil(mklines)
 	return &ShellLineChecker{mklines, mkline, true}
 }
 
@@ -36,7 +37,7 @@ func (ck *ShellLineChecker) Explain(explanation ...string) {
 }
 
 var shellCommandsType = NewVartype(BtShellCommands, NoVartypeOptions, NewACLEntry("*", aclpAllRuntime))
-var shellWordVuc = &VarUseContext{shellCommandsType, vucTimeUnknown, VucQuotPlain, false}
+var shellWordVuc = &VarUseContext{shellCommandsType, VucUnknownTime, VucQuotPlain, false}
 
 func (ck *ShellLineChecker) CheckWord(token string, checkQuoting bool, time ToolTime) {
 	if trace.Tracing {
@@ -216,7 +217,7 @@ func (ck *ShellLineChecker) checkVaruseToken(atoms *[]*ShAtom, quoting ShQuoting
 	}
 
 	if ck.checkVarUse {
-		vuc := VarUseContext{shellCommandsType, vucTimeUnknown, quoting.ToVarUseContext(), true}
+		vuc := VarUseContext{shellCommandsType, VucUnknownTime, quoting.ToVarUseContext(), true}
 		MkLineChecker{ck.MkLines, ck.mkline}.CheckVaruse(varuse, &vuc)
 	}
 
@@ -291,10 +292,7 @@ func (ck *ShellLineChecker) variableNeedsQuoting(shVarname string) bool {
 	case "d", "f", "i", "id", "file", "src", "dst", "prefix":
 		return false // Probably ok
 	}
-	if hasSuffix(shVarname, "dir") {
-		return false // Probably ok
-	}
-	return true
+	return !hasSuffix(shVarname, "dir") // Probably ok
 }
 
 func (ck *ShellLineChecker) CheckShellCommandLine(shelltext string) {
@@ -485,9 +483,7 @@ func (scc *SimpleCommandChecker) checkCommandStart() {
 	scc.checkInstallCommand(shellword)
 
 	switch {
-	case shellword == "${RUN}" || shellword == "":
-		// FIXME: ${RUN} must never appear as a simple command.
-		//  It should always be trimmed before passing the shell program to the SimpleCommandChecker.
+	case shellword == "":
 		break
 	case scc.handleForbiddenCommand():
 		break
@@ -504,7 +500,7 @@ func (scc *SimpleCommandChecker) checkCommandStart() {
 	case scc.handleComment():
 		break
 	default:
-		if G.Opts.WarnExtra && !(scc.MkLines != nil && scc.MkLines.indentation.DependsOn("OPSYS")) {
+		if G.Opts.WarnExtra && !scc.MkLines.indentation.DependsOn("OPSYS") {
 			scc.mkline.Warnf("Unknown shell command %q.", shellword)
 			scc.mkline.Explain(
 				"To make the package portable to all platforms that pkgsrc supports,",
@@ -560,24 +556,25 @@ func (scc *SimpleCommandChecker) handleCommandVariable() bool {
 	}
 
 	shellword := scc.strcmd.Name
-	if varuse := ToVarUse(shellword); varuse != nil {
-		varname := varuse.varname
-
-		if vartype := G.Pkgsrc.VariableType(scc.MkLines, varname); vartype != nil && vartype.basicType.name == "ShellCommand" {
-			scc.checkInstallCommand(shellword)
-			return true
-		}
-
-		// When the package author has explicitly defined a command
-		// variable, assume it to be valid.
-		if scc.MkLines != nil && scc.MkLines.vars.DefinedSimilar(varname) {
-			return true
-		}
-		if G.Pkg != nil && G.Pkg.vars.DefinedSimilar(varname) {
-			return true
-		}
+	varuse := NewMkParser(nil, shellword).VarUse()
+	if varuse == nil {
+		return false
 	}
-	return false
+
+	varname := varuse.varname
+
+	if vartype := G.Pkgsrc.VariableType(scc.MkLines, varname); vartype != nil && vartype.basicType.name == "ShellCommand" {
+		scc.checkInstallCommand(shellword)
+		return true
+	}
+
+	// When the package author has explicitly defined a command
+	// variable, assume it to be valid.
+	if scc.MkLines.vars.DefinedSimilar(varname) {
+		return true
+	}
+
+	return G.Pkg != nil && G.Pkg.vars.DefinedSimilar(varname)
 }
 
 func (scc *SimpleCommandChecker) handleShellBuiltin() bool {
@@ -704,7 +701,15 @@ func (scc *SimpleCommandChecker) checkAutoMkdirs() {
 		// TODO: Replace regex with proper VarUse.
 		if !contains(arg, "$$") && !matches(arg, `\$\{[_.]*[a-z]`) {
 			if m, dirname := match1(arg, `^(?:\$\{DESTDIR\})?\$\{PREFIX(?:|:Q)\}/(.*)`); m {
-				if G.Pkg != nil && G.Pkg.Plist.Dirs[dirname] {
+				autoMkdirs := false
+				if G.Pkg != nil {
+					plistLine := G.Pkg.Plist.Dirs[dirname]
+					if plistLine != nil && !containsVarRef(plistLine.Text) {
+						autoMkdirs = true
+					}
+				}
+
+				if autoMkdirs {
 					scc.Notef("You can use AUTO_MKDIRS=yes or \"INSTALLATION_DIRS+= %s\" instead of %q.", dirname, cmdname)
 					scc.Explain(
 						"Many packages include a list of all needed directories in their",
@@ -919,8 +924,9 @@ func (spc *ShellProgramChecker) canFail(cmd *MkShCommand) bool {
 
 	if simple.Name == nil {
 		for _, assignment := range simple.Assignments {
-			if contains(assignment.MkText, "`") || contains(assignment.MkText, "$(") {
-				if !contains(assignment.MkText, "|| ${TRUE}") {
+			text := assignment.MkText
+			if contains(text, "`") || contains(text, "$(") {
+				if !contains(text, "|| ${TRUE}") && !contains(text, "|| true") {
 					return true
 				}
 			}
@@ -929,7 +935,7 @@ func (spc *ShellProgramChecker) canFail(cmd *MkShCommand) bool {
 	}
 
 	for _, redirect := range simple.Redirections {
-		if redirect.Target != nil && !hasSuffix(redirect.Op, "&") {
+		if !hasSuffix(redirect.Op, "&") {
 			return true
 		}
 	}
@@ -955,7 +961,7 @@ func (spc *ShellProgramChecker) canFail(cmd *MkShCommand) bool {
 	args := simple.Args
 	argc := len(args)
 	switch toolName {
-	case "echo", "env", "printf", "tr":
+	case "basename", "dirname", "echo", "env", "printf", "tr":
 		return false
 	case "sed", "gsed":
 		if argc == 2 && args[0].MkText == "-e" {
@@ -980,7 +986,7 @@ func (spc *ShellProgramChecker) checkSetE(list *MkShList, index int, andor *MkSh
 	}
 
 	line := spc.mkline.Line
-	if !line.FirstTime("switch to set -e") {
+	if !line.once.FirstTime("switch to set -e") {
 		return
 	}
 
@@ -1062,7 +1068,7 @@ func (ck *ShellLineChecker) checkInstallCommand(shellcmd string) {
 // Example: "word1 word2;;;" => "word1", "word2", ";;", ";"
 //
 // TODO: Document what this function should be used for.
-func splitIntoShellTokens(line Line, text string) (tokens []string, rest string) {
+func splitIntoShellTokens(line *Line, text string) (tokens []string, rest string) {
 	if trace.Tracing {
 		defer trace.Call(line, text)()
 	}

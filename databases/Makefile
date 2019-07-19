@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.581 2019/05/31 14:42:45 jperkin Exp $
+# $NetBSD: Makefile,v 1.583 2019/07/07 09:30:52 bsiegert Exp $
 
 COMMENT=	Databases
 
@@ -95,6 +95,7 @@ SUBDIR+=	metakit-lib
 SUBDIR+=	mongo-c-driver
 SUBDIR+=	mongo-tools
 SUBDIR+=	mongodb
+SUBDIR+=	mongodb3
 SUBDIR+=	myodbc
 SUBDIR+=	mysql-cluster
 SUBDIR+=	mysql-connector-c++
@@ -345,6 +346,7 @@ SUBDIR+=	py-ckanclient
 SUBDIR+=	py-couchdb
 SUBDIR+=	py-cx_Oracle
 SUBDIR+=	py-datapkg
+SUBDIR+=	py-dbfread
 SUBDIR+=	py-elasticsearch
 SUBDIR+=	py-elixir
 SUBDIR+=	py-gdbm

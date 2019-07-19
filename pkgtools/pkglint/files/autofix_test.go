@@ -14,9 +14,7 @@ func (s *Suite) Test_Autofix_Warnf__duplicate(c *check.C) {
 
 	fix := line.Autofix()
 	fix.Warnf("Warning 1.")
-	t.ExpectPanic(
-		func() { fix.Warnf("Warning 2.") },
-		"Pkglint internal error: Autofix can only have a single diagnostic.")
+	t.ExpectAssert(func() { fix.Warnf("Warning 2.") })
 }
 
 func (s *Suite) Test_Autofix__default_leaves_line_unchanged(c *check.C) {
@@ -37,14 +35,14 @@ func (s *Suite) Test_Autofix__default_leaves_line_unchanged(c *check.C) {
 	fix.Delete()
 	fix.Apply()
 
-	c.Check(fix.RawText(), equals, ""+
+	t.CheckEquals(fix.RawText(), ""+
 		"# row 1 \\\n"+
 		"continuation of row 1\n")
 	t.CheckOutputLines(
 		">\t# row 1 \\",
 		">\tcontinuation of row 1",
 		"WARN: ~/Makefile:1--2: Row should be replaced with line.")
-	c.Check(fix.modified, equals, true)
+	t.CheckEquals(fix.modified, true)
 }
 
 func (s *Suite) Test_Autofix__show_autofix_modifies_line(c *check.C) {
@@ -58,19 +56,19 @@ func (s *Suite) Test_Autofix__show_autofix_modifies_line(c *check.C) {
 
 	fix := line.Autofix()
 	fix.Warnf("Row should be replaced with line.")
-	fix.ReplaceAfter("", "row", "line")
+	fix.ReplaceAfter("", "# row", "# line")
 	fix.ReplaceRegex(`row \d+`, "the above line", -1)
 	fix.InsertBefore("above")
 	fix.InsertAfter("below")
 	fix.Delete()
 	fix.Apply()
 
-	c.Check(fix.RawText(), equals, ""+
+	t.CheckEquals(fix.RawText(), ""+
 		"above\n"+
 		"below\n")
 	t.CheckOutputLines(
 		"WARN: ~/Makefile:1--2: Row should be replaced with line.",
-		"AUTOFIX: ~/Makefile:1: Replacing \"row\" with \"line\".",
+		"AUTOFIX: ~/Makefile:1: Replacing \"# row\" with \"# line\".",
 		"AUTOFIX: ~/Makefile:2: Replacing \"row 1\" with \"the above line\".",
 		"AUTOFIX: ~/Makefile:1: Inserting a line \"above\" before this line.",
 		"AUTOFIX: ~/Makefile:2: Inserting a line \"below\" after this line.",
@@ -80,10 +78,32 @@ func (s *Suite) Test_Autofix__show_autofix_modifies_line(c *check.C) {
 		"-\t# row 1 \\",
 		"-\tcontinuation of row 1",
 		"+\tbelow")
-	c.Check(fix.modified, equals, true)
+	t.CheckEquals(fix.modified, true)
 }
 
-func (s *Suite) Test_Autofix_ReplaceAfter__autofix(c *check.C) {
+func (s *Suite) Test_Autofix_ReplaceAfter__autofix_in_continuation_line(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCommandLine("--autofix", "--source")
+	mklines := t.SetUpFileMkLines("Makefile",
+		"# line 1 \\",
+		"continuation 1 \\",
+		"continuation 2")
+
+	fix := mklines.lines.Lines[0].Autofix()
+	fix.Warnf("Line should be replaced with Row.")
+	fix.ReplaceAfter("", "line", "row")
+	fix.Apply()
+
+	t.CheckOutputLines(
+		"AUTOFIX: ~/Makefile:1: Replacing \"line\" with \"row\".",
+		"-\t# line 1 \\",
+		"+\t# row 1 \\",
+		"\tcontinuation 1 \\",
+		"\tcontinuation 2")
+}
+
+func (s *Suite) Test_Autofix_ReplaceAfter__autofix_several_times_in_continuation_line(c *check.C) {
 	t := s.Init(c)
 
 	t.SetUpCommandLine("--autofix", "--source")
@@ -97,12 +117,25 @@ func (s *Suite) Test_Autofix_ReplaceAfter__autofix(c *check.C) {
 	fix.ReplaceAfter("", "n", "v")
 	fix.Apply()
 
-	t.CheckOutputLines(
-		"AUTOFIX: ~/Makefile:1: Replacing \"n\" with \"v\".",
-		"-\t# line 1 \\",
-		"+\t# live 1 \\",
-		"\tcontinuation 1 \\",
-		"\tcontinuation 2")
+	// Nothing is logged or fixed because the "n" appears more than once,
+	// and as of June 2019, pkglint doesn't know which occurrence is the
+	// correct one.
+	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_Autofix_ReplaceAfter__autofix_one_time(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCommandLine("--autofix", "--source")
+	mklines := t.SetUpFileMkLines("Makefile",
+		MkCvsID,
+		"VAR=\t$$(var) $(var)")
+
+	mklines.Check()
+
+	// Nothing is replaced since, as of June 2019, pkglint doesn't
+	// know which of the two "$(var)" should be replaced.
+	t.CheckOutputEmpty()
 }
 
 func (s *Suite) Test_Autofix_ReplaceRegex__show_autofix(c *check.C) {
@@ -120,7 +153,7 @@ func (s *Suite) Test_Autofix_ReplaceRegex__show_autofix(c *check.C) {
 	fix.Apply()
 	SaveAutofixChanges(lines)
 
-	c.Check(lines.Lines[1].raw[0].textnl, equals, "XXXXX\n")
+	t.CheckEquals(lines.Lines[1].raw[0].textnl, "XXXXX\n")
 	t.CheckFileLines("Makefile",
 		"line1",
 		"line2",
@@ -157,19 +190,19 @@ func (s *Suite) Test_Autofix_ReplaceRegex__autofix(c *check.C) {
 
 	// After calling fix.Apply above, the autofix is ready to be used again.
 	fix.Warnf("Use Y instead of X.")
-	fix.Replace("X", "Y")
+	fix.Replace("XXX", "YYY")
 	fix.Apply()
 
 	t.CheckOutputLines(
-		"AUTOFIX: ~/Makefile:2: Replacing \"X\" with \"Y\".",
+		"AUTOFIX: ~/Makefile:2: Replacing \"XXX\" with \"YYY\".",
 		"-\tline2",
-		"+\tYXXe2")
+		"+\tYYYe2")
 
 	SaveAutofixChanges(lines)
 
 	t.CheckFileLines("Makefile",
 		"line1",
-		"YXXe2",
+		"YYYe2",
 		"line3")
 }
 
@@ -188,7 +221,7 @@ func (s *Suite) Test_Autofix_ReplaceRegex__show_autofix_and_source(c *check.C) {
 	fix.Apply()
 
 	fix.Warnf("Use Y instead of X.")
-	fix.Replace("X", "Y")
+	fix.Replace("XXXXX", "YYYYY")
 	fix.Apply()
 
 	SaveAutofixChanges(lines)
@@ -204,9 +237,9 @@ func (s *Suite) Test_Autofix_ReplaceRegex__show_autofix_and_source(c *check.C) {
 		"+\tXXXXX",
 		"",
 		"WARN: ~/Makefile:2: Use Y instead of X.",
-		"AUTOFIX: ~/Makefile:2: Replacing \"X\" with \"Y\".",
+		"AUTOFIX: ~/Makefile:2: Replacing \"XXXXX\" with \"YYYYY\".",
 		"-\tline2",
-		"+\tYXXXX")
+		"+\tYYYYY")
 }
 
 // When an autofix replaces text, it does not touch those
@@ -236,6 +269,82 @@ func (s *Suite) Test_Autofix_ReplaceAfter__after_inserting_a_line(c *check.C) {
 		"NOTE: filename:5: Replacing text.",
 		"AUTOFIX: filename:5: Replacing \"l\" with \"L\".",
 		"AUTOFIX: filename:5: Replacing \"i\" with \"I\".")
+}
+
+func (s *Suite) Test_Autofix_ReplaceAt(c *check.C) {
+	t := s.Init(c)
+
+	lines := func(lines ...string) []string { return lines }
+	diagnostics := lines
+	autofixes := lines
+	test := func(texts []string, rawIndex int, column int, from, to string, diagnostics []string, autofixes []string) {
+
+		mainPart := func() {
+			mklines := t.NewMkLines("filename.mk", texts...)
+			assert(len(mklines.mklines) == 1)
+			mkline := mklines.mklines[0]
+
+			fix := mkline.Autofix()
+			fix.Notef("Should be appended instead of assigned.")
+			fix.ReplaceAt(rawIndex, column, from, to)
+			fix.Anyway()
+			fix.Apply()
+		}
+
+		t.SetUpCommandLine("-Wall")
+		mainPart()
+		t.CheckOutput(diagnostics)
+
+		t.SetUpCommandLine("-Wall", "--autofix")
+		mainPart()
+		t.CheckOutput(autofixes)
+	}
+
+	test(
+		lines(
+			"VAR=value1 \\",
+			"\tvalue2"),
+		0, 3, "=", "+=",
+		diagnostics(
+			"NOTE: filename.mk:1: Should be appended instead of assigned."),
+		autofixes(
+			"AUTOFIX: filename.mk:1: Replacing \"=\" with \"+=\"."))
+
+	// If the text at the precisely given position does not match,
+	// the note is still printed because of the fix.Anyway(), but
+	// nothing is replaced automatically.
+	test(
+		lines(
+			"VAR=value1 \\",
+			"\tvalue2"),
+		0, 3, "?", "+=",
+		diagnostics(
+			"NOTE: filename.mk:1--2: Should be appended instead of assigned."),
+		autofixes(
+			nil...))
+
+	// Getting the line number wrong is a strange programming error, and
+	// there does not need to be any code checking for this in the main code.
+	t.ExpectPanicMatches(
+		func() { test(lines("VAR=value"), 10, 3, "from", "to", nil, nil) },
+		`runtime error: index out of range.*`)
+
+	// It is a programming error to replace a string with itself, since that
+	// would produce confusing diagnostics.
+	t.ExpectAssert(
+		func() { test(lines("VAR=value"), 0, 4, "value", "value", nil, nil) })
+
+	// Getting the column number wrong may happen when a previous replacement
+	// has made the string shorter than before, therefore no panic in this case.
+	test(
+		lines(
+			"VAR=value1 \\",
+			"\tvalue2"),
+		0, 20, "?", "+=",
+		diagnostics(
+			"NOTE: filename.mk:1--2: Should be appended instead of assigned."),
+		autofixes(
+			nil...))
 }
 
 func (s *Suite) Test_SaveAutofixChanges(c *check.C) {
@@ -292,7 +401,7 @@ func (s *Suite) Test_Autofix__multiple_fixes(c *check.C) {
 	line := t.NewLine("filename", 1, "original")
 
 	c.Check(line.autofix, check.IsNil)
-	c.Check(line.raw, check.DeepEquals, t.NewRawLines(1, "original\n"))
+	t.CheckDeepEquals(line.raw, t.NewRawLines(1, "original\n"))
 
 	{
 		fix := line.Autofix()
@@ -302,22 +411,22 @@ func (s *Suite) Test_Autofix__multiple_fixes(c *check.C) {
 	}
 
 	c.Check(line.autofix, check.NotNil)
-	c.Check(line.raw, check.DeepEquals, t.NewRawLines(1, "original\n", "lriginao\n"))
+	t.CheckDeepEquals(line.raw, t.NewRawLines(1, "original\n", "lriginao\n"))
 	t.CheckOutputLines(
 		"AUTOFIX: filename:1: Replacing \"original\" with \"lriginao\".")
 
 	{
 		fix := line.Autofix()
 		fix.Warnf(SilentAutofixFormat)
-		fix.Replace("i", "u")
+		fix.Replace("ig", "ug")
 		fix.Apply()
 	}
 
 	c.Check(line.autofix, check.NotNil)
-	c.Check(line.raw, check.DeepEquals, t.NewRawLines(1, "original\n", "lruginao\n"))
-	c.Check(line.raw[0].textnl, equals, "lruginao\n")
+	t.CheckDeepEquals(line.raw, t.NewRawLines(1, "original\n", "lruginao\n"))
+	t.CheckEquals(line.raw[0].textnl, "lruginao\n")
 	t.CheckOutputLines(
-		"AUTOFIX: filename:1: Replacing \"i\" with \"u\".")
+		"AUTOFIX: filename:1: Replacing \"ig\" with \"ug\".")
 
 	{
 		fix := line.Autofix()
@@ -327,12 +436,12 @@ func (s *Suite) Test_Autofix__multiple_fixes(c *check.C) {
 	}
 
 	c.Check(line.autofix, check.NotNil)
-	c.Check(line.raw, check.DeepEquals, t.NewRawLines(1, "original\n", "middle\n"))
-	c.Check(line.raw[0].textnl, equals, "middle\n")
+	t.CheckDeepEquals(line.raw, t.NewRawLines(1, "original\n", "middle\n"))
+	t.CheckEquals(line.raw[0].textnl, "middle\n")
 	t.CheckOutputLines(
 		"AUTOFIX: filename:1: Replacing \"lruginao\" with \"middle\".")
 
-	c.Check(line.raw[0].textnl, equals, "middle\n")
+	t.CheckEquals(line.raw[0].textnl, "middle\n")
 	t.CheckOutputEmpty()
 
 	{
@@ -342,7 +451,7 @@ func (s *Suite) Test_Autofix__multiple_fixes(c *check.C) {
 		fix.Apply()
 	}
 
-	c.Check(line.Autofix().RawText(), equals, "")
+	t.CheckEquals(line.Autofix().RawText(), "")
 	t.CheckOutputLines(
 		"AUTOFIX: filename:1: Deleting this line.")
 }
@@ -360,7 +469,7 @@ func (s *Suite) Test_Autofix_Explain__without_explain_option(c *check.C) {
 
 	t.CheckOutputLines(
 		"WARN: Makefile:74: Please write row instead of line.")
-	c.Check(G.Logger.explanationsAvailable, equals, true)
+	t.CheckEquals(G.Logger.explanationsAvailable, true)
 }
 
 func (s *Suite) Test_Autofix_Explain__default(c *check.C) {
@@ -380,7 +489,7 @@ func (s *Suite) Test_Autofix_Explain__default(c *check.C) {
 		"",
 		"\tExplanation",
 		"")
-	c.Check(G.Logger.explanationsAvailable, equals, true)
+	t.CheckEquals(G.Logger.explanationsAvailable, true)
 }
 
 func (s *Suite) Test_Autofix_Explain__show_autofix(c *check.C) {
@@ -401,7 +510,7 @@ func (s *Suite) Test_Autofix_Explain__show_autofix(c *check.C) {
 		"",
 		"\tExplanation",
 		"")
-	c.Check(G.Logger.explanationsAvailable, equals, true)
+	t.CheckEquals(G.Logger.explanationsAvailable, true)
 }
 
 func (s *Suite) Test_Autofix_Explain__autofix(c *check.C) {
@@ -418,7 +527,7 @@ func (s *Suite) Test_Autofix_Explain__autofix(c *check.C) {
 
 	t.CheckOutputLines(
 		"AUTOFIX: Makefile:74: Replacing \"line\" with \"row\".")
-	c.Check(G.Logger.explanationsAvailable, equals, false) // Not necessary.
+	t.CheckEquals(G.Logger.explanationsAvailable, false) // Not necessary.
 }
 
 func (s *Suite) Test_Autofix_Explain__SilentAutofixFormat(c *check.C) {
@@ -429,9 +538,7 @@ func (s *Suite) Test_Autofix_Explain__SilentAutofixFormat(c *check.C) {
 
 	fix := line.Autofix()
 	fix.Warnf(SilentAutofixFormat)
-	t.ExpectPanic(
-		func() { fix.Explain("Explanation for inserting a line before.") },
-		"Pkglint internal error: Autofix: Silent fixes cannot have an explanation.")
+	t.ExpectAssert(func() { fix.Explain("Explanation for inserting a line before.") })
 }
 
 // To combine a silent diagnostic with an explanation, two separate autofixes
@@ -460,7 +567,7 @@ func (s *Suite) Test_Autofix_Explain__silent_with_diagnostic(c *check.C) {
 		"\tWhen inserting multiple lines, Apply must be called in-between.",
 		"\tOtherwise the changes are not described to the human reader.",
 		"")
-	c.Check(fix.RawText(), equals, "Text\n")
+	t.CheckEquals(fix.RawText(), "Text\n")
 }
 
 func (s *Suite) Test_Autofix__show_autofix_and_source_continuation_line(c *check.C) {
@@ -468,7 +575,7 @@ func (s *Suite) Test_Autofix__show_autofix_and_source_continuation_line(c *check
 
 	t.SetUpCommandLine("--show-autofix", "--source")
 	mklines := t.SetUpFileMkLines("Makefile",
-		MkRcsID,
+		MkCvsID,
 		"# before \\",
 		"The old song \\",
 		"after")
@@ -485,7 +592,7 @@ func (s *Suite) Test_Autofix__show_autofix_and_source_continuation_line(c *check
 	// make some of the lines appear misaligned in the pkglint output although
 	// they are correct in the Makefiles.
 	t.CheckOutputLines(
-		"WARN: ~/Makefile:2--4: Using \"old\" is deprecated.",
+		"WARN: ~/Makefile:3: Using \"old\" is deprecated.",
 		"AUTOFIX: ~/Makefile:3: Replacing \"old\" with \"new\".",
 		"\t# before \\",
 		"-\tThe old song \\",
@@ -534,7 +641,7 @@ func (s *Suite) Test_Autofix_Delete__continuation_line(c *check.C) {
 
 	t.SetUpCommandLine("--show-autofix", "--source")
 	mklines := t.SetUpFileMkLines("Makefile",
-		MkRcsID,
+		MkCvsID,
 		"# line 1 \\",
 		"continued")
 	line := mklines.lines.Lines[1]
@@ -713,7 +820,7 @@ func (s *Suite) Test_Autofix_Custom__in_memory(c *check.C) {
 		"line2",
 		"line3")
 
-	doFix := func(line Line) {
+	doFix := func(line *Line) {
 		fix := line.Autofix()
 		fix.Warnf("Please write in ALL-UPPERCASE.")
 		fix.Custom(func(showAutofix, autofix bool) {
@@ -737,7 +844,7 @@ func (s *Suite) Test_Autofix_Custom__in_memory(c *check.C) {
 	t.CheckOutputLines(
 		"WARN: Makefile:2: Please write in ALL-UPPERCASE.",
 		"AUTOFIX: Makefile:2: Converting to uppercase")
-	c.Check(lines.Lines[1].Text, equals, "LINE2")
+	t.CheckEquals(lines.Lines[1].Text, "LINE2")
 
 	t.SetUpCommandLine("--autofix")
 
@@ -745,7 +852,7 @@ func (s *Suite) Test_Autofix_Custom__in_memory(c *check.C) {
 
 	t.CheckOutputLines(
 		"AUTOFIX: Makefile:3: Converting to uppercase")
-	c.Check(lines.Lines[2].Text, equals, "LINE3")
+	t.CheckEquals(lines.Lines[2].Text, "LINE3")
 }
 
 // Since the diagnostic doesn't contain the string "few", nothing happens.
@@ -767,12 +874,12 @@ func (s *Suite) Test_Autofix_skip(c *check.C) {
 	// None of the following actions has any effect because of the --only option above.
 	fix.Replace("111", "___")
 	fix.ReplaceAfter(" ", "222", "___")
+	fix.ReplaceAt(0, 0, "VAR", "NEW")
 	fix.ReplaceRegex(`\d+`, "___", 1)
 	fix.InsertBefore("before")
 	fix.InsertAfter("after")
 	fix.Delete()
 	fix.Custom(func(showAutofix, autofix bool) {})
-	fix.Realign(mklines.mklines[0], 32)
 
 	fix.Apply()
 
@@ -782,7 +889,7 @@ func (s *Suite) Test_Autofix_skip(c *check.C) {
 	t.CheckFileLines("filename",
 		"VAR=\t111 222 333 444 555 \\",
 		"666")
-	c.Check(fix.RawText(), equals, ""+
+	t.CheckEquals(fix.RawText(), ""+
 		"VAR=\t111 222 333 444 555 \\\n"+
 		"666\n")
 }
@@ -816,20 +923,18 @@ func (s *Suite) Test_Autofix_Apply__panic(c *check.C) {
 
 	line := t.NewLine("filename", 123, "text")
 
-	t.ExpectPanic(
+	t.ExpectAssert(
 		func() {
 			fix := line.Autofix()
 			fix.Apply()
-		},
-		"Pkglint internal error: Each autofix must have a log level and a diagnostic.")
+		})
 
-	t.ExpectPanic(
+	t.ExpectAssert(
 		func() {
 			fix := line.Autofix()
 			fix.Replace("from", "to")
 			fix.Apply()
-		},
-		"Pkglint internal error: Autofix: The diagnostic must be given before the action.")
+		})
 
 	t.ExpectPanic(
 		func() {
@@ -936,6 +1041,54 @@ func (s *Suite) Test_Autofix_Apply__autofix_and_show_autofix_options(c *check.C)
 		"AUTOFIX: filename:5: Replacing \"text\" with \"replacement\".")
 }
 
+// In --autofix mode or --show-autofix mode, the fix.Anyway doesn't
+// have any effect, therefore the errors from such autofixes are
+// not counted, and the exitcode stays at 0.
+func (s *Suite) Test_Autofix_Apply__anyway_error(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCommandLine("--autofix")
+	mklines := t.SetUpFileMkLines("filename.mk",
+		MkCvsID,
+		"VAR=\tvalue")
+
+	fix := mklines.mklines[1].Autofix()
+	fix.Errorf("From must be To.")
+	fix.Replace("from", "to")
+	fix.Anyway()
+	fix.Apply()
+
+	mklines.SaveAutofixChanges()
+
+	t.CheckEquals(G.Logger.errors, 0)
+	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_Autofix_Apply__source_autofix_no_change(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCommandLine("--autofix", "--source")
+	lines := t.SetUpFileLines("filename",
+		"word word word")
+
+	fix := lines.Lines[0].Autofix()
+	fix.Notef("Word should be replaced, but pkglint is not sure which one.")
+	fix.Replace("word", "replacement")
+	fix.Anyway()
+	fix.Apply()
+
+	lines.SaveAutofixChanges()
+
+	// Nothing is replaced since, as of June 2019, pkglint doesn't
+	// know which of the three "word" should be replaced.
+	//
+	// The note is not logged since fix.Anyway only applies when neither
+	// --show-autofix nor --autofix is given in the command line.
+	t.CheckOutputEmpty()
+	t.CheckFileLines("filename",
+		"word word word")
+}
+
 // Ensures that without explanations, the separator between the individual
 // diagnostics are generated.
 func (s *Suite) Test_Autofix_Apply__source_without_explain(c *check.C) {
@@ -982,11 +1135,11 @@ func (s *Suite) Test_Autofix_Apply__text_after_replacing_string(c *check.C) {
 	t.CheckOutputLines(
 		"AUTOFIX: filename.mk:123: Replacing \"value\" with \"new value\".")
 
-	t.Check(mkline.raw[0].textnl, equals, "VAR=\tnew value\n")
-	t.Check(mkline.raw[0].orignl, equals, "VAR=\tvalue\n")
-	t.Check(mkline.Text, equals, "VAR=\tnew value")
-	// FIXME: should be updated as well.
-	t.Check(mkline.Value(), equals, "value")
+	t.CheckEquals(mkline.raw[0].textnl, "VAR=\tnew value\n")
+	t.CheckEquals(mkline.raw[0].orignl, "VAR=\tvalue\n")
+	t.CheckEquals(mkline.Text, "VAR=\tnew value")
+	// TODO: should be updated as well.
+	t.CheckEquals(mkline.Value(), "value")
 }
 
 // After fixing part of a line, the whole line needs to be parsed again.
@@ -1006,84 +1159,11 @@ func (s *Suite) Test_Autofix_Apply__text_after_replacing_regex(c *check.C) {
 	t.CheckOutputLines(
 		"AUTOFIX: filename.mk:123: Replacing \"value\" with \"new value\".")
 
-	t.Check(mkline.raw[0].textnl, equals, "VAR=\tnew value\n")
-	t.Check(mkline.raw[0].orignl, equals, "VAR=\tvalue\n")
-	t.Check(mkline.Text, equals, "VAR=\tnew value")
-	// FIXME: should be updated as well.
-	t.Check(mkline.Value(), equals, "value")
-}
-
-func (s *Suite) Test_Autofix_Realign__wrong_line_type(c *check.C) {
-	t := s.Init(c)
-
-	mklines := t.NewMkLines("file.mk",
-		MkRcsID,
-		".if \\",
-		"${PKGSRC_RUN_TESTS}")
-
-	mkline := mklines.mklines[1]
-	fix := mkline.Autofix()
-
-	t.ExpectPanic(
-		func() { fix.Realign(mkline, 16) },
-		"Pkglint internal error: Line must be a variable assignment.")
-}
-
-func (s *Suite) Test_Autofix_Realign__short_continuation_line(c *check.C) {
-	t := s.Init(c)
-
-	t.SetUpCommandLine("--autofix")
-	mklines := t.SetUpFileMkLines("file.mk",
-		MkRcsID,
-		"BUILD_DIRS= \\",
-		"\tdir \\",
-		"")
-	mkline := mklines.mklines[1]
-	fix := mkline.Autofix()
-	fix.Warnf("Line should be realigned.")
-
-	// In this case realigning has no effect since the oldWidth == 8,
-	// which counts as "sufficiently intentional not to be modified".
-	fix.Realign(mkline, 16)
-
-	mklines.SaveAutofixChanges()
-
-	t.CheckOutputEmpty()
-	t.CheckFileLines("file.mk",
-		MkRcsID,
-		"BUILD_DIRS= \\",
-		"\tdir \\",
-		"")
-}
-
-func (s *Suite) Test_Autofix_Realign__multiline_indented_with_spaces(c *check.C) {
-	t := s.Init(c)
-
-	t.SetUpCommandLine("--autofix")
-	mklines := t.SetUpFileMkLines("file.mk",
-		MkRcsID,
-		"BUILD_DIRS= \\",
-		"\t        dir1 \\",
-		"\t\tdir2 \\",
-		"  ") // Trailing whitespace is not fixed by Autofix.Realign.
-
-	mkline := mklines.mklines[1]
-
-	fix := mkline.Autofix()
-	fix.Warnf("Warning.")
-	fix.Realign(mkline, 16)
-	fix.Apply()
-
-	mklines.SaveAutofixChanges()
-
-	t.CheckOutputLines(
-		"AUTOFIX: ~/file.mk:3: Replacing indentation \"\\t        \" with \"\\t\\t\".")
-	t.CheckFileLines("file.mk",
-		MkRcsID,
-		"BUILD_DIRS= \\",
-		"\t\tdir1 \\",
-		"\t\tdir2 \\",
-		"  ")
+	t.CheckEquals(mkline.raw[0].textnl, "VAR=\tnew value\n")
+	t.CheckEquals(mkline.raw[0].orignl, "VAR=\tvalue\n")
+	t.CheckEquals(mkline.Text, "VAR=\tnew value")
+	// TODO: should be updated as well.
+	t.CheckEquals(mkline.Value(), "value")
 }
 
 // Just for branch coverage.
@@ -1109,14 +1189,10 @@ func (s *Suite) Test_Autofix_setDiag__bad_call_sequence(c *check.C) {
 	fix := line.Autofix()
 	fix.Notef("Note.")
 
-	t.ExpectPanic(
-		func() { fix.Notef("Note 2.") },
-		"Pkglint internal error: Autofix can only have a single diagnostic.")
+	t.ExpectAssert(func() { fix.Notef("Note 2.") })
 
 	fix.level = nil // To cover the second assertion.
-	t.ExpectPanic(
-		func() { fix.Notef("Note 2.") },
-		"Pkglint internal error: Autofix can only have a single diagnostic.")
+	t.ExpectAssert(func() { fix.Notef("Note 2.") })
 }
 
 func (s *Suite) Test_Autofix_assertRealLine(c *check.C) {
@@ -1126,9 +1202,7 @@ func (s *Suite) Test_Autofix_assertRealLine(c *check.C) {
 	fix := line.Autofix()
 	fix.Warnf("Warning.")
 
-	t.ExpectPanic(
-		func() { fix.Replace("from", "to") },
-		"Pkglint internal error: Cannot autofix this line since it is not a real line.")
+	t.ExpectAssert(func() { fix.Replace("from", "to") })
 }
 
 func (s *Suite) Test_SaveAutofixChanges__file_removed(c *check.C) {
@@ -1164,7 +1238,7 @@ func (s *Suite) Test_SaveAutofixChanges__file_busy_Windows(c *check.C) {
 
 	// As long as the file is kept open, it cannot be overwritten or deleted.
 	openFile, err := os.OpenFile(t.File("subdir/file.txt"), 0, 0666)
-	defer openFile.Close()
+	defer func() { assertNil(openFile.Close(), "") }()
 	c.Check(err, check.IsNil)
 
 	fix := lines.Lines[0].Autofix()
@@ -1220,7 +1294,7 @@ func (s *Suite) Test_Autofix__lonely_source(c *check.C) {
 		"DISTNAME=\txorgproto-1.0")
 	t.CreateFileDummyBuildlink3("x11/xorgproto/buildlink3.mk")
 	t.CreateFileLines("x11/xorgproto/builtin.mk",
-		MkRcsID,
+		MkCvsID,
 		"",
 		"BUILTIN_PKG:=\txorgproto",
 		"",

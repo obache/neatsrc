@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.110 2019/04/10 22:24:57 schmonz Exp $
+# $NetBSD: Makefile,v 1.113 2019/07/01 14:57:31 schmonz Exp $
 #
 
 DISTNAME=		netqmail-1.06
 PKGNAME=		qmail-1.03
 PKGREVISION=		45
 CATEGORIES=		mail
-MASTER_SITES=		http://qmail.org/
+MASTER_SITES=		${HOMEPAGE}
 
 MAINTAINER=		schmonz@NetBSD.org
-HOMEPAGE=		http://qmail.org/netqmail/
+HOMEPAGE=		http://netqmail.org/
 COMMENT=		Secure, reliable, efficient, simple, and fast MTA
 LICENSE=		public-domain
 
@@ -39,7 +39,7 @@ DJB_BUILD_TARGETS=	man
 INSTALL_TARGET=		setup
 DJB_RESTRICTED=		no
 
-CFLAGS.Darwin+=		-DBIND_8_COMPAT=1
+CPPFLAGS.Darwin+=	-DBIND_8_COMPAT=1
 
 PKG_SYSCONFSUBDIR=	qmail
 OWN_DIRS+=		${PKG_SYSCONFDIR} ${PKG_SYSCONFDIR}/alias
@@ -154,8 +154,7 @@ SITES.${TLSREMOTE_PATCH}=	https://schmonz.com/qmail/tlsonlyremote/
 QMAILPATCHES+=			bigdns:${BIGDNS_PATCH}
 BIGDNS_PATCH=			qmail-103.patch
 PATCHFILES+=			${BIGDNS_PATCH}
-SITES.${BIGDNS_PATCH}=		http://www.ckdhr.com/ckd/
-SITES.${BIGDNS_PATCH}+=		${MASTER_SITE_LOCAL}
+SITES.${BIGDNS_PATCH}=		https://www.ckdhr.com/ckd/
 PATCH_DIST_STRIP.${BIGDNS_PATCH}=-p1
 
 QMAILPATCHES+=			destdir:${DESTDIR_PATCH}
@@ -176,7 +175,7 @@ PATCH_DIST_CAT.${MAILDIRUNIQ_PATCH}= \
 QMAILPATCHES+=			outgoingip:${OUTGOINGIP_PATCH}
 OUTGOINGIP_PATCH=		outgoingip.patch
 PATCHFILES+=			${OUTGOINGIP_PATCH}
-SITES.${OUTGOINGIP_PATCH}=	http://www.qmail.org/
+SITES.${OUTGOINGIP_PATCH}=	http://qmailorg.schmonz.com/
 
 QMAILPATCHES+=			qbiffutmpx:${QBIFFUTMPX_PATCH}
 QBIFFUTMPX_PATCH=		netqmail-1.06-qbiffutmpx-20170820.patch

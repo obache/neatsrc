@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.104 2019/06/13 19:06:30 tnn Exp $
+# $NetBSD: Makefile,v 1.109 2019/07/16 14:23:04 he Exp $
 
-DISTNAME=	rustc-1.35.0-src
-PKGREVISION=	1
+DISTNAME=	rustc-1.36.0-src
 PKGNAME=	${DISTNAME:S/rustc/rust/:S/-src//}
 CATEGORIES=	lang
 MASTER_SITES=	http://static.rust-lang.org/dist/
@@ -15,8 +14,6 @@ USE_GCC_RUNTIME=	yes
 USE_LANGUAGES=		c c++11
 USE_LIBTOOL=		yes
 USE_TOOLS+=		bash ggrep gmake perl:build pkg-config
-# For internal llvm
-BUILD_DEPENDS+=		cmake-[0-9]*:../../devel/cmake
 
 # The NetBSD bootstraps are built for NetBSD 8 (because rust doesn't
 # build on 7).  Mark earlier versions as broken.
@@ -125,17 +122,7 @@ CHECK_SSP_SUPPORTED=	no
 
 CHECK_PORTABILITY_SKIP+=	src/vendor/openssl-src/openssl/.travis-create-release.sh
 
-# Required for LLVM (-std=c++11)
-GCC_REQD+=	4.8
-
 .include "../../mk/bsd.prefs.mk"
-
-# The bundled LLVM current has issues building on SunOS.
-.if ${OPSYS} == "Darwin" || ${OPSYS} == "SunOS"
-.include "../../lang/llvm/buildlink3.mk"
-CONFIGURE_ARGS+=	--enable-llvm-link-shared
-CONFIGURE_ARGS+=	--llvm-root=${BUILDLINK_PREFIX.llvm}
-.endif
 
 #
 # Under NetBSD, do not use DT_RUNPATH
@@ -150,10 +137,10 @@ BUILDLINK_TRANSFORM.NetBSD+=	rm:-Wl,--enable-new-dtags
 # own bootstrap.  See the stage0-bootstrap below for more details.
 #
 DISTFILES:=		${DEFAULT_DISTFILES}
-RUST_STAGE0_VER=	1.34.2
+RUST_STAGE0_VER=	1.35.0
 #
 .if !empty(MACHINE_PLATFORM:MDarwin-*-i386) || make(distinfo) || make (makesum) || make(mdi)
-RUST_STAGE0_VER=	1.34.2
+RUST_STAGE0_VER=	1.35.0
 RUST_ARCH:=		i686-apple-darwin
 RUST_STAGE0:=		rust-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
 RUST_STD_STAGE0:=	rust-std-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
@@ -161,7 +148,7 @@ DISTFILES:=		${DISTFILES} ${RUST_STAGE0} ${RUST_STD_STAGE0}
 pre-build-fix:
 .endif
 .if !empty(MACHINE_PLATFORM:MDarwin-*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
-RUST_STAGE0_VER=	1.34.2
+RUST_STAGE0_VER=	1.35.0
 RUST_ARCH:=		x86_64-apple-darwin
 RUST_STAGE0:=		rust-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
 RUST_STD_STAGE0:=	rust-std-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
@@ -169,7 +156,7 @@ DISTFILES:=		${DISTFILES} ${RUST_STAGE0} ${RUST_STD_STAGE0}
 pre-build-fix:
 .endif
 .if !empty(MACHINE_PLATFORM:MLinux-*-i386) || make(distinfo) || make (makesum) || make(mdi)
-RUST_STAGE0_VER=	1.34.2
+RUST_STAGE0_VER=	1.35.0
 RUST_ARCH:=		i686-unknown-linux-gnu
 RUST_STAGE0:=		rust-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
 RUST_STD_STAGE0:=	rust-std-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
@@ -177,7 +164,7 @@ DISTFILES:=		${DISTFILES} ${RUST_STAGE0} ${RUST_STD_STAGE0}
 pre-build-fix:
 .endif
 .if !empty(MACHINE_PLATFORM:MLinux-*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
-RUST_STAGE0_VER=	1.34.2
+RUST_STAGE0_VER=	1.35.0
 RUST_ARCH:=		x86_64-unknown-linux-gnu
 RUST_STAGE0:=		rust-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
 RUST_STD_STAGE0:=	rust-std-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
@@ -185,7 +172,7 @@ DISTFILES:=		${DISTFILES} ${RUST_STAGE0} ${RUST_STD_STAGE0}
 pre-build-fix:
 .endif
 .if !empty(MACHINE_PLATFORM:MSunOS-*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
-RUST_STAGE0_VER=	1.34.2
+RUST_STAGE0_VER=	1.35.0
 RUST_ARCH:=		x86_64-sun-solaris
 RUST_STAGE0:=		rust-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
 SITES.${RUST_STAGE0}=	https://us-east.manta.joyent.com/pkgsrc/public/pkg-bootstraps/
@@ -194,7 +181,7 @@ RUST_BOOTSTRAP_PATH?=	${WRKDIR}/rust-${RUST_STAGE0_VER}-${RUST_ARCH}
 pre-build-fix:
 .endif
 .if !empty(MACHINE_PLATFORM:MFreeBSD-*-i386) || make(distinfo) || make (makesum) || make(mdi)
-RUST_STAGE0_VER=	1.34.2
+RUST_STAGE0_VER=	1.35.0
 RUST_ARCH:=		i686-unknown-freebsd
 RUST_STAGE0:=		rust-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
 RUST_STD_STAGE0:=	rust-std-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
@@ -202,7 +189,7 @@ DISTFILES:=		${DISTFILES} ${RUST_STAGE0} ${RUST_STD_STAGE0}
 pre-build-fix:
 .endif
 .if !empty(MACHINE_PLATFORM:MFreeBSD-*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
-RUST_STAGE0_VER=	1.34.2
+RUST_STAGE0_VER=	1.35.0
 RUST_ARCH:=		x86_64-unknown-freebsd
 RUST_STAGE0:=		rust-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
 RUST_STD_STAGE0:=	rust-std-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
@@ -246,7 +233,7 @@ SITES.${RUST_STD_STAGE0}=	ftp://golden-delicious.urc.uninett.no/pub/rust/
 pre-build-fix:
 .endif
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-aarch64) || make(distinfo) || make (makesum) || make(mdi)
-RUST_STAGE0_VER=	1.35.0
+RUST_STAGE0_VER=	1.36.0
 RUST_ARCH=		aarch64-unknown-netbsd
 RUST_STAGE0:=		rust-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
 RUST_STD_STAGE0:=	rust-std-${RUST_STAGE0_VER}-${RUST_ARCH}.tar.gz
@@ -312,7 +299,7 @@ post-extract:
 	${SED} -e 's/1e732c2e3b4bd1561f11e0979bf9d20669a96eae7afe0deff9dfbb980ee47bf1/bc03f2345d7cfa7000f9da817120b6afa073359789c21a9a790ebd8676c50cca/' ${WRKSRC}/vendor/rand/.cargo-checksum.json.orig > ${WRKSRC}/vendor/rand/.cargo-checksum.json
 	${CP} ${WRKSRC}/vendor/libc/.cargo-checksum.json \
 		${WRKSRC}/vendor/libc/.cargo-checksum.json.orig
-	${SED} -e 's/c6a740dac9af99321f48d5c9e86c6a4f5dcc611c413263881764f7121c1f7e9d/01ca1e6a21f01efd9d4b2768c1f9bcfab829e95a23d88cd35bf4e0172c672f3a/' ${WRKSRC}/vendor/libc/.cargo-checksum.json.orig > ${WRKSRC}/vendor/libc/.cargo-checksum.json
+	${SED} -e 's/0c6d148d84f2fa9feb86b464d30af9c52322553bf321ae4fe27184d274ccbe21/27dae4ec77f317c74e2c205658bcc8220c512f751802b754b07770c16e420dd1/' ${WRKSRC}/vendor/libc/.cargo-checksum.json.orig > ${WRKSRC}/vendor/libc/.cargo-checksum.json
 	${CP} ${WRKSRC}/vendor/backtrace-sys/.cargo-checksum.json \
 	      ${WRKSRC}/vendor/backtrace-sys/.cargo-checksum.json.orig
 	${SED} -e 's/59763fc255248b54fba5d0761d61093a73d51fa4cb400b0df1b5f339b9c2f48a/ba66d192421fd536ceddb50616c4c4aea06f4e39450eb0bc2bbbaed0b1e684c1/' ${WRKSRC}/vendor/backtrace-sys/.cargo-checksum.json.orig > ${WRKSRC}/vendor/backtrace-sys/.cargo-checksum.json
@@ -458,6 +445,8 @@ stage0-bootstrap: install
 	 ${GTAR} -zcf ${PKGNAME_NOREV}-${RUST_ARCH}.tar.gz ${PKGNAME_NOREV}-${RUST_ARCH})
 .endif
 
+.include "options.mk"
+
 # These dependencies currently use the bundled sources as they require
 # development features not yet available in released versions.
 #
@@ -466,7 +455,6 @@ stage0-bootstrap: install
 #.include "../../www/curl/buildlink3.mk"
 #.include "../../www/http-parser/buildlink3.mk"
 
-.include "../../devel/cmake/buildlink3.mk"
 #.include "../../devel/jemalloc/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/tool.mk"

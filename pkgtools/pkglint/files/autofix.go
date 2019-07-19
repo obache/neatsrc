@@ -13,7 +13,7 @@ import (
 // The modifications are kept in memory only,
 // until they are written to disk by SaveAutofixChanges.
 type Autofix struct {
-	line        Line
+	line        *Line
 	linesBefore []string // Newly inserted lines, including \n
 	linesAfter  []string // Newly inserted lines, including \n
 	// Whether an actual fix has been applied (or, without --show-autofix,
@@ -51,7 +51,7 @@ const SilentAutofixFormat = "SilentAutofixFormat"
 // Since these are not really diagnostics, duplicates are not suppressed.
 const AutofixFormat = "AutofixFormat"
 
-func NewAutofix(line Line) *Autofix {
+func NewAutofix(line *Line) *Autofix {
 	return &Autofix{line: line}
 }
 
@@ -75,9 +75,7 @@ func (fix *Autofix) Explain(explanation ...string) {
 	// Since a silent fix doesn't have a diagnostic, its explanation would
 	// not provide any clue as to what diagnostic it belongs. That would
 	// be confusing, therefore this case is not allowed.
-	assertf(
-		fix.diagFormat != SilentAutofixFormat,
-		"Autofix: Silent fixes cannot have an explanation.")
+	assert(fix.diagFormat != SilentAutofixFormat)
 
 	fix.explanation = explanation
 }
@@ -95,8 +93,19 @@ func (fix *Autofix) ReplaceAfter(prefix, from string, to string) {
 		return
 	}
 
+	prefixFrom := prefix + from
+	prefixTo := prefix + to
+
+	n := 0
 	for _, rawLine := range fix.line.raw {
-		replaced := strings.Replace(rawLine.textnl, prefix+from, prefix+to, 1)
+		n += strings.Count(rawLine.textnl, prefixFrom)
+	}
+	if n != 1 {
+		return
+	}
+
+	for _, rawLine := range fix.line.raw {
+		replaced := strings.Replace(rawLine.textnl, prefixFrom, prefixTo, 1)
 		if replaced != rawLine.textnl {
 			if G.Logger.IsAutofix() {
 				rawLine.textnl = replaced
@@ -108,12 +117,47 @@ func (fix *Autofix) ReplaceAfter(prefix, from string, to string) {
 				// TODO: Do this properly by parsing the whole line again,
 				//  and ideally everything that depends on the parsed line.
 				//  This probably requires a generic notification mechanism.
-				fix.line.Text = strings.Replace(fix.line.Text, prefix+from, prefix+to, 1)
+				fix.line.Text = strings.Replace(fix.line.Text, prefixFrom, prefixTo, 1)
 			}
 			fix.Describef(rawLine.Lineno, "Replacing %q with %q.", from, to)
 			return
 		}
 	}
+}
+
+// ReplaceAt replaces the text "from" with "to", a single time.
+// But only if the text at the given position is indeed "from".
+func (fix *Autofix) ReplaceAt(rawIndex int, column int, from string, to string) {
+	assert(from != to)
+	fix.assertRealLine()
+
+	if fix.skip() {
+		return
+	}
+
+	rawLine := fix.line.raw[rawIndex]
+	if column >= len(rawLine.textnl) || !hasPrefix(rawLine.textnl[column:], from) {
+		return
+	}
+
+	replaced := rawLine.textnl[:column] + to + rawLine.textnl[column+len(from):]
+
+	if G.Logger.IsAutofix() {
+		rawLine.textnl = replaced
+
+		// Fix the parsed text as well.
+		// This is only approximate and won't work in some edge cases
+		// that involve escaped comments or replacements across line breaks.
+		//
+		// TODO: Do this properly by parsing the whole line again,
+		//  and ideally everything that depends on the parsed line.
+		//  This probably requires a generic notification mechanism.
+		if strings.Count(fix.line.Text, from) == 1 {
+			fix.line.Text = strings.Replace(fix.line.Text, from, to, 1)
+		}
+	}
+	fix.Describef(rawLine.Lineno, "Replacing %q with %q.", from, to)
+	return
 }
 
 // ReplaceRegex replaces the first howOften or all occurrences (if negative)
@@ -274,11 +318,10 @@ func (fix *Autofix) Anyway() {
 func (fix *Autofix) Apply() {
 	line := fix.line
 
+	// Each autofix must have a log level and a diagnostic.
 	// To fix this assertion, call one of Autofix.Errorf, Autofix.Warnf
 	// or Autofix.Notef before calling Apply.
-	assertf(
-		fix.level != nil,
-		"Each autofix must have a log level and a diagnostic.")
+	assert(fix.level != nil)
 
 	reset := func() {
 		if len(fix.actions) > 0 {
@@ -305,11 +348,12 @@ func (fix *Autofix) Apply() {
 	logFix := G.Logger.IsAutofix()
 
 	if logDiagnostic {
+		linenos := fix.affectedLinenos()
 		msg := sprintf(fix.diagFormat, fix.diagArgs...)
-		if !logFix && G.Logger.FirstTime(line.Filename, line.Linenos(), msg) {
-			line.showSource(G.Logger.out)
+		if !logFix && G.Logger.FirstTime(line.Filename, linenos, msg) {
+			G.Logger.showSource(line)
 		}
-		G.Logger.Logf(fix.level, line.Filename, line.Linenos(), fix.diagFormat, msg)
+		G.Logger.Logf(fix.level, line.Filename, linenos, fix.diagFormat, msg)
 	}
 
 	if logFix {
@@ -324,7 +368,7 @@ func (fix *Autofix) Apply() {
 
 	if logDiagnostic || logFix {
 		if logFix {
-			line.showSource(G.Logger.out)
+			G.Logger.showSource(line)
 		}
 		if logDiagnostic && len(fix.explanation) > 0 {
 			line.Explain(fix.explanation...)
@@ -339,66 +383,31 @@ func (fix *Autofix) Apply() {
 	reset()
 }
 
-func (fix *Autofix) Realign(mkline MkLine, newWidth int) {
-
-	// XXX: Check whether this method can be implemented as Custom fix.
-	// This complicated code should not be in the Autofix type.
-
-	fix.assertRealLine()
-	assertf(mkline.IsMultiline(), "Line must be a multiline.")
-	assertf(mkline.IsVarassign() || mkline.IsCommentedVarassign(), "Line must be a variable assignment.")
-
-	if fix.skip() {
-		return
+func (fix *Autofix) affectedLinenos() string {
+	if len(fix.actions) == 0 {
+		return fix.line.Linenos()
 	}
 
-	normalized := true // Whether all indentation is tabs, followed by spaces.
-	oldWidth := 0      // The minimum required indentation in the original lines.
+	var first, last int
+	for _, action := range fix.actions {
+		if action.lineno == 0 {
+			continue
+		}
 
-	{
-		// Parsing the continuation marker as variable value is cheating but works well.
-		text := strings.TrimSuffix(mkline.raw[0].orignl, "\n")
-		data := MkLineParser{}.split(nil, text)
-		_, a := MkLineParser{}.MatchVarassign(mkline.Line, text, data)
-		if a.value != "\\" {
-			oldWidth = tabWidth(a.valueAlign)
+		if last == 0 || action.lineno < first {
+			first = action.lineno
+		}
+		if last == 0 || action.lineno > last {
+			last = action.lineno
 		}
 	}
 
-	for _, rawLine := range fix.line.raw[1:] {
-		_, comment, space := match2(rawLine.textnl, `^(#?)([ \t]*)`)
-		width := tabWidth(comment + space)
-		if (oldWidth == 0 || width < oldWidth) && width >= 8 {
-			oldWidth = width
-		}
-		if !matches(space, `^\t* {0,7}$`) {
-			normalized = false
-		}
-	}
-
-	if normalized && newWidth == oldWidth {
-		return
-	}
-
-	// 8 spaces is the minimum possible indentation that can be
-	// distinguished from an initial line, by looking only at the
-	// beginning of the line. Therefore, this indentation is always
-	// regarded as intentional and is not realigned.
-	if oldWidth == 8 {
-		return
-	}
-
-	for _, rawLine := range fix.line.raw[1:] {
-		_, comment, oldSpace := match2(rawLine.textnl, `^(#?)([ \t]*)`)
-		newLineWidth := tabWidth(oldSpace) - oldWidth + newWidth
-		newSpace := strings.Repeat("\t", newLineWidth/8) + strings.Repeat(" ", newLineWidth%8)
-		replaced := strings.Replace(rawLine.textnl, comment+oldSpace, comment+newSpace, 1)
-		if replaced != rawLine.textnl {
-			if G.Logger.IsAutofix() {
-				rawLine.textnl = replaced
-			}
-			fix.Describef(rawLine.Lineno, "Replacing indentation %q with %q.", oldSpace, newSpace)
-		}
+	if last == 0 {
+		return fix.line.Linenos()
+	} else if first < last {
+		return sprintf("%d--%d", first, last)
+	} else {
+		return strconv.Itoa(first)
 	}
 }
 
@@ -409,31 +418,32 @@ func (fix *Autofix) setDiag(level *LogLevel, format string, args []interface{}) 
 			"Autofix: format %q must end with a period.",
 			format)
 	}
-	assertf(fix.level == nil, "Autofix can only have a single diagnostic.")
-	assertf(fix.diagFormat == "", "Autofix can only have a single diagnostic.")
+	assert(fix.level == nil)     // Autofix can only have a single diagnostic.
+	assert(fix.diagFormat == "") // Autofix can only have a single diagnostic.
 
 	fix.level = level
 	fix.diagFormat = format
 	fix.diagArgs = args
 }
 
+// skip returns whether this autofix should be skipped because
+// its message is matched by one of the --only command line options.
 func (fix *Autofix) skip() bool {
-	assertf(
-		fix.diagFormat != "",
-		"Autofix: The diagnostic must be given before the action.")
+	assert(fix.diagFormat != "") // The diagnostic must be given before the action.
+
 	// This check is necessary for the --only command line option.
 	return !G.Logger.shallBeLogged(fix.diagFormat)
 }
 
 func (fix *Autofix) assertRealLine() {
-	assertf(fix.line.firstLine >= 1, "Cannot autofix this line since it is not a real line.")
+	assert(fix.line.firstLine >= 1) // Cannot autofix this line since it is not a real line.
 }
 
 // SaveAutofixChanges writes the given lines back into their files,
 // applying the autofix changes.
 // The lines may come from different files.
 // Only files that actually have changed lines are saved.
-func SaveAutofixChanges(lines Lines) (autofixed bool) {
+func SaveAutofixChanges(lines *Lines) (autofixed bool) {
 	if trace.Tracing {
 		defer trace.Call0()()
 	}

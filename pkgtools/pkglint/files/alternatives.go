@@ -16,16 +16,16 @@ func CheckFileAlternatives(filename string) {
 		plist = G.Pkg.Plist
 	}
 
-	checkPlistWrapper := func(line Line, wrapper string) {
-		if plist.Files[wrapper] {
+	checkPlistWrapper := func(line *Line, wrapper string) {
+		if plist.Files[wrapper] != nil {
 			line.Errorf("Alternative wrapper %q must not appear in the PLIST.", wrapper)
 		}
 	}
 
-	checkPlistAlternative := func(line Line, alternative string) {
+	checkPlistAlternative := func(line *Line, alternative string) {
 		relImplementation := strings.Replace(alternative, "@PREFIX@/", "", 1)
 		plistName := replaceAll(relImplementation, `@(\w+)@`, "${$1}")
-		if plist.Files[plistName] || G.Pkg.vars.Defined("ALTERNATIVES_SRC") {
+		if plist.Files[plistName] != nil || G.Pkg.vars.Defined("ALTERNATIVES_SRC") {
 			return
 		}
 

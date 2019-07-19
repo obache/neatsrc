@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.20 2019/03/20 12:13:21 wiz Exp $
+# $NetBSD: Makefile,v 1.22 2019/07/06 16:46:09 nia Exp $
 
 DISTNAME=	efreet-1.7.7
-PKGREVISION=	12
+PKGREVISION=	13
 CATEGORIES=	sysutils devel
 MASTER_SITES=	http://download.enlightenment.org/releases/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	joerg@NetBSD.org
-HOMEPAGE=	http://enlightenment.org/
+HOMEPAGE=	https://enlightenment.org/
 COMMENT=	Interface Abstraction Library and Toolset
 LICENSE=	2-clause-bsd
 

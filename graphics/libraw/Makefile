@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.28 2018/04/14 03:45:56 markd Exp $
+# $NetBSD: Makefile,v 1.30 2019/07/16 15:45:03 nia Exp $
 
-DISTNAME=	LibRaw-0.18.8
+DISTNAME=	LibRaw-0.19.3
 PKGNAME=	${DISTNAME:tl}
+PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	https://www.libraw.org/data/
 
@@ -21,10 +22,7 @@ CONFIGURE_ARGS+=	--disable-demosaic-pack-gpl3
 PKGCONFIG_OVERRIDE+=	libraw.pc.in
 PKGCONFIG_OVERRIDE+=	libraw_r.pc.in
 
-# jasper uses SIZE_MAX and friends in its headers.
-CPPFLAGS+=	-D__STDC_LIMIT_MACROS
-
-.include "../../graphics/jasper/buildlink3.mk"
+.include "options.mk"
 .include "../../graphics/lcms2/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.63 2019/03/03 15:10:32 taca Exp $
+# $NetBSD: Makefile,v 1.65 2019/07/08 10:36:25 nia Exp $
 
-DISTNAME=	freetds-1.00.111
+DISTNAME=	freetds-1.00.112
 CATEGORIES=	databases
 MASTER_SITES=	ftp://ftp.freetds.org/pub/freetds/stable/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.freetds.org/
+HOMEPAGE=	https://www.freetds.org/
 COMMENT=	Implementation of TDS protocol used by Sybase and MS-SQL servers
 LICENSE=	gnu-lgpl-v2
 
@@ -18,6 +18,7 @@ CONFIGURE_ARGS+=	--with-libiconv-prefix=${BUILDLINK_PREFIX.iconv}
 CONFIGURE_ARGS+=	--with-tdsver=7.0
 # no thread-safe resolver functions on NetBSD
 CONFIGURE_ARGS+=	--disable-threadsafe
+TEST_TARGET=		check
 
 # Fails to build the shared lib on SunOS with -O2 or greater
 BUILDLINK_TRANSFORM.SunOS+=	rm:-O[23]

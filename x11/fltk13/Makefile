@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.26 2018/07/13 04:24:39 dbj Exp $
+# $NetBSD: Makefile,v 1.29 2019/07/16 11:25:43 wiz Exp $
 
-DISTNAME=	fltk-1.3.4-source
+DISTNAME=	fltk-1.3.5-source
 PKGNAME=	${DISTNAME:S/-source//}
 VERS=		${DISTNAME:S/fltk-//:S/-source//}
 CATEGORIES=	x11
-MASTER_SITES=	http://fltk.org/pub/fltk/${VERS}/
+MASTER_SITES=	https://fltk.org/pub/fltk/${VERS}/
+EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.fltk.org/
+HOMEPAGE=	https://www.fltk.org/
 COMMENT=	Fast Light Tool Kit for graphical user interfaces
 LICENSE=	gnu-lgpl-v2
 

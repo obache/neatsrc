@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2862 2019/06/23 09:42:04 wiz Exp $
+# $NetBSD: Makefile,v 1.2866 2019/07/15 10:46:29 jaapb Exp $
 #
 
 COMMENT=	Development utilities
@@ -51,7 +51,6 @@ SUBDIR+=	SDL_ttf
 SUBDIR+=	SDLmm
 SUBDIR+=	SOPE
 SUBDIR+=	ZenTest
-SUBDIR+=	accerciser
 SUBDIR+=	accerciser3
 SUBDIR+=	acme
 SUBDIR+=	acr
@@ -885,6 +884,7 @@ SUBDIR+=	ocaml-ppx_tools
 SUBDIR+=	ocaml-ppx_tools_versioned
 SUBDIR+=	ocaml-ppx_typerep_conv
 SUBDIR+=	ocaml-ppx_variants_conv
+SUBDIR+=	ocaml-ppxfind
 SUBDIR+=	ocaml-ppxlib
 SUBDIR+=	ocaml-psq
 SUBDIR+=	ocaml-re
@@ -2143,7 +2143,6 @@ SUBDIR+=	py-iowait
 SUBDIR+=	py-ipaddr
 SUBDIR+=	py-ipykernel
 SUBDIR+=	py-ipython
-SUBDIR+=	py-ipython010
 SUBDIR+=	py-ipython5
 SUBDIR+=	py-ipython_genutils
 SUBDIR+=	py-iso-639
@@ -2730,7 +2729,6 @@ SUBDIR+=	svn-bisect
 SUBDIR+=	swig
 SUBDIR+=	swig2
 SUBDIR+=	swig3
-SUBDIR+=	swt
 SUBDIR+=	syncdir
 SUBDIR+=	sysexits
 SUBDIR+=	tailor
@@ -2812,7 +2810,6 @@ SUBDIR+=	xfce4-dev-tools
 SUBDIR+=	xmake
 SUBDIR+=	xorg-util-macros
 SUBDIR+=	xsd
-SUBDIR+=	xulrunner192
 SUBDIR+=	xxgdb
 SUBDIR+=	xxhash
 SUBDIR+=	yajl

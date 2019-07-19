@@ -7,28 +7,28 @@ import (
 )
 
 type Buildlink3Checker struct {
-	mklines          MkLines
+	mklines          *MkLines
 	pkgbase          string
-	pkgbaseLine      MkLine
-	abiLine, apiLine MkLine
+	pkgbaseLine      *MkLine
+	abiLine, apiLine *MkLine
 	abi, api         *DependencyPattern
 }
 
-func CheckLinesBuildlink3Mk(mklines MkLines) {
+func CheckLinesBuildlink3Mk(mklines *MkLines) {
 	(&Buildlink3Checker{mklines: mklines}).Check()
 }
 
 func (ck *Buildlink3Checker) Check() {
 	mklines := ck.mklines
 	if trace.Tracing {
-		defer trace.Call1(mklines.lines.FileName)()
+		defer trace.Call1(mklines.lines.Filename)()
 	}
 
 	mklines.Check()
 
 	llex := NewMkLinesLexer(mklines)
 
-	for llex.SkipIf(MkLine.IsComment) {
+	for llex.SkipIf((*MkLine).IsComment) {
 		line := llex.PreviousLine()
 		// See pkgtools/createbuildlink/files/createbuildlink
 		if hasPrefix(line.Text, "# XXX This file was created automatically") {
@@ -94,7 +94,7 @@ func (ck *Buildlink3Checker) checkFirstParagraph(mlex *MkLinesLexer) bool {
 	return true
 }
 
-func (ck *Buildlink3Checker) checkUniquePkgbase(pkgbase string, mkline MkLine) {
+func (ck *Buildlink3Checker) checkUniquePkgbase(pkgbase string, mkline *MkLine) {
 	prev := G.InterPackage.Bl3(pkgbase, &mkline.Location)
 	if prev == nil {
 		return
@@ -182,13 +182,13 @@ func (ck *Buildlink3Checker) checkMainPart(mlex *MkLinesLexer) bool {
 	return true
 }
 
-func (ck *Buildlink3Checker) checkVarassign(mlex *MkLinesLexer, mkline MkLine, pkgbase string) {
+func (ck *Buildlink3Checker) checkVarassign(mlex *MkLinesLexer, mkline *MkLine, pkgbase string) {
 	varname, value := mkline.Varname(), mkline.Value()
 	doCheck := false
 
 	if varname == "BUILDLINK_ABI_DEPENDS."+pkgbase {
 		ck.abiLine = mkline
-		parser := NewMkParser(nil, value, false)
+		parser := NewMkParser(nil, value)
 		if dp := parser.Dependency(); dp != nil && parser.EOF() {
 			ck.abi = dp
 		}
@@ -197,7 +197,7 @@ func (ck *Buildlink3Checker) checkVarassign(mlex *MkLinesLexer, mkline MkLine, p
 
 	if varname == "BUILDLINK_API_DEPENDS."+pkgbase {
 		ck.apiLine = mkline
-		parser := NewMkParser(nil, value, false)
+		parser := NewMkParser(nil, value)
 		if dp := parser.Dependency(); dp != nil && parser.EOF() {
 			ck.api = dp
 		}
@@ -229,7 +229,7 @@ func (ck *Buildlink3Checker) checkVarassign(mlex *MkLinesLexer, mkline MkLine, p
 	}
 }
 
-func (ck *Buildlink3Checker) checkVaruseInPkgbase(pkgbase string, pkgbaseLine MkLine) {
+func (ck *Buildlink3Checker) checkVaruseInPkgbase(pkgbase string, pkgbaseLine *MkLine) {
 	tokens, _ := pkgbaseLine.ValueTokens()
 	for _, token := range tokens {
 		if token.Varuse == nil {

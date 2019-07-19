@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.19 2018/08/22 09:44:44 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2019/07/18 14:18:03 wen Exp $
 #
 
-DISTNAME=	Test-Compile-v1.3.0
+DISTNAME=	Test-Compile-v2.2.2
 PKGNAME=	p5-${DISTNAME:S/v1/1/}
-PKGREVISION=	3
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Test/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://search.cpan.org/dist/Test-Compile/
+HOMEPAGE=	https://metacpan.org/release/Test-Compile
 COMMENT=	Perl 5 module to check whether Perl module files compile correctly
 LICENSE=	${PERL5_LICENSE}
 

@@ -9,24 +9,25 @@ import "strings"
 // If the paragraph adds an identifier to SUBST_CLASSES, the rest of the SUBST
 // block should be defined in the same paragraph.
 type Paragraph struct {
-	mklines []MkLine
+	mklines *MkLines
+	from    int
+	to      int
 }
 
-func NewParagraph(mklines []MkLine) *Paragraph {
-	return &Paragraph{mklines}
+func NewParagraph(mklines *MkLines, from, to int) *Paragraph {
+	for i := from; i < to; i++ {
+		assert(!mklines.mklines[i].IsEmpty())
+	}
+	return &Paragraph{mklines, from, to}
 }
 
-func (p *Paragraph) Clear() {
-	p.mklines = nil
-}
+func (p *Paragraph) FirstLine() *MkLine { return p.mklines.mklines[p.from] }
+func (p *Paragraph) LastLine() *MkLine  { return p.mklines.mklines[p.to-1] }
 
-func (p *Paragraph) Add(mkline MkLine) {
-	assertf(!mkline.IsEmpty(), "A paragraph must not contain empty lines.")
-	p.mklines = append(p.mklines, mkline)
-}
+func (p *Paragraph) MkLines() []*MkLine { return p.mklines.mklines[p.from:p.to] }
 
-func (p *Paragraph) ForEach(action func(mkline MkLine)) {
-	for _, mkline := range p.mklines {
+func (p *Paragraph) ForEach(action func(mkline *MkLine)) {
+	for _, mkline := range p.MkLines() {
 		action(mkline)
 	}
 }
@@ -44,29 +45,29 @@ func (p *Paragraph) Align() {
 // No warning or note is logged. Therefore this method must only be used to
 // realign the whole paragraph after one of its lines has been modified.
 func (p *Paragraph) AlignTo(column int) {
-	for _, mkline := range p.mklines {
+	p.ForEach(func(mkline *MkLine) {
 		if !mkline.IsVarassign() {
-			continue
+			return
 		}
 
 		align := mkline.ValueAlign()
 		oldWidth := tabWidth(align)
 		if tabWidth(rtrimHspace(align)) > column {
-			continue
+			return
 		}
 		if oldWidth == column && !hasSuffix(strings.TrimRight(align, "\t"), " ") {
-			continue
+			return
 		}
 		if mkline.IsMultiline() && !mkline.FirstLineContainsValue() {
-			continue
+			return
 		}
 
-		trimmed := strings.TrimRightFunc(align, isHspaceRune)
-		newSpace := strings.Repeat("\t", (7+column-tabWidth(trimmed))/8)
+		trimmed := rtrimHspace(align)
+		newSpace := alignmentAfter(trimmed, column)
 
 		fix := mkline.Autofix()
 		fix.Notef(SilentAutofixFormat)
 		fix.ReplaceAfter(trimmed, align[len(trimmed):], newSpace)
 		fix.Apply()
-	}
+	})
 }

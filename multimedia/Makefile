@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.269 2019/05/02 07:58:03 wiz Exp $
+# $NetBSD: Makefile,v 1.272 2019/07/11 09:35:29 nia Exp $
 #
 
 COMMENT=	Multimedia utilities
@@ -141,6 +141,7 @@ SUBDIR+=	libva-driver-vdpau
 SUBDIR+=	libva-utils
 SUBDIR+=	libvdpau
 SUBDIR+=	libvpx
+SUBDIR+=	lightspark
 SUBDIR+=	lsdvd
 SUBDIR+=	mate-media
 SUBDIR+=	mediainfo
@@ -158,11 +159,11 @@ SUBDIR+=	mpeg-lib
 SUBDIR+=	mpeg_encode
 SUBDIR+=	mpeg_play
 SUBDIR+=	mplayer
-SUBDIR+=	mplayer-plugin
 SUBDIR+=	mplayer-share
 SUBDIR+=	mplayerthumbs
 SUBDIR+=	mpv
 SUBDIR+=	nostt
+SUBDIR+=	obs-studio
 SUBDIR+=	ogle
 SUBDIR+=	ogle_gui
 SUBDIR+=	ogmtools

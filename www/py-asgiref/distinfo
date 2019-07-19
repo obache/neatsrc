@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.10 2019/04/18 08:37:28 adam Exp $
+$NetBSD: distinfo,v 1.12 2019/07/08 07:36:57 adam Exp $
 
-SHA1 (asgiref-3.1.2.tar.gz) = f0ad076798d718d01308928e50eb2c3b3cf6dfea
-RMD160 (asgiref-3.1.2.tar.gz) = 0ec2e956a2017fe5a3187b10bbef56fc5d0d4211
-SHA512 (asgiref-3.1.2.tar.gz) = 2c46bcca8c1874309be7e7ca44762968b3b9e2f0ca6526002434aa6f45069f2092969f91dcefcfe36e55bcbb80b9ea290f622a766a2f9db0ef92c0b67a4623a8
-Size (asgiref-3.1.2.tar.gz) = 13720 bytes
+SHA1 (asgiref-3.1.4.tar.gz) = d394d2a6054e16bf5249824050e1fe7f68f91e32
+RMD160 (asgiref-3.1.4.tar.gz) = 09d777397efee4d78ab562e4316989db1ad0c263
+SHA512 (asgiref-3.1.4.tar.gz) = f7b14b6529137a6348d530a4396faf20fb9dc22d65ed63f2060a6c9977b9ed4b55dafeeafa9e1a27a52212941bf95ae4e7b4d17c5879e420796851874542b022
+Size (asgiref-3.1.4.tar.gz) = 13148 bytes

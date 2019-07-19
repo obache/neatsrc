@@ -101,12 +101,26 @@ func (s *Suite) Test_VartypeCheck_CFlag(c *check.C) {
 		"-no-integrated-as",
 		"-pthread",
 		"`pkg-config`_plus")
+	vt.OutputEmpty()
+
+	vt.Values(
+		"-L${PREFIX}/lib",
+		"-L${PREFIX}/lib64",
+		"-lncurses",
+		"-DMACRO=\\\"",
+		"-DMACRO=\\'")
 
 	vt.Output(
-		"WARN: filename.mk:2: Compiler flag \"/W3\" should start with a hyphen.",
-		"WARN: filename.mk:3: Compiler flag \"target:sparc64\" should start with a hyphen.",
-		"WARN: filename.mk:5: Unknown compiler flag \"-XX:+PrintClassHistogramAfterFullGC\".",
-		"WARN: filename.mk:11: Compiler flag \"`pkg-config`_plus\" should start with a hyphen.")
+		"WARN: filename.mk:21: \"-L${PREFIX}/lib\" is a linker flag "+
+			"and belong to LDFLAGS, LIBS or LDADD instead of CFLAGS.",
+		"WARN: filename.mk:22: \"-L${PREFIX}/lib64\" is a linker flag "+
+			"and belong to LDFLAGS, LIBS or LDADD instead of CFLAGS.",
+		"WARN: filename.mk:23: \"-lncurses\" is a linker flag "+
+			"and belong to LDFLAGS, LIBS or LDADD instead of CFLAGS.",
+		"WARN: filename.mk:24: Compiler flag \"-DMACRO=\\\\\\\"\" "+
+			"has unbalanced double quotes.",
+		"WARN: filename.mk:25: Compiler flag \"-DMACRO=\\\\'\" "+
+			"has unbalanced single quotes.")
 
 	vt.Op(opUseMatch)
 	vt.Values(
@@ -420,7 +434,7 @@ func (s *Suite) Test_VartypeCheck_Enum__use_match(c *check.C) {
 	t.SetUpCommandLine("-Wall", "--explain")
 
 	mklines := t.NewMkLines("module.mk",
-		MkRcsID,
+		MkCvsID,
 		"",
 		".if !empty(MACHINE_ARCH:Mi386) || ${MACHINE_ARCH} == i386",
 		".endif",
@@ -675,6 +689,18 @@ func (s *Suite) Test_VartypeCheck_Homepage(c *check.C) {
 	vt.Output(
 		"WARN: filename.mk:31: HOMEPAGE should not be defined in terms of MASTER_SITEs.")
 
+	delete(G.Pkg.vars.firstDef, "MASTER_SITES")
+	delete(G.Pkg.vars.lastDef, "MASTER_SITES")
+	G.Pkg.vars.Define("MASTER_SITES", t.NewMkLine(G.Pkg.File("Makefile"), 5,
+		"MASTER_SITES=\t# none"))
+
+	vt.Values(
+		"${MASTER_SITES}")
+
+	// When MASTER_SITES is empty, pkglint cannot extract the first of the URLs
+	// for using it in the HOMEPAGE.
+	vt.Output(
+		"WARN: filename.mk:41: HOMEPAGE should not be defined in terms of MASTER_SITEs.")
 }
 
 func (s *Suite) Test_VartypeCheck_Identifier(c *check.C) {
@@ -740,16 +766,28 @@ func (s *Suite) Test_VartypeCheck_LdFlag(c *check.C) {
 		"-static-something",
 		"${LDFLAGS.NetBSD}",
 		"-l${LIBNCURSES}",
-		"`pkg-config`_plus")
+		"`pkg-config`_plus",
+		"-DMACRO",
+		"-UMACRO",
+		"-P",
+		"-E",
+		"-I${PREFIX}/include")
 	vt.Op(opUseMatch)
 	vt.Values(
 		"anything")
 
 	vt.Output(
-		"WARN: filename.mk:4: Unknown linker flag \"-unknown\".",
-		"WARN: filename.mk:5: Linker flag \"no-hyphen\" should start with a hyphen.",
 		"WARN: filename.mk:6: Please use \"${COMPILER_RPATH_FLAG}\" instead of \"-Wl,--rpath\".",
-		"WARN: filename.mk:12: Linker flag \"`pkg-config`_plus\" should start with a hyphen.")
+		"WARN: filename.mk:13: \"-DMACRO\" is a compiler flag "+
+			"and belongs on CFLAGS, CPPFLAGS, CXXFLAGS or FFLAGS instead of LDFLAGS.",
+		"WARN: filename.mk:14: \"-UMACRO\" is a compiler flag "+
+			"and belongs on CFLAGS, CPPFLAGS, CXXFLAGS or FFLAGS instead of LDFLAGS.",
+		"WARN: filename.mk:15: \"-P\" is a compiler flag "+
+			"and belongs on CFLAGS, CPPFLAGS, CXXFLAGS or FFLAGS instead of LDFLAGS.",
+		"WARN: filename.mk:16: \"-E\" is a compiler flag "+
+			"and belongs on CFLAGS, CPPFLAGS, CXXFLAGS or FFLAGS instead of LDFLAGS.",
+		"WARN: filename.mk:17: \"-I${PREFIX}/include\" is a compiler flag "+
+			"and belongs on CFLAGS, CPPFLAGS, CXXFLAGS or FFLAGS instead of LDFLAGS.")
 }
 
 func (s *Suite) Test_VartypeCheck_License(c *check.C) {
@@ -762,10 +800,10 @@ func (s *Suite) Test_VartypeCheck_License(c *check.C) {
 	G.Pkg = NewPackage(t.File("category/package"))
 
 	mklines := t.NewMkLines("perl5.mk",
-		MkRcsID,
+		MkCvsID,
 		"PERL5_LICENSE= gnu-gpl-v2 OR artistic")
 	// Also registers the PERL5_LICENSE variable in the package.
-	mklines.collectDefinedVariables()
+	mklines.collectVariables()
 
 	vt := NewVartypeCheckTester(t, (*VartypeCheck).License)
 
@@ -1181,6 +1219,12 @@ func (s *Suite) Test_VartypeCheck_ShellCommand(c *check.C) {
 	vt.Values("*")
 
 	vt.OutputEmpty()
+
+	vt.Varname("CC")
+	vt.Op(opAssignAppend)
+	vt.Values("-ggdb")
+
+	vt.OutputEmpty()
 }
 
 func (s *Suite) Test_VartypeCheck_ShellCommands(c *check.C) {
@@ -1344,6 +1388,23 @@ func (s *Suite) Test_VartypeCheck_VariableName(c *check.C) {
 
 	vt.Output(
 		"WARN: filename.mk:2: \"VarBase\" is not a valid variable name.")
+}
+
+func (s *Suite) Test_VartypeCheck_VariableNamePattern(c *check.C) {
+	vt := NewVartypeCheckTester(s.Init(c), (*VartypeCheck).VariableNamePattern)
+
+	vt.Varname("_SORTED_VARS.group")
+	vt.Values(
+		"VARBASE",
+		"VarBase",
+		"PKG_OPTIONS_VAR.pkgbase",
+		"${INDIRECT}",
+		"*_DIRS",
+		"VAR.*",
+		"***")
+
+	vt.Output(
+		"WARN: filename.mk:2: \"VarBase\" is not a valid variable name pattern.")
 }
 
 func (s *Suite) Test_VartypeCheck_Version(c *check.C) {
@@ -1561,11 +1622,11 @@ func (vt *VartypeCheckTester) Values(values ...string) {
 			panic("Invalid operator: " + opStr)
 		}
 
-		space := ifelseStr(hasSuffix(varname, "+") && opStr == "=", " ", "")
+		space := condStr(hasSuffix(varname, "+") && opStr == "=", " ", "")
 		return varname + space + opStr + value
 	}
 
-	test := func(mklines MkLines, mkline MkLine, value string) {
+	test := func(mklines *MkLines, mkline *MkLine, value string) {
 		varname := vt.varname
 		comment := ""
 		if mkline.IsVarassign() {
@@ -1599,10 +1660,10 @@ func (vt *VartypeCheckTester) Values(values ...string) {
 		text := toText(value)
 
 		line := vt.tester.NewLine(vt.filename, vt.lineno, text)
-		mklines := NewMkLines(NewLines(vt.filename, []Line{line}))
+		mklines := NewMkLines(NewLines(vt.filename, []*Line{line}))
 		vt.lineno++
 
-		mklines.ForEach(func(mkline MkLine) { test(mklines, mkline, value) })
+		mklines.ForEach(func(mkline *MkLine) { test(mklines, mkline, value) })
 	}
 }
 

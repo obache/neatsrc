@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.63 2019/05/23 02:17:44 gutteridge Exp $
+# $NetBSD: Makefile,v 1.66 2019/07/18 08:15:40 nia Exp $
 
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-VERSION=	0.2.4
+VERSION=	0.2.5
 DISTNAME=	tumbler-${VERSION}
 PKGNAME=	xfce4-tumbler-${VERSION}
 CATEGORIES=	x11
 MASTER_SITES=	http://archive.xfce.org/src/xfce/tumbler/${VERSION:R}/
 
-HOMEPAGE=	http://docs.xfce.org/xfce/thunar/tumbler
+HOMEPAGE=	https://docs.xfce.org/xfce/thunar/tumbler
 COMMENT=	D-Bus thumbnailing service
 
 TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
@@ -29,9 +29,6 @@ MAKE_DIRS+=	${PKG_SYSCONFDIR}/tumbler
 
 CONF_FILES=	${EGDIR}/tumbler.rc \
 	       	${PKG_SYSCONFDIR}/tumbler/tumbler.rc
-
-INSTALL_UNSTRIPPED=	yes
-CFLAGS+=		-g
 
 .include "options.mk"
 

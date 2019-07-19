@@ -6,7 +6,7 @@ func (s *Suite) Test_CheckdirToplevel(c *check.C) {
 	t := s.Init(c)
 
 	t.CreateFileLines("Makefile",
-		MkRcsID,
+		MkCvsID,
 		"",
 		"SUBDIR+= x11",
 		"SUBDIR+=\tarchivers",
@@ -25,7 +25,6 @@ func (s *Suite) Test_CheckdirToplevel(c *check.C) {
 	CheckdirToplevel(t.File("."))
 
 	t.CheckOutputLines(
-		"WARN: ~/Makefile:3: Indentation should be a single tab character.",
 		"ERROR: ~/Makefile:6: Each subdir must only appear once.",
 		"WARN: ~/Makefile:7: \"ignoreme\" commented out without giving a reason.",
 		"WARN: ~/Makefile:9: bbb should come before ccc.",
@@ -39,7 +38,7 @@ func (s *Suite) Test_Toplevel_checkSubdir__sorting_x11(c *check.C) {
 	t := s.Init(c)
 
 	t.CreateFileLines("Makefile",
-		MkRcsID,
+		MkCvsID,
 		"",
 		"SUBDIR+=\tx11",
 		"SUBDIR+=\tsysutils",
@@ -60,7 +59,7 @@ func (s *Suite) Test_Toplevel_checkSubdir__commented_without_reason(c *check.C) 
 	t := s.Init(c)
 
 	t.CreateFileLines("Makefile",
-		MkRcsID,
+		MkCvsID,
 		"",
 		"#SUBDIR+=\taaa",
 		"#SUBDIR+=\tbbb\t#",
@@ -81,15 +80,15 @@ func (s *Suite) Test_CheckdirToplevel__recursive(c *check.C) {
 	t := s.Init(c)
 
 	t.CreateFileLines("mk/misc/category.mk",
-		MkRcsID)
+		MkCvsID)
 	t.SetUpPackage("category/package",
 		"UNKNOWN=\tvalue")
 	t.CreateFileLines("Makefile",
-		MkRcsID,
+		MkCvsID,
 		"",
 		"SUBDIR+=\tcategory")
 	t.CreateFileLines("category/Makefile",
-		MkRcsID,
+		MkCvsID,
 		"",
 		"COMMENT=\tThe category",
 		"",
@@ -101,7 +100,7 @@ func (s *Suite) Test_CheckdirToplevel__recursive(c *check.C) {
 
 	t.CheckOutputLines(
 		"WARN: ~/category/package/Makefile:20: UNKNOWN is defined but not used.",
-		"0 errors and 1 warning found.",
+		"1 warning found.",
 		"(Run \"pkglint -e\" to show explanations.)")
 }
 
@@ -109,15 +108,15 @@ func (s *Suite) Test_CheckdirToplevel__recursive_inter_package(c *check.C) {
 	t := s.Init(c)
 
 	t.CreateFileLines("mk/misc/category.mk",
-		MkRcsID)
+		MkCvsID)
 	t.SetUpPackage("category/package",
 		"UNKNOWN=\tvalue")
 	t.CreateFileLines("Makefile",
-		MkRcsID,
+		MkCvsID,
 		"",
 		"SUBDIR+=\tcategory")
 	t.CreateFileLines("category/Makefile",
-		MkRcsID,
+		MkCvsID,
 		"",
 		"COMMENT=\tThe category",
 		"",
@@ -130,6 +129,28 @@ func (s *Suite) Test_CheckdirToplevel__recursive_inter_package(c *check.C) {
 	t.CheckOutputLines(
 		"WARN: ~/category/package/Makefile:20: UNKNOWN is defined but not used.",
 		"WARN: ~/licenses/gnu-gpl-v2: This license seems to be unused.",
-		"0 errors and 2 warnings found.",
+		"2 warnings found.",
 		"(Run \"pkglint -e\" to show explanations.)")
+}
+
+func (s *Suite) Test_CheckdirToplevel__indentation(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPkgsrc()
+	t.CreateFileLines("category1/Makefile")
+	t.CreateFileLines("category2/Makefile")
+	t.CreateFileLines("Makefile",
+		MkCvsID,
+		"",
+		"SUBDIR+=\tcategory1",
+		"SUBDIR+=\t\tcategory2")
+
+	t.Main("-Wall", ".")
+
+	t.CheckOutputLines(
+		"NOTE: ~/Makefile:4: This variable value should be aligned to column 17.",
+		"Looks fine.",
+		"(Run \"pkglint -e\" to show explanations.)",
+		"(Run \"pkglint -fs\" to show what can be fixed automatically.)",
+		"(Run \"pkglint -F\" to automatically fix some issues.)")
 }

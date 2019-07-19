@@ -1118,7 +1118,7 @@ func (s *Suite) Test_RedundantScope__procedure_call_implemented_package(c *check
 	t.SetUpPackage("x11/Xaos",
 		".include \"../../devel/gettext-lib/buildlink3.mk\"")
 	t.CreateFileLines("devel/gettext-lib/builtin.mk",
-		MkRcsID,
+		MkCvsID,
 		"",
 		".include \"../../mk/bsd.fast.prefs.mk\"",
 		"",
@@ -1126,7 +1126,7 @@ func (s *Suite) Test_RedundantScope__procedure_call_implemented_package(c *check
 		".if !empty(CHECK_BUILTIN.gettext:M[nN][oO])",
 		".endif")
 	t.CreateFileLines("devel/gettext-lib/buildlink3.mk",
-		MkRcsID,
+		MkCvsID,
 		"CHECK_BUILTIN.gettext:= yes",
 		".include \"builtin.mk\"",
 		"CHECK_BUILTIN.gettext:= no")
@@ -1148,12 +1148,12 @@ func (s *Suite) Test_RedundantScope__procedure_call_infrastructure(c *check.C) {
 	t.SetUpPackage("x11/alacarte",
 		".include \"../../mk/pthread.buildlink3.mk\"")
 	t.CreateFileLines("mk/pthread.buildlink3.mk",
-		MkRcsID,
+		MkCvsID,
 		"CHECK_BUILTIN.gettext:= yes",
 		".include \"pthread.builtin.mk\"",
 		"CHECK_BUILTIN.gettext:= no")
 	t.CreateFileLines("mk/pthread.builtin.mk",
-		MkRcsID,
+		MkCvsID,
 		"CHECK_BUILTIN.gettext?= no",
 		".if !empty(CHECK_BUILTIN.gettext:M[nN][oO])",
 		".endif")
@@ -1248,7 +1248,7 @@ func (s *Suite) Test_RedundantScope__included_OPSYS_variable(c *check.C) {
 	t.SetUpPackage("category/dependency")
 	t.CreateFileDummyBuildlink3("category/dependency/buildlink3.mk")
 	t.CreateFileLines("category/dependency/builtin.mk",
-		MkRcsID,
+		MkCvsID,
 		"CONFIGURE_ARGS.Darwin+= darwin")
 	t.FinishSetUp()
 
@@ -1498,10 +1498,9 @@ func (s *Suite) Test_RedundantScope_handleVarassign__conditional(c *check.C) {
 	scope.Check(mklines)
 	writeLocations := scope.get("VAR").vari.WriteLocations()
 
-	t.Check(
+	t.CheckDeepEquals(
 		writeLocations,
-		deepEquals,
-		[]MkLine{mklines.mklines[0], mklines.mklines[2]})
+		[]*MkLine{mklines.mklines[0], mklines.mklines[2]})
 }
 
 // Ensures that commented variables do not influence the redundancy check.
@@ -1537,15 +1536,15 @@ func (s *Suite) Test_includePath_includes(c *check.C) {
 		mo  = path("Makefile", "other.mk")
 	)
 
-	t.Check(m.includes(m), equals, false)
+	t.CheckEquals(m.includes(m), false)
 
-	t.Check(m.includes(mc), equals, true)
-	t.Check(m.includes(mco), equals, true)
-	t.Check(mc.includes(mco), equals, true)
+	t.CheckEquals(m.includes(mc), true)
+	t.CheckEquals(m.includes(mco), true)
+	t.CheckEquals(mc.includes(mco), true)
 
-	t.Check(mc.includes(m), equals, false)
-	t.Check(mc.includes(mo), equals, false)
-	t.Check(mo.includes(mc), equals, false)
+	t.CheckEquals(mc.includes(m), false)
+	t.CheckEquals(mc.includes(mo), false)
+	t.CheckEquals(mo.includes(mc), false)
 }
 
 func (s *Suite) Test_includePath_equals(c *check.C) {
@@ -1562,13 +1561,13 @@ func (s *Suite) Test_includePath_equals(c *check.C) {
 		mo  = path("Makefile", "other.mk")
 	)
 
-	t.Check(m.equals(m), equals, true)
+	t.CheckEquals(m.equals(m), true)
 
-	t.Check(m.equals(mc), equals, false)
-	t.Check(m.equals(mco), equals, false)
-	t.Check(mc.equals(mco), equals, false)
+	t.CheckEquals(m.equals(mc), false)
+	t.CheckEquals(m.equals(mco), false)
+	t.CheckEquals(mc.equals(mco), false)
 
-	t.Check(mc.equals(m), equals, false)
-	t.Check(mc.equals(mo), equals, false)
-	t.Check(mo.equals(mc), equals, false)
+	t.CheckEquals(mc.equals(m), false)
+	t.CheckEquals(mc.equals(mo), false)
+	t.CheckEquals(mo.equals(mc), false)
 }

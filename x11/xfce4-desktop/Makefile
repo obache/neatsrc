@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.76 2019/05/23 03:04:16 gutteridge Exp $
+# $NetBSD: Makefile,v 1.78 2019/07/18 08:15:39 nia Exp $
 
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-VERSION=	4.13.4
+VERSION=	4.13.5
 DISTNAME=	xfdesktop-${VERSION}
 PKGNAME=	xfce4-desktop-${VERSION}
 CATEGORIES=	x11
 MASTER_SITES+=	http://archive.xfce.org/src/xfce/xfdesktop/${VERSION:R}/
 
-HOMEPAGE=	http://docs.xfce.org/xfce/xfdesktop/start
+HOMEPAGE=	https://docs.xfce.org/xfce/xfdesktop/start
 COMMENT=	Xfce desktop background manager
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE}

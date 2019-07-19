@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.25 2019/04/25 07:32:57 maya Exp $
+# $NetBSD: Makefile,v 1.27 2019/07/06 16:46:09 nia Exp $
 
 DISTNAME=	edje-1.7.7
-PKGREVISION=	17
+PKGREVISION=	18
 CATEGORIES=	graphics
 MASTER_SITES=	http://download.enlightenment.org/releases/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	joerg@NetBSD.org
-HOMEPAGE=	http://enlightenment.org/
+HOMEPAGE=	https://enlightenment.org/
 COMMENT=	Interface Abstraction Library and Toolset
 
 # epp binary is GPL

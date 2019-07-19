@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.61 2019/05/23 03:00:58 gutteridge Exp $
+# $NetBSD: Makefile,v 1.63 2019/07/18 08:15:39 nia Exp $
 
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-VERSION=	1.8.6
+VERSION=	1.8.7
 DISTNAME=	Thunar-${VERSION}
 PKGNAME=	xfce4-thunar-${VERSION}
 CATEGORIES=	sysutils
 MASTER_SITES=	http://archive.xfce.org/src/xfce/thunar/${VERSION:R}/
 
-HOMEPAGE=	http://docs.xfce.org/xfce/thunar/start
+HOMEPAGE=	https://docs.xfce.org/xfce/thunar/start
 COMMENT=	Xfce file manager
 
 PKGCONFIG_OVERRIDE+=	thunarx/thunarx-3.pc.in

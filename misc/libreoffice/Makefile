@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.196 2019/06/08 19:53:26 leot Exp $
+# $NetBSD: Makefile,v 1.199 2019/07/08 17:56:20 ryoon Exp $
 
-VERREL=		6.2.4
+VERREL=		6.2.5
 VERRC=		2
 VER=		${VERREL}.${VERRC}
 DISTNAME=	libreoffice-${VER}
@@ -111,8 +111,8 @@ SITES.49a64f3bcf20a7909ba2751349231d6652ded9cd2840e961b5164d09de3ffa63-opens___.
 
 .include "../../graphics/librsvg/available.mk"
 .if ${LIBRSVG_TYPE} == "c" || make(distinfo) || make(mdi)
-MORE_DISTFILES2+=		harfbuzz-2.4.0.tar.bz2
-SITES.harfbuzz-2.4.0.tar.bz2=	https://www.freedesktop.org/software/harfbuzz/release/
+MORE_DISTFILES2+=		harfbuzz-2.5.3.tar.xz
+SITES.harfbuzz-2.5.3.tar.xz=	https://www.freedesktop.org/software/harfbuzz/release/
 .endif
 
 .for md2 in ${MORE_DISTFILES2}
