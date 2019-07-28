@@ -15,8 +15,8 @@ INSTALLATION_DIRS+=	include/boost
 .include "../../devel/boost-jam/bjam.mk"
 
 do-install: bjam-build
-	cd ${WRKSRC}/boost; ${FIND} . -type f -print | \
-		pax -rw ${DESTDIR}${PREFIX}/include/boost
+	cd ${WRKSRC}/boost; \
+		pax -rwpp -s ',.*\.orig$$,,' . ${DESTDIR}${PREFIX}/include/boost
 	${FIND} ${DESTDIR}${PREFIX}/include/boost \
 		-type f -exec ${CHOWN} ${SHAREOWN}:${SHAREGRP} {} +
 	${FIND} ${DESTDIR}${PREFIX}/include/boost \
