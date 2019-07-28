@@ -41,6 +41,8 @@ BJAM_BUILD+=		variant=release
 BJAM_BUILD+=		threading=multi
 BJAM_BUILD+=		link=shared,static
 BJAM_BUILD+=		linkflags=${LDFLAGS:Q}
+BJAM_BUILD+=		hardcode-dll-paths=true
+BJAM_BUILD+=		dll-path=${PREFIX}/lib
 
 BJAM_CMD=		${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_ARGS}
 
