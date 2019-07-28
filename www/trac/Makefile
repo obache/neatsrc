@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.86 2019/06/11 05:30:23 maya Exp $
 
-DISTNAME=	Trac-1.2.3
+DISTNAME=	Trac-1.2.4
 PKGNAME=	${DISTNAME:tl}
 CATEGORIES=	devel www
 MASTER_SITES=	https://download.edgewall.org/trac/

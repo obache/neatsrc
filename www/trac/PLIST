@@ -155,6 +155,7 @@ ${PYSITELIB}/trac/htdocs/js/keyboard_nav.js
 ${PYSITELIB}/trac/htdocs/js/log_graph.js
 ${PYSITELIB}/trac/htdocs/js/messages/ca.js
 ${PYSITELIB}/trac/htdocs/js/messages/da.js
+${PYSITELIB}/trac/htdocs/js/messages/de.js
 ${PYSITELIB}/trac/htdocs/js/messages/en_GB.js
 ${PYSITELIB}/trac/htdocs/js/messages/en_US.js
 ${PYSITELIB}/trac/htdocs/js/messages/eo.js
@@ -210,6 +211,8 @@ ${PYSITELIB}/trac/locale/ca/LC_MESSAGES/tracini.mo
 ${PYSITELIB}/trac/locale/cs/LC_MESSAGES/messages.mo
 ${PYSITELIB}/trac/locale/cs/LC_MESSAGES/tracini.mo
 ${PYSITELIB}/trac/locale/da/LC_MESSAGES/messages.mo
+${PYSITELIB}/trac/locale/de/LC_MESSAGES/messages.mo
+${PYSITELIB}/trac/locale/de/LC_MESSAGES/tracini.mo
 ${PYSITELIB}/trac/locale/el/LC_MESSAGES/messages.mo
 ${PYSITELIB}/trac/locale/el/LC_MESSAGES/tracini.mo
 ${PYSITELIB}/trac/locale/en_GB/LC_MESSAGES/messages.mo
