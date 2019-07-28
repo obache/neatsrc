@@ -39,8 +39,8 @@ PKGCONFIG_OVERRIDE+=	pkgconfig/gstreamer-bad-audio.pc.in
 PKGCONFIG_OVERRIDE+=	pkgconfig/gstreamer-player.pc.in
 PKGCONFIG_OVERRIDE+=	pkgconfig/gstreamer-plugins-bad.pc.in
 PKGCONFIG_OVERRIDE+=	pkgconfig/gstreamer-mpegts.pc.in
-PKGCONFIG_OVERRIDE+=	pkgconfig/gstreamer-bad-video.pc.in
 PKGCONFIG_OVERRIDE+=	pkgconfig/gstreamer-codecparsers.pc.in
+PKGCONFIG_OVERRIDE+=	pkgconfig/gstreamer-sctp.pc.in
 PKGCONFIG_OVERRIDE+=	pkgconfig/gstreamer-wayland.pc.in
 PKGCONFIG_OVERRIDE+=	pkgconfig/gstreamer-webrtc.pc.in
 
