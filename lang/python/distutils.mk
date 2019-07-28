@@ -66,7 +66,7 @@ INSTALL_ENV+=		PKGSRC_PYTHON_NO_EGG=defined
 
 # Egg files have the version encoded, so generalize in PLIST.
 PLIST_SUBST+=	EGG_FILE=${EGG_NAME}-py${PYVERSSUFFIX}.egg-info
-PRINT_PLIST_AWK+=	{ gsub("${EGG_NAME}-py${PYVERSSUFFIX:S,.,\.,g}.egg-info", \
+PRINT_PLIST_AWK+=	{ gsub("${EGG_NAME}-py${PYVERSSUFFIX}.egg-info", \
 				"$${EGG_FILE}") }
-PRINT_PLIST_AWK+=	{ gsub(/${PYVERSSUFFIX:S,.,\.,g}/, \
+PRINT_PLIST_AWK+=	{ gsub(/${PYVERSSUFFIX}/, \
 				"$${PYVERSSUFFIX}") }
