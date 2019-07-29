@@ -127,6 +127,7 @@ DEFAULT_ACCEPTABLE_LICENSES= \
 	cecill-b-v1 \
 	cpl-1.0 \
 	epl-v1.0 \
+	epl-v2.0 \
 	eupl-v1.1 \
 	gfsl \
 	gnu-fdl-v1.1 gnu-fdl-v1.2 gnu-fdl-v1.3 \
