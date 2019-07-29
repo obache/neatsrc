@@ -10,7 +10,7 @@ MASTER_SITES+=	http://mirrors.isc.org/pub/postfix/official/
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.postfix.org/
 # The postfix license has only very minor diffs from cpl-1.0.
-LICENSE=	cpl-1.0
+LICENSE=	cpl-1.0 OR epl-v2.0
 #LICENSE=	postfix-license
 
 DISTINFO_FILE=	${PKGDIR}/../../mail/postfix/distinfo
