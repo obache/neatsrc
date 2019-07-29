@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.20 2019/05/20 11:51:53 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2019/07/23 16:28:36 gdt Exp $
 
-DISTNAME=	libfilezilla-0.16.0
+DISTNAME=	libfilezilla-0.17.1
+PKGREVISION=	1
 CATEGORIES=	devel
 # some kind of direct-download disabling
 #MASTER_SITES=	https://dl3.cdn.filezilla-project.org/libfilezilla/
@@ -13,15 +14,17 @@ LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
-USE_TOOLS+=	pkg-config
-USE_LANGUAGES=	c c++
+USE_TOOLS+=	gmake msgfmt pkg-config
+USE_LANGUAGES=	c c++17
 
 PKGCONFIG_OVERRIDE+=	lib/libfilezilla.pc.in
 
-# GCC 4.9 is required to support C++14
-GCC_REQD+=	4.9
+# for C++17
+GCC_REQD+=	7
 
 BUILDLINK_API_DEPENDS.nettle+=	nettle>=3.1
 .include "../../security/nettle/buildlink3.mk"
+BUILDLINK_API_DEPENDS.gnutls+=	gnutls>=3.5.7
+.include "../../security/gnutls/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

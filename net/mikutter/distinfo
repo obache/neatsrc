@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.162 2019/07/06 12:54:07 tsutsui Exp $
+$NetBSD: distinfo,v 1.164 2019/07/27 14:05:14 tsutsui Exp $
 
-SHA1 (mikutter.3.9.0.tar.gz) = 937fabcd24e78f00b3545db6965dd875728289cb
-RMD160 (mikutter.3.9.0.tar.gz) = b23bef1ac2aa9823bb626bb440adb441ece0fc64
-SHA512 (mikutter.3.9.0.tar.gz) = fef35f63f8623b6de71a5b7ccc09ed1c486527abdacfb0d1cf5308e49f5b2a0e168002752782fc6e7192d2ef08ae9191c502ac56a2c83205e85cc08b36061fb9
-Size (mikutter.3.9.0.tar.gz) = 2751807 bytes
+SHA1 (mikutter.3.9.2.tar.gz) = 75ff472e6079c204b7d1da5e09d0242d0a467260
+RMD160 (mikutter.3.9.2.tar.gz) = f2f476fbcddd615237feb385498c7d631195107d
+SHA512 (mikutter.3.9.2.tar.gz) = ae93a4803a1dfa5fd6803bbc3f2afe54384f7f34e8b12590b30a27546667092cf0df396fc8f93d016dc1e64411090dacb4837196aa34c7069d9ea4c8edfb00cd
+Size (mikutter.3.9.2.tar.gz) = 2759052 bytes
 SHA1 (patch-mikutter.rb) = 34f3ae812c5db53b448111ff0d7c36100e93adce

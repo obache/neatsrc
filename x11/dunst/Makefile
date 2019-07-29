@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.15 2019/06/15 15:02:13 nia Exp $
+# $NetBSD: Makefile,v 1.17 2019/07/24 17:25:35 nia Exp $
 
-DISTNAME=	dunst-1.4.0
+DISTNAME=	dunst-1.4.1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=dunst-project/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}

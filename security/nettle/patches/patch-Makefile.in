@@ -1,4 +1,4 @@
-$NetBSD: patch-Makefile.in,v 1.6 2015/08/23 14:22:10 wiz Exp $
+$NetBSD: patch-Makefile.in,v 1.7 2019/07/20 22:01:57 wiz Exp $
 
 Use LIBTOOL.
 

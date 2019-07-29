@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.107 2019/06/06 08:53:00 tnn Exp $
+# $NetBSD: Makefile,v 1.109 2019/07/27 19:31:00 tnn Exp $
 
 DISTNAME=	librsvg-2.44.14
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	graphics gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/librsvg/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -83,7 +83,7 @@ CARGO_CRATE_DEPENDS+=	kernel32-sys-0.2.2
 CARGO_CRATE_DEPENDS+=	language-tags-0.2.2
 CARGO_CRATE_DEPENDS+=	lazy_static-0.2.11
 CARGO_CRATE_DEPENDS+=	lazy_static-1.1.0
-CARGO_CRATE_DEPENDS+=	libc-0.2.43
+CARGO_CRATE_DEPENDS+=	libc-0.2.60
 CARGO_CRATE_DEPENDS+=	libm-0.1.2
 CARGO_CRATE_DEPENDS+=	locale_config-0.2.2
 CARGO_CRATE_DEPENDS+=	log-0.4.5

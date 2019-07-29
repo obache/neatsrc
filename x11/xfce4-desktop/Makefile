@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.78 2019/07/18 08:15:39 nia Exp $
+# $NetBSD: Makefile,v 1.80 2019/07/21 22:26:05 wiz Exp $
 
+PKGREVISION= 1
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
 VERSION=	4.13.5
@@ -12,6 +13,8 @@ HOMEPAGE=	https://docs.xfce.org/xfce/xfdesktop/start
 COMMENT=	Xfce desktop background manager
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE}
+
+USE_LANGUAGES=	c99
 
 .include "../../devel/libglade/buildlink3.mk"
 .include "../../devel/libwnck3/buildlink3.mk"

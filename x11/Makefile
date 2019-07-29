@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.839 2019/04/15 14:27:49 taca Exp $
+# $NetBSD: Makefile,v 1.841 2019/07/21 10:34:52 wiz Exp $
 #
 
 COMMENT=	Packages to support the X window system
@@ -218,7 +218,6 @@ SUBDIR+=	libICE
 SUBDIR+=	libSM
 SUBDIR+=	libX11
 SUBDIR+=	libXScrnSaver
-SUBDIR+=	libXTrap
 SUBDIR+=	libXau
 SUBDIR+=	libXaw
 SUBDIR+=	libXaw3d
@@ -403,7 +402,6 @@ SUBDIR+=	rgb
 SUBDIR+=	rofi
 SUBDIR+=	rox-session
 SUBDIR+=	rox-wallpaper
-SUBDIR+=	rstart
 SUBDIR+=	ruby-gnome2-gtk
 SUBDIR+=	ruby-gnome2-gtk3
 SUBDIR+=	ruby-gnome2-gtksourceview2
@@ -633,7 +631,6 @@ SUBDIR+=	xmascot
 SUBDIR+=	xmessage
 SUBDIR+=	xmh
 SUBDIR+=	xmindpath
-SUBDIR+=	xmms-osd
 SUBDIR+=	xmodmap
 SUBDIR+=	xmon
 SUBDIR+=	xmore
@@ -683,7 +680,6 @@ SUBDIR+=	xtermset
 SUBDIR+=	xtoolwait
 SUBDIR+=	xtrace
 SUBDIR+=	xtrans
-SUBDIR+=	xtrap
 SUBDIR+=	xtruss
 SUBDIR+=	xvattr
 SUBDIR+=	xvidcap
