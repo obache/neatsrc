@@ -704,6 +704,7 @@ ${PLIST.httpd}share/examples/groonga/httpd/scgi_params
 ${PLIST.httpd}share/examples/groonga/httpd/uwsgi_params
 ${PLIST.httpd}share/examples/groonga/httpd/win-utf
 share/examples/groonga/synonyms.tsv
+share/groonga/COPYING
 share/groonga/examples/dictionary/edict/edict-import.sh
 share/groonga/examples/dictionary/edict/edict2grn.rb
 share/groonga/examples/dictionary/eijiro/eijiro-import.sh
