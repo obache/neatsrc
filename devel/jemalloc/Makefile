@@ -26,7 +26,6 @@ REPLACE_PERL=		bin/jeprof.in
 
 BUILD_TARGET=		all dist
 TEST_TARGET=		check
-TEST_ENV=		LD_LIBRARY_PATH=${WRKSRC}/lib
 
 .include "options.mk"
 
