@@ -15,8 +15,6 @@ USE_CMAKE=		yes
 USE_TOOLS+=		perl:build
 
 TEST_TARGET=		test
-# for tests
-MAKE_ENV+=		LD_LIBRARY_PATH=${WRKSRC}/lib
 
 .include "options.mk"
 
