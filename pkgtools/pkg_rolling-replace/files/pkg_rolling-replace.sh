@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $NetBSD: pkg_rolling-replace.sh,v 1.38 2019/04/26 18:14:15 gdt Exp $
+# $NetBSD: pkg_rolling-replace.sh,v 1.39 2019/07/29 14:48:17 gdt Exp $
 #<license>
 # Copyright (c) 2006 BBN Technologies Corp.  All rights reserved.
 #

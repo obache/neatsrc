@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.39 2018/11/23 08:06:29 ryoon Exp $
+# $NetBSD: buildlink3.mk,v 1.40 2019/08/01 19:40:02 nia Exp $
 
 BUILDLINK_TREE+=	xine-lib
 

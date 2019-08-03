@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.153 2019/06/19 13:31:02 nia Exp $
+# $NetBSD: Makefile,v 1.154 2019/07/31 09:39:56 nia Exp $
 
-PKGREVISION= 2
+PKGREVISION= 3
 .include "Makefile.common"
 
 COMMENT=		Multimedia player library
@@ -99,7 +99,7 @@ CONFIGURE_ARGS+=	--disable-opengl
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../misc/libcdio/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-external-dvdnav
-.include "../../multimedia/ffmpeg3/buildlink3.mk"
+.include "../../multimedia/ffmpeg4/buildlink3.mk"
 .include "../../multimedia/libdvdnav/buildlink3.mk"
 .include "../../multimedia/libtheora/buildlink3.mk"
 .include "../../sysutils/vcdimager/buildlink3.mk"
