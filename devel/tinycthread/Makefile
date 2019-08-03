@@ -31,9 +31,9 @@ do-install:
 
 do-test:
 .for f in test hello
-	${RUN} cd ${WRKSRC}/test && \
-		${CC} -ltinycthread -L../source/.libs/ -I../source ${f}.c -o ${f} && \
-		LD_LIBRARY_PATH=${WRKSRC}/source/.libs/ ./${f}
+	${RUN} cd ${WRKSRC}/test; \
+		${LIBTOOL} --mode=link ${CC} -o ${f} ../source/libtinycthread.la  -I../source ${f}.c; \
+		${LIBTOOL} --mode=execute ./${f}
 .endfor
 
 .include "../../mk/pthread.buildlink3.mk"
