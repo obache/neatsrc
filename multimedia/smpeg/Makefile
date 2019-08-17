@@ -29,11 +29,8 @@ post-wrapper:
 
 .include "../../mk/bsd.prefs.mk"
 
-.if ${MACHINE_ARCH} == "i386"
-. if ${OPSYS} != "Darwin" && \
-     empty(MACHINE_PLATFORM:MNetBSD-[89].*-i386)
+.if ${MACHINE_ARCH} == "i386" && ${OPSYS} != "Darwin"
 CONFIGURE_ARGS+=	--enable-mmx
-. endif
 .endif
 
 MAKE_ENV.SunOS+=	SunOS_LDFLAGS="-shared -mimpure-text"

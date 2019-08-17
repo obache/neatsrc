@@ -10,3 +10,5 @@ SHA1 (patch-ac) = 6f0cdeb9864db4db6730c8137287a073172a09ab
 SHA1 (patch-ad) = 021ffc5024723173c8a6cda04ae6f70add974faa
 SHA1 (patch-ae) = 0c7646ec3ce331b6991d59d96efa1ba07fbb91e5
 SHA1 (patch-audio_huffmantable.cpp) = 4bde79539a6fe488bc6be7092f23fac18efa362e
+SHA1 (patch-video_mmxflags__asm.S) = 329367cfc127507239ff47a0e50548767ff88e2f
+SHA1 (patch-video_mmxidct__asm.S) = 515ea0079dd2be2ff604ccc0bbe1bb244637ef4c
