@@ -22,6 +22,9 @@ SUBST_FILES.version=	build/cmake/version.cmake
 SUBST_STAGE.version=	pre-configure
 SUBST_VARS.version=	PKGVERSION_NOREV
 
+PKGCONFIG_OVERRIDE+=	${CONFIGURE_DIRS}/aom.pc
+PKGCONFIG_OVERRIDE_STAGE=	post-configure
+
 CONFIGURE_DIRS=	build
 CMAKE_ARG_PATH=	../
 CMAKE_ARGS+=	-DBUILD_SHARED_LIBS:BOOL=ON
