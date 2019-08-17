@@ -35,10 +35,7 @@ post-install:
 BUILDLINK_API_DEPENDS.SDL+=	SDL>=1.2.10
 
 .include "../../audio/flac/buildlink3.mk"
-# needs fluid_player_add_mem support, which is not yet
-# mainstream, it seems (at least in fluidsynth 1.1.5)
-# (patchset is from 2010)
-#.include "../../audio/fluidsynth/buildlink3.mk"
+.include "../../audio/fluidsynth/buildlink3.mk"
 .include "../../audio/libmikmod/buildlink3.mk"
 .include "../../audio/libvorbis/buildlink3.mk"
 .include "../../devel/SDL/buildlink3.mk"
