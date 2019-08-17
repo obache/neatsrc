@@ -20,9 +20,6 @@ PKGCONFIG_OVERRIDE+=	libfep-glib/libfep-glib.pc.in
 
 .include "options.mk"
 
-USE_NCURSES=		yes
 .include "../../devel/ncurses/buildlink3.mk"
-CONFIGURE_ENV+=		NCURSES_CFLAGS=${BUILDLINK_INCDIRS.ncurses:S,^,-I ${BUILDLINK_PREFIX.ncurses}/,:Q}
-CONFIGURE_ENV+=		NCURSES_LIBS=${BUILDLINK_LDADD.ncurses}
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
