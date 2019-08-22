@@ -15,7 +15,6 @@ USE_TOOLS+=		msgfmt pkg-config
 
 PKGCONFIG_OVERRIDE=	output/meson-private/atspi-2.pc
 PKGCONFIG_OVERRIDE_STAGE=pre-install
-MAKE_ENV+=		LD_LIBRARY_PATH=${WRKSRC}/output/atspi
 
 BUILDDEFS+=		PKG_SYSCONFBASE
 
