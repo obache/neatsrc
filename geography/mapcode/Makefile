@@ -32,7 +32,7 @@ do-install:
 	${INSTALL_LIB} ${WRKSRC}/build/libmapcode.so ${DESTDIR}${PREFIX}/lib
 
 do-test:
-	cd ${WRKSRC}/test && ${SETENV} ${TEST_ENV} LD_LIBRARY_PATH=${WRKSRC}/build ../build/unittest
+	cd ${WRKSRC}/test && ${SETENV} ${TEST_ENV} ../build/unittest
 
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
