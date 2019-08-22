@@ -2,10 +2,10 @@
 
 DISTNAME=	ibus-googlepinyin-0.1.2
 CATEGORIES=	inputmethod chinese
-MASTER_SITES=	https://libgooglepinyin.googlecode.com/files/
+MASTER_SITES=	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/libgooglepinyin/
 EXTRACT_SUFX=	.tar.bz2
 
-HOMEPAGE=	https://code.googlecode.com/p/libgooglepinyin/
+HOMEPAGE=	https://code.google.com/archive/p/libgooglepinyin/
 COMMENT=	libgooglepinyin wrapper for ibus
 LICENSE=	gnu-gpl-v2
 
