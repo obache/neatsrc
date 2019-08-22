@@ -15,7 +15,6 @@ USE_LANGUAGES=		c99
 
 PKGCONFIG_OVERRIDE=	output/meson-private/atk.pc
 PKGCONFIG_OVERRIDE_STAGE=pre-install
-MAKE_ENV+=		LD_LIBRARY_PATH=${WRKSRC}/output/${PKGBASE}
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.38.0
