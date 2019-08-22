@@ -28,7 +28,7 @@ SUBST_FILES.pinyindir=	googlepinyin.py
 SUBST_SED.pinyindir=	-e 's,/usr/share,${LOCALBASE}/share,'
 SUBST_SED.pinyindir+=	-e 's,/usr/lib,${LOCALBASE}/lib,'
 
-REPLACE_PYTHON+=	googlepinyin.py opencc.py main.py
+REPLACE_PYTHON+=	googlepinyin.py libopencc.py main.py
 
 .include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"
