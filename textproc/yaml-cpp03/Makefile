@@ -19,7 +19,6 @@ CMAKE_ARGS+=		-DBUILD_SHARED_LIBS=ON
 CMAKE_ARGS+=		-DYAML_CPP_BUILD_TESTS=OFF # issue 539
 PKGCONFIG_OVERRIDE+=	yaml-cpp.pc.cmake
 
-TEST_ENV+=	LD_LIBRARY_PATH=${WRKSRC}
 TEST_TARGET=	test
 
 .include "../../mk/bsd.pkg.mk"
