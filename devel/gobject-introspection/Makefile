@@ -34,8 +34,6 @@ SUBST_SED.timet=	-e 's,@TIMET_TYPENAME@,TYPE_LONG,g'
 SUBST_SED.timet+=	-e 's,@TIMET_CTYPE@,glong,g'
 .endif
 
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/girepository
-
 BUILDLINK_API_DEPENDS.glib2+= glib2>=2.58.0
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libffi+= libffi>=3.0.0
