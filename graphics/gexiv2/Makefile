@@ -14,10 +14,6 @@ LICENSE=	gnu-gpl-v2
 USE_LANGUAGES=	c c++03
 USE_TOOLS+=	pkg-config
 
-# workaround for build failure
-# https://gitlab.gnome.org/GNOME/json-glib/issues/35
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/gexiv2
-
 MESON_ARGS+=	-Dpython2_girdir=no
 MESON_ARGS+=	-Dpython3_girdir=no
 
