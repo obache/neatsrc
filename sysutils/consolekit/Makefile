@@ -45,6 +45,9 @@ GNU_CONFIGURE=	YES
 USE_TOOLS+=	gmake intltool msgfmt perl pkg-config automake
 USE_LIBTOOL=	YES
 
+PKGCONFIG_OVERRIDE+=	libconsolekit/libconsolekit.pc.in
+PKGCONFIG_OVERRIDE+=	libck-connector/ck-connector.pc.in
+
 CONFIGURE_ARGS+=--sysconfdir=${PKG_SYSCONFBASE}			\
 		--localstatedir=${VARBASE}			\
 		--disable-pam-module
