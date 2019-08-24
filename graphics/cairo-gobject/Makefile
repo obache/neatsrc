@@ -8,6 +8,9 @@ PKGREVISION=	3
 BUILD_DIRS=	util/cairo-gobject
 INSTALL_DIRS=	util/cairo-gobject
 
+PKGCONFIG_OVERRIDE=		src/cairo-gobject.pc
+PKGCONFIG_OVERRIDE_STAGE=	post-configure
+
 INSTALLATION_DIRS+=	lib/pkgconfig
 
 .include "../../mk/bsd.prefs.mk"
