@@ -42,6 +42,9 @@ MAKE_ENV+=		SH=${SH:Q}
 CONFIGURE_ARGS+=	--host=${MACHINE_GNU_PLATFORM}
 .endif
 
+PKGCONFIG_OVERRIDE+=		x264.pc
+PKGCONFIG_OVERRIDE_STAGE=	post-configure
+
 BUILD_TARGET=		default
 INSTALL_TARGET=		install-lib-shared install-lib-static install-cli
 INSTALLATION_DIRS=	bin
