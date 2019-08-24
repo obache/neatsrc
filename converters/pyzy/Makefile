@@ -3,7 +3,7 @@
 DISTNAME=	pyzy-0.1.0
 PKGREVISION=	13
 CATEGORIES=	converters chinese
-MASTER_SITES=	http://pyzy.googlecode.com/files/
+MASTER_SITES=	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/pyzy/
 DISTFILES=	${DEFAULT_DISTFILES} ${DBTAR}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
