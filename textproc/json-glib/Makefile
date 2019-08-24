@@ -12,6 +12,9 @@ LICENSE=	gnu-lgpl-v2.1
 
 USE_TOOLS+=	gmake msgfmt msgmerge pkg-config xgettext
 
+PKGCONFIG_OVERRIDE+=	output/meson-private/json-glib-1.0.pc
+PKGCONFIG_OVERRIDE_STAGE=	post-configure
+
 CONFIGURE_ARGS+=	--disable-man
 
 do-test:
