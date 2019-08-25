@@ -13,7 +13,7 @@ INSTALLATION_DIRS+=	share/doc/opencv/ref/pics
 INSTALLATION_DIRS+=	share/OpenCV/haarcascades
 
 PKGCONFIG_OVERRIDE+=		build/unix-install/opencv.pc
-PKGCONFIG_OVERRIDE_STAGE=	post-configure
+PKGCONFIG_OVERRIDE_STAGE=	post-build
 
 PY_PATCHPLIST=		yes
 REPLACE_PYTHON+=	samples/python/*.py
