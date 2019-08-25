@@ -61,7 +61,7 @@ DISTFILES?=		${DEFAULT_DISTFILES}
 
 DISTFILES_VARS?=	# empty
 .for d in ${DISTFILES_VARS}
-.  if empty(DISTFILES_USE.${d}:M[Nn][Oo])
+.  if empty(DISTFILES_USE.${d}:M[Nn][Oo]) || make(makedistinfo) || make(distinfo) || make (mdi) || make(makesum)
 DISTFILES+=		${DISTFILES.$d}
 .  endif
 .endfor
