@@ -2,13 +2,14 @@
 # used by inputmethod/anthy/Makefile
 # used by inputmethod/anthy-elisp/Makefile
 
-ANTHY_VERSION=	9100h
+ANTHY_VERSION=	0.4
 DISTNAME=	anthy-${ANTHY_VERSION}
 CATEGORIES=	inputmethod
-MASTER_SITES=	${MASTER_SITE_OSDN:=anthy/37536/}
-DISTFILES=	${DISTNAME}.tar.gz
+MASTER_SITES=	${MASTER_SITE_DEBIAN:=pool/main/a/anthy/}
+DISTFILES=	anthy_${ANTHY_VERSION}.orig.tar.gz
 
 DISTINFO_FILE=	${.CURDIR}/../../inputmethod/anthy/distinfo
 PATCHDIR=	${.CURDIR}/../../inputmethod/anthy/patches
 
-HOMEPAGE=	http://anthy.osdn.jp/
+HOMEPAGE=	https://wiki.debian.org/Teams/DebianAnthy
+LICENSE=	gnu-lgpl-v3
