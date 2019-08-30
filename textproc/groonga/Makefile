@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.64 2018/02/25 12:25:48 taca Exp $
 #
 
-DISTNAME=	groonga-9.0.6
+DISTNAME=	groonga-9.0.7
 CATEGORIES=	textproc
 MASTER_SITES=	http://packages.groonga.org/source/groonga/
 
@@ -42,6 +42,8 @@ OWN_DIRS+=		${VARBASE}/log/${PKGBASE}
 
 CHECK_WRKREF_SKIP+=		bin/groonga
 CHECK_INTERPRETER_SKIP+=	share/groonga/examples/*
+CHECK_PORTABILITY_SKIP+=	vendor/ngx_mruby-source/update-devkit-subtree
+CHECK_PORTABILITY_SKIP+=	vendor/ngx_mruby-source/update-mruby-subtree
 
 .include "../../devel/editline/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
