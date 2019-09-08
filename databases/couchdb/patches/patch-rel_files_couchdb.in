@@ -1,0 +1,26 @@
+$NetBSD: patch-rel_files_couchdb.in,v 1.1 2019/09/06 09:10:48 jperkin Exp $
+
+Support pkgsrc layout.
+
+--- rel/files/couchdb.in.orig	2019-03-05 22:42:20.000000000 +0000
++++ rel/files/couchdb.in
+@@ -12,11 +12,7 @@
+ # License for the specific language governing permissions and limitations under
+ # the License.
+ 
+-COUCHDB_BIN_DIR=$(cd "${0%/*}" && pwd)
+-ERTS_BIN_DIR=$COUCHDB_BIN_DIR/../
+-cd "$COUCHDB_BIN_DIR/../"
+-
+-export ROOTDIR=${ERTS_BIN_DIR%/*}
++export ROOTDIR="@PREFIX@/couchdb"
+ 
+ START_ERL=`cat "$ROOTDIR/releases/start_erl.data"`
+ ERTS_VSN=${START_ERL% *}
+@@ -33,5 +29,5 @@ ARGS_FILE="${COUCHDB_ARGS_FILE:-$ROOTDIR
+ SYSCONFIG_FILE="${COUCHDB_SYSCONFIG_FILE:-$ROOTDIR/releases/$APP_VSN/sys.config}"
+ 
+ exec "$BINDIR/erlexec" -boot "$ROOTDIR/releases/$APP_VSN/couchdb" \
+-     -args_file "${ARGS_FILE}" \
++     -args_file "@PKG_SYSCONFDIR@/vm.args" \
+      -config "${SYSCONFIG_FILE}" "$@"

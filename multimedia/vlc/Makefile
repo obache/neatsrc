@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.221 2019/07/21 22:25:28 wiz Exp $
+# $NetBSD: Makefile,v 1.224 2019/09/02 12:54:15 nia Exp $
 
 DISTNAME=		vlc-${VLC_VERSION}
-PKGREVISION=		2
+PKGREVISION=		1
 CATEGORIES=		multimedia
 MASTER_SITES=		https://download.videolan.org/pub/videolan/vlc/${VLC_VERSION}/
 EXTRACT_SUFX=		.tar.xz
 
-VLC_VERSION=		3.0.7.1
+VLC_VERSION=		3.0.8
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		https://www.videolan.org/
@@ -35,6 +35,7 @@ BUILDLINK_API_DEPENDS.vcdimager+=	vcdimager>=0.7.20nb1
 
 LUA_VERSIONS_ACCEPTED=	51 52
 
+CONFIGURE_ARGS+=	--disable-archive
 CONFIGURE_ARGS+=	--disable-aribsub
 CONFIGURE_ARGS+=	--disable-aribb25
 CONFIGURE_ARGS+=	--disable-bluray
@@ -46,12 +47,14 @@ CONFIGURE_ARGS+=	--disable-dc1394
 CONFIGURE_ARGS+=	--disable-dv1394
 CONFIGURE_ARGS+=	--disable-decklink
 CONFIGURE_ARGS+=	--disable-dsm
+CONFIGURE_ARGS+=	--disable-faad
 CONFIGURE_ARGS+=	--disable-freerdp
 CONFIGURE_ARGS+=	--disable-fluidlite
 CONFIGURE_ARGS+=	--disable-goom
 CONFIGURE_ARGS+=	--disable-gst-decode
 CONFIGURE_ARGS+=	--disable-libplacebo
 CONFIGURE_ARGS+=	--disable-live555
+CONFIGURE_ARGS+=	--disable-mad
 CONFIGURE_ARGS+=	--disable-mfx
 CONFIGURE_ARGS+=	--disable-microdns
 CONFIGURE_ARGS+=	--disable-mmal
@@ -162,14 +165,10 @@ CHECK_WRKREF_SKIP=	lib/libvlccore.a \
 pre-configure:
 	${RUN} cd ${WRKSRC} && ${SH} ./bootstrap
 
-.include "../../archivers/libarchive/buildlink3.mk"
-.include "../../audio/faad2/buildlink3.mk"
 .include "../../audio/fluidsynth/buildlink3.mk"
 .include "../../audio/flac/buildlink3.mk"
 .include "../../audio/liba52/buildlink3.mk"
 .include "../../audio/libcddb/buildlink3.mk"
-.include "../../audio/libid3tag/buildlink3.mk"
-.include "../../audio/libmad/buildlink3.mk"
 .include "../../audio/libmodplug/buildlink3.mk"
 .include "../../audio/libopus/buildlink3.mk"
 .include "../../audio/libshout/buildlink3.mk"

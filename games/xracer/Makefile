@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.63 2018/08/22 09:45:09 wiz Exp $
+# $NetBSD: Makefile,v 1.65 2019/08/30 17:56:33 nia Exp $
 #
 
 DISTNAME=		xracer-0.96.9
-PKGREVISION=		21
+PKGREVISION=		22
 CATEGORIES=		games x11
 MASTER_SITES=		http://www.annexia.org/_file/
 
@@ -34,7 +34,9 @@ post-configure: do-makemaker-configure
 DEPENDS+=		netpbm-[0-9]*:../../graphics/netpbm
 
 .include "../../devel/gettext-lib/buildlink3.mk"
-.include "../../graphics/Mesa/buildlink3.mk"
+.include "../../graphics/MesaLib/buildlink3.mk"
+.include "../../graphics/freeglut/buildlink3.mk"
+.include "../../graphics/glu/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../lang/perl5/module.mk"
 .include "../../mk/bsd.pkg.mk"

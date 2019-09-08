@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.74 2013/03/25 00:34:49 mspo Exp $
+# $NetBSD: Makefile,v 1.76 2019/08/27 09:26:01 maya Exp $
 
 PKGNAME=		vim-${VIM_VERSION}.${VIM_PATCHLEVEL}
+PKGREVISION=		1
 
 COMMENT=		Vim editor (vi clone) without GUI
 
@@ -15,7 +16,7 @@ CONFIGURE_ARGS+=	--enable-gui=no --without-x
 CONFIGURE_ARGS+=	--with-tlib=${BUILDLINK_LIBNAME.termcap}
 
 BUILD_TARGET=		vim
-INSTALL_TARGET=		installvimbin
+INSTALL_TARGET=		installvimbin installvimdiff installtutorbin
 TEST_TARGET=		check
 
 post-install:

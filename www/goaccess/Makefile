@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.17 2017/09/22 22:18:01 wiedi Exp $
+# $NetBSD: Makefile,v 1.20 2019/08/29 18:04:10 schmonz Exp $
 
-DISTNAME=	goaccess-1.2
+DISTNAME=	goaccess-1.3
 CATEGORIES=	www
 MASTER_SITES=	http://tar.goaccess.io/
 
@@ -9,10 +9,12 @@ HOMEPAGE=	http://goaccess.prosoftcorp.com/
 COMMENT=	Real-time web log analyzer
 LICENSE=	gnu-gpl-v2
 
+TOOL_DEPENDS+=	gettext-tools-[0-9]*:../../devel/gettext-tools
+
 GNU_CONFIGURE=	yes
 
 USE_LANGUAGES=	c99
-USE_TOOLS+=     pkg-config aclocal autoconf automake
+USE_TOOLS+=	pkg-config aclocal autoconf automake
 USE_NCURSES=	yes
 
 EGDIR=		${PREFIX}/share/examples/${PKGBASE}
@@ -21,10 +23,13 @@ CONF_FILES=	${EGDIR}/goaccess.conf ${PKG_SYSCONFDIR}/goaccess.conf
 LIBS.SunOS+=	-lsocket -lnsl
 CPPFLAGS.SunOS+=	-D__EXTENSIONS__
 
+BROKEN_GETTEXT_DETECTION=	yes
+
 .include "options.mk"
 
 pre-configure:
 	cd ${WRKSRC} && autoreconf -fiv
 
+.include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

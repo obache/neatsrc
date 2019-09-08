@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.122 2019/07/21 22:24:22 wiz Exp $
+# $NetBSD: Makefile,v 1.124 2019/09/03 01:43:10 mrg Exp $
 
 DISTNAME=		audacity-2.3.2
 PKGREVISION=		1

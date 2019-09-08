@@ -1,4 +1,9 @@
-@comment $NetBSD: PLIST,v 1.4 2012/04/08 20:22:01 wiz Exp $
+@comment $NetBSD: PLIST,v 1.5 2019/08/05 12:26:15 prlw1 Exp $
+${PYSITELIB}/${EGG_FILE}/PKG-INFO
+${PYSITELIB}/${EGG_FILE}/SOURCES.txt
+${PYSITELIB}/${EGG_FILE}/dependency_links.txt
+${PYSITELIB}/${EGG_FILE}/requires.txt
+${PYSITELIB}/${EGG_FILE}/top_level.txt
 ${PYSITELIB}/Xlib/X.py
 ${PYSITELIB}/Xlib/X.pyc
 ${PYSITELIB}/Xlib/X.pyo
@@ -32,6 +37,9 @@ ${PYSITELIB}/Xlib/ext/composite.pyo
 ${PYSITELIB}/Xlib/ext/ge.py
 ${PYSITELIB}/Xlib/ext/ge.pyc
 ${PYSITELIB}/Xlib/ext/ge.pyo
+${PYSITELIB}/Xlib/ext/nvcontrol.py
+${PYSITELIB}/Xlib/ext/nvcontrol.pyc
+${PYSITELIB}/Xlib/ext/nvcontrol.pyo
 ${PYSITELIB}/Xlib/ext/randr.py
 ${PYSITELIB}/Xlib/ext/randr.pyc
 ${PYSITELIB}/Xlib/ext/randr.pyo
@@ -179,8 +187,3 @@ ${PYSITELIB}/Xlib/xobject/icccm.pyo
 ${PYSITELIB}/Xlib/xobject/resource.py
 ${PYSITELIB}/Xlib/xobject/resource.pyc
 ${PYSITELIB}/Xlib/xobject/resource.pyo
-${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
-${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
-${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
-${PYSITELIB}/${EGG_INFODIR}/requires.txt
-${PYSITELIB}/${EGG_INFODIR}/top_level.txt

@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.65 2019/06/14 10:22:46 jperkin Exp $
+# $NetBSD: Makefile,v 1.68 2019/08/31 12:43:20 nia Exp $
 
-DISTNAME=	glu-9.0.0
-PKGREVISION=	2
+DISTNAME=	glu-9.0.1
 CATEGORIES=	graphics
-MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/glu/
-EXTRACT_SUFX=	.tar.bz2
+MASTER_SITES=	https://mesa.freedesktop.org/archive/glu/
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://cgit.freedesktop.org/mesa/glu/
-COMMENT=	GLU polygon tessellation facility for Mesa
+HOMEPAGE=	https://gitlab.freedesktop.org/mesa/glu
+COMMENT=	OpenGL Utility Library
 LICENSE=	sgi-free-software-b-v2.0
 
 GNU_CONFIGURE=	yes

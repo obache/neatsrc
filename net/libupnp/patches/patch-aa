@@ -2,15 +2,14 @@ $NetBSD: patch-aa,v 1.12 2012/11/06 18:59:46 drochner Exp $
 
 upsteam bug#125
 
---- upnp/src/inc/uuid.h.orig	2016-01-07 23:32:52.000000000 +0000
+--- upnp/src/inc/uuid.h.orig	2018-10-25 14:49:10.000000000 +0000
 +++ upnp/src/inc/uuid.h
-@@ -38,6 +38,12 @@ typedef struct _uuid_upnp {
+@@ -38,6 +38,11 @@ typedef struct _uuid_upnp {
  	uint8_t node[6];
  } uuid_upnp;
  
 +/* XXX avoid namespace conflict with system (DCE RPC) function */
 +#define uuid_create upnp_uuid_create
-+#define uuid_unpack upnp_uuid_unpack
 +#define uuid_create_from_name upnp_uuid_create_from_name
 +#define uuid_compare upnp_uuid_compare
 +

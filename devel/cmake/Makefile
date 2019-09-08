@@ -1,6 +1,5 @@
-# $NetBSD: Makefile,v 1.164 2019/07/20 22:46:15 wiz Exp $
+# $NetBSD: Makefile,v 1.167 2019/09/05 08:39:09 adam Exp $
 
-PKGREVISION= 1
 .include "Makefile.version"
 
 DISTNAME=	cmake-${CMAKE_VERSION}
@@ -60,7 +59,7 @@ pre-configure:
 
 USE_CURSES=		wsyncup
 
-BUILDLINK_API_DEPENDS.libarchive+=	libarchive>=3.0.0
+BUILDLINK_API_DEPENDS.libarchive+=	libarchive>=3.3.3
 .include "../../archivers/libarchive/buildlink3.mk"
 .include "../../devel/libexecinfo/buildlink3.mk"
 BUILDLINK_AUTO_DIRS.libuv=	rpath

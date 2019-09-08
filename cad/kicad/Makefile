@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.36 2019/07/21 22:24:30 wiz Exp $
+# $NetBSD: Makefile,v 1.39 2019/08/30 18:53:31 nia Exp $
 #
 
-V=		5.1.2
+V=		5.1.4
 DISTNAME=	kicad-${V}
-PKGREVISION=	3
 CATEGORIES=	cad
 MASTER_SITES=	https://launchpad.net/kicad/5.0/${V}/+download/
 EXTRACT_SUFX=	.tar.xz
@@ -58,9 +57,10 @@ CXXFLAGS+=	-Wno-error=non-pod-varargs
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/cmake/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../graphics/Mesa/buildlink3.mk"
+.include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../graphics/glew/buildlink3.mk"
 .include "../../graphics/glm/buildlink3.mk"
+.include "../../graphics/glu/buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"
 .include "../../lang/python/extension.mk"
 .include "../../www/curl/buildlink3.mk"

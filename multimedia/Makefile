@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.272 2019/07/11 09:35:29 nia Exp $
+# $NetBSD: Makefile,v 1.275 2019/09/01 14:02:26 ryoon Exp $
 #
 
 COMMENT=	Multimedia utilities
@@ -21,6 +21,7 @@ SUBDIR+=	dragon
 SUBDIR+=	dumpmpeg
 SUBDIR+=	dvb-apps
 SUBDIR+=	dvd-slideshow
+SUBDIR+=	dvd-vr
 SUBDIR+=	dvdauthor
 SUBDIR+=	dvdbackup
 SUBDIR+=	dvdrip
@@ -42,6 +43,7 @@ SUBDIR+=	ffplay3
 SUBDIR+=	ffplay4
 SUBDIR+=	flashplayer
 SUBDIR+=	flvstreamer
+SUBDIR+=	frei0r
 SUBDIR+=	fuppes
 SUBDIR+=	fxtv
 SUBDIR+=	gecko-mediaplayer
@@ -154,6 +156,7 @@ SUBDIR+=	mkv2mp4
 SUBDIR+=	mkvtoolnix
 SUBDIR+=	mkvtoolnix-old
 SUBDIR+=	mlt
+SUBDIR+=	movit
 SUBDIR+=	mp4v2
 SUBDIR+=	mpeg-lib
 SUBDIR+=	mpeg_encode

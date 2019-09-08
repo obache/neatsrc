@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.841 2019/07/21 10:34:52 wiz Exp $
+# $NetBSD: Makefile,v 1.844 2019/08/30 06:30:57 markd Exp $
 #
 
 COMMENT=	Packages to support the X window system
@@ -301,9 +301,9 @@ SUBDIR+=	mkcomposecache
 SUBDIR+=	mlterm
 SUBDIR+=	modeline
 SUBDIR+=	modular-xorg-server
-SUBDIR+=	modular-xorg-server112
 SUBDIR+=	modular-xorg-xephyr
 SUBDIR+=	modular-xorg-xquartz
+SUBDIR+=	modular-xorg-xwayland
 SUBDIR+=	motif
 SUBDIR+=	mowitz
 SUBDIR+=	mozo
@@ -382,6 +382,7 @@ SUBDIR+=	qt5-qtquickcontrols2
 SUBDIR+=	qt5-qtscript
 SUBDIR+=	qt5-qtsensors
 SUBDIR+=	qt5-qtserialport
+SUBDIR+=	qt5-qtspeech
 SUBDIR+=	qt5-qtsvg
 SUBDIR+=	qt5-qttools
 SUBDIR+=	qt5-qttranslations
@@ -537,9 +538,7 @@ SUBDIR+=	xf86-video-i740
 SUBDIR+=	xf86-video-intel
 SUBDIR+=	xf86-video-mach64
 SUBDIR+=	xf86-video-mga
-SUBDIR+=	xf86-video-modesetting
 SUBDIR+=	xf86-video-neomagic
-SUBDIR+=	xf86-video-newport
 SUBDIR+=	xf86-video-nouveau
 SUBDIR+=	xf86-video-nv
 SUBDIR+=	xf86-video-openchrome

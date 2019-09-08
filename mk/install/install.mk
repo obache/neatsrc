@@ -1,4 +1,4 @@
-# $NetBSD: install.mk,v 1.76 2019/05/07 19:36:44 rillig Exp $
+# $NetBSD: install.mk,v 1.78 2019/09/06 09:00:35 jperkin Exp $
 #
 # This file provides the code for the "install" phase.
 #
@@ -21,7 +21,7 @@
 #	in order to install the package.
 #
 
-# === User-settable variables ===
+# User-settable variables:
 #
 # INSTALL_UNSTRIPPED
 #	If "yes", all binaries and shared libraries are installed
@@ -34,7 +34,7 @@
 #
 # Keywords: strip unstripped
 #
-# === Package-settable variables ===
+# Package-settable variables:
 #
 # INSTALLATION_DIRS
 #	A list of directories that should be created at the very
@@ -349,11 +349,11 @@ install-ctf: plist
 	@${STEP_MSG} "Generating CTF data"
 	${RUN}cd ${DESTDIR:Q}${PREFIX:Q};				\
 	${CAT} ${_PLIST_NOKEYWORDS} | while read f; do			\
-		[ ! -h "$${f}" ] || continue;				\
 		case "$${f}" in						\
 		${CTF_FILES_SKIP:@p@${p}) continue ;;@}			\
 		*) ;;							\
 		esac;							\
+		[ ! -h "$${f}" ] || continue;				\
 		tmp_f="$${f}.XXX";					\
 		if ${CTFCONVERT} -o "$${tmp_f}" "$${f}" 2>/dev/null; then \
 			if [ -f "$${tmp_f}" -a -f "$${f}" ]; then	\

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.19 2019/04/25 21:10:45 markd Exp $
+# $NetBSD: Makefile,v 1.21 2019/08/27 20:57:32 markd Exp $
 
 DISTNAME=	kjs-${KF5VER}
 CATEGORIES=	www

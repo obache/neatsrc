@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2019/04/26 14:12:32 maya Exp $
+# $NetBSD: Makefile,v 1.22 2019/09/02 13:20:07 adam Exp $
 
 DISTNAME=		pyvorbis-1.3
 PKGNAME=		${PYPKGPREFIX}-${DISTNAME:S/py//}
@@ -11,7 +11,7 @@ HOMEPAGE=		http://vorbis.com/
 COMMENT=		Python bindings for Vorbis library
 LICENSE=		gnu-lgpl-v2
 
-PYTHON_VERSIONS_INCOMPATIBLE=	36 37 # py-ogg, and itself not ported as of 1.3
+PYTHON_VERSIONS_ACCEPTED=	27 # py-ogg, and itself not ported as of 1.3
 
 HAS_CONFIGURE=		yes
 CONFIG_SHELL=		${PYTHONBIN}

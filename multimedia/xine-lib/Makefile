@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.154 2019/07/31 09:39:56 nia Exp $
+# $NetBSD: Makefile,v 1.156 2019/08/30 18:00:15 nia Exp $
 
-PKGREVISION= 3
+PKGREVISION= 4
 .include "Makefile.common"
 
 COMMENT=		Multimedia player library
@@ -92,7 +92,6 @@ PLIST.xvmc=		yes
 # these could be options or (better) extra plugin packages
 #.include "../../devel/SDL/buildlink3.mk"
 #.include "../../graphics/ImageMagick/buildlink3.mk"
-#.include "../../graphics/Mesa/buildlink3.mk"
 CONFIGURE_ARGS+=	--disable-opengl
 #.include "../../graphics/aalib/buildlink3.mk"
 .include "../../graphics/mng/buildlink3.mk"

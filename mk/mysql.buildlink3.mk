@@ -1,9 +1,9 @@
-# $NetBSD: mysql.buildlink3.mk,v 1.22 2018/02/20 13:21:45 wiz Exp $
+# $NetBSD: mysql.buildlink3.mk,v 1.24 2019/09/02 02:23:02 rillig Exp $
 #
 # This file is included by packages that require some version of the
 # MySQL database client.
 #
-# === User-settable variables ===
+# User-settable variables:
 #
 # MYSQL_VERSION_DEFAULT
 #	The preferred MySQL version.
@@ -11,7 +11,7 @@
 #	Possible: 57 56 55 51 MARIADB55
 #	Default: 57
 #
-# === Package-settable variables ===
+# Package-settable variables:
 #
 # MYSQL_VERSIONS_ACCEPTED
 #	The list of MySQL versions that the package accepts.
@@ -22,6 +22,9 @@
 
 .if !defined(MYSQL_VERSION_MK)
 MYSQL_VERSION_MK=	# defined
+
+BUILD_DEFS+=		MYSQL_VERSION_DEFAULT
+BUILD_DEFS_EFFECTS+=	MYSQL_PKGSRCDIR
 
 _VARGROUPS+=		mysql
 _USER_VARS.mysql=	MYSQL_VERSION_DEFAULT

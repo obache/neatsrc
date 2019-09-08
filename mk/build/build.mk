@@ -1,4 +1,4 @@
-# $NetBSD: build.mk,v 1.26 2019/05/07 19:36:43 rillig Exp $
+# $NetBSD: build.mk,v 1.28 2019/09/02 02:59:47 rillig Exp $
 #
 # This file defines what happens in the build phase, excluding the
 # self-test, which is defined in test.mk.
@@ -197,11 +197,12 @@ post-build:
 # Keywords: debug build
 
 BUILD_ENV_SHELL?=	${SH}
-.if defined(_PKGSRC_BARRIER)
-build-env: .PHONY configure
+build-env: .PHONY ${_PKGSRC_BARRIER:Ubarrier:D_build-env}
+_build-env: .PHONY configure
 	@${STEP_MSG} "Entering the build environment for ${PKGNAME}"
+.if ${BUILD_DIRS:[#]} > 1 || ${BUILD_DIRS} != ${WRKSRC}
+	@${ECHO_MSG} "The BUILD_DIRS are:" \
+		${BUILD_DIRS:S,^${WRKSRC}$,.,:S,^${WRKSRC}/,,:Q}
+.endif
 	${RUN}${_ULIMIT_CMD}						\
 	cd ${WRKSRC} && ${PKGSRC_SETENV} ${MAKE_ENV} ${BUILD_ENV_SHELL}
-.else
-build-env: barrier
-.endif

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2019/05/23 19:23:10 rillig Exp $
+# $NetBSD: Makefile,v 1.15 2019/09/02 13:19:51 adam Exp $
 
 DISTNAME=	pypcap-1.1
 PKGNAME=	${PYPKGPREFIX}-pcap-1.1
@@ -23,7 +23,7 @@ SUBST_FILES.prefix=	Makefile
 SUBST_VARS.prefix=	PREFIX
 SUBST_STAGE.prefix=	pre-configure
 
-PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-pyrex
+PYTHON_VERSIONS_ACCEPTED=	 27 # py-pyrex
 
 EGG_NAME=	${DISTNAME:S/^py//}
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.31 2019/04/25 21:17:14 markd Exp $
+# $NetBSD: Makefile,v 1.33 2019/08/27 20:31:05 markd Exp $
 
 DISTNAME=	kdelibs4support-${KF5VER}
 CATEGORIES=	devel

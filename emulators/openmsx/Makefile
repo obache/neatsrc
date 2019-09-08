@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.56 2019/07/02 08:31:02 nia Exp $
+# $NetBSD: Makefile,v 1.58 2019/09/02 13:19:59 adam Exp $
 
 DISTNAME=		openmsx-0.15.0
 CATEGORIES=		emulators
@@ -24,7 +24,7 @@ INSTALL_MAKE_FLAGS+=	SYMLINK_FOR_BINARY=false
 INSTALL_MAKE_FLAGS+=	INSTALL_BASE=${PREFIX}/openmsx
 MAKE_ENV+=		OPENMSX_INSTALL=${PREFIX}/openmsx
 
-PYTHON_VERSIONS_INCOMPATIBLE=	36 37 # not yet ported as of 0.9.0
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 0.9.0
 
 SUBST_CLASSES+=			bswap
 SUBST_STAGE.bswap=		pre-configure
@@ -41,12 +41,12 @@ GCC_REQD+=	5
 .include "../../mk/bsd.prefs.mk"
 
 do-configure:
-.if !empty(PKGSRC_COMPILER:Mclang)
-	cd ${WRKSRC} && ${CONFIGURE_ENV} CXX=clang++ \
-	    ${GMAKE} -f build/main.mk probe
+.if !empty(PKGSRC_COMPILER:M*clang*)
+	cd ${WRKSRC} && ${CONFIGURE_ENV} \
+	    ${GMAKE} -f build/main.mk probe CXX=clang++
 .else
-	cd ${WRKSRC} && ${CONFIGURE_ENV} CXX=g++ \
-	    ${GMAKE} -f build/main.mk probe
+	cd ${WRKSRC} && ${CONFIGURE_ENV} \
+	    ${GMAKE} -f build/main.mk probe CXX=g++
 .endif
 
 post-extract:

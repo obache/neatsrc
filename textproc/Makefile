@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1041 2019/07/31 13:55:04 brook Exp $
+# $NetBSD: Makefile,v 1.1048 2019/09/02 13:40:04 nia Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -11,7 +11,10 @@ SUBDIR+=	GutenMark-words
 SUBDIR+=	LDoc
 SUBDIR+=	Markdown
 SUBDIR+=	OdfConverter
+SUBDIR+=	R-brew
 SUBDIR+=	R-cellranger
+SUBDIR+=	R-clisymbols
+SUBDIR+=	R-commonmark
 SUBDIR+=	R-data.table
 SUBDIR+=	R-formatR
 SUBDIR+=	R-gsubfn
@@ -28,6 +31,7 @@ SUBDIR+=	R-readxl
 SUBDIR+=	R-stringi
 SUBDIR+=	R-stringr
 SUBDIR+=	R-utf8
+SUBDIR+=	R-xml2
 SUBDIR+=	R-yaml
 SUBDIR+=	WordNet
 SUBDIR+=	aha
@@ -392,6 +396,7 @@ SUBDIR+=	libpinyin
 SUBDIR+=	libplist
 SUBDIR+=	libstemmer
 SUBDIR+=	libunicode
+SUBDIR+=	libuninameslist
 SUBDIR+=	libunistring
 SUBDIR+=	libxls
 SUBDIR+=	libxlsxwriter
@@ -603,6 +608,7 @@ SUBDIR+=	p5-Text-Markdown
 SUBDIR+=	p5-Text-Markdown-Discount
 SUBDIR+=	p5-Text-MicroTemplate
 SUBDIR+=	p5-Text-Microformat
+SUBDIR+=	p5-Text-MultiMarkdown
 SUBDIR+=	p5-Text-Ngram
 SUBDIR+=	p5-Text-Nimble
 SUBDIR+=	p5-Text-PDF
@@ -823,6 +829,7 @@ SUBDIR+=	py-marisa
 SUBDIR+=	py-markdown
 SUBDIR+=	py-markdown-math
 SUBDIR+=	py-markdown2
+SUBDIR+=	py-markovify
 SUBDIR+=	py-markups
 SUBDIR+=	py-markupsafe
 SUBDIR+=	py-mecab

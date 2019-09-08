@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.21 2019/07/21 22:24:41 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2019/08/28 09:09:19 wiz Exp $
 
-DISTNAME=	codelite-9.1
-PKGREVISION=	18
+DISTNAME=	codelite-13.0
+PKGREVISION=	1
 CATEGORIES=	editors x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=eranif/}
 
@@ -20,7 +20,10 @@ CMAKE_ARGS+=		-DPREFIX:STRING=${PREFIX}
 # For some reason CMAKE_ARGS.NetBSD+=-DIS_NETBSD:STRING=1 doesn't work for me
 .include "../../mk/bsd.prefs.mk"
 
+CHECK_PORTABILITY_SKIP+=	sdk/wxsqlite3/configure
+
 .if ${OPSYS} == "NetBSD"
+CMAKE_ARGS+=			-DIS_NETBSD:STRING=1
 SUBST_CLASSES+=			ena-netbsd
 SUBST_STAGE.ena-netbsd=		pre-configure
 SUBST_MESSAGE.ena-netbsd=	Enable NetBSD
@@ -37,6 +40,12 @@ SUBST_FILES.fix-bash+=		Runtime/codelite_xterm
 SUBST_FILES.fix-bash+=		cmake/Modules/OSXInstall.cmake
 SUBST_SED.fix-bash+=		-e 's,/bin/bash,${BASH},g'
 
+SUBST_CLASSES+=			fix-man-path
+SUBST_STAGE.fix-man-path=	pre-configure
+SUBST_MESSAGE.fix-man-path=	Fix man path
+SUBST_FILES.fix-man-path=	LiteEditor/CMakeLists.txt
+SUBST_SED.fix-man-path+=	-e 's,${CL_PREFIX}/share/man,${CL_PREFIX}/${PKGMANDIR},g'
+
 REPLACE_BASH+=		Runtime/clg++
 REPLACE_BASH+=		Runtime/clgcc
 REPLACE_BASH+=		Runtime/codelite_xterm
@@ -51,9 +60,13 @@ REPLACE_BASH+=		svgs/convert-svg-to-png.sh
 REPLACE_BASH+=		svgs/create-logo-root.sh
 REPLACE_BASH+=		svgs/create-logo.sh
 REPLACE_BASH+=		svgs/find-bar/convert-svg-to-png.sh
+REPLACE_NODEJS+=	LanguageServer/codelite-lsp/codelite-lsp-helper
+REPLACE_PYTHON+=	codelite_open_helper.py
 
 LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib/codelite
 
+.include "../../lang/nodejs/application.mk"
+.include "../../lang/python/application.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"

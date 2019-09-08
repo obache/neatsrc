@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.62 2019/07/21 22:24:27 wiz Exp $
+# $NetBSD: Makefile,v 1.63 2019/09/02 13:20:06 adam Exp $
 
 DISTNAME=	pymusique-0.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
@@ -25,7 +25,7 @@ DEPENDS+=	${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
 
 USE_LANGUAGES=	#
 
-PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-mcrypt, py-gtk2
+PYTHON_VERSIONS_ACCEPTED=	 27 # py-mcrypt, py-gtk2
 
 EGG_NAME=	PyMusique-${PKGVERSION_NOREV}	
 

@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.57 2019/01/19 21:36:21 tnn Exp $
+# $NetBSD: buildlink3.mk,v 1.63 2019/09/04 10:56:50 nia Exp $
 
 BUILDLINK_TREE+=	MesaLib
 
@@ -11,38 +11,63 @@ BUILDLINK_PKGSRCDIR.MesaLib?=	../../graphics/MesaLib
 
 .include "../../mk/bsd.fast.prefs.mk"
 
-.if ${X11_TYPE} == "modular"
-BUILDLINK_ABI_DEPENDS.MesaLib+=	MesaLib>=10.5.3
-# This is needed to avoid linking conflicting libstdc++ versions
-.  if defined(USE_LANGUAGES) && !empty(USE_LANGUAGES:Mc++)
-GCC_REQD+=			4.2
-.  endif
-.endif
-
 # See <http://developer.apple.com/qa/qa2007/qa1567.html>.
 .if ${X11_TYPE} == "native" && !empty(MACHINE_PLATFORM:MDarwin-[9].*-*)
 BUILDLINK_LDFLAGS.MesaLib+=	-Wl,-dylib_file,/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib:/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
 .endif
 
 pkgbase:= MesaLib
+
+.if ${X11_TYPE} == "modular"
+MESALIB_SUPPORTS_OSMESA=	yes
+MESALIB_SUPPORTS_GLESv2=	yes
+.  if ${OPSYS} != "Darwin" && ${OPSYS} != "Cygwin" && ${OPSYS} != "SunOS"
+MESALIB_SUPPORTS_EGL=		yes
+.  else
+MESALIB_SUPPORTS_EGL=		no
+.  endif
+.else
+.  if exists(${X11BASE}/include/EGL/egl.h)
+MESALIB_SUPPORTS_EGL=		yes
+.  else
+MESALIB_SUPPORTS_EGL=		no
+.  endif
+.  if exists(${X11BASE}/lib/libOSMesa.so)
+MESALIB_SUPPORTS_OSMESA=	yes
+.  else
+MESALIB_SUPPORTS_OSMESA=	no
+.  endif
+.  if exists(${X11BASE}/include/GLES2/gl2.h)
+MESALIB_SUPPORTS_GLESv2=	yes
+.  else
+MESALIB_SUPPORTS_GLESv2=	no
+.  endif
+.endif
+
 .include "../../mk/pkg-build-options.mk"
 
-.if ${X11_TYPE} == "native" && ${OPSYS} != "Cygwin" && exists(${X11BASE}/lib/pkgconfig/dri.pc)
-PKG_BUILD_OPTIONS.MesaLib+=	dri
+.if !empty(PKG_BUILD_OPTIONS.MesaLib:Mwayland)
+.  include "../../devel/wayland/buildlink3.mk"
 .endif
 
-.if !empty(PKG_BUILD_OPTIONS.MesaLib:Mdri)
-.  include "../../graphics/MesaLib/dri.mk"
+.if !empty(PKG_BUILD_OPTIONS.MesaLib:Mx11)
+.  include "../../x11/libX11/buildlink3.mk"
+.  include "../../x11/libXdamage/buildlink3.mk"
+.  include "../../x11/libXext/buildlink3.mk"
+.  include "../../x11/libXfixes/buildlink3.mk"
+.  include "../../x11/libXrandr/buildlink3.mk"
+.  include "../../x11/libXxf86vm/buildlink3.mk"
+.  include "../../x11/libxcb/buildlink3.mk"
+.  include "../../x11/libxshmfence/buildlink3.mk"
+.  include "../../x11/xcb-proto/buildlink3.mk"
+.  include "../../x11/xorgproto/buildlink3.mk"
 .endif
 
-.if	${X11_TYPE} == "modular" && !empty(PKG_BUILD_OPTIONS.MesaLib:Mdri) && ${OPSYS} != "Darwin" ||	\
-	${X11_TYPE} == "native"  && exists(${X11BASE}/include/EGL/egl.h)
-MESALIB_SUPPORTS_EGL=	yes
-.else
-MESALIB_SUPPORTS_EGL=	no
+.if ${OPSYS} != "Darwin" && ${OPSYS} != "Cygwin"
+.  include "../../x11/libdrm/buildlink3.mk"
 .endif
 
-.include "../../x11/libXext/buildlink3.mk"
+.include "../../mk/pthread.buildlink3.mk"
 .endif # MESALIB_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-MesaLib

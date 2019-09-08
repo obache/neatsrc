@@ -1,4 +1,4 @@
-# $NetBSD: builtin.mk,v 1.21 2018/01/14 14:58:38 rillig Exp $
+# $NetBSD: builtin.mk,v 1.23 2019/08/30 19:06:34 nia Exp $
 
 BUILTIN_PKG:=	MesaLib
 
@@ -22,6 +22,7 @@ IS_BUILTIN.MesaLib=	yes
 IS_BUILTIN.MesaLib=	no
 .  endif
 .endif
+
 MAKEVARS+=	IS_BUILTIN.MesaLib
 
 ###
@@ -33,7 +34,7 @@ MAKEVARS+=	IS_BUILTIN.MesaLib
 .  if empty(PC_GL:M__nonexistent__)
 BUILTIN_VERSION.Mesa!= ${SED} -n -e 's/Version: //p' ${PC_GL}
 .  elif empty(H_MESALIB:M__nonexistent__)
-.    include "../../graphics/Mesa/version.mk"
+.    include "version.mk"
 .  else # ?
 BUILTIN_VERSION.Mesa:= 0.something-weird-happened
 .  endif
@@ -67,6 +68,7 @@ USE_BUILTIN.MesaLib!=							\
 .    endif
 .  endif  # PREFER.MesaLib
 .endif
+
 MAKEVARS+=	USE_BUILTIN.MesaLib
 
 ###

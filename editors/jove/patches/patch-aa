@@ -1,4 +1,4 @@
-$NetBSD: patch-aa,v 1.5 2013/04/28 03:19:36 dholland Exp $
+$NetBSD: patch-aa,v 1.7 2019/09/06 14:52:39 christos Exp $
 
 - configure for pkgsrc
 - honor PKGMANDIR
@@ -60,7 +60,7 @@ $NetBSD: patch-aa,v 1.5 2013/04/28 03:19:36 dholland Exp $
  # and perhaps -g3 for more debugging info with optimization.
  
 -OPTFLAGS = -O
-+OPTFLAGS += -O2
++OPTFLAGS += -O2 -g
  
  # For making dependencies under BSD systems
  DEPENDFLAG = -M

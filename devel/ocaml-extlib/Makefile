@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.18 2019/05/15 09:01:03 jaapb Exp $
+# $NetBSD: Makefile,v 1.20 2019/08/27 19:56:03 schmonz Exp $
 
 VERSION=	1.7.6
 PKGREVISION=	1

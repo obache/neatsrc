@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.74 2019/07/21 22:25:33 wiz Exp $
+# $NetBSD: Makefile,v 1.80 2019/09/05 12:39:56 hauke Exp $
 
-DISTNAME=	samba-4.10.5
-PKGREVISION=	3
+DISTNAME=	samba-4.10.8
+PKGREVISION=	1
 CATEGORIES=	net
-MASTER_SITES=	http://download.samba.org/pub/samba/stable/
-
+MASTER_SITES=	https://download.samba.org/pub/samba/stable/
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.samba.org/
+HOMEPAGE=	https://www.samba.org/
 COMMENT=	SMB/CIFS protocol server suite
 LICENSE=	gnu-gpl-v3
 
@@ -208,6 +207,7 @@ REPLACE_PYTHON+=	source4/scripting/bin/*
 .include "../../archivers/libarchive/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../databases/ldb/buildlink3.mk"
+.include "../../databases/lmdb/buildlink3.mk"
 .include "../../devel/cmocka/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/popt/buildlink3.mk"

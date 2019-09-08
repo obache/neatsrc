@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.10 2014/08/13 10:56:35 adam Exp $
+# $NetBSD: Makefile,v 1.12 2019/08/30 15:30:44 ryoon Exp $
 
+PKGREVISION=		1
 BOOST_PACKAGE=		jam
 BOOST_COMMENT=		(Boost.Jam utility)
 BOOST_CONFIG=		no
@@ -18,12 +19,17 @@ SUBST_SED.bb=		-e 's,/usr/share/boost-build,${PREFIX}/share/boost-build,g'
 
 INSTALLATION_DIRS=	bin
 
+# Fix RELRO build
+CXXFLAGS+=	${LDFLAGS}
+
 do-build:
 	cd ${WRKSRC}/tools/build/src/engine && \
 		${SETENV} ${MAKE_ENV} ${SH} ./build.sh ${BOOST_TOOLSET}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/tools/build/src/engine/bin.*/bjam \
+	${INSTALL_PROGRAM} ${WRKSRC}/tools/build/src/engine/b2 \
+		${DESTDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/tools/build/src/engine/bjam \
 		${DESTDIR}${PREFIX}/bin
 
 .include "../../mk/bsd.pkg.mk"
