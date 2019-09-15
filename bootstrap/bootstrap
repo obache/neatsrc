@@ -1,6 +1,6 @@
 #! /bin/sh
 
-# $NetBSD: bootstrap,v 1.269 2019/07/21 20:14:06 rillig Exp $
+# $NetBSD: bootstrap,v 1.271 2019/09/13 20:10:35 rillig Exp $
 #
 # Copyright (c) 2001-2011 Alistair Crooks <agc@NetBSD.org>
 # All rights reserved.
@@ -387,8 +387,7 @@ checkarg_sane_absolute_path()
 	*/)	die "ERROR: The argument to $2 must not end in /." ;;
 	*//* | */. | */./* | */.. | */../*)
 		die "ERROR: The path $1 (from $2) must be canonical." ;;
-	/*)	[ "${3-}" = "may-be-symlink" ] \
-		|| checkarg_no_symlink_path "$1" "$2" ;;
+	/*)	checkarg_no_symlink_path "$1" "$2" ;;
 	*)	die "ERROR: The argument to $2 must be an absolute path." ;;
 	esac
 }
@@ -409,8 +408,8 @@ checkarg_no_symlink_path()
 	Given path   : $1
 	Resolved path: $_realdir${1##${_dir}}
 
-	Several packages assume that the given path of $2 stays the same when
-	symlinks are resolved. When that assumption fails, they will:
+	Several packages assume that the given path of $2 stays the same
+	when symlinks are resolved. When that assumption fails, they will:
 
 	* not find some include files or libraries during the build phase
 	  since the files from dependencies are not installed in
@@ -546,7 +545,7 @@ checkarg_sane_absolute_path "$sysconfdir" "--sysconfdir"
 checkarg_sane_absolute_path "$varbase" "--varbase"
 checkarg_sane_relative_path "$pkginfodir" "--pkginfodir"
 checkarg_sane_relative_path "$pkgmandir" "--pkgmandir"
-checkarg_sane_absolute_path "$wrkdir" "--workdir" may-be-symlink
+checkarg_sane_absolute_path "$wrkdir" "--workdir"
 
 if [ -z "$package_target" ]; then
 	if [ "$bootstrap_updating" = "yes" ]; then

@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.57 2017/09/18 05:31:02 taca Exp $
+# $NetBSD: Makefile,v 1.59 2019/09/14 18:37:04 tsutsui Exp $
 #
 
 DISTNAME=	rabbit-2.2.1
+PKGREVISION=	1
 CATEGORIES=	graphics ruby
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -9,11 +10,11 @@ HOMEPAGE=	http://rabbit-shocker.org/
 COMMENT=	RD-document-based presentation application
 LICENSE=	gnu-gpl-v2 # or later
 
-DEPENDS+=	${RUBY_PKGPREFIX}-gnome2-gtk>=0.90.3:../../x11/ruby-gnome2-gtk
-DEPENDS+=	${RUBY_PKGPREFIX}-gnome2-gio>=1.1.4:../../devel/ruby-gnome2-gio
-#DEPENDS+=	${RUBY_PKGPREFIX}-gnome2-gdk_pixbuf>=3.0.9:../../graphics/ruby-gnome2-gdk_pixbuf
-DEPENDS+=	${RUBY_PKGPREFIX}-gnome2-rsvg-[0-9]*:../../graphics/ruby-gnome2-rsvg
-DEPENDS+=	${RUBY_PKGPREFIX}-gnome2-poppler-[0-9]*:../../print/ruby-gnome2-poppler
+DEPENDS+=	${RUBY_PKGPREFIX}-gtk2>=0.90.3:../../x11/ruby-gtk2
+DEPENDS+=	${RUBY_PKGPREFIX}-gio2>=1.1.4:../../devel/ruby-gio2
+#DEPENDS+=	${RUBY_PKGPREFIX}-gdk_pixbuf2>=3.0.9:../../graphics/ruby-gdk_pixbuf2
+DEPENDS+=	${RUBY_PKGPREFIX}-rsvg2-[0-9]*:../../graphics/ruby-rsvg2
+DEPENDS+=	${RUBY_PKGPREFIX}-poppler-[0-9]*:../../print/ruby-poppler
 DEPENDS+=	${RUBY_PKGPREFIX}-hikidoc-[0-9]*:../../textproc/ruby-hikidoc
 DEPENDS+=	${RUBY_PKGPREFIX}-nokogiri-[0-9]*:../../textproc/ruby-nokogiri
 DEPENDS+=	${RUBY_PKGPREFIX}-rdtool>=0.6.20:../../textproc/ruby-rdtool

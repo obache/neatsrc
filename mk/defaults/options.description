@@ -7,6 +7,7 @@ ads			Enable Windows Active Directory support.
 afterstep		Enable afterstep support.
 agg			Enable agg support.
 alsa			Enable ALSA support.
+always-libgcc		Install libgcc unconditionally, even if it's older.
 amanda-bsdtar		Enable bsdtar support in Amanda.
 amanda-dump-snap	If dump supports -X, use it.
 amanda-fqdn		Use FQDN's in Amanda.
@@ -435,7 +436,7 @@ lcms			Enable Light Color Management System support.
 ldap			Enable LDAP support.
 lensfun			Enable lensfun (camera lens distortion rectifyer) support.
 libao			Enable the platform-independent 'ao' audio library.
-libappindicator3	Enable libappindicator3 support.
+libappindicator		Enable libappindicator support.
 libchamplain		Enable libchamplain support (map widget).
 libdbi			Enable libdbi support (similar p5-DBI but for C).
 libdrm			Enable libdrm support.
@@ -671,8 +672,8 @@ sbcl			Use Steel-Bank Common Lisp.
 scapy-crypto		Add in crypto support.
 scapy-pyx		Add in py-X support.
 scim			Enable Smart Common Input Method support.
-sdl			Use SDL as display library.
-sdl2			Use SDL2 as display library.
+sdl			Use SDL as the audio/display library.
+sdl2			Use SDL2 as the audio/display library.
 seamonkey		Use seamonkey as gecko rendering engine.
 secret			Enable libsecret support.
 sendmail-ffr-tls	Enable various FFR_TLS_* options.  FFR = For Future Release.

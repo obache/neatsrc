@@ -337,7 +337,11 @@ func (s *Suite) Test_MkLine__aligned(c *check.C) {
 		varalign.Finish()
 
 		output := t.Output()
-		t.CheckEquals(output == "", expected)
+		if expected {
+			t.CheckEquals(output, "")
+		} else if output == "" {
+			t.Check(output, check.Not(check.Equals), "")
+		}
 	}
 
 	// The first line uses a space for indentation, which is typical of
@@ -380,12 +384,17 @@ func (s *Suite) Test_MkLine__aligned(c *check.C) {
 	// The second line is indented less than the first line. This looks
 	// confusing to the human reader because the actual values do not
 	// appear in a rectangular shape in the source code.
-	//
-	// There are several cases though where the follow-up lines are quite
-	// long, therefore it is allowed to indent them with a single tab.
 	test(
-		"CONFIGURE_ENV+=\tAWK=${AWK:Q} \\",
-		"\tSED=${SED:Q}",
+		"VAR.param=\tvalue \\",
+		"\t10........20........30........40........50........60...4",
+		false)
+
+	// The second line is indented with a single tab because otherwise
+	// it would be longer than 72 characters. In this case it is ok to
+	// use the smaller indentation.
+	test(
+		"VAR.param=\tvalue \\",
+		"\t10........20........30........40........50........60....5",
 		true)
 
 	// Having the continuation line in column 0 looks even more confusing.
@@ -397,7 +406,7 @@ func (s *Suite) Test_MkLine__aligned(c *check.C) {
 	// Longer continuation lines may use internal indentation to represent
 	// AWK or shell code.
 	test(
-		"GENERATE_PLIST+=\t/pattern/ {\\",
+		"GENERATE_PLIST+=\t/pattern/ { \\",
 		"\t\t\t  action(); \\",
 		"\t\t\t}",
 		true)
@@ -405,7 +414,7 @@ func (s *Suite) Test_MkLine__aligned(c *check.C) {
 	// If any of the continuation lines is indented less than the first
 	// line, it looks confusing.
 	test(
-		"GENERATE_PLIST+=\t/pattern/ {\\",
+		"GENERATE_PLIST+=\t/pattern/ { \\",
 		"\t  action(); \\",
 		"\t}",
 		false)
@@ -415,7 +424,7 @@ func (s *Suite) Test_MkLine__aligned(c *check.C) {
 	// the right as the second line.
 	test(
 		"GENERATE_PLIST+= \\",
-		"\t/pattern/ {\\",
+		"\t/pattern/ { \\",
 		"\t  action(); \\",
 		"\t}",
 		true)
@@ -424,7 +433,7 @@ func (s *Suite) Test_MkLine__aligned(c *check.C) {
 	// line is not indented properly.
 	test(
 		"GENERATE_PLIST+= \\",
-		"\t/pattern/ {\\",
+		"\t/pattern/ { \\",
 		"\t  action(); \\",
 		"}",
 		false)
@@ -639,7 +648,7 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__eval_shell(c *check.C) {
 	MkLineChecker{mklines, mklines.mklines[1]}.checkVarassign()
 
 	t.CheckOutputLines(
-		"NOTE: builtin.mk:2: The :Q operator isn't necessary for ${BUILTIN_PKG.Xfixes} here.")
+		"NOTE: builtin.mk:2: The :Q modifier isn't necessary for ${BUILTIN_PKG.Xfixes} here.")
 }
 
 func (s *Suite) Test_MkLine_VariableNeedsQuoting__command_in_single_quotes(c *check.C) {
@@ -921,7 +930,7 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__tool_in_CONFIGURE_ENV(c *check
 	// for invoking the tool properly (e.g. touch -t).
 	// Therefore, no quoting is necessary.
 	t.CheckOutputLines(
-		"NOTE: Makefile:3: The :Q operator isn't necessary for ${TOOLS_TAR} here.")
+		"NOTE: Makefile:3: The :Q modifier isn't necessary for ${TOOLS_TAR} here.")
 }
 
 func (s *Suite) Test_MkLine_VariableNeedsQuoting__backticks(c *check.C) {
@@ -1014,6 +1023,28 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__tool_in_shell_command(c *check
 
 	mklines.Check()
 
+	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__D_and_U_modifiers(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpVartypes()
+
+	mklines := t.SetUpFileMkLines("Makefile",
+		MkCvsID,
+		"",
+		"SUBST_CLASSES+=\t\turl2pkg",
+		"SUBST_STAGE.url2pkg=\tpost-configure",
+		"SUBST_FILES.url2pkg=\t*.in",
+		"SUBST_SED.url2pkg=\t-e 's,@PKGSRCDIR@,${BATCH:D/usr/pkg:U${PKGSRCDIR}},'")
+
+	mklines.Check()
+
+	// Since the value of the BATCH variable does not appear in the output,
+	// there should be no warning saying that "BATCH should be quoted".
+	// If any, the variable PKGSRCDIR should be quoted, but that is a safe
+	// variable since it is a pkgsrc-specific directory.
 	t.CheckOutputEmpty()
 }
 

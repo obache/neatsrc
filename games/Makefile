@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.451 2019/09/05 06:46:46 jnemeth Exp $
+# $NetBSD: Makefile,v 1.454 2019/09/12 17:10:47 ryoon Exp $
 #
 
 COMMENT=	Games
@@ -33,6 +33,7 @@ SUBDIR+=	arx-libertatis
 SUBDIR+=	asc
 SUBDIR+=	asciiquarium
 SUBDIR+=	assaultcube
+SUBDIR+=	astromenace
 SUBDIR+=	atomix
 SUBDIR+=	atque
 SUBDIR+=	barrage
@@ -103,6 +104,7 @@ SUBDIR+=	enigma
 SUBDIR+=	etlegacy
 SUBDIR+=	etlegacy-data
 SUBDIR+=	etlegacy-server
+SUBDIR+=	eureka
 SUBDIR+=	eus-demo
 SUBDIR+=	exchess
 SUBDIR+=	exchess-book-medium
@@ -263,6 +265,8 @@ SUBDIR+=	manaplus
 SUBDIR+=	marathon-evil
 SUBDIR+=	marathon-trilogy
 SUBDIR+=	mari0
+SUBDIR+=	megaglest
+SUBDIR+=	megaglest-data
 SUBDIR+=	minami
 SUBDIR+=	minetest
 SUBDIR+=	mirrormagic

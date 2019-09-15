@@ -1,5 +1,5 @@
 #! @PERL5@
-# $NetBSD: url2pkg.pl,v 1.63 2019/08/18 21:04:37 rillig Exp $
+# $NetBSD: url2pkg.pl,v 1.73 2019/09/13 13:31:39 rillig Exp $
 #
 
 # Copyright (c) 2010 The NetBSD Foundation, Inc.
@@ -29,24 +29,16 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-use feature qw{ switch };
 use strict;
 use warnings;
 
-#
-# Build-time Configuration.
-#
-
-my $make		= "@MAKE@";
-my $libdir		= "@LIBDIR@";
-my $pythonbin		= "@PYTHONBIN@";
+my $make		= '@MAKE@';
+my $libdir		= '@LIBDIR@';
+my $pythonbin		= '@PYTHONBIN@';
+my $pkgsrcdir		= '@PKGSRCDIR@';
 
 use constant true	=> 1;
 use constant false	=> 0;
-
-#
-# Some helper subroutines.
-#
 
 sub run_editor($$) {
 	my ($fname, $lineno) = @_;
@@ -72,71 +64,97 @@ sub var($$$) {
 	return [$name, $op, $value];
 }
 
-sub read_lines($) {
-	my ($filename) = @_;
+sub find_package($) {
+	my ($pkgbase) = @_;
 
-	my @lines;
-	open(F, "<", $filename) or return @lines;
-	while (defined(my $line = <F>)) {
-		chomp($line);
-		push(@lines, $line);
-	}
-	close(F) or die;
-	return @lines;
+	my @candidates = <$pkgsrcdir/*/$pkgbase>;
+	return "" unless @candidates == 1;
+	return $candidates[0] =~ s/\Q$pkgsrcdir\E/..\/../r;
 }
 
-sub write_lines($@) {
-	my ($filename, @lines) = @_;
+sub make(@) {
+	my @args = @_;
+
+	(system { $make } ($make, @args)) == 0 or die;
+}
+
+package Lines;
+
+use constant false => 0;
+use constant true => 1;
+
+sub new($@) {
+	my ($class, @lines) = @_;
+	my $lines = \@lines;
+	bless($lines, $class);
+	return $lines;
+}
+
+sub read_from($$) {
+	my ($class, $filename) = @_;
+
+	my $lines = Lines->new();
+	open(F, "<", $filename) or die;
+	while (defined(my $line = <F>)) {
+		chomp($line);
+		$lines->add($line);
+	}
+	close(F) or die;
+	return $lines;
+}
+
+sub write_to($@) {
+	my ($lines, $filename) = @_;
 
 	open(F, ">", "$filename.tmp") or die;
-	foreach my $line (@lines) {
+	foreach my $line (@$lines) {
 		print F "$line\n";
 	}
 	close(F) or die;
 	rename("$filename.tmp", $filename) or die;
 }
 
-sub find_package($) {
-	my ($pkgbase) = @_;
+sub add($@) {
+	my ($lines, @lines) = @_;
 
-	my @candidates = <../../*/$pkgbase>;
-	return scalar(@candidates) == 1 ? $candidates[0] : "";
+	push(@$lines, @lines);
 }
 
 # appends the given variable assignments to the lines, aligning the
 # variable values vertically.
-sub lines_add_vars($$) {
-	my ($lines, $vars) = @_;
+sub add_vars($@) {
+	my ($lines, @vars) = @_;
 
-	return if scalar(@$vars) == 0;
+	return if @vars == 0;
 
 	my $width = 0;
-	foreach my $var (@$vars) {
+	foreach my $var (@vars) {
 		my ($name, $op, $value) = @$var;
 		next if $value eq "";
 		my $len = (length("$name$op\t") + 7) & -8;
-		$width = ($len > $width) ? $len : $width;
+		$width = $len if $len > $width;
 	}
 
-	foreach my $var (@$vars) {
+	foreach my $var (@vars) {
 		my ($name, $op, $value) = @$var;
 		next if $value eq "";
 		my $tabs = "\t" x (($width - length("$name$op") + 7) / 8);
-		push(@$lines, "$name$op$tabs$value");
+		$lines->add("$name$op$tabs$value");
 	}
-	push(@$lines, "");
+
+	$lines->add("");
 }
 
 # changes the value of an existing variable in the lines.
-sub lines_set($$$) {
+sub set($$$) {
 	my ($lines, $varname, $new_value) = @_;
 
 	my $i = 0;
 	foreach my $line (@$lines) {
-		if ($line =~ qr"^\Q$varname\E(\+?=)([ \t]+)([^#\\]*?)(\s*)(#.*|)$") {
+		if ($line =~ qr"^#?\Q$varname\E(\+?=)([ \t]*)([^#\\]*?)(\s*)(#.*|)$") {
 			my ($op, $indent, $old_value, $space_after_value, $comment) = ($1, $2, $3, $4, $5);
 
-			$lines->[$i] = "$varname$op$indent$new_value$space_after_value$comment";
+			$lines->[$i] = "$varname$op$indent$new_value";
 			return true;
 		}
 		$i++;
@@ -146,15 +164,15 @@ sub lines_set($$$) {
 }
 
 # appends to the value of an existing variable in the lines.
-sub lines_append($$$) {
+sub append($$$) {
 	my ($lines, $varname, $value) = @_;
 
 	return if $value eq "";
 
 	my $i = 0;
 	foreach my $line (@$lines) {
-		if ($line =~ qr"^\Q$varname\E(\+?=)([ \t]+)([^#\\]*)(#.*|)$") {
-			my ($op, $indent, $old_value, $comment) = ($1, $2, $3, $4);
+		if ($line =~ qr"^\Q$varname\E(\+?=)([ \t]*)([^#\\]*?)(\s*)(#.*|)$") {
+			my ($op, $indent, $old_value, $space_after_value, $comment) = ($1, $2, $3, $4, $5);
 
 			my $before = $old_value =~ qr"\S$" ? " " : "";
 			my $after = $comment eq "" ? "" : " ";
@@ -168,7 +186,7 @@ sub lines_append($$$) {
 }
 
 # removes a variable assignment from the lines.
-sub lines_remove($$) {
+sub remove($$) {
 	my ($lines, $varname) = @_;
 
 	my $i = 0;
@@ -183,14 +201,31 @@ sub lines_remove($$) {
 	return false;
 }
 
+# returns the variable value from the only variable assignment, or an empty
+# string.
+sub get($$) {
+	my ($lines, $varname) = @_;
+
+	my $only_value = "";
+	foreach my $line (@$lines) {
+		if ($line =~ qr"^\Q$varname\E(\+?=)([ \t]*)([^#\\]*?)(\s*)(#.*|)$") {
+			my ($op, $indent, $value, $space_after_value, $comment) = ($1, $2, $3, $4, $5);
+
+			return "" if $only_value ne "";
+			$only_value = $value;
+		}
+	}
+	return $only_value;
+}
+
 # removes a variable assignment from the lines if its value is the
 # expected one.
-sub lines_remove_if($$$) {
+sub remove_if($$$) {
 	my ($lines, $varname, $expected_value) = @_;
 
 	my $i = 0;
 	foreach my $line (@$lines) {
-		if ($line =~ qr"^\Q$varname\E(\+?=)([ \t]+)([^#\\]*?)(\s*)(#.*|)$") {
+		if ($line =~ qr"^\Q$varname\E(\+?=)([ \t]*)([^#\\]*?)(\s*)(#.*|)$") {
 			my ($op, $indent, $old_value, $space_after_value, $comment) = ($1, $2, $3, $4, $5);
 
 			if ($old_value eq $expected_value) {
@@ -204,11 +239,18 @@ sub lines_remove_if($$$) {
 	return false;
 }
 
-sub make(@) {
-	my @args = @_;
+sub index($$) {
+	my ($lines, $re) = @_;
 
-	(system { $make } ($make, @args)) == 0 or die;
+	foreach my $i (0 .. $#$lines) {
+		return $i if $lines->[$i] =~ $re;
+	}
+	return -1;
 }
+
+1;
+
+package main;
 
 # The following adjust_* subroutines are called after the distfiles have
 # been downloaded and extracted. They inspect the extracted files
@@ -219,18 +261,18 @@ sub make(@) {
 #
 
 # the package name, including the version number.
-my $distname;
+our $distname;
 
 # the absolute pathname to the working directory, containing
 # the extracted distfiles.
-my $abs_wrkdir;
+our $abs_wrkdir;
 
 # the absolute pathname to a subdirectory of $abs_wrkdir, typically
 # containing package-provided Makefiles or configure scripts.
-my $abs_wrksrc;
+our $abs_wrksrc;
 
-my @wrksrc_files;
-my @wrksrc_dirs;
+our @wrksrc_files;
+our @wrksrc_dirs;
 # the regular files and directories relative to abs_wrksrc.
 
 #
@@ -240,38 +282,45 @@ my @wrksrc_dirs;
 
 # categories for the package, in addition to the usual
 # parent directory.
-my @categories;
+our @categories;
 
 # the dependencies of the package, in the form
 # "package>=version:../../category/package".
-my @depends;
-my @build_depends;
-my @test_depends;
+our @depends;
+our @build_depends;
+our @test_depends;
 
 # .include, interleaved with BUILDLINK3_API_DEPENDS.
 # These lines are added at the bottom of the Makefile.
-my @bl3_lines;
+our @bl3_lines;
 
 # a list of pathnames relative to the package path.
 # All these files will be included at the bottom of the Makefile.
-my @includes;
+our @includes;
 
 # a list of variable assignments that will make up the fourth
 # paragraph of the package Makefile, where the build configuration
 # takes place.
-my @build_vars;
+our @build_vars;
 
 # similar to the @build_vars, but separated by an empty line in
 # the Makefile, thereby forming the fifth paragraph.
-my @extra_vars;
+our @extra_vars;
+
+# variables from the initial Makefile whose values are replaced
+our %update_vars;
 
 # these are inserted below the second paragraph in the Makefile.
-my @todos;
+our @todos;
 
-# the package name, in case it differs from $distname.
-my $pkgname = "";
+# the package name is $pkgname_prefix${DISTNAME$pkgname_transform}.
+our $pkgname_prefix = "";     # example: ${PYPKGPREFIX}-
+our $pkgname_transform = "";  # example: :S,-v,-,
 
-my $regenerate_distinfo = false;
+# all lines of the package Makefile, for direct modification.
+our $makefile_lines;
+
+our $regenerate_distinfo = false;
 
 # Example:
 # add_dependency("DEPENDS", "package", ">=1", "../../category/package");
@@ -298,6 +347,48 @@ sub add_dependency($$$$) {
 		push(@test_depends, $value);
 	} else {
 		push(@todos, "dependency $type $value");
+	}
+}
+
+sub read_dependencies($$$) {
+	my ($cmd, $env, $pkgnameprefix) = @_;
+	my @dep_lines;
+
+	my %prev_ENV = %ENV;
+	foreach my $name (keys %$env) {
+		$ENV{$name} = $env->{$name};
+	}
+	open(DEPS, "$cmd |") or die;
+	%ENV = %prev_ENV;
+
+	while (defined (my $line = <DEPS>)) {
+		chomp($line);
+
+		if ($line =~ qr"^(\w+)\t([^\s:>]+)(>[^\s:]+|)(?::(\.\./\.\./\S+))?$") {
+			push(@dep_lines, [ $1, $2, $3 || ">=0", $4 || "" ]);
+		} elsif ($line =~ qr"^var\t(\S+)\t(.+)$") {
+			$main::update_vars{$1} = $2;
+		} elsif ($line ne "") {
+			printf STDERR "url2pkg: info: unknown dependency line: %s\n", $line;
+		}
+	}
+
+	close(DEPS) or die;
+
+	foreach my $dep_line (@dep_lines) {
+		my ($type, $pkgbase, $constraint, $dir) = @$dep_line;
+
+		if ($dir eq "" && $pkgnameprefix ne "") {
+			$dir = find_package("$pkgnameprefix$pkgbase");
+			if ($dir ne "") {
+				$pkgbase = "$pkgnameprefix$pkgbase";
+			}
+		}
+		if ($dir eq "") {
+			$dir = find_package($pkgbase);
+		}
+
+		add_dependency($type, $pkgbase, $constraint, $dir);
 	}
 }
 
@@ -350,73 +441,75 @@ sub adjust_libtool() {
 	}
 }
 
-sub adjust_perl_module() {
+# Example packages:
+# devel/p5-Algorithm-CheckDigits
+sub adjust_perl_module_Build_PL() {
+
+	read_dependencies("cd '$abs_wrksrc' && perl -I$libdir -I. Build.PL", {}, "");
+
+	push(@build_vars, var("PERL5_MODULE_TYPE", "=", "Module::Build"));
+}
+
+# Example packages:
+# devel/p5-Algorithm-Diff (no dependencies)
+# devel/p5-Carp-Assert-More (dependencies without version numbers)
+# www/p5-HTML-Quoted (dependency with version number)
+sub adjust_perl_module_Makefile_PL() {
+
+	# To avoid fix_up_makefile error for p5-HTML-Quoted, generate Makefile first.
+	system("cd '$abs_wrksrc' && perl -I. Makefile.PL < /dev/null") == 0 or do {};
+
+	read_dependencies("cd '$abs_wrksrc' && perl -I$libdir -I. Makefile.PL", {}, "");
+}
+
+sub adjust_perl_module_homepage($) {
+	my ($url) = @_;
+
+	if ($makefile_lines->get("MASTER_SITES") =~ qr"\$\{MASTER_SITE_PERL_CPAN:") {
+		my $homepage = $makefile_lines->get("HOMEPAGE");
+		if ($homepage ne "" && index($url, $homepage) == 0) {
+			my $module_name = $distname =~ s/-v?[0-9].*//r =~ s/-/::/gr;
+			$makefile_lines->set("HOMEPAGE", "https://metacpan.org/pod/$module_name");
+		}
+	}
+}
+
+sub adjust_perl_module($) {
+	my ($url) = @_;
 
 	if (-f "$abs_wrksrc/Build.PL") {
-
-		# It's a Module::Build module. Dependencies cannot yet be
-		# extracted automatically.
-		push(@todos, "Look for the dependencies in Build.PL.");
-
-		push(@build_vars, var("PERL5_MODULE_TYPE", "=", "Module::Build"));
-
+		adjust_perl_module_Build_PL();
 	} elsif (-f "$abs_wrksrc/Makefile.PL") {
-
-		# To avoid fix_up_makefile error for p5-HTML-Quoted, generate Makefile first.
-		system("cd '$abs_wrksrc' && perl -I. Makefile.PL < /dev/null") or do {};
-
-		open(DEPS, "cd '$abs_wrksrc' && perl -I$libdir -I. Makefile.PL |") or die;
-		while (defined(my $dep = <DEPS>)) {
-			chomp($dep);
-
-			if ($dep =~ qr"^(\w+)\t(\S+)(>\S+|):(\.\./\.\./\S+)$") {
-				add_dependency($1, $2, $3, $4);
-			}
-		}
-		close(DEPS) or die;
-
+		adjust_perl_module_Makefile_PL();
 	} else {
 		return;
 	}
 
-	my $packlist = $distname =~ s/-[0-9].*//r =~ s/-/\//gr;
+	my $packlist = $distname =~ s/-v?[0-9].*//r =~ s/-/\//gr;
 	push(@build_vars, var("PERL5_PACKLIST", "=", "auto/$packlist/.packlist"));
 	push(@includes, "../../lang/perl5/module.mk");
-	$pkgname = "p5-\${DISTNAME}";
+	$pkgname_prefix = "p5-";
 	push(@categories, "perl5");
+	adjust_perl_module_homepage($url);
+
+	unlink("PLIST") or do {};
 }
 
+# Example packages:
+#
+# devel/py-ZopeComponent (dependencies, test dependencies)
 sub adjust_python_module() {
 
 	return unless -f "$abs_wrksrc/setup.py";
 
-	my %old_env = %ENV;
-	$ENV{"PYTHONDONTWRITEBYTECODE"} = "x";
-	$ENV{"PYTHONPATH"} = $libdir;
+	my $cmd = "cd '$abs_wrksrc' && $pythonbin setup.py build";
+	my $env = {
+		"PYTHONDONTWRITEBYTECODE" => "x",
+		"PYTHONPATH"              => $libdir
+	};
+	read_dependencies($cmd, $env, "py-");
 
-	my @dep_lines;
-	open(DEPS, "cd '$abs_wrksrc' && $pythonbin setup.py build |") or die;
-	%ENV = %old_env;
-	while (defined(my $line = <DEPS>)) {
-		chomp($line);
-		if ($line =~ qr"^(\w+)\t(\S+?)(>=.*|)$") {
-			push(@dep_lines, [$1, $2, $3]);
-		}
-	}
-	close(DEPS) or die;
-
-	foreach my $dep_line (@dep_lines) {
-		my ($type, $pkgbase, $constraint) = @$dep_line;
-		my $dep_dir = find_package("py-$pkgbase");
-		if ($dep_dir ne "") {
-			$pkgbase = "py-$pkgbase";
-		} else {
-			$dep_dir = find_package($pkgbase);
-		}
-
-		add_dependency($type, $pkgbase, $constraint, $dep_dir);
-	}
-
+	$pkgname_prefix = "\${PYPKGPREFIX}-";
 	push(@categories, "python");
 	push(@includes, "../../lang/python/egg.mk");
 }
@@ -427,7 +520,7 @@ sub adjust_cargo() {
 	while (defined(my $line = <CONF>)) {
 		# "checksum cargo-package-name cargo-package-version
 		if ($line =~ qr"^\"checksum\s(\S+)\s(\S+)") {
-			push(@build_vars, var("CARGO_CRATE_DEPENDS", "+=", "$2-$3"));
+			push(@build_vars, var("CARGO_CRATE_DEPENDS", "+=", "$1-$2"));
 		}
 	}
 	close(CONF);
@@ -526,21 +619,22 @@ sub generate_initial_package_Makefile_lines($) {
 	}
 
 	if ($url =~ qr"^https://github\.com/") {
-		if ($url =~ qr"^https://github\.com/(.*)/(.*)/archive/(.*)(\.tar\.gz|\.zip)$") {
+		if ($url =~ qr"^https://github\.com/(.+)/(.+)/archive/(.+)(\.tar\.gz|\.zip)$") {
 			my ($org, $proj, $tag, $ext) = ($1, $2, $3, $4);
 
+			$github_project = $proj;
 			$master_sites = "\${MASTER_SITE_GITHUB:=$org/}";
 			$homepage = "https://github.com/$org/$proj/";
-			$github_project = $proj;
 			if (index($tag, $github_project) == -1) {
-				$pkgname = "\${GITHUB_PROJECT}-\${DISTNAME}";
+				$pkgname_prefix = "\${GITHUB_PROJECT}-";
 				$dist_subdir = "\${GITHUB_PROJECT}";
 			}
 			$distfile = "$tag$ext";
 
-		} elsif ($url =~ qr"^https://github\.com/(.*)/(.*)/releases/download/(.*)/(.*)(\.tar\.gz|\.zip)$") {
+		} elsif ($url =~ qr"^https://github\.com/(.+)/(.+)/releases/download/(.+)/(.+)(\.tar\.gz|\.zip)$") {
 			my ($org, $proj, $tag, $base, $ext) = ($1, $2, $3, $4, $5);
 
+			$github_project = $proj;
 			$master_sites = "\${MASTER_SITE_GITHUB:=$org/}";
 			$homepage = "https://github.com/$org/$proj/";
 			if (index($base, $proj) == -1) {
@@ -573,6 +667,12 @@ sub generate_initial_package_Makefile_lines($) {
 		$extract_sufx = "# none";
 	}
 
+	if ($distname =~ qr"^v\d") {
+		$pkgname_transform = ":S,^v,,";
+	} elsif ($distname =~ qr"-v\d" && $distname !~ qr"-v.*-v\d") {
+		$pkgname_transform = ":S,-v,-,";
+	}
+
 	`pwd` =~ qr".*/([^/]+)/[^/]+$" or die;
 	$categories = $1 eq "wip" ? "# TODO: add primary category" : $1;
 
@@ -580,40 +680,44 @@ sub generate_initial_package_Makefile_lines($) {
 		$extract_sufx = "";
 	}
 
-	my @lines;
-	push(@lines, "# \$" . "NetBSD\$");
-	push(@lines, "");
+	my $pkgname = "$pkgname_prefix\${DISTNAME$pkgname_transform}";
+	$pkgname = "" if $pkgname eq "\${DISTNAME}";
 
-	lines_add_vars(\@lines, [
+	my $lines = Lines->new();
+	$lines->add("# \$" . "NetBSD\$");
+	$lines->add("");
+
+	$lines->add_vars(
 		var("GITHUB_PROJECT", "=", $github_project),
 		var("DISTNAME", "=", $distname),
+		var("PKGNAME", "=", $pkgname),
 		var("CATEGORIES", "=", $categories),
 		var("MASTER_SITES", "=", $master_sites),
 		var("GITHUB_RELEASE", "=", $github_release),
 		var("EXTRACT_SUFX", "=", $extract_sufx),
 		var("DIST_SUBDIR", "=", $dist_subdir),
-	]);
+	);
 
-	lines_add_vars(\@lines, [
+	$lines->add_vars(
 		var("MAINTAINER", "=", get_maintainer()),
 		var("HOMEPAGE", "=", $homepage),
 		var("COMMENT", "=", "TODO: Short description of the package"),
 		var("#LICENSE", "=", "# TODO: (see mk/license.mk)"),
-	]);
+	);
 
-	push(@lines, "# url2pkg-marker (please do not remove this line.)");
-	push(@lines, ".include \"../../mk/bsd.pkg.mk\"");
+	$lines->add("# url2pkg-marker (please do not remove this line.)");
+	$lines->add(".include \"../../mk/bsd.pkg.mk\"");
 
-	return @lines;
+	return $lines;
 }
 
 sub generate_initial_package($) {
 	my ($url) = @_;
 
 	rename("Makefile", "Makefile-url2pkg.bak") or do {};
-	write_lines("Makefile", generate_initial_package_Makefile_lines($url));
-	write_lines("PLIST", "\@comment \$" . "NetBSD\$");
-	write_lines("DESCR", ());
+	generate_initial_package_Makefile_lines($url)->write_to("Makefile");
+	Lines->new("\@comment \$" . "NetBSD\$")->write_to("PLIST");
+	Lines->new()->write_to("DESCR");
 	run_editor("Makefile", 5);
 
 	make("distinfo");
@@ -623,65 +727,47 @@ sub generate_initial_package($) {
 sub adjust_lines_python_module($$) {
 	my ($lines, $url) = @_;
 
-	my @initial_lines = generate_initial_package_Makefile_lines($url);
-	my @current_lines = read_lines("Makefile");
+	my $initial_lines = generate_initial_package_Makefile_lines($url);
+	my $current_lines = Lines->read_from("Makefile");
+
+	return unless $initial_lines->get("CATEGORIES") =~ qr"python";
+	my $pkgbase = $initial_lines->get("GITHUB_PROJECT");
+	return if $pkgbase eq "";
+	my $pkgbase1 = substr($pkgbase, 0, 1);
+	my $pkgversion_norev = $initial_lines->get("DISTNAME") =~ s/^v//r;
 
 	# don't risk to overwrite any changes made by the package developer.
-	if (join('\n', @current_lines) ne join('\n', @initial_lines)) {
+	if (join('\n', @$current_lines) ne join('\n', @$initial_lines)) {
 		splice(@$lines, -2, 0, "# TODO: Migrate MASTER_SITES to PYPI");
 		return;
 	}
 
-	my %old;
-	foreach my $line (@initial_lines) {
-		if ($line =~ qr"^(\w+)(\+?=)([ \t]+)([^#\\]*?)(\s*)(#.*|)$") {
-			my ($varname, $op, $indent, $value, $space_after_value, $comment) = ($1, $2, $3, $4, $5, $6);
+	my $tx_lines = Lines->new(@$makefile_lines);
+	if ($tx_lines->remove("GITHUB_PROJECT")
+		&& $tx_lines->set("DISTNAME", "$pkgbase-$pkgversion_norev")
+		&& $tx_lines->set("PKGNAME", "\${PYPKGPREFIX}-\${DISTNAME}")
+		&& $tx_lines->set("MASTER_SITES", "\${MASTER_SITE_PYPI:=$pkgbase1/$pkgbase/}")
+		&& $tx_lines->remove("DIST_SUBDIR")
+		&& ($tx_lines->remove_if("EXTRACT_SUFX", ".zip") || true)) {
 
-			if ($op eq "=") {
-				$old{$varname} = $value;
-			}
-		}
-	}
-
-	my $pkgbase = $old{"GITHUB_PROJECT"};
-	my $pkgbase1 = substr($pkgbase, 0, 1);
-	my $pkgversion_norev = $old{"DISTNAME"} =~ s/^v//r;
-
-	my @lines = @$lines;
-	if (lines_remove(\@lines, "GITHUB_PROJECT")
-		&& lines_set(\@lines, "DISTNAME", "$pkgbase-$pkgversion_norev")
-		&& lines_set(\@lines, "PKGNAME", "\${PYPKGPREFIX}-\${DISTNAME}")
-		&& lines_set(\@lines, "MASTER_SITES", "\${MASTER_SITE_PYPI:=$pkgbase1/$pkgbase/}")
-		&& lines_remove(\@lines, "DIST_SUBDIR")
-		&& (lines_remove_if(\@lines, "EXTRACT_SUFX", ".zip") || true)) {
-
-		@$lines = @lines;
+		@$makefile_lines = @$tx_lines;
 		$regenerate_distinfo = true
 	}
 }
 
-sub adjust_package_from_extracted_distfiles($)
-{
-	my ($url) = @_;
-
-	chomp($abs_wrkdir = `$make show-var VARNAME=WRKDIR`);
-
-	#
-	# Determine the value of WRKSRC.
-	#
+# sets $abs_wrksrc depending on $abs_wrkdir and the files found there.
+sub determine_wrksrc() {
 	my @files = ();
 	opendir(WRKDIR, $abs_wrkdir) or die;
 	while (defined(my $f = readdir(WRKDIR))) {
-		no if $] >= 5.018, warnings => "experimental::smartmatch";
-		given ($f) {
-			next when qr"^\.";
-			next when "pax_global_header";
-			next when "package.xml";
-			next when qr".*\.gemspec";
-			default { push(@files, $f) }
-		}
+		next if $f =~ qr"^\."
+			|| $f eq "pax_global_header"
+			|| $f eq "package.xml"
+			|| $f =~ qr"\.gemspec$";
+		push(@files, $f);
 	}
 	closedir(WRKDIR);
+
 	if (@files == 1) {
 		if ($files[0] ne $distname) {
 			push(@build_vars, var("WRKSRC", "=", "\${WRKDIR}/$files[0]"));
@@ -692,79 +778,77 @@ sub adjust_package_from_extracted_distfiles($)
 		    ((@files > 1) ? " # More than one possibility -- please check manually." : "")));
 		$abs_wrksrc = $abs_wrkdir;
 	}
+}
 
-	chomp(@wrksrc_files = `cd "$abs_wrksrc" && find * -type f`);
-	chomp(@wrksrc_dirs = `cd "$abs_wrksrc" && find * -type d`);
+sub adjust_package_from_extracted_distfiles($) {
+	my ($url) = @_;
+
+	print("url2pkg> Adjusting the Makefile\n");
+
+	chomp($abs_wrkdir = `$make show-var VARNAME=WRKDIR`);
+	determine_wrksrc();
+	chomp(@wrksrc_files = `cd "$abs_wrksrc" && find * -type f -print`);
+	chomp(@wrksrc_dirs = `cd "$abs_wrksrc" && find * -type d -print`);
+
+	$makefile_lines = Lines->read_from("Makefile");
 
 	adjust_configure();
 	adjust_cmake();
 	adjust_meson();
 	adjust_gconf2_schemas();
 	adjust_libtool();
-	adjust_perl_module();
+	adjust_perl_module($url);
 	adjust_python_module();
 	adjust_cargo();
 	adjust_pkg_config();
 	adjust_po();
 	adjust_use_languages();
 
-	print("url2pkg> Adjusting the Makefile\n");
-
-	my $seen_marker = false;
-	my @lines;
-
-	open(MF1, "<", "Makefile") or die;
-
-	# Copy the user-edited part of the Makefile.
-	while (defined(my $line = <MF1>)) {
-		chomp($line);
-
-		if ($line =~ qr"^# url2pkg-marker\b") {
-			$seen_marker = true;
-			last;
-		}
-		push(@lines, $line);
-
-		if ($pkgname ne "" && $line =~ qr"^DISTNAME=(\t+)") {
-			push(@lines, "PKGNAME=$1$pkgname");
-		}
+	my $marker_index = $makefile_lines->index(qr"^# url2pkg-marker");
+	if ($marker_index == -1) {
+		die("$0: ERROR: didn't find the url2pkg marker in the Makefile.\n");
 	}
-	if (!$seen_marker) {
-		die("$0: ERROR: didn't find the url2pkg marker in the file.\n");
+
+	my $lines = Lines->new(@$makefile_lines[0 .. $marker_index - 1]);
+
+	if ($lines->index(qr"^PKGNAME=") == -1) {
+		my $distname_index = $lines->index(qr"^DISTNAME=(\t+)");
+		if ($distname_index != -1) {
+			my $pkgname_line = "PKGNAME=\t$pkgname_prefix\${DISTNAME$pkgname_transform}";
+			splice(@$lines, $distname_index + 1, 0, $pkgname_line);
+		}
 	}
 
 	if (@todos) {
 		foreach my $todo (@todos) {
-			push(@lines, "# TODO: $todo");
+			$lines->add("# TODO: $todo");
 		}
-		push(@lines, "");
+		$lines->add("");
 	}
 
 	my @depend_vars;
 	push(@depend_vars, map { var("BUILD_DEPENDS", "+=", $_) } @build_depends);
 	push(@depend_vars, map { var("DEPENDS", "+=", $_) } @depends);
 	push(@depend_vars, map { var("TEST_DEPENDS", "+=", $_) } @test_depends);
-	lines_add_vars(\@lines, \@depend_vars);
+	$lines->add_vars(@depend_vars);
 
-	lines_add_vars(\@lines, \@build_vars);
-	lines_add_vars(\@lines, \@extra_vars);
+	$lines->add_vars(@build_vars);
+	$lines->add_vars(@extra_vars);
 
-	push(@lines, @bl3_lines);
-	push(@lines, map { $_ = ".include \"$_\"" } @includes);
+	$lines->add(@bl3_lines);
+	$lines->add(map { $_ = ".include \"$_\"" } @includes);
 
-	# Copy the rest of the user-edited part of the Makefile.
-	while (defined(my $line = <MF1>)) {
-		chomp($line);
-		push(@lines, $line);
+	$lines->add($makefile_lines->[$marker_index + 1 .. $#$makefile_lines]);
+
+	$lines->append("CATEGORIES", join(" ", @categories));
+
+	adjust_lines_python_module($lines, $url);
+
+	foreach my $varname (keys %update_vars) {
+		$lines->set($varname, $update_vars{$varname});
 	}
 
-	close(MF1);
-
-	lines_append(\@lines, "CATEGORIES", join(" ", @categories));
-
-	adjust_lines_python_module(\@lines, $url);
-
-	write_lines("Makefile", @lines);
+	$lines->write_to("Makefile");
 
 	if ($regenerate_distinfo) {
 		make("distinfo");

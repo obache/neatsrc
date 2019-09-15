@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.275 2019/09/01 14:02:26 ryoon Exp $
+# $NetBSD: Makefile,v 1.277 2019/09/14 18:11:40 tsutsui Exp $
 #
 
 COMMENT=	Multimedia utilities
@@ -46,7 +46,6 @@ SUBDIR+=	flvstreamer
 SUBDIR+=	frei0r
 SUBDIR+=	fuppes
 SUBDIR+=	fxtv
-SUBDIR+=	gecko-mediaplayer
 SUBDIR+=	ggrab
 SUBDIR+=	gmediaserver
 SUBDIR+=	gmencoder
@@ -192,8 +191,8 @@ SUBDIR+=	py-ming
 SUBDIR+=	py-mpegdash
 SUBDIR+=	regionset
 SUBDIR+=	replex
-SUBDIR+=	ruby-gnome2-clutter-gstreamer
-SUBDIR+=	ruby-gnome2-gstreamer
+SUBDIR+=	ruby-clutter-gstreamer
+SUBDIR+=	ruby-gstreamer
 SUBDIR+=	ruby-ming
 SUBDIR+=	schroedinger
 SUBDIR+=	smpeg

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.829 2019/08/15 08:45:07 fcambus Exp $
+# $NetBSD: Makefile,v 1.831 2019/09/09 12:21:44 tm Exp $
 #
 
 COMMENT=	System utilities
@@ -391,9 +391,9 @@ SUBDIR+=	mtools
 SUBDIR+=	mtoolsfm
 SUBDIR+=	mtscan
 SUBDIR+=	mtx
-SUBDIR+=	munin-doc
+SUBDIR+=	munin-common
+SUBDIR+=	munin-master
 SUBDIR+=	munin-node
-SUBDIR+=	munin-server
 SUBDIR+=	nautilus
 SUBDIR+=	nautilus-sendto
 SUBDIR+=	nbase
@@ -671,6 +671,7 @@ SUBDIR+=	u-boot-pocketchip
 SUBDIR+=	u-boot-rock64
 SUBDIR+=	u-boot-rockpro64
 SUBDIR+=	u-boot-sopine-baseboard
+SUBDIR+=	u-boot-tinker
 SUBDIR+=	u-boot-zynq-zybo-z7
 SUBDIR+=	upower
 SUBDIR+=	ups-nut

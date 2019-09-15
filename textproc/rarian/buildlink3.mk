@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.3 2009/03/20 19:25:32 joerg Exp $
+# $NetBSD: buildlink3.mk,v 1.4 2019/09/12 20:52:58 rillig Exp $
 
 BUILDLINK_TREE+=	rarian
 

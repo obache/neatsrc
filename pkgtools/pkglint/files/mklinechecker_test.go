@@ -5,6 +5,26 @@ import (
 	"runtime"
 )
 
+func (s *Suite) Test_MkLineChecker_checkEmptyContinuation(c *check.C) {
+	t := s.Init(c)
+
+	mklines := t.SetUpFileMkLines("filename.mk",
+		MkCvsID,
+		"# line 1 \\",
+		"",
+		"# line 2")
+
+	// Don't check this when loading a file, since otherwise the infrastructure
+	// files could possibly get this warning. Sure, they should be fixed, but
+	// it's not in the focus of the package maintainer.
+	t.CheckOutputEmpty()
+
+	mklines.Check()
+
+	t.CheckOutputLines(
+		"WARN: ~/filename.mk:3: This line looks empty but continues the previous line.")
+}
+
 func (s *Suite) Test_MkLineChecker_checkVarassignLeft(c *check.C) {
 	t := s.Init(c)
 
@@ -1171,7 +1191,7 @@ func (s *Suite) Test_MkLineChecker_checkVarassignRightVaruse(c *check.C) {
 
 	t.CheckOutputLines(
 		"WARN: module.mk:2: Please use PREFIX instead of LOCALBASE.",
-		"NOTE: module.mk:2: The :Q operator isn't necessary for ${LOCALBASE} here.")
+		"NOTE: module.mk:2: The :Q modifier isn't necessary for ${LOCALBASE} here.")
 }
 
 func (s *Suite) Test_MkLineChecker_checkVarusePermissions(c *check.C) {
@@ -2255,7 +2275,7 @@ func (s *Suite) Test_MkLineChecker_checkVarUseQuoting__q_not_needed(c *check.C) 
 	G.Check(pkg)
 
 	t.CheckOutputLines(
-		"NOTE: ~/category/package/Makefile:6: The :Q operator isn't necessary for ${HOMEPAGE} here.")
+		"NOTE: ~/category/package/Makefile:6: The :Q modifier isn't necessary for ${HOMEPAGE} here.")
 }
 
 func (s *Suite) Test_MkLineChecker_checkVarUseQuoting__undefined_list_in_word_in_shell_command(c *check.C) {

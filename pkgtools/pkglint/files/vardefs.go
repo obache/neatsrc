@@ -305,17 +305,13 @@ func (reg *VarTypeRegistry) cmdline(varname string, basicType *BasicType) {
 func (reg *VarTypeRegistry) infralist(varname string, basicType *BasicType) {
 	reg.acllist(varname, basicType,
 		List,
-		"*: set, append")
+		"*: set, append, use")
 }
 
 // compilerLanguages reads the available languages that are typically
 // bundled in a single compiler framework, such as GCC or Clang.
 func (reg *VarTypeRegistry) compilerLanguages(src *Pkgsrc) *BasicType {
-	options := NotEmpty
-	if !G.Testing {
-		options = NotEmpty | MustSucceed
-	}
-	mklines := LoadMk(src.File("mk/compiler.mk"), options)
+	mklines := src.LoadMkInfra("mk/compiler.mk", NotEmpty|MustSucceed)
 
 	languages := make(map[string]bool)
 	if mklines != nil {
@@ -1047,6 +1043,7 @@ func (reg *VarTypeRegistry) Init(src *Pkgsrc) {
 	reg.pkg("DYNAMIC_SITES_CMD", BtShellCommand)
 	reg.pkg("DYNAMIC_SITES_SCRIPT", BtPathname)
 	reg.sysbl3("ECHO", BtShellCommand)
+	reg.sysbl3("ECHO_BUILDLINK_MSG", BtShellCommand)
 	reg.sysbl3("ECHO_MSG", BtShellCommand)
 	reg.sysbl3("ECHO_N", BtShellCommand)
 	reg.pkg("EGDIR", BtPathname) // Not defined anywhere but used in many places like this.
@@ -1141,6 +1138,7 @@ func (reg *VarTypeRegistry) Init(src *Pkgsrc) {
 	reg.pkglistbl3rat("INCOMPAT_CURSES", BtMachinePlatformPattern)
 	reg.sys("INFO_DIR", BtPathname) // relative to PREFIX
 	reg.pkg("INFO_FILES", BtYes)
+	reg.sys("INFO_MSG", BtShellCommand)
 	reg.sys("INSTALL", BtShellCommand)
 	reg.pkglist("INSTALLATION_DIRS", BtPrefixPathname)
 	reg.pkg("INSTALLATION_DIRS_FROM_PLIST", BtYes)
@@ -1233,11 +1231,7 @@ func (reg *VarTypeRegistry) Init(src *Pkgsrc) {
 	reg.pkglist("MASTER_SITES", BtFetchURL)
 
 	for _, filename := range []string{"mk/fetch/sites.mk", "mk/fetch/fetch.mk"} {
-		loadOptions := NotEmpty | MustSucceed
-		if G.Testing {
-			loadOptions = NotEmpty
-		}
-		sitesMk := LoadMk(src.File(filename), loadOptions)
+		sitesMk := src.LoadMkInfra(filename, NotEmpty|MustSucceed)
 		if sitesMk != nil {
 			sitesMk.ForEach(func(mkline *MkLine) {
 				if mkline.IsVarassign() && hasPrefix(mkline.Varname(), "MASTER_SITE_") {
@@ -1595,6 +1589,7 @@ func (reg *VarTypeRegistry) Init(src *Pkgsrc) {
 	reg.syslist("TOOLS_NOOP", BtTool)
 	reg.sys("TOOLS_PATH.*", BtPathname)
 	reg.sysload("TOOLS_PLATFORM.*", BtShellCommand)
+	reg.sysload("TOOLS_SHELL", BtShellCommand)
 	reg.syslist("TOUCH_FLAGS", BtShellWord)
 	reg.pkglist("UAC_REQD_EXECS", BtPrefixPathname)
 	reg.pkglistbl3("UNLIMIT_RESOURCES",
@@ -1682,6 +1677,7 @@ func (reg *VarTypeRegistry) Init(src *Pkgsrc) {
 	reg.infralist("_SYS_VARS.*", BtVariableName)
 	reg.infralist("_DEF_VARS.*", BtVariableName)
 	reg.infralist("_USE_VARS.*", BtVariableName)
+	reg.infralist("_IGN_VARS.*", BtVariableNamePattern)
 	reg.infralist("_SORTED_VARS.*", BtVariableNamePattern)
 	reg.infralist("_LISTED_VARS.*", BtVariableNamePattern)
 }

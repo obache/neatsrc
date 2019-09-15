@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.95 2019/08/18 13:32:21 rillig Exp $
+# $NetBSD: Makefile,v 1.100 2019/09/12 18:23:00 rillig Exp $
 
-PKGNAME=	url2pkg-2.32
+PKGNAME=	url2pkg-2.36
 CATEGORIES=	pkgtools
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	rillig@NetBSD.org
 HOMEPAGE=	http://www.NetBSD.org/docs/pkgsrc/creating.html
 COMMENT=	Tool to automate initial steps in building a package
 LICENSE=	2-clause-bsd
@@ -29,15 +29,12 @@ SUBST_MESSAGE.up=	Replacing variable placeholders
 SUBST_FILES.up=		url2pkg.pl MakeMaker.pm
 SUBST_VARS.up=		MAKE PERL5 PYTHONBIN
 SUBST_SED.up+=		-e 's,@LIBDIR@,${PREFIX}/lib/url2pkg,g'
-.if defined(BATCH)
-SUBST_SED.up+=		-e 's,@PKGSRCDIR@,/usr/pkgsrc,g'
-.else
-SUBST_VARS.up+=		PKGSRCDIR
-.endif
+SUBST_SED.up+=		-e 's,@PKGSRCDIR@,${BATCH:D/usr/pkgsrc:U${PKGSRCDIR}},g'
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/url2pkg.pl ${DESTDIR}${PREFIX}/bin/url2pkg
 	${INSTALL_MAN} ${FILESDIR}/url2pkg.8 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
+	${INSTALL_DATA} ${WRKSRC}/Build.pm ${DESTDIR}${PREFIX}/lib/url2pkg/Module/
 	${INSTALL_DATA} ${WRKSRC}/MakeMaker.pm ${DESTDIR}${PREFIX}/lib/url2pkg/ExtUtils/
 	${INSTALL_DATA} ${WRKSRC}/setuptools.py ${DESTDIR}${PREFIX}/lib/url2pkg/
 

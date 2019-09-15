@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.745 2019/08/26 14:41:52 adam Exp $
+# $NetBSD: Makefile,v 1.747 2019/09/14 19:14:22 nia Exp $
 #
 
 COMMENT=	Desktop publishing
@@ -39,8 +39,6 @@ SUBDIR+=	electrix
 SUBDIR+=	enscript
 SUBDIR+=	epdfview
 SUBDIR+=	epstool
-SUBDIR+=	evince
-SUBDIR+=	evince-nautilus
 SUBDIR+=	evince3
 SUBDIR+=	fig2dev
 SUBDIR+=	flpsed
@@ -143,10 +141,10 @@ SUBDIR+=	qpdfview
 SUBDIR+=	rlpr
 SUBDIR+=	rtf2latex
 SUBDIR+=	rtf2latex2e
-SUBDIR+=	ruby-gnome2-poppler
 SUBDIR+=	ruby-pdf-core
 SUBDIR+=	ruby-pdf-reader
 SUBDIR+=	ruby-pdf-writer
+SUBDIR+=	ruby-poppler
 SUBDIR+=	ruby-prawn
 SUBDIR+=	scribus-qt4
 SUBDIR+=	seetexk

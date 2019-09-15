@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2019/08/27 06:21:18 markd Exp $
+# $NetBSD: Makefile,v 1.13 2019/09/13 13:45:22 rillig Exp $
 #
 
-PKGNAME=	texlive2pkg-1.7
+PKGNAME=	texlive2pkg-1.8
 CATEGORIES=	pkgtools
 
 MAINTAINER=	markd@NetBSD.org
@@ -10,6 +10,7 @@ COMMENT=	Tool to automate initial steps in building a texlive package
 LICENSE=	modified-bsd
 
 WRKSRC=			${WRKDIR}
+NO_CHECKSUM=		yes
 NO_BUILD=		yes
 USE_LANGUAGES=		# none
 USE_TOOLS+=		ftp:run perl:run xzcat:run

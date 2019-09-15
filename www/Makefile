@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1402 2019/09/02 07:33:23 adam Exp $
+# $NetBSD: Makefile,v 1.1405 2019/09/14 18:11:41 tsutsui Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -12,7 +12,7 @@ SUBDIR+=	R-miniUI
 SUBDIR+=	R-shiny
 SUBDIR+=	R-shinyjs
 SUBDIR+=	SOGo
-SUBDIR+=	SOGo3
+SUBDIR+=	SOGo4
 SUBDIR+=	SpeedyCGI
 SUBDIR+=	adzap
 SUBDIR+=	aipo
@@ -205,6 +205,7 @@ SUBDIR+=	mongrel-console
 SUBDIR+=	mongrel-upload-progress
 SUBDIR+=	mono-xsp
 SUBDIR+=	moodle
+SUBDIR+=	motyl
 SUBDIR+=	mserv-php
 SUBDIR+=	nanoblogger
 SUBDIR+=	nanoblogger-extra
@@ -843,8 +844,6 @@ SUBDIR+=	ruby-faraday
 SUBDIR+=	ruby-faraday_middleware
 SUBDIR+=	ruby-faye-websocket
 SUBDIR+=	ruby-fcgi
-SUBDIR+=	ruby-gnome2-webkit-gtk
-SUBDIR+=	ruby-gnome2-webkit-gtk2
 SUBDIR+=	ruby-htmlsplit
 SUBDIR+=	ruby-http
 SUBDIR+=	ruby-http-cookie
@@ -916,6 +915,8 @@ SUBDIR+=	ruby-staticmatic
 SUBDIR+=	ruby-tag
 SUBDIR+=	ruby-unicorn
 SUBDIR+=	ruby-url_mount
+SUBDIR+=	ruby-webkit-gtk
+SUBDIR+=	ruby-webkit-gtk2
 SUBDIR+=	ruby-webrobots
 SUBDIR+=	ruby-websocket
 SUBDIR+=	ruby-websocket-driver

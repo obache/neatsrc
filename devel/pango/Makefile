@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.223 2019/08/17 04:36:27 ryoon Exp $
+# $NetBSD: Makefile,v 1.226 2019/09/11 23:37:44 gutteridge Exp $
 
-DISTNAME=	pango-1.44.5
+DISTNAME=	pango-1.44.6
 CATEGORIES=	devel fonts
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/pango/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -12,8 +12,6 @@ LICENSE=	gnu-lgpl-v2
 
 TOOL_DEPENDS+=		help2man-[0-9]*:../../converters/help2man
 
-# 1.42.4: one test failure, test-layout
-TEST_TARGET=		check
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		gmake pkg-config
 INSTALLATION_DIRS=	${PKGMANDIR}/man1
@@ -28,8 +26,13 @@ MAKE_ENV+=		LD_LIBRARY_PATH=${WRKSRC}/output/${PKGBASE}
 CHECK_FILES_SKIP+=	${PREFIX}/libdata/pango/pango.modules
 CHECK_PORTABILITY_SKIP+= docs/check.docs
 
+BUILDLINK_TRANSFORM+=	rm:-Werror=implicit-fallthrough # clang10svn
+
 post-install:
-	${MV} ${DESTDIR}${PREFIX}/share/man/man1/pango-view.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/pango-view.1
+	${MV} ${DESTDIR}${PREFIX}/share/man/man1/pango-view.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/pango-view.1 || ${TRUE}
+
+do-test:
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ninja -C output test
 
 .include "options.mk"
 .include "../../graphics/librsvg/available.mk"
