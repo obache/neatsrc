@@ -4,6 +4,8 @@ BUILTIN_PKG:=	expat
 
 BUILTIN_FIND_HEADERS_VAR:=	H_EXPAT
 BUILTIN_FIND_HEADERS.H_EXPAT=	expat.h
+BUILTIN_FIND_LIBS:=		expat
+BUILTIN_FIND_PKGCONFIGS:=	expat
 
 .include "../../mk/buildlink3/bsd.builtin.mk"
 
@@ -25,14 +27,17 @@ MAKEVARS+=	IS_BUILTIN.expat
 ### a package name to represent the built-in package.
 ###
 .if !defined(BUILTIN_PKG.expat) && \
-    !empty(IS_BUILTIN.expat:M[yY][eE][sS]) && \
-    empty(H_EXPAT:M__nonexistent__)
+    !empty(IS_BUILTIN.expat:M[yY][eE][sS])
+.  if ${BUILTIN_PKGCONFIG_FOUND.expat} == "yes"
+BUILTIN_VERSION.expat=	${BUILTIN_PKGCONFIG_VERSION.expat}
+.  elif empty(H_EXPAT:M__nonexistent__)
 BUILTIN_VERSION.expat!=							\
 	${AWK} '/\#define[ 	]*XML_MAJOR_VERSION/ { M = $$3 }	\
 		/\#define[ 	]*XML_MINOR_VERSION/ { m = "."$$3 }	\
 		/\#define[ 	]*XML_MICRO_VERSION/ { u = "."$$3 }	\
 		END { printf "%s%s%s\n", M, m, u }'			\
 		${H_EXPAT}
+.  endif
 BUILTIN_PKG.expat=	expat-${BUILTIN_VERSION.expat}
 .endif
 MAKEVARS+=	BUILTIN_PKG.expat
@@ -74,42 +79,21 @@ CHECK_BUILTIN.expat?=	no
 .  if !empty(USE_BUILTIN.expat:M[nN][oO])
 BUILDLINK_API_DEPENDS.expat+=	expat>=1.95.4
 .  else
+.    if ${BUILTIN_PKGCONFIG_FOUND.expat} == "yes"
+BUIDLINK_PREFIX.expat?=	${BUILTIN_PKGCONFIG_PREFIX.expat}
+.    endif
 .    if !empty(H_EXPAT:M${X11BASE}/*)
 .      include "../../mk/x11.builtin.mk"
 .    elif !empty(H_EXPAT:M/usr/*)
-BUILDLINK_PREFIX.expat=	/usr
+BUILDLINK_PREFIX.expat?=	/usr
 .    endif
+BUILTIN_FAKE_PC_FILES.expat=	expat
+FAKE_PC_SRC.expat=	../../textproc/expat/files/expat.pc.in
+FAKE_PC_SUBST_SED.expat+=	-e s,@PACKAGE_VERSION@,${BUILTIN_VERSION.expat},g
+FAKE_PC_SUBST_SED.expat+=	-e s,@prefix@,${BUILDLINK_PREFIX.expat},g
+FAKE_PC_SUBST_SED.expat+=	-e s,@exec_prefix@,${BUILDLINK_PREFIX.expat},g
+FAKE_PC_SUBST_SED.expat+=	-e s,@includedir@,${BUILTIN_HEADER_FOUND_DIR.H_EXPAT},g
+FAKE_PC_SUBST_SED.expat+=	-e s,@libdir@,${BUILTIN_LIB_FOUND_DIR.expat},g
 .  endif
 
 .endif	# CHECK_BUILTIN.expat
-
-# Fake pkg-config for builtin expat on NetBSD
-
-.if !empty(USE_BUILTIN.expat:M[yY][eE][sS])
-.  if !empty(USE_TOOLS:C/:.*//:Mpkg-config)
-do-configure-pre-hook: override-expat-pkgconfig
-
-BLKDIR_PKGCFG=	${BUILDLINK_DIR}/lib/pkgconfig
-EXPAT_PKGCFGF=	expat.pc
-
-override-expat-pkgconfig: override-message-expat-pkgconfig
-override-message-expat-pkgconfig:
-	@${STEP_MSG} "Generating pkg-config file for builtin expat package."
-
-override-expat-pkgconfig:
-	${RUN}						\
-	${MKDIR} ${BLKDIR_PKGCFG};			\
-	{						\
-	${ECHO} "prefix=${BUILDLINK_PREFIX.expat}";		\
-	${ECHO} "exec_prefix=\$${prefix}";		\
-	${ECHO} "libdir=\$${exec_prefix}/lib";		\
-	${ECHO} "includedir=\$${prefix}/include";	\
-	${ECHO} "";					\
-	${ECHO} "Name: expat";				\
-	${ECHO} "Description: expat XML parser";	\
-	${ECHO} "Version: ${BUILTIN_VERSION.expat}";	\
-	${ECHO} "Libs: ${COMPILER_RPATH_FLAG}\$${libdir} -L\$${libdir} -lexpat";	\
-	${ECHO} "Cflags: -I\$${includedir}";		\
-	} >> ${BLKDIR_PKGCFG}/${EXPAT_PKGCFGF};
-.  endif
-.endif
