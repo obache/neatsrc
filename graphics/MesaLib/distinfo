@@ -50,5 +50,6 @@ SHA1 (patch-src_util_disk__cache.c) = cc0b29780dba5d5b5e43c0798336f16a1f0008de
 SHA1 (patch-src_util_ralloc.c) = d311bfd9ed7e673d72e050668d351c1e6552cdc8
 SHA1 (patch-src_util_strndup.h) = 73f49694ca48ad6b9a9d8346c5b84fddec2463bd
 SHA1 (patch-src_util_u__atomic.h) = 31d4514538ef5ee53012695eb5c66134aaec981e
+SHA1 (patch-src_util_u__process.c) = ad666989978cdafcb59c8d5d60a7504cef227a3f
 SHA1 (patch-src_util_u__queue.c) = ed1ea3f6fc37e9a64894a3e865c48691b6e01b2c
 SHA1 (patch-src_util_u__thread.h) = f0453485bb62d0b7c00a1b840cfce2726ebcbfd2
