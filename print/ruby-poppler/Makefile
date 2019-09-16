@@ -7,8 +7,8 @@ CATEGORIES=		print
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 
-CONFLICTS+=		ruby-gnome2-poppler-[0-9]*
-SUPERSEDES+=		ruby-gnome2-poppler-[0-9]*
+CONFLICTS+=		${RUBY_PKGPREFIX}-gnome2-poppler>=3.0.7nb1
+SUPERSEDES+=		${RUBY_PKGPREFIX}-gnome2-poppler>=3.0.7nb1
 
 DEPENDS+=		${RUBY_PKGPREFIX}-gio2>=${VERSION}:../../devel/ruby-gio2
 DEPENDS+=		${RUBY_PKGPREFIX}-cairo-gobject>=${VERSION}:../../graphics/ruby-cairo-gobject

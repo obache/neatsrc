@@ -7,12 +7,12 @@ CATEGORIES=		www
 
 MAINTAINER=		tsutsui@NetBSD.org
 
-CONFLICTS+=		ruby-gnome2-webkit-gtk2-[0-9]*
-SUPERSEDES+=		ruby-gnome2-webkit-gtk2-[0-9]*
+CONFLICTS+=		${RUBY_PKGPREFIX}-gnome2-webkit-gtk2>=3.0.7nb1
+SUPERSEDES+=		${RUBY_PKGPREFIX}-gnome2-webkit-gtk2>=3.0.7nb1
 
 DEPENDS+=	${RUBY_PKGPREFIX}-gtk2>=${VERSION}:../../x11/ruby-gtk2
 DEPENDS+=	${RUBY_PKGPREFIX}-gobject-introspection>=${VERSION}:../../devel/ruby-gobject-introspection
-DEPENDS+=	webkit24-gtk>=1.10.2nb8:../../www/webkit24-gtk
+DEPENDS+=	webkit1-gtk>=1.10.2nb8:../../www/webkit24-gtk
 
 .include "../../meta-pkgs/ruby-gnome/Makefile.common"
 .include "../../lang/ruby/gem.mk"

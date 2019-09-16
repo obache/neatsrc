@@ -7,8 +7,8 @@ CATEGORIES=		x11
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 
-CONFLICTS+=		ruby-gnome2-gtksourceview2-[0-9]*
-SUPERSEDES+=		ruby-gnome2-gtksourceview2-[0-9]*
+CONFLICTS+=		${RUBY_PKGPREFIX}-gnome2-gtksourceview2>=3.0.7nb1
+SUPERSEDES+=		${RUBY_PKGPREFIX}-gnome2-gtksourceview2>=3.0.7nb1
 
 DEPENDS+=		${RUBY_PKGPREFIX}-gtk2>=${VERSION}:../../x11/ruby-gtk2
 

@@ -7,8 +7,8 @@ CATEGORIES=		graphics devel
 
 MAINTAINER=		tsutsui@NetBSD.org
 
-CONFLICTS+=		ruby-gnome2-gdkpixbuf-[0-9]*
-SUPERSEDES+=		ruby-gnome2-gdkpixbuf-[0-9]*
+CONFLICTS+=		${RUBY_PKGPREFIX}-gnome2-gdkpixbuf>=3.0.7nb1
+SUPERSEDES+=		${RUBY_PKGPREFIX}-gnome2-gdkpixbuf>=3.0.7nb1
 
 DEPENDS+=		${RUBY_PKGPREFIX}-gio2>=${VERSION}:../../devel/ruby-gio2
 DEPENDS+=		gdk-pixbuf2>=2.36.4:../../graphics/gdk-pixbuf2

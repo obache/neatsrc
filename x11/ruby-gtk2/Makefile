@@ -7,8 +7,8 @@ CATEGORIES=		x11
 
 MAINTAINER=		tsutsui@NetBSD.org
 
-CONFLICTS+=		ruby-gnome2-gtk-[0-9]*
-SUPERSEDES+=		ruby-gnome2-gtk-[0-9]*
+CONFLICTS+=		${RUBY_PKGPREFIX}-gnome2-gtk>=3.0.7nb1
+SUPERSEDES+=		${RUBY_PKGPREFIX}-gnome2-gtk>=3.0.7nb1
 
 DEPENDS+=		${RUBY_PKGPREFIX}-atk>=${VERSION}:../../devel/ruby-atk
 DEPENDS+=		${RUBY_PKGPREFIX}-pango>=${VERSION}:../../devel/ruby-pango

@@ -7,8 +7,8 @@ CATEGORIES=		devel
 
 MAINTAINER=		tsutsui@NetBSD.org
 
-CONFLICTS+=		ruby-gnome2-glib-[0-9]*
-SUPERSEDES+=		ruby-gnome2-glib-[0-9]*
+CONFLICTS+=		${RUBY_PKGPREFIX}-gnome2-glib>=3.0.7nb1
+SUPERSEDES+=		${RUBY_PKGPREFIX}-gnome2-glib>=3.0.7nb1
 
 DEPENDS+=		${RUBY_PKGPREFIX}-native-package-installer>=1.0.3:../../devel/ruby-native-package-installer
 DEPENDS+=		${RUBY_PKGPREFIX}-pkg-config>=1.3.5:../../devel/ruby-pkg-config

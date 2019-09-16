@@ -7,8 +7,8 @@ CATEGORIES=		graphics gnome
 
 MAINTAINER=		tsutsui@NetBSD.org
 
-CONFLICTS+=		ruby-gnome2-cairo-gobject-[0-9]*
-SUPERSEDES+=		ruby-gnome2-cairo-gobject-[0-9]*
+CONFLICTS+=		${RUBY_PKGPREFIX}-gnome2-cairo-gobject>=3.0.7nb1
+SUPERSEDES+=		${RUBY_PKGPREFIX}-gnome2-cairo-gobject>=3.0.7nb1
 
 DEPENDS+=		${RUBY_PKGPREFIX}-glib2>=${VERSION}:../../devel/ruby-glib2
 DEPENDS+=		${RUBY_PKGPREFIX}-cairo>=1.16.2:../../graphics/ruby-cairo

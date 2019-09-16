@@ -7,8 +7,8 @@ CATEGORIES=		graphics
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 
-CONFLICTS+=		ruby-gnome2-clutter-gstreamer-[0-9]*
-SUPERSEDES+=		ruby-gnome2-clutter-gstreamer-[0-9]*
+CONFLICTS+=		${RUBY_PKGPREFIX}-gnome2-clutter-gstreamer>=3.0.7nb1
+SUPERSEDES+=		${RUBY_PKGPREFIX}-gnome2-clutter-gstreamer>=3.0.7nb1
 
 DEPENDS+=	${RUBY_PKGPREFIX}-clutter>=${VERSION}:../../graphics/ruby-clutter
 DEPENDS+=	${RUBY_PKGPREFIX}-gdk_pixbuf2>=${VERSION}:../../graphics/ruby-gdk_pixbuf2

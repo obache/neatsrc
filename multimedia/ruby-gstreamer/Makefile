@@ -7,8 +7,8 @@ CATEGORIES=		multimedia
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 
-CONFLICTS+=		ruby-gnome2-gstreamer-[0-9]*
-SUPERSEDES+=		ruby-gnome2-gstreamer-[0-9]*
+CONFLICTS+=		${RUBY_PKGPREFIX}-gnome2-gstreamer>=3.0.7nb1
+SUPERSEDES+=		${RUBY_PKGPREFIX}-gnome2-gstreamer>=3.0.7nb1
 
 DEPENDS+=		${RUBY_PKGPREFIX}-gobject-introspection>=${VERSION}:../../devel/ruby-gobject-introspection
 DEPENDS+=		gst-plugins1-base-[0-9]*:../../multimedia/gst-plugins1-base

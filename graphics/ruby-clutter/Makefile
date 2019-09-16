@@ -7,8 +7,8 @@ CATEGORIES=		graphics
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 
-CONFLICTS+=		ruby-gnome2-clutter-[0-9]*
-SUPERSEDES+=		ruby-gnome2-clutter-[0-9]*
+CONFLICTS+=		${RUBY_PKGPREFIX}-gnome2-clutter>=3.0.7nb1
+SUPERSEDES+=		${RUBY_PKGPREFIX}-gnome2-clutter>=3.0.7nb1
 
 DEPENDS+=	${RUBY_PKGPREFIX}-gobject-introspection>=${VERSION}:../../devel/ruby-gobject-introspection
 DEPENDS+=	${RUBY_PKGPREFIX}-pango>=${VERSION}:../../devel/ruby-pango

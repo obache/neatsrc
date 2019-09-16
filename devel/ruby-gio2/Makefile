@@ -7,8 +7,8 @@ CATEGORIES=		devel
 
 MAINTAINER=		tsutsui@NetBSD.org
 
-CONFLICTS+=		ruby-gnome2-gio-[0-9]*
-SUPERSEDES+=		ruby-gnome2-gio-[0-9]*
+CONFLICTS+=		${RUBY_PKGPREFIX}-gnome2-gio>=3.0.7nb1
+SUPERSEDES+=		${RUBY_PKGPREFIX}-gnome2-gio>=3.0.7nb1
 
 DEPENDS+=		${RUBY_PKGPREFIX}-gobject-introspection>=${VERSION}:../../devel/ruby-gobject-introspection
 
