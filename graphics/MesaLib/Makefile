@@ -149,7 +149,6 @@ MESON_ARGS+=	-Dshared-glapi=true
 MESON_ARGS+=	-Dgallium-xvmc=false
 
 CPPFLAGS+=	-DHAVE_NOATEXIT
-CPPFLAGS+=	-DSYSCONFDIR=${PKG_SYSCONFDIR}
 
 # https://gitlab.freedesktop.org/mesa/mesa/merge_requests/1854
 BUILDLINK_TRANSFORM+=		rm:-Werror=return-type
