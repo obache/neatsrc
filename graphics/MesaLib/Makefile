@@ -16,17 +16,16 @@ USE_TOOLS+=	bison flex pkg-config xgettext
 USE_LANGUAGES=	c99 c++
 USE_LIBTOOL=	yes
 
-PKGCONFIG_OVERRIDE+=	src/egl/main/egl.pc.in
-PKGCONFIG_OVERRIDE+=	src/gallium/targets/d3dadapter9/d3d.pc.in
-PKGCONFIG_OVERRIDE+=	src/gallium/targets/osmesa/osmesa.pc.in
-PKGCONFIG_OVERRIDE+=	src/gallium/targets/xa/xatracker.pc.in
-PKGCONFIG_OVERRIDE+=	src/gbm/main/gbm.pc.in
-PKGCONFIG_OVERRIDE+=	src/glx/windows/windowsdriproto.pc.in
-PKGCONFIG_OVERRIDE+=	src/mapi/es1api/glesv1_cm.pc.in
-PKGCONFIG_OVERRIDE+=	src/mapi/es2api/glesv2.pc.in
-PKGCONFIG_OVERRIDE+=	src/mesa/drivers/dri/dri.pc.in
-PKGCONFIG_OVERRIDE+=	src/mesa/drivers/osmesa/osmesa.pc.in
-PKGCONFIG_OVERRIDE+=	src/mesa/gl.pc.in
+PKGCONFIG_OVERRIDE+=	output/meson-private/dri.pc
+PKGCONFIG_OVERRIDE+=	output/meson-private/egl.pc
+PKGCONFIG_OVERRIDE+=	output/meson-private/gbm.pc
+PKGCONFIG_OVERRIDE+=	output/meson-private/gl.pc
+PKGCONFIG_OVERRIDE+=	output/meson-private/glesv1_cm.pc
+PKGCONFIG_OVERRIDE+=	output/meson-private/glesv2.pc
+PKGCONFIG_OVERRIDE+=	output/meson-private/osmesa.pc
+PKGCONFIG_OVERRIDE+=	output/meson-private/xatracker.pc
+
+PKGCONFIG_OVERRIDE_STAGE=	post-configure
 
 SUBST_CLASSES+=		py
 SUBST_STAGE.py=		pre-configure
