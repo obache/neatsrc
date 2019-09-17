@@ -39,7 +39,9 @@ BUILTIN_PKGCONFIG_FOUND.${_pkg_}!=    \
 .        if ${BUILTIN_PKGCONFIG_FOUND.${_pkg_}} == "yes"
 BUILTIN_PKGCONFIG_FILE.${_pkg_}=	${_path_}/pkgconfig/${_pkg_}.pc
 BUILTIN_PKGCONFIG_PREFIX.${_pkg_}!=	\
-		${SED} -n -e 's/^prefix=//p' ${BUILTIN_PKGCONFIG_FILE.${_pkg_}}
+		prefix=`${SED} -n -e 's/^prefix=//p' ${BUILTIN_PKGCONFIG_FILE.${_pkg_}}`; \
+		[ -n "$${prefix}" ] || prefix=`dirname ${_path_}`; \
+		echo $${prefix}
 BUILTIN_PKGCONFIG_VERSION.${_pkg_}!=	\
 		${SED} -n -e 's/^Version: //p' ${BUILTIN_PKGCONFIG_FILE.${_pkg_}}
 .        endif
