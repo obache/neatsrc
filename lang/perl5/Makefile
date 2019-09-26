@@ -10,80 +10,79 @@ CONFLICTS+=	perl-base-[0-9]* perl-thread-[0-9]*
 # CONFLICTS packages older than CORE modules version.
 # based on 'corelist -v ${PKGVERSION}'
 # update based on 'corelist -diff ${PREV_PKGVERSION} ${PKGVERSION}'
-CONFLICTS+=	p5-Archive-Tar<2.28
+CONFLICTS+=	p5-Archive-Tar<2.32
 CONFLICTS+=	p5-Attribute-Handlers<1.01
 CONFLICTS+=	p5-AutoLoader<5.74
-CONFLICTS+=	p5-CPAN<2.2000			# 2.20.00
+CONFLICTS+=	p5-CPAN<2.2200			# 2.20.00
 CONFLICTS+=	p5-CPAN-Meta<2.150010
 CONFLICTS+=	p5-CPAN-Meta-Requirements<2.140
 CONFLICTS+=	p5-CPAN-Meta-YAML<0.018
-CONFLICTS+=	p5-Compress-Raw-Bzip2<2.074
-CONFLICTS+=	p5-Compress-Raw-Zlib<2.076
-CONFLICTS+=	p5-DB_File<1.840
-CONFLICTS+=	p5-Devel-PPPort<3.40
+CONFLICTS+=	p5-Compress-Raw-Bzip2<2.084
+CONFLICTS+=	p5-Compress-Raw-Zlib<2.084
+CONFLICTS+=	p5-DB_File<1.843
+CONFLICTS+=	p5-Devel-PPPort<3.52
 CONFLICTS+=	p5-Digest<1.17.01		# 1.17_01
 CONFLICTS+=	p5-Digest-MD5<2.55
-CONFLICTS+=	p5-Digest-SHA<5.96
-CONFLICTS+=	p5-Encode<2.97
-CONFLICTS+=	p5-ExtUtils-CBuilder<0.28.02.30	# 0.280230
+CONFLICTS+=	p5-Digest-SHA<6.02
+CONFLICTS+=	p5-Encode<3.01
+CONFLICTS+=	p5-ExtUtils-CBuilder<0.28.02.31	# 0.280231
 CONFLICTS+=	p5-ExtUtils-Command<7.34
 CONFLICTS+=	p5-ExtUtils-Embed<1.35
 CONFLICTS+=	p5-ExtUtils-Install<2.14
 CONFLICTS+=	p5-ExtUtils-MakeMaker<7.34
-CONFLICTS+=	p5-ExtUtils-Manifest<1.70
-CONFLICTS+=	p5-ExtUtils-ParseXS<3.39
-CONFLICTS+=	p5-File-Path<2.15
-CONFLICTS+=	p5-File-Temp<0.23.04	# 0.2304
+CONFLICTS+=	p5-ExtUtils-Manifest<1.72
+CONFLICTS+=	p5-ExtUtils-ParseXS<3.40
+CONFLICTS+=	p5-File-Path<2.16
+CONFLICTS+=	p5-File-Temp<0.23.09	# 0.2309
 CONFLICTS+=	p5-Getopt-Long<2.50
-CONFLICTS+=	p5-HTTP-Tiny<0.070
+CONFLICTS+=	p5-HTTP-Tiny<0.076
 CONFLICTS+=	p5-I18N-LangTags<0.43
 CONFLICTS+=	p5-IO<1.3900			# 1.39
-CONFLICTS+=	p5-IO-Compress<2.074		# IO::Compress::*, Compress::*
+CONFLICTS+=	p5-IO-Compress<2.084		# IO::Compress::*, Compress::*
 CONFLICTS+=	p5-IO-Zlib<1.10
-CONFLICTS+=	p5-IPC-Cmd<1.00
+CONFLICTS+=	p5-IPC-Cmd<1.02
 CONFLICTS+=	p5-IPC-SysV<2.07
-CONFLICTS+=	p5-JSON-PP<2.97001
-CONFLICTS+=	p5-Locale-Codes<3.56
+CONFLICTS+=	p5-JSON-PP<4.02
 CONFLICTS+=	p5-Locale-Maketext<1.29
 CONFLICTS+=	p5-Locale-Maketext-Simple<0.21.01	# 0.21_01
 CONFLICTS+=	p5-MIME-Base64<3.15
 CONFLICTS+=	p5-Math-Complex<1.59.01			# 5901
 CONFLICTS+=	p5-Memoize<1.03.01
-CONFLICTS+=	p5-Module-CoreList<5.20190419
-CONFLICTS+=	p5-Module-Load<0.32
+CONFLICTS+=	p5-Module-CoreList<5.20190522
+CONFLICTS+=	p5-Module-Load<0.34
 CONFLICTS+=	p5-NEXT<0.67.01				# 1.67_01
 CONFLICTS+=	p5-Parse-CPAN-Meta<2.150010
 CONFLICTS+=	p5-Pod-Escapes<1.07
 CONFLICTS+=	p5-Pod-Parser<1.63
 CONFLICTS+=	p5-Pod-Simple<3.35
 CONFLICTS+=	p5-Pod-Usage<1.69
-CONFLICTS+=	p5-Storable<3.08.01			# 3.08_01
+CONFLICTS+=	p5-Storable<3.15
 CONFLICTS+=	p5-Sys-Syslog<0.35
 CONFLICTS+=	p5-Term-ANSIColor<4.06
 CONFLICTS+=	p5-Term-Cap<1.17
 #CONFLICTS+=	p5-Term-ReadLine<1.17	# devel/p5-Term-ReadLine is -Gnu
 CONFLICTS+=	p5-Test-Harness<3.38
-CONFLICTS+=	p5-Test-Simple<1.302133
+CONFLICTS+=	p5-Test-Simple<1.302162
 CONFLICTS+=	p5-Text-Tabs+Wrap<2013.0523	# Text::Tabs + Text::Wrap
 CONFLICTS+=	p5-Tie-File<1.02
 CONFLICTS+=	p5-Tie-RefHash<1.39
-CONFLICTS+=	p5-Time-HiRes<1.9759
-CONFLICTS+=	p5-Time-Local<1.25
-CONFLICTS+=	p5-Time-Piece<1.32.04		# 1.3204
-CONFLICTS+=	p5-Unicode-Collate<1.25
+CONFLICTS+=	p5-Time-HiRes<1.9760
+CONFLICTS+=	p5-Time-Local<1.28
+CONFLICTS+=	p5-Time-Piece<1.33
+CONFLICTS+=	p5-Unicode-Collate<1.27
 CONFLICTS+=	p5-Unicode-Normalize<1.26
 CONFLICTS+=	p5-XSLoader<0.30
 CONFLICTS+=	p5-autodie<2.29
 CONFLICTS+=	p5-constant<1.33
-CONFLICTS+=	p5-experimental<0.019
-CONFLICTS+=	p5-parent<0.236
-CONFLICTS+=	p5-version<0.9923
+CONFLICTS+=	p5-experimental<0.020
+CONFLICTS+=	p5-parent<0.237
+CONFLICTS+=	p5-version<0.9924
 
 SUPERSEDES+=	p5-Tie-File<=1.02
 SUPERSEDES+=	p5-Memoize<=1.03.01
-SUPERSEDES+=	p5-I18N-LangTags<=0.42
-SUPERSEDES+=	p5-Locale-Maketext<=1.28
-SUPERSEDES+=	p5-experimental<=0.016
+SUPERSEDES+=	p5-I18N-LangTags<=0.43
+SUPERSEDES+=	p5-Locale-Maketext<=1.29
+SUPERSEDES+=	p5-experimental<=0.020
 
 # XXX: requires that gcc use an external perl to avoid circular dependencies
 USE_GCC_RUNTIME=	yes
