@@ -92,7 +92,7 @@ share/doc/groonga/en/html/_static/favicon.ico
 share/doc/groonga/en/html/_static/file.png
 share/doc/groonga/en/html/_static/groonga.css
 share/doc/groonga/en/html/_static/header-background.png
-share/doc/groonga/en/html/_static/jquery-3.2.1.js
+share/doc/groonga/en/html/_static/jquery-3.4.1.js
 share/doc/groonga/en/html/_static/jquery.js
 share/doc/groonga/en/html/_static/language_data.js
 share/doc/groonga/en/html/_static/logo.png
@@ -397,7 +397,7 @@ share/doc/groonga/ja/html/_static/favicon.ico
 share/doc/groonga/ja/html/_static/file.png
 share/doc/groonga/ja/html/_static/groonga.css
 share/doc/groonga/ja/html/_static/header-background.png
-share/doc/groonga/ja/html/_static/jquery-3.2.1.js
+share/doc/groonga/ja/html/_static/jquery-3.4.1.js
 share/doc/groonga/ja/html/_static/jquery.js
 share/doc/groonga/ja/html/_static/language_data.js
 share/doc/groonga/ja/html/_static/logo.png
