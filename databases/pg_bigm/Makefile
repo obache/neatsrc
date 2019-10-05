@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	pg_bigm-1.2-20161011
+DISTNAME=	pg_bigm-1.2-20191003
 PKGNAME=	postgresql${PGSQL_VERSION}-${DISTNAME:C/-([0-9]*)$/.\1/}
 CATEGORIES=	databases
-MASTER_SITES=	${MASTER_SITE_OSDN:=pgbigm/66565/}
+MASTER_SITES=	${MASTER_SITE_OSDN:=pgbigm/71710/}
 
 HOMEPAGE=	http://pgbigm.osdn.jp/
 COMMENT=	PostgreSQL extension to create bigram index for full text search
