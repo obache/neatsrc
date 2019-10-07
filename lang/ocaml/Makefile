@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.128 2019/08/27 05:37:38 jaapb Exp $
+# $NetBSD: Makefile,v 1.130 2019/10/04 10:33:21 maya Exp $
 
 .include "Makefile.common"
 
-PKGREVISION=		1
+PKGREVISION=		2
 
 BUILD_TARGET=		world
 MAKE_JOBS_SAFE=		no
@@ -38,7 +38,7 @@ PLIST.ocaml-stub=	yes
 BUILD_TARGET+=		opt opt.opt
 PLIST.ocaml-opt=	yes
 .  if empty(MACHINE_PLATFORM:MDarwin-*-powerpc) && \
-      empty(MACHINE_PLATFORM:MSunOS-*-i386) && \
+      empty(MACHINE_PLATFORM:MSunOS-*-*) && \
       (${MACHINE_ARCH} != "aarch64")
 PLIST.ocaml-prof=	yes
 .  endif

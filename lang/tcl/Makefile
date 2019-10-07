@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.104 2019/04/03 00:32:50 ryoon Exp $
+# $NetBSD: Makefile,v 1.106 2019/10/02 14:50:25 kamil Exp $
 
 DISTNAME=	tcl${TCL_VERSION}-src
 PKGNAME=	tcl-${TCL_VERSION}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=tcl/}
 
@@ -18,6 +18,7 @@ WRKSRC=			${WRKDIR}/tcl${TCL_VERSION}
 USE_GCC_RUNTIME=	yes
 
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_STRICT=	no # because of the nested itcl4.1.2
 CONFIGURE_DIRS=		unix
 BUILD_DIRS=		${CONFIGURE_DIRS}
 INSTALL_TARGET=		install
@@ -37,6 +38,7 @@ CONFIGURE_ARGS+=	--enable-64bit
 .endif
 
 CONFIGURE_ARGS.NetBSD+=	ac_cv_func_gethostbyname_r=no
+CONFIGURE_ARGS.NetBSD+=	ac_cv_func_gethostbyaddr_r=no
 
 SUBST_CLASSES+=		tcl-config
 SUBST_STAGE.tcl-config=	post-build

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.30 2017/09/18 05:31:02 taca Exp $
+@comment $NetBSD: PLIST,v 1.31 2019/10/05 06:11:25 ryoon Exp $
 bin/rabbirc${RUBY_SUFFIX}
 bin/rabbit${RUBY_SUFFIX}
 bin/rabbit-command${RUBY_SUFFIX}
@@ -270,6 +270,7 @@ ${GEM_LIBDIR}/lib/rabbit/action/toggle.rb
 ${GEM_LIBDIR}/lib/rabbit/author-configuration.rb
 ${GEM_LIBDIR}/lib/rabbit/canvas.rb
 ${GEM_LIBDIR}/lib/rabbit/command/rabbit-slide.rb
+${GEM_LIBDIR}/lib/rabbit/command/rabbit-slide.ui
 ${GEM_LIBDIR}/lib/rabbit/command/rabbit-theme.rb
 ${GEM_LIBDIR}/lib/rabbit/command/rabbit.rb
 ${GEM_LIBDIR}/lib/rabbit/config.rb
@@ -308,6 +309,7 @@ ${GEM_LIBDIR}/lib/rabbit/element/text.rb
 ${GEM_LIBDIR}/lib/rabbit/element/title-slide.rb
 ${GEM_LIBDIR}/lib/rabbit/element/video.rb
 ${GEM_LIBDIR}/lib/rabbit/error.rb
+${GEM_LIBDIR}/lib/rabbit/filename.rb
 ${GEM_LIBDIR}/lib/rabbit/formatter.rb
 ${GEM_LIBDIR}/lib/rabbit/frame.rb
 ${GEM_LIBDIR}/lib/rabbit/front.rb
@@ -338,6 +340,7 @@ ${GEM_LIBDIR}/lib/rabbit/logger/base.rb
 ${GEM_LIBDIR}/lib/rabbit/logger/gui.rb
 ${GEM_LIBDIR}/lib/rabbit/logger/stderr.rb
 ${GEM_LIBDIR}/lib/rabbit/menu.rb
+${GEM_LIBDIR}/lib/rabbit/pango-markup.rb
 ${GEM_LIBDIR}/lib/rabbit/parser.rb
 ${GEM_LIBDIR}/lib/rabbit/parser/base.rb
 ${GEM_LIBDIR}/lib/rabbit/parser/ext/aafigure.rb
@@ -405,11 +408,10 @@ ${GEM_LIBDIR}/lib/rabbit/renderer/engine/cairo.rb
 ${GEM_LIBDIR}/lib/rabbit/renderer/gl.rb
 ${GEM_LIBDIR}/lib/rabbit/renderer/kernel.rb
 ${GEM_LIBDIR}/lib/rabbit/renderer/offscreen.rb
-${GEM_LIBDIR}/lib/rabbit/renderer/print.rb
-${GEM_LIBDIR}/lib/rabbit/renderer/print/base.rb
-${GEM_LIBDIR}/lib/rabbit/renderer/print/cairo.rb
-${GEM_LIBDIR}/lib/rabbit/renderer/print/layout.rb
-${GEM_LIBDIR}/lib/rabbit/renderer/print/multiple.rb
+${GEM_LIBDIR}/lib/rabbit/renderer/print-layout.rb
+${GEM_LIBDIR}/lib/rabbit/renderer/printer.rb
+${GEM_LIBDIR}/lib/rabbit/renderer/screen.rb
+${GEM_LIBDIR}/lib/rabbit/renderer/widget/drawing-area.rb
 ${GEM_LIBDIR}/lib/rabbit/search-window.rb
 ${GEM_LIBDIR}/lib/rabbit/searcher.rb
 ${GEM_LIBDIR}/lib/rabbit/size.rb
@@ -427,9 +429,7 @@ ${GEM_LIBDIR}/lib/rabbit/source.rb
 ${GEM_LIBDIR}/lib/rabbit/source/argf.rb
 ${GEM_LIBDIR}/lib/rabbit/source/base.rb
 ${GEM_LIBDIR}/lib/rabbit/source/file.rb
-${GEM_LIBDIR}/lib/rabbit/source/hiki.rb
 ${GEM_LIBDIR}/lib/rabbit/source/memory.rb
-${GEM_LIBDIR}/lib/rabbit/source/slide-share.rb
 ${GEM_LIBDIR}/lib/rabbit/source/uri.rb
 ${GEM_LIBDIR}/lib/rabbit/stock.rb
 ${GEM_LIBDIR}/lib/rabbit/task.rb
@@ -765,20 +765,22 @@ ${GEM_LIBDIR}/sample/table-en.rd
 ${GEM_LIBDIR}/sample/table.hiki
 ${GEM_LIBDIR}/sample/table.rd
 ${GEM_LIBDIR}/sample/usagi.png
+${GEM_LIBDIR}/test/command/test-rabbit.rb
+${GEM_LIBDIR}/test/helper.rb
+${GEM_LIBDIR}/test/helper/fixture.rb
+${GEM_LIBDIR}/test/helper/parser.rb
 ${GEM_LIBDIR}/test/image/test-dia.rb
 ${GEM_LIBDIR}/test/image/test-eps.rb
 ${GEM_LIBDIR}/test/parser/test-markdown.rb
 ${GEM_LIBDIR}/test/parser/test-rd.rb
 ${GEM_LIBDIR}/test/parser/test-wiki.rb
-${GEM_LIBDIR}/test/rabbit-test-utils.rb
-${GEM_LIBDIR}/test/rabbit-test-utils/fixture.rb
-${GEM_LIBDIR}/test/rabbit-test-utils/parser.rb
 ${GEM_LIBDIR}/test/run-test.rb
 ${GEM_LIBDIR}/test/source-generator/test-hiki.rb
 ${GEM_LIBDIR}/test/source-generator/test-markdown.rb
 ${GEM_LIBDIR}/test/source-generator/test-rd.rb
 ${GEM_LIBDIR}/test/test-applier.rb
 ${GEM_LIBDIR}/test/test-author-configuration.rb
+${GEM_LIBDIR}/test/test-canvas.rb
 ${GEM_LIBDIR}/test/test-color.rb
 ${GEM_LIBDIR}/test/test-element.rb
 ${GEM_LIBDIR}/test/test-readme-parser.rb

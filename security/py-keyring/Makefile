@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.23 2019/09/02 10:20:57 adam Exp $
+# $NetBSD: Makefile,v 1.25 2019/09/25 13:06:12 adam Exp $
 
-DISTNAME=	keyring-19.1.0
+DISTNAME=	keyring-19.2.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	security python
 MASTER_SITES=	${MASTER_SITE_PYPI:=k/keyring/}
@@ -16,6 +16,8 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-test>=3.7.4:../../devel/py-test
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-flake8-[0-9]*:../../devel/py-test-flake8
 
 USE_LANGUAGES=	# none
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 REPLACE_PYTHON+=	keyring/cli.py
 

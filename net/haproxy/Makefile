@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.50 2019/08/19 10:10:36 adam Exp $
+# $NetBSD: Makefile,v 1.52 2019/09/15 14:53:13 nia Exp $
 
-DISTNAME=	haproxy-2.0.5
+DISTNAME=	haproxy-2.0.6
 CATEGORIES=	net www
 MASTER_SITES=	http://www.haproxy.org/download/${PKGVERSION_NOREV:R}/src/
 
@@ -42,17 +42,7 @@ TARGET=	osx
 .elif ${OPSYS} == "SunOS"
 TARGET=	solaris
 .elif ${OPSYS} == "Linux"
-.  if !empty(OS_VERSION:M2.6.*)
-TARGET=	linux26
-.  elif !empty(OS_VERSION:M2.4.*)
-.    if exists(/usr/include/linux/eventpoll.h)
-TARGET=	linux24e
-.    else
-TARGET=	linux24
-.    endif
-.  else
-TARGET=	linux2628
-.  endif
+TARGET=	linux-glibc
 .else
 TARGET=	generic
 .endif

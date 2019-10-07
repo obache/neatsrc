@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.12 2019/04/07 16:17:39 taca Exp $
+# $NetBSD: Makefile,v 1.15 2019/10/03 00:42:50 ryoon Exp $
 
 DISTNAME=	${RUBY_DISTNAME}
 PKGNAME=	${RUBY_PKGPREFIX}-base-${RUBY_VERSION}
+PKGREVISION=	1
 CATEGORIES=	lang ruby
 MASTER_SITES=	${MASTER_SITE_RUBY}
 
@@ -12,7 +13,6 @@ COMMENT=	Ruby ${RUBY_VERSION} release minimum base package
 RUBY_VERSIONS_ACCEPTED=	24
 
 USE_GCC_RUNTIME=	yes
-USE_LANGUAGES=		c
 USE_TOOLS+=		pax yacc pkg-config
 GNU_CONFIGURE=		yes
 TEST_TARGET=		test
@@ -64,6 +64,8 @@ INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1 ${RUBY_DOC}/images \
 			${RUBY_EG}/bigdecimal ${RUBY_EG}/pty
 # ${RUBY_ARCHINC} ${RUBY_ARCHLIB}
 EMPTY_DIRS=		generator/template markup/simple_markup
+
+NOT_PAX_MPROTECT_SAFE+=	bin/${RUBY_NAME}
 
 pre-configure:
 	${RM} -f ${WRKSRC}/ext/gdbm/extconf.rb

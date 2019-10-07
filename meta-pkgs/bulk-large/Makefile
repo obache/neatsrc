@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.42 2019/09/15 00:11:45 nia Exp $
+# $NetBSD: Makefile,v 1.44 2019/09/24 12:22:46 sevan Exp $
 
-DISTNAME=	bulk-large-20190915
+DISTNAME=	bulk-large-20190924
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -51,7 +51,7 @@ BUILD_DEPENDS+=	qt5-qttools-[0-9]*:../../x11/qt5-qttools
 # 2. Applications
 #
 BUILD_DEPENDS+=	konversation>=1.4:../../chat/konversation
-BUILD_DEPENDS+=	asterisk>=11:../../comms/asterisk
+BUILD_DEPENDS+=	asterisk>=16:../../comms/asterisk16
 BUILD_DEPENDS+=	avr-gcc-[0-9]*:../../cross/avr-gcc
 BUILD_DEPENDS+=	avr-libc-[0-9]*:../../cross/avr-libc
 BUILD_DEPENDS+=	avr-gdb-[0-9]*:../../cross/avr-gdb
@@ -83,7 +83,7 @@ BUILD_DEPENDS+=	zyGrib-[0-9]*:../../misc/zyGrib
 BUILD_DEPENDS+=	mplayer-[0-9]*:../../multimedia/mplayer
 BUILD_DEPENDS+=	xine-ui-[0-9]*:../../multimedia/xine-ui
 BUILD_DEPENDS+=	cups>=1.5<2.0:../../print/cups15
-BUILD_DEPENDS+=	atril-[0-9]:../../print/atril
+BUILD_DEPENDS+=	atril-[0-9]*:../../print/atril
 BUILD_DEPENDS+=	lilypond-[0-9]*:../../print/lilypond
 BUILD_DEPENDS+=	mit-krb5-appl-[0-9]*:../../security/mit-krb5-appl
 BUILD_DEPENDS+=	FlightCrew-[0-9]*:../../textproc/FlightCrew

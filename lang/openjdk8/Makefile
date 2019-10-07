@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.83 2019/08/23 18:52:23 tnn Exp $
+# $NetBSD: Makefile,v 1.85 2019/10/01 14:43:32 tnn Exp $
 
 DISTNAME=	openjdk-jdk8u-${GITHUB_TAG}
 PKGNAME=	openjdk8-1.8.${GITHUB_TAG:C/.*u([0-9]+).*/\1/}
@@ -38,7 +38,7 @@ USE_LANGUAGES=		c c++
 USE_TOOLS+=		bash gmake pax pkg-config unzip:run zip:run
 UNLIMIT_RESOURCES=	datasize stacksize
 PLIST_SRC+=		${PLIST_SRC_DFLT}
-CHECK_SHLIBS_SKIP+=	java/openjdk8/jre/lib/${LIBDIR_ARCH}/libinstrument.so
+CHECK_SHLIBS_SKIP+=	java/${JAVA_NAME}/jre/lib/${LIBDIR_ARCH}/libinstrument.so
 
 BUILDLINK_PASSTHRU_DIRS+=	${ALT_BOOTDIR}
 PREPEND_PATH+=			${ALT_BOOTDIR}/bin
@@ -66,12 +66,12 @@ CONFIGURE_ARGS+=	--with-extra-ldflags=${LDFLAGS:Q}
 
 CHECK_PORTABILITY_SKIP+=	hotspot/test/runtime/*/*.sh
 
-NOT_PAX_MPROTECT_SAFE+= java/openjdk8/bin/[a-ik-z]*
-NOT_PAX_MPROTECT_SAFE+= java/openjdk8/bin/j[b-z]*
-NOT_PAX_MPROTECT_SAFE+= java/openjdk8/bin/jar*
-NOT_PAX_MPROTECT_SAFE+= java/openjdk8/bin/java
-NOT_PAX_MPROTECT_SAFE+= java/openjdk8/bin/java[a-z]*
-NOT_PAX_MPROTECT_SAFE+= java/openjdk8/jre/bin/*
+NOT_PAX_MPROTECT_SAFE+= java/${JAVA_NAME}/bin/[a-ik-z]*
+NOT_PAX_MPROTECT_SAFE+= java/${JAVA_NAME}/bin/j[b-z]*
+NOT_PAX_MPROTECT_SAFE+= java/${JAVA_NAME}/bin/jar*
+NOT_PAX_MPROTECT_SAFE+= java/${JAVA_NAME}/bin/java
+NOT_PAX_MPROTECT_SAFE+= java/${JAVA_NAME}/bin/java[a-z]*
+NOT_PAX_MPROTECT_SAFE+= java/${JAVA_NAME}/jre/bin/*
 
 # Avoid build errors when JAVA_HOME and CLASSPATH are defined by user.
 MAKE_ENV+=	JAVA_HOME=
@@ -86,7 +86,7 @@ CONFIGURE_ENV+=	LD_LIBRARY_PATH=${LD_LIBRARY_PATH}
 MAKE_ENV+=	LD_LIBRARY_PATH=${LD_LIBRARY_PATH}
 CONFIGURE_ENV+=	LFLAGS=${LDFLAGS:Q}
 MAKE_ENV+=	LFLAGS=${LDFLAGS:Q}
-BUILDLINK_PASSTHRU_RPATHDIRS+=	${PREFIX}/java/openjdk8/jre/lib/${LIBDIR_ARCH}
+BUILDLINK_PASSTHRU_RPATHDIRS+=	${PREFIX}/java/${JAVA_NAME}/jre/lib/${LIBDIR_ARCH}
 
 PLIST_SUBST+=	ARCH=${LIBDIR_ARCH}
 PLIST_SUBST+=	LOWER_OPSYS=${LOWER_OPSYS:S/sunos/solaris/}
@@ -103,12 +103,6 @@ CXXFLAGS+=	-D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS
 
 CONFIGURE_ENV+=	CFLAGS_JDK=${CFLAGS:Q}
 CONFIGURE_ENV+=	CXXFLAGS_JDK=${CXXFLAGS:Q}
-
-# Fix segfault under NetBSD/amd64 8.99 with GCC 6.4.0
-.if !empty(CC_VERSION:Mgcc-[67].*)
-CFLAGS+=	-fno-lifetime-dse
-CFLAGS+=	-fno-delete-null-pointer-checks
-.endif
 
 .if ${OPSYS} == "SunOS" && !empty(PKGSRC_COMPILER:Mgcc)
 MAKE_ENV+=	USE_GCC=1

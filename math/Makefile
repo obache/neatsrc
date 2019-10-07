@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.434 2019/08/24 22:10:16 alnsn Exp $
+# $NetBSD: Makefile,v 1.436 2019/10/02 23:24:29 minskim Exp $
 
 COMMENT=	Mathematics
 
@@ -324,6 +324,7 @@ SUBDIR+=	py-kiwisolver
 SUBDIR+=	py-lmfit
 SUBDIR+=	py-mpmath
 SUBDIR+=	py-munkres
+SUBDIR+=	py-netCDF4
 SUBDIR+=	py-networkx
 SUBDIR+=	py-noise
 SUBDIR+=	py-numarray
@@ -349,6 +350,7 @@ SUBDIR+=	py-sympy
 SUBDIR+=	py-tables
 SUBDIR+=	py-tensorboard
 SUBDIR+=	py-uncertainties
+SUBDIR+=	py-xarray
 SUBDIR+=	py-z3
 SUBDIR+=	py-z3solver
 SUBDIR+=	qalculate

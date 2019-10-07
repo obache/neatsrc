@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2016/03/30 12:51:16 jperkin Exp $
+# $NetBSD: Makefile,v 1.9 2019/09/18 12:17:53 maya Exp $
 #
 
 DISTNAME=		detox-1.2.0

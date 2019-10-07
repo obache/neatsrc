@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.101 2019/08/22 12:23:56 ryoon Exp $
+# $NetBSD: Makefile,v 1.104 2019/09/23 14:04:10 mef Exp $
 
 DISTNAME=	kdelibs-4.14.38
 PKGNAME=	${DISTNAME:S/-4/4-4/}
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	x11
 COMMENT=	Support libraries for the KDE integrated X11 desktop
 MASTER_SITES=	${MASTER_SITE_KDE:=applications/17.08.3/src/}
@@ -38,6 +38,8 @@ CONF_FILES+=	${PREFIX}/share/examples/kde4-dbus/org.kde.auth.conf \
 
 DEPENDS+=	docbook-xml>=4.2:../../textproc/docbook-xml
 DEPENDS+=	docbook-xsl>=1.75:../../textproc/docbook-xsl
+
+USE_LANGUAGES+=	c++11
 
 INSTALLATION_DIRS+=	${PKGMANDIR}/man1 ${PKGMANDIR}/man7 ${PKGMANDIR}/man8
 

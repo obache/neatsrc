@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2019/06/08 22:46:03 nia Exp $
+@comment $NetBSD: PLIST,v 1.3 2019/09/25 08:48:43 nia Exp $
 bin/mgba
 ${PLIST.qt}bin/mgba-qt
 include/mgba/flags.h

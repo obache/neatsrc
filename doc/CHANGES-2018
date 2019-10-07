@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2018,v 1.5386 2019/01/17 00:04:06 rillig Exp $
+$NetBSD: CHANGES-2018,v 1.5388 2019/10/03 12:17:39 ryoon Exp $
 
 Changes to the packages collection and infrastructure in 2018:
 
@@ -2461,6 +2461,8 @@ Changes to the packages collection and infrastructure in 2018:
 	Added www/py-wstools version 0.4.8 [adam 2018-04-12]
 	Updated net/py-soappy to 0.12.22 [adam 2018-04-12]
 	Updated cad/py-MyHDL to 0.10 [mef 2018-04-12]
+	Updated cad/MyHDL-iverilog to 0.10 [mef 2018-04-12]
+	Updated cad/MyHDL-gplcver to 0.10 [mef 2018-04-12]
 	Added www/ruby-robots version 0.10.1 [minskim 2018-04-12]
 	Updated devel/py-cython to 0.28.2 [adam 2018-04-13]
 	Updated textproc/py-text-unidecode to 1.2 [adam 2018-04-13]
@@ -6235,6 +6237,8 @@ Changes to the packages collection and infrastructure in 2018:
 	Added lang/cbindgen version 0.6.6 [maya 2018-10-23]
 	Updated www/seamonkey to 2.49.4 [maya 2018-10-23]
 	Updated www/seamonkey-l10n to 2.49.4 [maya 2018-10-23]
+	Added net/onionbalance version 0.1.8 [riastradh 2018-10-23]
+	Added net/py-onionbalance version 0.1.8 [riastradh 2018-10-23]
 	Updated databases/repmgr to 4.2.0 [adam 2018-10-24]
 	Updated www/apache24 to 2.4.37 [adam 2018-10-24]
 	Updated devel/py-flake8 to 3.6.0 [adam 2018-10-24]

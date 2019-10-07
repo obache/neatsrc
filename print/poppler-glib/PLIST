@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.27 2019/07/23 16:45:18 wiz Exp $
+@comment $NetBSD: PLIST,v 1.28 2019/10/05 06:06:32 ryoon Exp $
 include/poppler/glib/poppler-action.h
 include/poppler/glib/poppler-annot.h
 include/poppler/glib/poppler-attachment.h

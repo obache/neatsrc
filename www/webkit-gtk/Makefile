@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.172 2019/09/10 22:10:04 leot Exp $
+# $NetBSD: Makefile,v 1.174 2019/09/24 17:07:20 leot Exp $
 
-DISTNAME=	webkitgtk-2.26.0
+DISTNAME=	webkitgtk-2.26.1
 PKGNAME=	${DISTNAME:S/webkitgtk/webkit-gtk/}
 CATEGORIES=	www
 MASTER_SITES=	https://www.webkitgtk.org/releases/
@@ -15,6 +15,7 @@ LICENSE=	2-clause-bsd AND gnu-lgpl-v2
 NOT_FOR_PLATFORM=	NetBSD-[1-6].*-*
 
 TOOL_DEPENDS+=	gettext-tools>=0.18:../../devel/gettext-tools
+TOOL_DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++11

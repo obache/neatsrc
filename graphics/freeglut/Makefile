@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.22 2019/08/30 17:01:33 nia Exp $
+# $NetBSD: Makefile,v 1.25 2019/10/04 14:21:40 nia Exp $
 
-DISTNAME=	freeglut-3.0.0
-PKGREVISION=	1
+DISTNAME=	freeglut-3.2.1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=freeglut/}
 
@@ -14,17 +13,19 @@ USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 USE_LIBTOOL=	yes
 
-CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
+CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE="Release"
+CMAKE_ARGS+=	-DFREEGLUT_REPLACE_GLUT=ON
 
 PKGCONFIG_OVERRIDE=	freeglut.pc.in
+PKGCONFIG_OVERRIDE=	glut.pc.in
 
+# Install freeglut.pc for compatibility.
+post-install:
+	${INSTALL_DATA} ${DESTDIR}${PREFIX}/lib/pkgconfig/glut.pc \
+	    ${DESTDIR}${PREFIX}/lib/pkgconfig/freeglut.pc
+
+.include "options.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../graphics/glu/buildlink3.mk"
-.include "../../x11/libXi/buildlink3.mk"
-.include "../../x11/libXrandr/buildlink3.mk"
-.include "../../x11/libXxf86vm/buildlink3.mk"
-.include "../../x11/libICE/buildlink3.mk"
-.include "../../x11/libSM/buildlink3.mk"
-.include "../../x11/libX11/buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

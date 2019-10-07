@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.845 2019/09/14 18:11:41 tsutsui Exp $
+# $NetBSD: Makefile,v 1.851 2019/09/16 10:54:39 nia Exp $
 #
 
 COMMENT=	Packages to support the X window system
@@ -10,7 +10,6 @@ SUBDIR+=	Xbae
 SUBDIR+=	Xfixes
 SUBDIR+=	XmHTML
 SUBDIR+=	Xrender
-SUBDIR+=	alacarte
 SUBDIR+=	antiright
 SUBDIR+=	appmenu-qt
 SUBDIR+=	appres
@@ -70,17 +69,12 @@ SUBDIR+=	fvwm-wharf
 SUBDIR+=	gcolor2
 SUBDIR+=	gdm
 SUBDIR+=	ggiterm
-SUBDIR+=	gnome-applets
-SUBDIR+=	gnome-control-center
 SUBDIR+=	gnome-desktop
 SUBDIR+=	gnome-desktop-sharp
 SUBDIR+=	gnome-desktop3
 SUBDIR+=	gnome-mag
 SUBDIR+=	gnome-panel
-SUBDIR+=	gnome-screensaver
-SUBDIR+=	gnome-session
 SUBDIR+=	gnome-sharp
-SUBDIR+=	gnome-terminal
 SUBDIR+=	gnome-themes
 SUBDIR+=	gnome-themes-extras
 SUBDIR+=	gnopernicus

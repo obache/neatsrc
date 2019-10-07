@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.519 2019/08/25 16:37:28 maya Exp $
+# $NetBSD: Makefile,v 1.522 2019/10/02 18:10:15 kamil Exp $
 #
 
 COMMENT=	Programming languages
@@ -6,7 +6,6 @@ COMMENT=	Programming languages
 SUBDIR+=	Cg-compiler
 SUBDIR+=	LuaJIT
 SUBDIR+=	LuaJIT2
-SUBDIR+=	R-codetools
 SUBDIR+=	R-sourcetools
 SUBDIR+=	STk
 SUBDIR+=	a60
@@ -133,7 +132,6 @@ SUBDIR+=	libcxx
 SUBDIR+=	libcxxabi
 SUBDIR+=	libduktape
 SUBDIR+=	librep
-SUBDIR+=	libtcl-nothread
 SUBDIR+=	libunwind
 SUBDIR+=	likepython
 SUBDIR+=	llvm
@@ -171,6 +169,7 @@ SUBDIR+=	oo2c
 SUBDIR+=	open-cobol-ce
 SUBDIR+=	opencobol
 SUBDIR+=	openjdk-bin
+SUBDIR+=	openjdk11
 SUBDIR+=	openjdk7
 SUBDIR+=	openjdk8
 SUBDIR+=	opensource-cobol

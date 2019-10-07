@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1405 2019/09/14 18:11:41 tsutsui Exp $
+# $NetBSD: Makefile,v 1.1409 2019/10/04 12:37:57 ryoon Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -111,6 +111,8 @@ SUBDIR+=	firefox52
 SUBDIR+=	firefox52-l10n
 SUBDIR+=	firefox60
 SUBDIR+=	firefox60-l10n
+SUBDIR+=	firefox68
+SUBDIR+=	firefox68-l10n
 SUBDIR+=	gallery
 SUBDIR+=	gallery2
 SUBDIR+=	ganglia-webfrontend
@@ -564,7 +566,6 @@ SUBDIR+=	p5-WWW-RobotRules
 SUBDIR+=	p5-WWW-Shorten
 SUBDIR+=	p5-Web-Scraper
 SUBDIR+=	p5-WordPress-XMLRPC
-SUBDIR+=	p5-libapreq
 SUBDIR+=	p5-libapreq2
 SUBDIR+=	p5-libwww
 SUBDIR+=	paros
@@ -907,6 +908,7 @@ SUBDIR+=	ruby-sass
 SUBDIR+=	ruby-sass-listen
 SUBDIR+=	ruby-sass-rails
 SUBDIR+=	ruby-sass34
+SUBDIR+=	ruby-sassc
 SUBDIR+=	ruby-sawyer
 SUBDIR+=	ruby-selenium-webdriver
 SUBDIR+=	ruby-sinatra

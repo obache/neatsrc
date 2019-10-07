@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.85 2019/08/11 13:23:08 wiz Exp $
+# $NetBSD: Makefile,v 1.86 2019/10/03 21:28:45 rillig Exp $
 
 DISTNAME=		hal-0.5.14
 PKGREVISION=		22

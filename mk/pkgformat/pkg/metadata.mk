@@ -1,4 +1,4 @@
-# $NetBSD: metadata.mk,v 1.16 2019/05/28 13:32:06 jperkin Exp $
+# $NetBSD: metadata.mk,v 1.17 2019/10/01 13:01:02 jperkin Exp $
 
 ######################################################################
 ### The targets below are all PRIVATE.
@@ -161,7 +161,7 @@ _BUILD_VERSION_FILE_cmd=	\
 	) |								\
 	while read file; do						\
 		${GREP} '\$$NetBSD' $$file 2>/dev/null |		\
-		${SED} -e "s|^|$$file:|";				\
+		${SED} -e "s|^|$$file:|;q";				\
 	done |								\
 	${AWK} '{ sub("^${PKGSRCDIR}/", "");				\
 		  sub("^${PKGPATH}/../../", "");			\

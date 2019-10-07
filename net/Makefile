@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1267 2019/09/14 19:26:47 nia Exp $
+# $NetBSD: Makefile,v 1.1270 2019/09/19 21:25:51 adam Exp $
 #
 
 COMMENT=	Networking tools
@@ -166,6 +166,7 @@ SUBDIR+=	freeradius-unixodbc
 SUBDIR+=	freeradius-yubikey
 SUBDIR+=	freeradius2
 SUBDIR+=	freerdp
+SUBDIR+=	freerdp2
 SUBDIR+=	fstrm
 SUBDIR+=	ftplibpp
 SUBDIR+=	ftpproxy
@@ -451,7 +452,6 @@ SUBDIR+=	oidentd
 SUBDIR+=	oinkmaster
 SUBDIR+=	omniNotify
 SUBDIR+=	omniORB
-SUBDIR+=	onionbalance
 SUBDIR+=	openag
 SUBDIR+=	openconnect
 SUBDIR+=	openh323
@@ -756,7 +756,6 @@ SUBDIR+=	rbldnsd
 SUBDIR+=	rdesktop
 SUBDIR+=	rdist6
 SUBDIR+=	remmina
-SUBDIR+=	remmina-plugins
 SUBDIR+=	restclient-ui
 SUBDIR+=	rinetd
 SUBDIR+=	rootprobe

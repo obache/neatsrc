@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.19 2019/08/21 18:07:43 fox Exp $
+# $NetBSD: Makefile,v 1.23 2019/09/30 09:49:44 maya Exp $
 
-DISTNAME=	cliqz-1.28.2
+DISTNAME=	cliqz-1.29.0
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=cliqz-oss/}
 GITHUB_PROJECT=	browser-f
@@ -10,12 +10,12 @@ DISTFILES=	adult-domains.bin \
 		https-everywhere@cliqz.com.xpi \
 		gdprtool@cliqz.com.xpi \
 		${DISTNAME}${EXTRACT_SUFX}
-DIST_SUBDIR=	${PKGBASE}
+DIST_SUBDIR=	${PKGNAME_NOREV}
 
 CLIQZ_CHANNEL=		release
 # If the PKGVERSION_NOREV is updated, make sure to update the last build id from
 # ftp -Vo - https://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${PKGVERSION_NOREV}/lastbuildid
-CLIQZ_LAST_BUILD_ID=	20190816174655
+CLIQZ_LAST_BUILD_ID=	20190920100917
 CLIQZ_PLUGIN_SUFX=	@cliqz.com.xpi
 
 SITES.adult-domains.bin= \
@@ -119,6 +119,9 @@ post-install:
 	${INSTALL_DATA} ${CLIQZ_ICON_SRC} ${DESTDIR}${PREFIX}/share/pixmaps/${CLIQZ_ICON}
 
 .include "../../lang/python/pyversion.mk"
+.include "../../mk/compiler.mk"
+PKG_CC=		clang
+PKG_CXX=	clang++
 BUILDLINK_DEPMETHOD.clang=     build
 BUILDLINK_API_DEPENDS.clang+=  clang>=6.0.1nb1
 .include "../../lang/clang/buildlink3.mk"

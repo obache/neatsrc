@@ -1,12 +1,14 @@
-# $NetBSD: Makefile,v 1.3 2019/08/11 18:04:36 nia Exp $
+# $NetBSD: Makefile,v 1.6 2019/10/01 19:37:50 nia Exp $
 
 PKGREVISION= 1
 .include "../../games/stone-soup/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/_/-/:S/-soup/-soup-sdl/}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	nia@NetBSD.org
 COMMENT=	Dungeon Crawl Stone Soup - roguelike adventure (tileset version)
+
+CONFLICTS+=	stone-soup-[0-9]*
 
 MAKE_FLAGS+=	TILES=YesPlease
 MAKE_FLAGS+=	SOUND=YesPlease
@@ -26,6 +28,7 @@ post-install:
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
+.include "../../graphics/glu/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/SDL2_image/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

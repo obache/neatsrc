@@ -1,17 +1,18 @@
-# $NetBSD: Makefile,v 1.198 2019/08/11 13:22:46 wiz Exp $
+# $NetBSD: Makefile,v 1.203 2019/10/04 17:25:53 nia Exp $
 
-DISTNAME=	gnutls-3.6.8
-PKGREVISION=	2
+DISTNAME=	gnutls-3.6.10
 CATEGORIES=	security devel
 MASTER_SITES=	${MASTER_SITE_GNUPG:=gnutls/v${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnutls.org/
-COMMENT=	GNU Transport Layer Security library
+HOMEPAGE=	https://www.gnutls.org/
+COMMENT=	Transport Layer Security library
 LICENSE=	gnu-gpl-v3 AND gnu-lgpl-v2.1
 
 DEPENDS+=	mozilla-rootcerts-[0-9]*:../../security/mozilla-rootcerts
+
+PLIST_SRC=	PLIST
 
 USE_LANGUAGES=			c c++
 USE_LIBTOOL=			yes
@@ -31,6 +32,8 @@ CONFIGURE_ARGS+=		--enable-local-libopts
 # Assembler support is broken for SunOS in 3.2.9.
 CONFIGURE_ARGS.SunOS+=		--disable-hardware-acceleration
 CONFIGURE_ARGS.FreeBSD+=	ac_cv_type_max_align_t=yes
+
+.include "options.mk"
 
 TEST_TARGET=		check
 
