@@ -18,8 +18,6 @@ USE_PKGLOCALEDIR=	YES
 GTK3_IMMODULES=		YES
 .include "../../x11/gtk3/modules.mk"
 
-BUILDLINK_API_DEPENDS.libhangul+=	libhangul>=0.0.12
-
 .include "../../inputmethod/libhangul/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

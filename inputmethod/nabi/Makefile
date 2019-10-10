@@ -15,7 +15,6 @@ GNU_CONFIGURE=		YES
 USE_PKGLOCALEDIR=	YES
 
 .include "../../devel/gettext-lib/buildlink3.mk"
-BUILDLINK_API_DEPENDS.libhangul+=	libhangul>=0.1.0
 .include "../../inputmethod/libhangul/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
