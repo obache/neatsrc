@@ -21,6 +21,9 @@ MASTER_SITE_GNU+=       \
 MASTER_SITE_GITHUB+=    \
 	https://github.com/
 
+MASTER_SITE_GOOGLECODE+=	\
+	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/
+
 MASTER_SITE_GNUPG+=	\
 	https://www.gnupg.org/ftp/gcrypt/ \
 	ftp://ftp.gnupg.org/gcrypt/
