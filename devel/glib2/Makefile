@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.258 2019/08/20 14:06:46 wiz Exp $
+# $NetBSD: Makefile,v 1.261 2019/10/08 10:58:17 prlw1 Exp $
 
 .include "Makefile.common"
 
@@ -11,7 +11,7 @@ MESON_ARGS+=	-Dinstalled_tests=false
 # Avoid linux dependency on libmount-dev
 MESON_ARGS+=	-Dlibmount=false
 
-LDFLAGS.SunOS+=	-lintl -lnsl
+LDFLAGS.SunOS+=		-lintl -lnsl
 
 REPLACE_PYTHON+=	gio/gio-querymodules-wrapper.py
 REPLACE_PYTHON+=	gio/tests/gengiotypefuncs.py
@@ -69,7 +69,7 @@ PLIST.nococoa=	yes
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
-.include "../../devel/py-meson/build.mk"
+.include "../../devel/meson/build.mk"
 .include "../../devel/libffi/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/application.mk"

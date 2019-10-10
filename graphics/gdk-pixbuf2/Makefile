@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.41 2019/07/30 18:28:32 jperkin Exp $
+# $NetBSD: Makefile,v 1.43 2019/10/07 09:28:11 prlw1 Exp $
 
 DISTNAME=	gdk-pixbuf-${PIXBUF2_VERSION}
 PKGNAME=	${DISTNAME:S/pixbuf/pixbuf2/}
@@ -8,7 +8,7 @@ EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://developer.gnome.org/gdk-pixbuf
-COMMENT=	Image loaders for gtk2
+COMMENT=	Library for image loading and manipulation
 LICENSE=	gnu-gpl-v2
 
 CONFLICTS+=	gtk2+<2.22
@@ -40,7 +40,7 @@ _BUILDING_GTK2= yes
 pre-build:
 	${CHMOD} +x ${WRKSRC}/build-aux/*.py ${WRKSRC}/build-aux/*.sh
 
-.include "../../devel/py-meson/build.mk"
+.include "../../devel/meson/build.mk"
 .include "../../databases/shared-mime-info/buildlink3.mk"
 BUILDLINK_API_DEPENDS.glib2+= glib2>=2.37.2
 .include "../../devel/glib2/buildlink3.mk"

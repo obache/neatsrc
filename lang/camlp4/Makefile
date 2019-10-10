@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.19 2018/11/12 16:10:24 jaapb Exp $
+# $NetBSD: Makefile,v 1.20 2019/10/09 08:57:14 msaitoh Exp $
 
 GITHUB_PROJECT=	camlp4
-GITHUB_TAG=	4.07+1
+GITHUB_TAG=	4.08+1
 DISTNAME=	${GITHUB_PROJECT}-${GITHUB_TAG}
 PKGNAME=	${DISTNAME:S/+/pl/}
-PKGREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ocaml/}
 
@@ -14,7 +13,7 @@ COMMENT=	Preprocessor and pretty printer for OCaml
 LICENSE=	gnu-lgpl-v2
 
 HAS_CONFIGURE=	yes
-WRKSRC=		${WRKDIR}/camlp4-4.07-1
+WRKSRC=		${WRKDIR}/camlp4-4.08-1
 MAKE_JOBS_SAFE=	no
 
 .include "../../mk/ocaml.mk"

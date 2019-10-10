@@ -34,6 +34,8 @@ REPLACE_PYTHON+=	test\ cases/common/55\ run\ target/configure.in
 REPLACE_PYTHON+=	test\ cases/windows/8\ find\ program/test-script
 REPLACE_PYTHON+=	tools/*.py
 
+UNWRAP_SKIP_PATHS+=	./test\ cases/*
+
 do-test:
 	cd ${WRKSRC} && ${PYTHONBIN} run_tests.py
 

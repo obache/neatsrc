@@ -1,5 +1,5 @@
 #! @PYTHONBIN@
-# $NetBSD: url2pkg.py,v 1.8 2019/10/04 22:26:34 rillig Exp $
+# $NetBSD: url2pkg.py,v 1.19 2019/10/07 09:28:13 prlw1 Exp $
 
 # Copyright (c) 2019 The NetBSD Foundation, Inc.
 # All rights reserved.
@@ -42,12 +42,12 @@
 
 
 import getopt
-import glob
 import os
 import re
 import subprocess
 import sys
-from typing import Callable, Dict, Iterator, List, Optional, Sequence, Union, Tuple
+from pathlib import Path
+from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 
 
 class Var:
@@ -76,15 +76,19 @@ class Varassign:
 class Url2Pkg:
 
     def __init__(self):
-        self.make = '@MAKE@'
+        self.make = os.getenv('MAKE') or '@MAKE@'
         self.libdir = '@LIBDIR@'
         self.perl5 = '@PERL5@'
-        self.pkgsrcdir = '@PKGSRCDIR@'
+        self.pkgsrcdir = Path(os.getenv('PKGSRCDIR') or '@PKGSRCDIR@')
         self.pythonbin = '@PYTHONBIN@'
-        self.pkgdir = '.'  # only overridable for tests
-        self.verbose = False
+        self.editor = os.getenv('PKGEDITOR') or os.getenv('EDITOR') or 'vi'
+
+        # the following are overridden in tests
+        self.pkgdir = Path('.')
         self.out = sys.stdout
         self.err = sys.stderr
+
+        self.verbose = False
 
     def debug(self, fmt: str, *args):
         if self.verbose:
@@ -92,14 +96,14 @@ class Url2Pkg:
             self.err.write(f'url2pkg: {msg}\n')
 
     def find_package(self, pkgbase: str) -> str:
-        candidates = glob.glob(f'{self.pkgsrcdir}/*/{pkgbase}')
+        candidates = list(self.pkgsrcdir.glob(f'*/{pkgbase}'))
         self.debug('candidates for package {0} are {1}', pkgbase, candidates)
         if len(candidates) != 1:
             return ''
-        return candidates[0].replace(self.pkgsrcdir, '../..')
+        return str(candidates[0]).replace(str(self.pkgsrcdir), '../..')
 
     def bmake(self, *args: str) -> None:
-        self.debug('running bmake {0}', args)
+        self.debug('running bmake {0} in {1}', args, str(self.pkgdir))
         subprocess.check_call([self.make, *args], cwd=self.pkgdir)
 
     def show_var(self, varname: str) -> str:
@@ -119,23 +123,51 @@ class Lines:
             self.add(line)
 
     @classmethod
-    def read_from(cls, filename: str) -> 'Lines':
-        pass
+    def read_from(cls, src: Path) -> 'Lines':
+        return Lines(*src.read_text().splitlines())
 
-        lines = Lines()
-        with open(filename) as f:
-            for line in f:
-                lines.add(line.rstrip('\n'))
-        return lines
-
-    def write_to(self, filename: str):
-        with open(f'{filename}.tmp', 'w') as f:
+    def write_to(self, dst: Path):
+        tmp = dst.with_name(f'{dst.name}.tmp')
+        with tmp.open('w') as f:
             f.writelines(line + '\n' for line in self.lines)
-        try:
-            os.remove(filename)
-        except OSError:
-            pass
-        os.rename(f'{filename}.tmp', filename)
+        tmp.replace(dst)
+
+    def all_varassigns(self, varname: str) -> List[Varassign]:
+        varassigns = []
+        for (i, line) in enumerate(self.lines):
+            pattern = r'''(?x)
+                ^
+                ([#]?[\w+\-]+?)  # varname
+                ([!+:?]?=)       # op
+                ([ \t]*)         # indent
+                ([^#\\]*?)       # value
+                (\s*)            # space_after_value
+                ([#].*|)         # comment
+                $
+                '''
+            m = re.search(pattern, line)
+            if m and m[1].lstrip('#') == varname.lstrip('#'):
+                varassigns.append(Varassign(i, *m.groups()))
+        return varassigns
+
+    def unique_varassign(self, varname: str) -> Optional[Varassign]:
+        varassigns = self.all_varassigns(varname)
+        return varassigns[0] if len(varassigns) == 1 else None
+
+    def get(self, varname: str) -> str:
+        """
+        Returns the value from the only variable assignment, or an empty
+        string.
+        """
+        varassign = self.unique_varassign(varname)
+        return varassign.value if varassign is not None and varassign.varname == varname else ''
+
+    def index(self, pattern: str) -> int:
+        """ Returns the first index where the pattern is found, or -1. """
+        for (i, line) in enumerate(self.lines):
+            if re.search(pattern, line):
+                return i
+        return -1
 
     def add(self, *lines: Sequence[str]):
         for line in lines:
@@ -161,18 +193,6 @@ class Lines:
             tabs = (width - len(var.name) - len(var.op) + 7) // 8
             self.add(var.name + var.op + '\t' * tabs + var.value)
         self.add('')
-
-    def unique_varassign(self, varname: str) -> Optional[Varassign]:
-        varassigns = self.all_varassigns(varname)
-        return varassigns[0] if len(varassigns) == 1 else None
-
-    def all_varassigns(self, varname: str) -> Sequence[Varassign]:
-        varassigns = []
-        for (i, line) in enumerate(self.lines):
-            m = re.search(r'^(#?[\w+\-]+?)([!+:?]?=)([ \t]*)([^#\\]*?)(\s*)(#.*|)$', line)
-            if m and m[1].lstrip('#') == varname:
-                varassigns.append(Varassign(i, m[1], m[2], m[3], m[4], m[5], m[6]))
-        return varassigns
 
     def set(self, varname: str, new_value: str) -> bool:
         """ Updates the value of an existing variable in the lines. """
@@ -202,14 +222,6 @@ class Lines:
             self.lines.pop(varassign.index)
         return varassign is not None
 
-    def get(self, varname: str) -> str:
-        """
-        Returns the value from the only variable assignment, or an empty
-        string.
-        """
-        varassign = self.unique_varassign(varname)
-        return varassign.value if varassign is not None and varassign.varname == varname else ''
-
     def remove_if(self, varname: str, expected_value: str) -> bool:
         """ Removes a variable assignment if its value is the expected one. """
         for varassign in self.all_varassigns(varname):
@@ -217,13 +229,6 @@ class Lines:
                 self.lines.pop(varassign.index)
                 return True
         return False
-
-    def index(self, pattern: str) -> int:
-        """ Returns the first index where the pattern is found, or -1. """
-        for (i, line) in enumerate(self.lines):
-            if re.search(pattern, line):
-                return i
-        return -1
 
 
 class Generator:
@@ -237,6 +242,7 @@ class Generator:
         self.extract_sufx = ''
         self.categories = ''
         self.github_project = ''
+        self.github_tag = ''
         self.github_release = ''
         self.dist_subdir = ''
         self.pkgname_prefix = ''
@@ -245,8 +251,10 @@ class Generator:
         self.distname = ''
         self.pkgname = ''
 
-    @staticmethod
-    def foreach_site(action: Callable[[str, str], None]):
+    def foreach_site_from_sites_mk(self, action: Callable[[str, str], None]):
+        if self.master_sites != '':
+            return
+
         varname = ''
         with open('../../mk/fetch/sites.mk') as sites_mk:
             for line in sites_mk:
@@ -256,50 +264,72 @@ class Generator:
                     continue
 
                 m = re.search(r'^\t(.*?)(?:\s+\\)?$', line)
-                if not m:
-                    continue
+                if m:
+                    action(varname, m[1])
 
-                site_url = m[1]
-                action(varname, site_url)
+    def adjust_site_from_sites_mk(self, varname: str, site_url: str):
 
-    def adjust_site(self, varname: str, site_url: str):
-        if not self.url.startswith(site_url):
+        url_noproto = re.sub(r'^\w+://', '', self.url)
+        site_url_noproto = re.sub(r'^\w+://', '', site_url)
+
+        if not url_noproto.startswith(site_url_noproto):
             return
 
-        rest = self.url[len(site_url):]
-        m = re.search(r'^(.+)/([^/]+)$', rest)
-        if not m:
+        rest = url_noproto[len(site_url_noproto):]
+        if '/' not in rest:
             self.master_sites = f'${{{varname}}}'
+            self.distfile = rest
+            self.homepage = '# TODO'
             return
 
-        subdir, self.distfile = m.groups()
+        subdir, self.distfile = re.search(r'^(.*/)(.*)$', rest).groups()
 
-        self.master_sites = f'${{{varname}:={subdir}/}}'
-        if varname == 'MASTER_SITE_SOURCEFORGE':
-            self.homepage = f'https://{subdir}.sourceforge.net/'
-        elif varname == 'MASTER_SITE_GNU':
-            self.homepage = f'https://www.gnu.org/software/{subdir}/'
+        self.master_sites = f'${{{varname}:={subdir}}}'
+        if varname == 'MASTER_SITE_GNU':
+            self.homepage = f'https://www.gnu.org/software/{subdir}'
         else:
-            self.homepage = site_url[:-len(self.distfile)]
+            self.homepage = self.url[:-len(self.distfile)] + ' # TODO: check'
 
-    def adjust_site_sourceforge(self):
-        m = re.search(r'^https://downloads\.sourceforge\.net/project/([^/?]+)/[^?]+/([^/?]+)(?:[?].*)?$', self.url)
+        if varname == 'MASTER_SITE_R_CRAN':
+            sys.exit('url2pkg: to create R packages, use pkgtools/R2pkg instead')
+
+    def adjust_site_SourceForge(self):
+        pattern = r'''(?x)
+            ^
+            https?://downloads\.sourceforge\.net/(?:project|sourceforge)/
+            ([^/?]+)/       # project name
+            ((?:[^/?]+/)*)  # subdirectories
+            ([^/?]+)        # filename
+            (?:\?.*)?       # query parameters
+            $
+            '''
+        m = re.search(pattern, self.url)
         if not m:
             return
 
-        project, filename = m.groups()
-        self.master_sites = f'${{MASTER_SITE_SOURCEFORGE:={project}/}}'
+        project, subdir, filename = m.groups()
+        self.master_sites = f'${{MASTER_SITE_SOURCEFORGE:={project}/{subdir}}}'
         self.homepage = f'https://{project}.sourceforge.net/'
         self.distfile = filename
 
     def adjust_site_GitHub_archive(self):
-        m = re.search(r'^https://github\.com/(.+)/(.+)/archive/(.+)(\.tar\.gz|\.zip)$', self.url)
+        pattern = r'''(?x)
+            ^
+            https://github\.com/
+            (.+)/               # org
+            (.+)/archive/       # proj
+            (.+)                # tag
+            (\.tar\.gz|\.zip)   # ext
+            $
+            '''
+        m = re.search(pattern, self.url)
         if not m:
             return
 
         org, proj, tag, ext = m.groups()
 
         self.github_project = proj
+        self.github_tag = tag
         self.master_sites = f'${{MASTER_SITE_GITHUB:={org}/}}'
         self.homepage = f'https://github.com/{org}/{proj}/'
         if proj not in tag:
@@ -308,7 +338,16 @@ class Generator:
         self.distfile = tag + ext
 
     def adjust_site_GitHub_release(self):
-        m = re.search(r'^https://github\.com/(.+)/(.+)/releases/download/(.+)/(.+)(\.tar\.gz|\.zip)$', self.url)
+        pattern = r'''(?x)
+            ^https://github\.com/
+            (.+)/               # org
+            (.+)/               # proj   
+            releases/download/
+            (.+)/               # tag
+            (.+)                # base
+            (\.tar\.gz|\.zip)$  # ext
+            '''
+        m = re.search(pattern, self.url)
         if not m:
             return
 
@@ -327,29 +366,25 @@ class Generator:
         if self.master_sites != '':
             return
 
-        m = re.search(r'^(.*/)(.*)$', self.url)
-        if not m:
-            sys.exit(f'error: URL "{self.url}" must have at least one slash')
+        base_url, self.distfile = re.search(r'^(.*/)(.*)$', self.url).groups()
 
-        self.master_sites = m[1]
-        self.distfile = m[2]
-        self.homepage = self.master_sites
+        self.master_sites = base_url
+        self.homepage = base_url
 
-    def determine_distname(self):
+    def adjust_everything_else(self):
         m = re.search(r'^(.*?)((?:\.tar)?\.\w+)$', self.distfile)
         if m:
             distname, extract_sufx = m.groups()
         else:
             distname, extract_sufx = self.distfile, '# none'
-
-        m = re.search(r'^v\d', distname)
-        if m:
-            self.pkgname_transform = ':S,^v,,'
-        elif re.search(r'-v\d', distname) and not re.search(r'-v.*-v\d', distname):
-            self.pkgname_transform = ':S,-v,-,'
         self.distname = distname
 
-        main_category = re.search(r'.*/([^/]+)/[^/]+$', os.getcwd())[1]
+        if re.search(r'^v\d+\.', distname):
+            self.pkgname_transform = ':S,^v,,'
+        elif re.search(r'-v\d+\.', distname) and not re.search(r'-v.*-v\d+\.', distname):
+            self.pkgname_transform = ':S,-v,-,'
+
+        main_category = Path.cwd().parts[-2]
         self.categories = main_category \
             if main_category not in ('local', 'wip') \
             else '# TODO: add primary category'
@@ -372,6 +407,7 @@ class Generator:
 
         lines.add_vars(
             Var('GITHUB_PROJECT', '=', self.github_project),
+            Var('GITHUB_TAG', '=', self.github_tag),
             Var('DISTNAME', '=', self.distname),
             Var('PKGNAME', '=', self.pkgname),
             Var('CATEGORIES', '=', self.categories),
@@ -393,46 +429,42 @@ class Generator:
 
         return lines
 
-    def generate_Makefile(self):
-        self.foreach_site(self.adjust_site)
-        self.adjust_site_sourceforge()
+    def generate_Makefile(self) -> Lines:
+        self.adjust_site_SourceForge()
         self.adjust_site_GitHub_archive()
         self.adjust_site_GitHub_release()
+        self.foreach_site_from_sites_mk(self.adjust_site_from_sites_mk)
         self.adjust_site_other()
-        self.determine_distname()
+        self.adjust_everything_else()
         return self.generate_lines()
 
     def generate_package(self, up: Url2Pkg) -> Lines:
         pkgdir = up.pkgdir
-        makefile = f'{pkgdir}/Makefile'
-        descr = f'{pkgdir}/DESCR'
-        plist = f'{pkgdir}/PLIST'
+        makefile = pkgdir / 'Makefile'
+        descr = pkgdir / 'DESCR'
+        plist = pkgdir / 'PLIST'
 
         initial_lines = self.generate_Makefile()
 
         try:
-            os.rename(makefile, f'{makefile}.url2pkg~')
+            makefile.replace(f'{makefile}.url2pkg~')
         except OSError:
             pass
         initial_lines.write_to(makefile)
-        if not os.path.isfile(plist):
-            Lines('@comment $''NetBSD$').write_to(plist)
-        if not os.path.isfile(descr):
-            Lines().write_to(descr)
+        plist.is_file() or Lines('@comment $''NetBSD$').write_to(plist)
+        descr.is_file() or Lines().write_to(descr)
 
-        editor = os.getenv('PKGEDITOR') or os.getenv('EDITOR') or 'vi'
-        subprocess.check_call([editor, makefile])
+        subprocess.check_call([up.editor, makefile])
 
-        up.bmake('distinfo')
-        up.bmake('extract')
+        up.bmake('clean', 'distinfo', 'extract')
 
         return initial_lines
 
 
 class Adjuster:
     """
-    The following adjust_* functions are called after the distfiles have
-    been downloaded and extracted. They inspect the extracted files
+    After the distfile has been downloaded and extracted, the
+    adjust_* methods of this class inspect the extracted files
     and adjust the variable definitions in the package Makefile.
     """
 
@@ -444,11 +476,11 @@ class Adjuster:
 
         # the absolute pathname to the working directory, containing
         # the extracted distfiles.
-        self.abs_wrkdir = ''
+        self.abs_wrkdir = Path('')
 
         # the absolute pathname to a subdirectory of abs_wrkdir, typically
         # containing package-provided Makefiles or configure scripts.
-        self.abs_wrksrc = ''
+        self.abs_wrksrc = Path('')
 
         # the regular files and directories relative to abs_wrksrc.
         self.wrksrc_files: List[str] = []
@@ -544,11 +576,11 @@ class Adjuster:
         effective_env = dict(os.environ)
         effective_env.update(env)
 
-        self.up.debug('reading dependencies: cd {0} && env {1} {2}', cwd, env, cmd)
-        output = subprocess.check_output(args=cmd, shell=True, env=effective_env, cwd=cwd)
+        self.up.debug('reading dependencies: cd {0} && env {1} {2}', str(cwd), env, cmd)
+        output: bytes = subprocess.check_output(args=cmd, shell=True, env=effective_env, cwd=cwd)
 
         dep_lines: List[Tuple[str, str, str, str]] = []
-        for line in output.decode('utf-8').split('\n'):
+        for line in output.decode('utf-8').splitlines():
             # example: DEPENDS   pkgbase>=1.2.3:../../category/pkgbase
             m = re.search(r'^(\w+)\t([^\s:>]+)(>[^\s:]+|)(?::(\.\./\.\./\S+))?$', line)
             if m:
@@ -577,36 +609,39 @@ class Adjuster:
             self.add_dependency(kind, pkgbase, constraint, dep_dir)
 
     def wrksrc_open(self, relative_pathname: str):
-        return open(self.abs_wrksrc + '/' + relative_pathname)
+        return (self.abs_wrksrc / relative_pathname).open()
 
-    def wrksrc_find(self, what: Union[str, Callable[[str], bool]]) -> Iterator[str]:
+    def wrksrc_find(self, what: Union[str, Callable[[str], bool]]) -> List[str]:
         def search(f):
-            print('search', f)
             return re.search(what, f) if type(what) == str else what(f)
 
         return list(sorted(filter(search, self.wrksrc_files)))
 
-    def wrksrc_grep(self, filename: str, pattern: str) -> List[str]:
+    def wrksrc_grep(self, filename: str, pattern: str) -> List[Union[str, List[str]]]:
         with self.wrksrc_open(filename) as f:
-            return [line for line in f if re.search(pattern, line)]
+            matches = []
+            for line in f:
+                line = line.rstrip('\n')
+                m = re.search(pattern, line)
+                if m:
+                    groups = list(m.groups())
+                    matches.append(groups if groups else line)
+            return matches
 
     def wrksrc_isdir(self, relative_pathname: str) -> bool:
-        return os.path.isdir(self.abs_wrksrc + '/' + relative_pathname)
+        return (self.abs_wrksrc / relative_pathname).is_dir()
 
     def wrksrc_isfile(self, relative_pathname: str) -> bool:
-        return os.path.isfile(self.abs_wrksrc + '/' + relative_pathname)
+        return (self.abs_wrksrc / relative_pathname).is_file()
 
     def adjust_configure(self):
         if not self.wrksrc_isfile('configure'):
             return
 
-        gnu = False
-        some = False
-        for configure in self.wrksrc_find(r'(^|/)configure$'):
-            some = True
-            if self.wrksrc_grep(configure, r'\b(Free Software Foundation|autoconf)\b'):
-                gnu = True
-        if some:
+        configures = self.wrksrc_find(r'(^|/)configure$')
+        if configures:
+            gnu = any(self.wrksrc_grep(configure, r'\b(Free Software Foundation|autoconf)\b')
+                      for configure in configures)
             varname = 'GNU_CONFIGURE' if gnu else 'HAS_CONFIGURE'
             self.build_vars.append(Var(varname, '=', 'yes'))
 
@@ -616,7 +651,7 @@ class Adjuster:
 
     def adjust_meson(self):
         if self.wrksrc_isfile('meson.build'):
-            self.includes.append('../../devel/py-meson/build.mk')
+            self.includes.append('../../devel/meson/build.mk')
 
     def adjust_gconf2_schemas(self):
         gconf2_files = self.wrksrc_find(r'\.schemas(\.in)*$')
@@ -683,7 +718,7 @@ class Adjuster:
         self.adjust_perl_module_homepage()
 
         try:
-            os.unlink('PLIST')
+            (self.up.pkgdir / 'PLIST').unlink()
         except OSError:
             pass
 
@@ -711,12 +746,9 @@ class Adjuster:
         if not self.wrksrc_isfile('Cargo.lock'):
             return
 
-        with self.wrksrc_open('Cargo.lock') as f:
-            for line in f:
-                # "checksum cargo-package-name cargo-package-version
-                m = re.search(r'^"checksum\s(\S+)\s(\S+)', line)
-                if m:
-                    self.build_vars.append(Var('CARGO_CRATE_DEPENDS', '+=', m[1] + '-' + m[2]))
+        # "checksum cargo-package-name cargo-package-version
+        for (name, version) in self.wrksrc_grep('Cargo.lock', r'^"checksum\s(\S+)\s(\S+)'):
+            self.build_vars.append(Var('CARGO_CRATE_DEPENDS', '+=', f'{name}-{version}'))
 
         self.includes.append('../../lang/rust/cargo.mk')
 
@@ -756,58 +788,71 @@ class Adjuster:
         Sets abs_wrksrc depending on abs_wrkdir and the files found there.
         """
 
-        def ignore(f: str) -> bool:
-            return f.startswith('.') \
-                   or f == 'pax_global_header' \
-                   or f == 'package.xml' \
-                   or f.endswith('.gemspec')
+        def relevant(f: Path) -> bool:
+            return f.is_dir() and not f.name.startswith('.')
 
-        files = list(filter(lambda x: not ignore(x), os.listdir(self.abs_wrkdir)))
+        subdirs = [f.name for f in self.abs_wrkdir.glob('*') if relevant(f)]
 
-        if len(files) == 1:
-            if files[0] != self.makefile_lines.get('DISTNAME'):
-                self.build_vars.append(Var('WRKSRC', '=', '${WRKDIR}/' + files[0]))
-            self.abs_wrksrc = self.abs_wrkdir + '/' + files[0]
-        elif len(files) == 0:
+        if len(subdirs) == 1:
+            if subdirs[0] != self.makefile_lines.get('DISTNAME'):
+                self.build_vars.append(Var('WRKSRC', '=', '${WRKDIR}/' + subdirs[0]))
+            self.abs_wrksrc = self.abs_wrkdir / subdirs[0]
+        elif len(subdirs) == 0:
             self.build_vars.append(Var('WRKSRC', '=', '${WRKDIR}'))
             self.abs_wrksrc = self.abs_wrkdir
         else:
-            wrksrc = '${WRKDIR} # More than one possibility -- please check manually.'
+            choices = ' '.join(subdirs)
+            wrksrc = f'${{WRKDIR}} # TODO: one of {choices}, or leave it as-is'
             self.build_vars.append(Var('WRKSRC', '=', wrksrc))
             self.abs_wrksrc = self.abs_wrkdir
 
     def adjust_lines_python_module(self, lines: Lines):
 
-        initial_lines = self.initial_lines
-        current_lines = self.makefile_lines
+        initial_lines = self.initial_lines  # as generated by url2pkg
+        edited_lines = self.makefile_lines  # as edited by the package developer
 
-        if 'python' not in initial_lines.get('CATEGORIES'):
+        if 'python' not in lines.get('CATEGORIES'):
             return
-        pkgbase = initial_lines.get('GITHUB_PROJECT')
-        if pkgbase == '':
+        if lines.get('GITHUB_PROJECT') == '':
             return
-        pkgbase1 = pkgbase[:1]
-        pkgversion_norev = re.sub(r'^v', '', initial_lines.get('DISTNAME'))
 
         # don't risk to overwrite any changes made by the package developer.
-        if '\n'.join(current_lines.lines) != '\n'.join(initial_lines.lines):
-            lines.lines.insert(-2, '# TODO: Migrate MASTER_SITES to PYPI')
+        if edited_lines.lines != initial_lines.lines:
+            lines.lines.insert(-2, '# TODO: Migrate MASTER_SITES to MASTER_SITE_PYPI')
             return
 
+        pkgbase = initial_lines.get('GITHUB_PROJECT')
+        pkgbase1 = pkgbase[:1] if pkgbase != '' else ''
+        pkgversion_norev = re.sub(r'^v', '', initial_lines.get('DISTNAME'))
+
         tx_lines = Lines(*self.makefile_lines.lines)
-        if (tx_lines.remove('GITHUB_PROJECT')
+        if not (tx_lines.remove('GITHUB_PROJECT')
                 and tx_lines.set('DISTNAME', f'{pkgbase}-{pkgversion_norev}')
                 and tx_lines.set('PKGNAME', '${PYPKGPREFIX}-${DISTNAME}')
                 and tx_lines.set('MASTER_SITES', f'${{MASTER_SITE_PYPI:={pkgbase1}/{pkgbase}/}}')
                 and tx_lines.remove('DIST_SUBDIR')):
-            tx_lines.remove_if('EXTRACT_SUFX', '.zip')
-            self.makefile_lines = tx_lines
-            self.regenerate_distinfo = True
+            return
 
-    def generate_adjusted_Makefile_lines(self) -> Lines:
+        tx_lines.remove_if('GITHUB_TAG', initial_lines.get('DISTNAME'))
+        tx_lines.remove_if('EXTRACT_SUFX', '.zip')
+
+        up = self.up
+        try_mk = up.pkgdir / 'try-pypi.mk'
+        tx_lines.write_to(try_mk)
+        args = [up.make, '-f', str(try_mk), 'distinfo']
+        up.debug('running {0} to try PyPI', args)
+        fetch_ok = subprocess.call(args, cwd=up.pkgdir) == 0
+        try_mk.unlink()
+        if not fetch_ok:
+            return
+
+        lines.lines = tx_lines.lines
+        self.regenerate_distinfo = True
+
+    def generate_lines(self) -> Lines:
         marker_index = self.makefile_lines.index(r'^# url2pkg-marker')
         if marker_index == -1:
-            raise Exception('ERROR: didn\'t find the url2pkg marker in the Makefile.')
+            sys.exit('error: didn\'t find the url2pkg marker in the Makefile.')
 
         lines = Lines(*self.makefile_lines.lines[: marker_index])
 
@@ -847,19 +892,20 @@ class Adjuster:
 
         return lines
 
-    def adjust_package_from_extracted_distfiles(self):
+    def adjust(self):
 
-        def scan(basedir: str, pattern: str) -> List[str]:
-            full_paths = glob.glob(f'{basedir}/{pattern}', recursive=True)
-            return list(f[len(basedir) + 1:] for f in full_paths)
+        def scan(basedir: Path, only: Callable[[Path], bool]) -> List[str]:
+            relevant = (f for f in basedir.rglob('*') if only(f))
+            relative = (str(f.relative_to(basedir)) for f in relevant)
+            return list(sorted((f for f in relative if not f.startswith('.'))))
 
         self.up.debug('Adjusting the Makefile')
-        self.makefile_lines = Lines.read_from(self.up.pkgdir + '/Makefile')
+        self.makefile_lines = Lines.read_from(self.up.pkgdir / 'Makefile')
 
-        self.abs_wrkdir = self.up.show_var('WRKDIR')
+        self.abs_wrkdir = Path(self.up.show_var('WRKDIR'))
         self.determine_wrksrc()
-        self.wrksrc_files = scan(self.abs_wrksrc, '**')
-        self.wrksrc_dirs = scan(self.abs_wrksrc, '**/')
+        self.wrksrc_dirs = scan(self.abs_wrksrc, Path.is_dir)
+        self.wrksrc_files = scan(self.abs_wrksrc, Path.is_file)
 
         self.adjust_configure()
         self.adjust_cmake()
@@ -873,39 +919,36 @@ class Adjuster:
         self.adjust_po()
         self.adjust_use_languages()
 
-        self.generate_adjusted_Makefile_lines().write_to(self.up.pkgdir + '/Makefile')
+        self.generate_lines().write_to(self.up.pkgdir / 'Makefile')
 
         if self.regenerate_distinfo:
             self.up.bmake('distinfo')
 
 
-def main():
+def main(argv: List[str], up: Url2Pkg):
     if not os.path.isfile('../../mk/bsd.pkg.mk'):
-        sys.exit(f'ERROR: {sys.argv[0]} must be run from a package directory (.../pkgsrc/category/package).')
+        sys.exit(f'{argv[0]}: must be run from a package directory (.../pkgsrc/category/package)')
 
-    up = Url2Pkg()
     try:
-        opts, args = getopt.getopt(sys.argv[1:], 'v', ['verbose'])
+        opts, args = getopt.getopt(argv[1:], 'v', ['verbose'])
         for (opt, _) in opts:
             if opt in ('-v', '--verbose'):
                 up.verbose = True
     except getopt.GetoptError:
-        sys.exit(f'usage: {sys.argv[0]} [-v|--verbose] [URL]')
+        sys.exit(f'usage: {argv[0]} [-v|--verbose] [URL]')
 
     url = args[0] if args else input('URL: ')
+    if not re.fullmatch(r'\w+://[!-~]+?/[!-~]+', url):
+        sys.exit(f'url2pkg: invalid URL: {url}')
 
-    if not glob.glob('w*/.extract_done') or not os.path.isfile('Makefile'):
-        initial_lines = Generator(url).generate_package(up)
-    else:
-        initial_lines = Generator(url).generate_lines()
+    initial_lines = Generator(url).generate_package(up)
+    Adjuster(up, url, initial_lines).adjust()
 
-    Adjuster(up, url, initial_lines).adjust_package_from_extracted_distfiles()
-
-    print('')
-    print('Remember to run pkglint when you\'re done.')
-    print('See ../../doc/pkgsrc.txt to get some help.')
-    print('')
+    up.out.write('\n')
+    up.out.write('Remember to run pkglint when you\'re done.\n')
+    up.out.write('See ../../doc/pkgsrc.txt to get some help.\n')
+    up.out.write('\n')
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv, Url2Pkg())
