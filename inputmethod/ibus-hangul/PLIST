@@ -24,3 +24,4 @@ share/icons/hicolor/scalable/apps/ibus-hangul.svg
 share/icons/hicolor/scalable/apps/ibus-setup-hangul.svg
 share/locale/ko/LC_MESSAGES/ibus-hangul.mo
 share/locale/zh_CN/LC_MESSAGES/ibus-hangul.mo
+share/metainfo/org.freedesktop.ibus.engine.hangul.metainfo.xml
