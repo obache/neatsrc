@@ -18,6 +18,8 @@ USE_TOOLS+=		pkg-config gmake msgfmt intltool
 
 GETTEXT_TOOLS_REQD=	0.19.7
 
+TEST_TARGET=		check
+
 .include "../../devel/gettext-lib/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libhangul+=	libhangul>=0.1.0
 .include "../../inputmethod/libhangul/buildlink3.mk"
