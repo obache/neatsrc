@@ -1,13 +1,12 @@
 # $NetBSD: Makefile,v 1.46 2019/07/21 22:25:10 wiz Exp $
 
-DISTNAME=	imhangul-2.0.0
-PKGREVISION=	22
+DISTNAME=	imhangul-2.1.1
 CATEGORIES=	inputmethod korean
-MASTER_SITES=	http://kldp.net/frs/download.php/5924/
+MASTER_SITES=	${MASTER_SITE_GOOGLECODE:=imhangul/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://kldp.net/projects/imhangul/
+HOMEPAGE=	https://code.google.com/archive/p/imhangul/
 COMMENT=	GTK+-2.0 Hangul Input Module
 LICENSE=	gnu-gpl-v2 # or later
 
