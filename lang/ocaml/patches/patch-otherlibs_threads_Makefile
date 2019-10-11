@@ -7,7 +7,7 @@ Honor LDFLAGS.
        -I $(ROOTDIR)/stdlib -I $(ROOTDIR)/otherlibs/unix
  MKLIB=$(CAMLRUN) $(ROOTDIR)/tools/ocamlmklib
  COMPFLAGS=-w +33..39 -warn-error A -bin-annot -g -safe-string
-+LDOPTS=	-ldopt $(LDFLAGS)
++LDOPTS=	-ldopt "$(LDFLAGS)"
  
  C_OBJS=scheduler.o
  
