@@ -7,7 +7,7 @@ PKGNAME=	${DISTNAME:S/openexr/ilmbase/}
 CONFIGURE_DIRS=	IlmBase
 BUILD_DIRS=	IlmBase
 
-PKGCONFIG_OVERRIDE=	IlmBase.pc.in
+PKGCONFIG_OVERRIDE=	IlmBase/IlmBase.pc.in
 
 CONFLICTS=		openexr<1.6
 
