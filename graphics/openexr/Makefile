@@ -9,7 +9,7 @@ USE_TOOLS+=	pkg-config
 
 LIBS.IRIX+=		-lmx
 
-PKGCONFIG_OVERRIDE=	OpenEXR.pc.in
+PKGCONFIG_OVERRIDE=	OpenEXR/OpenEXR.pc.in
 
 pre-configure:
 	cd ${WRKSRC}/OpenEXR && ./bootstrap
