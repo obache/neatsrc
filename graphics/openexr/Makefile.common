@@ -16,12 +16,9 @@ LICENSE=	modified-bsd
 WRKSRC=		${WRKDIR}/${DISTNAME}
 USE_TOOLS+=	autoconf automake aclocal
 GNU_CONFIGURE=	yes
-USE_LANGUAGES=	c c++14
+USE_LANGUAGES=	c c++
 USE_LIBTOOL=	yes
 TEST_TARGET=	check
-
-# C++14
-GCC_REQD+=	6
 
 LIBS.SunOS+=	-lm
 
