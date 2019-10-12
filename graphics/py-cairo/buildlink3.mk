@@ -11,6 +11,9 @@ BUILDLINK_API_DEPENDS.py-cairo+=	${PYPKGPREFIX}-cairo>=1.10.0
 BUILDLINK_ABI_DEPENDS.py-cairo?=	${PYPKGPREFIX}-cairo>=1.17.1nb1
 BUILDLINK_PKGSRCDIR.py-cairo?=		../../graphics/py-cairo
 
+BUILDLINK_INCDIRS.py-cairo=		include/pycairo
+BUILDLINK_CONTENTS_PATTERNS.py-cairo=	${PYSITELIB}/cairo/include
+
 .include "../../graphics/cairo/buildlink3.mk"
 .endif	# PY_CAIRO_BUILDLINK3_MK
 
