@@ -43,6 +43,14 @@ SUBST_SED.oss+=		-e "s,/dev/midi,/dev/rmidi0,g"
 .include "../../devel/libgetopt/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../mk/readline.buildlink3.mk"
+CMAKE_ARGS+=	-DREADLINE_INCLUDE_DIR:PATH=${BUILDLINK_PREFIX.editlinereadline}/include
+.if ${READLINE_TYPE} == "editline"
+SUBST_CLASSES+=		readline
+SUBST_STAGE.readline=	pre-configure
+SUBST_MESSAGE.readline=	Adjust find_library name for readline
+SUBST_FILES.readline+=	cmake_admin/FindReadline.cmake
+SUBST_SED.readline+=	-e "s, NAMES readline , NAMES edit ,g"
+.endif
 .include "../../mk/oss.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
