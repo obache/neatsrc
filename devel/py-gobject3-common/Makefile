@@ -16,7 +16,7 @@ SUBST_SED.configurepc+=		-e 's,@exec_prefix@,$${prefix},'
 SUBST_SED.configurepc+=		-e 's,@includedir@,$${prefix}/include,'
 SUBST_SED.configurepc+=		-e 's,@datarootdir@,$${prefix}/share,'
 SUBST_SED.configurepc+=		-e 's,@datadir@,$${datarootdir},'
-SUBST_SED.configurepc+=		-e 's,@VERSION@,${PKGVERSION},'
+SUBST_SED.configurepc+=		-e 's,@VERSION@,${PKGVERSION_NOREV},'
 
 INSTALLATION_DIRS+=	include/pygobject-3.0 lib/pkgconfig
 
