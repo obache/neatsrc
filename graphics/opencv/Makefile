@@ -37,6 +37,12 @@ post-install:
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
 .include "../../lang/python/extension.mk"
+.if !empty(PLIST.py3x:M[Yy][Ee][Ss])
+CMAKE_ARGS+=	-DOPENCV_PYTHON3_VERSION=${PYVERSSUFFIX}
+CMAKE_ARGS+=	-DPYTHON3_EXECUTABLE:FILEPATH=${PYTHONBIN}
+.else
+CMAKE_ARGS+=	-DPYTHON2_EXECUTABLE:FILEPATH=${PYTHONBIN}
+.endif
 .include "../../math/py-numpy/buildlink3.mk"
 .if ${OPSYS} != "Darwin"
 .include "../../x11/gtk3/buildlink3.mk"
