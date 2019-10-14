@@ -3,7 +3,7 @@
 # Global and legacy options
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.postfix
-PKG_SUPPORTED_OPTIONS=	sasl tls eai
+PKG_SUPPORTED_OPTIONS=	sasl tls eai blacklistd
 PKG_SUGGESTED_OPTIONS=	tls
 
 .include "../../mk/bsd.options.mk"
@@ -59,4 +59,12 @@ CCARGS+=	-DNO_EAI
 post-install:
 	cd ${WRKSRC} && ${SETENV} LD_LIBRARY_PATH=${WRKSRC}/lib bin/postconf	\
 		-c ${DESTDIR}${EXAMPLEDIR} smtputf8_enable=no
+.endif
+
+###
+### Blacklistd(3) support
+###
+.if !empty(PKG_OPTIONS:Mblacklistd)
+DIST_PATCHFILES+=	blacklistd.patch
+AUXLIBS+=		-lblacklist
 .endif
