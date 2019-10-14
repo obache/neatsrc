@@ -132,7 +132,7 @@ patch-cookie:
 ###
 .PHONY: pre-patch do-patch post-patch
 
-_DIST_PATCHFILES:=	${DIST_PATCHFILES}
+_DIST_PATCHFILES:=	${PATCHFILES} ${DIST_PATCHFILES}
 .if !empty(_DIST_PATCHFILES)
 _PKGSRC_PATCH_TARGETS+=	distribution-patch-message
 _PKGSRC_PATCH_TARGETS+=	do-distribution-patch
@@ -196,7 +196,7 @@ fi; exit 1
 ### do-distribution-patch (PRIVATE)
 ######################################################################
 ### do-distribution-patch applies the distribution patches (specified
-### in DIST_PATCHFILES) to the extracted sources.
+### in _DIST_PATCHFILES) to the extracted sources.
 ###
 .PHONY: distribution-patch-message do-distribution-patch
 
@@ -240,8 +240,8 @@ PATCH_DIST_CAT?=	{ case $$patchfile in				\
 PATCH_DIST_CAT.${i:S/=/--/}?=	{ \
 	case ${i} in							\
 	/*)	patchfile=${i} ;;					\
-	*)	if ${TEST} -f ${_DISTDIR}/${i}; then 			\
-			patchfile=${_DISTDIR}/${i};			\
+	*)	if ${TEST} -f ${FILESDIR}/${i}; then 			\
+			patchfile=${FILESDIR}/${i};			\
 		elif ${TEST} -f ${WRKDIR}/${i}; then			\
 			patchfile=${WRKDIR}/${i};			\
 		else							\

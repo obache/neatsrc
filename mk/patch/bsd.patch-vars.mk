@@ -14,8 +14,7 @@
 #	directory.
 #
 #    DIST_PATCHFILES is a list of ordered distribution patches relative
-#	to ${_DISTDIR} or ${WRKDIR} that are applied first to the package.
-#	${PATCHFILES} by default.
+#	to ${FILESDIR} or ${WRKDIR} that are applied first to the package.
 #
 # User-settable variables:
 #
@@ -30,7 +29,7 @@
 #PATCHDIR?=	${.CURDIR}/patches
 
 PATCHFILES?=	# none
-DIST_PATCHFILES?=	${PATCHFILES}
+DIST_PATCHFILES?=	#none
 
 pkgsrc_patches=	${:!echo ${PATCHDIR}/patch-* ${PATCHDIR}/emul-*-patch-*!:N*\*}
 .if !empty(LOCALPATCHES)
