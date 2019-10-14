@@ -13,7 +13,7 @@ COMMENT=	OpenImageIO is a library for reading and writing images
 LICENSE=	modified-bsd
 
 USE_CMAKE=		yes
-USE_LANGUAGES=		c c++11
+USE_LANGUAGES=		c gnu++11
 USE_TOOLS+=		gmake
 
 OBJDIR=			../build
