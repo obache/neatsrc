@@ -13,6 +13,7 @@ PKG_SUGGESTED_OPTIONS.SunOS+=	threads
 ###
 .if !empty(PKG_OPTIONS:Mthreads)
 .include "../../mk/pthread.buildlink3.mk"
+.include "../../devel/libatomic_ops/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-threads
 .endif

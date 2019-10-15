@@ -38,5 +38,4 @@ manual-do-test:
 	${RM} -f gctest && ${MAKE_PROGRAM} gctest && ./gctest && \
 	${RM} -f test_cpp && ${MAKE_PROGRAM} test_cpp && ./test_cpp 10
 
-.include "../../devel/libatomic_ops/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

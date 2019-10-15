@@ -8,7 +8,11 @@ BOEHM_GC_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.boehm-gc+=	boehm-gc>=7.4
 BUILDLINK_PKGSRCDIR.boehm-gc?=		../../devel/boehm-gc
 
-.include "../../devel/libatomic_ops/buildlink3.mk"
+pkgbase := boehm-gc
+.include "../../mk/pkg-build-options.mk"
+.  if !empty(PKG_BUILD_OPTIONS.boehm-gc:Mthreads)
+.    include "../../devel/libatomic_ops/buildlink3.mk"
+.  endif
 .endif # BOEHM_GC_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-boehm-gc
