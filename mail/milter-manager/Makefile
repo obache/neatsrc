@@ -1,10 +1,9 @@
 # $NetBSD: Makefile,v 1.44 2019/09/14 18:13:50 tsutsui Exp $
 #
 
-DISTNAME=	milter-manager-2.1.4
-PKGREVISION=	1
+DISTNAME=	milter-manager-2.1.5
 CATEGORIES=	mail
-MASTER_SITES=	${MASTER_SITE_OSDN:=milter-manager/69790/}
+MASTER_SITES=	${MASTER_SITE_OSDN:=milter-manager/71587/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://milter-manager.osdn.jp/
