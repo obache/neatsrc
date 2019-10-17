@@ -3,10 +3,10 @@
 DISTNAME=	milter-regex-1.7
 PKGREVISION=	2
 CATEGORIES=	mail
-MASTER_SITES=	http://www.benzedrine.cx/
+MASTER_SITES=	https://www.benzedrine.ch/
 
 MAINTAINER=	jdarrow@NetBSD.org
-#HOMEPAGE=	http://www.benzedrine.cx/milter-regex.html
+HOMEPAGE=	https://www.benzedrine.ch/milter-regex.html
 COMMENT=	Milter enabling regular expression filtering
 
 USE_TOOLS+=		nroff yacc
