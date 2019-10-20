@@ -65,3 +65,24 @@
 +		blstate = NULL;
 +	}
 +}
+--- src/smtpd/smtpd_check.c.orig	2019-03-12 12:28:20.000000000 +0000
++++ src/smtpd/smtpd_check.c
+@@ -259,6 +259,7 @@
+ #include "smtpd_dsn_fix.h"
+ #include "smtpd_resolve.h"
+ #include "smtpd_expand.h"
++#include "pfilter.h" /* for blacklistd(8) */
+ 
+  /*
+   * Eject seat in case of parsing problems.
+@@ -1123,6 +1124,10 @@ static int smtpd_check_reject(SMTPD_STAT
+      */
+     log_whatsup(state, whatsup, STR(error_text));
+ 
++    if (!warn_if_reject && STR(error_text)[0] == '5') {
++        pfilter_notify(1, vstream_fileno(state->client));
++    }
++
+     return (warn_if_reject ? 0 : SMTPD_CHECK_REJECT);
+ }
+ 
