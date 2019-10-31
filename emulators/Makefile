@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.304 2019/09/22 09:54:13 nia Exp $
+# $NetBSD: Makefile,v 1.307 2019/10/26 16:57:53 kamil Exp $
 #
 
 COMMENT=	Emulators for other operating systems
@@ -23,6 +23,7 @@ SUBDIR+=	b-em
 SUBDIR+=	blastem
 SUBDIR+=	blinkensim
 SUBDIR+=	bochs
+SUBDIR+=	cannonball
 SUBDIR+=	ckmame
 SUBDIR+=	cmdpack
 SUBDIR+=	compat12
@@ -45,6 +46,7 @@ SUBDIR+=	compat51-x11
 SUBDIR+=	compat60
 SUBDIR+=	compat61
 SUBDIR+=	compat61-x11
+SUBDIR+=	compat80
 #SUBDIR+=	compat_netbsd		# only contains Makefile fragments
 SUBDIR+=	cygwin_esound
 SUBDIR+=	cygwin_lib
@@ -67,7 +69,6 @@ SUBDIR+=	fs-uae-arcade
 SUBDIR+=	fs-uae-launcher
 SUBDIR+=	fuse-emulator
 SUBDIR+=	fuse-emulator-utils
-SUBDIR+=	gambatte
 SUBDIR+=	gcube
 SUBDIR+=	generator-cbiere
 SUBDIR+=	gens

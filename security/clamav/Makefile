@@ -1,6 +1,5 @@
-# $NetBSD: Makefile,v 1.54 2019/10/05 20:52:52 nros Exp $
+# $NetBSD: Makefile,v 1.56 2019/10/10 15:43:44 prlw1 Exp $
 
-PKGREVISION= 1
 .include "Makefile.common"
 
 COMMENT=	Anti-virus toolkit
@@ -24,10 +23,8 @@ CONFIGURE_ARGS+=	--with-pcre=${BUILDLINK_PREFIX.pcre2}
 CONFIGURE_ARGS+=	--with-system-libmspack=${BUILDLINK_PREFIX.libmspack}
 CONFIGURE_ARGS+=	--with-xml=${BUILDLINK_PREFIX.libxml2}
 CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib}
-CONFIGURE_ARGS+=	--enable-readdir_r
-# pkgsrc enforces a "secure" version of zlib, so don't let this check
-# bomb the build
-CONFIGURE_ARGS+=	--disable-zlib-vcheck
+# Linux only:
+CONFIGURE_ARGS+=	--disable-clamonacc
 # Work around build failure PR pkg/54420
 CONFIGURE_ARGS+=	--disable-unrar
 

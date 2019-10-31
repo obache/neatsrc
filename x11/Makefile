@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.851 2019/09/16 10:54:39 nia Exp $
+# $NetBSD: Makefile,v 1.854 2019/10/26 13:20:00 kamil Exp $
 #
 
 COMMENT=	Packages to support the X window system
@@ -60,7 +60,6 @@ SUBDIR+=	filerunner
 SUBDIR+=	fixesproto4
 SUBDIR+=	fltk
 SUBDIR+=	fltk13
-SUBDIR+=	fltk2
 SUBDIR+=	fox
 SUBDIR+=	frameworkintegration
 SUBDIR+=	fspanel
@@ -204,7 +203,6 @@ SUBDIR+=	ktextwidgets
 SUBDIR+=	kwidgetsaddons
 SUBDIR+=	kwindowsystem
 SUBDIR+=	kxmlgui
-SUBDIR+=	lablgtk1
 SUBDIR+=	labltk
 SUBDIR+=	lesstif
 SUBDIR+=	libFS
@@ -359,6 +357,7 @@ SUBDIR+=	qt4-tools
 SUBDIR+=	qt5
 SUBDIR+=	qt5-mysql
 SUBDIR+=	qt5-odbc
+SUBDIR+=	qt5-qscintilla
 SUBDIR+=	qt5-psql
 SUBDIR+=	qt5-qtbase
 SUBDIR+=	qt5-qtcharts

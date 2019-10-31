@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.27 2019/10/06 17:29:33 nia Exp $
+# $NetBSD: Makefile,v 1.29 2019/10/16 19:25:44 nia Exp $
 
 DISTNAME=	fluidsynth-2.0.7
 CATEGORIES=	audio
@@ -15,6 +15,7 @@ USE_TOOLS+=	pkg-config
 
 CMAKE_ARGS+=	-DMAN_INSTALL_DIR=${PREFIX}/${PKGMANDIR}/man1
 CMAKE_ARGS+=	-DLIB_SUFFIX=""
+CMAKE_ARGS+=	-Denable-framework=OFF
 CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=TRUE
 
 PKGCONFIG_OVERRIDE=	fluidsynth.pc.in
@@ -39,6 +40,7 @@ SUBST_SED.oss+=		-e "s,/dev/midi,/dev/rmidi0,g"
 .  endif
 .endif
 
+.include "options.mk"
 .include "../../audio/libsndfile/buildlink3.mk"
 .include "../../devel/libgetopt/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.90 2019/07/17 09:55:56 leot Exp $
+@comment $NetBSD: PLIST,v 1.92 2019/10/22 06:31:13 leot Exp $
 bin/youtube-dl
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
@@ -419,6 +419,9 @@ ${PYSITELIB}/youtube_dl/extractor/commonprotocols.pyo
 ${PYSITELIB}/youtube_dl/extractor/condenast.py
 ${PYSITELIB}/youtube_dl/extractor/condenast.pyc
 ${PYSITELIB}/youtube_dl/extractor/condenast.pyo
+${PYSITELIB}/youtube_dl/extractor/contv.py
+${PYSITELIB}/youtube_dl/extractor/contv.pyc
+${PYSITELIB}/youtube_dl/extractor/contv.pyo
 ${PYSITELIB}/youtube_dl/extractor/corus.py
 ${PYSITELIB}/youtube_dl/extractor/corus.pyc
 ${PYSITELIB}/youtube_dl/extractor/corus.pyo
@@ -1508,9 +1511,6 @@ ${PYSITELIB}/youtube_dl/extractor/pornoxo.pyo
 ${PYSITELIB}/youtube_dl/extractor/presstv.py
 ${PYSITELIB}/youtube_dl/extractor/presstv.pyc
 ${PYSITELIB}/youtube_dl/extractor/presstv.pyo
-${PYSITELIB}/youtube_dl/extractor/promptfile.py
-${PYSITELIB}/youtube_dl/extractor/promptfile.pyc
-${PYSITELIB}/youtube_dl/extractor/promptfile.pyo
 ${PYSITELIB}/youtube_dl/extractor/prosiebensat1.py
 ${PYSITELIB}/youtube_dl/extractor/prosiebensat1.pyc
 ${PYSITELIB}/youtube_dl/extractor/prosiebensat1.pyo
@@ -1679,9 +1679,6 @@ ${PYSITELIB}/youtube_dl/extractor/senateisvp.pyo
 ${PYSITELIB}/youtube_dl/extractor/sendtonews.py
 ${PYSITELIB}/youtube_dl/extractor/sendtonews.pyc
 ${PYSITELIB}/youtube_dl/extractor/sendtonews.pyo
-${PYSITELIB}/youtube_dl/extractor/servingsys.py
-${PYSITELIB}/youtube_dl/extractor/servingsys.pyc
-${PYSITELIB}/youtube_dl/extractor/servingsys.pyo
 ${PYSITELIB}/youtube_dl/extractor/servus.py
 ${PYSITELIB}/youtube_dl/extractor/servus.pyc
 ${PYSITELIB}/youtube_dl/extractor/servus.pyo
@@ -2129,9 +2126,6 @@ ${PYSITELIB}/youtube_dl/extractor/veehd.pyo
 ${PYSITELIB}/youtube_dl/extractor/veoh.py
 ${PYSITELIB}/youtube_dl/extractor/veoh.pyc
 ${PYSITELIB}/youtube_dl/extractor/veoh.pyo
-${PYSITELIB}/youtube_dl/extractor/vessel.py
-${PYSITELIB}/youtube_dl/extractor/vessel.pyc
-${PYSITELIB}/youtube_dl/extractor/vessel.pyo
 ${PYSITELIB}/youtube_dl/extractor/vesti.py
 ${PYSITELIB}/youtube_dl/extractor/vesti.pyc
 ${PYSITELIB}/youtube_dl/extractor/vesti.pyo
@@ -2189,9 +2183,6 @@ ${PYSITELIB}/youtube_dl/extractor/vier.pyo
 ${PYSITELIB}/youtube_dl/extractor/viewlift.py
 ${PYSITELIB}/youtube_dl/extractor/viewlift.pyc
 ${PYSITELIB}/youtube_dl/extractor/viewlift.pyo
-${PYSITELIB}/youtube_dl/extractor/viewster.py
-${PYSITELIB}/youtube_dl/extractor/viewster.pyc
-${PYSITELIB}/youtube_dl/extractor/viewster.pyo
 ${PYSITELIB}/youtube_dl/extractor/viidea.py
 ${PYSITELIB}/youtube_dl/extractor/viidea.pyc
 ${PYSITELIB}/youtube_dl/extractor/viidea.pyo
@@ -2297,9 +2288,6 @@ ${PYSITELIB}/youtube_dl/extractor/weibo.pyo
 ${PYSITELIB}/youtube_dl/extractor/weiqitv.py
 ${PYSITELIB}/youtube_dl/extractor/weiqitv.pyc
 ${PYSITELIB}/youtube_dl/extractor/weiqitv.pyo
-${PYSITELIB}/youtube_dl/extractor/wimp.py
-${PYSITELIB}/youtube_dl/extractor/wimp.pyc
-${PYSITELIB}/youtube_dl/extractor/wimp.pyo
 ${PYSITELIB}/youtube_dl/extractor/wistia.py
 ${PYSITELIB}/youtube_dl/extractor/wistia.pyc
 ${PYSITELIB}/youtube_dl/extractor/wistia.pyo

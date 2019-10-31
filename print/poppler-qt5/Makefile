@@ -1,14 +1,15 @@
-# $NetBSD: Makefile,v 1.32 2019/05/09 09:28:22 adam Exp $
+# $NetBSD: Makefile,v 1.34 2019/10/20 03:12:22 markd Exp $
 
 .include "../../print/poppler/Makefile.common"
+PKGREVISION=	1
 
 PKGNAME=	poppler-qt5-${POPPLER_VERS}
 COMMENT=	PDF rendering library (QT5 wrapper)
 MAINTAINER=	pkgsrc-users@NetBSD.org
 
-CMAKE_ARGS+=	-DENABLE_SPLASH=ON
 CMAKE_ARGS+=	-DBUILD_GTK_TESTS=OFF
 CMAKE_ARGS+=	-DENABLE_GLIB=OFF
+CMAKE_ARGS+=	-DENABLE_SPLASH=OFF
 CMAKE_ARGS+=	-DENABLE_UTILS=OFF
 CMAKE_ARGS+=	-DENABLE_CPP=OFF
 CMAKE_ARGS+=	-DENABLE_QT5=ON
@@ -30,6 +31,7 @@ pre-build:
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/poppler-qt5.pc ${DESTDIR}${PREFIX}/lib/pkgconfig
 
+.include "../../devel/boost-headers/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

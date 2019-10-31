@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.105 2019/10/09 11:01:18 hauke Exp $
+# $NetBSD: Makefile,v 1.107 2019/10/17 08:15:58 hauke Exp $
 
 DISTNAME=		texinfo-6.7
-PKGREVISION=		1
 PKGNAME=		g${DISTNAME}
+PKGREVISION=		2
 CATEGORIES=		devel sysutils
 MASTER_SITES=		${MASTER_SITE_GNU:=texinfo/}
 
@@ -22,6 +22,9 @@ GNU_CONFIGURE_STRICT=	no # otherwise MiscXS.pm won't be installed
 CONFIGURE_ARGS+=	--with-external-libintl-perl
 CONFIGURE_ARGS+=	--with-external-Text-Unidecode
 CONFIGURE_ARGS+=	--with-external-Unicode-EastAsianWidth
+CONFIGURE_ARGS+=	PERL_EXT_CFLAGS=${CFLAGS:Q}
+CONFIGURE_ARGS+=	PERL_EXT_LDFLAGS=${LDFLAGS:Q}
+
 USE_LIBTOOL=		yes
 
 INFO_FILES=		yes
@@ -32,7 +35,7 @@ USE_TOOLS+=		perl:run
 # Replace deeply nested config.sub files (in vendored perl libraries)
 OVERRIDE_DIRDEPTH=	4
 
-PKGSRC_INFOPATH=	${PREFIX}/${PKGINFODIR}:${X11BASE}/${PKGINFODIR}:${LOCALBASE}/${PKGINFODIR}
+PKGSRC_INFOPATH=	${PREFIX}/${PKGINFODIR}:${X11BASE}/${PKGINFODIR}:${PREFIX}/${PKGINFODIR}
 MAKE_ENV+=		PKGSRC_INFOPATH=${PKGSRC_INFOPATH:Q}
 
 REPLACE_SH+=		util/texi2dvi
@@ -40,9 +43,7 @@ REPLACE_SH+=		util/texi2dvi
 .include "../../mk/bsd.prefs.mk"
 .include "options.mk"
 
-.if ${OPSYS} == "FreeBSD"
 .include "../../devel/gettext-lib/buildlink3.mk"
-.endif
 .include "../../lang/perl5/buildlink3.mk"	 # for EXTERN.h in XSParagraph
 .include "../../mk/termcap.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

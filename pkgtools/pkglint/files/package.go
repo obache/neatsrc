@@ -777,7 +777,7 @@ func (pkg *Package) checkGnuConfigureUseLanguages() {
 			continue
 		}
 
-		if matches(mkline.VarassignComment(), `(?-i)\b(?:c|empty|none)\b`) {
+		if matches(mkline.Comment(), `(?-i)\b(?:c|empty|none)\b`) {
 			// Don't emit a warning since the comment probably contains a
 			// statement that C is really not needed.
 			return
@@ -836,7 +836,7 @@ func (pkg *Package) determineEffectivePkgVars() {
 	}
 
 	if pkgnameLine != nil && (pkgname == distname || pkgname == "${DISTNAME}") {
-		if pkgnameLine.VarassignComment() == "" {
+		if !pkgnameLine.HasComment() {
 			pkgnameLine.Notef("This assignment is probably redundant " +
 				"since PKGNAME is ${DISTNAME} by default.")
 			pkgnameLine.Explain(
@@ -980,6 +980,7 @@ func (pkg *Package) CheckVarorder(mklines *MkLines) {
 	var variables = []Variable{
 		{"GITHUB_PROJECT", optional}, // either here or below MASTER_SITES
 		{"GITHUB_TAG", optional},
+		{"GITHUB_RELEASE", optional},
 		{"DISTNAME", optional},
 		{"PKGNAME", optional},
 		{"R_PKGNAME", optional},
@@ -989,6 +990,7 @@ func (pkg *Package) CheckVarorder(mklines *MkLines) {
 		{"MASTER_SITES", many},
 		{"GITHUB_PROJECT", optional}, // either here or at the very top
 		{"GITHUB_TAG", optional},
+		{"GITHUB_RELEASE", optional},
 		{"DIST_SUBDIR", optional},
 		{"EXTRACT_SUFX", optional},
 		{"DISTFILES", many},
@@ -1292,6 +1294,16 @@ func (pkg *Package) checkIncludeConditionally(mkline *MkLine, indentation *Inden
 				"%q is included unconditionally here "+
 					"and conditionally in %s (depending on %s).",
 				cleanpath(mkline.IncludedFile()), mkline.RefTo(other), strings.Join(other.ConditionalVars(), ", "))
+
+			if mkline.Basename == "buildlink3.mk" && containsStr(other.ConditionalVars(), "PKG_OPTIONS") {
+				mkline.Explain(
+					"When including a dependent file, the conditions in the",
+					"buildlink3.mk file should be the same as in options.mk",
+					"or the Makefile.",
+					"",
+					"To find out the PKG_OPTIONS of this package at build time,",
+					"have a look at mk/pkg-build-options.mk.")
+			}
 		}
 	}
 

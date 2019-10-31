@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.461 2019/10/06 23:01:03 kamil Exp $
+# $NetBSD: Makefile,v 1.463 2019/10/26 11:27:09 nia Exp $
 #
 
 COMMENT=	Games
@@ -320,7 +320,6 @@ SUBDIR+=	py-ranking
 SUBDIR+=	py-renpy
 SUBDIR+=	py-trueskill
 SUBDIR+=	pysolfc
-SUBDIR+=	pytraffic
 SUBDIR+=	qonk
 SUBDIR+=	qqwing
 SUBDIR+=	qstat
@@ -348,6 +347,7 @@ SUBDIR+=	scummvm-tools
 SUBDIR+=	sex
 SUBDIR+=	sienna
 SUBDIR+=	simgear
+SUBDIR+=	simutrans
 SUBDIR+=	singularity
 SUBDIR+=	sirius
 SUBDIR+=	sjeng

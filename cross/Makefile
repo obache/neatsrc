@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.90 2019/10/04 16:05:09 maya Exp $
+# $NetBSD: Makefile,v 1.92 2019/10/17 20:56:39 maya Exp $
 #
 
 COMMENT=	Cross-platform development utilities
@@ -35,8 +35,6 @@ SUBDIR+=	freemint-pml
 SUBDIR+=	gcc-mips-current
 SUBDIR+=	h8300-elf-binutils
 SUBDIR+=	h8300-elf-gcc
-SUBDIR+=	h8300-hms-binutils
-SUBDIR+=	h8300-hms-gcc
 SUBDIR+=	icdprog
 SUBDIR+=	mingw
 SUBDIR+=	mingw-binutils
@@ -61,7 +59,6 @@ SUBDIR+=	mingw-w64-x86_64-winpthreads
 #SUBDIR+=	nios2			# just contains makefile fragments
 SUBDIR+=	nios2-binutils
 SUBDIR+=	nios2-gcc
-SUBDIR+=	nios2-gcc41
 SUBDIR+=	objconv
 SUBDIR+=	or1k-none-elf-binutils
 SUBDIR+=	or1k-none-elf-gcc

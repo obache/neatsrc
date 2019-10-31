@@ -41,6 +41,10 @@ func (s *Suite) Test_CheckLinesPlist(c *check.C) {
 		"WARN: PLIST:10: Preformatted manual pages should end in \".0\".",
 		"WARN: PLIST:11: IMAKE_MANNEWSUFFIX is not meant to appear in PLISTs.",
 		"WARN: PLIST:12: Please remove this line. It is no longer necessary.",
+		"ERROR: PLIST:14: The package Makefile must include \"../../graphics/gnome-icon-theme/buildlink3.mk\".",
+		"WARN: PLIST:14: Packages that install icon theme files should set ICON_THEMES.",
+		"ERROR: PLIST:15: Packages that install hicolor icons "+
+			"must include \"../../graphics/hicolor-icon-theme/buildlink3.mk\" in the Makefile.",
 		"ERROR: PLIST:18: Duplicate filename \"share/tzinfo\", already appeared in line 17.")
 }
 

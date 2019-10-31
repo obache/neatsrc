@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1270 2019/09/19 21:25:51 adam Exp $
+# $NetBSD: Makefile,v 1.1272 2019/10/16 08:54:51 maya Exp $
 #
 
 COMMENT=	Networking tools
@@ -41,7 +41,6 @@ SUBDIR+=	barnyard
 SUBDIR+=	batchftp
 SUBDIR+=	bftpd
 SUBDIR+=	bind911
-SUBDIR+=	bind912
 SUBDIR+=	bind914
 SUBDIR+=	bing
 SUBDIR+=	bird
@@ -476,7 +475,6 @@ SUBDIR+=	p5-Data-Stream-Bulk
 SUBDIR+=	p5-File-Rsync
 SUBDIR+=	p5-File-RsyncP
 SUBDIR+=	p5-FusionInventory-Agent
-SUBDIR+=	p5-FusionInventory-Agent-Task-Network
 SUBDIR+=	p5-Geo-IP
 SUBDIR+=	p5-Geo-IPfree
 SUBDIR+=	p5-IO-Interface

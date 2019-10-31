@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.747 2019/09/14 19:14:22 nia Exp $
+# $NetBSD: Makefile,v 1.751 2019/10/24 08:30:20 micha Exp $
 #
 
 COMMENT=	Desktop publishing
@@ -42,6 +42,7 @@ SUBDIR+=	epstool
 SUBDIR+=	evince3
 SUBDIR+=	fig2dev
 SUBDIR+=	flpsed
+SUBDIR+=	foliate
 SUBDIR+=	foo2zjs
 SUBDIR+=	foomatic-filters
 SUBDIR+=	foomatic-filters-cups
@@ -1457,6 +1458,7 @@ SUBDIR+=	xpdf-korean
 SUBDIR+=	xpdf-latin2
 SUBDIR+=	xpdf-thai
 SUBDIR+=	xpdf-turkish
+SUBDIR+=	xpdf4
 SUBDIR+=	xpdfopen
 SUBDIR+=	xpp
 SUBDIR+=	yup

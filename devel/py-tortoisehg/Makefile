@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.55 2019/09/20 10:55:55 nros Exp $
+# $NetBSD: Makefile,v 1.57 2019/10/21 22:15:11 adam Exp $
 
 DISTNAME=		tortoisehg-5.0.2
 PKGNAME=		${PYPKGPREFIX}-${DISTNAME}
@@ -12,7 +12,7 @@ LICENSE=		gnu-gpl-v2
 
 REPLACE_PYTHON+=	thg
 
-BUILD_DEPENDS+=	${PYPKGPREFIX}-sphinx>=1.3.4nb1:../../textproc/py-sphinx
+BUILD_DEPENDS+=	${PYPKGPREFIX}-sphinx>=1.3.4nb1:../../textproc/py-sphinx1
 DEPENDS+=	${PYPKGPREFIX}-iniparse>=0.4:../../textproc/py-iniparse
 DEPENDS+=	${PYPKGPREFIX}-pygments>=1.6:../../textproc/py-pygments
 DEPENDS+=	${PYPKGPREFIX}-mercurial>=5.0.0:../../devel/py-mercurial
@@ -27,7 +27,7 @@ SUBST_FILES.df=		contrib/thg.desktop
 SUBST_SED.df=		-e 's:thg_logo:${PREFIX}${thg_icon}:1'
 
 pre-build:
-	${RUN} cd ${WRKSRC}/doc && ${MAKE_PROGRAM} SPHINXBUILD=sphinx-build${PYVERSSUFFIX} html
+	${RUN} cd ${WRKSRC}/doc && ${MAKE_PROGRAM} SPHINXBUILD=sphinx-build-${PYVERSSUFFIX} html
 	${RUN} rm ${WRKSRC}/doc/build/html/.buildinfo
 	# conflicts with mercurial
 	# https://bitbucket.org/tortoisehg/thg/issues/4629/tortoisehg-file-name-conflict-with

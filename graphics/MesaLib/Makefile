@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.168 2019/10/07 09:28:11 prlw1 Exp $
+# $NetBSD: Makefile,v 1.172 2019/10/21 20:47:55 nia Exp $
 
-DISTNAME=	mesa-19.1.6
+DISTNAME=	mesa-19.2.1
 PKGNAME=	${DISTNAME:S/mesa/MesaLib/}
-PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	https://mesa.freedesktop.org/archive/
 EXTRACT_SUFX=	.tar.xz
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	nia@NetBSD.org
 HOMEPAGE=	https://www.mesa3d.org/
 COMMENT=	Open source OpenGL implementation
 LICENSE=	mit
@@ -15,17 +14,6 @@ LICENSE=	mit
 USE_TOOLS+=	bison flex pkg-config xgettext
 USE_LANGUAGES=	c99 c++
 USE_LIBTOOL=	yes
-
-PKGCONFIG_OVERRIDE+=	output/meson-private/dri.pc
-PKGCONFIG_OVERRIDE+=	output/meson-private/egl.pc
-PKGCONFIG_OVERRIDE+=	output/meson-private/gbm.pc
-PKGCONFIG_OVERRIDE+=	output/meson-private/gl.pc
-PKGCONFIG_OVERRIDE+=	output/meson-private/glesv1_cm.pc
-PKGCONFIG_OVERRIDE+=	output/meson-private/glesv2.pc
-PKGCONFIG_OVERRIDE+=	output/meson-private/osmesa.pc
-PKGCONFIG_OVERRIDE+=	output/meson-private/xatracker.pc
-
-PKGCONFIG_OVERRIDE_STAGE=	post-configure
 
 SUBST_CLASSES+=		py
 SUBST_STAGE.py=		pre-configure
@@ -43,8 +31,8 @@ GALLIUM_DRIVERS=	swrast
 VULKAN_DRIVERS=		#
 MESA_PLATFORMS=		surfaceless
 
-.include "../../mk/bsd.prefs.mk"
 .include "../../mk/compiler.mk"
+.include "features.mk"
 .include "options.mk"
 
 PLIST_SUBST+=	GLVER="1.2.0"
@@ -58,20 +46,16 @@ PLIST_VARS+=		r300 svga nouveau vc4 lima panfrost
 # other features
 PLIST_VARS+=		egl gbm vaapi xatracker
 
-.if ${OPSYS} != "Darwin" && ${OPSYS} != "Cygwin"
+.if ${MESALIB_SUPPORTS_DRI} == "yes"
+BUILDLINK_API_DEPENDS.libdrm+=	libdrm>=2.4.81
 .include "../../x11/libdrm/buildlink3.mk"
 MESA_PLATFORMS+=	drm
-.  if ${OPSYS} != "SunOS"
 MESON_ARGS+=		-Degl=true
 MESON_ARGS+=		-Dgbm=true
 MESON_ARGS+=		-Dgallium-xa=true
 PLIST.egl=		yes
 PLIST.gbm=		yes
 PLIST.xatracker=	yes
-.  else
-MESON_ARGS+=		-Degl=false
-MESON_ARGS+=		-Dgbm=false
-.  endif
 .  include "../../multimedia/libva/available.mk"
 .  if ${VAAPI_AVAILABLE} == "yes"
 MESON_ARGS+=		-Dgallium-va=true
@@ -130,7 +114,7 @@ PLIST.r300=		yes
 .else
 MESON_ARGS+=		-Degl=false
 MESON_ARGS+=		-Dgbm=false
-.endif # ${OPSYS} != "Darwin" && ${OPSYS} != "Cygwin"
+.endif # ${MESALIB_SUPPORTS_DRI} == "yes"
 
 MESON_ARGS+=	-Dgallium-drivers=${GALLIUM_DRIVERS:ts,}
 MESON_ARGS+=	-Ddri-drivers=${DRI_DRIVERS:ts,}
@@ -149,8 +133,19 @@ MESON_ARGS+=	-Dgallium-xvmc=false
 
 CPPFLAGS+=	-DHAVE_NOATEXIT
 
+TOOL_DEPENDS+=	${PYPKGPREFIX}-mako-[0-9]*:../../devel/py-mako
+
+# needed to build vulkan support
+TOOL_DEPENDS+=	${PYPKGPREFIX}-cElementTree-[0-9]*:../../textproc/py-cElementTree
+
+BUILDLINK_TRANSFORM+=		rm:-Werror=incompatible-pointer-types
+
 # https://gitlab.freedesktop.org/mesa/mesa/merge_requests/1854
 BUILDLINK_TRANSFORM+=		rm:-Werror=return-type
+
+# ../src/intel/perf/gen_perf.c:426:7: error: %m is only allowed in syslog(3) like functions
+BUILDLINK_TRANSFORM+=		rm:-Werror=format
+BUILDLINK_TRANSFORM+=		rm:-Wformat-security
 
 # https://gitlab.freedesktop.org/mesa/mesa/merge_requests/1853
 BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--build-id=sha1
@@ -158,13 +153,6 @@ BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--build-id=sha1
 # Work around Xorg segfaulting in radeon driver due to wrong alloca being used
 CFLAGS.NetBSD+=		-Dalloca=__builtin_alloca
 CXXFLAGS.NetBSD+=	-Dalloca=__builtin_alloca
-
-PYTHON_FOR_BUILD_ONLY=	yes
-
-TOOL_DEPENDS+=		${PYPKGPREFIX}-mako-[0-9]*:../../devel/py-mako
-
-# needed to build vulkan support
-TOOL_DEPENDS+=		${PYPKGPREFIX}-cElementTree-[0-9]*:../../textproc/py-cElementTree
 
 EGDIR=		${PREFIX}/share/examples/mesa
 
@@ -174,13 +162,27 @@ CONF_FILES+=	${EGDIR}/00-mesa-defaults.conf \
 
 INSTALLATION_DIRS+=	${EGDIR}
 
+PYTHON_FOR_BUILD_ONLY=		tool
+PYTHON_VERSIONS_INCOMPATIBLE=	27
+
+PKGCONFIG_OVERRIDE_STAGE=	pre-install
+PKGCONFIG_OVERRIDE+=		output/meson-private/glesv1_cm.pc
+PKGCONFIG_OVERRIDE+=		output/meson-private/glesv2.pc
+PKGCONFIG_OVERRIDE+=		output/meson-private/dri.pc
+PKGCONFIG_OVERRIDE+=		output/meson-private/gbm.pc
+PKGCONFIG_OVERRIDE+=		output/meson-private/egl.pc
+PKGCONFIG_OVERRIDE+=		output/meson-private/osmesa.pc
+PKGCONFIG_OVERRIDE+=		output/meson-private/xatracker.pc
+PKGCONFIG_OVERRIDE+=		output/meson-private/gl.pc
+
 pre-configure:
-	touch ${WRKSRC}/src/glx/apple_dummy.cpp
+	${TOUCH} ${WRKSRC}/src/glx/apple_dummy.cpp
 
 post-install:
 	${MV} ${DESTDIR}${PREFIX}/share/drirc.d/00-mesa-defaults.conf ${DESTDIR}${EGDIR}
 
 .include "../../devel/meson/build.mk"
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../lang/python/tool.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

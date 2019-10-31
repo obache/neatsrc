@@ -150,15 +150,15 @@ func (s *Suite) Test_MkLineChecker_checkVarassignLeftUserSettable(c *check.C) {
 	//  the expected reading order of human readers.
 
 	t.SetUpPackage("category/package",
-		"ASSIGN_DIFF=\tpkg",          // assignment, differs from default value
-		"ASSIGN_DIFF2=\treally # ok", // ok because of the rationale in the comment
-		"ASSIGN_SAME=\tdefault",      // assignment, same value as default
-		"DEFAULT_DIFF?=\tpkg",        // default, differs from default value
-		"DEFAULT_SAME?=\tdefault",    // same value as default
-		"FETCH_USING=\tcurl",         // both user-settable and package-settable
-		"APPEND_DIRS+=\tdir3",        // appending requires a separate diagnostic
-		"COMMENTED_SAME?=\tdefault",  // commented default, same value as default
-		"COMMENTED_DIFF?=\tpkg")      // commented default, differs from default value
+		"ASSIGN_DIFF=\t\tpkg",          // assignment, differs from default value
+		"ASSIGN_DIFF2=\t\treally # ok", // ok because of the rationale in the comment
+		"ASSIGN_SAME=\t\tdefault",      // assignment, same value as default
+		"DEFAULT_DIFF?=\t\tpkg",        // default, differs from default value
+		"DEFAULT_SAME?=\t\tdefault",    // same value as default
+		"FETCH_USING=\t\tcurl",         // both user-settable and package-settable
+		"APPEND_DIRS+=\t\tdir3",        // appending requires a separate diagnostic
+		"COMMENTED_SAME?=\tdefault",    // commented default, same value as default
+		"COMMENTED_DIFF?=\tpkg")        // commented default, differs from default value
 	t.CreateFileLines("mk/defaults/mk.conf",
 		MkCvsID,
 		"ASSIGN_DIFF?=default",
@@ -395,6 +395,44 @@ func (s *Suite) Test_MkLineChecker_checkInclude__hacks(c *check.C) {
 			"Relative path \"../../category/package/nonexistent.mk\" does not exist.")
 }
 
+func (s *Suite) Test_MkLineChecker_checkInclude__builtin_mk(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		".include \"../../category/package/builtin.mk\"",
+		".include \"../../category/package/builtin.mk\" # ok")
+	t.CreateFileLines("category/package/builtin.mk",
+		MkCvsID)
+	t.FinishSetUp()
+
+	G.checkdirPackage(t.File("category/package"))
+
+	t.CheckOutputLines(
+		"ERROR: ~/category/package/Makefile:20: " +
+			"../../category/package/builtin.mk must not be included directly. " +
+			"Include \"../../category/package/buildlink3.mk\" instead.")
+}
+
+func (s *Suite) Test_MkLineChecker_checkInclude__builtin_mk_rationale(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"# I have good reasons for including this file directly.",
+		".include \"../../category/package/builtin.mk\"",
+		"",
+		".include \"../../category/package/builtin.mk\"")
+	t.CreateFileLines("category/package/builtin.mk",
+		MkCvsID)
+	t.FinishSetUp()
+
+	G.checkdirPackage(t.File("category/package"))
+
+	t.CheckOutputLines(
+		"ERROR: ~/category/package/Makefile:23: " +
+			"../../category/package/builtin.mk must not be included directly. " +
+			"Include \"../../category/package/buildlink3.mk\" instead.")
+}
+
 func (s *Suite) Test_MkLineChecker__permissions_in_hacks_mk(c *check.C) {
 	t := s.Init(c)
 
@@ -606,7 +644,8 @@ func (s *Suite) Test_MkLineChecker_checkDependencyRule(c *check.C) {
 		".ORDER: target-1 target-2",
 		"target-1:",
 		"target-2:",
-		"target-3:")
+		"target-3:",
+		"${_COOKIE.test}:")
 
 	mklines.Check()
 
@@ -2107,6 +2146,7 @@ func (s *Suite) Test_MkLineChecker_checkDirectiveCond__comparing_PKGSRC_COMPILER
 
 func (s *Suite) Test_MkLineChecker_checkDirectiveCondCompareVarStr__no_tracing(c *check.C) {
 	t := s.Init(c)
+	b := NewMkTokenBuilder()
 
 	t.SetUpVartypes()
 	mklines := t.NewMkLines("filename.mk",
@@ -2114,7 +2154,7 @@ func (s *Suite) Test_MkLineChecker_checkDirectiveCondCompareVarStr__no_tracing(c
 	t.DisableTracing()
 
 	ck := MkLineChecker{mklines, mklines.mklines[0]}
-	varUse := NewMkVarUse("DISTFILES", "Mpattern", "O", "u")
+	varUse := b.VarUse("DISTFILES", "Mpattern", "O", "u")
 	ck.checkDirectiveCondCompareVarStr(varUse, "==", "distfile-1.0.tar.gz")
 
 	t.CheckOutputEmpty()
@@ -2416,6 +2456,7 @@ func (s *Suite) Test_MkLineChecker_CheckVaruse__for(c *check.C) {
 // check that the variable names match exactly.
 func (s *Suite) Test_MkLineChecker_CheckVaruse__varcanon(c *check.C) {
 	t := s.Init(c)
+	b := NewMkTokenBuilder()
 
 	t.SetUpPkgsrc()
 	t.CreateFileLines("mk/sys-vars.mk",
@@ -2429,7 +2470,7 @@ func (s *Suite) Test_MkLineChecker_CheckVaruse__varcanon(c *check.C) {
 
 	ck := MkLineChecker{mklines, mklines.mklines[1]}
 
-	ck.CheckVaruse(NewMkVarUse("CPPPATH.SunOS"), &VarUseContext{
+	ck.CheckVaruse(b.VarUse("CPPPATH.SunOS"), &VarUseContext{
 		vartype: &Vartype{
 			basicType:  BtPathname,
 			options:    Guessed,

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.217 2019/08/22 12:23:05 ryoon Exp $
+# $NetBSD: Makefile,v 1.219 2019/10/24 18:22:00 adam Exp $
 
 DISTNAME=	qemu-4.1.0
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 EXTRACT_SUFX=	.tar.xz
@@ -19,7 +19,8 @@ UNLIMIT_RESOURCES=	datasize
 HAS_CONFIGURE=		yes
 
 GMAKE_REQD=		4.1 # needed for docs
-TOOL_DEPENDS+=		${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
+
+PYTHON_VERSIONED_DEPENDENCIES=	sphinx:tool
 
 SUBST_CLASSES+=			prefix
 SUBST_STAGE.prefix=		pre-configure
@@ -33,7 +34,7 @@ SUBST_MESSAGE.sphinx-build=	Fix hardcoded sphinx-build
 SUBST_FILES.sphinx-build+=	Makefile configure
 SUBST_FILES.sphinx-build+=	roms/skiboot/doc/Makefile
 SUBST_FILES.sphinx-build+=	roms/u-boot/Documentation/Makefile
-SUBST_SED.sphinx-build+=	-e 's/sphinx-build/sphinx-build${PYVERSSUFFIX}/g'
+SUBST_SED.sphinx-build+=	-e 's/sphinx-build/sphinx-build-${PYVERSSUFFIX}/g'
 
 .include "options.mk"
 
@@ -135,12 +136,19 @@ PLIST_VARS+=		${UE_ARCHS} bridge-helper ivshmem nbd pr-helper virtfs-proxy-helpe
 PLIST.${pvar}=		yes
 .endfor
 
+# different versions of Sphinx generate different static files
+PLIST_SRC=	PLIST ${WRKDIR}/PLIST.STATIC
+
 TEST_TARGET=		check
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/Makefile.multinode-NetBSD \
 		${DESTDIR}${PREFIX}/share/doc/qemu/
 	${RM} -f ${DESTDIR}${PREFIX}/share/doc/qemu/interop/.buildinfo
+	${RM} -f ${DESTDIR}${PREFIX}/share/doc/qemu/specs/.buildinfo
+	${RM} -f ${WRKDIR}/PLIST.STATIC
+	cd ${DESTDIR}${PREFIX} && \
+	${FIND} share/doc/qemu -path '*/_static/*' -type f -print > ${WRKDIR}/PLIST.STATIC
 
 # On Darwin, qemu uses Cocoa and CoreAudio
 .if ${OPSYS} != "Darwin"
@@ -154,6 +162,7 @@ post-install:
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../lang/python/extension.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../x11/pixman/buildlink3.mk"

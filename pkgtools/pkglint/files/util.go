@@ -73,6 +73,23 @@ func replaceAllFunc(s string, re regex.Pattern, repl func(string) string) string
 	return G.res.Compile(re).ReplaceAllStringFunc(s, repl)
 }
 
+func containsStr(slice []string, s string) bool {
+	for _, str := range slice {
+		if s == str {
+			return true
+		}
+	}
+	return false
+}
+
+func mapStr(slice []string, fn func(s string) string) []string {
+	result := make([]string, len(slice))
+	for i, str := range slice {
+		result[i] = fn(str)
+	}
+	return result
+}
+
 // intern returns an independent copy of the given string.
 //
 // It should be called when only a small substring of a large string

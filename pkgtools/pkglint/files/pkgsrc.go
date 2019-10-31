@@ -28,7 +28,7 @@ type Pkgsrc struct {
 
 	Tools *Tools
 
-	MasterSiteURLToVar map[string]string // "https://github.com/" => "MASTER_SITE_GITHUB"
+	MasterSiteURLToVar map[string]string // "github.com/" => "MASTER_SITE_GITHUB"
 	MasterSiteVarToURL map[string]string // "MASTER_SITE_GITHUB" => "https://github.com/"
 
 	PkgOptions map[string]string // "x11" => "Provides X11 support"
@@ -713,7 +713,6 @@ func (src *Pkgsrc) initDeprecatedVars() {
 		"USE_SOCKS":    "Use the PKG_OPTIONS framework (socks4 and socks5 options) instead.",
 		"USE_WNN4":     "Use the PKG_OPTIONS framework (option wnn4) instead.",
 		"USE_XFACE":    "Use the PKG_OPTIONS framework instead.",
-		"USE_PKGINSTALL":      "You can just remove it.",
 
 		// February 2006
 		"TOOLS_DEPMETHOD":     "Use the :build or :run modifiers in USE_TOOLS instead.",
@@ -922,7 +921,7 @@ func (src *Pkgsrc) registerMasterSite(varname, url string) {
 	if nameToURL[varname] == "" {
 		nameToURL[varname] = url
 	}
-	urlToName[url] = varname
+	urlToName[replaceAll(url, `^\w+://`, "")] = varname
 }
 
 func (src *Pkgsrc) loadPkgOptions() {

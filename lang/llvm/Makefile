@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.44 2019/09/09 10:53:23 maya Exp $
+# $NetBSD: Makefile,v 1.47 2019/10/24 11:40:00 tnn Exp $
 #
 # when updating this, please also update:
 # devel/include-what-you-use
@@ -22,19 +22,17 @@
 # Always update all */buildlink3.mk to require the latest stable release
 # version in BUILDLINK_API_DEPENDS, as there is no backwards compatibility
 
-DISTNAME=	llvm-8.0.1.src
-PKGNAME=	${DISTNAME:S/.src//}
+DISTNAME=	llvm-9.0.0.src
 PKGREVISION=	1
+PKGNAME=	${DISTNAME:S/.src//}
 CATEGORIES=	lang devel
-MASTER_SITES=	${MASTER_SITE_GITHUB:=llvm/}
-GITHUB_PROJECT=	llvm-project
-GITHUB_RELEASE=	llvmorg-${PKGVERSION_NOREV}
+MASTER_SITES=	http://releases.llvm.org/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://llvm.org/
 COMMENT=	Low Level Virtual Machine compiler infrastructure
-LICENSE=	modified-bsd
+LICENSE=	apache-2.0
 
 USE_LANGUAGES=		c c++11
 USE_CMAKE=		yes
@@ -84,6 +82,7 @@ SUBST_CLASSES.SunOS+=	linkmap
 SUBST_STAGE.linkmap=	pre-configure
 SUBST_FILES.linkmap=	tools/lto/lto.exports
 SUBST_FILES.linkmap+=	tools/opt-remarks/OptRemarks.exports
+SUBST_FILES.linkmap+=	tools/remarks-shlib/Remarks.exports
 SUBST_SED.linkmap=	-e '/^LLVM/d'
 
 .include "../../mk/bsd.prefs.mk"

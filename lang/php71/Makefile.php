@@ -1,9 +1,9 @@
-# $NetBSD: Makefile.php,v 1.13 2018/12/09 12:14:36 taca Exp $
+# $NetBSD: Makefile.php,v 1.14 2019/10/25 02:58:33 taca Exp $
 # used by lang/php71/Makefile
 # used by www/ap-php/Makefile
 # used by www/php-fpm/Makefile
 
-# With --disable-gcc-global-regs, works around 
+# With --disable-gcc-global-regs, works around
 # https://bugs.php.net/bug.php?id=74527
 # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=86236
 .if ${MACHINE_ARCH} == "i386"

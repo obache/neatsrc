@@ -1,10 +1,16 @@
-# $NetBSD: options.mk,v 1.2 2019/06/17 07:31:12 nia Exp $
+# $NetBSD: options.mk,v 1.5 2019/10/24 17:55:22 nia Exp $
 
-PKG_OPTIONS_VAR=	PKG_OPTIONS.lmms
+PKG_OPTIONS_VAR=		PKG_OPTIONS.lmms
 
-PKG_SUPPORTED_OPTIONS+=	alsa jack portaudio pulseaudio sdl
-PKG_SUGGESTED_OPTIONS+=	jack portaudio sdl
-PKG_SUGGESTED_OPTIONS.Linux+=	alsa pulseaudio
+PKG_SUPPORTED_OPTIONS+=		alsa jack portaudio pulseaudio sdl
+PKG_SUGGESTED_OPTIONS.Linux+=	alsa
+
+.include "../../mk/bsd.fast.prefs.mk"
+.include "../../mk/oss.buildlink3.mk"
+
+.if ${OPSYS} != "Linux" && ${OSS_TYPE} == "none"
+PKG_SUGGESTED_OPTIONS+=		portaudio
+.endif
 
 .include "../../mk/bsd.options.mk"
 
@@ -24,7 +30,7 @@ CMAKE_ARGS+=	-DWANT_JACK=OFF
 
 .if !empty(PKG_OPTIONS:Mportaudio)
 CMAKE_ARGS+=	-DWANT_PORTAUDIO=ON
-.include "../../audio/portaudio-devel/buildlink3.mk"
+.include "../../audio/portaudio/buildlink3.mk"
 .else
 CMAKE_ARGS+=	-DWANT_PORTAUDIO=OFF
 .endif

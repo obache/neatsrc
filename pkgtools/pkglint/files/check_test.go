@@ -403,8 +403,14 @@ func (t *Tester) SetUpPackage(pkgpath string, makefileLines ...string) string {
 		"LICENSE=\t2-clause-bsd",
 		"",
 		".include \"suppress-varorder.mk\""}
-	for len(mlines) < 19 {
-		mlines = append(mlines, "# empty")
+	if len(mlines) < 19 {
+		mlines = append(mlines, "")
+	}
+	for len(mlines) < 18 {
+		mlines = append(mlines, "# filler")
+	}
+	if len(mlines) < 19 {
+		mlines = append(mlines, "")
 	}
 
 line:
@@ -852,7 +858,7 @@ func (t *Tester) NewMkLine(filename string, lineno int, text string) *MkLine {
 			basename == "mk.conf",
 		"filename %q must be realistic, otherwise the variable permissions are wrong", filename)
 
-	return MkLineParser{}.Parse(t.NewLine(filename, lineno, text))
+	return NewMkLineParser().Parse(t.NewLine(filename, lineno, text))
 }
 
 func (t *Tester) NewShellLineChecker(text string) *ShellLineChecker {

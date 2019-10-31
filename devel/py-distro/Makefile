@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2019/10/02 10:04:59 adam Exp $
+# $NetBSD$
 
 DISTNAME=	distro-1.4.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}

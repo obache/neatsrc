@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.88 2019/09/01 05:59:21 kre Exp $
+# $NetBSD: Makefile,v 1.90 2019/10/24 12:21:39 triaxx Exp $
 
 BASH_VERSION=		5.0
 BASH_PATCHLEVEL=	11
 
 DISTNAME=	bash-${BASH_VERSION}
 PKGNAME=	bash-${BASH_VERSION:C/4\.4\..*/4.4/}.${BASH_PATCHLEVEL}
+PKGREVISION=	1
 CATEGORIES=	shells
 MASTER_SITES=	${MASTER_SITE_GNU:=bash/}
 
@@ -19,12 +20,11 @@ COMMENT=	The GNU Bourne Again Shell
 LICENSE=	gnu-gpl-v3
 
 USE_TOOLS+=		makeinfo bison
-USE_PKGLOCALEDIR=	yes
 TEXINFO_REQD=		4.1
 GNU_CONFIGURE=		yes
 MAKE_ENV+=		INSTALL_SCRIPT=${INSTALL_SCRIPT:Q}
 CONFIGURE_ARGS=		LOCAL_LDFLAGS=${EXPORT_SYMBOLS_LDFLAGS:M*:Q}
-CPPFLAGS+=		-DDEFAULT_PATH_VALUE="\"/usr/bin:/bin:${LOCALBASE}/bin:/usr/local/bin\""
+CPPFLAGS+=		-DDEFAULT_PATH_VALUE="\"/usr/bin:/bin:${PREFIX}/bin:/usr/local/bin\""
 TEST_TARGET=		test
 
 PKGCONFIG_OVERRIDE=	support/bash.pc.in
@@ -49,20 +49,7 @@ CONFIGURE_ARGS+=	--enable-brace-expansion
 CONFIGURE_ARGS+=	--enable-array-variables
 
 .include "../../mk/bsd.prefs.mk"
-
-PKG_OPTIONS_VAR=	PKG_OPTIONS.bash
-PKG_SUPPORTED_OPTIONS=	#static XXX 2017-11-20 broken
-
-.include "../../mk/bsd.options.mk"
-
-##
-## Static link
-##
-.if !empty(PKG_OPTIONS:Mstatic)
-CONFIGURE_ARGS+=		--enable-static-link
-BUILDLINK_DEPMETHOD.gettext=	build
-BUILDLINK_DEPMETHOD.readline=	build
-.endif
+.include "options.mk"
 
 # Minix lacks setpgid() which is needed for job control.
 # bash malloc() is also broken on Minix
@@ -104,5 +91,4 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/bashbug.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 
 .include "../../mk/termcap.buildlink3.mk"
-.include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

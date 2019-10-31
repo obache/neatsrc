@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1409 2019/10/04 12:37:57 ryoon Exp $
+# $NetBSD: Makefile,v 1.1412 2019/10/25 13:46:20 mef Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -221,6 +221,7 @@ SUBDIR+=	nostromo
 SUBDIR+=	npm-emojione
 SUBDIR+=	ns-plugger-common
 SUBDIR+=	ns-remote
+SUBDIR+=	nsm
 SUBDIR+=	nspluginwrapper
 SUBDIR+=	ocaml-cohttp
 SUBDIR+=	ocaml-curl
@@ -231,7 +232,6 @@ SUBDIR+=	ocsigen-i18n
 SUBDIR+=	ocsigen-start
 SUBDIR+=	ocsigen-toolkit
 SUBDIR+=	opera
-SUBDIR+=	opera-plugins
 SUBDIR+=	otter-browser
 SUBDIR+=	p5-Alien-GvaScript
 SUBDIR+=	p5-Any-URI-Escape
@@ -423,6 +423,7 @@ SUBDIR+=	p5-HTTP-Server-Simple-Recorder
 SUBDIR+=	p5-HTTP-Server-Simple-Static
 SUBDIR+=	p5-HTTP-Thin
 SUBDIR+=	p5-HTTP-Tiny
+SUBDIR+=	p5-HTTP-Tiny-Mech
 SUBDIR+=	p5-HTTP-Tiny-Multipart
 SUBDIR+=	p5-HTTP-Tinyish
 SUBDIR+=	p5-HTTPD-User-Manage

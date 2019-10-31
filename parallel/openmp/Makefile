@@ -1,18 +1,16 @@
-# $NetBSD: Makefile,v 1.3 2019/08/11 13:22:34 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2019/10/24 11:52:21 tnn Exp $
 
-DISTNAME=	openmp-8.0.1.src
-PKGNAME=	${DISTNAME:S/.src//}
+DISTNAME=	openmp-9.0.0.src
 PKGREVISION=	1
+PKGNAME=	${DISTNAME:S/.src//}
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GITHUB:=llvm/}
-GITHUB_PROJECT=	llvm-project
-GITHUB_RELEASE=	llvmorg-${PKGVERSION_NOREV}
+MASTER_SITES=	http://releases.llvm.org/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://openmp.llvm.org/
 COMMENT=	Support for the OpenMP language
-LICENSE=	modified-bsd
+LICENSE=	apache-2.0
 
 CONFIGURE_DIRS=		${WRKDIR}/build
 CMAKE_ARG_PATH=		${WRKSRC}

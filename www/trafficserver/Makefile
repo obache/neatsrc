@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.19 2019/09/02 13:20:02 adam Exp $
+# $NetBSD: Makefile,v 1.21 2019/10/21 22:15:10 adam Exp $
 
 DISTNAME=	trafficserver-7.1.2
 PKGREVISION=	9
@@ -19,8 +19,8 @@ GNU_CONFIGURE=	yes
 
 # For man pages
 PYTHON_FOR_BUILD_ONLY=		yes
-PYTHON_VERSIONS_ACCEPTED=	 27
-BUILD_DEPENDS+=			${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
+PYTHON_VERSIONS_ACCEPTED=	27
+BUILD_DEPENDS+=			${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx1
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -88,7 +88,7 @@ CONFIGURE_ARGS+=	--with-user=${TS_USER}
 
 CONFIGURE_ENV.SunOS+=	ac_cv_func_epoll_ctl=no
 CONFIGURE_ENV.SunOS+=	ac_cv_func_inotify_init=no
-CONFIGURE_ENV+=		SPHINXBUILD=sphinx-build${PYVERSSUFFIX}
+CONFIGURE_ENV+=		SPHINXBUILD=sphinx-build-${PYVERSSUFFIX}
 
 REPLACE_BASH+=		tools/tsxs.in
 REPLACE_PERL+=		tools/tspush

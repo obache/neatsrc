@@ -1,10 +1,12 @@
-# $NetBSD: Makefile,v 1.12 2019/08/08 16:47:26 gdt Exp $
+# $NetBSD: Makefile,v 1.14 2019/10/25 14:48:02 gdt Exp $
 
-DISTNAME=	unifi-5.10.26
+DISTNAME=	unifi-5.11.50
 CATEGORIES=	net
 MASTER_SITES=	-http://dl.ubnt.com/unifi/${PKGVERSION_NOREV}/UniFi.unix.zip
 EXTRACT_SUFX=	.zip
 
+# Updates must be tested to not only build but actually function under
+# at least NetBSD 8/amd64 with actual UBNT hardware.
 MAINTAINER=	gdt@NetBSD.org
 HOMEPAGE=	https://www.ubnt.com/download/unifi/
 # The content that belongs in NEWS are often in a blog.

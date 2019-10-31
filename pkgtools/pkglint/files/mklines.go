@@ -26,7 +26,7 @@ type MkLines struct {
 func NewMkLines(lines *Lines) *MkLines {
 	mklines := make([]*MkLine, lines.Len())
 	for i, line := range lines.Lines {
-		mklines[i] = MkLineParser{}.Parse(line)
+		mklines[i] = NewMkLineParser().Parse(line)
 	}
 
 	tools := NewTools()
@@ -86,6 +86,7 @@ func (mklines *MkLines) Check() {
 
 	// In the first pass, all additions to BUILD_DEFS and USE_TOOLS
 	// are collected to make the order of the definitions irrelevant.
+	mklines.collectRationale()
 	mklines.collectUsedVariables()
 	mklines.collectVariables()
 	mklines.collectPlistVars()
@@ -403,6 +404,25 @@ func (mklines *MkLines) collectElse() {
 	// TODO: Check whether this ForEach is redundant because it is already run somewhere else.
 }
 
+func (mklines *MkLines) collectRationale() {
+
+	useful := func(mkline *MkLine) bool {
+		comment := trimHspace(mkline.Comment())
+		return comment != "" && !hasPrefix(comment, "$")
+	}
+
+	realComment := func(mkline *MkLine) bool {
+		return mkline.IsComment() && !mkline.IsCommentedVarassign()
+	}
+
+	rationale := false
+	for _, mkline := range mklines.mklines {
+		rationale = rationale || realComment(mkline) && useful(mkline)
+		mkline.splitResult.hasRationale = rationale || useful(mkline)
+		rationale = rationale && !mkline.IsEmpty()
+	}
+}
+
 func (mklines *MkLines) collectUsedVariables() {
 	for _, mkline := range mklines.mklines {
 		mkline.ForEachUsed(func(varUse *MkVarUse, time VucTime) {
@@ -578,5 +598,5 @@ func (mklines *MkLines) SaveAutofixChanges() {
 }
 
 func (mklines *MkLines) EOFLine() *MkLine {
-	return MkLineParser{}.Parse(mklines.lines.EOFLine())
+	return NewMkLineParser().Parse(mklines.lines.EOFLine())
 }
