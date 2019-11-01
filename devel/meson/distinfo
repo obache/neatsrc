@@ -6,3 +6,4 @@ SHA512 (meson-0.52.0.tar.gz) = b32206c5499580a74bb5442d21263b5328cc3302c3226452f
 Size (meson-0.52.0.tar.gz) = 1507218 bytes
 SHA1 (patch-mesonbuild_backend_backends.py) = c2d39749daa56c6e0ca4344464c0486d413159ba
 SHA1 (patch-mesonbuild_dependencies_dev.py) = c25f72fe6e3f270f9831be1d7efbff3bf7a4651e
+SHA1 (patch-mesonbuild_scripts_depfixer.py) = c1c7e41e9bb5367870b1d53a35c9b90a88dd58ea
