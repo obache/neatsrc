@@ -33,8 +33,8 @@ REPLACE_PYTHON+=	test\ cases/*/*/*.py
 REPLACE_PYTHON+=	test\ cases/*/*/*/*.py
 REPLACE_PYTHON+=	test\ cases/*/*/*/*/*.py
 REPLACE_PYTHON+=	test\ cases/common/14\ configure\ file/test.py.in
-REPLACE_PYTHON+=	test\ cases/common/188\ find\ override/subdir/gencodegen.py.in
-REPLACE_PYTHON+=	test\ cases/common/55\ run\ target/configure.in
+REPLACE_PYTHON+=	test\ cases/common/187\ find\ override/subdir/gencodegen.py.in
+REPLACE_PYTHON+=	test\ cases/common/54\ run\ target/configure.in
 REPLACE_PYTHON+=	test\ cases/windows/8\ find\ program/test-script
 REPLACE_PYTHON+=	tools/*.py
 
