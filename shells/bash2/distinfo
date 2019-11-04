@@ -67,5 +67,3 @@ SHA1 (patch-ah) = 00732b402fc0479e153d3f5b24ea8151a3d42dc0
 SHA1 (patch-ai) = db34e25bef3572d2bf198216e8c2aebb98362925
 SHA1 (patch-aj) = c5c541a5e3c06127ccbc8a560e3ea97fbf77ef4f
 SHA1 (patch-ak) = b76eadbf6ced8c1b98454eb3579345ff8739ccb5
-SHA1 (patch-shell.c) = 151446e30fcaa395cd326552e72d1810d5f01671
-SHA1 (patch-variables.c) = e7638f06ad8577aa3ab015469d86ed110e05872b
