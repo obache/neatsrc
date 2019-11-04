@@ -55,6 +55,4 @@ SHA1 (patch-builtins_ulimit.def) = 1390069344607204eb3abbd6ddeb148ff590c55e
 SHA1 (patch-configure) = c4e1ab53a1ee85f3e6121047f0aca8ceb85e6e5d
 SHA1 (patch-examples_loadables_fdflags.c) = 92a63c8f4c94ccf9cf782e934a0806930d172654
 SHA1 (patch-examples_loadables_push.c) = 57a3c7de9ea0a75c373db678d9500954bcf40ff4
-SHA1 (patch-shell.c) = daa07914d4c318cd72463f80344f4f7c364809cd
 SHA1 (patch-support_shobj-conf) = 8750c104549ea8a4a722bd21a684a9fe13e05fe5
-SHA1 (patch-variables.c) = 8d91272602aba348dc158d8fb5948edd90d96646
