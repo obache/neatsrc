@@ -1,10 +1,10 @@
 $NetBSD$
 
---- lib/csa/cmxdr.c.orig	2018-07-06 18:05:20.000000000 +0000
+--- lib/csa/cmxdr.c.orig	2019-10-12 21:43:45.000000000 +0000
 +++ lib/csa/cmxdr.c
 @@ -44,8 +44,20 @@
  bool_t
- xdr_time_t(register XDR *xdrs, time_t *objp)
+ xdr_time_t(XDR *xdrs, time_t *objp)
  {
 +#if defined(__NetBSD__)
 +	if (sizeof(time_t) == sizeof(long)) {

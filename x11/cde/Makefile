@@ -1,6 +1,6 @@
 # $NetBSD$
 #
-DISTNAME=	cde-2.3.0
+DISTNAME=	cde-2.3.1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=cdesktopenv/}
 
@@ -30,7 +30,7 @@ IMAKE_DEFINES+=		-DCDEProjectRoot=${PREFIX}/dt
 IMAKE_DEFINES+=		-DCdeInstallationTop=${PREFIX}/dt
 IMAKE_DEFINES+=		-DCdeConfigurationTop=${PKG_SYSCONFDIR}
 IMAKE_DEFINES+=		-DCdeLogFilesTop=${VARBASE}/dt
-#IMAKE_DEFINES+=		-DTclLibrary=${BUILDLINK_PREFIX.tcl}/lib
+IMAKE_DEFINES+=		-DTclLibrary=${BUILDLINK_PREFIX.tcl}/lib
 IMAKE_DEFINES+=		-DUseInstalledX11=YES
 #IMAKE_DEFINES+=	-DKornShell=${TOOLS_PATH.ksh}
 IMAKE_DEFINES+=		-DDtKornShell=${PREFIX}/dt/bin/dtksh
@@ -154,7 +154,6 @@ do-install:
 		-DontRunScripts -pseudo -destdir ${DESTDIR}
 
 # from databases/CDE-RUN.*
-SPECIAL_PERMS+=	${PREFIX}/dt/bin/dtprintinfo ${SETUID_ROOT_PERMS}
 SPECIAL_PERMS+=	${PREFIX}/dt/bin/dtsession ${SETUID_ROOT_PERMS}
 SPECIAL_PERMS+=	${PREFIX}/dt/bin/dtterm ${SETUID_ROOT_PERMS}
 SPECIAL_PERMS+=	${PREFIX}/dt/bin/dtapppgather ${SETUID_ROOT_PERMS}
@@ -172,7 +171,7 @@ FONTS_DIRS.x11+=	${PREFIX}/dt/config/xfonts/ja
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXScrnSaver/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
-#.include "../../lang/tcl/buildlink3.mk"
+.include "../../lang/tcl/buildlink3.mk"
 .include "../../mk/xaw.buildlink3.mk"
 .include "../../mk/motif.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
