@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	fcitx-cloudpinyin-0.3.6
+DISTNAME=	fcitx-cloudpinyin-0.3.7
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-cloudpinyin/
 EXTRACT_SUFX=	.tar.xz
@@ -12,6 +12,8 @@ LICENSE=	gnu-gpl-v2
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	msgfmt pkg-config
+
+CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
