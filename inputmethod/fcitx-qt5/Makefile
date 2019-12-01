@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.5 2019/04/27 04:06:21 ryoon Exp $
 
-DISTNAME=	fcitx-qt5-1.2.3
-PKGREVISION=	4
+DISTNAME=	fcitx-qt5-1.2.4
 CATEGORIES=	inputmethod
 MASTER_SITES=	https://download.fcitx-im.org/fcitx-qt5/
 EXTRACT_SUFX=	.tar.xz
@@ -17,6 +16,8 @@ BUILD_DEPENDS+=	extra-cmake-modules-[0-9]*:../../devel/extra-cmake-modules
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++11
 USE_TOOLS+=	pkg-config
+
+CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=TRUE
 
 PTHREAD_AUTO_VARS=	yes
 
