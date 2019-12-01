@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.20 2019/07/21 22:25:08 wiz Exp $
 #
 
-PKGNAME=		fcitx-4.2.9.6
-PKGREVISION=		5
+PKGNAME=		fcitx-4.2.9.7
 DISTNAME=		${PKGNAME_NOREV}_dict
 CATEGORIES=		inputmethod chinese
 MASTER_SITES=		https://download.fcitx-im.org/fcitx/
@@ -59,6 +58,7 @@ BUILDLINK_API_DEPENDS.dbus+=	dbus>=1.1.0
 .include "../../sysutils/dbus/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
 .include "../../textproc/iso-codes/buildlink3.mk"
+.include "../../textproc/json-c/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../x11/libICE/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"

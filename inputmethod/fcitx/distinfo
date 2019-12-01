@@ -1,8 +1,8 @@
 $NetBSD: distinfo,v 1.4 2018/11/27 13:07:25 bsiegert Exp $
 
-SHA1 (fcitx-4.2.9.6_dict.tar.xz) = 167acc87a2a9e33e822e7c081bb534defe1f37b3
-RMD160 (fcitx-4.2.9.6_dict.tar.xz) = 2bda523f0538d45501a4926179c1909e1dc9d816
-SHA512 (fcitx-4.2.9.6_dict.tar.xz) = dc8308d1a4e9b7595da285ca6521f33027f5b8e6968bc28f751bd4f40116166cabbe1c05e29072afbe88473d2a9d6999124476260785e07f62a243df6e896bb0
-Size (fcitx-4.2.9.6_dict.tar.xz) = 8738408 bytes
+SHA1 (fcitx-4.2.9.7_dict.tar.xz) = db73eaecedd4b22adb5278b22c6c6e7cab6e32a9
+RMD160 (fcitx-4.2.9.7_dict.tar.xz) = fd9a32c16934ae9eaa99037b3d6a5bd79f90a338
+SHA512 (fcitx-4.2.9.7_dict.tar.xz) = b940478c648e30b2ea55903465ed02c8a0c3ae3539e4bd5b77be46a9e4d0c13ceff074ddd7532f86893111eb96308e1740db621a83fb809e4fd02256d75ebe7b
+Size (fcitx-4.2.9.7_dict.tar.xz) = 8734508 bytes
 SHA1 (patch-cmake_FindEnchant.cmake) = e2a2572d60515c80ec736dd1d8d07779aa324da0
 SHA1 (patch-src_lib_fcitx-utils_utils.c) = d89eccbcc8c1ee330efbcddea152db6d2725959b
