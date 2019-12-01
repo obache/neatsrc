@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.21 2019/05/15 14:33:13 leot Exp $
 #
 
-DISTNAME=	ibus-hangul-1.5.2
+DISTNAME=	ibus-hangul-1.5.3
 CATEGORIES=	inputmethod korean
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libhangul/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
