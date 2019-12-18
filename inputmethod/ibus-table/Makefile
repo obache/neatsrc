@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.23 2019/04/25 07:33:01 maya Exp $
 
-DISTNAME=	ibus-table-1.9.21
-PKGREVISION=	1
+DISTNAME=	ibus-table-1.9.22
 CATEGORIES=	inputmethod
 MASTER_SITES=	https://github.com/kaio/ibus-table/releases/download/${PKGVERSION_NOREV}/
 
