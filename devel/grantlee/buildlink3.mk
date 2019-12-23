@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.6 2018/03/12 11:15:27 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.8 2019/10/28 16:10:52 kamil Exp $
 
 BUILDLINK_TREE+=	grantlee
 

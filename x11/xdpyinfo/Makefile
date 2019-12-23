@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.14 2019/03/20 12:09:14 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2019/11/26 09:05:15 wiz Exp $
 
 DISTNAME=	xdpyinfo-1.3.2
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_XORG:=app/}
 EXTRACT_SUFX=	.tar.bz2
@@ -14,7 +14,6 @@ GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config
 
 .include "../../x11/libX11/buildlink3.mk"
-.include "../../x11/libdmx/buildlink3.mk"
 .include "../../x11/libXcomposite/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../x11/libXi/buildlink3.mk"
@@ -22,6 +21,5 @@ USE_TOOLS+=	pkg-config
 .include "../../x11/libXrender/buildlink3.mk"
 .include "../../x11/libXtst/buildlink3.mk"
 .include "../../x11/libXxf86dga/buildlink3.mk"
-.include "../../x11/libXxf86misc/buildlink3.mk"
 .include "../../x11/libXxf86vm/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

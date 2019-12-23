@@ -1,7 +1,6 @@
 package pkglint
 
 import (
-	"io/ioutil"
 	"netbsd.org/pkglint/regex"
 	"netbsd.org/pkglint/textproc"
 	"os"
@@ -18,9 +17,8 @@ import (
 // Everything else (distfile hashes, package names) is recorded in the Pkglint
 // type instead.
 type Pkgsrc struct {
-	// The top directory (PKGSRCDIR), either absolute or relative to
-	// the current working directory.
-	topdir string
+	// The top directory (PKGSRCDIR).
+	topdir CurrPath
 
 	// The set of user-defined variables that are added to BUILD_DEFS
 	// within the bsd.pkg.mk file.
@@ -36,7 +34,7 @@ type Pkgsrc struct {
 	suggestedUpdates    []SuggestedUpdate
 	suggestedWipUpdates []SuggestedUpdate
 
-	LastChange      map[string]*Change
+	LastChange      map[PkgsrcPath]*Change
 	LastFreezeStart string // e.g. "2018-01-01", or ""
 	LastFreezeEnd   string // e.g. "2018-01-01", or ""
 
@@ -53,7 +51,7 @@ type Pkgsrc struct {
 	vartypes   VarTypeRegistry
 }
 
-func NewPkgsrc(dir string) Pkgsrc {
+func NewPkgsrc(dir CurrPath) Pkgsrc {
 	return Pkgsrc{
 		dir,
 		make(map[string]bool),
@@ -63,85 +61,13 @@ func NewPkgsrc(dir string) Pkgsrc {
 		make(map[string]string),
 		nil,
 		nil,
-		make(map[string]*Change),
+		make(map[PkgsrcPath]*Change),
 		"",
 		"",
 		make(map[string][]string),
 		NewScope(),
 		make(map[string]string),
 		NewVarTypeRegistry()}
-}
-
-func (src *Pkgsrc) loadDefaultBuildDefs() {
-
-	// Some user-defined variables do not influence the binary
-	// package at all and therefore do not have to be added to
-	// BUILD_DEFS; therefore they are marked as "already added".
-	src.addBuildDefs(
-		"DISTDIR",
-		"FETCH_CMD",
-		"FETCH_OUTPUT_ARGS",
-		"FETCH_USING",
-		"PKGSRC_RUN_TEST")
-
-	// The following variables are used so often that not every
-	// package should need to add it to BUILD_DEFS manually.
-	src.addBuildDefs(
-		"PKGSRC_COMPILER",
-		"PKGSRC_USE_SSP",
-		"UNPRIVILEGED",
-		"USE_CROSS_COMPILE")
-
-	// The following variables are so obscure that they are
-	// probably not used in practice.
-	src.addBuildDefs(
-		"MANINSTALL")
-
-	// The following variables are added to _BUILD_DEFS by the pkgsrc
-	// infrastructure and thus don't need to be added by the package again.
-	// To regenerate the below list:
-	//  grep -hr '^_BUILD_DEFS+=' mk/ | tr ' \t' '\n\n' | sed -e 's,.*=,,' -e '/^_/d' -e '/^$/d' -e 's,.*,"&"\,,' | sort -u
-	// TODO: Run the equivalent of the above command at startup.
-	src.addBuildDefs(
-		"ABI",
-		"BUILTIN_PKGS",
-		"CFLAGS",
-		"CMAKE_ARGS",
-		"CONFIGURE_ARGS",
-		"CONFIGURE_ENV",
-		"CPPFLAGS",
-		"FFLAGS",
-		"GAMEDATAMODE",
-		"GAMEDIRMODE",
-		"GAMEMODE",
-		"GAMES_GROUP",
-		"GAMES_USER",
-		"GLIBC_VERSION",
-		"INIT_SYSTEM",
-		"LDFLAGS",
-		"LICENSE",
-		"LOCALBASE",
-		"MACHINE_ARCH",
-		"MACHINE_GNU_ARCH",
-		"MULTI",
-		"NO_BIN_ON_CDROM",
-		"NO_BIN_ON_FTP",
-		"NO_SRC_ON_CDROM",
-		"NO_SRC_ON_FTP",
-		"OBJECT_FMT",
-		"OPSYS",
-		"OS_VERSION",
-		"OSVERSION_SPECIFIC",
-		"PKG_HACKS",
-		"PKG_OPTIONS",
-		"PKG_SYSCONFBASEDIR",
-		"PKG_SYSCONFDIR",
-		"PKGGNUDIR",
-		"PKGINFODIR",
-		"PKGMANDIR",
-		"PKGPATH",
-		"RESTRICTED",
-		"USE_ABI_DEPENDS")
 }
 
 // LoadInfrastructure reads the pkgsrc infrastructure files to
@@ -164,339 +90,86 @@ func (src *Pkgsrc) LoadInfrastructure() {
 	src.loadDefaultBuildDefs()
 }
 
-// Latest returns the latest package matching the given pattern.
-// It searches the category for subdirectories matching the given
-// regular expression, takes the latest of them and replaces its
-// name with repl.
-//
-// Example:
-//  Latest("lang", `^php[0-9]+$`, "../../lang/$0")
-//      => "../../lang/php72"
-func (src *Pkgsrc) Latest(category string, re regex.Pattern, repl string) string {
-	versions := src.ListVersions(category, re, repl, true)
+func (src *Pkgsrc) loadMasterSites() {
+	mklines := src.LoadMk("mk/fetch/sites.mk", MustSucceed|NotEmpty)
 
-	if len(versions) > 0 {
-		return versions[len(versions)-1]
-	}
-	return ""
-}
-
-// ListVersions searches the category for subdirectories matching the given
-// regular expression, replaces their names with repl and returns a slice
-// of them, properly sorted from early to late.
-//
-// Example:
-//  ListVersions("lang", `^php[0-9]+$`, "php-$0")
-//      => {"php-53", "php-56", "php-73"}
-func (src *Pkgsrc) ListVersions(category string, re regex.Pattern, repl string, errorIfEmpty bool) []string {
-	if G.Testing {
-		// Regular expression must be anchored at both ends, to avoid typos.
-		assert(hasPrefix(string(re), "^"))
-		assert(hasSuffix(string(re), "$"))
-	}
-
-	// TODO: Maybe convert cache key to a struct, to save allocations.
-	cacheKey := category + "/" + string(re) + " => " + repl
-	if latest, found := src.listVersions[cacheKey]; found {
-		return latest
-	}
-
-	categoryDir := src.File(category)
-
-	var names []string
-	for _, fileInfo := range src.ReadDir(category) {
-		name := fileInfo.Name()
-		if matches(name, re) {
-			names = append(names, name)
-		}
-	}
-	if len(names) == 0 {
-		if errorIfEmpty {
-			dummyLine.Errorf("Cannot find package versions of %q in %q.", re, categoryDir)
-		}
-		src.listVersions[cacheKey] = nil
-		return nil
-	}
-
-	// In the pkgsrc directories, the major versions of packages are
-	// written without dots, which leads to ambiguities:
-	//
-	// databases/postgresql: 94 < 95 < 96 < 10 < 11
-	// lang/go: 19 < 110 < 111 < 2
-	keys := make(map[string]int)
-	for _, name := range names {
-		if m, pkgbase, versionStr := match2(name, `^(\D+)(\d+)$`); m {
-			version := toInt(versionStr, 0)
-			if pkgbase == "postgresql" && version < 60 {
-				version = 10 * version
-			}
-			if pkgbase == "go" {
-				major := toInt(versionStr[:1], 0)
-				minor := toInt(versionStr[1:], 0)
-				version = 100*major + minor
-			}
-			keys[name] = version
-		}
-	}
-
-	sort.SliceStable(names, func(i, j int) bool {
-		if keyI, keyJ := keys[names[i]], keys[names[j]]; keyI != keyJ {
-			return keyI < keyJ
-		}
-		return naturalLess(names[i], names[j])
-	})
-
-	var repls = make([]string, len(names))
-	for i, name := range names {
-		repls[i] = replaceAll(name, re, repl)
-	}
-
-	src.listVersions[cacheKey] = repls
-	return repls
-}
-
-func (src *Pkgsrc) checkToplevelUnusedLicenses() {
-	if !G.InterPackage.Enabled() {
-		return
-	}
-
-	licensesDir := src.File("licenses")
-	for _, licenseFile := range src.ReadDir("licenses") {
-		licenseName := licenseFile.Name()
-		if !G.InterPackage.LicenseUsed(licenseName) {
-			licensePath := joinPath(licensesDir, licenseName)
-			NewLineWhole(licensePath).Warnf("This license seems to be unused.")
-		}
-	}
-}
-
-// loadTools loads the tool definitions from `mk/tools/*`.
-func (src *Pkgsrc) loadTools() {
-	tools := src.Tools
-
-	toolFiles := []string{"defaults.mk"}
-	{
-		toc := src.File("mk/tools/bsd.tools.mk")
-		mklines := LoadMk(toc, MustSucceed|NotEmpty)
-		for _, mkline := range mklines.mklines {
-			if mkline.IsInclude() {
-				includedFile := mkline.IncludedFile()
-				if !contains(includedFile, "/") {
-					toolFiles = append(toolFiles, includedFile)
-				}
-			}
-		}
-		if len(toolFiles) <= 1 {
-			NewLineWhole(toc).Fatalf("Too few tool files.")
-		}
-	}
-
-	// TODO: parse bsd.prefs.mk and bsd.pkg.mk instead of hardcoding this.
-	tools.def("echo", "ECHO", true, AfterPrefsMk, nil)
-	tools.def("echo -n", "ECHO_N", true, AfterPrefsMk, nil)
-	tools.def("false", "FALSE", true, AtRunTime, nil) // from bsd.pkg.mk
-	tools.def("test", "TEST", true, AfterPrefsMk, nil)
-	tools.def("true", "TRUE", true, AfterPrefsMk, nil)
-
-	for _, basename := range toolFiles {
-		mklines := src.LoadMk("mk/tools/"+basename, MustSucceed|NotEmpty)
-		mklines.ForEach(func(mkline *MkLine) {
-			tools.ParseToolLine(mklines, mkline, true, !mklines.indentation.IsConditional())
-		})
-	}
-
-	for _, relativeName := range [...]string{"mk/bsd.prefs.mk", "mk/bsd.pkg.mk"} {
-
-		mklines := src.LoadMk(relativeName, MustSucceed|NotEmpty)
-		mklines.ForEach(func(mkline *MkLine) {
-			if mkline.IsVarassign() {
-				varname := mkline.Varname()
-				switch varname {
-				case "USE_TOOLS":
-					tools.ParseToolLine(mklines, mkline, true, !mklines.indentation.IsConditional())
-
-				case "_BUILD_DEFS":
-					// TODO: Compare with src.loadDefaultBuildDefs; is it redundant?
-					for _, buildDefsVar := range mkline.Fields() {
-						src.addBuildDefs(buildDefsVar)
+	for _, mkline := range mklines.mklines {
+		if mkline.IsVarassign() {
+			varname := mkline.Varname()
+			// TODO: Give a plausible reason for the MASTER_SITE_BACKUP exception.
+			if hasPrefix(varname, "MASTER_SITE_") && varname != "MASTER_SITE_BACKUP" {
+				for _, url := range mkline.ValueFields(mkline.Value()) {
+					if matches(url, `^(?:http://|https://|ftp://)`) {
+						src.registerMasterSite(varname, url)
 					}
 				}
+
+				// TODO: register variable type, to avoid redundant definitions in vardefs.go.
 			}
-		})
+		}
 	}
+
+	// Explicitly allowed, although not defined in mk/fetch/sites.mk.
+	// TODO: Document where this definition comes from and why it is good.
+	src.registerMasterSite("MASTER_SITE_LOCAL", "ftp://ftp.NetBSD.org/pub/pkgsrc/distfiles/LOCAL_PORTS/")
 
 	if trace.Tracing {
-		tools.Trace()
+		trace.Stepf("Loaded %d MASTER_SITE_* URLs.", len(src.MasterSiteURLToVar))
 	}
 }
 
-// loadUntypedVars scans all pkgsrc infrastructure files in mk/
-// to find variable definitions that are not yet covered in
-// Pkgsrc.InitVartypes.
-//
-// Even if pkglint cannot guess the type of each variable,
-// at least prevent the "used but not defined" warnings.
-func (src *Pkgsrc) loadUntypedVars() {
+func (src *Pkgsrc) registerMasterSite(varname, url string) {
+	nameToURL := src.MasterSiteVarToURL
+	urlToName := src.MasterSiteURLToVar
 
-	// Setting guessed to false prevents the vartype.guessed case in MkLineChecker.CheckVaruse.
-	unknownType := NewVartype(BtUnknown, NoVartypeOptions, NewACLEntry("*", aclpAll))
-
-	define := func(varcanon string, mkline *MkLine) {
-		switch {
-		case src.vartypes.DefinedCanon(varcanon):
-			// Already defined, can also be a tool.
-
-		case hasPrefix(varcanon, "_"):
-			// Variables starting with an underscore are reserved for the
-			// infrastructure and are not available for use by packages.
-
-		case contains(varcanon, "$"):
-			// Indirect, but not the usual parameterized form. Variables of
-			// this form should not be unintentionally visible from outside
-			// the infrastructure since they don't follow the pkgsrc naming
-			// conventions.
-
-		case hasSuffix(varcanon, "_MK"):
-			// Multiple-inclusion guards are internal to the infrastructure.
-
-		default:
-			if trace.Tracing {
-				trace.Stepf("Untyped variable %q in %s", varcanon, mkline)
-			}
-			src.vartypes.DefineType(varcanon, unknownType)
-		}
+	if nameToURL[varname] == "" {
+		nameToURL[varname] = url
 	}
-
-	handleMkFile := func(path string) {
-		mklines := LoadMk(path, MustSucceed)
-		mklines.collectVariables()
-		mklines.collectUsedVariables()
-		for varname, mkline := range mklines.vars.firstDef {
-			define(varnameCanon(varname), mkline)
-		}
-		for varname, mkline := range mklines.vars.used {
-			define(varnameCanon(varname), mkline)
-		}
-	}
-
-	handleFile := func(pathName string, info os.FileInfo, err error) error {
-		assertNil(err, "handleFile %q", pathName)
-		baseName := info.Name()
-		if info.Mode().IsRegular() && (hasSuffix(baseName, ".mk") || baseName == "mk.conf") {
-			handleMkFile(filepath.ToSlash(pathName))
-		}
-		return nil
-	}
-
-	err := filepath.Walk(src.File("mk"), handleFile)
-	assertNil(err, "Walk error in pkgsrc infrastructure")
+	urlToName[replaceAll(url, `^\w+://`, "")] = varname
 }
 
-func (src *Pkgsrc) parseSuggestedUpdates(lines *Lines) []SuggestedUpdate {
-	if lines == nil {
-		return nil
-	}
+func (src *Pkgsrc) loadPkgOptions() {
+	lines := src.Load("mk/defaults/options.description", MustSucceed)
 
-	var updates []SuggestedUpdate
-	state := 0
 	for _, line := range lines.Lines {
-		text := line.Text
-
-		// TODO: Replace this state transition scheme with explicit code,
-		//  hoping that the code will be easier to understand.
-		if state == 0 && text == "Suggested package updates" {
-			state = 1
-		} else if state == 1 && text == "" {
-			state = 2
-		} else if state == 2 {
-			state = 3
-		} else if state == 3 && text == "" {
-			state = 4
+		if m, name, description := match2(line.Text, `^([-0-9a-z_+]+)(?:[\t ]+(.*))?$`); m {
+			src.PkgOptions[name] = description
+		} else {
+			line.Errorf("Invalid line format: %s", line.Text)
 		}
+	}
+}
 
-		if state == 3 {
-			if m, pkgname, comment := match2(text, `^\to[\t ]([^\t ]+)(?:[\t ]*(.+))?$`); m {
-				if m, pkgbase, pkgversion := match2(pkgname, rePkgname); m {
-					updates = append(updates, SuggestedUpdate{line.Location, intern(pkgbase), intern(pkgversion), intern(comment)})
-				} else {
-					line.Warnf("Invalid package name %q.", pkgname)
-				}
-			} else {
-				line.Warnf("Invalid line format %q.", text)
+func (src *Pkgsrc) loadDocChanges() {
+	docDir := src.File("doc")
+	files := src.ReadDir("doc")
+	if len(files) == 0 {
+		NewLineWhole(docDir).Fatalf("Cannot be read for loading the package changes.")
+	}
+
+	var filenames []RelPath
+	for _, file := range files {
+		filename := file.Name()
+		if matches(filename, `^CHANGES-20\d\d$`) && filename >= "CHANGES-2011" { // XXX: Why 2011?
+			filenames = append(filenames, NewRelPathString(filename)) // XXX: low-level API
+		}
+	}
+
+	src.LastChange = make(map[PkgsrcPath]*Change)
+	for _, filename := range filenames {
+		changes := src.loadDocChangesFromFile(docDir.JoinNoClean(filename))
+		for _, change := range changes {
+			src.LastChange[change.Pkgpath] = change
+			if change.Action == Renamed || change.Action == Moved {
+				src.LastChange[change.Target()] = change
 			}
 		}
 	}
-	return updates
+
+	src.checkRemovedAfterLastFreeze()
 }
 
-func (src *Pkgsrc) loadSuggestedUpdates() {
-	src.suggestedUpdates = src.parseSuggestedUpdates(Load(src.File("doc/TODO"), MustSucceed))
-	src.suggestedWipUpdates = src.parseSuggestedUpdates(Load(src.File("wip/TODO"), NotEmpty))
-}
-
-func (*Pkgsrc) parseDocChange(line *Line, warn bool) *Change {
-	lex := textproc.NewLexer(line.Text)
-
-	space := lex.NextHspace()
-	if space == "" {
-		return nil
-	}
-
-	if space != "\t" {
-		if warn {
-			line.Warnf("Package changes should be indented using a single tab, not %q.", space)
-			line.Explain(
-				"To avoid this formatting mistake in the future, just run",
-				sprintf("%q", bmake("cce")),
-				"after committing the update to the package.")
-		}
-
-		return nil
-	}
-
-	f := strings.Fields(lex.Rest())
-	n := len(f)
-	if n != 4 && n != 6 {
-		return nil
-	}
-
-	action := ParseChangeAction(f[0])
-	pkgpath := f[1]
-	author := f[len(f)-2]
-	date := f[len(f)-1]
-
-	if !hasPrefix(author, "[") || !hasSuffix(date, "]") {
-		return nil
-	}
-	author, date = author[1:], date[:len(date)-1]
-
-	switch {
-	case
-		action == Added && f[2] == "version",
-		action == Updated && f[2] == "to",
-		action == Downgraded && f[2] == "to",
-		action == Removed && (f[2] == "successor" || n == 4),
-		(action == Renamed || action == Moved) && f[2] == "to":
-		return &Change{
-			Location: line.Location,
-			Action:   action,
-			Pkgpath:  intern(pkgpath),
-			target:   intern(condStr(n == 6, f[3], "")),
-			Author:   intern(author),
-			Date:     intern(date),
-		}
-	}
-
-	if warn {
-		line.Warnf("Unknown doc/CHANGES line: %s", line.Text)
-		line.Explain(
-			"See mk/misc/developer.mk for the rules.")
-	}
-
-	return nil
-}
-
-func (src *Pkgsrc) loadDocChangesFromFile(filename string) []*Change {
+func (src *Pkgsrc) loadDocChangesFromFile(filename CurrPath) []*Change {
 
 	warn := G.Opts.CheckGlobal && !G.Wip
 
@@ -504,7 +177,7 @@ func (src *Pkgsrc) loadDocChangesFromFile(filename string) []*Change {
 	// This check has been added in 2018.
 	// For years earlier than 2018 pkglint doesn't care because it's not a big issue anyway.
 	year := ""
-	if _, yyyy := match1(filename, `-(\d\d\d\d)$`); yyyy >= "2018" {
+	if _, yyyy := match1(filename.Base(), `-(\d\d\d\d)$`); yyyy >= "2018" {
 		year = yyyy
 	}
 
@@ -544,15 +217,15 @@ func (src *Pkgsrc) loadDocChangesFromFile(filename string) []*Change {
 			continue
 		}
 
-		if year != "" && len(change.Date) >= 4 && change.Date[0:4] != year {
+		if year != "" && change.Date[0:4] != year {
 			line.Warnf("Year %q for %s does not match the filename %s.",
-				change.Date[0:4], change.Pkgpath, filename)
+				change.Date[0:4], change.Pkgpath.String(), line.Rel(filename))
 		}
 
 		if len(changes) >= 2 && year != "" {
 			if prev := changes[len(changes)-2]; change.Date < prev.Date {
 				line.Warnf("Date %q for %s is earlier than %q in %s.",
-					change.Date, change.Pkgpath, prev.Date, line.RefToLocation(prev.Location))
+					change.Date, change.Pkgpath.String(), prev.Date, line.RelLocation(prev.Location))
 				line.Explain(
 					"The entries in doc/CHANGES should be in chronological order, and",
 					"all dates are assumed to be in the UTC timezone, to prevent time",
@@ -572,41 +245,80 @@ func (src *Pkgsrc) loadDocChangesFromFile(filename string) []*Change {
 	return changes
 }
 
-func (src *Pkgsrc) SuggestedUpdates() []SuggestedUpdate {
-	if G.Wip {
-		return src.suggestedWipUpdates
-	} else {
-		return src.suggestedUpdates
-	}
-}
+func (*Pkgsrc) parseDocChange(line *Line, warn bool) *Change {
+	lex := textproc.NewLexer(line.Text)
 
-func (src *Pkgsrc) loadDocChanges() {
-	docDir := src.File("doc")
-	files := src.ReadDir("doc")
-	if len(files) == 0 {
-		NewLineWhole(docDir).Fatalf("Cannot be read for loading the package changes.")
+	space := lex.NextHspace()
+	if space == "" {
+		return nil
 	}
 
-	var filenames []string
-	for _, file := range files {
-		filename := file.Name()
-		if matches(filename, `^CHANGES-20\d\d$`) && filename >= "CHANGES-2011" { // TODO: Why 2011?
-			filenames = append(filenames, filename)
+	if space != "\t" {
+		if warn {
+			line.Warnf("Package changes should be indented using a single tab, not %q.", space)
+			line.Explain(
+				"To avoid this formatting mistake in the future, just run",
+				sprintf("%q", bmake("cce")),
+				"after committing the update to the package.")
+		}
+
+		return nil
+	}
+
+	invalid := func() *Change {
+		if warn {
+			line.Warnf("Invalid doc/CHANGES line: %s", line.Text)
+			line.Explain(
+				"See mk/misc/developer.mk for the rules.",
+				"",
+				"To generate these entries automatically, run",
+				sprintf("%q.", bmakeHelp("cce")))
+		}
+		return nil
+	}
+
+	f := strings.Fields(lex.Rest())
+	n := len(f)
+	if n > 1 && hasSuffix(f[0], ":") {
+		return nil
+	}
+	if n == 0 {
+		return invalid()
+	}
+
+	action := ParseChangeAction(f[0])
+	var pkgpath, author, date string
+	if n > 1 {
+		pkgpath = f[1]
+		date = f[n-1]
+	}
+	if n > 2 {
+		author = f[n-2]
+	}
+
+	if !matches(author, `^\[\w+$`) || !matches(date, `\d\d\d\d-\d\d-\d\d]$`) {
+		return invalid()
+	}
+	author, date = author[1:], date[:len(date)-1]
+
+	switch {
+	case
+		action == Added && f[2] == "version",
+		action == Updated && f[2] == "to",
+		action == Downgraded && f[2] == "to",
+		action == Removed && (f[2] == "successor" || n == 4),
+		(action == Renamed || action == Moved) && f[2] == "to":
+		return &Change{
+			Location: line.Location,
+			Action:   action,
+			Pkgpath:  NewPkgsrcPath(NewPath(intern(pkgpath))),
+			target:   intern(condStr(n == 6, f[3], "")),
+			Author:   intern(author),
+			Date:     intern(date),
 		}
 	}
 
-	src.LastChange = make(map[string]*Change)
-	for _, filename := range filenames {
-		changes := src.loadDocChangesFromFile(joinPath(docDir, filename))
-		for _, change := range changes {
-			src.LastChange[change.Pkgpath] = change
-			if change.Action == Renamed || change.Action == Moved {
-				src.LastChange[change.Target()] = change
-			}
-		}
-	}
-
-	src.checkRemovedAfterLastFreeze()
+	return invalid()
 }
 
 func (src *Pkgsrc) checkRemovedAfterLastFreeze() {
@@ -618,21 +330,64 @@ func (src *Pkgsrc) checkRemovedAfterLastFreeze() {
 	for pkgpath, change := range src.LastChange {
 		switch change.Action {
 		case Added, Updated, Downgraded:
-			if !dirExists(src.File(pkgpath)) {
+			if !src.File(pkgpath).IsDir() {
 				wrong = append(wrong, change)
 			}
 		}
 	}
 
-	sort.Slice(wrong, func(i, j int) bool { return wrong[i].Above(wrong[j]) })
+	sort.Slice(wrong, func(i, j int) bool { return wrong[i].IsAbove(wrong[j]) })
 
 	for _, change := range wrong {
 		// It's a bit cheated to construct a Line from only a Location,
 		// without the wrong text. That's only because I'm too lazy loading
 		// the file again, and the original text is not lying around anywhere.
 		line := NewLineMulti(change.Location.Filename, int(change.Location.firstLine), int(change.Location.lastLine), "", nil)
-		line.Errorf("Package %s must either exist or be marked as removed.", change.Pkgpath)
+		line.Errorf("Package %s must either exist or be marked as removed.", change.Pkgpath.String())
 	}
+}
+
+func (src *Pkgsrc) loadSuggestedUpdates() {
+	src.suggestedUpdates = src.parseSuggestedUpdates(Load(src.File("doc/TODO"), MustSucceed))
+	src.suggestedWipUpdates = src.parseSuggestedUpdates(Load(src.File("wip/TODO"), NotEmpty))
+}
+
+func (src *Pkgsrc) parseSuggestedUpdates(lines *Lines) []SuggestedUpdate {
+	if lines == nil {
+		return nil
+	}
+
+	var updates []SuggestedUpdate
+
+	llex := NewLinesLexer(lines)
+	for !llex.EOF() && !llex.SkipText("Suggested package updates") {
+		llex.Skip()
+	}
+	for !llex.EOF() && !llex.SkipText("") {
+		llex.Skip()
+	}
+	for llex.SkipText("") {
+	}
+
+	for !llex.EOF() && !llex.SkipText("") {
+		line := llex.CurrentLine()
+		text := line.Text
+		llex.Skip()
+
+		if m, pkgname, comment := match2(text, `^\to[\t ]([^\t ]+)(?:[\t ]*(.+))?$`); m {
+			if m, pkgbase, pkgversion := match2(pkgname, rePkgname); m {
+				if hasPrefix(comment, "[") && hasSuffix(comment, "]") {
+					comment = comment[1 : len(comment)-1]
+				}
+				updates = append(updates, SuggestedUpdate{line.Location, intern(pkgbase), intern(pkgversion), intern(comment)})
+			} else {
+				line.Warnf("Invalid package name %q.", pkgname)
+			}
+		} else {
+			line.Warnf("Invalid line format %q.", text)
+		}
+	}
+	return updates
 }
 
 func (src *Pkgsrc) loadUserDefinedVars() {
@@ -642,6 +397,74 @@ func (src *Pkgsrc) loadUserDefinedVars() {
 		if mkline.IsVarassignMaybeCommented() {
 			src.UserDefinedVars.Define(mkline.Varname(), mkline)
 		}
+	}
+}
+
+// loadTools loads the tool definitions from `mk/tools/*`.
+func (src *Pkgsrc) loadTools() {
+	tools := src.Tools
+
+	toolFiles := []RelPath{"defaults.mk"}
+	{
+		toc := src.File("mk/tools/bsd.tools.mk")
+		mklines := LoadMk(toc, MustSucceed|NotEmpty)
+		for _, mkline := range mklines.mklines {
+			if mkline.IsInclude() {
+				includedFile := mkline.IncludedFile()
+				if !includedFile.ContainsText("/") {
+					toolFiles = append(toolFiles, includedFile)
+				}
+			}
+		}
+		if len(toolFiles) <= 1 {
+			NewLineWhole(toc).Fatalf("Too few tool files.")
+		}
+	}
+
+	// TODO: parse bsd.prefs.mk and bsd.pkg.mk instead of hardcoding this.
+	tools.def("echo", "ECHO", true, AfterPrefsMk, nil)
+	tools.def("echo -n", "ECHO_N", true, AfterPrefsMk, nil)
+	tools.def("false", "FALSE", true, AtRunTime, nil) // from bsd.pkg.mk
+	tools.def("test", "TEST", true, AfterPrefsMk, nil)
+	tools.def("true", "TRUE", true, AfterPrefsMk, nil)
+
+	for _, basename := range toolFiles {
+		mklines := src.LoadMk(NewPkgsrcPath("mk/tools").JoinNoClean(basename), MustSucceed|NotEmpty)
+		mklines.ForEach(func(mkline *MkLine) {
+			conditional := mklines.indentation.IsConditional()
+			tools.ParseToolLine(mklines, mkline, true, !conditional)
+		})
+	}
+
+	for _, relativeName := range [...]PkgsrcPath{"mk/bsd.prefs.mk", "mk/bsd.pkg.mk"} {
+
+		mklines := src.LoadMk(relativeName, MustSucceed|NotEmpty)
+		mklines.ForEach(func(mkline *MkLine) {
+			if mkline.IsVarassign() {
+				varname := mkline.Varname()
+				switch varname {
+				case "USE_TOOLS":
+					conditional := mklines.indentation.IsConditional()
+					tools.ParseToolLine(mklines, mkline, true, !conditional)
+
+				case "_BUILD_DEFS":
+					// TODO: Compare with src.loadDefaultBuildDefs; is it redundant?
+					for _, buildDefsVar := range mkline.Fields() {
+						src.addBuildDefs(buildDefsVar)
+					}
+				}
+			}
+		})
+	}
+
+	if trace.Tracing {
+		tools.Trace()
+	}
+}
+
+func (src *Pkgsrc) addBuildDefs(varnames ...string) {
+	for _, varname := range varnames {
+		src.buildDefs[varname] = true
 	}
 }
 
@@ -671,7 +494,6 @@ func (src *Pkgsrc) initDeprecatedVars() {
 		"NO_WRKSUBDIR":       "Use WRKSRC=${WRKDIR} instead.",
 		"PATCH_SITE_SUBDIR":  "Use some form of PATCHES_SITES instead.",
 		"PATCH_SUM_FILE":     "Use DISTINFO_FILE instead.",
-		"PKG_JVM":            "Use PKG_DEFAULT_JVM instead.",
 		"USE_BUILDLINK2":     "You can just remove it.",
 		"USE_BUILDLINK3":     "You can just remove it.",
 		"USE_CANNA":          "Use the PKG_OPTIONS framework instead.",
@@ -764,7 +586,9 @@ func (src *Pkgsrc) initDeprecatedVars() {
 		"SKIP_PORTABILITY_CHECK": "Use CHECK_PORTABILITY_SKIP (a list of patterns) instead.",
 
 		// January 2007
-		"BUILDLINK_TRANSFORM.*": "Use BUILDLINK_FNAME_TRANSFORM.* instead.",
+		// Only applies to BUILDLINK_TRANSFORM.${pkgbase}.
+		// There is still BUILDLINK_TRANSFORM.${OPSYS}.
+		// "BUILDLINK_TRANSFORM.*": "Use BUILDLINK_FNAME_TRANSFORM.* instead.",
 
 		// March 2007
 		"SCRIPTDIR":       "You can just remove it.",
@@ -775,9 +599,6 @@ func (src *Pkgsrc) initDeprecatedVars() {
 		"_PKG_SILENT": "Use RUN (with more error checking) instead.",
 		"_PKG_DEBUG":  "Use RUN (with more error checking) instead.",
 		"LICENCE":     "Use LICENSE instead.",
-
-		// November 2007
-		//USE_NCURSES: Include "../../devel/ncurses/buildlink3.mk" instead.
 
 		// December 2007
 		"INSTALLATION_DIRS_FROM_PLIST": "Use AUTO_MKDIRS instead.",
@@ -809,131 +630,228 @@ func (src *Pkgsrc) initDeprecatedVars() {
 	}
 }
 
-// Load loads the file relative to the pkgsrc top directory.
-func (src *Pkgsrc) Load(filename string, options LoadOptions) *Lines {
-	return Load(src.File(filename), options)
-}
+// loadUntypedVars scans all pkgsrc infrastructure files in mk/
+// to find variable definitions that are not yet covered in
+// Pkgsrc.InitVartypes.
+//
+// Even if pkglint cannot guess the type of each variable,
+// at least prevent the "used but not defined" warnings.
+func (src *Pkgsrc) loadUntypedVars() {
 
-// LoadMk loads the Makefile relative to the pkgsrc top directory.
-func (src *Pkgsrc) LoadMk(filename string, options LoadOptions) *MkLines {
-	return LoadMk(src.File(filename), options)
-}
+	// Setting guessed to false prevents the vartype.guessed case in MkLineChecker.CheckVaruse.
+	unknownType := NewVartype(BtUnknown, NoVartypeOptions, NewACLEntry("*", aclpAll))
 
-func (src *Pkgsrc) LoadMkInfra(filename string, options LoadOptions) *MkLines {
-	if G.Testing {
-		// During testing, the infrastructure files don't have to exist.
-		// They are often emulated by setting their data structures manually.
-		options &^= MustSucceed
+	define := func(varcanon string, mkline *MkLine) {
+		switch {
+		case src.vartypes.IsDefinedCanon(varcanon):
+			// Already defined, can also be a tool.
+
+		case !matches(varcanon, `^[A-Z]`):
+			// This filters out several unwanted variables: empty strings,
+			// punctuation, lowercase letters (that are used in .for loops),
+			// dotted names (that are used in ${VAR:@f@${f}@}).
+
+		case contains(varcanon, "$"):
+			// Indirect, but not the usual parameterized form. Variables of
+			// this form should not be unintentionally visible from outside
+			// the infrastructure since they don't follow the pkgsrc naming
+			// conventions.
+
+		case hasSuffix(varcanon, "_MK"):
+			// Multiple-inclusion guards are internal to the infrastructure.
+
+		default:
+			if trace.Tracing {
+				trace.Stepf("Untyped variable %q in %s", varcanon, mkline)
+			}
+			src.vartypes.DefineType(varcanon, unknownType)
+		}
 	}
-	return src.LoadMk(filename, options)
-}
 
-// ReadDir lists the files and subdirectories from the given directory
-// (relative to the pkgsrc root), filtering out any ignored files (CVS/*)
-// and empty directories.
-func (src *Pkgsrc) ReadDir(dirName string) []os.FileInfo {
-	dir := src.File(dirName)
-	files, err := ioutil.ReadDir(dir)
-	if err != nil {
+	handleMkFile := func(path CurrPath) {
+		mklines := LoadMk(path, MustSucceed)
+		mklines.collectVariables()
+		mklines.collectUsedVariables()
+		for varname, mkline := range mklines.allVars.firstDef {
+			define(varnameCanon(varname), mkline)
+		}
+		for varname, mkline := range mklines.allVars.used {
+			define(varnameCanon(varname), mkline)
+		}
+	}
+
+	handleFile := func(pathName string, info os.FileInfo, err error) error {
+		assertNil(err, "handleFile %q", pathName)
+		baseName := info.Name()
+		if info.Mode().IsRegular() && (hasSuffix(baseName, ".mk") || baseName == "mk.conf") {
+			handleMkFile(NewCurrPathSlash(pathName)) // XXX: This is too deep to handle os-specific paths
+		}
 		return nil
 	}
 
-	var relevantFiles []os.FileInfo
-	for _, dirent := range files {
-		name := dirent.Name()
-		if !dirent.IsDir() || !isIgnoredFilename(name) && !isEmptyDir(joinPath(dir, name)) {
-			relevantFiles = append(relevantFiles, dirent)
+	err := filepath.Walk(src.File("mk").String(), handleFile)
+	assertNil(err, "Walk error in pkgsrc infrastructure")
+}
+
+func (src *Pkgsrc) loadDefaultBuildDefs() {
+
+	// Some user-defined variables do not influence the binary
+	// package at all and therefore do not have to be added to
+	// BUILD_DEFS; therefore they are marked as "already added".
+	src.addBuildDefs(
+		"DISTDIR",
+		"FETCH_CMD",
+		"FETCH_OUTPUT_ARGS",
+		"FETCH_USING",
+		"PKGSRC_RUN_TEST")
+
+	// The following variables are used so often that not every
+	// package should need to add it to BUILD_DEFS manually.
+	src.addBuildDefs(
+		"PKGSRC_COMPILER",
+		"PKGSRC_USE_SSP",
+		"UNPRIVILEGED",
+		"USE_CROSS_COMPILE")
+
+	// The following variables are so obscure that they are
+	// probably not used in practice.
+	src.addBuildDefs(
+		"MANINSTALL")
+
+	// The following variables are added to _BUILD_DEFS by the pkgsrc
+	// infrastructure and thus don't need to be added by the package again.
+	// To regenerate the below list:
+	//  grep -hr '^_BUILD_DEFS+=' mk/ | tr ' \t' '\n\n' | sed -e 's,.*=,,' -e '/^_/d' -e '/^$/d' -e 's,.*,"&"\,,' | sort -u
+	// TODO: Run the equivalent of the above command at startup.
+	src.addBuildDefs(
+		"ABI",
+		"BUILTIN_PKGS",
+		"CFLAGS",
+		"CMAKE_ARGS",
+		"CONFIGURE_ARGS",
+		"CONFIGURE_ENV",
+		"CPPFLAGS",
+		"FFLAGS",
+		"GAMEDATAMODE",
+		"GAMEDIRMODE",
+		"GAMEMODE",
+		"GAMES_GROUP",
+		"GAMES_USER",
+		"GLIBC_VERSION",
+		"INIT_SYSTEM",
+		"LDFLAGS",
+		"LICENSE",
+		"LOCALBASE",
+		"MACHINE_ARCH",
+		"MACHINE_GNU_ARCH",
+		"MULTI",
+		"NO_BIN_ON_CDROM",
+		"NO_BIN_ON_FTP",
+		"NO_SRC_ON_CDROM",
+		"NO_SRC_ON_FTP",
+		"OBJECT_FMT",
+		"OPSYS",
+		"OS_VERSION",
+		"OSVERSION_SPECIFIC",
+		"PKG_HACKS",
+		"PKG_OPTIONS",
+		"PKG_SYSCONFBASEDIR",
+		"PKG_SYSCONFDIR",
+		"PKGGNUDIR",
+		"PKGINFODIR",
+		"PKGMANDIR",
+		"PKGPATH",
+		"RESTRICTED",
+		"USE_ABI_DEPENDS")
+}
+
+// Latest returns the latest package matching the given pattern.
+// It searches the category for subdirectories matching the given
+// regular expression, takes the latest of them and replaces its
+// name with repl.
+//
+// Example:
+//  Latest("lang", `^php[0-9]+$`, "../../lang/$0")
+//      => "../../lang/php72"
+func (src *Pkgsrc) Latest(category PkgsrcPath, re regex.Pattern, repl string) string {
+	versions := src.ListVersions(category, re, repl, true)
+
+	if len(versions) > 0 {
+		return versions[len(versions)-1]
+	}
+	return ""
+}
+
+// ListVersions searches the category for subdirectories matching the given
+// regular expression, replaces their names with repl and returns a slice
+// of them, properly sorted from early to late.
+//
+// Example:
+//  ListVersions("lang", `^php[0-9]+$`, "php-$0")
+//      => {"php-53", "php-56", "php-73"}
+func (src *Pkgsrc) ListVersions(category PkgsrcPath, re regex.Pattern, repl string, errorIfEmpty bool) []string {
+	if G.Testing {
+		// Regular expression must be anchored at both ends, to avoid typos.
+		assert(hasPrefix(string(re), "^"))
+		assert(hasSuffix(string(re), "$"))
+	}
+
+	// TODO: Maybe convert cache key to a struct, to save allocations.
+	cacheKey := category.String() + "/" + string(re) + " => " + repl
+	if latest, found := src.listVersions[cacheKey]; found {
+		return latest
+	}
+
+	var names []string
+	for _, fileInfo := range src.ReadDir(category) {
+		name := fileInfo.Name()
+		if matches(name, re) {
+			names = append(names, name)
 		}
 	}
-
-	return relevantFiles
-}
-
-// File resolves a filename relative to the pkgsrc top directory.
-//
-// Example:
-//  NewPkgsrc("/usr/pkgsrc").File("distfiles") => "/usr/pkgsrc/distfiles"
-func (src *Pkgsrc) File(relativeName string) string {
-	// TODO: Package.File resolves variables, Pkgsrc.File doesn't. They should behave the same.
-	return cleanpath(joinPath(src.topdir, relativeName))
-}
-
-// ToRel returns the path of `filename`, relative to the pkgsrc top directory.
-//
-// Example:
-//  NewPkgsrc("/usr/pkgsrc").ToRel("/usr/pkgsrc/distfiles") => "distfiles"
-func (src *Pkgsrc) ToRel(filename string) string {
-	return relpath(src.topdir, filename)
-}
-
-// IsInfra returns whether the given filename (relative to the pkglint
-// working directory) is part of the pkgsrc infrastructure.
-func (src *Pkgsrc) IsInfra(filename string) bool {
-	rel := src.ToRel(filename)
-	return hasPrefix(rel, "mk/") || hasPrefix(rel, "wip/mk/")
-}
-
-func (src *Pkgsrc) addBuildDefs(varnames ...string) {
-	for _, varname := range varnames {
-		src.buildDefs[varname] = true
+	if len(names) == 0 {
+		if errorIfEmpty {
+			G.Logger.TechErrorf(src.File(category), "Cannot find package versions of %q.", string(re))
+		}
+		src.listVersions[cacheKey] = nil
+		return nil
 	}
-}
 
-// IsBuildDef returns whether the given variable is automatically added
-// to BUILD_DEFS by the pkgsrc infrastructure. In such a case, the
-// package doesn't need to add the variable to BUILD_DEFS itself.
-func (src *Pkgsrc) IsBuildDef(varname string) bool {
-	return src.buildDefs[varname]
-}
-
-func (src *Pkgsrc) loadMasterSites() {
-	mklines := src.LoadMk("mk/fetch/sites.mk", MustSucceed|NotEmpty)
-
-	for _, mkline := range mklines.mklines {
-		if mkline.IsVarassign() {
-			varname := mkline.Varname()
-			// TODO: Give a plausible reason for the MASTER_SITE_BACKUP exception.
-			if hasPrefix(varname, "MASTER_SITE_") && varname != "MASTER_SITE_BACKUP" {
-				for _, url := range mkline.ValueFields(mkline.Value()) {
-					if matches(url, `^(?:http://|https://|ftp://)`) {
-						src.registerMasterSite(varname, url)
-					}
-				}
-
-				// TODO: register variable type, to avoid redundant definitions in vardefs.go.
+	// In the pkgsrc directories, the major versions of packages are
+	// written without dots, which leads to ambiguities:
+	//
+	// databases/postgresql: 94 < 95 < 96 < 10 < 11
+	// lang/go: 19 < 110 < 111 < 2
+	keys := make(map[string]int)
+	for _, name := range names {
+		if m, pkgbase, versionStr := match2(name, `^(\D+)(\d+)$`); m {
+			version := toInt(versionStr, 0)
+			if pkgbase == "postgresql" && version < 60 {
+				version = 10 * version
 			}
+			if pkgbase == "go" {
+				major := toInt(versionStr[:1], 0)
+				minor := toInt(versionStr[1:], 0)
+				version = 100*major + minor
+			}
+			keys[name] = version
 		}
 	}
 
-	// Explicitly allowed, although not defined in mk/fetch/sites.mk.
-	// TODO: Document where this definition comes from and why it is good.
-	src.registerMasterSite("MASTER_SITE_LOCAL", "ftp://ftp.NetBSD.org/pub/pkgsrc/distfiles/LOCAL_PORTS/")
-
-	if trace.Tracing {
-		trace.Stepf("Loaded %d MASTER_SITE_* URLs.", len(src.MasterSiteURLToVar))
-	}
-}
-
-func (src *Pkgsrc) registerMasterSite(varname, url string) {
-	nameToURL := src.MasterSiteVarToURL
-	urlToName := src.MasterSiteURLToVar
-
-	if nameToURL[varname] == "" {
-		nameToURL[varname] = url
-	}
-	urlToName[replaceAll(url, `^\w+://`, "")] = varname
-}
-
-func (src *Pkgsrc) loadPkgOptions() {
-	lines := src.Load("mk/defaults/options.description", MustSucceed)
-
-	for _, line := range lines.Lines {
-		if m, name, description := match2(line.Text, `^([-0-9a-z_+]+)(?:[\t ]+(.*))?$`); m {
-			src.PkgOptions[name] = description
-		} else {
-			line.Errorf("Invalid line format: %s", line.Text)
+	sort.SliceStable(names, func(i, j int) bool {
+		if keyI, keyJ := keys[names[i]], keys[names[j]]; keyI != keyJ {
+			return keyI < keyJ
 		}
+		return naturalLess(names[i], names[j])
+	})
+
+	var repls = make([]string, len(names))
+	for i, name := range names {
+		repls[i] = replaceAll(name, re, repl)
 	}
+
+	src.listVersions[cacheKey] = repls
+	return repls
 }
 
 // VariableType returns the type of the variable
@@ -1019,6 +937,8 @@ func (src *Pkgsrc) guessVariableType(varname string) (vartype *Vartype) {
 	case hasSuffix(varbase, "_MK"):
 		// TODO: Add BtGuard for inclusion guards, since these variables may only be checked using defined().
 		return plainType(BtUnknown, aclpAll)
+	case hasSuffix(varbase, "_AWK"):
+		return plainType(BtAwkCommand, aclpAll)
 	case hasSuffix(varbase, "_SKIP"):
 		return listType(BtPathPattern, aclpAllRuntime)
 	}
@@ -1042,12 +962,188 @@ func (src *Pkgsrc) guessVariableType(varname string) (vartype *Vartype) {
 	return nil
 }
 
+func (src *Pkgsrc) checkToplevelUnusedLicenses() {
+	if !G.InterPackage.Enabled() {
+		return
+	}
+
+	licensesDir := src.File("licenses")
+	for _, licenseFile := range src.ReadDir("licenses") {
+		licenseName := licenseFile.Name()
+		if !G.InterPackage.IsLicenseUsed(licenseName) {
+			licensePath := licensesDir.JoinNoClean(NewRelPathString(licenseName))
+			NewLineWhole(licensePath).Warnf("This license seems to be unused.")
+		}
+	}
+}
+
+func (src *Pkgsrc) SuggestedUpdates() []SuggestedUpdate {
+	if G.Wip {
+		return src.suggestedWipUpdates
+	} else {
+		return src.suggestedUpdates
+	}
+}
+
+// IsBuildDef returns whether the given variable is automatically added
+// to BUILD_DEFS by the pkgsrc infrastructure. In such a case, the
+// package doesn't need to add the variable to BUILD_DEFS itself.
+func (src *Pkgsrc) IsBuildDef(varname string) bool {
+	return src.buildDefs[varname]
+}
+
+// ReadDir lists the files and subdirectories from the given directory
+// (relative to the pkgsrc root), filtering out any ignored files (CVS/*)
+// and empty directories.
+func (src *Pkgsrc) ReadDir(dirName PkgsrcPath) []os.FileInfo {
+	dir := src.File(dirName)
+	files, err := dir.ReadDir()
+	if err != nil {
+		return nil
+	}
+
+	var relevantFiles []os.FileInfo
+	for _, dirent := range files {
+		name := dirent.Name()
+		if !dirent.IsDir() || !isIgnoredFilename(name) && !isEmptyDir(dir.JoinNoClean(NewRelPathString(name))) {
+			relevantFiles = append(relevantFiles, dirent)
+		}
+	}
+
+	return relevantFiles
+}
+
+// LoadMkExisting loads a file that must exist.
+//
+// During pkglint testing, these files often don't exist, as they are
+// emulated by setting their data structures manually.
+func (src *Pkgsrc) LoadMkExisting(filename PkgsrcPath) *MkLines {
+	options := NotEmpty
+	if !G.Testing {
+		options |= MustSucceed
+	}
+	return src.LoadMk(filename, options)
+}
+
+// LoadMk loads the Makefile relative to the pkgsrc top directory.
+func (src *Pkgsrc) LoadMk(filename PkgsrcPath, options LoadOptions) *MkLines {
+	return LoadMk(src.File(filename), options)
+}
+
+// Load loads the file relative to the pkgsrc top directory.
+func (src *Pkgsrc) Load(filename PkgsrcPath, options LoadOptions) *Lines {
+	return Load(src.File(filename), options)
+}
+
+// Relpath returns the canonical relative path from the directory "from"
+// to the filesystem entry "to".
+//
+// The relative path is built by going from the "from" directory up to the
+// pkgsrc root and from there to the "to" filename. This produces the form
+// "../../category/package" that is found in DEPENDS and .include lines.
+//
+// This function should only be used if the relative path from one file to
+// another cannot be computed in another way. The preferred way is to take
+// the relative filenames directly from the .include or exists() where they
+// appear.
+func (src *Pkgsrc) Relpath(from, to CurrPath) RelPath {
+	cfrom := from.Clean()
+	cto := to.Clean()
+
+	if cfrom == cto {
+		return "."
+	}
+
+	// Take a shortcut for the common case from "dir" to "dir/subdir/...".
+	if cto.HasPrefixPath(cfrom) {
+		return cfrom.Rel(cto)
+	}
+
+	// Take a shortcut for the common case from "category/package" to ".".
+	// This is the most common variant in a complete pkgsrc scan.
+	if cto == "." {
+		fromParts := cfrom.Parts()
+		if len(fromParts) == 2 && fromParts[0] != ".." {
+			return "../.."
+		}
+	}
+
+	if cfrom == "." && !cto.IsAbs() {
+		return NewRelPath(cto.Clean().AsPath())
+	}
+
+	absFrom := G.Abs(cfrom)
+	absTopdir := G.Abs(src.topdir)
+	absTo := G.Abs(cto)
+
+	up := absFrom.Rel(absTopdir)
+	down := absTopdir.Rel(absTo)
+
+	if absFrom.HasPrefixPath(absTo) || absTo.HasPrefixPath(absFrom) {
+		return absFrom.Rel(absTo)
+	}
+
+	fromParts := absTopdir.Rel(absFrom).Parts()
+	toParts := down.Parts()
+
+	if len(fromParts) >= 2 && len(toParts) >= 2 {
+		if fromParts[0] == toParts[0] && fromParts[1] == toParts[1] {
+			var relParts []string
+			for range fromParts[2:] {
+				relParts = append(relParts, "..")
+			}
+			relParts = append(relParts, toParts[2:]...)
+			return NewRelPath(NewPath(strings.Join(relParts, "/")).CleanDot())
+		}
+	}
+
+	return up.JoinNoClean(down).CleanDot()
+}
+
+// File resolves a filename relative to the pkgsrc top directory.
+//
+// Example:
+//  NewPkgsrc("/usr/pkgsrc").File("distfiles") => "/usr/pkgsrc/distfiles"
+func (src *Pkgsrc) File(relativeName PkgsrcPath) CurrPath {
+	cleaned := NewRelPath(relativeName.AsPath()).Clean()
+	if cleaned == "." {
+		return src.topdir.CleanDot()
+	}
+	// TODO: Package.File resolves variables, Pkgsrc.File doesn't. They should behave the same.
+	return src.topdir.JoinNoClean(cleaned).CleanDot()
+}
+
+// Rel returns the path of `filename`, relative to the pkgsrc top directory.
+//
+// Example:
+//  NewPkgsrc("/usr/pkgsrc").Rel("/usr/pkgsrc/distfiles") => "distfiles"
+func (src *Pkgsrc) Rel(filename CurrPath) PkgsrcPath {
+	return NewPkgsrcPath(src.Relpath(src.topdir, filename).AsPath())
+}
+
+// IsInfra returns whether the given filename is part of the pkgsrc
+// infrastructure.
+func (src *Pkgsrc) IsInfra(filename CurrPath) bool {
+	rel := src.Rel(filename)
+	return rel.HasPrefixPath("mk") || rel.HasPrefixPath("wip/mk")
+}
+
+func (src *Pkgsrc) IsInfraMain(filename CurrPath) bool {
+	rel := src.Rel(filename)
+	return rel.HasPrefixPath("mk")
+}
+
+func (src *Pkgsrc) IsWip(filename CurrPath) bool {
+	rel := src.Rel(filename)
+	return rel.HasPrefixPath("wip")
+}
+
 // Change describes a modification to a single package, from the doc/CHANGES-* files.
 type Change struct {
 	Location Location
 	Action   ChangeAction // Added, Updated, Downgraded, Renamed, Moved, Removed
-	Pkgpath  string       // For renamed or moved packages, the previous PKGPATH
-	target   string
+	Pkgpath  PkgsrcPath   // For renamed or moved packages, the previous PKGPATH
+	target   string       // The path or version number, depending on the action
 	Author   string
 	Date     string
 }
@@ -1059,9 +1155,9 @@ func (ch *Change) Version() string {
 }
 
 // Target returns the target PKGPATH for a Renamed or Moved package.
-func (ch *Change) Target() string {
+func (ch *Change) Target() PkgsrcPath {
 	assert(ch.Action == Renamed || ch.Action == Moved)
-	return ch.target
+	return NewPkgsrcPath(NewPath(ch.target))
 }
 
 // Successor returns the successor for a Removed package.
@@ -1070,7 +1166,7 @@ func (ch *Change) Successor() string {
 	return ch.target
 }
 
-func (ch *Change) Above(other *Change) bool {
+func (ch *Change) IsAbove(other *Change) bool {
 	if ch.Date != other.Date {
 		return ch.Date < other.Date
 	}

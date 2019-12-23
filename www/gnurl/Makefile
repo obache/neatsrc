@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.6 2019/09/13 15:48:50 ng0 Exp $
+# $NetBSD: Makefile,v 1.9 2019/12/14 13:28:29 ng0 Exp $
 
-DISTNAME=	gnurl-7.66.0
+DISTNAME=	gnurl-7.67.0
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GNU:=gnunet/}
 EXTRACT_SUFX=	.tar.Z
@@ -13,7 +13,7 @@ LICENSE=	mit
 
 BUILD_DEFS+=	IPV6_READY
 
-USE_TOOLS+=		perl pkg-config
+USE_TOOLS+=		pkg-config
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes # make install depends on it
 PKGCONFIG_OVERRIDE=	libgnurl.pc.in
@@ -21,7 +21,8 @@ INSTALLATION_DIRS=	share/doc/gnurl
 
 .include "../../mk/bsd.prefs.mk"
 
-TEST_TARGET=		check
+TEST_MAKE_FLAGS=	-C tests
+TEST_TARGET=		test
 
 CONFIGURE_ARGS+=	--without-libssh2
 CONFIGURE_ARGS+=	--without-libmetalink
@@ -29,6 +30,7 @@ CONFIGURE_ARGS+=	--without-winidn
 CONFIGURE_ARGS+=	--without-librtmp
 CONFIGURE_ARGS+=	--without-nghttp2
 CONFIGURE_ARGS+=	--without-nss
+# \todo: is cyassl deprecated?
 CONFIGURE_ARGS+=	--without-cyassl
 CONFIGURE_ARGS+=	--without-ssl
 CONFIGURE_ARGS+=	--without-winssl
@@ -50,14 +52,15 @@ CONFIGURE_ARGS+=	--disable-smb
 CONFIGURE_ARGS+=	--disable-ntlm-wb
 CONFIGURE_ARGS+=	--with-gnutls
 CONFIGURE_ARGS+=	--with-libidn2
+# \todo: is with libz deprecated?
 CONFIGURE_ARGS+=	--with-libz=${BUILDLINK_PREFIX.zlib}
 # Fallback to gnutls preferred CA certificates
 CONFIGURE_ARGS+=	--without-ca-bundle
 CONFIGURE_ARGS+=	--without-ca-path
 CONFIGURE_ARGS+=	--with-ca-fallback
-# Do not pick up GSS, should be fixed in upstream.
+# Do not pick up GSS.
 # https://bugs.gnunet.org/view.php?id=5610
-CONFIGURE_ARGS+=	--without-gssapi
+# CONFIGURE_ARGS+=	--without-gssapi
 CONFIGURE_ARGS+=	--disable-valgrind
 # We do not want HTTP3 support yet, see release announcement
 CONFIGURE_ARGS+=	--without-ngtcp2

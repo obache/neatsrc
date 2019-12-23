@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.77 2019/09/19 21:59:36 nia Exp $
+# $NetBSD: Makefile,v 1.80 2019/12/07 07:44:36 plunky Exp $
 #
 
 DISTNAME=		qcad-3.23.0.0
-PKGREVISION=		3
+PKGREVISION=		5
 CATEGORIES=		cad
 MASTER_SITES=		${MASTER_SITE_GITHUB:=qcad/}
 EXTRACT_USING=		bsdtar
@@ -27,7 +27,20 @@ SUBST_FILES.paths+=	scripts/Help/ShowReadme/ShowReadme.js
 SUBST_FILES.paths+=	scripts/Widgets/LibraryBrowser/LibraryBrowser.js
 SUBST_VARS.paths=	PREFIX
 
+.include "../../mk/bsd.prefs.mk"
+PLIST_VARS+=	glx egl
+.if ${OPSYS} != "Darwin"
+PLIST.glx=	yes
+.  include "../../graphics/MesaLib/buildlink3.mk"
+.  if ${MESALIB_SUPPORTS_EGL} == "yes"
+PLIST.egl=	yes
+.  endif
+.endif
+
 AUTO_MKDIRS=	yes
+
+# ensure we don't build debug libs
+BUILD_TARGET=	release
 
 #
 # The QCad build system normally links direct to a release dir but this

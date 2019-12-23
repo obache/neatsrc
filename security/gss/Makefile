@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.23 2017/01/19 18:52:23 agc Exp $
+# $NetBSD: Makefile,v 1.24 2019/11/04 21:12:53 rillig Exp $
 #
 
 DISTNAME=		gss-1.0.3
@@ -12,9 +12,9 @@ LICENSE=		gnu-gpl-v3
 
 CONFLICTS+=		heimdal-[0-9]*
 
-USE_TOOLS+=		pkg-config msgfmt
-GNU_CONFIGURE=		yes
-USE_LIBTOOL=		yes
+USE_TOOLS+=	pkg-config msgfmt
+GNU_CONFIGURE=	yes
+USE_LIBTOOL=	yes
 INFO_FILES=	yes
 
 PKGCONFIG_OVERRIDE+=	gss.pc.in

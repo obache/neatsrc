@@ -1,25 +1,20 @@
-# $NetBSD: Makefile,v 1.72 2019/08/11 13:24:14 wiz Exp $
+# $NetBSD: Makefile,v 1.76 2019/12/11 01:50:31 gutteridge Exp $
 
-DISTNAME=	e16-0.16.8.8
+DISTNAME=	e16-1.0.21
 PKGNAME=	${DISTNAME:S/e16/enlightenment/}
-PKGREVISION=	24
-CATEGORIES=	x11 gnome wm
+PKGREVISION=	2
+CATEGORIES=	x11 wm
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=enlightenment/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://enlightenment.org/
 COMMENT=	Highly themeable and configurable window manager
+LICENSE=	enlightenment16
 
-USE_TOOLS+=		bison perl:run pkg-config
+USE_TOOLS+=		gmake perl:run pkg-config
 USE_PKGLOCALEDIR=	YES
 GNU_CONFIGURE=		YES
-CONFIGURE_ARGS+=	--enable-fsstd
-CONFIGURE_ARGS+=	--enable-xrandr
-CONFIGURE_ARGS+=	--enable-xft
-CONFIGURE_ARGS+=	--disable-composite
-CONFIGURE_ARGS+=	--without-included-gettext
 CONFIGURE_ARGS+=	--disable-hints-gnome
-CONFIGURE_ARGS+=	--disable-hints-kde
 MAKE_ENV+=		USER=${SHAREOWN}:${SHAREGRP}
 
 INSTALL_MAKE_FLAGS+=	sesmdir=${WRKDIR}/.tmp
@@ -38,6 +33,8 @@ SUBST_VARS.paths+=	X11BASE
 
 PLIST_VARS+=	libhack
 
+.include "options.mk"
+
 .include "../../mk/bsd.prefs.mk"
 
 .if ${OPSYS} == "DragonFly" || ${OPSYS} == "SunOS" || ${OPSYS} == "Linux" || \
@@ -50,13 +47,15 @@ post-install:
 		${XARGS} ${CHMOD} ${BINMODE}
 	${FIND} ${DESTDIR}${PREFIX}/share/e16/themes -type f -print | \
 		${XARGS} ${CHMOD} ${SHAREMODE}
+	cd ${DESTDIR}${PREFIX}/share/e16 && ${RM} -rf fonts
 
-.include "../../audio/esound/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/imlib2/buildlink3.mk"
 .include "../../x11/xbitmaps/buildlink3.mk"
+.include "../../x11/libXcomposite/buildlink3.mk"
+.include "../../x11/libXdamage/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../x11/libXft/buildlink3.mk"
 .include "../../x11/libXinerama/buildlink3.mk"

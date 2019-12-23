@@ -99,6 +99,13 @@ func (s *Suite) Test_Lexer_NextString(c *check.C) {
 	c.Check(lexer.NextString("xt"), equals, "xt")
 }
 
+func (s *Suite) Test_Lexer_NextString__EOF(c *check.C) {
+	lexer := NewLexer("text")
+	lexer.NextString("text")
+
+	c.Check(lexer.EOF(), equals, true)
+}
+
 func (s *Suite) Test_Lexer_SkipString(c *check.C) {
 	lexer := NewLexer("text")
 
@@ -291,13 +298,6 @@ func (s *Suite) Test_Lexer_Reset__multiple(c *check.C) {
 	c.Check(lexer.Rest(), equals, "")
 }
 
-func (s *Suite) Test_Lexer__NextString_then_EOF(c *check.C) {
-	lexer := NewLexer("text")
-	lexer.NextString("text")
-
-	c.Check(lexer.EOF(), equals, true)
-}
-
 func (s *Suite) Test_Lexer_Since(c *check.C) {
 	lexer := NewLexer("text")
 	mark := lexer.Mark()
@@ -413,10 +413,8 @@ func (s *Suite) Test__Alpha(c *check.C) {
 	c.Check(set.Contains('z'), equals, true)
 }
 
-func (s *Suite) Test__test_names(c *check.C) {
-	ck := intqa.NewTestNameChecker(c)
-	ck.AllowCamelCaseDescriptions(
-		"NextString_then_EOF")
-	ck.ShowWarnings(false)
+func (s *Suite) Test__qa(c *check.C) {
+	ck := intqa.NewQAChecker(c.Errorf)
+	ck.Configure("*", "*", "*", -intqa.EMissingTest)
 	ck.Check()
 }

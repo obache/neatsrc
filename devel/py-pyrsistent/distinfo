@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.2 2019/10/19 14:29:45 adam Exp $
+$NetBSD: distinfo,v 1.4 2019/11/24 11:38:18 adam Exp $
 
-SHA1 (pyrsistent-0.15.4.tar.gz) = 12855cfc5c23d5e4eb7a43c98c591398464a95dd
-RMD160 (pyrsistent-0.15.4.tar.gz) = 14fe3f3021c98b6ac1787a407f99b3c3dfdb588c
-SHA512 (pyrsistent-0.15.4.tar.gz) = a88cf1c8422919707f47ab3933841407075f1ea03d62dceb3f10433ff9514dc55b463720b83c53961a322dbd66074392295ef44ef9e831c9f1b527b4f18032a2
-Size (pyrsistent-0.15.4.tar.gz) = 107237 bytes
+SHA1 (pyrsistent-0.15.6.tar.gz) = 36584d73679a321a93e47eabd1489e3b4524d885
+RMD160 (pyrsistent-0.15.6.tar.gz) = 6691625200a9f478ef0933aa7477cc5cc58f90da
+SHA512 (pyrsistent-0.15.6.tar.gz) = 42b259c66e118d5b09bcc64e57441729146ed9b40e9fd18cda83c4aa0523d5bc3acde3177113e1f2a1b5c1e3a14d15b369df9701a9218a88a656ba0359b5ff10
+Size (pyrsistent-0.15.6.tar.gz) = 107424 bytes

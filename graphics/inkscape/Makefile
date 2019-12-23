@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.195 2019/10/19 12:46:05 nia Exp $
+# $NetBSD: Makefile,v 1.199 2019/12/12 12:00:22 jperkin Exp $
 
 DISTNAME=	inkscape-0.92.4
-PKGREVISION=	7
+PKGREVISION=	9
 CATEGORIES=	graphics
 MASTER_SITES=	https://media.inkscape.org/dl/resources/file/
 EXTRACT_SUFX=	.tar.bz2
@@ -66,10 +66,12 @@ REPLACE_PYTHON+=	share/extensions/Barcode/*.py
 REPLACE_PYTHON+=	share/extensions/ink2canvas/*.py
 REPLACE_PYTHON+=	share/extensions/test/*.test.py
 
-CHECK_INTERPRETER_SKIP+=share/inkscape/extensions/genpofiles.sh
-CHECK_INTERPRETER_SKIP+=share/inkscape/extensions/simplepath.rb
-CHECK_PORTABILITY_SKIP+=packaging/macosx/Resources/bin/inkscape
-CHECK_PORTABILITY_SKIP+=packaging/macosx/ScriptExec/launcher-quartz-no-macintegration.sh
+CHECK_INTERPRETER_SKIP+=	share/inkscape/extensions/genpofiles.sh
+CHECK_INTERPRETER_SKIP+=	share/inkscape/extensions/simplepath.rb
+CHECK_PORTABILITY_SKIP+=	packaging/macosx/Resources/bin/inkscape
+CHECK_PORTABILITY_SKIP+=	packaging/macosx/ScriptExec/launcher-quartz-no-macintegration.sh
+
+CMAKE_ARGS+=	-DPACKAGE_LOCALE_DIR=${PREFIX}/${PKGLOCALEDIR}/locale
 
 .include "options.mk"
 

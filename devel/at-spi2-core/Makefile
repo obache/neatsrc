@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.32 2019/10/07 09:28:10 prlw1 Exp $
+# $NetBSD: Makefile,v 1.33 2019/11/03 10:39:06 rillig Exp $
 
 DISTNAME=	at-spi2-core-2.33.2
 PKGREVISION=	1
@@ -13,8 +13,8 @@ LICENSE=	gnu-lgpl-v2
 
 USE_TOOLS+=		msgfmt pkg-config
 
-PKGCONFIG_OVERRIDE=	output/meson-private/atspi-2.pc
-PKGCONFIG_OVERRIDE_STAGE=pre-install
+PKGCONFIG_OVERRIDE=		output/meson-private/atspi-2.pc
+PKGCONFIG_OVERRIDE_STAGE=	pre-install
 
 BUILDDEFS+=		PKG_SYSCONFBASE
 
@@ -27,7 +27,7 @@ eg_default_sessiondir=	${EGDIR}/xdg/autostart
 SUBST_CLASSES+=		eg
 SUBST_SED.eg+=		-e 's,defaults,examples/${PKGBASE},'
 SUBST_FILES.eg+=	bus/meson.build
-SUBST_STAGE.eg= 	pre-configure
+SUBST_STAGE.eg=		pre-configure
 SUBST_MESSAGE.eg=	Fixing path to examples directory.
 
 CONF_FILES=	${eg_busconfigdir}/accessibility.conf \

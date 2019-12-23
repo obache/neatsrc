@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2017/10/15 20:22:09 markd Exp $
+# $NetBSD: Makefile,v 1.3 2019/12/06 20:04:41 markd Exp $
 
 DISTNAME=	tkz-fct
 PKGNAME=	tex-${DISTNAME}-1.16c
@@ -9,7 +9,8 @@ HOMEPAGE=	http://ctan.org/pkg/tkz-fct
 COMMENT=	Tools for drawing graphs of functions
 LICENSE=	lppl-1.3c
 
-DEPENDS+=       tex-tkz-base-[0-9]*:../../graphics/tex-tkz-base
+DEPENDS+=	tex-tkz-base-[0-9]*:../../graphics/tex-tkz-base
 
+TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 .include "../../mk/bsd.pkg.mk"

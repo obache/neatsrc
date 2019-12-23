@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.23 2019/08/11 13:22:12 wiz Exp $
+# $NetBSD: Makefile,v 1.25 2019/11/23 17:55:01 hauke Exp $
 
 DISTNAME=	netatalk-2.2.6
-PKGNAME=        ${DISTNAME:C/-/22-/}
-PKGREVISION=	13
+PKGNAME=	${DISTNAME:C/-/22-/}
+PKGREVISION=	14
 CATEGORIES=	net print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=netatalk/}
 EXTRACT_SUFX=	.tar.bz2
@@ -24,13 +24,13 @@ GNU_CONFIGURE=		yes
 BUILDLINK_TRANSFORM+=	l:db48:${BDB_TYPE}
 
 PKG_SYSCONFSUBDIR=	netatalk
-EGDIR=		${PREFIX}/share/examples/netatalk
-CONF_FILES=	${EGDIR}/AppleVolumes.default ${PKG_SYSCONFDIR}/AppleVolumes.default
-CONF_FILES+=	${EGDIR}/AppleVolumes.system ${PKG_SYSCONFDIR}/AppleVolumes.system
-CONF_FILES+=	${EGDIR}/afpd.conf ${PKG_SYSCONFDIR}/afpd.conf
-CONF_FILES+=	${EGDIR}/atalkd.conf ${PKG_SYSCONFDIR}/atalkd.conf
-CONF_FILES+=	${EGDIR}/netatalk.conf ${PKG_SYSCONFDIR}/netatalk.conf
-CONF_FILES+=	${EGDIR}/papd.conf ${PKG_SYSCONFDIR}/papd.conf
+EGDIR=			${PREFIX}/share/examples/netatalk
+CONF_FILES=		${EGDIR}/AppleVolumes.default ${PKG_SYSCONFDIR}/AppleVolumes.default
+CONF_FILES+=		${EGDIR}/AppleVolumes.system ${PKG_SYSCONFDIR}/AppleVolumes.system
+CONF_FILES+=		${EGDIR}/afpd.conf ${PKG_SYSCONFDIR}/afpd.conf
+CONF_FILES+=		${EGDIR}/atalkd.conf ${PKG_SYSCONFDIR}/atalkd.conf
+CONF_FILES+=		${EGDIR}/netatalk.conf ${PKG_SYSCONFDIR}/netatalk.conf
+CONF_FILES+=		${EGDIR}/papd.conf ${PKG_SYSCONFDIR}/papd.conf
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -69,7 +69,7 @@ PLIST.rcd=		yes
 
 PLIST_VARS+=		ea
 .if ${OPSYS} == "SunOS" || ${OPSYS} == "DragonFly" || ${OPSYS} == "Linux" || \
-	(${OPSYS} == "NetBSD" && empty(OS_VERSION:M[0-6].[0-8]*)) || \
+	(${OPSYS} == "NetBSD" && empty(OS_VERSION:M[0-6].[0-8].*)) || \
 	${OPSYS} == "FreeBSD"
 PLIST.ea=		yes
 .endif

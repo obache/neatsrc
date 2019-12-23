@@ -1,32 +1,45 @@
-# $NetBSD: Makefile,v 1.85 2019/08/22 12:23:43 ryoon Exp $
+# $NetBSD: Makefile,v 1.88 2019/12/02 07:18:36 markd Exp $
 
-DISTNAME=	okular-16.08.0
-PKGREVISION=	26
+DISTNAME=	okular-${KAPPSVER}
+PKGREVISION=	1
 CATEGORIES=	print
+
+HOMEPAGE=	https://kde.org/applications/graphics/okular/
 COMMENT=	KDE universal document viewer
-MASTER_SITES=	${MASTER_SITE_KDE:=applications/16.08.0/src/}
+LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
-CFLAGS.SunOS+=	-D__EXTENSIONS__
+.include "../../meta-pkgs/kde/applications.mk"
 
-BROKEN=		Needs poppler with qt4 support.
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
-.include "../../meta-pkgs/kde4/Makefile.kde4"
+USE_TOOLS+=	msgmerge pkg-config
 
-.include "../../meta-pkgs/kde4/kde4.mk"
+# generation of kded.moc fails when ${PREFIX}/include in the moc include path
+SUBST_CLASSES+=		fix-moc
+SUBST_STAGE.fix-moc=	post-configure
+SUBST_MESSAGE.fix-moc=	Cleaning up MOC includes
+SUBST_FILES.fix-moc=	_KDE_build/generators/*/CMakeFiles/okularGenerator_*_autogen.dir/AutogenInfo.cmake
+SUBST_FILES.fix-moc+=	_KDE_build/CMakeFiles/okularpart_autogen.dir/AutogenInfo.cmake
+SUBST_SED.fix-moc=	-e 's,;${PREFIX}/include;,;,g'
 
 .include "../../devel/chmlib/buildlink3.mk"
+.include "../../devel/kparts/buildlink3.mk"
+.include "../../devel/kpty/buildlink3.mk"
+.include "../../devel/threadweaver/buildlink3.mk"
 .include "../../graphics/djvulibre-lib/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-.include "../../graphics/libkexiv2/buildlink3.mk"
-.include "../../graphics/qimageblitz/buildlink3.mk"
-.include "../../graphics/tiff/buildlink3.mk"
-.include "../../print/libspectre/buildlink3.mk"
-#.include "../../print/poppler-qt4/buildlink3.mk"
-.include "../../security/qca2/buildlink3.mk"
-.include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../textproc/ebook-tools/buildlink3.mk"
-.include "../../x11/libkactivities4/buildlink3.mk"
-.include "../../x11/kdelibs4/buildlink3.mk"
 .include "../../graphics/kdegraphics-mobipocket/buildlink3.mk"
-
+.include "../../graphics/tiff/buildlink3.mk"
+.include "../../graphics/libkexiv2/buildlink3.mk"
+.include "../../print/libspectre/buildlink3.mk"
+.include "../../print/poppler-qt5/buildlink3.mk"
+.include "../../security/qca2-qt5/buildlink3.mk"
+.include "../../sysutils/desktop-file-utils/desktopdb.mk"
+.include "../../textproc/discount/buildlink3.mk"
+.include "../../textproc/ebook-tools/buildlink3.mk"
+.include "../../www/kjs/buildlink3.mk"
+.include "../../www/khtml/buildlink3.mk"
+.include "../../x11/kactivities5/buildlink3.mk"
+.include "../../x11/kirigami2/buildlink3.mk"
+.include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

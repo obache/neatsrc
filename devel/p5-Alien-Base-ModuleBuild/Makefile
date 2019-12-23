@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.9 2019/08/11 13:18:49 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2019/11/27 12:03:39 mef Exp $
 
-DISTNAME=	Alien-Base-ModuleBuild-1.06
+DISTNAME=	Alien-Base-ModuleBuild-1.08
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	http://search.cpan.org/CPAN/authors/id/P/PL/PLICEASE/
 
@@ -11,7 +10,7 @@ HOMEPAGE=	https://metacpan.org/release/Alien-Base-ModuleBuild
 COMMENT=	Module::Build subclass for building Alien:: modules and libraries
 LICENSE=	${PERL5_LICENSE}
 
-PERL5_PACKLIST=         auto/Alien/Base/ModuleBuild/.packlist
+PERL5_PACKLIST=		auto/Alien/Base/ModuleBuild/.packlist
 PERL5_MODULE_TYPE=	Module::Build
 
 USE_TOOLS+=	pkg-config:run
@@ -27,7 +26,7 @@ DEPENDS+=	p5-Shell-Config-Generate-[0-9]*:../../devel/p5-Shell-Config-Generate
 DEPENDS+=	p5-Shell-Guess-[0-9]*:../../devel/p5-Shell-Guess
 
 # TEST_DEPENDS
-BUILD_DEPENDS+=	p5-Test2-Suite-[0-9]*:../../devel/p5-Test2-Suite
+TEST_DEPENDS+=	p5-Test2-Suite-[0-9]*:../../devel/p5-Test2-Suite
 
 .include "../../lang/perl5/module.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: url2pkg_test.py,v 1.21 2019/10/13 08:48:23 rillig Exp $
+# $NetBSD: url2pkg_test.py,v 1.26 2019/11/18 07:56:02 rillig Exp $
 
 import pytest
 from url2pkg import *
@@ -91,6 +91,21 @@ def test_Global_bmake():
     assert g.err.written() == [
         'url2pkg: running bmake (\'hello\', \'world\') in \'.\'',
     ]
+
+
+def test_Global_pkgsrc_license():
+    assert g.pkgsrc_license('BSD') == ''  # too unspecific
+    assert g.pkgsrc_license('apache-2.0') == 'apache-2.0'
+    assert g.pkgsrc_license('Apache 2') == 'apache-2.0'
+
+    # Not explicitly in the list, looked up from PKGSRCDIR.
+    assert g.pkgsrc_license('skype21-license') == 'skype21-license'
+
+    assert g.pkgsrc_license('mit + file LICENSE') == 'mit\t# + file LICENSE'
+    assert g.pkgsrc_license('MIT | file LICENSE') == 'mit\t# OR file LICENSE'
+
+    # Neither in the list nor in PKGSRCDIR/licenses.
+    assert g.pkgsrc_license('unknown') == ''
 
 
 def test_Lines__write_and_read(tmp_path: Path):
@@ -635,12 +650,17 @@ def test_Generator_generate_package(tmp_path: Path):
 
     Generator(url).generate_package(g)
 
-    assert (tmp_path / 'DESCR').read_text() == ''
+    assert not (tmp_path / 'DESCR').is_file()  # is created later
     assert len((tmp_path / 'Makefile').read_text().splitlines()) == 13
-    assert (tmp_path / 'PLIST').read_text() == '@comment $''NetBSD$\n'
+    assert (tmp_path / 'PLIST').read_text().splitlines() == [
+        '@comment $''NetBSD$',
+        '@comment TODO: to fill this file with the file listing:',
+        '@comment TODO: 1. run "true package"',
+        '@comment TODO: 2. run "true print-PLIST"',
+    ]
 
     # Since bmake is only fake in this test, the distinfo file is not created.
-    expected_files = ['DESCR', 'Makefile', 'PLIST']
+    expected_files = ['Makefile', 'PLIST']
     assert sorted([f.name for f in tmp_path.glob("*")]) == expected_files
 
 
@@ -654,8 +674,10 @@ def test_Adjuster_read_dependencies():
         'A line that is not a dependency at all',
         '',
         'var\tHOMEPAGE\thttps://homepage.example.org/',
-        'var\t#LICENSE\tBSD # TODO: too unspecific',
-        ''
+        '',
+        'cmd\tlicense\tBSD',
+        'cmd\tlicense_default\tBSD # (from Python package)',
+        'cmd\tunknown-cmd\targ',
     ]
     env = {'URL2PKG_DEPENDENCIES': '\n'.join(child_process_output)}
     cmd = "printf '%s\n' \"$URL2PKG_DEPENDENCIES\""
@@ -682,7 +704,7 @@ def test_Adjuster_read_dependencies():
         'TEST_DEPENDS+=  pkglint>=0:../../pkgtools/pkglint',
         '',
         'HOMEPAGE=       https://homepage.example.org/',
-        '#LICENSE=       BSD # TODO: too unspecific',
+        '#LICENSE=       BSD # (from Python package)',
         '',
         'BUILDLINK_API_DEPENDS.x11-links+=       x11-links>=120.0',
         '.include "../../pkgtools/x11-links/buildlink3.mk"'
@@ -865,6 +887,16 @@ def test_Adjuster_adjust_cmake(tmp_path: Path):
     adjuster.adjust_cmake()
 
     assert str_vars(adjuster.build_vars) == ['USE_CMAKE=yes']
+
+
+def test_Adjuster_adjust_gnu_make(tmp_path: Path):
+    adjuster = Adjuster(g, '', Lines())
+    adjuster.abs_wrksrc = tmp_path
+    (tmp_path / 'Makefile').write_text('ifdef HAVE_STDIO_H')
+
+    adjuster.adjust_gnu_make()
+
+    assert adjuster.tools == {'gmake'}
 
 
 def test_Adjuster_adjust_configure__none(tmp_path: Path):
@@ -1219,6 +1251,7 @@ def test_Adjuster_generate_lines():
     assert adjuster.makefile_lines.set('#LICENSE', 'BSD # TODO: too unspecific')
     adjuster.depends.append('dependency>=0:../../category/dependency')
     adjuster.todos.append('Run pkglint')
+    adjuster.tools.add('gmake')
 
     lines = adjuster.generate_lines()
 
@@ -1237,6 +1270,8 @@ def test_Adjuster_generate_lines():
         '# TODO: Run pkglint',
         '',
         'DEPENDS+=       dependency>=0:../../category/dependency',
+        '',
+        'USE_TOOLS+=     gmake',
         '',
         '.include "../../mk/bsd.pkg.mk"',
     ]

@@ -1,5 +1,5 @@
 #! @PYTHONBIN@
-# $NetBSD: url2pkg.py,v 1.22 2019/10/13 08:48:23 rillig Exp $
+# $NetBSD: url2pkg.py,v 1.27 2019/11/18 07:50:51 rillig Exp $
 
 # Copyright (c) 2019 The NetBSD Foundation, Inc.
 # All rights reserved.
@@ -47,7 +47,7 @@ import re
 import subprocess
 import sys
 from pathlib import Path
-from typing import Any, Callable, Dict, List, NamedTuple, Optional, Tuple, Union
+from typing import Any, Callable, Dict, List, NamedTuple, Optional, Set, Tuple, Union
 
 
 class Var(NamedTuple):
@@ -115,11 +115,82 @@ class Globals:
         output = subprocess.check_output((self.make, 'show-var', 'VARNAME=' + varname))
         return output.decode('utf-8').strip()
 
+    def pkgsrc_license(self, license_name: str) -> str:
+        comment = ''
+
+        def suffix(suf: str, comm: str):
+            nonlocal license_name, comment
+            if comment == '' and license_name.endswith(suf):
+                comment = f'\t# {comm}'
+                license_name = license_name[:-len(suf)].rstrip()
+
+        suffix('| file LICENSE', 'OR file LICENSE')
+        suffix('+ file LICENSE', '+ file LICENSE')
+
+        known_licenses = (
+            ('2-clause-bsd', 'BSD-2', 'bsd2', 'BSD_2_clause'),
+            # ('2-clause-bsd OR modified-bsd OR original-bsd', 'BSD'),  # XXX: questionable
+            ('acm-license', 'ACM'),
+            ('apache-1.1 OR apache-2.0', 'APACHE'),
+            ('apache-2.0', 'Apache 2', 'Apache 2.0', 'apache2',
+             'Apache Software License', 'Apache License 2.0',
+             'Apache License (== 2.0)'),
+            ('apache-2.0 AND lppl-1.3c', 'apache2lppl', 'apache2lppl1.3c',
+             'lppl1.3capache2'),
+            ('artistic OR artistic-2.0', 'ARTISTIC'),
+            ('artistic-2.0', 'artistic_2'),
+            ('boost-license', 'BSL-1.0'),
+            ('cc-by-v4.0', 'cc-by-4'),
+            ('cc0-1.0-universal', 'CC0'),
+            ('gfsl', 'gfl'),
+            ('gnu-fdl-v1.3', 'fdl'),
+            ('gnu-gpl-v1', 'GPL-1'),
+            ('gnu-gpl-v1 OR gnu-gpl-v2 OR gnu-gpl-v3', 'GPL'),
+            ('gnu-gpl-v2', 'gpl', 'gpl2', 'GPL-2'),
+            ('gnu-gpl-v2 AND cc-by-sa-v4.0', 'gpl3+cc-by-sa-4'),
+            ('gnu-gpl-v2 AND lppl-1.3c', 'lpplgpl', 'gpl2lppl'),
+            ('gnu-gpl-v2 AND ofl-v1.1 AND lppl-1.3c', 'gplofllppl'),
+            ('gnu-gpl-v2 OR gnu-gpl-v3', 'GPL-2 | GPL-3', 'GPL (>= 2)', 'GPL (>= 2.0)'),
+            ('gnu-gpl-v3', 'gpl3', 'GPL-3',
+             'GNU Lesser General Public License (LGPL), Version 3'),
+            ('gnu-gpl-v3', 'GPL (>= 3)'),
+            ('gnu-lgpl-v2', 'LGPL', 'LGPL-2'),
+            ('gnu-lgpl-v2 OR gnu-lgpl-v2.1 OR gnu-lgpl-v3', 'LGPL'),
+            ('gnu-lgpl-v2.1', 'LGPL-2.1'),
+            ('gnu-lgpl-v3', 'LGPL-3'),
+            ('gnu-lgpl-v2 OR gnu-lgpl-v3', 'LGPL-2 | LGPL-3'),
+            ('gnu-lgpl-v2 OR gnu-lgpl-v2.1 OR gnu-lgpl-v3', 'LGPL (>= 2)'),
+            ('lppl-1.0', 'lppl1'),
+            ('lppl-1.2', 'lppl1.2'),
+            ('lppl-1.3c', 'lppl', 'lppl1.3', 'lppl1.3c'),
+            ('lucent', 'LUCENT', 'Lucent Public License'),
+            ('mit', 'MIT', 'MIT License'),
+            ('mit\t# + file LICENSE OR unlimited', 'MIT + file LICENSE | Unlimited'),
+            ('mit AND lppl-1.3c', 'mitlppl'),
+            ('modified-bsd', 'bsd3', 'BSD 3 clause', 'BSD_3_clause'),
+            ('ofl-v1.1', 'ofl'),
+            ('ofl-v1.1 AND lppl-1.3c', 'ofllppl1.3', 'ofllppl1.3c', 'ofllppl'),
+            ('${PERL5_LICENSE}', 'perl'),
+            ('postgresql-license', 'POSTGRESQL'),
+            ('public-domain', 'pd'),
+            ('python-software-foundation', 'PSF', 'PSF license',
+             'Python Software Foundation License'),
+            ('zpl-2.1', 'ZPL 2.1'),
+        )
+
+        lower = license_name.lower()
+        for group in known_licenses:
+            if lower in map(str.lower, group):
+                return group[0] + comment
+        if (self.pkgsrcdir / 'licenses' / lower).is_file():
+            return lower + comment
+        return ''
+
 
 class Lines:
     """
-    A list of lines with high-level methods for manipulating variable
-    assignments.
+    A list of lines (typically from a Makefile, but other file types work as
+    well) with high-level methods for manipulating variable assignments.
     """
     lines: List[str]
 
@@ -362,7 +433,7 @@ class Generator:
         pattern = r'''(?x)
             ^https://github\.com/
             (.+)/               # org
-            (.+)/               # proj   
+            (.+)/               # proj
             releases/download/
             (.+)/               # tag
             (.+)                # base
@@ -462,7 +533,6 @@ class Generator:
     def generate_package(self, g: Globals) -> Lines:
         pkgdir = g.pkgdir
         makefile = pkgdir / 'Makefile'
-        descr = pkgdir / 'DESCR'
         plist = pkgdir / 'PLIST'
 
         initial_lines = self.generate_Makefile()
@@ -472,8 +542,14 @@ class Generator:
         except OSError:
             pass
         initial_lines.write_to(makefile)
-        plist.is_file() or Lines('@comment $''NetBSD$').write_to(plist)
-        descr.is_file() or Lines().write_to(descr)
+
+        plist_lines = [
+            f'@comment $''NetBSD$',
+            f'@comment TODO: to fill this file with the file listing:',
+            f'@comment TODO: 1. run "{g.make} package"',
+            f'@comment TODO: 2. run "{g.make} print-PLIST"'
+        ]
+        plist.is_file() or Lines(*plist_lines).write_to(plist)
 
         subprocess.check_call([g.editor, makefile])
 
@@ -527,6 +603,9 @@ class Adjuster:
     # All these files will be included at the bottom of the Makefile.
     includes: List[str]
 
+    # the tools for USE_TOOLS. Examples are sed, echo, printf, perl5.
+    tools: Set[str]
+
     # a list of variable assignments that will make up the fourth
     # paragraph of the package Makefile, where the build configuration
     # takes place.
@@ -549,6 +628,8 @@ class Adjuster:
 
     regenerate_distinfo: bool
 
+    descr_lines: List[str]
+
     def __init__(self, g: Globals, url: str, initial_lines: Lines):
         self.g = g
         self.url = url
@@ -564,12 +645,14 @@ class Adjuster:
         self.bl3_lines = []
         self.includes = []
         self.build_vars = []
+        self.tools = set()
         self.extra_vars = []
         self.todos = []
         self.pkgname_prefix = ''
         self.pkgname_transform = ''
         self.makefile_lines = Lines()
         self.regenerate_distinfo = False
+        self.descr_lines = []
 
     def add_dependency(self, kind: str, pkgbase: str, constraint: str, dep_dir: str) -> None:
         """ add_dependency('DEPENDS', 'package', '>=1', '../../category/package') """
@@ -616,6 +699,9 @@ class Adjuster:
         self.g.debug('reading dependencies: cd {0} && env {1} {2}', str(cwd), env, cmd)
         output: bytes = subprocess.check_output(args=cmd, shell=True, env=effective_env, cwd=cwd)
 
+        license_name = ''
+        license_default = ''
+
         dep_lines: List[Tuple[str, str, str, str]] = []
         for line in output.decode('utf-8').splitlines():
             # example: DEPENDS   pkgbase>=1.2.3:../../category/pkgbase
@@ -627,13 +713,27 @@ class Adjuster:
             # example: var   VARNAME   value # possibly with comment
             m = re.search(r'^var\t(\S+)\t(.+)$', line)
             if m:
-                if not self.makefile_lines.set(m[1], m[2]):
-                    self.extra_vars.append(Var(m[1], '=', m[2]))
+                self.set_or_add(m[1], m[2])
+                continue
+
+            m = re.search(r'^cmd\t(\S+)\t(.+)$', line)
+            if m:
+                cmd, arg = m.groups()
+                if cmd == 'license':
+                    license_name = arg
+                elif cmd == 'license_default':
+                    license_default = arg
+                else:
+                    self.g.debug('unknown command: {0}', line)
                 continue
 
             if line != '':
                 self.g.debug('unknown dependency line: {0}', line)
 
+        self.set_license(license_name, license_default)
+        self.add_dependencies(pkgname_prefix, dep_lines)
+
+    def add_dependencies(self, pkgname_prefix: str, dep_lines: List[Tuple[str, str, str, str]]):
         for dep_line in dep_lines:
             kind, pkgbase, constraint, dep_dir = dep_line
 
@@ -646,8 +746,26 @@ class Adjuster:
 
             self.add_dependency(kind, pkgbase, constraint, dep_dir)
 
+    def set_or_add(self, varname: str, value: str):
+        if not self.makefile_lines.set(varname, value):
+            self.extra_vars.append(Var(varname, '=', value))
+
+    def set_license(self, license_name: str, license_default: str):
+        pkgsrc_license_name = self.g.pkgsrc_license(license_name)
+        if pkgsrc_license_name != '':
+            self.set_or_add('LICENSE', pkgsrc_license_name)
+        elif license_default != '':
+            self.set_or_add('#LICENSE', license_default)
+
     def wrksrc_open(self, relative_pathname: str):
         return (self.abs_wrksrc / relative_pathname).open()
+
+    def wrksrc_head(self, relative_pathname: str, n: int):
+        try:
+            with (self.abs_wrksrc / relative_pathname).open(encoding="UTF-8") as f:
+                return f.read().splitlines()[:n]
+        except IOError:
+            return []
 
     def wrksrc_find(self, what: Union[str, Callable[[str], bool]]) -> List[str]:
         def search(f):
@@ -672,6 +790,22 @@ class Adjuster:
     def wrksrc_isfile(self, relative_pathname: str) -> bool:
         return (self.abs_wrksrc / relative_pathname).is_file()
 
+    def adjust_descr(self):
+        for filename in ('README', 'README.txt', 'README.md'):
+            lines = self.wrksrc_head(filename, 21)
+            if len(lines) == 21:
+                lines[-1] = '...'
+            if lines:
+                self.descr_lines = [
+                    f'TODO: Adjust the following lines from {filename}',
+                    '',
+                    *lines]
+                return
+
+        self.descr_lines = [
+            'TODO: Fill in a short description of the package.',
+            'TODO: It should be between 3 and 20 lines.']
+
     def adjust_configure(self):
         if not self.wrksrc_isfile('configure'):
             return
@@ -686,6 +820,10 @@ class Adjuster:
     def adjust_cmake(self):
         if self.wrksrc_isfile('CMakeLists.txt'):
             self.build_vars.append(Var('USE_CMAKE', '=', 'yes'))
+
+    def adjust_gnu_make(self):
+        if self.wrksrc_isfile('Makefile') and self.wrksrc_grep('Makefile', r'^(?:ifeq|ifdef)\b'):
+            self.tools.add('gmake')
 
     def adjust_meson(self):
         if self.wrksrc_isfile('meson.build'):
@@ -716,7 +854,7 @@ class Adjuster:
 
     def adjust_perl_module_Makefile_PL(self):
         # Example packages:
-        # devel/p5-Algorithm-Diff (no dependencies)
+        # devel/p5-Algorithm-Diff (no dependencies, no license)
         # devel/p5-Carp-Assert-More (dependencies without version numbers)
         # www/p5-HTML-Quoted (dependency with version number)
 
@@ -912,7 +1050,10 @@ class Adjuster:
         depend_vars.extend(Var('TEST_DEPENDS', '+=', d) for d in self.test_depends)
         lines.add_vars(*depend_vars)
 
-        lines.add_vars(*self.build_vars)
+        build_vars = self.build_vars
+        if self.tools:
+            build_vars.append(Var('USE_TOOLS', '+=', ' '.join(sorted(self.tools))))
+        lines.add_vars(*build_vars)
         lines.add_vars(*self.extra_vars)
 
         lines.add(*self.bl3_lines)
@@ -941,8 +1082,10 @@ class Adjuster:
         self.wrksrc_dirs = scan(self.abs_wrksrc, Path.is_dir)
         self.wrksrc_files = scan(self.abs_wrksrc, Path.is_file)
 
+        self.adjust_descr()
         self.adjust_configure()
         self.adjust_cmake()
+        self.adjust_gnu_make()
         self.adjust_meson()
         self.adjust_gconf2_schemas()
         self.adjust_libtool()
@@ -954,6 +1097,8 @@ class Adjuster:
         self.adjust_use_languages()
 
         self.generate_lines().write_to(self.g.pkgdir / 'Makefile')
+        descr = (self.g.pkgdir / 'DESCR')
+        descr.is_file() or Lines(*self.descr_lines).write_to(descr)
 
         if self.regenerate_distinfo:
             self.g.bmake('distinfo')
@@ -985,4 +1130,7 @@ def main(argv: List[str], g: Globals):
 
 
 if __name__ == '__main__':
-    main(sys.argv, Globals())
+    try:
+        main(sys.argv, Globals())
+    except KeyboardInterrupt:
+        sys.exit(1)

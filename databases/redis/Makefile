@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.44 2019/05/19 07:56:38 adam Exp $
+# $NetBSD: Makefile,v 1.47 2019/11/20 09:43:28 adam Exp $
 
-DISTNAME=	redis-5.0.5
+DISTNAME=	redis-5.0.7
 CATEGORIES=	databases
 MASTER_SITES=	http://download.redis.io/releases/
 
@@ -35,20 +35,20 @@ REDIS_PIDDIR?=		${VARBASE}/run
 OWN_DIRS_PERMS+=	${REDIS_DATADIR} ${REDIS_USER} ${REDIS_GROUP} 0770
 OWN_DIRS_PERMS+=	${REDIS_LOGDIR} ${REDIS_USER} ${REDIS_GROUP} 0770
 
-PKG_GROUPS+=		${REDIS_GROUP}
-PKG_USERS+=		${REDIS_USER}:${REDIS_GROUP}
-PKG_GECOS.${REDIS_USER}=Redis daemon user
-PKG_HOME.${REDIS_USER}=	${REDIS_DBDIR}
+PKG_GROUPS+=			${REDIS_GROUP}
+PKG_USERS+=			${REDIS_USER}:${REDIS_GROUP}
+PKG_GECOS.${REDIS_USER}=	Redis daemon user
+PKG_HOME.${REDIS_USER}=		${REDIS_DBDIR}
 
 FILES_SUBST+=		REDIS_USER=${REDIS_USER}
 FILES_SUBST+=		REDIS_GROUP=${REDIS_GROUP}
 FILES_SUBST+=		REDIS_DATADIR=${REDIS_DATADIR}
 
-SUBST_CLASSES+=		fix-paths
-SUBST_STAGE.fix-paths=	pre-configure
-SUBST_MESSAGE.fix-paths=Fixing paths.
-SUBST_FILES.fix-paths=	redis.conf
-SUBST_VARS.fix-paths=	REDIS_DATADIR REDIS_LOGDIR REDIS_PIDDIR
+SUBST_CLASSES+=			fix-paths
+SUBST_STAGE.fix-paths=		pre-configure
+SUBST_MESSAGE.fix-paths=	Fixing paths.
+SUBST_FILES.fix-paths=		redis.conf
+SUBST_VARS.fix-paths=		REDIS_DATADIR REDIS_LOGDIR REDIS_PIDDIR
 
 CHECK_PORTABILITY_SKIP+=	deps/jemalloc/configure
 

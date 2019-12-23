@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.57 2019/10/21 22:15:11 adam Exp $
+# $NetBSD: Makefile,v 1.59 2019/11/03 10:18:29 rillig Exp $
 
 DISTNAME=		tortoisehg-5.0.2
+PKGREVISION=		1
 PKGNAME=		${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=		devel python
 MASTER_SITES=		http://bitbucket.org/tortoisehg/targz/downloads/
@@ -17,7 +18,7 @@ DEPENDS+=	${PYPKGPREFIX}-iniparse>=0.4:../../textproc/py-iniparse
 DEPENDS+=	${PYPKGPREFIX}-pygments>=1.6:../../textproc/py-pygments
 DEPENDS+=	${PYPKGPREFIX}-mercurial>=5.0.0:../../devel/py-mercurial
 
-PYTHON_VERSIONS_ACCEPTED=	 27 # py-iniparse, py-mercurial
+PYTHON_VERSIONS_ACCEPTED=	27 # py-iniparse, py-mercurial
 
 thg_icon=		/share/pixmaps/tortoisehg/icons/thg_logo.ico
 SUBST_CLASSES+=		df
@@ -36,5 +37,5 @@ pre-build:
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../x11/py-qt4-qscintilla/buildlink3.mk"
+.include "../../x11/py-qt5-qscintilla/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

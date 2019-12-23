@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.41 2019/08/11 13:22:07 wiz Exp $
+# $NetBSD: Makefile,v 1.43 2019/12/09 14:20:55 taca Exp $
 
 DISTNAME=	cacti-1.2.3
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	net
 MASTER_SITES=	https://www.cacti.net/downloads/
 
@@ -31,13 +31,13 @@ DEPENDS+=		${APACHE_PKG_PREFIX}-${PHP_PKG_PREFIX}-[0-9]*:../../www/ap-php
 .include "../../lang/php/phpversion.mk"
 .include "../../mk/apache.mk"
 
-PKG_USERS=		${CACTI_USER}:${CACTI_GROUP}
-PKG_GROUPS=		${CACTI_GROUP}
+PKG_USERS=			${CACTI_USER}:${CACTI_GROUP}
+PKG_GROUPS=			${CACTI_GROUP}
 PKG_GECOS.${CACTI_USER}=	Cacti user
-PKG_HOME.${CACTI_USER}=	${CACTIDIR}
+PKG_HOME.${CACTI_USER}=		${CACTIDIR}
 PKG_SHELL.${CACTI_USER}=	${SH}
-PKG_USERS_VARS+=	CACTI_USER
-PKG_GROUPS_VARS+=	CACTI_GROUP
+PKG_USERS_VARS+=		CACTI_USER
+PKG_GROUPS_VARS+=		CACTI_GROUP
 
 BUILD_DEFS+=		PKG_SYSCONFBASE VARBASE APACHE_GROUP
 PKG_SYSCONFSUBDIR?=	httpd
@@ -107,7 +107,7 @@ INSTALLATION_DIRS=	bin
 INSTALLATION_DIRS+=	share/examples/cacti
 INSTALLATION_DIRS+=	share/cacti
 
-PLIST_VARS+=	localmemory
+PLIST_VARS+=		localmemory
 .if ${OPSYS} == "FreeBSD" || ${OPSYS} == "Linux" || \
     ${OPSYS} == "NetBSD" || ${OPSYS} == "SunOS"
 PLIST.localmemory=	yes

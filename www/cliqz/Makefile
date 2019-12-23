@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.25 2019/10/17 00:24:51 fox Exp $
+# $NetBSD: Makefile,v 1.29 2019/11/30 17:04:53 fox Exp $
 
-DISTNAME=	cliqz-1.29.3
+DISTNAME=	cliqz-1.30.1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=cliqz-oss/}
 GITHUB_PROJECT=	browser-f
-GITHUB_TAG=	${PKGVERSION_NOREV}
 DISTFILES=	adult-domains.bin \
 		cliqz@cliqz.com.xpi \
 		https-everywhere@cliqz.com.xpi \
@@ -15,7 +14,7 @@ DIST_SUBDIR=	${PKGNAME_NOREV}
 CLIQZ_CHANNEL=		release
 # If the PKGVERSION_NOREV is updated, make sure to update the last build id from
 # ftp -Vo - https://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${PKGVERSION_NOREV}/lastbuildid
-CLIQZ_LAST_BUILD_ID=	20191011101006
+CLIQZ_LAST_BUILD_ID=	20191128141357
 CLIQZ_PLUGIN_SUFX=	@cliqz.com.xpi
 
 SITES.adult-domains.bin= \
@@ -44,6 +43,7 @@ PYTHON_VERSIONS_ACCEPTED=	27
 PYTHON_FOR_BUILD_ONLY=		tool
 TOOL_DEPENDS+=			cbindgen>=0.8.2:../../devel/cbindgen
 TOOL_DEPENDS+=			nodejs-[0-9]*:../../lang/nodejs
+TOOL_DEPENDS+=			${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
 
 BUILD_DEPENDS+=			yasm>=1.1:../../devel/yasm
 BUILD_DEPENDS+=			nasm-[0-9]*:../../devel/nasm
@@ -81,6 +81,26 @@ post-extract:
 		${DISTDIR}/${DIST_SUBDIR}/https-everywhere${CLIQZ_PLUGIN_SUFX} \
 		${DISTDIR}/${DIST_SUBDIR}/gdprtool${CLIQZ_PLUGIN_SUFX} \
 		${WRKSRC}/obj/dist/bin/browser/features
+# XXX Hack taken from lang/rust.
+# XXX Taken from www/firefox.
+# patch(1) in NetBSD does not handle .cargo-checksum.json like long width file.
+# Replace checksum fields for following patches:
+# patch-third__party_rust_libc_src_unix_bsd_netbsdlike_netbsd_mod.rs,v 1.1
+# patch-third__party_rust_libc_src_unix_bsd_netbsdlike_netbsd_other_mod.rs,v 1.1
+# patch-rust-1.39.0
+	${CP} ${WRKSRC}/mozilla-release/third_party/rust/libc/.cargo-checksum.json \
+	      ${WRKSRC}/mozilla-release/third_party/rust/libc/.cargo-checksum.json.orig
+	${SED}	-e 's/4d9f7091af8e166943ac6f42ce85558909e5b6e61325039bff7adfbcf4b90212/7f3da734d5e2e9426051da4f406e46d9e9bed43ed2d7d048e8afc8af7ed44795/' \
+		-e 's/1cd66ed5967c788562d4ad626cfbeb1544f4b9267111de5f6790379b8327f28e/6ae549dd21581748b2f1d82880eaca3445c11e3354965e5b49b20342075a3e52/' \
+		< ${WRKSRC}/mozilla-release/third_party/rust/libc/.cargo-checksum.json.orig \
+		> ${WRKSRC}/mozilla-release/third_party/rust/libc/.cargo-checksum.json
+	${CP} ${WRKSRC}/mozilla-release/third_party/rust/bindgen/.cargo-checksum.json \
+	      ${WRKSRC}/mozilla-release/third_party/rust/bindgen/.cargo-checksum.json.orig
+	${SED}	-e 's/5788372d27bdbaaf0454bc17be31a5480918bc41a8a1c4832e8c61185c07f9cd/8c92a52c0f859c7bec7bfbc36b9d18f904baab0c8c9dc1b3e7af34de1a0b0da4/' \
+		-e 's/b73865b6689d4f3546edd91909a47c329c4ae630ea97715d29bc683ae1dc17ad/efdada601d13c489451da9d65a78c42598841cebddf6f3a8012add2380628a51/' \
+		-e 's/34f9aa76b6c9c05136bb69dcd6455397faef571a567254d2c541d50a962994db/e5581852eec87918901a129284b4965aefc8a19394187a8095779a084f28fabe/' \
+		< ${WRKSRC}/mozilla-release/third_party/rust/bindgen/.cargo-checksum.json.orig \
+		> ${WRKSRC}/mozilla-release/third_party/rust/bindgen/.cargo-checksum.json
 
 post-patch:
 	${SED}  -e 's/@MOZ_APP_DISPLAYNAME@/Cliqz Internet/g' \
@@ -126,7 +146,7 @@ BUILDLINK_DEPMETHOD.clang=     build
 BUILDLINK_API_DEPENDS.clang+=  clang>=6.0.1nb1
 .include "../../lang/clang/buildlink3.mk"
 BUILDLINK_DEPMETHOD.rust=      build
-BUILDLINK_API_DEPENDS.rust+=   rust>=1.34.0
+BUILDLINK_API_DEPENDS.rust+=   rust>=1.38.0
 .include "../../lang/rust/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

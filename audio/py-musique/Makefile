@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.63 2019/09/02 13:20:06 adam Exp $
+# $NetBSD: Makefile,v 1.64 2019/11/02 21:09:16 rillig Exp $
 
 DISTNAME=	pymusique-0.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
@@ -10,7 +10,7 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 #HOMEPAGE=	http://www.pyronecrophilia.com/content/pymusique/
 COMMENT=	Interface to the iTunes Music Store
 
-RESTRICTED=	Possible legal problems due to iTunes access
+RESTRICTED=		Possible legal problems due to iTunes access
 NO_SRC_ON_FTP=		${RESTRICTED}
 NO_BIN_ON_FTP=		${RESTRICTED}
 NO_SRC_ON_CDROM=	${RESTRICTED}
@@ -25,7 +25,7 @@ DEPENDS+=	${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
 
 USE_LANGUAGES=	#
 
-PYTHON_VERSIONS_ACCEPTED=	 27 # py-mcrypt, py-gtk2
+PYTHON_VERSIONS_ACCEPTED= 27 # py-mcrypt, py-gtk2
 
 EGG_NAME=	PyMusique-${PKGVERSION_NOREV}	
 

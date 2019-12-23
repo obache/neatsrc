@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.69 2019/07/20 22:46:40 wiz Exp $
+# $NetBSD: Makefile,v 1.71 2019/11/04 12:52:13 adam Exp $
 
 DISTNAME=	${OPENVPN_DISTNAME}
-PKGREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	${OPENVPN_MASTER_SITES}
 EXTRACT_SUFX=	.tar.xz
@@ -35,18 +34,18 @@ SMF_METHODS=	openvpn
 
 PKG_GROUPS=		${OPENVPN_GROUP}
 PKG_USERS=		${OPENVPN_USER}:${OPENVPN_GROUP}
-PKG_GECOS.${OPENVPN_USER}=OpenVPN\ server\ user
+PKG_GECOS.${OPENVPN_USER}= OpenVPN\ server\ user
 
 MESSAGE_SUBST+=	OPENVPN_PLUGINSDIR=${PREFIX}/${OPENVPN_PLUGINSDIR}
 
 post-install:
-	set -e; cd ${WRKSRC}/sample/sample-config-files; for file in *; do \
+	${RUN} cd ${WRKSRC}/sample/sample-config-files; for file in *; do \
 		${INSTALL_DATA} $$file ${DESTDIR}${EGDIR}/config;	   \
 	done
-	set -e; cd ${WRKSRC}/sample/sample-scripts; for file in *; do	   \
+	${RUN} cd ${WRKSRC}/sample/sample-scripts; for file in *; do	   \
 		${INSTALL_DATA} $$file ${DESTDIR}${EGDIR}/scripts;	   \
 	done
-	set -e; cd ${WRKSRC}/sample/sample-keys; for file in *; do	   \
+	${RUN} cd ${WRKSRC}/sample/sample-keys; for file in *; do	   \
 		${INSTALL_DATA} $$file ${DESTDIR}${EGDIR}/keys;		   \
 	done
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.574 2019/10/20 11:10:47 nia Exp $
+# $NetBSD: Makefile,v 1.579 2019/12/07 19:00:06 nia Exp $
 #
 
 COMMENT=	Audio tools
@@ -11,16 +11,7 @@ SUBDIR+=	abcmidi
 SUBDIR+=	adplay
 SUBDIR+=	adplug
 SUBDIR+=	aeneas
-SUBDIR+=	akode
-SUBDIR+=	akode-plugins-alsa
-SUBDIR+=	akode-plugins-jack
-SUBDIR+=	akode-plugins-mpc
-SUBDIR+=	akode-plugins-mpeg
-SUBDIR+=	akode-plugins-oss
-SUBDIR+=	akode-plugins-pulseaudio
-SUBDIR+=	akode-plugins-resampler
-SUBDIR+=	akode-plugins-sun
-SUBDIR+=	akode-plugins-xiph
+SUBDIR+=	aiomixer
 SUBDIR+=	alacconvert
 SUBDIR+=	albumplayer
 SUBDIR+=	alsa-lib
@@ -94,7 +85,6 @@ SUBDIR+=	faad2
 SUBDIR+=	fasttracker2
 SUBDIR+=	fdk-aac
 SUBDIR+=	festival
-SUBDIR+=	festival-doc
 SUBDIR+=	festlex-cmu
 SUBDIR+=	festlex-oald
 SUBDIR+=	festlex-ogi
@@ -262,6 +252,7 @@ SUBDIR+=	libmtag
 SUBDIR+=	libmusepack
 SUBDIR+=	libmusicbrainz
 SUBDIR+=	libmusicbrainz5
+SUBDIR+=	libmysofa
 SUBDIR+=	libofa
 SUBDIR+=	libopenmpt
 SUBDIR+=	libopenspc
@@ -471,6 +462,7 @@ SUBDIR+=	twolame
 SUBDIR+=	ubs
 SUBDIR+=	vamp-plugin-sdk
 SUBDIR+=	vcf
+SUBDIR+=	vimpc
 SUBDIR+=	vorbis-tools
 SUBDIR+=	vorbisgain
 SUBDIR+=	wavesurfer

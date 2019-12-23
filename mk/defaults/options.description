@@ -28,6 +28,7 @@ anope-dbencryption	Enable database encryption.
 anthy			Use Anthy as Japanese conversion program.
 anthy-2ch-dict		Include the 2ch dictionary.
 anthy-okinawa-dict	Include the okinawa dictionary.
+ap-php			Use PHP via Apache module.
 apache			Enable support for Apache web server.
 apache-mpm-event	Use multi-threaded workers in Apache web server.
 apache-mpm-prefork	Use pre-forked workers in Apache web server.
@@ -35,6 +36,7 @@ apache-mpm-worker	Use multiple processes of multi-threaded workers in Apache web
 apple-common-crypto	Use Apple's CommonCrypto.
 ares			Use the ares library for asynchronous name resolution.
 aria2-metalink		Enable Metalink support.
+argon2			Enable support for Argon2 password-hashing function.
 arts			Use the aRts audio daemon.
 aspell			Add spell checking support using aspell.
 async	Use the async library
@@ -129,6 +131,7 @@ debug			Enable debugging facilities in the package.
 debug-info		Enable debug info in generated binaries (e.g. for crash analysis), but not full scale debugging.
 deliver-suid		Install deliver executable setuid root.
 disable-compile-inits	Disable compile time implicit initialization.
+disable-filter-url	Disable php://filter URL feature.
 djbdns-cachestats	Patch to add stats for cache hits/misses.
 djbdns-ignoreip2	Patch to treat certain responses as NXDOMAIN.
 djbdns-mergequeries	Patch to address dnscache poisoning weakness.
@@ -273,6 +276,7 @@ gnomecanvas		Enable GNOME canvas support
 gnomevfs		Enable GNOME Virtual File System support.
 gnupg1			Use GNU Privacy Guard (GnuPG) Version 1.x
 gnupg2			Use GNU Privacy Guard (GnuPG) Version 2.0
+gnuplot			Enable gnuplot support.
 gnuplot-pdf-doc		Install PDF document.
 gnutls			Enable GNU TLS support.
 goffice			Enable goffice support.
@@ -455,6 +459,7 @@ libmtp			Enable MTP via libmtp support.
 libnotify		Enable libnotify support.
 libofa			Enable Open Fingerprint Architecture library support.
 libofx			Enable OFX support.
+libpcap			Enable libpcap support.
 libsmi			Use libsmi for SMI MIB support.
 libsoup			Use libsoup for SOUP support.
 libspiff		Use libspiff for XML shareable playlist support.
@@ -602,6 +607,7 @@ p0f			Enable support for passive OS fingerprinting.
 p5-module-build-dist-authoring		Enable building distfiles.
 p5-module-build-license-creation	Enable license creation.
 pam			Enable PAM support.
+pango			Enable Pango support.
 pcb-motif		Use Motif for the gui instead of GTK for cad/pcb.
 pcre			Enable Perl-compatible regular expressions.
 pcre2-jit		Enable JIT (just-in-time) support in pcre2.
@@ -611,6 +617,8 @@ perl			Enable Perl support.
 pgadmin-db-designer	Enable pgAdmin database-designer functionality.
 pgm			Enable Pragmatic General Multicast support.
 pgsql			Enable PostgreSQL support.
+php-cgi			Use PHP via CGI.
+php-fpm			Use PHP via FastCGI Process Manager.
 php-sockets		Enable php-sockets support.
 pic			Enable compiling with -fPIC
 pim			Enable pim (personal information management) support.
@@ -661,6 +669,7 @@ rtmp			Enable rtmp:// support using rtmpdump.
 rtree			Enable R-tree support.
 ruby			Enable Ruby support.
 ruby-build-ri-db	Build and install database for Ruby's ri utility.
+rust			Enable Rust support.
 samba			Enable Samba file and print services support.
 samplerate		Enable libsamplerate support.
 sane			Enable support for SANE scanners.
@@ -814,6 +823,7 @@ vaapi			Enable support for VAAPI.
 valgrind		Enable Valgrind debugging and profiling support.
 vbr			Enable Vouch By Reference support.
 vdpau			Enable support for VDPAU.
+vera-ttf		Include the Vera TTF fonts.
 vflib			Enable support for Japanese vector font library.
 via-padlock		Enable support for the VIA PadLock Security Engine.
 vice-ethernet		Enable Ethernet cartridge support.

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.10 2019/10/24 11:52:21 tnn Exp $
+# $NetBSD: Makefile,v 1.12 2019/11/03 12:40:40 kamil Exp $
 
 DISTNAME=	lld-9.0.0.src
 PKGNAME=	${DISTNAME:S/.src//}
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	http://releases.llvm.org/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.xz

@@ -15,8 +15,8 @@ package pkglint
 
 import (
 	"netbsd.org/pkglint/regex"
-	"path"
 	"strconv"
+	"strings"
 )
 
 type RawLine struct {
@@ -37,18 +37,25 @@ type RawLine struct {
 
 func (rline *RawLine) String() string { return sprintf("%d:%s", rline.Lineno, rline.textnl) }
 
+func (rline *RawLine) text() string {
+	// TODO: use this method everywhere
+	// TODO: add orig()
+	// TODO: export these two functions
+	return strings.TrimSuffix(rline.textnl, "\n")
+}
+
 type Location struct {
-	Filename  string // uses / as directory separator on all platforms
-	firstLine int32  // zero means the whole file, -1 means EOF
-	lastLine  int32  // usually the same as firstLine, may differ in Makefiles
+	Filename  CurrPath
+	firstLine int32 // zero means the whole file, -1 means EOF
+	lastLine  int32 // usually the same as firstLine, may differ in Makefiles
+}
+
+func NewLocation(filename CurrPath, firstLine, lastLine int) Location {
+	return Location{filename, int32(firstLine), int32(lastLine)}
 }
 
 func (loc *Location) String() string {
-	return loc.Filename + ":" + loc.Linenos()
-}
-
-func NewLocation(filename string, firstLine, lastLine int) Location {
-	return Location{filename, int32(firstLine), int32(lastLine)}
+	return loc.Filename.String() + ":" + loc.Linenos()
 }
 
 func (loc *Location) Linenos() string {
@@ -62,6 +69,10 @@ func (loc *Location) Linenos() string {
 	default:
 		return sprintf("%d--%d", loc.firstLine, loc.lastLine)
 	}
+}
+
+func (loc *Location) File(rel RelPath) CurrPath {
+	return loc.Filename.DirNoClean().JoinNoClean(rel)
 }
 
 // Line represents a line of text from a file.
@@ -83,44 +94,44 @@ type Line struct {
 	// XXX: Filename and Basename could be replaced with a pointer to a Lines object.
 }
 
-func NewLine(filename string, lineno int, text string, rawLine *RawLine) *Line {
+func NewLine(filename CurrPath, lineno int, text string, rawLine *RawLine) *Line {
 	assert(rawLine != nil) // Use NewLineMulti for creating a Line with no RawLine attached to it.
 	return NewLineMulti(filename, lineno, lineno, text, []*RawLine{rawLine})
 }
 
 // NewLineMulti is for logical Makefile lines that end with backslash.
-func NewLineMulti(filename string, firstLine, lastLine int, text string, rawLines []*RawLine) *Line {
-	return &Line{NewLocation(filename, firstLine, lastLine), path.Base(filename), text, rawLines, nil, Once{}}
+func NewLineMulti(filename CurrPath, firstLine, lastLine int, text string, rawLines []*RawLine) *Line {
+	return &Line{NewLocation(filename, firstLine, lastLine), filename.Base(), text, rawLines, nil, Once{}}
 }
 
 // NewLineEOF creates a dummy line for logging, with the "line number" EOF.
-func NewLineEOF(filename string) *Line {
+func NewLineEOF(filename CurrPath) *Line {
 	return NewLineMulti(filename, -1, 0, "", nil)
 }
 
 // NewLineWhole creates a dummy line for logging messages that affect a file as a whole.
-func NewLineWhole(filename string) *Line {
+func NewLineWhole(filename CurrPath) *Line {
 	return NewLineMulti(filename, 0, 0, "", nil)
 }
 
-// RefTo returns a reference to another line,
+// RelLine returns a reference to another line,
 // which can be in the same file or in a different file.
-func (line *Line) RefTo(other *Line) string {
-	return line.RefToLocation(other.Location)
+func (line *Line) RelLine(other *Line) string {
+	return line.RelLocation(other.Location)
 }
 
-func (line *Line) RefToLocation(other Location) string {
+func (line *Line) RelLocation(other Location) string {
 	if line.Filename != other.Filename {
-		return line.PathToFile(other.Filename) + ":" + other.Linenos()
+		return line.Rel(other.Filename).String() + ":" + other.Linenos()
 	}
 	return "line " + other.Linenos()
 }
 
-// PathToFile returns the relative path from this line to the given file path.
+// Rel returns the relative path from this line to the given file path.
 // This is typically used for arguments in diagnostics, which should always be
 // relative to the line with which the diagnostic is associated.
-func (line *Line) PathToFile(filePath string) string {
-	return relpath(path.Dir(line.Filename), filePath)
+func (line *Line) Rel(other CurrPath) RelPath {
+	return G.Pkgsrc.Relpath(line.Filename.DirNoClean(), other)
 }
 
 func (line *Line) IsMultiline() bool {
@@ -183,6 +194,10 @@ func (line *Line) String() string {
 func (line *Line) Autofix() *Autofix {
 	if line.autofix == nil {
 		line.autofix = NewAutofix(line)
+	} else {
+		// This assertion fails if an Autofix is reused before
+		// its Apply method is called.
+		assert(line.autofix.autofixShortTerm.diagFormat == "")
 	}
 	return line.autofix
 }

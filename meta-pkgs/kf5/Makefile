@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2019/08/27 21:33:55 markd Exp $
+# $NetBSD: Makefile,v 1.13 2019/11/24 03:15:11 markd Exp $
 
 DISTNAME=	kf5-${KF5VER}
+PKGREVISION=	1
 CATEGORIES=	meta-pkgs x11 kde
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -9,7 +10,7 @@ MAINTAINER=	markd@NetBSD.org
 HOMEPAGE=	http://www.kde.org/
 COMMENT=	"meta-package" for the KDE Frameworks 5
 
-KF5VER=		5.61.0
+KF5VER=		5.64.0
 
 DEPENDS+=	attica-qt5-${KF5VER}{,nb[0-9]*}:../../misc/attica-qt5
 DEPENDS+=	baloo5-${KF5VER}{,nb[0-9]*}:../../sysutils/baloo5
@@ -22,11 +23,13 @@ DEPENDS+=	kapidox-${KF5VER}{,nb[0-9]*}:../../textproc/kapidox
 DEPENDS+=	karchive-${KF5VER}{,nb[0-9]*}:../../archivers/karchive
 DEPENDS+=	kauth-${KF5VER}{,nb[0-9]*}:../../security/kauth
 DEPENDS+=	kbookmarks-${KF5VER}{,nb[0-9]*}:../../devel/kbookmarks
+DEPENDS+=	kcalendarcore-${KF5VER}{,nb[0-9]*}:../../time/kcalendarcore
 DEPENDS+=	kcmutils-${KF5VER}{,nb[0-9]*}:../../devel/kcmutils
 DEPENDS+=	kcodecs-${KF5VER}{,nb[0-9]*}:../../textproc/kcodecs
 DEPENDS+=	kcompletion-${KF5VER}{,nb[0-9]*}:../../textproc/kcompletion
 DEPENDS+=	kconfig-${KF5VER}{,nb[0-9]*}:../../devel/kconfig
 DEPENDS+=	kconfigwidgets-${KF5VER}{,nb[0-9]*}:../../x11/kconfigwidgets
+DEPENDS+=	kcontacts-${KF5VER}{,nb[0-9]*}:../../misc/kcontacts
 DEPENDS+=	kcoreaddons-${KF5VER}{,nb[0-9]*}:../../devel/kcoreaddons
 DEPENDS+=	kcrash-${KF5VER}{,nb[0-9]*}:../../devel/kcrash
 DEPENDS+=	kdbusaddons-${KF5VER}{,nb[0-9]*}:../../sysutils/kdbusaddons
@@ -60,6 +63,7 @@ DEPENDS+=	kpeople-${KF5VER}{,nb[0-9]*}:../../devel/kpeople
 DEPENDS+=	kplotting-${KF5VER}{,nb[0-9]*}:../../graphics/kplotting
 DEPENDS+=	kpty-${KF5VER}{,nb[0-9]*}:../../devel/kpty
 DEPENDS+=	krunner-${KF5VER}{,nb[0-9]*}:../../devel/krunner
+DEPENDS+=	kross-${KF5VER}{,nb[0-9]*}:../../devel/kross
 DEPENDS+=	kservice-${KF5VER}{,nb[0-9]*}:../../devel/kservice
 DEPENDS+=	ktexteditor-${KF5VER}{,nb[0-9]*}:../../devel/ktexteditor
 DEPENDS+=	ktextwidgets-${KF5VER}{,nb[0-9]*}:../../x11/ktextwidgets

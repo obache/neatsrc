@@ -1,7 +1,7 @@
-$NetBSD: patch-external_pdfium_pkgsrc.patch.1,v 1.1 2019/10/18 10:13:40 ryoon Exp $
+$NetBSD: patch-external_pdfium_pkgsrc.patch.1,v 1.3 2019/11/15 13:26:02 ryoon Exp $
 
 * Support NetBSD
-* Do no conflict with FreeType 2.10 from pkgsrc
+* Do no conflict with FreeType 2.10.1 from pkgsrc
 * Add pkgsrc font path
 
 --- external/pdfium/pkgsrc.patch.1.orig	2019-10-18 00:59:38.822575812 +0000
@@ -25,7 +25,7 @@ $NetBSD: patch-external_pdfium_pkgsrc.patch.1,v 1.1 2019/10/18 10:13:40 ryoon Ex
 +   FT_EXPORT_DEF( FT_UInt )
 +   FT_Get_Name_Index( FT_Face     face,
 +-                     FT_String*  glyph_name )
-++                     const FT_String*  glyph_name )
+++                     _FT_CONST FT_String*  glyph_name )
 +   {
 +     FT_UInt  result = 0;
 + 
@@ -36,7 +36,7 @@ $NetBSD: patch-external_pdfium_pkgsrc.patch.1,v 1.1 2019/10/18 10:13:40 ryoon Ex
 +   FT_EXPORT( FT_UInt )
 +   FT_Get_Name_Index( FT_Face     face,
 +-                     FT_String*  glyph_name );
-++                     const FT_String*  glyph_name );
+++                     _FT_CONST FT_String*  glyph_name );
 + 
 + 
 +   /**************************************************************************

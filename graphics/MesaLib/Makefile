@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.172 2019/10/21 20:47:55 nia Exp $
+# $NetBSD: Makefile,v 1.179 2019/12/08 13:07:20 nia Exp $
 
-DISTNAME=	mesa-19.2.1
+DISTNAME=	mesa-19.2.7
 PKGNAME=	${DISTNAME:S/mesa/MesaLib/}
 CATEGORIES=	graphics
 MASTER_SITES=	https://mesa.freedesktop.org/archive/
@@ -12,16 +12,15 @@ COMMENT=	Open source OpenGL implementation
 LICENSE=	mit
 
 USE_TOOLS+=	bison flex pkg-config xgettext
-USE_LANGUAGES=	c99 c++
+USE_LANGUAGES=	c99 c++14
 USE_LIBTOOL=	yes
 
-SUBST_CLASSES+=		py
-SUBST_STAGE.py=		pre-configure
-SUBST_MESSAGE.py=	Fixing Python binary name
-SUBST_FILES.py+=	meson.build
-SUBST_VARS.py+=		PYTHONBIN
+# ERROR: C++ Compiler does not support -std=c++14
+GCC_REQD+=	5
 
-CFLAGS.SunOS+=		-D__EXTENSIONS__ -D_POSIX_PTHREAD_SEMANTICS
+USE_FEATURES+=	strnlen
+
+CFLAGS.SunOS+=		-D_POSIX_PTHREAD_SEMANTICS
 CXXFLAGS.SunOS+=	-Drestrict=__restrict__
 LDFLAGS.SunOS+=		-lsocket -lnsl
 
@@ -29,7 +28,7 @@ LDFLAGS.SunOS+=		-lsocket -lnsl
 DRI_DRIVERS=		#
 GALLIUM_DRIVERS=	swrast
 VULKAN_DRIVERS=		#
-MESA_PLATFORMS=		surfaceless
+MESA_PLATFORMS=		#
 
 .include "../../mk/compiler.mk"
 .include "features.mk"
@@ -44,18 +43,16 @@ PLIST_VARS+=		i915 i965 r100 r200 nouveau_dri
 PLIST_VARS+=		r300 svga nouveau vc4 lima panfrost
 
 # other features
-PLIST_VARS+=		egl gbm vaapi xatracker
+PLIST_VARS+=		kms vaapi
 
 .if ${MESALIB_SUPPORTS_DRI} == "yes"
 BUILDLINK_API_DEPENDS.libdrm+=	libdrm>=2.4.81
 .include "../../x11/libdrm/buildlink3.mk"
-MESA_PLATFORMS+=	drm
+MESA_PLATFORMS+=	drm surfaceless
 MESON_ARGS+=		-Degl=true
 MESON_ARGS+=		-Dgbm=true
 MESON_ARGS+=		-Dgallium-xa=true
-PLIST.egl=		yes
-PLIST.gbm=		yes
-PLIST.xatracker=	yes
+PLIST.kms=		yes
 .  include "../../multimedia/libva/available.mk"
 .  if ${VAAPI_AVAILABLE} == "yes"
 MESON_ARGS+=		-Dgallium-va=true
@@ -112,6 +109,7 @@ PLIST.r200=		yes
 PLIST.r300=		yes
 .  endif
 .else
+MESA_PLATFORMS+=	surfaceless
 MESON_ARGS+=		-Degl=false
 MESON_ARGS+=		-Dgbm=false
 .endif # ${MESALIB_SUPPORTS_DRI} == "yes"
@@ -156,9 +154,7 @@ CXXFLAGS.NetBSD+=	-Dalloca=__builtin_alloca
 
 EGDIR=		${PREFIX}/share/examples/mesa
 
-OWN_DIRS=	${PKG_SYSCONFDIR}/drirc.d
-CONF_FILES+=	${EGDIR}/00-mesa-defaults.conf \
-		${PKG_SYSCONFDIR}/drirc.d/00-mesa-defaults.conf
+CONF_FILES+=	${EGDIR}/00-mesa-defaults.conf ${PKG_SYSCONFDIR}/drirc
 
 INSTALLATION_DIRS+=	${EGDIR}
 
@@ -180,6 +176,10 @@ pre-configure:
 
 post-install:
 	${MV} ${DESTDIR}${PREFIX}/share/drirc.d/00-mesa-defaults.conf ${DESTDIR}${EGDIR}
+.if ${OPSYS} == "Darwin"
+	install_name_tool -id ${PREFIX}/lib/dri/swrast_dri.so \
+	    ${DESTDIR}${PREFIX}/lib/dri/swrast_dri.so
+.endif
 
 .include "../../devel/meson/build.mk"
 .include "../../devel/zlib/buildlink3.mk"

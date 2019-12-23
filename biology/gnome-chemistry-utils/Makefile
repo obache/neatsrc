@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.40 2019/08/11 13:18:00 wiz Exp $
+# $NetBSD: Makefile,v 1.42 2019/11/20 18:57:57 kamil Exp $
 #
 
 DISTNAME=	gnome-chemistry-utils-0.12.13
-PKGREVISION=	29
+PKGREVISION=	30
 CATEGORIES=	biology
 MASTER_SITES=	http://download-mirror.savannah.gnu.org/releases/gchemutils/0.12/
 EXTRACT_SUFX=	.tar.bz2
@@ -22,8 +22,8 @@ GCONF_SCHEMAS+=	gchempaint-arrows.schemas
 GCONF_SCHEMAS+=	gcrystal.schemas
 GCONF_SCHEMAS+=	gchempaint.schemas
 
-BUILDLINK_TRANSFORM+=rm:-DGTK_DISABLE_DEPRECATED
-BUILDLINK_TRANSFORM+=rm:-ldl
+BUILDLINK_TRANSFORM+=	rm:-DGTK_DISABLE_DEPRECATED
+BUILDLINK_TRANSFORM+=	rm:-ldl
 
 CONFIGURE_ARGS+=	--disable-update-databases
 

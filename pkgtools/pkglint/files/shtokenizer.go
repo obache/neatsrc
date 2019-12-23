@@ -3,13 +3,12 @@ package pkglint
 import "netbsd.org/pkglint/textproc"
 
 type ShTokenizer struct {
-	parser *MkParser
+	parser *MkLexer
+	inWord bool
 }
 
-func NewShTokenizer(line *Line, text string, emitWarnings bool) *ShTokenizer {
-	// TODO: Switching to NewMkParser is nontrivial since emitWarnings must equal (line != nil).
-	p := MkParser{line, textproc.NewLexer(text), emitWarnings}
-	return &ShTokenizer{&p}
+func NewShTokenizer(diag Autofixer, text string) *ShTokenizer {
+	return &ShTokenizer{NewMkLexer(text, diag), false}
 }
 
 // ShAtom parses a basic building block of a shell program.
@@ -64,9 +63,11 @@ func (p *ShTokenizer) ShAtom(quoting ShQuoting) *ShAtom {
 	if atom == nil {
 		lexer.Reset(mark)
 		if hasPrefix(lexer.Rest(), "$${") {
-			p.parser.Line.Warnf("Unclosed shell variable starting at %q.", shorten(lexer.Rest(), 20))
+			p.parser.Warnf("Unclosed shell variable starting at %q.", shorten(lexer.Rest(), 20))
 		} else {
-			p.parser.Line.Warnf("Internal pkglint error in ShTokenizer.ShAtom at %q (quoting=%s).", lexer.Rest(), quoting)
+			p.parser.Warnf("Internal pkglint error in ShTokenizer.ShAtom at %q (quoting=%s).",
+				// TODO: shorten(lexer.Rest(), 20)
+				lexer.Rest(), quoting.String())
 		}
 	}
 	return atom
@@ -77,6 +78,8 @@ func (p *ShTokenizer) shAtomPlain() *ShAtom {
 	if op := p.shOperator(q); op != nil {
 		return op
 	}
+	inWord := p.inWord
+	p.inWord = false
 	lexer := p.parser.lexer
 	mark := lexer.Mark()
 	switch {
@@ -88,7 +91,7 @@ func (p *ShTokenizer) shAtomPlain() *ShAtom {
 		return &ShAtom{shtText, lexer.Since(mark), shqSquot, nil}
 	case lexer.SkipByte('`'):
 		return &ShAtom{shtText, lexer.Since(mark), shqBackt, nil}
-	case lexer.PeekByte() == '#':
+	case lexer.PeekByte() == '#' && !inWord:
 		rest := lexer.Rest()
 		lexer.Skip(len(rest))
 		return &ShAtom{shtComment, rest, q, nil}
@@ -289,6 +292,7 @@ func (p *ShTokenizer) shAtomDquotBacktSquot() *ShAtom {
 //  ${var:=default}
 func (p *ShTokenizer) shAtomInternal(q ShQuoting, dquot, squot bool) *ShAtom {
 	if shVarUse := p.shVarUse(q); shVarUse != nil {
+		p.inWord = true
 		return shVarUse
 	}
 
@@ -328,6 +332,7 @@ loop:
 	}
 
 	if token := lexer.Since(mark); token != "" {
+		p.inWord = true
 		return &ShAtom{shtText, token, q, nil}
 	}
 	return nil

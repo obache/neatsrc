@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.56 2019/10/07 09:28:13 prlw1 Exp $
+# $NetBSD: Makefile,v 1.59 2019/12/12 10:40:57 jperkin Exp $
 
 DISTNAME=	libnotify-0.7.8
 PKGREVISION=	1
@@ -16,9 +16,13 @@ SUPERSEDES+=	libnotify07-[0-9]*
 
 USE_TOOLS+=		gmake pkg-config
 
-PKGCONFIG_OVERRIDE=	output/meson-private/libnotify.pc
-PKGCONFIG_OVERRIDE_STAGE=pre-install
-MAKE_ENV+=		LD_LIBRARY_PATH=${WRKSRC}/output/${PKGBASE}
+PKGCONFIG_OVERRIDE=		output/meson-private/libnotify.pc
+PKGCONFIG_OVERRIDE_STAGE=	pre-install
+MAKE_ENV+=			LD_LIBRARY_PATH=${WRKSRC}/output/${PKGBASE}
+
+# Apply removals to post-wrapper transformed arguments.
+BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--version-script
+BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,${WRKSRC}/libnotify/libnotify.map
 
 .include "options.mk"
 

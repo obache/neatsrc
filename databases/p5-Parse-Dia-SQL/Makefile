@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2019/08/11 13:18:32 wiz Exp $
+# $NetBSD: Makefile,v 1.9 2019/11/02 15:38:05 rillig Exp $
 
 DISTNAME=	Parse-Dia-SQL-0.30
 PKGNAME=	p5-${DISTNAME}
@@ -17,7 +17,7 @@ DEPENDS+=	p5-Text-Table-[0-9]*:../../textproc/p5-Text-Table
 DEPENDS+=	p5-XML-DOM-[0-9]*:../../textproc/p5-XML-DOM
 DEPENDS+=	p5-HTML-Lint-[0-9]*:../../www/p5-HTML-Lint
 
-PERL5_PACKLIST= auto/Parse/Dia/SQL/.packlist
+PERL5_PACKLIST=	auto/Parse/Dia/SQL/.packlist
 
 REPLACE_PERL+=	bin/parsediasql
 

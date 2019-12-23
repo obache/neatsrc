@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.2 2019/11/26 18:42:03 nia Exp $
+
+SHA1 (gemrb-0.8.6.tar.gz) = 251885fdc831ca59bfdad92cce0f204d0070afbb
+RMD160 (gemrb-0.8.6.tar.gz) = 8ebd6d2c02d6265db0170c5cf579820e6362062f
+SHA512 (gemrb-0.8.6.tar.gz) = 0b2975bcc3f64f9ed113728bc3e43df6292dba4fc5d23cf4d02d66b4640ced6b38e68c5c39a2a120fafe6e7d9e32dc5d892a450007427f84c6013ca252f13e64
+Size (gemrb-0.8.6.tar.gz) = 12421522 bytes

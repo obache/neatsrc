@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.25 2019/10/26 17:22:07 nia Exp $
+# $NetBSD: Makefile,v 1.28 2019/12/02 10:08:20 nia Exp $
 
 DISTNAME=	pa_stable_v190600_20161030
 PKGNAME=	${DISTNAME:S/^pa_stable_v/portaudio-/1:S/_/./g}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	http://www.portaudio.com/archives/
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	nia@NetBSD.org
 HOMEPAGE=	http://www.portaudio.com/
 COMMENT=	Portable cross-platform audio API
 LICENSE=	mit
@@ -19,6 +19,9 @@ USE_LANGUAGES=	c c++
 USE_TOOLS+=	gmake pkg-config
 USE_LIBTOOL=	yes
 GNU_CONFIGURE=	yes
+
+# No rule to make target '../../../lib/libportaudio.la', needed by 'libportaudiocpp.la'.  Stop.
+MAKE_JOBS_SAFE=	no
 
 GNU_CONFIGURE_LIBSUBDIR=	portaudio2
 

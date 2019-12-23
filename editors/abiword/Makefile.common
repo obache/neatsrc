@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.48 2019/06/08 10:40:53 rillig Exp $
+# $NetBSD: Makefile.common,v 1.50 2019/11/27 16:01:09 nia Exp $
 # used by editors/abiword-plugins/Makefile
 
-ABIVERSION=	3.0.2
+ABIVERSION=	3.0.4

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.436 2019/10/02 23:24:29 minskim Exp $
+# $NetBSD: Makefile,v 1.440 2019/12/04 13:31:43 nros Exp $
 
 COMMENT=	Mathematics
 
@@ -309,6 +309,7 @@ SUBDIR+=	py-Scientific-doc
 SUBDIR+=	py-Theano
 SUBDIR+=	py-abcpmc
 SUBDIR+=	py-almost
+SUBDIR+=	py-arviz
 SUBDIR+=	py-asteval
 SUBDIR+=	py-autograd
 SUBDIR+=	py-bottleneck
@@ -321,6 +322,7 @@ SUBDIR+=	py-gmpy
 SUBDIR+=	py-infinity
 SUBDIR+=	py-intervals
 SUBDIR+=	py-kiwisolver
+SUBDIR+=	py-libixion
 SUBDIR+=	py-lmfit
 SUBDIR+=	py-mpmath
 SUBDIR+=	py-munkres
@@ -345,6 +347,7 @@ SUBDIR+=	py-scikit-learn
 SUBDIR+=	py-scipy
 SUBDIR+=	py-scipy12
 SUBDIR+=	py-simpleeval
+SUBDIR+=	py-sklearn-pandas
 SUBDIR+=	py-statsmodels
 SUBDIR+=	py-sympy
 SUBDIR+=	py-tables
@@ -354,10 +357,7 @@ SUBDIR+=	py-xarray
 SUBDIR+=	py-z3
 SUBDIR+=	py-z3solver
 SUBDIR+=	qalculate
-SUBDIR+=	qalculate-bases
-SUBDIR+=	qalculate-currency
 SUBDIR+=	qalculate-gtk
-SUBDIR+=	qalculate-units
 SUBDIR+=	qhull
 SUBDIR+=	quadpack
 SUBDIR+=	randlib

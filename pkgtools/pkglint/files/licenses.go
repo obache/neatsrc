@@ -24,34 +24,27 @@ func (lc *LicenseChecker) Check(value string, op MkOperator) {
 }
 
 func (lc *LicenseChecker) checkName(license string) {
-	licenseFile := ""
+	licenseFile := NewCurrPath("")
 	if G.Pkg != nil {
 		if mkline := G.Pkg.vars.FirstDefinition("LICENSE_FILE"); mkline != nil {
-			licenseFile = G.Pkg.File(mkline.ResolveVarsInRelativePath(mkline.Value()))
+			rel := mkline.ResolveVarsInRelativePath(NewRelPathString(mkline.Value()))
+			licenseFile = G.Pkg.File(NewPackagePath(rel))
 		}
 	}
-	if licenseFile == "" {
-		licenseFile = G.Pkgsrc.File("licenses/" + license)
+	if licenseFile.IsEmpty() {
+		licenseFile = G.Pkgsrc.File("licenses").JoinNoClean(NewRelPathString(license))
 		G.InterPackage.UseLicense(license)
 	}
 
-	if !fileExists(licenseFile) {
-		lc.MkLine.Warnf("License file %s does not exist.", cleanpath(licenseFile))
-	}
-
-	switch license {
-	case "fee-based-commercial-use",
-		"no-commercial-use",
-		"no-profit",
-		"no-redistribution",
-		"shareware":
-		lc.MkLine.Errorf("License %q must not be used.", license)
+	if !licenseFile.IsFile() {
+		lc.MkLine.Errorf("License file %s does not exist.",
+			lc.MkLine.Rel(licenseFile))
 		lc.MkLine.Explain(
-			"Instead of using these deprecated licenses, extract the actual",
-			"license from the package into the pkgsrc/licenses/ directory",
-			"and define LICENSE to that filename.",
+			sprintf("Run %q to see which licenses the package uses.",
+				bmake("guess-license")),
 			"",
-			seeGuide("Handling licenses", "handling-licenses"))
+			sprintf("For more information about licenses, %s.",
+				seeGuide("Handling licenses", "handling-licenses")))
 	}
 }
 

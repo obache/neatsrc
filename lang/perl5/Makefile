@@ -1,9 +1,7 @@
-# $NetBSD: Makefile,v 1.256 2019/10/10 17:59:57 maya Exp $
+# $NetBSD: Makefile,v 1.260 2019/11/24 01:08:21 gdt Exp $
 
 .include "license.mk"
 .include "Makefile.common"
-
-PKGREVISION=	1
 
 COMMENT=	Practical Extraction and Report Language
 
@@ -126,7 +124,7 @@ TEST_TARGET=		test
 
 # Policy.sh generation
 # (see comments in files/Policy.sh)
-SUBST_CLASSES+=	policysh
+SUBST_CLASSES+=		policysh
 SUBST_STAGE.policysh=	pre-configure
 SUBST_FILES.policysh=	Policy.sh
 SUBST_VARS.policysh+=	MACHINE_ARCH
@@ -262,7 +260,7 @@ SUBST_STAGE.miniperl=	pre-install
 SUBST_FILES.miniperl=	lib/ExtUtils/xsubpp
 SUBST_SED.miniperl=	-e "1s:\#!./miniperl:\#!${PERL5}:"
 
-.if ${PKGSRC_COMPILER} == "xlc"
+.if ${PKGSRC_COMPILER:Mxlc}
 SUBST_CLASSES+=		cpprun
 SUBST_STAGE.cpprun=	pre-install
 SUBST_FILES.cpprun=	lib/Config_heavy.pl

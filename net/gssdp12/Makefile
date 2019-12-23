@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.2 2019/10/07 09:28:12 prlw1 Exp $
+# $NetBSD: Makefile,v 1.4 2019/11/06 14:34:31 wiz Exp $
 
 DISTNAME=	gssdp-1.2.1
 PKGNAME=	${DISTNAME:S/gssdp/gssdp12/}
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gssdp/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -18,9 +19,9 @@ MESON_ARGS+=	-Dsniffer=false
 # needs gtk-doc
 MESON_ARGS+=	-Dgtk-doc=false
 
-PKGCONFIG_OVERRIDE+=	output/meson-private/gssdp-1.2.pc
-PKGCONFIG_OVERRIDE_STAGE=pre-install
-MAKE_ENV+=		LD_LIBRARY_PATH=${WRKSRC}/output/libgssdp
+PKGCONFIG_OVERRIDE+=		output/meson-private/gssdp-1.2.pc
+PKGCONFIG_OVERRIDE_STAGE=	pre-install
+MAKE_ENV+=			LD_LIBRARY_PATH=${WRKSRC}/output/libgssdp
 
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_DEPMETHOD.gobject-introspection=	build

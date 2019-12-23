@@ -1,17 +1,17 @@
-# $NetBSD: Makefile.versions,v 1.44 2019/08/01 11:43:00 nia Exp $
+# $NetBSD: Makefile.versions,v 1.47 2019/12/04 11:44:40 nia Exp $
 
 DIST_VERSION_MAJOR=		22
-DIST_VERSION_MINOR=		0
+DIST_VERSION_MINOR=		1
 # Only set when sources for patch level releases are published on erlang.org
-DIST_VERSION_PATCH=		7
+DIST_VERSION_PATCH=		8
 
 .include "versions.mk"
 
 PLIST_SUBST+=	VERSION=${DIST_VERSION_MAJOR}
 
 .for name version in ${_VERSIONS}
-VERSION.${name}=${version}
-PLIST_SUBST+=	VERSION.${name}=${version}
+VERSION.${name}=	${version}
+PLIST_SUBST+=		VERSION.${name}=${version}
 .endfor
 
 # Generate PLIST

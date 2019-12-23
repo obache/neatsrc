@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.101 2019/09/02 13:19:56 adam Exp $
+# $NetBSD: Makefile,v 1.103 2019/11/09 11:32:14 nia Exp $
 
 DISTNAME=	fetchmail-6.3.26
 PKGNAME=	${DISTNAME:S/fetchmail/fetchmailconf/}
@@ -8,7 +8,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=fetchmail/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.fetchmail.info/
+HOMEPAGE=	https://www.fetchmail.info/
 COMMENT=	Configuration tool for fetchmail
 
 DEPENDS+=	${DISTNAME}{,nb*}:../../mail/fetchmail
@@ -29,7 +29,7 @@ USE_LANGUAGES+=		c
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 INSTALL_TARGET=		install-pythonPYTHON
 
-PLIST_SUBST+=		PYSITELIB=${PYSITELIB}
+PLIST_SUBST+=	PYSITELIB=${PYSITELIB}
 REPLACE_PYTHON=	fetchmailconf.py
 PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 6.3.22
 

@@ -1,10 +1,10 @@
-# $NetBSD: options.mk,v 1.49 2019/09/11 16:30:05 gutteridge Exp $
+# $NetBSD: options.mk,v 1.51 2019/12/03 14:21:20 ryoon Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.firefox
 
 PKG_SUPPORTED_OPTIONS=	official-mozilla-branding
 PKG_SUPPORTED_OPTIONS+=	debug debug-info mozilla-jemalloc webrtc
-PKG_SUPPORTED_OPTIONS+=	alsa oss pulseaudio dbus
+PKG_SUPPORTED_OPTIONS+=	alsa pulseaudio dbus
 PLIST_VARS+=		gnome jemalloc debug
 
 .if ${OPSYS} == "Linux"
@@ -24,11 +24,6 @@ CONFIGURE_ARGS+=	--enable-alsa
 CONFIGURE_ARGS+=	--disable-alsa
 .endif
 
-.if !empty(PKG_OPTIONS:Moss)
-CONFIGURE_ARGS+=	--with-oss
-.include "../../mk/oss.buildlink3.mk"
-.endif
-
 .if !empty(PKG_OPTIONS:Mmozilla-jemalloc)
 PLIST.jemalloc=		yes
 CONFIGURE_ARGS+=	--enable-jemalloc
@@ -44,15 +39,15 @@ CONFIGURE_ARGS+=	--enable-debug-js-modules
 CONFIGURE_ARGS+=	--disable-install-strip
 PLIST.debug=		yes
 .else
-.if !empty(PKG_OPTIONS:Mdebug-info)
+.  if !empty(PKG_OPTIONS:Mdebug-info)
 CONFIGURE_ARGS+=	--enable-debug-symbols
 CONFIGURE_ARGS+=	--enable-optimize=-O0
 CONFIGURE_ARGS+=	--disable-install-strip
-.else
+.  else
 CONFIGURE_ARGS+=	--disable-debug-symbols
 CONFIGURE_ARGS+=	--enable-optimize=-O2
 CONFIGURE_ARGS+=	--enable-install-strip
-.endif
+.  endif
 CONFIGURE_ARGS+=	--disable-debug
 .endif
 
@@ -70,16 +65,16 @@ CONFIGURE_ARGS+=	--enable-dbus
 CONFIGURE_ARGS+=	--disable-dbus
 .endif
 
-PLIST_VARS+=		branding nobranding
+#PLIST_VARS+=		branding nobranding
 .if !empty(PKG_OPTIONS:Mofficial-mozilla-branding)
 CONFIGURE_ARGS+=	--enable-official-branding
 LICENSE=		mozilla-trademark-license
 RESTRICTED=		Trademark holder prohibits distribution of modified versions.
 NO_BIN_ON_CDROM=	${RESTRICTED}
 NO_BIN_ON_FTP=		${RESTRICTED}
-PLIST.branding=		yes
+#PLIST.branding=		yes
 .else
-PLIST.nobranding=	yes
+#PLIST.nobranding=	yes
 .endif
 
 PLIST_VARS+=		webrtc

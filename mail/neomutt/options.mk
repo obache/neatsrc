@@ -1,12 +1,12 @@
-# $NetBSD: options.mk,v 1.12 2018/07/04 13:40:24 jperkin Exp $
+# $NetBSD: options.mk,v 1.15 2019/11/11 16:26:43 ng0 Exp $
 
-PKG_OPTIONS_VAR=	PKG_OPTIONS.neomutt
+PKG_OPTIONS_VAR=		PKG_OPTIONS.neomutt
 PKG_OPTIONS_REQUIRED_GROUPS=	display
 PKG_OPTIONS_GROUP.display=	curses ncurses ncursesw slang
-PKG_SUPPORTED_OPTIONS=	debug gpgme gssapi idn ssl smime sasl
-PKG_SUPPORTED_OPTIONS+=	tokyocabinet
-PKG_SUGGESTED_OPTIONS=	gpgme gssapi idn ncursesw sasl smime ssl
-PKG_SUGGESTED_OPTIONS+=	tokyocabinet
+PKG_SUPPORTED_OPTIONS=		debug gpgme gssapi idn ssl smime sasl
+PKG_SUPPORTED_OPTIONS+=		tokyocabinet notmuch lua
+PKG_SUGGESTED_OPTIONS=		gpgme gssapi idn ncursesw sasl smime ssl
+PKG_SUGGESTED_OPTIONS+=		tokyocabinet notmuch
 
 .include "../../mk/bsd.options.mk"
 
@@ -127,7 +127,7 @@ CONFIGURE_ARGS+=	--disable-idn
 ### Enable debugging support
 ###
 .if !empty(PKG_OPTIONS:Mdebug)
-CFLAGS+= -g
+CFLAGS+=	-g
 .endif
 
 ###
@@ -139,4 +139,27 @@ CONFIGURE_ARGS+=	--gpgme
 CONFIGURE_ARGS+=	--with-gpgme=${BUILDLINK_PREFIX.gpgme}
 .else
 CONFIGURE_ARGS+=	--disable-gpgme
+.endif
+
+###
+### notmuch support
+###
+.if !empty(PKG_OPTIONS:Mnotmuch)
+.include "../../mail/notmuch/buildlink3.mk"
+CONFIGURE_ARGS+=	--notmuch
+.else
+CONFIGURE_ARGS+=	--disable-notmuch
+.endif
+
+###
+### lua support
+###
+.if !empty(PKG_OPTIONS:Mlua)
+.include "../../lang/lua/buildlink3.mk"
+.include "../../lang/lua/tool.mk"
+USE_TOOLS+=		lua
+CONFIGURE_ARGS+=	--lua
+CONFIGURE_ARGS+=	--with-lua=${BUILDLINK_PREFIX.lua}
+.else
+CONFIGURE_ARGS+=	--disable-lua
 .endif

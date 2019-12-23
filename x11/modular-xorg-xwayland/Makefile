@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2019/08/22 19:52:29 nia Exp $
+# $NetBSD: Makefile,v 1.4 2019/11/26 10:02:42 wiz Exp $
 
 DISTNAME=	xorg-server-${XORG_VERSION}
 PKGNAME=	modular-xorg-xwayland-${XORG_VERSION}

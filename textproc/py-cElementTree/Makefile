@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2019/10/21 13:19:29 adam Exp $
+# $NetBSD: Makefile,v 1.15 2019/11/04 21:43:45 rillig Exp $
 
 PKGNAME=	${PYPKGPREFIX}-cElementTree-${PY_DISTVERSION}
 CATEGORIES=	textproc python
@@ -13,11 +13,11 @@ EXTRACT_ELEMENTS=	${PYSUBDIR}/Modules/_elementtree.c
 EXTRACT_ELEMENTS+=	${PYSUBDIR}/Modules/clinic/_elementtree.c.h
 .endif
 
-USE_GCC_RUNTIME=yes
+USE_GCC_RUNTIME=	yes
 
-PYDISTUTILSPKG=	yes
-PY_SETUP_SUBST+= EXPATPREFIX=${BUILDLINK_DIR}
-PY_SETUP_SUBST+= EXPATRTPREFIX=${BUILDLINK_PREFIX.expat}
+PYDISTUTILSPKG=		yes
+PY_SETUP_SUBST+= 	EXPATPREFIX=${BUILDLINK_DIR}
+PY_SETUP_SUBST+= 	EXPATRTPREFIX=${BUILDLINK_PREFIX.expat}
 
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../lang/python/srcdist.mk"

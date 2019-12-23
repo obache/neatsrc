@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.140 2019/08/16 14:08:32 fcambus Exp $
+# $NetBSD: Makefile,v 1.142 2019/12/11 21:19:29 nia Exp $
 #
 
 COMMENT=	X11 window managers, configuration tools, and themes
@@ -78,10 +78,12 @@ SUBDIR+=	selectwm
 SUBDIR+=	skhd
 SUBDIR+=	skippy
 SUBDIR+=	spectrwm
+SUBDIR+=	swc
 SUBDIR+=	trayer
 SUBDIR+=	tvtwm
 SUBDIR+=	twm
 SUBDIR+=	uwm
+SUBDIR+=	velox
 SUBDIR+=	vtwm
 SUBDIR+=	w9wm
 SUBDIR+=	waimea

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.49 2018/03/12 11:17:22 wiz Exp $
+# $NetBSD: Makefile,v 1.51 2019/12/19 21:15:39 markd Exp $
 
 DISTNAME=	ns-src-2.35
 PKGNAME=	ns-2.35
@@ -16,7 +16,7 @@ USE_TOOLS+=	gmake
 GNU_CONFIGURE=	yes
 PTHREAD_OPTS+=	require
 # Perl is only needed if you want to run the validation tests.
-#USE_TOOLS+=		perl
+#USE_TOOLS+=	perl
 
 CONFIGURE_ARGS+=	LIBS="`${CONFIG_SHELL} -c '. ${TCLCONFIG_SH}; ${ECHO} $$TCL_LIBS'`"
 CONFIGURE_ARGS+=	--with-tcl=${BUILDLINK_PREFIX.tcl}
@@ -27,6 +27,12 @@ CONFIGURE_ARGS+=	--with-otcl=${BUILDLINK_PREFIX.tcl-otcl}
 CONFIGURE_ARGS+=	--with-tclcl=${BUILDLINK_PREFIX.tcl-tclcl}
 CONFIGURE_ENV+=		X11LIBDIR=${X11BASE}/lib${LIBABISUFFIX}
 CONFIGURE_ENV+=		X11INCDIR=${X11BASE}/include
+
+SUBST_CLASSES+=		char
+SUBST_STAGE.char=	pre-configure
+SUBST_MESSAGE.char=	unsigned char needed for 8bit values
+SUBST_FILES.char=	bitmap/*.xbm
+SUBST_SED.char=		-e 's,char,u_char,'
 
 MESSAGE_SUBST+=		HOMEPAGE=${HOMEPAGE}
 

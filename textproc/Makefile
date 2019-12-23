@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1066 2019/10/25 08:18:51 gutteridge Exp $
+# $NetBSD: Makefile,v 1.1074 2019/12/12 16:21:38 taca Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -240,6 +240,9 @@ SUBDIR+=	gspell
 SUBDIR+=	gtk-doc
 SUBDIR+=	gtkspell
 SUBDIR+=	gtkspell3
+SUBDIR+=	guile-commonmark
+SUBDIR+=	guile-json
+SUBDIR+=	guile-syntax-highlight
 SUBDIR+=	gutcheck
 SUBDIR+=	halibut
 SUBDIR+=	harmony
@@ -383,6 +386,7 @@ SUBDIR+=	kapidox
 SUBDIR+=	kbanner
 SUBDIR+=	kcodecs
 SUBDIR+=	kcompletion
+SUBDIR+=	kpimtextedit
 SUBDIR+=	kytea
 SUBDIR+=	latex2html
 SUBDIR+=	libclucene
@@ -463,6 +467,7 @@ SUBDIR+=	openjade
 SUBDIR+=	opensp
 SUBDIR+=	ots
 SUBDIR+=	p5-Alien-Hunspell
+SUBDIR+=	p5-Alien-Libxml2
 SUBDIR+=	p5-Biblio-EndnoteStyle
 SUBDIR+=	p5-CAM-PDF
 SUBDIR+=	p5-Convert-ASCII-Armour
@@ -937,7 +942,6 @@ SUBDIR+=	ruby-amrita
 SUBDIR+=	ruby-bluecloth
 SUBDIR+=	ruby-buftok
 SUBDIR+=	ruby-builder
-SUBDIR+=	ruby-builder30
 SUBDIR+=	ruby-cabocha
 SUBDIR+=	ruby-classifier-reborn
 SUBDIR+=	ruby-coderay
@@ -1077,6 +1081,7 @@ SUBDIR+=	verify-synopsis
 SUBDIR+=	vis
 SUBDIR+=	wbxml2
 SUBDIR+=	wdiff
+SUBDIR+=	word2vec
 SUBDIR+=	writer2latex
 SUBDIR+=	xalan-j
 SUBDIR+=	xapian
@@ -1109,6 +1114,7 @@ SUBDIR+=	yaml-cpp
 SUBDIR+=	yelp-tools
 SUBDIR+=	yelp-xsl
 SUBDIR+=	yodl
+SUBDIR+=	yq
 SUBDIR+=	zoem
 
 .include "../mk/misc/category.mk"

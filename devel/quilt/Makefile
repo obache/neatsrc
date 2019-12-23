@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.24 2019/08/11 13:20:50 wiz Exp $
+# $NetBSD: Makefile,v 1.25 2019/11/03 10:39:29 rillig Exp $
 #
 
 DISTNAME=	quilt-0.66
@@ -29,10 +29,10 @@ CONFIGURE_ARGS+=	--with-patch=${PREFIX}/bin/gpatch
 DEPENDS+=		coreutils-[0-9]*:../../sysutils/coreutils
 DEPENDS+=		patch>=2.4:../../devel/patch
 
-.if ${OPSYS} == "OpenBSD"
+.  if ${OPSYS} == "OpenBSD"
 DEPENDS+=		grep-[0-9]*:../../textproc/grep
 CONFIGURE_ARGS+=	--with-grep=${PREFIX}/bin/ggrep
-.endif
+.  endif
 
 CONFIGURE_ARGS+=	--with-cp=${PREFIX}/bin/gcp
 CONFIGURE_ARGS+=	--with-date=${PREFIX}/bin/gdate

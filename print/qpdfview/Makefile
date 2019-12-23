@@ -1,10 +1,8 @@
-# $NetBSD: Makefile,v 1.79 2019/10/19 12:46:07 nia Exp $
+# $NetBSD: Makefile,v 1.82 2019/11/08 13:38:48 nia Exp $
 
-VER=		0.4.16
-DISTNAME=	qpdfview-${VER}
-PKGREVISION=	45
+DISTNAME=	qpdfview-0.4.18
 CATEGORIES=	print
-MASTER_SITES=	https://launchpad.net/qpdfview/trunk/${VER}/+download/
+MASTER_SITES=	https://launchpad.net/qpdfview/trunk/${PKGVERSION_NOREV}/+download/
 
 MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	https://launchpad.net/qpdfview
@@ -17,7 +15,7 @@ USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config
 USE_LIBTOOL=	yes
 
-INSTALL_MAKE_FLAGS+=    INSTALL_ROOT=${DESTDIR}
+INSTALL_MAKE_FLAGS+=	INSTALL_ROOT=${DESTDIR}
 
 do-configure:
 	cd ${WRKSRC} && env ${CONFIGURE_ENV} PKGMANDIR=${PKGMANDIR} \

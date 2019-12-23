@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2017/09/03 09:22:58 wiz Exp $
+# $NetBSD: Makefile,v 1.12 2019/11/04 21:12:55 rillig Exp $
 
 DISTNAME=	msu-1.09
 CATEGORIES=	security

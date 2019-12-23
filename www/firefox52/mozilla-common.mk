@@ -1,9 +1,12 @@
-# $NetBSD: mozilla-common.mk,v 1.3 2018/10/23 12:33:04 jperkin Exp $
+# $NetBSD: mozilla-common.mk,v 1.5 2019/11/09 20:01:14 jperkin Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
 # used by www/firefox/Makefile
 # used by www/seamonkey/Makefile
+
+# GCC 4.6 is required to support nullptr.
+GCC_REQD+=		4.8
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -29,8 +32,6 @@ test:
 TOOLS_PLATFORM.tar=	${TOOLS_PATH.bsdtar}
 USE_TOOLS+=		bsdtar
 .endif
-# GCC 4.6 is required to support nullptr.
-GCC_REQD+=		4.8
 .if ${MACHINE_ARCH} == "i386"
 # Fix for PR pkg/48152.
 CXXFLAGS+=		-march=i586
@@ -38,12 +39,12 @@ CXXFLAGS+=		-march=i586
 CXXFLAGS+=		-mstackrealign
 .endif
 
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}security/nss/tests/libpkix/libpkix.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}security/nss/tests/multinit/multinit.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}js/src/tests/update-test262.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}intl/icu/source/configure
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}browser/components/loop/run-all-loop-tests.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}browser/extensions/loop/run-all-loop-tests.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}security/nss/tests/libpkix/libpkix.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}security/nss/tests/multinit/multinit.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}js/src/tests/update-test262.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}intl/icu/source/configure
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}browser/components/loop/run-all-loop-tests.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}browser/extensions/loop/run-all-loop-tests.sh
 
 .if ${OPSYS} != "SunOS"
 CONFIGURE_ARGS+=	--enable-pie

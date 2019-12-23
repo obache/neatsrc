@@ -1,9 +1,7 @@
 package pkglint
 
 import (
-	"io/ioutil"
 	"netbsd.org/pkglint/textproc"
-	"path"
 	"strings"
 )
 
@@ -16,12 +14,20 @@ const (
 	LogErrors                           //
 )
 
-func Load(filename string, options LoadOptions) *Lines {
+func LoadMk(filename CurrPath, options LoadOptions) *MkLines {
+	lines := Load(filename, options|Makefile)
+	if lines == nil {
+		return nil
+	}
+	return NewMkLines(lines)
+}
+
+func Load(filename CurrPath, options LoadOptions) *Lines {
 	if fromCache := G.fileCache.Get(filename, options); fromCache != nil {
 		return fromCache
 	}
 
-	rawBytes, err := ioutil.ReadFile(filename)
+	rawText, err := filename.ReadString()
 	if err != nil {
 		switch {
 		case options&MustSucceed != 0:
@@ -32,7 +38,6 @@ func Load(filename string, options LoadOptions) *Lines {
 		return nil
 	}
 
-	rawText := string(rawBytes)
 	if rawText == "" && options&NotEmpty != 0 {
 		switch {
 		case options&MustSucceed != 0:
@@ -44,25 +49,47 @@ func Load(filename string, options LoadOptions) *Lines {
 	}
 
 	if G.Opts.Profiling {
-		G.loaded.Add(path.Clean(filename), 1)
+		G.loaded.Add(filename.Clean().String(), 1)
 	}
 
 	result := convertToLogicalLines(filename, rawText, options&Makefile != 0)
-	if hasSuffix(filename, ".mk") {
+	if filename.HasSuffixText(".mk") {
 		G.fileCache.Put(filename, options, result)
 	}
 	return result
 }
 
-func LoadMk(filename string, options LoadOptions) *MkLines {
-	lines := Load(filename, options|Makefile)
-	if lines == nil {
-		return nil
+func convertToLogicalLines(filename CurrPath, rawText string, joinBackslashLines bool) *Lines {
+	var rawLines []*RawLine
+	for lineno, rawLine := range strings.SplitAfter(rawText, "\n") {
+		if rawLine != "" {
+			rawLines = append(rawLines, &RawLine{1 + lineno, rawLine, rawLine})
+		}
 	}
-	return NewMkLines(lines)
+
+	var loglines []*Line
+	if joinBackslashLines {
+		for lineno := 0; lineno < len(rawLines); {
+			line, nextLineno := nextLogicalLine(filename, rawLines, lineno)
+			loglines = append(loglines, line)
+			lineno = nextLineno
+		}
+	} else {
+		for _, rawLine := range rawLines {
+			text := strings.TrimSuffix(rawLine.textnl, "\n")
+			logline := NewLine(filename, rawLine.Lineno, text, rawLine)
+			loglines = append(loglines, logline)
+		}
+	}
+
+	if rawText != "" && !hasSuffix(rawText, "\n") {
+		loglines[len(loglines)-1].Errorf("File must end with a newline.")
+	}
+
+	return NewLines(filename, loglines)
 }
 
-func nextLogicalLine(filename string, rawLines []*RawLine, index int) (*Line, int) {
+func nextLogicalLine(filename CurrPath, rawLines []*RawLine, index int) (*Line, int) {
 	{ // Handle the common case efficiently
 		rawLine := rawLines[index]
 		textnl := rawLine.textnl
@@ -135,34 +162,4 @@ func matchContinuationLine(textnl string) (leadingWhitespace, text, trailingWhit
 
 	text = textnl[leadingEnd:trailingStart]
 	return
-}
-
-func convertToLogicalLines(filename string, rawText string, joinBackslashLines bool) *Lines {
-	var rawLines []*RawLine
-	for lineno, rawLine := range strings.SplitAfter(rawText, "\n") {
-		if rawLine != "" {
-			rawLines = append(rawLines, &RawLine{1 + lineno, rawLine, rawLine})
-		}
-	}
-
-	var loglines []*Line
-	if joinBackslashLines {
-		for lineno := 0; lineno < len(rawLines); {
-			line, nextLineno := nextLogicalLine(filename, rawLines, lineno)
-			loglines = append(loglines, line)
-			lineno = nextLineno
-		}
-	} else {
-		for _, rawLine := range rawLines {
-			text := strings.TrimSuffix(rawLine.textnl, "\n")
-			logline := NewLine(filename, rawLine.Lineno, text, rawLine)
-			loglines = append(loglines, logline)
-		}
-	}
-
-	if rawText != "" && !hasSuffix(rawText, "\n") {
-		loglines[len(loglines)-1].Errorf("File must end with a newline.")
-	}
-
-	return NewLines(filename, loglines)
 }

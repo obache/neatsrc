@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2019/09/02 13:19:54 adam Exp $
+# $NetBSD: Makefile,v 1.15 2019/11/04 21:13:00 rillig Exp $
 
 DISTVERS=	2.2.5
 GITREF=		b666238
@@ -13,7 +13,7 @@ HOMEPAGE=	http://www.openidenabled.com/openid/libraries/python/
 COMMENT=	Python module for OpenID
 LICENSE=	apache-2.0
 
-PYTHON_VERSIONS_ACCEPTED=	 27
+PYTHON_VERSIONS_ACCEPTED= 27
 
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

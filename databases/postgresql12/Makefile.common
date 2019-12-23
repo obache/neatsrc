@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.2 2019/10/24 07:57:13 triaxx Exp $
+# $NetBSD: Makefile.common,v 1.4 2019/11/19 05:54:52 adam Exp $
 #
 # This Makefile fragment is included by all PostgreSQL packages built from
 # the main sources of the PostgreSQL distribution except jdbc-postgresql.
@@ -16,7 +16,7 @@
 # used by databases/postgresql12-pltcl/Makefile
 # used by databases/postgresql12-server/Makefile
 
-DISTNAME=	postgresql-12.0
+DISTNAME=	postgresql-12.1
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_PGSQL:=source/v${PKGVERSION_NOREV}/}
 EXTRACT_SUFX=	.tar.bz2
@@ -83,8 +83,8 @@ CONFIGURE_ENV+=		pgac_cv_prog_cc_ldflags__Wl___as_needed=no
 .endif
 
 # configure fails on OpenBSD and MirBSD if thread safety is enabled.
-CONFIGURE_ARGS.MirBSD+=	--disable-thread-safety
-CONFIGURE_ARGS.OpenBSD+=--disable-thread-safety
+CONFIGURE_ARGS.MirBSD+=		--disable-thread-safety
+CONFIGURE_ARGS.OpenBSD+=	--disable-thread-safety
 
 # PGSQL_BLCKSZ is the size in bytes of a PostgreSQL disk page or block.
 # This also limits the size of a tuple.  The valid values are powers

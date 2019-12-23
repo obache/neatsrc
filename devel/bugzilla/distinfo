@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.20 2017/03/17 16:26:30 mef Exp $
+$NetBSD: distinfo,v 1.22 2019/11/11 21:53:06 maya Exp $
 
 SHA1 (bugzilla-5.0.3.tar.gz) = 49b4b2b1b3086cb9b75f65138e702da71dc29c93
 RMD160 (bugzilla-5.0.3.tar.gz) = f48c7e903a9984d9bf95b969dba3b8d0b4ba4cb2

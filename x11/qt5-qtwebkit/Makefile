@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.66 2019/09/18 14:17:21 ryoon Exp $
+# $NetBSD: Makefile,v 1.68 2019/11/05 14:58:46 adam Exp $
 
 DISTNAME=	qtwebkit-${QTWKVERSION}
 PKGNAME=	qt5-qtwebkit-${QTWKVERSION:S/-/./}
@@ -21,8 +21,8 @@ PYTHON_VERSIONS_ACCEPTED=	27 # as of 5.212.0-alpha2
 .include "../../mk/dlopen.buildlink3.mk"
 BUILDLINK_TRANSFORM+=   opt:-ldl:${BUILDLINK_LDADD.dl:M*}
 
-USE_LANGUAGES=          c c++11
-USE_TOOLS+=             gmake perl:build pkg-config bison flex sed
+USE_LANGUAGES=		c c++11
+USE_TOOLS+=		gmake perl:build pkg-config bison flex sed
 USE_CMAKE=		yes
 CMAKE_ARG_PATH=		..
 CONFIGURE_DIRS=		_build
@@ -35,6 +35,7 @@ CMAKE_ARGS+=		-DCMAKE_BUILD_TYPE=Release
 CMAKE_ARGS+=		-DSHARED_CORE:BOOL=ON
 CMAKE_ARGS+=		-DUSE_SYSTEM_MALLOC:BOOL=ON
 CMAKE_ARGS+=		-DUSE_LD_GOLD:BOOL=OFF
+CMAKE_ARGS+=		-DENABLE_API_TESTS=OFF
 
 CMAKE_ARGS+=		-DKDE_INSTALL_LIBEXECDIR=${CMAKE_INSTALL_PREFIX}/libexec
 #CMAKE_ARGS+=		-DLIBEXEC_INSTALL_DIR=${CMAKE_INSTALL_PREFIX}/libexec
@@ -45,10 +46,10 @@ pre-configure:
 	${MKDIR} ${WRKSRC}/_build
 
 # wcstof(3) etc. is used in C++ code.
-CFLAGS.NetBSD+=         -D_NETBSD_SOURCE
+CFLAGS.NetBSD+=		-D_NETBSD_SOURCE
 
 ## for GL_GLEXT_LEGACY with GL/gl.h error, GL_ARB_shader_objects is not defined.
-#BUILDLINK_TRANSFORM+=   rm:-Wundef
+#BUILDLINK_TRANSFORM+=	rm:-Wundef
 
 PLIST_VARS+=		mac unix
 .if ${OPSYS} == "Darwin"
@@ -58,7 +59,7 @@ PLIST.unix=		yes
 .endif
 
 # avoid creating a .qt directory in the users home directory
-SCRIPTS_ENV+=           HOME=${WRKDIR}
+SCRIPTS_ENV+=		HOME=${WRKDIR}
 
 BUILD_DEPENDS+=		gperf-[0-9]*:../../devel/gperf
 

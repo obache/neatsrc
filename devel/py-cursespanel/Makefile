@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.31 2017/09/03 08:53:08 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2019/12/15 14:42:27 adam Exp $
 
 PKGNAME=	${PYPKGPREFIX}-cursespanel-${PY_DISTVERSION}
 PKGREVISION=	4
@@ -14,9 +14,9 @@ USE_CURSES=	getsyx
 FAKE_NCURSES=	yes
 
 EXTRACT_ELEMENTS=	${PYSUBDIR}/Modules/_curses_panel.c
-PYDISTUTILSPKG=	yes
+PYDISTUTILSPKG=		yes
 
-PY_SETUP_SUBST=	NCURSESPREFIX=${BUILDLINK_PREFIX.ncurses}
+PY_SETUP_SUBST=		NCURSESPREFIX=${BUILDLINK_PREFIX.ncurses}
 
 .include "../../lang/python/srcdist.mk"
 .include "../../mk/curses.buildlink3.mk"

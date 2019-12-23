@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2019/10/02 16:13:48 prlw1 Exp $
+# $NetBSD: Makefile,v 1.14 2019/11/03 09:14:14 rillig Exp $
 
 DISTNAME=	python-xlib-0.25
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/python-x/X/}
@@ -13,7 +13,7 @@ COMMENT=	XLib in pure Python
 LICENSE=	gnu-lgpl-v2.1
 
 DEPENDS+=	${PYPKGPREFIX}-six>=1.10.0:../../lang/py-six
-BUILD_DEPENDS+=	${PYPKGPREFIX}-setuptools_scm:../../devel/py-setuptools_scm
+BUILD_DEPENDS+=	${PYPKGPREFIX}-setuptools_scm-[0-9]*:../../devel/py-setuptools_scm
 
 USE_LANGUAGES=	# none
 

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.14 2019/08/11 13:18:43 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2019/11/28 12:19:58 bouyer Exp $
 
 DISTNAME=	gperftools-2.7
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=gperftools/}
 GITHUB_PROJECT=	gperftools
@@ -25,13 +25,14 @@ CFLAGS.Darwin+=		-D_XOPEN_SOURCE=1
 .include "../../mk/bsd.prefs.mk"
 .if (${OPSYS} == "NetBSD" || ${OPSYS} == "FreeBSD") && exists(/usr/include/execinfo.h)
 LIBS+=			-lexecinfo
+CONFIGURE_ARGS+=	--enable-stacktrace-via-backtrace
 .endif
 
-PKGCONFIG_OVERRIDE=	libprofiler.pc
-PKGCONFIG_OVERRIDE+=	libtcmalloc.pc
-PKGCONFIG_OVERRIDE+=	libtcmalloc_debug.pc
-PKGCONFIG_OVERRIDE+=	libtcmalloc_minimal.pc
-PKGCONFIG_OVERRIDE+=	libtcmalloc_minimal_debug.pc
+PKGCONFIG_OVERRIDE=		libprofiler.pc
+PKGCONFIG_OVERRIDE+=		libtcmalloc.pc
+PKGCONFIG_OVERRIDE+=		libtcmalloc_debug.pc
+PKGCONFIG_OVERRIDE+=		libtcmalloc_minimal.pc
+PKGCONFIG_OVERRIDE+=		libtcmalloc_minimal_debug.pc
 PKGCONFIG_OVERRIDE_STAGE=	post-build
 
 REPLACE_PERL=		src/pprof

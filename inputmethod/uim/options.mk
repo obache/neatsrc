@@ -1,9 +1,12 @@
-# $NetBSD: options.mk,v 1.34 2017/09/26 09:42:26 wiz Exp $
+# $NetBSD: options.mk,v 1.36 2019/11/01 16:21:11 nia Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.uim
-PKG_SUPPORTED_OPTIONS=	anthy canna curl eb expat ffi gnome gnome3 gtk gtk3 m17nlib mana openssl prime sj3 sqlite uim-fep wnn4 xim xkb
+PKG_SUPPORTED_OPTIONS=	anthy canna curl eb expat ffi gnome2 gnome3 gtk2 gtk3 m17nlib mana openssl prime sj3 sqlite uim-fep wnn4 xim xkb
 PKG_SUPPORTED_OPTIONS+=	editline kde4 qt4 qt5
-PKG_SUGGESTED_OPTIONS=	anthy expat gtk gtk3 mana prime uim-fep xim xkb
+PKG_SUGGESTED_OPTIONS=	anthy expat gtk2 gtk3 mana prime uim-fep xim xkb
+
+PKG_OPTIONS_LEGACY_OPTS+=	gnome:gnome2
+PKG_OPTIONS_LEGACY_OPTS+=	gtk:gtk2
 
 # Store installed modules
 UIM_MODULES=		skk tutcode byeoru latin elatin xmload pyload \
@@ -115,7 +118,7 @@ CONFIGURE_ARGS+=	--with-ffi
 PLIST.ffi=		yes
 .endif
 
-.if !empty(PKG_OPTIONS:Mgnome)
+.if !empty(PKG_OPTIONS:Mgnome2)
 .  include "../../x11/gnome-panel/buildlink3.mk"
 .  include "../../devel/libgnomeui/buildlink3.mk"
 PLIST.gnome=		yes
@@ -131,7 +134,7 @@ CONFIGURE_ARGS+=	--disable-gnome-applet
 #PLIST.gnome3=		yes
 #.endif
 
-.if !empty(PKG_OPTIONS:Mgtk) || !empty(PKG_OPTIONS:Mgnome)
+.if !empty(PKG_OPTIONS:Mgtk2) || !empty(PKG_OPTIONS:Mgnome2)
 GTK2_IMMODULES=		YES
 .include "../../x11/gtk2/modules.mk"
 PLIST.gtk=		yes
@@ -246,7 +249,7 @@ PLIST.wnn=		yes
 UIM_MODULES+=		wnn
 .endif
 
-.if !empty(PKG_OPTIONS:Mgtk) || !empty(PKG_OPTIONS:Mgnome)
+.if !empty(PKG_OPTIONS:Mgtk2) || !empty(PKG_OPTIONS:Mgnome2)
 CONFIGURE_ARGS+=	--enable-default-toolkit=gtk
 .elif !empty(PKG_OPTIONS:Mgtk3) || !empty(PKG_OPTIONS:Mgnome3)
 CONFIGURE_ARGS+=	--enable-default-toolkit=gtk3

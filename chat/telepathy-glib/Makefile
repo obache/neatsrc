@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.60 2019/09/02 13:19:53 adam Exp $
+# $NetBSD: Makefile,v 1.62 2019/11/06 14:34:29 wiz Exp $
 
 DISTNAME=	telepathy-glib-0.24.1
-PKGREVISION=	11
+PKGREVISION=	12
 CATEGORIES=	chat
 MASTER_SITES=	http://telepathy.freedesktop.org/releases/telepathy-glib/
 
@@ -12,18 +12,18 @@ LICENSE=	gnu-gpl-v2 AND modified-bsd
 
 BUILD_DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+= --enable-vala-bindings
-USE_LIBTOOL=	yes
-USE_TOOLS+=	gmake pkg-config
+GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--enable-vala-bindings
+USE_LIBTOOL=		yes
+USE_TOOLS+=		gmake pkg-config
 
 PKGCONFIG_OVERRIDE+=	telepathy-glib/telepathy-glib.pc.in
 
-PYTHON_FOR_BUILD_ONLY=	yes
-CONFIGURE_ENV+=		ac_cv_prog_PYTHON=${PYTHONBIN}
-REPLACE_PYTHON+=	tests/all-errors-documented.py
+PYTHON_FOR_BUILD_ONLY=		yes
+CONFIGURE_ENV+=			ac_cv_prog_PYTHON=${PYTHONBIN}
+REPLACE_PYTHON+=		tests/all-errors-documented.py
 PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 0.24.1
-TEST_TARGET=		check
+TEST_TARGET=			check
 
 BUILDLINK_API_DEPENDS.glib2+=		glib2>=2.36
 .include "../../devel/glib2/buildlink3.mk"

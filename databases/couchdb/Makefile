@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.59 2019/09/06 09:10:47 jperkin Exp $
-#
+# $NetBSD: Makefile,v 1.61 2019/11/02 15:38:00 rillig Exp $
 
 DISTNAME=		apache-couchdb-2.3.1
 PKGNAME=		${DISTNAME:S/apache-//}
+PKGREVISION=		1
 CATEGORIES=		databases
 MASTER_SITES=		${MASTER_SITE_APACHE:=couchdb/source/${PKGVERSION_NOREV}/}
 
@@ -29,11 +29,11 @@ COUCH_RUNDIR?=		${VARBASE}/run/couchdb
 COUCH_USER?=		couchdb
 COUCH_GROUP?=		${COUCH_USER}
 
-PKG_GROUPS+=		${COUCH_GROUP}
-PKG_USERS+=		${COUCH_USER}:${COUCH_GROUP}
-PKG_GECOS.${COUCH_USER}=CouchDB Server User
-PKG_HOME.${COUCH_USER}=	${COUCH_DBDIR}
-PKG_SHELL.${COUCH_USER}=${COMMAND_SHELL}
+PKG_GROUPS+=			${COUCH_GROUP}
+PKG_USERS+=			${COUCH_USER}:${COUCH_GROUP}
+PKG_GECOS.${COUCH_USER}=	CouchDB Server User
+PKG_HOME.${COUCH_USER}=		${COUCH_DBDIR}
+PKG_SHELL.${COUCH_USER}=	${COMMAND_SHELL}
 
 FILES_SUBST+=		COUCH_USER=${COUCH_USER}
 FILES_SUBST+=		COUCH_GROUP=${COUCH_GROUP}
@@ -59,6 +59,7 @@ SUBST_CLASSES+=		paths
 SUBST_MESSAGE.paths=	Setting standard paths
 SUBST_STAGE.paths=	pre-configure
 SUBST_FILES.paths=	configure
+SUBST_FILES.paths+=	rel/files/couchdb.in
 SUBST_FILES.paths+=	rel/overlay/bin/couchdb
 SUBST_FILES.paths+=	rel/overlay/etc/default.ini
 SUBST_FILES.paths+=	src/config/src/config_app.erl

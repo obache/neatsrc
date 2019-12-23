@@ -1,18 +1,18 @@
 package pkglint
 
 type Toplevel struct {
-	dir            string
-	previousSubdir string
-	subdirs        []string
+	dir            CurrPath
+	previousSubdir RelPath
+	subdirs        []CurrPath
 }
 
-func CheckdirToplevel(dir string) {
+func CheckdirToplevel(dir CurrPath) {
 	if trace.Tracing {
-		defer trace.Call1(dir)()
+		defer trace.Call(dir)()
 	}
 
 	ctx := Toplevel{dir, "", nil}
-	filename := dir + "/Makefile"
+	filename := dir.JoinNoClean("Makefile")
 
 	mklines := LoadMk(filename, NotEmpty|LogErrors)
 	if mklines == nil {
@@ -31,12 +31,12 @@ func CheckdirToplevel(dir string) {
 		if G.Opts.CheckGlobal {
 			G.InterPackage.Enable()
 		}
-		G.Todo = append(append([]string(nil), ctx.subdirs...), G.Todo...)
+		G.Todo.PushFront(ctx.subdirs...)
 	}
 }
 
 func (ctx *Toplevel) checkSubdir(mkline *MkLine) {
-	subdir := mkline.Value()
+	subdir := NewRelPathString(mkline.Value())
 
 	if mkline.IsCommentedVarassign() {
 		if !mkline.HasComment() || mkline.Comment() == "" {
@@ -44,7 +44,7 @@ func (ctx *Toplevel) checkSubdir(mkline *MkLine) {
 		}
 	}
 
-	if containsVarRef(subdir) || !fileExists(joinPath(ctx.dir, subdir, "Makefile")) {
+	if containsVarRef(subdir.String()) || !ctx.dir.JoinNoClean(subdir).JoinNoClean("Makefile").IsFile() {
 		return
 	}
 
@@ -62,6 +62,6 @@ func (ctx *Toplevel) checkSubdir(mkline *MkLine) {
 	ctx.previousSubdir = subdir
 
 	if !mkline.IsCommentedVarassign() {
-		ctx.subdirs = append(ctx.subdirs, joinPath(ctx.dir, subdir))
+		ctx.subdirs = append(ctx.subdirs, ctx.dir.JoinNoClean(subdir))
 	}
 }

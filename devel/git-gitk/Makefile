@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2018/04/11 19:39:35 adam Exp $
+# $NetBSD: Makefile,v 1.5 2019/11/08 12:24:31 adam Exp $
 
 PKGNAME=	git-gitk-${GIT_VERSION}
 COMMENT=	GIT Tree History Storage Tool (gitk)
@@ -17,18 +17,16 @@ USE_TOOLS+=		wish:run
 CONFIGURE_ARGS+=	--with-tcltk=${WISH:Q}
 
 INSTALLATION_DIRS+=	bin
-PLIST_VARS+=		macosx
 
 .include "../../mk/bsd.prefs.mk"
 
 .if ${OPSYS} == "Darwin" && exists(/System/Library/Frameworks/Tk.framework)
 .  if exists(/System/Library/Frameworks/Tk.framework/Resources/Wish.app)
-WISH_APP=Wish
+WISH_APP=	Wish
 .  else
-WISH_APP=Wish Shell
+WISH_APP=	Wish Shell
 .  endif
-PLIST_SUBST+= WISH_APP=${WISH_APP:Q}
-PLIST.macosx=		yes
+PLIST_SUBST+=	WISH_APP=${WISH_APP:Q}
 .endif
 
 .include "../../devel/git/Makefile.common"

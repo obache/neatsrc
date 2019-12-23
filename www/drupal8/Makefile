@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.25 2019/10/10 13:28:35 prlw1 Exp $
+# $NetBSD: Makefile,v 1.30 2019/12/19 00:39:29 taca Exp $
 
-DISTNAME=	drupal-8.7.8
+DISTNAME=	drupal-8.7.11
 PKGNAME=	${PHP_PKG_PREFIX}-${DISTNAME}
 CATEGORIES=	www
 MASTER_SITES=	http://ftp.drupal.org/files/projects/
@@ -10,10 +10,10 @@ HOMEPAGE=	http://drupal.org/
 COMMENT=	Open source content management system
 LICENSE=	gnu-gpl-v2
 
-PHP_VERSIONS_INCOMPATIBLE=	56
-
 DEPENDS+=	${PHP_PKG_PREFIX}-gd>=5.4.0:../../graphics/php-gd
 DEPENDS+=	${PHP_PKG_PREFIX}-json>=5.4.0:../../textproc/php-json
+
+PHP_VERSIONS_ACCEPTED=	72 73
 
 NO_BUILD=	YES
 DRUPAL=		share/drupal
@@ -34,8 +34,8 @@ CONF_FILES=	share/examples/drupal/drupal.conf \
 		${DRUPAL}/sites/default/default.settings.php
 
 CONF_FILES_PERMS+=	share/examples/drupal/default.settings.php \
-		${DRUPAL}/sites/default/settings.php \
-		${WWW_USER} ${WWW_GROUP} 0640
+			${DRUPAL}/sites/default/settings.php \
+			${WWW_USER} ${WWW_GROUP} 0640
 
 REPLACE_INTERPRETER+=	php
 REPLACE.php.old=	.*php[^ ]*

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2012/10/23 17:18:12 asau Exp $
+# $NetBSD: Makefile,v 1.7 2019/11/03 11:45:31 rillig Exp $
 
 DISTNAME=	bsddip-1.02
 CATEGORIES=	net
@@ -15,9 +15,9 @@ NOT_FOR_PLATFORM=	Interix-*-* # no sl(4) device
 
 INSTALLATION_DIRS=	${PKGMANDIR}/cat8 ${PKGMANDIR}/man8 sbin
 
-NO_CONFIGURE=	yes
+NO_CONFIGURE=		yes
 MANCOMPRESSED_IF_MANZ=	yes
-MAKE_ENV+=	${BSD_MAKE_ENV}
+MAKE_ENV+=		${BSD_MAKE_ENV}
 
 post-extract:
 	cp -f ${FILESDIR}/Makefile ${WRKSRC}/.

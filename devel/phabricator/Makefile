@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.13 2017/09/14 09:41:58 wiz Exp $
+# $NetBSD: Makefile,v 1.15 2019/12/09 14:20:55 taca Exp $
 
 DISTNAME=		phabricator-20170609
+PKGREVISION=		1
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_GITHUB:=phacility/}
 # Track the stable branch
@@ -12,7 +13,7 @@ HOMEPAGE=		http://phabricator.com/
 COMMENT=		Open software engineering platform
 LICENSE=		apache-2.0
 
-PHP_VERSIONS_INCOMPATIBLE=      70
+PHP_VERSIONS_INCOMPATIBLE=	70
 
 USE_TOOLS+=		pax bash:run
 EXTRACT_USING=		bsdtar
@@ -80,20 +81,20 @@ PHABRICATOR_DIR=	share/phabricator
 
 INSTALLATION_DIRS+=	${PHABRICATOR_DIR}
 
-CHECK_INTERPRETER_SKIP+=${PHABRICATOR_DIR}/externals/wordlist/password.lst
+CHECK_INTERPRETER_SKIP+=	${PHABRICATOR_DIR}/externals/wordlist/password.lst
 
 CHMOD_FILES=		conf LICENSE NOTICE README.md externals resources src \
 			support webroot scripts/__init_script__.php scripts/fpm/warmup.php
 
 post-extract:
-			cd ${WRKSRC} && \
-			${FIND} ${CHMOD_FILES} -type f \
-				\! -name aphlict_launcher.php \
-				-exec ${CHMOD} -x \{\} \;
+	cd ${WRKSRC} && \
+	${FIND} ${CHMOD_FILES} -type f \
+		\! -name aphlict_launcher.php \
+		-exec ${CHMOD} -x \{\} \;
 
 do-install:
-			cd ${WRKSRC} && \
-			${PAX} -rw * -s',.*\.orig$$,,' \
-				${DESTDIR}${PREFIX}/${PHABRICATOR_DIR}
+	cd ${WRKSRC} && \
+	${PAX} -rw * -s',.*\.orig$$,,' \
+		${DESTDIR}${PREFIX}/${PHABRICATOR_DIR}
 
 .include "../../mk/bsd.pkg.mk"

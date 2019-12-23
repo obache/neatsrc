@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.12 2018/08/16 08:57:09 wiz Exp $
+# $NetBSD: options.mk,v 1.13 2019/11/04 21:28:43 rillig Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.dbus
 PKG_SUPPORTED_OPTIONS+=	debug x11
@@ -7,7 +7,7 @@ PKG_SUGGESTED_OPTIONS=	x11
 PKG_SUPPORTED_OPTIONS+=	${PKG_HAVE_KQUEUE:Dkqueue}
 PKG_SUGGESTED_OPTIONS+=	${PKG_HAVE_KQUEUE:Dkqueue}
 
-PLIST_VARS+=    	launchd
+PLIST_VARS+=		launchd
 # We may want to make it SUGGESTED once we have a framework for
 # launchd support. See PR/49591.
 PKG_SUPPORTED_OPTIONS.Darwin+=	launchd
@@ -23,7 +23,7 @@ CONFIGURE_ARGS+=	--disable-verbose-mode
 .endif
 
 .if !empty(PKG_OPTIONS:Mkqueue)
-CONFIGURE_ARGS+= 	--enable-kqueue
+CONFIGURE_ARGS+=	--enable-kqueue
 .else
 CONFIGURE_ARGS+=	--disable-kqueue
 .endif

@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.32 2017/08/01 14:58:54 wiz Exp $
+# $NetBSD: Makefile,v 1.34 2019/11/26 10:24:11 markd Exp $
 
-DISTNAME=	cfitsio3390
-PKGNAME=	${DISTNAME:S/o3/o-3./}
-PKGREVISION=	1
+DISTNAME=	cfitsio-3.47
+PKGNAME=	${DISTNAME}0
 CATEGORIES=	devel
 MASTER_SITES=	http://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/
 
@@ -12,7 +11,6 @@ COMMENT=	FITS (flexible image transport system) file input and output
 # similar; no copyright claim.
 LICENSE=	isc
 
-WRKSRC=		${WRKDIR}/${PKGNAME_NOREV:C/-.*//}
 GNU_CONFIGURE=	YES
 USE_LANGUAGES=	c # fortran
 USE_LIBTOOL=	YES
@@ -25,7 +23,7 @@ BUILD_TARGET=	all testprog
 
 INSTALLATION_DIRS=	include lib lib/pkgconfig share/doc/cfitsio
 
-CFITSIO_DOCS=	cfitsio.pdf cfitsio.doc cfortran.doc fitsio.pdf fitsio.doc \
+CFITSIO_DOCS=	cfitsio.pdf cfortran.doc fitsio.pdf fitsio.doc \
 		fpackguide.pdf quick.pdf
 
 post-build:
@@ -40,4 +38,5 @@ post-install:
 	cd ${WRKSRC}/docs; \
 	${INSTALL_DATA} ${CFITSIO_DOCS} ${DESTDIR}${PREFIX}/share/doc/cfitsio
 
+.include "../../www/curl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,7 +1,6 @@
 package pkglint
 
 import (
-	"netbsd.org/pkglint/regex"
 	"netbsd.org/pkglint/textproc"
 	"strings"
 )
@@ -9,7 +8,8 @@ import (
 // MkParser wraps a Parser and provides methods for parsing
 // things related to Makefiles.
 type MkParser struct {
-	Line         *Line
+	diag         Diagnoser
+	mklex        *MkLexer
 	lexer        *textproc.Lexer
 	EmitWarnings bool
 }
@@ -30,381 +30,9 @@ func (p *MkParser) Rest() string {
 // The text argument is assumed to be after unescaping the # character,
 // which means the # is a normal character and does not introduce a Makefile comment.
 // For VarUse, this distinction is irrelevant.
-func NewMkParser(line *Line, text string) *MkParser {
-	return &MkParser{line, textproc.NewLexer(text), line != nil}
-}
-
-// MkTokens splits a text like in the following example:
-//  Text${VAR:Mmodifier}${VAR2}more text${VAR3}
-// into tokens like these:
-//  Text
-//  ${VAR:Mmodifier}
-//  ${VAR2}
-//  more text
-//  ${VAR3}
-func (p *MkParser) MkTokens() []*MkToken {
-	lexer := p.lexer
-
-	var tokens []*MkToken
-	for !p.EOF() {
-		mark := lexer.Mark()
-		if varuse := p.VarUse(); varuse != nil {
-			tokens = append(tokens, &MkToken{Text: lexer.Since(mark), Varuse: varuse})
-			continue
-		}
-
-		for lexer.NextBytesFunc(func(b byte) bool { return b != '$' }) != "" || lexer.SkipString("$$") {
-		}
-		text := lexer.Since(mark)
-		if text != "" {
-			tokens = append(tokens, &MkToken{Text: text})
-			continue
-		}
-
-		break
-	}
-	return tokens
-}
-
-func (p *MkParser) VarUse() *MkVarUse {
-	rest := p.lexer.Rest()
-	if len(rest) < 2 || rest[0] != '$' {
-		return nil
-	}
-
-	switch rest[1] {
-	case '{', '(':
-		return p.varUseBrace(rest[1] == '(')
-
-	case '$':
-		// This is an escaped dollar character and not a variable use.
-		return nil
-
-	case '@', '<', ' ':
-		// These variable names are known to exist.
-		//
-		// Many others are also possible but not used in practice.
-		// In particular, when parsing the :C or :S modifier,
-		// the $ must not be interpreted as a variable name,
-		// even when it looks like $/ could refer to the "/" variable.
-		//
-		// TODO: Find out whether $" is a variable use when it appears in the :M modifier.
-		p.lexer.Skip(2)
-		return &MkVarUse{rest[1:2], nil}
-
-	default:
-		return p.varUseAlnum()
-	}
-}
-
-// varUseBrace parses:
-//  ${VAR}
-//  ${arbitrary text:L}
-//  ${variable with invalid chars}
-//  $(PARENTHESES)
-//  ${VAR:Mpattern:C,:,colon,g:Q:Q:Q}
-func (p *MkParser) varUseBrace(usingRoundParen bool) *MkVarUse {
-	lexer := p.lexer
-
-	beforeDollar := lexer.Mark()
-	lexer.Skip(2)
-
-	closing := byte('}')
-	if usingRoundParen {
-		closing = ')'
-	}
-
-	beforeVarname := lexer.Mark()
-	varname := p.Varname()
-	p.varUseText(closing)
-	varExpr := lexer.Since(beforeVarname)
-
-	modifiers := p.VarUseModifiers(varExpr, closing)
-
-	closed := lexer.SkipByte(closing)
-
-	if p.EmitWarnings {
-		if !closed {
-			p.Line.Warnf("Missing closing %q for %q.", string(rune(closing)), varExpr)
-		}
-
-		if usingRoundParen && closed {
-			parenVaruse := lexer.Since(beforeDollar)
-			edit := []byte(parenVaruse)
-			edit[1] = '{'
-			edit[len(edit)-1] = '}'
-			bracesVaruse := string(edit)
-
-			fix := p.Line.Autofix()
-			fix.Warnf("Please use curly braces {} instead of round parentheses () for %s.", varExpr)
-			fix.Replace(parenVaruse, bracesVaruse)
-			fix.Apply()
-		}
-
-		if len(varExpr) > len(varname) && !(&MkVarUse{varExpr, modifiers}).IsExpression() {
-			p.Line.Warnf("Invalid part %q after variable name %q.", varExpr[len(varname):], varname)
-		}
-	}
-
-	return &MkVarUse{varExpr, modifiers}
-}
-
-func (p *MkParser) varUseAlnum() *MkVarUse {
-	lexer := p.lexer
-
-	apparentVarname := textproc.NewLexer(lexer.Rest()[1:]).NextBytesSet(textproc.AlnumU)
-	if apparentVarname == "" {
-		return nil
-	}
-
-	lexer.Skip(2)
-
-	if p.EmitWarnings {
-		if len(apparentVarname) > 1 {
-			p.Line.Errorf("$%[1]s is ambiguous. Use ${%[1]s} if you mean a Make variable or $$%[1]s if you mean a shell variable.",
-				apparentVarname)
-			p.Line.Explain(
-				"Only the first letter after the dollar is the variable name.",
-				"Everything following it is normal text, even if it looks like a variable name to human readers.")
-		} else {
-			p.Line.Warnf("$%[1]s is ambiguous. Use ${%[1]s} if you mean a Make variable or $$%[1]s if you mean a shell variable.", apparentVarname)
-			p.Line.Explain(
-				"In its current form, this variable is parsed as a Make variable.",
-				"For human readers though, $x looks more like a shell variable than a Make variable,",
-				"since Make variables are usually written using braces (BSD-style) or parentheses (GNU-style).")
-		}
-	}
-
-	return &MkVarUse{apparentVarname[:1], nil}
-}
-
-// VarUseModifiers parses the modifiers of a variable being used, such as :Q, :Mpattern.
-//
-// See the bmake manual page.
-func (p *MkParser) VarUseModifiers(varname string, closing byte) []MkVarUseModifier {
-	lexer := p.lexer
-
-	var modifiers []MkVarUseModifier
-	// The :S and :C modifiers may be chained without using the : as separator.
-	mayOmitColon := false
-
-	for lexer.SkipByte(':') || mayOmitColon {
-		modifier := p.varUseModifier(varname, closing)
-		if modifier != "" {
-			modifiers = append(modifiers, MkVarUseModifier{modifier})
-		}
-		mayOmitColon = modifier != "" && (modifier[0] == 'S' || modifier[0] == 'C')
-	}
-	return modifiers
-}
-
-// varUseModifier parses a single variable modifier such as :Q or :S,from,to,.
-// The actual parsing starts after the leading colon.
-func (p *MkParser) varUseModifier(varname string, closing byte) string {
-	lexer := p.lexer
-	mark := lexer.Mark()
-
-	switch lexer.PeekByte() {
-	case 'E', 'H', 'L', 'O', 'Q', 'R', 'T', 's', 't', 'u':
-		mod := lexer.NextBytesSet(textproc.Alnum)
-
-		switch mod {
-		case
-			"E",  // Extension, e.g. path/file.suffix => suffix
-			"H",  // Head, e.g. dir/subdir/file.suffix => dir/subdir
-			"L",  // XXX: Shouldn't this be handled specially?
-			"O",  // Order alphabetically
-			"Ox", // Shuffle
-			"Q",  // Quote shell meta-characters
-			"R",  // Strip the file suffix, e.g. path/file.suffix => file
-			"T",  // Basename, e.g. path/file.suffix => file.suffix
-			"sh", // Evaluate the variable value as shell command
-			"tA", // Try to convert to absolute path
-			"tW", // Causes the value to be treated as a single word
-			"tl", // To lowercase
-			"tu", // To uppercase
-			"tw", // Causes the value to be treated as list of words
-			"u":  // Remove adjacent duplicate words (like uniq(1))
-			return mod
-		}
-
-		if hasPrefix(mod, "ts") {
-			// See devel/bmake/files/var.c:/case 't'
-			sep := mod[2:] + p.varUseText(closing)
-			switch {
-			case sep == "":
-				lexer.SkipString(":")
-			case len(sep) == 1:
-				break
-			case matches(sep, `^\\\d+`):
-				break
-			default:
-				if p.EmitWarnings {
-					p.Line.Warnf("Invalid separator %q for :ts modifier of %q.", sep, varname)
-					p.Line.Explain(
-						"The separator for the :ts modifier must be either a single character",
-						"or an escape sequence like \\t or \\n or an octal or decimal escape",
-						"sequence; see the bmake man page for further details.")
-				}
-			}
-			return lexer.Since(mark)
-		}
-
-	case '=', 'D', 'M', 'N', 'U':
-		lexer.Skip(1)
-		re := regcomp(regex.Pattern(condStr(closing == '}', `^([^$:\\}]|\$\$|\\.)+`, `^([^$:\\)]|\$\$|\\.)+`)))
-		for p.VarUse() != nil || lexer.SkipRegexp(re) {
-		}
-		arg := lexer.Since(mark)
-		return strings.Replace(arg, "\\:", ":", -1)
-
-	case 'C', 'S':
-		if ok, _, _, _, _ := p.varUseModifierSubst(closing); ok {
-			return lexer.Since(mark)
-		}
-
-	case '@':
-		if p.varUseModifierAt(lexer, varname) {
-			return lexer.Since(mark)
-		}
-
-	case '[':
-		if lexer.SkipRegexp(regcomp(`^\[(?:[-.\d]+|#)\]`)) {
-			return lexer.Since(mark)
-		}
-
-	case '?':
-		lexer.Skip(1)
-		p.varUseText(closing)
-		if lexer.SkipByte(':') {
-			p.varUseText(closing)
-			return lexer.Since(mark)
-		}
-	}
-
-	lexer.Reset(mark)
-
-	re := regcomp(regex.Pattern(condStr(closing == '}', `^([^:$}]|\$\$)+`, `^([^:$)]|\$\$)+`)))
-	for p.VarUse() != nil || lexer.SkipRegexp(re) {
-	}
-	modifier := lexer.Since(mark)
-
-	// ${SOURCES:%.c=%.o} or ${:!uname -a!:[2]}
-	if contains(modifier, "=") || (hasPrefix(modifier, "!") && hasSuffix(modifier, "!")) {
-		return modifier
-	}
-
-	if p.EmitWarnings && modifier != "" {
-		p.Line.Warnf("Invalid variable modifier %q for %q.", modifier, varname)
-	}
-
-	return ""
-}
-
-// varUseText parses any text up to the next colon or closing mark.
-// Nested variable uses are parsed as well.
-//
-// This is used for the :L and :? modifiers since they accept arbitrary
-// text as the "variable name" and effectively interpret it as the variable
-// value instead.
-func (p *MkParser) varUseText(closing byte) string {
-	lexer := p.lexer
-	start := lexer.Mark()
-	re := regcomp(regex.Pattern(condStr(closing == '}', `^([^$:}]|\$\$)+`, `^([^$:)]|\$\$)+`)))
-	for p.VarUse() != nil || lexer.SkipRegexp(re) {
-	}
-	return lexer.Since(start)
-}
-
-// varUseModifierSubst parses a :S,from,to, or a :C,from,to, modifier.
-func (p *MkParser) varUseModifierSubst(closing byte) (ok bool, regex bool, from string, to string, options string) {
-	lexer := p.lexer
-	regex = lexer.PeekByte() == 'C'
-	lexer.Skip(1 /* the initial S or C */)
-
-	sep := lexer.PeekByte() // bmake allows _any_ separator, even letters.
-	if sep == -1 || byte(sep) == closing {
-		return
-	}
-
-	lexer.Skip(1)
-	separator := byte(sep)
-
-	unescape := func(s string) string {
-		return strings.Replace(s, "\\"+string(separator), string(separator), -1)
-	}
-
-	isOther := func(b byte) bool {
-		return b != separator && b != '$' && b != '\\'
-	}
-
-	skipOther := func() {
-		for {
-			switch {
-
-			case p.VarUse() != nil:
-				break
-
-			case lexer.SkipString("$$"):
-				break
-
-			case len(lexer.Rest()) >= 2 && lexer.PeekByte() == '\\' && separator != '\\':
-				_ = lexer.Skip(2)
-
-			case lexer.NextBytesFunc(isOther) != "":
-				break
-
-			default:
-				return
-			}
-		}
-	}
-
-	fromStart := lexer.Mark()
-	lexer.SkipByte('^')
-	skipOther()
-	lexer.SkipByte('$')
-	from = unescape(lexer.Since(fromStart))
-
-	if !lexer.SkipByte(separator) {
-		return
-	}
-
-	toStart := lexer.Mark()
-	skipOther()
-	to = unescape(lexer.Since(toStart))
-
-	if !lexer.SkipByte(separator) {
-		return
-	}
-
-	optionsStart := lexer.Mark()
-	lexer.NextBytesFunc(func(b byte) bool { return b == '1' || b == 'g' || b == 'W' })
-	options = lexer.Since(optionsStart)
-
-	ok = true
-	return
-}
-
-// varUseModifierAt parses a variable modifier like ":@v@echo ${v};@",
-// which expands the variable value in a loop.
-func (p *MkParser) varUseModifierAt(lexer *textproc.Lexer, varname string) bool {
-	lexer.Skip(1 /* the initial @ */)
-
-	loopVar := lexer.NextBytesSet(AlnumDot)
-	if loopVar == "" || !lexer.SkipByte('@') {
-		return false
-	}
-
-	re := regcomp(`^([^$@\\]|\\.)+`)
-	for p.VarUse() != nil || lexer.SkipString("$$") || lexer.SkipRegexp(re) {
-	}
-
-	if !lexer.SkipByte('@') && p.EmitWarnings {
-		p.Line.Warnf("Modifier ${%s:@%s@...@} is missing the final \"@\".", varname, loopVar)
-	}
-
-	return true
+func NewMkParser(diag Autofixer, text string) *MkParser {
+	mklex := NewMkLexer(text, diag)
+	return &MkParser{diag, mklex, mklex.lexer, diag != nil}
 }
 
 // MkCond parses a condition like ${OPSYS} == "NetBSD".
@@ -420,7 +48,7 @@ func (p *MkParser) MkCond() *MkCond {
 	for {
 		mark := p.lexer.Mark()
 		p.lexer.SkipHspace()
-		if !(p.lexer.SkipString("||")) {
+		if !p.lexer.SkipString("||") {
 			break
 		}
 		next := p.mkCondAnd()
@@ -461,10 +89,6 @@ func (p *MkParser) mkCondAnd() *MkCond {
 	}
 	return &MkCond{And: atoms}
 }
-
-// mkCondLiteralChars contains the characters that may be used outside
-// quotes in a comparison condition such as ${PKGPATH} == category/package.
-var mkCondLiteralChars = textproc.NewByteSet("+---./0-9A-Z_a-z")
 
 func (p *MkParser) mkCondCompare() *MkCond {
 	if trace.Tracing {
@@ -530,7 +154,7 @@ func (p *MkParser) mkCondCompare() *MkCond {
 			return &MkCond{Compare: &MkCondCompare{*lhs, op, *rhs}}
 		}
 
-		if str := lexer.NextBytesSet(mkCondLiteralChars); str != "" {
+		if str := lexer.NextBytesSet(mkCondStringLiteralUnquoted); str != "" {
 			return &MkCond{Compare: &MkCondCompare{*lhs, op, MkCondTerm{Str: str}}}
 		}
 	}
@@ -554,7 +178,7 @@ func (p *MkParser) mkCondCompare() *MkCond {
 func (p *MkParser) mkCondTerm() *MkCondTerm {
 	lexer := p.lexer
 
-	if rhs := p.VarUse(); rhs != nil {
+	if rhs := p.mklex.VarUse(); rhs != nil {
 		return &MkCondTerm{Var: rhs}
 	}
 
@@ -564,7 +188,7 @@ func (p *MkParser) mkCondTerm() *MkCondTerm {
 
 	mark := lexer.Mark()
 	lexer.Skip(1)
-	if quotedRHS := p.VarUse(); quotedRHS != nil {
+	if quotedRHS := p.mklex.VarUse(); quotedRHS != nil {
 		if lexer.SkipByte('"') {
 			return &MkCondTerm{Var: quotedRHS}
 		}
@@ -572,12 +196,12 @@ func (p *MkParser) mkCondTerm() *MkCondTerm {
 	lexer.Reset(mark)
 
 	lexer.Skip(1)
-	var rhsText strings.Builder
+	rhsText := NewLazyStringBuilder(lexer.Rest())
 loop:
 	for {
 		m := lexer.Mark()
 		switch {
-		case p.VarUse() != nil,
+		case p.mklex.VarUse() != nil,
 			lexer.NextBytesSet(textproc.Alnum) != "",
 			lexer.NextBytesFunc(func(b byte) bool { return b != '"' && b != '\\' }) != "":
 			rhsText.WriteString(lexer.Since(m))
@@ -610,16 +234,16 @@ func (p *MkParser) mkCondFunc() *MkCond {
 
 	switch funcName {
 	case "defined":
-		varname := p.Varname()
+		varname := p.mklex.Varname()
 		if varname != "" && lexer.SkipByte(')') {
 			return &MkCond{Defined: varname}
 		}
 
 	case "empty":
-		if varname := p.Varname(); varname != "" {
-			modifiers := p.VarUseModifiers(varname, ')')
+		if varname := p.mklex.Varname(); varname != "" {
+			modifiers := p.mklex.VarUseModifiers(varname, ')')
 			if lexer.SkipByte(')') {
-				return &MkCond{Empty: &MkVarUse{varname, modifiers}}
+				return &MkCond{Empty: NewMkVarUse(varname, modifiers...)}
 			}
 		}
 
@@ -629,7 +253,7 @@ func (p *MkParser) mkCondFunc() *MkCond {
 
 	case "commands", "exists", "make", "target":
 		argMark := lexer.Mark()
-		for p.VarUse() != nil || lexer.NextBytesFunc(func(b byte) bool { return b != '$' && b != ')' }) != "" {
+		for p.mklex.VarUse() != nil || lexer.NextBytesFunc(func(b byte) bool { return b != '$' && b != ')' }) != "" {
 		}
 		arg := lexer.Since(argMark)
 		if lexer.SkipByte(')') {
@@ -639,21 +263,6 @@ func (p *MkParser) mkCondFunc() *MkCond {
 
 	lexer.Reset(mark)
 	return nil
-}
-
-func (p *MkParser) Varname() string {
-	lexer := p.lexer
-
-	// TODO: duplicated code in MatchVarassign
-	mark := lexer.Mark()
-	lexer.SkipByte('.')
-	for lexer.NextBytesSet(VarbaseBytes) != "" || p.VarUse() != nil {
-	}
-	if lexer.SkipByte('.') || hasPrefix(lexer.Since(mark), "SITES_") {
-		for lexer.NextBytesSet(VarparamBytes) != "" || p.VarUse() != nil {
-		}
-	}
-	return lexer.Since(mark)
 }
 
 func (p *MkParser) Op() (bool, MkOperator) {
@@ -673,33 +282,13 @@ func (p *MkParser) Op() (bool, MkOperator) {
 	return false, 0
 }
 
-// isPkgbasePart returns whether str, when following a hyphen,
-// continues the package base (as in "mysql-client"), or whether it
-// starts the version (as in "mysql-1.0").
-func (*MkParser) isPkgbasePart(str string) bool {
-	lexer := textproc.NewLexer(str)
-
-	lexer.SkipByte('{')
-	lexer.SkipByte('[')
-	if lexer.NextByteSet(textproc.Alpha) != -1 {
-		return true
-	}
-
-	varUse := NewMkParser(nil, lexer.Rest()).VarUse()
-	if varUse != nil {
-		return !contains(varUse.varname, "VER") && len(varUse.modifiers) == 0
-	}
-
-	return false
-}
-
 func (p *MkParser) PkgbasePattern() string {
 
 	lexer := p.lexer
 	start := lexer.Mark()
 
 	for {
-		if p.VarUse() != nil ||
+		if p.mklex.VarUse() != nil ||
 			lexer.SkipRegexp(regcomp(`^[\w.*+,{}]+`)) ||
 			lexer.SkipRegexp(regcomp(`^\[[\w-]+\]`)) {
 			continue
@@ -722,6 +311,26 @@ func (p *MkParser) PkgbasePattern() string {
 	return ""
 }
 
+// isPkgbasePart returns whether str, when following a hyphen,
+// continues the package base (as in "mysql-client"), or whether it
+// starts the version (as in "mysql-1.0").
+func (*MkParser) isPkgbasePart(str string) bool {
+	lexer := textproc.NewLexer(str)
+
+	lexer.SkipByte('{')
+	lexer.SkipByte('[')
+	if lexer.NextByteSet(textproc.Alpha) != -1 {
+		return true
+	}
+
+	varUse := NewMkLexer(lexer.Rest(), nil).VarUse()
+	if varUse != nil {
+		return !contains(varUse.varname, "VER") && len(varUse.modifiers) == 0
+	}
+
+	return false
+}
+
 type DependencyPattern struct {
 	Pkgbase  string // "freeciv-client", "{gcc48,gcc48-libs}", "${EMACS_REQD}"
 	LowerOp  string // ">=", ">"
@@ -738,7 +347,7 @@ func (p *MkParser) Dependency() *DependencyPattern {
 	parseVersion := func() string {
 		mark := lexer.Mark()
 
-		for p.VarUse() != nil {
+		for p.mklex.VarUse() != nil {
 		}
 		if lexer.Since(mark) != "" {
 			return lexer.Since(mark)
@@ -797,7 +406,7 @@ func (p *MkParser) Dependency() *DependencyPattern {
 	if lexer.SkipByte('-') && lexer.Rest() != "" {
 		versionMark := lexer.Mark()
 
-		for p.VarUse() != nil || lexer.SkipRegexp(regcomp(`^[\w\[\]*_.\-]+`)) {
+		for p.mklex.VarUse() != nil || lexer.SkipRegexp(regcomp(`^[\w\[\]*_.\-]+`)) {
 		}
 
 		if !lexer.SkipString("{,nb*}") {
@@ -820,7 +429,7 @@ func (p *MkParser) Dependency() *DependencyPattern {
 // if there is a parse error or some trailing text.
 // Parse errors are silently ignored.
 func ToVarUse(str string) *MkVarUse {
-	p := NewMkParser(nil, str)
+	p := NewMkLexer(str, nil)
 	varUse := p.VarUse()
 	if varUse == nil || !p.EOF() {
 		return nil
@@ -914,7 +523,7 @@ func (w *MkCondWalker) Walk(cond *MkCond, callback *MkCondCallback) {
 		if callback.VarUse != nil {
 			// This is not really a VarUse, it's more a VarUseDefined.
 			// But in practice they are similar enough to be treated the same.
-			callback.VarUse(&MkVarUse{cond.Defined, nil})
+			callback.VarUse(NewMkVarUse(cond.Defined))
 		}
 
 	case cond.Term != nil && cond.Term.Var != nil:
@@ -968,7 +577,7 @@ func (w *MkCondWalker) walkAtom(atom *MkCondTerm, callback *MkCondCallback) {
 
 func (w *MkCondWalker) walkStr(str string, callback *MkCondCallback) {
 	if callback.VarUse != nil {
-		tokens := NewMkParser(nil, str).MkTokens()
+		tokens, _ := NewMkLexer(str, nil).MkTokens()
 		for _, token := range tokens {
 			if token.Varuse != nil {
 				callback.VarUse(token.Varuse)

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.7 2019/08/03 10:42:46 schmonz Exp $
+# $NetBSD: Makefile,v 1.9 2019/12/16 21:25:45 schmonz Exp $
 
-DISTNAME=		fehQlibs-12c
-PKGNAME=		${DISTNAME:S/Qlibs-/qlibs-0.9./:S/12/12.12/}
+DISTNAME=		fehQlibs-13c
+PKGNAME=		${DISTNAME:S/Qlibs-/qlibs-0.9./}
 CATEGORIES=		net
 MASTER_SITES=		https://www.fehcom.de/ipnet/fehQlibs/
 EXTRACT_SUFX=		.tgz
@@ -36,10 +36,10 @@ do-configure:
 .include "../../mk/bsd.prefs.mk"
 
 post-build:
-.	if ${OPSYS} == Darwin
+.if ${OPSYS} == Darwin
 	cd ${WRKSRC} && for lib in *.so; do \
 	  install_name_tool -id ${PREFIX}/lib/qlibs/$${lib} $${lib}; \
 	done
-.	endif
+.endif
 
 .include "../../mk/bsd.pkg.mk"

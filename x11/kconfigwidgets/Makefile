@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.26 2019/08/27 20:18:01 markd Exp $
+# $NetBSD: Makefile,v 1.28 2019/11/11 09:21:39 markd Exp $
 
 DISTNAME=	kconfigwidgets-${KF5VER}
 CATEGORIES=	x11
@@ -9,7 +9,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
 .include "../../meta-pkgs/kde/kf5.mk"
 
-BUILD_DEPENDS+= kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
 
 USE_TOOLS+=	perl:run msgmerge
 
@@ -23,4 +23,5 @@ REPLACE_PERL+=	src/preparetips5
 .include "../../x11/kguiaddons/buildlink3.mk"
 .include "../../x11/kwidgetsaddons/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
+.include "../../x11/qt5-qttools/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

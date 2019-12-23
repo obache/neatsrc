@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.585 2019/10/26 15:18:37 kamil Exp $
+# $NetBSD: Makefile,v 1.590 2019/11/27 10:34:22 ng0 Exp $
 
 COMMENT=	Databases
 
@@ -40,12 +40,15 @@ SUBDIR+=	gnats
 SUBDIR+=	gnome-mime-data
 SUBDIR+=	go-etcd
 SUBDIR+=	go-ldap
+SUBDIR+=	go-sqlite3
+SUBDIR+=	go-tiedot
 SUBDIR+=	gourmet
 SUBDIR+=	gq
 SUBDIR+=	gramps3
 SUBDIR+=	gtkdbfeditor
 SUBDIR+=	gtksql
 SUBDIR+=	guile-pg
+SUBDIR+=	guile-sqlite3
 SUBDIR+=	hiredis
 SUBDIR+=	hsqldb18
 SUBDIR+=	idzebra
@@ -60,6 +63,7 @@ SUBDIR+=	jdbc-mysql31
 SUBDIR+=	jdbc-mysql5
 SUBDIR+=	jdbc-mysql51
 SUBDIR+=	jdbc-postgresql94
+SUBDIR+=	kldap
 SUBDIR+=	kyotocabinet
 SUBDIR+=	lbdb
 SUBDIR+=	ldapvi
@@ -87,7 +91,6 @@ SUBDIR+=	lua-sql-sqlite3
 SUBDIR+=	lua-sqlite
 SUBDIR+=	lua-sqlite3
 SUBDIR+=	lua-tokyocabinet
-SUBDIR+=	luma
 SUBDIR+=	mariadb-connector-c
 SUBDIR+=	mariadb55-client
 SUBDIR+=	mariadb55-server

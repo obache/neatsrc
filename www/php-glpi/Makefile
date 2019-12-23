@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.9 2019/09/26 14:52:24 hauke Exp $
+# $NetBSD: Makefile,v 1.11 2019/12/09 14:20:57 taca Exp $
 
 DISTNAME=	glpi-${GLPI_VERSION}
 GLPI_VERSION=	9.4.4
+PKGREVISION=	1
 CATEGORIES=	www
 
 MASTER_SITES=	https://github.com/glpi-project/glpi/releases/download/${GLPI_VERSION}/
@@ -30,7 +31,7 @@ USE_LANGUAGES=	# none
 
 USE_TOOLS+=	chmod find pax
 
-BUILD_DEFS+=    APACHE_USER APACHE_GROUP VARBASE
+BUILD_DEFS+=	APACHE_USER APACHE_GROUP VARBASE
 
 MESSAGE_SUBST+=	APACHE_USER="${APACHE_USER}"
 
@@ -74,7 +75,7 @@ REPLACE_FILES.php=	vendor/tecnickcom/tcpdf/tools/tcpdf_addfont.php
 REPLACE_FILES.php+=	bin/console
 .for ddd in  bench.php fetch_windows_zones.php generate_vcards \
 	     generateicalendardata.php vobject
-REPLACE_FILES.php+=      vendor/sabre/vobject/bin/${ddd}
+REPLACE_FILES.php+=	vendor/sabre/vobject/bin/${ddd}
 .endfor
 
 INSTALLATION_DIRS+=	${GLPI_DIR} ${EGDIR}

@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.66 2019/09/14 04:26:39 tsutsui Exp $
+# $NetBSD: Makefile,v 1.68 2019/11/06 14:34:31 wiz Exp $
 
+PKGREVISION= 1
 .include "Makefile.common"
 
 COMMENT=	Intelligent Input Bus
@@ -9,11 +10,11 @@ BUILD_DEPENDS+=	cldr-emoji-annotation>=35.12.14971.0:../../textproc/cldr-emoji-a
 BUILD_DEPENDS+=	unicode-character-database>=12.0.0:../../textproc/unicode-character-database
 BUILD_DEPENDS+=	unicode-emoji>=12.0:../../textproc/unicode-emoji
 
-GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
-USE_TOOLS+=	pkg-config intltool msgfmt gmake msgmsrge
-USE_LANGUAGES=	c c++
-USE_PKGLOCALEDIR=	yes
+GNU_CONFIGURE=			yes
+USE_LIBTOOL=			yes
+USE_TOOLS+=			pkg-config intltool msgfmt gmake msgmsrge
+USE_LANGUAGES=			c c++
+USE_PKGLOCALEDIR=		yes
 
 GETTEXT_TOOLS_REQD=	0.19.7
 

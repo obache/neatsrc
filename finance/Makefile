@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.68 2019/08/09 15:39:04 brook Exp $
+# $NetBSD: Makefile,v 1.70 2019/12/03 16:32:16 adam Exp $
 #
 
 COMMENT=	Monetary, financial and related applications
@@ -30,12 +30,13 @@ SUBDIR+=	p5-Locale-Currency-Format
 SUBDIR+=	py-alpha_vantage
 SUBDIR+=	py-alphalens
 SUBDIR+=	py-backtrader
+SUBDIR+=	py-bitcoinlib
+SUBDIR+=	py-bitcoinrpc
 SUBDIR+=	py-braintree
 SUBDIR+=	py-empyrical
 SUBDIR+=	py-fecon235
 SUBDIR+=	py-ofxparse
 SUBDIR+=	py-pyfolio
-SUBDIR+=	py-python-bitcoinlib
 SUBDIR+=	py-quickbooks
 SUBDIR+=	py-stripe
 SUBDIR+=	py-trytond-account

@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.139 2019/10/18 10:12:08 ryoon Exp $
+# $NetBSD: mozilla-common.mk,v 1.147 2019/12/04 05:13:56 gutteridge Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -10,11 +10,11 @@
 PYTHON_VERSIONS_ACCEPTED=	27
 PYTHON_FOR_BUILD_ONLY=		tool
 .if !empty(PYTHON_VERSION_DEFAULT:M3[6789])
-TOOL_DEPENDS+=		python${PYTHON_VERSION_DEFAULT}-[0-9]*:../../lang/python${PYTHON_VERSION_DEFAULT}
-ALL_ENV+=	PYTHON3=${LOCALBASE}/bin/python${PYTHON_VERSION_DEFAULT:S/3/3./}
+TOOL_DEPENDS+=			python${PYTHON_VERSION_DEFAULT}-[0-9]*:../../lang/python${PYTHON_VERSION_DEFAULT}
+ALL_ENV+=			PYTHON3=${LOCALBASE}/bin/python${PYTHON_VERSION_DEFAULT:S/3/3./}
 .else
-TOOL_DEPENDS+=		python37-[0-9]*:../../lang/python37
-ALL_ENV+=	PYTHON3=${LOCALBASE}/bin/python3.7
+TOOL_DEPENDS+=			python37-[0-9]*:../../lang/python37
+ALL_ENV+=			PYTHON3=${LOCALBASE}/bin/python3.7
 .endif
 
 HAS_CONFIGURE=		yes
@@ -23,7 +23,7 @@ USE_TOOLS+=		pkg-config perl gmake autoconf213 unzip zip
 USE_LANGUAGES+=		c99 gnu++14
 UNLIMIT_RESOURCES+=	datasize
 
-TOOL_DEPENDS+=		cbindgen>=0.8.7:../../devel/cbindgen
+TOOL_DEPENDS+=		cbindgen>=0.9.1:../../devel/cbindgen
 .if ${MACHINE_ARCH} == "sparc64"
 CONFIGURE_ARGS+=	--disable-nodejs
 .else
@@ -60,13 +60,13 @@ CXXFLAGS+=		-mstackrealign
 
 CXXFLAGS+=		-D__HAVE_INLINE___ISINF
 
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}security/nss/tests/libpkix/libpkix.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}security/nss/tests/multinit/multinit.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}js/src/tests/update-test262.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}intl/icu/source/configure
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}browser/components/loop/run-all-loop-tests.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}browser/extensions/loop/run-all-loop-tests.sh
-#CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}modules/pdfium/update.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}security/nss/tests/libpkix/libpkix.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}security/nss/tests/multinit/multinit.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}js/src/tests/update-test262.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}intl/icu/source/configure
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}browser/components/loop/run-all-loop-tests.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}browser/extensions/loop/run-all-loop-tests.sh
+#CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}modules/pdfium/update.sh
 
 CONFIGURE_ARGS+=	--enable-default-toolkit=cairo-gtk3
 CONFIGURE_ARGS+=	--enable-release
@@ -209,10 +209,10 @@ PLIST_SUBST+=	DLL_SUFFIX=".so"
 BUILDLINK_API_DEPENDS.libevent+=	libevent>=1.1
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../devel/libffi/buildlink3.mk"
-BUILDLINK_API_DEPENDS.nspr+=	nspr>=4.21
+BUILDLINK_API_DEPENDS.nspr+=	nspr>=4.23
 .include "../../devel/nspr/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
-BUILDLINK_API_DEPENDS.nss+=	nss>=3.44.1
+BUILDLINK_API_DEPENDS.nss+=	nss>=3.47.1
 .include "../../devel/nss/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 #.include "../../mk/jpeg.buildlink3.mk"
@@ -221,13 +221,13 @@ BUILDLINK_API_DEPENDS.nss+=	nss>=3.44.1
 #.include "../../graphics/cairo/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libwebp+=	libwebp>=1.0.2
 .include "../../graphics/libwebp/buildlink3.mk"
-PKG_CC=		clang
-PKG_CXX=	clang++
+PKG_CC=		${PREFIX}/bin/clang
+PKG_CXX=	${PREFIX}/bin/clang++
 BUILDLINK_DEPMETHOD.clang=	build
 BUILDLINK_API_DEPENDS.clang+=	clang>=6.0.1nb1
 .include "../../lang/clang/buildlink3.mk"
 BUILDLINK_DEPMETHOD.rust=	build
-BUILDLINK_API_DEPENDS.rust+=	rust>=1.34.0
+BUILDLINK_API_DEPENDS.rust+=	rust>=1.37.0
 .include "../../lang/rust/buildlink3.mk"
 # webrtc option requires internal libvpx
 #BUILDLINK_API_DEPENDS.libvpx+=	libvpx>=1.3.0

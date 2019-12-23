@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.330 2019/08/22 09:32:50 nia Exp $
+# $NetBSD: Makefile,v 1.332 2019/12/14 10:38:30 adam Exp $
 #
 
 COMMENT=	Fonts
@@ -37,6 +37,7 @@ SUBDIR+=	bakoma-fonts
 SUBDIR+=	bdftopcf
 SUBDIR+=	biznet-iso8859_2
 SUBDIR+=	cantarell-fonts
+SUBDIR+=	cascadia-ttf
 SUBDIR+=	chkfontpath
 SUBDIR+=	consolamono-ttf
 SUBDIR+=	courier-prime
@@ -191,7 +192,6 @@ SUBDIR+=	profont
 SUBDIR+=	proggy-fonts
 SUBDIR+=	ps2pkm
 SUBDIR+=	public-sans
-SUBDIR+=	py-TTFQuery
 SUBDIR+=	py-fonttools
 SUBDIR+=	raleway-ttf
 SUBDIR+=	ricty-ttf

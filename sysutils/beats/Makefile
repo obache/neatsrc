@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.45 2019/10/18 14:58:56 bsiegert Exp $
+# $NetBSD: Makefile,v 1.47 2019/12/13 07:44:03 bsiegert Exp $
 
 DISTNAME=		beats-6.6.2
-PKGREVISION=		6
+PKGREVISION=		7
 CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_GITHUB:=elastic/}
 GITHUB_PROJECT=		beats
@@ -18,9 +18,7 @@ USE_TOOLS+=		gmake
 GO_DIST_BASE=		${PKGBASE}-${GITHUB_TAG:S/v//}
 GO_SRCPATH=		github.com/elastic/beats
 
-TOOLS_CREATE+=		go
-TOOLS_PATH.go=		${GO}
-
+.include "../../lang/go/go-vars.mk"
 .include "../../mk/bsd.prefs.mk"
 
 PLIST_VARS+=		audit

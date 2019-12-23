@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2019/09/21 07:31:43 ryoon Exp $
+# $NetBSD: Makefile,v 1.5 2019/12/08 20:09:41 nia Exp $
 
 FIREFOX_VER=		${MOZ_BRANCH}${MOZ_BRANCH_MINOR}
-MOZ_BRANCH=		68.1
+MOZ_BRANCH=		68.3
 MOZ_BRANCH_MINOR=	.0esr
 
 DISTNAME=	firefox-${FIREFOX_VER}.source
@@ -54,12 +54,12 @@ SUBST_FILES.dfly_malloc_h+=	media/ffvpx/libavutil/mem.c
 .include "mozilla-common.mk"
 .include "options.mk"
 
-CHECK_INTERPRETER_SKIP+=lib/firefox-sdk/sdk/bin/header.py
-CHECK_INTERPRETER_SKIP+=lib/firefox-sdk/sdk/bin/typelib.py
-CHECK_INTERPRETER_SKIP+=lib/firefox-sdk/sdk/bin/xpidl.py
-CHECK_INTERPRETER_SKIP+=lib/firefox-sdk/sdk/bin/xpt.py
+CHECK_INTERPRETER_SKIP+=	lib/firefox-sdk/sdk/bin/header.py
+CHECK_INTERPRETER_SKIP+=	lib/firefox-sdk/sdk/bin/typelib.py
+CHECK_INTERPRETER_SKIP+=	lib/firefox-sdk/sdk/bin/xpidl.py
+CHECK_INTERPRETER_SKIP+=	lib/firefox-sdk/sdk/bin/xpt.py
 
-CHECK_WRKREF_SKIP+=lib/${MOZILLA}/chrome/toolkit/content/global/buildconfig.html
+CHECK_WRKREF_SKIP+=	lib/${MOZILLA}/chrome/toolkit/content/global/buildconfig.html
 
 MOZILLA=	${PKGBASE}
 MOZILLA_ICON=	${WRKSRC}/${OBJDIR}/dist/${MOZILLA}/browser/chrome/icons/default/default48.png
@@ -83,6 +83,13 @@ post-extract:
 		${SED} -e 's/4d9f7091af8e166943ac6f42ce85558909e5b6e61325039bff7adfbcf4b90212/7f3da734d5e2e9426051da4f406e46d9e9bed43ed2d7d048e8afc8af7ed44795/' | \
 		${SED} -e 's/1cd66ed5967c788562d4ad626cfbeb1544f4b9267111de5f6790379b8327f28e/6ae549dd21581748b2f1d82880eaca3445c11e3354965e5b49b20342075a3e52/' \
 		> ${WRKSRC}/third_party/rust/libc/.cargo-checksum.json
+	${CP} ${WRKSRC}/third_party/rust/bindgen/.cargo-checksum.json \
+		${WRKSRC}/third_party/rust/bindgen/.cargo-checksum.json.orig
+	${CAT} ${WRKSRC}/third_party/rust/bindgen/.cargo-checksum.json.orig | \
+		${SED} -e 's/5788372d27bdbaaf0454bc17be31a5480918bc41a8a1c4832e8c61185c07f9cd/8c92a52c0f859c7bec7bfbc36b9d18f904baab0c8c9dc1b3e7af34de1a0b0da4/' | \
+		${SED} -e 's/8dc10043d872e68e660ef96edca4d9733f95be45cdad4893462fa929b335014f/71f1a37f75b971ea5b0d8457473cc410947dbf706cb6d2c0338916910b78a675/' | \
+		${SED} -e 's/34f9aa76b6c9c05136bb69dcd6455397faef571a567254d2c541d50a962994db/e5581852eec87918901a129284b4965aefc8a19394187a8095779a084f28fabe/' \
+		> ${WRKSRC}/third_party/rust/bindgen/.cargo-checksum.json
 
 pre-configure:
 	cd ${WRKSRC} && autoconf

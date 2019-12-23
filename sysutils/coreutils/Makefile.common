@@ -1,9 +1,9 @@
-# $NetBSD: Makefile.common,v 1.19 2019/05/02 15:31:16 jperkin Exp $
+# $NetBSD: Makefile.common,v 1.22 2019/12/15 11:49:28 mef Exp $
 #
 # used by sysutils/coreutils/Makefile
 # used by misc/gnuls/Makefile
 
-DISTNAME=	coreutils-8.29
+DISTNAME=	coreutils-8.31
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GNU:=coreutils/}
 EXTRACT_SUFX=	.tar.xz
@@ -38,7 +38,7 @@ CONFIGURE_ENV+=		FORCE_UNSAFE_CONFIGURE=yes
 
 CONFIGURE_ENV.Interix+=	ac_list_mounted_fs=found
 
-CONFIGURE_ENV.DragonFly+= 	gl_cv_search_pthread_join=-lpthread
+CONFIGURE_ENV.DragonFly+=	gl_cv_search_pthread_join=-lpthread
 
 # Various tests rely on GCC's -O2 behaviour (e.g. -D__NO_INLINE__) and
 # without it we run into undefined symbol issues.
@@ -48,7 +48,7 @@ CFLAGS+=		-O2
 
 # clang on SunOS parses -errwarn as an -e entry point argument to the linker,
 # which ignores it as it's a duplicate argument.  Turn it off explicitly.
-.if ${PKGSRC_COMPILER} == "clang"
+.if ${PKGSRC_COMPILER:Mclang}
 CONFIGURE_ENV.SunOS+=	gl_cv_warn_c__errwarn=no
 .endif
 
@@ -76,7 +76,7 @@ CONFIGURE_ARGS+=	--program-prefix=g
 #CONFIGURE_ARGS+=	--enable-install-program=su
 #.if ${OPSYS} == "NetBSD" ||  ${OPSYS} == "FreeBSD" || \
 #  ${OPSYS} == "OpenBSD"
-#MAKE_FLAGS+=	setuid_root_mode=a=rx
-#MESSAGE_SRC=	${.CURDIR}/MESSAGE.gsu
+#MAKE_FLAGS+=		setuid_root_mode=a=rx
+#MESSAGE_SRC=		${.CURDIR}/MESSAGE.gsu
 #MESSAGE_SUBST+=	OPSYS=${OPSYS:Q}
 #.endif

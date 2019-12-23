@@ -1,7 +1,7 @@
-# $NetBSD: options.mk,v 1.8 2017/05/13 20:25:44 alnsn Exp $
+# $NetBSD: options.mk,v 1.10 2019/12/10 13:06:23 ng0 Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.tor
-PKG_SUPPORTED_OPTIONS=	doc
+PKG_SUPPORTED_OPTIONS=	doc rust
 PKG_SUGGESTED_OPTIONS+=	doc
 
 .include "../../mk/bsd.options.mk"
@@ -19,4 +19,32 @@ CONFIGURE_ARGS+=	--enable-asciidoc
 PLIST.doc=		yes
 .else
 CONFIGURE_ARGS+=	--disable-asciidoc
+.endif
+
+### This enables building tor with rust as per
+### https://trac.torproject.org/projects/tor/wiki/RustInTor
+.if !empty(PKG_OPTIONS:Mrust)
+CONFIGURE_ENV+=		TOR_RUST_DEPENDENCIES=${WRKDIR}/vendor
+CONFIGURE_ARGS+=	--enable-rust
+CARGO_CRATE_DEPENDS+=	digest-0.7.2
+CARGO_CRATE_DEPENDS+=	generic-array-0.9.0
+CARGO_CRATE_DEPENDS+=	libc-0.2.39
+CARGO_CRATE_DEPENDS+=	rand-0.5.0-pre.2
+CARGO_CRATE_DEPENDS+=	rand_core-0.2.0-pre.0
+CARGO_CRATE_DEPENDS+=	typenum-1.9.0
+
+.include "../../lang/rust/cargo.mk"
+BUILDLINK_DEPMETHOD.rust=	build
+BUILDLINK_API_DEPENDS.rust+=	rust>=1.34.0
+.include "../../lang/rust/buildlink3.mk"
+
+pre-configure:
+	cd ${WRKSRC} && ${MKDIR} -p src/rust/target/release
+
+# \todo: Maybe we should add a path option to show-cargo-depends.
+show-tor-cargo-depends:
+	${RUN}${AWK} '/^\"checksum/ { print "CARGO_CRATE_DEPENDS+=\t" $$2 "-" $$3""; next } ' ${WRKSRC}/src/rust/Cargo.lock
+
+.else
+CONFIGURE_ARGS+=	--disable-rust
 .endif

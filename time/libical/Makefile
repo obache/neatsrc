@@ -1,11 +1,9 @@
-# $NetBSD: Makefile,v 1.21 2019/08/11 13:24:03 wiz Exp $
-#
+# $NetBSD: Makefile,v 1.23 2019/11/02 20:55:46 nia Exp $
 
-DISTNAME=	libical-3.0.4
-PKGREVISION=	2
+DISTNAME=	libical-3.0.6
 CATEGORIES=	time
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libical/}
-GITHUB_TAG=	v${PKGVERSION_NOREV}
+GITHUB_RELEASE=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/libical/libical/
@@ -14,13 +12,15 @@ LICENSE=	gnu-lgpl-v2.1 OR mpl-2.0
 
 USE_TOOLS+=	perl pkg-config
 USE_CMAKE=	yes
-CMAKE_ARGS+= 	-DUSE_BUILTIN_TZDATA=false
-CMAKE_ARGS+= 	-DICAL_BUILD_DOCS=false
-CMAKE_ARGS+=	-DCMAKE_DISABLE_FIND_PACKAGE_BDB=true
+
+CMAKE_ARGS+= 	-DUSE_BUILTIN_TZDATA=OFF
+CMAKE_ARGS+=	-DICAL_BUILD_DOCS=OFF
+CMAKE_ARGS+=	-DCMAKE_DISABLE_FIND_PACKAGE_BDB=ON
 CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=TRUE
 CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:PATH=${PREFIX}/lib
 
-PKGCONFIG_OVERRIDE+=	libical.pc.in src/libical-glib/libical-glib.pc.in
+PKGCONFIG_OVERRIDE+=	libical.pc.in
+PKGCONFIG_OVERRIDE+=	src/libical-glib/libical-glib.pc.in
 
 .include "options.mk"
 

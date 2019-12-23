@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.7 2019/03/25 13:56:25 wiz Exp $
+# $NetBSD: Makefile,v 1.9 2019/11/26 14:19:58 jmcneill Exp $
 
-PKGREVISION= 6
+PKGREVISION= 7
 .include "../../meta-pkgs/libdbusmenu/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/-/-glib-/}
@@ -13,6 +13,8 @@ CONFIGURE_ENV+=		HAVE_VALGRIND_TRUE=
 CONFIGURE_ENV+=		HAVE_VALGRIND_FALSE='\#'
 
 INSTALL_DIRS=	libdbusmenu-glib docs
+
+BUILDLINK_TRANSFORM+=	rm:-Werror
 
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_DEPMETHOD.gobject-introspection+=	build

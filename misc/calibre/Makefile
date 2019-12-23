@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.226 2019/10/19 12:46:06 nia Exp $
+# $NetBSD: Makefile,v 1.228 2019/11/07 12:38:06 wiz Exp $
 
 DISTNAME=	calibre-3.40.1
-PKGREVISION=	7
+PKGREVISION=	8
 CATEGORIES=	misc
 #MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=calibre/}
 MASTER_SITES=	http://download.calibre-ebook.com/${PKGVERSION_NOREV}/
@@ -90,6 +90,7 @@ MAKE_ENV+=		FC_LIB_DIR=${BUILDLINK_PREFIX.fontconfig}/lib
 MAKE_ENV+=		PODOFO_INC_DIR=${BUILDLINK_PREFIX.podofo}/include/podofo
 MAKE_ENV+=		PODOFO_LIB_DIR=${BUILDLINK_PREFIX.podofo}/lib
 MAKE_ENV+=		SIP_BIN=${BUILDLINK_PREFIX.py-sip}/bin/sip${PYVERSSUFFIX}
+MAKE_ENV+=		SIP_DIR=${BUILDLINK_PREFIX.py-sip}/share/sip${PYVERSSUFFIX}
 MAKE_ENV+=		LFLAGS=${LDFLAGS:Q}
 
 # Turn off x bits on non-executable files.

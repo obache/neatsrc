@@ -1,4 +1,4 @@
-# $NetBSD: builtin.mk,v 1.14 2018/06/08 07:51:33 leot Exp $
+# $NetBSD: builtin.mk,v 1.15 2019/11/03 10:39:32 rillig Exp $
 
 BUILTIN_PKG:=	zlib
 
@@ -10,7 +10,7 @@ BUILTIN_FIND_PKGCONFIGS:=	zlib
 .include "../../mk/buildlink3/bsd.builtin.mk"
 
 .if ! empty(MACHINE_PLATFORM:MDarwin-[0-8].*-*)
-USE_BUILTIN.zlib=no
+USE_BUILTIN.zlib=	no
 .endif
 
 ###
@@ -23,7 +23,7 @@ IS_BUILTIN.zlib=	no
 IS_BUILTIN.zlib=	yes
 .  endif
 .endif
-MAKEVARS+=	IS_BUILTIN.zlib
+MAKEVARS+=		IS_BUILTIN.zlib
 
 ###
 ### If there is a built-in implementation, then set BUILTIN_PKG.<pkg> to
@@ -72,7 +72,7 @@ USE_BUILTIN.zlib!=	\
 .    endif
 .  endif  # PREFER.zlib
 .endif
-MAKEVARS+=	USE_BUILTIN.zlib
+MAKEVARS+=		USE_BUILTIN.zlib
 
 # If USE_ZLIB is defined, then force the use of a true zlib
 # implementation.
@@ -94,7 +94,7 @@ CHECK_BUILTIN.zlib?=	no
 BUIDLINK_PREFIX.zlib?=	${BUILTIN_PKGCONFIG_PREFIX.zlib}
 .    endif
 BUILTIN_FAKE_PC_FILES.zlib=	zlib
-FAKE_PC_SRC.zlib=	../../devel/zlib/files/zlib.pc.in
+FAKE_PC_SRC.zlib=		../../devel/zlib/files/zlib.pc.in
 FAKE_PC_SUBST_SED.zlib+=	-e s,@VERSION@,${BUILTIN_VERSION.zlib},g
 FAKE_PC_SUBST_SED.zlib+=	-e s,@prefix@,${BUILDLINK_PREFIX.zlib},g
 FAKE_PC_SUBST_SED.zlib+=	-e s,@exec_prefix@,${BUILDLINK_PREFIX.zlib},g

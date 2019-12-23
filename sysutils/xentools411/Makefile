@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.9 2019/08/30 13:16:27 bouyer Exp $
+# $NetBSD: Makefile,v 1.12 2019/12/13 13:44:21 bouyer Exp $
 #
-VERSION=	4.11.2
+VERSION=	4.11.3
 VERSION_IPXE=	356f6c1b64d7a97746d1816cef8ca22bdd8d0b5d
 DIST_IPXE=	ipxe-git-${VERSION_IPXE}.tar.gz
 
@@ -14,8 +14,8 @@ MASTER_SITES=		https://downloads.xenproject.org/release/xen/${VERSION}/
 DISTFILES=		${DISTNAME}.tar.gz
 
 XEN_EXTFILES=		http://xenbits.xensource.com/xen-extfiles/
-DISTFILES+=			${DIST_IPXE}
-SITES.${DIST_IPXE} +=		${XEN_EXTFILES}
+DISTFILES+=		${DIST_IPXE}
+SITES.${DIST_IPXE} +=	${XEN_EXTFILES}
 
 MAINTAINER=		bouyer@NetBSD.org
 HOMEPAGE=		https://xenproject.org/
@@ -24,9 +24,9 @@ LICENSE=		gnu-gpl-v2
 
 # XXX add version check: Xen requires dev86 >= 0.16.14
 BUILD_DEPENDS+=	dev86-[0-9]*:../../devel/dev86 # needed to build firmware
-#.if !exists(/usr/bin/iasl) # XXX broken with iasl 20171110
+.if !exists(/usr/bin/iasl)
 BUILD_DEPENDS+=	acpica-utils-[0-9]*:../../sysutils/acpica-utils
-#.endif
+.endif
 DEPENDS+=	${PYPKGPREFIX}-curses>=0:../../devel/py-curses
 
 PKG_SYSCONFSUBDIR=	xen
@@ -119,11 +119,11 @@ SUBST_STAGE.proc=	pre-configure
 SUBST_FILES.proc+=	tools/ocaml/xenstored/define.ml
 SUBST_SED.proc=		-e "s|/proc|/kern|g"
 
-SUBST_CLASSES+=         getopt
-SUBST_STAGE.getopt=     pre-configure
-SUBST_MESSAGE.getopt=   Fixing getopt_long_only
-SUBST_FILES.getopt+=    tools/fuzz/x86_instruction_emulator/afl-harness.c
-SUBST_SED.getopt+=      -e 's,getopt_long_only,getopt_long,'
+SUBST_CLASSES+=		getopt
+SUBST_STAGE.getopt=	pre-configure
+SUBST_MESSAGE.getopt=	Fixing getopt_long_only
+SUBST_FILES.getopt+=	tools/fuzz/x86_instruction_emulator/afl-harness.c
+SUBST_SED.getopt+=	-e 's,getopt_long_only,getopt_long,'
 
 OPSYSVARS+=		PROCPATH
 PROCPATH.NetBSD=	/kern

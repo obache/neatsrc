@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.7 2019/07/13 09:18:52 adam Exp $
+$NetBSD: distinfo,v 1.10 2019/12/11 18:47:49 adam Exp $
 
-SHA1 (yarn-v1.17.3.tar.gz) = 60e0b77d079eb78e753bb616f7592b51b6a9adce
-RMD160 (yarn-v1.17.3.tar.gz) = 8682b29457d836a16d5e9e724fb57b95425133c8
-SHA512 (yarn-v1.17.3.tar.gz) = 0a003ca3b9d165a42f99e17f581c76142edff56ff45f9f53d8868b62a80ca3aeb7ef07e9e66304b0cdd85e826d294b299e998324a97f8061619ea4beb0e37b84
-Size (yarn-v1.17.3.tar.gz) = 1240577 bytes
+SHA1 (yarn-v1.21.1.tar.gz) = 1d5da01a9a03492dc4a5957befc1fd12da83d89c
+RMD160 (yarn-v1.21.1.tar.gz) = b216c54b11cbea6a1000a2f6c10abbb05793432f
+SHA512 (yarn-v1.21.1.tar.gz) = 75082626febbe97fcd41cce96e20ed73686c13fa69a460c9033c25462003313bc5cd86ddc4f8f658ee0f70dcab892b767388ec08ca6df14151287528ceddb519
+Size (yarn-v1.21.1.tar.gz) = 1244168 bytes

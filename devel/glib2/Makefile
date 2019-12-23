@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.261 2019/10/08 10:58:17 prlw1 Exp $
+# $NetBSD: Makefile,v 1.265 2019/11/28 09:23:32 bsiegert Exp $
 
 .include "Makefile.common"
 
@@ -11,7 +11,10 @@ MESON_ARGS+=	-Dinstalled_tests=false
 # Avoid linux dependency on libmount-dev
 MESON_ARGS+=	-Dlibmount=false
 
-LDFLAGS.SunOS+=		-lintl -lnsl
+MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/gio:${WRKSRC}/output/glib:${WRKSRC}/output/gobject:${WRKSRC}/output/gmodule
+
+CPPFLAGS.SunOS+=	-D_XOPEN_SOURCE=600 -D__EXTENSIONS__
+LDFLAGS.SunOS+=		-liconv -lintl -lnsl -lsocket
 
 REPLACE_PYTHON+=	gio/gio-querymodules-wrapper.py
 REPLACE_PYTHON+=	gio/tests/gengiotypefuncs.py
@@ -60,11 +63,8 @@ PKGCONFIG_OVERRIDE_STAGE=	post-configure
 TOOL_DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 PYTHON_FOR_BUILD_ONLY=	yes
 
-.include "../../mk/bsd.prefs.mk"
-PLIST_VARS+=	nococoa
-.if ${OPSYS} != "Darwin"
-PLIST.nococoa=	yes
-.endif
+post-extract:
+	${CHMOD} +x ${WRKSRC}/gio/tests/gengiotypefuncs.py
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"

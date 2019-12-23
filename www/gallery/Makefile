@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.17 2019/08/11 13:24:19 wiz Exp $
+# $NetBSD: Makefile,v 1.19 2019/12/09 14:20:56 taca Exp $
 #
 
 DISTNAME=	gallery-1.5.10
-PKGREVISION=	11
+PKGREVISION=	12
 CATEGORIES=	www graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=gallery/}
 
@@ -37,7 +37,7 @@ CONF_FILES_PERMS+=	${EGDIR}/.htaccess ${G1DIR}/.htaccess \
 MESSAGE_SUBST+=	G1DIR=${G1DIR}
 FILES_SUBST+=	G1DIR=${G1DIR}
 
-SUBST_CLASSES+=	paths
+SUBST_CLASSES+=		paths
 SUBST_FILES.paths=	${WRKDIR}/gallery.conf
 SUBST_VARS.paths+=	G1DIR
 SUBST_STAGE.paths=	pre-configure

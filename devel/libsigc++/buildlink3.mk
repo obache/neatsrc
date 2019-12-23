@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.12 2015/10/15 12:24:21 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.13 2019/11/07 13:24:50 wiz Exp $
 
 BUILDLINK_TREE+=	libsigcpp
 
@@ -12,7 +12,7 @@ BUILDLINK_INCDIRS.libsigcpp=		include/sigc++-2.0
 BUILDLINK_INCDIRS.libsigcpp+=		lib/sigc++-2.0/include
 
 # needs C++11
-USE_LANGUAGES+=	c++11
+GCC_REQD+=	4.8
 
 .endif # LIBSIGCPP_BUILDLINK3_MK
 

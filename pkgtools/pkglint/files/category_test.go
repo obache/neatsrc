@@ -33,7 +33,7 @@ func (s *Suite) Test_CheckdirCategory__totally_broken(c *check.C) {
 		"ERROR: ~/archivers/Makefile:3: \"aaaaa\" exists in the Makefile but not in the file system.",
 		"NOTE: ~/archivers/Makefile:3: Empty line expected after this line.",
 		"WARN: ~/archivers/Makefile:4: This line should contain the following text: .include \"../mk/misc/category.mk\"",
-		"ERROR: ~/archivers/Makefile:4: The file should end here.")
+		"ERROR: ~/archivers/Makefile:4: The file must end here.")
 }
 
 func (s *Suite) Test_CheckdirCategory__invalid_comment(c *check.C) {
@@ -208,12 +208,12 @@ func (s *Suite) Test_CheckdirCategory__recursive(c *check.C) {
 	// It is only removed in Pkglint.Main, therefore it stays there even
 	// after the call to CheckdirCategory. This is a bit unrealistic,
 	// but close enough for this test.
-	t.CheckDeepEquals(G.Todo, []string{"."})
+	t.CheckDeepEquals(G.Todo.entries, []CurrPath{"."})
 
 	CheckdirCategory(".")
 
 	t.CheckOutputEmpty()
-	t.CheckDeepEquals(G.Todo, []string{"./package", "."})
+	t.CheckDeepEquals(G.Todo.entries, []CurrPath{"./package", "."})
 }
 
 // Ensures that a directory in the file system can be added at the very
@@ -305,7 +305,7 @@ func (s *Suite) Test_CheckdirCategory__comment_at_the_top(c *check.C) {
 		"ERROR: ~/category/Makefile:3: \"package\" exists in the file system but not in the Makefile.",
 		"NOTE: ~/category/Makefile:2: Empty line expected after this line.",
 		"WARN: ~/category/Makefile:3: This line should contain the following text: .include \"../mk/misc/category.mk\"",
-		"ERROR: ~/category/Makefile:3: The file should end here.")
+		"ERROR: ~/category/Makefile:3: The file must end here.")
 }
 
 func (s *Suite) Test_CheckdirCategory__unexpected_EOF_while_reading_SUBDIR(c *check.C) {

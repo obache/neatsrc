@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.4 2016/07/09 12:47:05 rillig Exp $
+# $NetBSD: options.mk,v 1.5 2019/11/04 21:28:48 rillig Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.libvirt
 
@@ -23,7 +23,7 @@ CONFIGURE_ARGS+=	--with-xenapi=${BUILDLINK_PREFIX.xentools42}
 
 .if !empty(PKG_OPTIONS:Mlibssh2)
 CONFIGURE_ARGS+=	--with-ssh2=${BUILDLINK_PREFIX.libssh2}
-.   include "../../security/libssh2/buildlink3.mk"
+.  include "../../security/libssh2/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-ssh2
 .endif
@@ -35,21 +35,21 @@ CONFIGURE_ARGS+=	--with-storage-lvm
 .if !empty(PKG_OPTIONS:Mhal)
 PLIST.hal= yes
 CONFIGURE_ARGS+=	--with-hal=${BUILDLINK_PREFIX.hal}
-.   include "../../sysutils/hal/buildlink3.mk"
+.  include "../../sysutils/hal/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-hal
 .endif
 
 .if !empty(PKG_OPTIONS:Mdbus)
 CONFIGURE_ARGS+=	--with-dbus=${BUILDLINK_PREFIX.dbus}
-.   include "../../sysutils/dbus/buildlink3.mk"
+.  include "../../sysutils/dbus/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-dbus
 .endif
 
 .if !empty(PKG_OPTIONS:Mavahi)
 CONFIGURE_ARGS+=	--with-avahi=${BUILDLINK_PREFIX.avahi}
-.   include "../../net/avahi/buildlink3.mk"
+.  include "../../net/avahi/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-avahi
 .endif
@@ -58,7 +58,7 @@ CONFIGURE_ARGS+=	--without-avahi
 PLIST.polkit= yes
 CONFIGURE_ARGS+=	--with-polkit
 CONFIGURE_ENV+=		ac_cv_path_PKCHECK_PATH=${BUILDLINK_PREFIX.polkit}/bin/pkcheck
-.   include "../../security/polkit/buildlink3.mk"
+.  include "../../security/polkit/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-polkit
 .endif

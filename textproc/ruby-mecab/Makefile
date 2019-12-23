@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2012/10/25 06:56:57 asau Exp $
+# $NetBSD: Makefile,v 1.9 2019/11/04 21:43:47 rillig Exp $
 
 .include "../../textproc/mecab/Makefile.common"
 
@@ -10,7 +10,7 @@ MASTER_SITES=	-https://drive.google.com/uc?id=0B4y35FiV1wh7VUNlczBWVDZJbE0&expor
 COMMENT=	MeCab ruby module
 LICENSE=	gnu-gpl-v2 OR gnu-lgpl-v2.1 OR modified-bsd
 
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=		c c++
 REPLACE_RUBY+=		test.rb
 USE_RUBY_EXTCONF=	yes
 

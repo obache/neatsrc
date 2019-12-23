@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.840 2019/10/21 19:15:52 adam Exp $
+# $NetBSD: Makefile,v 1.846 2019/12/14 10:22:30 khorben Exp $
 #
 
 COMMENT=	System utilities
@@ -27,7 +27,6 @@ SUBDIR+=	amanda-server
 SUBDIR+=	amlogic-meson-fwtools
 SUBDIR+=	amtterm
 SUBDIR+=	ansible
-SUBDIR+=	ansible2
 SUBDIR+=	apcupsd
 SUBDIR+=	arm-trusted-firmware-fiptool
 SUBDIR+=	arm-trusted-firmware-sun50i-h6
@@ -315,7 +314,6 @@ SUBDIR+=	iwi-firmware
 SUBDIR+=	iwi-firmware3
 SUBDIR+=	iwn-firmware
 SUBDIR+=	k3b
-SUBDIR+=	k4dirstat
 SUBDIR+=	kcron
 SUBDIR+=	kdbusaddons
 SUBDIR+=	kdf
@@ -660,6 +658,7 @@ SUBDIR+=	u-boot-nanopi-r1
 SUBDIR+=	u-boot-odroid-c2
 SUBDIR+=	u-boot-odroid-xu3
 SUBDIR+=	u-boot-orangepi-2
+SUBDIR+=	u-boot-orangepi-lite
 SUBDIR+=	u-boot-orangepi-one
 SUBDIR+=	u-boot-orangepi-plus2e
 SUBDIR+=	u-boot-orangepi-zero
@@ -670,6 +669,7 @@ SUBDIR+=	u-boot-pinebook
 SUBDIR+=	u-boot-pocketchip
 SUBDIR+=	u-boot-rock64
 SUBDIR+=	u-boot-rockpro64
+SUBDIR+=	u-boot-rpi3-32
 SUBDIR+=	u-boot-sopine-baseboard
 SUBDIR+=	u-boot-tinker
 SUBDIR+=	u-boot-zynq-zybo-z7
@@ -690,6 +690,7 @@ SUBDIR+=	vidc-tools
 SUBDIR+=	vifm
 SUBDIR+=	vip
 SUBDIR+=	virt-manager
+SUBDIR+=	virt-what
 SUBDIR+=	virtinst
 SUBDIR+=	vobcopy
 SUBDIR+=	vultr

@@ -1,10 +1,10 @@
-$NetBSD: patch-configure,v 1.5 2019/10/10 15:41:30 prlw1 Exp $
+$NetBSD: patch-configure,v 1.7 2019/12/03 12:55:16 taca Exp $
 
 Portability fixes.
 
---- configure.orig	2019-10-01 17:24:08.000000000 +0000
+--- configure.orig	2019-11-20 04:42:24.000000000 +0000
 +++ configure
-@@ -18269,7 +18269,7 @@ else
+@@ -18272,7 +18272,7 @@ else
  fi
  
  
@@ -13,7 +13,7 @@ Portability fixes.
    BUILD_LIBCLAMAV_ONLY_TRUE=
    BUILD_LIBCLAMAV_ONLY_FALSE='#'
  else
-@@ -18278,8 +18278,8 @@ else
+@@ -18281,8 +18281,8 @@ else
  fi
  
  
@@ -24,7 +24,7 @@ Portability fixes.
    BUILD_CLAMONACC_TRUE=
    BUILD_CLAMONACC_FALSE='#'
  else
-@@ -21224,7 +21224,7 @@ $as_echo "yes" >&6; }
+@@ -21227,7 +21227,7 @@ $as_echo "yes" >&6; }
  	HAVE_LIBCHECK=yes
  fi
  
@@ -33,7 +33,7 @@ Portability fixes.
      CHECK_CPPFLAGS=$CHECK_CFLAGS
  else
  
-@@ -29013,10 +29013,10 @@ fi
+@@ -29918,10 +29918,10 @@ fi
  
  			;;
  		*)
@@ -46,7 +46,7 @@ Portability fixes.
    BUILD_CLAMONACC_TRUE=
    BUILD_CLAMONACC_FALSE='#'
  else
-@@ -29027,7 +29027,7 @@ fi
+@@ -29932,7 +29932,7 @@ fi
                          ;;
  	esac
  else

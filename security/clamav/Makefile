@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.56 2019/10/10 15:43:44 prlw1 Exp $
+# $NetBSD: Makefile,v 1.59 2019/12/03 12:55:16 taca Exp $
 
 .include "Makefile.common"
 
@@ -50,6 +50,11 @@ FILES_SUBST+=	CLAMAV_GROUP=${CLAMAV_GROUP}
 FILES_SUBST+=	CLAMAV_DBDIR=${CLAMAV_DBDIR}
 MESSAGE_SUBST+=	CLAMAV_USER=${CLAMAV_USER}
 
+SUBST_CLASSES+=		vars
+SUBST_STAGE.vars=	pre-configure
+SUBST_FILES.vars=	etc/clamav-milter.conf.sample etc/clamd.conf.sample
+SUBST_VARS.vars=	CLAMAV_DBDIR
+
 RCD_SCRIPTS=	clamd freshclamd
 SMF_METHODS=	${RCD_SCRIPTS}
 SMF_INSTANCES=	${SMF_METHODS}
@@ -63,6 +68,9 @@ PKG_USERS_VARS=		CLAMAV_USER
 EGDIR=		${PREFIX}/share/examples/clamav
 
 CONF_SAMPLES=		clamd.conf freshclam.conf
+
+.include "options.mk"
+
 OWN_DIRS_PERMS=		${CLAMAV_DBDIR} ${CLAMAV_USER} ${CLAMAV_GROUP} 0775
 CONF_FILES=		# empty
 CONF_FILES_PERMS=	# empty
@@ -71,8 +79,6 @@ CONF_FILES+=		${EGDIR}/${i} ${PKG_SYSCONFDIR}/${i}
 .endfor
 
 INSTALLATION_DIRS+=	${EGDIR}
-
-.include "options.mk"
 
 post-install:
 .for i in ${CONF_SAMPLES}

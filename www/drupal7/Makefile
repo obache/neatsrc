@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.59 2019/05/11 06:48:43 taca Exp $
+# $NetBSD: Makefile,v 1.63 2019/12/19 00:38:39 taca Exp $
 
-DISTNAME=	drupal-7.67
+DISTNAME=	drupal-7.69
 PKGNAME=	${PHP_PKG_PREFIX}-${DISTNAME}
 CATEGORIES=	www
 MASTER_SITES=	https://ftp.drupal.org/files/projects/
@@ -12,6 +12,8 @@ LICENSE=	gnu-gpl-v2
 
 DEPENDS+=	${PHP_PKG_PREFIX}-gd>=5.4.0:../../graphics/php-gd
 DEPENDS+=	${PHP_PKG_PREFIX}-json>=5.4.0:../../textproc/php-json
+
+PHP_VERSIONS_ACCEPTED=	56 72 73
 
 NO_BUILD=	YES
 DRUPAL=		share/drupal
@@ -35,8 +37,8 @@ CONF_FILES=	share/examples/drupal/drupal.conf \
 		${DRUPAL}/sites/default/default.settings.php
 
 CONF_FILES_PERMS+=	share/examples/drupal/default.settings.php \
-		${DRUPAL}/sites/default/settings.php \
-		${WWW_USER} ${WWW_GROUP} 0640
+			${DRUPAL}/sites/default/settings.php \
+			${WWW_USER} ${WWW_GROUP} 0640
 
 REPLACE_INTERPRETER+=	php
 REPLACE.php.old=	.*php[^ ]*

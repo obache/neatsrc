@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.219 2019/10/24 18:22:00 adam Exp $
+# $NetBSD: Makefile,v 1.222 2019/12/15 18:35:25 adam Exp $
 
-DISTNAME=	qemu-4.1.0
-PKGREVISION=	2
+DISTNAME=	qemu-4.2.0
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 EXTRACT_SUFX=	.tar.xz
@@ -110,25 +109,26 @@ UE_ARCHS+=		tilegx
 UE_ARCHS+=		x86_64 xtensa xtensaeb
 
 .if ${OPSYS} == "NetBSD"
-USER_EMUL=		i386 x86_64 sparc sparc64
-PLIST.nbd=		yes
+USER_EMUL=			i386 x86_64 sparc sparc64
+PLIST.nbd=			yes
 .elif !empty(OPSYS:M*BSD) || ${OPSYS} == "DragonFly"
-USER_EMUL=		i386 x86_64 sparc sparc64
-PLIST.nbd=		yes
+USER_EMUL=			i386 x86_64 sparc sparc64
+PLIST.nbd=			yes
 .elif ${OPSYS} == "Darwin"
 USER_EMUL=
-CONFIGURE_ARGS+=	--disable-bsd-user
-PLIST.nbd=		yes
+CONFIGURE_ARGS+=		--disable-bsd-user
+PLIST.nbd=			yes
 .elif ${OPSYS} == "Linux"
-USER_EMUL=		${UE_ARCHS}
-PLIST.bridge-helper=	yes
-PLIST.nbd=		yes
-PLIST.ivshmem=		yes
-PLIST.pr-helper=	yes
-PLIST.virtfs-proxy-helper=yes
+USER_EMUL=			${UE_ARCHS}
+PLIST.bridge-helper=		yes
+PLIST.nbd=			yes
+PLIST.ivshmem=			yes
+PLIST.pr-helper=		yes
+PLIST.virtfs-proxy-helper=	yes
 .elif !empty(MACHINE_PLATFORM:MSunOS-5.11-*)
-PLIST.nbd=		yes
-CONFIGURE_ARGS+=	--disable-coroutine-pool
+PLIST.ivshmem=			yes
+PLIST.nbd=			yes
+CONFIGURE_ARGS+=		--disable-coroutine-pool
 .endif
 
 PLIST_VARS+=		${UE_ARCHS} bridge-helper ivshmem nbd pr-helper virtfs-proxy-helper
@@ -140,6 +140,11 @@ PLIST.${pvar}=		yes
 PLIST_SRC=	PLIST ${WRKDIR}/PLIST.STATIC
 
 TEST_TARGET=		check
+
+# Some dependencies aren't correct and this tries to be re-made on install,
+# failing due to configure bugs.
+post-build:
+	${TOUCH} ${WRKSRC}/config-host.mak
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/Makefile.multinode-NetBSD \

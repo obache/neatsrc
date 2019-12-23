@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.33 2019/10/07 19:28:29 adam Exp $
+# $NetBSD: Makefile.common,v 1.36 2019/11/19 05:54:52 adam Exp $
 #
 # This Makefile fragment is included by all PostgreSQL packages built from
 # the main sources of the PostgreSQL distribution except jdbc-postgresql.
@@ -16,7 +16,7 @@
 # used by databases/postgresql94-pltcl/Makefile
 # used by databases/postgresql94-server/Makefile
 
-DISTNAME=	postgresql-9.4.24
+DISTNAME=	postgresql-9.4.25
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_PGSQL:=source/v${PKGVERSION_NOREV}/}
 EXTRACT_SUFX=	.tar.bz2
@@ -84,14 +84,14 @@ CONFIGURE_ENV+=		pgac_cv_prog_cc_ldflags__Wl___as_needed=no
 .endif
 
 # configure fails on OpenBSD and MirBSD if thread safety is enabled.
-CONFIGURE_ARGS.MirBSD+=	--disable-thread-safety
-CONFIGURE_ARGS.OpenBSD+=--disable-thread-safety
+CONFIGURE_ARGS.MirBSD+=		--disable-thread-safety
+CONFIGURE_ARGS.OpenBSD+=	--disable-thread-safety
 
 # PGSQL_BLCKSZ is the size in bytes of a PostgreSQL disk page or block.
 # This also limits the size of a tuple.  The valid values are powers
 # of 2 up to 32768, and the default size is 8196.  Please don't change
 # this value unless you know what you are doing.
-BUILD_DEFS+=	PGSQL_BLCKSZ
+BUILD_DEFS+=		PGSQL_BLCKSZ
 .if defined(PGSQL_BLCKSZ)
 CONFIGURE_ARGS+=	--with-blocksize=${PGSQL_BLCKSZ}
 .endif
@@ -106,6 +106,7 @@ USE_LIBLTDL?=		yes
 .endif
 USE_LIBLTDL?=		no
 
+BROKEN_GETTEXT_DETECTION=	yes
 .include "../../devel/gettext-lib/buildlink3.mk"
 LIBS.SunOS+=		-lintl
 .include "../../devel/zlib/buildlink3.mk"

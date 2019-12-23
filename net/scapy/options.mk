@@ -1,16 +1,26 @@
-# $NetBSD: options.mk,v 1.10 2019/09/02 13:19:50 adam Exp $
+# $NetBSD: options.mk,v 1.12 2019/11/04 05:48:26 gutteridge Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.scapy
 
-PKG_SUPPORTED_OPTIONS=	scapy-crypto gnuplot scapy-pyx
+PKG_SUPPORTED_OPTIONS=	libpcap scapy-crypto gnuplot scapy-pyx
+PKG_SUGGESTED_OPTIONS=	libpcap
 
 .include "../../mk/bsd.options.mk"
+
+###
+### Ensure libpcap is available in the environment. (In many cases, it
+### should be part of a base installation. It is most essential for
+### SunOS support, where it's depended upon more than for other OSes.)
+###
+.if !empty(PKG_OPTIONS:Mlibpcap)
+.include "../../net/libpcap/buildlink3.mk"
+.endif
 
 ###
 ### Add in crypto support for WEP operations
 ###
 .if !empty(PKG_OPTIONS:Mscapy-crypto)
-DEPENDS+=	${PYPKGPREFIX}-amkCrypto-[0-9]*:../../security/py-amkCrypto
+DEPENDS+=	${PYPKGPREFIX}-cryptography-[0-9]*:../../security/py-cryptography
 .endif
 
 ###
@@ -18,7 +28,7 @@ DEPENDS+=	${PYPKGPREFIX}-amkCrypto-[0-9]*:../../security/py-amkCrypto
 ###
 .if !empty(PKG_OPTIONS:Mgnuplot)
 DEPENDS+=	${PYPKGPREFIX}-gnuplot-[0-9]*:../../graphics/py-gnuplot
-PYTHON_VERSIONS_ACCEPTED=	 27 # py-gnuplot
+PYTHON_VERSIONS_ACCEPTED= 27 # py-gnuplot
 .endif
 
 ###

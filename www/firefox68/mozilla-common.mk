@@ -1,20 +1,22 @@
-# $NetBSD: mozilla-common.mk,v 1.1 2019/09/21 07:31:43 ryoon Exp $
+# $NetBSD: mozilla-common.mk,v 1.5 2019/12/08 20:09:41 nia Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
 # used by www/firefox/Makefile
+
+GCC_REQD+=		6.1
 
 .include "../../mk/bsd.prefs.mk"
 
 # Python 2.7 and Python 3.6 or later are required simultaneously.
 PYTHON_VERSIONS_ACCEPTED=	27
 PYTHON_FOR_BUILD_ONLY=		tool
-.if !empty(PYTHON_VERSION_DEFAULT:M37) || !empty(PYTHON_VERSION_DEFAULT:M36)
-TOOL_DEPENDS+=		python${PYTHON_VERSION_DEFAULT}-[0-9]*:../../lang/python${PYTHON_VERSION_DEFAULT}
-ALL_ENV+=	PYTHON3=${LOCALBASE}/bin/python${PYTHON_VERSION_DEFAULT:S/3/3./}
+.if !empty(PYTHON_VERSION_DEFAULT:M3[6789])
+TOOL_DEPENDS+=			python${PYTHON_VERSION_DEFAULT}-[0-9]*:../../lang/python${PYTHON_VERSION_DEFAULT}
+ALL_ENV+=			PYTHON3=${LOCALBASE}/bin/python${PYTHON_VERSION_DEFAULT:S/3/3./}
 .else
-TOOL_DEPENDS+=		python37-[0-9]*:../../lang/python37
-ALL_ENV+=	PYTHON3=${LOCALBASE}/bin/python3.7
+TOOL_DEPENDS+=			python37-[0-9]*:../../lang/python37
+ALL_ENV+=			PYTHON3=${LOCALBASE}/bin/python3.7
 .endif
 
 HAS_CONFIGURE=		yes
@@ -51,7 +53,6 @@ test:
 TOOLS_PLATFORM.tar=	${TOOLS_PATH.bsdtar}
 USE_TOOLS+=		bsdtar
 .endif
-GCC_REQD+=		6.1
 .if !empty(MACHINE_PLATFORM:MNetBSD-[0-7]**-*) || \
 	!empty(MACHINE_PLATFORM:MNetBSD-8.[0-8]*-*)
 USE_PKGSRC_GCC_RUNTIME=	yes
@@ -65,13 +66,13 @@ CXXFLAGS+=		-mstackrealign
 
 CXXFLAGS+=		-D__HAVE_INLINE___ISINF
 
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}security/nss/tests/libpkix/libpkix.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}security/nss/tests/multinit/multinit.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}js/src/tests/update-test262.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}intl/icu/source/configure
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}browser/components/loop/run-all-loop-tests.sh
-CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}browser/extensions/loop/run-all-loop-tests.sh
-#CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}modules/pdfium/update.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}security/nss/tests/libpkix/libpkix.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}security/nss/tests/multinit/multinit.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}js/src/tests/update-test262.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}intl/icu/source/configure
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}browser/components/loop/run-all-loop-tests.sh
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}browser/extensions/loop/run-all-loop-tests.sh
+#CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}modules/pdfium/update.sh
 
 CONFIGURE_ARGS+=	--enable-default-toolkit=cairo-gtk3
 CONFIGURE_ARGS+=	--enable-release
@@ -162,6 +163,13 @@ PLIST.sps=	yes
 PLIST.tremor=	yes
 .else
 PLIST.vorbis=	yes
+.endif
+
+.include "../../mk/pkg-build-options.mk"
+
+PLIST_VARS+=	wayland
+.if !empty(PKG_BUILD_OPTIONS.gtk3:Mwayland)
+PLIST.wayland=	yes
 .endif
 
 # See ${WRKSRC}/mozglue/build/moz.build: libmozglue is built and

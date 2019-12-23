@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2019/07/21 22:25:08 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2019/10/28 09:46:18 kamil Exp $
 #
 
 PKGNAME=		fcitx-4.2.9.7

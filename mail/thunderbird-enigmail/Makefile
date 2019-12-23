@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.12 2019/10/10 13:38:05 wiz Exp $
+# $NetBSD: Makefile,v 1.14 2019/11/06 15:45:07 wiz Exp $
 
-DISTNAME=	enigmail-2.1.2
+DISTNAME=	enigmail-2.1.3
 PKGNAME=	thunderbird-${DISTNAME}
 CATEGORIES=	mail security
 MASTER_SITES=	http://www.enigmail.net/download/source/
@@ -28,15 +28,15 @@ DEPENDS+=		pinentry-gtk2-[0-9]*:../../security/pinentry-gtk2
 REPLACE_PERL+=	util/fixlang.pl
 REPLACE_PERL+=	util/make-lang-xpi.pl
 
-PYTHON_VERSIONS_ACCEPTED=	 27 # as of 2.1.2
-REPLACE_PYTHON+=	util/checkFiles.py
-REPLACE_PYTHON+=	util/run-tests.py
+PYTHON_VERSIONS_ACCEPTED=	27 # as of 2.1.2
+REPLACE_PYTHON+=		util/checkFiles.py
+REPLACE_PYTHON+=		util/run-tests.py
 
 WRKSRC=		${WRKDIR}/enigmail
 GNU_CONFIGURE=	yes
 
 ENIGMAILXPI=	enigmail-${PKGVERSION_NOREV}.xpi
-XPIFILE=	${WRKSRC}/build/${ENIGMAILXPI}
+XPIFILE=	${WRKSRC}/build-tb/${ENIGMAILXPI}
 
 # Build instructions: https://www.enigmail.net/download/build_instructions.php
 # Installation of extensions: http://kb.mozillazine.org/Installing_extensions

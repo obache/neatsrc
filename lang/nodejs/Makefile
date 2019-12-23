@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.163 2019/08/16 15:18:16 adam Exp $
+# $NetBSD: Makefile,v 1.166 2019/12/13 06:26:07 adam Exp $
 
-DISTNAME=	node-v10.16.3
+DISTNAME=	node-v13.3.0
 
 USE_LANGUAGES=	c gnu++14
 
@@ -9,9 +9,6 @@ GCC_REQD+=	4.9.4
 
 # Stated by the changelog
 BUILDLINK_API_DEPENDS.libuv+=	libuv>=1.23
-
-# Requires http_parser_set_max_header_size
-BUILDLINK_API_DEPENDS.http-parser+=	http-parser>=2.9.0
 
 .include "../../mk/bsd.prefs.mk"
 

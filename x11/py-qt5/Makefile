@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.47 2019/09/18 14:17:21 ryoon Exp $
+# $NetBSD: Makefile,v 1.49 2019/11/18 19:44:51 adam Exp $
 
-DISTNAME=	PyQt5_gpl-5.13.1
-PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/PyQt5_gpl/qt5/}
-PKGREVISION=	1
+DISTNAME=	PyQt5-5.13.2
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/PyQt5/qt5/}
 CATEGORIES=	x11 python
 MASTER_SITES=	https://www.riverbankcomputing.com/static/Downloads/PyQt5/${PKGVERSION_NOREV}/
 
@@ -21,6 +20,7 @@ USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake pkg-config
 CONFIGURE_ARGS+=	-b ${PREFIX}/bin
 CONFIGURE_ARGS+=	-d ${PREFIX}/${PYSITELIB}
+CONFIGURE_ARGS+=	--sipdir ${PREFIX}/share/sip${PYVERSSUFFIX}/PyQt5
 CONFIGURE_ARGS+=	-q ${QTDIR}/bin/qmake
 CONFIGURE_ARGS+=	--confirm-license
 CONFIGURE_ARGS+=	--qsci-api

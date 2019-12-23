@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.27 2019/04/25 07:33:28 maya Exp $
+# $NetBSD: Makefile,v 1.29 2019/12/19 22:26:02 joerg Exp $
 #
 
 DISTNAME=	varnish-3.0.6
@@ -46,8 +46,8 @@ REPLACE_PYTHON+=	lib/libvmod_std/vmod.py
 
 .include "../../lang/python/pyversion.mk"
 BUILD_DEPENDS+=		${PYPKGPREFIX}-docutils>=0.12:../../textproc/py-docutils
-CONFIGURE_ARGS+=	--with-rst2man=${PREFIX}/bin/rst2man-${PYVERSSUFFIX}.py
-CONFIGURE_ARGS+=	--with-rst2html=${PREFIX}/bin/rst2html-${PYVERSSUFFIX}.py
+CONFIGURE_ARGS+=	--with-rst2man=${PREFIX}/bin/rst2man-${PYVERSSUFFIX}
+CONFIGURE_ARGS+=	--with-rst2html=${PREFIX}/bin/rst2html-${PYVERSSUFFIX}
 
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../mk/bsd.prefs.mk"
@@ -55,7 +55,7 @@ CONFIGURE_ARGS+=	--with-rst2html=${PREFIX}/bin/rst2html-${PYVERSSUFFIX}.py
 .if ${OPSYS} == "SunOS"
 # Explicitly disable epoll on illumos, provided for Linux compat only.
 CONFIGURE_ENV+=	ac_cv_func_epoll_ctl=no
-.  if ${PKGSRC_COMPILER} == "sunpro"
+.  if ${PKGSRC_COMPILER:Msunpro}
 CONFIGURE_ENV+=	VCC_CC="cc ${_COMPILER_ABI_FLAG.${ABI}} -Kpic -G -o %o %s"
 .  else
 CONFIGURE_ENV+=	VCC_CC="gcc ${_COMPILER_ABI_FLAG.${ABI}} -fpic -shared -o %o %s"

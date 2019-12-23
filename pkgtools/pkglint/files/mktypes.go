@@ -1,13 +1,17 @@
 package pkglint
 
-import "strings"
+import (
+	"netbsd.org/pkglint/regex"
+	"regexp"
+	"strings"
+)
 
 // MkToken represents a contiguous string from a Makefile.
 // It is either a literal string or a variable use.
 //
 // Example: /usr/share/${PKGNAME}/data consists of 3 tokens:
 //  1. MkToken{Text: "/usr/share/"}
-//  2. MkToken{Text: "${PKGNAME}", Varuse: &MkVarUse{varname: "PKGNAME"}}
+//  2. MkToken{Text: "${PKGNAME}", Varuse: NewMkVarUse("PKGNAME")}
 //  3. MkToken{Text: "/data"}
 //
 type MkToken struct {
@@ -29,6 +33,10 @@ type MkVarUse struct {
 	modifiers []MkVarUseModifier // E.g. "Q", "S/from/to/"
 }
 
+func NewMkVarUse(varname string, modifiers ...MkVarUseModifier) *MkVarUse {
+	return &MkVarUse{varname, modifiers}
+}
+
 func (vu *MkVarUse) String() string { return sprintf("${%s%s}", vu.varname, vu.Mod()) }
 
 type MkVarUseModifier struct {
@@ -43,7 +51,7 @@ func (m MkVarUseModifier) IsSuffixSubst() bool {
 }
 
 func (m MkVarUseModifier) MatchSubst() (ok bool, regex bool, from string, to string, options string) {
-	p := NewMkParser(nil, m.Text)
+	p := NewMkLexer(m.Text, nil)
 	return p.varUseModifierSubst('}')
 }
 
@@ -53,8 +61,9 @@ func (m MkVarUseModifier) MatchSubst() (ok bool, regex bool, from string, to str
 //  MkVarUseModifier{"S,name,file,g"}.Subst("distname-1.0") => "distfile-1.0"
 func (m MkVarUseModifier) Subst(str string) (string, bool) {
 	// XXX: The call to MatchSubst is usually redundant because MatchSubst
-	// is typically called directly before calling Subst.
-	ok, regex, from, to, options := m.MatchSubst()
+	//  is typically called directly before calling Subst.
+	//  This comes from a time when there was no boolean return value.
+	ok, isRegex, from, to, options := m.MatchSubst()
 	if !ok {
 		return "", false
 	}
@@ -69,33 +78,55 @@ func (m MkVarUseModifier) Subst(str string) (string, bool) {
 		from = from[:len(from)-1]
 	}
 
-	if regex && matches(from, `^[\w-]+$`) && matches(to, `^[^&$\\]*$`) {
+	if isRegex && matches(from, `^[\w-]+$`) && matches(to, `^[^&$\\]*$`) {
 		// The "from" pattern is so simple that it doesn't matter whether
 		// the modifier is :S or :C, therefore treat it like the simpler :S.
-		regex = false
+		isRegex = false
 	}
 
-	if regex {
-		// TODO: Maybe implement regular expression substitutions later.
+	if isRegex {
+		// XXX: Maybe implement regular expression substitutions later.
 		return "", false
 	}
 
-	result := mkopSubst(str, leftAnchor, from, rightAnchor, to, options)
-	if trace.Tracing && result != str {
+	ok, result := m.EvalSubst(str, leftAnchor, from, rightAnchor, to, options)
+	if trace.Tracing && ok && result != str {
 		trace.Stepf("Subst: %q %q => %q", str, m.Text, result)
 	}
-	return result, true
+	return result, ok
+}
+
+// mkopSubst evaluates make(1)'s :S substitution operator.
+// It does not resolve any variables.
+func (MkVarUseModifier) EvalSubst(s string, left bool, from string, right bool, to string, flags string) (ok bool, result string) {
+
+	if containsVarRefLong(from) || containsVarRefLong(to) {
+		return false, ""
+	}
+
+	re := regex.Pattern(condStr(left, "^", "") + regexp.QuoteMeta(from) + condStr(right, "$", ""))
+	done := false
+	gflag := contains(flags, "g")
+	return true, replaceAllFunc(s, re, func(match string) string {
+		if gflag || !done {
+			done = !gflag
+			return to
+		}
+		return match
+	})
 }
 
 // MatchMatch tries to match the modifier to a :M or a :N pattern matching.
 // Examples:
-//  :Mpattern   => true, true, "pattern"
-//  :Npattern   => true, false, "pattern"
+//  :Mpattern   => true,  true,  "pattern", true
+//  :M*         => true,  true,  "*",       false
+//  :M${VAR}    => true,  true,  "${VAR}",  false
+//  :Npattern   => true,  false, "pattern", true
 //  :X          => false
 func (m MkVarUseModifier) MatchMatch() (ok bool, positive bool, pattern string, exact bool) {
 	if hasPrefix(m.Text, "M") || hasPrefix(m.Text, "N") {
 		// See devel/bmake/files/str.c:^Str_Match
-		exact := !strings.ContainsAny(m.Text[1:], "*?[\\")
+		exact := !strings.ContainsAny(m.Text[1:], "*?[\\$")
 		return true, m.Text[0] == 'M', m.Text[1:], exact
 	}
 	return false, false, "", false
@@ -103,12 +134,13 @@ func (m MkVarUseModifier) MatchMatch() (ok bool, positive bool, pattern string, 
 
 func (m MkVarUseModifier) IsToLower() bool { return m.Text == "tl" }
 
-// ChangesWords returns true if applying this modifier to a list variable
-// may change the number of words in the list, or their boundaries.
-func (m MkVarUseModifier) ChangesWords() bool {
+// ChangesList returns true if applying this modifier to a variable
+// may change the expression from a list type to a non-list type
+// or vice versa.
+func (m MkVarUseModifier) ChangesList() bool {
 	text := m.Text
 
-	// See MkParser.VarUseModifiers for the meaning of these modifiers.
+	// See MkParser.varUseModifier for the meaning of these modifiers.
 	switch text[0] {
 
 	case 'E', 'H', 'M', 'N', 'O', 'R', 'T':

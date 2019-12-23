@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.38 2019/09/20 07:45:21 triaxx Exp $
+# $NetBSD: Makefile,v 1.42 2019/12/12 08:12:27 hauke Exp $
 
 DISTNAME=	davical-${DAVICAL_VERSION}
 PKGNAME=	${PHP_PKG_PREFIX}-davical-${DAVICAL_VERSION}
-PKGREVISION=	2
+#PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	-https://gitlab.com/davical-project/davical/repository/archive.tar.gz?ref=${GITLAB_TAG}
 
@@ -11,9 +11,9 @@ HOMEPAGE=	https://www.davical.org/
 COMMENT=	Simple CalDAV server using a PostgreSQL backend
 LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3
 
-DAVICAL_VERSION=1.1.8
-GITLAB_TAG=	r${DAVICAL_VERSION}
-GITLAB_REV=	4af9595f4d0530268ac1289ba4ab2adb4890802e
+DAVICAL_VERSION=	1.1.9.2
+GITLAB_TAG=		r${DAVICAL_VERSION}
+GITLAB_REV=		699d0778345e6b054e885efdd7348b8c676ba83f
 
 DAVICALDIR=	${PREFIX}/share/davical
 EGDIR=		${PREFIX}/share/examples/davical
@@ -74,12 +74,12 @@ REPLACE_FILES.php+=	scripts/refresh-alarms.php
 REPLACE_FILES.php+=	scripts/sync-remote-caldav.php
 REPLACE_FILES.php+=	scripts/tz-update.php
 
-SUBST_CLASSES+=		conf-path
-SUBST_STAGE.conf-path=	pre-configure
-SUBST_VARS.conf-path+=	PKG_SYSCONFDIR
-SUBST_FILES.conf-path=	inc/always.php.in dba/update-davical-database
-SUBST_FILES.conf-path+=	inc/davical_configuration_missing.php
-SUBST_MESSAGE.conf-path=Fixing configuration path.
+SUBST_CLASSES+=			conf-path
+SUBST_STAGE.conf-path=		pre-configure
+SUBST_VARS.conf-path+=		PKG_SYSCONFDIR
+SUBST_FILES.conf-path=		inc/always.php.in dba/update-davical-database
+SUBST_FILES.conf-path+=		inc/davical_configuration_missing.php
+SUBST_MESSAGE.conf-path=	Fixing configuration path.
 
 # See ../../devel/php-libawl/Makefile.common for the LIBAWLDIR value
 SUBST_CLASSES+=		inc-path
@@ -103,6 +103,12 @@ SUBST_VARS.files+=	DAVICALDIR
 SUBST_FILES.files=	davical.conf
 SUBST_MESSAGE.files=	Fixing DAViCal configuration file for Apache.
 
+SUBST_CLASSES+=		postgres
+SUBST_STAGE.postgres=	pre-configure
+SUBST_VARS.postgres=	PGUSER
+SUBST_FILES.postgres=	dba/create-database.sh
+SUBST_MESSAGE.postgres=	Fixing PostgreSQL variables.
+
 pre-patch:
 	${MV} ${WRKDIR}/davical-${GITLAB_TAG}-${GITLAB_REV} ${WRKSRC}
 	${CP} ${FILESDIR}/davical.conf ${WRKSRC}/davical.conf
@@ -118,15 +124,15 @@ do-install:
 
 	cd ${WRKSRC}/docs && pax -rwpam . ${DESTDIR}${DOCDIR}
 
-.	for f in COPYING CREDITS ChangeLog INSTALL README TODO VERSION
-		cd ${WRKSRC} && \
-		${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${DOCDIR}
-.	endfor
+.for f in COPYING CREDITS ChangeLog INSTALL README TODO VERSION
+	cd ${WRKSRC} && \
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${DOCDIR}
+.endfor
 
-.	for d in ${PAXDIRS}
-		${INSTALL_DATA_DIR} ${DESTDIR}${DAVICALDIR}/${d}
-		cd ${WRKSRC}/${d} && pax -rwpam . ${DESTDIR}${DAVICALDIR}/${d}
-.	endfor
+.for d in ${PAXDIRS}
+	${INSTALL_DATA_DIR} ${DESTDIR}${DAVICALDIR}/${d}
+	cd ${WRKSRC}/${d} && pax -rwpam . ${DESTDIR}${DAVICALDIR}/${d}
+.endfor
 
 	cd ${WRKSRC}/config && for f in *; do				\
 		${INSTALL_DATA} $$f ${DESTDIR}${EGDIR}/config/$$f;	\

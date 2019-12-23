@@ -1,7 +1,7 @@
-# $NetBSD: options.mk,v 1.6 2019/08/10 11:41:29 ryoon Exp $
+# $NetBSD: options.mk,v 1.8 2019/11/03 17:04:23 rillig Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.libreoffice
-PKG_SUPPORTED_OPTIONS=	java debug gtk3 cups # kde4 
+PKG_SUPPORTED_OPTIONS=	java debug gtk3 cups
 
 .include "../../mk/bsd.prefs.mk"
 .if ${OPSYS} == "NetBSD" || ${OPSYS} == "SunOS"
@@ -10,7 +10,7 @@ PKG_SUGGESTED_OPTIONS+=	java
 
 .include "../../mk/bsd.options.mk"
 
-PLIST_VARS+=	java gtk3 cups # kde4 
+PLIST_VARS+=	java gtk3 cups
 
 .if !empty(PKG_OPTIONS:Mjava)
 .include "../../mk/java-env.mk"
@@ -20,7 +20,7 @@ USE_JAVA2=		yes
 BUILD_DEPENDS+=	apache-ant-[0-9]*:../../devel/apache-ant
 CONFIGURE_ARGS+=	--with-ant-home=${LOCALBASE}
 
-DEPENDS+=	hsqldb18-[0-9]*:../../databases/hsqldb18
+DEPENDS+=		hsqldb18-[0-9]*:../../databases/hsqldb18
 CONFIGURE_ARGS+=	--with-hsqldb-jar=${LOCALBASE}/lib/java/hsqldb18/hsqldb.jar
 CONFIGURE_ARGS+=	--enable-ext-wiki-publisher \
 			--with-java \
@@ -50,15 +50,6 @@ PLIST.gtk3=		yes
 .else
 CONFIGURE_ARGS+=	--disable-gtk3
 .endif
-
-#.if !empty(PKG_OPTIONS:Mkde4)
-#CONFIGURE_ARGS+=	--enable-kde4
-#CONFIGURE_ENV+=		KDE4DIR="${LOCALBASE}"
-#PLIST.kde4=		yes
-#.include "../../x11/kdelibs4/buildlink3.mk"
-#.else
-#CONFIGURE_ARGS+=	--disable-kde4
-#.endif
 
 .if empty(PKG_OPTIONS:Mcups)
 CONFIGURE_ARGS+=	--disable-cups

@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.5 2019/09/17 08:30:51 adam Exp $
+$NetBSD: distinfo,v 1.8 2019/12/11 10:27:31 adam Exp $
 
-SHA1 (importlib_metadata-0.23.tar.gz) = ff2ba256e0d7180669248b41d5bcb11dcf253de6
-RMD160 (importlib_metadata-0.23.tar.gz) = a639e5712fbea87d1441d172adf1276bd6a7f78c
-SHA512 (importlib_metadata-0.23.tar.gz) = 56594dfd67733842d83547770a09e12b4e4e3c000b7c9743206e13e4629906bb7271065e03c387f5114bac7f673fc17594d2ef90af23cd34b7ededecaf3fd47a
-Size (importlib_metadata-0.23.tar.gz) = 25172 bytes
+SHA1 (importlib_metadata-1.3.0.tar.gz) = 48629b4616edb014d698bfbbf2ce11ce4b4f63bc
+RMD160 (importlib_metadata-1.3.0.tar.gz) = 63a0d29fd5e6272a8e85da8c321eacc4fc848650
+SHA512 (importlib_metadata-1.3.0.tar.gz) = 45d09cbbbceee80a4769f2d374a3c4b511fda56a100ad1a6fc7cedf9a0cd251600c960430c608c7bcd60bdd9a0117f83025ed7b05f9f6a53edc791d128e8b0d7
+Size (importlib_metadata-1.3.0.tar.gz) = 26323 bytes

@@ -1,17 +1,20 @@
-# $NetBSD: version.mk,v 1.70 2019/10/18 14:48:29 bsiegert Exp $
+# $NetBSD: version.mk,v 1.75 2019/12/13 07:39:33 bsiegert Exp $
 
-CTF_SUPPORTED=		no
-SSP_SUPPORTED=		no
-STRIP_DEBUG_SUPPORTED=	no
+#
+# If bsd.prefs.mk is included before go-package.mk in a package, then this
+# file must be included directly in the package prior to bsd.prefs.mk.
+#
+.include "go-vars.mk"
 
-.include "../../mk/bsd.prefs.mk"
-
-GO112_VERSION=	1.12.12
+GO113_VERSION=	1.13.5
+GO112_VERSION=	1.12.14
 GO111_VERSION=	1.11.13
 GO110_VERSION=	1.10.8
 GO19_VERSION=	1.9.7
 GO14_VERSION=	1.4.3
 GO_VERSION=	${GO110_VERSION}
+
+.include "../../mk/bsd.prefs.mk"
 
 .if ${OPSYS} == "NetBSD" && ${OS_VERSION:M6.*}
 # 1.9 is the last Go version to support NetBSD 6
@@ -38,22 +41,25 @@ GO_PACKAGE_DEP=		go${GOVERSSUFFIX}-${GO${GOVERSSUFFIX}_VERSION}*:../../lang/go${
 ONLY_FOR_PLATFORM=	*-*-i386 *-*-x86_64 *-*-earmv[67]hf
 NOT_FOR_PLATFORM=	SunOS-*-i386
 .if ${MACHINE_ARCH} == "i386"
-GOARCH=		386
-GOCHAR=		8
+GOARCH=			386
+GOCHAR=			8
 .elif ${MACHINE_ARCH} == "x86_64"
-GOARCH=		amd64
-GOCHAR=		6
+GOARCH=			amd64
+GOCHAR=			6
 .elif ${MACHINE_ARCH} == "earmv6hf" || ${MACHINE_ARCH} == "earmv7hf"
-GOARCH=		arm
-GOCHAR=		5
+GOARCH=			arm
+GOCHAR=			5
 .endif
 .if ${MACHINE_ARCH} == "earmv6hf"
-GOOPT=		GOARM=6
+GOOPT=			GOARM=6
 .elif ${MACHINE_ARCH} == "earmv7hf"
-GOOPT=		GOARM=7
+GOOPT=			GOARM=7
 .endif
-GO_PLATFORM=	${LOWER_OPSYS}_${GOARCH}
-PLIST_SUBST+=	GO_PLATFORM=${GO_PLATFORM:Q} GOARCH=${GOARCH:Q}
-PLIST_SUBST+=	GOCHAR=${GOCHAR:Q}
+GO_PLATFORM=		${LOWER_OPSYS}_${GOARCH}
+PLIST_SUBST+=		GO_PLATFORM=${GO_PLATFORM:Q} GOARCH=${GOARCH:Q}
+PLIST_SUBST+=		GOCHAR=${GOCHAR:Q}
 
 PRINT_PLIST_AWK+=	{ sub("/${GO_PLATFORM}/", "/$${GO_PLATFORM}/") }
+
+TOOLS_CREATE+=		go
+TOOLS_PATH.go=		${GO}

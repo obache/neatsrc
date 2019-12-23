@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.19 2019/08/31 14:18:41 wen Exp $
+# $NetBSD: Makefile,v 1.21 2019/11/19 12:10:06 mef Exp $
 
-DISTNAME=	HTTP-OAI-4.09
+DISTNAME=	HTTP-OAI-4.10
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=HTTP/}
@@ -15,8 +15,8 @@ DEPENDS+=	p5-XML-SAX>=0.96:../../textproc/p5-XML-SAX
 DEPENDS+=	p5-URI-[0-9]*:../../www/p5-URI
 DEPENDS+=	p5-libwww-[0-9]*:../../www/p5-libwww
 
-USE_LANGUAGES=	# empty
-PERL5_PACKLIST=	auto/HTTP/OAI/.packlist
+USE_LANGUAGES=		# empty
+PERL5_PACKLIST=		auto/HTTP/OAI/.packlist
 PERL5_MODULE_TYPE=	Module::Build::Tiny
 
 .include "../../lang/perl5/module.mk"

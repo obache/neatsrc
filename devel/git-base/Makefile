@@ -1,6 +1,5 @@
-# $NetBSD: Makefile,v 1.68 2019/08/22 12:23:00 ryoon Exp $
+# $NetBSD: Makefile,v 1.73 2019/12/11 14:54:25 leot Exp $
 
-PKGREVISION= 1
 .include "../../devel/git/Makefile.common"
 
 PKGNAME=	git-base-${GIT_VERSION}
@@ -16,7 +15,7 @@ DEPENDS+=	p5-Net-SMTP-SSL>=1.01:../../mail/p5-Net-SMTP-SSL
 DEPENDS+=	p5-Authen-SASL>=1.0:../../security/p5-Authen-SASL
 
 USE_LANGUAGES=		c99
-USE_TOOLS+=		perl:run sh:run msgfmt
+USE_TOOLS+=		perl:run sh:run msgfmt bash:test
 
 REPLACE_PERL+=		*.perl */*.perl */*/*.perl
 REPLACE_PERL+=		contrib/hooks/update-paranoid
@@ -80,6 +79,12 @@ SUBST_STAGE.fix-cd-P=	pre-build
 SUBST_SED.fix-cd-P=	-e "s/cd -P/cd/g"
 .endif
 
+SUBST_CLASSES+=			test-shell
+SUBST_FILES.test-shell=		t/Makefile
+SUBST_MESSAGE.test-shell=	Use bash as TEST_SHELL_PATH
+SUBST_STAGE.test-shell=		pre-build
+SUBST_SED.test-shell=		-e '/^TEST_SHELL_PATH/ s;$$(SHELL_PATH);${TOOLS_BASH};'
+
 LDFLAGS.SunOS+=		-lintl -lnsl
 
 .include "../../mk/compiler.mk"
@@ -103,6 +108,7 @@ post-install:
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
+BUILDLINK_API_DEPENDS.pcre2?=	pcre2>=10.34
 .include "../../devel/pcre2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/perl5/buildlink3.mk"

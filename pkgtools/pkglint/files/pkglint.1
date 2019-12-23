@@ -1,4 +1,4 @@
-.\"	$NetBSD: pkglint.1,v 1.56 2019/06/30 20:56:19 rillig Exp $
+.\"	$NetBSD: pkglint.1,v 1.63 2019/12/13 01:39:23 rillig Exp $
 .\"	From FreeBSD: portlint.1,v 1.8 1997/11/25 14:53:14 itojun Exp
 .\"
 .\" Copyright (c) 1997 by Jun-ichiro Itoh <itojun@itojun.org>.
@@ -8,7 +8,7 @@
 .\" Thomas Klausner <wiz@NetBSD.org>, 2012.
 .\" Roland Illig <rillig@NetBSD.org>, 2015-2019.
 .\"
-.Dd June 17, 2019
+.Dd November 30, 2019
 .Dt PKGLINT 1
 .Os
 .Sh NAME
@@ -105,10 +105,6 @@ Warn if a variable is used or modified outside its specified scope.
 .It Cm [no-]quoting
 Warn for possibly invalid quoting of make variables in shell programs
 and shell variables themselves.
-.It Cm [no-]space
-Emit notes for inconsistent use of whitespace.
-.It Cm [no-]style
-Warn for stylistic issues that don't affect the build process.
 .El
 .\" =======================================================================
 .Ss Other arguments

@@ -1,0 +1,4 @@
+pst-utils contains a set of tools to read and convert Outlook PST
+(Personal Folders) files. The main tools are:
+ * readpst - convert PST files to mbox and other formats
+ * lspst - list PST file data

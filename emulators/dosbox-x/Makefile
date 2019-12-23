@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.4 2019/10/20 09:42:13 nia Exp $
+# $NetBSD: Makefile,v 1.7 2019/12/05 22:56:23 nia Exp $
 
-DISTNAME=	dosbox-x-0.82.22
+DISTNAME=	dosbox-x-0.82.24
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=joncampbell123/}
 GITHUB_TAG=	dosbox-x-v${PKGVERSION_NOREV}
@@ -32,6 +32,9 @@ CONFIGURE_ARGS+=	--enable-sdl2
 CONFIGURE_ARGS+=	--disable-dynrec
 CONFIGURE_ARGS+=	--disable-fpu-x86
 CONFIGURE_ARGS+=	--disable-fpu-x64
+.else
+# LOG: Setting execute permission on the code cache has failed
+NOT_PAX_MPROTECT_SAFE+=	bin/dosbox-x
 .endif
 
 PKGCONFIG_OVERRIDE+=	vs2015/libpng/libpng.pc.in

@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.209 2019/10/18 10:13:40 ryoon Exp $
+# $NetBSD: Makefile,v 1.215 2019/12/01 04:59:43 ryoon Exp $
 
-VERREL=		6.3.2
+VERREL=		6.3.3
 VERRC=		2
 VER=		${VERREL}.${VERRC}
 DISTNAME=	libreoffice-${VER}
-PKGREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	http://download.documentfoundation.org/libreoffice/src/${VERREL}/
 EXTRACT_SUFX=	.tar.xz
@@ -30,19 +29,30 @@ SUBST_MESSAGE.font-path=	Use pkgsrc fonts for PDF import
 SUBST_FILES.font-path+=		external/pdfium/pkgsrc.patch.1
 SUBST_VARS.font-path+=		X11BASE
 
+GCC_REQD+=	7
+
 .include "../../mk/bsd.prefs.mk"
+
+CHECK_BUILTIN.freetype2:=	yes
+.include "../../graphics/freetype2/builtin.mk"
+CHECK_BUILTIN.freetype2:=	no
+.if !empty(USE_BUILTIN.freetype2:M[Yy][Ee][Ss]) && \
+	!empty(BUILTIN_VERSION.freetype2:M2.10.0)
+CFLAGS+=			-D_FT_CONST=
+.else
+CFLAGS+=			-D_FT_CONST=const
+.endif
 
 .if !empty(MACHINE_PLATFORM:MNetBSD*)
 pre-build:
 	cd ${WRKSRC} && ${BUILD_MAKE_CMD} Executable_gengal && ${TOOLS_PLATFORM.paxctl} +m instdir/program/gengal.bin
 .endif
 
-GCC_REQD+=	7
 PYTHON_VERSIONS_INCOMPATIBLE=	27 37 38
 
 CHECK_SHLIBS_SUPPORTED=	no
 # configure will be regenerated.
-CHECK_PORTABILITY_SKIP=configure
+CHECK_PORTABILITY_SKIP=	configure
 
 NOT_PAX_MPROTECT_SAFE+=	${PKGNAME_NOREV}/lib/libreoffice/program/soffice.bin
 
@@ -119,8 +129,8 @@ SITES.884ed41809687c3e168fc7c19b16585149ff058eca79acbf3ee784f6630704cc-opens___.
 
 .include "../../graphics/librsvg/available.mk"
 .if ${LIBRSVG_TYPE} == "c" || make(distinfo) || make(mdi)
-MORE_DISTFILES2+=		harfbuzz-2.5.3.tar.xz
-SITES.harfbuzz-2.5.3.tar.xz=	https://www.freedesktop.org/software/harfbuzz/release/
+MORE_DISTFILES2+=		harfbuzz-2.6.4.tar.xz
+SITES.harfbuzz-2.6.4.tar.xz=	https://www.freedesktop.org/software/harfbuzz/release/
 .endif
 
 .for md2 in ${MORE_DISTFILES2}
@@ -128,8 +138,6 @@ DISTFILES+=		${md2}
 .endfor
 
 .include "options.mk"
-
-.include "../../mk/bsd.prefs.mk"
 
 # tar: Invalid header, starting valid header search.
 EXTRACT_USING=		gtar
@@ -143,7 +151,7 @@ DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 # is a no-go with normal pkgsrc wrappers.
 # dmake is slowly beeing removed from the LibreOffice build process
 # and this option will hopefully become unneeded in the future
-WRAPPER_SKIP_TRANSFORM=yes
+WRAPPER_SKIP_TRANSFORM=	yes
 
 LDFLAGS+=		-lboost_system
 
@@ -238,8 +246,8 @@ LO_PROGRAMS+=		lofromtemplate loimpress lomath loweb lowriter
 LO_DESKTOP_FILES=	calc.desktop draw.desktop impress.desktop math.desktop \
 			startcenter.desktop writer.desktop
 
-#OBJDIR=			pkgsrcbuild
-#CONFIGURE_DIRS=		${OBJDIR}
+#OBJDIR=		pkgsrcbuild
+#CONFIGURE_DIRS=	${OBJDIR}
 CONFIGURE_SCRIPT=	${WRKSRC}/autogen.sh
 
 #LD_LIBRARY_PATH+=	${WRKSRC}/instdir/sdk/lib:${WRKSRC}/instdir/ure/lib:${WRKSRC}/instdir/program
@@ -275,7 +283,7 @@ pre-configure: provide-python3
 .PHONY: provide-python3
 provide-python3:
 	# install phase uses python3 command
-	${LN} -s ${PYTHONBIN} "${BUILDLINK_DIR}/bin/python3"
+	[ -h "${BUILDLINK_DIR}/bin/python3" ] || ${LN} -s ${PYTHONBIN} "${BUILDLINK_DIR}/bin/python3"
 
 do-install:
 	cd ${WRKSRC} && make DESTDIR="${DESTDIR}" PREFIXDIR="${PREFIX}" distro-pack-install
@@ -285,10 +293,10 @@ do-install:
 		${MKDIR} ${d}
 .endfor
 
-UNO_PATH=${PREFIX}/${PKGNAME}/lib/libreoffice/program
+UNO_PATH=	${PREFIX}/${PKGNAME}/lib/libreoffice/program
 
-BUILD_DEFS+=   UNO_PATH
-BUILD_DEFS+=   PYTHONBIN
+BUILD_DEFS+=	UNO_PATH
+BUILD_DEFS+=	PYTHONBIN
 
 post-install:
 .for f in ${LO_PROGRAMS}

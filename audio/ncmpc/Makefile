@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.35 2019/10/21 21:19:35 adam Exp $
+# $NetBSD: Makefile,v 1.37 2019/11/09 11:22:20 nia Exp $
 
-DISTNAME=	ncmpc-0.35
+DISTNAME=	ncmpc-0.36
 CATEGORIES=	audio
 MASTER_SITES=	https://musicpd.org/download/ncmpc/0/
 EXTRACT_SUFX=	.tar.xz
@@ -23,7 +23,6 @@ MESON_ARGS+=	-Dhtml_manual=false
 GCC_REQD+=	4.9
 
 # make stderr readable
-CXXFLAGS+=	-Wno-noexcept-type
 CXXFLAGS+=	-Wno-undef
 
 LDFLAGS+=	${BUILDLINK_LDADD.curses}

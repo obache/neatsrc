@@ -4,22 +4,13 @@ import (
 	"netbsd.org/pkglint/regex"
 	"netbsd.org/pkglint/textproc"
 	"path"
-	"sort"
 	"strings"
 )
 
 // VartypeCheck groups together the various checks for variables of the different types.
 type VartypeCheck struct {
 	MkLines *MkLines
-
-	// Note: if "go vet" or "go test" complains about a "variable with invalid type", update to go1.11.4.
-	// See https://github.com/golang/go/issues/28972.
-	// That doesn't help though since pkglint contains these "more convoluted alias declarations"
-	// mentioned in https://github.com/golang/go/commit/6971090515ba.
-	// Therefore MkLine is declared as *MkLine here.
-	// Ideally the "more convoluted cyclic type declaration" should be broken up.
-
-	MkLine *MkLine
+	MkLine  *MkLine
 
 	// The name of the variable being checked.
 	//
@@ -89,7 +80,7 @@ func (cv *VartypeCheck) WithVarnameValue(varname, value string) *VartypeCheck {
 // and the value.
 //
 // This is typically used when checking parts of composite types,
-// especially patterns.
+// such as the patterns from ONLY_FOR_PLATFORM.
 func (cv *VartypeCheck) WithVarnameValueMatch(varname, value string) *VartypeCheck {
 	newVc := *cv
 	newVc.Varname = varname
@@ -98,61 +89,6 @@ func (cv *VartypeCheck) WithVarnameValueMatch(varname, value string) *VartypeChe
 	newVc.ValueNoVar = cv.MkLine.WithoutMakeVariables(value)
 	return &newVc
 }
-
-const (
-	machineOpsysValues = "" + // See mk/platform
-		"AIX BSDOS Bitrig Cygwin Darwin DragonFly FreeBSD FreeMiNT GNUkFreeBSD " +
-		"HPUX Haiku IRIX Interix Linux Minix MirBSD NetBSD OSF1 OpenBSD QNX SCO_SV SunOS UnixWare"
-
-		// See mk/emulator/emulator-vars.mk.
-	emulOpsysValues = "" +
-		"bitrig bsdos cygwin darwin dragonfly freebsd " +
-		"haiku hpux interix irix linux mirbsd netbsd openbsd osf1 solaris sunos"
-
-	// Hardware architectures having the same name in bsd.own.mk and the GNU world.
-	// These are best-effort guesses, since they depend on the operating system.
-	archValues = "" +
-		"aarch64 alpha amd64 arc arm cobalt convex dreamcast i386 " +
-		"hpcmips hpcsh hppa hppa64 ia64 " +
-		"m68k m88k mips mips64 mips64el mipseb mipsel mipsn32 mlrisc " +
-		"ns32k pc532 pmax powerpc powerpc64 rs6000 s390 sparc sparc64 vax x86_64"
-
-	// See mk/bsd.prefs.mk:/^GNU_ARCH\./
-	machineArchValues = "" +
-		archValues + " " +
-		"aarch64eb amd64 arm26 arm32 coldfire earm earmeb earmhf earmhfeb earmv4 earmv4eb earmv5 " +
-		"earmv5eb earmv6 earmv6eb earmv6hf earmv6hfeb earmv7 earmv7eb earmv7hf earmv7hfeb evbarm " +
-		"i386 i586 i686 m68000 mips mips64eb sh3eb sh3el"
-
-	// See mk/bsd.prefs.mk:/^GNU_ARCH\./
-	machineGnuArchValues = "" +
-		archValues + " " +
-		"aarch64_be arm armeb armv4 armv4eb armv6 armv6eb armv7 armv7eb " +
-		"i486 m5407 m68010 mips64 mipsel sh shle x86_64"
-)
-
-func enumFromValues(spaceSeparated string) *BasicType {
-	values := strings.Fields(spaceSeparated)
-	sort.Strings(values)
-	seen := make(map[string]bool)
-	var unique []string
-	for _, value := range values {
-		if !seen[value] {
-			seen[value] = true
-			unique = append(unique, value)
-		}
-	}
-	return enum(strings.Join(unique, " "))
-}
-
-var (
-	enumMachineOpsys            = enumFromValues(machineOpsysValues)
-	enumMachineArch             = enumFromValues(machineArchValues)
-	enumMachineGnuArch          = enumFromValues(machineGnuArchValues)
-	enumEmulOpsys               = enumFromValues(emulOpsysValues)
-	enumEmulArch                = enumFromValues(machineArchValues) // Just a wild guess.
-	enumMachineGnuPlatformOpsys = enumEmulOpsys
-)
 
 func (cv *VartypeCheck) AwkCommand() {
 	if trace.Tracing {
@@ -233,18 +169,18 @@ func (cv *VartypeCheck) BuildlinkDepmethod() {
 }
 
 func (cv *VartypeCheck) Category() {
-	if cv.Value != "wip" && fileExists(G.Pkgsrc.File(cv.Value+"/Makefile")) {
+	if cv.Value != "wip" && G.Pkgsrc.File(NewPkgsrcPath(NewPath(cv.Value)).JoinNoClean("Makefile")).IsFile() {
 		return
 	}
 
 	switch cv.Value {
 	case
-		"chinese", "crosspkgtools",
+		"chinese",
 		"gnome", "gnustep",
 		"japanese", "java",
 		"kde", "korean",
 		"linux", "local",
-		"packages", "perl5", "plan9", "python",
+		"perl5", "plan9", "python",
 		"R", "ruby",
 		"scm",
 		"tcl", "tk",
@@ -450,16 +386,16 @@ func (cv *VartypeCheck) DependencyWithPath() {
 	parts := cv.MkLine.ValueSplit(value, ":")
 	if len(parts) == 2 {
 		pattern := parts[0]
-		relpath := parts[1]
-		pathParts := cv.MkLine.ValueSplit(relpath, "/")
+		relpath := NewRelPathString(parts[1])
+		pathParts := relpath.Parts()
 		pkg := pathParts[len(pathParts)-1]
 
-		if matches(relpath, `^\.\./[^.]`) {
+		if len(pathParts) >= 2 && pathParts[0] == ".." && pathParts[1] != ".." {
 			cv.Warnf("Dependency paths should have the form \"../../category/package\".")
 			cv.MkLine.ExplainRelativeDirs()
 		}
 
-		if !containsVarRef(relpath) {
+		if !containsVarRef(relpath.String()) {
 			MkLineChecker{cv.MkLines, cv.MkLine}.CheckRelativePkgdir(relpath)
 		}
 
@@ -505,10 +441,10 @@ func (cv *VartypeCheck) EmulPlatform() {
 	const rePair = `^(` + rePart + `)-(` + rePart + `)$`
 	if m, opsysPattern, archPattern := match2(cv.Value, rePair); m {
 		opsysCv := cv.WithVarnameValue("the operating system part of "+cv.Varname, opsysPattern)
-		enumEmulOpsys.checker(opsysCv)
+		BtEmulOpsys.checker(opsysCv)
 
 		archCv := cv.WithVarnameValue("the hardware architecture part of "+cv.Varname, archPattern)
-		enumEmulArch.checker(archCv)
+		BtEmulArch.checker(archCv)
 	} else {
 		cv.Warnf("%q is not a valid emulation platform.", cv.Value)
 		cv.Explain(
@@ -593,7 +529,7 @@ func (cv *VartypeCheck) FetchURL() {
 		}
 
 		if G.Pkgsrc.MasterSiteVarToURL[name] == "" {
-			if G.Pkg == nil || !G.Pkg.vars.Defined(name) {
+			if G.Pkg == nil || !G.Pkg.vars.IsDefined(name) {
 				cv.Errorf("The site %s does not exist.", name)
 			}
 		}
@@ -734,15 +670,13 @@ func (cv *VartypeCheck) Homepage() {
 		"Defining MASTER_SITES=${HOMEPAGE} is ok, though.")
 	if baseURL != "" {
 		fix.Replace(wrong, fixedURL)
-	} else {
-		fix.Anyway()
 	}
 	fix.Apply()
 }
 
 // Identifier checks for valid identifiers in various contexts, limiting the
 // valid characters to A-Za-z0-9_.
-func (cv *VartypeCheck) Identifier() {
+func (cv *VartypeCheck) IdentifierDirect() {
 	if cv.Op == opUseMatch {
 		if cv.Value == cv.ValueNoVar && !matches(cv.Value, `^[\w*\-?\[\]]+$`) {
 			cv.Warnf("Invalid identifier pattern %q for %s.", cv.Value, cv.Varname)
@@ -751,19 +685,20 @@ func (cv *VartypeCheck) Identifier() {
 	}
 
 	if cv.Value != cv.ValueNoVar {
-		// TODO: Activate this warning again, or document why that is not useful.
-		//  line.logWarning("Identifiers should be given directly.")
+		cv.Errorf("Identifiers for %s must not refer to other variables.", cv.Varname)
+		return
 	}
 
-	switch {
-	case matches(cv.ValueNoVar, `^[+\-.\w]+$`):
-		// Fine.
-
-	case cv.Value != "" && cv.ValueNoVar == "":
-		// Don't warn here.
-
-	default:
+	if !matches(cv.ValueNoVar, `^[+\-.\w]+$`) {
 		cv.Warnf("Invalid identifier %q.", cv.Value)
+	}
+}
+
+// Identifier checks for valid identifiers in various contexts, limiting the
+// valid characters to A-Za-z0-9_.
+func (cv *VartypeCheck) IdentifierIndirect() {
+	if cv.Value == cv.ValueNoVar {
+		cv.IdentifierDirect()
 	}
 }
 
@@ -816,20 +751,67 @@ func (cv *VartypeCheck) MachineGnuPlatform() {
 		archCv := cv.WithVarnameValueMatch(
 			"the hardware architecture part of "+cv.Varname,
 			archPattern)
-		enumMachineGnuArch.checker(archCv)
+		BtMachineGnuArch.checker(archCv)
 
 		_ = vendorPattern
 
 		opsysCv := cv.WithVarnameValueMatch(
 			"the operating system part of "+cv.Varname,
 			opsysPattern)
-		enumMachineGnuPlatformOpsys.checker(opsysCv)
+		BtMachineGnuPlatformOpsys.checker(opsysCv)
 
 	} else {
 		cv.Warnf("%q is not a valid platform pattern.", cv.Value)
 		cv.Explain(
 			"A platform pattern has the form <OPSYS>-<OS_VERSION>-<MACHINE_ARCH>.",
 			"Each of these components may use wildcards.",
+			"",
+			"Examples:",
+			"* NetBSD-[456].*-i386",
+			"* *-*-*",
+			"* Linux-*-*")
+	}
+}
+
+func (cv *VartypeCheck) MachinePlatform() {
+	cv.MachinePlatformPattern()
+}
+
+func (cv *VartypeCheck) MachinePlatformPattern() {
+	if cv.Value != cv.ValueNoVar {
+		return
+	}
+
+	const rePart = `(?:\[[^\]]+\]|[^-\[])+`
+	const rePair = `^(` + rePart + `)-(` + rePart + `)$`
+	const reTriple = `^(` + rePart + `)-(` + rePart + `)-(` + rePart + `)$`
+
+	pattern := cv.Value
+	if matches(pattern, rePair) && hasSuffix(pattern, "*") {
+		pattern += "-*"
+	}
+
+	if m, opsysPattern, versionPattern, archPattern := match3(pattern, reTriple); m {
+		// This is cheated, but the dynamically loaded enums are not
+		// provided in a type registry where they could be looked up
+		// by a name. The following line therefore assumes that OPSYS
+		// is an operating system name, which sounds like a safe bet.
+		btOpsys := G.Pkgsrc.vartypes.types["OPSYS"].basicType
+
+		opsysCv := cv.WithVarnameValueMatch("the operating system part of "+cv.Varname, opsysPattern)
+		btOpsys.checker(opsysCv)
+
+		versionCv := cv.WithVarnameValueMatch("the version part of "+cv.Varname, versionPattern)
+		versionCv.Version()
+
+		archCv := cv.WithVarnameValueMatch("the hardware architecture part of "+cv.Varname, archPattern)
+		BtMachineArch.checker(archCv)
+
+	} else {
+		cv.Warnf("%q is not a valid platform pattern.", cv.Value)
+		cv.Explain(
+			"A platform pattern has the form <OPSYS>-<OS_VERSION>-<MACHINE_ARCH>.",
+			"Each of these components may be a shell globbing expression.",
 			"",
 			"Examples:",
 			"* NetBSD-[456].*-i386",
@@ -856,8 +838,9 @@ func (cv *VartypeCheck) MailAddress() {
 	}
 }
 
-// Message is a plain string. It should not be enclosed in quotes since
-// that is the job of the code that uses the message.
+// Message is a plain string. When defining a message variable, it should
+// not be enclosed in quotes since that is the job of the code that uses
+// the message.
 //
 // Lists of messages use a different type since they need the quotes
 // around each message; see PKG_FAIL_REASON.
@@ -1040,24 +1023,26 @@ func (cv *VartypeCheck) PkgOptionsVar() {
 func (cv *VartypeCheck) Pkgpath() {
 	cv.Pathname()
 
-	pkgpath := cv.Value
-	if pkgpath != cv.ValueNoVar || cv.Op == opUseMatch {
+	value := cv.Value
+	if value != cv.ValueNoVar || cv.Op == opUseMatch {
 		return
 	}
 
-	if !G.Wip && hasPrefix(pkgpath, "wip/") {
-		cv.MkLine.Errorf("A main pkgsrc package must not depend on a pkgsrc-wip package.")
+	pkgpath := NewPkgsrcPath(NewPath(value))
+	if !G.Wip && pkgpath.HasPrefixPath("wip") {
+		cv.Errorf("A main pkgsrc package must not depend on a pkgsrc-wip package.")
 	}
 
-	if !fileExists(G.Pkgsrc.File(joinPath(pkgpath, "Makefile"))) {
-		cv.MkLine.Errorf("There is no package in %q.",
-			relpath(path.Dir(cv.MkLine.Filename), G.Pkgsrc.File(pkgpath)))
+	pkgdir := G.Pkgsrc.File(pkgpath)
+	if !pkgdir.JoinNoClean("Makefile").IsFile() {
+		cv.Errorf("There is no package in %q.",
+			cv.MkLine.Rel(pkgdir))
 		return
 	}
 
-	if !matches(pkgpath, `^([^./][^/]*/[^./][^/]*)$`) {
-		cv.MkLine.Errorf("%q is not a valid path to a package.", pkgpath)
-		cv.MkLine.Explain(
+	if !matches(value, `^([^./][^/]*/[^./][^/]*)$`) {
+		cv.Errorf("%q is not a valid path to a package.", pkgpath.String())
+		cv.Explain(
 			"A path to a package has the form \"category/pkgbase\".",
 			"It is relative to the pkgsrc root.")
 	}
@@ -1065,7 +1050,7 @@ func (cv *VartypeCheck) Pkgpath() {
 
 func (cv *VartypeCheck) Pkgrevision() {
 	if !matches(cv.Value, `^[1-9]\d*$`) {
-		cv.Warnf("%s must be a positive integer number.", cv.Varname)
+		cv.Errorf("%s must be a positive integer number.", cv.Varname)
 	}
 	if cv.MkLine.Basename != "Makefile" {
 		cv.Errorf("%s only makes sense directly in the package Makefile.", cv.Varname)
@@ -1078,49 +1063,14 @@ func (cv *VartypeCheck) Pkgrevision() {
 	}
 }
 
-func (cv *VartypeCheck) MachinePlatform() {
-	cv.MachinePlatformPattern()
-}
-
-func (cv *VartypeCheck) MachinePlatformPattern() {
-	if cv.Value != cv.ValueNoVar {
+// PrefixPathname checks for a pathname relative to ${PREFIX}.
+func (cv *VartypeCheck) PrefixPathname() {
+	if NewPath(cv.Value).IsAbs() {
+		cv.Errorf("The pathname %q in %s must be relative to ${PREFIX}.",
+			cv.Value, cv.Varname)
 		return
 	}
 
-	const rePart = `(?:\[[^\]]+\]|[^-\[])+`
-	const rePair = `^(` + rePart + `)-(` + rePart + `)$`
-	const reTriple = `^(` + rePart + `)-(` + rePart + `)-(` + rePart + `)$`
-
-	pattern := cv.Value
-	if matches(pattern, rePair) && hasSuffix(pattern, "*") {
-		pattern += "-*"
-	}
-
-	if m, opsysPattern, versionPattern, archPattern := match3(pattern, reTriple); m {
-		opsysCv := cv.WithVarnameValueMatch("the operating system part of "+cv.Varname, opsysPattern)
-		enumMachineOpsys.checker(opsysCv)
-
-		versionCv := cv.WithVarnameValueMatch("the version part of "+cv.Varname, versionPattern)
-		versionCv.Version()
-
-		archCv := cv.WithVarnameValueMatch("the hardware architecture part of "+cv.Varname, archPattern)
-		enumMachineArch.checker(archCv)
-
-	} else {
-		cv.Warnf("%q is not a valid platform pattern.", cv.Value)
-		cv.Explain(
-			"A platform pattern has the form <OPSYS>-<OS_VERSION>-<MACHINE_ARCH>.",
-			"Each of these components may be a shell globbing expression.",
-			"",
-			"Examples:",
-			"* NetBSD-[456].*-i386",
-			"* *-*-*",
-			"* Linux-*-*")
-	}
-}
-
-// PrefixPathname checks for a pathname relative to ${PREFIX}.
-func (cv *VartypeCheck) PrefixPathname() {
 	if m, manSubdir := match1(cv.Value, `^man/(.+)`); m {
 		from := "${PKGMANDIR}/" + manSubdir
 		fix := cv.Autofix()
@@ -1172,7 +1122,12 @@ func (cv *VartypeCheck) RPkgVer() {
 
 // RelativePkgDir refers to a package directory, e.g. ../../category/pkgbase.
 func (cv *VartypeCheck) RelativePkgDir() {
-	MkLineChecker{cv.MkLines, cv.MkLine}.CheckRelativePkgdir(cv.Value)
+	if NewPath(cv.Value).IsAbs() {
+		cv.Errorf("The path %q must be relative.", cv.Value)
+		return
+	}
+
+	MkLineChecker{cv.MkLines, cv.MkLine}.CheckRelativePkgdir(NewRelPathString(cv.Value))
 }
 
 // RelativePkgPath refers to a file or directory, e.g. ../../category/pkgbase,
@@ -1180,7 +1135,12 @@ func (cv *VartypeCheck) RelativePkgDir() {
 //
 // See RelativePkgDir, which requires a directory, not a file.
 func (cv *VartypeCheck) RelativePkgPath() {
-	MkLineChecker{cv.MkLines, cv.MkLine}.CheckRelativePath(cv.Value, true)
+	if NewPath(cv.Value).IsAbs() {
+		cv.Errorf("The path %q must be relative.", cv.Value)
+		return
+	}
+
+	MkLineChecker{cv.MkLines, cv.MkLine}.CheckRelativePath(NewRelPathString(cv.Value), true)
 }
 
 func (cv *VartypeCheck) Restricted() {
@@ -1244,7 +1204,7 @@ func (cv *VartypeCheck) SedCommands() {
 			i++
 			ncommands++
 			if ncommands > 1 {
-				cv.Notef("Each sed command should appear in an assignment of its own.")
+				cv.Warnf("Each sed command should appear in an assignment of its own.")
 				cv.Explain(
 					"For example, instead of",
 					"    SUBST_SED.foo+=        -e s,command1,, -e s,command2,,",
@@ -1374,8 +1334,22 @@ func (cv *VartypeCheck) URL() {
 }
 
 func (cv *VartypeCheck) UserGroupName() {
-	if cv.Value == cv.ValueNoVar && !matches(cv.Value, `^[0-9_a-z][0-9_a-z-]*[0-9_a-z]$`) {
-		cv.Warnf("Invalid user or group name %q.", cv.Value)
+	value := cv.Value
+	if value != cv.ValueNoVar {
+		return
+	}
+	invalid := invalidCharacters(value, textproc.NewByteSet("---0-9_a-z"))
+	if invalid != "" {
+		cv.Warnf("User or group name %q contains invalid characters: %s",
+			value, invalid)
+		return
+	}
+
+	if hasPrefix(value, "-") {
+		cv.Errorf("User or group name %q must not start with a hyphen.", value)
+	}
+	if hasSuffix(value, "-") {
+		cv.Errorf("User or group name %q must not end with a hyphen.", value)
 	}
 }
 
@@ -1520,7 +1494,7 @@ func (cv *VartypeCheck) Yes() {
 			"but using \".if defined(VARNAME)\" alone.")
 
 	default:
-		if !matches(cv.Value, `^(?:YES|yes)(?:[\t ]+#.*)?$`) {
+		if cv.Value != "YES" && cv.Value != "yes" {
 			cv.Warnf("%s should be set to YES or yes.", cv.Varname)
 			cv.Explain(
 				"This variable means \"yes\" if it is defined, and \"no\" if it is undefined.",
@@ -1558,7 +1532,7 @@ func (cv *VartypeCheck) YesNo() {
 			"both forms are actually used.",
 			"As long as this is the case, when checking the variable value,",
 			"both must be accepted.")
-	} else if !matches(cv.Value, `^(?:YES|yes|NO|no)(?:[\t ]+#.*)?$`) {
+	} else if !matches(cv.Value, `^(?:YES|yes|NO|no)$`) {
 		cv.Warnf("%s should be set to YES, yes, NO, or no.", cv.Varname)
 	}
 }

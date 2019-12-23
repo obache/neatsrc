@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.7 2019/07/08 22:11:06 sevan Exp $
+# $NetBSD: Makefile,v 1.9 2019/11/14 10:27:41 wiz Exp $
 
-DISTNAME=		libXfont2-2.0.3
-PKGREVISION=		2
+DISTNAME=		libXfont2-2.0.4
 CATEGORIES=		x11 devel fonts
 MASTER_SITES=		${MASTER_SITE_XORG:=lib/}
 EXTRACT_SUFX=		.tar.bz2
@@ -14,11 +13,12 @@ LICENSE=		mit AND modified-bsd
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		pkg-config
-USE_FEATURES+= 		strnlen
+USE_FEATURES+=		strnlen
 
 PKGCONFIG_OVERRIDE+=	xfont2.pc.in
 
 CONFIGURE_ARGS+=	--disable-devel-docs
+CPPFLAGS.NetBSD+=	-D_OPENBSD_SOURCE
 
 .include "../../meta-pkgs/modular-xorg/hacks.mk"
 

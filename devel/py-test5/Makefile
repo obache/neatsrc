@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2019/10/25 09:35:13 adam Exp $
+# $NetBSD: Makefile,v 1.8 2019/12/15 11:30:37 adam Exp $
 
-DISTNAME=	pytest-5.2.2
+DISTNAME=	pytest-5.3.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pytest/}
@@ -10,7 +10,6 @@ HOMEPAGE=	http://pytest.org/
 COMMENT=	Python testing tool
 LICENSE=	mit
 
-DEPENDS+=	${PYPKGPREFIX}-atomicwrites>=1.0:../../devel/py-atomicwrites
 DEPENDS+=	${PYPKGPREFIX}-attrs>=17.4.0:../../devel/py-attrs
 DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 DEPENDS+=	${PYPKGPREFIX}-more-itertools>=4.0.0:../../devel/py-more-itertools
@@ -26,12 +25,12 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-nose-[0-9]*:../../devel/py-nose
 TEST_DEPENDS+=	${PYPKGPREFIX}-requests-[0-9]*:../../devel/py-requests
 TEST_DEPENDS+=	${PYPKGPREFIX}-xmlschema-[0-9]*:../../textproc/py-xmlschema
 
+PYTHON_VERSIONS_INCOMPATIBLE=	27 # since 5.0.0
+
 .include "../../lang/python/pyversion.mk"
 .if ${_PYTHON_VERSION} < 38
 DEPENDS+=	${PYPKGPREFIX}-importlib-metadata>=0.12:../../devel/py-importlib-metadata
 .endif
-
-PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 USE_LANGUAGES=	# none
 USE_TOOLS+=	bash:build

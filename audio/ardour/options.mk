@@ -1,38 +1,37 @@
-# $NetBSD: options.mk,v 1.2 2016/07/07 06:28:24 wiz Exp $
+# $NetBSD: options.mk,v 1.5 2019/12/03 12:31:22 nia Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.ardour
+PKG_SUPPORTED_OPTIONS=	alsa jack
 
-PKG_SUPPORTED_OPTIONS=	alsa jack dummy
+.include "../../mk/bsd.fast.prefs.mk"
+
+.if ${OPSYS} == "Linux"
 PKG_SUGGESTED_OPTIONS=	alsa jack
-
-PLIST_VARS=		alsa jack dummy
+.else
+PKG_SUGGESTED_OPTIONS=	jack
+.endif
 
 .include "../../mk/bsd.options.mk"
 
-.if ${OPSYS} == "Linux" || ${OPSYS} == "NetBSD"
-.  if empty(PKG_OPTIONS:Malsa)
-PKG_FAIL_REASON+=	"ALSA is required on this platform."
-.  endif
-.endif
-
+PLIST_VARS+=	alsa
 .if !empty(PKG_OPTIONS:Malsa)
-.include "../../audio/alsa-lib/buildlink3.mk"
-ARDOUR_BACKENDS_ALSA=	yes
 PLIST.alsa=	yes
+ARD_BACKENDS+=	alsa
+.  include "../../audio/alsa-lib/buildlink3.mk"
 .endif
 
+PLIST_VARS+=	jack
 .if !empty(PKG_OPTIONS:Mjack)
-.include "../../audio/jack/buildlink3.mk"
-ARDOUR_BACKENDS_JACK=	yes
 PLIST.jack=	yes
+ARD_BACKENDS+=	jack
+BUILDLINK_API_DEPENDS.jack+=	jack>=0.125.0nb2
+.  include "../../audio/jack/buildlink3.mk"
 .endif
 
-# Useful for developers
-.if !empty(PKG_OPTIONS:Mdummy)
-ARDOUR_BACKENDS_DUMMY=	yes
-PLIST.dummy=	yes
-.endif
-
-ARDOUR_BACKENDS=	${ARDOUR_BACKENDS_ALSA:Dalsa},${ARDOUR_BACKENDS_JACK:Djack},${ARDOUR_BACKENDS_DUMMY:Ddummy}
-
-WAF_ARGS+=      --with-backends=${ARDOUR_BACKENDS:C/,+$//}
+#
+# currently windows-only, would be nice to have
+#
+#.if !empty(PKG_OPTIONS:Mportaudio)
+#ARD_BACKENDS+=	portaudio
+#.include "../../audio/portaudio/buildlink3.mk"
+#.endif

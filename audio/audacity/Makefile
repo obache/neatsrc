@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.126 2019/10/26 17:22:08 nia Exp $
+# $NetBSD: Makefile,v 1.129 2019/11/24 14:34:37 nia Exp $
 
-DISTNAME=	audacity-2.3.2
-PKGREVISION=	2
+DISTNAME=	audacity-2.3.3
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=audacity/}
 GITHUB_PROJECT=	Audacity
@@ -9,7 +8,7 @@ GITHUB_TAG=	Audacity-${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.audacityteam.org/
-COMMENT=	Audio editor
+COMMENT=	Multi-track audio editor and recorder
 LICENSE=	gnu-gpl-v2 # AND cc-by-v3.0-license
 
 WRKSRC=		${WRKDIR}/audacity-${GITHUB_PROJECT}-${PKGVERSION_NOREV}
@@ -98,7 +97,7 @@ BUILDLINK_API_DEPENDS.twolame+=	twolame>=0.3.9
 .include "../../audio/libsoxr/buildlink3.mk"
 .include "../../audio/libsndfile/buildlink3.mk"
 .include "../../audio/libvorbis/buildlink3.mk"
-BUILDLINK_API_DEPENDS.portaudio+=	portaudio>=190600.20161030nb1
+BUILDLINK_API_DEPENDS.portaudio+=	portaudio>=190600.20161030nb2
 .include "../../audio/portaudio/buildlink3.mk"
 .include "../../audio/suil/buildlink3.mk"
 .include "../../audio/vamp-plugin-sdk/buildlink3.mk"

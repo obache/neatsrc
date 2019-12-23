@@ -1,25 +1,31 @@
-# $NetBSD: Makefile,v 1.96 2019/08/22 12:23:18 ryoon Exp $
+# $NetBSD: Makefile,v 1.98 2019/11/17 03:21:55 markd Exp $
 
-DISTNAME=	gwenview-${_KDE_VERSION}
-PKGREVISION=	17
+DISTNAME=	gwenview-${KAPPSVER}
 CATEGORIES=	graphics
+
+HOMEPAGE=	https://kde.org/applications/graphics/org.kde.gwenview/
 COMMENT=	KDE image viewer
+LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
-.include "../../meta-pkgs/kde4/Makefile.kde4"
+.include "../../meta-pkgs/kde/applications.mk"
 
-.include "../../meta-pkgs/kde4/kde4.mk"
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
+DEPENDS+=	kimageformats>=5.19.0:../../graphics/kimageformats
 
+USE_TOOLS+=	msgmerge pkg-config
+
+REPLACE_PERL=	kconf_update/gwenview-imageview-alphabackgroundmode-update.pl
+
+.include "../../devel/cfitsio/buildlink3.mk"
+.include "../../devel/kitemmodels/buildlink3.mk"
+.include "../../devel/kparts/buildlink3.mk"
 .include "../../graphics/exiv2/buildlink3.mk"
-.include "../../graphics/lcms2/buildlink3.mk"
 .include "../../graphics/libkdcraw/buildlink3.mk"
 .include "../../graphics/libkipi/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-#.include "../../misc/nepomuk-core/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../sysutils/libbaloo4/buildlink3.mk"
-.include "../../sysutils/kfilemetadata/buildlink3.mk"
-.include "../../x11/libkactivities4/buildlink3.mk"
-.include "../../x11/kdelibs4/buildlink3.mk"
-.include "../../x11/kde-baseapps4/buildlink3.mk"
-
+.include "../../sysutils/baloo5/buildlink3.mk"
+.include "../../x11/kactivities5/buildlink3.mk"
+.include "../../x11/qt5-qtbase/buildlink3.mk"
+.include "../../x11/qt5-qtimageformats/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

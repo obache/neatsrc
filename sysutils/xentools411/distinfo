@@ -1,17 +1,18 @@
-$NetBSD: distinfo,v 1.6 2019/08/30 13:16:27 bouyer Exp $
+$NetBSD: distinfo,v 1.9 2019/12/18 13:37:39 bouyer Exp $
 
 SHA1 (xen411/ipxe-git-356f6c1b64d7a97746d1816cef8ca22bdd8d0b5d.tar.gz) = 272b8c904dc0127690eca2c5c20c67479e40da34
 RMD160 (xen411/ipxe-git-356f6c1b64d7a97746d1816cef8ca22bdd8d0b5d.tar.gz) = cfcb4a314c15da19b36132b27126f3bd9699d0e5
 SHA512 (xen411/ipxe-git-356f6c1b64d7a97746d1816cef8ca22bdd8d0b5d.tar.gz) = bbcce5e55040e7e29adebd4a5253a046016a6e2e7ff34cf801a42d147e1ec1af57e0297318249bfa9c5bbeac969fe4b37c18cbf845a80b2136d65387a4fc31da
 Size (xen411/ipxe-git-356f6c1b64d7a97746d1816cef8ca22bdd8d0b5d.tar.gz) = 3732065 bytes
-SHA1 (xen411/xen-4.11.2.tar.gz) = 82766db0eca7ce65962732af8a31bb5cce1eb7ce
-RMD160 (xen411/xen-4.11.2.tar.gz) = 6dcb1ac3e72381474912607b30b59fa55d87d38b
-SHA512 (xen411/xen-4.11.2.tar.gz) = 48d3d926d35eb56c79c06d0abc6e6be2564fadb43367cc7f46881c669a75016707672179c2cca1c4cfb14af2cefd46e2e7f99470cddf7df2886d8435a2de814e
-Size (xen411/xen-4.11.2.tar.gz) = 25164925 bytes
+SHA1 (xen411/xen-4.11.3.tar.gz) = 2d77152168d6f9dcea50db9cb8e3e6a0720a4a1b
+RMD160 (xen411/xen-4.11.3.tar.gz) = cfb2e699842867b60d25a01963c564a6c5e580da
+SHA512 (xen411/xen-4.11.3.tar.gz) = 2204e490e9fc357a05983a9bf4e7345e1d364fe00400ce473988dcb9ca7d4e2b921fe10f095cbbc64248130a92d22c6f0d154dcae250a57a7f915df32e3dc436
+Size (xen411/xen-4.11.3.tar.gz) = 25180826 bytes
 SHA1 (patch-.._ipxe_src_core_settings.c) = 1eab2fbd8b22dde2b8aa830ae7701603486f74e4
 SHA1 (patch-.._ipxe_src_net_fcels.c) = eda41b25c3d5f5bef33caa9a6af28c40cb91e66b
 SHA1 (patch-Config.mk) = c41005a60de2f94a72b0206030eb021c137653d3
 SHA1 (patch-Makefile) = 2f3a5eafc5039b149c98dd5e59c39a3197fd9264
+SHA1 (patch-always_inline) = 23201b2b63072e040630525416a0b61280492f93
 SHA1 (patch-docs_man_xl-disk-configuration.pod.5) = 03ff4c22dde1e1b60ab8750c8971ea057e479151
 SHA1 (patch-docs_man_xl.cfg.pod.5.in) = 951915037a9975b76cc5c41a0e1abe0a202a3696
 SHA1 (patch-docs_man_xl.conf.pod.5) = d77e3313750db315d540d7713c95cd54d6f02938
@@ -25,7 +26,7 @@ SHA1 (patch-extras_mini-os_include_time.h) = ab3b0794bf892ce6a036aa889c6852d65b5
 SHA1 (patch-extras_mini-os_lib_sys.c) = f6514ad743a206c0e81dcccd2586e8fe65bfd1b9
 SHA1 (patch-extras_mini-os_lock.c) = e28753793dee483c1ffad8ea8ed2706353046b50
 SHA1 (patch-m4_paths.m4) = 19250964fd808cad30a2aca3de011650a2788251
-SHA1 (patch-tools_Makefile) = a4f873797469190d58cc27bbb55d1afb151a2ff8
+SHA1 (patch-tools_Makefile) = b1ac601abfbef67dacc1a6d74da52e803c8e115b
 SHA1 (patch-tools_Rules.mk) = c15994d1e0c089674fdea874b56950a07be3deb5
 SHA1 (patch-tools_configure) = aa0838a1eadf70f5ed99748926234c0376989ff5
 SHA1 (patch-tools_console_daemon_utils.c) = 1c954e1edadad2607f7b87eaf2d6285be7f968ff

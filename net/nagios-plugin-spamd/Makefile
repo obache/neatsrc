@@ -1,12 +1,10 @@
-# $NetBSD: Makefile,v 1.14 2019/08/11 13:22:12 wiz Exp $
-#
+# $NetBSD: Makefile,v 1.16 2019/11/04 08:00:25 wiz Exp $
 
 DISTNAME=	check_spamd-1.6.0
 PKGNAME=	nagios-plugin-${DISTNAME:S/check_//1}
 PKGREVISION=	4
 CATEGORIES=	net mail
-MASTER_SITES=	${MASTER_SITE_BACKUP}
-		# http://exchange.nagios.org/components/com_mtree/
+MASTER_SITES=	# http://exchange.nagios.org/components/com_mtree/
 EXTRACT_SUFX=	.pl
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -28,11 +26,11 @@ REPLACE_PERL+=		${DISTFILES}
 
 PLUGIN_DIR=		${PREFIX}/libexec/nagios
 
-SUBST_CLASSES+=		check_spamd
-SUBST_STAGE.check_spamd=post-configure
-SUBST_FILES.check_spamd=${DISTFILES}
-SUBST_MESSAGE.check_spamd=Fixing path to spamc.
-SUBST_SED.check_spamd=	-e 's|/usr/local/perl/bin/|${PREFIX}/${PERL5_SUB_INSTALLVENDORBIN}|1'
+SUBST_CLASSES+=			check_spamd
+SUBST_STAGE.check_spamd=	post-configure
+SUBST_FILES.check_spamd=	${DISTFILES}
+SUBST_MESSAGE.check_spamd=	Fixing path to spamc.
+SUBST_SED.check_spamd=		-e 's|/usr/local/perl/bin/|${PREFIX}/${PERL5_SUB_INSTALLVENDORBIN}|1'
 
 INSTALLATION_DIRS+=	${PLUGIN_DIR}
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.526 2019/10/16 11:06:18 leot Exp $
+# $NetBSD: Makefile,v 1.532 2019/12/16 16:07:51 taca Exp $
 #
 
 COMMENT=	Programming languages
@@ -14,7 +14,6 @@ SUBDIR+=	algol68g
 SUBDIR+=	asn1c
 SUBDIR+=	awka
 SUBDIR+=	baci
-SUBDIR+=	basic256
 SUBDIR+=	boomerang
 SUBDIR+=	brandybasic
 SUBDIR+=	bwbasic
@@ -96,6 +95,7 @@ SUBDIR+=	go-hcl
 SUBDIR+=	go110
 SUBDIR+=	go111
 SUBDIR+=	go112
+SUBDIR+=	go113
 SUBDIR+=	go14
 SUBDIR+=	go19
 SUBDIR+=	gpc
@@ -159,7 +159,8 @@ SUBDIR+=	newsqueak
 SUBDIR+=	nhc98
 SUBDIR+=	nim
 SUBDIR+=	nodejs
-SUBDIR+=	nodejs6
+SUBDIR+=	nodejs10
+SUBDIR+=	nodejs12
 SUBDIR+=	nodejs8
 SUBDIR+=	npm
 SUBDIR+=	nqp
@@ -190,9 +191,9 @@ SUBDIR+=	pfe
 SUBDIR+=	pforth
 #SUBDIR+=	php		# only contains Makefile fragments
 SUBDIR+=	php56
-SUBDIR+=	php71
 SUBDIR+=	php72
 SUBDIR+=	php73
+SUBDIR+=	php74
 SUBDIR+=	picoc
 SUBDIR+=	pict
 SUBDIR+=	polyml
@@ -224,6 +225,7 @@ SUBDIR+=	python36
 SUBDIR+=	python37
 SUBDIR+=	python38
 SUBDIR+=	qore
+SUBDIR+=	quickjs
 SUBDIR+=	racket
 SUBDIR+=	racket-textual
 SUBDIR+=	rakudo

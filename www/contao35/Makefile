@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.44 2019/04/14 09:23:06 taca Exp $
+# $NetBSD: Makefile,v 1.47 2019/12/16 16:30:14 taca Exp $
 #
 
 DISTNAME=	contao-${CT_PKGVER}
@@ -19,6 +19,8 @@ DEPENDS+=	${PHP_PKG_PREFIX}-mysqli>=5.4.0:../../databases/php-mysqli
 DEPENDS+=	${PHP_PKG_PREFIX}-soap>=5.4.0:../../net/php-soap
 DEPENDS+=	${PHP_PKG_PREFIX}-curl>=5.4.0:../../www/php-curl
 DEPENDS+=	${PHP_PKG_PREFIX}-zlib>=5.4.0:../../archivers/php-zlib
+
+PHP_VERSIONS_ACCEPTED=	56 72 73
 
 CT_VERSION=	3.5.40
 USE_TOOLS=	bash:run pax
@@ -59,18 +61,18 @@ REPLACE_INTERPRETER+=	php
 REPLACE.php.old=	.*php[^ ]*
 REPLACE.php.new=	${PREFIX}/bin/php
 REPLACE_FILES.php=	system/bin/automator system/bin/filesync \
-    system/bin/ide_compat system/bin/txpurge system/bin/version \
-    vendor/bin/lessc vendor/bin/minifycss vendor/bin/minifyjs \
-    vendor/bin/pscss vendor/leafo/scssphp/bin/pscss \
-    vendor/matthiasmullie/minify/bin/minifycss \
-    vendor/matthiasmullie/minify/bin/minifyjs \
-    vendor/oyejorge/less.php/bin/lessc \
-    vendor/swiftmailer/swiftmailer/lib/swiftmailer_generate_mimes_config.php \
-    vendor/tecnickcom/tcpdf/tools/tcpdf_addfont.php
+			system/bin/ide_compat system/bin/txpurge system/bin/version \
+			vendor/bin/lessc vendor/bin/minifycss vendor/bin/minifyjs \
+			vendor/bin/pscss vendor/leafo/scssphp/bin/pscss \
+			vendor/matthiasmullie/minify/bin/minifycss \
+			vendor/matthiasmullie/minify/bin/minifyjs \
+			vendor/oyejorge/less.php/bin/lessc \
+			vendor/swiftmailer/swiftmailer/lib/swiftmailer_generate_mimes_config.php \
+			vendor/tecnickcom/tcpdf/tools/tcpdf_addfont.php
 
 SUBST_CLASSES+=		conf
 SUBST_FILES.conf+=	${WRKDIR}/contao.conf
-SUBST_VARS.conf+=       PREFIX CT_WEBDIR
+SUBST_VARS.conf+=	PREFIX CT_WEBDIR
 SUBST_STAGE.conf=	post-configure
 
 WWW_FILES=	.htaccess.default README.md assets contao \

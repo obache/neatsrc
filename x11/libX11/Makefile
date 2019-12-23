@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.48 2019/04/28 10:53:03 rillig Exp $
+# $NetBSD: Makefile,v 1.50 2019/11/13 21:59:51 wiz Exp $
 
-DISTNAME=		libX11-1.6.7
+DISTNAME=		libX11-1.6.9
 CATEGORIES=		x11 devel
 MASTER_SITES=		${MASTER_SITE_XORG:=lib/}
 EXTRACT_SUFX=		.tar.bz2
@@ -21,6 +21,8 @@ PKGCONFIG_OVERRIDE+=	x11-xcb.pc.in
 CONFIGURE_ENV+=		FILE_MAN_SUFFIX=5
 
 CONFIGURE_ARGS.NetBSD+=	--disable-malloc0returnsnull
+# for reallocarray()
+CPPFLAGS.NetBSD+=	-D_OPENBSD_SOURCE
 
 .include "../../mk/pthread.buildlink3.mk"
 CPPFLAGS.OSF1+=		${PTHREAD_CFLAGS} # Required by compiler if including pthread.h
@@ -28,7 +30,7 @@ CPPFLAGS.MirBSD+=	${PTHREAD_CFLAGS}
 LDFLAGS.MirBSD+=	${PTHREAD_LDFLAGS}
 LDFLAGS.OpenBSD+=	${PTHREAD_LDFLAGS}
 
-BUILDLINK_API_DEPENDS.libxcb+=libxcb>=1.11.1
+BUILDLINK_API_DEPENDS.libxcb+=	libxcb>=1.11.1
 
 TOOL_DEPENDS+=		tradcpp-[0-9]*:../../devel/tradcpp
 CONFIGURE_ENV+=		ac_cv_path_RAWCPP="${PREFIX}/bin/tradcpp -Uunix"

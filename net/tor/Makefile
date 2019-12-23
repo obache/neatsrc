@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.145 2019/09/21 23:57:17 alnsn Exp $
+# $NetBSD: Makefile,v 1.147 2019/12/10 13:06:23 ng0 Exp $
 
-DISTNAME=	tor-0.4.1.6
+DISTNAME=	tor-0.4.2.5
 CATEGORIES=	net security
 MASTER_SITES=	https://dist.torproject.org/
 
@@ -54,7 +54,7 @@ FILES_SUBST+=		TOR_USER=${TOR_USER} TOR_GROUP=${TOR_GROUP}
 
 INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples
 
-CHECK_PORTABILITY_SKIP+=contrib/*
+CHECK_PORTABILITY_SKIP+=	contrib/*
 
 .include "options.mk"
 

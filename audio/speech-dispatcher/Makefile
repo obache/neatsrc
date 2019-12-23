@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.8 2019/09/18 14:17:06 ryoon Exp $
+# $NetBSD: Makefile,v 1.12 2019/12/20 00:00:11 joerg Exp $
 
-DISTNAME=	speech-dispatcher-0.8.4
-PKGREVISION=	6
+DISTNAME=	speech-dispatcher-0.9.1
 CATEGORIES=	audio
-MASTER_SITES=	http://devel.freebsoft.org/pub/projects/speechd/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=brailcom/}
+GITHUB_PROJECT=	speechd
+GITHUB_RELEASE=	${PKGVERSION_NOREV}
 
 MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	https://devel.freebsoft.org/speechd
@@ -12,14 +13,40 @@ LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
-USE_TOOLS+=	intltool pkg-config
+USE_TOOLS+=	gmake intltool pkg-config
+USE_TOOLS+=	msgfmt msgmerge xgettext
+USE_LANGUAGES=	c c++03
+
+INFO_FILES=	yes
+
+TOOL_DEPENDS+=	help2man-[0-9]*:../../converters/help2man
+
+# To avoid PLIST complexity, let the libao package select the most
+# fitting audio backend for the platform.
+CONFIGURE_ARGS+=	--with-libao
+CONFIGURE_ARGS+=	--without-alsa
+CONFIGURE_ARGS+=	--without-nas
+CONFIGURE_ARGS+=	--without-oss
+CONFIGURE_ARGS+=	--without-pulse
+
+CONFIGURE_ARGS+=	--disable-python
+
+# msgfmt: unknown option -- desktop
+_TOOLS_USE_PKGSRC.msgfmt=	yes
 
 PKGCONFIG_OVERRIDE+=	speech-dispatcher.pc.in
+
+PKG_SYSCONFSUBDIR=	speech-dispatcher
+
+OWN_DIRS+=	${PKG_SYSCONFDIR}/clients
+OWN_DIRS+=	${PKG_SYSCONFDIR}/modules
 
 CONF_FILES+=	${PREFIX}/share/examples/speech-dispatcher/clients/emacs.conf \
 		${PKG_SYSCONFDIR}/clients/emacs.conf
 CONF_FILES+=	${PREFIX}/share/examples/speech-dispatcher/modules/cicero.conf \
 		${PKG_SYSCONFDIR}/modules/cicero.conf
+CONF_FILES+=	${PREFIX}/share/examples/speech-dispatcher/speechd.conf \
+		${PKG_SYSCONFDIR}/speechd.conf
 CONF_FILES+=	${PREFIX}/share/examples/speech-dispatcher/modules/dtk-generic.conf \
 		${PKG_SYSCONFDIR}/modules/dtk-generic.conf
 CONF_FILES+=	${PREFIX}/share/examples/speech-dispatcher/modules/epos-generic.conf \
@@ -47,10 +74,14 @@ CONF_FILES+=	${PREFIX}/share/examples/speech-dispatcher/modules/swift-generic.co
 CONF_FILES+=	${PREFIX}/share/examples/speech-dispatcher/speechd.conf \
 		${PKG_SYSCONFDIR}/speechd.conf
 
+.include "../../audio/espeak/buildlink3.mk"
+.include "../../audio/flite/buildlink3.mk"
+.include "../../audio/libao/buildlink3.mk"
 .include "../../audio/libsndfile/buildlink3.mk"
-.include "../../audio/pulseaudio/buildlink3.mk"
 .include "../../devel/dotconf/buildlink3.mk"
+.include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/libltdl/buildlink3.mk"
-.include "../../mk/oss.buildlink3.mk"
+.include "../../mk/dlopen.buildlink3.mk"
+BUILDLINK_TRANSFORM+=	opt:-ldl:${BUILDLINK_LDADD.dl:Q}
 .include "../../mk/bsd.pkg.mk"

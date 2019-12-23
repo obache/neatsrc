@@ -59,7 +59,8 @@ func (l *Lexer) TestByteSet(set *ByteSet) bool {
 	return 0 < len(rest) && set.Contains(rest[0])
 }
 
-// Skip skips the next n bytes.
+// Skip skips the next n bytes, or panics if the rest is shorter than n bytes.
+// Returns false only if n == 0.
 func (l *Lexer) Skip(n int) bool {
 	l.rest = l.rest[n:]
 	return n > 0
@@ -75,7 +76,7 @@ func (l *Lexer) NextString(prefix string) string {
 	return ""
 }
 
-// SkipString skips over the given string, if the remaining string starts
+// SkipText skips over the given string, if the remaining string starts
 // with it. It returns whether it actually skipped.
 func (l *Lexer) SkipString(prefix string) bool {
 	skipped := strings.HasPrefix(l.rest, prefix)
@@ -139,6 +140,8 @@ func (l *Lexer) NextByte() byte {
 
 // NextBytesFunc chops off the longest prefix (possibly empty) consisting
 // solely of bytes for which fn returns true.
+//
+// TODO: SkipBytesFunc
 func (l *Lexer) NextBytesFunc(fn func(b byte) bool) string {
 	i := 0
 	rest := l.rest

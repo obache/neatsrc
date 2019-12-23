@@ -24,7 +24,8 @@ func (s *Suite) Test_CheckLinesPlist(c *check.C) {
 		"share/icons/hicolor/icon1.png",
 		"share/icons/hicolor/icon2.png", // No additional error for hicolor-icon-theme.
 		"share/tzinfo",
-		"share/tzinfo")
+		"share/tzinfo",
+		"/absolute")
 
 	CheckLinesPlist(G.Pkg, lines)
 
@@ -45,7 +46,8 @@ func (s *Suite) Test_CheckLinesPlist(c *check.C) {
 		"WARN: PLIST:14: Packages that install icon theme files should set ICON_THEMES.",
 		"ERROR: PLIST:15: Packages that install hicolor icons "+
 			"must include \"../../graphics/hicolor-icon-theme/buildlink3.mk\" in the Makefile.",
-		"ERROR: PLIST:18: Duplicate filename \"share/tzinfo\", already appeared in line 17.")
+		"ERROR: PLIST:18: Duplicate filename \"share/tzinfo\", already appeared in line 17.",
+		"ERROR: PLIST:19: Invalid line type: /absolute")
 }
 
 func (s *Suite) Test_CheckLinesPlist__single_file_no_comment(c *check.C) {
@@ -154,136 +156,6 @@ func (s *Suite) Test_CheckLinesPlist__sort_common(c *check.C) {
 	// TODO: Examine what happens if there is a PLIST.common to be sorted.
 
 	t.CheckOutputEmpty()
-}
-
-func (s *Suite) Test_plistLineSorter_Sort(c *check.C) {
-	t := s.Init(c)
-
-	t.SetUpCommandLine("--autofix")
-	lines := t.SetUpFileLines("PLIST",
-		PlistCvsID,
-		"@comment Do not remove",
-		"A",
-		"b",
-		"CCC",
-		"lib/${UNKNOWN}.la",
-		"C",
-		"ddd",
-		"@exec echo \"after ddd\"", // Makes the PLIST unsortable
-		"sbin/program",
-		"${PLIST.one}bin/program",
-		"man/man1/program.1",
-		"${PLIST.two}bin/program2",
-		"lib/before.la",
-		"${PLIST.linux}${PLIST.x86_64}lib/lib-linux-x86_64.so", // Double condition, see graphics/graphviz
-		"lib/after.la",
-		"@exec echo \"after lib/after.la\"")
-	ck := PlistChecker{nil, nil, nil, "", Once{}, false}
-	plines := ck.NewLines(lines)
-
-	sorter1 := NewPlistLineSorter(plines)
-	t.CheckEquals(sorter1.unsortable, lines.Lines[5])
-
-	cleanedLines := append(append(lines.Lines[0:5], lines.Lines[6:8]...), lines.Lines[9:]...) // Remove ${UNKNOWN} and @exec
-
-	sorter2 := NewPlistLineSorter((&PlistChecker{nil, nil, nil, "", Once{}, false}).
-		NewLines(NewLines(lines.Filename, cleanedLines)))
-
-	c.Check(sorter2.unsortable, check.IsNil)
-
-	sorter2.Sort()
-
-	t.CheckOutputLines(
-		"AUTOFIX: ~/PLIST:3: Sorting the whole file.")
-	t.CheckFileLines("PLIST",
-		PlistCvsID,
-		"@comment Do not remove", // The header ends here
-		"A",
-		"C",
-		"CCC",
-		"b",
-		"${PLIST.one}bin/program", // Conditional lines are ignored during sorting
-		"${PLIST.two}bin/program2",
-		"ddd",
-		"lib/after.la",
-		"lib/before.la",
-		"${PLIST.linux}${PLIST.x86_64}lib/lib-linux-x86_64.so",
-		"man/man1/program.1",
-		"sbin/program",
-		"@exec echo \"after lib/after.la\"") // The footer starts here
-}
-
-func (s *Suite) Test_PlistChecker_checkLine(c *check.C) {
-	t := s.Init(c)
-
-	lines := t.NewLines("PLIST",
-		PlistCvsID,
-		"bin/program",
-		"${PLIST.var}bin/conditional-program",
-		"${PLIST.linux}${PLIST.arm}bin/arm-linux-only",
-		"${PLIST.linux}${PLIST.arm-64}@exec echo 'This is Linux/arm64'",
-		"${PLIST.ocaml-opt}share/ocaml",
-		"${PLIST.ocaml-opt}@exec echo 'This is OCaml'",
-		"${PLIST.ocaml-opt}@exec echo 'This is OCaml'",
-		"${PYSITELIB:S,lib,share}/modifiers don't work in PLISTs",
-		"${PLIST.empty}",
-		"",
-		"$prefix/bin",
-
-		// This line does not count as a PLIST condition since it has
-		// a :Q modifier, which does not work in PLISTs. Therefore the
-		// ${PLIST.man:Q} is considered part of the filename.
-		"${PLIST.man:Q}man/cat3/strlcpy.3",
-		"<<<<<<<<< merge conflict")
-
-	CheckLinesPlist(nil, lines)
-
-	t.CheckOutputLines(
-		"WARN: PLIST:3: \"bin/conditional-program\" should be sorted before \"bin/program\".",
-		"WARN: PLIST:4: \"bin/arm-linux-only\" should be sorted before \"bin/conditional-program\".",
-		"WARN: PLIST:10: PLISTs should not contain empty lines.",
-		"WARN: PLIST:11: PLISTs should not contain empty lines.",
-		"WARN: PLIST:14: Invalid line type: <<<<<<<<< merge conflict")
-}
-
-func (s *Suite) Test_PlistChecker_checkPathMan__gz(c *check.C) {
-	t := s.Init(c)
-
-	G.Pkg = NewPackage(t.File("category/pkgbase"))
-	lines := t.NewLines("PLIST",
-		PlistCvsID,
-		"man/man3/strerror.3.gz")
-
-	CheckLinesPlist(G.Pkg, lines)
-
-	t.CheckOutputLines(
-		"NOTE: PLIST:2: The .gz extension is unnecessary for manual pages.")
-}
-
-func (s *Suite) Test_PlistChecker_checkPath__PKGMANDIR(c *check.C) {
-	t := s.Init(c)
-
-	lines := t.NewLines("PLIST",
-		PlistCvsID,
-		"${PKGMANDIR}/man1/sh.1")
-
-	CheckLinesPlist(nil, lines)
-
-	t.CheckOutputLines(
-		"NOTE: PLIST:2: PLIST files should use \"man/\" instead of \"${PKGMANDIR}\".")
-}
-
-func (s *Suite) Test_PlistChecker_checkPath__python_egg(c *check.C) {
-	t := s.Init(c)
-
-	lines := t.NewLines("PLIST",
-		PlistCvsID,
-		"${PYSITELIB}/gdspy-${PKGVERSION}-py${PYVERSSUFFIX}.egg-info/PKG-INFO")
-
-	CheckLinesPlist(nil, lines)
-
-	t.CheckOutputLines(
-		"WARN: PLIST:2: Include \"../../lang/python/egg.mk\" instead of listing .egg-info files directly.")
 }
 
 func (s *Suite) Test_PlistChecker__autofix(c *check.C) {
@@ -466,64 +338,11 @@ func (s *Suite) Test_PlistChecker__invalid_line_type(c *check.C) {
 	CheckLinesPlist(nil, lines)
 
 	t.CheckOutputLines(
-		"WARN: ~/PLIST:2: Invalid line type: ---invalid",
-		"WARN: ~/PLIST:3: Invalid line type: +++invalid",
-		"WARN: ~/PLIST:4: Invalid line type: <<<<<<<< merge conflict",
-		"WARN: ~/PLIST:5: Invalid line type: ======== merge conflict",
-		"WARN: ~/PLIST:6: Invalid line type: >>>>>>>> merge conflict")
-}
-
-func (s *Suite) Test_PlistChecker_checkPathNonAscii(c *check.C) {
-	t := s.Init(c)
-
-	t.SetUpCommandLine("-Wall", "--explain")
-	lines := t.NewLines("PLIST",
-		PlistCvsID,
-
-		"dir1/fr\xFCher", // German, "back then", encoded in ISO 8859-1
-
-		// Subsequent non-ASCII filenames do not generate further messages
-		// since these filenames typically appear in groups, and issuing
-		// too many warnings quickly gets boring.
-		"dir1/\u00C4thernetz", // German
-
-		// This ASCII-only pathname enables the check again.
-		"dir2/aaa",
-		"dir2/\u0633\u0644\u0627\u0645", // Arabic: salaam
-
-		"dir2/\uC548\uB148", // Korean: annyeong
-
-		// This ASCII-only pathname enables the check again.
-		"dir3/ascii-only",
-
-		// Any comment suppresses the check for the next contiguous
-		// sequence of non-ASCII filenames.
-		"@comment The next file is non-ASCII on purpose.",
-		"dir3/\U0001F603", // Smiling face with open mouth
-
-		// This ASCII-only pathname enables the check again.
-		"sbin/iconv",
-
-		"sbin/\U0001F603", // Smiling face with open mouth
-	)
-
-	CheckLinesPlist(nil, lines)
-
-	t.CheckOutputLines(
-		"WARN: PLIST:2: Non-ASCII filename \"dir1/fr<0xFC>her\".",
-		"",
-		"\tThe great majority of filenames installed by pkgsrc packages are",
-		"\tASCII-only. Filenames containing non-ASCII characters can cause",
-		"\tvarious problems since their name may already be different when",
-		"\tanother character encoding is set in the locale.",
-		"",
-		"\tTo mark a filename as intentionally non-ASCII, insert a PLIST",
-		"\t@comment with a convincing reason directly above this line. That",
-		"\tcomment will allow this line and the lines directly below it to",
-		"\tcontain non-ASCII filenames.",
-		"",
-		"WARN: PLIST:5: Non-ASCII filename \"dir2/<U+0633><U+0644><U+0627><U+0645>\".",
-		"WARN: PLIST:11: Non-ASCII filename \"sbin/<U+1F603>\".")
+		"ERROR: ~/PLIST:2: Invalid line type: ---invalid",
+		"ERROR: ~/PLIST:3: Invalid line type: +++invalid",
+		"ERROR: ~/PLIST:4: Invalid line type: <<<<<<<< merge conflict",
+		"ERROR: ~/PLIST:5: Invalid line type: ======== merge conflict",
+		"ERROR: ~/PLIST:6: Invalid line type: >>>>>>>> merge conflict")
 }
 
 func (s *Suite) Test_PlistChecker__doc(c *check.C) {
@@ -583,21 +402,360 @@ func (s *Suite) Test_PlistChecker__PKGLOCALEDIR_without_package(c *check.C) {
 	t.CheckOutputEmpty()
 }
 
-func (s *Suite) Test_PlistChecker_checkPath__unwanted_entries(c *check.C) {
+func (s *Suite) Test_NewPlistChecker(c *check.C) {
+	t := s.Init(c)
+
+	pkg := NewPackage(t.File("category/package"))
+
+	ck := NewPlistChecker(pkg)
+
+	t.CheckEquals(ck.pkg, pkg)
+	t.Check(ck.allDirs, check.NotNil)
+	t.Check(ck.allFiles, check.NotNil)
+}
+
+func (s *Suite) Test_PlistChecker_Load__common_end(c *check.C) {
+	t := s.Init(c)
+
+	t.Chdir(".")
+	t.CreateFileLines("PLIST",
+		PlistCvsID,
+		"bin/plist")
+	t.CreateFileLines("PLIST.common",
+		PlistCvsID,
+		"bin/plist_common")
+	t.CreateFileLines("PLIST.common_end",
+		PlistCvsID,
+		"bin/plist_common_end")
+
+	ck := NewPlistChecker(nil)
+
+	plistLines := ck.Load(Load(t.File("PLIST.common_end"), MustSucceed))
+
+	// The corresponding PLIST.common is loaded if possible.
+	// Its lines are not appended to plistLines since they
+	// are checked separately.
+	t.Check(plistLines, check.HasLen, 2)
+
+	// But the files and directories from PLIST.common are registered,
+	// to check for duplicates and to make these lists available to
+	// the package being checked, for cross-validation.
+	t.Check(ck.allFiles["bin/plist"], check.IsNil)
+	t.CheckEquals(
+		ck.allFiles["bin/plist_common"].String(),
+		"PLIST.common:2: bin/plist_common")
+	t.CheckEquals(
+		ck.allFiles["bin/plist_common_end"].String(),
+		"PLIST.common_end:2: bin/plist_common_end")
+}
+
+func (s *Suite) Test_PlistChecker_Check(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("PLIST",
+		"bin/subdir/program")
+	ck := NewPlistChecker(nil)
+
+	ck.Check(lines)
+
+	t.CheckOutputLines(
+		"WARN: PLIST:1: The bin/ directory should not have subdirectories.")
+}
+
+func (s *Suite) Test_PlistChecker_newLines(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("PLIST",
+		"bin/program",
+		"${PLIST.cond}bin/conditional",
+		"${PLIST.abs}${PLIST.abs2}/bin/conditional-absolute",
+		"${PLIST.mod:Q}invalid")
+
+	plistLines := (*PlistChecker)(nil).newLines(lines)
+
+	// The invalid condition in line 4 is silently skipped when the
+	// lines are parsed. The actual check happens later.
+
+	t.Check(plistLines, check.HasLen, 4)
+	t.CheckEquals(plistLines[0].text, "bin/program")
+	t.CheckEquals(plistLines[1].text, "bin/conditional")
+	t.CheckEquals(plistLines[2].text, "/bin/conditional-absolute")
+	t.CheckEquals(plistLines[3].text, "${PLIST.mod:Q}invalid")
+
+	t.Check(plistLines[0].conditions, check.HasLen, 0)
+	t.CheckDeepEquals(plistLines[1].conditions, []string{"PLIST.cond"})
+	t.CheckDeepEquals(plistLines[2].conditions, []string{"PLIST.abs", "PLIST.abs2"})
+	t.Check(plistLines[3].conditions, check.HasLen, 0)
+}
+
+func (s *Suite) Test_PlistChecker_collectFilesAndDirs(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("PLIST",
+		PlistCvsID,
+		"bin/program",
+		"man/man1/program.1",
+		"/absolute",
+		"${PLIST.cond}/absolute",
+		"@exec ${MKDIR} %D//absolute")
+	ck := NewPlistChecker(nil)
+	plistLines := ck.newLines(lines)
+
+	ck.collectFilesAndDirs(plistLines)
+
+	t.CheckDeepEquals(keys(ck.allDirs),
+		[]string{"bin", "man", "man/man1"})
+	t.CheckDeepEquals(keys(ck.allFiles),
+		[]string{"bin/program", "man/man1/program.1"})
+}
+
+func (s *Suite) Test_PlistChecker_collectPath(c *check.C) {
+	t := s.Init(c)
+
+	line := t.NewLine("PLIST", 1, "a/b/c/program")
+	ck := NewPlistChecker(nil)
+
+	ck.collectPath("a/b/c/program", &PlistLine{line, nil, line.Text})
+
+	t.CheckDeepEquals(keys(ck.allDirs),
+		[]string{"a", "a/b", "a/b/c"})
+	t.CheckDeepEquals(keys(ck.allFiles),
+		[]string{"a/b/c/program"})
+}
+
+func (s *Suite) Test_PlistChecker_collectDirective(c *check.C) {
+	t := s.Init(c)
+
+	test := func(directive string, dirs ...string) {
+		line := t.NewLine("PLIST", 1, directive)
+		ck := NewPlistChecker(nil)
+
+		ck.collectDirective(&PlistLine{line, nil, line.Text})
+
+		t.CheckDeepEquals(keys(ck.allDirs), dirs)
+		t.Check(keys(ck.allFiles), check.HasLen, 0)
+	}
+
+	test("@exec ${MKDIR} %D/a/b/c",
+		"a", "a/b", "a/b/c")
+
+	test("@exec echo hello",
+		nil...)
+
+	test("@exec ${MKDIR} %D//absolute",
+		nil...)
+
+	test("@exec ${MKDIR} %D/a/../../../breakout",
+		"a", "a/..", "a/../..", "a/../../..", "a/../../../breakout")
+}
+
+func (s *Suite) Test_PlistChecker_checkLine(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("PLIST",
+		PlistCvsID,
+		"bin/program",
+		"${PLIST.var}bin/conditional-program",
+		"${PLIST.linux}${PLIST.arm}bin/arm-linux-only",
+		"${PLIST.linux}${PLIST.arm-64}@exec echo 'This is Linux/arm64'",
+		"${PLIST.ocaml-opt}share/ocaml",
+		"${PLIST.ocaml-opt}@exec echo 'This is OCaml'",
+		"${PLIST.ocaml-opt}@exec echo 'This is OCaml'",
+		"${PYSITELIB:S,lib,share}/modifiers don't work in PLISTs",
+		"${PLIST.empty}",
+		"",
+		"$prefix/bin",
+
+		// This line does not count as a PLIST condition since it has
+		// a :Q modifier, which does not work in PLISTs. Therefore the
+		// ${PLIST.man:Q} is considered part of the filename.
+		"${PLIST.man:Q}man/cat3/strlcpy.3",
+		"<<<<<<<<< merge conflict")
+
+	CheckLinesPlist(nil, lines)
+
+	t.CheckOutputLines(
+		"WARN: PLIST:3: \"bin/conditional-program\" should be sorted before \"bin/program\".",
+		"WARN: PLIST:4: \"bin/arm-linux-only\" should be sorted before \"bin/conditional-program\".",
+		"WARN: PLIST:10: PLISTs should not contain empty lines.",
+		"WARN: PLIST:11: PLISTs should not contain empty lines.",
+		"ERROR: PLIST:14: Invalid line type: <<<<<<<<< merge conflict")
+}
+
+func (s *Suite) Test_PlistChecker_checkPath__PKGMANDIR(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("PLIST",
+		PlistCvsID,
+		"${PKGMANDIR}/man1/sh.1")
+
+	CheckLinesPlist(nil, lines)
+
+	t.CheckOutputLines(
+		"NOTE: PLIST:2: PLIST files should use \"man/\" instead of \"${PKGMANDIR}\".")
+}
+
+func (s *Suite) Test_PlistChecker_checkPathMisc__python_egg(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("PLIST",
+		PlistCvsID,
+		"${PYSITELIB}/gdspy-${PKGVERSION}-py${PYVERSSUFFIX}.egg-info/PKG-INFO")
+
+	CheckLinesPlist(nil, lines)
+
+	t.CheckOutputLines(
+		"WARN: PLIST:2: Include \"../../lang/python/egg.mk\" instead of listing .egg-info files directly.")
+}
+
+func (s *Suite) Test_PlistChecker_checkPathMisc__unwanted_entries(c *check.C) {
 	t := s.Init(c)
 
 	lines := t.SetUpFileLines("PLIST",
 		PlistCvsID,
 		"share/perllocal.pod",
 		"share/pkgbase/CVS/Entries",
-		"share/pkgbase/Makefile.orig")
+		"share/pkgbase/Makefile.orig",
+		"../breakout",
+		"t/../../breakout",
+		"t/../../breakout/${VAR}",
+		"t/./non-canonical",
+		"t///non-canonical",
+		"t///non-canonical/${VAR}",
+		"t///non-canonical${VAR}",
+		"t/non-canonical/",
+		"t/ok/${VAR}")
 
 	CheckLinesPlist(nil, lines)
 
 	t.CheckOutputLines(
 		"WARN: ~/PLIST:2: The perllocal.pod file should not be in the PLIST.",
 		"WARN: ~/PLIST:3: CVS files should not be in the PLIST.",
-		"WARN: ~/PLIST:4: .orig files should not be in the PLIST.")
+		"WARN: ~/PLIST:4: .orig files should not be in the PLIST.",
+		"ERROR: ~/PLIST:5: Invalid line type: ../breakout",
+		"ERROR: ~/PLIST:6: Paths in PLIST files must not contain \"..\".",
+		"ERROR: ~/PLIST:7: Paths in PLIST files must not contain \"..\".",
+		"ERROR: ~/PLIST:8: Paths in PLIST files must be canonical (t/non-canonical).",
+		"ERROR: ~/PLIST:9: Paths in PLIST files must be canonical (t/non-canonical).",
+		"ERROR: ~/PLIST:10: Paths in PLIST files must be canonical (t/non-canonical/${VAR}).",
+		"ERROR: ~/PLIST:11: Paths in PLIST files must be canonical (t/non-canonical${VAR}).",
+		"ERROR: ~/PLIST:12: Paths in PLIST files must be canonical (t/non-canonical).")
+}
+
+func (s *Suite) Test_PlistChecker_checkPathNonAscii(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCommandLine("-Wall", "--explain")
+	lines := t.NewLines("PLIST",
+		PlistCvsID,
+
+		"dir1/fr\xFCher", // German, "back then", encoded in ISO 8859-1
+
+		// Subsequent non-ASCII filenames do not generate further messages
+		// since these filenames typically appear in groups, and issuing
+		// too many warnings quickly gets boring.
+		"dir1/\u00C4thernetz", // German
+
+		// This ASCII-only pathname enables the check again.
+		"dir2/aaa",
+		"dir2/\u0633\u0644\u0627\u0645", // Arabic: salaam
+
+		"dir2/\uC548\uB148", // Korean: annyeong
+
+		// This ASCII-only pathname enables the check again.
+		"dir3/ascii-only",
+
+		// Any comment suppresses the check for the next contiguous
+		// sequence of non-ASCII filenames.
+		"@comment The next file is non-ASCII on purpose.",
+		"dir3/\U0001F603", // Smiling face with open mouth
+
+		// This ASCII-only pathname enables the check again.
+		"sbin/iconv",
+
+		"sbin/\U0001F603", // Smiling face with open mouth
+
+		// Directives other than comments do not allow non-ASCII.
+		"unicode/00FC/reset",
+		"@exec true",
+		"unicode/00FC/\u00FC", // u-umlaut
+	)
+
+	CheckLinesPlist(nil, lines)
+
+	t.CheckOutputLines(
+		"WARN: PLIST:2: Non-ASCII filename \"dir1/fr<0xFC>her\".",
+		"",
+		"\tThe great majority of filenames installed by pkgsrc packages are",
+		"\tASCII-only. Filenames containing non-ASCII characters can cause",
+		"\tvarious problems since their name may already be different when",
+		"\tanother character encoding is set in the locale.",
+		"",
+		"\tTo mark a filename as intentionally non-ASCII, insert a PLIST",
+		"\t@comment with a convincing reason directly above this line. That",
+		"\tcomment will allow this line and the lines directly below it to",
+		"\tcontain non-ASCII filenames.",
+		"",
+		"WARN: PLIST:5: Non-ASCII filename \"dir2/<U+0633><U+0644><U+0627><U+0645>\".",
+		"WARN: PLIST:11: Non-ASCII filename \"sbin/<U+1F603>\".",
+		"WARN: PLIST:14: Non-ASCII filename \"unicode/00FC/<U+00FC>\".")
+}
+
+func (s *Suite) Test_PlistChecker_checkSorted(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("PLIST",
+		PlistCvsID,
+		"bin/program2",
+		"bin/program1")
+
+	CheckLinesPlist(nil, lines)
+
+	t.CheckOutputLines(
+		"WARN: PLIST:3: \"bin/program1\" should be " +
+			"sorted before \"bin/program2\".")
+}
+
+func (s *Suite) Test_PlistChecker_checkDuplicate(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("PLIST",
+		PlistCvsID,
+		"bin/program",
+		"bin/program")
+
+	CheckLinesPlist(nil, lines)
+
+	t.CheckOutputLines(
+		"ERROR: PLIST:3: Duplicate filename \"bin/program\", " +
+			"already appeared in line 2.")
+}
+
+func (s *Suite) Test_PlistChecker_checkPathBin(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("PLIST",
+		PlistCvsID,
+		"bin",
+		"bin/subdir/program")
+
+	CheckLinesPlist(nil, lines)
+
+	t.CheckOutputLines(
+		"WARN: PLIST:3: The bin/ directory should not have subdirectories.")
+}
+
+func (s *Suite) Test_PlistChecker_checkPathEtc(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("PLIST",
+		PlistCvsID,
+		"etc/config")
+
+	CheckLinesPlist(nil, lines)
+
+	t.CheckOutputLines(
+		"ERROR: PLIST:2: Configuration files must not be registered in the PLIST.")
 }
 
 func (s *Suite) Test_PlistChecker_checkPathInfo(c *check.C) {
@@ -716,6 +874,20 @@ func (s *Suite) Test_PlistChecker_checkPathMan(c *check.C) {
 		"WARN: ~/PLIST:5: Unknown section \"x\" for manual page.")
 }
 
+func (s *Suite) Test_PlistChecker_checkPathMan__gz(c *check.C) {
+	t := s.Init(c)
+
+	G.Pkg = NewPackage(t.File("category/pkgbase"))
+	lines := t.NewLines("PLIST",
+		PlistCvsID,
+		"man/man3/strerror.3.gz")
+
+	CheckLinesPlist(G.Pkg, lines)
+
+	t.CheckOutputLines(
+		"NOTE: PLIST:2: The .gz extension is unnecessary for manual pages.")
+}
+
 func (s *Suite) Test_PlistChecker_checkPathShare(c *check.C) {
 	t := s.Init(c)
 
@@ -744,7 +916,7 @@ func (s *Suite) Test_PlistChecker_checkPathShare(c *check.C) {
 func (s *Suite) Test_PlistChecker_checkPathShareIcons__using_gnome_icon_theme(c *check.C) {
 	t := s.Init(c)
 
-	t.CreateFileDummyBuildlink3("graphics/gnome-icon-theme/buildlink3.mk")
+	t.CreateFileBuildlink3("graphics/gnome-icon-theme/buildlink3.mk")
 	t.SetUpPackage("graphics/gnome-icon-theme-extras",
 		"ICON_THEMES=\tyes",
 		".include \"../../graphics/gnome-icon-theme/buildlink3.mk\"")
@@ -764,7 +936,7 @@ func (s *Suite) Test_PlistChecker_checkPathShareIcons__using_gnome_icon_theme(c 
 	// This variant is typical for recursive runs of pkglint.
 	G.Check("./graphics/gnome-icon-theme-extras")
 
-	// Up to March 2019, a bug in relpath produced different behavior
+	// Up to March 2019, a bug in Relpath produced different behavior
 	// depending on the leading dot.
 	t.CheckOutputEmpty()
 }
@@ -772,7 +944,7 @@ func (s *Suite) Test_PlistChecker_checkPathShareIcons__using_gnome_icon_theme(c 
 func (s *Suite) Test_PlistChecker_checkPathShareIcons__gnome_icon_theme_itself(c *check.C) {
 	t := s.Init(c)
 
-	t.CreateFileDummyBuildlink3("graphics/gnome-icon-theme/buildlink3.mk",
+	t.CreateFileBuildlink3("graphics/gnome-icon-theme/buildlink3.mk",
 		"ICON_THEMES=\tyes")
 	t.SetUpPackage("graphics/gnome-icon-theme",
 		".include \"../../graphics/gnome-icon-theme/buildlink3.mk\"")
@@ -832,6 +1004,38 @@ func (s *Suite) Test_PlistChecker_checkPathShareIcons__hicolor_ok(c *check.C) {
 	t.CheckOutputEmpty()
 }
 
+func (s *Suite) Test_PlistLine_Path(c *check.C) {
+	t := s.Init(c)
+
+	t.CheckEquals(
+		(&PlistLine{text: "relative"}).Path(),
+		NewRelPathString("relative"))
+
+	t.ExpectAssert(
+		func() { (&PlistLine{text: "/absolute"}).Path() })
+}
+
+func (s *Suite) Test_PlistLine_HasPlainPath(c *check.C) {
+	t := s.Init(c)
+
+	test := func(text string, hasPlainPath bool) {
+		t.CheckEquals((&PlistLine{text: text}).HasPlainPath(), hasPlainPath)
+	}
+
+	test("abc", true)
+	test("9plan", true)
+	test("bin/program", true)
+
+	test("", false)
+	test("@", false)
+	test(":", false)
+	test("/absolute", false)
+	test("-rf", false)
+	test("\\", false)
+	test("bin/$<", false)
+	test("bin/${VAR}", false)
+}
+
 func (s *Suite) Test_PlistLine_CheckTrailingWhitespace(c *check.C) {
 	t := s.Init(c)
 
@@ -879,18 +1083,6 @@ func (s *Suite) Test_PlistLine_CheckDirective(c *check.C) {
 		"WARN: ~/PLIST:13: Unknown PLIST directive \"@unknown\".")
 }
 
-func (s *Suite) Test_NewPlistLineSorter__only_comments(c *check.C) {
-	t := s.Init(c)
-
-	lines := t.NewLines("PLIST",
-		PlistCvsID,
-		"@comment intentionally left empty")
-
-	CheckLinesPlist(nil, lines)
-
-	t.CheckOutputEmpty()
-}
-
 func (s *Suite) Test_plistLineSorter__unsortable(c *check.C) {
 	t := s.Init(c)
 
@@ -912,4 +1104,73 @@ func (s *Suite) Test_plistLineSorter__unsortable(c *check.C) {
 		"TRACE: 1 + SaveAutofixChanges()",
 		"TRACE: 1 - SaveAutofixChanges()",
 		"TRACE: - CheckLinesPlist(\"~/PLIST\")")
+}
+
+func (s *Suite) Test_NewPlistLineSorter__only_comments(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("PLIST",
+		PlistCvsID,
+		"@comment intentionally left empty")
+
+	CheckLinesPlist(nil, lines)
+
+	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_plistLineSorter_Sort(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCommandLine("--autofix")
+	lines := t.SetUpFileLines("PLIST",
+		PlistCvsID,
+		"@comment Do not remove",
+		"A",
+		"b",
+		"CCC",
+		"lib/${UNKNOWN}.la",
+		"C",
+		"ddd",
+		"@exec echo \"after ddd\"", // Makes the PLIST unsortable
+		"sbin/program",
+		"${PLIST.one}bin/program",
+		"man/man1/program.1",
+		"${PLIST.two}bin/program2",
+		"lib/before.la",
+		"${PLIST.linux}${PLIST.x86_64}lib/lib-linux-x86_64.so", // Double condition, see graphics/graphviz
+		"lib/after.la",
+		"@exec echo \"after lib/after.la\"")
+	ck := PlistChecker{nil, nil, nil, "", Once{}, false}
+	plines := ck.newLines(lines)
+
+	sorter1 := NewPlistLineSorter(plines)
+	t.CheckEquals(sorter1.unsortable, lines.Lines[5])
+
+	cleanedLines := append(append(lines.Lines[0:5], lines.Lines[6:8]...), lines.Lines[9:]...) // Remove ${UNKNOWN} and @exec
+
+	sorter2 := NewPlistLineSorter((&PlistChecker{nil, nil, nil, "", Once{}, false}).
+		newLines(NewLines(lines.Filename, cleanedLines)))
+
+	c.Check(sorter2.unsortable, check.IsNil)
+
+	sorter2.Sort()
+
+	t.CheckOutputLines(
+		"AUTOFIX: ~/PLIST:3: Sorting the whole file.")
+	t.CheckFileLines("PLIST",
+		PlistCvsID,
+		"@comment Do not remove", // The header ends here
+		"A",
+		"C",
+		"CCC",
+		"b",
+		"${PLIST.one}bin/program", // Conditional lines are ignored during sorting
+		"${PLIST.two}bin/program2",
+		"ddd",
+		"lib/after.la",
+		"lib/before.la",
+		"${PLIST.linux}${PLIST.x86_64}lib/lib-linux-x86_64.so",
+		"man/man1/program.1",
+		"sbin/program",
+		"@exec echo \"after lib/after.la\"") // The footer starts here
 }

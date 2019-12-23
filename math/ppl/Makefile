@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2019/08/11 13:21:52 wiz Exp $
+# $NetBSD: Makefile,v 1.15 2019/11/02 16:16:21 rillig Exp $
 
 DISTNAME=	ppl-1.2
 PKGREVISION=	1

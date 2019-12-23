@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.135 2019/10/10 12:04:13 wiz Exp $
+# $NetBSD: Makefile,v 1.137 2019/11/06 14:51:19 wiz Exp $
 
-DISTNAME=	gtk+-3.24.11
+DISTNAME=	gtk+-3.24.12
 PKGNAME=	${DISTNAME:S/gtk/gtk3/}
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtk+/${PKGVERSION_NOREV:R}/}
@@ -11,12 +11,14 @@ HOMEPAGE=	https://www.gtk.org/
 COMMENT=	GIMP Toolkit v3 - libraries for building X11 user interfaces
 LICENSE=	gnu-lgpl-v2.1
 
-USE_PKGLOCALEDIR=	yes
-USE_TOOLS+=		ggrep gmake msgfmt perl pkg-config bash
-USE_LANGUAGES=		c c++
-USE_LIBTOOL=		yes
-PTHREAD_AUTO_VARS=	yes
-TOOL_DEPENDS+=		gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
+USE_PKGLOCALEDIR=		yes
+USE_TOOLS+=			ggrep gmake msgfmt perl pkg-config bash xgettext msgmerge
+USE_LANGUAGES=			c c++
+USE_LIBTOOL=			yes
+PTHREAD_AUTO_VARS=		yes
+TOOL_DEPENDS+=			gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
+
+GETTEXT_TOOLS_REQD=		0.19.3
 
 GNU_CONFIGURE=		yes
 # XXX there is a subtle bashism in "configure" or a bug in NetBSD's sh

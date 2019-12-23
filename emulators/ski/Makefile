@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.30 2019/07/21 22:24:46 wiz Exp $
+# $NetBSD: Makefile,v 1.32 2019/11/17 23:05:19 scole Exp $
 #
 
 DISTNAME=	ski-1.3.2
-PKGREVISION=	14
+PKGREVISION=	15
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=ski/}
 
@@ -14,11 +14,11 @@ LICENSE=	gnu-gpl-v2
 .include "../../mk/bsd.prefs.mk"
 .include "options.mk"
 
-BUILD_DEPENDS+= libelf>=0.8.13:../../devel/libelf
+BUILD_DEPENDS+=	libelf>=0.8.13:../../devel/libelf
 
-GNU_CONFIGURE=	yes
-USE_LANGUAGES+= c c++
-CONFIGURE_ARGS+= --prefix=${PREFIX}
+GNU_CONFIGURE=		yes
+USE_LANGUAGES+=		c c++
+CONFIGURE_ARGS+=	--prefix=${PREFIX}
 
 CPPFLAGS+=	-I${PREFIX}/include/libelf -L ${PREFIX}/lib
 

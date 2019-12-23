@@ -1,4 +1,4 @@
-# $NetBSD: builtin.mk,v 1.9 2018/02/26 18:13:16 ryoon Exp $
+# $NetBSD: builtin.mk,v 1.10 2019/11/03 11:45:41 rillig Exp $
 
 BUILTIN_PKG:=	mDNSResponder
 
@@ -17,7 +17,7 @@ IS_BUILTIN.mDNSResponder=	no
 IS_BUILTIN.mDNSResponder=	yes
 .  endif
 .endif	# IS_BUILTIN.mDNSResponder
-MAKEVARS+=	IS_BUILTIN.mDNSResponder
+MAKEVARS+=			IS_BUILTIN.mDNSResponder
 
 ###
 ### If there is a built-in implementation, then set BUILTIN_PKG.<pkg> to
@@ -66,4 +66,4 @@ USE_BUILTIN.mDNSResponder!=							\
 .    endif
 .  endif  # PREFER.mDNSResponder
 .endif
-MAKEVARS+=	USE_BUILTIN.mDNSResponder
+MAKEVARS+=			USE_BUILTIN.mDNSResponder

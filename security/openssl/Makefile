@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.242 2019/08/11 13:22:48 wiz Exp $
+# $NetBSD: Makefile,v 1.246 2019/11/26 22:22:45 sevan Exp $
 
-DISTNAME=	openssl-1.0.2s
-PKGREVISION=	1
+DISTNAME=	openssl-1.0.2t
 CATEGORIES=	security
 MASTER_SITES=	https://www.openssl.org/source/
 
@@ -32,7 +31,7 @@ CONFIGURE_ARGS+=	shared no-fips
 
 # Avoid dependency on 'makedepend' on platforms where the default CC is set
 # to 'cc' not 'gcc' in boostrap-mk-files.  OpenSSL only supports the latter.
-.if ${PKGSRC_COMPILER} == "gcc" && ${CC} == "cc"
+.if !empty(PKGSRC_COMPILER:Mgcc) && ${CC} == "cc"
 CC=			gcc
 .endif
 
@@ -50,7 +49,7 @@ OPENSSL_MACHINE_ARCH=	${MACHINE_ARCH}
 # back to ./config's autodetection if not.
 .  if defined(OPENSSL_MACHINE_ARCH) && !empty(OPENSSL_MACHINE_ARCH)
 CONFIGURE_SCRIPT=	./Configure
-.    if ${PKGSRC_COMPILER} == "clang" || ${PKGSRC_COMPILER} == "gcc"
+.    if !empty(PKGSRC_COMPILER:Mclang) || !empty(PKGSRC_COMPILER:Mgcc)
 CONFIGURE_ARGS+=	solaris${${ABI}==64:?64:}-${OPENSSL_MACHINE_ARCH}-gcc
 .    else
 CONFIGURE_ARGS+=	solaris${${ABI}==64:?64:}-${OPENSSL_MACHINE_ARCH}-cc
@@ -85,7 +84,7 @@ _OS=			darwin
 _ARCH=			ppc
 .  else
 _ARCH=			${MACHINE_ARCH}
-.endif
+.  endif
 CONFIGURE_ARGS+=	${_OS}-${_ARCH}-cc
 
 SUBST_CLASSES+=		dl

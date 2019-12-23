@@ -1,5 +1,7 @@
+/*	$NetBSD: fileio.h,v 1.3 2019/12/01 06:03:58 rin Exp $	*/
+
 /*-
- * Copyright (c) 2011 The NetBSD Foundation, Inc.
+ * Copyright (c) 2011, 2019 The NetBSD Foundation, Inc.
  * All rights reserved.
  *
  * This code is derived from software contributed to The NetBSD Foundation
@@ -43,6 +45,7 @@ extern FileHandle *FileHandleBZLib(int *);
 extern FileHandle *FileHandleLZMA(int *);
 extern FileHandle *FileHandlePlain(int *);
 extern FileHandle *FileHandleZLib(int *);
+extern FileHandle *FileHandleZstd(int *);
 
 #ifdef	FILEIO_INTERNAL
 

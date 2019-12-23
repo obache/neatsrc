@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.205 2019/10/19 12:46:05 nia Exp $
+# $NetBSD: Makefile,v 1.207 2019/11/07 12:38:06 wiz Exp $
 
 DISTNAME=	graphviz-2.40.1
-PKGREVISION=	40
+PKGREVISION=	42
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.graphviz.org/pub/graphviz/stable/SOURCES/
 
@@ -22,6 +22,7 @@ CONFIGURE_ARGS+=	--disable-python
 CONFIGURE_ARGS+=	--disable-ruby
 CONFIGURE_ARGS+=	--disable-sharp
 CONFIGURE_ARGS+=	--disable-r
+CONFIGURE_ARGS+=	--without-qt
 # build fails when PHP and/or Ruby are also installed
 CONFIGURE_ENV+=		ac_cv_prog_PHP=
 CONFIGURE_ENV+=		ac_cv_prog_RUBY=

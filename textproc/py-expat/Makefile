@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.28 2019/10/21 13:19:29 adam Exp $
+# $NetBSD: Makefile,v 1.29 2019/11/04 21:43:45 rillig Exp $
 
 PKGNAME=	${PYPKGPREFIX}-expat-${PY_DISTVERSION}
 CATEGORIES=	textproc python
@@ -15,9 +15,9 @@ EXTRACT_ELEMENTS+=	${PYSUBDIR}/Modules/clinic/pyexpat.c.h
 
 USE_GCC_RUNTIME=	yes
 
-PYDISTUTILSPKG=	yes
-PY_SETUP_SUBST+= EXPATPREFIX=${BUILDLINK_DIR}
-PY_SETUP_SUBST+= EXPATRTPREFIX=${BUILDLINK_PREFIX.expat}
+PYDISTUTILSPKG=		yes
+PY_SETUP_SUBST+=	EXPATPREFIX=${BUILDLINK_DIR}
+PY_SETUP_SUBST+=	EXPATRTPREFIX=${BUILDLINK_PREFIX.expat}
 
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../lang/python/srcdist.mk"

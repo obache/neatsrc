@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.7 2019/08/20 07:15:45 adam Exp $
+# $NetBSD: Makefile.common,v 1.9 2019/11/19 05:36:44 adam Exp $
 # used by devel/py-pyobjc-core/Makefile
 # used by devel/py-pyobjc-framework-AVFoundation/Makefile
 # used by devel/py-pyobjc-framework-AVKit/Makefile
@@ -79,13 +79,15 @@
 # used by devel/py-pyobjc-framework-iTunesLibrary/Makefile
 # used by devel/py-pyobjc-framework-libdispatch/Makefile
 
-PYOBJC_VERS=	5.2
+PYOBJC_VERS=	6.1
 
 MAINTAINER?=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://pyobjc.readthedocs.io/
 LICENSE=	mit
 
 ONLY_FOR_PLATFORM=	Darwin-*-*
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 SUBST_CLASSES+=		pysetup
 SUBST_STAGE.pysetup=	pre-configure

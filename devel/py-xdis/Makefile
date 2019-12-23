@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.12 2019/10/15 16:59:35 adam Exp $
+# $NetBSD: Makefile,v 1.15 2019/12/11 13:18:25 adam Exp $
 
-DISTNAME=	xdis-4.1.0
+DISTNAME=	xdis-4.2.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=x/xdis/}
@@ -13,6 +13,7 @@ LICENSE=	gnu-gpl-v2
 DEPENDS+=	${PYPKGPREFIX}-click-[0-9]*:../../devel/py-click
 DEPENDS+=	${PYPKGPREFIX}-six>=1.10.0:../../lang/py-six
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
 
 USE_LANGUAGES=	# none
 

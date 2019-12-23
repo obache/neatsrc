@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.214 2019/09/21 22:32:41 tron Exp $
+# $NetBSD: Makefile,v 1.218 2019/12/19 15:44:40 tron Exp $
 
-DISTNAME=		mutt-1.12.2
+DISTNAME=		mutt-1.13.2
 CATEGORIES=		mail
 MASTER_SITES=		ftp://ftp.mutt.org/pub/mutt/
 
@@ -27,6 +27,8 @@ CONFIGURE_ARGS+=	--enable-pop
 CONFIGURE_ARGS+=	--enable-imap
 CONFIGURE_ARGS.SunOS+=	--disable-filemonitor
 INFO_FILES=		yes
+
+REPLACE_PYTHON+=	contrib/markdown2html
 
 .if ${OPSYS} == "NetBSD" || ${OPSYS} == "DragonFly" || ${OPSYS} == "FreeBSD" || ${OPSYS} == "OpenBSD"
 # Force sendmail to /usr/sbin to avoid postfix's
@@ -60,12 +62,13 @@ SUBST_FILES.paths=	doc/Muttrc
 SUBST_VARS.paths+=	DOCDIR PREFIX
 SUBST_STAGE.paths=	pre-configure
 
-SPECIAL_PERMS+=	bin/mutt_dotlock ${REAL_ROOT_USER} mail 2551
+SPECIAL_PERMS+=		bin/mutt_dotlock ${REAL_ROOT_USER} mail 2551
 INSTALL_MAKE_FLAGS=	${MAKE_FLAGS} sysconfdir=${EGDIR}
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../textproc/libxslt/xsltproc-nonet.mk"
+.include "../../lang/python/application.mk"
 
 .include "../../mk/bsd.pkg.mk"

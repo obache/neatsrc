@@ -1,14 +1,14 @@
-# $NetBSD: options.mk,v 1.12 2019/07/02 12:51:34 ryoon Exp $
+# $NetBSD: options.mk,v 1.13 2019/10/27 12:44:28 kamil Exp $
 
 .include "../../comms/lirc/available.mk"
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.pulseaudio
-PKG_SUPPORTED_OPTIONS=	avahi fftw gsettings x11
+PKG_SUPPORTED_OPTIONS=	avahi gsettings x11
 .if ${LIRC_AVAILABLE} == "yes"
 PKG_SUPPORTED_OPTIONS+=	lirc
 .endif
 PKG_SUGGESTED_OPTIONS=	avahi x11
-PLIST_VARS+=		avahi fftw gsettings x11 lirc
+PLIST_VARS+=		avahi gsettings x11 lirc
 
 .include "../../mk/bsd.options.mk"
 
@@ -17,21 +17,6 @@ PLIST_VARS+=		avahi fftw gsettings x11 lirc
 PLIST.avahi=		yes
 .else
 CONFIGURE_ARGS+=	--disable-avahi
-.endif
-
-.if !empty(PKG_OPTIONS:Mfftw)
-CONFIGURE_ARGS+=	--with-fftw
-PLIST.fftw=		yes
-
-REPLACE_PYTHON=		src/utils/qpaeq
-.include "../../lang/python/application.mk"
-
-.include "../../math/fftwf/buildlink3.mk"
-.include "../../sysutils/py-dbus/buildlink3.mk"
-.include "../../x11/py-qt4/buildlink3.mk"
-.include "../../x11/py-sip/buildlink3.mk"
-.else
-CONFIGURE_ARGS+=	--without-fftw
 .endif
 
 .if !empty(PKG_OPTIONS:Mgsettings)

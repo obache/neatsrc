@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2019/09/10 03:47:27 gutteridge Exp $
+# $NetBSD: Makefile,v 1.17 2019/12/13 00:47:23 gutteridge Exp $
 
 DISTNAME=	guile-2.2.6
 PKGNAME=	${DISTNAME:S/guile/guile22/}
@@ -21,6 +21,8 @@ CONFIGURE_ARGS+=	--disable-shared
 # not until boehm-gc is threaded
 CONFIGURE_ARGS+=	--without-threads
 CONFIGURE_ARGS+=	SHELL=${CONFIG_SHELL}
+# Needed to work around broken configure check for accept4()
+LDFLAGS.SunOS+=		-lsocket -lnsl
 
 .if !empty(GUILE_SUBDIR)
 # Installation prefix is non-default.
@@ -36,10 +38,11 @@ CONFIGURE_ARGS+=		--infodir=${PREFIX}/${PKGINFODIR}
 CONFIGURE_ARGS+=		--mandir=${PREFIX}/${PKGMANDIR}
 .endif
 
-INFO_FILES=	yes
-USE_LIBTOOL=	yes
-USE_TOOLS+=	gmake pkg-config
+INFO_FILES=		yes
+USE_LIBTOOL=		yes
+USE_TOOLS+=		gmake pkg-config
 USE_TOOLS.Darwin+=	gsed
+USE_TOOLS.SunOS+=	gsed
 
 PKGCONFIG_OVERRIDE+=	meta/guile-2.2.pc.in
 # known broken: test-loose-ends on NetBSD/current
@@ -57,8 +60,7 @@ SUBST_MESSAGE.tools=	Fixing path to pkg-config in installed file.
 
 OPSYSVARS+=		GUILE_LIBNAME
 GUILE_LIBNAME.Darwin=	a
-GUILE_LIBNAME.FreeBSD=	so.30
-GUILE_LIBNAME.*=	so.22.8.1
+GUILE_LIBNAME.*=	so.1.4.1
 
 PLIST_SUBST+=		GUILE_LIBNAME=${GUILE_LIBNAME}
 PRINT_PLIST_AWK+=	{gsub(/${GUILE_LIBNAME}/, "$${GUILE_LIBNAME}");}

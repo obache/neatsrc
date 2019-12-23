@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.27 2019/08/22 12:23:35 ryoon Exp $
+# $NetBSD: Makefile,v 1.30 2019/11/03 17:04:27 rillig Exp $
 #
 
-DISTNAME=	sword-1.7.4
-PKGREVISION=	24
+DISTNAME=	sword-1.8.1
 CATEGORIES=	misc
-MASTER_SITES=	http://www.crosswire.org/ftpmirror/pub/sword/source/v1.7/
+MASTER_SITES=	http://www.crosswire.org/ftpmirror/pub/sword/source/v1.8/
 
 MAINTAINER=	elentirmo.gilgalad@gmail.com
 HOMEPAGE=	http://www.crosswire.org/sword/index.jsp
@@ -20,13 +19,16 @@ CONFIGURE_ARGS+=	--with-clucene=${BUILDLINK_PREFIX.libclucene}
 
 PKGCONFIG_OVERRIDE+=	sword.pc.in
 
-INSTALLATION_DIRS+=share/examples/sword
-INSTALL_TARGET= install install_config
-REQD_FILES=	${PREFIX}/share/examples/sword/sword.conf \
-		${PKG_SYSCONFDIR}/sword.conf
+INSTALLATION_DIRS+=	share/examples/sword
+INSTALL_TARGET=		install install_config
+REQD_FILES=		${PREFIX}/share/examples/sword/sword.conf \
+			${PKG_SYSCONFDIR}/sword.conf
 
 # needed with at least GCC-5.4.0 which has a default value of 25
 CXXFLAGS+=	-ftemplate-depth=50
+
+# http://site.icu-project.org/download/61#TOC-Migration-Issues
+CXXFLAGS+=	-DU_USING_ICU_NAMESPACE=1
 
 .include "../../textproc/icu/buildlink3.mk"
 .include "../../textproc/libclucene/buildlink3.mk"

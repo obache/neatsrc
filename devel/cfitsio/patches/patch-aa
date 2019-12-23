@@ -1,14 +1,13 @@
-$NetBSD: patch-aa,v 1.6 2016/06/18 09:06:11 mef Exp $
+$NetBSD: patch-aa,v 1.8 2019/11/26 10:24:11 markd Exp $
 
 Use libtool.
 
---- Makefile.in.orig	2016-04-02 04:06:28.000000000 +0900
-+++ Makefile.in	2016-06-18 17:30:44.000000000 +0900
-@@ -37,14 +37,15 @@ INSTALL_DIRS	= @INSTALL_ROOT@ ${CFITSIO_
- SHELL =		/bin/sh
+--- Makefile.in.orig	2018-05-10 04:16:01.000000000 +0900
++++ Makefile.in	2019-11-23 15:43:52.872488997 +0900
+@@ -37,13 +37,15 @@ SHELL =		/bin/sh
  ARCHIVE =	@ARCHIVE@
  RANLIB =	@RANLIB@
--CC =		@CC@
+ CC =		@CC@
 +CC =		${LIBTOOL} --mode=compile @CC@
 +LD =		${LIBTOOL} --mode=link @CC@
  CFLAGS =	@CFLAGS@
@@ -20,13 +19,13 @@ Use libtool.
 -DEFS =		@DEFS@
 +DEFS =		@DEFS@ -Dunix
  LIBS =		@LIBS@
+ LIBS_CURL =	@LIBS_CURL@
  FLEX =		flex
- BISON =		bison
-@@ -94,11 +95,11 @@ all:
+@@ -94,10 +96,10 @@ all:
  all-nofitsio:
  		${MAKE} stand_alone "FITSIO_SRC="
  
--stand_alone:	lib${PACKAGE}.a
+-stand_alone:	lib${PACKAGE}.a shared
 +stand_alone:	lib${PACKAGE}.la
  
 -lib${PACKAGE}.a:	${OBJECTS}
@@ -34,26 +33,33 @@ Use libtool.
 -		${RANLIB} $@;
 +lib${PACKAGE}.la:	${OBJECTS}
 +		${ARCHIVE} $lib${PACKAGE}.la ${OBJECTS}; \
-+		${LIBTOOL} --mode=link @CC@ -o $@ ${OBJECTS:.o=.lo} -rpath ${PREFIX}/lib -version-info 3:0
++		${LIBTOOL} --mode=link @CC@ -o $@ ${OBJECTS:.o=.lo} ${LIBS_CURL} -rpath ${PREFIX}/lib -version-info 3:0
  
  shared: lib${PACKAGE}${SHLIB_SUFFIX}
- 
-@@ -109,10 +110,10 @@ lib${PACKAGE}${SHLIB_SUFFIX}: ${OBJECTS}
+@@ -109,16 +111,17 @@ lib${PACKAGE}${SHLIB_SUFFIX}: ${OBJECTS}
  			ln -sf ${CFITSIO_SHLIB_SONAME} $@; \
  		fi
  
 -install:	lib${PACKAGE}.a ${INSTALL_DIRS}
--		/bin/cp -a lib${PACKAGE}* ${CFITSIO_LIB}
--		/bin/cp fitsio.h fitsio2.h longnam.h drvrsmem.h ${CFITSIO_INCLUDE}
--		/bin/cp cfitsio.pc ${CFITSIO_LIB}/pkgconfig
+-		@for lib in lib${PACKAGE}.a lib${PACKAGE}${SHLIB_SUFFIX} \
 +install:	lib${PACKAGE}.la ${INSTALL_DIRS}
 +		${LIBTOOL} --mode=install ${BSD_INSTALL_LIB} libcfitsio.la ${CFITSIO_LIB}
-+		${BSD_INSTALL_DATA} fitsio.h fitsio2.h longnam.h drvrsmem.h ${CFITSIO_INCLUDE}/
++		@for lib in  lib${PACKAGE}${SHLIB_SUFFIX} \
+ 				${CFITSIO_SHLIB} ${CFITSIO_SHLIB_SONAME}; do \
+ 		    if [ -f $$lib ]; then \
+ 			echo "/bin/cp -a $$lib ${CFITSIO_LIB}"; \
+-			/bin/cp -a $$lib ${CFITSIO_LIB}; \
++			${BSD_INSTALL_DATA} -a $$lib ${CFITSIO_LIB}; \
+ 		    fi; \
+ 		done
+-		/bin/cp fitsio.h fitsio2.h longnam.h drvrsmem.h ${CFITSIO_INCLUDE}
+-		/bin/cp cfitsio.pc ${CFITSIO_LIB}/pkgconfig
++		${BSD_INSTALL_DATA} fitsio.h fitsio2.h longnam.h drvrsmem.h ${CFITSIO_INCLUDE}
 +		${BSD_INSTALL_DATA} cfitsio.pc ${CFITSIO_LIB}/pkgconfig
  		@for task in ${FPACK_UTILS} ${UTILS}; do \
  		    if [ -f $$task ]; then \
  			if [ ! -d ${CFITSIO_BIN} ]; then mkdir -p ${CFITSIO_BIN}; fi; \
-@@ -133,29 +134,29 @@ utils:		${FPACK_UTILS} ${UTILS}
+@@ -139,29 +142,29 @@ utils:		${FPACK_UTILS} ${UTILS}
  swapproc.o:	swapproc.c
  		${CC} -c ${CFLAGS} ${CPPFLAGS} ${SSE_FLAGS} ${DEFS} $<
  

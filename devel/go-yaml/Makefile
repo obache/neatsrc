@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.16 2019/10/18 14:58:50 bsiegert Exp $
+# $NetBSD: Makefile,v 1.18 2019/12/13 07:43:53 bsiegert Exp $
 
 DISTNAME=	yaml-0.0.20160301
 PKGNAME=	go-${DISTNAME}
-PKGREVISION=	13
+PKGREVISION=	14
 MASTER_SITES=	${MASTER_SITE_GITHUB:=go-yaml/}
 CATEGORIES=	devel
 GITHUB_TAG=	a83829b6f1293c91addabc89d0571c246397bbf4
-GITHUB_PROJECT= ${PKGBASE:S/^go-//}
+GITHUB_PROJECT=	${PKGBASE:S/^go-//}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://gopkg.in/yaml.v2

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.31 2019/10/18 14:58:54 bsiegert Exp $
+# $NetBSD: Makefile,v 1.33 2019/12/13 07:43:49 bsiegert Exp $
 
 DISTNAME=		go-net-20170308
-PKGREVISION=		14
+PKGREVISION=		15
 CATEGORIES=		net
 MASTER_SITES=		${MASTER_SITE_GITHUB:=golang/}
 GITHUB_PROJECT=		net
@@ -17,6 +17,7 @@ GO_DIST_BASE=		${GITHUB_PROJECT}-${GITHUB_TAG}*
 
 CHECK_RELRO_SKIP+=	bin/h2i
 
+.include "../../lang/go/go-vars.mk"
 .include "../../mk/bsd.prefs.mk"
 
 PLIST_VARS+=	h2i route

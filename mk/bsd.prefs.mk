@@ -1,4 +1,4 @@
-# $NetBSD: bsd.prefs.mk,v 1.404 2019/05/07 19:36:43 rillig Exp $
+# $NetBSD: bsd.prefs.mk,v 1.405 2019/11/09 21:24:24 maya Exp $
 #
 # This file includes the mk.conf file, which contains the user settings.
 #
@@ -387,6 +387,8 @@ OBJECT_FMT=	SOM
 .  endif
 .elif ${OPSYS} == "Cygwin" || ${OPSYS} == "Msys"
 OBJECT_FMT=	PE
+.elif ${OPSYS} == "SCO_SV"
+OBJECT_FMT=	ELF
 .endif
 
 # top directory name only used internally here

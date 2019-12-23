@@ -39,8 +39,8 @@ func NewVargroupsChecker(mklines *MkLines) *VargroupsChecker {
 
 func (ck *VargroupsChecker) init() {
 	mklines := ck.mklines
-	scope := mklines.vars
-	if !scope.Defined("_VARGROUPS") {
+	scope := mklines.allVars
+	if !scope.IsDefined("_VARGROUPS") {
 		ck.skip = true
 		return
 	}
@@ -96,7 +96,7 @@ func (ck *VargroupsChecker) init() {
 
 			if ck.registered[varname] != nil {
 				mkline.Warnf("Duplicate variable name %s, already appeared in %s.",
-					varname, mkline.RefTo(ck.registered[varname]))
+					varname, mkline.RelMkLine(ck.registered[varname]))
 			} else {
 				ck.registered[varname] = mkline
 			}

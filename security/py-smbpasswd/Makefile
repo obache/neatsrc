@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2017/09/04 18:08:27 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2019/11/04 21:13:00 rillig Exp $
 #
 
 DISTNAME=	py-smbpasswd-1.0.1

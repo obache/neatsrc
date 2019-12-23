@@ -2,17 +2,16 @@ package pkglint
 
 import (
 	"netbsd.org/pkglint/regex"
-	"path"
 )
 
 type Lines struct {
-	Filename string
-	BaseName string
+	Filename CurrPath
+	BaseName string // TODO: consider converting to Path
 	Lines    []*Line
 }
 
-func NewLines(filename string, lines []*Line) *Lines {
-	return &Lines{filename, path.Base(filename), lines}
+func NewLines(filename CurrPath, lines []*Line) *Lines {
+	return &Lines{filename, filename.Base(), lines}
 }
 
 func (ls *Lines) Len() int { return len(ls.Lines) }
@@ -21,13 +20,9 @@ func (ls *Lines) LastLine() *Line { return ls.Lines[ls.Len()-1] }
 
 func (ls *Lines) EOFLine() *Line { return NewLineMulti(ls.Filename, -1, -1, "", nil) }
 
-func (ls *Lines) Errorf(format string, args ...interface{}) {
-	NewLineWhole(ls.Filename).Errorf(format, args...)
-}
-
-func (ls *Lines) Warnf(format string, args ...interface{}) {
-	NewLineWhole(ls.Filename).Warnf(format, args...)
-}
+// Whole returns a virtual line that can be used for issuing diagnostics
+// and explanations, but not for text replacements.
+func (ls *Lines) Whole() *Line { return NewLineWhole(ls.Filename) }
 
 func (ls *Lines) SaveAutofixChanges() bool {
 	return SaveAutofixChanges(ls)
