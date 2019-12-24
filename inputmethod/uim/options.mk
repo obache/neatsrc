@@ -61,8 +61,7 @@ SUBST_SED.xkb=		-e 's;use_xkb=true;use_xkb=false;g'
 .endif
 
 .if !empty(PKG_OPTIONS:Muim-fep)
-USE_NCURSES=		YES	# setupterm, clear_screen, clr_eos
-.include "../../devel/ncurses/buildlink3.mk"
+.include "../../mk/terminfo.buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-fep
 PLIST.fep=		yes
 INSTALLATION_DIRS+=	share/doc/uim/uim-fep
