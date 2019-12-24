@@ -55,9 +55,9 @@ CONFIGURE_ARGS+=	--with-x
 PLIST.xkb=		yes
 .else
 SUBST_CLASSES+=		xkb
-SUBST_STAGE.xim=	pre-configure
-SUBST_FILES.xim=	configure
-SUBST_SED.xim=		-e 's;use_xkb=true;use_xkb=false;g'
+SUBST_STAGE.xkb=	pre-configure
+SUBST_FILES.xkb=	configure
+SUBST_SED.xkb=		-e 's;use_xkb=true;use_xkb=false;g'
 .endif
 
 .if !empty(PKG_OPTIONS:Muim-fep)
