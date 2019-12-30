@@ -77,6 +77,7 @@ CONFIGURE_ARGS+=	--disable-fep
 .endif
 
 .if !empty(PKG_OPTIONS:Manthy)
+USE_LEGACY_ANTHY_VERSION_SCHEME=	yes
 .  include "../../inputmethod/anthy/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-anthy-utf8
 PLIST.anthy=		yes
