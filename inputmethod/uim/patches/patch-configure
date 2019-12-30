@@ -2,9 +2,17 @@ $NetBSD$
 
 * regen
 
---- configure.orig	2018-08-10 05:01:22.000000000 +0000
+--- configure.orig	2018-05-11 21:27:48.000000000 +0000
 +++ configure
-@@ -28969,7 +28969,7 @@ else
+@@ -762,6 +762,7 @@ EMACS
+ UIM_FEP_FALSE
+ UIM_FEP_TRUE
+ FEP_LIBADD
++default_toolkit
+ DEFAULT_TOOLKIT_QT5_FALSE
+ DEFAULT_TOOLKIT_QT5_TRUE
+ DEFAULT_TOOLKIT_QT4_FALSE
+@@ -28981,7 +28982,7 @@ else
    LIBPANEL_APPLET_DIR=""
  fi
  
@@ -13,7 +21,7 @@ $NetBSD$
      LIBPANEL_APPLET_DIR=`$PKG_CONFIG --variable=libpanel_applet_dir libpanel-applet`
    fi
  
-@@ -30385,8 +30385,8 @@ if test "x$with_libedit" != xno; then
+@@ -30397,8 +30398,8 @@ if test "x$with_libedit" != xno; then
    if test "x$with_libedit" = xyes; then
      libedit_path=/usr
    else
