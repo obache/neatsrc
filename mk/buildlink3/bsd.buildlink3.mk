@@ -327,7 +327,8 @@ ${_depmethod_}+=	${_BLNK_ADD_TO.${_depmethod_}}
 # BUILDLINK_AUTO_DIRS.<pkg>	"yes" or "no" for whether BUILDLINK_{INCDIRS,
 #				LIBDIRS,RPATHDIRS}.<pkg> should automatically
 #				be added to the compiler/linker search paths.
-#				Defaults to "no".
+#				Defaults to "yes" for USE_BSD_MAKEFILE,
+#				otherwize "no".
 #				Or you can restrict type of auto directries
 #				with list of "inc", "lib" and/or "rpath".
 #
@@ -424,7 +425,11 @@ BUILDLINK_AUTO_VARS.${_pkg_}?=	yes
 BUILDLINK_CPPFLAGS.${_pkg_}?=	# empty
 BUILDLINK_LDFLAGS.${_pkg_}?=	# empty
 BUILDLINK_LIBS.${_pkg_}?=	# empty
+.  if !empty(USE_BSD_MAKEFILE:M[yY][Ee][Ss])
+BUILDLINK_AUTO_DIRS.${_pkg_}?=	yes
+.  else
 BUILDLINK_AUTO_DIRS.${_pkg_}?=	no
+.  endif
 BUILDLINK_INCDIRS.${_pkg_}?=	include
 BUILDLINK_LIBDIRS.${_pkg_}?=	lib
 .  if !empty(BUILDLINK_DEPMETHOD.${_pkg_}:Mfull)
