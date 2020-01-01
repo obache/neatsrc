@@ -3,9 +3,9 @@ $NetBSD: patch-aa,v 1.9 2013/08/01 12:41:01 obache Exp $
 * fix localized manpath
 * enable locale
 
---- Makefile.in.orig	2019-06-28 16:32:17.000000000 +0000
+--- Makefile.in.orig	2019-12-26 14:48:28.000000000 +0000
 +++ Makefile.in
-@@ -58,7 +59,7 @@ DOCDIR		= $(datadir)/doc/@PACKAGE@
+@@ -59,7 +59,7 @@ DOCDIR		= $(docdir)
  #LSFMANDIR	= $(datadir)/man
  LSFMANDIR	= @mandir@
  MANDIR		= $(LSFMANDIR)/man1
@@ -14,11 +14,11 @@ $NetBSD: patch-aa,v 1.9 2013/08/01 12:41:01 obache Exp $
  JMANDIR		= $(LSFMANDIR)/ja_JP.UTF-8/man1
  SKFTUTDIR	= $(DOCDIR)/doc
  LOCALEDIR	= @localedir@
-@@ -110,8 +111,8 @@ CC = @CC@
+@@ -111,8 +111,8 @@ CC = @CC@
  
  SUBDIRS = 
  
--#CPPFLAGS = -DLOCALEDIR=\""$(localedir)"\"
+-#CPPFLAGS = -DLOCALEDIR=\""$(LOCALEDIR)"\"
 -CPPFLAGS = 
 +CPPFLAGS = -DLOCALEDIR=\""$(LOCALEDIR)"\"
 +#CPPFLAGS = 
