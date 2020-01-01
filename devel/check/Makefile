@@ -13,9 +13,8 @@ LICENSE=	gnu-lgpl-v2.1
 
 GNU_CONFIGURE=	yes
 #CONFIGURE_ENV=	ac_cv_path_AWK_PATH=gawk
-USE_TOOLS=	automake autoreconf makeinfo pkg-config # gawk
+USE_TOOLS=	automake autoreconf pkg-config # gawk
 USE_LIBTOOL=	yes
-INFO_FILES=	yes
 
 PKGCONFIG_OVERRIDE=	check.pc.in
 
