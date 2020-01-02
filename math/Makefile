@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.440 2019/12/04 13:31:43 nros Exp $
+# $NetBSD: Makefile,v 1.445 2020/01/01 16:38:17 minskim Exp $
 
 COMMENT=	Mathematics
 
@@ -152,7 +152,6 @@ SUBDIR+=	ess
 SUBDIR+=	eukleides
 SUBDIR+=	eukleides10
 SUBDIR+=	euler
-SUBDIR+=	extcalc
 SUBDIR+=	fftpack
 SUBDIR+=	ffts
 SUBDIR+=	fftw
@@ -186,7 +185,9 @@ SUBDIR+=	harminv
 SUBDIR+=	heirloom-factor
 SUBDIR+=	heirloom-units
 SUBDIR+=	herisvm
+SUBDIR+=	hs-contravariant
 SUBDIR+=	hs-distributive
+SUBDIR+=	hs-integer-logarithms
 SUBDIR+=	hs-mwc-random
 SUBDIR+=	hs-nats
 SUBDIR+=	hs-scientific
@@ -303,6 +304,8 @@ SUBDIR+=	php-stats
 SUBDIR+=	ppl
 SUBDIR+=	prng
 SUBDIR+=	pspp
+SUBDIR+=	py-Keras-Applications
+SUBDIR+=	py-Keras-Preprocessing
 SUBDIR+=	py-Numeric
 SUBDIR+=	py-Scientific
 SUBDIR+=	py-Scientific-doc

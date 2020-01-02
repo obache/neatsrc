@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.846 2019/12/14 10:22:30 khorben Exp $
+# $NetBSD: Makefile,v 1.850 2019/12/31 11:16:49 ng0 Exp $
 #
 
 COMMENT=	System utilities
@@ -457,6 +457,7 @@ SUBDIR+=	pcmanfm
 SUBDIR+=	pcvt-utils
 SUBDIR+=	pdumpfs
 SUBDIR+=	pear-Log
+SUBDIR+=	pfetch
 SUBDIR+=	pflogsumm
 SUBDIR+=	pfstat
 SUBDIR+=	pftop
@@ -673,6 +674,7 @@ SUBDIR+=	u-boot-rpi3-32
 SUBDIR+=	u-boot-sopine-baseboard
 SUBDIR+=	u-boot-tinker
 SUBDIR+=	u-boot-zynq-zybo-z7
+SUBDIR+=	ufetch
 SUBDIR+=	upower
 SUBDIR+=	ups-nut
 SUBDIR+=	ups-nut-cgi

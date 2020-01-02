@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.12 2018/07/09 08:06:18 adam Exp $
+@comment $NetBSD: PLIST,v 1.14 2019/12/29 16:31:03 adam Exp $
 bin/beet${PYVERSSUFFIX}
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
@@ -59,6 +59,9 @@ ${PYSITELIB}/beets/mediafile.pyo
 ${PYSITELIB}/beets/plugins.py
 ${PYSITELIB}/beets/plugins.pyc
 ${PYSITELIB}/beets/plugins.pyo
+${PYSITELIB}/beets/random.py
+${PYSITELIB}/beets/random.pyc
+${PYSITELIB}/beets/random.pyo
 ${PYSITELIB}/beets/ui/__init__.py
 ${PYSITELIB}/beets/ui/__init__.pyc
 ${PYSITELIB}/beets/ui/__init__.pyo
@@ -206,6 +209,9 @@ ${PYSITELIB}/beetsplug/lastgenre/genres.txt
 ${PYSITELIB}/beetsplug/lastimport.py
 ${PYSITELIB}/beetsplug/lastimport.pyc
 ${PYSITELIB}/beetsplug/lastimport.pyo
+${PYSITELIB}/beetsplug/loadext.py
+${PYSITELIB}/beetsplug/loadext.pyc
+${PYSITELIB}/beetsplug/loadext.pyo
 ${PYSITELIB}/beetsplug/lyrics.py
 ${PYSITELIB}/beetsplug/lyrics.pyc
 ${PYSITELIB}/beetsplug/lyrics.pyo
@@ -242,6 +248,9 @@ ${PYSITELIB}/beetsplug/permissions.pyo
 ${PYSITELIB}/beetsplug/play.py
 ${PYSITELIB}/beetsplug/play.pyc
 ${PYSITELIB}/beetsplug/play.pyo
+${PYSITELIB}/beetsplug/playlist.py
+${PYSITELIB}/beetsplug/playlist.pyc
+${PYSITELIB}/beetsplug/playlist.pyo
 ${PYSITELIB}/beetsplug/plexupdate.py
 ${PYSITELIB}/beetsplug/plexupdate.pyc
 ${PYSITELIB}/beetsplug/plexupdate.pyo
@@ -266,6 +275,9 @@ ${PYSITELIB}/beetsplug/sonosupdate.pyo
 ${PYSITELIB}/beetsplug/spotify.py
 ${PYSITELIB}/beetsplug/spotify.pyc
 ${PYSITELIB}/beetsplug/spotify.pyo
+${PYSITELIB}/beetsplug/subsonicupdate.py
+${PYSITELIB}/beetsplug/subsonicupdate.pyc
+${PYSITELIB}/beetsplug/subsonicupdate.pyo
 ${PYSITELIB}/beetsplug/the.py
 ${PYSITELIB}/beetsplug/the.pyc
 ${PYSITELIB}/beetsplug/the.pyo

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.12 2016/01/10 11:49:10 szptvlfn Exp $
+# $NetBSD: Makefile,v 1.14 2019/12/31 17:27:24 pho Exp $
 
-DISTNAME=	scientific-0.3.3.5
-PKGREVISION=	4
+DISTNAME=	scientific-0.3.6.2
+PKGREVISION=	1
 CATEGORIES=	math
 
 MAINTAINER=	szptvlfn@NetBSD.org
@@ -10,5 +10,7 @@ LICENSE=	modified-bsd
 
 .include "../../mk/haskell.mk"
 .include "../../devel/hs-hashable/buildlink3.mk"
+.include "../../devel/hs-primitive/buildlink3.mk"
 .include "../../devel/hs-text/buildlink3.mk"
+.include "../../math/hs-integer-logarithms/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

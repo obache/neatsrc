@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.869 2019/12/11 21:15:10 nia Exp $
+# $NetBSD: Makefile,v 1.872 2020/01/01 01:57:59 kamil Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -259,6 +259,7 @@ SUBDIR+=	jbig2dec
 SUBDIR+=	jbig2enc
 SUBDIR+=	jbigkit
 SUBDIR+=	jhead
+SUBDIR+=	jp2a
 SUBDIR+=	jpeg
 SUBDIR+=	jpeg2ps
 SUBDIR+=	jpeg_ls
@@ -485,9 +486,9 @@ SUBDIR+=	py-seqdiag
 SUBDIR+=	py-sk1libs
 SUBDIR+=	py-strich
 SUBDIR+=	py-uniconvertor
+SUBDIR+=	py-wand
 SUBDIR+=	qimageblitz
 SUBDIR+=	qiv
-SUBDIR+=	qiviewer
 SUBDIR+=	qore-glut-module
 SUBDIR+=	qore-opengl-module
 SUBDIR+=	quesoglc

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.80 2019/12/07 07:44:36 plunky Exp $
+# $NetBSD: Makefile,v 1.85 2019/12/29 14:27:52 plunky Exp $
 #
 
-DISTNAME=		qcad-3.23.0.0
-PKGREVISION=		5
+DISTNAME=		qcad-3.24.0.1
+PKGREVISION=		2
 CATEGORIES=		cad
 MASTER_SITES=		${MASTER_SITE_GITHUB:=qcad/}
 EXTRACT_USING=		bsdtar
@@ -27,15 +27,11 @@ SUBST_FILES.paths+=	scripts/Help/ShowReadme/ShowReadme.js
 SUBST_FILES.paths+=	scripts/Widgets/LibraryBrowser/LibraryBrowser.js
 SUBST_VARS.paths=	PREFIX
 
-.include "../../mk/bsd.prefs.mk"
-PLIST_VARS+=	glx egl
-.if ${OPSYS} != "Darwin"
-PLIST.glx=	yes
-.  include "../../graphics/MesaLib/buildlink3.mk"
-.  if ${MESALIB_SUPPORTS_EGL} == "yes"
-PLIST.egl=	yes
-.  endif
-.endif
+SUBST_CLASSES+=		icon
+SUBST_STAGE.icon=	pre-configure
+SUBST_MESSAGE.icon=	Fix icon name.
+SUBST_FILES.icon=	qcad.desktop
+SUBST_SED.icon=		-e s,qcad_icon,qcad,g
 
 AUTO_MKDIRS=	yes
 
@@ -49,7 +45,6 @@ BUILD_TARGET=	release
 # allow pkgsrc to use DESTDIR
 #
 do-configure:
-	cd ${WRKSRC} && ${MKDIR} release
 	cd ${WRKSRC} && ${QTDIR}/bin/qmake -r -after DESTDIR=
 
 do-install:
@@ -57,15 +52,15 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/qcad.desktop \
 	    ${DESTDIR}${PREFIX}/share/applications
 	${INSTALL_DATA} ${WRKSRC}/support/logo/logo_512.svg \
-	    ${DESTDIR}${PREFIX}/share/icons/hicolor/scalable/apps/qcad_icon.svg
+	    ${DESTDIR}${PREFIX}/share/icons/hicolor/scalable/apps/qcad.svg
 	${INSTALL_DATA} ${WRKSRC}/support/logo/logo_512.svg \
-	    ${DESTDIR}${PREFIX}/share/icons/hicolor/512x512/apps/qcad_icon.svg
+	    ${DESTDIR}${PREFIX}/share/icons/hicolor/512x512/apps/qcad.svg
 	${INSTALL_DATA} ${WRKSRC}/support/logo/logo_512.png \
-	    ${DESTDIR}${PREFIX}/share/icons/hicolor/512x512/apps/qcad_icon.png
+	    ${DESTDIR}${PREFIX}/share/icons/hicolor/512x512/apps/qcad.png
 	${INSTALL_DATA} ${WRKSRC}/scripts/qcad_icon.png \
-	    ${DESTDIR}${PREFIX}/share/icons/hicolor/256x256/apps/qcad_icon.png
+	    ${DESTDIR}${PREFIX}/share/icons/hicolor/256x256/apps/qcad.png
 	${INSTALL_DATA} ${WRKSRC}/support/doc/api/qcad_icon.png \
-	    ${DESTDIR}${PREFIX}/share/icons/hicolor/64x64/apps/qcad_icon.png
+	    ${DESTDIR}${PREFIX}/share/icons/hicolor/64x64/apps/qcad.png
 	${INSTALL_LIB} ${WRKSRC}/src/3rdparty/qt-labs-qtscriptgenerator-*/qtbindings/qtscript_*/libqtscript_*.so* \
 	    ${DESTDIR}${PREFIX}/lib/qcad/plugins/script
 	${INSTALL_MAN} ${WRKSRC}/qcad.1 \
@@ -73,8 +68,7 @@ do-install:
 	${FIND} ${WRKSRC}/scripts -name \*.orig -delete
 	${FIND} ${WRKSRC} -name \*.gitignore -delete
 	cd ${WRKSRC} && ${PAX} -rwpm \
-	    fonts linetypes patterns plugins platforminputcontexts platforms \
-	    xcbglintegrations scripts themes ts \
+	    fonts linetypes patterns scripts themes ts \
 	    ${DESTDIR}${PREFIX}/lib/${PKGBASE}
 	cd ${WRKSRC} && ${PAX} -rwpm \
 	    readme.txt examples libraries \
@@ -87,6 +81,5 @@ do-install:
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtscript/buildlink3.mk"
 .include "../../x11/qt5-qtsvg/buildlink3.mk"
-.include "../../x11/qt5-qttools/buildlink3.mk"
 .include "../../x11/qt5-qtxmlpatterns/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

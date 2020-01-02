@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1281 2019/12/16 18:07:40 nia Exp $
+# $NetBSD: Makefile,v 1.1286 2020/01/01 14:05:55 nia Exp $
 #
 
 COMMENT=	Networking tools
@@ -188,7 +188,6 @@ SUBDIR+=	gnapfetch
 SUBDIR+=	gnet
 SUBDIR+=	gnet1
 SUBDIR+=	gnetcat
-SUBDIR+=	gnome-netstatus
 SUBDIR+=	gnome-nettool
 SUBDIR+=	gnome-online-accounts
 SUBDIR+=	gnome-vfs-smb
@@ -660,6 +659,7 @@ SUBDIR+=	py-caldav
 SUBDIR+=	py-cares
 SUBDIR+=	py-celery
 SUBDIR+=	py-cymruwhois
+SUBDIR+=	py-digitalocean
 SUBDIR+=	py-dns
 SUBDIR+=	py-dnsdiag
 SUBDIR+=	py-dpkt
@@ -678,6 +678,7 @@ SUBDIR+=	py-grpcio-tools
 SUBDIR+=	py-gsutil
 SUBDIR+=	py-hatop
 SUBDIR+=	py-hpack
+SUBDIR+=	py-ifaddr
 SUBDIR+=	py-ipaddress
 SUBDIR+=	py-irclib
 SUBDIR+=	py-junos-eznc
@@ -703,6 +704,7 @@ SUBDIR+=	py-portend
 SUBDIR+=	py-prometheus_client
 SUBDIR+=	py-ptt
 SUBDIR+=	py-py3dns
+SUBDIR+=	py-pychromecast
 SUBDIR+=	py-pydns
 SUBDIR+=	py-pyftpdlib
 SUBDIR+=	py-pylint-celery
@@ -735,6 +737,7 @@ SUBDIR+=	py-txamqp
 SUBDIR+=	py-txtorcon
 SUBDIR+=	py-xandikos
 SUBDIR+=	py-zeep
+SUBDIR+=	py-zeroconf
 SUBDIR+=	py-zmq
 SUBDIR+=	pygopherd
 SUBDIR+=	qadsl

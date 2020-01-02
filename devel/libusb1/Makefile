@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.20 2019/11/03 10:39:18 rillig Exp $
+# $NetBSD: Makefile,v 1.22 2019/12/22 17:06:39 jmcneill Exp $
 
 DISTNAME=	libusb-1.0.22
 PKGNAME=	${DISTNAME:S/libusb/libusb1/}
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libusb/}
 EXTRACT_SUFX=	.tar.bz2

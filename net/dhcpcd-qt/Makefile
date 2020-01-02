@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.6 2019/10/29 12:39:13 kamil Exp $
+# $NetBSD: Makefile,v 1.9 2019/12/21 23:22:08 nros Exp $
 #
 
 PKGNAME=		dhcpcd-qt-${DHCPCD_UI_VERSION}
-PKGREVISION=		4
+PKGREVISION=		5
 CATEGORIES=		net
 
 COMMENT=		Qt system tray monitor for dhcpcd
@@ -17,6 +17,12 @@ CONFIGURE_ARGS+=	--with-qt
 CONFIGURE_ARGS+=	--disable-notification
 
 INSTALL_MAKE_FLAGS+=	INSTALL_ROOT=${DESTDIR:Q}
+EGDIR=                  ${PREFIX}/share/examples/${PKGBASE}
+MAKEFLAGS+=             SYSCONFDIR=${EGDIR}
+
+CONF_FILES=             ${EGDIR}/xdg/autostart/${PKGBASE}.desktop \
+                        ${PKG_SYSCONFDIR}/xdg/autostart/${PKGBASE}.desktop
+MAKE_DIRS+=             ${PKG_SYSCONFDIR}/xdg/autostart
 
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"

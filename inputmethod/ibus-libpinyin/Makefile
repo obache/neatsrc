@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2019/04/25 07:33:00 maya Exp $
+# $NetBSD: Makefile,v 1.17 2019/12/28 12:32:09 wiz Exp $
 
 DISTNAME=	ibus-libpinyin-1.11.1
 CATEGORIES=	inputmethod chinese
