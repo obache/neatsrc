@@ -1,5 +1,5 @@
 @comment $NetBSD$
 include/php/ext/gd/config.h
 include/php/ext/gd/gd_compat.h
-include/php/ext/gd/gdcache.h
+${PLIST.gdcache}include/php/ext/gd/gdcache.h
 include/php/ext/gd/php_gd.h

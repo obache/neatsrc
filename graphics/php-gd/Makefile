@@ -27,6 +27,12 @@ USE_PHP_EXT_PATCHES=	yes
 
 .include "options.mk"
 
+PLIST_VARS+=	gdcache
+.if ${PKG_PHP_VERSION} < 73
+PLIST.gdcache=			yes
+.else
+BUILDLINK_API_DEPENDS.gd+=	gd>=2.1.0
+.endif
 .include "../../graphics/gd/buildlink3.mk"
 .include "../../lang/php/ext.mk"
 .include "../../mk/bsd.pkg.mk"
