@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.15 2019/04/25 07:33:01 maya Exp $
 #
 
-DISTNAME=	ibus-table-others-1.3.9
-PKGREVISION=	1
+DISTNAME=	ibus-table-others-1.3.10
 CATEGORIES=	inputmethod
 MASTER_SITES=	https://github.com/moebiuscurve/ibus-table-others/releases/download/${PKGVERSION_NOREV}/
 
@@ -11,8 +10,8 @@ HOMEPAGE=	https://github.com/ibus/ibus/wiki
 COMMENT=	All non-Chinese tables for IBus-Table
 LICENSE=	gnu-gpl-v3
 
-#FileExistsError: [Errno 17] File exists: '.../work/.home/.local/share/ibus-table'
-MAKE_JOBS_SAFE=	no
+FileExistsError: [Errno 17] File exists: '.../work/.home/.local/share/ibus-table'
+#MAKE_JOBS_SAFE=	no
 
 GNU_CONFIGURE=	yes
 USE_LANGUAGES=	# none
