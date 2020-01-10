@@ -8,10 +8,12 @@ share/ibus-table/icons/latex.svg
 share/ibus-table/icons/mathwriter.png
 share/ibus-table/icons/rusle.png
 share/ibus-table/icons/rustrad.png
+share/ibus-table/icons/telex.png
 share/ibus-table/icons/thai.png
 share/ibus-table/icons/translit-ua.svg
 share/ibus-table/icons/translit.svg
 share/ibus-table/icons/viqr.png
+share/ibus-table/icons/vni.png
 share/ibus-table/icons/yawerty.png
 share/ibus-table/tables/cns11643.db
 share/ibus-table/tables/compose.db
@@ -22,8 +24,10 @@ share/ibus-table/tables/latex.db
 share/ibus-table/tables/mathwriter-ibus.db
 share/ibus-table/tables/rusle.db
 share/ibus-table/tables/rustrad.db
+share/ibus-table/tables/telex.db
 share/ibus-table/tables/thai.db
 share/ibus-table/tables/translit-ua.db
 share/ibus-table/tables/translit.db
 share/ibus-table/tables/viqr.db
+share/ibus-table/tables/vni.db
 share/ibus-table/tables/yawerty.db
