@@ -29,6 +29,8 @@ CONFIGURE_ARGS+=	--with-ruby-version=${RUBY_VER_DIR}
 CONFIGURE_ARGS+=	--with-ruby-pc="ruby-${RUBY_VERSION}.pc"
 .endif
 
+MAKE_FLAGS+=		MJIT_CC=${CC}
+
 CONFIGURE_ENV.Darwin+=	ac_cv_prog_dsymutil=
 
 DOCS=		BSDL COPYING COPYING.ja ChangeLog LEGAL NEWS README.EXT README.EXT.ja \
