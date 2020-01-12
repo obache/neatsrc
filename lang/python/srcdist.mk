@@ -23,7 +23,5 @@ PYSETUPINSTALLARGS+=	--install-lib ${PREFIX}/${PYLIB}/lib-dynload
 PY_NO_EGG?=	yes
 .include "../../lang/python/distutils.mk"
 
-.endif
-
 post-patch: python-std-patchsetup
 .endif
