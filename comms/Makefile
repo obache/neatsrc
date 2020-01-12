@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.114 2019/09/22 20:00:31 jnemeth Exp $
+# $NetBSD: Makefile,v 1.115 2020/01/04 13:24:21 nia Exp $
 #
 
 COMMENT=	Communication utilities
@@ -24,7 +24,6 @@ SUBDIR+=	fidogate
 SUBDIR+=	gammu
 SUBDIR+=	gkermit
 SUBDIR+=	gnokii
-SUBDIR+=	gnome-pilot
 SUBDIR+=	gsmlib
 SUBDIR+=	hylafax
 SUBDIR+=	java-rxtx

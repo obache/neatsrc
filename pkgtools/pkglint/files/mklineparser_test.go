@@ -38,7 +38,7 @@ func (s *Suite) Test_MkLineParser_Parse__infrastructure(c *check.C) {
 		"WARN: infra.mk:2: USE_BUILTIN.${_pkg_:S/^-//} is defined but not used.",
 		"WARN: infra.mk:2: _pkg_ is used but not defined.",
 		"ERROR: infra.mk:5: \".export\" requires arguments.",
-		"NOTE: infra.mk:2: This variable value should be aligned to column 41.",
+		"NOTE: infra.mk:2: This variable value should be aligned to column 41 instead of 39.",
 		"ERROR: infra.mk:10: Unmatched .endif.")
 }
 
@@ -213,6 +213,10 @@ func (s *Suite) Test_MkLineParser_MatchVarassign(c *check.C) {
 	testLine := func(line *Line, commented bool, varname, spaceAfterVarname, op, align, value, spaceAfterValue, comment string, diagnostics ...string) {
 		text := line.Text
 
+		t.CheckOutputEmpty()
+		valueAlign := NewMkLineParser().Parse(line).ValueAlign()
+		_ = t.Output()
+
 		parser := NewMkLineParser()
 		splitResult := parser.split(nil, text, true)
 		m, actual := parser.MatchVarassign(line, text, &splitResult)
@@ -225,13 +229,13 @@ func (s *Suite) Test_MkLineParser_MatchVarassign(c *check.C) {
 			varparam:          varnameParam(varname),
 			spaceAfterVarname: spaceAfterVarname,
 			op:                NewMkOperator(op),
-			valueAlign:        align,
 			value:             value,
 			valueMk:           nil,
 			valueMkRest:       "",
 			fields:            nil,
 		}
 		t.CheckDeepEquals(*actual, expected)
+		t.CheckEquals(valueAlign, align)
 		t.CheckEquals(splitResult.spaceBeforeComment, spaceAfterValue)
 		t.CheckEquals(splitResult.hasComment, comment != "")
 		t.CheckEquals(condStr(splitResult.hasComment, "#", "")+splitResult.comment, comment)
@@ -431,7 +435,7 @@ func (s *Suite) Test_MkLineParser_fixSpaceAfterVarname__autofix(c *check.C) {
 		"VARNAME+ ?=\t${VARNAME}",
 		"pkgbase := pkglint")
 
-	CheckFileMk(filename)
+	CheckFileMk(filename, nil)
 
 	t.CheckOutputLines(
 		"NOTE: ~/Makefile:2: Unnecessary space after variable name \"VARNAME\".",
@@ -444,7 +448,7 @@ func (s *Suite) Test_MkLineParser_fixSpaceAfterVarname__autofix(c *check.C) {
 
 	t.SetUpCommandLine("-Wall", "--autofix")
 
-	CheckFileMk(filename)
+	CheckFileMk(filename, nil)
 
 	t.CheckOutputLines(
 		"AUTOFIX: ~/Makefile:2: Replacing \"VARNAME +=\\t\" with \"VARNAME+=\\t\".",

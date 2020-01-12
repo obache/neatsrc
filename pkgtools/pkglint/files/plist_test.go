@@ -5,7 +5,7 @@ import "gopkg.in/check.v1"
 func (s *Suite) Test_CheckLinesPlist(c *check.C) {
 	t := s.Init(c)
 
-	G.Pkg = NewPackage(t.File("category/pkgbase"))
+	pkg := NewPackage(t.File("category/pkgbase"))
 	lines := t.NewLines("PLIST",
 		"bin/i386/6c",
 		"bin/program",
@@ -27,7 +27,7 @@ func (s *Suite) Test_CheckLinesPlist(c *check.C) {
 		"share/tzinfo",
 		"/absolute")
 
-	CheckLinesPlist(G.Pkg, lines)
+	CheckLinesPlist(pkg, lines)
 
 	t.CheckOutputLines(
 		"ERROR: PLIST:1: Expected \"@comment $"+"NetBSD$\".",
@@ -67,13 +67,13 @@ func (s *Suite) Test_CheckLinesPlist__single_file_no_comment(c *check.C) {
 func (s *Suite) Test_CheckLinesPlist__multiple_libtool_libraries(c *check.C) {
 	t := s.Init(c)
 
-	G.Pkg = NewPackage(t.File("category/pkgbase"))
+	pkg := NewPackage(t.File("category/pkgbase"))
 	lines := t.NewLines("PLIST",
 		PlistCvsID,
 		"lib/libc.la",
 		"lib/libm.la")
 
-	CheckLinesPlist(G.Pkg, lines)
+	CheckLinesPlist(pkg, lines)
 
 	t.CheckOutputLines(
 		"WARN: PLIST:2: Packages that install libtool libraries should define USE_LIBTOOL.")
@@ -121,12 +121,12 @@ func (s *Suite) Test_CheckLinesPlist__common_end_without_common(c *check.C) {
 func (s *Suite) Test_CheckLinesPlist__condition(c *check.C) {
 	t := s.Init(c)
 
-	G.Pkg = NewPackage(t.File("category/pkgbase"))
+	pkg := NewPackage(t.File("category/pkgbase"))
 	lines := t.NewLines("PLIST",
 		PlistCvsID,
 		"${PLIST.bincmds}bin/subdir/command")
 
-	CheckLinesPlist(G.Pkg, lines)
+	CheckLinesPlist(pkg, lines)
 
 	t.CheckOutputLines(
 		"WARN: PLIST:2: The bin/ directory should not have subdirectories.")
@@ -813,10 +813,10 @@ func (s *Suite) Test_PlistChecker_checkPathLib(c *check.C) {
 		"lib/liberty-1.0.la",
 		"lib/locale/de_DE/liberty.mo",
 		"lib/package/liberty-1.0.so")
-	G.Pkg = NewPackage(t.File("category/package"))
-	G.Pkg.EffectivePkgbase = "package"
+	pkg := NewPackage(t.File("category/package"))
+	pkg.EffectivePkgbase = "package"
 
-	CheckLinesPlist(G.Pkg, lines)
+	CheckLinesPlist(pkg, lines)
 
 	t.CheckOutputLines(
 		"ERROR: ~/PLIST:2: Only the libiconv package may install lib/charset.alias.",
@@ -877,7 +877,7 @@ func (s *Suite) Test_PlistChecker_checkPathMan(c *check.C) {
 func (s *Suite) Test_PlistChecker_checkPathMan__gz(c *check.C) {
 	t := s.Init(c)
 
-	G.Pkg = NewPackage(t.File("category/package"))
+	pkg := NewPackage(t.File("category/package"))
 	t.Chdir("category/package")
 
 	doTest := func(bool) {
@@ -885,7 +885,7 @@ func (s *Suite) Test_PlistChecker_checkPathMan__gz(c *check.C) {
 			PlistCvsID,
 			"man/man3/strerror.3.gz")
 
-		CheckLinesPlist(G.Pkg, lines)
+		CheckLinesPlist(pkg, lines)
 	}
 
 	t.ExpectDiagnosticsAutofix(
@@ -905,10 +905,10 @@ func (s *Suite) Test_PlistChecker_checkPathShare(c *check.C) {
 		"share/icons/open_24x24.svg",
 		"share/info/program.1.info",
 		"share/man/man1/program.1")
-	G.Pkg = NewPackage(t.File("category/package"))
-	G.Pkg.EffectivePkgbase = "package"
+	pkg := NewPackage(t.File("category/package"))
+	pkg.EffectivePkgbase = "package"
 
-	CheckLinesPlist(G.Pkg, lines)
+	CheckLinesPlist(pkg, lines)
 
 	t.CheckOutputLines(
 		"WARN: ~/PLIST:2: Use of \"share/doc/html\" is deprecated. Use \"share/doc/${PKGBASE}\" instead.",
@@ -1008,6 +1008,102 @@ func (s *Suite) Test_PlistChecker_checkPathShareIcons__hicolor_ok(c *check.C) {
 	G.Check(t.File("category/package"))
 
 	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_PlistChecker_checkPathCond(c *check.C) {
+	t := s.Init(c)
+
+	pkg := t.SetUpPackage("category/package",
+		"PLIST_VARS+=\tmk-undefined mk-yes both",
+		"PLIST.mk-yes=\tyes",
+		"PLIST.both=\tyes")
+	t.CreateFileLines("category/package/PLIST",
+		PlistCvsID,
+		"${PLIST.both}${PLIST.plist}bin/program")
+	t.FinishSetUp()
+
+	G.Check(pkg)
+
+	t.CheckOutputLines(
+		"WARN: ~/category/package/Makefile:20: "+
+			"\"mk-undefined\" is added to PLIST_VARS, "+
+			"but PLIST.mk-undefined is not defined in this file.",
+		"WARN: ~/category/package/PLIST:2: "+
+			"Condition \"plist\" should be added to PLIST_VARS "+
+			"in the package Makefile.")
+}
+
+func (s *Suite) Test_PlistChecker_checkCond(c *check.C) {
+	t := s.Init(c)
+
+	pkg := t.SetUpPackage("category/package",
+		"PLIST_VARS+=\tboth mk-yes",
+		"PLIST.mk-yes=\tyes",
+		"PLIST.both=\tyes")
+	t.CreateFileLines("category/package/PLIST",
+		PlistCvsID,
+		"${PLIST.both}${PLIST.plist}bin/program",
+		"${PLIST.both}${PLIST.plist}bin/program2")
+	t.FinishSetUp()
+
+	G.Check(pkg)
+
+	t.CheckOutputLines(
+		"WARN: ~/category/package/PLIST:2: " +
+			"Condition \"plist\" should be added to PLIST_VARS " +
+			"in the package Makefile.")
+}
+
+// Because of the unresolvable variable in the package Makefile,
+// pkglint cannot be absolutely sure about the possible PLIST
+// conditions. Therefore all such warnings are suppressed.
+//
+// As of January 2020, this case typically occurs when PLIST_VARS
+// is defined based on PKG_SUPPORTED_OPTIONS. Expanding that variable
+// typically contains ${_o_} and ${_opt_}.
+//
+// See audio/cmus for an example package.
+func (s *Suite) Test_PlistChecker_checkCond__unresolvable_variable(c *check.C) {
+	t := s.Init(c)
+
+	pkg := t.SetUpPackage("category/package",
+		"PLIST_VARS+=\tmk-only ${UNRESOLVABLE}",
+		"PLIST.mk-only=\tyes")
+	t.CreateFileLines("category/package/PLIST",
+		PlistCvsID,
+		"${PLIST.plist}bin/program")
+	t.FinishSetUp()
+
+	G.Check(pkg)
+
+	t.CheckOutputLines(
+		"WARN: ~/category/package/Makefile:20: " +
+			"UNRESOLVABLE is used but not defined.")
+}
+
+func (s *Suite) Test_PlistChecker_checkCond__hacks_mk(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"PLIST_VARS+=\tmk", // To get past the mkline == nil condition.
+		"PLIST.mk=\tyes")
+	t.Chdir("category/package")
+	t.CreateFileLines("hacks.mk",
+		MkCvsID,
+		"PLIST_VARS+=\thack",
+		"PLIST.hack=\tyes")
+	t.CreateFileLines("PLIST",
+		PlistCvsID,
+		"${PLIST.hack}${PLIST.plist}bin/program")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	// Since hacks.mk is included implicitly into the package Makefile,
+	// the condition that is defined there may be used in the PLIST.
+	t.CheckOutputLines(
+		"WARN: PLIST:2: Condition \"plist\" should be added to PLIST_VARS " +
+			"in the package Makefile.")
 }
 
 func (s *Suite) Test_PlistLine_Path(c *check.C) {

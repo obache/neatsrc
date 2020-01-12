@@ -1,12 +1,19 @@
-# $NetBSD: Makefile,v 1.48 2013/08/31 18:41:33 adam Exp $
+# $NetBSD: Makefile,v 1.50 2020/01/09 15:56:11 ryoon Exp $
 
 .include "Makefile.common"
+PKGREVISION=	1
 
 COMMENT=	GIF image format library
 
 CONFLICTS+=	libungif-[0-9]*
 
-BUILD_DIRS=	lib
-INSTALL_DIRS=	lib
+INSTALL_TARGET= 	install-include
+INSTALL_TARGET+= 	install-lib
+
+post-install:
+	${INSTALL_LIB} ${WRKSRC}/libutil.a \
+		${DESTDIR}${PREFIX}/lib/libgifutil.a
+	${INSTALL_LIB} ${WRKSRC}/libutil.so \
+		${DESTDIR}${PREFIX}/lib/libgifutil.so
 
 .include "../../mk/bsd.pkg.mk"

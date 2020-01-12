@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.532 2019/12/16 16:07:51 taca Exp $
+# $NetBSD: Makefile,v 1.536 2020/01/07 16:53:58 pho Exp $
 #
 
 COMMENT=	Programming languages
@@ -83,17 +83,19 @@ SUBDIR+=	gcc7
 SUBDIR+=	gcc7-libs
 SUBDIR+=	gcc8
 SUBDIR+=	gcc8-libs
+SUBDIR+=	gcc9
 SUBDIR+=	gforth
 SUBDIR+=	ghc
 SUBDIR+=	ghc-bootstrap
 SUBDIR+=	ghc7
+SUBDIR+=	ghc80
+SUBDIR+=	ghc84
 SUBDIR+=	gjs
 SUBDIR+=	gnat_util
 SUBDIR+=	gnucobol
 SUBDIR+=	go
 SUBDIR+=	go-hcl
 SUBDIR+=	go110
-SUBDIR+=	go111
 SUBDIR+=	go112
 SUBDIR+=	go113
 SUBDIR+=	go14

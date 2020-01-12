@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.525 2019/11/30 21:46:35 markd Exp $
+# $NetBSD: Makefile,v 1.529 2020/01/08 20:04:27 adam Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -44,7 +44,6 @@ SUBDIR+=	cstream
 SUBDIR+=	cuecat
 SUBDIR+=	cuetools
 SUBDIR+=	cw
-SUBDIR+=	deskbar-applet
 SUBDIR+=	dgpsip
 SUBDIR+=	dialog
 SUBDIR+=	dirdiff
@@ -108,6 +107,7 @@ SUBDIR+=	heirloom-tcopy
 SUBDIR+=	heirloom-time
 SUBDIR+=	heyu
 SUBDIR+=	howm
+SUBDIR+=	hs-extra
 SUBDIR+=	ibutton-pdkit
 SUBDIR+=	ini_file_manager
 SUBDIR+=	ipbt
@@ -247,6 +247,8 @@ SUBDIR+=	py-anita
 SUBDIR+=	py-ansi
 SUBDIR+=	py-asciinema
 SUBDIR+=	py-carddav
+SUBDIR+=	py-immutables
+SUBDIR+=	py-sniffio
 SUBDIR+=	py-stdnum
 SUBDIR+=	py-tqdm
 SUBDIR+=	py-trytond-carrier

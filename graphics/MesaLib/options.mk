@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.77 2019/12/08 13:07:20 nia Exp $
+# $NetBSD: options.mk,v 1.79 2020/01/04 01:53:55 nia Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.MesaLib
 
@@ -8,6 +8,10 @@ PKG_SUPPORTED_OPTIONS+=		llvm vulkan x11
 
 .if ${MESALIB_SUPPORTS_DRI} == "yes"
 PKG_SUPPORTED_OPTIONS+=		wayland
+.  include "../../devel/wayland/platform.mk"
+.  if ${PLATFORM_SUPPORTS_WAYLAND} == "yes"
+PKG_SUGGESTED_OPTIONS+=		wayland
+.  endif
 .endif
 
 PKG_SUGGESTED_OPTIONS+=		x11

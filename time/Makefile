@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.190 2019/11/17 06:23:28 markd Exp $
+# $NetBSD: Makefile,v 1.195 2020/01/06 11:06:34 kim Exp $
 #
 
 COMMENT=	Clocks, calendars, daily planners and other time related applications
@@ -31,9 +31,11 @@ SUBDIR+=	gnutime
 SUBDIR+=	gnyaclock
 SUBDIR+=	grdc
 SUBDIR+=	gtodo
-SUBDIR+=	hamster-applet
 SUBDIR+=	hebcal
 SUBDIR+=	heirloom-date
+SUBDIR+=	hs-clock
+SUBDIR+=	hs-old-time
+SUBDIR+=	hs-time-compat
 SUBDIR+=	hs-timezone-olson
 SUBDIR+=	hs-timezone-series
 SUBDIR+=	ical
@@ -199,7 +201,6 @@ SUBDIR+=	wxRemind
 SUBDIR+=	wyrd
 SUBDIR+=	xalarm
 SUBDIR+=	xbeats
-SUBDIR+=	xcal
 SUBDIR+=	xchrono
 SUBDIR+=	xclock
 SUBDIR+=	xdaliclock

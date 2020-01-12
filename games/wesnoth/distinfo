@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.65 2019/10/01 18:15:42 adam Exp $
+$NetBSD: distinfo,v 1.67 2020/01/06 14:14:07 nia Exp $
 
 SHA1 (wesnoth-1.14.9.tar.bz2) = 55537bcf273f1ae3c4cc54e400b926a092effe00
 RMD160 (wesnoth-1.14.9.tar.bz2) = e14ac5b6ef2592b124348f9b607f9598f338a68d

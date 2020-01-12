@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.232 2019/12/12 16:44:53 nros Exp $
+# $NetBSD: Makefile,v 1.235 2020/01/08 14:45:51 nia Exp $
 #
 
 COMMENT=	Communication programs
@@ -17,7 +17,6 @@ SUBDIR+=	carbons-purple
 SUBDIR+=	centerim
 SUBDIR+=	centerim5
 SUBDIR+=	cgiirc
-SUBDIR+=	climm
 SUBDIR+=	coyim
 SUBDIR+=	ctrlproxy
 SUBDIR+=	dccserver
@@ -43,7 +42,6 @@ SUBDIR+=	i2cb
 SUBDIR+=	i2cbd
 SUBDIR+=	icb
 SUBDIR+=	icbirc
-SUBDIR+=	icqlib
 SUBDIR+=	ii
 SUBDIR+=	inspircd
 SUBDIR+=	inspircd3
@@ -89,7 +87,6 @@ SUBDIR+=	p5-IRC-Utils
 SUBDIR+=	p5-Net-AIM
 SUBDIR+=	p5-Net-AOLIM
 SUBDIR+=	p5-Net-Goofey
-SUBDIR+=	p5-Net-ICQ2000
 SUBDIR+=	p5-Net-Jabber
 SUBDIR+=	p5-POE-Component-IRC
 SUBDIR+=	p5-POE-Filter-IRCD
@@ -144,7 +141,6 @@ SUBDIR+=	tkirc2
 SUBDIR+=	tootstream
 SUBDIR+=	toxcore
 SUBDIR+=	unrealircd
-SUBDIR+=	vicq
 SUBDIR+=	weechat
 SUBDIR+=	xaric
 SUBDIR+=	ysm

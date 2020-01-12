@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.30 2019/11/04 21:28:52 rillig Exp $
+# $NetBSD: Makefile,v 1.32 2020/01/07 08:37:34 kim Exp $
 
 DISTNAME=	skill-4.1.4
 CATEGORIES=	sysutils
-MASTER_SITES=	ftp://ftp.flux.utah.edu/pub/skill/
+MASTER_SITES=	http://www.marjum.com/jeffware/skill/
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	kim@tac.nyc.ny.us
-HOMEPAGE=	http://www.marjum.com/jeffware.html
+MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Signal processes given user names, ttys, commands, or pids
+HOMEPAGE=	http://www.marjum.com/jeffware.html
+LICENSE=	original-bsd
 
 BROKEN_ON_PLATFORM+=	Interix-*-* # currently no machdep support
 

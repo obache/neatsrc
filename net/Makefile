@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1286 2020/01/01 14:05:55 nia Exp $
+# $NetBSD: Makefile,v 1.1291 2020/01/08 17:06:52 minskim Exp $
 #
 
 COMMENT=	Networking tools
@@ -239,6 +239,7 @@ SUBDIR+=	howl
 SUBDIR+=	hping
 SUBDIR+=	hping3
 SUBDIR+=	hs-network
+SUBDIR+=	hs-network-uri
 SUBDIR+=	httping
 SUBDIR+=	httpstat
 SUBDIR+=	httptunnel
@@ -335,7 +336,6 @@ SUBDIR+=	linuxigd
 SUBDIR+=	lldpd
 SUBDIR+=	llnlxdir
 SUBDIR+=	llnlxftp
-SUBDIR+=	logjam
 SUBDIR+=	lopster
 SUBDIR+=	lua-copas
 SUBDIR+=	lua-socket
@@ -649,6 +649,7 @@ SUBDIR+=	py-Socks
 SUBDIR+=	py-adns
 SUBDIR+=	py-amqp
 SUBDIR+=	py-apache-libcloud
+SUBDIR+=	py-asyncio-nats-client
 SUBDIR+=	py-awscli
 SUBDIR+=	py-beanstalkc
 SUBDIR+=	py-bonjour
@@ -674,6 +675,7 @@ SUBDIR+=	py-geventhttpclient
 SUBDIR+=	py-google
 SUBDIR+=	py-google-cloud-sdk
 SUBDIR+=	py-grpcio
+SUBDIR+=	py-grpcio-testing
 SUBDIR+=	py-grpcio-tools
 SUBDIR+=	py-gsutil
 SUBDIR+=	py-hatop
@@ -838,7 +840,6 @@ SUBDIR+=	sslh
 SUBDIR+=	ssmping
 SUBDIR+=	ssync
 SUBDIR+=	stagit-gopher
-SUBDIR+=	stripes
 SUBDIR+=	stund
 SUBDIR+=	sup
 SUBDIR+=	syncffsd

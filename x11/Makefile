@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.872 2020/01/01 14:02:48 nia Exp $
+# $NetBSD: Makefile,v 1.874 2020/01/04 13:53:29 nia Exp $
 #
 
 COMMENT=	Packages to support the X window system
@@ -68,12 +68,10 @@ SUBDIR+=	ggiterm
 SUBDIR+=	gnome-desktop
 SUBDIR+=	gnome-desktop-sharp
 SUBDIR+=	gnome-desktop3
-SUBDIR+=	gnome-mag
 SUBDIR+=	gnome-panel
 SUBDIR+=	gnome-sharp
 SUBDIR+=	gnome-themes
 SUBDIR+=	gnome-themes-extras
-SUBDIR+=	gnopernicus
 SUBDIR+=	gnustep-back
 SUBDIR+=	gnustep-gui
 SUBDIR+=	gnustep-preferences

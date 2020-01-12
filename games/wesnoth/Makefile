@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.148 2019/10/01 18:15:42 adam Exp $
+# $NetBSD: Makefile,v 1.150 2020/01/06 14:14:07 nia Exp $
 
 DISTNAME=	wesnoth-1.14.9
 CATEGORIES=	games

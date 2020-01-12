@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.67 2019/12/12 10:46:15 markd Exp $
+# $NetBSD: Makefile,v 1.70 2020/01/08 13:44:42 joerg Exp $
 
 PKGNAME=	${PYPKGPREFIX}-Tk-${PY_DISTVERSION}
 PKGREVISION=	5
@@ -11,9 +11,6 @@ LICENSE=	python-software-foundation
 
 USE_GCC_RUNTIME=	yes
 
-EXTRACT_ELEMENTS=	${PYSUBDIR}/Modules/_tkinter.c \
-			${PYSUBDIR}/Modules/tkappinit.c
-EXTRACT_ELEMENTS+=	${PYSUBDIR}/Modules/tkinter.h
 PYDISTUTILSPKG=		yes
 PY_SETUP_SUBST+=	BLPREFIX=${LOCALBASE}
 PY_SETUP_SUBST+=	TCLRTPREFIX=${BUILDLINK_PREFIX.tcl}

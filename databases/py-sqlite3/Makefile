@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.35 2019/11/02 15:38:10 rillig Exp $
+# $NetBSD: Makefile,v 1.36 2020/01/08 13:44:41 joerg Exp $
 
 PKGNAME=	${PYPKGPREFIX}-sqlite3-${PY_DISTVERSION}
 PKGREVISION=	15
@@ -9,8 +9,6 @@ HOMEPAGE=	https://www.python.org/
 COMMENT=	Built-in sqlite support for Python 2.5 and up
 
 USE_GCC_RUNTIME=	yes
-
-EXTRACT_ELEMENTS=	${PYSUBDIR}/Modules/_sqlite
 
 # part of python itself; using distutils.mk will install a useless egg
 PYDISTUTILSPKG=		yes
