@@ -1,0 +1,56 @@
+#! /bin/sh
+# $NetBSD: spec,v 1.2 2020/01/11 13:04:21 rillig Exp $
+
+# This test demonstrates how the RCS Ids from the package files end up in
+# the +BUILD_VERSION file of the binary package.
+#
+# There are several places in pkgsrc that make use of these RCS Ids:
+#
+# mk/checksum/checksum, search for "NetBSD":
+#	When computing the SHA1 hash for a patch file (before it is applied
+#	to the extracted distfile), the RCS Id lines are ignored.
+#
+# mk/checksum/distinfo.awk, function patchsum:
+#	When generating the patches part of the distinfo file.
+#	Same as in mk/checksum/checksum.
+#
+# mk/pkgformat/pkg/metadata.mk, search for "NetBSD":
+#	The RCS Ids end up in the +BUILD_VERSION of the binary package.
+#
+# pkgtools/pbulk/files/pbulk/scripts/pkg-up-to-date, search for "NetBSD":
+#	RCS Ids from the source package are extracted and then compared
+#	to the RCS Ids from the binary package, to see whether the package
+#	needs to be built again.
+#
+# pkgtools/pkglint/files/distinfo.go, function computePatchSha1Hex:
+#	Same as mk/checksum/checksum.
+#
+# All these places must use the same patterns for extracting the RCS Ids.
+# As of January 2020, they don't.
+
+set -u
+
+tmpdir="${TMPDIR-/tmp}/plus-build-version"
+actual="$tmpdir/.pkgdb/+BUILD_VERSION"
+
+do_test() {
+	rm -rf "$tmpdir"
+	mkdir -p "$tmpdir/.pkgdb"
+	$TEST_MAKE \
+		PKGNAME="package-1.0" \
+		WRKDIR="$tmpdir" \
+		-f "../../mk/bsd.pkg.mk" \
+		"$actual"
+}
+
+check_result() {
+	# In files/expected, the $ characters are replaced with * to
+	# prevent them from being expanded by CVS.
+	tr '*' '$' < "files/expected" > "$tmpdir/expected"
+
+	diff -u "$tmpdir/expected" "$actual" || regress_fail "differ"
+}
+
+do_cleanup() {
+	rm -rf "$tmpdir"
+}

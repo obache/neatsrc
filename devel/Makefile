@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2985 2020/01/11 07:06:43 mef Exp $
+# $NetBSD: Makefile,v 1.2988 2020/01/11 14:30:56 pho Exp $
 #
 
 COMMENT=	Development utilities
@@ -520,7 +520,6 @@ SUBDIR+=	hs-lifted-base
 SUBDIR+=	hs-mmorph
 SUBDIR+=	hs-monad-control
 SUBDIR+=	hs-mono-traversable
-SUBDIR+=	hs-mtl
 SUBDIR+=	hs-old-locale
 SUBDIR+=	hs-primitive
 SUBDIR+=	hs-random
@@ -530,10 +529,8 @@ SUBDIR+=	hs-safe
 SUBDIR+=	hs-setlocale
 SUBDIR+=	hs-split
 SUBDIR+=	hs-splitmix
-SUBDIR+=	hs-stm
 SUBDIR+=	hs-syb
 SUBDIR+=	hs-tagged
-SUBDIR+=	hs-text
 SUBDIR+=	hs-tf-random
 SUBDIR+=	hs-th-abstraction
 SUBDIR+=	hs-transformers-base

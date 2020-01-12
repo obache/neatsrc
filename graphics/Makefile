@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.873 2020/01/10 11:15:44 nia Exp $
+# $NetBSD: Makefile,v 1.875 2020/01/11 15:18:46 nia Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -250,6 +250,7 @@ SUBDIR+=	imlib
 SUBDIR+=	imlib-gtk
 SUBDIR+=	imlib2
 SUBDIR+=	impress
+SUBDIR+=	imv
 SUBDIR+=	inkscape
 SUBDIR+=	ipe
 SUBDIR+=	irrlicht
@@ -361,6 +362,7 @@ SUBDIR+=	mypaint-brushes
 SUBDIR+=	ncview
 SUBDIR+=	netpbm
 SUBDIR+=	ns-cult3d
+SUBDIR+=	numix-gtk-theme
 SUBDIR+=	numix-icon-theme
 SUBDIR+=	numix-icon-theme-circle
 SUBDIR+=	nvidia-texture-tools

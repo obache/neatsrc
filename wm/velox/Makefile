@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.1 2019/12/11 21:19:29 nia Exp $
+# $NetBSD: Makefile,v 1.3 2020/01/11 17:31:50 nia Exp $
 
-DISTNAME=	velox-0.0.3.20191211
+DISTNAME=	velox-0.0.3.20200111
 CATEGORIES=	wm
 MASTER_SITES=	${MASTER_SITE_GITHUB:=niacat/}
 GITHUB_PROJECT=	velox
-GITHUB_TAG=	0c8f9cf8f46bdafff54cac5ae659c33904996a43
+GITHUB_TAG=	816aa339c749d722899dd1d33a4079694e6ca0b1
 
 MAINTAINER=	nia@NetBSD.org
 HOMEPAGE=	https://github.com/niacat/velox
@@ -13,6 +13,8 @@ LICENSE=	mit
 
 # Used by the panel, you get poor font rendering otherwise.
 DEPENDS+=	terminus-font-[0-9]*:../../fonts/terminus-font
+# Used for launching software.
+DEPENDS+=	dmenu-wld-[0-9]*:../../sysutils/dmenu-wld
 
 USE_TOOLS+=	gmake pkg-config
 
