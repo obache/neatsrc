@@ -5,6 +5,7 @@ DISTNAME=	check-0.13.0
 PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libcheck/}
+GITHUB_RELEASE=	${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://check.sourceforge.net/
@@ -13,7 +14,7 @@ LICENSE=	gnu-lgpl-v2.1
 
 GNU_CONFIGURE=	yes
 #CONFIGURE_ENV=	ac_cv_path_AWK_PATH=gawk
-USE_TOOLS=	automake autoreconf pkg-config # gawk
+USE_TOOLS=	pkg-config # gawk
 USE_LIBTOOL=	yes
 
 PKGCONFIG_OVERRIDE=	check.pc.in
@@ -21,9 +22,6 @@ PKGCONFIG_OVERRIDE=	check.pc.in
 CONFIGURE_ARGS+=	--enable-build-docs=no
 
 TEST_TARGET=	check
-
-pre-configure:
-	cd ${WRKSRC} && autoreconf -fiv
 
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
