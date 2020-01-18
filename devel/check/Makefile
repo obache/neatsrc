@@ -8,7 +8,7 @@ MASTER_SITES=	${MASTER_SITE_GITHUB:=libcheck/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://check.sourceforge.net/
+HOMEPAGE=	https://libcheck.github.io/check/
 COMMENT=	Unit test framework for C
 LICENSE=	gnu-lgpl-v2.1
 
