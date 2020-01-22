@@ -8,5 +8,13 @@ share/ibus-m17n/icons/ibus-m17n.svg
 share/ibus-m17n/setup/ibus-m17n-preferences.ui
 share/ibus/component/m17n.xml
 share/locale/de/LC_MESSAGES/ibus-m17n.mo
+share/locale/fa/LC_MESSAGES/ibus-m17n.mo
+share/locale/fr/LC_MESSAGES/ibus-m17n.mo
+share/locale/id/LC_MESSAGES/ibus-m17n.mo
+share/locale/ja/LC_MESSAGES/ibus-m17n.mo
+share/locale/pt_BR/LC_MESSAGES/ibus-m17n.mo
+share/locale/tr/LC_MESSAGES/ibus-m17n.mo
+share/locale/uk/LC_MESSAGES/ibus-m17n.mo
 share/locale/zh_CN/LC_MESSAGES/ibus-m17n.mo
+share/locale/zh_TW/LC_MESSAGES/ibus-m17n.mo
 share/metainfo/m17n.appdata.xml
