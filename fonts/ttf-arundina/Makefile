@@ -1,11 +1,11 @@
 # $NetBSD$
 
-DISTNAME=	fonts-sipa-arundina-ttf-0.2.1
+DISTNAME=	ttf-arundina-0.3.0
 CATEGORIES=	fonts
-MASTER_SITES=	http://linux.thai.net/pub/thailinux/software/fonts-sipa-arundina/
+MASTER_SITES=	ftp://linux.thai.net/pub/thailinux/software/fonts-arundina/
 EXTRACT_SUFX=	.tar.xz
 
-HOMEPAGE=	http://linux.thai.net/projects/fonts-sipa-arundina
+HOMEPAGE=	http://linux.thai.net/projects/fonts-arundina
 COMMENT=	Bitstream Vera/Dejavu compatible Thai True Type fonts
 #LICENSE=	bitstram-license
 
@@ -22,10 +22,10 @@ INSTALLATION_DIRS+=	${FONTS_DIRS.ttf} ${EGCONFDIR}
 
 REQD_DIRS+=	${FCCONFDIR}
 
-CONF_FILES+=	${EGCONFDIR}/65-sipa-arundina.conf ${FCCONFDIR}/65-sipa-arundina.conf
+CONF_FILES+=	${EGCONFDIR}/65-arundina.conf ${FCCONFDIR}/65-arundina.conf
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/*.ttf ${DESTDIR}${FONTS_DIRS.ttf}
-	${INSTALL_DATA} ${WRKSRC}/etc/fonts/conf.avail/*.conf ${DESTDIR}${EGCONFDIR}
+	${INSTALL_DATA} ${WRKSRC}/fontconfig/conf.avail/*.conf ${DESTDIR}${EGCONFDIR}
 
 .include "../../mk/bsd.pkg.mk"

@@ -1,5 +1,5 @@
 @comment $NetBSD$
-share/examples/fontconfig/conf.d/65-sipa-arundina.conf
+share/examples/fontconfig/conf.d/65-arundina.conf
 share/fonts/X11/TTF/ArundinaSans-Bold.ttf
 share/fonts/X11/TTF/ArundinaSans-BoldOblique.ttf
 share/fonts/X11/TTF/ArundinaSans-Oblique.ttf
