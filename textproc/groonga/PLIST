@@ -766,3 +766,17 @@ share/groonga/html/admin/js/jquery-1.7.2.js
 share/groonga/html/admin/js/jquery-ui-1.8.18.custom.js
 share/groonga/html/admin/js/jquery.flot-0.8.3.js
 share/groonga/html/admin/js/jquery.flot.license.txt
+share/groonga/tools/check-index-merge-source-dump.rb
+share/groonga/tools/check-small-index-limit.rb
+share/groonga/tools/copy-related-files.rb
+share/groonga/tools/extract-index-source-from-dump.rb
+share/groonga/tools/generate-long-posting-list-data.rb
+share/groonga/tools/generate-many-segment-data.rb
+share/groonga/tools/groonga-benchmark-indexing.rb
+share/groonga/tools/groonga-memory-leak-checker.rb
+share/groonga/tools/groonga-memory-usage-analyzer.rb
+share/groonga/tools/groonga-object-list-checker.rb
+share/groonga/tools/index-column-diff-all.sh
+share/groonga/tools/object-inspect-all.sh
+share/groonga/tools/prepare-sphinx-html.rb
+share/groonga/tools/ucd-symbol-list.rb
