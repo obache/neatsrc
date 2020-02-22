@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	ttf-arundina-0.3.1
+DISTNAME=	ttf-arundina-0.3.2
 CATEGORIES=	fonts
 MASTER_SITES=	ftp://linux.thai.net/pub/thailinux/software/fonts-arundina/
 EXTRACT_SUFX=	.tar.xz
