@@ -1,6 +1,5 @@
 # $NetBSD: Makefile,v 1.68 2019/11/06 14:34:31 wiz Exp $
 
-PKGREVISION= 1
 .include "Makefile.common"
 
 COMMENT=	Intelligent Input Bus
@@ -53,6 +52,9 @@ CONF_FILES+=		${PREFIX}/share/examples/ibus/dconf/profile/ibus \
 .if !empty(CC_VERSION:Mgcc-4.1.[0-9]*)
 BUILDLINK_TRANSFORM+=	rm:-Wno-unused-but-set-variable
 .endif
+
+pre-build:
+	${RUN}cd ${WRKSRC}/ui/gtk3 && ${BUILD_MAKE_CMD} maintainer-clean-generic 
 
 .include "../../devel/glib2/schemas.mk"
 .include "../../devel/dconf/database.mk"

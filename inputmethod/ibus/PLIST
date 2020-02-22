@@ -130,7 +130,6 @@ share/ibus/component/gtkextension.xml
 share/ibus/component/gtkpanel.xml
 share/ibus/component/simple.xml
 share/ibus/dicts/emoji-af.dict
-share/ibus/dicts/emoji-ast.dict
 share/ibus/dicts/emoji-am.dict
 share/ibus/dicts/emoji-ar.dict
 share/ibus/dicts/emoji-ar_SA.dict
@@ -323,6 +322,7 @@ share/locale/nl/LC_MESSAGES/ibus10.mo
 share/locale/or/LC_MESSAGES/ibus10.mo
 share/locale/pa/LC_MESSAGES/ibus10.mo
 share/locale/pl/LC_MESSAGES/ibus10.mo
+share/locale/pt/LC_MESSAGES/ibus10.mo
 share/locale/pt_BR/LC_MESSAGES/ibus10.mo
 share/locale/ru/LC_MESSAGES/ibus10.mo
 share/locale/sq/LC_MESSAGES/ibus10.mo
