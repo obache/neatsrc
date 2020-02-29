@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (pg_bigm-1.2-20191003.tar.gz) = cb026f514fa84bf08a66dc38f79f26d0ab5dff83
-RMD160 (pg_bigm-1.2-20191003.tar.gz) = 6ecc2cb23e3db3457e2db91ab51d455d8e835770
-SHA512 (pg_bigm-1.2-20191003.tar.gz) = 46d2b94ee7660ffaab2b2ddcce1933be2e5b7940aad192f75017b2c930dedb2c1369f8696ce6f614f50706a085a0c5365a209bc73cc0f59cf5a3a94db3add7dd
-Size (pg_bigm-1.2-20191003.tar.gz) = 40224 bytes
+SHA1 (pg_bigm-1.2-20200228.tar.gz) = b8e7ec26381676a13f709e7553b5bc9dbd838ab8
+RMD160 (pg_bigm-1.2-20200228.tar.gz) = cb5e851cd3a3b2a0d69cd92a095f4e6e7d2cbc0d
+SHA512 (pg_bigm-1.2-20200228.tar.gz) = fb532a9aa247ac211fe49d230e97d8f5c3416776f2ee50554c76175b8fbebd4c54fae0b9f0ace79bf294ecd476cb33c727f1d14356cd94f34dfb2b07c9cd6f09
+Size (pg_bigm-1.2-20200228.tar.gz) = 40422 bytes

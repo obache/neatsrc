@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	pg_bigm-1.2-20191003
+DISTNAME=	pg_bigm-1.2-20200228
 PKGNAME=	postgresql${PGSQL_VERSION}-${DISTNAME:C/-([0-9]*)$/.\1/}
 CATEGORIES=	databases
-MASTER_SITES=	${MASTER_SITE_OSDN:=pgbigm/71710/}
+MASTER_SITES=	${MASTER_SITE_OSDN:=pgbigm/72448/}
 
 HOMEPAGE=	http://pgbigm.osdn.jp/
 COMMENT=	PostgreSQL extension to create bigram index for full text search
@@ -12,6 +12,8 @@ LICENSE=	postgresql-license
 USE_TOOLS+=	gmake
 
 MAKE_FLAGS+=	USE_PGXS=1 PG_CONFIG=${PGSQL_PREFIX}/bin/pg_config
+
+WRKSRC=		${WRKDIR}/pg_bigm-${DISTNAME}
 
 .include "../../mk/pgsql.buildlink3.mk"
 BUILDLINK_DEPMETHOD.${PGSQL_TYPE}=	build
