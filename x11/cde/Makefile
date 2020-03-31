@@ -1,6 +1,6 @@
 # $NetBSD$
 #
-DISTNAME=	cde-2.3.1
+DISTNAME=	cde-2.3.2
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=cdesktopenv/}
 

@@ -1,9 +1,9 @@
 $NetBSD$
 
-SHA1 (cde-2.3.1.tar.gz) = a25f49d6185e190bd797d85b15bf5165b0f5197c
-RMD160 (cde-2.3.1.tar.gz) = ecfcae5e1706277d05e775ef7f434161044b0b0e
-SHA512 (cde-2.3.1.tar.gz) = 349e3afe9bbfd947c2b87c7a0eb19e889d0ec8c025c3f81aeb6974831a4f8267bec6b61ccbe86c7058a4efd06075bf8792362968a898aaf980c3155ffa9694ca
-Size (cde-2.3.1.tar.gz) = 57549415 bytes
+SHA1 (cde-2.3.2.tar.gz) = fb5468ed2ed452367e0c4da25f6047f62dbead3a
+RMD160 (cde-2.3.2.tar.gz) = f692de34247e410d5791345e0964ab8f35d01af0
+SHA512 (cde-2.3.2.tar.gz) = 0db7b9aba70ae9455caee9834cdd674a5b044aec6842ba15202f05c5b6937c63ad0ac3835571c9a832d7f02c0bce75a550cbbe0029f7efb1d8d0aaceae7b6ce3
+Size (cde-2.3.2.tar.gz) = 57552496 bytes
 SHA1 (patch-databases_CDE-FONTS.udb) = f7686e84d410c102c6c146227d7c81fe3994bce4
 SHA1 (patch-databases_CDE-LOC.src) = 5941560525c58170fe74cefaa5f66cbc034f663a
 SHA1 (patch-doc_util_dbtoman_instant_main.c) = 35e8ad8e5f5373030fd27d7a030273c2b9b4c72c
