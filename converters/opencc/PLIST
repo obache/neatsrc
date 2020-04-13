@@ -35,7 +35,10 @@ share/opencc/HKVariants.ocd
 share/opencc/HKVariantsPhrases.ocd
 share/opencc/HKVariantsRev.ocd
 share/opencc/HKVariantsRevPhrases.ocd
+share/opencc/JPShinjitaiCharacters.ocd
+share/opencc/JPShinjitaiPhrases.ocd
 share/opencc/JPVariants.ocd
+share/opencc/JPVariantsRev.ocd
 share/opencc/STCharacters.ocd
 share/opencc/STPhrases.ocd
 share/opencc/TSCharacters.ocd
@@ -46,11 +49,13 @@ share/opencc/TWVariants.ocd
 share/opencc/TWVariantsRev.ocd
 share/opencc/TWVariantsRevPhrases.ocd
 share/opencc/hk2s.json
+share/opencc/jp2t.json
 share/opencc/s2hk.json
 share/opencc/s2t.json
 share/opencc/s2tw.json
 share/opencc/s2twp.json
 share/opencc/t2hk.json
+share/opencc/t2jp.json
 share/opencc/t2s.json
 share/opencc/t2tw.json
 share/opencc/tw2s.json

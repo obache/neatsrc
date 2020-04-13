@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.3 2015/03/15 20:03:24 hiramatsu Exp $
 
-DISTNAME=	OpenCC-ver.1.0.5
+DISTNAME=	OpenCC-ver.1.0.6
 PKGNAME=	${DISTNAME:S/-ver./-/:tl}
 CATEGORIES=	converters chinese
 MASTER_SITES=	-https://github.com/BYVoid/OpenCC/archive/ver.${PKGVERSION_NOREV}${EXTRACT_SUFX}
@@ -12,7 +12,7 @@ LICENSE=	apache-2.0
 
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
-USE_LANGUAGES=	c c++11
+USE_LANGUAGES=	c c++
 
 PKGCONFIG_OVERRIDE+=	opencc.pc.in
 
@@ -22,11 +22,6 @@ CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE:STRING=Release
 CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:STRING=${PREFIX}/lib
 
 TEST_TARGET=	test
-
-SUBST_CLASSES+=		mandir
-SUBST_STAGE.mandir=	pre-configure
-SUBST_FILES.mandir=	doc/CMakeLists.txt
-SUBST_SED.mandir=	-e 's,$${DIR_SHARE}/man,${PKGMANDIR},'
 
 PYTHON_FOR_BUILD_ONLY=	yes
 .include "../../lang/python/tool.mk"
