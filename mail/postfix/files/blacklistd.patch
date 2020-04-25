@@ -86,3 +86,23 @@
      return (warn_if_reject ? 0 : SMTPD_CHECK_REJECT);
  }
  
+$NetBSD$
+
+--- src/smtpd/smtpd_sasl_proto.c.orig	2018-12-29 14:40:29.000000000 +0000
++++ src/smtpd/smtpd_sasl_proto.c
+@@ -141,6 +141,7 @@
+ #include "smtpd_chat.h"
+ #include "smtpd_sasl_proto.h"
+ #include "smtpd_sasl_glue.h"
++#include "pfilter.h" /* for blacklistd(8) */
+ 
+ #ifdef USE_SASL_AUTH
+ 
+@@ -161,6 +162,7 @@ int     smtpd_sasl_auth_cmd(SMTPD_STATE 
+ 	|| (state->ehlo_discard_mask & EHLO_MASK_AUTH)) {
+ 	state->error_mask |= MAIL_ERROR_PROTOCOL;
+ 	smtpd_chat_reply(state, "503 5.5.1 Error: authentication not enabled");
++	pfilter_notify(1, vstream_fileno(state->client));
+ 	return (-1);
+     }
+     if (SMTPD_IN_MAIL_TRANSACTION(state)) {
