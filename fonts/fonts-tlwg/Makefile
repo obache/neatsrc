@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=	fonts-tlwg-0.7.1
+DISTNAME=	fonts-tlwg-0.7.2
 CATEGORIES=	fonts
 MASTER_SITES=	http://linux.thai.net/pub/thailinux/software/fonts-tlwg/
 EXTRACT_SUFX=	.tar.xz
@@ -14,7 +14,7 @@ TOOL_DEPENDS+=	fontforge>=20080110:../../fonts/fontforge
 USE_TOOLS+=	gmake
 GNU_CONFIGURE=	yes
 
-FONTDIR=		${PREFIX}/share/fonts/truetype/thai
+FONTDIR=		${PREFIX}/share/fonts/opentype/thai
 FONTS_DIRS.ttf+=	${FONTDIR}
 
 FC_AVAILS+=	00-tlwg.conf
