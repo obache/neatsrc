@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	groonga-command-1.4.7
+DISTNAME=	groonga-command-1.4.8
 CATEGORIES=	textproc
 
 HOMEPAGE=	https://github.com/groonga/groonga-command
