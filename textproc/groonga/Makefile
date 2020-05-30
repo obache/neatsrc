@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.64 2018/02/25 12:25:48 taca Exp $
 #
 
-DISTNAME=	groonga-10.0.2
+DISTNAME=	groonga-10.0.3
 CATEGORIES=	textproc
 MASTER_SITES=	http://packages.groonga.org/source/groonga/
 

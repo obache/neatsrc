@@ -40,10 +40,13 @@ include/groonga/groonga/pat.h
 include/groonga/groonga/plugin.h
 include/groonga/groonga/portability.h
 include/groonga/groonga/posting.h
+include/groonga/groonga/proc.h
 include/groonga/groonga/raw_string.h
 include/groonga/groonga/request_canceler.h
 include/groonga/groonga/request_timer.h
+include/groonga/groonga/result_set.h
 include/groonga/groonga/scorer.h
+include/groonga/groonga/selector.h
 include/groonga/groonga/string.h
 include/groonga/groonga/table.h
 include/groonga/groonga/thread.h
@@ -93,7 +96,7 @@ share/doc/groonga/en/html/_static/favicon.ico
 share/doc/groonga/en/html/_static/file.png
 share/doc/groonga/en/html/_static/groonga.css
 share/doc/groonga/en/html/_static/header-background.png
-share/doc/groonga/en/html/_static/jquery-3.4.1.js
+share/doc/groonga/en/html/_static/jquery-3.5.1.js
 share/doc/groonga/en/html/_static/jquery.js
 share/doc/groonga/en/html/_static/language_data.js
 share/doc/groonga/en/html/_static/logo.png
@@ -398,7 +401,7 @@ share/doc/groonga/ja/html/_static/favicon.ico
 share/doc/groonga/ja/html/_static/file.png
 share/doc/groonga/ja/html/_static/groonga.css
 share/doc/groonga/ja/html/_static/header-background.png
-share/doc/groonga/ja/html/_static/jquery-3.4.1.js
+share/doc/groonga/ja/html/_static/jquery-3.5.1.js
 share/doc/groonga/ja/html/_static/jquery.js
 share/doc/groonga/ja/html/_static/language_data.js
 share/doc/groonga/ja/html/_static/logo.png
