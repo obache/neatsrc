@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.3 2015/03/15 20:03:24 hiramatsu Exp $
 
-DISTNAME=	OpenCC-ver.1.0.6
+DISTNAME=	OpenCC-ver.1.1.1
 PKGNAME=	${DISTNAME:S/-ver./-/:tl}
 CATEGORIES=	converters chinese
 MASTER_SITES=	-https://github.com/BYVoid/OpenCC/archive/ver.${PKGVERSION_NOREV}${EXTRACT_SUFX}
