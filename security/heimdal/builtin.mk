@@ -120,15 +120,22 @@ BUILDLINK_TARGETS+=	fake-krb5-config
 fake-krb5-config:
 	${RUN} \
 	src=../../security/heimdal/files/krb5-config \
-        dst=${BUILDLINK_DIR}/bin/krb5-config; \
+        dst=${BUILDLINK_BINDIR}/krb5-config; \
 	${SED} -e s/@HEIMDAL_VERSION@/${BUILTIN_VERSION.heimdal}/ \
 	    $${src} >$${dst}; \
 	${CHMOD} a+x $${dst}
 
-KRB5_CONFIG?=	${BUILDLINK_DIR}/bin/krb5-config
 .    else
-KRB5_CONFIG?=	${SH_KRB5_CONFIG}
-BUILDLINK_FILES_CMD.heimdal+=	${ECHO} ${SH_KRB5_CONFIG:S,${BUILDLINK_PREFIX.heimdal}/,,}
+BUILDLINK_FILES+=	${SH_KRB5_CONFIG:S,${BUILDLINK_PREFIX.heimdal}/,,}
+.      if !empty(H_HEIMDAL:M${BUILTIN_HEADER_FOUND_DIR.H_HEIMDAL}/krb5/krb5.h)
+SUBST_CLASSES+=	_fix-krb5-config-incdir
+SUBST_STAGE._fix-krb5-config-incdir=	post-wrapper
+SUBST_MESSAGE._fix-krb5-config-incdir=\
+	Fix potential wrong "includedir" setting in krb5-config
+SUBST_FILES._fix-krb5-config-incdir=	${BUILDLINK_DIR}/bin/krb5-config
+SUBST_SED._fix-krb5-config-incdir=	-e 's|^includedir=/usr/include$$|includedir=${BUILTIN_HEADER_FOUND_DIR.H_HEIMDAL}/krb5|'
+.      endif
+KRB5_CONFIG=	${BUILDLINK_BINDIR}/krb5-config
 .    endif
 CONFIGURE_ENV+=	KRB5_CONFIG=${KRB5_CONFIG:Q}
 MAKE_ENV+=	KRB5_CONFIG=${KRB5_CONFIG:Q}
