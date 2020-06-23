@@ -47,6 +47,8 @@ ${GEM_LIBDIR}/lib/groonga/command/query-log-flags-get.rb
 ${GEM_LIBDIR}/lib/groonga/command/query-log-flags-remove.rb
 ${GEM_LIBDIR}/lib/groonga/command/query-log-flags-set.rb
 ${GEM_LIBDIR}/lib/groonga/command/range-filter.rb
+${GEM_LIBDIR}/lib/groonga/command/reference-acquire.rb
+${GEM_LIBDIR}/lib/groonga/command/reference-release.rb
 ${GEM_LIBDIR}/lib/groonga/command/register.rb
 ${GEM_LIBDIR}/lib/groonga/command/reindex.rb
 ${GEM_LIBDIR}/lib/groonga/command/request-cancel.rb
@@ -104,6 +106,8 @@ ${GEM_LIBDIR}/test/command/test-query-log-flags-get.rb
 ${GEM_LIBDIR}/test/command/test-query-log-flags-remove.rb
 ${GEM_LIBDIR}/test/command/test-query-log-flags-set.rb
 ${GEM_LIBDIR}/test/command/test-range-filter.rb
+${GEM_LIBDIR}/test/command/test-reference-acquire.rb
+${GEM_LIBDIR}/test/command/test-reference-release.rb
 ${GEM_LIBDIR}/test/command/test-register.rb
 ${GEM_LIBDIR}/test/command/test-reindex.rb
 ${GEM_LIBDIR}/test/command/test-request-cancel.rb
