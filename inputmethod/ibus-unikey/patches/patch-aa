@@ -1,7 +1,7 @@
 $NetBSD: patch-aa,v 1.3 2014/05/01 09:19:35 obache Exp $
 
 * standard location.
-  https://github.com/mrlequoctuan/ibus-unikey/pull/2
+  https://github.com/vn-input/ibus-unikey/pull/2
 
 --- src/engine.cpp.orig	2012-02-29 02:48:14.000000000 +0000
 +++ src/engine.cpp
