@@ -1,0 +1,16 @@
+$NetBSD$
+
+* remove redundant target
+  https://github.com/ibus/ibus-m17n/pull/23
+
+--- src/Makefile.am.orig	2018-10-24 14:24:16.000000000 +0000
++++ src/Makefile.am
+@@ -135,8 +135,6 @@ desktop_in_in_files = ibus-setup-m17n.de
+ desktop_in_files = $(desktop_in_in_files:.in.in=.in)
+ desktop_files = $(desktop_in_files:.desktop.in=.desktop)
+ 
+-$(desktop_in_files): %.desktop.in: %.desktop.in.in Makefile
+-	$(AM_V_GEN) $(edit) $< > $@.tmp && mv $@.tmp $@
+ $(desktop_in_files):
+ 	$(AM_V_GEN) $(MSGFMT) --desktop --template $@.in -o $@-t \
+ 	  -d $(top_srcdir)/po && mv $@-t $@

@@ -1,0 +1,15 @@
+$NetBSD$
+
+* regen
+
+--- src/Makefile.in.orig	2020-06-20 09:44:18.000000000 +0000
++++ src/Makefile.in
+@@ -1412,8 +1412,6 @@ test: ibus-engine-m17n
+ m17n.xml: m17n.xml.in
+ 	$(AM_V_GEN) $(edit) $< > $@.tmp && mv $@.tmp $@
+ 
+-$(desktop_in_files): %.desktop.in: %.desktop.in.in Makefile
+-	$(AM_V_GEN) $(edit) $< > $@.tmp && mv $@.tmp $@
+ $(desktop_in_files):
+ 	$(AM_V_GEN) $(MSGFMT) --desktop --template $@.in -o $@-t \
+ 	  -d $(top_srcdir)/po && mv $@-t $@

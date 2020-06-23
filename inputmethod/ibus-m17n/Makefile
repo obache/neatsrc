@@ -13,7 +13,7 @@ LICENSE=	gnu-gpl-v2
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
-USE_TOOLS+=		pkg-config msgfmt gmake
+USE_TOOLS+=		pkg-config msgfmt
 
 GETTEXT_TOOLS_REQD=	0.19.7
 
