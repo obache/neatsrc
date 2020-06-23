@@ -4,7 +4,7 @@
 DISTNAME=	ibus-t9-2.1.0.20100601
 PKGREVISION=	30
 CATEGORIES=	inputmethod chinese
-MASTER_SITES=	http://ibus-t9.googlecode.com/files/
+MASTER_SITES=	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/ibus-t9/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://code.google.com/archive/p/ibus-t9/
