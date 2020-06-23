@@ -4,7 +4,7 @@
 DISTNAME=	ibus-unikey-0.6.1
 PKGREVISION=	22
 CATEGORIES=	inputmethod
-MASTER_SITES=	http://ibus-unikey.googlecode.com/files/
+MASTER_SITES=	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/ibus-unikey/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://code.google.com/archive/p/ibus-unikey/
