@@ -1,11 +1,15 @@
 @comment $NetBSD$
 bin/kbd-layout-viewer
 lib/plugins/kcm_fcitx.so
-share/examples/kcm-fcitx/xdg/fcitx-skin.knsrc
-share/kservices5/kbd-layout-viewer.desktop
+share/applications/kbd-layout-viewer.desktop
 share/kservices5/kcm_fcitx.desktop
+share/locale/ca/LC_MESSAGES/kcm_fcitx.mo
+share/locale/da/LC_MESSAGES/kcm_fcitx.mo
 share/locale/de/LC_MESSAGES/kcm_fcitx.mo
 share/locale/ja/LC_MESSAGES/kcm_fcitx.mo
+share/locale/ko/LC_MESSAGES/kcm_fcitx.mo
+share/locale/ru/LC_MESSAGES/kcm_fcitx.mo
+share/locale/tr/LC_MESSAGES/kcm_fcitx.mo
 share/locale/vi/LC_MESSAGES/kcm_fcitx.mo
 share/locale/zh_CN/LC_MESSAGES/kcm_fcitx.mo
 share/locale/zh_TW/LC_MESSAGES/kcm_fcitx.mo
