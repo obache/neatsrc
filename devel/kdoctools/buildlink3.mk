@@ -8,6 +8,7 @@ KDOCTOOLS_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.kdoctools+=	kdoctools>=5.21.0
 BUILDLINK_ABI_DEPENDS.kdoctools?=	kdoctools>=5.47.0nb5
 BUILDLINK_PKGSRCDIR.kdoctools?=		../../devel/kdoctools
+BUILDLINK_CONTENTS_PATTERNS.kdoctools=	share/kf5/kdoctools/customization/
 
 .include "../../textproc/libxslt/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
