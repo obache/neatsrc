@@ -7,6 +7,7 @@ ${PLIST.learner}bin/groonga-suggest-learner
 include/groonga/groonga.h
 include/groonga/groonga.hpp
 include/groonga/groonga/accessor.h
+include/groonga/groonga/aggregator.h
 include/groonga/groonga/array.h
 include/groonga/groonga/arrow.h
 include/groonga/groonga/arrow.hpp
@@ -238,6 +239,8 @@ share/doc/groonga/en/html/reference/commands/plugin_unregister.html
 share/doc/groonga/en/html/reference/commands/query_expand.html
 share/doc/groonga/en/html/reference/commands/quit.html
 share/doc/groonga/en/html/reference/commands/range_filter.html
+share/doc/groonga/en/html/reference/commands/reference_acquire.html
+share/doc/groonga/en/html/reference/commands/reference_release.html
 share/doc/groonga/en/html/reference/commands/register.html
 share/doc/groonga/en/html/reference/commands/reindex.html
 share/doc/groonga/en/html/reference/commands/request_cancel.html
@@ -543,6 +546,8 @@ share/doc/groonga/ja/html/reference/commands/plugin_unregister.html
 share/doc/groonga/ja/html/reference/commands/query_expand.html
 share/doc/groonga/ja/html/reference/commands/quit.html
 share/doc/groonga/ja/html/reference/commands/range_filter.html
+share/doc/groonga/ja/html/reference/commands/reference_acquire.html
+share/doc/groonga/ja/html/reference/commands/reference_release.html
 share/doc/groonga/ja/html/reference/commands/register.html
 share/doc/groonga/ja/html/reference/commands/reindex.html
 share/doc/groonga/ja/html/reference/commands/request_cancel.html
