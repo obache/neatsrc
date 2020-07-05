@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.11 2015/11/03 22:13:35 agc Exp $
 
-SHA1 (ibus-table-1.9.25.tar.gz) = 91e25ba820de8baafc79ef1a93afb46ce55ad2f8
-RMD160 (ibus-table-1.9.25.tar.gz) = 3d11c4eb2d457ad6a9ab6c952835b452a9e56134
-SHA512 (ibus-table-1.9.25.tar.gz) = d6db134ae9dfd6ea478dfdf7544c47fa6d94aca398451ac3fd451d22de806e91c0972478b6e25caa037d9dbac3de13e28b3f0d9b7c06b28bf19f50a0b389974e
-Size (ibus-table-1.9.25.tar.gz) = 638282 bytes
+SHA1 (ibus-table-1.10.0.tar.gz) = 013c52aa21ad090bb4dc4cec568e7223d69daffd
+RMD160 (ibus-table-1.10.0.tar.gz) = dd1b43b9058f4f6cab054b74a636b48d41a78153
+SHA512 (ibus-table-1.10.0.tar.gz) = cb9d4c378f2acbffdeb034ef33b80eef2e971d8196222c9fe0d72b15c025ab30fdc68a4de0c6b6e1ecae296b8e3555a769f6a7dabb9dbf1f544dc16e8d08edd4
+Size (ibus-table-1.10.0.tar.gz) = 1298426 bytes

@@ -6,6 +6,7 @@ libexec/ibus-setup-table
 man/man1/ibus-table-createdb.1
 share/applications/ibus-setup-table.desktop
 share/glib-2.0/schemas/org.freedesktop.ibus.engine.table.gschema.xml
+share/ibus-table/data/phrase.txt.bz2
 share/ibus-table/data/pinyin_table.txt.bz2
 share/ibus-table/engine/chinese_variants.py
 share/ibus-table/engine/chinese_variants.pyc
