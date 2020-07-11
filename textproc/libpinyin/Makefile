@@ -16,9 +16,12 @@ USE_LANGUAGES=	c99 c++11
 USE_LIBTOOL=	yes
 
 PKGCONFIG_OVERRIDE+=	libpinyin.pc.in
+PKGCONFIG_OVERRIDE+=	libzhuyin.pc.in
 
 BUILDLINK_TRANSFORM.Darwin+=	rm:-Wl,--version-script=./libpinyin.ver
 BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--version-script=./libpinyin.ver
+
+CONFIGURE_ARGS+=	--enable-libzhuyin
 
 .include "options.mk"
 
