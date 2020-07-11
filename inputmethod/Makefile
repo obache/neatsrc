@@ -50,6 +50,7 @@ SUBDIR+=	ibus-input-pad
 SUBDIR+=	ibus-kkc
 SUBDIR+=	ibus-libpinyin
 SUBDIR+=	ibus-libthai
+SUBDIR+=	ibus-libzhuyin
 SUBDIR+=	ibus-m17n
 SUBDIR+=	ibus-mozc
 SUBDIR+=	ibus-pinyin
