@@ -1,9 +1,8 @@
 # $NetBSD$
 
-DISTNAME=	cyrus-imapd-2.5.15
+DISTNAME=	cyrus-imapd-2.5.16
 CATEGORIES=	mail
 MASTER_SITES=	https://github.com/cyrusimap/cyrus-imapd/releases/download/${DISTNAME}/
-MASTER_SITES+=	https://www.cyrusimap.org/releases/
 
 HOMEPAGE=	http://www.cyrusimap.org/
 COMMENT=	Cyrus IMAP server

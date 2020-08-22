@@ -111,6 +111,7 @@ CONFIGURE_ARGS+=	--without-sqlite
 .endif
 
 .if !empty(PKG_OPTIONS:Mpcre)
+BUILDLINK_AUTO_DIRS.pcre=	yes
 .  include "../../devel/pcre/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-pcre
 .else
