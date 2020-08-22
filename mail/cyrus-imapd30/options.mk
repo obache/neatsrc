@@ -109,8 +109,8 @@ CONFIGURE_ARGS+=	--without-lmdb
 .endif
 
 .if !empty(PKG_OPTIONS:Mpcre)
+BUILDLINK_AUTO_DIRS.pcre=	yes
 .  include "../../devel/pcre/buildlink3.mk"
-CONFIGURE_ARGS+=	--enable-pcre
 .else
 CONFIGURE_ARGS+=	--disable-pcre
 .endif
