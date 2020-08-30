@@ -2,6 +2,7 @@
 bin/ibus-setup-hangul
 libexec/ibus-engine-hangul
 libexec/ibus-setup-hangul
+${PLIST.tests}libexec/installed-tests/ibus-hangul/ibus-hangul
 share/applications/ibus-setup-hangul.desktop
 share/glib-2.0/schemas/org.freedesktop.ibus.engine.hangul.gschema.xml
 share/ibus-hangul/data/symbol.txt
@@ -22,6 +23,7 @@ share/icons/hicolor/64x64/apps/ibus-hangul.png
 share/icons/hicolor/64x64/apps/ibus-setup-hangul.png
 share/icons/hicolor/scalable/apps/ibus-hangul.svg
 share/icons/hicolor/scalable/apps/ibus-setup-hangul.svg
+${PLIST.tests}share/installed-tests/ibus-hangul/ibus-hangul.test
 share/locale/ko/LC_MESSAGES/ibus-hangul.mo
 share/locale/zh_CN/LC_MESSAGES/ibus-hangul.mo
 share/metainfo/org.freedesktop.ibus.engine.hangul.metainfo.xml

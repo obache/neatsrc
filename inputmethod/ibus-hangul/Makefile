@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.21 2019/05/15 14:33:13 leot Exp $
 #
 
-DISTNAME=	ibus-hangul-1.5.3
+DISTNAME=	ibus-hangul-1.5.4
 CATEGORIES=	inputmethod korean
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libhangul/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -19,6 +19,10 @@ USE_TOOLS+=		pkg-config gmake msgfmt intltool
 GETTEXT_TOOLS_REQD=	0.19.7
 
 TEST_TARGET=		check
+
+REPLACE_SH=	tests/runtest
+
+.include "options.mk"
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../inputmethod/libhangul/buildlink3.mk"
