@@ -3,8 +3,8 @@
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.cyrus-imapd
 PKG_SUPPORTED_OPTIONS=	clamav gssapi http kerberos kerberos4 ldap pcre snmp zephyr
-PKG_SUPPORTED_OPTIONS+=	mysql pgsql sqlite lmdb
-PKG_SUPPORTED_OPTIONS+=	sphinx xapian
+PKG_SUPPORTED_OPTIONS+=	mysql pgsql sqlite
+PKG_SUPPORTED_OPTIONS+=	xapian
 PKG_SUGGESTED_OPTIONS=	http ldap pcre
 
 .include "../../mk/bsd.options.mk"
@@ -101,14 +101,8 @@ CONFIGURE_ARGS+=	--with-sqlite=${BUILDLINK_PREFIX.sqlite3}
 CONFIGURE_ARGS+=	--without-sqlite
 .endif
 
-.if !empty(PKG_OPTIONS:Mlmdb)
-.  include "../../databases/lmdb/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-lmdb
-.else
-CONFIGURE_ARGS+=	--without-lmdb
-.endif
-
 .if !empty(PKG_OPTIONS:Mpcre)
+BUILDLINK_AUTO_DIRS.pcre=	yes
 .  include "../../devel/pcre/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-pcre
 .else
@@ -123,13 +117,14 @@ CONFIGURE_ARGS+=	--without-clamav
 .endif
 
 .if !empty(PKG_OPTIONS:Mhttp)
-BUILDLINK_API_DEPENDS.zlib+=	zlib>=1.2.5.3
 .include "../../archivers/brotli/buildlink3.mk"
+.include "../../archivers/zstd/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../geography/shapelib/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../time/libical/buildlink3.mk"
 .include "../../www/nghttp2/buildlink3.mk"
+.include "../../www/wslay/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-http
 PLIST.http=		yes
 .else
@@ -141,13 +136,6 @@ CONFIGURE_ARGS+=	--disable-http
 CONFIGURE_ARGS+=	--with-zephyr=${BUILDLINK_PREFIX.zephyr}
 .else
 CONFIGURE_ARGS+=	--without-zephyr
-.endif
-
-.if !empty(PKG_OPTIONS:Msphinx)
-.  include "../../textproc/sphinxsearch/buildlink3.mk"
-CONFIGURE_ARGS+=	--enable-sphinx
-.else
-CONFIGURE_ARGS+=	--disable-sphinx
 .endif
 
 .if !empty(PKG_OPTIONS:Mxapian)
