@@ -19,12 +19,10 @@ NO_CONFIGURE=	YES
 WRKSRC=		${WRKDIR}
 EMOJIDIR=	${PREFIX}/share/unicode/emoji
 
-EMOJI_VERSION=	12.0
+EMOJI_VERSION=	13.1
 EMOJI_FILES=	ReadMe.txt
-EMOJI_FILES+=	emoji-data.txt
 EMOJI_FILES+=	emoji-sequences.txt
 EMOJI_FILES+=	emoji-test.txt
-EMOJI_FILES+=	emoji-variation-sequences.txt
 EMOJI_FILES+=	emoji-zwj-sequences.txt
 
 INSTALLATION_DIRS=	${EMOJIDIR}
