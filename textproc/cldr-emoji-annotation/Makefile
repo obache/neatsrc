@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.7 2019/09/14 03:46:58 tsutsui Exp $
 
-CLDREMJVER=	35.12.14971_0
+CLDREMJVER=	37.0_13.0_0_2
 DISTNAME=	cldr-emoji-annotation-${CLDREMJVER}
 PKGNAME=	${DISTNAME:S/_/./g}
 CATEGORIES=	textproc
