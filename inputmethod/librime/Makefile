@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.19 2019/08/22 12:23:24 ryoon Exp $
 
-DISTNAME=	librime-1.5.3
-PKGREVISION=	2
+DISTNAME=	librime-1.6.1
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	-https://github.com/rime/librime/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
@@ -24,6 +23,7 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=TRUE
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../databases/leveldb/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
+.include "../../devel/capnproto/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../textproc/yaml-cpp/buildlink3.mk"
 .include "../../textproc/marisa/buildlink3.mk"

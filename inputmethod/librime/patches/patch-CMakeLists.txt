@@ -2,14 +2,14 @@ $NetBSD: patch-CMakeLists.txt,v 1.1 2014/11/29 09:31:49 obache Exp $
 
 * No reason to restrct only for some Unix variants
 
---- CMakeLists.txt.orig	2019-06-22 10:47:49.000000000 +0000
+--- CMakeLists.txt.orig	2020-09-21 00:43:22.000000000 +0000
 +++ CMakeLists.txt
-@@ -173,7 +173,7 @@ configure_file(
+@@ -170,7 +170,7 @@ configure_file(
  add_custom_target(uninstall
    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
  
--if(${CMAKE_SYSTEM_NAME} MATCHES "Linux|FreeBSD|DragonFly")
+-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux|FreeBSD|DragonFly|GNU")
 +if(UNIX)
    set(prefix "${CMAKE_INSTALL_PREFIX}")
    set(exec_prefix "${CMAKE_INSTALL_PREFIX}")
-   set(bindir "${exec_prefix}/bin")
+   set(bindir "${exec_prefix}/${BIN_INSTALL_DIR}")
