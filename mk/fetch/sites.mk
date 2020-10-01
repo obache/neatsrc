@@ -81,6 +81,9 @@ MASTER_SITE_KDE+=	\
 	ftp://mirrors.dotsrc.org/kde/stable/ \
 	ftp://ftp.fi.muni.cz/pub/kde/stable/
 
+MASTER_SITE_TDE+=	\
+	http://mirror.ppa.trinitydesktop.org/trinity/releases/
+
 MASTER_SITE_SOURCEFORGE+=	\
 	http://downloads.sourceforge.net/sourceforge/
 

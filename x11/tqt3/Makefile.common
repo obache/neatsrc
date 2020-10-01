@@ -1,0 +1,8 @@
+# $NetBSD$
+
+TQT3_RELEASE=	${_TDE_RELEASE}
+TDE_PKGNAME=	tqt3
+
+.include "../../meta-pkgs/tde/Makefile.tde"
+
+LICENSE?=	gnu-gpl-v2 OR gnu-gpl-v3

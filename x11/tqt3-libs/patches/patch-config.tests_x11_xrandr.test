@@ -1,0 +1,49 @@
+$NetBSD$
+
+--- config.tests/x11/xrandr.test.orig	2020-04-10 10:04:43.000000000 +0000
++++ config.tests/x11/xrandr.test
+@@ -43,28 +43,28 @@ if [ -z "$F" ]; then
+ fi
+     
+ # check for Xrandr.h and randr.h
+-XRANDR_H=
+ RANDR_H=
+ if [ "$XRANDR" = "yes" ]; then
+-    INC="X11/extensions/Xrandr.h"
+-    INC2="X11/extensions/randr.h"
++    INCS="X11/extensions/Xrandr.h X11/extensions/randr.h"
+     XDIRS=`sed -n -e '/^QMAKE_INCDIR_X11[	]*=/ { s/[^=]*=[	 ]*//; s/-I/ /g; p; }' $XCONFIG`
+     INCDIRS="$IN_INCDIRS $XDIRS /usr/include /include"
+-    F=
+-    for INCDIR in $INCDIRS; do
+-	if [ -f $INCDIR/$INC -a -f $INCDIR/$INC2 ]; then
+-	    F=yes
+-	    XRANDR_H=$INCDIR/$INC
+-	    RANDR_H=$INCDIR/$INC2
+-	    [ "$VERBOSE" = "yes" ] && echo "  Found $INC in $INCDIR"
+-	    break
++    for INC in $INCS; do
++	F=
++	for INCDIR in $INCDIRS; do
++	    if [ -f $INCDIR/$INC ]; then
++		F=yes
++		[ "$INC" = "X11/extensions/randr.h" ] && RANDR_H=$INCDIR/$INC
++		[ "$VERBOSE" = "yes" ] && echo "  Found $INC in $INCDIR"
++		break
++	    fi
++	done
++	if [ -z "$F" ]
++	then
++	    XRANDR=no
++	    [ "$VERBOSE" = "yes" ] && echo "  Could not find $INC anywhere in $INCDIRS"
++	    break;
+ 	fi
+     done
+-    if [ -z "$F" ]
+-    then
+-	XRANDR=no
+-	[ "$VERBOSE" = "yes" ] && echo "  Could not find $INC anywhere in $INCDIRS"
+-    fi
+ fi
+ 
+ # verify that we are using XRandR 1.x >= 1.1

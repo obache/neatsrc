@@ -1,0 +1,10 @@
+TQt(TM) is a GUI software toolkit. TQt simplifies the task of writing and
+maintaining GUI (graphical user interface) applications.
+TQt is written in C++ and is fully object-oriented. It has everything you need
+to create professional GUI applications. And it enables you to create them
+quickly.
+TQt is a multi-platform toolkit. When developing software with TQt, you can run
+it on the X Window System (Unix/X11) or Microsoft Windows NT and Windows 95/98.
+Simply recompile your source code on the platform you want.
+TQt cuts down the complexity in implementing large and complex systems. Its
+ingenious signal-slot technology enables true component programming.

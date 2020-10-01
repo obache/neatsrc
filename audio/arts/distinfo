@@ -1,0 +1,9 @@
+$NetBSD$
+
+SHA1 (arts-trinity-14.0.8.tar.xz) = 5525b270ca1f499ddf7ce91fdee9d3cc02ce76ca
+RMD160 (arts-trinity-14.0.8.tar.xz) = 09db5219195022b1b74694d2bd99ca4a0fd91693
+SHA512 (arts-trinity-14.0.8.tar.xz) = e42d06787cb8e5c409b82db3470659a9d8066896a5116a5148d0ee30921a5bc4ce50155cdf5bac90f6afd3857038f8a5a3fe131b1d3e043a258859a24c183753
+Size (arts-trinity-14.0.8.tar.xz) = 681888 bytes
+SHA1 (patch-flow_CMakeLists.txt) = 83011dee02e57dc4917835ed1ed92439af528561
+SHA1 (patch-flow_audioioalsa9.cc) = aac1a0d8586e3edd0affb8e7770021219f13c8ea
+SHA1 (patch-flow_gsl_CMakeLists.txt) = d5e28b3f63593ec4fcbfa7f0e7c2d2382ee45584

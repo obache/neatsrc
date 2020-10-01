@@ -1,0 +1,8 @@
+$NetBSD$
+
+SHA1 (tdeedu-trinity-14.0.8.tar.xz) = 8f2c23d03cd110a347114d2a0db18a00e31bb732
+RMD160 (tdeedu-trinity-14.0.8.tar.xz) = 8148f745c1c0f3bf08d50c364922287cd2ca0b0e
+SHA512 (tdeedu-trinity-14.0.8.tar.xz) = 90f912cdc0cd73f7154f2d1ac406d8ab3d39611aa04a1113db405aeb7d6cb3ae2e836972af7ce0f9c108e1f6532efcda9ee6ec2490a1f31c84101407c07d06c7
+Size (tdeedu-trinity-14.0.8.tar.xz) = 24696076 bytes
+SHA1 (patch-kstars_kstars_indi_CMakeLists.txt) = 29dd0c9388f61eb0daa6b42ae4e4cf4051aa2d13
+SHA1 (patch-kstars_kstars_indi_apogee_stdafx.h) = 1376ea9faab248be174571839856f1e2db861790

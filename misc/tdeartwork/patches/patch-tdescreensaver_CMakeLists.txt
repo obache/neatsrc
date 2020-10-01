@@ -1,0 +1,14 @@
+$NetBSD$
+
+* should be removed completely
+
+--- tdescreensaver/CMakeLists.txt.orig	2015-09-23 03:07:28.000000000 +0000
++++ tdescreensaver/CMakeLists.txt
+@@ -11,7 +11,6 @@
+ 
+ add_subdirectory( kdesavers )
+ add_subdirectory( tdepartsaver)
+-add_subdirectory( krootbacking )
+ if( WITH_XSCREENSAVER )
+   add_subdirectory( kxsconfig )
+   add_subdirectory( xsavers )

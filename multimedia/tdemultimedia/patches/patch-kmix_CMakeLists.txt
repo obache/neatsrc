@@ -1,0 +1,31 @@
+$NetBSD$
+
+* using ossaudio
+
+--- kmix/CMakeLists.txt.orig	2015-09-23 03:09:22.000000000 +0000
++++ kmix/CMakeLists.txt
+@@ -43,7 +43,7 @@ tde_add_kpart( kmix_panelapplet AUTOMOC
+     verticaltext.cpp mixerIface.skel colorwidget.ui
+     dialogviewconfiguration.cpp kmixtoolbox.cpp mixertoolbox.cpp
+     dialogselectmaster.cpp
+-  LINK tdeui-shared ${ALSA_LIBRARIES}
++  LINK tdeui-shared ${ALSA_LIBRARIES} ${LIBOSSAUDIO}
+   DESTINATION ${PLUGIN_INSTALL_DIR}
+ )
+ 
+@@ -61,7 +61,7 @@ tde_add_tdeinit_executable( kmix AUTOMOC
+     volume.cpp kledbutton.cpp verticaltext.cpp mixerIface.skel
+     kmixtoolbox.cpp mixertoolbox.cpp dialogviewconfiguration.cpp
+     KMixApp.cpp dialogselectmaster.cpp
+-  LINK tdeui-shared ${ALSA_LIBRARIES}
++  LINK tdeui-shared ${ALSA_LIBRARIES} ${LIBOSSAUDIO}
+ )
+ 
+ 
+@@ -72,5 +72,5 @@ tde_add_tdeinit_executable( kmixctrl AUT
+     kmixctrl.cpp mixer.cpp mixset.cpp mixdevice.cpp
+     volume.cpp mixerIface.skel mixertoolbox.cpp
+     mixer_backend.cpp
+-  LINK tdecore-shared ${ALSA_LIBRARIES}
++  LINK tdecore-shared ${ALSA_LIBRARIES} ${LIBOSSAUDIO}
+ )

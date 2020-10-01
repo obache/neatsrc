@@ -1,0 +1,7 @@
+$NetBSD$
+
+SHA1 (tdegraphics-trinity-14.0.8.tar.xz) = 6ddcb2bf0438dd75102faa01fe22b88ff5fa8518
+RMD160 (tdegraphics-trinity-14.0.8.tar.xz) = baa32864accb0259a7c8d0100b6de4d5806f7183
+SHA512 (tdegraphics-trinity-14.0.8.tar.xz) = 3dc5532633f43179e16123fe142c5ec2352d4b05081b7c04d5849f46cb1929f536cc29a635c61d1bb47f9bfa9a22f8ba19ff33f640751cd6140974dbe88b7611
+Size (tdegraphics-trinity-14.0.8.tar.xz) = 5797244 bytes
+SHA1 (patch-ksvg_impl_libs_libtext2path_src_CMakeLists.txt) = 94ca820f71b7a41f67694564d6f2516fb8538f98

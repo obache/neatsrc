@@ -1,0 +1,7 @@
+This package includes libraries that abstract the underlying Qt system from
+the actual Trinity code, allowing easy, complete upgrades to new versions of Qt.
+
+It also contains various functions that have been removed from newer versions
+of Qt, but are completely portable and isolated from other APIs such as Xorg.
+This allows the Trinity project to efficiently perform certain operations that
+are infeasible or unneccessarily difficult when using pure Qt4 or above.

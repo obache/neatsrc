@@ -1,0 +1,4 @@
+@comment $NetBSD$
+include/libcaldav/caldav.h
+lib/libcaldav.la
+lib/pkgconfig/libcaldav.pc

@@ -1,0 +1,3 @@
+LIbcarddav is a portable CardDAV library client implementation originally
+developed for the Trinity PIM suite.  It incorporates full list, get, add,
+modify, and delete functionally per the latest CardDAV standards.

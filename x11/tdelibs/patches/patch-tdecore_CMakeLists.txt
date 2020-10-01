@@ -1,0 +1,13 @@
+$NetBSD$
+
+--- tdecore/CMakeLists.txt.orig	2020-04-10 23:08:30.000000000 +0000
++++ tdecore/CMakeLists.txt
+@@ -137,7 +137,7 @@ tde_add_library( ${target} SHARED AUTOMO
+   EMBED tdecorenetwork-static ${TDEHW_LIB}
+   LINK ltdlc-static ${KDESVGICONS} DCOP-shared tdefx-shared ${ZLIB_LIBRARIES}
+     ${LIBIDN_LIBRARIES} ${XCOMPOSITE_LIBRARIES} ICE SM ${GAMIN_LIBRARIES}
+-    ${LIBBFD_LIBRARIES} ${LIB_UTIL}
++    ${LIBBFD_LIBRARIES} ${LIB_UTIL} ${Backtrace_LIBRARY}
+   DEPENDENCIES dcopidl dcopidl2cpp
+   DESTINATION ${LIB_INSTALL_DIR}
+ )

@@ -1,0 +1,17 @@
+$NetBSD$
+
+* using tqt3 libraries
+
+--- lib/interfaces/external/CMakeLists.txt.orig	2015-09-23 03:10:40.000000000 +0000
++++ lib/interfaces/external/CMakeLists.txt
+@@ -15,6 +15,10 @@ include_directories(
+   ${TQT_INCLUDE_DIRS}
+ )
+ 
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
+ 
+ ##### headers ###################################
+ 

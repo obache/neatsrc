@@ -1,0 +1,20 @@
+$NetBSD$
+
+* ldflags are really required for link
+* change to install shared gsl
+
+--- flow/gsl/CMakeLists.txt.orig	2011-11-29 07:37:07.000000000 +0000
++++ flow/gsl/CMakeLists.txt
+@@ -147,9 +147,10 @@ set( ${target}_SRCS
+   gsloscillator.c gslfilehash.c gslartsthreads.cc
+ )
+ 
+-tde_add_library( ${target} STATIC_PIC
++tde_add_library( ${target} SHARED
+   SOURCES ${${target}_SRCS}
+-  LINK ${GLIB2_LIBRARIES} ${GTHREAD2_LIBRARIES} ${VORBISFILE_LIBRARIES} ${VORBIS_LIBRARIES} ${MAD_LIBRARIES}
++  VERSION 1.0.0
++  LINK ${GLIB2_LDFLAGS} ${GTHREAD2_LDFLAGS} ${VORBISFILE_LDFLAGS} ${VORBIS_LDFLAGS} ${MAD_LDFLAGS} mcop-shared
+   DESTINATION ${LIB_INSTALL_DIR}
+ )
+ 

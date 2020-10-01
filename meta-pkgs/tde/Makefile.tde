@@ -1,0 +1,46 @@
+# $NetBSD$
+#
+# This Makefile fragment is included at the top of package Makefiles for
+# TDE-distributed packages (they all share common configure and build
+# settings).
+
+DISTNAME?=	${TDE_PKGNAME}-trinity-${_TDE_RELEASE}
+PKGNAME?=	${TDE_PKGNAME}-${_TDE_RELEASE}
+
+CATEGORIES+=	kde
+_TDE_RELEASE=	14.0.8
+MASTER_SITES?=	${MASTER_SITE_TDE:=R${_TDE_RELEASE}/main/${TDE_SUBDIR:=/}}
+EXTRACT_SUFX?=	.tar.xz
+
+MAINTAINER?=	pkgsrc-users@NetBSD.org
+HOMEPAGE?=	http://www.trinitydesktop.org/
+
+.if !empty(GNU_CONFIGURE:M[Yy][Ee][Ss]) && empty(TDE_SUBDIR)
+USE_TOOLS+=	gmake perl autoconf automake
+
+post-extract:
+	${INSTALL_DATA} ${LOCALBASE}/share/libtool/build-aux/ltmain.sh ${WRKSRC}/admin/
+	${INSTALL_DATA} ${LOCALBASE}/share/aclocal/libtool.m4 ${WRKSRC}/admin/
+
+SUBST_CLASSES+=	fix-tqt-path
+SUBST_STAGE.fix-tqt-path=	pre-configure
+SUBST_FILES.fix-tqt-path=	admin/acinclude.m4.in
+SUBST_SED.fix-tqt-path=	-e s,/usr/include/tqt,${BUILDLINK_PREFIX.tqtinterface}/include/tqt,g
+
+pre-configure:
+	${RUN}cd ${WRKSRC};${TEST} -f ${CONFIGURE_SCRIPT} || ${PKGSRC_SETENV} ${CONFIGURE_ENV} ${MAKE} -f admin/Makefile.common
+
+CONFIGURE_ARGS+=	--with-qt-dir=${TQTDIR}
+CONFIGURE_ARGS+=	--with-qt-includes=${TQTDIR}/include
+CONFIGURE_ARGS+=	--with-qt-libraries=${TQTDIR}/lib
+.endif
+
+.if !empty(USE_CMAKE:M[Yy][Ee][Ss])
+pre-configure:
+	${MKDIR} ${WRKDIR}/build
+
+CONFIGURE_DIRS=	${WRKDIR}/build
+CMAKE_ARG_PATH=	${WRKSRC}
+CMAKE_ARGS+=	-DSYSCONF_INSTALL_DIR=${PKG_SYSCONFDIR}
+CMAKE_ARGS+=	-DMAN_INSTALL_DIR=${CMAKE_INSTALL_PREFIX}/${PKGMANDIR}
+.endif

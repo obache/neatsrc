@@ -1,0 +1,110 @@
+$NetBSD$
+
+--- CMakeLists.txt.orig	2020-04-10 23:08:30.000000000 +0000
++++ CMakeLists.txt
+@@ -330,7 +330,18 @@ check_symbol_exists( gethostbyname2_r "n
+ check_symbol_exists( gethostbyname_r "netdb.h" HAVE_GETHOSTBYNAME_R )
+ check_symbol_exists( gai_strerror "sys/types.h;sys/socket.h;netdb.h" HAVE_GAI_STRERROR )
+ check_symbol_exists( getaddrinfo "sys/types.h;sys/socket.h;netdb.h" HAVE_GETADDRINFO )
+-check_symbol_exists( backtrace "execinfo.h" HAVE_BACKTRACE )
++if ( CMAKE_MAJOR_VERSION LESS "3" )
++  check_symbol_exists( backtrace "execinfo.h" HAVE_BACKTRACE )
++  if ( HAVE_BACKTRACE )
++    set ( Backtrace_LIBRARY "" )
++    set ( Backtrace_HEADER "execinfo.h" )
++  endif ()
++else ()
++  find_package( Backtrace )
++  if ( Backtrace_FOUND )
++    set ( HAVE_BACKTRACE 1 )
++  endif ()
++endif ()
+ check_cxx_source_compiles( "#include <cxxabi.h>
+     int main() { abi::__cxa_demangle(0, 0, 0, 0); return 0; }"
+     HAVE_ABI_CXA_DEMANGLE )
+@@ -345,7 +356,7 @@ check_symbol_exists( ffs       "string.h
+ check_symbol_exists( asprintf  "stdio.h"  HAVE_ASPRINTF_PROTO )
+ check_symbol_exists( vasprintf "stdio.h"  HAVE_VASPRINTF_PROTO )
+ check_symbol_exists( snprintf  "stdio.h"  HAVE_SNPRINTF_PROTO )
+-check_symbol_exists( vsnprintf "stdarg.h" HAVE_VSNPRINTF_PROTO )
++check_symbol_exists( vsnprintf "stdarg.h;stdio.h" HAVE_VSNPRINTF_PROTO )
+ check_symbol_exists( strvercmp "string.h" HAVE_STRVERCMP_PROTO )
+ 
+ 
+@@ -380,6 +391,7 @@ check_function_exists( getpeername HAVE_
+ check_function_exists( getprotobyname_r HAVE_GETPROTOBYNAME_R )
+ check_function_exists( getpt HAVE_GETPT )
+ check_function_exists( getservbyname_r HAVE_GETSERVBYNAME_R )
++check_symbol_exists( getservbyname_r "netdb.h" HAVE_DECL_GETSERVBYNAME_R )
+ check_function_exists( getservbyport_r HAVE_GETSERVBYPORT_R )
+ check_function_exists( getsockname HAVE_GETSOCKNAME )
+ check_function_exists( getsockopt HAVE_GETSOCKOPT )
+@@ -1112,15 +1124,45 @@ if( WITH_GAMIN )
+ endif( WITH_GAMIN )
+ 
+ 
++##### check for ispell ##########################
++
++if ( NOT ISPELL_LIBDIR )
++  find_program( ISPELL_EXECUTABLE NAMES ispell DOC "path to the ispell executable" )
++  if( ISPELL_EXECUTABLE )
++    execute_process (
++      COMMAND ${ISPELL_EXECUTABLE} -vv
++      COMMAND awk "$1 == \"LIBDIR\" && $2 == \"=\" {gsub(/\"/, \"\", $3); print $3;}"
++      OUTPUT_VARIABLE ISPELL_LIBDIR
++      OUTPUT_STRIP_TRAILING_WHITESPACE)
++    if ( ISPELL_LIBDIR )
++      set ( ISPELL_LIBDIR "${ISPELL_LIBDIR}" CACHE PATH "ispell lib directory contains dictionaries" )
++    else ( ISPELL_LIBDIR )
++      unset ( ISPELL_LIBDIR )
++    endif ( ISPELL_LIBDIR )
++  endif( ISPELL_EXECUTABLE )
++endif ( NOT ISPELL_LIBDIR )
++
+ ##### check for aspell ##########################
+-# we need ASPELL_DATADIR too
+ 
+ if( WITH_ASPELL )
+   find_package( ASPELL )
+   if( NOT ASPELL_FOUND )
+     message(FATAL_ERROR "\nASPELL support are requested, but not found on your system" )
+   endif( NOT ASPELL_FOUND )
++  if( NOT ASPELL_DATADIR )
++    find_program( PSPELL_CONFIG_EXECUTABLE NAMES pspell-config DOC "path to the pspell-config executable" )
++    if( PSPELL_CONFIG_EXECUTABLE )
++      execute_process (
++        COMMAND ${PSPELL_CONFIG_EXECUTABLE} --pkgdatadir
++        OUTPUT_VARIABLE ASPELL_DATADIR
++        OUTPUT_STRIP_TRAILING_WHITESPACE)
++    endif( PSPELL_CONFIG_EXECUTABLE )
++  endif( NOT ASPELL_DATADIR )
+ endif( WITH_ASPELL )
++if( NOT ASPELL_DATADIR )
++  set ( ASPELL_DATADIR "/usr/lib/aspell" )
++endif( NOT ASPELL_DATADIR )
++set ( ASPELL_DATADIR "${ASPELL_DATADIR}" CACHE PATH "aspell data directory" )
+ 
+ 
+ ##### check for hspell ##########################
+@@ -1133,6 +1175,13 @@ if( WITH_HSPELL )
+ endif( WITH_HSPELL )
+ 
+ 
++####" default spell checker #####################
++set( DEFAULT_SPELL_CHECKER "ISPELL" CACHE STRING "default spell checker" )
++if( WITH_ASPELL )
++  set( DEFAULT_SPELL_CHECKER "ASPELL" )
++endif( WITH_ASPELL )
++
++
+ ##### enable TDEIconLoader debugging ############
+ 
+ if ( WITH_TDEICONLOADER_DEBUG )
+@@ -1143,7 +1192,6 @@ endif ( WITH_TDEICONLOADER_DEBUG )
+ ##### write configure files #####################
+ 
+ configure_file( config.h.cmake config.h )
+-configure_file( dcop/dcop-path.h.cmake dcop/dcop-path.h )
+ configure_file( tdecore/kdemacros.h.cmake tdecore/kdemacros.h )
+ configure_file( kjs/global.h.in kjs/global.h )
+ configure_file( tdeio/kssl/ksslconfig.h.cmake tdeio/kssl/ksslconfig.h )

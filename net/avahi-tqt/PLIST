@@ -1,0 +1,5 @@
+@comment $NetBSD$
+include/avahi-tqt/qt-watch.h
+lib/libavahi-tqt.a
+lib/libavahi-tqt.la
+lib/pkgconfig/avahi-tqt.pc

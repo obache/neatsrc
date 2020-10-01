@@ -1,0 +1,13 @@
+$NetBSD$
+
+--- Makefile.orig	2016-11-07 05:36:14.000000000 +0000
++++ Makefile
+@@ -52,7 +52,7 @@ tools-uninstall: .qmake.cache
+ 	cd tools && $(MAKE) uninstall
+ tools-install: sub-tools
+ 	cd tools && $(MAKE) install
+-sub-tools: sub-plugins FORCE
++sub-tools: FORCE
+ 	cd tools && $(MAKE)
+ 
+ #plugins

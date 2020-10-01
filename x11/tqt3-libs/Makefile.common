@@ -1,0 +1,91 @@
+# $NetBSD$
+
+CATEGORIES=	x11
+TDE_SUBDIR=	dependencies
+
+.include "../../x11/tqt3/Makefile.common"
+
+DISTINFO_FILE=		${.CURDIR}/../../x11/tqt3-libs/distinfo
+FILESDIR=		${.CURDIR}/../../x11/tqt3-libs/files
+PATCHDIR=		${.CURDIR}/../../x11/tqt3-libs/patches
+
+TQTPREFIX=		${PREFIX}/tqt3
+
+DESTDIR_VARNAME=	INSTALL_ROOT
+
+.if empty(BUILD_TQT3:M[Nn][Oo])
+
+HAS_CONFIGURE=	yes
+USE_TOOLS+=	gmake
+USE_LANGUAGES=	c c++
+
+CONFIGURE_ARGS+=	-verbose
+CONFIGURE_ARGS+=	-prefix ${TQTPREFIX}
+CONFIGURE_ARGS+=	-shared -sm -thread \
+			-system-zlib -system-libpng -plugin-imgfmt-png \
+			-system-libmng -system-libjpeg \
+			-plugin-imgfmt-jpeg -plugin-imgfmt-mng \
+			${CFLAGS:M-D*} \
+			${CFLAGS:M-I*} \
+			${LDFLAGS:M-L*} \
+			${LDFLAGS:M-l*} \
+			${LDFLAGS:M${COMPILER_RPATH_FLAG}*:S/${COMPILER_RPATH_FLAG}/-R/g}
+CONFIGURE_ARGS+=	-qt-gif	# qt3 does not write compressed GIFs
+CONFIGURE_ARGS+=	-inputmethod-ext
+
+PKG_OPTIONS_VAR=	PKG_OPTIONS.tqt3
+PKG_SUPPORTED_OPTIONS=	cups inet6
+PKG_SUGGESTED_OPTIONS=	cups inet6
+
+.include "../../mk/bsd.options.mk"
+
+.if !empty(PKG_OPTIONS:Minet6)
+CONFIGURE_ARGS+=	-ipv6
+.else
+CONFIGURE_ARGS+=	-no-ipv6
+.endif
+
+.if !empty(PKG_OPTIONS:Mcups)
+BUILDLINK_AUTO_DIRS.cups-base=	yes
+.  include "../../print/cups-base/buildlink3.mk"
+CONFIGURE_ARGS+=	-cups
+.else
+CONFIGURE_ARGS+=	-no-cups
+.endif
+
+pre-configure:
+	${SED} \
+		-e 's:@LOCALBASE@:${LOCALBASE}:g' \
+		-e 's:@X11BASE@:${X11BASE}:g' \
+		-e 's:@CC@:${CC}:g' \
+		-e 's:@CXX@:${CXX}:g' \
+		-e 's:@LDFLAGS@:${LDFLAGS:S/:/\\:/g}:g' \
+		-e 's:@CFLAGS@:${CFLAGS}:g' \
+		-e 's:@CXXFLAGS@:${CXXFLAGS}:g' \
+		-e 's:@SYS_LIBS@:${SYS_LIBS}:g' \
+		-e 's:@LEX@:${LEX}:g' \
+		-e 's:@YACC@:${TOOLS_CMDLINE_YACC}:g' \
+		-e 's:@AR@:${AR}:g' \
+		-e 's:@MKDIR@:${MKDIR}:g' \
+		-e 's:@PTHREAD_CFLAGS@:${PTHREAD_CFLAGS}:g' \
+		-e 's:@PTHREAD_LDFLAGS@:${PTHREAD_LDFLAGS}:g' \
+		-e 's:@PTHREAD_LIBS@:${PTHREAD_LIBS}:g' \
+		-e 's:@COMPILER_RPATH_FLAG@:${COMPILER_RPATH_FLAG}:g' \
+		-e 's:@QMAKE_RANLIB@:${RANLIB}:g' \
+		${FILESDIR}/qmake.conf > ${WRKSRC}/qmake.conf
+	for dir in ${WRKSRC}/mkspecs/*; do \
+		${CP} ${WRKSRC}/qmake.conf $${dir}; \
+		${RM} -f $${dir}/*.orig; \
+	done
+.endif
+
+.if !empty(BUILD_TQT3)
+post-extract:
+	${SED}\
+		-e 's:@WRKSRC@/\(include\):${TQTDIR}/\1:g' \
+		-e 's:@WRKSRC@/\(lib\):${TQTDIR}/\1:g' \
+		-e 's:@WRKSRC@/\(bin\):${TQTDIR}/\1:g' \
+		-e 's:@WRKSRC@:${WRKSRC}:g' \
+	< ${PREFIX}/share/pkgdata/tqt3-libs/.qmake.cache \
+	> ${WRKSRC}/.qmake.cache
+.endif

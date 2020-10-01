@@ -1,0 +1,21 @@
+$NetBSD$
+
+SHA1 (tqt3-trinity-14.0.8.tar.xz) = 49fea83ec43c6b1e7f4d5e3cf9c38300509f0551
+RMD160 (tqt3-trinity-14.0.8.tar.xz) = f37428ac7f3ecded8c0bb9cbac93fd12a663dc3d
+SHA512 (tqt3-trinity-14.0.8.tar.xz) = a3ab80895d27a9097bc2077fef606701241b125a5664906f40863ae5bf73e27c359fe318c81f022f20a08652c7a7ffc2601742642a89385f9a146f09a18835a9
+Size (tqt3-trinity-14.0.8.tar.xz) = 10963556 bytes
+SHA1 (patch-Makefile) = 993c2c73ec0f520a3b381d3fc599942fd900ae18
+SHA1 (patch-config.tests_x11_xrandr.test) = bb99821674702e7f64a8ab89e90413d5419c3850
+SHA1 (patch-plugins_src_inputmethods_xim_xim.pro) = c339aef80c044d17cb80dde023036345244b2c50
+SHA1 (patch-qmake_Makefile.unix) = d674baa74a3970ecbbcce36eabfdaca0499d9155
+SHA1 (patch-qmake_generators_makefile.cpp) = 6955c51c371a6a62502492da7dd94afa49d3d251
+SHA1 (patch-qmake_generators_unix_unixmake.cpp) = 8bc7d3e80c5b214a4eb884eeb6b6184d5d900f5d
+SHA1 (patch-qmake_generators_unix_unixmake2.cpp) = 277f3b0770004020f35bff52d5cc646fd131010b
+SHA1 (patch-qmake_project.cpp) = 10e85b8443dbff064d9cafcc1f7698d4919281ad
+SHA1 (patch-src_kernel_qfont__x11.cpp) = 8cb79e1a4b13d06a3f5b3a51d5e7b415a3b7325b
+SHA1 (patch-src_kernel_qlock.cpp) = e5cc880ce8c741a1674b3037971eb4ef0d04fc7b
+SHA1 (patch-src_kernel_qthread__unix.cpp) = 74f3592b479bd4c53294519a03cc4dec00608c91
+SHA1 (patch-src_network_qdns.cpp) = 7230bfd8cfd252b0f8828be272cd8e51fd194306
+SHA1 (patch-src_qt__install.pri) = 0d14e0d6bbfc5e547c90be2e767a1a75a6b6bd62
+SHA1 (patch-src_tools_qdatastream.cpp) = 2f668f078461dc294eb2bff573826bec7bf5fe49
+SHA1 (patch-src_tools_qmutex__unix.cpp) = 882636512187e47f9cbb55ef3968f9281d78adcf

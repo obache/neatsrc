@@ -1,0 +1,12 @@
+$NetBSD$
+
+--- mkpamserv.orig	2011-11-29 07:39:01.000000000 +0000
++++ mkpamserv
+@@ -1,5 +1,7 @@
+ #! /bin/sh
+ 
++exit 0;
++
+ permit=false
+ if test "x$1" = x-P; then
+     permit=true

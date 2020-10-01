@@ -1,0 +1,7 @@
+$NetBSD$
+
+SHA1 (tdenetwork-trinity-14.0.8.tar.xz) = 430e5292cde7ea4ee1feb0302f7e3329fd089e05
+RMD160 (tdenetwork-trinity-14.0.8.tar.xz) = 79e59684009deab50f2244d90458da409c63b08c
+SHA512 (tdenetwork-trinity-14.0.8.tar.xz) = 0efc4e04acc20e95d694c13f3ee4524d5067aa2ae66bedfcfddd9f63a4be43914db3b2f7f98d4ff00bfef344311768e13e9d6b17e64425e98eaa317252f20bec
+Size (tdenetwork-trinity-14.0.8.tar.xz) = 6748548 bytes
+SHA1 (patch-krfb_libvncserver_rfb.h) = 65f4b73b4d443310210a9f20f99f238a5f84ff24

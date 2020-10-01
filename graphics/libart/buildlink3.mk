@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	libart
 LIBART_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.libart+=	libart>=2.3.10nb1
-BUILDLINK_ABI_DEPENDS.libart+=	libart>=2.3.16nb1
+BUILDLINK_ABI_DEPENDS.libart+=	libart>=14.0.0
 BUILDLINK_PKGSRCDIR.libart?=	../../graphics/libart
 .endif # LIBART_BUILDLINK3_MK
 

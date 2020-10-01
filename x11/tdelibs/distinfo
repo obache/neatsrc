@@ -1,0 +1,21 @@
+$NetBSD$
+
+SHA1 (tdelibs-trinity-14.0.8.tar.xz) = 34a2610ee6d5fed9c9c738b28745e689d4102df2
+RMD160 (tdelibs-trinity-14.0.8.tar.xz) = 0bf23beb385aa58815de3caa680dd6d59e616379
+SHA512 (tdelibs-trinity-14.0.8.tar.xz) = 82c06d17aef37b5f562d1f56ea7e21b750216831da41a4975145ed0f517b1a49cf079918491d9943f6b997decaa2df26d4fdcffd3c40fd1ed7d8058b3697fab4
+Size (tdelibs-trinity-14.0.8.tar.xz) = 15286968 bytes
+SHA1 (patch-CMakeLists.txt) = b7eab094d7313d0d091e2fbf2659f60dc3e43c71
+SHA1 (patch-config.h.cmake) = 5aa6c618f3901f5a5026a148e75efd88b491ef9c
+SHA1 (patch-dcop_CMakeLists.txt) = dc7b7383eff6db1ed38dc1999f323406ecceeb01
+SHA1 (patch-dcop_dcopclient.cpp) = 9a9e32dc6a953bd74410246e213148ae3be5f41f
+SHA1 (patch-dcop_dcopserver__shutdown.c) = 6b2921ef3cba899b4169735d686b65b884383ba7
+SHA1 (patch-kded_khostname.cpp) = 1e56ec38633c21d0dcb87d75804226655a1f121d
+SHA1 (patch-tdecore_CMakeLists.txt) = 6d5ed38c2dc041a12ff02e81f63055a5e351e271
+SHA1 (patch-tdecore_kdebug.cpp) = 1a376f3f4937804ca3684ba19c33e08bae9100a7
+SHA1 (patch-tdecore_kpty.cpp) = df3cc3aba288716b95e6c5526f24a62e2d7a3f9b
+SHA1 (patch-tdecore_network_kresolver__p.h) = 4f5250cbdf619d0350c6c10bc97c1de495055eb3
+SHA1 (patch-tdeio_tdeio_connection.cpp) = fbd99f7c32d4478014d85cc93e60d981d671cfd8
+SHA1 (patch-tdeprint_lpr_make__driver__db__lpr.c) = c591b0fe4623c52153c9d58010fc40a41da1b78d
+SHA1 (patch-tdespell2_plugins_ispell_ispell__checker.cpp) = 82e567392c2574e932250ae1b7ec538000d63c37
+SHA1 (patch-tdesu_tdesu__stub.c) = 9642693b90ef8458c4062a4d76ebfefeb287814a
+SHA1 (patch-tdeui_ksconfig.cpp) = c5d9589ed33e6d5f0f43ce9ac480e0c2f7b3e083

@@ -1,0 +1,52 @@
+$NetBSD$
+
+--- kstars/kstars/indi/CMakeLists.txt.orig	2020-04-10 23:08:26.000000000 +0000
++++ kstars/kstars/indi/CMakeLists.txt
+@@ -272,11 +272,6 @@ tde_add_executable( sbigccd
+ )
+ 
+ 
+-##### With Video4Linux support
+-
+-if( WITH_V4L )
+-
+-
+ ####### apogee_ppi (executable)
+ 
+ set_property(
+@@ -285,6 +280,10 @@ set_property(
+     TOP_DATADIR="${DATA_INSTALL_DIR}/kstars"
+ )
+ 
++if (WITH_LIBUSB)
++set ( LIBAPOGEE_USB "libapogee_USB-static" )
++endif (WITH_LIBUSB)
++
+ tde_add_executable( apogee_ppi
+ 
+   SOURCES
+@@ -295,17 +294,24 @@ tde_add_executable( apogee_ppi
+      indicom-static
+      lilxml-static
+      libapogee_PPI-static
++     ${LIBAPOGEE_USB}
+      ${ZLIB_LIBRARIES}
+      
+   DEPENDENCIES
+      indicom-static
+      lilxml-static
+      libapogee_PPI-static
++     ${LIBAPOGEE_USB}
+      
+   DESTINATION ${BIN_INSTALL_DIR}
+ )
+ 
+ 
++##### With Video4Linux support
++
++if( WITH_V4L )
++
++
+ ####### v4ldriver (executable)
+ 
+ tde_add_executable( v4ldriver

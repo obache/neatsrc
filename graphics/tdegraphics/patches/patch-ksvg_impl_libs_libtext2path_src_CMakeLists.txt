@@ -1,0 +1,16 @@
+$NetBSD$
+
+* use really required linker flags
+
+--- ksvg/impl/libs/libtext2path/src/CMakeLists.txt.orig	2011-11-29 07:39:28.000000000 +0000
++++ ksvg/impl/libs/libtext2path/src/CMakeLists.txt
+@@ -44,6 +44,6 @@ tde_add_library( text2path SHARED
+     Affine.cpp Rectangle.cpp Font.cpp Glyph.cpp
+     GlyphTracer.cpp Converter.cpp QtUnicode.cpp
+   VERSION 0.0.0
+-  LINK ${FREETYPE_LIBRARIES} ${FRIBIDI_LIBRARIES} ${FONTCONFIG_LIBRARIES}
++  LINK ${FREETYPE_LDFLAGS} ${FRIBIDI_LDFLAGS} ${FONTCONFIG_LDFLAGS}
+   DESTINATION ${LIB_INSTALL_DIR}
+-)
+\ No newline at end of file
++)

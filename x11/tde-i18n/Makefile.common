@@ -1,0 +1,7 @@
+# $NetBSD$
+
+TDE_PKGNAME=	tde-i18n
+CATEGORIES=	x11
+
+COMMENT=	Trinity Desktop Environment [TDE] i18n
+LICENSE=	gnu-gpl-v2

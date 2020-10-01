@@ -1,0 +1,68 @@
+$NetBSD$
+
+* add missing rpath for plugin directory
+
+--- wizards/CMakeLists.txt.orig	2015-09-23 03:09:55.000000000 +0000
++++ wizards/CMakeLists.txt
+@@ -96,7 +96,7 @@ if( WITH_EGROUPWARE )
+ 
+   tde_add_executable( egroupwarewizard
+     SOURCES egroupwaremain.cpp
+-    LINK egroupwarewizard-shared
++    LINK egroupwarewizard-shared -R${PLUGIN_INSTALL_DIR}
+     DESTINATION ${BIN_INSTALL_DIR} )
+ 
+   set( EGROUPWAREWIZARD_LIBRARY egroupwarewizard-shared )
+@@ -124,7 +124,7 @@ if( WITH_SLOX )
+ 
+   tde_add_executable( sloxwizard
+     SOURCES sloxmain.cpp
+-    LINK sloxwizard-shared
++    LINK sloxwizard-shared -R${PLUGIN_INSTALL_DIR}
+     DESTINATION ${BIN_INSTALL_DIR} )
+ 
+   set( SLOXWIZARD_LIBRARY sloxwizard-shared )
+@@ -149,7 +149,7 @@ if( WITH_KOLAB )
+ 
+   tde_add_executable( kolabwizard
+     SOURCES kolabmain.cpp
+-    LINK kolabwizard-shared
++    LINK kolabwizard-shared -R${PLUGIN_INSTALL_DIR}
+     DESTINATION ${BIN_INSTALL_DIR} )
+ 
+   set( KOLABWIZARD_LIBRARY kolabwizard-shared )
+@@ -168,7 +168,7 @@ if( WITH_NEWEXCHANGE )
+ 
+   tde_add_executable( exchangewizard
+     SOURCES exchangemain.cpp
+-    LINK exchangewizard-shared
++    LINK exchangewizard-shared -R${PLUGIN_INSTALL_DIR}
+     DESTINATION ${BIN_INSTALL_DIR} )
+ 
+   set( EXCHANGEWIZARD_LIBRARY exchangewizard-shared )
+@@ -196,7 +196,7 @@ if( WITH_GROUPWISE )
+ 
+   tde_add_executable( groupwisewizard
+     SOURCES groupwisemain.cpp
+-    LINK groupwisewizard-shared
++    LINK groupwisewizard-shared -R${PLUGIN_INSTALL_DIR}
+     DESTINATION ${BIN_INSTALL_DIR} )
+ 
+ endif()
+@@ -217,7 +217,7 @@ if( WITH_SCALIX )
+ 
+   tde_add_executable( scalixwizard
+     SOURCES scalixmain.cpp
+-    LINK scalixwizard-shared
++    LINK scalixwizard-shared -R${PLUGIN_INSTALL_DIR}
+     DESTINATION ${BIN_INSTALL_DIR} )
+ 
+ endif()
+@@ -235,6 +235,7 @@ if( WITH_EGROUPWARE OR WITH_SLOX OR WITH
+     LINK
+       ${EGROUPWAREWIZARD_LIBRARY} ${SLOXWIZARD_LIBRARY}
+       ${KOLABWIZARD_LIBRARY} ${EXCHANGEWIZARD_LIBRARY}
++      -R${PLUGIN_INSTALL_DIR}
+     DESTINATION ${BIN_INSTALL_DIR} )
+ 
+ endif()

@@ -1,0 +1,4 @@
+@comment $NetBSD$
+include/libcarddav/carddav.h
+lib/libcarddav.la
+lib/pkgconfig/libcarddav.pc

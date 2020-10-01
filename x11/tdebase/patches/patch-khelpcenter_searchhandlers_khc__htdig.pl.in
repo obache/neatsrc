@@ -1,0 +1,17 @@
+$NetBSD$
+
+* adjust pathes for htdig
+
+--- khelpcenter/searchhandlers/khc_htdig.pl.in.orig	2011-11-29 07:39:00.000000000 +0000
++++ khelpcenter/searchhandlers/khc_htdig.pl.in
+@@ -26,8 +26,8 @@ use strict;
+ 
+ use Getopt::Long;
+ 
+-my $htdigdata = "/etc/htdig";
+-my $htdigbin = "/usr/bin";
++my $htdigdata = "@prefix@/share/htdig/common";
++my $htdigbin = "@prefix@/bin";
+ my $kdeprefix = "@prefix@";
+ chomp $kdeprefix;
+ 

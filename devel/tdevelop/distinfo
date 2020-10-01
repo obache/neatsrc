@@ -1,0 +1,8 @@
+$NetBSD$
+
+SHA1 (tdevelop-trinity-14.0.8.tar.xz) = cfacc3373daccaa84846d81dc2f4f6e9d90c8e38
+RMD160 (tdevelop-trinity-14.0.8.tar.xz) = eb1c4ad2e1c335402f4bbc1b057ab87dd2e82259
+SHA512 (tdevelop-trinity-14.0.8.tar.xz) = 3f4e8b4ddf6cba57a84dbd115102e745cb08cb10150d6bc9c223cd2cce91a25fb23dcf0560a956efb8d266404f2b9b8bc04d2c4043481843b26da49b32e703f9
+Size (tdevelop-trinity-14.0.8.tar.xz) = 6414292 bytes
+SHA1 (patch-lib_interfaces_external_CMakeLists.txt) = 6e8cce01d8a0cbcda31124163dfccd0312b18610
+SHA1 (patch-src_newui_CMakeLists.txt) = 433f22f2226de2c816dc488db3d6389bd4e62f39

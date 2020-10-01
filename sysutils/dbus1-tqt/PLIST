@@ -1,0 +1,17 @@
+@comment $NetBSD$
+bin/dbusxml2qt3
+include/dbus-1-tqt/tqdbusconnection.h
+include/dbus-1-tqt/tqdbusdata.h
+include/dbus-1-tqt/tqdbusdataconverter.h
+include/dbus-1-tqt/tqdbusdatalist.h
+include/dbus-1-tqt/tqdbusdatamap.h
+include/dbus-1-tqt/tqdbuserror.h
+include/dbus-1-tqt/tqdbusmacros.h
+include/dbus-1-tqt/tqdbusmessage.h
+include/dbus-1-tqt/tqdbusobject.h
+include/dbus-1-tqt/tqdbusobjectpath.h
+include/dbus-1-tqt/tqdbusproxy.h
+include/dbus-1-tqt/tqdbusunixfd.h
+include/dbus-1-tqt/tqdbusvariant.h
+lib/libdbus-1-tqt.la
+lib/pkgconfig/dbus-1-tqt.pc

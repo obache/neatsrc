@@ -1,0 +1,9 @@
+$NetBSD$
+
+SHA1 (tdemultimedia-trinity-14.0.8.tar.xz) = 1307abcad8c9775616e794ed6e0e28ec30706cbc
+RMD160 (tdemultimedia-trinity-14.0.8.tar.xz) = a2bbac33de98ac901af4d30de674d58065ed60db
+SHA512 (tdemultimedia-trinity-14.0.8.tar.xz) = 59e4a0bc1ce2babecb370cdd97c0e4b7eaa1e7bdabdf7b6d0b6cbc71d9f1e2d4c4d9707f8ba01b5274004b76cf8eb2e4655c6dbc7e94561c0fa5045e85de06cf
+Size (tdemultimedia-trinity-14.0.8.tar.xz) = 4825772 bytes
+SHA1 (patch-kmix_CMakeLists.txt) = 26167254cb790815e22a9eefc27074a197c65dfe
+SHA1 (patch-mpeglib_lib_util_audio_audioIO.cpp) = ab273a6cc106c850ec036096ae4a11f177b480c9
+SHA1 (patch-mpeglib_lib_util_audio_audioIO__SunOS.cpp) = 4ca90f3447844a3cffdb185f839aaf4629b875e7
