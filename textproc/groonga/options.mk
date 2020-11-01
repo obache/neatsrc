@@ -3,8 +3,9 @@
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.groonga
 PKG_SUPPORTED_OPTIONS=	mecab kytea libstemmer tests zlib lz4 zstd
-PKG_SUPPORTED_OPTIONS+=	groonga-suggest-learner groonga-httpd
-PKG_SUGGESTED_OPTIONS=	mecab zlib groonga-suggest-learner groonga-httpd
+PKG_SUPPORTED_OPTIONS+=	groonga-suggest-learner groonga-httpd xxhash rapidjson
+PKG_SUGGESTED_OPTIONS=	mecab zlib groonga-suggest-learner groonga-httpd xxhash
+PKG_SUGGESTED_OPTIONS+=	rapidjson
 
 .include "../../mk/bsd.options.mk"
 
@@ -124,7 +125,7 @@ CONF_FILES+=	${EXAMPLE_CONF_DIR}/httpd/win-utf \
 
 SUBST_CLASSES+=		confpath
 SUBST_STAGE.confpath=	pre-build
-SUBST_FILES.confpath=	vendor/nginx-1.19.2/objs/Makefile
+SUBST_FILES.confpath=	vendor/nginx-1.19.4/objs/Makefile
 SUBST_SED.confpath=	-e 's,\$$(DESTDIR)${PKG_SYSCONFDIR}/httpd,\$$(DESTDIR)${PREFIX}/share/examples/${PKGBASE}/httpd,g'
 
 post-install:
@@ -132,4 +133,18 @@ post-install:
 
 .else
 CONFIGURE_ARGS+=	--disable-groonga-httpd
+.endif
+
+.if !empty(PKG_OPTIONS:Mxxhash)
+CONFIGURE_ARGS+=	--with-xxhash
+.include "../../devel/xxhash/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--without-xxhash
+.endif
+
+.if !empty(PKG_OPTIONS:Mrapidjson)
+CONFIGURE_ARGS+=	--with-rapidjson
+.include "../../textproc/rapidjson/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--without-rapidjson
 .endif
