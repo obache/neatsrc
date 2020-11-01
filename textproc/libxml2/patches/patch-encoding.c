@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-encoding.c,v 1.2 2016/05/24 21:08:21 wiz Exp $
 
 Avoid potential undefined behaviour by casting arg to toupper()
 to an appropriate value range.
