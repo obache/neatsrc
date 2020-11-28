@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2019/04/25 07:32:54 maya Exp $
+# $NetBSD: Makefile,v 1.23 2020/03/20 11:57:40 nia Exp $
 #
 
 DISTNAME=	duckmaze-pc-0.2

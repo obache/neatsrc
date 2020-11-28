@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.8 2019/12/11 14:24:50 adam Exp $
+# $NetBSD: Makefile,v 1.11 2020/05/16 17:27:42 adam Exp $
 
-DISTNAME=	jupyter_core-4.6.1
+DISTNAME=	jupyter_core-4.6.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=j/jupyter_core/}
@@ -11,7 +11,9 @@ COMMENT=	Jupyter core package
 LICENSE=	modified-bsd
 
 DEPENDS+=	${PYPKGPREFIX}-traitlets>=4.1.0:../../devel/py-traitlets
-TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
+TEST_DEPENDS+=	${PYPKGPREFIX}-nose-[0-9]*:../../devel/py-nose
+
+PYTHON_VERSIONED_DEPENDENCIES=	test:test
 
 USE_LANGUAGES=	# none
 
@@ -28,7 +30,8 @@ post-install:
 	${MV} jupyter-troubleshoot jupyter-troubleshoot-${PYVERSSUFFIX} || ${TRUE}
 
 do-test:
-	cd ${WRKSRC}/jupyter_core && py.test-${PYVERSSUFFIX}
+	cd ${WRKSRC}/jupyter_core && pytest-${PYVERSSUFFIX}
 
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

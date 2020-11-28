@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.70 2019/10/08 14:19:42 ryoon Exp $
+# $NetBSD: Makefile,v 1.73 2020/08/24 07:52:03 wiz Exp $
 
-DISTNAME=	gawk-5.0.1
+DISTNAME=	gawk-5.1.0
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GNU:=gawk/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	bouyer@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/gawk/gawk.html
+HOMEPAGE=	https://www.gnu.org/software/gawk/gawk.html
 COMMENT=	GNU awk
 LICENSE=	gnu-gpl-v3
 
@@ -32,6 +32,11 @@ CPPFLAGS.OSF1+=		-D_OSF_SOURCE
 CFLAGS+=	-Dvm_region=vm_region_64
 .endif
 
+.if !empty(MACHINE_PLATFORM:MDarwin-[0-8].*-powerpc)
+# ld does not have -rpath
+CONFIGURE_ARGS+=	--disable-rpath
+.endif
+
 PLIST_VARS+=		extension
 .if "${OPSYS}" != "MirBSD"
 PLIST.extension=	yes
@@ -42,8 +47,6 @@ INSTALLATION_DIRS+=	${PKGGNUDIR}bin ${PKGGNUDIR}${PKGMANDIR}/man1
 post-install:
 	${LN} -fs ${PREFIX}/bin/gawk ${DESTDIR}${PREFIX}/${PKGGNUDIR}bin/awk
 	${LN} -fs ${PREFIX}/${PKGMANDIR}/man1/gawk.1 ${DESTDIR}${PREFIX}/${PKGGNUDIR}${PKGMANDIR}/man1/awk.1
-
-BUILDLINK_API_DEPENDS.gettext+=	gettext-lib>=0.10.36
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/gmp/buildlink3.mk"

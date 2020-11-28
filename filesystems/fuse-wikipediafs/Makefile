@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.24 2019/11/03 19:26:21 rillig Exp $
+# $NetBSD: Makefile,v 1.26 2020/03/20 11:57:37 nia Exp $
 
 DISTNAME=	wikipediafs-0.4
 PKGNAME=	fuse-${DISTNAME}

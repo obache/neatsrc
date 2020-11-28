@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.19 2019/11/03 19:04:05 rillig Exp $
+# $NetBSD: Makefile,v 1.23 2020/08/31 18:09:52 wiz Exp $
 
 DISTNAME=	pfe-0.33.71
-PKGREVISION=	13
+PKGREVISION=	14
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pfe/}
 EXTRACT_SUFX=	.tar.bz2
@@ -15,6 +15,8 @@ CONFIGURE_ARGS=	--without-testmodule
 USE_LIBTOOL=	yes
 USE_TOOLS+=	perl pkg-config
 MAKE_ENV+=	SHELL=${CONFIG_SHELL}
+
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet as of 0.33.71
 
 MAKE_JOBS_SAFE=	no
 BUILD_TARGET=	all mans docs

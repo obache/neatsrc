@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2019/11/02 21:09:15 rillig Exp $
+# $NetBSD: Makefile,v 1.5 2020/01/26 05:26:12 rillig Exp $
 
 DISTNAME=	libxspf-1.2.0
 CATEGORIES=	audio

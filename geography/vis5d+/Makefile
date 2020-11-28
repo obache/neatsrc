@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2019/08/30 18:48:14 nia Exp $
+# $NetBSD: Makefile,v 1.23 2020/03/20 11:57:46 nia Exp $
 #
 
 DISTNAME=		vis5d+-1.2.1

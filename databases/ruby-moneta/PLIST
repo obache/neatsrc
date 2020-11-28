@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2019/10/23 16:12:04 taca Exp $
+@comment $NetBSD: PLIST,v 1.7 2020/09/13 15:07:37 taca Exp $
 ${GEM_HOME}/cache/${GEM_NAME}.gem
 ${GEM_LIBDIR}/.gitignore
 ${GEM_LIBDIR}/.rspec
@@ -38,9 +38,6 @@ ${GEM_LIBDIR}/lib/moneta/adapters/memcached/dalli.rb
 ${GEM_LIBDIR}/lib/moneta/adapters/memcached/native.rb
 ${GEM_LIBDIR}/lib/moneta/adapters/memory.rb
 ${GEM_LIBDIR}/lib/moneta/adapters/mongo.rb
-${GEM_LIBDIR}/lib/moneta/adapters/mongo/base.rb
-${GEM_LIBDIR}/lib/moneta/adapters/mongo/moped.rb
-${GEM_LIBDIR}/lib/moneta/adapters/mongo/official.rb
 ${GEM_LIBDIR}/lib/moneta/adapters/null.rb
 ${GEM_LIBDIR}/lib/moneta/adapters/pstore.rb
 ${GEM_LIBDIR}/lib/moneta/adapters/redis.rb
@@ -48,6 +45,10 @@ ${GEM_LIBDIR}/lib/moneta/adapters/restclient.rb
 ${GEM_LIBDIR}/lib/moneta/adapters/riak.rb
 ${GEM_LIBDIR}/lib/moneta/adapters/sdbm.rb
 ${GEM_LIBDIR}/lib/moneta/adapters/sequel.rb
+${GEM_LIBDIR}/lib/moneta/adapters/sequel/mysql.rb
+${GEM_LIBDIR}/lib/moneta/adapters/sequel/postgres.rb
+${GEM_LIBDIR}/lib/moneta/adapters/sequel/postgres_hstore.rb
+${GEM_LIBDIR}/lib/moneta/adapters/sequel/sqlite.rb
 ${GEM_LIBDIR}/lib/moneta/adapters/sqlite.rb
 ${GEM_LIBDIR}/lib/moneta/adapters/tdb.rb
 ${GEM_LIBDIR}/lib/moneta/adapters/tokyocabinet.rb
@@ -55,12 +56,20 @@ ${GEM_LIBDIR}/lib/moneta/adapters/tokyotyrant.rb
 ${GEM_LIBDIR}/lib/moneta/adapters/yaml.rb
 ${GEM_LIBDIR}/lib/moneta/builder.rb
 ${GEM_LIBDIR}/lib/moneta/cache.rb
+${GEM_LIBDIR}/lib/moneta/create_support.rb
+${GEM_LIBDIR}/lib/moneta/dbm_adapter.rb
+${GEM_LIBDIR}/lib/moneta/defaults.rb
+${GEM_LIBDIR}/lib/moneta/each_key_support.rb
 ${GEM_LIBDIR}/lib/moneta/enumerable.rb
 ${GEM_LIBDIR}/lib/moneta/expires.rb
+${GEM_LIBDIR}/lib/moneta/expires_support.rb
 ${GEM_LIBDIR}/lib/moneta/fallback.rb
+${GEM_LIBDIR}/lib/moneta/hash_adapter.rb
+${GEM_LIBDIR}/lib/moneta/increment_support.rb
 ${GEM_LIBDIR}/lib/moneta/lock.rb
 ${GEM_LIBDIR}/lib/moneta/logger.rb
-${GEM_LIBDIR}/lib/moneta/mixins.rb
+${GEM_LIBDIR}/lib/moneta/nil_values.rb
+${GEM_LIBDIR}/lib/moneta/option_support.rb
 ${GEM_LIBDIR}/lib/moneta/optionmerger.rb
 ${GEM_LIBDIR}/lib/moneta/pool.rb
 ${GEM_LIBDIR}/lib/moneta/proxy.rb
@@ -87,7 +96,7 @@ ${GEM_LIBDIR}/script/benchmarks
 ${GEM_LIBDIR}/script/contributors
 ${GEM_LIBDIR}/script/memusage
 ${GEM_LIBDIR}/script/parallel-tests
-${GEM_LIBDIR}/script/reconfigure-couchdb
+${GEM_LIBDIR}/script/start-couchdb
 ${GEM_LIBDIR}/script/start-hbase
 ${GEM_LIBDIR}/script/start-services
 ${GEM_LIBDIR}/script/travis-logs
@@ -130,6 +139,7 @@ ${GEM_LIBDIR}/spec/moneta/adapters/cassandra/adapter_cassandra_with_default_expi
 ${GEM_LIBDIR}/spec/moneta/adapters/cassandra/helper.rb
 ${GEM_LIBDIR}/spec/moneta/adapters/cassandra/standard_cassandra_spec.rb
 ${GEM_LIBDIR}/spec/moneta/adapters/client/adapter_client_spec.rb
+${GEM_LIBDIR}/spec/moneta/adapters/client/client_helper.rb
 ${GEM_LIBDIR}/spec/moneta/adapters/client/standard_client_tcp_spec.rb
 ${GEM_LIBDIR}/spec/moneta/adapters/client/standard_client_unix_spec.rb
 ${GEM_LIBDIR}/spec/moneta/adapters/cookie/adapter_cookie_spec.rb
@@ -195,14 +205,8 @@ ${GEM_LIBDIR}/spec/moneta/adapters/memory/standard_memory_with_json_serializer_s
 ${GEM_LIBDIR}/spec/moneta/adapters/memory/standard_memory_with_json_value_serializer_spec.rb
 ${GEM_LIBDIR}/spec/moneta/adapters/memory/standard_memory_with_prefix_spec.rb
 ${GEM_LIBDIR}/spec/moneta/adapters/memory/standard_memory_with_snappy_compress_spec.rb
-${GEM_LIBDIR}/spec/moneta/adapters/mongo/adapter_mongo_moped_spec.rb
-${GEM_LIBDIR}/spec/moneta/adapters/mongo/adapter_mongo_moped_with_default_expires_spec.rb
-${GEM_LIBDIR}/spec/moneta/adapters/mongo/adapter_mongo_official_spec.rb
-${GEM_LIBDIR}/spec/moneta/adapters/mongo/adapter_mongo_official_with_default_expires_spec.rb
 ${GEM_LIBDIR}/spec/moneta/adapters/mongo/adapter_mongo_spec.rb
 ${GEM_LIBDIR}/spec/moneta/adapters/mongo/adapter_mongo_with_default_expires_spec.rb
-${GEM_LIBDIR}/spec/moneta/adapters/mongo/standard_mongo_moped_spec.rb
-${GEM_LIBDIR}/spec/moneta/adapters/mongo/standard_mongo_official_spec.rb
 ${GEM_LIBDIR}/spec/moneta/adapters/mongo/standard_mongo_spec.rb
 ${GEM_LIBDIR}/spec/moneta/adapters/null/null_adapter_spec.rb
 ${GEM_LIBDIR}/spec/moneta/adapters/null/standard_null_spec.rb
@@ -279,6 +283,7 @@ ${GEM_LIBDIR}/spec/moneta/proxies/transformer/transformer_marshal_hex_spec.rb
 ${GEM_LIBDIR}/spec/moneta/proxies/transformer/transformer_marshal_hmac_spec.rb
 ${GEM_LIBDIR}/spec/moneta/proxies/transformer/transformer_marshal_md5_spec.rb
 ${GEM_LIBDIR}/spec/moneta/proxies/transformer/transformer_marshal_md5_spread_spec.rb
+${GEM_LIBDIR}/spec/moneta/proxies/transformer/transformer_marshal_prefix_base64_spec.rb
 ${GEM_LIBDIR}/spec/moneta/proxies/transformer/transformer_marshal_prefix_spec.rb
 ${GEM_LIBDIR}/spec/moneta/proxies/transformer/transformer_marshal_qp_spec.rb
 ${GEM_LIBDIR}/spec/moneta/proxies/transformer/transformer_marshal_rmd160_spec.rb
@@ -306,12 +311,12 @@ ${GEM_LIBDIR}/spec/moneta/proxies/weak_increment/weak_increment_spec.rb
 ${GEM_LIBDIR}/spec/moneta/semaphore_spec.rb
 ${GEM_LIBDIR}/spec/moneta/stack_file_memory_spec.rb
 ${GEM_LIBDIR}/spec/moneta/stack_memory_file_spec.rb
-${GEM_LIBDIR}/spec/quality_spec.rb
 ${GEM_LIBDIR}/spec/rack/cache_moneta_spec.rb
 ${GEM_LIBDIR}/spec/rack/moneta_cookies_spec.rb
 ${GEM_LIBDIR}/spec/rack/moneta_store_spec.rb
 ${GEM_LIBDIR}/spec/rack/session_moneta_spec.rb
 ${GEM_LIBDIR}/spec/restserver.rb
+${GEM_LIBDIR}/spec/support/mongo_helper.rb
 ${GEM_LIBDIR}/test/action_dispatch/fixtures/session_autoload_test/foo.rb
 ${GEM_LIBDIR}/test/action_dispatch/session_moneta_store_test.rb
 ${GEM_HOME}/specifications/${GEM_NAME}.gemspec

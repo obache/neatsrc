@@ -1,5 +1,5 @@
-@comment $NetBSD: PLIST,v 1.15 2019/09/26 10:30:01 wiz Exp $
-bin/wamp
+@comment $NetBSD: PLIST,v 1.17 2020/07/31 19:52:00 wiz Exp $
+bin/wamp-${PYVERSSUFFIX}
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
@@ -471,6 +471,9 @@ ${PYSITELIB}/autobahn/xbr/_buyer.pyo
 ${PYSITELIB}/autobahn/xbr/_interfaces.py
 ${PYSITELIB}/autobahn/xbr/_interfaces.pyc
 ${PYSITELIB}/autobahn/xbr/_interfaces.pyo
+${PYSITELIB}/autobahn/xbr/_mnemonic.py
+${PYSITELIB}/autobahn/xbr/_mnemonic.pyc
+${PYSITELIB}/autobahn/xbr/_mnemonic.pyo
 ${PYSITELIB}/autobahn/xbr/_seller.py
 ${PYSITELIB}/autobahn/xbr/_seller.pyc
 ${PYSITELIB}/autobahn/xbr/_seller.pyo

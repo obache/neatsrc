@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.26 2019/08/11 13:18:16 wiz Exp $
+# $NetBSD: Makefile,v 1.30 2020/08/31 18:06:52 wiz Exp $
 
 DISTNAME=		gcc-8.3.0
 PKGNAME=		cross-arm-none-eabi-${DISTNAME}
-PKGREVISION=		1
+PKGREVISION=		2
 CATEGORIES=		cross
 NEWLIBVER=		3.1.0
 MASTER_SITES=		${MASTER_SITE_GNU:=gcc/gcc-${PKGVERSION_NOREV}/}
@@ -19,8 +19,7 @@ EXTRACT_USING=		bsdtar
 
 # for http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33549
 # use makeinfo from pkgsrc/devel/gtexinfo.
-TOOL_DEPENDS+=			gtexinfo>=5.1:../../devel/gtexinfo
-_TOOLS_USE_PKGSRC.makeinfo=	yes
+TEXINFO_REQD=		5.1
 
 DEPENDS+=		cross-arm-none-eabi-binutils-[0-9]*:../../cross/arm-none-eabi-binutils
 
@@ -34,8 +33,9 @@ CONFIGURE_SCRIPT=	${WRKSRC}/configure
 CONFIG_SHELL=		${TOOLS_PATH.bash}
 WRAPPER_SHELL=		${TOOLS_PATH.bash}
 USE_TOOLS+=		bash gmake gsed makeinfo perl
-
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_STRICT=	no # has sub-configures
+CHECK_PORTABILITY_SKIP+=contrib/*
 
 GNU_CONFIGURE_PREFIX=	${ARMELF_PREFIX}
 

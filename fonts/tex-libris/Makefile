@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:30:11 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:48 markd Exp $
 
 DISTNAME=	libris
 PKGNAME=	tex-${DISTNAME}-1.007
+PKGREVISION=	1
 TEXLIVE_REV=	19409
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/libris
+HOMEPAGE=	https://ctan.org/pkg/libris
 COMMENT=	Libris ADF fonts, with LaTeX support
 LICENSE=	gnu-gpl-v2
 

@@ -2,17 +2,15 @@ $NetBSD: patch-numpy_distutils_fcompiler_g95.py,v 1.3 2015/04/17 00:41:38 wen Ex
 
 Band aid to make sure that pic_flags is actually used.
 
---- numpy/distutils/fcompiler/g95.py.orig	2018-08-19 02:17:10.000000000 +0000
+--- numpy/distutils/fcompiler/g95.py.orig	2020-09-03 04:22:06.000000000 +0000
 +++ numpy/distutils/fcompiler/g95.py
-@@ -1,6 +1,7 @@
+@@ -1,4 +1,5 @@
  # http://g95.sourceforge.net/
- from __future__ import division, absolute_import, print_function
- 
 +import sys
  from numpy.distutils.fcompiler import FCompiler
  
  compilers = ['G95FCompiler']
-@@ -19,9 +20,9 @@ class G95FCompiler(FCompiler):
+@@ -17,9 +18,9 @@ class G95FCompiler(FCompiler):
  
      executables = {
          'version_cmd'  : ["<F90>", "--version"],
@@ -25,7 +23,7 @@ Band aid to make sure that pic_flags is actually used.
          'linker_so'    : ["<F90>", "-shared"],
          'archiver'     : ["ar", "-cr"],
          'ranlib'       : ["ranlib"]
-@@ -37,6 +38,10 @@ class G95FCompiler(FCompiler):
+@@ -35,6 +36,10 @@ class G95FCompiler(FCompiler):
      def get_flags_debug(self):
          return ['-g']
  

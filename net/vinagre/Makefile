@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.92 2020/01/04 13:43:33 nia Exp $
+# $NetBSD: Makefile,v 1.99 2020/08/17 20:19:52 leot Exp $
 #
 
 DISTNAME=	vinagre-3.6.2
-PKGREVISION=	52
-CATEGORIES=	x11
+PKGREVISION=	57
+CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/vinagre/3.6/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://projects.gnome.org/vinagre/
+HOMEPAGE=	https://projects.gnome.org/vinagre/
 COMMENT=	VNC client for GNOME
 LICENSE=	gnu-gpl-v3
 

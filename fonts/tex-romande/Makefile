@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:32:24 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:53 markd Exp $
 
 DISTNAME=	romande
 PKGNAME=	tex-${DISTNAME}-1.008.v7.sc
+PKGREVISION=	1
 TEXLIVE_REV=	19537
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/romandeadf
+HOMEPAGE=	https://ctan.org/pkg/romandeadf
 COMMENT=	Romande ADF fonts and LaTeX support
 LICENSE=	lppl-1.3c
 

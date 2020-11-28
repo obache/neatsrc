@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.14 2019/12/06 19:30:00 markd Exp $
+# $NetBSD: Makefile,v 1.17 2020/08/31 18:09:32 wiz Exp $
 
 DISTNAME=	fontools
-PKGNAME=	tex-${DISTNAME}-2019.51625
+PKGNAME=	tex-${DISTNAME}-2020.54926
 PKGREVISION=	1
-TEXLIVE_REV=	51625
+TEXLIVE_REV=	54926
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://ctan.org/pkg/fontools
@@ -15,7 +15,6 @@ REPLACE_PERL=	bin/afm2afm bin/autoinst bin/ot2kpx
 
 INSTALLATION_DIRS+=	bin
 
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 
 post-extract:

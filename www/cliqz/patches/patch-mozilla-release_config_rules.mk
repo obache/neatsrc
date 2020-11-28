@@ -1,11 +1,11 @@
-$NetBSD: patch-mozilla-release_config_rules.mk,v 1.2 2019/09/29 11:28:05 fox Exp $
+$NetBSD: patch-mozilla-release_config_rules.mk,v 1.4 2020/05/17 10:10:19 fox Exp $
 
 Commented out the various wget(1) to prevent http traffic during build
 phase.
 
---- mozilla-release/config/rules.mk.orig	2019-09-19 13:25:24.000000000 +0000
+--- mozilla-release/config/rules.mk.orig	2020-05-12 09:36:22.000000000 +0000
 +++ mozilla-release/config/rules.mk
-@@ -989,20 +989,20 @@ $(EXTENSIONS_PATH):
+@@ -928,27 +928,27 @@ $(EXTENSIONS_PATH):
  CLIQZ_XPI_PATH = $(EXTENSIONS_PATH)/cliqz@cliqz.com.xpi
  $(CLIQZ_XPI_PATH): $(EXTENSIONS_PATH)
  	echo CLIQZ_XPI_PATH in `pwd`
@@ -29,3 +29,11 @@ phase.
  endif
  
  DAT_XPI_PATH = $(EXTENSIONS_PATH)/dat@cliqz.com.xpi
+ $(DAT_XPI_PATH): $(EXTENSIONS_PATH)
+ ifdef DAT_EXT_URL
+ 	echo DAT_XPI_PATH in `pwd`
+-	wget --output-document $(DAT_XPI_PATH) $(DAT_EXT_URL)
++#	wget --output-document $(DAT_XPI_PATH) $(DAT_EXT_URL)
+ endif
+ 
+ # Package Cliqz stuff

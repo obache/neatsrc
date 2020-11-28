@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.32 2018/08/19 20:16:42 wiz Exp $
+# $NetBSD: Makefile,v 1.34 2020/01/26 05:26:26 rillig Exp $
 
 DISTNAME=	xbae-4.51.01
 PKGNAME=	Xbae-4.51.01

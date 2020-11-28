@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.21 2019/09/08 12:34:38 nia Exp $
+# $NetBSD: Makefile,v 1.28 2020/08/18 17:57:45 leot Exp $
 
-DISTNAME=	emulationstation-2.7.6
-CATEGORIES=	emulators games
+DISTNAME=	emulationstation-2.9.0
+PKGREVISION=	3
+CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=RetroPie/}
 GITHUB_PROJECT=	EmulationStation
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -11,7 +12,6 @@ HOMEPAGE=	https://github.com/RetroPie/EmulationStation
 COMMENT=	Themeable multi-system emulator frontend
 LICENSE=	mit
 
-EXTRACT_USING=	bsdtar
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
 USE_LANGUAGES+=	c c++11
@@ -48,12 +48,12 @@ SUBST_SED.vc+=		-e 's;/opt/vc;${PREFIX};g'
 
 .include "options.mk"
 
+# Deal with emulationstation's expectations for the location of the
+# pugixml header.
 post-configure:
 	cd ${BUILDLINK_DIR} && ${MKDIR} -p include/pugixml/src
 	cd ${BUILDLINK_DIR} && ${CP} include/pugixml.hpp include/pugixml/src/pugixml.hpp
 
-# Deal with emulationstation's expectations for the location of the
-# pugixml header.
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/GAMELISTS.md ${WRKSRC}/README.md \
 	    ${WRKSRC}/SYSTEMS.md ${WRKSRC}/THEMES.md \
@@ -66,6 +66,7 @@ post-install:
 .include "../../graphics/glu/buildlink3.mk"
 .include "../../multimedia/vlc/buildlink3.mk"
 .include "../../textproc/pugixml/buildlink3.mk"
+.include "../../textproc/rapidjson/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

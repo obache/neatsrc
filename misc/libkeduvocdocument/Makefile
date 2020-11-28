@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2019/11/21 05:58:34 markd Exp $
+# $NetBSD: Makefile,v 1.10 2020/08/18 17:57:30 leot Exp $
 
 DISTNAME=	libkeduvocdocument-${KAPPSVER}
+PKGREVISION=	2
 CATEGORIES=	misc
 
 HOMEPAGE=	https://kde.org/applications/education/
@@ -9,7 +10,7 @@ LICENSE=	gnu-lgpl-v2 AND gnu-gpl-v2
 
 .include "../../meta-pkgs/kde/applications.mk"
 
-BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 DEPENDS+=	kdeedu-data>=${KAPPSVER}:../../misc/kdeedu-data
 
 USE_TOOLS+=	msgmerge

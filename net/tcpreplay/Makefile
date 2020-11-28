@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.24 2017/12/04 10:29:03 he Exp $
+# $NetBSD: Makefile,v 1.26 2020/06/21 15:30:39 nia Exp $
 
-VERSION=	4.2.6
-DISTNAME=	tcpreplay-${VERSION}
+DISTNAME=	tcpreplay-4.3.3
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_GITHUB:=appneta/tcpreplay/releases/download/v${VERSION}/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=appneta/}
+GITHUB_RELEASE=	v${PKGVERSION_NOREV}
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://tcpreplay.appneta.com/
+HOMEPAGE=	https://tcpreplay.appneta.com/
 COMMENT=	Replay saved tcpdump or snoop files
 LICENSE=	gnu-gpl-v3
 

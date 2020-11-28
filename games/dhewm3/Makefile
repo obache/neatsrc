@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.1 2019/12/14 19:16:39 nia Exp $
+# $NetBSD: Makefile,v 1.8 2020/08/18 17:57:50 leot Exp $
 
 DISTNAME=	dhewm3-1.5.0-src
 PKGNAME=	${DISTNAME:S/-src//1}
+PKGREVISION=	6
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=dhewm/}
 GITHUB_PROJECT=	dhewm3
@@ -16,7 +17,7 @@ LICENSE=	gnu-gpl-v3
 WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
-USE_LANGUAGES=	c c++11
+USE_LANGUAGES=	c gnu++11
 
 # C++11
 GCC_REQD+=	4.7

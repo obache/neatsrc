@@ -1,0 +1,15 @@
+$NetBSD: patch-INSTHIER,v 1.1 2020/06/30 13:35:37 schmonz Exp $
+
+Use the system's shared library extension.
+
+--- INSTHIER.orig	2015-01-31 14:00:19.000000000 +0000
++++ INSTHIER
+@@ -1,7 +1,7 @@
+ >lib
+ s:::::libcvm-client.a:libcvm-v2client.a
+ s:::::libcvm-client.la:libcvm-v2client.la
+-s:::::libcvm-client.so:libcvm-v2client.so
++s:::::libcvm-client.@CVM_LIB_EXT@:libcvm-v2client.@CVM_LIB_EXT@
+ l:::755::libcvm-command.la
+ l:::755::libcvm-local.la
+ l:::755::libcvm-module.la

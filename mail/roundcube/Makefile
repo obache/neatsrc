@@ -1,22 +1,11 @@
-# $NetBSD: Makefile,v 1.91 2019/11/19 05:26:21 wiz Exp $
+# $NetBSD: Makefile,v 1.93 2020/06/07 22:07:04 taca Exp $
 
 DISTNAME=	roundcubemail-${RC_VERS}
-PKGNAME=	${PHP_PKG_PREFIX}-${DISTNAME:S/mail-/-/}
-PKGREVISION=	1
+PKGNAME=	${PHP_PKG_PREFIX}-${DISTNAME:S/mail-/-/:S/-complete//}
 
 MAINTAINER=	taca@NetBSD.org
 COMMENT=	Browser-based multilingual IMAP client
 LICENSE=	gnu-gpl-v3 AND mit AND gnu-lgpl-v2.1
-
-# JavaScript dependencies from bin/install-jsdeps.sh
-DISTFILES_VARS+=js
-DISTFILES.js+=	jquery-3.2.1.min.js
-DISTFILES.js+=	jstz.min.js
-DISTFILES.js+=	publickey.js
-DISTFILES.js+=	tinymce_4.5.8.zip
-DISTFILES.js+=	tinymce_languages.zip
-DISTFILES.js+=	codemirror-5.21.0.zip
-SITES.js=	${MASTER_SITE_BACKUP:=roundcube/}
 
 DEPENDS+=	${PHP_PKG_PREFIX}-mbstring>=${PHP_BASE_VERS}:../../converters/php-mbstring
 DEPENDS+=	${PHP_PKG_PREFIX}-exif>=${PHP_BASE_VERS}:../../graphics/php-exif
@@ -31,21 +20,9 @@ DEPENDS+=	${PHP_PKG_PREFIX}-pear-Mail_Mime>=1.10.0:../../mail/pear-Mail_Mime
 DEPENDS+=	${PHP_PKG_PREFIX}-pear-Auth_SASL>=1.0.6:../../mail/pear-Auth_SASL
 
 RC_SUBDIRS=	SQL bin installer plugins program skins
-TMCE_SUBDIRS=	langs plugins skins themes
-CM_SUBDIRS=	lib mode/sieve addon/selection
-CONF_PLUGINS=	acl additional_message_headers database_attachments \
-		emoticons help http_authentication jqueryui \
-		krb_authentication managesieve new_user_identity \
-		newmail_notifier redundant_attachments squirrelmail_usercopy
 
 .for d in ${RC_SUBDIRS}
 INSTALLATION_DIRS+=	${RCDIR}/${d}
-.endfor
-.for d in ${TMCE_SUBDIRS}
-INSTALLATION_DIRS+=	${RCDIR}/program/js/tinymce/${d}
-.endfor
-.for d in ${CM_SUBDIRS}
-INSTALLATION_DIRS+=	${RCDIR}/plugins/managesieve/codemirror/${d}
 .endfor
 INSTALLATION_DIRS+=	${DOCDIR} ${EGDIR}
 
@@ -67,6 +44,24 @@ CONF_FILES_PERMS+=	${PREFIX}/${EGDIR}/defaults.inc.php \
 			${PKG_SYSCONFDIR}/defaults.inc.php \
 			${WWW_USER} ${WWW_GROUP} 0640
 
+CONF_PLUGINS=		acl additional_message_headers database_attachments \
+			emoticons help http_authentication jqueryui \
+			krb_authentication managesieve markasjunk \
+			new_user_identity newmail_notifier \
+			redundant_attachments squirrelmail_usercopy
+RC_DOCS=		CHANGELOG INSTALL LICENSE README.md UPGRADING
+REPLACE_PHP=		cleandb.sh decrypt.sh deluser.sh gc.sh \
+			indexcontacts.sh initdb.sh installto.sh \
+			moduserprefs.sh msgexport.sh msgimport.sh \
+			update.sh updatecss.sh updatedb.sh
+
+REPLACE_INTERPRETER+=	php
+REPLACE.php.old=	.*php[^ ]*
+REPLACE.php.new=	${PREFIX}/bin/php
+.for f in ${REPLACE_PHP}
+REPLACE_FILES.php+=	bin/${f}
+.endfor
+
 SUBST_CLASSES+=		files
 SUBST_STAGE.files=	do-configure
 SUBST_MESSAGE.files=	Fixing configuration files.
@@ -82,12 +77,7 @@ SUBST_SED.files+=	-e "s|@PKG_EXAMPLES@|${PREFIX}/share/examples/roundcube|g"
 SUBST_VARS.files+=	PKG_SYSCONFBASE
 SUBST_VARS.files+=	PKG_SYSCONFDIR
 
-REPLACE_INTERPRETER+=	php
-REPLACE.php.old=	/usr/bin/env php
-REPLACE.php.new=	${PREFIX}/bin/php
-REPLACE_FILES.php=	bin/*.sh
-
-post-extract:
+pre-configure:
 	${CP} ${FILESDIR}/apache.conf ${WRKSRC}/apache.conf
 	${CP} ${FILESDIR}/lighttpd.conf ${WRKSRC}/lighttpd.conf
 	${CP} ${FILESDIR}/nginx.conf ${WRKSRC}/nginx.conf
@@ -96,10 +86,9 @@ pre-install:
 	cd ${WRKSRC}/plugins && ${RM} -fr enigma password zipdownload
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/INSTALL ${DESTDIR}${PREFIX}/${DOCDIR}
-	${INSTALL_DATA} ${WRKSRC}/LICENSE ${DESTDIR}${PREFIX}/${DOCDIR}
-	${INSTALL_DATA} ${WRKSRC}/README.md ${DESTDIR}${PREFIX}/${DOCDIR}
-	${INSTALL_DATA} ${WRKSRC}/UPGRADING ${DESTDIR}${PREFIX}/${DOCDIR}
+.for i in ${RC_DOCS}
+	${INSTALL_DATA} ${WRKSRC}/${i} ${DESTDIR}${PREFIX}/${DOCDIR}
+.endfor
 	${INSTALL_DATA} ${WRKSRC}/.htaccess ${DESTDIR}${PREFIX}/${RCDIR}
 	${INSTALL_DATA} ${WRKSRC}/index.php ${DESTDIR}${PREFIX}/${RCDIR}
 .for i in ${RC_SUBDIRS}
@@ -123,39 +112,6 @@ do-install:
 		${DESTDIR}${PREFIX}/${EGDIR}/config.inc.php
 	${INSTALL_DATA} ${WRKSRC}/config/defaults.inc.php \
 		${DESTDIR}${PREFIX}/${EGDIR}/defaults.inc.php
-	${INSTALL_DATA} ${WRKDIR}/jquery-3.2.1.min.js \
-	  	${DESTDIR}${PREFIX}/${RCDIR}/program/js/jquery.min.js
-	${INSTALL_DATA} ${WRKDIR}/jstz.min.js \
-	  	${DESTDIR}${PREFIX}/${RCDIR}/program/js/jstz.min.js
-	${INSTALL_DATA} ${WRKDIR}/publickey.js \
-	  	${DESTDIR}${PREFIX}/${RCDIR}/program/js/publickey.js
-.for i in ${TMCE_SUBDIRS}
-	cd ${WRKDIR}/tinymce/js/tinymce/${i} && ${FIND} . -type f -print | \
-	  	pax -rw ${DESTDIR}${PREFIX}/${RCDIR}/program/js/tinymce/${i}
-	${FIND} ${DESTDIR}${PREFIX}/${RCDIR}/program/js/tinymce/${i} -type f | \
-	  	${XARGS} ${CHMOD} ${SHAREMODE}
-	${FIND} ${DESTDIR}${PREFIX}/${RCDIR}/program/js/tinymce/${i} -type d | \
-	  	${XARGS} ${CHMOD} ${PKGDIRMODE}
-	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${DESTDIR}${PREFIX}/${RCDIR}/program/js/tinymce/${i}
-.endfor
-	${INSTALL_DATA} ${WRKDIR}/tinymce/js/tinymce/tinymce.min.js \
-	  ${DESTDIR}${PREFIX}/${RCDIR}/program/js/tinymce/tinymce.min.js
-	cd ${WRKDIR}/langs && ${FIND} . -type f -print | \
-	  	pax -rw ${DESTDIR}${PREFIX}/${RCDIR}/program/js/tinymce/langs
-	${FIND} ${DESTDIR}${PREFIX}/${RCDIR}/program/js/tinymce/langs -type f | \
-	  	${XARGS} ${CHMOD} ${SHAREMODE}
-	${FIND} ${DESTDIR}${PREFIX}/${RCDIR}/program/js/tinymce/langs -type d | \
-	  	${XARGS} ${CHMOD} ${PKGDIRMODE}
-	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${DESTDIR}${PREFIX}/${RCDIR}/program/js/tinymce/langs
-.for i in ${CM_SUBDIRS}
-	cd ${WRKDIR}/codemirror-5.21.0/${i} && ${FIND} . -type f -print | \
-	  	pax -rw ${DESTDIR}${PREFIX}/${RCDIR}/plugins/managesieve/codemirror/${i}
-	${FIND} ${DESTDIR}${PREFIX}/${RCDIR}/plugins/managesieve/codemirror/${i} -type f | \
-	  	${XARGS} ${CHMOD} ${SHAREMODE}
-	${FIND} ${DESTDIR}${PREFIX}/${RCDIR}/plugins/managesieve/codemirror/${i} -type d | \
-	  	${XARGS} ${CHMOD} ${PKGDIRMODE}
-	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${DESTDIR}${PREFIX}/${RCDIR}/plugins/managesieve/codemirror/${i}
-.endfor
 
 .include "Makefile.common"
 .include "options.mk"

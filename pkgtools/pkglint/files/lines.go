@@ -6,7 +6,7 @@ import (
 
 type Lines struct {
 	Filename CurrPath
-	BaseName string // TODO: consider converting to Path
+	BaseName RelPath
 	Lines    []*Line
 }
 
@@ -18,7 +18,7 @@ func (ls *Lines) Len() int { return len(ls.Lines) }
 
 func (ls *Lines) LastLine() *Line { return ls.Lines[ls.Len()-1] }
 
-func (ls *Lines) EOFLine() *Line { return NewLineMulti(ls.Filename, -1, -1, "", nil) }
+func (ls *Lines) EOFLine() *Line { return NewLineMulti(ls.Filename, -1, "", nil) }
 
 // Whole returns a virtual line that can be used for issuing diagnostics
 // and explanations, but not for text replacements.
@@ -71,7 +71,7 @@ func (ls *Lines) CheckCvsID(index int, prefixRe regex.Pattern, suggestedPrefix s
 		"Most files in pkgsrc contain the CVS Id, so that their current",
 		"version can be traced back later from a binary package.",
 		"This is to ensure reproducible builds, for example for finding bugs.")
-	fix.InsertBefore(suggestedPrefix + "$" + "NetBSD$")
+	fix.InsertAbove(suggestedPrefix + "$" + "NetBSD$")
 	fix.Apply()
 
 	return false

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.18 2019/11/03 19:24:32 rillig Exp $
+# $NetBSD: Makefile,v 1.22 2020/08/17 20:18:37 leot Exp $
 
 DISTNAME=	free42
 PKGNAME=	${DISTNAME}-1.4.78
-PKGREVISION=	10
+PKGREVISION=	14
 DIST_SUBDIR=	${PKGNAME_NOREV}
 CATEGORIES=	emulators
 #MASTER_SITES=	http://thomasokken.com/free42/download/
@@ -24,7 +24,6 @@ BUILD_DIRS=	gtk
 BUILD_TARGET=	free42${VARIANT}
 
 CXXFLAGS.NetBSD+=	-DNO_SINCOS
-MAKE_ENV.Linux+=	AUDIO_ALSA=1
 
 INSTALLATION_DIRS+=	bin
 INSTALLATION_DIRS+=	share/doc/free42
@@ -37,6 +36,11 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/${BUILD_DIRS}/README \
 		${DESTDIR}/${PREFIX}/share/doc/free42/README.gtk
 
+.if ${OPSYS} == "Linux"
+MAKE_ENV+=	AUDIO_ALSA=1
+.include "../../audio/alsa-lib/buildlink3.mk"
+.endif
 .include "../../x11/gtk2/buildlink3.mk"
+.include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXmu/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

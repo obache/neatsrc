@@ -1,24 +1,36 @@
-# $NetBSD: Makefile,v 1.12 2019/09/02 13:20:05 adam Exp $
+# $NetBSD: Makefile,v 1.16 2020/06/01 18:38:23 wiz Exp $
 
-DISTNAME=	eyeD3-0.7.11
-PKGREVISION=	1
+DISTNAME=	eyeD3-0.9.5
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_PYPI:=e/eyeD3/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://eyed3.nicfit.net/
-COMMENT=	Python tool for working with audio files (in particular, mp3)
-LICENSE=	gnu-gpl-v2
+HOMEPAGE=	https://eyed3.readthedocs.io/en/latest/
+COMMENT=	Python audio data toolkit (ID3 and MP3)
+LICENSE=	gnu-gpl-v3
 
-USE_LANGUAGES=			# none
-PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 0.7.11
-REPLACE_SH+=			bin/eyeD3
+DEPENDS+=	${PYPKGPREFIX}-deprecation-[0-9]*:../../devel/py-deprecation
+DEPENDS+=	${PYPKGPREFIX}-factory_boy-[0-9]*:../../devel/py-factory_boy
+DEPENDS+=	${PYPKGPREFIX}-filetype-[0-9]*:../../sysutils/py-filetype
+#TEST_DEPENDS+=	wget-[0-9]*:../../net/wget
+#TEST_DEPENDS+=	${PYPKGPREFIX}-tox-[0-9]*:../../devel/py-tox
 
-SUBST_CLASSES+=		python
-SUBST_STAGE.python=	post-configure
-SUBST_MESSAGE.python=	Fixing path to python executable.
-SUBST_FILES.python+=	bin/eyeD3
-SUBST_SED.python+=	-e "s,python,${PYTHONBIN},"
+PYTHON_VERSIONED_DEPENDENCIES+=	test:test
 
+PYTHON_VERSIONS_INCOMPATIBLE=	27 # py-faker via py-factory_boy
+
+USE_LANGUAGES=	# none
+USE_TOOLS+=	gmake
+
+#SUBST_CLASSES+=		test
+#SUBST_SED.test+=	-e "s,tox,tox-${PYVERSSUFFIX},g"
+#SUBST_STAGE.test+=	pre-configure
+#SUBST_FILES.test+=	Makefile
+
+# tox-based testing
+#do-test:
+#	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} test-data test
+
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

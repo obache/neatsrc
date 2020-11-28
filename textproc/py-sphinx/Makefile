@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.69 2019/12/31 10:38:46 adam Exp $
+# $NetBSD: Makefile,v 1.74 2020/08/31 23:07:07 wiz Exp $
 
-DISTNAME=	Sphinx-2.3.1
+DISTNAME=	Sphinx-2.4.4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
 CATEGORIES=	textproc python
 MASTER_SITES=	${MASTER_SITE_PYPI:=S/Sphinx/}
 
 MAINTAINER=	markd@NetBSD.org
-HOMEPAGE=	http://www.sphinx-doc.org/
+HOMEPAGE=	https://www.sphinx-doc.org/
 COMMENT=	Python documentation generator
 LICENSE=	modified-bsd
 
@@ -19,7 +19,6 @@ DEPENDS+=	${PYPKGPREFIX}-packaging-[0-9]*:../../devel/py-packaging
 DEPENDS+=	${PYPKGPREFIX}-pygments>=2.0:../../textproc/py-pygments
 DEPENDS+=	${PYPKGPREFIX}-pytz-[0-9]*:../../time/py-pytz
 DEPENDS+=	${PYPKGPREFIX}-requests>=2.5.0:../../devel/py-requests
-DEPENDS+=	${PYPKGPREFIX}-setuptools-[0-9]*:../../devel/py-setuptools
 DEPENDS+=	${PYPKGPREFIX}-snowballstemmer>=1.1:../../textproc/py-snowballstemmer
 DEPENDS+=	${PYPKGPREFIX}-sphinxcontrib-applehelp-[0-9]*:../../textproc/py-sphinxcontrib-applehelp
 DEPENDS+=	${PYPKGPREFIX}-sphinxcontrib-devhelp-[0-9]*:../../textproc/py-sphinxcontrib-devhelp
@@ -27,8 +26,6 @@ DEPENDS+=	${PYPKGPREFIX}-sphinxcontrib-jsmath-[0-9]*:../../textproc/py-sphinxcon
 DEPENDS+=	${PYPKGPREFIX}-sphinxcontrib-htmlhelp-[0-9]*:../../textproc/py-sphinxcontrib-htmlhelp
 DEPENDS+=	${PYPKGPREFIX}-sphinxcontrib-serializinghtml-[0-9]*:../../textproc/py-sphinxcontrib-serializinghtml
 DEPENDS+=	${PYPKGPREFIX}-sphinxcontrib-qthelp-[0-9]*:../../textproc/py-sphinxcontrib-qthelp
-DEPENDS+=	${PYPKGPREFIX}-six>=1.5:../../lang/py-six
-
 TEST_DEPENDS+=	${PYPKGPREFIX}-html5lib-[0-9]*:../../textproc/py-html5lib
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-cov-[0-9]*:../../devel/py-test-cov
@@ -37,6 +34,7 @@ USE_LANGUAGES=		# none
 USE_TOOLS+=		makeinfo
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
+PYTHON_VERSIONED_DEPENDENCIES+=	setuptools
 
 do-test:
 	cd ${WRKSRC} && pytest-${PYVERSSUFFIX} tests
@@ -49,4 +47,5 @@ post-install:
 	${MV} sphinx-quickstart sphinx-quickstart-${PYVERSSUFFIX} || ${TRUE}
 
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

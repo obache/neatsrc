@@ -1,14 +1,17 @@
-$NetBSD: patch-browser_app_profile_firefox.js,v 1.1 2019/02/25 15:32:24 wiz Exp $
+$NetBSD: patch-browser_app_profile_firefox.js,v 1.4 2020/10/07 11:10:34 wiz Exp $
 
---- browser/app/profile/firefox.js.orig	2018-05-16 05:38:23.000000000 +0000
+--- browser/app/profile/firefox.js.orig	2019-07-06 01:48:29.000000000 +0000
 +++ browser/app/profile/firefox.js
-@@ -1747,3 +1747,9 @@ pref("app.shield.optoutstudies.enabled",
- #else
- pref("app.shield.optoutstudies.enabled", false);
- #endif
-+
+@@ -1851,6 +1851,12 @@ pref("fission.frontend.simulate-messages
+ pref("toolkit.coverage.enabled", false);
+ pref("toolkit.coverage.endpoint.base", "https://coverage.mozilla.org");
+ 
 +// Select UI locale from LANG/LC_MESSAGE environmental variables
 +pref("intl.locale.requested", "");
 +
-+// Disable multiprocess window support. Workaround for PR 53273.
-+pref("browser.tabs.remote.autostart", false);
++// Enable system addons, for example langpacks from www/firefox-l10n
++pref("extensions.autoDisableScopes", 11);
++
+ // Discovery prefs
+ pref("browser.discovery.enabled", true);
+ pref("browser.discovery.containers.enabled", true);

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.42 2019/08/22 12:23:09 ryoon Exp $
+# $NetBSD: Makefile,v 1.49 2020/08/17 20:18:45 leot Exp $
 
 DISTNAME=	holtz-1.4.0
-PKGREVISION=	18
+PKGREVISION=	23
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=holtz/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://holtz.sourceforge.net/
+HOMEPAGE=	https://holtz.sourceforge.io/
 COMMENT=	Engine for the abstract strategy games Zèrtz and Dvonn
 LICENSE=	gnu-gpl-v2
 

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.4 2019/02/19 17:49:24 tm Exp $
+# $NetBSD: Makefile,v 1.8 2020/10/06 10:51:22 wiz Exp $
 
-DISTNAME=	PyNaCl-1.3.0
+DISTNAME=	PyNaCl-1.4.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl:S/^py//}
 CATEGORIES=	security python
 MASTER_SITES=	${MASTER_SITE_PYPI:=P/PyNaCl/}
@@ -10,9 +10,12 @@ HOMEPAGE=	https://github.com/pyca/pynacl/
 COMMENT=	Python binding to the Networking and Cryptography (NaCl) library
 LICENSE=	apache-2.0
 
+BUILD_DEPENDS+=	${PYPKGPREFIX}-wheel-[0-9]*:../../devel/py-wheel
 DEPENDS+=	${PYPKGPREFIX}-cffi>=1.4.1:../../devel/py-cffi
 DEPENDS+=	${PYPKGPREFIX}-six-[0-9]*:../../lang/py-six
-BUILD_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
+
+PYTHON_VERSIONED_DEPENDENCIES=	test:test
+PYTHON_VERSIONED_DEPENDENCIES+=	hypothesis:test
 
 MAKE_ENV+=	SODIUM_INSTALL=system
 
@@ -21,4 +24,5 @@ do-test:
 
 .include "../../security/libsodium/buildlink3.mk"
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

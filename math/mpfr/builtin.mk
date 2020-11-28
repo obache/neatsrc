@@ -1,4 +1,4 @@
-# $NetBSD: builtin.mk,v 1.5 2019/11/02 16:16:20 rillig Exp $
+# $NetBSD: builtin.mk,v 1.7 2020/09/03 08:58:42 prlw1 Exp $
 
 BUILTIN_PKG:=	mpfr
 
@@ -6,9 +6,9 @@ BUILTIN_FIND_HEADERS_VAR:=	H_MPFR
 BUILTIN_FIND_HEADERS.H_MPFR=	mpfr.h mpfr/mpfr.h
 
 BUILTIN_VERSION_SCRIPT.mpfr=	${AWK} \
-	'/\#define[ \t]*MPFR_VERSION_STRING[ \t]/ { \
-	v = substr($$3, 2, length($$3)-2) } \
-	END { gsub("-p",".",v); print v }'
+				'/\#define[ \t]*MPFR_VERSION_STRING[ \t]/ { \
+				v = substr($$3, 2, length($$3)-2) } \
+				END { gsub("-p",".",v); print v }'
 
 .include "../../mk/buildlink3/bsd.builtin.mk"
 
@@ -50,11 +50,11 @@ USE_BUILTIN.mpfr=	yes
 .      for _dep_ in ${BUILDLINK_API_DEPENDS.mpfr}
 .        if !empty(USE_BUILTIN.mpfr:M[yY][eE][sS])
 USE_BUILTIN.mpfr!=	\
-        if ${PKG_ADMIN} pmatch ${_dep_:Q} ${BUILTIN_PKG.mpfr:Q}; then	\
+	if ${PKG_ADMIN} pmatch ${_dep_:Q} ${BUILTIN_PKG.mpfr:Q}; then	\
 		${ECHO} yes;						\
-        else								\
+	else								\
 		${ECHO} no;						\
-        fi
+	fi
 .        endif
 .      endfor
 .    endif
@@ -66,9 +66,7 @@ CHECK_BUILTIN.mpfr?=	no
 .if !empty(CHECK_BUILTIN.mpfr:M[Nn][Oo])
 .  if !empty(USE_BUILTIN.mpfr:M[Yy][Ee][Ss])
 MPFR_INCLUDE=		${H_MPFR:H}
-CONFIGURE_ARGS+=	--with-mpfr-include=${MPFR_INCLUDE}
 BUILDLINK_INCDIRS.mpfr=	${MPFR_INCLUDE}
-CONFIGURE_ARGS+=	--with-mpfr-lib=${BUILDLINK_PREFIX.mpfr}/lib${LIBABISUFFIX}
 BUILDLINK_LIBDIRS.mpfr=	lib${LIBABISUFFIX}
 CPPFLAGS+=		-I${MPFR_INCLUDE}
 CFLAGS+=		-I${MPFR_INCLUDE}

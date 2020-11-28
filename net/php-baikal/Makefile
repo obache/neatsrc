@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.13 2019/11/18 15:42:42 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2020/08/10 20:54:45 wiz Exp $
 
-DISTNAME=	baikal-0.6.1
+DISTNAME=	baikal-0.7.1
 PKGNAME=	${PHP_PKG_PREFIX}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=fruux/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -9,12 +10,15 @@ GITHUB_PROJECT=	baikal
 EXTRACT_SUFX=	.zip
 
 MAINTAINER=	wiz@NetBSD.org
-HOMEPAGE=	http://baikal-server.com/
+HOMEPAGE=	https://sabre.io/baikal/
 COMMENT=	Lightweight CalDAV+CardDAV server
 LICENSE=	gnu-gpl-v3
 
+DEPENDS+=	${PHP_PKG_PREFIX}-json-[0-9]*:../../textproc/php-json
 DEPENDS+=	${PHP_PKG_PREFIX}-pdo>=5.3.1:../../databases/php-pdo
 DEPENDS+=	${PHP_PKG_PREFIX}-pdo_sqlite>=5.3.1:../../databases/php-pdo_sqlite
+
+REPLACE_SH+=	vendor/twig/twig/drupal_test.sh
 
 PHP_VERSIONS_INCOMPATIBLE=	56 # as of 0.6.0
 

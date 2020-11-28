@@ -1,29 +1,31 @@
-# $NetBSD: Makefile,v 1.12 2019/04/25 07:33:22 maya Exp $
+# $NetBSD: Makefile,v 1.17 2020/10/23 12:44:44 sborrill Exp $
 #
 
-# VERSION is set in xentool46/version.mk
-PKGREVISION=		1
-.include		"../../sysutils/xentools46/version.mk"
+# VERSION is set in xentool411/version.mk
+PKGREVISION=		2
+.include		"../../sysutils/xentools411/version.mk"
 
-DISTNAME=	xen-${VERSION}
-PKGNAME=	xenstoretools-${VERSION}
-CATEGORIES=	sysutils
-MASTER_SITES=	http://bits.xensource.com/oss-xen/release/${VERSION}/
+DIST_SUBDIR=		xen411
+DISTNAME=		xen-${VERSION}
+PKGNAME=		xenstoretools-${VERSION}
+CATEGORIES=		sysutils
+MASTER_SITES=		https://downloads.xenproject.org/release/xen/${VERSION}/
 
-DISTFILES=					${DISTNAME}.tar.gz
-DISTFILES+=					ipxe-git-${VERSION_IPXE}.tar.gz
-SITES.ipxe-git-${VERSION_IPXE}.tar.gz +=	http://xenbits.xensource.com/xen-extfiles/
+DISTFILES=		${DISTNAME}.tar.gz
+
+XEN_EXTFILES=		http://xenbits.xensource.com/xen-extfiles/
+DIST_IPXE=		ipxe-git-${VERSION_IPXE}.tar.gz
+DISTFILES+=		${DIST_IPXE}
+SITES.${DIST_IPXE} +=	${XEN_EXTFILES}
 
 MAINTAINER=		sborrill@NetBSD.org
 HOMEPAGE=		http://xen.org/
-COMMENT=		Xenstore Tools for Xen 4.6.x
+COMMENT=		Xenstore Tools for Xen 4.11.x
 
 LICENSE=		gnu-gpl-v2
-DISTINFO_FILE=		${.CURDIR}/../../sysutils/xentools46/distinfo
-PATCHDIR=		${.CURDIR}/../../sysutils/xentools46/patches
-BUILD_DIRS=		xenstore
-BUILD_TARGET=		clients
-INSTALL_DIRS=		xenstore
+DISTINFO_FILE=		${.CURDIR}/../../sysutils/xentools411/distinfo
+PATCHDIR=		${.CURDIR}/../../sysutils/xentools411/patches
+INSTALL_DIRS=		tools/xenstore tools/libs/toolcore
 INSTALL_MAKE_FLAGS+=	XENSTORE_XENSTORED=n
 
 .if !exists(/usr/bin/iasl)
@@ -45,7 +47,6 @@ CONFIGURE_ARGS+=	pixman_CFLAGS=dummy
 CONFIGURE_ARGS+=	pixman_LIBS=/dummy
 
 PKG_SYSCONFSUBDIR=	xen
-WRKSRC=			${WRKDIR}/xen-${VERSION}/tools
 BUILD_DEFS+=		VARBASE
 
 ONLY_FOR_PLATFORM=	Linux-2.6*-i386 Linux-2.6*-x86_64
@@ -56,7 +57,7 @@ CONFLICTS+=		xentools20-[0-9]*
 CONFLICTS+=		xentools3*
 CONFLICTS+=		xentools4*
 
-USE_TOOLS+=		bash gmake pkg-config
+USE_TOOLS+=		bash gmake pkg-config perl
 
 MAKE_ENV+=		PREFIX=${prefix:Q} WRKSRC=${WRKSRC}
 MAKE_ENV+=		MV=${MV:Q} PYTHON=${PYTHONBIN:Q} SED=${SED:Q}
@@ -70,7 +71,18 @@ FILES_SUBST+=		PREFIX=${PREFIX}
 INSTALLATION_DIRS=	bin include lib
 
 pre-build:
-	${LN} -s ../../xen/include/public ${WRKSRC}/xenstore/xen
+	${LN} -s ../../xen/include/public ${WRKSRC}/tools/include/xen
+
+do-build:
+	${RUN}${_ULIMIT_CMD}                                            \
+	cd ${WRKSRC}/tools/libs/toolcore  &&                            \
+		${BUILD_MAKE_CMD} all
+	${RUN}${_ULIMIT_CMD}                                            \
+	cd ${WRKSRC}/tools/xenstore  &&                                 \
+		${BUILD_MAKE_CMD} clients
+
+pre-install:
+	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/pkgconfig
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"

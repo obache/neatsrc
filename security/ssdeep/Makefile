@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2015/08/30 14:49:07 taca Exp $
+# $NetBSD: Makefile,v 1.7 2020/03/20 11:58:19 nia Exp $
 #
 
 DISTNAME=	ssdeep-2.13

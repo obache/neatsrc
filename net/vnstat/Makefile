@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.19 2019/11/03 11:45:57 rillig Exp $
+# $NetBSD: Makefile,v 1.21 2020/08/17 20:19:52 leot Exp $
 
 DISTNAME=	vnstat-1.14
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	net
 MASTER_SITES=	http://humdi.net/vnstat/
 #DISTFILES=	${DISTNAME}.tar.gz
 
 MAINTAINER=	sborrill@NetBSD.org
-HOMEPAGE=	http://humdi.net/vnstat/
+HOMEPAGE=	https://humdi.net/vnstat/
 COMMENT=	Small network traffic monitor
 LICENSE=	gnu-gpl-v2
 

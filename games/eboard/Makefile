@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.51 2019/08/11 13:21:03 wiz Exp $
+# $NetBSD: Makefile,v 1.59 2020/08/31 18:09:33 wiz Exp $
 #
 
-DISTNAME=		eboard-1.0.4
-PKGREVISION=		37
+DISTNAME=		eboard-1.1.1
+PKGREVISION=		5
 CATEGORIES=		games
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=eboard/}
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.bergo.eng.br/eboard/
+HOMEPAGE=		https://www.bergo.eng.br/eboard/
 COMMENT=		Graphical user interface for playing chess
 LICENSE=		gnu-gpl-v2
 
@@ -32,6 +32,15 @@ SUBST_SED.mf=		-e 's/^CXXFLAGS.*=/CXXFLAGS += $${CPPFLAGS} /'
 SUBST_SED.mf+=		-e 's/^LDFLAGS.*=/LDFLAGS += $${CXXFLAGS}/'
 
 BUILDLINK_TRANSFORM+=	rm:-O6
+
+# Can only handle ASCII characters in several places.
+# global.cc: In member function 'void Global::readRC()':
+# global.cc:466:46: error: array subscript has type 'char' [-Werror=char-subscripts]
+#   case  4: p=t.token(sep); TabPos=rev[p->at(0)]; break;
+#                                               ^
+# Also warns a lot about -Wwrite-strings and others.
+# Let's hope that nobody uses this for exploits.
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
 
 .include "../../mk/oss.buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.10 2019/04/15 08:27:42 adam Exp $
+# $NetBSD: Makefile,v 1.15 2020/08/03 13:49:55 adam Exp $
 
-DISTNAME=	autopep8-1.4.4
+DISTNAME=	autopep8-1.5.4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=a/autopep8/}
@@ -10,13 +10,14 @@ HOMEPAGE=	https://github.com/hhatto/autopep8
 COMMENT=	Automatic formatter of Python code to conform to PEP 8
 LICENSE=	mit
 
-DEPENDS+=	${PYPKGPREFIX}-codestyle>=2.3:../../devel/py-codestyle
+DEPENDS+=	${PYPKGPREFIX}-codestyle>=2.6.0:../../devel/py-codestyle
+DEPENDS+=	${PYPKGPREFIX}-toml-[0-9]*:../../textproc/py-toml
 
 USE_LANGUAGES=	# none
 
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && \
-		${MV} autopep8 autopep8-${PYVERSSUFFIX} || ${TRUE}
+	${MV} autopep8 autopep8-${PYVERSSUFFIX} || ${TRUE}
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

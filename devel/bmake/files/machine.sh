@@ -2,7 +2,7 @@
 # derrived from /etc/rc_d/os.sh
 
 # RCSid:
-#	$Id: machine.sh,v 1.11 2015/05/19 22:01:19 joerg Exp $
+#	$Id: machine.sh,v 1.13 2020/05/24 21:10:17 nia Exp $
 #
 #	@(#) Copyright (c) 1994-2002 Simon J. Gerraty
 #
@@ -44,8 +44,11 @@ Which() {
 }
 
 case $OS in
-MirBSD)
-	MACHINE=$OS$OSMAJOR.$machine
+AIX)	# from http://gnats.netbsd.org/29386
+	OSMAJOR=`uname -v`
+	OSMINOR=`uname -r`
+	MACHINE=$OS$OSMAJOR.$OSMINOR
+	MACHINE_ARCH=`bootinfo -T`
 	;;
 OpenBSD)
 	MACHINE=$OS$OSMAJOR.$machine

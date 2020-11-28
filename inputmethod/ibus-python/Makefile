@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.19 2019/11/02 22:56:53 rillig Exp $
+# $NetBSD: Makefile,v 1.21 2020/10/03 16:43:17 tsutsui Exp $
 
 .include "../../inputmethod/ibus/Makefile.common"
 

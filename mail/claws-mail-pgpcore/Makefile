@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.71 2019/11/26 19:13:26 nia Exp $
+# $NetBSD: Makefile,v 1.80 2020/08/17 20:17:34 leot Exp $
 #
 
 PLUGIN_NAME=	pgpcore
 
+PKGREVISION= 3
 .include "../../mail/claws-mail/plugins.mk"
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -10,6 +11,7 @@ COMMENT=	Handles core PGP functions
 
 PLIST_SRC+=	PLIST
 
+TOOLS_BROKEN+=		perl
 CONFIGURE_ARGS+=	--enable-pgpcore-plugin
 CONFIGURE_ARGS+=	--enable-pgpmime-plugin
 CONFIGURE_ARGS+=	--enable-pgpinline-plugin

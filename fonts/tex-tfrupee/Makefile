@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:32:28 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:54 markd Exp $
 
 DISTNAME=	tfrupee
 PKGNAME=	tex-${DISTNAME}-1.02
+PKGREVISION=	1
 TEXLIVE_REV=	20770
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/tfrupee
+HOMEPAGE=	https://ctan.org/pkg/tfrupee
 COMMENT=	Font offering the new (Indian) Rupee symbol
 LICENSE=	gnu-gpl-v3
 

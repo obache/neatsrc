@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:30:15 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:49 markd Exp $
 
 DISTNAME=	mdsymbol
 PKGNAME=	tex-${DISTNAME}-0.5
+PKGREVISION=	1
 TEXLIVE_REV=	28399
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/mdsymbol
+HOMEPAGE=	https://ctan.org/pkg/mdsymbol
 COMMENT=	Symbol fonts to match Adobe Myriad Pro
 LICENSE=	ofl-v1.1
 

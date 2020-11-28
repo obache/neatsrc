@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.12 2019/11/30 13:40:29 nia Exp $
+# $NetBSD: Makefile,v 1.16 2020/08/18 17:57:38 leot Exp $
 
-DISTNAME=	openal-soft-1.20.0
+DISTNAME=	openal-soft-1.20.1
+PKGREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	https://kcat.strangesoft.net/openal-releases/
 EXTRACT_SUFX=	.tar.bz2
@@ -12,12 +13,14 @@ LICENSE=	gnu-lgpl-v2
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++11
-USE_TOOLS+=	pkg-config
+USE_TOOLS+=	pkg-config gmake
 
 PKGCONFIG_OVERRIDE+=	openal.pc.in
 
-# C++11
-GCC_REQD+=	4.7
+# https://github.com/kcat/openal-soft/issues/347
+GCC_REQD+=	5
+
+MAKE_JOBS_SAFE=		no
 
 PKG_SYSCONFSUBDIR=	openal
 

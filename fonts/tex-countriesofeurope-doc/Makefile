@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.3 2019/12/06 19:29:48 markd Exp $
+# $NetBSD: Makefile,v 1.5 2020/04/26 12:21:13 markd Exp $
 
 DISTNAME=	countriesofeurope.doc
-PKGNAME=	tex-${DISTNAME:S/./-/}-0.22
-TEXLIVE_REV=	49525
+PKGNAME=	tex-${DISTNAME:S/./-/}-0.23
+TEXLIVE_REV=	54512
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/countriesofeurope
+HOMEPAGE=	https://ctan.org/pkg/countriesofeurope
 COMMENT=	Documentation for tex-countriesofeurope
-LICENSE=	lppl-1.3c
+LICENSE=	ofl-v1.1 AND lppl-1.3c
 
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 .include "../../mk/bsd.pkg.mk"

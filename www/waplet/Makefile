@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.9 2013/12/23 11:57:06 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2020/03/20 11:58:35 nia Exp $
 
 DISTNAME=	waplet
 PKGNAME=	waplet-0.01

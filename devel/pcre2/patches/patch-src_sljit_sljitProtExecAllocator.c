@@ -1,29 +1,43 @@
-$NetBSD: patch-src_sljit_sljitProtExecAllocator.c,v 1.2 2019/11/26 10:22:37 wiz Exp $
+$NetBSD: patch-src_sljit_sljitProtExecAllocator.c,v 1.4 2020/05/28 07:53:05 wiz Exp $
 
-NetBSD does not have secure_getenv.
-https://bugs.exim.org/show_bug.cgi?id=2469
+cleanup alloc_chunk() in sljitProtExec for NetBSD
+https://github.com/zherczeg/sljit/pull/40/commits
 
---- src/sljit/sljitProtExecAllocator.c.orig	2017-02-15 17:24:58.000000000 +0000
+--- src/sljit/sljitProtExecAllocator.c.orig	2020-04-14 15:20:34.000000000 +0000
 +++ src/sljit/sljitProtExecAllocator.c
-@@ -97,7 +97,9 @@ struct chunk_header {
- #endif
- 
- int mkostemp(char *template, int flags);
-+#if HAVE_SECURE_GETENV
- char *secure_getenv(const char *name);
-+#endif
- 
- static SLJIT_INLINE int create_tempfile(void)
+@@ -220,28 +220,26 @@ static SLJIT_INLINE struct chunk_header*
+ static SLJIT_INLINE struct chunk_header* alloc_chunk(sljit_uw size)
  {
-@@ -124,7 +126,11 @@ static SLJIT_INLINE int create_tempfile(
- 	tmp_name_len = 4;
- #endif
+ 	struct chunk_header *retval;
+-	void *maprx;
  
-+#if HAVE_SECURE_GETENV
- 	dir = secure_getenv("TMPDIR");
-+#else
-+	dir = getenv("TMPDIR");
-+#endif
- 	if (dir) {
- 		len = strlen(dir);
- 		if (len > 0 && len < sizeof(tmp_name)) {
+ 	retval = (struct chunk_header *)mmap(NULL, size,
+-			PROT_MPROTECT(PROT_EXEC|PROT_WRITE|PROT_READ),
+-			MAP_ANON, -1, 0);
++			PROT_READ | PROT_WRITE | PROT_MPROTECT(PROT_EXEC),
++			MAP_ANON | MAP_SHARED, -1, 0);
+ 
+ 	if (retval == MAP_FAILED)
+ 		return NULL;
+ 
+-	maprx = mremap(retval, size, NULL, size, MAP_REMAPDUP);
+-	if (maprx == MAP_FAILED) {
++	retval->executable = mremap(retval, size, NULL, size, MAP_REMAPDUP);
++	if (retval->executable == MAP_FAILED) {
+ 		munmap((void *)retval, size);
+ 		return NULL;
+ 	}
+ 
+-	if (mprotect(retval, size, PROT_READ | PROT_WRITE) == -1 ||
+-		mprotect(maprx, size, PROT_READ | PROT_EXEC) == -1) {
+-		munmap(maprx, size);
++	if (mprotect(retval->executable, size, PROT_READ | PROT_EXEC) == -1) {
++		munmap(retval->executable, size);
+ 		munmap((void *)retval, size);
+ 		return NULL;
+ 	}
+-	retval->executable = maprx;
++
+ 	return retval;
+ }
+ #endif /* NetBSD >= 8 */

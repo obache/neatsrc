@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.13 2018/10/03 10:30:37 adam Exp $
+$NetBSD: distinfo,v 1.15 2020/04/28 10:59:03 adam Exp $
 
-SHA1 (Click-7.0.tar.gz) = fcbbb6d25b8eb45f7919e8605ec33b33583b0217
-RMD160 (Click-7.0.tar.gz) = a32c3039391514af61a2fe4b23fccb35c6f35084
-SHA512 (Click-7.0.tar.gz) = a7632989cde7c7eb2f535915a7a8220cb48d1ab8dd3527c4103518d4ac86287fea3488a5e0ce9f2968a4b6c52fe6ca4bc2480d0bf10f7084a4b17d31e803a92b
-Size (Click-7.0.tar.gz) = 286192 bytes
+SHA1 (click-7.1.2.tar.gz) = 1e55974c8a8d75b0733dd40841a1a354ad36ae10
+RMD160 (click-7.1.2.tar.gz) = fdad02d3ace749f9a10f8f33b22bfdc05fcb5f4e
+SHA512 (click-7.1.2.tar.gz) = b9fba8a30f57e380a2005b45c4f37074a27637ace9e16fb0fb0cce88aac72cfa806eea2829dac665fe2b558b8753a40b811dbfcca94dfccf999ad494865d7888
+Size (click-7.1.2.tar.gz) = 297279 bytes

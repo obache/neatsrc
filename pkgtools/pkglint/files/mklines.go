@@ -194,9 +194,9 @@ func (mklines *MkLines) collectDocumentedVariables() {
 		// The commentLines include the the line containing the variable name,
 		// leaving 2 of these 3 lines for the actual documentation.
 		if commentLines >= 3 && relevant {
-			forEachStringMkLine(scope.used, func(varname string, mkline *MkLine) {
-				mklines.allVars.Define(varname, mkline)
-				mklines.allVars.Use(varname, mkline, VucRunTime)
+			scope.forEach(func(varname string, data *scopeVar) {
+				mklines.allVars.Define(varname, data.used)
+				mklines.allVars.Use(varname, data.used, VucRunTime)
 			})
 		}
 
@@ -248,13 +248,7 @@ func (mklines *MkLines) collectDocumentedVariables() {
 }
 
 func (mklines *MkLines) collectVariables() {
-	if trace.Tracing {
-		defer trace.Call0()()
-	}
-
-	mklines.ForEach(func(mkline *MkLine) {
-		mklines.collectVariable(mkline)
-	})
+	mklines.ForEach(mklines.collectVariable)
 }
 
 func (mklines *MkLines) collectVariable(mkline *MkLine) {
@@ -567,7 +561,7 @@ func (mklines *MkLines) CheckUsedBy(relativeName PkgsrcPath) {
 		if paras[0].to > 1 {
 			fix := prevLine.Autofix()
 			fix.Notef(SilentAutofixFormat)
-			fix.InsertAfter("")
+			fix.InsertBelow("")
 			fix.Apply()
 		}
 	}
@@ -589,7 +583,7 @@ func (mklines *MkLines) CheckUsedBy(relativeName PkgsrcPath) {
 			"that file should have a clearly defined and documented purpose,",
 			"and the filename should reflect that purpose.",
 			"Typical names are module.mk, plugin.mk or version.mk.")
-		fix.InsertAfter(expected)
+		fix.InsertBelow(expected)
 		fix.Apply()
 	}
 
@@ -657,6 +651,21 @@ func (mklines *MkLines) ExpandLoopVar(varname string) []string {
 	}
 
 	return nil
+}
+
+// IsUnreachable determines whether the given line is unreachable because a
+// condition on the way to that line is not satisfied.
+// If unsure, returns false.
+//
+// Only the current package and Makefile fragment are taken into account.
+// The line might still be reachable by another pkgsrc package.
+func (mklines *MkLines) IsUnreachable(mkline *MkLine) bool {
+	// To make this code as simple as possible, the code should operate
+	// on a high-level AST, where the nodes are If, For and BasicBlock.
+	//
+	// See lang/ghc*/bootstrap.mk for good examples how pkglint should
+	// treat variable assignments. It's getting complicated.
+	return false
 }
 
 func (mklines *MkLines) SaveAutofixChanges() {

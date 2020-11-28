@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2013/02/17 19:17:56 dholland Exp $
+# $NetBSD: Makefile,v 1.5 2020/01/26 05:26:16 rillig Exp $
 
 DISTNAME=		emacs-jabber-0.8.0
 PKGREVISION=		1

@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.118 2019/11/04 17:33:18 gdt Exp $
+# $NetBSD: Makefile,v 1.129 2020/06/05 12:48:59 jperkin Exp $
 
+PKGREVISION= 4
 .include "../../geography/gdal-lib/Makefile.common"
 PKGNAME=	${DISTNAME:S/gdal/gdal-lib/}
 
@@ -17,6 +18,7 @@ USE_LANGUAGES+=	c99 c++11
 CONFIGURE_ARGS+=	--without-python
 
 CONFIGURE_ARGS+=	--with-proj
+CONFIGURE_ARGS+=	--with-sqlite3=${BUILDLINK_PREFIX.sqlite3}
 
 MAKE_FILE=		GNUmakefile
 
@@ -29,6 +31,7 @@ INSTALLATION_DIRS=	bin include lib ${PKGMANDIR}/man1 share/gdal
 # jasper uses SIZE_MAX and friends in its headers.
 CPPFLAGS+=	-D__STDC_LIMIT_MACROS
 
+.include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/netcdf/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

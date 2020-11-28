@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.22 2019/11/04 22:10:14 rillig Exp $
+# $NetBSD: Makefile,v 1.24 2020/07/13 20:05:13 wiz Exp $
 
 DISTNAME=	web.py-0.37
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	http://webpy.org/static/
 
-MAINTAINER=	darcy@NetBSD.org
-HOMEPAGE=	http://webpy.org/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://webpy.org/
 COMMENT=	Simple, public domain web publishing system
 LICENSE=	public-domain
 

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.25 2019/12/30 18:01:32 adam Exp $
+# $NetBSD: Makefile,v 1.32 2020/08/31 23:07:02 wiz Exp $
 
-DISTNAME=	protobuf-3.11.2
-PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+DISTNAME=	protobuf-3.13.0
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/-python//}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/protobuf/}
 
@@ -10,10 +10,13 @@ HOMEPAGE=	https://developers.google.com/protocol-buffers/
 COMMENT=	Python bindings for protobuf
 LICENSE=	modified-bsd
 
-DEPENDS+=	${PYPKGPREFIX}-setuptools-[0-9]*:../../devel/py-setuptools
+TOOL_DEPENDS+=	${PYPKGPREFIX}-pip-[0-9]*:../../devel/py-pip
 DEPENDS+=	${PYPKGPREFIX}-six>=1.9:../../lang/py-six
+TOOL_DEPENDS+=	${PYPKGPREFIX}-wheel>=0.32.0:../../devel/py-wheel
 
 USE_LANGUAGES+=	c c++11
+
+PYTHON_VERSIONED_DEPENDENCIES+=	setuptools
 
 MAKE_ENV+=		PROTOC=${PREFIX}/bin/protoc
 PYSETUPBUILDARGS=	--cpp_implementation
@@ -21,4 +24,5 @@ PYSETUPINSTALLARGS=	--cpp_implementation
 
 .include "../../devel/protobuf/buildlink3.mk"
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

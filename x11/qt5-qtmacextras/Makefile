@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.30 2019/09/16 19:24:54 adam Exp $
+# $NetBSD: Makefile,v 1.40 2020/09/14 20:08:27 adam Exp $
 
 DISTNAME=	qtmacextras-everywhere-src-${QTVERSION}
 PKGNAME=	qt5-qtmacextras-${QTVERSION}

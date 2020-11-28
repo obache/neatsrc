@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2019/06/08 10:53:27 rillig Exp $
+# $NetBSD: Makefile,v 1.6 2020/04/26 09:47:39 rillig Exp $
 #
 # GNU binutils configured to hold `as many targets as the cross system is
 # capable of using'.  Configures and builds everything except gas, which
@@ -11,7 +11,7 @@ CATEGORIES=		cross lang
 MASTER_SITES=		${MASTER_SITE_GNU:=binutils/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.gnu.org/
+HOMEPAGE=		https://www.gnu.org/
 COMMENT=		Unified GNU binutils for cross build environments
 LICENSE=		gnu-gpl-v2 AND gnu-lgpl-v2
 
@@ -21,6 +21,7 @@ USE_TOOLS+=		gm4 pod2man yacc
 USE_LIBTOOL=		yes
 
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_STRICT=	no # several sub-configures know --enable-nls
 GNU_CONFIGURE_PREFIX=	${PREFIX}/cross
 CONFIGURE_ARGS+=	--with-windres
 CONFIGURE_ARGS+=	--enable-64-bit-bfd

@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2019/10/01 12:30:31 nia Exp $
+# $NetBSD: Makefile,v 1.5 2020/08/18 17:57:58 leot Exp $
 
-PKGNAME=	srb2-2.1.25
+PKGNAME=	srb2-2.2.4
+PKGREVISION=	1
 CATEGORIES=	games
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -10,17 +11,21 @@ LICENSE=	gnu-gpl-v2
 
 DIST_SUBDIR=	${PKGNAME_NOREV}
 DISTFILES+=	srb2.tar.gz
+DISTFILES+=	srb2-patch.zip
 DISTFILES+=	srb2-assets.7z
 DISTFILES+=	srb2-assets-opt.7z
 
 SITES.srb2.tar.gz= \
 	-https://github.com/STJr/SRB2/archive/SRB2_release_${PKGVERSION_NOREV}.tar.gz
 
+SITES.srb2-patch.zip= \
+	-https://github.com/STJr/SRB2/releases/download/SRB2_release_2.2.3/SRB2-v223-patch.zip
+
 SITES.srb2-assets.7z= \
-	-https://github.com/mazmazz/SRB2/releases/download/SRB2_assets/SRB2-v2122-assets.7z
+	-https://github.com/mazmazz/SRB2/releases/download/SRB2_assets_220/SRB2-v220-assets.7z
 
 SITES.srb2-assets-opt.7z= \
-	-https://github.com/mazmazz/SRB2/releases/download/SRB2_assets/SRB2-v2122-optional-assets.7z
+	-https://github.com/mazmazz/SRB2/releases/download/SRB2_assets_220/SRB2-v220-optional-assets.7z
 
 WRKSRC=		${WRKDIR}/SRB2-SRB2_release_${PKGVERSION_NOREV}
 USE_CMAKE=	yes
@@ -52,7 +57,11 @@ CHECK_PORTABILITY_SKIP+=	libs/miniupnpc/testminiwget.sh
 
 pre-configure:
 	${MKDIR} ${WRKSRC}/assets/installer
-	${MV} ${WRKDIR}/*.dta ${WRKDIR}/*.srb ${WRKSRC}/assets/installer
+	${MV} ${WRKDIR}/*.dta ${WRKDIR}/*.pk3 \
+	    ${WRKSRC}/assets/installer
+	${MV} ${WRKDIR}/2.2.3-patch/*.dta \
+	    ${WRKDIR}/2.2.3-patch/*.pk3 \
+	    ${WRKSRC}/assets/installer
 	${MKDIR} ${WRKSRC}/build
 
 do-install:

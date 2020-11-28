@@ -1,23 +1,27 @@
-# $NetBSD: Makefile,v 1.22 2019/11/03 09:14:07 rillig Exp $
-#
+# $NetBSD: Makefile,v 1.26 2020/08/17 20:20:23 leot Exp $
 
-DISTNAME=	clipit-1.4.2
-PKGREVISION=	17
+DISTNAME=	clipit-1.4.4
+PKGREVISION=	1
 CATEGORIES=	x11
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=gtkclipit/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=CristianHenzel/}
+GITHUB_PROJECT=	ClipIt
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	khorben@NetBSD.org
-#HOMEPAGE=	http://clipit.rspwn.com/
+HOMEPAGE=	https://github.com/CristianHenzel/ClipIt
 COMMENT=	Lightweight, fully featured GTK+ clipboard manager
 
 LICENSE=	gnu-gpl-v3
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 
 USE_TOOLS+=	gmake
-USE_TOOLS+=	intltool msgfmt
+USE_TOOLS+=	intltool msgfmt msgmerge xgettext
+USE_TOOLS+=	aclocal autoconf autoreconf automake autopoint intltoolize
 USE_TOOLS+=	pkg-config
+
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
+CONFiGURE_ARGS+=	--disable-glibtest
 
 BUILD_DEFS+=	PKG_SYSCONFBASE
 
@@ -28,7 +32,10 @@ MAKE_DIRS=	${PKG_SYSCONFBASE}/xdg/autostart
 
 INSTALL_MAKE_FLAGS=	${MAKE_FLAGS} sysconfdir=${EGDIR}
 
+pre-configure:
+	cd ${WRKSRC} && ${SH} autogen.sh
 
-.include "../../x11/gtk2/buildlink3.mk"
+.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
+.include "../../x11/gtk2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

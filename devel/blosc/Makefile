@@ -1,18 +1,19 @@
-# $NetBSD: Makefile,v 1.8 2019/12/15 14:22:58 adam Exp $
+# $NetBSD: Makefile,v 1.15 2020/10/25 04:33:27 nia Exp $
 
-DISTNAME=	blosc-1.17.1
+DISTNAME=	blosc-1.20.1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Blosc/}
 GITHUB_PROJECT=	c-blosc
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://blosc.org/
+HOMEPAGE=	https://blosc.org/
 COMMENT=	Blocking, shuffling, and lossless compression library
 LICENSE=	modified-bsd
 
 USE_CMAKE=	yes
-USE_LANGUAGES=	c c++
+# error: 'for' loop initial declarations are only allowed in C99 mode
+USE_LANGUAGES=	c99 c++
 USE_TOOLS+=	pkg-config
 TEST_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/blosc
 TEST_TARGET=	test
@@ -21,6 +22,9 @@ CMAKE_ARGS+=	-DPREFER_EXTERNAL_LZ4=ON
 CMAKE_ARGS+=	-DPREFER_EXTERNAL_SNAPPY=ON
 CMAKE_ARGS+=	-DPREFER_EXTERNAL_ZLIB=ON
 CMAKE_ARGS+=	-DPREFER_EXTERNAL_ZSTD=ON
+
+# Needed to use posix_memalign, see tests/test_common.h
+CFLAGS+=	-D_POSIX_C_SOURCE=200112
 
 CFLAGS.SunOS+=	-D__EXTENSIONS__
 

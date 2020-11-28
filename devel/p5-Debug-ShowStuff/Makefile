@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.6 2019/08/11 13:19:14 wiz Exp $
+# $NetBSD: Makefile,v 1.9 2020/09/08 13:16:35 wiz Exp $
 
 DISTNAME=	Debug-ShowStuff-1.16
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	devel perl5
-MASTER_SITES=	https://cpan.metacpan.org/authors/id/M/MI/MIKO/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/M/MI/MIKO/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://cpan.metacpan.org/authors/id/M/MI/MIKO/
+HOMEPAGE=	https://metacpan.org/pod/Debug::ShowStuff
 COMMENT=	Collection of handy debugging routines to display values of variables
 LICENSE=	${PERL5_LICENSE}
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2019/12/17 21:56:25 sevan Exp $
+# $NetBSD: Makefile,v 1.9 2020/03/20 11:57:45 nia Exp $
 #
 
 DISTNAME=	wtf-20191214

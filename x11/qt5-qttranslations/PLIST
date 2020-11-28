@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.10 2019/08/09 17:41:41 adam Exp $
+@comment $NetBSD: PLIST,v 1.12 2020/09/14 20:08:29 adam Exp $
 qt5/translations/assistant_ar.qm
 qt5/translations/assistant_bg.qm
 qt5/translations/assistant_cs.qm
@@ -14,6 +14,7 @@ qt5/translations/assistant_pl.qm
 qt5/translations/assistant_ru.qm
 qt5/translations/assistant_sk.qm
 qt5/translations/assistant_sl.qm
+qt5/translations/assistant_tr.qm
 qt5/translations/assistant_uk.qm
 qt5/translations/assistant_zh_CN.qm
 qt5/translations/assistant_zh_TW.qm
@@ -32,6 +33,7 @@ qt5/translations/designer_pl.qm
 qt5/translations/designer_ru.qm
 qt5/translations/designer_sk.qm
 qt5/translations/designer_sl.qm
+qt5/translations/designer_tr.qm
 qt5/translations/designer_uk.qm
 qt5/translations/designer_zh_CN.qm
 qt5/translations/designer_zh_TW.qm
@@ -51,6 +53,8 @@ qt5/translations/linguist_pl.qm
 qt5/translations/linguist_ru.qm
 qt5/translations/linguist_sk.qm
 qt5/translations/linguist_sl.qm
+qt5/translations/linguist_sv.qm
+qt5/translations/linguist_tr.qm
 qt5/translations/linguist_uk.qm
 qt5/translations/linguist_zh_CN.qm
 qt5/translations/linguist_zh_TW.qm
@@ -70,6 +74,7 @@ qt5/translations/qt_gl.qm
 qt5/translations/qt_he.qm
 qt5/translations/qt_help_ar.qm
 qt5/translations/qt_help_bg.qm
+qt5/translations/qt_help_ca.qm
 qt5/translations/qt_help_cs.qm
 qt5/translations/qt_help_da.qm
 qt5/translations/qt_help_de.qm
@@ -85,6 +90,7 @@ qt5/translations/qt_help_pl.qm
 qt5/translations/qt_help_ru.qm
 qt5/translations/qt_help_sk.qm
 qt5/translations/qt_help_sl.qm
+qt5/translations/qt_help_tr.qm
 qt5/translations/qt_help_uk.qm
 qt5/translations/qt_help_zh_CN.qm
 qt5/translations/qt_help_zh_TW.qm
@@ -100,6 +106,7 @@ qt5/translations/qt_ru.qm
 qt5/translations/qt_sk.qm
 qt5/translations/qt_sl.qm
 qt5/translations/qt_sv.qm
+qt5/translations/qt_tr.qm
 qt5/translations/qt_uk.qm
 qt5/translations/qt_zh_CN.qm
 qt5/translations/qt_zh_TW.qm
@@ -123,9 +130,11 @@ qt5/translations/qtbase_lv.qm
 qt5/translations/qtbase_pl.qm
 qt5/translations/qtbase_ru.qm
 qt5/translations/qtbase_sk.qm
+qt5/translations/qtbase_tr.qm
 qt5/translations/qtbase_uk.qm
 qt5/translations/qtbase_zh_TW.qm
 qt5/translations/qtconnectivity_bg.qm
+qt5/translations/qtconnectivity_ca.qm
 qt5/translations/qtconnectivity_da.qm
 qt5/translations/qtconnectivity_de.qm
 qt5/translations/qtconnectivity_en.qm
@@ -134,6 +143,7 @@ qt5/translations/qtconnectivity_hu.qm
 qt5/translations/qtconnectivity_ko.qm
 qt5/translations/qtconnectivity_pl.qm
 qt5/translations/qtconnectivity_ru.qm
+qt5/translations/qtconnectivity_tr.qm
 qt5/translations/qtconnectivity_uk.qm
 qt5/translations/qtdeclarative_bg.qm
 qt5/translations/qtdeclarative_da.qm
@@ -149,8 +159,10 @@ qt5/translations/qtdeclarative_lv.qm
 qt5/translations/qtdeclarative_pl.qm
 qt5/translations/qtdeclarative_ru.qm
 qt5/translations/qtdeclarative_sk.qm
+qt5/translations/qtdeclarative_tr.qm
 qt5/translations/qtdeclarative_uk.qm
 qt5/translations/qtlocation_bg.qm
+qt5/translations/qtlocation_ca.qm
 qt5/translations/qtlocation_da.qm
 qt5/translations/qtlocation_de.qm
 qt5/translations/qtlocation_en.qm
@@ -161,6 +173,7 @@ qt5/translations/qtlocation_hu.qm
 qt5/translations/qtlocation_ko.qm
 qt5/translations/qtlocation_pl.qm
 qt5/translations/qtlocation_ru.qm
+qt5/translations/qtlocation_tr.qm
 qt5/translations/qtlocation_uk.qm
 qt5/translations/qtmultimedia_ar.qm
 qt5/translations/qtmultimedia_bg.qm
@@ -179,6 +192,7 @@ qt5/translations/qtmultimedia_ko.qm
 qt5/translations/qtmultimedia_pl.qm
 qt5/translations/qtmultimedia_ru.qm
 qt5/translations/qtmultimedia_sk.qm
+qt5/translations/qtmultimedia_tr.qm
 qt5/translations/qtmultimedia_uk.qm
 qt5/translations/qtmultimedia_zh_TW.qm
 qt5/translations/qtquickcontrols2_ar.qm
@@ -188,6 +202,7 @@ qt5/translations/qtquickcontrols2_da.qm
 qt5/translations/qtquickcontrols2_en.qm
 qt5/translations/qtquickcontrols2_hu.qm
 qt5/translations/qtquickcontrols2_ko.qm
+qt5/translations/qtquickcontrols2_tr.qm
 qt5/translations/qtquickcontrols2_uk.qm
 qt5/translations/qtquickcontrols2_zh_TW.qm
 qt5/translations/qtquickcontrols_bg.qm
@@ -198,7 +213,9 @@ qt5/translations/qtquickcontrols_en.qm
 qt5/translations/qtquickcontrols_fi.qm
 qt5/translations/qtquickcontrols_fr.qm
 qt5/translations/qtquickcontrols_ja.qm
+qt5/translations/qtquickcontrols_ko.qm
 qt5/translations/qtquickcontrols_ru.qm
+qt5/translations/qtquickcontrols_tr.qm
 qt5/translations/qtquickcontrols_uk.qm
 qt5/translations/qtquickcontrols_zh_TW.qm
 qt5/translations/qtscript_ar.qm
@@ -220,6 +237,7 @@ qt5/translations/qtscript_lv.qm
 qt5/translations/qtscript_pl.qm
 qt5/translations/qtscript_ru.qm
 qt5/translations/qtscript_sk.qm
+qt5/translations/qtscript_tr.qm
 qt5/translations/qtscript_uk.qm
 qt5/translations/qtserialport_de.qm
 qt5/translations/qtserialport_en.qm
@@ -229,6 +247,7 @@ qt5/translations/qtserialport_ko.qm
 qt5/translations/qtserialport_pl.qm
 qt5/translations/qtserialport_ru.qm
 qt5/translations/qtserialport_uk.qm
+qt5/translations/qtwebengine_ca.qm
 qt5/translations/qtwebengine_de.qm
 qt5/translations/qtwebengine_en.qm
 qt5/translations/qtwebengine_es.qm
@@ -236,6 +255,7 @@ qt5/translations/qtwebengine_ko.qm
 qt5/translations/qtwebengine_pl.qm
 qt5/translations/qtwebengine_ru.qm
 qt5/translations/qtwebengine_uk.qm
+qt5/translations/qtwebsockets_ca.qm
 qt5/translations/qtwebsockets_de.qm
 qt5/translations/qtwebsockets_en.qm
 qt5/translations/qtwebsockets_es.qm

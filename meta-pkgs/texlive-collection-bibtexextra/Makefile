@@ -1,23 +1,26 @@
-# $NetBSD: Makefile,v 1.18 2019/05/15 09:10:47 markd Exp $
+# $NetBSD: Makefile,v 1.21 2020/05/10 12:50:46 markd Exp $
 
 DISTNAME=	collection-bibtexextra
-PKGNAME=	texlive-${DISTNAME}-2019pre1
+PKGNAME=	texlive-${DISTNAME}-2020pre1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	50619
+TEXLIVE_REV=	54875
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	BibTeX additional styles
 
 DEPENDS+=	texlive-collection-latex-[0-9]*:../../meta-pkgs/texlive-collection-latex
 
+# depend aaai-named
 # depend aichej
 # depend ajl
 DEPENDS+=	tex-amsrefs-[0-9]*:../../print/tex-amsrefs
+# depend annotate
 DEPENDS+=	tex-apacite-[0-9]*:../../print/tex-apacite
 # depend apalike2
 # depend archaeologie
+# depend authordate
 # depend beebe
 # depend besjournals
 # depend bestpapers
@@ -28,8 +31,10 @@ DEPENDS+=	p5-biblatex-biber-[0-9]*:../../print/p5-biblatex-biber
 # depend bibhtml
 DEPENDS+=	tex-biblatex-[0-9]*:../../print/tex-biblatex
 # depend biblatex-abnt
+# depend biblatex-ajc2020unofficial
 # depend biblatex-anonymous
 DEPENDS+=	tex-biblatex-apa-[0-9]*:../../print/tex-biblatex-apa
+# depend biblatex-apa6
 # depend biblatex-archaeology
 # depend biblatex-arthistory-bonn
 # depend biblatex-bath
@@ -45,11 +50,13 @@ DEPENDS+=	tex-biblatex-apa-[0-9]*:../../print/tex-biblatex-apa
 # depend biblatex-ext
 # depend biblatex-fiwi
 # depend biblatex-gb7714-2015
+# depend biblatex-german-legal
 # depend biblatex-gost
 # depend biblatex-historian
 DEPENDS+=	tex-biblatex-ieee-[0-9]*:../../print/tex-biblatex-ieee
 # depend biblatex-ijsra
 # depend biblatex-iso690
+# depend biblatex-jura2
 # depend biblatex-juradiss
 # depend biblatex-lni
 # depend biblatex-luh-ipw
@@ -71,11 +78,13 @@ DEPENDS+=	tex-biblatex-nature-[0-9]*:../../print/tex-biblatex-nature
 # depend biblatex-science
 # depend biblatex-shortfields
 # depend biblatex-socialscienceshuberlin
+# depend biblatex-software
 # depend biblatex-source-division
 # depend biblatex-subseries
 # depend biblatex-swiss-legal
 # depend biblatex-trad
 # depend biblatex-true-citepages-omit
+# depend biblatex2bibitem
 # depend biblist
 # depend bibtexperllibs
 DEPENDS+=	tex-bibtopic-[0-9]*:../../print/tex-bibtopic
@@ -86,9 +95,10 @@ DEPENDS+=	tex-bibunits-[0-9]*:../../print/tex-bibunits
 DEPENDS+=	tex-breakcites-[0-9]*:../../print/tex-breakcites
 # depend cell
 DEPENDS+=	tex-chbibref-[0-9]*:../../print/tex-chbibref
+# depend chembst
 # depend chicago
 # depend chicago-annote
-# depend chembst
+# depend chicagoa
 # depend chscite
 # depend citeall
 # depend citeref
@@ -116,12 +126,15 @@ DEPENDS+=	tex-harvard-[0-9]*:../../print/tex-harvard
 # depend ijqc
 # depend inlinebib
 # depend iopart-num
+# depend is-bst
+# depend jbact
+# depend jmb
 # depend jneurosci
 DEPENDS+=	tex-jurabib-[0-9]*:../../print/tex-jurabib
 # depend ksfh_nat
-# depend ltb2bib
 # depend listbib
 DEPENDS+=	tex-logreq-[0-9]*:../../print/tex-logreq
+# depend ltb2bib
 # depend luabibentry
 # depend margbib
 DEPENDS+=	tex-multibib-[0-9]*:../../print/tex-multibib
@@ -133,6 +146,7 @@ DEPENDS+=	tex-multibib-[0-9]*:../../print/tex-multibib
 # depend notex-bst
 # depend oscola
 # depend perception
+# depend plainyr
 # depend pnas2009
 # depend rsc
 DEPENDS+=	tex-showtags-[0-9]*:../../print/tex-showtags

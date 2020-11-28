@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.3 2019/12/21 23:35:05 joerg Exp $
+@comment $NetBSD: PLIST,v 1.5 2020/04/11 04:00:18 khorben Exp $
 bin/asm
 bin/deasm
 include/Devel/Asm.h
@@ -44,7 +44,6 @@ share/gtk-doc/html/Asm/Asm-format.html
 share/gtk-doc/html/Asm/Asm.devhelp2
 share/gtk-doc/html/Asm/api-index-full.html
 share/gtk-doc/html/Asm/ch01.html
-share/gtk-doc/html/Asm/deprecated-api-index.html
 share/gtk-doc/html/Asm/home.png
 share/gtk-doc/html/Asm/index.html
 share/gtk-doc/html/Asm/left-insensitive.png

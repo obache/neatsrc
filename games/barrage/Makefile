@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2016/07/24 22:59:11 kamil Exp $
+# $NetBSD: Makefile,v 1.3 2020/03/20 11:57:40 nia Exp $
 
 DISTNAME=	barrage-1.0.4
 CATEGORIES=	games

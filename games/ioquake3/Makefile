@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.7 2019/04/12 18:39:34 nia Exp $
+# $NetBSD: Makefile,v 1.14 2020/08/18 17:57:51 leot Exp $
 #
 
-DISTNAME=	ioquake3-1.36
-PKGREVISION=	3
+DISTNAME=	ioquake3-1.36.20200125
+PKGREVISION=	4
 CATEGORIES=	games
-MASTER_SITES=	http://ioquake3.org/files/1.36/
-EXTRACT_SUFX=	.tar.bz2
+MASTER_SITES=	${MASTER_SITE_GITHUB:=ioquake/}
+GITHUB_PROJECT=	ioq3
+GITHUB_TAG=	daae32ddfdab2172a628072ed3ff7dd1fc1563fe
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.ioquake3.org/
@@ -23,6 +24,10 @@ do-install:
 
 .if ${OPSYS} == "NetBSD" && ${MACHINE_CPU:U} == "arm"
 QUAKE_ARCH!=	uname -m
+.elif ${OPSYS} == "NetBSD" && ${MACHINE_CPU:U} == "aarch64"
+QUAKE_ARCH=	${MACHINE_CPU}
+.elif ${MACHINE_ARCH} == "i386"
+QUAKE_ARCH=	x86
 .else
 QUAKE_ARCH=	${MACHINE_ARCH}
 .endif
@@ -34,6 +39,7 @@ NOT_PAX_MPROTECT_SAFE+=	lib/ioquake3/ioq3ded.${QUAKE_ARCH}
 NOT_PAX_MPROTECT_SAFE+=	lib/ioquake3/ioquake3.${QUAKE_ARCH}
 
 .include "../../audio/openal-soft/buildlink3.mk"
-.include "../../devel/SDL/buildlink3.mk"
+.include "../../devel/SDL2/buildlink3.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
+.include "../../www/curl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

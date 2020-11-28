@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.27 2019/11/02 22:37:53 rillig Exp $
+# $NetBSD: Makefile,v 1.37 2020/10/22 11:22:56 jperkin Exp $
 
-PKGREVISION=	11
+PKGREVISION= 4
 .include "Makefile.common"
 
 PKGNAME=	ImageMagick6-${DISTVERSION}
@@ -14,8 +14,6 @@ USE_LANGUAGES=		c c++ c99
 USE_TOOLS+=		gmake pkg-config:run
 CONFIGURE_ARGS+=	--disable-assert
 CONFIGURE_ARGS+=	--with-fontconfig
-CONFIGURE_ARGS+=	--with-ltdl-include=${BUILDLINK_PREFIX.libltdl}/include
-CONFIGURE_ARGS+=	--with-ltdl-lib=${BUILDLINK_PREFIX.libltdl}/lib
 CONFIGURE_ARGS+=	--with-xml=yes
 CONFIGURE_ARGS+=	--without-perl
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASEDIR}
@@ -48,6 +46,10 @@ SUBST_SED.pkgcfg+=	-e 's|Magick-config |Magick-config6 |g'
 SUBST_SED.pkgcfg+=	-e 's|s Magick++|s Magick++-6.Q16|g'
 SUBST_SED.pkgcfg+=	-e 's|@PKG_CONFIG@|${PREFIX}/bin/pkg-config|g'
 SUBST_STAGE.pkgcfg=	pre-configure
+SUBST_NOOP_OK.pkgcfg=	yes
+# The files magick/ImageMagick.pc.in and magick/MagickCore.pc.in are not
+# modified, and they don't need to since their names don't appear in any
+# "Requires:" line.
 
 GCC_REQD+=		2.95.3
 
@@ -100,6 +102,7 @@ SUBST_SED.fix-tools=		-e 's,${TOOLS_DIR},,g'
 # failed to convert strong functions and variables: Invalid type identifier
 CTF_FILES_SKIP+=	lib/libMagickCore-6.Q16.so.5.0.0
 CTF_FILES_SKIP+=	lib/libMagickWand-6.Q16.so.5.0.0
+CTF_FILES_SKIP+=	lib/libMagickCore-6.Q16.so.*	# CPU limit exceeded
 
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../archivers/xz/buildlink3.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.26 2014/10/09 14:06:34 wiz Exp $
+# $NetBSD: Makefile,v 1.28 2020/03/20 11:57:47 nia Exp $
 
 DISTNAME=	exif-0.6.21
 CATEGORIES=	graphics

@@ -1,15 +1,16 @@
-# $NetBSD: Makefile,v 1.51 2019/08/11 13:22:02 wiz Exp $
+# $NetBSD: Makefile,v 1.65 2020/08/31 18:10:27 wiz Exp $
 
 PKGNAME=	${DISTNAME:S/ffmpeg/ffmpeg2/}
-PKGREVISION=	10
+PKGREVISION=	3
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ffmpeg.mplayerhq.hu/
+HOMEPAGE=	https://ffmpeg.org/
 COMMENT=	Decoding, encoding and streaming software (v2.x)
 
 CONFIGURE_ARGS+=	--enable-avfilter
 #CONFIGURE_ARGS+=	--enable-avfilter-lavf
 CONFIGURE_ARGS+=	--enable-postproc
 CONFIGURE_ARGS+=	--disable-ffplay
+CONFIGURE_ARGS+=	--disable-mmx
 
 INSTALLATION_DIRS=	lib/ffmpeg2 share/doc/ffmpeg2 share/examples/ffmpeg2
 

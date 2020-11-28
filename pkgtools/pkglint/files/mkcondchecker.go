@@ -1,6 +1,9 @@
 package pkglint
 
-import "netbsd.org/pkglint/textproc"
+import (
+	"netbsd.org/pkglint/makepat"
+	"netbsd.org/pkglint/textproc"
+)
 
 // MkCondChecker checks conditions in Makefiles.
 // These conditions occur in .if and .elif clauses, as well as the
@@ -29,6 +32,7 @@ func (ck *MkCondChecker) Check() {
 
 	checkVarUse := func(varuse *MkVarUse) {
 		var vartype *Vartype // TODO: Insert a better type guess here.
+		// See Test_MkVarUseChecker_checkAssignable__shell_command_in_exists.
 		vuc := VarUseContext{vartype, VucLoadTime, VucQuotPlain, false}
 		NewMkVarUseChecker(varuse, ck.MkLines, mkline).Check(&vuc)
 	}
@@ -36,9 +40,10 @@ func (ck *MkCondChecker) Check() {
 	// Skip subconditions that have already been handled as part of the !(...).
 	done := make(map[interface{}]bool)
 
-	checkNotEmpty := func(not *MkCond) {
+	checkNot := func(not *MkCond) {
 		empty := not.Empty
 		if empty != nil {
+			ck.checkNotEmpty(not)
 			ck.checkEmpty(empty, true, true)
 			done[empty] = true
 		}
@@ -48,6 +53,8 @@ func (ck *MkCondChecker) Check() {
 			ck.checkEmpty(varUse, false, false)
 			done[varUse] = true
 		}
+
+		ck.checkNotCompare(not)
 	}
 
 	checkEmpty := func(empty *MkVarUse) {
@@ -63,11 +70,38 @@ func (ck *MkCondChecker) Check() {
 	}
 
 	cond.Walk(&MkCondCallback{
-		Not:     checkNotEmpty,
+		Not:     checkNot,
 		Empty:   checkEmpty,
 		Var:     checkVar,
 		Compare: ck.checkCompare,
 		VarUse:  checkVarUse})
+
+	ck.checkContradictions()
+}
+
+func (ck *MkCondChecker) checkNotEmpty(not *MkCond) {
+	// Consider suggesting ${VAR} instead of !empty(VAR) since it is
+	// shorter and avoids unnecessary negation, which makes the
+	// expression less confusing.
+	//
+	// This applies especially to the ${VAR:Mpattern} form.
+	//
+	// See MkCondChecker.simplify.
+	if !hasPrefix(not.Empty.varname, "PKG_BUILD_OPTIONS.") {
+		return
+	}
+
+	fix := ck.MkLine.Autofix()
+	from := sprintf("!empty(%s%s)", not.Empty.varname, not.Empty.Mod())
+	to := not.Empty.String()
+	fix.Notef("%s can be replaced with %s.", from, to)
+	fix.Explain(
+		"Besides being simpler to read, the expression will also fail",
+		"quickly with a \"Malformed conditional\" error from bmake",
+		"if it should ever be undefined at this point.",
+		"This catches typos and other programming mistakes.")
+	fix.Replace(from, to)
+	fix.Apply()
 }
 
 // checkEmpty checks a condition of the form empty(VAR),
@@ -90,6 +124,7 @@ func (ck *MkCondChecker) checkEmptyExpr(varuse *MkVarUse) {
 		"",
 		"\tempty(VARNAME:Mpattern)",
 		"\t${VARNAME:Mpattern} == \"\"",
+		"\t!${VARNAME:Mpattern}",
 		"",
 		"Instead of !empty(${VARNAME:Mpattern}), you should write either of the following:",
 		"",
@@ -106,7 +141,7 @@ func (ck *MkCondChecker) checkEmptyType(varuse *MkVarUse) {
 			continue
 		}
 
-		switch modifier.Text {
+		switch modifier.String() {
 		default:
 			return
 		case "O", "u":
@@ -129,7 +164,6 @@ var mkCondModifierPatternLiteral = textproc.NewByteSet("+---./0-9<=>@A-Z_a-z")
 // * fromEmpty is true for the form empty(VAR...), and false for ${VAR...}.
 //
 // * neg is true for the form !empty(VAR...), and false for empty(VAR...).
-// It also applies to the ${VAR} form.
 func (ck *MkCondChecker) simplify(varuse *MkVarUse, fromEmpty bool, neg bool) {
 	varname := varuse.varname
 	mods := varuse.modifiers
@@ -222,7 +256,7 @@ func (ck *MkCondChecker) simplify(varuse *MkVarUse, fromEmpty bool, neg bool) {
 	fix := ck.MkLine.Autofix()
 	fix.Notef("%s can be compared using the simpler \"%s\" "+
 		"instead of matching against %q.",
-		varname, to, ":"+modifier.Text)
+		varname, to, ":"+modifier.String()) // TODO: Quoted
 	fix.Explain(
 		"This variable has a single value, not a list of values.",
 		"Therefore it feels strange to apply list operators like :M and :N onto it.",
@@ -237,7 +271,9 @@ func (ck *MkCondChecker) simplify(varuse *MkVarUse, fromEmpty bool, neg bool) {
 
 func (ck *MkCondChecker) checkCompare(left *MkCondTerm, op string, right *MkCondTerm) {
 	switch {
-	case left.Var != nil && right.Var == nil && right.Num == "":
+	case right.Num != "":
+		ck.checkCompareVarNum(op, right.Num)
+	case left.Var != nil && right.Var == nil:
 		ck.checkCompareVarStr(left.Var, op, right.Str)
 	}
 }
@@ -280,6 +316,28 @@ func (ck *MkCondChecker) checkCompareVarStr(varuse *MkVarUse, op string, str str
 	}
 }
 
+func (ck *MkCondChecker) checkCompareVarNum(op string, num string) {
+	if !contains(num, ".") {
+		return
+	}
+
+	mkline := ck.MkLine
+	mkline.Warnf("Numeric comparison %s %s.", op, num)
+	mkline.Explain(
+		"The numeric comparison of bmake is not suitable for version numbers",
+		"since 5.1 == 5.10 == 5.1000000.",
+		"",
+		"To fix this, either enclose the number in double quotes,",
+		"or use pattern matching:",
+		"",
+		"\t${OS_VERSION} == \"6.5\"",
+		"\t${OS_VERSION:M1.[1-9]} || ${OS_VERSION:M1.[1-9].*}",
+		"",
+		"The second example needs to be split into two parts",
+		"since with a single comparison of the form ${OS_VERSION:M1.[1-9]*},",
+		"the version number 1.11 would also match, which is not intended.")
+}
+
 func (ck *MkCondChecker) checkCompareVarStrCompiler(op string, value string) {
 	if !matches(value, `^\w+$`) {
 		return
@@ -299,4 +357,101 @@ func (ck *MkCondChecker) checkCompareVarStrCompiler(op string, value string) {
 	fix.Replace("${PKGSRC_COMPILER} "+op+" "+value, "${PKGSRC_COMPILER:"+matchOp+value+"}")
 	fix.Replace("${PKGSRC_COMPILER} "+op+" \""+value+"\"", "${PKGSRC_COMPILER:"+matchOp+value+"}")
 	fix.Apply()
+}
+
+func (ck *MkCondChecker) checkNotCompare(not *MkCond) {
+	if not.Compare == nil {
+		return
+	}
+
+	ck.MkLine.Warnf("The ! should use parentheses or be merged into the comparison operator.")
+}
+
+func (ck *MkCondChecker) checkContradictions() {
+	mkline := ck.MkLine
+
+	byVarname := make(map[string][]VarFact)
+	levels := ck.MkLines.indentation.levels
+	for _, level := range levels[:len(levels)-1] {
+		if !level.mkline.NeedsCond() {
+			continue
+		}
+		prevFacts := ck.collectFacts(level.mkline)
+		for _, prevFact := range prevFacts {
+			varname := prevFact.Varname
+			byVarname[varname] = append(byVarname[varname], prevFact)
+		}
+	}
+
+	facts := ck.collectFacts(mkline)
+	for _, curr := range facts {
+		varname := curr.Varname
+		for _, prev := range byVarname[varname] {
+			both := makepat.Intersect(prev.Matches, curr.Matches)
+			if !both.CanMatch() {
+				if prev.MkLine != mkline {
+					mkline.Errorf("The patterns %q from %s and %q cannot match at the same time.",
+						prev.Text, mkline.RelMkLine(prev.MkLine), curr.Text)
+				} else {
+					mkline.Errorf("The patterns %q and %q cannot match at the same time.",
+						prev.Text, curr.Text)
+				}
+			}
+		}
+		byVarname[varname] = append(byVarname[varname], curr)
+	}
+}
+
+type VarFact struct {
+	MkLine  *MkLine
+	Varname string
+	Text    string
+	Matches *makepat.Pattern
+}
+
+func (ck *MkCondChecker) collectFacts(mkline *MkLine) []VarFact {
+	var facts []VarFact
+
+	collectUse := func(use *MkVarUse) {
+		if use == nil || len(use.modifiers) != 1 {
+			return
+		}
+
+		ok, positive, pattern, _ := use.modifiers[0].MatchMatch()
+		if !ok || !positive || containsVarUse(pattern) {
+			return
+		}
+
+		vartype := G.Pkgsrc.VariableType(ck.MkLines, use.varname)
+		if vartype == nil || vartype.IsList() {
+			return
+		}
+
+		m, err := makepat.Compile(pattern)
+		if err != nil {
+			return
+		}
+
+		facts = append(facts, VarFact{mkline, use.varname, pattern, m})
+	}
+
+	var collectCond func(cond *MkCond)
+	collectCond = func(cond *MkCond) {
+		if cond.Term != nil {
+			collectUse(cond.Term.Var)
+		}
+		if cond.Not != nil {
+			collectUse(cond.Not.Empty)
+		}
+		for _, cond := range cond.And {
+			collectCond(cond)
+		}
+		if cond.Paren != nil {
+			collectCond(cond.Paren)
+		}
+	}
+
+	collectCond(mkline.Cond())
+
+	return facts
 }

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2018/08/17 12:36:05 wiz Exp $
+@comment $NetBSD: PLIST,v 1.7 2020/04/17 11:37:24 wiz Exp $
 bin/Xvnc
 bin/vncconfig
 bin/vncpasswd

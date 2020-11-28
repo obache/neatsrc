@@ -1,7 +1,0 @@
-$NetBSD: distinfo,v 1.33 2019/03/10 14:19:59 bsiegert Exp $
-
-SHA1 (mksh-R57.tgz) = 9df0ab24547f3f29191ae938caf271cb4842bcec
-RMD160 (mksh-R57.tgz) = 2cf5933f1d7cf8ef10db0b73ff3476ca448aba46
-SHA512 (mksh-R57.tgz) = 7d7fa557c17da4f1f62f82877a136439efb6d4f9fde52b2df39214db09868982e756df6e4fe83498f9013cbcf3252dc383b00ddfafaa4c9f143ffded7cd255b3
-Size (mksh-R57.tgz) = 419604 bytes
-SHA1 (patch-mksh.1) = dabb8f7f5b41d9200a38378b97bc0d73b6157843

@@ -1,19 +1,19 @@
-# $NetBSD: bsd.options.mk,v 1.74 2018/11/30 18:38:19 rillig Exp $
+# $NetBSD: bsd.options.mk,v 1.78 2020/06/06 19:09:37 rillig Exp $
 #
 # This Makefile fragment provides boilerplate code for standard naming
 # conventions for handling per-package build options.
 #
 # Before including this file, the following variables can be defined:
 #
+#	PKG_OPTIONS_VAR (must be defined)
+#               The variable the user can set to enable or disable
+#		options specifically for this package.
+#
 #	PKG_SUPPORTED_OPTIONS
 #		This is a list of build options supported by the package.
 #		This variable should be set in a package Makefile.  E.g.,
 #
 #			PKG_SUPPORTED_OPTIONS=	kerberos ldap ssl
-#
-#	PKG_OPTIONS_VAR (must be defined)
-#               The variable the user can set to enable or disable
-#		options specifically for this package.
 #
 #	PKG_OPTIONS_OPTIONAL_GROUPS
 #		This is a list of names of groups of mutually exclusive
@@ -125,7 +125,7 @@ BSD_OPTIONS_MK=		# defined
 # .if !empty(PKG_OPTIONS:Mwibble-foo)
 # CONFIGURE_ARGS+=	--enable-foo
 # .endif
-
+#
 # ###
 # ### LDAP support
 # ###
@@ -167,10 +167,6 @@ _SYS_VARS.options=	PKG_OPTIONS
 _LISTED_VARS.options=	*S *S.*
 
 .include "bsd.prefs.mk"
-
-# Define PKG_OPTIONS, no matter if we have an error or not, to suppress
-# further make(1) warnings.
-PKG_OPTIONS=		# empty
 
 # Check for variable definitions required before including this file.
 .if !defined(PKG_OPTIONS_VAR)
@@ -287,6 +283,8 @@ _OPTIONS_DEFAULT_SUPPORTED:=${_OPTIONS_DEFAULT_SUPPORTED} ${_opt_}
 # process options from generic to specific
 #
 
+# Define PKG_OPTIONS, no matter if we have an error or not, to suppress
+# further make(1) warnings.
 PKG_OPTIONS:=		# empty
 _OPTIONS_UNSUPPORTED:=	#empty
 .for _o_ in ${PKG_SUGGESTED_OPTIONS} ${PKG_LEGACY_OPTIONS} \
@@ -427,7 +425,7 @@ show-options:
 	@set args ${PKG_OPTIONS_DEPRECATED_WARNINGS}; shift; \
 	[ $$# -eq 0 ] || ${ECHO}; \
 	for l in "$$@"; do \
-		${ECHO} "$$l"; \
+		${ERROR_MSG} "$$l"; \
 	done
 
 .if defined(PKG_SUPPORTED_OPTIONS)
@@ -454,13 +452,13 @@ supported-options-message:
 .    else
 	@${ECHO} "	${PKG_OPTIONS_VAR} = "${${PKG_OPTIONS_VAR}:Q}
 .    endif
+	@${ECHO} ""
+	@${ECHO} "=========================================================================="
 	@set args ${PKG_OPTIONS_DEPRECATED_WARNINGS}; shift; \
 	[ $$# -eq 0 ] || ${ECHO}; \
 	for l in "$$@"; do \
-		${ECHO} "$$l"; \
+		${ERROR_MSG} "$$l"; \
 	done
-	@${ECHO} ""
-	@${ECHO} "=========================================================================="
 .  endif
 .endif
 

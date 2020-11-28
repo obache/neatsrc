@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2019/10/04 14:27:51 micha Exp $
+@comment $NetBSD: PLIST,v 1.7 2020/06/05 17:04:31 micha Exp $
 bin/gnutar
 bin/scpio
 bin/spax
@@ -12,7 +12,8 @@ man/man1/spax.1
 man/man1/star.1
 man/man1/suntar.1
 man/man1/ustar.1
-man/man5/star.5
+${PLIST.sysv}man/man4/star.4
+${PLIST.bsd}man/man5/star.5
 share/doc/star/INSTALL.pkgsrc
 share/doc/star/README
 share/doc/star/README.ACL
@@ -65,6 +66,7 @@ share/doc/star/testscripts/not_a_tar_file2
 share/doc/star/testscripts/not_a_tar_file3
 share/doc/star/testscripts/old-file.tar
 share/doc/star/testscripts/pax-big-10g.tar.bz2
+share/doc/star/testscripts/pax-rename.tar.gz
 share/doc/star/testscripts/quicktest.filelist
 share/doc/star/testscripts/remove.tar
 share/doc/star/testscripts/tartest-quicktest.out

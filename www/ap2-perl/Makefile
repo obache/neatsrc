@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.58 2019/11/13 21:29:25 wiz Exp $
+# $NetBSD: Makefile,v 1.60 2020/08/31 18:06:30 wiz Exp $
 
 DISTNAME=	mod_perl-2.0.11
 PKGNAME=	${APACHE_PKG_PREFIX}-${DISTNAME:S/mod_//}
+PKGREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_APACHE:=perl/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://perl.apache.org/
+HOMEPAGE=	https://perl.apache.org/
 COMMENT=	Module that embeds a Perl interpreter into Apache
 LICENSE=	apache-2.0
 

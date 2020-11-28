@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.38 2019/11/03 09:14:14 rillig Exp $
+# $NetBSD: Makefile,v 1.40 2020/01/26 05:26:27 rillig Exp $
 
 DISTNAME=	Pmw.1.3.2
 EGG_NAME=	${DISTNAME:S/./-/}

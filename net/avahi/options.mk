@@ -1,10 +1,10 @@
-# $NetBSD: options.mk,v 1.14 2019/10/27 14:46:09 kamil Exp $
+# $NetBSD: options.mk,v 1.17 2020/03/23 15:56:55 wiz Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.avahi
-PKG_SUPPORTED_OPTIONS=	avahi-howl gdbm introspection gtk2 gtk3 mono python
+PKG_SUPPORTED_OPTIONS=	avahi-howl gdbm introspection gtk3 mono python
 PKG_SUPPORTED_OPTIONS+=	tests
-PKG_SUGGESTED_OPTIONS+=	gtk2
-PLIST_VARS+=		introspection gtk2 gtk3 mono ui
+PKG_SUGGESTED_OPTIONS+=	gtk3
+PLIST_VARS+=		introspection gtk3 mono ui
 
 .include "../../mk/bsd.options.mk"
 
@@ -25,15 +25,6 @@ PLIST_SRC+=		${PKGDIR}/PLIST.howl
 CONFIGURE_ARGS+=	--disable-gdbm
 .endif
 
-.if !empty(PKG_OPTIONS:Mgtk2)
-BUILDLINK_API_DEPENDS.gtk2+=	gtk2+>=2.14.0
-.include "../../x11/gtk2/buildlink3.mk"
-PLIST.gtk2=		yes
-PLIST.ui=		yes
-.else
-CONFIGURE_ARGS+=	--disable-gtk
-.endif
-
 .if !empty(PKG_OPTIONS:Mgtk3)
 .include "../../x11/gtk3/buildlink3.mk"
 PLIST.gtk3=		yes
@@ -52,7 +43,7 @@ CONFIGURE_ARGS+=	--enable-introspection=no
 
 .if !empty(PKG_OPTIONS:Mmono)
 .include "../../x11/gtk-sharp/buildlink3.mk"
-.include "../../lang/mono2/buildlink3.mk"
+.include "../../lang/mono/buildlink3.mk"
 CONFIGURE_ARGS+=	--disable-monodoc # XXX broken
 PLIST.mono=		yes
 .else
@@ -64,12 +55,10 @@ CONFIGURE_ARGS+=	--disable-mono --disable-monodoc
 ###
 .if !empty(PKG_OPTIONS:Mpython)
 PY_PATCHPLIST=		yes
-PYTHON_VERSIONS_ACCEPTED=	 27 # py-gtk2
 .  include "../../lang/python/application.mk"
 REPLACE_PYTHON+=	avahi-python/avahi-discover/__init__.py
 .  include "../../lang/python/extension.mk"
 .  include "../../sysutils/py-dbus/buildlink3.mk"
-.  include "../../x11/py-gtk2/buildlink3.mk"
 DEPENDS+=		${PYPKGPREFIX}-libxml2-[0-9]*:../../textproc/py-libxml2
 DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 ### If python and gdbm are enabled we need py-gdbm as well
@@ -81,7 +70,6 @@ PLIST_SRC+=		${PKGDIR}/PLIST.python
 .else
 CONFIGURE_ARGS+=	--disable-python
 CONFIGURE_ARGS+=	--disable-python-dbus
-CONFIGURE_ARGS+=	--disable-pygtk
 .endif
 
 .if !empty(PKG_OPTIONS:Mtests)

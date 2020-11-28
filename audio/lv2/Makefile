@@ -1,15 +1,20 @@
-# $NetBSD: Makefile,v 1.16 2019/07/21 22:23:58 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2020/08/18 17:57:25 leot Exp $
 
-DISTNAME=	lv2-1.16.0
-PKGREVISION=	3
+DISTNAME=	lv2-1.18.0
+PKGREVISION=	2
 CATEGORIES=	audio
-MASTER_SITES=	http://lv2plug.in/spec/
+MASTER_SITES=	https://lv2plug.in/spec/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://lv2plug.in/
+HOMEPAGE=	https://lv2plug.in/
 COMMENT=	Open standard for audio plugins, used by hundreds of plugins
 LICENSE=	isc
+
+DEPENDS+=	${PYPKGPREFIX}-markdown-[0-9]*:../../textproc/py-markdown
+DEPENDS+=	${PYPKGPREFIX}-pygments-[0-9]*:../../textproc/py-pygments
+
+PLIST_SRC+=	${PLIST_SRC_DFLT}
 
 USE_TOOLS+=	pkg-config
 
@@ -20,19 +25,10 @@ REPLACE_PYTHON+=	lv2specgen/lv2specgen.py
 
 .include "options.mk"
 
-BUILD_OPTIONS=	${BUILD_DEBUG} ${BUILD_DOC} ${BUILD_TESTS} ${BUILD_VALGRIND}
+WAF_ARGS+=	${BUILD_DEBUG} ${BUILD_DOC} ${BUILD_TESTS} ${BUILD_VALGRIND}
+WAF_ARGS+=	--copy-headers
 
-do-configure:
-	cd ${WRKSRC} && \
-		${SETENV} ${CONFIGURE_ENV} ${PYTHONBIN} ./waf configure \
-			--destdir=${DESTDIR} --mandir=${PREFIX}/${PKGMANDIR} \
-				--copy-headers ${BUILD_OPTIONS}
-do-build:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHONBIN} ./waf build
-
-do-install:
-	cd ${WRKSRC} && ${SETENV} ${INSTALL_ENV} ${PYTHONBIN} ./waf install
-
+.include "../../devel/waf/waf.mk"
 BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.8.10
 .include "../../graphics/cairo/buildlink3.mk"
 BUILDLINK_API_DEPENDS.gtk2++=	gtk2+>=2.18.0

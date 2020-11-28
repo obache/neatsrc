@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.4 2019/12/10 19:22:36 plunky Exp $
+# $NetBSD: Makefile,v 1.7 2020/10/06 10:16:37 triaxx Exp $
 
 DISTNAME=	icewm-1.4.2
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	wm
 MASTER_SITES=	${MASTER_SITE_GITHUB:=bbidulock/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -9,7 +9,7 @@ EXTRACT_SUFX=	.tar.bz2
 EXTRACT_USING=	gtar
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.icewm.org/
+HOMEPAGE=	https://www.ice-wm.org/
 COMMENT=	Small, fast and light-weight window manager
 LICENSE=	gnu-gpl-v2
 

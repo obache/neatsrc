@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.10 2019/11/02 16:25:22 rillig Exp $
+# $NetBSD: Makefile,v 1.14 2020/06/09 10:36:43 nia Exp $
 #
 
 DISTNAME=	heirloom-mailx_12.5.orig
 PKGNAME=	heirloom-mailx-12.5
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_DEBIAN:=pool/main/h/heirloom-mailx/}
 EXTRACT_SUFX=	.tar.gz
@@ -12,6 +12,8 @@ MAINTAINER=	jgw@sdf.org
 HOMEPAGE=	http://heirloom.sourceforge.net/mailx.html
 COMMENT=	BSD mail utility with MIME extensions
 LICENSE=	original-bsd AND osl AND mpl-1.1
+
+DEPENDS+=	mime-types-[0-9]*:../../misc/mime-types
 
 WRKSRC=		${WRKDIR}/heirloom-mailx-12.5
 

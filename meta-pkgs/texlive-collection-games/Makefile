@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.7 2019/07/29 11:43:06 markd Exp $
+# $NetBSD: Makefile,v 1.9 2020/05/10 04:13:25 markd Exp $
 
 DISTNAME=	collection-games
-PKGNAME=	texlive-${DISTNAME}-2019pre1
+PKGNAME=	texlive-${DISTNAME}-2020pre1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	51178
+TEXLIVE_REV=	54074
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Games typesetting TeX packages
 
 DEPENDS+=	texlive-collection-latex-[0-9]*:../../meta-pkgs/texlive-collection-latex

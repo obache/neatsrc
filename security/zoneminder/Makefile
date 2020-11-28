@@ -1,17 +1,21 @@
-# $NetBSD: Makefile,v 1.46 2019/11/04 21:13:04 rillig Exp $
+# $NetBSD: Makefile,v 1.54 2020/09/01 00:48:01 gdt Exp $
 
-# See wip/zoneminder for a draft update to 1.29.0.
-PKGNAME=	${DISTNAME:S/ZoneMinder-/zoneminder-/}
-DISTNAME=	ZoneMinder-1.28.1
-PKGREVISION=	21
+VERSION=	1.29.0
+# Sometimes the distfile unpacks to ZoneMinder and sometimes zoneminder.
+NAME_DIST=	ZoneMinder
+NAME_LOWER=	zoneminder
+PKGREVISION=	4
+
+PKGNAME=	${DISTNAME:S/${NAME_DIST}-/${NAME_LOWER}-/}
+DISTNAME=	${NAME_DIST}-${VERSION}
+WRKSRC=		${WRKDIR}/${NAME_LOWER}-${VERSION}
 CATEGORIES=	security
-MASTER_SITES=	${MASTER_SITE_GITHUB:=ZoneMinder/}
-GITHUB_PROJECT=	ZoneMinder
+MASTER_SITES=	${MASTER_SITE_GITHUB:=${NAME_DIST}/}
+GITHUB_PROJECT=	${NAME_DIST}
 GITHUB_TYPE=	tag
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	dsainty@NetBSD.org
-#MAINTAINER+=	gdt@NetBSD.org
 HOMEPAGE=	https://www.zoneminder.com/
 COMMENT=	Video camera security and surveillance solution
 LICENSE=	gnu-gpl-v2
@@ -37,7 +41,7 @@ USE_TOOLS+=	aclocal autoconf autoheader automake gmake perl pkg-config
 # configuration.  We take the view that if an installation can be
 # reasonably configured to use a module, that module should be a
 # dependency, absent some reason that it is so heavyweight that it
-# should be an option.
+# shoudl be an option.
 
 # MIME::Entity is needed from p5-MIME-tools
 # LWP::UserAgent is needed from p5-libwww
@@ -56,12 +60,17 @@ CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 
 ZM_HTTPD_ROOT=		share/zoneminder/htdocs
 PLIST_SUBST+=		ZM_HTTPD_ROOT=${ZM_HTTPD_ROOT:Q}
+PRINT_PLIST_AWK+=	{ gsub(/${ZM_HTTPD_ROOT:S|/|\\/|g}/, "$${ZM_HTTPD_ROOT}") }
 OWN_DIRS+=		${ZM_HTTPD_ROOT:Q}
 
 ZM_HTTPD_CGIBIN=	libexec/zoneminder/cgi-bin
 PLIST_SUBST+=		ZM_HTTPD_CGIBIN=${ZM_HTTPD_CGIBIN:Q}
+PRINT_PLIST_AWK+=	{ gsub(/${ZM_HTTPD_CGIBIN:S|/|\\/|g}/, "$${ZM_HTTPD_CGIBIN}") }
 BUILD_DEFS+=		ZM_HTTPD_CGIBIN
 OWN_DIRS+=		${ZM_HTTPD_CGIBIN:Q}
+
+# Omit patchfiles from PLIST.
+PRINT_PLIST_AWK+=	/.orig$$/ { next; }
 
 INSTALLATION_DIRS+=	share/zoneminder ${ZM_HTTPD_ROOT}
 INSTALLATION_DIRS+=	libexec/zoneminder ${ZM_HTTPD_CGIBIN}
@@ -172,14 +181,12 @@ REPLACE_PERL+=	scripts/zmx10.pl.in
 #
 
 CHECK_INTERPRETER_SKIP+=	bin/zmsystemctl.pl
-EXTRA_PERL+=			scripts/zmsystemctl.pl.in
 
 SUBST_CLASSES+=			systemd-perl
 SUBST_MESSAGE.systemd-perl=	Adjusting systemd pkexec perl.
 SUBST_STAGE.systemd-perl=	pre-configure
 SUBST_FILES.systemd-perl=	scripts/zmsystemctl.pl.in
 SUBST_SED.systemd-perl=		-e 's|/usr/bin/perl|${PERL5}|g'
-
 
 SUBST_CLASSES+=			dbpaths-path
 SUBST_MESSAGE.dbpaths-path=	Adjusting default paths in configuration.
@@ -211,6 +218,7 @@ PLIST_VARS+=		rcd
 .if ${INIT_SYSTEM} == "rc.d"
 PLIST.rcd=		yes
 .endif
+PRINT_PLIST_AWK+=	{ gsub(/^.+\/examples\/rc.d/, "$${PLIST.rcd}&"); }
 
 .if ${OPSYS} == "NetBSD" && exists(/usr/include/execinfo.h)
 LIBS+=		-lexecinfo
@@ -246,8 +254,8 @@ post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/zm ${DESTDIR}${PREFIX}/share/examples/rc.d/zoneminder
 .endif
 	${INSTALL_DATA} ${WRKSRC}/db/*.sql ${DESTDIR}${PREFIX}/share/zoneminder/db/
-	rmdir ${DESTDIR}${PREFIX}/${ZM_HTTPD_ROOT:Q}/events || true
-	rmdir ${DESTDIR}${PREFIX}/${ZM_HTTPD_ROOT:Q}/images || true
+	rmdir ${DESTDIR}${PREFIX}/${ZM_HTTPD_ROOT:Q}/events || ${TRUE}
+	rmdir ${DESTDIR}${PREFIX}/${ZM_HTTPD_ROOT:Q}/images || ${TRUE}
 	${LN} -s ${ZM_CACHE}/temp ${DESTDIR}${PREFIX}/${ZM_HTTPD_ROOT:Q}/temp
 	${LN} -s ${ZM_CACHE}/events ${DESTDIR}${PREFIX}/${ZM_HTTPD_ROOT:Q}/events
 	${LN} -s ${ZM_CACHE}/images ${DESTDIR}${PREFIX}/${ZM_HTTPD_ROOT:Q}/images

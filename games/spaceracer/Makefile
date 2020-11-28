@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2018/01/14 15:26:48 rillig Exp $
+# $NetBSD: Makefile,v 1.16 2020/03/20 11:57:44 nia Exp $
 #
 
 DISTNAME=		spaceracer-0.2.4

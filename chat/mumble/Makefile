@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.11 2019/09/25 00:58:19 nia Exp $
+# $NetBSD: Makefile,v 1.24 2020/10/16 07:42:48 nia Exp $
 
-DISTNAME=	mumble-1.3.0
-PKGREVISION=	2
+DISTNAME=	mumble-1.3.3
 CATEGORIES=	chat audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mumble-voip/}
 GITHUB_PROJECT=	mumble
@@ -12,9 +11,14 @@ HOMEPAGE=	https://wiki.mumble.info/wiki/Main_Page
 COMMENT=	Low latency VOIP software
 LICENSE=	modified-bsd
 
+TOOL_DEPENDS+=	qt5-qttools-[0-9]*:../../x11/qt5-qttools
+
 USE_TOOLS+=	pkg-config gmake
-USE_LANGUAGES=	c c++11
+USE_LANGUAGES=	c c++
 USE_LIBTOOL=	yes
+
+PYTHON_FOR_BUILD_ONLY=	tool
+CONFIGURE_ENV+=		MUMBLE_PYTHON=${PYTHONBIN:Q}
 
 BUILD_TARGET=	release
 
@@ -45,10 +49,8 @@ CONFIG_OPTIONS+=	CONFIG+=no-ice
 .if ${OSS_TYPE} != "none"
 SUBST_CLASSES+=		oss
 SUBST_STAGE.oss=	pre-configure
-SUBST_MESSAGE.oss=	Correct path to OSS device.
+SUBST_MESSAGE.oss=	Setting the OSS library.
 SUBST_FILES.oss+=	src/mumble/mumble.pro
-SUBST_FILES.oss+=	src/mumble/OSS.cpp
-SUBST_SED.oss+=		-e "s,/dev/dsp,${DEVOSSAUDIO},g"
 SUBST_VARS.oss+=	LIBOSSAUDIO
 .endif
 
@@ -61,7 +63,7 @@ INSTALLATION_DIRS+=	share/pixmaps
 INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 
 do-configure:
-	cd ${WRKSRC} && ${QTDIR}/bin/qmake -unix -recursive main.pro \
+	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${QTDIR}/bin/qmake -unix -recursive main.pro \
 	    ${CONFIG_OPTIONS} ${MAKE_ENV} \
 	    QMAKE_CFLAGS=${CFLAGS:Q} \
 	    QMAKE_CXXFLAGS=${CXXFLAGS:Q} \
@@ -104,11 +106,11 @@ do-install:
 .include "../../devel/libltdl/buildlink3.mk"
 .include "../../devel/protobuf/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
+.include "../../lang/python/pyversion.mk"
 .include "../../net/mDNSResponder/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtsvg/buildlink3.mk"
-.include "../../x11/qt5-qttools/buildlink3.mk"
 .include "../../x11/libXi/buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

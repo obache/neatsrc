@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:30:07 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:47 markd Exp $
 
 DISTNAME=	iwona
 PKGNAME=	tex-${DISTNAME}-0.995b
+PKGREVISION=	1
 TEXLIVE_REV=	19611
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/iwona
+HOMEPAGE=	https://ctan.org/pkg/iwona
 COMMENT=	Two-element sans-serif font
 LICENSE=	gfsl
 

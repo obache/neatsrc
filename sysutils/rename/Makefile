@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2017/09/20 11:03:14 jperkin Exp $
+# $NetBSD: Makefile,v 1.6 2020/03/20 11:58:22 nia Exp $
 
 DISTNAME=	rename-1.3
 PKGREVISION=	3

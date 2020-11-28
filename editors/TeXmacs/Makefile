@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.129 2019/10/28 15:10:00 kamil Exp $
+# $NetBSD: Makefile,v 1.140 2020/08/31 18:09:22 wiz Exp $
 #
 # changelog at http://www.texmacs.org/tmweb/about/changes.en.html
 
-DISTNAME=		TeXmacs-1.99.11-src
+DISTNAME=		TeXmacs-1.99.13-src
 PKGNAME=		${DISTNAME:S/-src//}
+PKGREVISION=		2
 CATEGORIES=		editors
 MASTER_SITES=		ftp://ftp.texmacs.org/pub/TeXmacs/tmftp/source/
 MASTER_SITES+=		http://www.texmacs.org/Download/ftp/tmftp/source/
@@ -19,11 +20,12 @@ DEPENDS+=		ps2pkm>=1.5:../../fonts/ps2pkm
 USE_CMAKE=		yes
 USE_TOOLS+=		gmake perl:run pkg-config bash
 USE_LANGUAGES=		c c++
+WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
 
-REPLACE_PYTHON=		plugins/python/bin/tm_python
-REPLACE_PYTHON+=	plugins/sage/bin/tm_sage
 REPLACE_PYTHON+=	plugins/mathematica/bin/realpath.py
 
+REPLACE_BASH+=		configure
+REPLACE_BASH+=		cmake/CreateBundle.sh.in
 REPLACE_BASH+=		plugins/dratex/bin/tm_dratex
 REPLACE_BASH+=		plugins/eukleides/bin/tm_eukleides
 REPLACE_BASH+=		plugins/eukleides/bin/tm_eukleides.old
@@ -32,17 +34,12 @@ REPLACE_BASH+=		plugins/texgraph/bin/tm_texgraph
 
 REPLACE_PERL+=		plugins/feynmf/bin/bbox_add.pl
 
-SUBST_CLASSES+=		init
-SUBST_STAGE.init=	pre-configure
-SUBST_FILES.init=	plugins/python/progs/init-python.scm
-SUBST_VARS.init=	PYTHONBIN
-
 SUBST_CLASSES+=		guile
 SUBST_STAGE.guile=	pre-configure
 SUBST_FILES.guile=	cmake/FindGuile.cmake
 SUBST_VARS.guile=	PREFIX
 
-SUBST_CLASSES+=	bash
+SUBST_CLASSES+=		bash
 SUBST_SED.bash+=	-e "s,/bin/bash,${PREFIX}/bin/bash,"
 SUBST_FILES.bash+=	src/Texmacs/Texmacs/texmacs.cpp
 SUBST_MESSAGE.bash=	Fixing hardcoded bash path.

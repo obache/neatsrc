@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2019/11/04 22:10:11 rillig Exp $
+# $NetBSD: Makefile,v 1.15 2020/03/22 20:33:29 tnn Exp $
 #
 
 .include "../../www/phraseanet/Makefile.common"
@@ -18,6 +18,11 @@ PHP_VERSIONS_ACCEPTED=	56
 # so set them back again afterwards. grr
 DISTNAME=	phraseanet-v${VERS}-linux
 DIST_SUBDIR=	#empty
+
+# The package's config.mk sets CC=g++, which is a bit unorthodox and
+# confuses libtool, which can't deduce the tagged configuration if
+# pkgsrc's idea of CXX is something other than g++.
+MAKE_FLAGS+=	CC=${CXX}
 
 # This seems to now be needed though it wasn't before...
 WRKSRC=	${WRKDIR}/${DISTNAME}/bin/src/php_phrasea2

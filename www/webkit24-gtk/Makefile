@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.29 2019/12/15 15:38:59 taca Exp $
+# $NetBSD: Makefile,v 1.36 2020/08/31 18:13:18 wiz Exp $
 
-PKGREVISION= 25
+PKGREVISION= 31
 .include "Makefile.common"
 
 PKGNAME=	${DISTNAME:S/webkitgtk/webkit1-gtk/}
@@ -9,10 +9,6 @@ COMMENT=	GTK2 port of the WebKit1 browser engine
 
 CONFIGURE_ARGS+=	--with-gtk=2.0
 CONFIGURE_ARGS+=	--disable-webkit2
-
-.if ${OPSYS} == "NetBSD" && ${MACHINE_CPU:U} == "arm"
-LDFLAGS+=	-Wl,-no-keep-memory -Wl,-reduce-memory
-.endif
 
 #introspection support
 BUILDLINK_API_DEPENDS.gtk2+=	gtk2+>=2.24.17nb3

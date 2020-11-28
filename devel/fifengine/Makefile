@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.2 2019/08/22 12:23:00 ryoon Exp $
+# $NetBSD: Makefile,v 1.7 2020/08/18 17:57:42 leot Exp $
 
 DISTNAME=	fifengine-0.4.2
-PKGREVISION=	1
+PKGREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=fifengine/}
 
@@ -13,6 +13,8 @@ LICENSE=	gnu-lgpl-v2.1
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c c++11
+
+UNLIMIT_RESOURCES=	datasize virtualsize
 
 # C++11
 GCC_REQD+=	4.8

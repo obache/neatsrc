@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.22 2019/11/04 21:50:15 rillig Exp $
+# $NetBSD: Makefile,v 1.24 2020/09/30 03:07:25 gutteridge Exp $
 
-VERSION=	0.75
+VERSION=	0.76
 DISTNAME=	blackbox-${VERSION}
 PKGNAME=	blackbox70-${VERSION}
+PKGREVISION=	1
 CATEGORIES=	wm x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=bbidulock/}
 GITHUB_PROJECT=	blackboxwm
@@ -23,14 +24,12 @@ USE_TOOLS+=	pkg-config
 GNU_CONFIGURE=	YES
 
 CXXFLAGS.Linux+=	-fpermissive
-
-CONFIGURE_ARGS+=	--enable-nls
-
-BROKEN_GETTEXT_DETECTION=	yes
+CXXFLAGS.SunOS+=	-fpermissive
 
 BUILDLINK_DEPMETHOD.libXt?=	build
 
-.include "../../devel/gettext-lib/buildlink3.mk"
+.include "options.mk"
+
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

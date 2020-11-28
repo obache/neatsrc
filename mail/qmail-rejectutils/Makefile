@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2019/07/01 15:31:51 schmonz Exp $
+# $NetBSD: Makefile,v 1.8 2020/06/25 05:42:38 schmonz Exp $
 
 DISTNAME=		netqmail-1.06
 PKGNAME=		qmail-rejectutils-${RJPATCHVERSION}

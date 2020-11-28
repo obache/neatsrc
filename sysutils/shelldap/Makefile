@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.18 2019/12/05 21:29:25 sevan Exp $
-#
+# $NetBSD: Makefile,v 1.20 2020/09/04 13:35:41 wiz Exp $
 
 PKGNAME=	shelldap-1.5.1
+PKGREVISION=	2
 DISTNAME=	c06315e
 CATEGORIES=	sysutils
 MASTER_SITES=	http://code.martini.nu/shelldap/archive/
@@ -17,7 +17,6 @@ DEPENDS+=	p5-Term-Shell>=0.02:../../devel/p5-Term-Shell
 #DEPENDS+=	{perl>=5.13.6,p5-Digest-MD5>=2.51}:../../security/p5-Digest-MD5
 DEPENDS+=	p5-Algorithm-Diff>=1.1902:../../devel/p5-Algorithm-Diff
 DEPENDS+=	p5-perl-ldap>=0.40.01:../../databases/p5-perl-ldap
-DEPENDS+=	p5-Term-ReadLine>=1.20:../../devel/p5-Term-ReadLine
 DEPENDS+= 	p5-Tie-IxHash>=1.23:../../devel/p5-Tie-IxHash
 
 WRKSRC=		${WRKDIR}/shelldap-${DISTNAME}

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.12 2017/08/16 20:21:14 wiz Exp $
+# $NetBSD: Makefile.common,v 1.14 2020/04/24 12:45:09 leot Exp $
 #
 # used by security/dsniff/Makefile
 # used by security/dsniff-nox11/Makefile

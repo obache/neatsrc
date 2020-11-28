@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.36 2019/08/11 13:21:25 wiz Exp $
+# $NetBSD: Makefile,v 1.38 2020/08/31 18:09:54 wiz Exp $
 
 DISTNAME=	courier-${COURIER_VERSION}
 PKGNAME=	${DISTNAME:S/-/-maildir-/}
-PKGREVISION=	8
+PKGREVISION=	9
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=courier/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Courier maildir utilities
-HOMEPAGE=	http://www.courier-mta.org/
+HOMEPAGE=	https://www.courier-mta.org/
 
 CONFLICTS=	courier-maildirmake-[0-9]*
 

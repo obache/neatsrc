@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2015/04/25 14:23:00 tnn Exp $
+# $NetBSD: Makefile,v 1.22 2020/03/20 11:57:42 nia Exp $
 #
 
 DISTNAME=	lgeneral-1.1.1

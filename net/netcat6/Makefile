@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.10 2017/11/11 17:28:39 maya Exp $
+# $NetBSD: Makefile,v 1.12 2020/08/27 14:24:08 uwe Exp $
 
 DISTNAME=		nc6-1.0
 PKGNAME=		${DISTNAME:S/nc/netcat/}
-PKGREVISION=		4
+PKGREVISION=		5
 CATEGORIES=		net
 MASTER_SITES=		ftp://ftp.deepspace6.net/pub/ds6/sources/nc6/
 MASTER_SITES+=		http://ftp.deepspace6.net/pub/ds6/sources/nc6/
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.deepspace6.net/projects/netcat6.html
+HOMEPAGE=		https://www.deepspace6.net/projects/netcat6.html
 COMMENT=		Network swiss army knife
 LICENSE=		gnu-gpl-v2
 

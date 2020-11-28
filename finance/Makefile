@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.70 2019/12/03 16:32:16 adam Exp $
+# $NetBSD: Makefile,v 1.82 2020/09/29 00:35:00 khorben Exp $
 #
 
 COMMENT=	Monetary, financial and related applications
@@ -14,14 +14,18 @@ SUBDIR+=	R-timeSeries
 SUBDIR+=	R-tseries
 SUBDIR+=	bitcoin
 SUBDIR+=	cpuminer
+SUBDIR+=	electrum
 SUBDIR+=	gkrellm-stock
 SUBDIR+=	gnucash
 SUBDIR+=	gnucash-docs
+SUBDIR+=	hledger
+SUBDIR+=	hledger-lib
 SUBDIR+=	homebank
+SUBDIR+=	hs-Decimal
 SUBDIR+=	ledger
+SUBDIR+=	ledger2beancount
 SUBDIR+=	libofx
 SUBDIR+=	magento
-SUBDIR+=	moneyguru
 SUBDIR+=	p5-Algorithm-LUHN
 SUBDIR+=	p5-Data-Currency
 SUBDIR+=	p5-Finance-Currency-Convert-WebserviceX
@@ -30,12 +34,18 @@ SUBDIR+=	p5-Locale-Currency-Format
 SUBDIR+=	py-alpha_vantage
 SUBDIR+=	py-alphalens
 SUBDIR+=	py-backtrader
+SUBDIR+=	py-beancount
 SUBDIR+=	py-bitcoinlib
 SUBDIR+=	py-bitcoinrpc
 SUBDIR+=	py-braintree
+SUBDIR+=	py-crytic-compile
 SUBDIR+=	py-empyrical
+SUBDIR+=	py-eth-hash
+SUBDIR+=	py-eth-typing
+SUBDIR+=	py-eth-utils
 SUBDIR+=	py-fecon235
 SUBDIR+=	py-ofxparse
+SUBDIR+=	py-pyevmasm
 SUBDIR+=	py-pyfolio
 SUBDIR+=	py-quickbooks
 SUBDIR+=	py-stripe
@@ -101,7 +111,6 @@ SUBDIR+=	py-trytond-stock-supply-production
 SUBDIR+=	py-vatnumber
 SUBDIR+=	ruby-activemerchant
 SUBDIR+=	ruby-braintree
-SUBDIR+=	tclticker
 SUBDIR+=	tex-euro
 SUBDIR+=	tex-euro-doc
 SUBDIR+=	xfinans

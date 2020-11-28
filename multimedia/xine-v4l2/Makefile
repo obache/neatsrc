@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.24 2019/11/03 17:12:05 rillig Exp $
+# $NetBSD: Makefile,v 1.27 2020/08/31 18:10:31 wiz Exp $
 
 PKGREVISION= 2
 .include "../../multimedia/xine-lib/Makefile.common"
@@ -7,24 +7,22 @@ PKGNAME=	${XINE_PKGNAME:S/lib/v4l2/}
 CATEGORIES=	multimedia
 COMMENT=	The v4l2 input plugin for xine-lib
 
+DEPENDS+=	xine-lib>=1rc3a:../../multimedia/xine-lib
+
 BUILD_DIRS=		src/input
 CONFIGURE_ARGS+=	--without-x --disable-xinerama
 CONFIGURE_ARGS+=	--disable-vcd
-CONFIGURE_ARGS+=	--disable-coreaudio
-CONFIGURE_ARGS+=	--disable-oss
-CONFIGURE_ARGS+=	--disable-sunaudio
-CONFIGURE_ARGS+=	--without-alsa
-CONFIGURE_ARGS+=	--without-jack
-CONFIGURE_ARGS+=	--without-pulseaudio
-CONFIGURE_ARGS+=	--without-esound
-CONFIGURE_ARGS+=	--disable-dvb
-CONFIGURE_ARGS+=	--disable-v4l
-CONFIGURE_ARGS+=	--enable-v4l2
 
-MAKE_FLAGS+=	xineplug_LTLIBRARIES="xineplug_inp_v4l2.la xineplug_inp_pvr.la"
+INSTALLATION_DIRS=	lib/xine/plugins/${XINE_MOD_DIR_VER}
 
-post-configure:
-	${LN} -s ${BUILDLINK_PREFIX.xine-lib}/lib/libxine.la ${WRKSRC}/src/xine-engine/
+do-install:
+	cd ${WRKSRC}/src/input && \
+		${LIBTOOL} --mode=install ${INSTALL_DATA} \
+		xineplug_inp_v4l2.la \
+		${DESTDIR}${PREFIX}/lib/xine/plugins/${XINE_MOD_DIR_VER}; \
+		${LIBTOOL} --mode=install ${INSTALL_DATA} \
+		xineplug_inp_pvr.la \
+		${DESTDIR}${PREFIX}/lib/xine/plugins/${XINE_MOD_DIR_VER}
 
-.include "../../multimedia/xine-lib/buildlink3.mk"
+.include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

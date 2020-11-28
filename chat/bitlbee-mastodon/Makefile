@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2019/11/26 18:47:38 nia Exp $
+# $NetBSD: Makefile,v 1.4 2020/04/22 04:40:59 nia Exp $
 
-DISTNAME=	bitlbee-mastodon-1.4.3
+DISTNAME=	bitlbee-mastodon-1.4.4
 CATEGORIES=	chat
 MASTER_SITES=	${MASTER_SITE_GITHUB:=kensanata/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -16,7 +16,7 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 
 pre-configure:
-	cd ${WRKSRC} && ./autogen.sh
+	cd ${WRKSRC} && ${SH} ./autogen.sh
 
 .include "../../chat/bitlbee/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

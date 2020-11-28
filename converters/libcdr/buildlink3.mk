@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.26 2019/08/22 12:22:55 ryoon Exp $
+# $NetBSD: buildlink3.mk,v 1.30 2020/06/02 08:22:32 adam Exp $
 
 BUILDLINK_TREE+=	libcdr
 
@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	libcdr
 LIBCDR_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.libcdr+=	libcdr>=0.0.6
-BUILDLINK_ABI_DEPENDS.libcdr+=	libcdr>=0.1.5nb3
+BUILDLINK_ABI_DEPENDS.libcdr+=	libcdr>=0.1.6nb3
 BUILDLINK_PKGSRCDIR.libcdr?=	../../converters/libcdr
 
 .include "../../converters/libwpd/buildlink3.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2014/10/09 14:06:05 wiz Exp $
+# $NetBSD: Makefile,v 1.6 2020/01/26 05:26:19 rillig Exp $
 #
 
 DISTNAME=	datadraw3.1.1

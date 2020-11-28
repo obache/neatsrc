@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.38 2019/10/07 09:28:11 prlw1 Exp $
+# $NetBSD: Makefile,v 1.41 2020/08/17 20:18:29 leot Exp $
 
+PKGREVISION= 1
 .include "Makefile.common"
 
-
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/^py//:S/-/3-/}
-PKGREVISION=	1
 EGG_NAME=	${DISTNAME:S/pygobject/PyGObject/}
 
 COMMENT=	Python bindings for glib2 gobject

@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.6 2019/12/22 14:33:58 gdt Exp $
+# $NetBSD: mozilla-common.mk,v 1.14 2020/06/29 11:59:42 nia Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -23,7 +23,7 @@ HAS_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 USE_TOOLS+=		pkg-config perl gmake autoconf213 unzip zip
 USE_LANGUAGES+=		c99 gnu++14
-UNLIMIT_RESOURCES+=	datasize
+UNLIMIT_RESOURCES+=	datasize virtualsize
 
 TOOL_DEPENDS+=		cbindgen>=0.8.7:../../devel/cbindgen
 .if ${MACHINE_ARCH} == "sparc64"
@@ -38,8 +38,8 @@ BUILD_DEPENDS+=		yasm>=1.1:../../devel/yasm
 .endif
 
 # For rustc/cargo detection
-CONFIGURE_ARGS+=	--target=${MACHINE_GNU_PLATFORM:Q}
-CONFIGURE_ARGS+=	--host=${MACHINE_GNU_PLATFORM:Q}
+CONFIGURE_ARGS+=	--target=${MACHINE_GNU_PLATFORM}
+CONFIGURE_ARGS+=	--host=${MACHINE_GNU_PLATFORM}
 
 CONFIGURE_ENV+=		BINDGEN_CFLAGS="-isystem${PREFIX}/include/nspr \
 			-isystem${X11BASE}/include/pixman-1"
@@ -63,8 +63,6 @@ CXXFLAGS+=		-march=i586
 # This is required for SSE2 code under i386.
 CXXFLAGS+=		-mstackrealign
 .endif
-
-CXXFLAGS+=		-D__HAVE_INLINE___ISINF
 
 CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}security/nss/tests/libpkix/libpkix.sh
 CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}security/nss/tests/multinit/multinit.sh
@@ -111,12 +109,6 @@ SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
 SUBST_FILES.fix-paths+=		${MOZILLA_DIR}xpcom/io/nsAppFileLocationProvider.cpp
 SUBST_SED.fix-paths+=		-e 's,/usr/lib/mozilla/plugins,${PREFIX}/lib/netscape/plugins,g'
 
-SUBST_CLASSES+=			prefix
-SUBST_STAGE.prefix=		pre-configure
-SUBST_MESSAGE.prefix=		Setting PREFIX
-SUBST_FILES.prefix+=		${MOZILLA_DIR}xpcom/build/BinaryPath.h
-SUBST_VARS.prefix+=		PREFIX
-
 CONFIG_GUESS_OVERRIDE+=		${MOZILLA_DIR}build/autoconf/config.guess
 CONFIG_GUESS_OVERRIDE+=		${MOZILLA_DIR}js/src/build/autoconf/config.guess
 CONFIG_GUESS_OVERRIDE+=		${MOZILLA_DIR}nsprpub/build/autoconf/config.guess
@@ -126,7 +118,8 @@ CONFIG_SUB_OVERRIDE+=		${MOZILLA_DIR}js/src/build/autoconf/config.sub
 CONFIG_SUB_OVERRIDE+=		${MOZILLA_DIR}nsprpub/build/autoconf/config.sub
 CONFIG_SUB_OVERRIDE+=		${MOZILLA_DIR}/js/ctypes/libffi/config.sub
 
-CONFIGURE_ENV+=		CPP=${CPP}
+CONFIGURE_ENV+=		CPP=${CPP:Q}
+ALL_ENV+=		SHELL=${CONFIG_SHELL:Q}
 
 # Build outside ${WRKSRC}
 # Try to avoid conflict with config/makefiles/xpidl/Makefile.in
@@ -227,11 +220,9 @@ BUILDLINK_API_DEPENDS.nss+=	nss>=3.44.1
 BUILDLINK_API_DEPENDS.libwebp+=	libwebp>=1.0.2
 .include "../../graphics/libwebp/buildlink3.mk"
 BUILDLINK_DEPMETHOD.clang=	build
-BUILDLINK_API_DEPENDS.clang+=	clang>=6.0.1nb1
 .include "../../lang/clang/buildlink3.mk"
-BUILDLINK_DEPMETHOD.rust=	build
-BUILDLINK_API_DEPENDS.rust+=	rust>=1.34.0
-.include "../../lang/rust/buildlink3.mk"
+RUST_REQ=	1.34.0
+.include "../../lang/rust/rust.mk"
 # webrtc option requires internal libvpx
 #BUILDLINK_API_DEPENDS.libvpx+=	libvpx>=1.3.0
 #.include "../../multimedia/libvpx/buildlink3.mk"
@@ -244,4 +235,8 @@ BUILDLINK_API_DEPENDS.pixman+= pixman>=0.25.2
 .include "../../x11/pixman/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
+PLIST_VARS+=		wayland
+.if ${PKG_BUILD_OPTIONS.gtk3:Mwayland}
+PLIST.wayland=		yes
+.endif
 .include "../../lang/python/pyversion.mk"

@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.24 2019/08/11 13:22:40 wiz Exp $
+# $NetBSD: Makefile,v 1.26 2020/09/05 07:14:05 wiz Exp $
 
-DISTNAME=	LaTeX-Driver-0.300.2
+DISTNAME=	LaTeX-Driver-1.1.1
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	4
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=LaTeX/}
 

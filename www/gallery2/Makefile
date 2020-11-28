@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2018/07/04 13:40:41 jperkin Exp $
+# $NetBSD: Makefile,v 1.18 2020/03/20 11:58:34 nia Exp $
 #
 
 DISTNAME=		gallery-2.3.2-full

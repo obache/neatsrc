@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.24 2019/09/02 12:58:54 nia Exp $
+# $NetBSD: Makefile,v 1.27 2020/03/20 20:46:40 joerg Exp $
 
 DISTNAME=		libupnp-1.8.4
+PKGREVISION=		1
 CATEGORIES=		net
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=pupnp/}
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://pupnp.sourceforge.net/
+HOMEPAGE=		https://pupnp.sourceforge.io/
 COMMENT=		Portable Universal Plug and Play (UPnP) SDK
 LICENSE=		modified-bsd
 

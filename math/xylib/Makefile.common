@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.2 2020/01/07 13:35:44 nros Exp $
+# $NetBSD: Makefile.common,v 1.4 2020/03/20 11:58:01 nia Exp $
 # used by math/xylib/Makefile
 # used by math/xyconvert/Makefile
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.26 2019/09/02 13:20:06 adam Exp $
+# $NetBSD: Makefile,v 1.28 2020/01/26 05:26:13 rillig Exp $
 
 DISTNAME=	CDDB-1.4
 PKGNAME=	${PYPKGPREFIX}-cddb-1.4

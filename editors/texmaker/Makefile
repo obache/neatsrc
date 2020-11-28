@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.107 2019/09/18 14:17:09 ryoon Exp $
+# $NetBSD: Makefile,v 1.115 2020/08/18 17:57:44 leot Exp $
 
 DISTNAME=	texmaker-5.0.3
-PKGREVISION=	2
+PKGREVISION=	9
 CATEGORIES=	editors
 MASTER_SITES=	http://www.xm1math.net/texmaker/
 EXTRACT_SUFX=	.tar.bz2
 EXTRACT_USING=	bsdtar
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.xm1math.net/texmaker/
+HOMEPAGE=	https://www.xm1math.net/texmaker/
 COMMENT=	LaTeX editor and front end
 LICENSE=	gnu-gpl-v2
 

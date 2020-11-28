@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.115 2019/11/02 16:25:26 rillig Exp $
+# $NetBSD: Makefile,v 1.122 2020/08/24 05:44:33 tnn Exp $
 #
 
-DISTNAME=		notqmail-1.07
+DISTNAME=		notqmail-1.08
 PKGNAME=		qmail-1.03
-PKGREVISION=		46
+PKGREVISION=		49
 CATEGORIES=		mail
 MASTER_SITES=		${MASTER_SITE_GITHUB:=notqmail/}
 GITHUB_PROJECT=		notqmail
@@ -36,6 +36,9 @@ DJB_CONFIG_CMDS+=	${ECHO} ${QMAIL_QMAIL_GROUP:Q}    > conf-groups;
 DJB_CONFIG_CMDS+=	${ECHO} ${QMAIL_NOFILES_GROUP:Q} >> conf-groups;
 DJB_BUILD_TARGETS=	man
 DJB_RESTRICTED=		no
+
+TEST_TARGET=		test
+#.include "../../devel/check/buildlink3.mk"
 
 PKG_SYSCONFSUBDIR=	qmail
 OWN_DIRS+=		${PKG_SYSCONFDIR} ${PKG_SYSCONFDIR}/alias
@@ -80,6 +83,9 @@ BUILD_DEFS+=		QMAIL_QMAIL_GROUP QMAIL_NOFILES_GROUP
 PKG_FAIL_REASON+=	"QMAIL_QUEUE_DIR must not be under ${QMAILDIR}"
 .endif
 
+USE_TOOLS+=		tar
+MAKE_ENV+=		NROFF=${TRUE:Q}
+
 .if !empty(QMAIL_QUEUE_EXTRA)
 USE_TOOLS+=		expr
 QUEUE_EXTRA=		"T${QMAIL_QUEUE_EXTRA}\\0"
@@ -92,11 +98,10 @@ SUBST_SED.logging+=	-e 's|""|${QUEUE_EXTRA}|g'
 SUBST_MESSAGE.logging=	Setting QUEUE_EXTRA.
 .endif
 
-SUBST_CLASSES+=		catpages
-SUBST_STAGE.catpages=	do-configure
-SUBST_FILES.catpages=	hier.c
-SUBST_SED.catpages=	-e 's|.*"man/cat[0-9]".*||g'
-SUBST_SED.catpages+=	-e 's|.*"tcp-environ\.5".*||g'	# also in ucspi-tcp
+SUBST_CLASSES+=		manpages
+SUBST_STAGE.manpages=	do-configure
+SUBST_FILES.manpages=	hier.c
+SUBST_SED.manpages+=	-e 's|.*"tcp-environ\.5".*||g'	# also in ucspi-tcp
 
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	do-configure
@@ -108,8 +113,7 @@ SUBST_STAGE.config=	do-configure
 SUBST_FILES.config=	config-fast-pkgsrc-defaults.sh
 SUBST_VARS.config=	SORT MV CP PKG_SYSCONFDIR QMAIL_QUEUE_EXTRA
 
-SUBST_FILES.djbware+=	cdb_seek.c dns.c
-
+NOT_FOR_UNPRIVILEGED=		yes
 PKG_USERS_VARS+=		QMAIL_ALIAS_USER QMAIL_DAEMON_USER QMAIL_LOG_USER
 PKG_USERS_VARS+=		QMAIL_ROOT_USER QMAIL_PASSWD_USER QMAIL_QUEUE_USER
 PKG_USERS_VARS+=		QMAIL_REMOTE_USER QMAIL_SEND_USER
@@ -133,7 +137,7 @@ READMES=		README.pkgsrc
 QMAILPATCHES=			notqmail:${DEFAULT_DISTFILES}
 
 QMAILPATCHES+=			tls:${TLSREMOTE_PATCH}
-TLSREMOTE_PATCH=		notqmail-1.07-tls-20190517-onlyremote-20190819.patch
+TLSREMOTE_PATCH=		notqmail-1.07-tls-20200107-onlyremote-20200202.patch
 PATCHFILES+=			${TLSREMOTE_PATCH}
 SITES.${TLSREMOTE_PATCH}=	https://schmonz.com/qmail/tlsonlyremote/
 
@@ -151,17 +155,17 @@ PATCH_DIST_STRIP.${MAILDIRUNIQ_PATCH}=	-p1
 PATCH_DIST_CAT.${MAILDIRUNIQ_PATCH}=	\
 				${SED} -e 's|"057"|"\\\\057"|' \
 				-e 's|"072"|"\\\\072"|' \
+				-e 's|hostname|temporaryothername|g' \
+				-e 's|host|myhost|g' \
+				-e 's|temporaryothername|hostname|g' \
+				-e 's|"readwrite\.h"|<stdlib.h>|' \
+				-e 's|"sig\.h"|"readwrite.h"|' \
 				< ${MAILDIRUNIQ_PATCH}
 
 QMAILPATCHES+=			outgoingip:${OUTGOINGIP_PATCH}
 OUTGOINGIP_PATCH=		outgoingip.patch
 PATCHFILES+=			${OUTGOINGIP_PATCH}
 SITES.${OUTGOINGIP_PATCH}=	http://qmailorg.schmonz.com/
-
-QMAILPATCHES+=			remote:${REMOTE_PATCH}
-REMOTE_PATCH=			notqmail-1.07-tls-20190517-qmailremote-20190819.patch
-PATCHFILES+=			${REMOTE_PATCH}
-SITES.${REMOTE_PATCH}=		https://schmonz.com/qmail/remote/
 
 QMAILPATCHES+=			spp:${SPP_PATCH}:${SPP_PATCHFILE_cmd:sh}
 SPP_PATCH=			qmail-spp-0.42.tar.gz
@@ -174,6 +178,8 @@ PATCH_DIST_CAT.${SPP_PATCH}=	${TAR} -C ${WRKDIR} -zxf ${SPP_PATCH} ${SPP_PATCHFI
 				| ${SED} -e 's|sppfok \!= 1|sppfok == -1|'
 PATCH_DIST_STRIP.${SPP_PATCH}=	-p1
 LICENSE+=			AND gnu-gpl-v2
+
+.include "options.mk"
 
 post-extract:
 	for i in ${READMES}; do						\

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.26 2019/11/03 10:15:55 rillig Exp $
+# $NetBSD: Makefile,v 1.28 2020/09/07 06:52:00 wiz Exp $
 #
 
-DISTNAME=	IO-Pager-1.01
+DISTNAME=	IO-Pager-1.03
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=IO/}

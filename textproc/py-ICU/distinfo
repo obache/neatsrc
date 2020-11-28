@@ -1,0 +1,8 @@
+$NetBSD: distinfo,v 1.5 2020/07/15 15:04:18 adam Exp $
+
+SHA1 (PyICU-2.5.tar.gz) = 73de6ee88f679678789eceb382b7c1452e91c53b
+RMD160 (PyICU-2.5.tar.gz) = c4f56298ee1dc78164fb7a8ee9cefd36fb27f005
+SHA512 (PyICU-2.5.tar.gz) = b2641c6f9956cd8026150923f0f10031712c426f45ed2b9fe468ce85917b028a6e1988ac73cd74e9eec2569601ece77018aa06863525e24df1944d4a5b762548
+Size (PyICU-2.5.tar.gz) = 225591 bytes
+SHA1 (patch-locale.cpp) = 4e259f3130e94bd8114d7781e36e21236c13d5b6
+SHA1 (patch-setup.py) = 07837aecbb2adbfa8e9222c4eb3790ee0f0199df

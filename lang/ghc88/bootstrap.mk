@@ -1,4 +1,4 @@
-# $NetBSD: bootstrap.mk,v 1.1 2020/01/09 12:32:24 pho Exp $
+# $NetBSD: bootstrap.mk,v 1.6 2020/03/24 20:40:15 joerg Exp $
 # -----------------------------------------------------------------------------
 # Select a bindist of bootstrapping compiler on a per-platform basis.
 #
@@ -32,10 +32,22 @@
 #DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
 .endif
 
+.if !empty(MACHINE_PLATFORM:MDarwin-*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
+BOOT_VERSION:=	8.4.4
+BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-x86_64-apple-darwin.tar.xz
+DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
+.endif
+
 .if !empty(MACHINE_PLATFORM:MFreeBSD-*-i386) || make(distinfo) || make (makesum) || make(mdi)
-#BOOT_VERSION:=	8.4.4
-#BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-i386-unknown-freebsd.tar.xz
-#DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
+BOOT_VERSION:=	8.4.4
+BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-i386-unknown-freebsd.tar.xz
+DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
+.endif
+
+.if !empty(MACHINE_PLATFORM:MFreeBSD-*-x86_64) || make(distinfo) || make(makesum) || make(mdi)
+BOOT_VERSION:=	8.4.4
+BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-x86_64-unknown-freebsd.tar.xz
+DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
 .endif
 
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
@@ -51,9 +63,10 @@ DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
 .endif
 
 .if !empty(MACHINE_PLATFORM:MSunOS-*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
-#BOOT_VERSION:=	8.4.4
-#BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-x86_64-unknown-solaris2.tar.xz
-#DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
+BOOT_VERSION:=		8.4.4
+BOOT_ARCHIVE:=		ghc-${BOOT_VERSION}-boot-x86_64-unknown-solaris2.tar.xz
+SITES.${BOOT_ARCHIVE}=	https://us-east.manta.joyent.com/pkgsrc/public/pkg-bootstraps/
+DISTFILES:=		${DISTFILES} ${BOOT_ARCHIVE}
 .endif
 
 .if empty(BOOT_ARCHIVE)
@@ -73,16 +86,6 @@ SITES.${i}?=	${MASTER_SITE_LOCAL}
 # (FP_LEADING_UNDERSCORE)
 .if ${OPSYS} == "Darwin"
 CONFLICTS+=	libelf-[0-9]*
-.endif
-
-# FreeBSD < 10 surprisingly doesn't have a native iconv so we need to
-# use pkgsrc libiconv for this OPSYS. And if a bootkit depends on
-# pkgsrc libiconv, the "normal" build must do the same because GHC
-# always needs to link executables with libiconv, just like libgmp
-# when integer-gmp is used. For this reason it might be desirable to
-# create two separate bootkits, one for < 10 and another for >= 10.
-.if ${OPSYS} == "FreeBSD"
-USE_BUILTIN.iconv=	no
 .endif
 
 # current bootstrap binary kit for SmartOS is built with ncurses5
@@ -116,7 +119,7 @@ pre-configure:
 	${RUN}cd ${WRKDIR}/build-extract/ghc-${BOOT_VERSION}-boot && \
 		${PKGSRC_SETENV} ${CONFIGURE_ENV} ${SH} ./configure \
 			--prefix=${TOOLS_DIR:Q} && \
-		${MAKE_PROGRAM} install
+		${PKGSRC_SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} install
 
 
 # -----------------------------------------------------------------------------

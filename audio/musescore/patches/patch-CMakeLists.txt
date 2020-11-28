@@ -1,12 +1,12 @@
-$NetBSD: patch-CMakeLists.txt,v 1.1 2019/10/16 23:22:08 nia Exp $
+$NetBSD: patch-CMakeLists.txt,v 1.5 2020/08/13 04:27:38 gutteridge Exp $
 
 Never compress man pages.
 
 Use CMAKE_INSTALL_MANDIR.
 
---- CMakeLists.txt.orig	2019-07-06 09:44:00.000000000 +0000
+--- CMakeLists.txt.orig	2020-02-06 21:10:58.000000000 +0000
 +++ CMakeLists.txt
-@@ -663,7 +663,7 @@ if (NOT MINGW AND NOT MSVC AND NOT APPLE
+@@ -683,7 +683,7 @@ if (NOT MINGW AND NOT MSVC AND NOT APPLE
      # Compress man pages if gzip is installed (don't on OpenBSD)
      # Note: Compressing man pages is normal on Linux but not OpenBSD
      find_program( GZIP_EXECUTABLE gzip DOC "A tool for compressing manpages (optional)." )
@@ -15,7 +15,7 @@ Use CMAKE_INSTALL_MANDIR.
          message(STATUS "Found 'gzip'. Man pages will be compressed.")
          set(MAN_TARGET ${MAN_BUILD})
          set(MAN_EXTENSION ${MAN_EXTENSION}.gz)
-@@ -680,7 +680,7 @@ if (NOT MINGW AND NOT MSVC AND NOT APPLE
+@@ -700,7 +700,7 @@ if (NOT MINGW AND NOT MSVC AND NOT APPLE
              COMMAND echo "Man pages have been compressed ready for installation."
              VERBATIM
              )
@@ -24,7 +24,7 @@ Use CMAKE_INSTALL_MANDIR.
          if (CMAKE_SYSTEM_NAME MATCHES "OpenBSD")
              message(STATUS "System is OpenBSD: Man pages will not be compressed.")
          else (CMAKE_SYSTEM_NAME MATCHES "OpenBSD")
-@@ -690,9 +690,9 @@ if (NOT MINGW AND NOT MSVC AND NOT APPLE
+@@ -710,9 +710,9 @@ if (NOT MINGW AND NOT MSVC AND NOT APPLE
              COMMAND echo "Man pages will be installed uncompressed."
              VERBATIM
              )
@@ -36,7 +36,7 @@ Use CMAKE_INSTALL_MANDIR.
      # Create symlink alias for man pages so `man musescore` = `man mscore`
      find_program( LN_EXECUTABLE ln DOC "A tool for creating symbolic link aliases (optional)." )
      if (LN_EXECUTABLE)
-@@ -703,7 +703,7 @@ if (NOT MINGW AND NOT MSVC AND NOT APPLE
+@@ -723,7 +723,7 @@ if (NOT MINGW AND NOT MSVC AND NOT APPLE
              COMMAND ${LN_EXECUTABLE} -sf "${MAN_FULL_NAME}" "${MAN_FULL_ALIAS}"
              COMMAND echo 'Symlink alias: ${MAN_FULL_ALIAS} -> ${MAN_FULL_NAME}'
              )

@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.15 2019/11/18 08:06:58 rillig Exp $
+# $NetBSD: Makefile,v 1.17 2020/08/31 18:10:59 wiz Exp $
 
 PKGNAME=	pkglint4-4.193.2
+PKGREVISION=	1
 CATEGORIES=	pkgtools
 
 OWNER=		rillig@NetBSD.org
-HOMEPAGE=	http://www.NetBSD.org/docs/pkgsrc/
+HOMEPAGE=	https://www.NetBSD.org/docs/pkgsrc/
 COMMENT=	Verifier for NetBSD packages (old version, for all platforms)
 LICENSE=	2-clause-bsd
 

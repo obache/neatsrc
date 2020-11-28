@@ -28,8 +28,14 @@ func (lc *LicenseChecker) checkName(license string) {
 	pkg := lc.MkLines.pkg
 	if pkg != nil {
 		if mkline := pkg.vars.FirstDefinition("LICENSE_FILE"); mkline != nil {
-			rel := mkline.ResolveVarsInRelativePath(NewRelPathString(mkline.Value()), lc.MkLines.pkg)
-			licenseFile = pkg.File(NewPackagePath(rel))
+			value := mkline.Value()
+			if NewPath(value).IsAbs() {
+				mkline.Errorf("LICENSE_FILE must not be an absolute path.")
+			} else {
+				rel := NewPackagePathString(value)
+				relResolved := mkline.ResolveVarsInRelativePath(rel, lc.MkLines.pkg)
+				licenseFile = pkg.File(relResolved)
+			}
 		}
 	}
 	if licenseFile.IsEmpty() {

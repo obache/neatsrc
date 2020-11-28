@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.11 2016/03/05 11:27:54 jperkin Exp $
+# $NetBSD: Makefile,v 1.15 2020/04/16 12:42:28 manu Exp $
 #
 
-VERSION=		0.2.8
+VERSION=		0.4.10
 DISTNAME=		libp11-${VERSION}
-PKGREVISION=		1
+#PKGREVISION=		1
 CATEGORIES=		security
 MASTER_SITES=		https://github.com/OpenSC/libp11/archive/
 
@@ -13,8 +13,6 @@ COMMENT=		Convenience library for easy PKCS\#11 implementation
 LICENSE=		gnu-lgpl-v2.1
 
 WRKSRC=			${WRKDIR}/libp11-libp11-${VERSION}
-
-BUILDLINK_API_DEPENDS.openssl+=	openssl>=0.9.7
 
 USE_TOOLS+=		autoconf automake gmake pkg-config
 GNU_CONFIGURE=		yes

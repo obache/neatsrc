@@ -1,41 +1,36 @@
-# $NetBSD: Makefile,v 1.15 2019/07/21 22:24:59 wiz Exp $
+# $NetBSD: Makefile,v 1.22 2020/08/17 20:19:00 leot Exp $
 
-DISTNAME=	gmic_1.5.9.3
+DISTNAME=	gmic_2.9.0
 PKGNAME=	${DISTNAME:S/_/-/}
-PKGREVISION=	13
+PKGREVISION=	2
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=gmic/}
+MASTER_SITES=	https://gmic.eu/files/source/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://sourceforge.net/projects/gmic/
+HOMEPAGE=	https://gmic.eu/
 COMMENT=	Full-featured image processing framework
 LICENSE=	gnu-gpl-v2
 
 WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
 BUILD_DIRS=	src
-USE_LANGUAGES=	c++
-USE_TOOLS+=	gmake gunzip pkg-config
-CFLAGS+=	-I${BUILDLINK_PREFIX.openexr}/include/OpenEXR
-MAKE_ENV+=	BUILDLINK_PREFIX.fftw3=${BUILDLINK_PREFIX.fftw3}
+USE_LANGUAGES=	c c++11
+USE_TOOLS+=	gmake pkg-config bash
+MAKE_FLAGS+=	USR=${PREFIX}
+MAKE_FLAGS+=	QMAKE=${QTDIR}/bin/qmake
+BUILD_TARGET=	cli gimp lib zart
 
-post-install:
-	cd ${DESTDIR}${PREFIX}/${PKGMANDIR}/fr/man1 && gunzip gmic.1.gz
-	cd ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1 && gunzip gmic.1.gz
+MANCOMPRESSED=	yes
 
-.include "../../devel/atk/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
-.include "../../devel/pango/buildlink3.mk"
-.include "../../fonts/fontconfig/buildlink3.mk"
-.include "../../graphics/cairo/buildlink3.mk"
-.include "../../graphics/freetype2/buildlink3.mk"
-.include "../../graphics/gdk-pixbuf2/buildlink3.mk"
+.include "../../devel/zlib/buildlink3.mk"
+.include "../../graphics/opencv/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
 .include "../../graphics/openexr/buildlink3.mk"
 .include "../../graphics/gimp/buildlink3.mk"
 .include "../../math/fftw/buildlink3.mk"
+.include "../../www/curl/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
-.include "../../x11/libXfixes/buildlink3.mk"
-.include "../../x11/gtk2/buildlink3.mk"
+.include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.4 2019/12/06 20:23:18 markd Exp $
+# $NetBSD: Makefile,v 1.6 2020/05/10 04:32:06 markd Exp $
 
 DISTNAME=	skaknew
 PKGNAME=	tex-${DISTNAME}-2010
-PKGREVISION=	1
+PKGREVISION=	2
 TEXLIVE_REV=	20031
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/skaknew
+HOMEPAGE=	https://ctan.org/pkg/skaknew
 COMMENT=	LaTeX skak chess fonts redone in Adobe Type 1
 LICENSE=	lppl-1.3c
 

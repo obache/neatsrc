@@ -1,22 +1,32 @@
-$NetBSD: patch-CMakeLists.txt,v 1.1 2019/10/04 10:41:44 adam Exp $
+$NetBSD: patch-CMakeLists.txt,v 1.3 2020/04/08 08:07:17 adam Exp $
 
-Allow overrides on PKG_DOC_DIR and PKG_MAN_DIR.
+Allow overrides on PKG_MAN_DIR.
 https://github.com/EttusResearch/uhd/issues/301
 
---- CMakeLists.txt.orig	2019-10-03 18:21:01.000000000 +0000
+Do not use Numpy.
+
+--- CMakeLists.txt.orig	2020-01-01 04:21:49.000000000 +0000
 +++ CMakeLists.txt
-@@ -128,8 +128,12 @@ set(PKG_DATA_DIR share/uhd)
- if(NOT DEFINED PKG_LIB_DIR)
-     set(PKG_LIB_DIR ${LIBRARY_DIR}/uhd)
+@@ -124,8 +124,9 @@ endif()
+ if(NOT DEFINED PKG_DOC_DIR)
+     set(PKG_DOC_DIR share/doc/uhd)
  endif()
--set(PKG_DOC_DIR share/doc/uhd)
--set(PKG_MAN_DIR share/man/man1)
-+if(NOT DEFINED PKG_DOC_DIR)
-+    set(PKG_DOC_DIR share/doc/uhd)
-+endif()
 +if(NOT DEFINED PKG_MAN_DIR)
-+    set(PKG_MAN_DIR share/man/man1)
+ set(PKG_MAN_DIR share/man/man1)
+-
 +endif()
- 
  ########################################################################
  # UHD config files
+ ########################################################################
+@@ -329,11 +330,6 @@ PYTHON_CHECK_MODULE(
+     HAVE_PYTHON_MODULE_REQUESTS
+ )
+ 
+-PYTHON_CHECK_MODULE(
+-    "numpy ${NUMPY_MIN_VERSION} or greater"
+-    "numpy" "LooseVersion(numpy.__version__) >= LooseVersion('${NUMPY_MIN_VERSION}')"
+-    HAVE_PYTHON_MODULE_NUMPY
+-)
+ 
+ ########################################################################
+ # Create Uninstall Target

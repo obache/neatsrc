@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.23 2019/08/11 13:22:30 wiz Exp $
+# $NetBSD: Makefile,v 1.25 2020/08/31 18:10:53 wiz Exp $
 
 VERSION=	4.0.4.28
 DISTNAME=	tacacs-F${VERSION}
 PKGNAME=	tacacs-${VERSION}
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	net security
 MASTER_SITES+=	ftp://ftp.shrubbery.net/pub/tac_plus/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.shrubbery.net/tac_plus/
+HOMEPAGE=	https://www.shrubbery.net/tac_plus/
 COMMENT=	Cisco authentication, authorization, and accounting protocol daemon
 LICENSE=	cisco-license
 

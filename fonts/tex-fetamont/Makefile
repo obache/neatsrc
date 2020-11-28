@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.5 2019/12/06 19:29:58 markd Exp $
+# $NetBSD: Makefile,v 1.7 2020/05/10 04:31:44 markd Exp $
 
 DISTNAME=	fetamont
 PKGNAME=	tex-${DISTNAME}-20170415
+PKGREVISION=	1
 TEXLIVE_REV=	43812
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/fetamont
+HOMEPAGE=	https://ctan.org/pkg/fetamont
 COMMENT=	Extended version of Knuth's logo typeface
 LICENSE=	lppl-1.3c
 

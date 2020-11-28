@@ -1,42 +1,49 @@
-# $NetBSD: Makefile,v 1.199 2019/12/12 12:00:22 jperkin Exp $
+# $NetBSD: Makefile,v 1.218 2020/09/08 13:25:14 ryoon Exp $
 
-DISTNAME=	inkscape-0.92.4
-PKGREVISION=	9
+DISTNAME=	inkscape-1.0.1
 CATEGORIES=	graphics
 MASTER_SITES=	https://media.inkscape.org/dl/resources/file/
-EXTRACT_SUFX=	.tar.bz2
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	reed@reedmedia.net
-HOMEPAGE=	http://www.inkscape.org/
+HOMEPAGE=	https://www.inkscape.org/
 COMMENT=	Scalable Vector Graphics (SVG) editor
 LICENSE=	gnu-gpl-v2
+
+WRKSRC=		${WRKDIR}/inkscape-1.0.1_2020-09-07_3bc2e813f5
 
 .if !exists(/usr/bin/iconv)
 BUILD_DEPENDS+=	libiconv-[0-9]*:../../converters/libiconv
 .endif
+DEPENDS+=	adwaita-icon-theme>0:../../graphics/adwaita-icon-theme
 DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 # for inkex.py, needed by most python extension scripts
 DEPENDS+=	${PYPKGPREFIX}-lxml-[0-9]*:../../textproc/py-lxml
+# for desktop
+TOOL_DEPENDS+=	gettext-tools-[0-9]*:../../devel/gettext-tools
+TOOLS_PLATFORM.msgfmt= # empty
 
 EXTRACT_USING=		bsdtar
 GCC_REQD+=		4.5.2
+
+# This should be resolved in CMakeLists.txt.
+LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib/inkscape
 
 USE_CMAKE=		yes
 USE_LANGUAGES=		c c++11
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
-USE_TOOLS+=		intltool msgfmt msgmerge perl:run pkg-config
+USE_TOOLS+=		intltool msgfmt msgmerge perl pkg-config
 
-REPLACE_PERL+=		fix-roff-punct
+REPLACE_PERL+=		man/fix-roff-punct
 REPLACE_PERL+=		share/extensions/*.p[lm]
 REPLACE_PERL+=		share/templates/create_defaults.pl
-
-BUILDLINK_API_DEPENDS.boehm-gc+=	boehm-gc>=6.4
-BUILDLINK_API_DEPENDS.poppler+=		poppler>=0.5.9
 
 UNLIMIT_RESOURCES=	datasize
 
 LDFLAGS.DragonFly=	-lX11
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 SUBST_CLASSES+=		pypath
 SUBST_STAGE.pypath=	pre-configure
@@ -46,25 +53,10 @@ SUBST_VARS.pypath=	PYTHONBIN
 SUBST_CLASSES+=		pycmd
 SUBST_STAGE.pycmd=	pre-configure
 SUBST_MESSAGE.pycmd=	Replacing COMMAND python in CMakeFiles.
-SUBST_FILES.pycmd+=	share/filters/CMakeLists.txt
-SUBST_FILES.pycmd+=	share/palettes/CMakeLists.txt
-SUBST_FILES.pycmd+=	share/patterns/CMakeLists.txt
-SUBST_FILES.pycmd+=	share/symbols/CMakeLists.txt
-SUBST_FILES.pycmd+=	share/templates/CMakeLists.txt
-SUBST_SED.pycmd=	-e "s,COMMAND python,COMMAND ${PYTHONBIN},g"
+SUBST_FILES.pycmd+=	share/*/CMakeLists.txt
+SUBST_SED.pycmd=	-e "s,COMMAND python3,COMMAND ${PYTHONBIN},g"
 
-SUBST_CLASSES+=		bool
-SUBST_STAGE.bool=	pre-configure
-SUBST_FILES.bool+=	src/extension/internal/pdfinput/pdf-parser.*
-SUBST_SED.bool=		-e 's|gTrue|true|g'
-SUBST_SED.bool+=	-e 's|gFalse|false|g'
-SUBST_SED.bool+=	-e 's|GBool|bool|g'
-
-REPLACE_PYTHON+=	cxxtest/cxxtestgen.py
 REPLACE_PYTHON+=	share/extensions/*.py
-REPLACE_PYTHON+=	share/extensions/Barcode/*.py
-REPLACE_PYTHON+=	share/extensions/ink2canvas/*.py
-REPLACE_PYTHON+=	share/extensions/test/*.test.py
 
 CHECK_INTERPRETER_SKIP+=	share/inkscape/extensions/genpofiles.sh
 CHECK_INTERPRETER_SKIP+=	share/inkscape/extensions/simplepath.rb
@@ -73,6 +65,8 @@ CHECK_PORTABILITY_SKIP+=	packaging/macosx/ScriptExec/launcher-quartz-no-macinteg
 
 CMAKE_ARGS+=	-DPACKAGE_LOCALE_DIR=${PREFIX}/${PKGLOCALEDIR}/locale
 
+MANCOMPRESSED=	yes
+
 .include "options.mk"
 
 .include "../../mk/bsd.prefs.mk"
@@ -80,27 +74,41 @@ CMAKE_ARGS+=	-DPACKAGE_LOCALE_DIR=${PREFIX}/${PKGLOCALEDIR}/locale
 CMAKE_ARGS+=	-DIntl_INCLUDE_DIR=${BUILDLINK_PREFIX.gettext}/include
 .endif
 
-BUILDLINK_API_DEPENDS.poppler-includes+= poppler-includes>=0.12.2
+# There exists some race condition in create_default_templates.py that
+# makes default.es_MX.svg sometimes not get installed.
+# (gettext translation file dependency not correctly expressed in cmake?)
+# Run the script post-build to ensure all files are generated.
+post-build:
+	cd ${WRKSRC} && ${PYTHONBIN} ./share/templates/create_default_templates.py . .
+
 BUILDLINK_API_DEPENDS.boehm-gc+=	boehm-gc>=7.4
 .include "../../converters/libcdr/buildlink3.mk"
+.include "../../converters/librevenge/buildlink3.mk"
 .include "../../converters/libvisio/buildlink3.mk"
+.include "../../converters/libwpg/buildlink3.mk"
 .include "../../devel/boehm-gc/buildlink3.mk"
 .include "../../devel/boost-headers/buildlink3.mk"
+.include "../../devel/gdl/buildlink3.mk"
+.include "../../devel/googletest/buildlink3.mk"
+.include "../../devel/libsigc++/buildlink3.mk"
 .include "../../devel/pango/buildlink3.mk"
-.include "../../devel/popt/buildlink3.mk"
+.include "../../mk/jpeg.buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/lcms2/buildlink3.mk"
-.include "../../graphics/libart/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/potrace/buildlink3.mk"
-.include "../../lang/python/application.mk"
 .include "../../math/gsl/buildlink3.mk"
+.include "../../math/double-conversion/buildlink3.mk"
+.include "../../net/libsoup/buildlink3.mk"
 .include "../../print/poppler-glib/buildlink3.mk"
 .include "../../print/poppler-includes/buildlink3.mk"
-.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../textproc/aspell/buildlink3.mk"
-.include "../../textproc/gtkspell/buildlink3.mk"
+.include "../../textproc/gtkspell3/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../textproc/libxslt/buildlink3.mk"
-.include "../../x11/gtkmm/buildlink3.mk"
+.include "../../x11/gtkmm3/buildlink3.mk"
+.include "../../x11/libXext/buildlink3.mk"
+
+.include "../../sysutils/desktop-file-utils/desktopdb.mk"
+.include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"

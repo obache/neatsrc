@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.5 2019/08/22 12:22:51 ryoon Exp $
+# $NetBSD: Makefile,v 1.10 2020/08/31 18:06:38 wiz Exp $
 
 DISTNAME=	canu-1.8
-PKGREVISION=	3
+PKGREVISION=	7
 CATEGORIES=	biology java
 MASTER_SITES=	${MASTER_SITE_GITHUB:=marbl/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -22,29 +22,19 @@ SUBST_SED.optimize+=	-e 's|-O4||g'
 SUBST_SED.optimize+=	-e 's|-funroll-loops||g'
 SUBST_SED.optimize+=	-e 's|-fexpensive-optimizations||g'
 SUBST_SED.optimize+=	-e 's|-finline-functions||g'
-SUBST_FILES.optimize+=	${WRKSRC}/Makefile
+SUBST_FILES.optimize+=	Makefile
 
 SUBST_CLASSES+=		jar
 SUBST_STAGE.jar=	pre-configure
-SUBST_SED.jar+=		-e 's|\\$$bin/mhap-|${PREFIX}/${JAVAJARDIR}/mhap-|g'
-SUBST_FILES.jar+=	${WRKSRC}/pipelines/canu/OverlapMhap.pm
+SUBST_SED.jar+=		-e 's|\\$$bin/\.\./share/java/classes/mhap-|${PREFIX}/${JAVAJARDIR}/mhap-|g'
+SUBST_FILES.jar+=	pipelines/canu/OverlapMhap.pm
 
 SUBST_CLASSES+=		perl
 SUBST_STAGE.perl=	pre-configure
 SUBST_SED.perl+=	-e 's|$$FindBin::RealBin/../lib/site_perl|${PREFIX}/${SITE_PERL_REL}|g'
-SUBST_FILES.perl+=	${WRKSRC}/pipelines/canu.pl
+SUBST_FILES.perl+=	pipelines/canu.pl
 
-REPLACE_PERL+=	bogart/*.pl
-REPLACE_PERL+=	pipelines/*.pl
-REPLACE_PERL+=	bogus/*.pl
-REPLACE_PERL+=	bogart-analysis/*.pl
-REPLACE_PERL+=	overlapBasedTrimming/*.pl
-REPLACE_PERL+=	overlapInCore-analysis/*.pl
-REPLACE_PERL+=	merTrim/*.pl
-REPLACE_PERL+=	erateEstimate/*.pl
-REPLACE_PERL+=	meryl/.pl
-REPLACE_PERL+=	fastq-utilities/*.pl
-REPLACE_PERL+=	*.pl
+REPLACE_PERL+=		*.pl */*.pl
 
 # May work on other 64-bit processors, but untested
 ONLY_FOR_PLATFORM=	*-*-x86_64
@@ -64,7 +54,7 @@ JAVAJARDIR=		share/java/classes
 INSTALLATION_DIRS=	bin ${JAVAJARDIR}
 
 post-extract:
-	${CHMOD} -R g-w ${WRKDIR}
+	${CHMOD} -R g-w ${WRKDIR}/${DISTNAME}
 
 post-build:
 	${MKDIR} ${TMP_INST}/lib/perl5

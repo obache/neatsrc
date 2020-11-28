@@ -1,9 +1,11 @@
-@comment $NetBSD: PLIST,v 1.2 2017/10/17 18:30:02 adam Exp $
-bin/jupyter-trust${PYVERSSUFFIX}
+@comment $NetBSD: PLIST,v 1.4 2020/10/15 13:49:22 adam Exp $
 ${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/nbformat/__init__.py
 ${PYSITELIB}/nbformat/__init__.pyc
 ${PYSITELIB}/nbformat/__init__.pyo
+${PYSITELIB}/nbformat/_compat.py
+${PYSITELIB}/nbformat/_compat.pyc
+${PYSITELIB}/nbformat/_compat.pyo
 ${PYSITELIB}/nbformat/_version.py
 ${PYSITELIB}/nbformat/_version.pyc
 ${PYSITELIB}/nbformat/_version.pyo
@@ -13,6 +15,9 @@ ${PYSITELIB}/nbformat/converter.pyo
 ${PYSITELIB}/nbformat/current.py
 ${PYSITELIB}/nbformat/current.pyc
 ${PYSITELIB}/nbformat/current.pyo
+${PYSITELIB}/nbformat/json_compat.py
+${PYSITELIB}/nbformat/json_compat.pyc
+${PYSITELIB}/nbformat/json_compat.pyo
 ${PYSITELIB}/nbformat/notebooknode.py
 ${PYSITELIB}/nbformat/notebooknode.pyc
 ${PYSITELIB}/nbformat/notebooknode.pyo
@@ -32,12 +37,14 @@ ${PYSITELIB}/nbformat/tests/base.py
 ${PYSITELIB}/nbformat/tests/base.pyc
 ${PYSITELIB}/nbformat/tests/base.pyo
 ${PYSITELIB}/nbformat/tests/invalid.ipynb
+${PYSITELIB}/nbformat/tests/many_tracebacks.ipynb
 ${PYSITELIB}/nbformat/tests/test2.ipynb
 ${PYSITELIB}/nbformat/tests/test3.ipynb
 ${PYSITELIB}/nbformat/tests/test4.ipynb
 ${PYSITELIB}/nbformat/tests/test4custom.ipynb
 ${PYSITELIB}/nbformat/tests/test4docinfo.ipynb
 ${PYSITELIB}/nbformat/tests/test4jupyter_metadata.ipynb
+${PYSITELIB}/nbformat/tests/test4jupyter_metadata_timings.ipynb
 ${PYSITELIB}/nbformat/tests/test4plus.ipynb
 ${PYSITELIB}/nbformat/tests/test_api.py
 ${PYSITELIB}/nbformat/tests/test_api.pyc
@@ -45,6 +52,9 @@ ${PYSITELIB}/nbformat/tests/test_api.pyo
 ${PYSITELIB}/nbformat/tests/test_convert.py
 ${PYSITELIB}/nbformat/tests/test_convert.pyc
 ${PYSITELIB}/nbformat/tests/test_convert.pyo
+${PYSITELIB}/nbformat/tests/test_nbformat.py
+${PYSITELIB}/nbformat/tests/test_nbformat.pyc
+${PYSITELIB}/nbformat/tests/test_nbformat.pyo
 ${PYSITELIB}/nbformat/tests/test_reader.py
 ${PYSITELIB}/nbformat/tests/test_reader.pyc
 ${PYSITELIB}/nbformat/tests/test_reader.pyo
@@ -166,6 +176,11 @@ ${PYSITELIB}/nbformat/v4/convert.pyo
 ${PYSITELIB}/nbformat/v4/nbbase.py
 ${PYSITELIB}/nbformat/v4/nbbase.pyc
 ${PYSITELIB}/nbformat/v4/nbbase.pyo
+${PYSITELIB}/nbformat/v4/nbformat.v4.0.schema.json
+${PYSITELIB}/nbformat/v4/nbformat.v4.1.schema.json
+${PYSITELIB}/nbformat/v4/nbformat.v4.2.schema.json
+${PYSITELIB}/nbformat/v4/nbformat.v4.3.schema.json
+${PYSITELIB}/nbformat/v4/nbformat.v4.4.schema.json
 ${PYSITELIB}/nbformat/v4/nbformat.v4.schema.json
 ${PYSITELIB}/nbformat/v4/nbjson.py
 ${PYSITELIB}/nbformat/v4/nbjson.pyc

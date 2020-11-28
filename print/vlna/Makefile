@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.6 2019/05/09 09:47:36 adam Exp $
+# $NetBSD: Makefile,v 1.8 2020/05/10 03:56:39 markd Exp $
 
 .include "../../print/texlive/Makefile.common"
 
 PKGNAME=	vlna-1.5
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	print
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Adds tilde after each non-syllabic preposition
 
 EXTRACT_ELEMENTS+=	${DISTNAME}/utils/vlna

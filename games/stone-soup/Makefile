@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.5 2019/10/28 12:24:06 nia Exp $
+# $NetBSD: Makefile,v 1.8 2020/08/31 18:09:34 wiz Exp $
 
+PKGREVISION= 3
 .include "Makefile.common"
 
 MAINTAINER=	nia@NetBSD.org

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.82 2019/09/18 14:17:04 ryoon Exp $
+# $NetBSD: Makefile,v 1.87 2020/08/18 17:57:34 leot Exp $
 
 DISTNAME=		cmus-2.8.0
-PKGREVISION=		1
+PKGREVISION=		6
 CATEGORIES=		audio
 MASTER_SITES=		${MASTER_SITE_GITHUB:=cmus/}
 GITHUB_TAG=		v${PKGVERSION_NOREV}
@@ -29,14 +29,13 @@ CONFIGURE_ARGS+=	mandir=${PREFIX}/${PKGMANDIR}
 PLIST_VARS+=		coreaudio sunaudio oss
 
 .include "../../mk/oss.buildlink3.mk"
-.if ${OSS_TYPE} != "none"
+.if ${OPSYS} != "NetBSD" && ${OSS_TYPE} != "none"
 PLIST.oss=	yes
 CONFIGURE_ARGS+=	CONFIG_OSS=y
 .else
 CONFIGURE_ARGS+=	CONFIG_OSS=n
 .endif
 
-.include "../../mk/bsd.prefs.mk"
 .if ${OPSYS} == "SunOS" || exists(/usr/include/sys/audioio.h)
 CONFIGURE_ARGS+=	CONFIG_SUN=y
 PLIST.sunaudio=		yes

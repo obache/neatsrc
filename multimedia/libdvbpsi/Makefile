@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.25 2018/03/02 14:27:00 adam Exp $
+# $NetBSD: Makefile,v 1.27 2020/03/24 14:56:46 nia Exp $
 
-DISTNAME=	libdvbpsi-1.3.2
+DISTNAME=	libdvbpsi-1.3.3
 CATEGORIES=	multimedia
-MASTER_SITES=	http://www.videolan.org/pub/libdvbpsi/${PKGVERSION_NOREV}/
+MASTER_SITES=	https://www.videolan.org/pub/libdvbpsi/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.videolan.org/
+HOMEPAGE=	https://www.videolan.org/
 COMMENT=	PSI decoder and generator library for MPEG2 and DVB streams
 LICENSE=	gnu-lgpl-v2.1
 

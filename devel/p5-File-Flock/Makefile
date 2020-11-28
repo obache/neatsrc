@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.7 2019/11/03 10:15:53 rillig Exp $
+# $NetBSD: Makefile,v 1.10 2020/09/08 13:16:36 wiz Exp $
 
 DISTNAME=	File-Flock-2014.01
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	devel perl5
-MASTER_SITES=	https://cpan.metacpan.org/authors/id/M/MU/MUIR/modules/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/M/MU/MUIR/modules/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://cpan.metacpan.org/authors/id/M/MU/MUIR/modules/
+HOMEPAGE=	https://metacpan.org/pod/File::Flock
 COMMENT=	File::Flock - file locking with flock
 LICENSE=	${PERL5_LICENSE}
 

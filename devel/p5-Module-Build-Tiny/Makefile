@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.17 2019/11/03 10:15:56 rillig Exp $
-#
+# $NetBSD: Makefile,v 1.19 2020/09/04 13:37:50 wiz Exp $
 
 DISTNAME=	Module-Build-Tiny-0.039
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/L/LE/LEONT/}
 
@@ -15,8 +14,6 @@ LICENSE=	${PERL5_LICENSE}
 DEPENDS+=	p5-ExtUtils-Config>=0.003:../../devel/p5-ExtUtils-Config
 DEPENDS+=	p5-ExtUtils-Helpers>=0.020:../../devel/p5-ExtUtils-Helpers
 DEPENDS+=	p5-ExtUtils-InstallPaths>=0.002:../../devel/p5-ExtUtils-InstallPaths
-
-BUILD_DEPENDS+=	p5-Test-Harness>=3.30:../../devel/p5-Test-Harness
 
 USE_LANGUAGES=		c       # For the tests
 #BUILDING_MODULE_BUILD=	yes

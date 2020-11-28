@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.69 2019/11/04 21:28:48 rillig Exp $
+# $NetBSD: Makefile,v 1.77 2020/08/31 18:11:28 wiz Exp $
 
 DISTNAME=		libvirt-1.2.9
-PKGREVISION=		32
+PKGREVISION=		38
 CATEGORIES=		sysutils
 MASTER_SITES=		http://libvirt.org/sources/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://libvirt.org/
+HOMEPAGE=		https://libvirt.org/
 COMMENT=		Virtualisation toolkit for host operating systems
 LICENSE=		gnu-lgpl-v2
 
@@ -18,6 +18,13 @@ USE_TOOLS+=		gmake pkg-config perl
 USE_LIBTOOL=		yes
 
 BUILD_DEFS+=		VARBASE
+
+CHECK_PORTABILITY_SKIP+=	docs/news.html.in
+
+REPLACE_PYTHON+=	docs/apibuild.py
+REPLACE_PYTHON+=	src/esx/esx_vi_generator.py
+REPLACE_PYTHON+=	src/hyperv/hyperv_wmi_generator.py
+REPLACE_PYTHON+=	src/util/virkeycode-mapgen.py
 
 EGDIR=			${PREFIX}/share/examples
 CONF_FILES+=		${EGDIR}/libvirt/libvirtd.conf ${PKG_SYSCONFDIR}/libvirt/libvirtd.conf
@@ -33,6 +40,8 @@ AUTO_MKDIRS=		yes
 RCD_SCRIPTS=		libvirtd
 
 .include "options.mk"
+
+.include "../../lang/python/application.mk"
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"

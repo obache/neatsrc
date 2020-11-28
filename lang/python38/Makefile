@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.3 2020/01/06 22:54:51 leot Exp $
+# $NetBSD: Makefile,v 1.13 2020/08/14 19:28:44 schmonz Exp $
 
 .include "dist.mk"
 
 PKGNAME=	python38-${PY_DISTVERSION}
-PKGREVISION=	1
 CATEGORIES=	lang python
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -22,6 +21,7 @@ PRINT_PLIST_AWK+=	/^[^@]/ && /[^\/]+\.opt-1.pyc$$/ {
 PRINT_PLIST_AWK+=	sub(/.opt-[12].pyc$$/, ".pyo")}
 
 USE_LANGUAGES=		c c++
+USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
@@ -29,7 +29,7 @@ CONFIGURE_ARGS+=	--with-system-ffi
 CONFIGURE_ARGS+=	--without-ensurepip
 CONFIGURE_ENV+=		OPT=${CFLAGS:M*:Q}
 CONFIGURE_ENV+=		ac_cv_path_mkdir=${TOOLS_PATH.mkdir}
-PKGCONFIG_OVERRIDE+=	Misc/python.pc.in
+PKGCONFIG_OVERRIDE+=	Misc/python.pc.in Misc/python-embed.pc.in
 
 PTHREAD_OPTS+=	require
 .include "../../mk/pthread.buildlink3.mk"
@@ -156,6 +156,12 @@ SUBST_FILES.findlib+=	Lib/ctypes/util.py
 SUBST_FILES.findlib+=	Lib/distutils/unixccompiler.py
 SUBST_SED.findlib=	-e 's,/usr/local,${PREFIX},'
 SUBST_SED.findlib+=	-e "s!\('-Wl,-t'\)!'${COMPILER_RPATH_FLAG}${PREFIX}/lib', '-L${PREFIX}/lib', \1!"
+SUBST_NOOP_OK.findlib=	yes
+
+SUBST_CLASSES+=		pkgversion
+SUBST_STAGE.pkgversion=	pre-configure
+SUBST_FILES.pkgversion=	Lib/lib2to3/pgen2/driver.py
+SUBST_VARS.pkgversion=	PKGVERSION_NOREV
 
 .include "options.mk"
 
@@ -163,6 +169,11 @@ CHECK_INTERPRETER_SKIP=		lib/python${PY_VER_SUFFIX}/venv/scripts/posix/pydoc
 CHECK_INTERPRETER_SKIP+=	lib/python${PY_VER_SUFFIX}/test/ziptestdata/exe_with_z64
 CHECK_INTERPRETER_SKIP+=	lib/python${PY_VER_SUFFIX}/test/ziptestdata/exe_with_zip
 CHECK_INTERPRETER_SKIP+=	lib/python${PY_VER_SUFFIX}/test/ziptestdata/header.sh
+
+# contain CONFIGURE_ARGS and CONFIGURE_ENV
+CHECK_WRKREF_SKIP+=	lib/python${PY_VER_SUFFIX}/_sysconfigdata*
+CHECK_WRKREF_SKIP+=	lib/python${PY_VER_SUFFIX}/__pycache__/_sysconfigdata*
+CHECK_WRKREF_SKIP+=	lib/python${PY_VER_SUFFIX}/config-${PY_VER_SUFFIX}/Makefile
 
 # Avoid error: Cannot generate ./Include/opcode.h, python not found !
 post-configure:
@@ -174,6 +185,7 @@ post-install:
 		${DESTDIR}${PREFIX}/lib/libpython3.8.sl.1.0
 .endif
 
+# needed to make devel/py-readline pick up the correct readline implementation
 BUILDLINK_DEPMETHOD.readline=		build
 
 .include "../../archivers/bzip2/buildlink3.mk"
@@ -183,7 +195,6 @@ BUILDLINK_DEPMETHOD.readline=		build
 .include "../../devel/libuuid/buildlink3.mk"
 .include "../../devel/readline/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-BUILDLINK_API_DEPENDS.openssl+=	openssl>=1.0.2
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bdb.buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"

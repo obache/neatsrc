@@ -1,8 +1,8 @@
-$NetBSD: distinfo,v 1.9 2019/11/11 08:47:46 markd Exp $
+$NetBSD: distinfo,v 1.11 2020/06/07 11:44:25 markd Exp $
 
-SHA1 (kauth-5.64.0.tar.xz) = 295f2586e7aeb227b15300339870c21677cb2b10
-RMD160 (kauth-5.64.0.tar.xz) = ae1f0753289ec3483a2fc69b8daf74f030665830
-SHA512 (kauth-5.64.0.tar.xz) = 0dfa8e62930ad7ae3b1c816428a09dc6950479e3579bc143fb7de22d55554c06f6e2501bd5bab48ca08d202097d35993f35c6877f013ad2d1f00b291b7e7e6a5
-Size (kauth-5.64.0.tar.xz) = 86028 bytes
+SHA1 (kauth-5.70.0.tar.xz) = 8897e058a31ea75ec382660a28c8f739dc6a101c
+RMD160 (kauth-5.70.0.tar.xz) = c949f812e62a1412781256cca9887c4c8f793e59
+SHA512 (kauth-5.70.0.tar.xz) = 736c372732bff566f0f7beaa953e8b8ddb930b08cb4269e38174523fbfe6b77041dc3141980f109ec15d176a5d367dd05dd58e1fcca234f7eee828a456fde906
+Size (kauth-5.70.0.tar.xz) = 86396 bytes
 SHA1 (patch-cmake_KF5AuthMacros.cmake) = b0f819f534a68d35471aa8453ec77d62946620c7
 SHA1 (patch-src_ConfigureChecks.cmake) = c5fae97f54693891fcee450193f2e9358a8b986d

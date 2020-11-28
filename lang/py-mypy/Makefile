@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.14 2020/01/03 11:53:09 adam Exp $
+# $NetBSD: Makefile,v 1.18 2020/07/01 16:05:25 adam Exp $
 
-DISTNAME=	mypy-0.761
+DISTNAME=	mypy-0.782
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	lang python
 MASTER_SITES=	${MASTER_SITE_PYPI:=m/mypy/}
@@ -10,7 +10,7 @@ HOMEPAGE=	http://www.mypy-lang.org/
 COMMENT=	Optional static typing for Python
 LICENSE=	mit
 
-DEPENDS+=	${PYPKGPREFIX}-mypy_extensions>=0.4.0:../../lang/py-mypy_extensions
+DEPENDS+=	${PYPKGPREFIX}-mypy_extensions>=0.4.3:../../lang/py-mypy_extensions
 DEPENDS+=	${PYPKGPREFIX}-typed-ast>=1.4.0:../../devel/py-typed-ast
 DEPENDS+=	${PYPKGPREFIX}-typing-extensions>=3.7.4:../../devel/py-typing-extensions
 
@@ -21,10 +21,10 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 REPLACE_PYTHON=	mypy/typeshed/tests/*.py
 
 post-install:
+.for bin in dmypy mypy mypyc stubgen stubtest
 	cd ${DESTDIR}${PREFIX}/bin && \
-	${MV} dmypy dmypy-${PYVERSSUFFIX} && \
-	${MV} mypy mypy-${PYVERSSUFFIX} && \
-	${MV} stubgen stubgen-${PYVERSSUFFIX} || ${TRUE}
+	${MV} ${bin} ${bin}-${PYVERSSUFFIX} || ${TRUE}
+.endfor
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"

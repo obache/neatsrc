@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.52 2019/11/03 17:04:27 rillig Exp $
+# $NetBSD: Makefile,v 1.62 2020/08/30 08:06:57 tnn Exp $
 #
 
 DISTNAME=	zyGrib-8.0.1
+PKGREVISION=	8
 CATEGORIES=	misc
 MASTER_SITES=	https://www.zygrib.org/getfile.php?file=
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	plunky@NetBSD.org
-HOMEPAGE=	http://www.zygrib.org/
+HOMEPAGE=	https://www.zygrib.org/
 COMMENT=	GRIB file viewer for weather data
 LICENSE=	gnu-gpl-v3
 
@@ -149,6 +150,10 @@ INSTALL_FILES+=		tr/zyGrib_pt.qm
 INSTALL_FILES+=		tr/zyGrib_pt.ts
 INSTALL_FILES+=		tr/zyGrib_ru.qm
 INSTALL_FILES+=		tr/zyGrib_ru.ts
+
+.include "../../mk/bsd.prefs.mk"
+
+CXXFLAGS+=	-DACCEPT_USE_OF_DEPRECATED_PROJ_API_H
 
 do-configure:
 	cd ${WRKSRC} && ${QTDIR}/bin/qmake "QMAKE_RPATHDIR+=${QWT_DIR}/lib" "QMAKE_LIBDIR+=${QWT_DIR}/lib"

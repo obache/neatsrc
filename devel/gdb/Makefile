@@ -1,24 +1,25 @@
-# $NetBSD: Makefile,v 1.64 2019/11/03 10:39:11 rillig Exp $
+# $NetBSD: Makefile,v 1.75 2020/10/26 04:26:11 mcf Exp $
 
-DISTNAME=	gdb-8.1
-PKGREVISION=	4
+DISTNAME=	gdb-10.1
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU:=gdb/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/gdb/gdb.html
+HOMEPAGE=	https://www.gnu.org/software/gdb/gdb.html
 COMMENT=	Symbolic debugger for multiple language frontends
 LICENSE=	gnu-gpl-v3
 
-USE_LANGUAGES=		c c++11
+USE_LANGUAGES=		c gnu++11
 
 BROKEN_GETTEXT_DETECTION=	yes
-GNU_CONFIGURE=			YES
-USE_PKGLOCALEDIR=		YES
-USE_LIBTOOL=			YES
-USE_TOOLS+=			gmake msgfmt makeinfo perl:build
+GNU_CONFIGURE=			yes
+GNU_CONFIGURE_STRICT=		no # has sub-configures
+USE_PKGLOCALEDIR=		yes
+USE_LIBTOOL=			yes
+USE_TOOLS+=			gmake msgfmt makeinfo perl:build bash:run
 REPLACE_LOCALEDIR_PATTERNS+=	Make-in
-INSTALL_TARGET=			install install-info
+INSTALL_TARGET=			install-gdb install-gdbsupport
 TEST_TARGET=			check
 INFO_FILES=			yes
 CONFIGURE_ENV+=			CONFIG_LDFLAGS=${LDFLAGS:M*:Q}
@@ -27,7 +28,9 @@ CONFIGURE_ENV+=			CONFIG_LDFLAGS=${LDFLAGS:M*:Q}
 SUBST_CLASSES+=			fix-depcomp
 SUBST_STAGE.fix-depcomp+=	pre-configure
 SUBST_MESSAGE.fix-depcomp+=	Read depcomp directly
-SUBST_FILES.fix-depcomp+=	gdb/configure
+SUBST_FILES.fix-depcomp+=	gdb/configure gdbserver/configure
+SUBST_FILES.fix-depcomp+=	gdbsupport/configure
+SUBST_FILES.fix-depcomp+=	gnulib/configure libctf/configure
 SUBST_SED.fix-depcomp+=		-e 's,< ./depcomp,${_OVERRIDE_PATH.depcomp},'
 
 CONFIGURE_ARGS+=	--disable-binutils
@@ -38,11 +41,12 @@ CONFIGURE_ARGS+=	--disable-ld
 
 CONFIGURE_ARGS+=	--enable-targets=all
 
-AUTO_MKDIRS=		yes
-
 .include "options.mk"
 
 .include "../../mk/bsd.prefs.mk"
+
+REPLACE_BASH+=		gdb/gcore.in
+REPLACE_BASH+=		sim/testsuite/sim/bfin/run-tests.sh
 
 PLIST_VARS+=	gcore
 .if (${OPSYS} == "SunOS" || ${OPSYS} == "NetBSD" \
@@ -50,49 +54,27 @@ PLIST_VARS+=	gcore
 PLIST.gcore=	yes
 .endif
 
+PLIST_VARS+=	gdbserver
+.if ${OPSYS} == "Linux" || \
+	(${OPSYS} == "NetBSD" && ${MACHINE_ARCH} == "x86_64")
+INSTALL_TARGET+=	install-gdbserver
+PLIST.gdbserver=	yes
+.endif
+
 .if ${OPSYS} == "SunOS"
 # Work around a bug in gdb's configure
 CONFIGURE_ENV+=		ac_cv_header_curses_h=yes
 .elif ${OPSYS} == "NetBSD"
 .include "../../mk/curses.buildlink3.mk"
-CONFIGURE_ARGS+= -with-curses
-CONFIGURE_ENV+= gdb_cv_var_elf=yes
-MAKE_ENV+= gdb_cv_var_elf=yes
-CONFIGURE_ENV+= gdb_cv_struct_lwp=yes
-MAKE_ENV+= gdb_cv_struct_lwp=yes
-
+CONFIGURE_ARGS+=	--with-curses
 CONFIGURE_ARGS+=	--with-separate-debug-dir=/usr/libdata/debug
-.elif ${OPSYS} == "DragonFly"
-TARGET_STR=		${MACHINE_ARCH}--dragonfly
-BUILD_DEFS+=		${TARGET_STR}
-## Remove "-pc" string, without this, getting following message:
-##	   *** Gdb does not support native target i386-pc-dragonfly"
-CONFIGURE_ARGS+=	--target=${TARGET_STR}
-TEST_ENV=		DEJAGNU=${WRKDIR}/../files/dragonfly-default.exp
 .endif
 
-post-install:
-	${RM} -f ${DESTDIR}/${PREFIX}/lib/charset.alias
-.if ${OPSYS} == "DragonFly"
-# Following are installed by binutils
-#. for f in ansidecl.h bfdlink.h dis-asm.h symcat.h
-#	(cd ${WRKSRC}/include; ${INSTALL_DATA} ${f}  ${DESTDIR}${PREFIX}/include)
-#. endfor
-	(cd ${DESTDIR}${PREFIX}/bin;               ${LN} ${TARGET_STR}-gdb gdb)
-	(cd ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1; ${LN} ${TARGET_STR}-gdb.1 gdb.1)
-.endif
-#
-# PATH of libiberty.a differs between clang and gcc: (and conflicts to other toolchain)
-# Rename to avoid conflict to native and other toolchain
-# and clang differs its path so, (the same as avr-binutils).
+CONFIGURE_DIRS=		${WRKDIR}/build
+CONFIGURE_SCRIPT=	${WRKSRC}/configure
 
-	(cd ${DESTDIR}${PREFIX};				\
-	for d in ${MACHINE_ARCH}/libiberty.a libiberty.a;	\
-	  do if [ -f lib/$$d ]; then				\
-		${MV}	lib/$$d	 lib/gdb/libiberty.a;		\
-		break;						\
-	     fi;						\
-	  done;	)
+post-extract:
+	${MKDIR} ${WRKDIR}/build
 
 .include "../../mk/termcap.buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"

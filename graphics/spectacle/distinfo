@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.1 2019/11/17 03:49:36 markd Exp $
+$NetBSD: distinfo,v 1.3 2020/06/09 11:56:13 markd Exp $
 
-SHA1 (spectacle-19.08.3.tar.xz) = 58357722a29797e1b834a5078d31f052783519f3
-RMD160 (spectacle-19.08.3.tar.xz) = 254a656cc4a0f4b890c73c704f81197f27461fef
-SHA512 (spectacle-19.08.3.tar.xz) = 36a023b1c32c71ff60ba3613800abf16b877f8069937b7feca9d57faab9fdd8fb9db259bec33f96caded688b85e81ad89a6725fa9fb65369f97ad2133273668f
-Size (spectacle-19.08.3.tar.xz) = 966512 bytes
+SHA1 (spectacle-20.04.1.tar.xz) = 56ec88803f44f412b6f89dbbd5917c93d63d6d4d
+RMD160 (spectacle-20.04.1.tar.xz) = e25568f949452baa39432db2bab87e6aec55dec7
+SHA512 (spectacle-20.04.1.tar.xz) = 72e3dbb4aed66beffc0f969d5f4a3f09584be0326a37e4da7caf2272cf2bb6a7b09237edf80c42462e476cacb9a34014a1a68e02d430638eee80974720975a00
+Size (spectacle-20.04.1.tar.xz) = 661788 bytes

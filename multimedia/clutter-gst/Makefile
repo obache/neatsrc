@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.47 2019/07/21 22:24:08 wiz Exp $
+# $NetBSD: Makefile,v 1.50 2020/08/17 20:17:37 leot Exp $
 
 DISTNAME=	clutter-gst-3.0.26
-PKGREVISION=	3
+PKGREVISION=	6
 CATEGORIES=	multimedia gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/clutter-gst/3.0/}
 EXTRACT_SUFX=	.tar.xz

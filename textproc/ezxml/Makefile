@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2014/10/09 14:07:01 wiz Exp $
+# $NetBSD: Makefile,v 1.12 2020/03/20 11:58:26 nia Exp $
 
 DISTNAME=	ezxml-0.8.6
 CATEGORIES=	textproc devel

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.53 2019/11/04 22:09:51 rillig Exp $
+# $NetBSD: Makefile,v 1.60 2020/06/02 08:24:55 adam Exp $
 
 DISTNAME=	mod_auth_mellon-0.14.2
 PKGNAME=	${APACHE_PKG_PREFIX}-${DISTNAME:S/mod_//:S/_/-/g}
-PKGREVISION=	3
+PKGREVISION=	9
 #PKGREVISION=	1
 CATEGORIES=	www security
 MASTER_SITES=	${MASTER_SITE_GITHUB:=UNINETT/}
@@ -25,6 +25,7 @@ SUBST_CLASSES+=		pthflags
 SUBST_STAGE.pthflags=	post-configure
 SUBST_FILES.pthflags=	Makefile
 SUBST_SED.pthflags=	-e 's| -pthread | |g'
+SUBST_NOOP_OK.pthflags=	yes
 
 INSTALLATION_DIRS+=	lib/httpd
 

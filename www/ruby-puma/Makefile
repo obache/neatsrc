@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.18 2019/12/16 17:02:54 taca Exp $
+# $NetBSD: Makefile,v 1.25 2020/09/19 13:04:09 taca Exp $
 
-DISTNAME=	puma-4.3.1
+DISTNAME=	puma-5.0.0
 CATEGORIES=	www
 
 MAINTAINER=	taca@NetBSD.org
-HOMEPAGE=	http://puma.io/
+HOMEPAGE=	https://puma.io/
 COMMENT=	Modern concurrent web server for Ruby
 LICENSE=	mit
 

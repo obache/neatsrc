@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.125 2019/10/12 21:54:19 rillig Exp $
+# $NetBSD: Makefile,v 1.133 2020/08/17 20:19:53 leot Exp $
 
 DISTNAME=		advi-1.10.2
-PKGREVISION=		41
+PKGREVISION=		49
 CATEGORIES=		print
 MASTER_SITES=		http://gallium.inria.fr/advi/
 
@@ -19,7 +19,7 @@ DEPENDS+=		camlimages>=4.0.0:../../graphics/camlimages
 # tex-pstools, and tex-cyrillic-bin in TeX Live 2013."
 #DEPENDS+=		texlive-tetex>=2010:../../print/texlive-tetex
 DEPENDS+=		tex-fontinst>=1.933:../../fonts/tex-fontinst
-DEPENDS+=		tex-pstools>=1.68:../../graphics/tex-pstools
+DEPENDS+=		tex-texlive-scripts-extra-[0-9]*:../../print/tex-texlive-scripts-extra
 DEPENDS+=		tex-cyrillic-bin>=2013:../../print/tex-cyrillic-bin
 DEPENDS+=		hevea-[0-9]*:../../textproc/hevea
 BUILD_DEPENDS+=		vera-ttf-[0-9]*:../../fonts/vera-ttf

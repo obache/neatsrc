@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.5 2019/08/11 13:21:29 wiz Exp $
+# $NetBSD: Makefile,v 1.9 2020/10/19 08:18:46 schmonz Exp $
 
-DISTNAME=	mblaze-0.5.1
-PKGREVISION=	1
+DISTNAME=	mblaze-1.0
 CATEGORIES=	mail
-MASTER_SITES=	${MASTER_SITE_GITHUB:=chneukirchen/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=leahneukirchen/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	sunil@nimmagadda.net
-HOMEPAGE=	https://github.com/chneukirchen/mblaze/
+HOMEPAGE=	https://github.com/leahneukirchen/mblaze/
 COMMENT=	Set of Maildir utilities
 LICENSE=	public-domain
 

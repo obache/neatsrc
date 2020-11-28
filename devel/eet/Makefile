@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.29 2017/08/01 14:58:55 wiz Exp $
+# $NetBSD: Makefile,v 1.32 2020/05/01 00:03:10 joerg Exp $
 #
 
-DISTNAME=	eet-1.7.7
-PKGREVISION=	2
+DISTNAME=	eet-1.7.10
 CATEGORIES=	devel archivers
-MASTER_SITES=	http://download.enlightenment.org/releases/
+MASTER_SITES=	https://download.enlightenment.org/att/releases/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	joerg@NetBSD.org
@@ -19,6 +18,8 @@ USE_LIBTOOL=	YES
 PKGCONFIG_OVERRIDE=	eet.pc.in
 
 INSTALLATION_DIRS=	share/doc/eet
+
+CONFIGURE_ARGS+=	--enable-tests
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/COPYING ${WRKSRC}/AUTHORS \

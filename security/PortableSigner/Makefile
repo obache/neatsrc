@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2014/04/23 11:27:58 wiz Exp $
+# $NetBSD: Makefile,v 1.3 2020/03/20 11:58:15 nia Exp $
 
 DISTNAME=	PortableSigner-Generic-2.0.38c0573
 PKGNAME=	${DISTNAME:S/-Generic//}

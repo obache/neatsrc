@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.57 2019/08/22 12:23:28 ryoon Exp $
+# $NetBSD: Makefile,v 1.67 2020/05/25 05:58:40 rillig Exp $
 
-DISTNAME=	libetpan-1.9.1
-PKGREVISION=	4
+DISTNAME=	libetpan-1.9.4
+PKGREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_GITHUB:=dinhviethoa/}
 EXTRACT_USING=	bsdtar
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://etpan.org/libetpan.html
+HOMEPAGE=	https://etpan.org/libetpan.html
 COMMENT=	Really nice mail library
 LICENSE=	modified-bsd
 
@@ -17,23 +17,17 @@ USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 MAKE_JOBS_SAFE=		no
 USE_TOOLS+=		autoconf automake
+USE_TOOLS+=		pkg-config
 TEST_TARGET=		check
 
 pre-configure:
-	cd ${WRKSRC} && \
-	libtoolize --force --copy && \
-	aclocal -I m4 && \
-	autoheader && \
-	autoconf && \
-	automake --add-missing --foreign --force --copy
-
-SUBST_CLASSES+=		conf
-SUBST_STAGE.conf=	pre-configure
-SUBST_FILES.conf=	libetpan-config.in
-SUBST_SED.conf=		-e "s|@COMPILERFLAGS@|${COMPILER_RPATH_FLAG}|g"
-SUBST_MESSAGE.conf=	Fixing libetpan-config.
+	cd ${WRKSRC} && NOCONFIGURE=1 ${SH} autogen.sh
 
 LDFLAGS.SunOS+=		-lsocket -lnsl
+
+CHECK_PORTABILITY_SKIP+=	build-mac/update.sh
+
+PKGCONFIG_OVERRIDE+=	libetpan.pc.in
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../security/cyrus-sasl/buildlink3.mk"

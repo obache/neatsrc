@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2015/01/19 02:07:41 mef Exp $
+# $NetBSD: Makefile,v 1.3 2020/01/26 05:26:20 rillig Exp $
 
 DISTNAME=	libdbh2-5.0.16
 CATEGORIES=	databases

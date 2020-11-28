@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.51 2019/11/03 11:45:39 rillig Exp $
+# $NetBSD: Makefile,v 1.59 2020/06/02 08:22:52 adam Exp $
 
 DISTNAME=	libgdata-0.16.1
-PKGREVISION=	24
+PKGREVISION=	31
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libgdata/0.16/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	kamelderouiche@yahoo.com
-HOMEPAGE=	http://live.gnome.org/libgdata
+HOMEPAGE=	https://live.gnome.org/libgdata
 COMMENT=	Google Data API based Glib client library
 LICENSE=	gnu-lgpl-v2.1
 

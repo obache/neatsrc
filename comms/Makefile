@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.115 2020/01/04 13:24:21 nia Exp $
+# $NetBSD: Makefile,v 1.118 2020/03/22 21:25:05 tnn Exp $
 #
 
 COMMENT=	Communication utilities
 
 SUBDIR+=	asterisk-sounds-de-x9media
-SUBDIR+=	asterisk-sounds-native
 SUBDIR+=	asterisk13
 SUBDIR+=	asterisk14
 SUBDIR+=	asterisk15
@@ -34,7 +33,6 @@ SUBDIR+=	kyopon
 SUBDIR+=	libhidapi
 SUBDIR+=	libmal
 SUBDIR+=	libopensync
-SUBDIR+=	libopensync-plugin-evolution2
 SUBDIR+=	libopensync-plugin-file
 SUBDIR+=	libopensync-plugin-syncml
 SUBDIR+=	libsyncml
@@ -75,6 +73,7 @@ SUBDIR+=	py-serial
 SUBDIR+=	py-termstyle
 SUBDIR+=	qodem
 SUBDIR+=	qpage
+SUBDIR+=	remserial
 SUBDIR+=	ruby-termios
 SUBDIR+=	scmxx
 SUBDIR+=	snooper

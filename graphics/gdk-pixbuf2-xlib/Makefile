@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.27 2020/01/06 16:34:36 jperkin Exp $
+# $NetBSD: Makefile,v 1.29 2020/07/28 05:11:21 wiz Exp $
 
 DISTNAME=	gdk-pixbuf-${PIXBUF2_VERSION}
 PKGNAME=	gdk-pixbuf2-xlib-${PIXBUF2_VERSION}
+PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gdk-pixbuf/${MSITE_VERSION}/}
 EXTRACT_SUFX=	.tar.xz
@@ -34,7 +35,8 @@ post-install:
 	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/lib/pkgconfig
 	${INSTALL_DATA} ${WRKSRC}/contrib/gdk-pixbuf-xlib/gdk-pixbuf-xlib.h ${DESTDIR}${PREFIX}/include/gdk-pixbuf-2.0/gdk-pixbuf-xlib
 	${INSTALL_DATA} ${WRKSRC}/contrib/gdk-pixbuf-xlib/gdk-pixbuf-xlibrgb.h ${DESTDIR}${PREFIX}/include/gdk-pixbuf-2.0/gdk-pixbuf-xlib
-	${INSTALL_LIB} ${WRKSRC}/output/contrib/gdk-pixbuf-xlib/*.so* ${DESTDIR}${PREFIX}/lib
+	${INSTALL_LIB} ${WRKSRC}/output/contrib/gdk-pixbuf-xlib/*.so ${DESTDIR}${PREFIX}/lib
+	${INSTALL_LIB} ${WRKSRC}/output/contrib/gdk-pixbuf-xlib/*.so.*[0-9.] ${DESTDIR}${PREFIX}/lib
 	${INSTALL_DATA} ${WRKSRC}/output/meson-private/gdk-pixbuf-xlib-2.0.pc ${DESTDIR}${PREFIX}/lib/pkgconfig
 
 .include "../../devel/meson/build.mk"

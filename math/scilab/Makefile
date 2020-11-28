@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.109 2018/11/12 16:10:24 jaapb Exp $
+# $NetBSD: Makefile,v 1.111 2020/08/17 20:19:27 leot Exp $
 #
 
 DISTNAME=	${SCIBASE}-src
-PKGREVISION=	26
+PKGREVISION=	27
 PKGNAME=	${SCIBASE}
 CATEGORIES=	math
 MASTER_SITES=	http://www.scilab.org/download/4.1/
 
 MAINTAINER=	dmcmahill@NetBSD.org
-HOMEPAGE=	http://www.scilab.org/
+HOMEPAGE=	https://www.scilab.org/
 COMMENT=	High-level scientific math programming environment with graphics
 
 MAKE_JOBS_SAFE=	no
@@ -46,7 +46,7 @@ CONFIGURE_ENV+=		LOCALBASE=${LOCALBASE:Q}
 #   scilab-4.1/routines/os_specific/getarg.c
 #
 .include "../../mk/compiler.mk"
-.  if !empty(FC:Mgfortran) || (defined(PKGSRC_FORTRAN) && !empty(PKGSRC_FORTRAN:Mg95))
+.if !empty(FC:Mgfortran) || (defined(PKGSRC_FORTRAN) && !empty(PKGSRC_FORTRAN:Mg95))
 CFLAGS+=		-DG95_FORTRAN=1
 .endif
 

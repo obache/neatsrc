@@ -1,27 +1,24 @@
-# $NetBSD: Makefile,v 1.2 2019/12/15 12:51:07 mef Exp $
+# $NetBSD: Makefile,v 1.4 2020/07/27 20:23:01 adam Exp $
 
-DISTNAME=	setconf-0.7.6
+DISTNAME=	setconf-0.7.7
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-CATEGORIES=	sysutils
-MASTER_SITES=	${MASTER_SITE_GITHUB:=xyproto/}
-GITHUB_PROJECT=	setconf
+CATEGORIES=	sysutils python
+MASTER_SITES=	${MASTER_SITE_PYPI:=s/setconf/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://setconf.roboticoverlords.org/
+HOMEPAGE=	https://setconf.roboticoverlords.org/
 COMMENT=	Small utility to change settings in configuration textfiles
 LICENSE=	gnu-gpl-v2
 
-REPLACE_PYTHON+=	setconf.py
+USE_LANGUAGES=	# none
 
-WRKSRC=	${WRKDIR}/setconf-${PKGVERSION_NOREV}
+INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 
-NO_BUILD=	yes
+post-install:
+	${INSTALL_MAN} ${WRKSRC}/setconf.1 \
+	${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/setconf-${PYVERSSUFFIX}.1
+	cd ${DESTDIR}${PREFIX}/bin && \
+	${MV} setconf setconf-${PYVERSSUFFIX} || ${TRUE}
 
-AUTO_MKDIRS=	yes
-
-do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/setconf.py ${DESTDIR}${PREFIX}/bin/setconf
-	${INSTALL_MAN} ${WRKSRC}/setconf.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
-
-.include "../../lang/python/application.mk"
+.include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

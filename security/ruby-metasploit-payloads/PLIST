@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.2 2018/09/23 17:55:58 taca Exp $
+@comment $NetBSD: PLIST,v 1.4 2020/06/15 14:26:23 taca Exp $
 ${GEM_HOME}/cache/${GEM_NAME}.gem
 ${GEM_LIBDIR}/.gitignore
 ${GEM_LIBDIR}/CONTRIBUTING.md
@@ -9,9 +9,6 @@ ${GEM_LIBDIR}/Rakefile
 ${GEM_LIBDIR}/data/android/apk/AndroidManifest.xml
 ${GEM_LIBDIR}/data/android/apk/classes.dex
 ${GEM_LIBDIR}/data/android/apk/resources.arsc
-${GEM_LIBDIR}/data/android/libs/armeabi/libndkstager.so
-${GEM_LIBDIR}/data/android/libs/mips/libndkstager.so
-${GEM_LIBDIR}/data/android/libs/x86/libndkstager.so
 ${GEM_LIBDIR}/data/android/meterpreter.dex
 ${GEM_LIBDIR}/data/android/meterpreter.jar
 ${GEM_LIBDIR}/data/android/metstage.jar
@@ -42,8 +39,6 @@ ${GEM_LIBDIR}/data/meterpreter/ext_server_kiwi.x64.dll
 ${GEM_LIBDIR}/data/meterpreter/ext_server_kiwi.x86.dll
 ${GEM_LIBDIR}/data/meterpreter/ext_server_lanattacks.x64.dll
 ${GEM_LIBDIR}/data/meterpreter/ext_server_lanattacks.x86.dll
-${GEM_LIBDIR}/data/meterpreter/ext_server_mimikatz.x64.dll
-${GEM_LIBDIR}/data/meterpreter/ext_server_mimikatz.x86.dll
 ${GEM_LIBDIR}/data/meterpreter/ext_server_peinjector.x64.dll
 ${GEM_LIBDIR}/data/meterpreter/ext_server_peinjector.x86.dll
 ${GEM_LIBDIR}/data/meterpreter/ext_server_powershell.x64.dll
@@ -59,6 +54,8 @@ ${GEM_LIBDIR}/data/meterpreter/ext_server_stdapi.php
 ${GEM_LIBDIR}/data/meterpreter/ext_server_stdapi.py
 ${GEM_LIBDIR}/data/meterpreter/ext_server_stdapi.x64.dll
 ${GEM_LIBDIR}/data/meterpreter/ext_server_stdapi.x86.dll
+${GEM_LIBDIR}/data/meterpreter/ext_server_unhook.x64.dll
+${GEM_LIBDIR}/data/meterpreter/ext_server_unhook.x86.dll
 ${GEM_LIBDIR}/data/meterpreter/ext_server_winpmem.x64.dll
 ${GEM_LIBDIR}/data/meterpreter/ext_server_winpmem.x86.dll
 ${GEM_LIBDIR}/data/meterpreter/meterpreter.jar

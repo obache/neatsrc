@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.83 2019/09/02 13:19:57 adam Exp $
+# $NetBSD: Makefile,v 1.95 2020/08/31 18:09:23 wiz Exp $
 
-DISTNAME=		lyx-2.3.2
-PKGREVISION=		6
+DISTNAME=		lyx-2.3.5.2
+PKGREVISION=		2
 CATEGORIES=		editors
 MASTER_SITES=		ftp://ftp.lyx.org/pub/lyx/stable/2.3.x/
 MASTER_SITES+=		ftp://ftp.sdsc.edu/pub/other/lyx/stable/2.3.x/
@@ -10,7 +10,7 @@ MASTER_SITES+=		ftp://ftp.ntua.gr/pub/X11/LyX/stable/2.3.x/
 EXTRACT_SUFX=		.tar.xz
 
 MAINTAINER=		reed@reedmedia.net
-HOMEPAGE=		http://www.lyx.org/
+HOMEPAGE=		https://www.lyx.org/
 COMMENT=		Document processor and graphical frontend for LaTeX
 LICENSE=		gnu-gpl-v2
 
@@ -104,12 +104,10 @@ PRINT_PLIST_AWK+=	{ sub(/bin\//, "$${BIN_DIR}/"); \
 REPLACE_PYTHON=	development/autotests/keytest.py \
 			development/cmake/doc/ReplaceValues.py \
 			development/cmake/po/cat.py \
-			development/cmake/po/dos2unix.py \
 			development/cmake/po/unix2dos.py \
 			development/keystest/cache-bisect.py \
 			development/keystest/make_screenshot_html.py \
 			development/keystest/keytest.py \
-			development/tools/convert_kmap.py \
 			development/tools/gen_lfuns.py \
 			development/tools/generate_symbols_images.py \
 			development/tools/generate_symbols_list.py \
@@ -123,6 +121,8 @@ REPLACE_PYTHON=	development/autotests/keytest.py \
 			po/postats.py \
 			src/tex2lyx/test/runtests.py
 
+# Replacing plain "python " with PYTHONBIN replaces a few instances too
+# many, but nothing critical. Set SUBST_SHOW_DIFF=yes to see them.
 SUBST_CLASSES+=		python
 SUBST_STAGE.python=	pre-configure
 SUBST_FILES.python=	lib/configure.py

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.32 2019/11/12 19:58:41 nros Exp $
+# $NetBSD: Makefile,v 1.34 2020/03/20 11:58:00 nia Exp $
 
 DISTNAME=	tnef-1.4.18
 CATEGORIES=	mail

@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.17 2019/09/17 08:21:01 adam Exp $
+# $NetBSD: Makefile,v 1.20 2020/05/27 19:37:38 wiz Exp $
 
 DISTNAME=	mongo-tools-3.4.23
+PKGREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mongodb/}
 GITHUB_TAG=	r${PKGVERSION_NOREV}
 
-MAINTAINER=	fhajny@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/mongodb/mongo-tools
 COMMENT=	MongoDB CLI tools
 LICENSE=	apache-2.0
@@ -36,10 +37,12 @@ post-extract:
 	${LN} -s ${WRKSRC}/vendor/${site} ${WRKSRC}/vendor/src/${site}
 .endfor
 
+MAKE_ENV+=	GOPATH=${WRKSRC}:${WRKSRC}/vendor:${PREFIX}/gopkg
+
 do-build:
 .for tool in ${MONGO_TOOLS}
 	cd ${WRKSRC} && \
-	  ${SETENV} GOPATH=${WRKSRC}:${WRKSRC}/vendor:${PREFIX}/gopkg \
+	  ${PKGSRC_SETENV} ${MAKE_ENV} \
 	  ${GO} build -tags "${MONGO_TAGS}" -o bin/${tool} ${tool}/main/${tool}.go
 .endfor
 

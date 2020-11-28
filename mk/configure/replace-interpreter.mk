@@ -1,4 +1,4 @@
-# $NetBSD: replace-interpreter.mk,v 1.17 2019/02/18 14:10:37 bsiegert Exp $
+# $NetBSD: replace-interpreter.mk,v 1.21 2020/06/07 06:10:36 rillig Exp $
 
 # This file provides common templates for replacing #! interpreters
 # in script files.
@@ -15,9 +15,9 @@
 # REPLACE_SH
 # REPLACE_TCLSH
 # REPLACE_WISH
-#	Lists of files relative to WRKSRC in which the #! interpreter
-#	should be replaced by the pkgsrc one. If any directories
-#	appear in the lists, they are silenty skipped, assuming that
+#	Lists of filename patterns relative to WRKSRC in which the #!
+#	interpreter should be replaced by the pkgsrc one. Any directories
+#	that appear in the lists are silenty skipped, assuming that
 #	they result from shell globbing expressions.
 #
 #	Use REPLACE_SH for shell programs that don't need any
@@ -34,7 +34,7 @@
 # variable, all identifiers starting with "sys-" are reserved for the
 # pkgsrc infrastructure. All others may be used freely.
 #
-# Keywords: replace_interpreter interpreter interp hashbang #!
+# Keywords: replace_interpreter interpreter interp hashbang #! shebang
 # Keywords: awk bash csh ksh perl sh
 
 ######################################################################
@@ -138,7 +138,7 @@ replace-interpreter:
 	${RUN} set -u; \
 	cd ${WRKSRC};							\
 	for f in ${REPLACE_FILES.${_lang_}}; do				\
-		if [ -f "$${f}" ]; then					\
+		if [ -f "$$f" ]; then					\
 			${SED} -e '1s|^#![[:space:]]*${REPLACE.optional-env-space}${REPLACE.${_lang_}.old}|#!${REPLACE.${_lang_}.new}|' \
 			< "$${f}" > "$${f}.new";			\
 			if [ -x "$${f}" ]; then				\
@@ -150,8 +150,8 @@ replace-interpreter:
 			else						\
 				${MV} -f "$${f}.new" "$${f}";		\
 			fi;						\
-		elif [ -d "$$f" ]; then					\
-			${SHCOMMENT} "Ignore it, most probably comes from shell globs"; \
+		elif [ -d "$$f" ] || [ -h "$$f" ]; then			\
+			: 'Ignore it, most probably comes from shell globs'; \
 		else							\
 			${ERROR_MSG} "[replace-interpreter] non-existent file \"$$f\"."; \
 			${FALSE};					\
@@ -163,9 +163,9 @@ replace-interpreter:
 .endfor
 
 _VARGROUPS+=		interp
-.for varname in REPLACE_AWK REPLACE_BASH REPLACE_CSH REPLACE_KSH REPLACE_PERL REPLACE_PERL6 REPLACE_PHP REPLACE_SH REPLACE_TCLSH REPLACE_WISH
-_PKG_VARS.interp+=	${varname}
-.endfor
+_PKG_VARS.interp=	REPLACE_AWK REPLACE_BASH REPLACE_CSH REPLACE_KSH
+_PKG_VARS.interp+=	REPLACE_PERL REPLACE_PERL6 REPLACE_PHP REPLACE_SH
+_PKG_VARS.interp+=	REPLACE_TCLSH REPLACE_WISH
 _PKG_VARS.interp+=	REPLACE_INTERPRETER
 .for interp in ${REPLACE_INTERPRETER}
 _DEF_VARS.interp+=	REPLACE.${interp}.old REPLACE.${interp}.new REPLACE_FILES.${interp}

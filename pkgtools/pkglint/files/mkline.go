@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"netbsd.org/pkglint/regex"
 	"netbsd.org/pkglint/textproc"
+	"regexp"
 	"strings"
 )
 
@@ -69,14 +70,45 @@ type mkLineDependency struct {
 
 // String returns the filename and line numbers.
 func (mkline *MkLine) String() string {
-	return sprintf("%s:%s", mkline.Filename, mkline.Linenos())
+	return sprintf("%s:%s", mkline.Filename(), mkline.Linenos())
 }
 
 func (mkline *MkLine) HasComment() bool { return mkline.splitResult.hasComment }
 
-func (mkline *MkLine) HasRationale() bool { return mkline.splitResult.rationale != "" }
+// HasRationale returns true if the comments that are close enough to
+// this line contain a rationale for suppressing a diagnostic.
+//
+// These comments are used to suppress pkglint warnings,
+// such as for BROKEN, NOT_FOR_PLATFORMS, MAKE_JOBS_SAFE,
+// and HOMEPAGE using http instead of https.
+//
+// To qualify as a rationale, the comment must contain any of the given
+// keywords. If no keywords are given, any comment qualifies.
+func (mkline *MkLine) HasRationale(keywords ...string) bool {
+	rationale := mkline.splitResult.rationale
+	if rationale == "" {
+		return false
+	}
+	if len(keywords) == 0 {
+		return true
+	}
 
-func (mkline *MkLine) Rationale() string { return mkline.splitResult.rationale }
+	// Avoid expensive regular expression search.
+	rationaleContains := func(keyword string) bool {
+		return contains(rationale, keyword)
+	}
+	if !anyStr(keywords, rationaleContains) {
+		return false
+	}
+
+	for _, keyword := range keywords {
+		pattern := regex.Pattern(`\b` + regexp.QuoteMeta(keyword) + `\b`)
+		if matches(rationale, pattern) {
+			return true
+		}
+	}
+	return false
+}
 
 // Comment returns the comment after the first unescaped #.
 //
@@ -209,9 +241,9 @@ func (mkline *MkLine) Varparam() string { return mkline.data.(*mkLineAssign).var
 func (mkline *MkLine) Op() MkOperator { return mkline.data.(*mkLineAssign).op }
 
 // ValueAlign applies to variable assignments and returns all the text
-// before the variable value, e.g. "VARNAME+=\t".
+// to the left of the variable value, e.g. "VARNAME+=\t".
 func (mkline *MkLine) ValueAlign() string {
-	parts := NewVaralignSplitter().split(mkline.Line.raw[0].Text(), true)
+	parts := NewVaralignSplitter().split(mkline.Line.RawText(0), true)
 	return parts.leadingComment + parts.varnameOp + parts.spaceBeforeValue
 }
 
@@ -238,6 +270,10 @@ func (mkline *MkLine) FirstLineContainsValue() bool {
 
 func (mkline *MkLine) ShellCommand() string { return mkline.data.(mkLineShell).command }
 
+// Indent returns the whitespace between the dot and the directive.
+//
+// For the following example line it returns two spaces:
+//  .  include "other.mk"
 func (mkline *MkLine) Indent() string {
 	if mkline.IsDirective() {
 		return mkline.data.(*mkLineDirective).indent
@@ -261,10 +297,17 @@ func (mkline *MkLine) Args() string { return mkline.data.(*mkLineDirective).args
 func (mkline *MkLine) Cond() *MkCond {
 	cond := mkline.data.(*mkLineDirective).cond
 	if cond == nil {
+		assert(mkline.NeedsCond())
 		cond = NewMkParser(mkline.Line, mkline.Args()).MkCond()
 		mkline.data.(*mkLineDirective).cond = cond
 	}
 	return cond
+}
+
+// NeedsCond returns whether the directive requires a condition as argument.
+func (mkline *MkLine) NeedsCond() bool {
+	directive := mkline.Directive()
+	return directive == "if" || directive == "elif"
 }
 
 // DirectiveComment is the trailing end-of-line comment, typically at a deeply nested .endif or .endfor.
@@ -284,7 +327,7 @@ func (mkline *MkLine) IncludedFile() RelPath { return mkline.data.(*mkLineInclud
 
 // IncludedFileFull returns the path to the included file.
 func (mkline *MkLine) IncludedFileFull() CurrPath {
-	dir := mkline.Filename.DirNoClean()
+	dir := mkline.Filename().Dir()
 	joined := dir.JoinNoClean(mkline.IncludedFile())
 	return joined.CleanPath()
 }
@@ -564,7 +607,8 @@ func (*MkLine) WithoutMakeVariables(value string) string {
 	return valueNovar.String()
 }
 
-func (mkline *MkLine) ResolveVarsInRelativePath(relativePath RelPath, pkg *Package) RelPath {
+func (mkline *MkLine) ResolveVarsInRelativePath(relativePath PackagePath, pkg *Package) PackagePath {
+	// TODO: Not every path is relative to the package directory.
 	if !containsVarUse(relativePath.String()) {
 		return relativePath.CleanPath()
 	}
@@ -573,7 +617,7 @@ func (mkline *MkLine) ResolveVarsInRelativePath(relativePath RelPath, pkg *Packa
 	if pkg != nil {
 		basedir = pkg.File(".")
 	} else {
-		basedir = mkline.Filename.DirNoClean()
+		basedir = mkline.Filename().Dir()
 	}
 
 	tmp := relativePath
@@ -781,57 +825,54 @@ func (mkline *MkLine) VariableNeedsQuoting(mklines *MkLines, varuse *MkVarUse, v
 
 // ForEachUsed calls the action for each variable that is used in the line.
 func (mkline *MkLine) ForEachUsed(action func(varUse *MkVarUse, time VucTime)) {
-
-	var searchIn func(text string, time VucTime) // mutually recursive with searchInVarUse
-
-	searchInVarUse := func(varuse *MkVarUse, time VucTime) {
-		varname := varuse.varname
-		if !varuse.IsExpression() {
-			action(varuse, time)
-		}
-		searchIn(varname, time)
-		for _, mod := range varuse.modifiers {
-			searchIn(mod.Text, time)
-		}
-	}
-
-	searchIn = func(text string, time VucTime) {
-		if !contains(text, "$") {
-			return
-		}
-
-		tokens, _ := NewMkLexer(text, nil).MkTokens()
-		for _, token := range tokens {
-			if token.Varuse != nil {
-				searchInVarUse(token.Varuse, time)
-			}
-		}
-	}
-
 	switch {
 
 	case mkline.IsVarassign():
-		searchIn(mkline.Varname(), VucLoadTime)
-		searchIn(mkline.Value(), mkline.Op().Time())
+		mkline.ForEachUsedText(mkline.Varname(), VucLoadTime, action)
+		mkline.ForEachUsedText(mkline.Value(), mkline.Op().Time(), action)
 
 	case mkline.IsDirective() && mkline.Directive() == "for":
-		searchIn(mkline.Args(), VucLoadTime)
+		mkline.ForEachUsedText(mkline.Args(), VucLoadTime, action)
 
 	case mkline.IsDirective() && (mkline.Directive() == "if" || mkline.Directive() == "elif") && mkline.Cond() != nil:
 		mkline.Cond().Walk(&MkCondCallback{
 			VarUse: func(varuse *MkVarUse) {
-				searchInVarUse(varuse, VucLoadTime)
+				mkline.ForEachUsedVarUse(varuse, VucLoadTime, action)
 			}})
 
 	case mkline.IsShellCommand():
-		searchIn(mkline.ShellCommand(), VucRunTime)
+		mkline.ForEachUsedText(mkline.ShellCommand(), VucRunTime, action)
 
 	case mkline.IsDependency():
-		searchIn(mkline.Targets(), VucLoadTime)
-		searchIn(mkline.Sources(), VucLoadTime)
+		mkline.ForEachUsedText(mkline.Targets(), VucLoadTime, action)
+		mkline.ForEachUsedText(mkline.Sources(), VucLoadTime, action)
 
 	case mkline.IsInclude():
-		searchIn(mkline.IncludedFile().String(), VucLoadTime)
+		mkline.ForEachUsedText(mkline.IncludedFile().String(), VucLoadTime, action)
+	}
+}
+
+func (mkline *MkLine) ForEachUsedText(text string, time VucTime, action func(varUse *MkVarUse, time VucTime)) {
+	if !contains(text, "$") {
+		return
+	}
+
+	tokens, _ := NewMkLexer(text, nil).MkTokens()
+	for _, token := range tokens {
+		if token.Varuse != nil {
+			mkline.ForEachUsedVarUse(token.Varuse, time, action)
+		}
+	}
+}
+
+func (mkline *MkLine) ForEachUsedVarUse(varuse *MkVarUse, time VucTime, action func(varUse *MkVarUse, time VucTime)) {
+	varname := varuse.varname
+	if !varuse.IsExpression() {
+		action(varuse, time)
+	}
+	mkline.ForEachUsedText(varname, time, action)
+	for _, mod := range varuse.modifiers {
+		mkline.ForEachUsedText(mod.String(), time, action)
 	}
 }
 
@@ -1035,24 +1076,6 @@ type Indentation struct {
 	levels []indentationLevel
 }
 
-func NewIndentation() *Indentation { return &Indentation{} }
-
-func (ind *Indentation) String() string {
-	var s strings.Builder
-	for _, level := range ind.levels {
-		_, _ = fmt.Fprintf(&s, " %d", level.depth)
-		if len(level.conditionalVars) > 0 {
-			_, _ = fmt.Fprintf(&s, " (%s)", strings.Join(level.conditionalVars, " "))
-		}
-	}
-	return "[" + trimHspace(s.String()) + "]"
-}
-
-func (ind *Indentation) RememberUsedVariables(cond *MkCond) {
-	cond.Walk(&MkCondCallback{
-		VarUse: func(varuse *MkVarUse) { ind.AddVar(varuse.varname) }})
-}
-
 type indentationLevel struct {
 	mkline          *MkLine  // The line in which the indentation started; the .if/.for
 	depth           int      // Number of space characters; always a multiple of 2
@@ -1069,6 +1092,24 @@ type indentationLevel struct {
 
 	// whether the line is a multiple-inclusion guard
 	guard bool
+}
+
+func NewIndentation() *Indentation { return &Indentation{} }
+
+func (ind *Indentation) String() string {
+	var s strings.Builder
+	for _, level := range ind.levels {
+		_, _ = fmt.Fprintf(&s, " %d", level.depth)
+		if len(level.conditionalVars) > 0 {
+			_, _ = fmt.Fprintf(&s, " (%s)", strings.Join(level.conditionalVars, " "))
+		}
+	}
+	return "[" + trimHspace(s.String()) + "]"
+}
+
+func (ind *Indentation) RememberUsedVariables(cond *MkCond) {
+	cond.Walk(&MkCondCallback{
+		VarUse: func(varuse *MkVarUse) { ind.AddVar(varuse.varname) }})
 }
 
 func (ind *Indentation) IsEmpty() bool {

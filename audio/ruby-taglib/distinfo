@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.6 2016/01/03 05:33:54 taca Exp $
+$NetBSD: distinfo,v 1.8 2020/04/25 15:49:02 taca Exp $
 
-SHA1 (taglib-ruby-0.7.1.gem) = a33015854e68863e32cb6683bf0080cc3bc1a1d8
-RMD160 (taglib-ruby-0.7.1.gem) = b01e77dc5bef72e20f44185551adfa5a0bea8434
-SHA512 (taglib-ruby-0.7.1.gem) = 5a99f945e39aa7b2fe840ab8f436b0922b406e3db69055ec62890d68c01a9c1cda1a5fe8f3b9726f554db4f3067ede1c8f91cae9fbe1b3cbb4f156689b8b8a33
-Size (taglib-ruby-0.7.1.gem) = 756224 bytes
+SHA1 (taglib-ruby-1.0.1.gem) = 27ad9f3dd6f9d034ab2a1c800f5d4723d45f846c
+RMD160 (taglib-ruby-1.0.1.gem) = 47cd869c6a5e3f428221e0d9141b90b3a94716a8
+SHA512 (taglib-ruby-1.0.1.gem) = 13a803244e0bdacb0d8934c58caf9d28c263ca7ccdfa0cf6e27141b28869c2340d4127d7777f9b726cc39658acb3fb6a4f6f73bd4ff598d039d081670de38406
+Size (taglib-ruby-1.0.1.gem) = 791040 bytes

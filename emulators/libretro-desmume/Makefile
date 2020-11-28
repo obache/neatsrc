@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2019/05/20 10:32:32 nia Exp $
+# $NetBSD: Makefile,v 1.12 2020/05/31 20:35:55 nia Exp $
 
 DISTNAME=	libretro-desmume-20190426
 PKGREVISION=	2
@@ -12,11 +12,11 @@ HOMEPAGE=	https://docs.libretro.com/library/desmume/
 COMMENT=	Libretro core based on the DeSmuME Nintendo DS emulator
 LICENSE=	gnu-gpl-v2
 
-EXTRACT_USING=	bsdtar
 BUILD_DIRS=	desmume/src/frontend/libretro
 MAKE_FILE=	Makefile.libretro
-USE_TOOLS+=	gmake
-USE_LANGUAGES=	c99 gnu++11
+USE_LANGUAGES=	c c++
+
+LIBRETRO_CORE=	desmume
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -32,18 +32,9 @@ MAKE_FLAGS+=	DESMUME_JIT=1
 MAKE_FLAGS+=	DESMUME_JIT=0
 .endif
 
-MAKE_FLAGS+=	GIT_VERSION="-pkgsrc"
-
-BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--no-undefined
 BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--version-script=../../frontend/libretro/link.T
 
-INSTALLATION_DIRS+=	${PREFIX}/lib/libretro
-
-do-install:
-	${INSTALL_LIB} \
-	    ${WRKSRC}/desmume/src/frontend/libretro/desmume_libretro.so \
-	    ${DESTDIR}${PREFIX}/lib/libretro/desmume_libretro.so
-
+.include "../../emulators/retroarch/core.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../net/libpcap/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

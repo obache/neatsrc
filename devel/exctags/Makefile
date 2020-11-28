@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.29 2018/07/04 13:40:14 jperkin Exp $
+# $NetBSD: Makefile,v 1.31 2020/01/26 05:26:23 rillig Exp $
 #
 
 DISTNAME=	ctags-5.8

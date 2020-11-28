@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.29 2017/01/04 20:04:50 roy Exp $
+# $NetBSD: Makefile,v 1.31 2020/03/20 11:58:08 nia Exp $
 
 DISTNAME=	nap-1.4.4
 PKGREVISION=	5

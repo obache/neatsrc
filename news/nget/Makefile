@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2012/10/08 12:27:41 asau Exp $
+# $NetBSD: Makefile,v 1.14 2020/03/20 11:58:13 nia Exp $
 #
 
 DISTNAME=		nget-0.27.1

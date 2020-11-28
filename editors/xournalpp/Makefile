@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2019/11/10 21:42:15 nia Exp $
+# $NetBSD: Makefile,v 1.18 2020/08/18 17:57:45 leot Exp $
 
-DISTNAME=	xournalpp-1.0.15
-PKGREVISION=	3
+DISTNAME=	xournalpp-1.0.18
+PKGREVISION=	5
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_GITHUB:=xournalpp/}
 GITHUB_PROJECT=	xournalpp
@@ -15,6 +15,8 @@ USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
 USE_TOOLS+=	msgfmt msgmerge xgettext
 USE_LANGUAGES=	c c++11
+
+BUILD_TARGET=	translations xournalpp
 
 # C++11
 GCC_REQD+=	4.7

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.23 2019/09/25 13:22:09 nia Exp $
+# $NetBSD: Makefile,v 1.25 2020/03/20 11:57:48 nia Exp $
 
 DISTNAME=	glew-2.1.0
 CATEGORIES=	graphics

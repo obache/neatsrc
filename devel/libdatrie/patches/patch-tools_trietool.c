@@ -1,6 +1,6 @@
-$NetBSD$
+$NetBSD: patch-tools_trietool.c,v 1.1 2020/07/30 01:56:16 scole Exp $
 
-* fix ctype(3) usage
+Use unsigned-char cast with isspace
 
 --- tools/trietool.c.orig	2018-06-06 08:39:34.000000000 +0000
 +++ tools/trietool.c

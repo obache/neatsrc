@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.24 2018/02/16 07:25:14 wiz Exp $
+# $NetBSD: Makefile,v 1.26 2020/09/10 22:27:04 wiz Exp $
 
-DISTNAME=	xf86-video-vesa-2.4.0
+DISTNAME=	xf86-video-vesa-2.5.0
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_XORG:=driver/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	joerg@NetBSD.org
-HOMEPAGE=	http://xorg.freedesktop.org/
+HOMEPAGE=	https://xorg.freedesktop.org/
 COMMENT=	Modular Xorg VESA video driver
 
 USE_LIBTOOL=	yes

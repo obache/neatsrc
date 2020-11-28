@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:29:32 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:37 markd Exp $
 
 DISTNAME=	aramaic-serto
 PKGNAME=	tex-${DISTNAME}-1.0
+PKGREVISION=	1
 TEXLIVE_REV=	30042
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/aramaic-serto
+HOMEPAGE=	https://ctan.org/pkg/aramaic-serto
 COMMENT=	Fonts and LaTeX for Syriac written in Serto
 LICENSE=	lppl-1.3c
 

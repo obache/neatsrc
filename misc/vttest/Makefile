@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.16 2019/07/22 08:37:58 nia Exp $
+# $NetBSD: Makefile,v 1.18 2020/07/12 02:09:23 ryoon Exp $
 
-DISTNAME=	vttest-20190105
+DISTNAME=	vttest-20200610
 CATEGORIES=	misc benchmarks
 MASTER_SITES=	ftp://ftp.invisible-island.net/vttest/
 EXTRACT_SUFX=	.tgz

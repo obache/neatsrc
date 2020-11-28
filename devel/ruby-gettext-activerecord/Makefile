@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.11 2018/03/18 14:21:20 taca Exp $
+# $NetBSD: Makefile,v 1.14 2020/05/21 16:04:22 taca Exp $
 
 DISTNAME=	gettext_activerecord-2.1.0
 PKGNAME=	${RUBY_PKGPREFIX}-${DISTNAME:S/_/-/}
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -12,6 +12,8 @@ LICENSE=	ruby-license
 
 DEPENDS+=	${RUBY_PKGPREFIX}-gettext>=2.1.0:../../devel/ruby-gettext
 DEPENDS+=	${RUBY_ACTIVERECORD_DEPENDS}
+
+USE_LANGUAGES=	# none
 
 RUBY_RAILS_ACCEPTED=	# defined
 

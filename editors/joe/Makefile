@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.39 2018/05/08 08:31:29 wen Exp $
+# $NetBSD: Makefile,v 1.41 2020/01/26 05:26:24 rillig Exp $
 
 DISTNAME=	joe-4.6
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=joe-editor/}
 
 MAINTAINER=	adam@NetBSD.org
-HOMEPAGE=	http://joe-editor.sourceforge.net/
+HOMEPAGE=	https://joe-editor.sourceforge.io/
 COMMENT=	Joe's own editor
 LICENSE=	gnu-gpl-v1
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2015/07/04 16:18:41 joerg Exp $
+# $NetBSD: Makefile,v 1.27 2020/03/20 11:58:36 nia Exp $
 
 DISTNAME=	gtk+extra-0.99.17
 PKGREVISION=	6

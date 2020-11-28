@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.76 2018/11/29 13:58:58 leot Exp $
+# $NetBSD: Makefile,v 1.80 2020/08/09 15:44:44 nia Exp $
 
-DISTNAME=	imlib2-1.5.1
+DISTNAME=	imlib2-1.7.0
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=enlightenment/}
 EXTRACT_SUFX=	.tar.bz2
@@ -26,12 +26,15 @@ SHLIB_SUFFIX=		sl
 SHLIB_SUFFIX=		so
 .endif
 
-SUBST_CLASSES+=		shlib rpath
+.if ${SHLIB_SUFFIX} != so
+SUBST_CLASSES+=		shlib
 SUBST_STAGE.shlib=	pre-configure
 SUBST_MESSAGE.shlib=	Replacing shared library suffix
 SUBST_FILES.shlib+=	src/lib/image.c
 SUBST_SED.shlib+=	-e 's,"\.so",".${SHLIB_SUFFIX}",'
+.endif
 
+SUBST_CLASSES+=		rpath
 SUBST_STAGE.rpath=	pre-configure
 SUBST_MESSAGE.rpath=	Replacing COMPILER_RPATH_FLAG
 SUBST_FILES.rpath=	imlib2-config.in

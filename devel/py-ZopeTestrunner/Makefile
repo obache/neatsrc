@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2018/12/22 09:05:23 adam Exp $
+# $NetBSD: Makefile,v 1.5 2020/08/31 23:07:00 wiz Exp $
 
-DISTNAME=	zope.testrunner-4.9.2
+DISTNAME=	zope.testrunner-5.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/zope.t/ZopeT/}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=z/zope.testrunner/}
@@ -10,10 +10,13 @@ HOMEPAGE=	https://github.com/zopefoundation/zope.testrunner
 COMMENT=	Zope testrunner script
 LICENSE=	zpl-2.1
 
+DEPENDS+=	${PYPKGPREFIX}-six-[0-9]*:../../lang/py-six
 DEPENDS+=	${PYPKGPREFIX}-zope.exceptions-[0-9]*:../../devel/py-zope.exceptions
 DEPENDS+=	${PYPKGPREFIX}-ZopeInterface-[0-9]*:../../devel/py-ZopeInterface
-DEPENDS+=	${PYPKGPREFIX}-six-[0-9]*:../../lang/py-six
 TEST_DEPENDS+=	${PYPKGPREFIX}-zope.testing-[0-9]*:../../devel/py-zope.testing
 
+PYTHON_VERSIONED_DEPENDENCIES+=	setuptools
+
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

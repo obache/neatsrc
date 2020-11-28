@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.34 2019/11/02 16:25:20 rillig Exp $
+# $NetBSD: Makefile,v 1.37 2020/08/18 03:30:03 tnn Exp $
 
 DISTNAME=	dkim-milter-2.8.3
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=dkim-milter/}
 
@@ -11,6 +11,7 @@ COMMENT=	Open source DKIM filter software from Sendmail, Inc
 LICENSE=	sendmail-open-source-license
 
 PKG_DESTDIR_SUPPORT=	destdir
+NOT_FOR_UNPRIVILEGED=	yes
 
 MAKE_ENV+=		M4=${M4:Q}
 RCD_SCRIPTS=		dkim-filter
@@ -104,7 +105,6 @@ post-install:
 			${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
 .	endif
 
-BUILDLINK_API_DEPENDS.openssl+=		openssl>=0.9.8
 .include "../../security/openssl/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libmilter+=	libmilter>=8.13.0
 .include "../../mail/libmilter/buildlink3.mk"

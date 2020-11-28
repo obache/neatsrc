@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.17 2019/08/11 13:20:44 wiz Exp $
+# $NetBSD: Makefile,v 1.19 2020/08/31 18:09:14 wiz Exp $
 
 DISTNAME=	aliased-0.34
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/E/ET/ETHER/}
 
@@ -13,7 +13,7 @@ LICENSE=	${PERL5_LICENSE}
 
 USE_LANGUAGES=		# empty
 PERL5_PACKLIST=		auto/aliased/.packlist
-PERL5_MODULE_TYPE=	Module::Build
+PERL5_MODULE_TYPE=	Module::Build::Tiny
 
 .include "../../lang/perl5/module.mk"
 .include "../../mk/bsd.pkg.mk"

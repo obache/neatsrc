@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.86 2018/12/15 21:12:19 wiz Exp $
+# $NetBSD: Makefile,v 1.88 2020/05/27 19:37:37 wiz Exp $
 
 DISTNAME=	ejabberd-18.06
 CATEGORIES=	chat
 MASTER_SITES=	https://www.process-one.net/downloads/ejabberd/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	fhajny@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.ejabberd.im/
 COMMENT=	Free and Open Source distributed fault-tolerant Jabber server
 LICENSE=	gnu-gpl-v2
@@ -102,7 +102,7 @@ SUBST_CLASSES+=		paths
 SUBST_MESSAGE.paths=	Localizing paths
 SUBST_STAGE.paths=	pre-configure
 SUBST_FILES.paths=	Makefile.in ejabberd.yml.example ejabberdctl.template
-SUBST_FILES.paths+=	tools/ejabberdctl.bc rebar.config
+SUBST_FILES.paths+=	tools/ejabberdctl.bc
 SUBST_VARS.paths=	DISTNAME EJABBERD_DB EJABBERD_LOGDIR EJABBERD_PIDDIR
 SUBST_VARS.paths+=	PKG_SYSCONFDIR PREFIX LOCALBASE
 

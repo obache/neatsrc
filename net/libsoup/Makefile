@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.59 2019/12/31 11:39:27 wiz Exp $
+# $NetBSD: Makefile,v 1.65 2020/06/02 08:22:53 adam Exp $
 
-DISTNAME=	libsoup-2.68.3
+DISTNAME=	libsoup-2.70.0
+PKGREVISION=	2
 CATEGORIES=	net gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libsoup/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -12,7 +13,8 @@ LICENSE=	gnu-lgpl-v2
 
 DEPENDS+=	glib-networking-[0-9]*:../../net/glib-networking
 
-USE_TOOLS+=		pkg-config gmake intltool msgfmt
+USE_LANGUAGES=	c99
+USE_TOOLS+=	pkg-config gmake intltool msgfmt
 
 PKGCONFIG_OVERRIDE+=		output/meson-private/libsoup-2.4.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/libsoup-gnome-2.4.pc
@@ -33,7 +35,7 @@ CWRAPPERS_APPEND.cc+=	-Wno-error=format-nonliteral
 
 .include "../../archivers/brotli/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
-BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.38.0
+BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.58.0
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_API_DEPENDS.gobject-introspection+=	gobject-introspection>=0.9.5
 BUILDLINK_DEPMETHOD.gobject-introspection=	build

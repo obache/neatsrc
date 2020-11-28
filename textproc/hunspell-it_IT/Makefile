@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2015/06/07 03:40:19 joerg Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/20 11:58:26 nia Exp $
 
 DISTNAME=	italiano_2_4_2007_09_01
 PKGREVISION=	1

@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.39 2019/07/20 22:46:36 wiz Exp $
+# $NetBSD: Makefile,v 1.43 2020/08/27 07:00:51 hannken Exp $
 
-DISTNAME=	chrony-3.5
-PKGREVISION=	1
+DISTNAME=	chrony-3.5.1
 CATEGORIES=	net
 MASTER_SITES=	http://download.tuxfamily.org/chrony/
 
 MAINTAINER=	hannken@NetBSD.org
-HOMEPAGE=	http://chrony.tuxfamily.org/
+HOMEPAGE=	https://chrony.tuxfamily.org/
 COMMENT=	Daemon for maintaining the accuracy of computer clocks
 LICENSE=	gnu-gpl-v2
 
@@ -27,9 +26,8 @@ EGFILES=		chrony.conf.example3 chrony.keys.example
 RCD_SCRIPTS=		chronyd
 
 SUBST_CLASSES+=		paths
-SUBST_FILES.paths=	${EGFILES:S/^/examples\//} conf.c
-SUBST_VARS.paths+=	PKG_SYSCONFDIR
-SUBST_VARS.paths+=	VARBASE
+SUBST_FILES.paths=	examples/chrony.conf.example3
+SUBST_VARS.paths=	PKG_SYSCONFDIR VARBASE
 SUBST_STAGE.paths=	pre-configure
 
 post-install:

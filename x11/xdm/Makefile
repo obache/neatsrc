@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.33 2019/03/27 12:30:01 jperkin Exp $
+# $NetBSD: Makefile,v 1.36 2020/08/17 20:20:37 leot Exp $
 
 DISTNAME=	xdm-1.1.12
+PKGREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_XORG:=app/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	blair.sadewitz@gmail.com
-HOMEPAGE=	http://xorg.freedesktop.org/
+HOMEPAGE=	https://xorg.freedesktop.org/
 COMMENT=	X Display Manager from modular X.org
 
 DEPENDS+=	sessreg-[0-9]*:../../x11/sessreg
@@ -23,7 +24,6 @@ CONF_FILES+=		${EGDIR}/Xaccess	${PKG_SYSCONFDIR}/Xaccess
 CONF_FILES+=		${EGDIR}/Xresources	${PKG_SYSCONFDIR}/Xresources
 CONF_FILES+=		${EGDIR}/Xservers	${PKG_SYSCONFDIR}/Xservers
 
-CONFIGURE_ARGS+=	--enable-dynamic-greeter
 CONFIGURE_ARGS+=	--enable-tcp-transport
 CONFIGURE_ARGS+=	--enable-unix-transport
 CONFIGURE_ARGS+=	--enable-xdmshell

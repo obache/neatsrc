@@ -1,8 +1,8 @@
-$NetBSD: patch-browser_app_profile_firefox.js,v 1.13 2019/07/11 11:32:40 ryoon Exp $
+$NetBSD: patch-browser_app_profile_firefox.js,v 1.15 2020/05/03 18:45:30 maya Exp $
 
 --- browser/app/profile/firefox.js.orig	2019-07-06 01:48:29.000000000 +0000
 +++ browser/app/profile/firefox.js
-@@ -1865,6 +1865,15 @@ pref("prio.publicKeyB", "26E6674E65425B8
+@@ -1851,6 +1851,12 @@ pref("fission.frontend.simulate-messages
  pref("toolkit.coverage.enabled", false);
  pref("toolkit.coverage.endpoint.base", "https://coverage.mozilla.org");
  
@@ -11,9 +11,6 @@ $NetBSD: patch-browser_app_profile_firefox.js,v 1.13 2019/07/11 11:32:40 ryoon E
 +
 +// Enable system addons, for example langpacks from www/firefox-l10n
 +pref("extensions.autoDisableScopes", 11);
-+
-+// Disable multiprocess window support. Workaround for PR 53273.
-+pref("browser.tabs.remote.autostart", false);
 +
  // Discovery prefs
  pref("browser.discovery.enabled", true);

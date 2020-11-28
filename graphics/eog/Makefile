@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.101 2019/10/26 12:51:18 kamil Exp $
+# $NetBSD: Makefile,v 1.106 2020/08/17 20:18:57 leot Exp $
 
 DISTNAME=	eog-3.24.1
-PKGREVISION=	6
+PKGREVISION=	10
 CATEGORIES=	graphics gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/eog/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -32,6 +32,7 @@ BUILDLINK_API_DEPENDS.gdk-pixbuf2+=	gdk-pixbuf2>=2.30.0
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../sysutils/gsettings-desktop-schemas/buildlink3.mk"
+.include "../../textproc/libxml2/buildlink3.mk"
 .include "../../x11/gnome-desktop3/buildlink3.mk"
 BUILDLINK_API_DEPENDS.gtk3+=	gtk3+>=3.22.0
 .include "../../x11/gtk3/buildlink3.mk"

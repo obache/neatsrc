@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:29:54 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:43 markd Exp $
 
 DISTNAME=	electrum
 PKGNAME=	tex-${DISTNAME}-1.005.b
+PKGREVISION=	1
 TEXLIVE_REV=	19705
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/electrumadf
+HOMEPAGE=	https://ctan.org/pkg/electrumadf
 COMMENT=	Electrum ADF fonts collection
 #LICENSE=	other-free
 

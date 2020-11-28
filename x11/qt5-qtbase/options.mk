@@ -1,24 +1,29 @@
-# $NetBSD: options.mk,v 1.13 2019/07/24 19:44:55 nia Exp $
+# $NetBSD: options.mk,v 1.16 2020/05/20 11:52:58 nia Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.qt5
-PKG_SUPPORTED_OPTIONS+=	cups eglfs gtk3
+PKG_SUPPORTED_OPTIONS+=	cups dbus gtk3
+PKG_SUGGESTED_OPTIONS+=	cups dbus
 
 .include "../../mk/bsd.options.mk"
 
 PLIST_VARS+=		cups
 .if !empty(PKG_OPTIONS:Mcups)
-.  include "../../print/cups-base/buildlink3.mk"
+.  include "../../print/libcups/buildlink3.mk"
 CONFIGURE_ARGS+=	-cups
 PLIST.cups=		yes
 .else
 CONFIGURE_ARGS+=	-no-cups
 .endif
 
-#.if !empty(PKG_OPTIONS:Megl)
-#CONFIGURE_ARGS+=	-no-eglfs
-#.else
-#CONFIGURE_ARGS+=	-no-eglfs
-#.endif
+PLIST_VARS+=		dbus
+.if !empty(PKG_OPTIONS:Mdbus)
+PC_FILES+=		Qt5DBus.pc
+.include "../../sysutils/dbus/buildlink3.mk"
+CONFIGURE_ARGS+=	-dbus-linked
+PLIST.dbus=		yes
+.else
+CONFIGURE_ARGS+=	-no-dbus
+.endif
 
 PLIST_VARS+=		gtk3
 .if !empty(PKG_OPTIONS:Mgtk3)

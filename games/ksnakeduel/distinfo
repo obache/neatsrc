@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.7 2019/11/18 10:31:19 markd Exp $
+$NetBSD: distinfo,v 1.9 2020/06/09 11:56:10 markd Exp $
 
-SHA1 (ksnakeduel-19.08.3.tar.xz) = 6db580c9c99e67d6ccf64b4fc3c5ada1151b8688
-RMD160 (ksnakeduel-19.08.3.tar.xz) = cae6be1571d57cf13765a2e1c049a4cc66e59f03
-SHA512 (ksnakeduel-19.08.3.tar.xz) = 2f3b6d038678d2e6dac679e6edef4716bd6b1d9d3b87603423036f5d05a93339a7b39949811eb6f1a544038e529e00b2aa2d3646eb8808c572596292c1ae4b00
-Size (ksnakeduel-19.08.3.tar.xz) = 604504 bytes
+SHA1 (ksnakeduel-20.04.1.tar.xz) = cf6fd4f3688d0756497d633af1992cf0f6b47426
+RMD160 (ksnakeduel-20.04.1.tar.xz) = 4ef794c38574de895d28bb7bc57cc6b03d060095
+SHA512 (ksnakeduel-20.04.1.tar.xz) = d61accbb991ce22805dc0d0b952c0fde0559c445e0543c7b2c81627121a908a77d8472430216928fe0dbc4f9eef5c7ef7ac1955e60d07107a8438e845abc3e54
+Size (ksnakeduel-20.04.1.tar.xz) = 605604 bytes

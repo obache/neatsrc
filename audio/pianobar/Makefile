@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.20 2019/12/14 01:26:11 mef Exp $
+# $NetBSD: Makefile,v 1.28 2020/08/17 20:18:09 leot Exp $
 
-DISTNAME=	pianobar-2019.02.14
+DISTNAME=	pianobar-2020.04.05
+PKGREVISION=	4
 CATEGORIES=	audio net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=PromyLOPh/}
 
@@ -20,6 +21,6 @@ CFLAGS.NetBSD+=	-D_NETBSD_SOURCE
 .include "../../security/libgcrypt/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../textproc/json-c/buildlink3.mk"
-.include "../../multimedia/ffmpeg3/buildlink3.mk"
+.include "../../multimedia/ffmpeg4/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

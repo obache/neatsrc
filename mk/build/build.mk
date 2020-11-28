@@ -1,4 +1,4 @@
-# $NetBSD: build.mk,v 1.28 2019/09/02 02:59:47 rillig Exp $
+# $NetBSD: build.mk,v 1.34 2020/06/12 17:33:23 rillig Exp $
 #
 # This file defines what happens in the build phase, excluding the
 # self-test, which is defined in test.mk.
@@ -38,6 +38,7 @@
 # Keywords: build make
 
 _VARGROUPS+=		build
+_DEF_VARS.build=	_MAKE_JOBS_N
 _USER_VARS.build=	MAKE_JOBS BUILD_ENV_SHELL
 _PKG_VARS.build=	MAKE_ENV MAKE_FLAGS BUILD_MAKE_FLAGS BUILD_TARGET MAKE_JOBS_SAFE
 _SYS_VARS.build=	BUILD_MAKE_CMD
@@ -55,10 +56,15 @@ BUILD_MAKE_CMD= \
 
 .if defined(MAKE_JOBS_SAFE) && !empty(MAKE_JOBS_SAFE:M[nN][oO])
 _MAKE_JOBS=	# nothing
+_MAKE_JOBS_N=	1
 .elif defined(MAKE_JOBS.${PKGPATH})
 _MAKE_JOBS=	-j${MAKE_JOBS.${PKGPATH}}
+_MAKE_JOBS_N=	${MAKE_JOBS.${PKGPATH}}
 .elif defined(MAKE_JOBS)
 _MAKE_JOBS=	-j${MAKE_JOBS}
+_MAKE_JOBS_N=	${MAKE_JOBS}
+.else
+_MAKE_JOBS_N=	1
 .endif
 
 ######################################################################
@@ -185,14 +191,15 @@ post-build:
 #	Starts an interactive shell in WRKSRC.
 #
 #	This is only used during development and testing of a package
-#	to work in the same environment as the actual build.
+#	to work in the environment (MAKE_ENV) that is used by default
+#	for building the packages.
 #
 # User-settable variables:
 #
 # BUILD_ENV_SHELL
 #	The shell to start.
 #
-#	Default: ${SH}
+#	Default: ${SH}, to realistically match the build environment.
 #
 # Keywords: debug build
 

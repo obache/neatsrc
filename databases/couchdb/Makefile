@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.61 2019/11/02 15:38:00 rillig Exp $
+# $NetBSD: Makefile,v 1.70 2020/06/02 08:23:24 adam Exp $
 
 DISTNAME=		apache-couchdb-2.3.1
 PKGNAME=		${DISTNAME:S/apache-//}
-PKGREVISION=		1
+PKGREVISION=		8
 CATEGORIES=		databases
 MASTER_SITES=		${MASTER_SITE_APACHE:=couchdb/source/${PKGVERSION_NOREV}/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://couchdb.apache.org/
+HOMEPAGE=		https://couchdb.apache.org/
 COMMENT=		Document database server, accessible via a RESTful JSON API
 LICENSE=		apache-2.0
 
@@ -48,19 +48,17 @@ OWN_DIRS_PERMS+=	${COUCH_RUNDIR} ${COUCH_USER} ${COUCH_GROUP} 0770
 
 PKG_SYSCONFSUBDIR=	couchdb
 PKG_SYSCONFDIR_PERMS=	${COUCH_USER} ${COUCH_GROUP} 0775
-CONF_FILES_PERMS+=	${COUCH_EGDIR}/default.ini ${PKG_SYSCONFDIR}/default.ini\
+CONF_FILES_PERMS+=	${COUCH_EGDIR}/default.ini ${PKG_SYSCONFDIR}/default.ini \
 			${COUCH_USER} ${COUCH_GROUP} 0660
-CONF_FILES_PERMS+=	${COUCH_EGDIR}/local.ini ${PKG_SYSCONFDIR}/local.ini	\
+CONF_FILES_PERMS+=	${COUCH_EGDIR}/local.ini ${PKG_SYSCONFDIR}/local.ini \
 			${COUCH_USER} ${COUCH_GROUP} 0660
-CONF_FILES_PERMS+=	${COUCH_EGDIR}/vm.args ${PKG_SYSCONFDIR}/vm.args	\
+CONF_FILES_PERMS+=	${COUCH_EGDIR}/vm.args ${PKG_SYSCONFDIR}/vm.args \
 			${COUCH_USER} ${COUCH_GROUP} 0660
 
 SUBST_CLASSES+=		paths
 SUBST_MESSAGE.paths=	Setting standard paths
 SUBST_STAGE.paths=	pre-configure
-SUBST_FILES.paths=	configure
 SUBST_FILES.paths+=	rel/files/couchdb.in
-SUBST_FILES.paths+=	rel/overlay/bin/couchdb
 SUBST_FILES.paths+=	rel/overlay/etc/default.ini
 SUBST_FILES.paths+=	src/config/src/config_app.erl
 SUBST_VARS.paths=	COUCH_DBDIR COUCH_LOGDIR COUCH_RUNDIR PREFIX PKG_SYSCONFDIR
@@ -90,9 +88,9 @@ RCD_SCRIPTS+=		couchdb
 # into the tree, including existing Erlang module versions that might
 # differ from those included in the tarball. We use a dynamic PLIST
 # for the parts that may change.
-GENERATE_PLIST=		cd ${DESTDIR}${PREFIX}; ${FIND}				\
-				couchdb/erts-* couchdb/lib			\
-				\( -type f -o -type l \) -print |		\
+GENERATE_PLIST=		cd ${DESTDIR}${PREFIX}; ${FIND}			\
+				couchdb/erts-* couchdb/lib		\
+				\( -type f -o -type l \) -print |	\
 				${SORT} -u;
 # Ignore dynamically generated parts when doing print-PLIST
 PRINT_PLIST_AWK+=	/^couchdb\/erts-/ { next; }

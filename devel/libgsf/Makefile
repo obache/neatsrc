@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.95 2019/08/16 09:47:20 wiz Exp $
+# $NetBSD: Makefile,v 1.99 2020/06/02 08:22:39 adam Exp $
 
-DISTNAME=	libgsf-1.14.46
+DISTNAME=	libgsf-1.14.47
+PKGREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libgsf/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.gnome.org/
-COMMENT=	GNOME2 structured file library
+COMMENT=	GNOME structured file library
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
 USE_TOOLS+=		gmake intltool msgfmt pkg-config

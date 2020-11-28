@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.2 2020/01/11 16:18:47 adam Exp $
+$NetBSD: distinfo,v 1.7 2020/07/01 14:20:46 adam Exp $
 
-SHA1 (wcwidth-0.1.8.tar.gz) = 1d4d06efe1380b20ba5ab3ff3048bb57685b0a2a
-RMD160 (wcwidth-0.1.8.tar.gz) = 2128752d3301d12d6860c495a9aecbe1b1d3f407
-SHA512 (wcwidth-0.1.8.tar.gz) = b828450feb56b5c0e686f6922e777ab48d1336816a41ef4ef95f71c25a37ef492861634c16c788e1e4570d21bd4d45c990a18787860ba6043157c2781c78b65e
-Size (wcwidth-0.1.8.tar.gz) = 19957 bytes
+SHA1 (wcwidth-0.2.5.tar.gz) = 3822ed26dc70a4055827bc66cdc21126e51efd66
+RMD160 (wcwidth-0.2.5.tar.gz) = 6030a9183eaed58aea504b1b72f15454347bac0a
+SHA512 (wcwidth-0.2.5.tar.gz) = 567604186fc6810cc794828f656aebda380a85d9a0dadde7743fadcd43cf29b022016055ee2a5c077399ac7c07f48d6d4ee4fa91a44e6efed96b7a8659280a97
+Size (wcwidth-0.2.5.tar.gz) = 34755 bytes

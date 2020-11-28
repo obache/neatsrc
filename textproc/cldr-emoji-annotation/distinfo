@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.7 2019/09/14 03:46:58 tsutsui Exp $
+$NetBSD: distinfo,v 1.8 2020/10/03 15:16:01 tsutsui Exp $
 
 SHA1 (cldr-emoji-annotation-37.0_13.0_0_2.tar.gz) = 703faf9538a0176c26860e32ab4bdcf5f0601afc
 RMD160 (cldr-emoji-annotation-37.0_13.0_0_2.tar.gz) = b2958ef96e0cc92dfa3d4dbfe1d3f1e9da6f9712

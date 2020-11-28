@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2016/12/18 16:40:20 rillig Exp $
+# $NetBSD: Makefile,v 1.13 2020/03/20 11:58:07 nia Exp $
 #
 
 DISTNAME=	ish-v${VERSION}

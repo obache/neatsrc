@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.1 2019/11/17 05:38:04 markd Exp $
+# $NetBSD: buildlink3.mk,v 1.7 2020/08/17 20:17:34 leot Exp $
 
 BUILDLINK_TREE+=	kmbox
 
@@ -6,6 +6,7 @@ BUILDLINK_TREE+=	kmbox
 KMBOX_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.kmbox+=	kmbox>=17.12.1
+BUILDLINK_ABI_DEPENDS.kmbox?=	kmbox>=20.04.1nb1
 BUILDLINK_PKGSRCDIR.kmbox?=	../../mail/kmbox
 
 .include "../../mail/kmime/buildlink3.mk"

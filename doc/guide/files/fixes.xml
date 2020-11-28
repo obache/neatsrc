@@ -1,4 +1,4 @@
-<!-- $NetBSD: fixes.xml,v 1.149 2019/11/04 18:47:27 rillig Exp $ -->
+<!-- $NetBSD: fixes.xml,v 1.159 2020/08/11 20:32:58 bacon Exp $ -->
 
 <chapter id="fixes"> <?dbhtml filename="fixes.html"?>
 <title>Making your package work</title>
@@ -167,22 +167,33 @@ ACCEPTABLE_LICENSES+=xv-license
     are required:</para>
     <orderedlist>
 
-    <listitem><para>Check whether the license qualifies as Free or Open
-    Source by referencing <ulink
-    url="http://www.gnu.org/licenses/license-list.en.html">Various Licenses
-    and Comments about Them</ulink> and <ulink
-    url="http://opensource.org/licenses/alphabetical">Licenses by Name |
+    <listitem>
+
+    <para>Check whether the license qualifies as Free or Open Source by
+    referencing <ulink
+    url="https://www.gnu.org/licenses/license-list.en.html">Various
+    Licenses and Comments about Them</ulink> and <ulink
+    url="https://opensource.org/licenses/alphabetical">Licenses by Name |
     Open Source Initiative</ulink>.  If this is the case, the filename in
     <filename>pkgsrc/licenses/</filename> does not need the
     <filename>-license</filename> suffix, and the license name should be
     added to:</para>
 
     <itemizedlist>
-    <listitem><para>DEFAULT_ACCEPTABLE_LICENSES in <filename>pkgsrc/mk/license.mk</filename></para></listitem>
-    <listitem><para>default_acceptable_licenses in <filename>pkgsrc/pkgtools/pkg_install/files/lib/license.c</filename></para></listitem>
+
+    <listitem><para>DEFAULT_ACCEPTABLE_LICENSES in
+    <filename>pkgsrc/mk/license.mk</filename></para></listitem>
+
+    <listitem><para>default_acceptable_licenses in
+    <filename>pkgsrc/pkgtools/pkg_install/files/lib/license.c</filename></para></listitem>
+
     </itemizedlist>
     </listitem>
-    <listitem><para>The license text should be added to <filename>pkgsrc/licenses</filename> for displaying.  A list of known licenses can be seen in this directory.</para></listitem>
+
+    <listitem><para>The license text should be added to
+    <filename>pkgsrc/licenses</filename> for displaying.  A list of known
+    licenses can be seen in this directory.</para></listitem>
+
     </orderedlist>
   </sect3>
 
@@ -288,38 +299,40 @@ ACCEPTABLE_LICENSES+=xv-license
   <sect2 id="dependencies">
     <title>Handling dependencies</title>
 
-    <para>Your package may depend on some other package being present
-    - and there are various ways of expressing this dependency.
-    pkgsrc supports the <varname>BUILD_DEPENDS</varname> and
-    <varname>DEPENDS</varname> and
-    <varname>TOOL_DEPENDS</varname> definitions, the
+    <para>Your package may depend on some other package being present,
+    and there are various ways of expressing this dependency.
+    pkgsrc supports the <varname>DEPENDS</varname>,
+    <varname>BUILD_DEPENDS</varname>,
+    <varname>TOOL_DEPENDS</varname>, and
+    <varname>TEST_DEPENDS</varname> definitions, the
     <varname>USE_TOOLS</varname> definition, as well as dependencies
     via <filename>buildlink3.mk</filename>, which is the preferred way
     to handle dependencies, and which uses the variables named above.
     See <xref linkend="buildlink"/> for more information.</para>
 
-    <para>The basic difference between the two variables is as
-    follows: The <varname>DEPENDS</varname> definition registers
-    that pre-requisite in the binary package so it will be pulled in
-    when the binary package is later installed, whilst the
-    <varname>BUILD_DEPENDS</varname> and <varname>TOOL_DEPENDS</varname>
-    definitions does not, marking a dependency that is only needed for
-    building the package.</para>
+    <para>The basic difference is that the <varname>DEPENDS</varname>
+    definition registers that pre-requisite in the binary package so it
+    will be pulled in when the binary package is later installed, whilst
+    the <varname>BUILD_DEPENDS</varname>, <varname>TOOL_DEPENDS</varname>,
+    and <varname>TEST_DEPENDS</varname> definitions do not, marking a
+    dependency that is only needed for building or testing the resulting
+    package. See also <xref linkend="creating"/> for more information.</para>
 
     <para>This means that if you only need a package present whilst
-    you are building, it should be noted as a
-    <varname>TOOL_DEPENDS</varname> or
-    <varname>BUILD_DEPENDS</varname>.  When cross-compiling,
+    you are building or testing, it should be noted as a
+    <varname>TOOL_DEPENDS</varname>,
+    <varname>BUILD_DEPENDS</varname>, or
+    <varname>TEST_DEPENDS</varname>.  When cross-compiling,
     <varname>TOOL_DEPENDS</varname> are <emphasis>native</emphasis>
     packages, i.e. packages for the architecture where the package
     is built;
     <varname>BUILD_DEPENDS</varname> are <emphasis>target</emphasis>
-    packages, i.e. packages for the architecture for which the package
+    packages, i.e., packages for the architecture for which the package
     is built.</para>
 
-    <para>The format for <varname>BUILD_DEPENDS</varname>,
-    <varname>DEPENDS</varname> and <varname>TOOL_DEPENDS</varname>
-    definition is:</para>
+    <para>The format for a <varname>DEPENDS</varname>,
+    <varname>BUILD_DEPENDS</varname>, <varname>TOOL_DEPENDS</varname>,
+    and <varname>TEST_DEPENDS</varname> definition is:</para>
 
 <programlisting>
 &lt;pre-req-package-name&gt;:../../&lt;category&gt;/&lt;pre-req-package&gt;
@@ -396,6 +409,12 @@ DEPENDS+=        tex-latex-bin-[0-9]*:../../print/tex-latex-bin
 </programlisting>
       </listitem>
       <listitem>
+        <para>If your package includes a test suite that has extra
+        dependencies only required for this purpose (frequently this
+        can be run as a <quote>make test</quote> target), use the
+        <varname>TEST_DEPENDS</varname> variable.</para>
+      </listitem>
+      <listitem>
 	<para>You can use wildcards in package dependencies. Note that
 	such wildcard dependencies are retained when creating binary
 	packages. The dependency is checked when installing the binary
@@ -421,7 +440,15 @@ DEPENDS+=       ImageMagick>=6.0:../../graphics/ImageMagick
 	have changed.</para>
 
 	<para>If you need to depend on minimum versions of libraries,
-	see the buildlink section of the pkgsrc guide.</para>
+	set
+	<varname>BUILDLINK_API_DEPENDS.<replaceable>pkg</replaceable></varname>
+	to the appropriate pattern before including its
+	<filename>buildlink3.mk</filename> file, e.g.</para>
+
+<programlisting>
+BUILDLINK_API_DEPENDS.jpeg+=    jpeg>=9.0
+.include "../../graphics/jpeg/buildlink3.mk"
+</programlisting>
 
 	<para>For security fixes, please update the package
 	vulnerabilities file. See <xref
@@ -471,7 +498,7 @@ CONFLICTS=      libXaw3d-[0-9]*
     Users may also waste time building a package and its dependencies
     only to find out at the end that it conflicts with another package
     they have installed.</para>
- 
+
     <para>To avoid these issues <varname>CONFLICTS</varname> entries
     should be added in all cases where it is known that packages conflict
     with each other.  These <varname>CONFLICTS</varname> entries are
@@ -600,97 +627,312 @@ DISTNAME=       foo-17.43
     changes that do not merit increasing
     <varname>PKGREVISION</varname> are:</para>
 
-    <itemizedlist><listitem>
-      <para>Changing <varname>HOMEPAGE</varname>,
-      <varname>MAINTAINER</varname>, <varname>OWNER</varname>,
-      or comments in Makefile.</para></listitem><listitem><para>
-      Changing build variables if the resulting binary package is the same.</para></listitem><listitem><para>
-      Changing <filename>DESCR</filename>.</para></listitem><listitem><para>
-      Adding <varname>PKG_OPTIONS</varname> if the default options don't change.</para></listitem>
+    <itemizedlist>
+
+      <listitem><para>Changing <varname>HOMEPAGE</varname>,
+      <varname>MAINTAINER</varname>, <varname>OWNER</varname>, or
+      comments in Makefile.</para></listitem>
+
+      <listitem><para>Changing build variables if the resulting binary
+      package is the same.</para></listitem>
+
+      <listitem><para>Changing
+      <filename>DESCR</filename>.</para></listitem>
+
+      <listitem><para>Adding <varname>PKG_OPTIONS</varname> if the
+      default options don't change.</para></listitem>
+
     </itemizedlist>
 
     <para>Examples of changes that do merit an increase to
     <varname>PKGREVISION</varname> include:</para>
-    <itemizedlist><listitem><para>
-      Security fixes</para></listitem><listitem><para>
-      Changes or additions to a patch file</para></listitem><listitem><para>
-      Changes to the <filename>PLIST</filename></para></listitem>
-      <listitem><para>A dependency is changed or renamed.</para></listitem>
+
+    <itemizedlist>
+
+      <listitem><para>Security fixes</para></listitem>
+
+      <listitem><para>Changes or additions to a patch
+      file</para></listitem>
+
+      <listitem><para>Changes to the
+      <filename>PLIST</filename></para></listitem>
+
+      <listitem><para>A dependency is changed or
+      renamed.</para></listitem>
+
     </itemizedlist>
 
     <para>PKGREVISION must also be incremented when dependencies have ABI
     changes.</para>
   </sect2>
 
-  <sect2 id="fixes.subst">
-    <title>Substituting variable text in the package files (the SUBST framework)</title>
+<sect2 id="fixes.subst">
+<title>Substituting variable text in the package files (the SUBST framework)</title>
 
-    <para>When you want to replace the same text in multiple files
-    or when the replacement text varies, patches alone cannot help.
-    This is where the SUBST framework comes in. It provides an
-    easy-to-use interface for replacing text in files.
-    Example:</para>
+<para>When you want to replace the same text in multiple files, or
+multiple times in the same file, it is cumbersome to maintain a patch
+file for this. This is where the SUBST framework steps in. It provides an
+easy-to-use interface for replacing text in files. It just needs the
+following information:</para>
+
+<itemizedlist>
+
+<listitem><para>In which phase of the package build cycle should the
+replacement happen?</para></listitem>
+
+<listitem><para>In which files should the replacement
+happen?</para></listitem>
+
+<listitem><para>Which text should be replaced with
+what?</para></listitem>
+
+</itemizedlist>
+
+<para>This information is encoded in a block of <varname>SUBST</varname>
+variables. A minimal example is:</para>
 
 <programlisting>
-SUBST_CLASSES+=                 fix-paths
-SUBST_STAGE.fix-paths=          pre-configure
-SUBST_MESSAGE.fix-paths=        Fixing absolute paths.
-SUBST_FILES.fix-paths=          src/*.c
-SUBST_FILES.fix-paths+=         scripts/*.sh
-SUBST_SED.fix-paths=            -e 's,"/usr/local,"${PREFIX},g'
-SUBST_SED.fix-paths+=           -e 's,"/var/log,"${VARBASE}/log,g'
+SUBST_CLASSES+=         paths
+SUBST_STAGE.paths=      pre-configure
+SUBST_FILES.paths=      src/*.c
+SUBST_SED.paths=        -e 's,/usr/local,${PREFIX},g'
 </programlisting>
 
-    <para><varname>SUBST_CLASSES</varname> is a list of identifiers
-    that are used to identify the different SUBST blocks that are
-    defined. The SUBST framework is heavily used by pkgsrc, so it is
-    important to always use the <literal>+=</literal> operator with
-    this variable. Otherwise some substitutions may be
-    skipped.</para>
+<para>Translated into English, it means: In the pre-configure stage (that
+is, after applying the patches from the patches/ directory and before
+running the configure script and the portability check), replace the text
+<literal>/usr/local</literal> with the content of the variable
+<varname>PREFIX</varname>.</para>
 
-    <para>The remaining variables of each SUBST block are
-    parameterized with the identifier from the first line
-    (<literal>fix-paths</literal> in this case.) They can be seen as
-    parameters to a function call.</para>
+<para>Each SUBST block starts by appending an identifier to
+<varname>SUBST_CLASSES</varname> (note the <literal>+=</literal>). This
+identifier can be chosen freely by the package. If there should ever be
+duplicate identifiers, the pkgsrc infrastructure will catch this and fail
+early, so don't worry about name collisions.</para>
 
-    <para><varname>SUBST_STAGE.*</varname> specifies the stage at
-    which the replacement will take place. All combinations of
-    <literal>pre-</literal>, <literal>do-</literal> and
-    <literal>post-</literal> together with a phase name are
-    possible, though only few are actually used. Most commonly used
-    are <literal>post-patch</literal> and
-    <literal>pre-configure</literal>. Of these two,
-    <literal>pre-configure</literal> should be preferred because
-    then it is possible to run <command>bmake patch</command> and
-    have the state after applying the patches but before making any
-    other changes. This is especially useful when you are debugging
-    a package in order to create new patches for it. Similarly,
-    <literal>post-build</literal> is preferred over
-    <literal>pre-install</literal>, because the install phase should
-    generally be kept as simple as possible. When you use
-    <literal>post-build</literal>, you have the same files in the
-    working directory that will be installed later, so you can check
-    if the substitution has succeeded.</para>
+<para>Except for <varname>SUBST_CLASSES</varname>, all variables in a
+SUBST block are parameterized using this identifier. In the remainder of
+this section, these parameterized variables are written as
+<varname>SUBST_STAGE.*</varname>.</para>
 
-    <para><varname>SUBST_MESSAGE.*</varname> is an optional text
-    that is printed just before the substitution is done.</para>
+<programlisting>
+SUBST_CLASSES+=         paths
+SUBST_STAGE.paths=      pre-configure
+SUBST_MESSAGE.paths=    Fixing absolute paths.
+SUBST_FILES.paths=      src/*.c
+SUBST_FILES.paths+=     scripts/*.sh
+SUBST_SED.paths=        -e 's,"/usr/local,"${PREFIX},g'
+SUBST_SED.paths+=       -e 's,"/var/log,"${VARBASE}/log,g'
+SUBST_VARS.paths=       LOCALBASE PREFIX PKGVERSION
+</programlisting>
 
-    <para><varname>SUBST_FILES.*</varname> is the list of shell
-    globbing patterns that specifies the files in which the
-    substitution will take place. The patterns are interpreted
-    relatively to the <varname>WRKSRC</varname> directory.</para>
+<para>To get a complete picture about the SUBST substitutions, run
+<command>bmake show-all-subst</command>. If something doesn't work as
+expected, run pkglint on the package, which detects several typical
+mistakes surrounding the SUBST blocks. For any questions that might
+remain after this, have a look at
+<filename>mk/subst.mk</filename>.</para>
 
-    <para><varname>SUBST_SED.*</varname> is a list of arguments to
-    &man.sed.1; that specify the actual substitution. Every sed
-    command should be prefixed with <literal>-e</literal>, so that
-    all SUBST blocks look uniform.</para>
+<sect3 id="fixes.subst.when">
+<title>Choosing the time where the substitutions happen</title>
 
-    <para>There are some more variables, but they are so seldomly
-    used that they are only documented in the
-    <filename>mk/subst.mk</filename> file.</para>
+<para>The <varname>SUBST_STAGE.*</varname> is one of
+{pre,do,post}-{extract,patch,configure,build,test,install}. Of these,
+<literal>pre-configure</literal> is used most often, by far. The most
+popular stages are, in chronological order:</para>
 
-  </sect2>
+<variablelist>
+
+<varlistentry><term><literal>post-extract</literal></term>
+<listitem><para>The substitutions are applied immediately after the
+distfiles are extracted. Running <command>bmake extract</command> on the
+package will leave no traces of the original files.</para>
+
+<para>When the substitution applies to files for which there is also a
+patch in the <filename>patches/</filename> directory, this means that the
+patches will be computed based on the result of the substitution. When
+these patches are sent to the upstream maintainer later, to be fixed in
+the upstream package, these patches may no longer match what the upstream
+author is used to. Because of this, <literal>pre-configure</literal> is
+often a better choice.</para></listitem></varlistentry>
+
+<varlistentry><term><literal>pre-configure</literal></term>
+<listitem><para>The substitutions are applied after the patches from the
+<filename>patches/</filename> directory. This makes it possible to run
+<command>bmake patch</command> on the package, after which the patches
+can be edited using the tools pkgvi and mkpatches from the <filename
+role="pkg">pkgtools/pkgdiff</filename> package.</para>
+
+<para>When updating the patches, it is helpful to explicitly separate the
+<command>bmake patch</command> from the <command>bmake
+configure</command>, and to only edit the patches between these commands.
+Otherwise the substitutions from the SUBST block will end up in the patch
+file. When this happens in really obvious ways, pkglint will complain
+about patches that contain a hard-coded <literal>/usr/pkg</literal>
+instead of the correct and intended <literal>@PREFIX@</literal>, but it
+can only detect these really obvious
+cases.</para></listitem></varlistentry>
+
+<varlistentry><term><literal>do-configure</literal></term>
+<listitem><para>This stage should only be used if the package defines a
+<literal>pre-configure</literal> action itself, and the substitution must
+happen after that. Typical examples are packages that use the
+<literal>pre-configure</literal> stage to regenerate the GNU configure
+script from
+<filename>configure.ac</filename>.</para></listitem></varlistentry>
+
+<varlistentry><term><literal>post-configure</literal></term>
+<listitem><para>This stage is used to fix up any mistakes by the
+configure stage.</para></listitem></varlistentry>
+
+<varlistentry><term><literal>pre-build</literal></term>
+<listitem><para>This stage should only be used for substitutions that are
+clearly related to building the package, not for fixing the
+configuration. Substitutions for pathnames (such as replacing
+<filename>/usr/local</filename> with <literal>${PREFIX}</literal>) or
+user names (such as replacing <literal>@MY_USER@</literal> with the
+actual username) belong in pre-configure or post-configure
+instead.</para></listitem></varlistentry>
+
+<varlistentry><term><literal>post-build</literal></term>
+<listitem><para>Just as with pre-build, this stage should only be used
+for substitutions that are clearly related to building the package, not
+for fixing the configuration. Substitutions for pathnames (such as
+replacing <filename>/usr/local</filename> with
+<literal>${PREFIX}</literal>) or user names (such as replacing
+<literal>@MY_USER@</literal> with the actual username) belong in
+pre-configure or post-configure instead.</para>
+
+<para>A typical use is to update pkg-config files to include the rpath
+compiler options.</para></listitem></varlistentry>
+
+<varlistentry><term><literal>pre-install</literal></term>
+<listitem><para>In general, the install phase should be as simple as
+possible. As with the pre-build and post-build stages, it should not be
+used to fix pathnames or user names, these belong in pre-configure
+instead. There are only few legitimate use cases for applying
+substitutions in this stage.</para></listitem></varlistentry>
+
+</variablelist>
+
+</sect3>
+
+<sect3 id="fixes.subst.where">
+<title>Choosing the files where the substitutions happen</title>
+
+<para>The <varname>SUBST_FILES.*</varname> variable contains a list of
+filename patterns. These patterns are relative to
+<varname>WRKSRC</varname> since that is where most substitutions happen.
+A typical example is:</para>
+
+<programlisting>
+SUBST_FILES.path=       Makefile */Makefile */*/Makefile *.[ch]
+</programlisting>
+
+
+<para>The above patterns, especially the last, are quite broad. The SUBST
+implementation checks that each filename pattern that is mentioned here
+has an effect. For example, if none of the
+<filename>*/*/Makefile</filename> files contains the patterns to be found
+and substituted, that filename pattern is redundant and should be left
+out. By default, the SUBST framework will complain with an error message.
+If the text to be substituted occurs in some of the files from a single
+pattern, but not in all of them, that is totally ok, and the SUBST
+framework will only print an INFO message for those files.</para>
+
+<para>If there is a good reason for having redundant filename patterns,
+set <varname>SUBST_NOOP_OK.*</varname> to <literal>yes</literal>.</para>
+
+<para>Another popular way of choosing the files for the substitutions is
+via a shell command, like this:</para>
+
+<programlisting>
+C_FILES_CMD=            cd ${WRKSRC} &amp;&amp; ${FIND} . -name '*.c'
+SUBST_FILES.path=       ${C_FILES_CMD:sh}
+</programlisting>
+
+<para>The variable name <varname>C_FILES_CMD</varname> in this example is
+freely chosen and independent of the SUBST framework.</para>
+
+<para>In this variant, the <varname>SUBST_FILES.*</varname> variable
+lists each file individually. Thereby chances are higher that there are
+filename patterns in which no substitution happens. Since the SUBST
+framework cannot know whether the filename patterns in
+<varname>SUBST_FILES.*</varname> have been explicitly listed in the
+Makefile (where any redundant filename pattern would be suspicious) or
+been generated by a shell command (in which redundant filename patterns
+are more likely and to be expected), it will complain about these
+redundant filename patterns. Therefore, SUBST blocks that use a shell
+command to generate the list of filename patterns often need to set
+<varname>SUBST_NOOP_OK.*</varname> to <literal>yes</literal>.</para>
+
+</sect3>
+
+<sect3 id="fixes.subst.what">
+<title>Choosing what to substitute</title>
+
+<para>In most cases, the substitutions are given using one or more
+&man.sed.1; commands, like this:</para>
+
+<programlisting>
+SUBST_SED.path=         -e 's|/usr/local|${PREFIX}|g'
+</programlisting>
+
+<para>Each of the sed commands needs to be preceded by the
+<literal>-e</literal> option and should be specified on a line of its
+own, to avoid hiding short sed commands at the end of a line.</para>
+
+<para>Since the sed commands often contain shell metacharacters as the
+separator (the <literal>|</literal> in the above example), it is common
+to enclose them in single quotes.</para>
+
+<para>A common substitution is to replace placeholders of the form
+<literal>@VARNAME@</literal> with their pkgsrc counterpart variable
+<literal>${VARNAME}</literal>. A typical example is:</para>
+
+<programlisting>
+SUBST_VARS.path=        PREFIX
+</programlisting>
+
+<para>This type of substitutions is typically done by the GNU configure
+scripts during the do-configure stage, but in some cases these need to be
+overridden. The same pattern is also used when a package defines patches
+that replace previously hard-coded paths like
+<literal>/usr/local</literal> with a <literal>@PREFIX@</literal>
+placeholder first, which then gets substituted by the actual
+<literal>${PREFIX}</literal> in the pre-configure stage. In many of these
+cases, it works equally well to just use the SUBST framework to directly
+replace <literal>/usr/local</literal> with <literal>${PREFIX}</literal>,
+thereby omitting the intermediate patch file.</para>
+
+<para>If the above is not flexible enough, it is possible to not use sed
+at all for the substitution but to specify an entirely different command,
+like this:</para>
+
+<programlisting>
+SUBST_FILTER_CMD.path=  LC_ALL=C ${TR} -d '\r'
+</programlisting>
+
+<para>This is used for the few remaining packages in which the
+distributed files use Windows-style line endings that need to be
+converted to UNIX-style line endings.</para>
+
+</sect3>
+
+<sect3 id="fixes.subst.other">
+<title>Other SUBST variables</title>
+
+<para>When a SUBST block is applied during a package build, a message is
+logged. The default message is fine for most purposes but can be
+overridden by setting <literal>SUBST_MESSAGE.*</literal> to an individual
+message.</para>
+
+</sect3>
+
+</sect2>
+
 </sect1>
+
 <sect1 id="fixes.fetch">
   <title>The <emphasis>fetch</emphasis> phase</title>
 
@@ -745,7 +987,15 @@ FETCH_MESSAGE+= "manually from "${MASTER_SITES:Q}"."
     including the <filename>nbX</filename> suffix) or a date stamp can
     be appended, like
     <varname>${PKGNAME_NOREV}-YYYYMMDD</varname>.</para>
-    <para><varname>DIST_SUBDIR</varname> is also used when a distfile's name does not contain a version and the distfile is apt to change. In cases where the likelihood of this is very small, <varname>DIST_SUBDIR</varname> might not be required. Additionally, <varname>DIST_SUBDIR</varname> must not be removed unless the distfile name changes, even if a package is being moved or renamed.</para>
+
+    <para><varname>DIST_SUBDIR</varname> is also used when a distfile's
+    name does not contain a version and the distfile is apt to change. In
+    cases where the likelihood of this is very small,
+    <varname>DIST_SUBDIR</varname> might not be required. Additionally,
+    <varname>DIST_SUBDIR</varname> must not be removed unless the
+    distfile name changes, even if a package is being moved or
+    renamed.</para>
+
     <para>Do not forget regenerating the <filename>distinfo</filename> file
     after that, since it contains the <varname>DIST_SUBDIR</varname>
     path in the filenames.
@@ -754,45 +1004,89 @@ FETCH_MESSAGE+= "manually from "${MASTER_SITES:Q}"."
     telling them that changing distfiles after releases without
     changing the file names is not good practice.</para>
   </sect2>
+
   <sect2 id="build.fetch.github">
     <title>Packages hosted on github.com</title>
-    <para>Helper methods exist for packages hosted on github.com which will often have distfile names that clash with other packages, for example <filename>1.0.tar.gz</filename>. Use one of the three recipes from below:
-    </para>
+
+    <para>Helper methods exist for packages hosted on github.com which
+    will often have distfile names that clash with other packages, for
+    example <filename>1.0.tar.gz</filename>. Use one of the three recipes
+    from below:</para>
+
     <sect3 id="build.fetch.github.tag">
       <title>Fetch based on a tagged release</title>
-      <para>
-        If your distfile URL looks similar to <literal>http://github.com/username/exampleproject/archive/v1.0.zip</literal>, then you are packaging a tagged release.
-      </para>
+
+      <para>If your distfile URL looks similar to
+      <literal>https://github.com/username/example/archive/v1.0.zip</literal>,
+      then you are packaging a tagged release.</para>
+
 <programlisting>
-DISTNAME=       exampleproject-1.0
+DISTNAME=       example-1.0
 MASTER_SITES=   ${MASTER_SITE_GITHUB:=username/}
-#GITHUB_PROJECT=        # can be omitted if same as DISTNAME
+#GITHUB_PROJECT= example    # can be omitted if same as DISTNAME
 GITHUB_TAG=     v${PKGVERSION_NOREV}
 EXTRACT_SUFX=   .zip
 </programlisting>
+
     </sect3>
-    <sect3 id="build.fetch.github.commit">
-      <title>Fetch based on a specific commit</title>
-      <para>
-        If your distfile URL looks similar to <literal>http://github.com/example/example/archive/988881adc9fc3655077dc2d4d757d480b5ea0e11.tar.gz</literal>, then you are packaging a specific commit not tied to a release.
-      </para>
+
+    <sect3 id="build.fetch.github.commit.prerelease">
+      <title>Fetch based on a specific commit before the first release</title>
+
+      <para>If your distfile looks similar to
+      <literal>https://github.com/username/example/archive/988881adc9fc3655077dc2d4d757d480b5ea0e11</literal> and is from a commit before the first
+      release, then set the package version to 0.0.0.N, where N is the number
+      of commits to the repository, and set GITHUB_TAG to the commit hash.
+      This will (almost) ensure that the first tagged release will have a
+      version greater than this one so that package upgrades will function
+      properly.</para>
+
 <programlisting>
-DISTNAME=       example-1.0
-MASTER_SITES=   ${MASTER_SITE_GITHUB:=example/}
-#GITHUB_PROJECT=        # can be omitted if same as DISTNAME
+DISTNAME=       example-0.0.0.347
+MASTER_SITES=   ${MASTER_SITE_GITHUB:=username/}
+#GITHUB_PROJECT= example    # can be omitted if same as DISTNAME
 GITHUB_TAG=     988881adc9fc3655077dc2d4d757d480b5ea0e11
 </programlisting>
     </sect3>
+
+    <sect3 id="build.fetch.github.commit.postrelease">
+      <title>Fetch based on a specific commit after a release</title>
+
+      <para>If your distfile looks similar to
+      <literal>https://github.com/username/example/archive/988881adc9fc3655077dc2d4d757d480b5ea0e11</literal> and is from a commit after a release,
+      then include the last release version and the commit count since that
+      release in the package version and set GITHUB_TAG to the commit hash.
+      The latest release and commit count are shown in the output of
+      "git describe --tags":
+      </para>
+
+<screen>
+# git clone https://github.com/username/example
+# cd example
+# git describe --tags
+1.2.3-5-g988881a
+</screen>
+
+<programlisting>
+DISTNAME=       example-1.2.3.5
+MASTER_SITES=   ${MASTER_SITE_GITHUB:=username/}
+#GITHUB_PROJECT= example    # can be omitted if same as DISTNAME
+GITHUB_TAG=     988881adc9fc3655077dc2d4d757d480b5ea0e11
+</programlisting>
+    </sect3>
+
     <sect3 id="build.fetch.github.release">
       <title>Fetch based on release</title>
-      <para>
-        If your distfile URL looks similar to <literal>http://github.com/username/exampleproject/releases/download/rel-1.6/offensive-1.6.zip</literal>, then you are packaging a release.
-      </para>
+
+      <para>If your distfile URL looks similar to
+      <literal>https://github.com/username/example/releases/download/rel-1.6/offensive-1.6.zip</literal>,
+      then you are packaging a release.</para>
+
 <programlisting>
 DISTNAME=       offensive-1.6
 PKGNAME=        ${DISTNAME:S/offensive/proper/}
 MASTER_SITES=   ${MASTER_SITE_GITHUB:=username/}
-GITHUB_PROJECT= exampleproject
+GITHUB_PROJECT= example
 GITHUB_RELEASE= rel-${PKGVERSION_NOREV} # usually just set this to ${DISTNAME}
 EXTRACT_SUFX=   .zip
 </programlisting>
@@ -1274,6 +1568,174 @@ SunPro C++  __SUNPRO_CC (0x580 for Sun C++ 5.8)
 	to add a compiler specific workaround, please do so in the file
 	<filename>hacks.mk</filename> and describe the symptom and
 	compiler version as detailed as possible.</para>
+
+</sect2>
+
+<sect2 id="fixes.build.header">
+<title>No such file or directory</title>
+
+<para>Compilation sometimes fails with an error message like this:</para>
+
+<programlisting>
+.../x11/gtk3/work/gtk+-3.24.12/gdk/gdktypes.h:35:10:
+    fatal error: pango/pango.h: No such file or directory
+</programlisting>
+
+<para>The proper way to fix this problem depends on the type of the
+header, which is described in the following sections.</para>
+
+<sect3 id="fixes.build.header.bl3">
+<title>Headers from other packages</title>
+
+<para>If the header name looks like it comes from a different package,
+that other package should be included via the buildlink3
+framework.</para>
+
+<para>First, look whether the header is somewhere in the buildlink3
+directory below <varname>WRKDIR</varname>. In the above case of
+the missing Pango header:</para>
+
+<programlisting>
+&uprompt; find work/.buildlink/ -print | grep -F pango/pango.h
+</programlisting>
+
+<para>In the case of Pango, the output is:</para>
+
+<programlisting>
+work/.buildlink/include/pango-1.0/pango/pango.h
+</programlisting>
+
+<para>If the <filename>pango/pango.h</filename> file were placed directly
+in the <filename>.buildlink</filename> directory, it would have been
+found automatically. There is an extra <filename>pango-1.0</filename>
+path component though, which means that the compiler command line must
+contain an option of the form
+<literal>-I${BUILDLINK3_PREFIX.pango}/include/pango-1.0</literal>. In
+most cases this option is generated by the configure script, which can be examined using:</para>
+
+<programlisting>
+&uprompt; $ grep -o '[-]I[^[:space:]]*/pango[^[:space:]]*' work/*/Makefile
+-I/usr/pkg/include/pango-1.0
+-I/usr/pkg/include/pango-1.0
+-I/usr/pkg/include/pango-1.0
+-I/usr/pkg/include/pango-1.0
+-I/usr/pkg/include/pango-1.0
+</programlisting>
+
+<para>This looks good. These options are transformed by the buildlink
+wrapper to refer to the correct path inside
+<filename>work/.buildlink</filename>.</para>
+
+<para>Since the compilation fails though, examine the compiler command
+lines in <filename>work/.work.log</filename> to see whether the
+<literal>-I</literal> option is included in the particular command
+line.</para>
+
+<para>To further analyze the situation, run <command>bmake
+build-env</command>, which sets up an interactive, realistic environment
+including all the pkgsrc wrapper commands and environment variables. From
+there, try to compile some simple example programs that use the
+header.</para>
+
+</sect3>
+
+<sect3 id="fixes.build.header.gen">
+<title>Headers generated during the build</title>
+
+<para>If the name of the header seems to come from the package itself,
+and if the build is run with parallel jobs, the package may have some
+undeclared dependencies between the <filename>.c</filename> and the
+<filename>.h</filename> files, and a C file is compiled before its
+required header is generated.</para>
+
+<para>To see whether the build runs with parallel jobs, run
+<command>bmake show-all-build | grep JOBS</command>. Its output looks
+like this:</para>
+
+<programlisting>
+  usr   MAKE_JOBS=              7
+  pkg   MAKE_JOBS_SAFE          # undefined
+  def   _MAKE_JOBS_N=           7
+</programlisting>
+
+<para>In this case the pkgsrc user has asked pkgsrc to build packages
+with 7 jobs in parallel (<varname>MAKE_JOBS</varname>). The
+package could have disabled parallel builds by setting
+<varname>MAKE_JOBS_SAFE</varname> to <literal>no</literal>, but
+in this case it hasn't.</para>
+
+<para>To see whether the build failure is caused by parallel builds,
+first save the exact error message and a bit of context, maybe you need
+it later for reporting a bug. Next, run:</para>
+
+<programlisting>
+MAKE_JOBS_SAFE=no bmake clean build
+</programlisting>
+
+<para>If that succeeds, <ulink
+url="https://www.NetBSD.org/cgi-bin/sendpr.cgi?gndb=netbsd">file a bug
+report</ulink> against the pkgsrc package, including the exact error
+message and the contents of your &mk.conf; file.</para>
+
+</sect3>
+
+<sect3 id="fixes.build.header.symlink">
+<title>Symlinks</title>
+
+<para>Pkgsrc does not work reliably if any of
+<varname>LOCALBASE</varname>, <varname>VARBASE</varname> or
+<varname>WRKDIR</varname> contains a symlink. Since 2019Q2, the pkgsrc
+bootstrap program prevents installing pkgsrc in symlink-based
+directories. Existing pkgsrc installations are not checked for symlinks
+though.</para>
+
+<para>The "No such file or directory" error messages are a typical
+symptom of symlinks, and it's quite difficult to find out that this is
+the actual cause.</para>
+
+</sect3>
+
+<sect3 id="fixes.build.header.stale">
+<title>Stale working directories</title>
+
+<para>When building a hierarchy of packages, it may happen that one
+package is built and then pkgsrc is updated. This situation can provoke
+various hard to diagnose build errors. To clean up the situation:</para>
+
+<programlisting>
+&uprompt; (cd ../../ && test -f mk/bsd.pkg.mk && rm -rf */*/work)
+</programlisting>
+
+<para>(The test for <filename>bsd.pkg.mk</filename> just prevents running
+this command in the wrong directory.)</para>
+
+<para>If you have set <varname>WRKOBJDIR</varname> in &mk.conf;, remove
+that directory as well.</para>
+
+</sect3>
+
+<sect3 id="fixes.build.header.misc">
+<title>Other possible reasons</title>
+
+<para>On platforms other than BSD, third-party packages are installed in
+<filename>/usr/include</filename>, together with the base system. This
+means that pkgsrc cannot distinguish between headers provided by the base
+system (which it needs) and headers from third-party packages (which are
+often included in pkgsrc as well). This can lead to subtle version
+mismatches.</para>
+
+<para>In pkgsrc installations that have been active for several years, it
+may happen that some files are manually deleted. To exclude this unlikely
+reason, run <command>pkg_admin check</command>.</para>
+
+<para>It may help to run <command>pkg_admin rebuild-tree</command> to
+check/fix dependencies.</para>
+
+<para>If all of the above doesn't help, see <xref linkend="help-user"/>
+for contact information. Be prepared to describe what you have tried so
+far and what any error messages were.</para>
+
+</sect3>
 
 </sect2>
 

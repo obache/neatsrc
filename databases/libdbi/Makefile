@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2016/08/21 21:29:08 fhajny Exp $
+# $NetBSD: Makefile,v 1.7 2020/01/26 05:26:20 rillig Exp $
 #
 
 DISTNAME=	libdbi-0.9.0

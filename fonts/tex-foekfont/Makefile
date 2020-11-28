@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:29:59 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:44 markd Exp $
 
 DISTNAME=	foekfont
 PKGNAME=	tex-${DISTNAME}-2014
+PKGREVISION=	1
 TEXLIVE_REV=	15878
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/foekfont
+HOMEPAGE=	https://ctan.org/pkg/foekfont
 COMMENT=	Title font of the Mads Fok magazine
 LICENSE=	gnu-gpl-v2
 

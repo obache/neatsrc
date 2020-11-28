@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2012/10/08 13:45:44 asau Exp $
+# $NetBSD: Makefile,v 1.17 2020/03/20 11:58:14 nia Exp $
 #
 
 DISTNAME=	pnm2ppa-1.12

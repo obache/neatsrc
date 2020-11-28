@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.29 2019/11/04 21:28:58 rillig Exp $
+# $NetBSD: Makefile,v 1.31 2020/06/02 08:22:57 adam Exp $
 #
 
 DISTNAME=	vcdimager-2.0.1
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GNU:=vcdimager/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/vcdimager/
+HOMEPAGE=	https://www.gnu.org/software/vcdimager/
 COMMENT=	Mastering suite for Video CDs
 LICENSE=	gnu-gpl-v2
 

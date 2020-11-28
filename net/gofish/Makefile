@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.17 2016/12/18 16:36:18 rillig Exp $
+# $NetBSD: Makefile,v 1.19 2020/03/20 11:58:07 nia Exp $
 
 DISTNAME=		gofish-1.2
 PKGREVISION=		2

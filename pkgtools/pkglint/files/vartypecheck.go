@@ -1,6 +1,7 @@
 package pkglint
 
 import (
+	"netbsd.org/pkglint/pkgver"
 	"netbsd.org/pkglint/regex"
 	"netbsd.org/pkglint/textproc"
 	"path"
@@ -46,8 +47,8 @@ func (cv *VartypeCheck) Explain(explanation ...string)             { cv.MkLine.E
 //
 //  fix.Replace("from", "to")
 //  fix.ReplaceAfter("prefix", "from", "to")
-//  fix.InsertBefore("new line")
-//  fix.InsertAfter("new line")
+//  fix.InsertAbove("new line")
+//  fix.InsertBelow("new line")
 //  fix.Delete()
 //  fix.Custom(func(showAutofix, autofix bool) {})
 //
@@ -178,7 +179,7 @@ func (cv *VartypeCheck) Category() {
 		"gnome", "gnustep",
 		"japanese", "java",
 		"kde", "korean",
-		"linux", "local",
+		"linux", "local", "lua",
 		"perl5", "plan9", "python",
 		"R", "ruby",
 		"scm",
@@ -276,9 +277,9 @@ func (cv *VartypeCheck) ConfFiles() {
 	}
 
 	for i, word := range words {
-		cv.WithValue(word).Pathname()
+		cv.WithValue(word).PathnameSpace()
 
-		if i%2 == 1 && !hasPrefix(word, "${") {
+		if i%2 == 1 && !matches(word, `["']*\$\{`) {
 			cv.Warnf("The destination file %q should start with a variable reference.", word)
 			cv.Explain(
 				"Since pkgsrc can be installed in different locations, the",
@@ -289,11 +290,11 @@ func (cv *VartypeCheck) ConfFiles() {
 	}
 }
 
-func (cv *VartypeCheck) Dependency() {
+func (cv *VartypeCheck) DependencyPattern() {
 	value := cv.Value
 
 	parser := NewMkParser(nil, value)
-	deppat := parser.Dependency()
+	deppat := parser.DependencyPattern()
 	rest := parser.Rest()
 
 	if deppat != nil && deppat.Wildcard == "" && (rest == "{,nb*}" || rest == "{,nb[0-9]*}") {
@@ -371,6 +372,48 @@ func (cv *VartypeCheck) Dependency() {
 			"To make the \"2.0\" above part of the package basename, the hyphen",
 			"must be omitted, so the full package name becomes \"foo2.0-2.1.x\".")
 	}
+
+	checkDepends := func(
+		prefix string,
+		depends func(data *Buildlink3Data) *DependencyPattern,
+		dependsLine func(data *Buildlink3Data) *MkLine,
+	) {
+		if deppat.LowerOp == "" {
+			return
+		}
+		pkg := cv.MkLines.pkg
+		if pkg == nil {
+			return
+		}
+		if !hasPrefix(cv.Varname, prefix) {
+			return
+		}
+		bl3id := Buildlink3ID(varnameParam(cv.Varname))
+		data := pkg.bl3Data[bl3id]
+		if data == nil {
+			return
+		}
+		defpat := depends(data)
+		if defpat == nil || defpat.LowerOp == "" {
+			return
+		}
+		limit := condInt(defpat.LowerOp == ">=" && deppat.LowerOp == ">", 1, 0)
+		if pkgver.Compare(deppat.Lower, defpat.Lower) < limit {
+			cv.Notef("The requirement %s%s is already guaranteed by the %s%s from %s.",
+				deppat.LowerOp, deppat.Lower, defpat.LowerOp, defpat.Lower,
+				cv.MkLine.RelMkLine(dependsLine(data)))
+		}
+	}
+
+	checkDepends(
+		"BUILDLINK_API_DEPENDS.",
+		func(data *Buildlink3Data) *DependencyPattern { return data.apiDepends },
+		func(data *Buildlink3Data) *MkLine { return data.apiDependsLine },
+	)
+	checkDepends(
+		"BUILDLINK_ABI_DEPENDS.",
+		func(data *Buildlink3Data) *DependencyPattern { return data.abiDepends },
+		func(data *Buildlink3Data) *MkLine { return data.abiDependsLine })
 }
 
 func (cv *VartypeCheck) DependencyWithPath() {
@@ -382,41 +425,46 @@ func (cv *VartypeCheck) DependencyWithPath() {
 	}
 
 	parts := cv.MkLine.ValueSplit(value, ":")
-	if len(parts) == 2 {
-		pattern := parts[0]
-		relpath := NewRelPathString(parts[1])
-		pathParts := relpath.Parts()
-		pkg := pathParts[len(pathParts)-1]
-
-		if len(pathParts) >= 2 && pathParts[0] == ".." && pathParts[1] != ".." {
-			cv.Warnf("Dependency paths should have the form \"../../category/package\".")
-			cv.MkLine.ExplainRelativeDirs()
-		}
-
-		if !containsVarUse(relpath.String()) {
-			MkLineChecker{cv.MkLines, cv.MkLine}.CheckRelativePkgdir(relpath)
-		}
-
-		switch pkg {
-		case "gettext":
-			cv.Warnf("Please use USE_TOOLS+=msgfmt instead of this dependency.")
-		case "perl5":
-			cv.Warnf("Please use USE_TOOLS+=perl:run instead of this dependency.")
-		case "gmake":
-			cv.Warnf("Please use USE_TOOLS+=gmake instead of this dependency.")
-		}
-
-		cv.WithValue(pattern).Dependency()
-
+	if len(parts) != 2 {
+		cv.Warnf("Invalid dependency pattern with path %q.", value)
+		cv.Explain(
+			"Examples for valid dependency patterns with path are:",
+			"  package-[0-9]*:../../category/package",
+			"  package>=3.41:../../category/package",
+			"  package-2.718{,nb*}:../../category/package")
 		return
 	}
 
-	cv.Warnf("Invalid dependency pattern with path %q.", value)
-	cv.Explain(
-		"Examples for valid dependency patterns with path are:",
-		"  package-[0-9]*:../../category/package",
-		"  package>=3.41:../../category/package",
-		"  package-2.718{,nb*}:../../category/package")
+	pattern := parts[0]
+	dependencyDir := NewPath(parts[1])
+	if dependencyDir.IsAbs() {
+		cv.Errorf("Dependency paths like %q must be relative.", parts[1])
+		return
+	}
+
+	pathParts := dependencyDir.Parts()
+	if len(pathParts) >= 2 && pathParts[0] == ".." && pathParts[1] != ".." {
+		cv.Warnf("Dependency paths should have the form \"../../category/package\".")
+		cv.MkLine.ExplainRelativeDirs()
+	}
+
+	if !containsVarUse(parts[1]) {
+		ck := MkLineChecker{cv.MkLines, cv.MkLine}
+		rel := NewRelPath(dependencyDir)
+		ck.CheckRelativePkgdir(rel, NewPackagePath(rel))
+	}
+
+	pkg := pathParts[len(pathParts)-1]
+	switch pkg {
+	case "gettext":
+		cv.Warnf("Please use USE_TOOLS+=msgfmt instead of this dependency.")
+	case "perl5":
+		cv.Warnf("Please use USE_TOOLS+=perl:run instead of this dependency.")
+	case "gmake":
+		cv.Warnf("Please use USE_TOOLS+=gmake instead of this dependency.")
+	}
+
+	cv.WithValue(pattern).DependencyPattern()
 }
 
 func (cv *VartypeCheck) DistSuffix() {
@@ -532,11 +580,11 @@ func (cv *VartypeCheck) FetchURL() {
 			}
 		}
 
-		if len(varUse.modifiers) != 1 || !hasPrefix(varUse.modifiers[0].Text, "=") {
+		if len(varUse.modifiers) != 1 || !varUse.modifiers[0].HasPrefix("=") {
 			continue
 		}
 
-		subdir := varUse.modifiers[0].Text[1:]
+		subdir := varUse.modifiers[0].String()[1:]
 		if !hasSuffix(subdir, "/") {
 			cv.Errorf("The subdirectory in %s must end with a slash.", name)
 		}
@@ -631,43 +679,8 @@ func (cv *VartypeCheck) GccReqd() {
 func (cv *VartypeCheck) Homepage() {
 	cv.URL()
 
-	m, wrong, sitename, subdir := match3(cv.Value, `^(\$\{(MASTER_SITE\w+)(?::=([\w\-/]+))?\})`)
-	if !m {
-		return
-	}
-
-	baseURL := G.Pkgsrc.MasterSiteVarToURL[sitename]
-	if sitename == "MASTER_SITES" && cv.MkLines.pkg != nil {
-		mkline := cv.MkLines.pkg.vars.FirstDefinition("MASTER_SITES")
-		if mkline != nil {
-			if !containsVarUse(mkline.Value()) {
-				masterSites := cv.MkLine.ValueFields(mkline.Value())
-				if len(masterSites) > 0 {
-					baseURL = masterSites[0]
-				}
-			}
-		}
-	}
-
-	fixedURL := baseURL + subdir
-
-	fix := cv.Autofix()
-	if baseURL != "" {
-		fix.Warnf("HOMEPAGE should not be defined in terms of MASTER_SITEs. Use %s directly.", fixedURL)
-	} else {
-		fix.Warnf("HOMEPAGE should not be defined in terms of MASTER_SITEs.")
-	}
-	fix.Explain(
-		"The HOMEPAGE is a single URL, while MASTER_SITES is a list of URLs.",
-		"As long as this list has exactly one element, this works, but as",
-		"soon as another site is added, the HOMEPAGE would not be a valid",
-		"URL anymore.",
-		"",
-		"Defining MASTER_SITES=${HOMEPAGE} is ok, though.")
-	if baseURL != "" {
-		fix.Replace(wrong, fixedURL)
-	}
-	fix.Apply()
+	ck := NewHomepageChecker(cv.Value, cv.ValueNoVar, cv.MkLine, cv.MkLines)
+	ck.Check()
 }
 
 // Identifier checks for valid identifiers in various contexts, limiting the
@@ -853,7 +866,13 @@ func (cv *VartypeCheck) Message() {
 	}
 }
 
-// Option checks whether a single package option from options.mk conforms to the naming conventions.
+// Option checks whether a single package option from an options.mk file
+// conforms to the naming conventions.
+//
+// This check only handles option names, as in PKG_SUPPORTED_OPTIONS or
+// PKG_SUGGESTED_OPTIONS. It does not handle option selections, which may
+// pre prefixed with a hyphen to disable the option. Option selections
+// are all user-settable and therefore are out of scope for pkglint.
 func (cv *VartypeCheck) Option() {
 	value := cv.Value
 
@@ -861,14 +880,11 @@ func (cv *VartypeCheck) Option() {
 		return
 	}
 
-	validName := regex.Pattern(`^-?([a-z][-0-9a-z_+]*)$`)
+	validName := regex.Pattern(`^([a-z][-0-9a-z_+]*)$`)
 	if cv.Op == opUseMatch {
-		validName = `^-?([a-z][*+\-0-9?\[\]_a-z]*)$`
+		validName = `^([a-z][*+\-0-9?\[\]_a-z]*)$`
 	}
 
-	// TODO: Distinguish between:
-	//  - a bare option name (must start with a letter),
-	//  - an option selection (may have a leading hyphen).
 	m, optname := match1(value, validName)
 	if !m {
 		cv.Errorf("Invalid option name %q. Option names must start with a lowercase letter and be all-lowercase.", value)
@@ -886,7 +902,7 @@ func (cv *VartypeCheck) Option() {
 
 	if !strings.ContainsAny(optname, "*?[") {
 		if _, found := G.Pkgsrc.PkgOptions[optname]; !found {
-			cv.Warnf("Unknown option %q.", optname)
+			cv.Warnf("Undocumented option %q.", optname)
 			cv.Explain(
 				"This option is not documented in the mk/defaults/options.description file.",
 				"Please think of a brief but precise description and either",
@@ -929,7 +945,7 @@ func (cv *VartypeCheck) Pathlist() {
 //
 // See FilePattern.
 func (cv *VartypeCheck) PathPattern() {
-	invalid := replaceAll(cv.ValueNoVar, `[%*+,\-./0-9?@A-Z\[\]_a-z~]`, "")
+	invalid := replaceAll(cv.ValueNoVar, `[!%*+,\-./0-9?@A-Z\[\]_a-z~]`, "")
 	if invalid == "" {
 		return
 	}
@@ -948,8 +964,29 @@ func (cv *VartypeCheck) PathPattern() {
 func (cv *VartypeCheck) Pathname() {
 	valid := regex.Pattern(condStr(
 		cv.Op == opUseMatch,
-		`[%*+,\-./0-9?@A-Z\[\]_a-z~]`,
-		`[%+,\-./0-9@A-Z_a-z~]`))
+		`[!%*+,\-./0-9?@A-Z\[\]_a-z~]`,
+		`[!%+,\-./0-9@A-Z_a-z~]`))
+	invalid := replaceAll(cv.ValueNoVar, valid, "")
+	if invalid == "" {
+		return
+	}
+
+	cv.Warnf(
+		condStr(cv.Op == opUseMatch,
+			"The pathname pattern %q contains the invalid character%s %q.",
+			"The pathname %q contains the invalid character%s %q."),
+		cv.Value,
+		condStr(len(invalid) > 1, "s", ""),
+		invalid)
+}
+
+// Like Pathname, but may contain spaces as well.
+// Because the spaces must be quoted, backslashes and quotes are allowed as well.
+func (cv *VartypeCheck) PathnameSpace() {
+	valid := regex.Pattern(condStr(
+		cv.Op == opUseMatch,
+		`[ "%'*+,\-./0-9?@A-Z\[\\\]_a-z~]`,
+		`[ "%'+,\-./0-9@A-Z\\_a-z~]`))
 	invalid := replaceAll(cv.ValueNoVar, valid, "")
 	if invalid == "" {
 		return
@@ -1059,21 +1096,23 @@ func (cv *VartypeCheck) Pkgrevision() {
 	}
 }
 
-// PlistIdentifier checks for valid identifiers in PLIST_VARS.
+// PlistIdentifier checks for valid condition identifiers in PLIST_VARS.
+//
 // These identifiers are interpreted as regular expressions by
 // mk/plist/plist-subst.mk, therefore they are limited to very
 // few characters.
 func (cv *VartypeCheck) PlistIdentifier() {
-	if cv.Value != cv.ValueNoVar {
+	cond := cv.Value
+	if cond != cv.ValueNoVar {
 		return
 	}
 
 	if cv.Op == opUseMatch {
 		invalidPatternChars := textproc.NewByteSet("A-Za-z0-9---_*?[]")
-		invalid := invalidCharacters(cv.Value, invalidPatternChars)
+		invalid := invalidCharacters(cond, invalidPatternChars)
 		if invalid != "" {
 			cv.Warnf("PLIST identifier pattern %q contains invalid characters (%s).",
-				cv.Value, invalid)
+				cond, invalid)
 			cv.Explain(
 				"PLIST identifiers must consist of [A-Za-z0-9-_] only.",
 				"In patterns, the characters *?[] are allowed additionally.")
@@ -1082,12 +1121,21 @@ func (cv *VartypeCheck) PlistIdentifier() {
 	}
 
 	invalidChars := textproc.NewByteSet("A-Za-z0-9---_")
-	invalid := invalidCharacters(cv.Value, invalidChars)
+	invalid := invalidCharacters(cond, invalidChars)
 	if invalid != "" {
 		cv.Errorf("PLIST identifier %q contains invalid characters (%s).",
-			cv.Value, invalid)
+			cond, invalid)
 		cv.Explain(
 			"PLIST identifiers must consist of [A-Za-z0-9-_] only.")
+		return
+	}
+
+	if cv.MkLines.pkg != nil && !cv.MkLines.pkg.Plist.Conditions[cond] {
+		cv.Warnf("PLIST identifier %q is not used in any PLIST file.", cond)
+		cv.Explain(
+			"For every identifier that is added to PLIST_VARS,",
+			"there should be a corresponding ${PLIST.identifier}",
+			"in any of the PLIST files of the package.")
 	}
 }
 
@@ -1098,6 +1146,14 @@ func (cv *VartypeCheck) PrefixPathname() {
 			cv.Value, cv.Varname)
 		return
 	}
+
+	cv.MkLine.ForEachUsedText(cv.Value, VucRunTime, func(varUse *MkVarUse, time VucTime) {
+		varname := varUse.varname
+		if varname == "PKG_SYSCONFDIR" || varname == "VARBASE" {
+			cv.Errorf("%s must not be used in %s since it is not relative to PREFIX.",
+				varname, cv.Varname)
+		}
+	})
 
 	if m, manSubdir := match1(cv.Value, `^man/(.+)`); m {
 		from := "${PKGMANDIR}/" + manSubdir
@@ -1111,13 +1167,16 @@ func (cv *VartypeCheck) PrefixPathname() {
 func (cv *VartypeCheck) PythonDependency() {
 	if cv.Value != cv.ValueNoVar {
 		cv.Warnf("Python dependencies should not contain variables.")
-	} else if !matches(cv.ValueNoVar, `^[+\-.0-9A-Z_a-z]+(?:|:link|:build)$`) {
+	} else if !matches(cv.ValueNoVar, `^[+\-.0-9A-Z_a-z]+(?:|:link|:build|:test|:tool)$`) {
 		cv.Warnf("Invalid Python dependency %q.", cv.Value)
 		cv.Explain(
 			"Python dependencies must be an identifier for a package, as",
 			"specified in lang/python/versioned_dependencies.mk.",
-			"This identifier may be followed by :build for a build-time only",
-			"dependency, or by :link for a run-time only dependency.")
+			"This identifier may be followed by:",
+			"\t:tool for a tool dependency,",
+			"\t:build for a build-time only dependency,",
+			"\t:test for a test-only dependency,",
+			"\t:link for a run-time dependency.")
 	}
 }
 
@@ -1148,17 +1207,21 @@ func (cv *VartypeCheck) RPkgVer() {
 	}
 }
 
-// RelativePkgDir refers to a package directory, e.g. ../../category/pkgbase.
+// RelativePkgDir refers from one package directory to another package
+// directory, e.g. ../../category/pkgbase.
 func (cv *VartypeCheck) RelativePkgDir() {
 	if NewPath(cv.Value).IsAbs() {
 		cv.Errorf("The path %q must be relative.", cv.Value)
 		return
 	}
 
-	MkLineChecker{cv.MkLines, cv.MkLine}.CheckRelativePkgdir(NewRelPathString(cv.Value))
+	ck := MkLineChecker{cv.MkLines, cv.MkLine}
+	packagePath := NewPackagePathString(cv.Value)
+	ck.CheckRelativePkgdir(packagePath.AsRelPath(), packagePath)
 }
 
-// RelativePkgPath refers to a file or directory, e.g. ../../category/pkgbase,
+// RelativePkgPath refers from one package directory to another file
+// or directory, e.g. ../../category/pkgbase,
 // ../../category/pkgbase/Makefile.
 //
 // See RelativePkgDir, which requires a directory, not a file.
@@ -1168,7 +1231,9 @@ func (cv *VartypeCheck) RelativePkgPath() {
 		return
 	}
 
-	MkLineChecker{cv.MkLines, cv.MkLine}.CheckRelativePath(NewRelPathString(cv.Value), true)
+	packagePath := NewPackagePathString(cv.Value)
+	ck := MkLineChecker{cv.MkLines, cv.MkLine}
+	ck.CheckRelativePath(packagePath, packagePath.AsRelPath(), true)
 }
 
 func (cv *VartypeCheck) Restricted() {
@@ -1209,7 +1274,7 @@ func (cv *VartypeCheck) SedCommands() {
 			}
 
 			// The :C modifier is similar enough for parsing.
-			ok, _, from, _, _ := MkVarUseModifier{"C" + command[1:]}.MatchSubst()
+			ok, _, from, _, _ := MkVarUseModifier("C" + command[1:]).MatchSubst()
 			if !ok {
 				return
 			}
@@ -1292,14 +1357,9 @@ func (cv *VartypeCheck) Stage() {
 	}
 }
 
-// Tool checks for tool names like "awk", "m4:pkgsrc", "digest:bootstrap".
-//
-// TODO: Distinguish between Tool and ToolDependency.
-func (cv *VartypeCheck) Tool() {
-	if cv.Varname == "TOOLS_NOOP" && cv.Op == opAssignAppend {
-		// no warning for package-defined tool definitions
-
-	} else if m, toolname, tooldep := match2(cv.Value, `^([-\w]+|\[)(?::(\w+))?$`); m {
+// ToolDependency checks for tool dependencies like "awk", "m4:pkgsrc", "digest:bootstrap".
+func (cv *VartypeCheck) ToolDependency() {
+	if m, toolname, tooldep := match2(cv.Value, `^([-\w]+|\[)(?::(\w+))?$`); m {
 		if tool, _ := G.Tool(cv.MkLines, toolname, RunTime); tool == nil {
 			cv.Errorf("Unknown tool %q.", toolname)
 		}
@@ -1317,11 +1377,32 @@ func (cv *VartypeCheck) Tool() {
 	}
 }
 
+// ToolName checks for a tool name without any trailing ":pkgsrc" or ":run".
+func (cv *VartypeCheck) ToolName() {
+	name := cv.Value
+	nameNoVar := cv.ValueNoVar
+
+	if contains(nameNoVar, ":") {
+		cv.Errorf("%s accepts only plain tool names, without any colon.", cv.Varname)
+		return
+	}
+	if name != nameNoVar {
+		return
+	}
+
+	if !matches(name, `^([-\w]+|\[)$`) {
+		cv.Errorf("Invalid tool name %q.", name)
+		cv.Explain(
+			"Tool names must consist of letters, digits, underscores and hyphens only.")
+		return
+	}
+}
+
 // Unknown doesn't check for anything.
 //
 // Used for:
 //  - infrastructure variables that are not in vardefs.go
-//  - other variables whose type is unknown or uninteresting enough to
+//  - other variables whose type is unknown or not interesting enough to
 //    warrant the creation of a specialized type
 func (cv *VartypeCheck) Unknown() {
 	// Do nothing.
@@ -1336,7 +1417,7 @@ func (cv *VartypeCheck) URL() {
 	} else if containsVarUse(value) {
 		// No further checks
 
-	} else if m, _, host, _, _ := match4(value, `^(https?|ftp|gopher)://([-0-9A-Za-z.]+)(?::(\d+))?/([-%&+,./0-9:;=?@A-Z_a-z~]|#)*$`); m {
+	} else if m, host := match1(value, `^(?:https?|ftp|gopher)://([-0-9A-Za-z.]+)(?::\d+)?/[-#%&+,./0-9:;=?@A-Z_a-z~]*$`); m {
 		if matches(host, `(?i)\.NetBSD\.org$`) && !matches(host, `\.NetBSD\.org$`) {
 			prefix := host[:len(host)-len(".NetBSD.org")]
 			fix := cv.Autofix()
@@ -1474,6 +1555,21 @@ func (cv *VartypeCheck) WrkdirSubdirectory() {
 	cv.Pathname()
 }
 
+// WrksrcPathPattern is a shell pattern for existing pathnames, possibly including slashes.
+func (cv *VartypeCheck) WrksrcPathPattern() {
+	cv.PathPattern()
+
+	if hasPrefix(cv.Value, "${WRKSRC}/") {
+		fix := cv.Autofix()
+		fix.Notef("The pathname patterns in %s don't need to mention ${WRKSRC}.", cv.Varname)
+		fix.Explain(
+			"These pathname patters are interpreted relative to ${WRKSRC} by definition.",
+			"Therefore that part can be left out.")
+		fix.Replace("${WRKSRC}/", "")
+		fix.Apply()
+	}
+}
+
 // WrksrcSubdirectory checks a directory relative to ${WRKSRC},
 // for use in CONFIGURE_DIRS and similar variables.
 func (cv *VartypeCheck) WrksrcSubdirectory() {
@@ -1500,7 +1596,7 @@ func (cv *VartypeCheck) WrksrcSubdirectory() {
 			"",
 			"Example:",
 			"",
-			"\tWRKSRC=\t${WRKDIR}",
+			"\tWRKSRC=\t\t${WRKDIR}",
 			"\tCONFIGURE_DIRS=\t${WRKSRC}/lib ${WRKSRC}/src",
 			"\tBUILD_DIRS=\t${WRKSRC}/lib ${WRKSRC}/src ${WRKSRC}/cmd",
 			"",

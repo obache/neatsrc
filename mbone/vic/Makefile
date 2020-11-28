@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.49 2019/11/03 11:04:16 rillig Exp $
+# $NetBSD: Makefile,v 1.51 2020/08/17 20:19:28 leot Exp $
 
 DISTNAME=	vicsrc-2.8
 PKGNAME=	${DISTNAME:S/src//}
-PKGREVISION=	9
+PKGREVISION=	10
 CATEGORIES=	mbone tk
 MASTER_SITES=	ftp://ftp.ee.lbl.gov/conferencing/vic/
 
@@ -10,7 +10,7 @@ MAKE_JOBS_SAFE=		no
 
 .include "../../mk/bsd.prefs.mk"
 
-.if !empty(MACHINE_PLATFORM:MNetBSD-1.6*) || !empty(MACHINE_PLATFORM:MNetBSD-[2-9]*)
+.if ${OPSYS} == "NetBSD"
 PATCH_SITES=	ftp://tink.ims.ac.jp/pub/NetBSD/vic/
 PATCHFILES=	vic-2.8_ov511p0.diff.gz
 .endif

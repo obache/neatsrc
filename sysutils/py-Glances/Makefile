@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.3 2019/10/16 11:07:57 fox Exp $
+# $NetBSD: Makefile,v 1.6 2020/08/20 19:27:42 fox Exp $
 
-DISTNAME=	Glances-3.1.3
+DISTNAME=	Glances-3.1.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	sysutils python
 MASTER_SITES=	${MASTER_SITE_PYPI:=G/Glances/}

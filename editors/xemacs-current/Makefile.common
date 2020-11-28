@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.14 2019/10/08 12:40:55 hauke Exp $
+# $NetBSD: Makefile.common,v 1.16 2020/09/24 11:51:48 hauke Exp $
 #
 # used by editors/xemacs-current/Makefile
 # used by editors/xemacs-current-nox11/Makefile
@@ -10,7 +10,7 @@ CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_XEMACS:=${DISTNAME:C/[.][^.]*$//}/}
 
 MAINTAINER=	hauke@NetBSD.org
-HOMEPAGE=	http://www.xemacs.org/
+HOMEPAGE=	https://www.xemacs.org/
 LICENSE=	gnu-gpl-v3
 
 .include "../../mk/bsd.prefs.mk"
@@ -56,6 +56,15 @@ CFLAGS+=		-Dunix
 # but this is fine for us.
 .if (${OPSYS} == "NetBSD" || ${OPSYS} == "FreeBSD") && exists(/usr/include/term.h)
 CPPFLAGS+=	-DTERMINFO
+.endif
+
+.if !empty(PKG_OPTIONS:Mx11)
+post-extract:
+	cp ${.CURDIR}/../../editors/xemacs/files/xemacs.desktop ${WRKSRC}/etc/
+
+post-install:
+	${INSTALL_DATA} ${WRKSRC}/etc/xemacs.desktop \
+		${DESTDIR}${PREFIX}/share/applications/
 .endif
 
 .include "../../databases/gdbm/buildlink3.mk"

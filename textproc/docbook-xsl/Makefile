@@ -1,13 +1,16 @@
-# $NetBSD: Makefile,v 1.68 2020/01/05 18:54:40 adam Exp $
+# $NetBSD: Makefile,v 1.75 2020/08/31 18:11:41 wiz Exp $
 
-DISTNAME=	docbook-xsl-1.79.1
-PKGREVISION=	5
+DISTNAME=	docbook-xsl-nons-1.79.2
+PKGNAME=	${DISTNAME:S/-nons//}
+PKGREVISION=	4
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=docbook/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=docbook/}
+GITHUB_PROJECT=	xslt10-stylesheets
+GITHUB_RELEASE=	release/${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://docbook.sourceforge.net/
+HOMEPAGE=	https://github.com/docbook/xslt10-stylesheets/
 COMMENT=	Docbook XSL modular stylesheet
 
 DEPENDS+=	docbook-xml>=4.2:../../textproc/docbook-xml
@@ -20,11 +23,34 @@ REPLACE_PERL+=	fo/pdf2index
 
 EGDIR=		${PREFIX}/share/examples/docbook-xsl
 XSLDIR=		${PREFIX}/share/xsl/docbook
-# epub requires ruby, so we don't install the XSLMOD
-XSLMODS=	common eclipse epub epub3 fo highlighting html \
-		htmlhelp images javahelp lib manpages params \
-		profiling roundtrip slides website xhtml xhtml-1_1 \
-		xhtml5
+XSLMODS+=	assembly
+XSLMODS+=	common
+#XSLMODS+=	doc # empty
+#XSLMODS+=	docsrc # source f
+XSLMODS+=	eclipse
+XSLMODS+=	epub
+XSLMODS+=	epub3
+#XSLMODS+=	extensions # java tools
+XSLMODS+=	fo
+XSLMODS+=	highlighting
+XSLMODS+=	html
+XSLMODS+=	htmlhelp
+XSLMODS+=	images
+XSLMODS+=	javahelp
+XSLMODS+=	lib
+XSLMODS+=	manpages
+XSLMODS+=	params
+XSLMODS+=	profiling
+XSLMODS+=	roundtrip
+XSLMODS+=	slides
+#XSLMODS+=	template # documentation
+#XSLMODS+=	tests # test data
+#XSLMODS+=	tools # java tools
+#XSLMODS+=	webhelp # HTML help
+XSLMODS+=	website
+XSLMODS+=	xhtml-1_1
+XSLMODS+=	xhtml
+XSLMODS+=	xhtml5
 
 XML_CATALOGS=	${XSLDIR}/catalog.xml
 
@@ -45,7 +71,7 @@ do-install:
 	    ${ECHO} "cd ${WRKSRC} && ${PAX} -rw -pp -pm $$d ${DESTDIR}${XSLDIR}/"; \
 	    cd ${WRKSRC} && ${PAX} -rw -pp -pm $$d ${DESTDIR}${XSLDIR}/; \
 	done
-	${FIND} ${DESTDIR}${XSLDIR} -name '*.orig' -exec ${RM} {} +
+	${FIND} ${DESTDIR}${XSLDIR} -name '*.orig' -exec ${RM} {} \;
 
 .include "../../textproc/xmlcatmgr/catalogs.mk"
 .include "../../mk/bsd.pkg.mk"

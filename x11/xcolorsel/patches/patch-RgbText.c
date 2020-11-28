@@ -1,4 +1,4 @@
-$NetBSD: patch-RgbText.c,v 1.2 2015/10/14 20:17:28 wiz Exp $
+$NetBSD: patch-RgbText.c,v 1.3 2020/05/01 23:30:25 rillig Exp $
 
 --- RgbText.c.orig	1994-12-13 22:13:27.000000000 +0000
 +++ RgbText.c

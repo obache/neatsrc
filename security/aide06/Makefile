@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.19 2013/02/22 19:59:07 shattered Exp $
+# $NetBSD: Makefile,v 1.21 2020/03/20 11:58:16 nia Exp $
 #
 
 DISTNAME=	aide-0.6

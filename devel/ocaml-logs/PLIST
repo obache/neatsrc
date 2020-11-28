@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2019/03/19 11:25:41 jaapb Exp $
+@comment $NetBSD: PLIST,v 1.3 2020/04/30 13:29:07 jaapb Exp $
 ${OCAML_SITELIB}/logs/META
 ${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs.a
 ${OCAML_SITELIB}/logs/logs.cma
@@ -32,6 +32,7 @@ ${PLIST.fmt}${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_fmt.cmx
 ${PLIST.fmt}${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_fmt.cmxa
 ${PLIST.fmt}${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_fmt.cmxs
 ${PLIST.fmt}${OCAML_SITELIB}/logs/logs_fmt.mli
+${OCAML_SITELIB}/logs/logs_fmt_top_init.ml
 ${PLIST.lwt}${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_lwt.a
 ${PLIST.lwt}${OCAML_SITELIB}/logs/logs_lwt.cma
 ${PLIST.lwt}${OCAML_SITELIB}/logs/logs_lwt.cmi
@@ -40,11 +41,19 @@ ${PLIST.lwt}${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_lwt.cmx
 ${PLIST.lwt}${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_lwt.cmxa
 ${PLIST.lwt}${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_lwt.cmxs
 ${PLIST.lwt}${OCAML_SITELIB}/logs/logs_lwt.mli
-${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_top.a
-${OCAML_SITELIB}/logs/logs_top.cma
-${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_top.cmx
-${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_top.cmxa
-${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_top.cmxs
+${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_threaded.a
+${OCAML_SITELIB}/logs/logs_threaded.cma
+${OCAML_SITELIB}/logs/logs_threaded.cmi
+${OCAML_SITELIB}/logs/logs_threaded.cmti
+${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_threaded.cmx
+${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_threaded.cmxa
+${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_threaded.cmxs
+${OCAML_SITELIB}/logs/logs_threaded.mli
+${PLIST.fmt}${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_top.a
+${PLIST.fmt}${OCAML_SITELIB}/logs/logs_top.cma
+${PLIST.fmt}${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_top.cmx
+${PLIST.fmt}${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_top.cmxa
+${PLIST.fmt}${PLIST.ocaml-opt}${OCAML_SITELIB}/logs/logs_top.cmxs
 ${OCAML_SITELIB}/logs/logs_top_init.ml
 ${OCAML_SITELIB}/logs/opam
 share/doc/logs/CHANGES.md

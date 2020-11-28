@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.17 2019/08/22 12:23:24 ryoon Exp $
+# $NetBSD: Makefile,v 1.20 2020/05/06 14:04:43 adam Exp $
 
 DISTNAME=	ibus-rime-1.4.0
-PKGREVISION=	3
+PKGREVISION=	16
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	-https://github.com/rime/ibus-rime/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 

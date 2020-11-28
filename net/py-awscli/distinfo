@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.31 2019/12/12 13:12:48 adam Exp $
+$NetBSD: distinfo,v 1.40 2020/10/22 08:05:27 adam Exp $
 
-SHA1 (awscli-1.16.301.tar.gz) = a9194be575f9cebd1424cbfaf99871933614f947
-RMD160 (awscli-1.16.301.tar.gz) = eac7bb3d3c0a5a7ef30697e25a1c5ca9f4d5e54b
-SHA512 (awscli-1.16.301.tar.gz) = eb5a11c6b91d891a02f4c23573c59ab8be17f50825b101d832d963afcbd7911c61ec20055f063b75bbce46b8b1b7dc3edadb222595d2f95c08864c9f83047faa
-Size (awscli-1.16.301.tar.gz) = 1030306 bytes
+SHA1 (awscli-1.18.162.tar.gz) = 87b9b2ed3160f7ff96be079fadacc8dbabfb7acb
+RMD160 (awscli-1.18.162.tar.gz) = aa7e005360ef7a7d9344984bf4bce8b1db1dfa5c
+SHA512 (awscli-1.18.162.tar.gz) = d299af90d936077143336fb9d2b0f295ec290f50a21352e5cad8c30e5dc5f9b7719567448115df2b060d8031f875d6d8c06cde20b42de762b08067c635550215
+Size (awscli-1.18.162.tar.gz) = 1320504 bytes

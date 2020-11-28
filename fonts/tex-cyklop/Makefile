@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:29:48 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:42 markd Exp $
 
 DISTNAME=	cyklop
 PKGNAME=	tex-${DISTNAME}-0.915
+PKGREVISION=	1
 TEXLIVE_REV=	18651
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/cyklop
+HOMEPAGE=	https://ctan.org/pkg/cyklop
 COMMENT=	Cyclop typeface
 LICENSE=	lppl-1.3c # gfl
 

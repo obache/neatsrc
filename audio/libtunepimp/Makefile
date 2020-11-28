@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.43 2019/08/22 12:22:50 ryoon Exp $
+# $NetBSD: Makefile,v 1.49 2020/05/22 10:55:43 adam Exp $
 
 DISTNAME=		libtunepimp-0.5.3
-PKGREVISION=		27
+PKGREVISION=		32
 CATEGORIES=		audio
 MASTER_SITES=		ftp://ftp.musicbrainz.org/pub/musicbrainz/
 MASTER_SITES+=		http://ftp.musicbrainz.org/pub/musicbrainz/
@@ -22,6 +22,9 @@ CONFLICTS+=		tunepimp-[0-9]* trm-[0-9]*
 CXXFLAGS.SunOS+=	-fpermissive
 
 .include "../../mk/bsd.prefs.mk"
+
+post-extract:
+	${MV} ${WRKSRC}/lib/threads/posix/semaphore.h ${WRKSRC}/lib/threads/posix/semaphore_.h
 
 .if ${OPSYS} == "SunOS"
 pre-configure:

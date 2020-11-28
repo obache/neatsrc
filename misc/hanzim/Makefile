@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.18 2018/03/12 11:17:06 wiz Exp $
+# $NetBSD: Makefile,v 1.20 2020/08/17 20:19:30 leot Exp $
 #
 
 DISTNAME=	hanzim-1.3
-PKGREVISION=	8
+PKGREVISION=	9
 CATEGORIES=	misc
 MASTER_SITES=	http://kamares.ucsd.edu/~arobert/Files/Chinese/
 EXTRACT_SUFX=	.tgz
@@ -19,6 +19,13 @@ BUILD_TARGET=	hanzim
 # XXX 1.1 of this Makefile, but needs to be tested.
 # XXX
 #MAKE_ENV+=	SHELL=${SH:Q} LC_CTYPE=en_US.ISO8859-1
+
+# hanwin.c: In function 'charinfo':
+# hanwin.c:481:25: error: array subscript has type 'char' [-Werror=char-subscripts]
+#    strcpy(pinyin,init_str[pinyintbl[cht->pinyins.ent[0]].init]);
+#                          ^
+# Maybe fix this later.
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
 
 INSTALLATION_DIRS+=	bin ${PKGMANDIR}/man1
 

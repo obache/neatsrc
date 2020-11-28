@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.13 2020/01/02 22:46:31 gutteridge Exp $
+# $NetBSD: Makefile,v 1.19 2020/08/24 04:41:39 gutteridge Exp $
 
+PKGREVISION= 2
 .include "../../meta-pkgs/mate/Makefile.common"
 
-DISTNAME=	mate-backgrounds-${VERSION:R}.0
-PKGREVISION=	2
+DISTNAME=	mate-backgrounds-${VERSION:R}.1
 CATEGORIES=	graphics
 
 COMMENT=	Set of backgrounds packaged with the MATE desktop

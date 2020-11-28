@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.5 2019/10/22 16:37:05 khorben Exp $
+# $NetBSD: Makefile,v 1.8 2020/03/20 11:58:18 nia Exp $
 #
 
 DISTNAME=	pev-0.80
+PKGREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pev/}
 

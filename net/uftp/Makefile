@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2019/09/13 10:42:05 nia Exp $
+# $NetBSD: Makefile,v 1.9 2020/03/20 11:58:11 nia Exp $
 
 DISTNAME=	uftp-4.10
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://sourceforge.net/projects/uftp-multicast/files/source-tar/
 

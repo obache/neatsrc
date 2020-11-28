@@ -1,21 +1,26 @@
-# $NetBSD: Makefile,v 1.51 2019/08/11 13:18:01 wiz Exp $
+# $NetBSD: Makefile,v 1.55 2020/10/30 23:12:35 wiz Exp $
 #
-
-DISTNAME=	dinotrace-9.4c
-PKGREVISION=	5
+DISTNAME=	dinotrace-9.4f
 CATEGORIES=	cad
-MASTER_SITES=	http://www.veripool.org/ftp/
-EXTRACT_SUFX=	.tgz
+MASTER_SITES=	${MASTER_SITE_GITHUB:=veripool/}
+GITHUB_TAG=	v9.4f
 
 MAINTAINER=	dmcmahill@NetBSD.org
 HOMEPAGE=	http://www.veripool.org/dinotrace/
 COMMENT=	Tool for viewing the output of digital simulators
-
 LICENSE=	gnu-gpl-v3
+
+BUILD_DEPENDS+=	gtexinfo-[0-9]*:../../devel/gtexinfo
+BUILD_DEPENDS+=	web2c-2020{,nb*}:../../print/web2c
+BUILD_DEPENDS+=	tex-texinfo-[0-9]*:../../print/tex-texinfo
 
 GNU_CONFIGURE=		YES
 INFO_FILES=		YES
-USE_TOOLS+=		gmake perl
+USE_TOOLS+=		aclocal autoconf automake gmake perl makeinfo
+
+pre-configure:
+	cd ${WRKSRC}; aclocal
+	cd ${WRKSRC}; autoconf
 
 .include "../../mk/motif.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

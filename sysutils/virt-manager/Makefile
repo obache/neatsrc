@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.40 2019/11/04 21:28:58 rillig Exp $
+# $NetBSD: Makefile,v 1.46 2020/08/17 20:20:09 leot Exp $
 
 DISTNAME=	virt-manager-0.9.4
-PKGREVISION=	27
+PKGREVISION=	32
 CATEGORIES=	sysutils
 MASTER_SITES=	http://virt-manager.org/download/sources/virt-manager/
 
 MAINTAINER=	gls@NetBSD.org
-HOMEPAGE=	http://virt-manager.org/
+HOMEPAGE=	https://virt-manager.org/
 COMMENT=	GUI to manage virtual machines
 LICENSE=	gnu-gpl-v2
 

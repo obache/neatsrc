@@ -54,7 +54,7 @@ func (ck *Buildlink3Checker) Check() {
 	}
 
 	// Fourth paragraph: Cleanup, corresponding to the first paragraph.
-	if !llex.SkipContainsOrWarn("BUILDLINK_TREE+=\t-" + ck.pkgbase) {
+	if !llex.SkipTextOrWarn("BUILDLINK_TREE+=\t-" + ck.pkgbase) {
 		return
 	}
 
@@ -71,6 +71,9 @@ func (ck *Buildlink3Checker) Check() {
 }
 
 func (ck *Buildlink3Checker) checkFirstParagraph(mlex *MkLinesLexer) bool {
+
+	for mlex.SkipPrefix("#") {
+	}
 
 	// First paragraph: Introduction of the package identifier
 	m := mlex.NextRegexp(`^BUILDLINK_TREE\+=[\t ]*([^\t ]+)$`)
@@ -90,6 +93,9 @@ func (ck *Buildlink3Checker) checkFirstParagraph(mlex *MkLinesLexer) bool {
 
 	mlex.SkipEmptyOrNote()
 	ck.pkgbase = pkgbase
+	if pkg := ck.mklines.pkg; pkg != nil {
+		pkg.buildlinkID = ck.pkgbase
+	}
 	ck.pkgbaseLine = pkgbaseLine
 	return true
 }
@@ -100,8 +106,8 @@ func (ck *Buildlink3Checker) checkUniquePkgbase(pkgbase string, mkline *MkLine) 
 		return
 	}
 
-	dirname := G.Pkgsrc.Rel(mkline.Filename.DirNoClean()).Base()
-	base, name := trimCommon(pkgbase, dirname)
+	dirname := G.Pkgsrc.Rel(mkline.Filename().Dir()).Base()
+	base, name := trimCommon(pkgbase, dirname.String())
 	if base == "" && matches(name, `^(\d*|-cvs|-fossil|-git|-hg|-svn|-devel|-snapshot)$`) {
 		return
 	}
@@ -126,7 +132,7 @@ func (ck *Buildlink3Checker) checkSecondParagraph(mlex *MkLinesLexer) bool {
 	}
 	pkgupperLine, pkgupper := mlex.PreviousMkLine(), m[1]
 
-	if !mlex.SkipContainsOrWarn(pkgupper + "_BUILDLINK3_MK:=") {
+	if !mlex.SkipTextOrWarn(pkgupper + "_BUILDLINK3_MK:=") {
 		return false
 	}
 	mlex.SkipEmptyOrNote()
@@ -182,6 +188,10 @@ func (ck *Buildlink3Checker) checkMainPart(mlex *MkLinesLexer) bool {
 		case mkline.IsDirective() && mkline.Directive() == "endif":
 			indentLevel--
 		}
+
+		mkline.ForEachUsed(func(varUse *MkVarUse, time VucTime) {
+			ck.checkVarUse(varUse, mkline)
+		})
 	}
 
 	if indentLevel > 0 {
@@ -195,6 +205,32 @@ func (ck *Buildlink3Checker) checkMainPart(mlex *MkLinesLexer) bool {
 	return true
 }
 
+func (ck *Buildlink3Checker) checkVarUse(varUse *MkVarUse, mkline *MkLine) {
+	varname := varUse.varname
+	if varname == "PKG_OPTIONS" {
+		mkline.Errorf("PKG_OPTIONS is not available in buildlink3.mk files.")
+		mkline.Explain(
+			"The buildlink3.mk file of a package is only ever included",
+			"by other packages, never by the package itself.",
+			"Therefore it does not make sense to use the variable PKG_OPTIONS",
+			"in this place since it contains the package options of a random",
+			"package that happens to include this file.",
+			"",
+			"To access the options of this package, see mk/pkg-build-options.mk.")
+	}
+
+	if varnameBase(varname) == "PKG_BUILD_OPTIONS" {
+		param := varnameParam(varname)
+		if param != "" && param != ck.pkgbase {
+			mkline.Warnf("Wrong PKG_BUILD_OPTIONS, expected %q instead of %q.",
+				ck.pkgbase, param)
+			mkline.Explain(
+				"The variable parameter for PKG_BUILD_OPTIONS must correspond",
+				"to the value of \"pkgbase\" above.")
+		}
+	}
+}
+
 func (ck *Buildlink3Checker) checkVarassign(mkline *MkLine, pkgbase string) {
 	varname, value := mkline.Varname(), mkline.Value()
 	doCheck := false
@@ -202,7 +238,7 @@ func (ck *Buildlink3Checker) checkVarassign(mkline *MkLine, pkgbase string) {
 	if varname == "BUILDLINK_ABI_DEPENDS."+pkgbase {
 		ck.abiLine = mkline
 		parser := NewMkParser(nil, value)
-		if dp := parser.Dependency(); dp != nil && parser.EOF() {
+		if dp := parser.DependencyPattern(); dp != nil && parser.EOF() {
 			ck.abi = dp
 		}
 		doCheck = true
@@ -211,7 +247,7 @@ func (ck *Buildlink3Checker) checkVarassign(mkline *MkLine, pkgbase string) {
 	if varname == "BUILDLINK_API_DEPENDS."+pkgbase {
 		ck.apiLine = mkline
 		parser := NewMkParser(nil, value)
-		if dp := parser.Dependency(); dp != nil && parser.EOF() {
+		if dp := parser.DependencyPattern(); dp != nil && parser.EOF() {
 			ck.api = dp
 		}
 		doCheck = true
@@ -238,6 +274,20 @@ func (ck *Buildlink3Checker) checkVarassign(mkline *MkLine, pkgbase string) {
 	if varparam := mkline.Varparam(); varparam != "" && varparam != pkgbase {
 		if hasPrefix(varname, "BUILDLINK_") && mkline.Varcanon() != "BUILDLINK_API_DEPENDS.*" {
 			mkline.Warnf("Only buildlink variables for %q, not %q may be set in this file.", pkgbase, varparam)
+		}
+	}
+
+	if varname == "pkgbase" && value != ck.pkgbase {
+		mkline.Errorf("A buildlink3.mk file must only query its own PKG_BUILD_OPTIONS.%s, not PKG_BUILD_OPTIONS.%s.",
+			ck.pkgbase, value)
+	}
+
+	if varname == "BUILDLINK_PKGSRCDIR."+pkgbase {
+		pkgdir := mkline.Filename().Dir()
+		expected := "../../" + G.Pkgsrc.Rel(pkgdir).String()
+		if value != expected {
+			mkline.Errorf("%s must be set to the package's own path (%s), not %s.",
+				varname, expected, value)
 		}
 	}
 }
@@ -278,4 +328,72 @@ func (ck *Buildlink3Checker) checkVaruseInPkgbase(pkgbaseLine *MkLine) {
 			"Furthermore, these package identifiers are only used at build time,",
 			"after the specific version has been decided.")
 	}
+}
+
+type Buildlink3Data struct {
+	id             Buildlink3ID
+	prefix         Path
+	pkgsrcdir      PackagePath
+	apiDepends     *DependencyPattern
+	apiDependsLine *MkLine
+	abiDepends     *DependencyPattern
+	abiDependsLine *MkLine
+}
+
+// Buildlink3ID is the identifier that is used in the BUILDLINK_TREE
+// for referring to a dependent package.
+//
+// It almost uniquely identifies a package.
+// Packages that are alternatives to each other may use the same identifier.
+type Buildlink3ID string
+
+func LoadBuildlink3Data(mklines *MkLines) *Buildlink3Data {
+	var data Buildlink3Data
+
+	mklines.ForEach(func(mkline *MkLine) {
+		if !mkline.IsVarassign() {
+			return
+		}
+
+		varname := mkline.Varname()
+		varbase := varnameBase(varname)
+		varid := Buildlink3ID(varnameParam(varname))
+
+		if varname == "BUILDLINK_TREE" {
+			value := mkline.Value()
+			if !hasPrefix(value, "-") {
+				data.id = Buildlink3ID(mkline.Value())
+			}
+		}
+
+		if varbase == "BUILDLINK_API_DEPENDS" && varid == data.id {
+			p := NewMkParser(nil, mkline.Value())
+			dep := p.DependencyPattern()
+			if dep != nil && p.EOF() {
+				data.apiDepends = dep
+				data.apiDependsLine = mkline
+			}
+		}
+
+		if varbase == "BUILDLINK_ABI_DEPENDS" && varid == data.id {
+			p := NewMkParser(nil, mkline.Value())
+			dep := p.DependencyPattern()
+			if dep != nil && p.EOF() {
+				data.abiDepends = dep
+				data.abiDependsLine = mkline
+			}
+		}
+
+		if varbase == "BUILDLINK_PREFIX" && varid == data.id {
+			data.prefix = NewPath(mkline.Value())
+		}
+		if varbase == "BUILDLINK_PKGSRCDIR" && varid == data.id {
+			data.pkgsrcdir = NewPackagePathString(mkline.Value())
+		}
+	})
+
+	if data.id != "" {
+		return &data
+	}
+	return nil
 }

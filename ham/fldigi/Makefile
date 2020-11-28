@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.113 2019/10/20 11:10:48 nia Exp $
+# $NetBSD: Makefile,v 1.121 2020/08/18 17:58:02 leot Exp $
 
 DISTNAME=	fldigi-4.1.01
-PKGREVISION=	4
+PKGREVISION=	11
 CATEGORIES=	ham
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=fldigi/}
 
@@ -53,6 +53,7 @@ CXXFLAGS+=	-Wno-error=c++11-narrowing
 .include "../../textproc/xmlrpc-c/buildlink3.mk"
 #include "../../textproc/json-c/buildlink3.mk"
 .include "../../x11/fltk13/buildlink3.mk"
+.include "../../x11/libXcursor/buildlink3.mk"
 
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

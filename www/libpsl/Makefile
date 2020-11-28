@@ -1,30 +1,27 @@
-# $NetBSD: Makefile,v 1.6 2019/04/25 07:33:27 maya Exp $
+# $NetBSD: Makefile,v 1.10 2020/07/27 16:38:51 adam Exp $
 
-DISTNAME=	libpsl-0.20.2
-PKGREVISION=	4
+DISTNAME=	libpsl-0.21.1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=rockdaboot/}
-GITHUB_RELEASE=	${DISTNAME}
+GITHUB_RELEASE=	${PKGVERSION_NOREV}
+EXTRACT_SUFX=	.tar.lz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://github.com/rockdaboot/libpsl/
+HOMEPAGE=	https://github.com/rockdaboot/libpsl
 COMMENT=	Library to handle the Public Suffix List
 LICENSE=	mit
 
-USE_TOOLS+=	gmake pkg-config
-USE_LIBTOOL=	yes
-USE_LANGUAGES=	c c++
-GNU_CONFIGURE=	yes
+USE_LANGUAGES=		c c++
+USE_LIBTOOL=		yes
+USE_TOOLS+=		gmake pkg-config
+GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--disable-gtk-doc
+CONFIGURE_ARGS+=	--enable-runtime=libicu
+PKGCONFIG_OVERRIDE+=	libpsl.pc.in
+TEST_TARGET=		check
 
 PYTHON_FOR_BUILD_ONLY=	yes
 REPLACE_PYTHON=		src/psl-make-dafsa
-
-CONFIGURE_ARGS+=	--disable-gtk-doc
-CONFIGURE_ARGS+=	--enable-runtime=libicu
-
-PKGCONFIG_OVERRIDE+=	libpsl.pc.in
-
-TEST_TARGET=	check
 
 .include "../../lang/python/application.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"

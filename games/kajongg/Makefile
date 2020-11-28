@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.57 2019/11/18 10:52:24 markd Exp $
+# $NetBSD: Makefile,v 1.65 2020/08/17 20:18:45 leot Exp $
 
 DISTNAME=	kajongg-${KAPPSVER}
+PKGREVISION=	1
 CATEGORIES=	games
 
 HOMEPAGE=	https://kde.org/applications/games/kajongg/
@@ -9,7 +10,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/applications.mk"
 
-BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 DEPENDS+=	${PYPKGPREFIX}-twisted-[0-9]*:../../net/py-twisted
 
 USE_TOOLS+=	msgmerge

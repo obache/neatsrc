@@ -25,11 +25,9 @@ func (p Path) GoString() string { return sprintf("%q", string(p)) }
 // which is usually a sign of an uninitialized variable.
 func (p Path) IsEmpty() bool { return p == "" }
 
-func (p Path) DirClean() Path { return Path(path.Dir(string(p))) }
-
 // Returns the directory of the path, with only minimal cleaning.
 // Only redundant dots and slashes are removed, and only at the end.
-func (p Path) DirNoClean() Path {
+func (p Path) Dir() Path {
 	s := p.String()
 	end := len(s)
 	for end > 0 && s[end-1] != '/' {
@@ -44,7 +42,7 @@ func (p Path) DirNoClean() Path {
 	return NewPath(s[:end])
 }
 
-func (p Path) Base() string { return path.Base(string(p)) }
+func (p Path) Base() RelPath { return NewRelPathString(path.Base(string(p))) }
 
 func (p Path) Split() (dir Path, base string) {
 	strDir, strBase := path.Split(string(p))
@@ -96,6 +94,25 @@ func (p Path) HasPrefixPath(prefix Path) bool {
 		return !p.IsAbs()
 	}
 
+	si := 0
+	pi := 0
+	for {
+		for si < len(p) && (p[si] == '.' || p[si] == '/') {
+			si++
+		}
+		for pi < len(prefix) && (prefix[pi] == '.' || prefix[pi] == '/') {
+			pi++
+		}
+		if si >= len(p) || pi >= len(prefix) {
+			break
+		}
+		if p[si] != prefix[pi] {
+			return false
+		}
+		si++
+		pi++
+	}
+
 	parts := p.Parts()
 	prefixParts := prefix.Parts()
 	if len(prefixParts) > len(parts) {
@@ -140,7 +157,7 @@ func (p Path) HasSuffixPath(suffix Path) bool {
 		(len(p) == len(suffix) || p[len(p)-len(suffix)-1] == '/')
 }
 
-func (p Path) HasBase(base string) bool { return p.Base() == base }
+func (p Path) HasBase(base string) bool { return p.Base().String() == base }
 
 func (p Path) TrimSuffix(suffix string) Path {
 	return Path(strings.TrimSuffix(string(p), suffix))
@@ -194,7 +211,7 @@ func (p Path) CleanPath() Path {
 }
 
 func (p Path) IsAbs() bool {
-	return p.HasPrefixText("/") || filepath.IsAbs(filepath.FromSlash(string(p)))
+	return len(p) > 0 && (p[0] == '/' || len(p) > 2 && p[1] == ':' && p[2] == '/')
 }
 
 // Rel returns the relative path from this path to the other.
@@ -232,15 +249,11 @@ func (p CurrPath) AsPath() Path { return Path(p) }
 
 func (p CurrPath) IsEmpty() bool { return p.AsPath().IsEmpty() }
 
-func (p CurrPath) DirClean() CurrPath {
-	return CurrPath(p.AsPath().DirClean())
+func (p CurrPath) Dir() CurrPath {
+	return CurrPath(p.AsPath().Dir())
 }
 
-func (p CurrPath) DirNoClean() CurrPath {
-	return CurrPath(p.AsPath().DirNoClean())
-}
-
-func (p CurrPath) Base() string { return p.AsPath().Base() }
+func (p CurrPath) Base() RelPath { return p.AsPath().Base() }
 
 func (p CurrPath) Split() (dir CurrPath, base string) {
 	pathDir, pathBase := p.AsPath().Split()
@@ -378,15 +391,11 @@ func (p PkgsrcPath) AsPath() Path { return NewPath(string(p)) }
 
 func (p PkgsrcPath) AsRelPath() RelPath { return RelPath(p) }
 
-func (p PkgsrcPath) DirClean() PkgsrcPath {
-	return NewPkgsrcPath(p.AsPath().DirClean())
+func (p PkgsrcPath) Dir() PkgsrcPath {
+	return NewPkgsrcPath(p.AsPath().Dir())
 }
 
-func (p PkgsrcPath) DirNoClean() PkgsrcPath {
-	return NewPkgsrcPath(p.AsPath().DirNoClean())
-}
-
-func (p PkgsrcPath) Base() string { return p.AsPath().Base() }
+func (p PkgsrcPath) Base() RelPath { return p.AsPath().Base() }
 
 func (p PkgsrcPath) Count() int { return p.AsPath().Count() }
 
@@ -401,6 +410,10 @@ func (p PkgsrcPath) JoinNoClean(other RelPath) PkgsrcPath {
 // PackagePath is a path relative to the package directory. It is used
 // for the PATCHDIR and PKGDIR variables, as well as dependencies and
 // conflicts on other packages.
+//
+// It can have two forms:
+//  - patches (further down)
+//  - ../../category/package/* (up to the pkgsrc root, then down again)
 type PackagePath string
 
 func NewPackagePath(p RelPath) PackagePath {
@@ -421,7 +434,27 @@ func (p PackagePath) JoinNoClean(other RelPath) PackagePath {
 	return NewPackagePathString(p.AsPath().JoinNoClean(other).String())
 }
 
+func (p PackagePath) CleanPath() PackagePath {
+	return NewPackagePathString(p.AsPath().CleanPath().String())
+}
+
 func (p PackagePath) IsEmpty() bool { return p.AsPath().IsEmpty() }
+
+func (p PackagePath) HasPrefixPath(sub Path) bool {
+	return p.AsPath().HasPrefixPath(sub)
+}
+
+func (p PackagePath) ContainsPath(sub Path) bool {
+	return p.AsPath().ContainsPath(sub)
+}
+
+func (p PackagePath) ContainsText(contained string) bool {
+	return p.AsPath().ContainsText(contained)
+}
+
+func (p PackagePath) Replace(from, to string) PackagePath {
+	return NewPackagePathString(strings.Replace(string(p), from, to, -1))
+}
 
 // RelPath is a path that is relative to some base directory that is not
 // further specified.
@@ -447,13 +480,11 @@ func (p RelPath) Split() (RelPath, string) {
 	return NewRelPath(dir), base
 }
 
-func (p RelPath) DirClean() RelPath { return RelPath(p.AsPath().DirClean()) }
-
-func (p RelPath) DirNoClean() RelPath {
-	return RelPath(p.AsPath().DirNoClean())
+func (p RelPath) Dir() RelPath {
+	return RelPath(p.AsPath().Dir())
 }
 
-func (p RelPath) Base() string { return p.AsPath().Base() }
+func (p RelPath) Base() RelPath { return p.AsPath().Base() }
 
 func (p RelPath) HasBase(base string) bool { return p.AsPath().HasBase(base) }
 

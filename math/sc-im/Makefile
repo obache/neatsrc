@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.10 2019/12/30 12:37:04 sjmulder Exp $
+# $NetBSD: Makefile,v 1.20 2020/10/01 21:24:42 sjmulder Exp $
 
 DISTNAME=	sc-im-0.7.0
-PKGREVISION=	8
+PKGREVISION=	18
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_GITHUB:=andmarti1424/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}

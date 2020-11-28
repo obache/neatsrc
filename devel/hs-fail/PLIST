@@ -1,0 +1,4 @@
+@comment $NetBSD: PLIST,v 1.3 2020/08/24 12:15:50 pho Exp $
+${HS_INTF}/package-description
+${HS_INTF}/package-id
+@pkgdir share

@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.26 2018/03/07 11:57:41 wiz Exp $
+# $NetBSD: Makefile,v 1.28 2020/09/19 13:52:14 taca Exp $
 
 DISTNAME=	xf86-input-keyboard-1.9.0
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_XORG:=driver/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	joerg@NetBSD.org
-HOMEPAGE=	http://xorg.freedesktop.org/
+HOMEPAGE=	https://xorg.freedesktop.org/
 COMMENT=	Modular Xorg keyboard driver
 LICENSE=	mit
 

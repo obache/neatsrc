@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.99 2019/04/07 22:02:20 wiz Exp $
+# $NetBSD: Makefile,v 1.101 2020/03/16 11:17:22 nia Exp $
 
 DISTNAME=	gc-8.0.4
 PKGNAME=	${DISTNAME:S/gc/boehm-gc/}
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.hboehm.info/gc/gc_source/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.hboehm.info/gc/
+HOMEPAGE=	https://www.hboehm.info/gc/
 COMMENT=	Garbage collection and memory leak detection for C and C++
 
 USE_TOOLS+=		gmake pkg-config

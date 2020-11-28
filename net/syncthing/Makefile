@@ -1,28 +1,13 @@
-# $NetBSD: Makefile,v 1.102 2020/01/10 13:32:10 bsiegert Exp $
+# $NetBSD: Makefile,v 1.124 2020/10/20 18:00:32 gdt Exp $
 
-# Upstream used to frequently break protocol compatibility, but since
-# 2018 or so this has been much better.  While users of pkgsrc
-# syncthing on multiple systems can update synchronously, an important
-# use case is interoperating with syncthing-android.
-#
-# Therefore, pkgsrc will update to a new syncthing version
-# (e.g. 0.14.x vs 1.0.x) if either there is no protocol break, or when
-# a corresponding syncthing-android version becomes available in the
-# f-droid.org repository:
-#   https://f-droid.org/repository/browse/?fdid=com.nutomic.syncthingandroid
-# Updates that could possibly break protocol compatibility with the
-# current syncthing-android in f-droid must be tested against the
-# android version from f-droid prior to commiting.  (This is an
-# attempt to avoid having to version syncthing in pkgsrc.)
-DISTNAME=	syncthing-source-v1.3.2
+# Protocol breaks require tech-pkg@ discussion and MAINTAINER approval.
+DISTNAME=	syncthing-source-v1.10.0
 PKGNAME=	${DISTNAME:S,source-v,,}
 PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=syncthing/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
 
-# Minor version updates may be committed without asking.  Major
-# updates not following the above policy will be reverted.
 COMMENT=	Keeps directories in sync across hosts
 HOMEPAGE=	https://syncthing.net/
 MAINTAINER=	gdt@NetBSD.org
@@ -33,7 +18,7 @@ USE_LANGUAGES=		c
 NO_CONFIGURE=		yes
 GO_SRCPATH=		github.com/syncthing/syncthing
 GO_DIST_BASE=		syncthing
-INSTALLATION_DIRS=	bin
+INSTALLATION_DIRS=	bin share/applications
 
 CHECK_RELRO_SKIP+=	bin/syncthing
 
@@ -48,8 +33,14 @@ SUBST_SED.version+=	-e 's|"go"|"${GO}"|'
 SUBST_CLASSES+=		go
 SUBST_STAGE.go=		pre-build
 SUBST_MESSAGE.go=	Fixing go executable reference
-SUBST_FILES.go=		lib/auto/doc.go cmd/strelaypoolsrv/auto/doc.go
+SUBST_FILES.go=		lib/api/auto/doc.go cmd/strelaypoolsrv/auto/doc.go
 SUBST_SED.go+=		-e 's|go run|"${GO}" run|'
+
+SUBST_CLASSES+=		bin
+SUBST_STAGE.bin=	pre-install
+SUBST_MESSAGE.bin=	Fixing location of installed binaries
+SUBST_FILES.bin=	etc/linux-desktop/*.desktop
+SUBST_SED.bin+=		-e 's,/usr/bin/syncthing,${PREFIX}/bin/syncthing,'
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -60,6 +51,8 @@ SYNCTHING_GROUP?=	syncthing
 
 PKG_GROUPS_VARS+=	SYNCTHING_GROUP
 PKG_USERS_VARS+=	SYNCTHING_USER
+
+BUILD_DEFS+=		VARBASE
 
 OWN_DIRS_PERMS+=	${PKG_SYSCONFDIR} ${SYNCTHING_USER} ${SYNCTHING_GROUP} 0755
 OWN_DIRS_PERMS+=	${VARBASE}/db/syncthing ${SYNCTHING_USER} ${SYNCTHING_GROUP} 0755
@@ -78,7 +71,15 @@ do-build:
 
 # Binaries other than syncthing proper should perhaps be installed.
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/syncthing ${DESTDIR}/${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/syncthing ${DESTDIR}${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/etc/linux-desktop/*.desktop ${DESTDIR}${PREFIX}/share/applications
+.for s in 512 256 128 64 32
+	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/icons/hicolor/${s}x${s}/apps
+	${INSTALL_DATA} ${WRKSRC}/assets/logo-${s}.png  \
+		${DESTDIR}${PREFIX}/share/icons/hicolor/${s}x${s}/apps/syncthing.png
+.endfor
 
 .include "../../lang/go/go-package.mk"
+.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
+.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

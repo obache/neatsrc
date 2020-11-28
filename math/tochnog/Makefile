@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.24 2012/09/11 23:04:35 asau Exp $
+# $NetBSD: Makefile,v 1.26 2020/03/20 11:58:01 nia Exp $
 
 DISTNAME=	tochnog-20010429
 CATEGORIES=	math

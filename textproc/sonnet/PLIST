@@ -1,20 +1,24 @@
-@comment $NetBSD: PLIST,v 1.8 2019/11/11 09:03:12 markd Exp $
+@comment $NetBSD: PLIST,v 1.10 2020/06/07 11:55:46 markd Exp $
 bin/gentrigrams
 bin/parsetrigrams
 include/KF5/SonnetCore/Sonnet/BackgroundChecker
 include/KF5/SonnetCore/Sonnet/GuessLanguage
+include/KF5/SonnetCore/Sonnet/Settings
 include/KF5/SonnetCore/Sonnet/Speller
 include/KF5/SonnetCore/sonnet/backgroundchecker.h
 include/KF5/SonnetCore/sonnet/guesslanguage.h
+include/KF5/SonnetCore/sonnet/settings.h
 include/KF5/SonnetCore/sonnet/sonnetcore_export.h
 include/KF5/SonnetCore/sonnet/speller.h
 include/KF5/SonnetUi/Sonnet/ConfigDialog
+include/KF5/SonnetUi/Sonnet/ConfigView
 include/KF5/SonnetUi/Sonnet/ConfigWidget
 include/KF5/SonnetUi/Sonnet/Dialog
 include/KF5/SonnetUi/Sonnet/DictionaryComboBox
 include/KF5/SonnetUi/Sonnet/Highlighter
 include/KF5/SonnetUi/Sonnet/SpellCheckDecorator
 include/KF5/SonnetUi/sonnet/configdialog.h
+include/KF5/SonnetUi/sonnet/configview.h
 include/KF5/SonnetUi/sonnet/configwidget.h
 include/KF5/SonnetUi/sonnet/dialog.h
 include/KF5/SonnetUi/sonnet/dictionarycombobox.h
@@ -37,7 +41,6 @@ qt5/mkspecs/modules/qt_SonnetUi.pri
 qt5/plugins/designer/sonnetui5widgets.so
 qt5/plugins/kf5/sonnet/sonnet_aspell.so
 qt5/plugins/kf5/sonnet/sonnet_hunspell.so
-share/kf5/sonnet/trigrams.map
 share/locale/af/LC_MESSAGES/sonnet5_qt.qm
 share/locale/ar/LC_MESSAGES/sonnet5_qt.qm
 share/locale/as/LC_MESSAGES/sonnet5_qt.qm

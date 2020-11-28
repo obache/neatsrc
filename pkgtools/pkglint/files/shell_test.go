@@ -5,6 +5,33 @@ import (
 	"strings"
 )
 
+func (s *Suite) Test_SimpleCommandChecker__case_continue_with_loop(c *check.C) {
+	t := s.Init(c)
+
+	code := "case $$fname in ${CHECK_PORTABILITY_SKIP:@p@${p}) continue;; @} esac"
+	line := t.NewLine("filename.mk", 123, "\t"+code)
+
+	program, err := parseShellProgram(line, code)
+	assertNil(err, "parse error")
+	t.CheckEquals(
+		program.AndOrs[0].Pipes[0].Cmds[0].Compound.Case.Cases[0].Var.MkText,
+		"${CHECK_PORTABILITY_SKIP:@p@${p}) continue;; @}")
+}
+
+func (s *Suite) Test_SimpleCommandChecker__case_continue_with_suffix(c *check.C) {
+	t := s.Init(c)
+
+	code := "case $$fname in ${CHECK_PORTABILITY_SKIP:=) continue;; } esac"
+	line := t.NewLine("filename.mk", 123, "\t"+code)
+
+	program, err := parseShellProgram(line, code)
+	assertNil(err, "parse error: parse error at []string{\"esac\"}")
+
+	t.CheckEquals(
+		program.AndOrs[0].Pipes[0].Cmds[0].Compound.Case.Cases[0].Var.MkText,
+		"${CHECK_PORTABILITY_SKIP:=) continue;; }")
+}
+
 // When pkglint is called without -Wextra, the check for unknown shell
 // commands is disabled, as it is still unreliable. As of December 2019
 // there are around 500 warnings in pkgsrc, and several of them are wrong.
@@ -43,6 +70,20 @@ func (s *Suite) Test_SimpleCommandChecker_checkCommandStart__unknown_default(c *
 	test("-Wall",
 		"WARN: Makefile:8: Unknown shell command \"${UNKNOWN_TOOL}\".",
 		"WARN: Makefile:8: UNKNOWN_TOOL is used but not defined.")
+}
+
+// Despite its name, the TOOLS_PATH.* name the whole shell command,
+// not just the path of its executable.
+func (s *Suite) Test_SimpleCommandChecker_checkCommandStart__TOOLS_PATH(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"CONFIG_SHELL=\t${TOOLS_PATH.bash}")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+	G.checkdirPackage(".")
+
+	t.CheckOutputEmpty()
 }
 
 func (s *Suite) Test_SimpleCommandChecker_checkInstallCommand(c *check.C) {
@@ -131,6 +172,7 @@ func (s *Suite) Test_SimpleCommandChecker_handleForbiddenCommand(c *check.C) {
 func (s *Suite) Test_SimpleCommandChecker_handleCommandVariable(c *check.C) {
 	t := s.Init(c)
 
+	t.SetUpVartypes()
 	t.SetUpTool("runtime", "RUNTIME", AtRunTime)
 	t.SetUpTool("nowhere", "NOWHERE", Nowhere)
 	mklines := t.NewMkLines("Makefile",
@@ -143,7 +185,8 @@ func (s *Suite) Test_SimpleCommandChecker_handleCommandVariable(c *check.C) {
 		"",
 		"pre-configure:",
 		"\t: ${RUNTIME_Q_CMD} ${NOWHERE_Q_CMD}",
-		"\t: ${RUNTIME_CMD} ${NOWHERE_CMD}")
+		"\t: ${RUNTIME_CMD} ${NOWHERE_CMD}",
+		"\t${PKGNAME}") // This doesn't make sense; it's just for code coverage
 
 	mklines.Check()
 
@@ -154,7 +197,8 @@ func (s *Suite) Test_SimpleCommandChecker_handleCommandVariable(c *check.C) {
 	// TODO: Add a warning that in lines 3 and 4, the :Q is wrong.
 	t.CheckOutputLines(
 		"WARN: Makefile:4: The \"${NOWHERE:Q}\" tool is used but not added to USE_TOOLS.",
-		"WARN: Makefile:6: The \"${NOWHERE}\" tool is used but not added to USE_TOOLS.")
+		"WARN: Makefile:6: The \"${NOWHERE}\" tool is used but not added to USE_TOOLS.",
+		"WARN: Makefile:11: Unknown shell command \"${PKGNAME}\".")
 }
 
 func (s *Suite) Test_SimpleCommandChecker_handleCommandVariable__parameterized(c *check.C) {
@@ -570,30 +614,19 @@ func (s *Suite) Test_SimpleCommandChecker_checkEchoN(c *check.C) {
 		"WARN: Makefile:4: Please use ${ECHO_N} instead of \"echo -n\".")
 }
 
-func (s *Suite) Test_ShellLineChecker_checkConditionalCd(c *check.C) {
+// Before 2020-03-25, pkglint ran into a parse error since it didn't
+// know that _ULIMIT_CMD brings its own semicolon.
+func (s *Suite) Test_ShellLineChecker__skip_ULIMIT_CMD(c *check.C) {
 	t := s.Init(c)
 
-	t.SetUpTool("ls", "", AtRunTime)
-	t.SetUpTool("printf", "", AtRunTime)
-	t.SetUpTool("wc", "", AtRunTime)
 	mklines := t.NewMkLines("Makefile",
 		MkCvsID,
 		"pre-configure:",
-		"\t${RUN} while cd ..; do printf .; done",
-		"\t${RUN} while cd .. && cd ..; do printf .; done", // Unusual, therefore no warning.
-		"\t${RUN} if cd ..; then printf .; fi",
-		"\t${RUN} ! cd ..",
-		"\t${RUN} if cd ..; printf 'ok\\n'; then printf .; fi",
-		"\t${RUN} if cd .. | wc -l; then printf .; fi",  // Unusual, therefore no warning.
-		"\t${RUN} if cd .. && cd ..; then printf .; fi") // Unusual, therefore no warning.
+		"\t${RUN} ${_ULIMIT_CMD} while :; do :; done")
 
 	mklines.Check()
 
-	t.CheckOutputLines(
-		"ERROR: Makefile:3: The Solaris /bin/sh cannot handle \"cd\" inside conditionals.",
-		"ERROR: Makefile:5: The Solaris /bin/sh cannot handle \"cd\" inside conditionals.",
-		"WARN: Makefile:6: The Solaris /bin/sh does not support negation of shell commands.",
-		"WARN: Makefile:8: The exitcode of \"cd\" at the left of the | operator is ignored.")
+	t.CheckOutputEmpty()
 }
 
 func (s *Suite) Test_ShellLineChecker_checkSetE__simple_commands(c *check.C) {
@@ -689,15 +722,14 @@ func (s *Suite) Test_ShellLineChecker_canFail(c *check.C) {
 		nil...)
 
 	test("socklen=$$(expr 16)",
-		"WARN: Makefile:3: Invoking subshells via $(...) is not portable enough.",
 		"WARN: Makefile:3: Please switch to \"set -e\" mode before using a semicolon "+
 			"(after \"socklen=$$(expr 16)\") to separate commands.")
 
 	test("socklen=$$(expr 16 || true)",
-		"WARN: Makefile:3: Invoking subshells via $(...) is not portable enough.")
+		nil...)
 
 	test("socklen=$$(expr 16 || ${TRUE})",
-		"WARN: Makefile:3: Invoking subshells via $(...) is not portable enough.")
+		nil...)
 
 	test("${ECHO_MSG} \"Message\"",
 		nil...)
@@ -841,6 +873,7 @@ func (s *Suite) Test_ShellLineChecker_CheckShellCommandLine(c *check.C) {
 	t := s.Init(c)
 
 	t.SetUpVartypes()
+	t.SetUpTool("[", "TEST", AtRunTime)
 	t.SetUpTool("awk", "AWK", AtRunTime)
 	t.SetUpTool("cp", "CP", AtRunTime)
 	t.SetUpTool("echo", "", AtRunTime)
@@ -927,16 +960,13 @@ func (s *Suite) Test_ShellLineChecker_CheckShellCommandLine(c *check.C) {
 		"WARN: filename.mk:1: The exitcode of \"${UNZIP_CMD}\" at the left of the | operator is ignored.")
 
 	// From x11/wxGTK28/Makefile
-	// TODO: Why is TOOLS_PATH.msgfmt not recognized?
-	//  At least, the warning should be more specific, mentioning USE_TOOLS.
 	test(""+
 		"set -e; cd ${WRKSRC}/locale; "+
 		"for lang in *.po; do "+
 		"  [ \"$${lang}\" = \"wxstd.po\" ] && continue; "+
 		"  ${TOOLS_PATH.msgfmt} -c -o \"$${lang%.po}.mo\" \"$${lang}\"; "+
 		"done",
-		"WARN: filename.mk:1: Unknown shell command \"[\".",
-		"WARN: filename.mk:1: Unknown shell command \"${TOOLS_PATH.msgfmt}\".")
+		nil...)
 
 	test("@cp from to",
 		"WARN: filename.mk:1: The shell command \"cp\" should not be hidden.")
@@ -998,6 +1028,50 @@ func (s *Suite) Test_ShellLineChecker_CheckShellCommandLine__strip(c *check.C) {
 	test("${STRIP} executable")
 
 	t.CheckOutputEmpty()
+}
+
+// After working a lot with usr.bin/make, I thought that lines containing
+// the cd command would differ in behavior between compatibility mode and
+// parallel mode.  But since pkgsrc does not support parallel mode and also
+// actively warns when someone tries to run it in parallel mode, there is
+// no point checking for chdir that might spill over to the next line.
+// That will not happen in compat mode.
+func (s *Suite) Test_ShellLineChecker_CheckShellCommandLine__chdir(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpTool("echo", "", AfterPrefsMk)
+	t.SetUpTool("sed", "", AfterPrefsMk)
+	mklines := t.NewMkLines("filename.mk",
+		MkCvsID,
+		"",
+		"pre-configure:",
+		// This command is run in the current directory.
+		"\techo command 1",
+		// This chdir affects the remaining commands.
+		// It might be possible to warn here about chdir.
+		"\tcd ..",
+		// In subshells, chdir is ok.
+		"\t(cd ..)",
+		// In pipes, chdir is ok.
+		"\t{ cd .. && echo sender; } | { cd .. && sed s,sender,receiver; }",
+		// The && operator does not run in a subshell.
+		// It might be possible to warn here about chdir.
+		"\tcd .. && echo",
+		// The || operator does not run in a subshell.
+		// It might be possible to warn here about chdir.
+		"\tcd .. || echo",
+		// The current directory of this command depends on the preceding
+		// commands.
+		"\techo command 2",
+		// In the final command of a target, chdir is ok since there are
+		// no further commands that could be affected.
+		"\tcd ..")
+
+	mklines.Check()
+
+	t.CheckOutputLines(
+		"WARN: filename.mk:7: The exitcode of the command at the left of " +
+			"the | operator is ignored.")
 }
 
 func (s *Suite) Test_ShellLineChecker_CheckShellCommandLine__nofix(c *check.C) {
@@ -1227,8 +1301,10 @@ func (s *Suite) Test_ShellLineChecker_CheckShellCommandLine__subshell(c *check.C
 
 	ck.CheckShellCommandLine(ck.mkline.ShellCommand())
 
-	t.CheckOutputLines(
-		"WARN: filename.mk:1: Invoking subshells via $(...) is not portable enough.")
+	// Up to 2020-05-09, pkglint had warned that $(...) were not portable
+	// enough. The shell used in devel/bmake can handle these subshell
+	// command substitutions though.
+	t.CheckOutputEmpty()
 }
 
 func (s *Suite) Test_ShellLineChecker_CheckShellCommandLine__install_dir(c *check.C) {
@@ -1335,39 +1411,6 @@ func (s *Suite) Test_ShellLineChecker_checkHiddenAndSuppress__no_tracing(c *chec
 		"WARN: Makefile:4: The shell command \"ls\" should not be hidden.")
 }
 
-func (s *Suite) Test_ShellLineChecker_CheckShellCommand__cd_inside_if(c *check.C) {
-	t := s.Init(c)
-
-	t.SetUpVartypes()
-	t.SetUpTool("echo", "ECHO", AtRunTime)
-	mklines := t.NewMkLines("Makefile",
-		MkCvsID,
-		"",
-		"\t${RUN} if cd /bin; then echo \"/bin exists.\"; fi")
-
-	mklines.Check()
-
-	t.CheckOutputLines(
-		"ERROR: Makefile:3: The Solaris /bin/sh cannot handle \"cd\" inside conditionals.")
-}
-
-func (s *Suite) Test_ShellLineChecker_CheckShellCommand__negated_pipe(c *check.C) {
-	t := s.Init(c)
-
-	t.SetUpVartypes()
-	t.SetUpTool("echo", "ECHO", AtRunTime)
-	t.SetUpTool("test", "TEST", AtRunTime)
-	mklines := t.NewMkLines("Makefile",
-		MkCvsID,
-		"",
-		"\t${RUN} if ! test -f /etc/passwd; then echo \"passwd is missing.\"; fi")
-
-	mklines.Check()
-
-	t.CheckOutputLines(
-		"WARN: Makefile:3: The Solaris /bin/sh does not support negation of shell commands.")
-}
-
 func (s *Suite) Test_ShellLineChecker_CheckShellCommand__subshell(c *check.C) {
 	t := s.Init(c)
 
@@ -1421,7 +1464,7 @@ func (s *Suite) Test_ShellLineChecker_CheckWord(c *check.C) {
 	t.SetUpVartypes()
 
 	test := func(shellWord string, checkQuoting bool, diagnostics ...string) {
-		// See checkVaruseUndefined and checkVarassignLeftNotUsed.
+		// See MkVarUseChecker.checkUndefined and MkAssignChecker.checkLeftNotUsed.
 		ck := t.NewShellLineChecker("\t echo " + shellWord)
 		ck.CheckWord(shellWord, checkQuoting, RunTime)
 		t.CheckOutput(diagnostics)
@@ -1517,17 +1560,6 @@ func (s *Suite) Test_ShellLineChecker_CheckWord__dquot_dollar(c *check.C) {
 	t.CheckOutputEmpty()
 }
 
-func (s *Suite) Test_ShellLineChecker_CheckWord__dollar_subshell(c *check.C) {
-	t := s.Init(c)
-
-	ck := t.NewShellLineChecker("\t$$(echo output)")
-
-	ck.CheckWord(ck.mkline.ShellCommand(), false, RunTime)
-
-	t.CheckOutputLines(
-		"WARN: filename.mk:1: Invoking subshells via $(...) is not portable enough.")
-}
-
 func (s *Suite) Test_ShellLineChecker_CheckWord__PKGMANDIR(c *check.C) {
 	t := s.Init(c)
 
@@ -1603,7 +1635,7 @@ func (s *Suite) Test_ShellLineChecker_checkWordQuoting(c *check.C) {
 
 	test(
 		"$$(cat /bin/true)",
-		"WARN: module.mk:1: Invoking subshells via $(...) is not portable enough.")
+		nil...)
 
 	test(
 		"\"$$\"",

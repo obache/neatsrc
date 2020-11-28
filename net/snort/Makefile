@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.60 2019/07/20 22:46:41 wiz Exp $
+# $NetBSD: Makefile,v 1.66 2020/10/01 19:45:02 nils Exp $
 #
 
-DISTNAME=		snort-2.9.9.0
-PKGREVISION=		2
+DISTNAME=		snort-2.9.16.1
 CATEGORIES=		net security
 MASTER_SITES=		https://www.snort.org/downloads/archive/snort/
 
@@ -21,6 +20,8 @@ CONFLICTS+=		snort-prelude-[0-9]*
 
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
+USE_TOOLS+=		pkg-config
+USE_TOOLS+=		bash
 PKG_SYSCONFSUBDIR=	snort
 RCD_SCRIPTS=		snort
 SNORT_USER?=		snort
@@ -32,13 +33,13 @@ PKG_GROUPS_VARS+=	SNORT_GROUP
 PKG_USERS_VARS=		SNORT_USER
 FILES_SUBST+=		SNORT_USER=${SNORT_USER} SNORT_GROUP=${SNORT_GROUP}
 BUILD_DEFS+=		VARBASE
-MAKE_JOBS_SAFE=		NO
+MAKE_JOBS_SAFE=		NO # could not compile it on a multi-core system
 OWN_DIRS_PERMS=		${VARBASE}/log/snort ${SNORT_USER} ${SNORT_GROUP} 700
 DOC_FILES=		BUGS INSTALL NEWS PROBLEMS README TODO USAGE WISHLIST
 OWN_DIRS=		${PKG_SYSCONFDIR} ${PKG_SYSCONFDIR}/rules
 OWN_DIRS+=		${PKG_SYSCONFDIR}/so_rules ${PKG_SYSCONFDIR}/preproc_rules
 OWN_DIRS+=		${PREFIX}/lib ${PREFIX}/lib/snort_dynamicrules
-INSTALLATION_DIRS+=	${EGDIR}/rules 
+INSTALLATION_DIRS+=	${EGDIR}/rules
 AUTO_MKDIRS=		yes
 
 CONF_FILES=		${EGDIR}/attribute_table.dtd \
@@ -64,9 +65,11 @@ CONF_FILES+=		${EGDIR}/rules/black_list.rules \
 CONF_FILES+=		${EGDIR}/rules/white_list.rules \
 			${PKG_SYSCONFDIR}/rules/white_list.rules
 
+REPLACE_BASH+=		tools/appid_detector_builder.sh
+
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	pre-configure
-SUBST_FILES.paths=	etc/snort.conf src/snort.c
+SUBST_FILES.paths=	etc/snort.conf
 SUBST_SED.paths=	-e "s|/usr/local|${PREFIX}|g"
 SUBST_SED.paths+=	-e "s|../rules|rules|g"
 SUBST_SED.paths+=	-e "s|../so_rules|so_rules|g"
@@ -89,6 +92,8 @@ CONFIGURE_ARGS+=	--with-daq-libraries=${BUILDLINK_PREFIX.daq}/lib
 CONFIGURE_ARGS+=	--with-libpcap-includes=${BUILDLINK_PREFIX.libpcap}/include
 CONFIGURE_ARGS+=	--with-libpcap-libraries=${BUILDLINK_PREFIX.libpcap}/lib
 CONFIGURE_ARGS+=	--disable-so_with_static_lib
+
+BUILD_DEPENDS+=	bison-[0-9]*:../../devel/bison
 
 pre-build:
 	${CP} ${WRKSRC}/etc/snort.conf ${WRKSRC}/etc/snort.conf.default
@@ -115,6 +120,11 @@ post-install:
 			${FILESDIR}/white_list.rules ${DESTDIR}${EGDIR}/rules/
 	${INSTALL_MAN} ${WRKSRC}/snort.8 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
 
+.include "../../www/nghttp2/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
+.include "../../lang/LuaJIT2/buildlink3.mk"
+.include "../../devel/flex/buildlink3.mk"
+.include "../../devel/zlib/buildlink3.mk"
 .include "../../net/daq/buildlink3.mk"
 .include "../../net/libdnet/buildlink3.mk"
 .include "../../net/libpcap/buildlink3.mk"

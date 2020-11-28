@@ -1,4 +1,4 @@
-$NetBSD: patch-configure.ac,v 1.1 2018/04/28 06:59:41 minskim Exp $
+$NetBSD: patch-configure.ac,v 1.3 2020/06/12 23:50:16 sevan Exp $
 
 Support GLIBC glob interface version 2.
 

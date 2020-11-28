@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.20 2019/08/11 13:22:42 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2020/08/31 18:11:03 wiz Exp $
 #
 
 DISTNAME=		pslib-0.4.5
-PKGREVISION=		5
+PKGREVISION=		6
 CATEGORIES=		print
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=pslib/}
 

@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.94 2020/01/11 11:43:04 mef Exp $
+# $NetBSD: Makefile,v 1.100 2020/08/17 20:18:32 leot Exp $
 
-DISTNAME=	emacs-27.0.60_2019-12-29
-PKGVERSION=	27.0.60
-PKGNAME=	emacs27-${PKGVERSION}
-PKGREVISION=	1
-MASTER_SITES=	https://alpha.gnu.org/gnu/emacs/pretest/windows/emacs-27/
+DISTNAME=	emacs-28.0.50_2020-02-10
+PKGVERSION=	28.0.50
+PKGNAME=	emacs28-${PKGVERSION}
+PKGREVISION=	4
+MASTER_SITES=	https://alpha.gnu.org/gnu/emacs/pretest/windows/emacs-28/
 CATEGORIES=	editors
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -12,7 +12,7 @@ HOMEPAGE=	https://www.gnu.org/software/emacs/
 COMMENT=	GNU editing macros (development version)
 LICENSE=	gnu-gpl-v3
 
-WRKSRC=		${WRKDIR}/emacs-27.0.60
+WRKSRC=		${WRKDIR}/emacs-28.0.50
 
 GNU_CONFIGURE=	yes
 INFO_FILES=	yes
@@ -61,4 +61,5 @@ pre-configure:
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/libimagequant/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
+.include "../../mk/termcap.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,17 +1,18 @@
-# $NetBSD: Makefile,v 1.58 2019/08/11 13:21:04 wiz Exp $
+# $NetBSD: Makefile,v 1.67 2020/08/31 18:09:35 wiz Exp $
 
-DISTNAME=	xboard-4.8.0
-PKGREVISION=	12
+DISTNAME=	xboard-4.9.1
+#PKGREVISION=	1
+PKGREVISION=	5
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GNU:=xboard/}
 
 MAINTAINER=	simonb@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/xboard/
+HOMEPAGE=	https://www.gnu.org/software/xboard/
 COMMENT=	Graphical frontend for chess engines and servers
 LICENSE=	gnu-gpl-v3
 
-CONFIGURE_ARGS+=	--enable-xpm
 CONFIGURE_ARGS+=	--enable-zippy	# interface to ICS
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	PERLPATH=${PERL5}
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		perl:run makeinfo pkg-config
@@ -19,21 +20,25 @@ INFO_FILES=		yes
 REPLACE_PERL=		texi2man
 
 INSTALLATION_DIRS+=	share/examples/xboard
-CONF_FILES+=		${PREFIX}/share/examples/xboard/xboard.conf ${PKG_SYSCONFDIR}/xboard.conf
+CONF_FILES+=		${PREFIX}/share/examples/xboard/xboard.conf \
+			${PKG_SYSCONFDIR}/xboard.conf
 
 .include "../../mk/bsd.prefs.mk"
+.include "options.mk"
 
-BUILD_DEFS+=		XAW_TYPE
-.if defined(XAW_TYPE) && (${XAW_TYPE} == "3d" || ${XAW_TYPE} == "xpm")
-CONFIGURE_ARGS+=	--with-Xaw3d
-.endif
+DEPENDS+=		gnuchess-[0-9]*:../../games/gnuchess
 
 SUBST_CLASSES+=		engine
 SUBST_MESSAGE.engine=	Setting gnuchess as default chess engine.
 SUBST_STAGE.engine=	pre-configure
 SUBST_FILES.engine=	xboard.conf
 SUBST_SED.engine=	-e '/ChessProgram / s,fairymax,gnuchess,'
-DEPENDS+=		gnuchess-[0-9]*:../../games/gnuchess
+
+SUBST_CLASSES+=			wavplayer
+SUBST_MESSAGE.wavplayer=	Setting wav player location.
+SUBST_STAGE.wavplayer=		post-build
+SUBST_FILES.wavplayer=		xboard.conf
+SUBST_SED.wavplayer=		-e 's,aplay -q,${WAVPLAYER},g'
 
 .if ${OPSYS} == "NetBSD" || ${OPSYS} == "SunOS"
 WAVPLAYER=      /usr/bin/audioplay
@@ -58,12 +63,6 @@ DEPENDS+=       libsndfile-[0-9]*:../../audio/libsndfile
 .  endif
 .endif
 
-SUBST_CLASSES+=			wavplayer
-SUBST_MESSAGE.wavplayer=	Setting wav player location.
-SUBST_STAGE.wavplayer=		post-build
-SUBST_FILES.wavplayer=		xboard.conf
-SUBST_SED.wavplayer=		-e 's,aplay -q,${WAVPLAYER},g'
-
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/cmail ${DESTDIR}${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/xboard.conf ${DESTDIR}${PREFIX}/share/examples/xboard
@@ -72,7 +71,6 @@ post-install:
 .include "../../graphics/cairo/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/librsvg/buildlink3.mk"
-.include "../../mk/xaw.buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../x11/libXpm/buildlink3.mk"
 

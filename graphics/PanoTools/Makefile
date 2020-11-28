@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.26 2019/05/02 08:36:10 wiz Exp $
+# $NetBSD: Makefile,v 1.28 2020/03/20 11:57:46 nia Exp $
 
 DISTNAME=		PanoTools
 PKGNAME=		${DISTNAME}-2.6b1

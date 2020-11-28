@@ -1,4 +1,4 @@
-# $NetBSD: check-shlibs.mk,v 1.31 2018/10/01 14:59:49 triaxx Exp $
+# $NetBSD: check-shlibs.mk,v 1.33 2020/10/09 16:00:16 jperkin Exp $
 #
 # This file verifies that all libraries used by the package can be found
 # at run-time.
@@ -54,11 +54,8 @@ _CHECK_SHLIBS_FILELIST_CMD?=	${SED} -e '/^@/d' ${PLIST} |		\
 	done)
 
 .if !empty(CHECK_SHLIBS:M[Yy][Ee][Ss]) && \
-    !empty(CHECK_SHLIBS_SUPPORTED:M[Yy][Ee][Ss])
-privileged-install-hook: _check-shlibs
-.endif
-
-.if ${_USE_CHECK_SHLIBS_NATIVE} == "yes"
+    !empty(CHECK_SHLIBS_SUPPORTED:M[Yy][Ee][Ss]) && \
+    ${_USE_CHECK_SHLIBS_NATIVE} == "yes"
 CHECK_SHLIBS_NATIVE_ENV=
 .  if ${OBJECT_FMT} == "ELF"
 USE_TOOLS+=			readelf
@@ -67,6 +64,9 @@ CHECK_SHLIBS_NATIVE_ENV+=	PLATFORM_RPATH=${_OPSYS_SYSTEM_RPATH:Q}
 CHECK_SHLIBS_NATIVE_ENV+=	READELF=${TOOLS_PATH.readelf:Q}
 .  elif ${OBJECT_FMT} == "Mach-O"
 CHECK_SHLIBS_NATIVE=		${PKGSRCDIR}/mk/check/check-shlibs-macho.awk
+.    if defined(DARWIN_NO_SYSTEM_LIBS)
+CHECK_SHLIBS_NATIVE_ENV+=	SKIP_SYSTEM_LIBS=1
+.    endif
 .  endif
 CHECK_SHLIBS_NATIVE_ENV+=	CROSS_DESTDIR=${_CROSS_DESTDIR:Q}
 CHECK_SHLIBS_NATIVE_ENV+=	PKG_INFO_CMD=${PKG_INFO:Q}
@@ -81,6 +81,7 @@ CHECK_SHLIBS_NATIVE_ENV+=	CHECK_WRKREF_EXTRA_DIRS=${CHECK_WRKREF_EXTRA_DIRS:Q}
 CHECK_SHLIBS_NATIVE_ENV+=	CHECK_SHLIBS_BLACKLIST=${CHECK_SHLIBS_BLACKLIST:Q}
 .  endif
 
+privileged-install-hook: _check-shlibs
 _check-shlibs: error-check .PHONY
 	@${STEP_MSG} "Checking for missing run-time search paths in ${PKGNAME}"
 	${RUN} rm -f ${ERROR_DIR}/${.TARGET}
@@ -96,8 +97,4 @@ _check-shlibs: error-check .PHONY
 		${ECHO} $$file;						\
 	done |								\
 	${PKGSRC_SETENV} ${CHECK_SHLIBS_NATIVE_ENV} ${AWK} -f ${CHECK_SHLIBS_NATIVE} > ${ERROR_DIR}/${.TARGET}
-
-.else
-_check-shlibs: error-check .PHONY
-	@${WARNING_MSG} "Skipping missing run-time search-path check."
 .endif

@@ -1,11 +1,10 @@
-@comment $NetBSD: PLIST,v 1.4 2020/01/11 16:20:56 adam Exp $
+@comment $NetBSD: PLIST,v 1.7 2020/05/13 15:00:50 adam Exp $
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
 ${PYSITELIB}/${EGG_INFODIR}/not-zip-safe
 ${PYSITELIB}/${EGG_INFODIR}/requires.txt
 ${PYSITELIB}/${EGG_INFODIR}/top_level.txt
-${PYSITELIB}/_pygit2.so
 ${PYSITELIB}/pygit2/__init__.py
 ${PYSITELIB}/pygit2/__init__.pyc
 ${PYSITELIB}/pygit2/__init__.pyo
@@ -13,12 +12,16 @@ ${PYSITELIB}/pygit2/_build.py
 ${PYSITELIB}/pygit2/_build.pyc
 ${PYSITELIB}/pygit2/_build.pyo
 ${PYSITELIB}/pygit2/_libgit2.abi3.so
+${PYSITELIB}/pygit2/_pygit2.so
 ${PYSITELIB}/pygit2/_run.py
 ${PYSITELIB}/pygit2/_run.pyc
 ${PYSITELIB}/pygit2/_run.pyo
 ${PYSITELIB}/pygit2/blame.py
 ${PYSITELIB}/pygit2/blame.pyc
 ${PYSITELIB}/pygit2/blame.pyo
+${PYSITELIB}/pygit2/callbacks.py
+${PYSITELIB}/pygit2/callbacks.pyc
+${PYSITELIB}/pygit2/callbacks.pyo
 ${PYSITELIB}/pygit2/config.py
 ${PYSITELIB}/pygit2/config.pyc
 ${PYSITELIB}/pygit2/config.pyo
@@ -28,6 +31,7 @@ ${PYSITELIB}/pygit2/credentials.pyo
 ${PYSITELIB}/pygit2/decl/attr.h
 ${PYSITELIB}/pygit2/decl/blame.h
 ${PYSITELIB}/pygit2/decl/buffer.h
+${PYSITELIB}/pygit2/decl/callbacks.h
 ${PYSITELIB}/pygit2/decl/checkout.h
 ${PYSITELIB}/pygit2/decl/clone.h
 ${PYSITELIB}/pygit2/decl/common.h
@@ -37,6 +41,7 @@ ${PYSITELIB}/pygit2/decl/diff.h
 ${PYSITELIB}/pygit2/decl/errors.h
 ${PYSITELIB}/pygit2/decl/graph.h
 ${PYSITELIB}/pygit2/decl/index.h
+${PYSITELIB}/pygit2/decl/indexer.h
 ${PYSITELIB}/pygit2/decl/merge.h
 ${PYSITELIB}/pygit2/decl/net.h
 ${PYSITELIB}/pygit2/decl/oid.h

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.105 2019/11/30 21:39:08 markd Exp $
+# $NetBSD: Makefile,v 1.116 2020/10/15 20:26:35 mrg Exp $
 
 DISTNAME=	kde-runtime-15.12.0
 PKGNAME=	${DISTNAME:S/-1/4-1/}
-PKGREVISION=	38
+PKGREVISION=	48
 CATEGORIES=	x11
 COMMENT=	Runtime requirements for the KDE integrated X11 desktop
 MASTER_SITES=	${MASTER_SITE_KDE:=applications/15.12.0/src/}
@@ -75,7 +75,6 @@ INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 
 .include "../../meta-pkgs/kde4/kde4.mk"
 
-.include "../../audio/pulseaudio/buildlink3.mk"
 .include "../../audio/libcanberra/buildlink3.mk"
 #.include "../../lang/python/application.mk"
 # not the libssh the package wants

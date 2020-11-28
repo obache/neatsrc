@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2016/12/03 22:45:50 wiedi Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/20 11:57:45 nia Exp $
 #
 
 DISTNAME=	toppler-1.1.6

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.2 2019/11/18 10:11:43 markd Exp $
+@comment $NetBSD: PLIST,v 1.4 2020/06/09 11:56:09 markd Exp $
 bin/kmines
 share/applications/org.kde.kmines.desktop
 share/doc/HTML/de/kmines/index.cache.bz2
@@ -78,6 +78,7 @@ share/locale/he/LC_MESSAGES/kmines.mo
 share/locale/hi/LC_MESSAGES/kmines.mo
 share/locale/hr/LC_MESSAGES/kmines.mo
 share/locale/hu/LC_MESSAGES/kmines.mo
+share/locale/id/LC_MESSAGES/kmines.mo
 share/locale/is/LC_MESSAGES/kmines.mo
 share/locale/it/LC_MESSAGES/kmines.mo
 share/locale/ja/LC_MESSAGES/kmines.mo
@@ -109,3 +110,4 @@ share/locale/wa/LC_MESSAGES/kmines.mo
 share/locale/zh_CN/LC_MESSAGES/kmines.mo
 share/locale/zh_TW/LC_MESSAGES/kmines.mo
 share/metainfo/org.kde.kmines.appdata.xml
+share/qlogging-categories5/kmines.categories

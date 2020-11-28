@@ -1,19 +1,23 @@
-# $NetBSD: Makefile,v 1.7 2018/11/12 16:10:20 jaapb Exp $
+# $NetBSD: Makefile,v 1.10 2020/07/01 07:55:46 yyamano Exp $
 
-PKGREVISION= 5
-.include "../../devel/ocaml-lwt/Makefile.common"
-
-PKGNAME=	ocaml-lwt_glib-1.1.0
-CATEGORIES=	devel
+GITHUB_PROJECT=	lwt_glib
+GITHUB_TAG=	${PKGVERSION_NOREV}
+DISTNAME=	${GITHUB_PROJECT}-1.1.1
+PKGNAME=	ocaml-${DISTNAME}
+CATEGORIES=	devel graphics
+MASTER_SITES=	${MASTER_SITE_GITHUB:=ocsigen/}
 
 MAINTAINER=	jaapb@NetBSD.org
-HOMEPAGE=	https://github.com/ocsigen/lwt/
-COMMENT=	Glib module for ocaml-lwt
+HOMEPAGE=	https://github.com/ocsigen/lwt_glib/
+COMMENT=	SSL module for ocaml-lwt
+LICENSE=	gnu-lgpl-v2.1
 
-CONFLICTS=	ocaml-lwt<3.0.0
 USE_TOOLS+=	pkg-config
 
-JBUILDER_BUILD_TARGETS=	lwt_glib
+CONFLICTS=	ocaml-lwt<3.0.0
+
+OCAML_USE_DUNE=		yes
+DUNE_BUILD_PACKAGES=	lwt_glib
 
 .include "../../mk/ocaml.mk"
 .include "../../devel/ocaml-lwt/buildlink3.mk"

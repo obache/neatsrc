@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.39 2019/07/21 22:24:19 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.48 2020/08/17 20:17:55 leot Exp $
 
 BUILDLINK_TREE+=	ocaml-lablgtk
 
@@ -6,29 +6,18 @@ BUILDLINK_TREE+=	ocaml-lablgtk
 OCAML_LABLGTK_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.ocaml-lablgtk+=	ocaml-lablgtk>=2.6.0nb3
-BUILDLINK_ABI_DEPENDS.ocaml-lablgtk+=	ocaml-lablgtk>=2.18.8nb4
+BUILDLINK_ABI_DEPENDS.ocaml-lablgtk+=	ocaml-lablgtk>=2.18.10nb6
 BUILDLINK_PKGSRCDIR.ocaml-lablgtk?=	../../x11/ocaml-lablgtk
 
 # options must be exposed if and only if we built with them
 pkgbase := ocaml-lablgtk
 .include "../../mk/pkg-build-options.mk"
 
-.if !empty(PKG_BUILD_OPTIONS.ocaml-lablgtk:Mgnomecanvas)
-.  include "../../graphics/libgnomecanvas/buildlink3.mk"
-.endif
-
-.if !empty(PKG_BUILD_OPTIONS.ocaml-lablgtk:Mgtksourceview)
-.  include "../../x11/gtksourceview/buildlink3.mk"
-.endif
-
-.if !empty(PKG_BUILD_OPTIONS.ocaml-lablgtk:Mgtksourceview2)
+.if ${PKG_BUILD_OPTIONS.ocaml-lablgtk:Mgtksourceview2}
 .  include "../../x11/gtksourceview2/buildlink3.mk"
 .endif
 
-.if !empty(PKG_BUILD_OPTIONS.ocaml-lablgtk:Mgnome)
-.  include "../../x11/gnome-panel/buildlink3.mk"
-.endif
-
+.include "../../x11/gtk2/buildlink3.mk"
 .endif # OCAML_LABLGTK_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-ocaml-lablgtk

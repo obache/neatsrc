@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.76 2019/11/02 15:38:02 rillig Exp $
+# $NetBSD: Makefile,v 1.85 2020/08/17 20:18:21 leot Exp $
 
 DISTNAME=	mysql-workbench-gpl-5.2.33b-src
 PKGNAME=	${DISTNAME:S/-gpl//:S/b-src$//}
-PKGREVISION=	67
+PKGREVISION=	74
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL:=MySQLGUITools/}
 
@@ -11,6 +11,8 @@ HOMEPAGE=	http://wb.mysql.com/
 COMMENT=	Cross-platform, visual database design tool
 LICENSE=	gnu-gpl-v2
 
+BROKEN=		"Conflicting fork of MySQL parser"
+
 WRKSRC=		${WRKDIR}/${DISTNAME:S/b-src$/-src/}
 
 USE_LANGUAGES=			c c++11
@@ -18,7 +20,8 @@ USE_LIBTOOL=			yes
 USE_TOOLS+=			bash gmake pkg-config
 GNU_CONFIGURE=			yes
 CONFIGURE_ARGS+=		--with-system-ctemplate
-LUA_VERSIONS_INCOMPATIBLE=	52 53
+
+LUA_VERSIONS_ACCEPTED=		51
 
 CHECK_PORTABILITY_SKIP=		build/make_dmg.sh
 CHECK_PORTABILITY_SKIP+=	ext/ctemplate/ctemplate-src/configure.ac

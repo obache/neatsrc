@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.64 2020/01/01 03:04:08 mef Exp $
+$NetBSD: distinfo,v 1.67 2020/09/06 22:30:31 wiz Exp $
 
-SHA1 (CPAN-Perl-Releases-5.20191220.tar.gz) = 30e09bc6a4fe8b0f2b1e0f9e11563e60b264d58f
-RMD160 (CPAN-Perl-Releases-5.20191220.tar.gz) = f40172d5558b34e9d2114e2ac5172392ce86c5c7
-SHA512 (CPAN-Perl-Releases-5.20191220.tar.gz) = aa0dbc39d9505d0f41b222df7c0a2378e94145da923e56d859e4f176fe57ff0fbdfaa660987cc1522de37c60f4f240fedfa095c693d2bea5cf7be49f2af9f3a2
-Size (CPAN-Perl-Releases-5.20191220.tar.gz) = 23536 bytes
+SHA1 (CPAN-Perl-Releases-5.20200820.tar.gz) = 3ee677ea00c83f828320502b058496a4ec8ca2d8
+RMD160 (CPAN-Perl-Releases-5.20200820.tar.gz) = 20ca25c20eadf161c1368dc3554aa712d051b999
+SHA512 (CPAN-Perl-Releases-5.20200820.tar.gz) = 1fbfdf32cc261803a435825320672736a906e8d4dc1997e8c424931c04fd686e162cf368bf9ed7d9c4cefc2140569357fe8e30c10733f8a7694a56aec16d5d22
+Size (CPAN-Perl-Releases-5.20200820.tar.gz) = 23732 bytes

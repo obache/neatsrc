@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.4 2018/05/14 06:44:34 wiz Exp $
+# $NetBSD: Makefile,v 1.7 2020/05/10 11:30:18 tnn Exp $
 
 DISTNAME=	collection-basic-doc
 PKGNAME=	texlive-${DISTNAME}-2018
+PKGREVISION=	2
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
 TEXLIVE_REV=	30372
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Documentation for texlive-collection-basic
 
 DEPENDS+=	tex-amsfonts-doc-[0-9]*:../../fonts/tex-amsfonts-doc
@@ -23,8 +24,6 @@ DEPENDS+=	tex-etex-pkg-doc-[0-9]*:../../print/tex-etex-pkg-doc
 # gsftopk installs its documentation.
 DEPENDS+=	tex-hyph-utf8-doc-[0-9]*:../../print/tex-hyph-utf8-doc
 # tex-hyphen-base doesn't have a documentation package.
-DEPENDS+=	tex-ifluatex-doc-[0-9]*:../../print/tex-ifluatex-doc
-DEPENDS+=	tex-ifxetex-doc-[0-9]*:../../print/tex-ifxetex-doc
 DEPENDS+=	tex-kpathsea-doc-[0-9]*:../../print/tex-kpathsea-doc
 # lua-alt-getopt should install its documentation.
 DEPENDS+=	tex-luatex-doc-[0-9]*:../../print/tex-luatex-doc
@@ -34,7 +33,6 @@ DEPENDS+=	tex-mflogo-doc-[0-9]*:../../fonts/tex-mflogo-doc
 # tex-mfware's documentation is installed by web2c.
 DEPENDS+=	tex-pdftex-doc-[0-9]*:../../print/tex-pdftex-doc
 # tex-plain doesn't have a documentation package.
-DEPENDS+=	tex-tetex-doc-[0-9]*:../../print/tex-tetex-doc
 # tex-tex's documentation is installed by web2c.
 DEPENDS+=	tex-texlive-common-doc-[0-9]*:../../print/tex-texlive-common-doc
 DEPENDS+=	tex-texlive-docindex-doc-[0-9]*:../../print/tex-texlive-docindex-doc

@@ -1,0 +1,18 @@
+# $NetBSD: Makefile.common,v 1.2 2020/08/18 05:46:32 tnn Exp $
+# used by emulators/gearsystem/Makefile
+# used by emulators/libretro-gearsystem/Makefile
+
+DISTNAME=	gearsystem-3.1.0
+CATEGORIES=	emulators
+MASTER_SITES=	${MASTER_SITE_GITHUB:=drhelius/}
+GITHUB_PROJECT=	Gearsystem
+GITHUB_TAG=	${DISTNAME}
+
+USE_LANGUAGES=	c c++
+
+DISTINFO_FILE=	${.CURDIR}/../../emulators/gearsystem/distinfo
+PATCHDIR=	${.CURDIR}/../../emulators/gearsystem/patches
+
+CHECK_PORTABILITY_SKIP+=	platforms/*/dependencies/SDL-*/premake/*/build-scripts/*
+CHECK_PORTABILITY_SKIP+=	platforms/*/dependencies/SDL-*/Xcode/SDL/pkg-support/*
+CHECK_PORTABILITY_SKIP+=	platforms/*/dependencies/SDL-*/build-scripts/*

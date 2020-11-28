@@ -1,15 +1,12 @@
-# $NetBSD: Makefile,v 1.9 2018/06/24 11:17:04 adam Exp $
+# $NetBSD: Makefile,v 1.11 2020/05/13 21:49:04 adam Exp $
 
-DISTNAME=	stix-1.2.0.6
+DISTNAME=	stix-1.2.0.10
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	security python
-#MASTER_SITES=	${MASTER_SITE_PYPI:=s/stix/}
-MASTER_SITES=	${MASTER_SITE_GITHUB:=STIXProject/}
-GITHUB_PROJECT=	python-stix
-GITHUB_TAG=	v${PKGVERSION_NOREV}
+MASTER_SITES=	${MASTER_SITE_PYPI:=s/stix/}
 
 MAINTAINER=	khorben@defora.org
-HOMEPAGE=	http://stixproject.github.io/
+HOMEPAGE=	https://stixproject.github.io/
 COMMENT=	Python library for manipulating STIX content
 LICENSE=	modified-bsd
 

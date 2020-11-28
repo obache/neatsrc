@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.15 2012/10/29 05:06:40 asau Exp $
+# $NetBSD: Makefile,v 1.17 2020/08/24 06:30:58 tnn Exp $
 
 DISTNAME=		modeline_vfr.c
-PKGNAME=		modeline-20001121
+PKGNAME=		modeline-20060729
+PKGREVISION=		1
 CATEGORIES=		x11
 MASTER_SITES=		http://www.bohne-lang.de/spec/linux/modeline/
 EXTRACT_SUFX=		# empty
@@ -10,12 +11,13 @@ MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.bohne-lang.de/spec/linux/modeline/
 COMMENT=		Calculates XF86 Modelines to configure your monitor for X11R6
 
+DIST_SUBDIR=		${PKGNAME_NOREV}
 WRKSRC=			${WRKDIR}/modeline
 INSTALLATION_DIRS=	bin
 
 do-extract:
 	${MKDIR} ${WRKSRC}
-	${CP} ${DISTDIR}/${DISTNAME} ${WRKSRC}
+	${CP} ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME} ${WRKSRC}
 
 do-build:
 	cd ${WRKSRC}; ${CC} ${CFLAGS} ${DISTNAME} -o ${DISTNAME:S/.c//}

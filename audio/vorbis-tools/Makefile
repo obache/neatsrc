@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.75 2019/08/22 12:22:51 ryoon Exp $
+# $NetBSD: Makefile,v 1.81 2020/05/31 17:37:36 rillig Exp $
 
 DISTNAME=	vorbis-tools-1.4.0
-PKGREVISION=	18
+PKGREVISION=	23
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/vorbis/
 
@@ -18,8 +18,6 @@ USE_TOOLS+=		pkg-config
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-ogg-prefix=${BUILDLINK_PREFIX.libogg}
-CONFIGURE_ARGS+=	--with-vorbis-prefix=${BUILDLINK_PREFIX.libvorbis}
 
 PLIST_SUBST+=	DISTNAME=${DISTNAME}
 

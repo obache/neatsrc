@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.46 2019/08/22 12:23:50 ryoon Exp $
+# $NetBSD: Makefile,v 1.55 2020/08/31 18:12:17 wiz Exp $
 
 DISTNAME=	redland-1.0.17
-PKGREVISION=	18
+PKGREVISION=	25
 CATEGORIES=	textproc
 MASTER_SITES=	http://download.librdf.org/source/
 
@@ -10,9 +10,10 @@ HOMEPAGE=	http://librdf.org/
 COMMENT=	Libraries supporting the Resource Description Framework (RDF)
 LICENSE=	gnu-lgpl-v2.1 OR apache-2.0
 
-USE_TOOLS+=	gmake perl pkg-config
-GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
+USE_TOOLS+=		gmake perl pkg-config
+GNU_CONFIGURE=		yes
+GNU_CONFIGURE_STRICT=	no
+USE_LIBTOOL=		yes
 
 # XXX: Kludge to avoid uncoditionally pick up some gtkdoc-* tools if gtk-doc
 # XXX: package is installed and then fails in the installation phase.
@@ -35,8 +36,6 @@ CONFIGURE_ARGS+=	--with-mysql=no
 CONFIGURE_ARGS+=	--with-postgresql=no
 CONFIGURE_ARGS+=	--with-sqlite=no
 CONFIGURE_ARGS+=	--with-threestore=no
-CONFIGURE_ARGS+=	--with-raptop=system
-CONFIGURE_ARGS+=	--with-rasqal=system
 CONFIGURE_ARGS+=	--with-virtuoso=no
 CONFIGURE_ENV+=		ac_cv_path_IODBC_CONFIG=no
 

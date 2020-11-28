@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.67 2020/01/02 15:45:43 gutteridge Exp $
+# $NetBSD: Makefile,v 1.72 2020/09/29 10:45:58 prlw1 Exp $
 
-DISTNAME=	gobject-introspection-1.62.0
+DISTNAME=	gobject-introspection-1.66.0
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gobject-introspection/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -18,6 +18,7 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 USE_TOOLS+=	pkg-config flex bison
 
 MESON_ARGS+=	-Dpython=${PYTHONBIN}
+MESON_ARGS+=	-Ddoctool=disabled
 
 PKGCONFIG_OVERRIDE+=	gobject-introspection-1.0.pc.in
 PKGCONFIG_OVERRIDE+=	gobject-introspection-no-export-1.0.pc.in

@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.6 2019/11/10 21:17:18 nia Exp $
+# $NetBSD: Makefile,v 1.13 2020/08/18 17:57:59 leot Exp $
 
-DISTNAME=	widelands-build20
-PKGNAME=	widelands-20
+DISTNAME=	widelands-build21-source
+PKGNAME=	widelands-21
 PKGREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	https://launchpad.net/widelands/build${PKGVERSION_NOREV}/build${PKGVERSION_NOREV}/+download/
-EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.widelands.org/
@@ -14,8 +13,8 @@ LICENSE=	gnu-gpl-v2
 
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
-USE_TOOLS+=	msgfmt msgmerge xgettext
-USE_LANGUAGES=	c c++11
+USE_TOOLS+=	msgfmt msgmerge pkg-config xgettext
+USE_LANGUAGES=	c c++
 
 # C++11
 GCC_REQD+=	4.8
@@ -37,6 +36,8 @@ PYTHON_FOR_BUILD_ONLY=	yes
 INSTALLATION_DIRS+=	bin
 INSTALLATION_DIRS+=	share/doc/widelands
 
+WRKSRC=			${WRKDIR}/${DISTNAME:S/-source//}
+
 .include "../../mk/bsd.prefs.mk"
 
 # XXX: The following trick might not work everywhere!
@@ -50,6 +51,7 @@ pre-configure:
 
 post-install:
 	${MV}	${DESTDIR}${PREFIX}/widelands \
+		${DESTDIR}${PREFIX}/wl_create_spritesheet \
 		${DESTDIR}${PREFIX}/wl_map_object_info \
 		${DESTDIR}${PREFIX}/wl_map_info \
 		${DESTDIR}${PREFIX}/bin
@@ -65,10 +67,12 @@ post-install:
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../fonts/SDL2_ttf/buildlink3.mk"
+.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/SDL2_image/buildlink3.mk"
 .include "../../graphics/glew/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../lang/python/pyversion.mk"
+.include "../../sysutils/desktop-file-utils/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

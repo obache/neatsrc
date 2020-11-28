@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.41 2019/05/23 19:22:57 rillig Exp $
+# $NetBSD: Makefile,v 1.43 2020/09/14 17:46:39 adam Exp $
 
-DISTNAME=	unixODBC-2.3.7
+DISTNAME=	unixODBC-2.3.9
 PKGNAME=	${DISTNAME:S/ODBC/odbc/}
 CATEGORIES=	databases
 MASTER_SITES=	ftp://ftp.unixodbc.org/pub/unixODBC/
@@ -15,6 +15,7 @@ CONFLICTS+=		iodbc<3.52.7nb2
 USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake flex yacc # to get libodbctxt.la
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_STRICT=	no # has sub-configures
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--disable-gui
 CONFIGURE_ARGS+=	--enable-driverc

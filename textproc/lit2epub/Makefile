@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2017/02/20 10:18:33 wiz Exp $
+# $NetBSD: Makefile,v 1.6 2020/03/20 11:58:28 nia Exp $
 
 DISTNAME=	ebook-tools-0.2.2
 PKGNAME=	lit2epub-0.2.2

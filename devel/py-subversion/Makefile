@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.82 2019/05/27 16:10:08 ryoon Exp $
+# $NetBSD: Makefile,v 1.89 2020/08/13 11:52:11 adam Exp $
 
 PKGNAME=	${PYPKGPREFIX}-subversion-${SVNVER}
 COMMENT=	Python bindings and tools for Subversion
@@ -6,13 +6,18 @@ COMMENT=	Python bindings and tools for Subversion
 .include "../../devel/subversion/Makefile.common"
 
 SHLIBTOOL_OVERRIDE=	# empty
+TOOLS_BROKEN+=		perl
 
 CPPFLAGS+=		-P # for APR_INT64_T_FMT
+CONFIGURE_ARGS+=	--with-py3c=${BUILDLINK_PREFIX.py-py3c}/${PYINC}/py3c
+CONFIGURE_ARGS+=	--with-swig=${PREFIX}/bin/swig3.0
 CONFIGURE_ENV+=		PYTHON=${PYTHONBIN:Q}
 
 PY_PATCHPLIST=		YES
 REPLACE_PYTHON=		tools/hook-scripts/mailer/mailer.py
 PYTHON_SELF_CONFLICT=	YES
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27 # typing
 
 BUILD_TARGET=		swig-py
 INSTALL_TARGET=		install-swig-py
@@ -40,6 +45,8 @@ post-install:
 	${PY_COMPILE_O_ALL} ${DESTDIR}${PREFIX}/${PYSITELIB}/svn
 
 .include "../../devel/subversion-base/buildlink3.mk"
+.include "../../devel/swig3/buildlink3.mk"
+.include "../../lang/py-py3c/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
 .include "../../mk/bsd.pkg.mk"

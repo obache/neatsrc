@@ -1,5 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2019/11/03 19:26:21 rillig Exp $
-#
+# $NetBSD: Makefile,v 1.9 2020/08/31 23:07:02 wiz Exp $
 
 DISTNAME=	fuse-pcachefs-0.0.20160203
 PKGREVISION=	1
@@ -15,9 +14,12 @@ LICENSE=	apache-2.0
 
 DEPENDS+=	${PYPKGPREFIX}-fuse-bindings-[0-9]*:../../filesystems/py-fuse-bindings
 
+PYTHON_VERSIONED_DEPENDENCIES+=	setuptools:build
+
 EGG_NAME=	pCacheFS-0.2
 PYTHON_VERSIONS_ACCEPTED= 27 # py-fuse-bindings
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/fuse.buildlink3.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

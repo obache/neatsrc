@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.266 2019/12/29 19:40:56 triaxx Exp $
+# $NetBSD: Makefile,v 1.276 2020/09/29 10:43:33 prlw1 Exp $
 
 .include "Makefile.common"
 
@@ -9,7 +9,10 @@ COMMENT=	Some useful routines for C programming (glib2)
 
 MESON_ARGS+=	-Dinstalled_tests=false
 # Avoid linux dependency on libmount-dev
-MESON_ARGS+=	-Dlibmount=false
+MESON_ARGS+=	-Dlibmount=disabled
+.if ${OPSYS} == "FreeBSD"
+MESON_ARGS+=	-Db_lundef=false
+.endif
 
 MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/gio:${WRKSRC}/output/glib:${WRKSRC}/output/gobject:${WRKSRC}/output/gmodule
 
@@ -19,18 +22,21 @@ LDFLAGS.FreeBSD+=	-liconv
 
 REPLACE_PYTHON+=	gio/gio-querymodules-wrapper.py
 REPLACE_PYTHON+=	gio/tests/gengiotypefuncs.py
+REPLACE_PYTHON+=	gio/tests/memory-monitor-dbus.py.in
+REPLACE_PYTHON+=	gio/tests/memory-monitor-portal.py.in
 REPLACE_PYTHON+=	gio/tests/static-link.py
 REPLACE_PYTHON+=	glib/update-gtranslit.py
 REPLACE_PYTHON+=	gobject/tests/mkenums.py
 REPLACE_PYTHON+=	tests/gen-casefold-txt.py
 REPLACE_PYTHON+=	tests/gen-casemap-txt.py
 
-FILES_SUBST+=		GIO_MODULES_DIR=${PREFIX}/lib/gio/modules
+GIO_MODULES_DIR=	${PREFIX}/lib/gio/modules
+OWN_DIRS=		${GIO_MODULES_DIR}
+
+FILES_SUBST+=		GIO_MODULES_DIR=${GIO_MODULES_DIR}
 FILES_SUBST+=		GIO_QUERYMODULES=${PREFIX}/bin/gio-querymodules
 FILES_SUBST+=		GLIB_COMPILE_SCHEMAS=${PREFIX}/bin/glib-compile-schemas
 FILES_SUBST+=		GLIB_SCHEMAS_DIR=${PREFIX}/share/glib-2.0/schemas
-
-OWN_DIRS=		${GIO_MODULES_DIR}
 
 BUILD_DEFS+=		VARBASE
 SUBST_CLASSES+=		dbusdb

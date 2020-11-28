@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.117 2019/11/30 17:27:09 hauke Exp $
+# $NetBSD: Makefile,v 1.120 2020/08/31 18:11:22 wiz Exp $
 
 DISTNAME=		stunnel-5.56
 #PKGREVISION=		1
+PKGREVISION=		2
 CATEGORIES=		security
 MASTER_SITES=		https://www.stunnel.org/downloads/
 
 MAINTAINER=		jym@NetBSD.org
-HOMEPAGE=		http://www.stunnel.org/
+HOMEPAGE=		https://www.stunnel.org/
 COMMENT=		Universal SSL tunnel
 LICENSE=		gnu-gpl-v2
 

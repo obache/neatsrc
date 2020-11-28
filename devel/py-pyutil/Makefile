@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.22 2019/08/26 13:47:24 adam Exp $
+# $NetBSD: Makefile,v 1.24 2020/07/27 16:20:44 gdt Exp $
 
 DISTNAME=	pyutil-3.3.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pyutil/}
 
-MAINTAINER=	gdt@ir.bbn.com
+MAINTAINER=	gdt@NetBSD.org
 HOMEPAGE=	https://github.com/tpltnt/pyutil
 COMMENT=	Collection of mature utilities for Python programmers
 LICENSE=	gnu-gpl-v2
@@ -15,6 +15,8 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-mock>=1.3.0:../../devel/py-mock
 TEST_DEPENDS+=	${PYPKGPREFIX}-twisted>=15.5.0:../../net/py-twisted
 
 USE_LANGUAGES=	# none
+
+CONFLICTS+=	passphrase-[0-9]*
 
 post-extract:
 	${FIND} ${WRKSRC} -name __pycache__ -or -name '*.pyc' -exec ${RM} -R {} +

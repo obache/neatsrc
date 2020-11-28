@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.26 2019/10/27 13:55:28 mef Exp $
+# $NetBSD: Makefile,v 1.28 2020/09/08 13:16:37 wiz Exp $
 
 DISTNAME=	OOTools-2.41
 PKGNAME=	p5-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	devel perl5
-MASTER_SITES=	http://search.cpan.org/CPAN/authors/id/S/SK/SKNPP/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/S/SK/SKNPP/}
 
 MAINTAINER=	hiramatu@boreas.dti.ne.jp
 HOMEPAGE=	https://metacpan.org/release/DOMIZIO/OOTools-2.21

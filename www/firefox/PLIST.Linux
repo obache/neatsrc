@@ -1,0 +1,2 @@
+@comment $NetBSD: PLIST.Linux,v 1.2 2020/04/09 19:25:39 maya Exp $
+lib/firefox/libmozsandbox.so

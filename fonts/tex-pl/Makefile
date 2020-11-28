@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:32:19 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:52 markd Exp $
 
 DISTNAME=	pl
 PKGNAME=	tex-${DISTNAME}-1.09
+PKGREVISION=	1
 TEXLIVE_REV=	36012
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.ctan.org/pkg/pl-mf
+HOMEPAGE=	https://www.ctan.org/pkg/pl-mf
 COMMENT=	Polish extension of Computer Modern fonts
 LICENSE=	public-domain
 

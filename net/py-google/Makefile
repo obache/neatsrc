@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.41 2019/11/03 11:45:50 rillig Exp $
+# $NetBSD: Makefile,v 1.43 2020/03/20 11:58:10 nia Exp $
 
 DISTNAME=	pygoogle-0.6
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}

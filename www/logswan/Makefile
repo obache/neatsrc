@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.15 2019/11/19 11:25:27 fcambus Exp $
+# $NetBSD: Makefile,v 1.21 2020/10/20 13:08:13 fcambus Exp $
 
-DISTNAME=	logswan-2.1.2
+DISTNAME=	logswan-2.1.8
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=fcambus/}
+GITHUB_RELEASE=	${PKGVERSION_NOREV}
 
 MAINTAINER=	fcambus@NetBSD.org
 HOMEPAGE=	https://www.logswan.org/
@@ -11,10 +12,9 @@ LICENSE=	2-clause-bsd
 
 USE_CMAKE=	yes
 
-CMAKE_ARGS+=	-DGEOIP2DIR=${PREFIX}/share/GeoIP
+CMAKE_ARGS+=	-DGEOIP2DIR=${PREFIX}/share/dbip
 
-do-test:
-	${RUN} cd ${WRKSRC} && ./${PKGBASE} examples/${PKGBASE}.log
+TEST_TARGET=	test
 
 .include "../../textproc/jansson/buildlink3.mk"
 .include "../../geography/libmaxminddb/buildlink3.mk"

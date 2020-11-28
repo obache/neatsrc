@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.8 2013/01/06 03:32:34 ryoon Exp $
+# $NetBSD: Makefile,v 1.9 2020/04/26 09:55:09 rillig Exp $
 #
 
 DISTNAME=		libdaemon-0.14
-PKGREVISION=		1
+PKGREVISION=		2
 CATEGORIES=		devel
 MASTER_SITES=		http://0pointer.de/lennart/projects/libdaemon/
 

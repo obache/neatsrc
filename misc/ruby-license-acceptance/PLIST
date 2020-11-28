@@ -1,0 +1,21 @@
+@comment $NetBSD: PLIST,v 1.2 2020/03/24 17:58:03 taca Exp $
+${GEM_HOME}/cache/${GEM_NAME}.gem
+${GEM_LIBDIR}/Gemfile
+${GEM_LIBDIR}/LICENSE
+${GEM_LIBDIR}/config/product_info.toml
+${GEM_LIBDIR}/lib/license_acceptance/acceptor.rb
+${GEM_LIBDIR}/lib/license_acceptance/cli_flags/mixlib_cli.rb
+${GEM_LIBDIR}/lib/license_acceptance/cli_flags/thor.rb
+${GEM_LIBDIR}/lib/license_acceptance/config.rb
+${GEM_LIBDIR}/lib/license_acceptance/logger.rb
+${GEM_LIBDIR}/lib/license_acceptance/product.rb
+${GEM_LIBDIR}/lib/license_acceptance/product_reader.rb
+${GEM_LIBDIR}/lib/license_acceptance/product_relationship.rb
+${GEM_LIBDIR}/lib/license_acceptance/strategy/argument.rb
+${GEM_LIBDIR}/lib/license_acceptance/strategy/base.rb
+${GEM_LIBDIR}/lib/license_acceptance/strategy/environment.rb
+${GEM_LIBDIR}/lib/license_acceptance/strategy/file.rb
+${GEM_LIBDIR}/lib/license_acceptance/strategy/prompt.rb
+${GEM_LIBDIR}/lib/license_acceptance/strategy/provided_value.rb
+${GEM_LIBDIR}/lib/license_acceptance/version.rb
+${GEM_HOME}/specifications/${GEM_NAME}.gemspec

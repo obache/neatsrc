@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.43 2019/12/21 23:31:23 joerg Exp $
+# $NetBSD: Makefile,v 1.46 2020/04/25 16:57:23 rillig Exp $
 
 DISTNAME=	gnats-4.2.0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GNU:=gnats/}
-PKGREVISION=	3
+PKGREVISION=	4
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/gnats/
+HOMEPAGE=	https://www.gnu.org/software/gnats/
 COMMENT=	GNATS bug tracking system
 LICENSE=	gnu-gpl-v3
 
@@ -26,6 +26,8 @@ CONFIGURE_ARGS+=	--enable-gnatsd-host-access-file=${GNATS_HOST_FILE:Q}
 CONFIGURE_ARGS+=	--enable-gnats-dblist-file=${GNATS_DB_FILE:Q}
 CONFIGURE_ARGS+=	--enable-gnats-default-db=${GNATS_DBHOME:Q}
 CONFIGURE_ARGS+=	--with-lispdir=${PREFIX}/share/gnats
+
+BUILDLINK_TRANSFORM+=	rm:-Werror
 
 INFO_FILES=		yes
 
@@ -83,7 +85,7 @@ MESSAGE_SUBST+=		GNATS_SERVICE=${GNATS_SERVICE:Q}
 
 SUBST_CLASSES+=		gnats
 SUBST_STAGE.gnats=	pre-configure
-SUBST_FILES.gnats=	gnats/Makefile.in gnats/mkdb.sh send-pr/Makefile.in
+SUBST_FILES.gnats=	gnats/Makefile.in gnats/ds-file/mkdb.sh
 SUBST_SED.gnats=	-e "s,%%EGDIR%%,${DESTDIR}${EGDIR},g"
 SUBST_SED.gnats+=	-e "s,%%GNATS_DEFAULTS%%,${DESTDIR}${PREFIX}/share/gnats/defaults,g"
 

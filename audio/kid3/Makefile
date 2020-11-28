@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.97 2019/09/18 14:17:05 ryoon Exp $
+# $NetBSD: Makefile,v 1.109 2020/08/31 18:06:33 wiz Exp $
 
 DISTNAME=	kid3-3.5.1
-PKGREVISION=	13
+PKGREVISION=	21
 CATEGORIES=	kde audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=kid3/}
 
-MAINTAINER=	wiz@NetBSD.org
-HOMEPAGE=	http://kid3.sourceforge.net/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://kid3.sourceforge.io/
 COMMENT=	ID3 tagger for QT
 LICENSE=	gnu-gpl-v2
 
@@ -38,6 +38,7 @@ SUBST_SED.apple=	-e 's,APPLE,ELPPA,g'
 .include "../../audio/chromaprint/buildlink3.mk"
 .include "../../audio/flac/buildlink3.mk"
 .include "../../audio/id3lib/buildlink3.mk"
+.include "../../audio/libvorbis/buildlink3.mk"
 .include "../../audio/taglib/buildlink3.mk"
 .include "../../devel/readline/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"

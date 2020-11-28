@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.54 2019/02/13 19:53:52 wiz Exp $
+# $NetBSD: Makefile,v 1.57 2020/03/17 22:24:20 rillig Exp $
 
-DISTNAME=	sed-4.7
+DISTNAME=	sed-4.8
 PKGNAME=	g${DISTNAME}
 CATEGORIES=	textproc editors
 MASTER_SITES=	${MASTER_SITE_GNU:=sed/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/sed/sed.html
+HOMEPAGE=	https://www.gnu.org/software/sed/sed.html
 COMMENT=	GNU implementation of sed, the POSIX stream editor
 LICENSE=	gnu-gpl-v3 AND gnu-fdl-v1.3
 
@@ -21,6 +21,9 @@ INSTALLATION_DIRS=	${PKGGNUDIR}bin ${PKGGNUDIR}${PKGMANDIR}/man1
 
 # at least Solaris-2.9 has issues with grep/egrep
 USE_TOOLS+=		grep makeinfo
+
+# Prevent "Please add USE_TOOLS+=perl" warning at the end of configure phase.
+CONFIGURE_ENV+=		PERL=
 
 CONFIGURE_ARGS+=	--program-prefix=g
 

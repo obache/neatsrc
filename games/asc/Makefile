@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.66 2019/12/21 23:40:43 joerg Exp $
+# $NetBSD: Makefile,v 1.73 2020/08/31 18:09:33 wiz Exp $
 
 DISTNAME=	asc-2.6.1.0
-PKGREVISION=	1
+PKGREVISION=	7
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=asc-hq/}
 EXTRACT_SUFX=	.tar.bz2
@@ -48,6 +48,8 @@ CONFIGURE_ARGS+=	--disable-sdltest
 CONFIGURE_ARGS+=	--disable-oggtest
 CONFIGURE_ARGS+=	--disable-vorbistest
 CONFIGURE_ARGS+=	--disable-ft2test
+
+GNU_CONFIGURE_WX_VERSION= no
 
 INSTALLATION_DIRS+=	share/applications
 INSTALLATION_DIRS+=	share/pixmaps

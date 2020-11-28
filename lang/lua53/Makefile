@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.3 2017/01/19 18:52:14 agc Exp $
+# $NetBSD: Makefile,v 1.6 2020/07/02 10:15:20 nia Exp $
 
 DISTNAME=	lua-${LUA_VERSION}
 PKGNAME=	lua53-${LUA_VERSION}
-CATEGORIES=	lang
-MASTER_SITES=	http://www.lua.org/ftp/
+CATEGORIES=	lang lua
+MASTER_SITES=	https://www.lua.org/ftp/
 MASTER_SITES+=	http://www.tecgraf.puc-rio.br/lua/ftp/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.lua.org/
-COMMENT=	Powerful light-weight language for extending applications
+HOMEPAGE=	https://www.lua.org/
+COMMENT=	Lightweight, embeddable scripting language (v5.3)
 LICENSE=	mit
 
 .include "../../lang/lua53/version.mk"
@@ -20,8 +20,9 @@ CONFLICTS+=	lua-[0-9]*
 USE_LANGUAGES=	c99
 USE_LIBTOOL=	yes
 USE_TOOLS+=	gmake
-MAKE_ENV+=	DLLIB=${BUILDLINK_LDADD.dl:Q}
-MAKE_ENV+=	INSTALL_DATA=${INSTALL_DATA:Q}
+MAKE_FLAGS+=	DLLIB=${BUILDLINK_LDADD.dl:Q}
+MAKE_FLAGS+=	INSTALL_EXEC=${INSTALL_PROGRAM:Q}
+MAKE_FLAGS+=	INSTALL_DATA=${INSTALL_DATA:Q}
 CFLAGS+=	-DLUA_ROOT=\"${PREFIX}/\"
 
 # Address pkg/47587 lua not linked to pthread causes issues with modules

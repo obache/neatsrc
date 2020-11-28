@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.72 2015/12/29 00:05:54 dholland Exp $
+# $NetBSD: Makefile,v 1.74 2020/05/14 19:17:45 joerg Exp $
 
 DISTNAME=	hylafax-6.0.6
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	comms
 MASTER_SITES=	ftp://ftp.hylafax.org/source/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.hylafax.org/
+HOMEPAGE=	https://www.hylafax.org/
 COMMENT=	Telecommunication and fax server system
 LICENSE=	sgi-free-software-b-v2.0
 

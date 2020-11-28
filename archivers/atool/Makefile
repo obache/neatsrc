@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.3 2019/08/11 13:17:50 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2020/08/31 18:06:30 wiz Exp $
 
 DISTNAME=	atool-0.39.0
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	archivers
 MASTER_SITES=	http://savannah.nongnu.org/download/atool/
 
 MAINTAINER=	mcy@lm7.fr
-HOMEPAGE=	http://www.nongnu.org/atool/
+HOMEPAGE=	https://www.nongnu.org/atool/
 COMMENT=	Manage file archives of various types
 LICENSE=	gnu-gpl-v2
 

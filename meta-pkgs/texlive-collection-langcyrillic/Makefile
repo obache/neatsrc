@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.12 2019/08/11 10:06:13 markd Exp $
+# $NetBSD: Makefile,v 1.14 2020/05/10 04:13:25 markd Exp $
 
 DISTNAME=	collection-langcyrillic
-PKGNAME=	texlive-${DISTNAME}-2019pre3
+PKGNAME=	texlive-${DISTNAME}-2020pre1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	44895
+TEXLIVE_REV=	54074
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Cyrillic TeX packages
 
 DEPENDS+=	texlive-collection-basic-[0-9]*:../../meta-pkgs/texlive-collection-basic
@@ -57,6 +57,7 @@ DEPENDS+=	tex-t2-[0-9]*:../../print/tex-t2
 # texlive-ru is documentation only
 # texlive-sr is documentation only
 DEPENDS+=	tex-ukrhyph-[0-9]*:../../print/tex-ukrhyph
+# depend xecyrmongolian
 
 META_PACKAGE=	yes
 

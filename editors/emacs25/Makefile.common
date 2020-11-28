@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.5 2019/06/08 10:40:54 rillig Exp $
+# $NetBSD: Makefile.common,v 1.6 2020/05/22 05:51:19 rillig Exp $
 #
 # used by editors/emacs25/Makefile
 # used by editors/emacs25-nox11/Makefile

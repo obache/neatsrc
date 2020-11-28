@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.3 2020/01/09 15:26:36 ryoon Exp $
+@comment $NetBSD: PLIST,v 1.7 2020/10/21 19:18:59 wiz Exp $
 bin/al
 bin/al2
 bin/aprofutil
@@ -44,7 +44,7 @@ bin/mod
 bin/mono
 bin/mono-api-html
 bin/mono-api-info
-bin/mono-boehm
+${PLIST.boehm}bin/mono-boehm
 bin/mono-cil-strip
 bin/mono-configuration-crypto
 bin/mono-find-provides
@@ -141,7 +141,7 @@ lib/libmono-profiler-coverage-static.la
 lib/libmono-profiler-coverage.la
 lib/libmono-profiler-log-static.la
 lib/libmono-profiler-log.la
-lib/libmonoboehm-2.0.la
+${PLIST.boehm}lib/libmonoboehm-2.0.la
 lib/libmonosgen-2.0.la
 lib/mono-source-libs/Options.cs
 lib/mono-source-libs/getline.cs
@@ -2912,8 +2912,8 @@ lib/mono/gac/Mono.CSharp/4.0.0.0__0738eb9f132ed756/Mono.CSharp.dll
 lib/mono/gac/Mono.CSharp/4.0.0.0__0738eb9f132ed756/Mono.CSharp.pdb
 lib/mono/gac/Mono.Cairo/4.0.0.0__0738eb9f132ed756/Mono.Cairo.dll
 lib/mono/gac/Mono.Cairo/4.0.0.0__0738eb9f132ed756/Mono.Cairo.pdb
-lib/mono/gac/Mono.Cecil/0.11.0.0__0738eb9f132ed756/Mono.Cecil.dll
-lib/mono/gac/Mono.Cecil/0.11.0.0__0738eb9f132ed756/Mono.Cecil.pdb
+lib/mono/gac/Mono.Cecil/0.11.1.0__0738eb9f132ed756/Mono.Cecil.dll
+lib/mono/gac/Mono.Cecil/0.11.1.0__0738eb9f132ed756/Mono.Cecil.pdb
 lib/mono/gac/Mono.Cecil/0.9.5.0__0738eb9f132ed756/Mono.Cecil.dll
 lib/mono/gac/Mono.Cecil/0.9.5.0__0738eb9f132ed756/Mono.Cecil.pdb
 lib/mono/gac/Mono.CodeContracts/4.0.0.0__0738eb9f132ed756/Mono.CodeContracts.dll
@@ -3167,7 +3167,6 @@ lib/mono/msbuild/Current/bin/Roslyn/Microsoft.CodeAnalysis.Scripting.dll
 lib/mono/msbuild/Current/bin/Roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
 lib/mono/msbuild/Current/bin/Roslyn/Microsoft.CodeAnalysis.dll
 lib/mono/msbuild/Current/bin/Roslyn/Microsoft.Managed.Core.targets
-lib/mono/msbuild/Current/bin/Roslyn/Microsoft.Managed.EditorConfig.targets
 lib/mono/msbuild/Current/bin/Roslyn/Microsoft.VisualBasic.Core.targets
 lib/mono/msbuild/Current/bin/Roslyn/System.Collections.Immutable.dll
 lib/mono/msbuild/Current/bin/Roslyn/System.Memory.dll
@@ -3394,38 +3393,6 @@ share/examples/mono/4.5/web.config
 share/examples/mono/browscap.ini
 share/examples/mono/config
 share/examples/mono/mconfig/config.xml
-share/libgc-mono/README
-share/libgc-mono/README.DGUX386
-share/libgc-mono/README.Mac
-share/libgc-mono/README.MacOSX
-share/libgc-mono/README.OS2
-share/libgc-mono/README.amiga
-share/libgc-mono/README.arm.cross
-share/libgc-mono/README.autoconf
-share/libgc-mono/README.changes
-share/libgc-mono/README.contributors
-share/libgc-mono/README.cords
-share/libgc-mono/README.darwin
-share/libgc-mono/README.dj
-share/libgc-mono/README.environment
-share/libgc-mono/README.ews4800
-share/libgc-mono/README.hp
-share/libgc-mono/README.linux
-share/libgc-mono/README.macros
-share/libgc-mono/README.rs6000
-share/libgc-mono/README.sgi
-share/libgc-mono/README.solaris2
-share/libgc-mono/README.uts
-share/libgc-mono/README.win32
-share/libgc-mono/barrett_diagram
-share/libgc-mono/debugging.html
-share/libgc-mono/gc.man
-share/libgc-mono/gcdescr.html
-share/libgc-mono/gcinterface.html
-share/libgc-mono/leak.html
-share/libgc-mono/scale.html
-share/libgc-mono/simple_example.html
-share/libgc-mono/tree.html
 share/locale/de/LC_MESSAGES/mcs.mo
 share/locale/es/LC_MESSAGES/mcs.mo
 share/locale/ja/LC_MESSAGES/mcs.mo

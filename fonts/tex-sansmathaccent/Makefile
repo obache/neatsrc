@@ -1,16 +1,16 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:32:24 markd Exp $
+# $NetBSD: Makefile,v 1.5 2020/05/10 04:31:53 markd Exp $
 
 DISTNAME=	sansmathaccent
-PKGNAME=	tex-${DISTNAME}-2014
-TEXLIVE_REV=	30187
+PKGNAME=	tex-${DISTNAME}-2020
+PKGREVISION=	1
+TEXLIVE_REV=	53628
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/sansmathaccent
+HOMEPAGE=	https://ctan.org/pkg/sansmathaccent
 COMMENT=	Correct placement of accents in sans-serif maths
 LICENSE=	lppl-1.3c
 
 TEX_MAP_FILES+=	sansmathaccent.map
 
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 .include "../../mk/bsd.pkg.mk"

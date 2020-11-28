@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.5 2014/01/27 19:00:18 wiz Exp $
+# $NetBSD: Makefile,v 1.7 2020/03/25 11:30:48 nia Exp $
 
-DISTNAME=	pyxdg-0.25
+DISTNAME=	pyxdg-0.26
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
 CATEGORIES=	devel python
-MASTER_SITES=	http://people.freedesktop.org/~takluyver/
+MASTER_SITES=	${MASTER_SITE_PYPI:=p/pyxdg/}
 
 MAINTAINER=	snj@NetBSD.org
-HOMEPAGE=	http://freedesktop.org/wiki/Software/pyxdg
+HOMEPAGE=	https://freedesktop.org/wiki/Software/pyxdg
 COMMENT=	Python library for XDG
 LICENSE=	gnu-lgpl-v2
 

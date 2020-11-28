@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.3 2019/08/11 13:21:21 wiz Exp $
+# $NetBSD: Makefile,v 1.6 2020/08/31 18:09:50 wiz Exp $
 
-PKGREVISION= 1
+PKGREVISION= 2
 .include "../../lang/go/version.mk"
+.include "../../lang/go/bootstrap.mk"
 
 DISTNAME=	go${GO110_VERSION}.src
 PKGNAME=	go110-${GO110_VERSION}
@@ -10,7 +11,7 @@ MASTER_SITES=	https://storage.googleapis.com/golang/
 EXTRACT_USING=	bsdtar
 
 MAINTAINER=	bsiegert@NetBSD.org
-HOMEPAGE=	http://golang.org/
+HOMEPAGE=	https://golang.org/
 COMMENT=	The Go programming language
 LICENSE=	modified-bsd
 
@@ -79,11 +80,6 @@ CHECK_INTERPRETER_SKIP+=	go${GOVERSSUFFIX}/src/all.rc
 CHECK_INTERPRETER_SKIP+=	go${GOVERSSUFFIX}/src/clean.rc
 CHECK_INTERPRETER_SKIP+=	go${GOVERSSUFFIX}/src/make.rc
 CHECK_INTERPRETER_SKIP+=	go${GOVERSSUFFIX}/src/run.rc
-
-BUILD_DEPENDS+=		go14-1.4*:../../lang/go14
-GOROOT_BOOTSTRAP=	${PREFIX}/go14
-
-.include "../../mk/bsd.prefs.mk"
 
 PLIST_VARS+=	pty route
 

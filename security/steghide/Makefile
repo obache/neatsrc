@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.18 2018/07/18 00:06:23 joerg Exp $
+# $NetBSD: Makefile,v 1.20 2020/03/20 11:58:19 nia Exp $
 
 DISTNAME=		steghide-0.5.1
 PKGREVISION=		7

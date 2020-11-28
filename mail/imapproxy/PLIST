@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.4 2014/03/11 14:05:03 jperkin Exp $
+@comment $NetBSD: PLIST,v 1.6 2020/04/16 14:03:29 manu Exp $
 sbin/in.imapproxyd
 sbin/pimpstat
 share/doc/imapproxy/COPYING

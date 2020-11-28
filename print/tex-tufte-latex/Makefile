@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.3 2019/12/06 20:23:36 markd Exp $
+# $NetBSD: Makefile,v 1.5 2020/05/02 02:46:22 markd Exp $
 
 DISTNAME=	tufte-latex
 PKGNAME=	tex-${DISTNAME}-3.5.2
+PKGREVISION=	1
 TEXLIVE_REV=	37649
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/tufte-latex
+HOMEPAGE=	https://ctan.org/pkg/tufte-latex
 COMMENT=	Document classes inspired by the work of Edward Tufte
 LICENSE=	apache-2.0
 
@@ -14,7 +15,7 @@ DEPENDS+=	tex-changepage-[0-9]*:../../print/tex-changepage
 DEPENDS+=	tex-fancyhdr-[0-9]*:../../print/tex-fancyhdr
 DEPENDS+=	tex-geometry-[0-9]*:../../print/tex-geometry
 DEPENDS+=	tex-hyperref-[0-9]*:../../print/tex-hyperref
-DEPENDS+=	tex-ifxetex-[0-9]*:../../print/tex-ifxetex
+DEPENDS+=	tex-iftex>=1.0d:../../print/tex-iftex
 DEPENDS+=	tex-latex-[0-9]*:../../print/tex-latex
 DEPENDS+=	tex-latex-bin-[0-9]*:../../print/tex-latex-bin
 DEPENDS+=	tex-microtype-[0-9]*:../../print/tex-microtype

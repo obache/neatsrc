@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.135 2019/09/18 14:17:07 ryoon Exp $
+# $NetBSD: Makefile,v 1.140 2020/08/18 17:57:42 leot Exp $
 
 DISTNAME=	SDL-1.2.15
-PKGREVISION=	29
+PKGREVISION=	32
 CATEGORIES=	devel games
 MASTER_SITES=	http://www.libsdl.org/release/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.libsdl.org/
+HOMEPAGE=	https://www.libsdl.org/
 COMMENT=	Simple DirectMedia Layer, a cross-platform multimedia library
 LICENSE=	gnu-lgpl-v2.1
 
@@ -31,6 +31,7 @@ NASMFLAGS_a.out=	-f aoutb
 CONFIGURE_ARGS+=	--disable-nasm
 .endif
 
+CONFIGURE_ARGS+=	--disable-esd
 CONFIGURE_ARGS+=	--disable-video-ps2gs
 CONFIGURE_ARGS+=	--disable-video-ps3
 

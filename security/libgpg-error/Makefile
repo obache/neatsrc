@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.74 2019/11/04 21:12:54 rillig Exp $
+# $NetBSD: Makefile,v 1.78 2020/09/08 17:53:25 adam Exp $
 
-DISTNAME=	libgpg-error-1.36
-PKGREVISION=	1
+DISTNAME=	libgpg-error-1.39
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG:=libgpg-error/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://www.gnupg.org/
+HOMEPAGE=	https://www.gnupg.org/software/libgpg-error/index.html
 COMMENT=	Definitions of common error values for all GnuPG components
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 

@@ -1,9 +1,9 @@
-# $NetBSD: Makefile.common,v 1.6 2017/08/08 11:23:38 fhajny Exp $
+# $NetBSD: Makefile.common,v 1.8 2020/05/13 05:13:26 rillig Exp $
 #
 # used by databases/mariadb55-client/Makefile
 # used by databases/mariadb55-server/Makefile
 
-DISTNAME=	mariadb-5.5.57
+DISTNAME=	mariadb-5.5.67
 CATEGORIES=	databases
 MASTER_SITES=	https://downloads.mariadb.org/f/${DISTNAME}/source/
 
@@ -106,15 +106,6 @@ CXXFLAGS+=		-DSIGNALS_DONT_BREAK_READ
 .endif
 
 LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib/mariadb
-
-SUBST_CLASSES+=		scr
-SUBST_STAGE.scr=	pre-configure
-SUBST_FILES.scr=	scripts/mariadb_install_db.sh scripts/mariadb_safe.sh \
-			scripts/mariadb_secure_installation.sh \
-			support-files/mariadb.server.sh
-SUBST_SED.scr=		-e "s,chown,${CHOWN},g"
-SUBST_SED.scr+=		-e "s,/bin/sh,${RCD_SCRIPTS_SHELL},g"
-SUBST_MESSAGE.scr=	Fixing scripts.
 
 .include "../../mk/readline.buildlink3.mk"
 .if !empty(READLINE_TYPE:Mreadline)

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.31 2016/02/25 16:20:52 jperkin Exp $
+# $NetBSD: Makefile,v 1.33 2020/03/20 11:58:09 nia Exp $
 
 DISTNAME=	ngrep-1.45
 PKGREVISION=	1

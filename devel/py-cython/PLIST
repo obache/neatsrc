@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.25 2019/11/09 21:51:15 adam Exp $
+@comment $NetBSD: PLIST,v 1.27 2020/07/09 07:21:45 adam Exp $
 bin/cygdb-${PYVERSSUFFIX}
 bin/cython-${PYVERSSUFFIX}
 bin/cythonize-${PYVERSSUFFIX}
@@ -172,6 +172,9 @@ ${PYSITELIB}/Cython/Compiler/Tests/TestParseTreeTransforms.pyo
 ${PYSITELIB}/Cython/Compiler/Tests/TestSignatureMatching.py
 ${PYSITELIB}/Cython/Compiler/Tests/TestSignatureMatching.pyc
 ${PYSITELIB}/Cython/Compiler/Tests/TestSignatureMatching.pyo
+${PYSITELIB}/Cython/Compiler/Tests/TestStringEncoding.py
+${PYSITELIB}/Cython/Compiler/Tests/TestStringEncoding.pyc
+${PYSITELIB}/Cython/Compiler/Tests/TestStringEncoding.pyo
 ${PYSITELIB}/Cython/Compiler/Tests/TestTreeFragment.py
 ${PYSITELIB}/Cython/Compiler/Tests/TestTreeFragment.pyc
 ${PYSITELIB}/Cython/Compiler/Tests/TestTreeFragment.pyo
@@ -316,10 +319,12 @@ ${PYSITELIB}/Cython/Includes/cpython/dict.pxd
 ${PYSITELIB}/Cython/Includes/cpython/exc.pxd
 ${PYSITELIB}/Cython/Includes/cpython/float.pxd
 ${PYSITELIB}/Cython/Includes/cpython/function.pxd
+${PYSITELIB}/Cython/Includes/cpython/genobject.pxd
 ${PYSITELIB}/Cython/Includes/cpython/getargs.pxd
 ${PYSITELIB}/Cython/Includes/cpython/instance.pxd
 ${PYSITELIB}/Cython/Includes/cpython/int.pxd
 ${PYSITELIB}/Cython/Includes/cpython/iterator.pxd
+${PYSITELIB}/Cython/Includes/cpython/iterobject.pxd
 ${PYSITELIB}/Cython/Includes/cpython/list.pxd
 ${PYSITELIB}/Cython/Includes/cpython/long.pxd
 ${PYSITELIB}/Cython/Includes/cpython/longintrepr.pxd

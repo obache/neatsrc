@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.49 2019/03/25 19:56:08 markd Exp $
+# $NetBSD: Makefile,v 1.56 2020/08/18 17:58:12 leot Exp $
 
-DISTNAME=		rdesktop-1.8.4
-PKGREVISION=		1
+DISTNAME=		rdesktop-1.9.0
+PKGREVISION=		4
 CATEGORIES=		net
 MASTER_SITES=		${MASTER_SITE_GITHUB:=rdesktop/}
 GITHUB_RELEASE=		v${PKGVERSION_NOREV}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.rdesktop.org/
+HOMEPAGE=		https://www.rdesktop.org/
 COMMENT=		Open-source Remote Desktop Protocol client
 LICENSE=		gnu-gpl-v3
 
@@ -36,8 +36,12 @@ CONFIGURE_ARGS+=	--with-sound=alsa
 .endif
 
 .include "../../audio/libsamplerate/buildlink3.mk"
+.include "../../security/libtasn1/buildlink3.mk"
+.include "../../security/nettle/buildlink3.mk"
+.include "../../security/gnutls/buildlink3.mk"
 .include "../../mk/oss.buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
+.include "../../x11/libXcursor/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

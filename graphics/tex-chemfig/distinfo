@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.1 2019/08/13 02:13:40 brook Exp $
+$NetBSD: distinfo,v 1.3 2020/05/11 05:33:09 markd Exp $
 
-SHA1 (tex-chemfig-51176/chemfig.tar.xz) = 059aa48e7a4c9f40cbdd28f43ecd0ba3c2c17d2c
-RMD160 (tex-chemfig-51176/chemfig.tar.xz) = b6ebfb70cf26caeafcb2e8453585d4748206f2cf
-SHA512 (tex-chemfig-51176/chemfig.tar.xz) = bf8b9f313bdc239eac7c11c8b887755fc5106c389b3d62f013c764a8392298f4e0074796ec128edaa0d4126b52b055b3787454885dd2cd214e2603b7896b28dd
-Size (tex-chemfig-51176/chemfig.tar.xz) = 23716 bytes
+SHA1 (chemfig.r54914.tar.xz) = affc115d8016af18bd5d7cb53c74114bde011b37
+RMD160 (chemfig.r54914.tar.xz) = 661f5e6bfdae6cb94ec8a9e9753cecea6c9f3e44
+SHA512 (chemfig.r54914.tar.xz) = e7e7a662941a7c5b18a14f2f7ec798df4470522ccd5cd6312163f29f596ecd1c7cf782026c2e50b958bf9cf5b7fa5d8268c5221b5d37fc01cb024a5115d5df2c
+Size (chemfig.r54914.tar.xz) = 25588 bytes

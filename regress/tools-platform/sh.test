@@ -1,0 +1,66 @@
+#! /bin/sh
+# $NetBSD: sh.test,v 1.4 2020/05/21 13:33:35 rillig Exp $
+#
+# Tests for the shell that is available as ${SH} in Makefiles.
+#
+# On platforms where /bin/sh is not good enough, pkgsrc may use
+# different shells, depending on the exact situation.
+#
+# TOOLS_PLATFORM.sh (which ends up in SH as well) is used for running
+# shell programs from mk/ and other programs that typically start with
+# a #! line.
+#
+# The shell commands that are written in the targets of Makefiles (such
+# as do-build, pre-configure) are run with a possibly different shell,
+# see devel/bmake/Makefile.  This shell is tested by regress/make-shell,
+# which also uses this code.
+
+set -eu
+
+dief() {
+	printf 'error: [sh.test] ' 1>&2
+	printf "$@" 1>&2
+	printf '\n' 1>&2
+	exit 1
+}
+
+assert_that() {
+	case $2 in
+	(--equals)
+		[ "x$1" = "x$3" ] \
+		|| dief 'assertion failed: expected "%s", got "%s"' "$3" "$1"
+		;;
+	(*)	dief 'wrong assert_that call: %s' "$*"
+		;;
+	esac
+}
+
+pathname="first/second/third/fourth"
+
+# Make sure that the usual word expansions work.
+assert_that "##: ${pathname##*/}"	--equals "##: fourth"
+assert_that "#: ${pathname#*/}"		--equals "#: second/third/fourth"
+assert_that "%%: ${pathname%%/*}"	--equals "%%: first"
+assert_that "%: ${pathname%/*}"		--equals "%: first/second/third"
+
+# Make sure that $(...) subshells work.
+assert_that "subshell: $(echo world | tr 'world' 'hello')" \
+	--equals "subshell: hello"
+
+# In NetBSD 7, /bin/sh handled backslashes in word expansions incorrectly.
+# See https://gnats.netbsd.org/43469.
+line='#define bindir "/usr/bin" /* bar */'
+case $MACHINE_PLATFORM in
+(NetBSD-[0-7].*-*)
+	assert_that "${line%%/\**}" --equals '#define bindir "'
+	;;
+(*)
+	assert_that "${line%%/\**}" --equals '#define bindir "/usr/bin" '
+	;;
+esac
+
+# Make sure that the shell can process empty arguments.
+#
+# For example, /bin/ksh on NetBSD 8 cannot, it complains with:
+#   ksh: @: parameter not set
+sh -eu -c ': "$@"'

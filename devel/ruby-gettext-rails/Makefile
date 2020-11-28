@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.9 2019/12/25 00:17:23 joerg Exp $
+# $NetBSD: Makefile,v 1.11 2020/05/21 16:04:22 taca Exp $
 
 DISTNAME=	gettext_rails-2.1.0
 PKGNAME=	${RUBY_PKGPREFIX}-${DISTNAME:S/_/-/}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -14,7 +14,8 @@ DEPENDS+=	${RUBY_PKGPREFIX}-locale-rails>=2.0.5:../../devel/ruby-locale-rails
 DEPENDS+=	${RUBY_ACTIVERECORD_DEPENDS}
 DEPENDS+=	${RUBY_RAILS_DEPENDS}
 
-RUBY_VERSIONS_INCOMPATIBLE=	24
+USE_LANGUAGES=	# none
+
 RUBY_RAILS_ACCEPTED=	# defined
 
 post-extract:

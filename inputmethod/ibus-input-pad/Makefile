@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.41 2019/07/21 22:25:09 wiz Exp $
+# $NetBSD: Makefile,v 1.45 2020/08/17 20:19:15 leot Exp $
 #
 
 DISTNAME=	ibus-input-pad-1.4.2
-PKGREVISION=	12
+PKGREVISION=	16
 CATEGORIES=	inputmethod
 MASTER_SITES=	https://github.com/fujiwarat/ibus-input-pad/releases/download/${PKGVERSION_NOREV}/
 

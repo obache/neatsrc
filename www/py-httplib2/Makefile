@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.18 2020/01/04 19:05:39 wiz Exp $
+# $NetBSD: Makefile,v 1.25 2020/05/21 06:19:59 adam Exp $
 
-DISTNAME=	httplib2-0.15.0
+DISTNAME=	httplib2-0.18.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=h/httplib2/}
@@ -12,9 +12,13 @@ LICENSE=	mit
 
 USE_LANGUAGES=	# none
 
-# tests not included
+.include "../../lang/python/pyversion.mk"
 do-test:
-	${DO_NADA}
+.if ${_PYTHON_VERSION} == 27
+	cd ${WRKSRC}/python2 && ${PYTHONBIN} httplib2test.py
+.else
+	cd ${WRKSRC}/python3 && ${PYTHONBIN} httplib2test.py
+.endif
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

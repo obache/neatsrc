@@ -1,26 +1,24 @@
-# $NetBSD: Makefile,v 1.11 2019/12/19 22:12:43 joerg Exp $
+# $NetBSD: Makefile,v 1.17 2020/08/21 20:31:35 adam Exp $
 
-DISTNAME=	llvmlite-0.30.0
+DISTNAME=	llvmlite-0.34.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=l/llvmlite/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://llvmlite.pydata.org/
+HOMEPAGE=	https://llvmlite.readthedocs.io/
 COMMENT=	Lightweight LLVM Python binding for writing JIT compilers
 LICENSE=	2-clause-bsd
 
-USE_LANGUAGES=	c++
+USE_LANGUAGES=	c++14
+MAKE_ENV+=	LLVMLITE_SKIP_LLVM_VERSION_CHECK=1
 
-.include "../../lang/python/pyversion.mk"
-.if ${_PYTHON_VERSION} == 27
-DEPENDS+=	${PYPKGPREFIX}-enum34-[0-9]*:../../devel/py-enum34
-.endif
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 pre-configure:
 	${LN} -f ${WRKSRC}/ffi/Makefile.freebsd ${WRKSRC}/ffi/Makefile.netbsd
 
+.include "../../mk/bsd.prefs.mk"
 post-install:
 .if ${OPSYS} == "Darwin"
 	install_name_tool -id \
@@ -28,7 +26,7 @@ post-install:
 		${DESTDIR}${PREFIX}/${PYSITELIB}/llvmlite/binding/libllvmlite.dylib
 .endif
 
-BUILDLINK_API_DEPENDS.llvm+=	llvm>=8.0.0
+BUILDLINK_API_DEPENDS.llvm+=	llvm>=10.0.0
 .include "../../lang/llvm/buildlink3.mk"
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

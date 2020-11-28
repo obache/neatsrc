@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2015/04/13 23:12:44 rodent Exp $
+# $NetBSD: Makefile,v 1.7 2020/01/26 05:26:27 rillig Exp $
 
 DISTNAME=	Pmw_2_0_0-rc1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/_/-/:S/_/./g:S/-rc/rc/}

@@ -1,21 +1,21 @@
-# $NetBSD: Makefile,v 1.90 2019/10/24 12:21:39 triaxx Exp $
+# $NetBSD: Makefile,v 1.95 2020/07/10 20:40:26 kre Exp $
 
 BASH_VERSION=		5.0
-BASH_PATCHLEVEL=	11
+BASH_PATCHLEVEL=	18
 
 DISTNAME=	bash-${BASH_VERSION}
 PKGNAME=	bash-${BASH_VERSION:C/4\.4\..*/4.4/}.${BASH_PATCHLEVEL}
-PKGREVISION=	1
 CATEGORIES=	shells
 MASTER_SITES=	${MASTER_SITE_GNU:=bash/}
 
 PATCH_SITES=	${MASTER_SITES:=bash-5.0-patches/}
 PATCHFILES+=	bash50-001 bash50-002 bash50-003 bash50-004 bash50-005
 PATCHFILES+=	bash50-006 bash50-007 bash50-008 bash50-009 bash50-010
-PATCHFILES+=	bash50-011
+PATCHFILES+=	bash50-011 bash50-012 bash50-013 bash50-014 bash50-015
+PATCHFILES+=	bash50-016 bash50-017 bash50-018
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/bash/bash.html
+HOMEPAGE=	https://www.gnu.org/software/bash/bash.html
 COMMENT=	The GNU Bourne Again Shell
 LICENSE=	gnu-gpl-v3
 
@@ -52,12 +52,15 @@ CONFIGURE_ARGS+=	--enable-array-variables
 .include "options.mk"
 
 # Minix lacks setpgid() which is needed for job control.
-# bash malloc() is also broken on Minix
 .if ${OPSYS} == "Minix"
 CONFIGURE_ARGS+=	--disable-job-control
-CONFIGURE_ARGS+=	--with-bash-malloc=no
 .else
 CONFIGURE_ARGS+=	--enable-job-control
+.endif
+
+# bash malloc() is broken on Minix and musl libc
+.if ${OPSYS} == "Minix" || (${OPSYS} == "Linux" && empty(GLIBC_VERSION))
+CONFIGURE_ARGS+=	--with-bash-malloc=no
 .endif
 
 # Use "readline" package on Darwin to avoid link erros.

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2019/11/03 19:04:06 rillig Exp $
+# $NetBSD: Makefile,v 1.9 2020/04/29 20:30:27 maya Exp $
 #
 
 DISTNAME=	rcfunge2
@@ -10,7 +10,7 @@ MASTER_SITES=	http://www.rcfunge98.com/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.rcfunge98.com/
+HOMEPAGE=	https://www.rcfunge98.com/
 COMMENT=	Funge interpreter
 #LICENSE=	# TODO: (see mk/license.mk)
 
@@ -21,8 +21,6 @@ INSTALLATION_DIRS=	bin
 CFLAGS.SunOS+=	-Du_int32_t=uint32_t
 LDFLAGS.SunOS+=	-lsocket -lnsl
 
-# keypad(3) return value was fixed after -5 branch (might be pulled up)
-INCOMPAT_CURSES+=	NetBSD-[0-4]*-* NetBSD-5.[0-8]*-*
 FAKE_NCURSES=		yes # tries to link to ncurses directly
 
 pre-build:

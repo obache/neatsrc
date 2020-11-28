@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2013/12/23 11:57:03 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2020/03/20 11:57:45 nia Exp $
 
 DISTNAME=	xbreaky-0.0.5
 PKGREVISION=	2

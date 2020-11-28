@@ -1,4 +1,4 @@
-# $NetBSD: bsd.pkginstall.mk,v 1.72 2018/11/30 18:38:20 rillig Exp $
+# $NetBSD: bsd.pkginstall.mk,v 1.74 2020/05/09 16:48:57 rillig Exp $
 #
 # This Makefile fragment is included by bsd.pkg.mk and implements the
 # common INSTALL/DEINSTALL scripts framework.  To use the pkginstall
@@ -55,13 +55,13 @@ _SYS_VARS.pkginstall= \
 	SHLIB_TYPE \
 	LDCONFIG_ADD_CMD \
 	LDCONFIG_REMOVE_CMD
-_LISTED_VARS.pkginstall=	*_SRC
+_LISTED_VARS.pkginstall=	*_SRC CONF_FILES MAKE_DIRS
 _SORTED_VARS.pkginstall=	*_SUBST
 
 # The Solaris /bin/sh does not know the ${foo#bar} shell substitution.
 # This shell function serves a similar purpose, but is specialized on
 # stripping ${PREFIX}/ from a pathname.
-_FUNC_STRIP_PREFIX= \
+_PKGINSTALL_FUNCS_SH= \
 	strip_prefix() {						\
 	  ${AWK} 'END {							\
 	    plen = length(prefix);					\
@@ -70,6 +70,10 @@ _FUNC_STRIP_PREFIX= \
 	      }								\
 	      print s;							\
 	    }' s="$$1" prefix=${PREFIX:Q}/ /dev/null;			\
+	};								\
+									\
+	shquote_backslash() {						\
+	  ${ECHO} "$$1" | ${SED} 's,[^-A-Za-z0-9.\/_],\\&,g';		\
 	}
 
 _PKGINSTALL_DIR=	${WRKDIR}/.pkginstall
@@ -429,7 +433,7 @@ _INSTALL_DATA_TMPL+=		${_INSTALL_PERMS_DATAFILE}
 
 ${_INSTALL_PERMS_DATAFILE}:
 	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${SPECIAL_PERMS}; shift;				\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -516,7 +520,7 @@ _INSTALL_RCD_SCRIPTS=	${RCD_SCRIPTS}
 privileged-install-hook: _pkginstall-postinstall-check
 _pkginstall-postinstall-check: .PHONY
 	${RUN} p="${DESTDIR}${PREFIX}";					\
-	${_FUNC_STRIP_PREFIX};						\
+	${_PKGINSTALL_FUNCS_SH};					\
 	canon() { f=`strip_prefix "$$1"`; case $$f in [!/]*) f="$$p/$$f"; esac; echo "$$f"; }; \
 	needargs() { [ $$3 -ge $$2 ] || ${FAIL_MSG} "[bsd.pkginstall.mk] $$1 must have a multiple of $$2 words. Rest: $$4"; }; \
 	set args ${_INSTALL_RCD_SCRIPTS}; shift;				\
@@ -551,7 +555,7 @@ _pkginstall-postinstall-check: .PHONY
 
 ${_INSTALL_FILES_DATAFILE}:
 	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${_INSTALL_RCD_SCRIPTS}; shift;			\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -560,17 +564,19 @@ ${_INSTALL_FILES_DATAFILE}:
 		egfile="${RCD_SCRIPTS_EXAMPLEDIR}/$$script";		\
 		${ECHO} "# FILE: $$file cr $$egfile ${RCD_SCRIPTS_MODE}"; \
 	done
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${CONF_FILES}; shift;				\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
 		egfile="$$1"; file="$$2";				\
 		shift; shift;						\
 		egfile=`strip_prefix "$$egfile"`;			\
+		egfile=`shquote_backslash "$$egfile"`;			\
 		file=`strip_prefix "$$file"`;				\
+		file=`shquote_backslash "$$file"`;			\
 		${ECHO} "# FILE: $$file c $$egfile ${CONF_FILES_MODE}"; \
 	done
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${REQD_FILES}; shift;				\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -580,7 +586,7 @@ ${_INSTALL_FILES_DATAFILE}:
 		file=`strip_prefix "$$file"`;				\
 		${ECHO} "# FILE: $$file cf $$egfile ${REQD_FILES_MODE}"; \
 	done
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${CONF_FILES_PERMS}; shift;			\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -591,7 +597,7 @@ ${_INSTALL_FILES_DATAFILE}:
 		file=`strip_prefix "$$file"`;				\
 		${ECHO} "# FILE: $$file c $$egfile $$mode $$owner $$group"; \
 	done
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${REQD_FILES_PERMS}; shift;			\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -654,7 +660,7 @@ _INSTALL_DATA_TMPL+=	${_INSTALL_DIRS_DATAFILE}
 
 ${_INSTALL_DIRS_DATAFILE}:
 	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	exec 1>>${.TARGET};						\
 	case ${PKG_SYSCONFSUBDIR:M*:Q}${CONF_FILES:M*:Q}${CONF_FILES_PERMS:M*:Q}"" in \
 	"")	;;							\
@@ -678,7 +684,7 @@ ${_INSTALL_DIRS_DATAFILE}:
 	"")	;;							\
 	*)	${ECHO} "# DIR: ${RCD_SCRIPTS_DIR:S/${PREFIX}\///} m" ;; \
 	esac
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${MAKE_DIRS}; shift;				\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -686,7 +692,7 @@ ${_INSTALL_DIRS_DATAFILE}:
 		dir=`strip_prefix "$$dir"`;				\
 		${ECHO} "# DIR: $$dir m";				\
 	done
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${REQD_DIRS}; shift;				\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -694,7 +700,7 @@ ${_INSTALL_DIRS_DATAFILE}:
 		dir=`strip_prefix "$$dir"`;				\
 		${ECHO} "# DIR: $$dir fm";				\
 	done
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${OWN_DIRS}; shift;				\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -702,7 +708,7 @@ ${_INSTALL_DIRS_DATAFILE}:
 		dir=`strip_prefix "$$dir"`;				\
 		${ECHO} "# DIR: $$dir mo";				\
 	done
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${MAKE_DIRS_PERMS}; shift;				\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -711,7 +717,7 @@ ${_INSTALL_DIRS_DATAFILE}:
 		dir=`strip_prefix "$$dir"`;				\
 		${ECHO} "# DIR: $$dir m $$mode $$owner $$group";	\
 	done
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${REQD_DIRS_PERMS}; shift;				\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -720,7 +726,7 @@ ${_INSTALL_DIRS_DATAFILE}:
 		dir=`strip_prefix "$$dir"`;				\
 		${ECHO} "# DIR: $$dir fm $$mode $$owner $$group";	\
 	done
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${OWN_DIRS_PERMS}; shift;				\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -763,7 +769,7 @@ ${_INSTALL_INFO_FILES_DATAFILE}:
 	${RUN}${MKDIR} ${.TARGET:H}
 	${RUN}${RM} -f ${.TARGET}
 	${RUN}${TOUCH} ${TOUCH_ARGS} ${.TARGET}
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 		${INFO_FILES_cmd} |					\
 		while read file; do					\
 			infodir=${INFO_DIR:Q};				\
@@ -815,7 +821,7 @@ _INSTALL_DATA_TMPL+=		${_INSTALL_SHELL_DATAFILE}
 
 ${_INSTALL_SHELL_DATAFILE}:
 	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${PKG_SHELL}; shift;				\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -923,7 +929,7 @@ FILES_SUBST+=		X11_ENCODINGSDIR=${X11_ENCODINGSDIR:Q}
 
 ${_INSTALL_FONTS_DATAFILE}:
 	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${FONTS_DIRS.ttf}; shift;				\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -931,7 +937,7 @@ ${_INSTALL_FONTS_DATAFILE}:
 		dir=`strip_prefix "$$dir"`;				\
 		${ECHO} "# FONTS: $$dir ttf";				\
 	done
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${FONTS_DIRS.type1}; shift;			\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -939,7 +945,7 @@ ${_INSTALL_FONTS_DATAFILE}:
 		dir=`strip_prefix "$$dir"`;				\
 		${ECHO} "# FONTS: $$dir type1";				\
 	done
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 	set -- dummy ${FONTS_DIRS.x11}; shift;				\
 	exec 1>>${.TARGET};						\
 	while ${TEST} $$# -gt 0; do					\
@@ -978,7 +984,7 @@ ${_INSTALL_ICON_THEMES_DATAFILE}:
 	${RUN}${MKDIR} ${.TARGET:H}
 	${RUN}${RM} -f ${.TARGET}
 	${RUN}${TOUCH} ${TOUCH_ARGS} ${.TARGET}
-	${RUN}${_FUNC_STRIP_PREFIX};					\
+	${RUN}${_PKGINSTALL_FUNCS_SH};					\
 		${ICON_THEMES_cmd} |					\
 		while read theme; do					\
 			theme=`strip_prefix "$$theme"`;			\

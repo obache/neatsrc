@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.25 2019/11/03 10:39:29 rillig Exp $
+# $NetBSD: Makefile,v 1.28 2020/08/31 18:09:20 wiz Exp $
 #
 
 DISTNAME=	quilt-0.66
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	devel scm
 MASTER_SITES=	http://download.savannah.gnu.org/releases/quilt/
 
 MAINTAINER=	jmmv@NetBSD.org
-HOMEPAGE=	http://savannah.nongnu.org/projects/quilt
+HOMEPAGE=	https://savannah.nongnu.org/projects/quilt
 COMMENT=	Tools to manage series of patches
 
 GNU_CONFIGURE=	yes
@@ -52,6 +52,6 @@ SUBST_CLASSES+=		etc
 SUBST_MESSAGE.etc=	Fixing path to configuration file.
 SUBST_STAGE.etc=	pre-configure
 SUBST_SED.etc=		-e 's,/etc/quilt,${PKG_SYSCONFDIR}/quilt,g'
-SUBST_FILES.etc=	bin/* doc/* po/*
+SUBST_FILES.etc=	doc/*
 
 .include "../../mk/bsd.pkg.mk"

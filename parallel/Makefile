@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.27 2019/08/09 20:25:29 brook Exp $
+# $NetBSD: Makefile,v 1.29 2020/08/09 15:51:07 brook Exp $
 #
 
 COMMENT=	Applications dealing with parallelism in computing
@@ -7,10 +7,12 @@ SUBDIR+=	R-promises
 SUBDIR+=	clusterit
 SUBDIR+=	dqs
 SUBDIR+=	dsh
+SUBDIR+=	fastflow
 SUBDIR+=	ganglia-monitor-core
 SUBDIR+=	gridscheduler
 SUBDIR+=	hwloc
 SUBDIR+=	linda
+SUBDIR+=	lua-lanes
 SUBDIR+=	mpi-ch
 SUBDIR+=	openmp
 SUBDIR+=	openmpi

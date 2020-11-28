@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2019/04/30 03:41:51 taca Exp $
+# $NetBSD: Makefile,v 1.25 2020/06/15 15:43:32 taca Exp $
 #
 
 COMMENT=		Postfix SMTP server SQLite backend module

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2016/06/19 16:23:59 wiz Exp $
+# $NetBSD: Makefile,v 1.7 2020/03/20 11:57:25 nia Exp $
 
 DISTNAME=	mingw-runtime-3.14
 PKGNAME=	mingw-runtime-bin-3.14

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.24 2019/08/11 13:21:08 wiz Exp $
+# $NetBSD: Makefile,v 1.26 2020/08/31 18:09:37 wiz Exp $
 
 DISTNAME=	clara-0.9.9
 PKGNAME=	${DISTNAME:S/clara/claraocr/}
-PKGREVISION=	8
+PKGREVISION=	9
 CATEGORIES=	graphics textproc
 MASTER_SITES=	ftp://carroll.cac.psu.edu/pub/linux/distributions/mandrake-devel/projects/claraocr/
 MASTER_SITES+=	ftp://ftp.wtfo.com/pub/linux/Mandrake-devel/projects/claraocr/
@@ -10,7 +10,7 @@ MASTER_SITES+=	ftp://mandrake.redbox.cz/Mandrake-devel/projects/claraocr/
 MASTER_SITES+=	ftp://ftp.proxad.net/pub/Distributions_Linux/Mandrake-devel/projects/claraocr/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.geocities.com/claraocr/
+HOMEPAGE=	https://geocities.ws/claraocr/
 COMMENT=	Optical Character Recognition (OCR) program for books
 
 DEPENDS+=	netpbm-[0-9]*:../../graphics/netpbm

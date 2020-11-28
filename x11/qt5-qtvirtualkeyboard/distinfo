@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.1 2019/11/05 14:58:46 adam Exp $
+$NetBSD: distinfo,v 1.8 2020/09/14 20:08:29 adam Exp $
 
-SHA1 (qtvirtualkeyboard-everywhere-src-5.13.2.tar.xz) = caf38466593eb31aa8da632903d061475fcfb544
-RMD160 (qtvirtualkeyboard-everywhere-src-5.13.2.tar.xz) = abd0f990c262ac13e7f0e0ad9cc372f9878437d8
-SHA512 (qtvirtualkeyboard-everywhere-src-5.13.2.tar.xz) = 63b6b1ba7ad00db3ac019b8380e76a7881d3c85cdca62d4d539b0e84bf049880f2d1405ed90cd44259821488b582762af97ea3a06b1bc5cd5e5d975663cb613e
-Size (qtvirtualkeyboard-everywhere-src-5.13.2.tar.xz) = 10923292 bytes
+SHA1 (qtvirtualkeyboard-everywhere-src-5.15.1.tar.xz) = b95eb2c7e699b32e4d9ba3415d06d0d9f3756a48
+RMD160 (qtvirtualkeyboard-everywhere-src-5.15.1.tar.xz) = f08e57b6e97d247a961f5c1c6b6ed9c6d2226a1c
+SHA512 (qtvirtualkeyboard-everywhere-src-5.15.1.tar.xz) = f369eb0c313aa5a932cacca44f93732f8a7b8de4bf46df294c40b7c7dd436d5da5012680420306b57347aa38a10d78231199093a10e2b8a272429536a327962e
+Size (qtvirtualkeyboard-everywhere-src-5.15.1.tar.xz) = 10969980 bytes

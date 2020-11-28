@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.141 2019/11/02 21:09:16 rillig Exp $
+# $NetBSD: Makefile,v 1.148 2020/08/31 18:06:36 wiz Exp $
 
 DISTNAME=	pulseaudio-13.0
-PKGREVISION=	1
+PKGREVISION=	7
 CATEGORIES=	audio
 MASTER_SITES=	https://freedesktop.org/software/pulseaudio/releases/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.freedesktop.org/wiki/Software/PulseAudio
+HOMEPAGE=	https://www.freedesktop.org/wiki/Software/PulseAudio
 COMMENT=	Sound server for POSIX and Win32 systems
 LICENSE=	gnu-lgpl-v2.1 AND gnu-gpl-v2
 

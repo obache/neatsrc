@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.32 2019/08/22 12:22:55 ryoon Exp $
+# $NetBSD: Makefile,v 1.39 2020/08/31 18:06:47 wiz Exp $
 
-DISTNAME=	libfreehand-0.1.1
-PKGREVISION=	24
+DISTNAME=	libfreehand-0.1.2
+PKGREVISION=	4
 CATEGORIES=	converters
-MASTER_SITES=	http://dev-www.libreoffice.org/src/
-EXTRACT_SUFX=	.tar.bz2
+MASTER_SITES=	https://dev-www.libreoffice.org/src/
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	ryoon@NetBSD.org
-HOMEPAGE=	http://dev-www.libreoffice.org/src/
+HOMEPAGE=	https://dev-www.libreoffice.org/src/
 COMMENT=	Library for Adobe/Macromedia drawings
 LICENSE=	mpl-2.0
 
@@ -16,13 +16,14 @@ TOOL_DEPENDS+=	gperf-[0-9]*:../../devel/gperf
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	perl:build pkg-config
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c c++11
+
+# C++11
+GCC_REQD+=	4.7
 
 CONFIGURE_ARGS+=	--without-docs
-.include "../../mk/compiler.mk"
-.if !empty(PKGSRC_COMPILER:Mclang)
-CXXFLAGS+=	-Wno-error=deprecated-register
-.endif
+CONFIGURE_ARGS+=	--disable-tests
+CONFIGURE_ARGS+=	--disable-werror
 
 PKGCONFIG_OVERRIDE+=	libfreehand.pc.in
 

@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.34 2019/08/11 13:21:32 wiz Exp $
+# $NetBSD: Makefile,v 1.36 2020/09/07 11:30:10 wiz Exp $
 
-DISTNAME=		Email-MIME-1.946
+DISTNAME=		Email-MIME-1.949
 PKGNAME=		p5-${DISTNAME}
-PKGREVISION=		2
 CATEGORIES=		mail perl5
 MASTER_SITES=		${MASTER_SITE_PERL_CPAN:=Email/}
 
@@ -12,7 +11,7 @@ COMMENT=		Perl module for easy MIME message parsing
 LICENSE=		${PERL5_LICENSE}
 
 DEPENDS+=		p5-Email-Address-XS-[0-9]*:../../mail/p5-Email-Address-XS
-DEPENDS+=		p5-Email-MIME-ContentType>=1.016:../../mail/p5-Email-MIME-ContentType
+DEPENDS+=		p5-Email-MIME-ContentType>=1.023:../../mail/p5-Email-MIME-ContentType
 DEPENDS+=		p5-Email-MIME-Encodings>=1.314:../../mail/p5-Email-MIME-Encodings
 DEPENDS+=		p5-Email-MessageID-[0-9]*:../../mail/p5-Email-MessageID
 # Email::Simple-2.100 contains both: Email::Simple and Email::Simple::Creator

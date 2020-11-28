@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.14 2019/12/29 15:31:21 adam Exp $
+# $NetBSD: Makefile,v 1.16 2020/10/02 14:20:34 khorben Exp $
 
 .include "../../lang/llvm/version.mk"
 
 DISTNAME=	compiler-rt-${LLVM_VERSION}.src
 PKGNAME=	${DISTNAME:S/.src//}
+PKGREVISION=	1
 CATEGORIES=	lang devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://compiler-rt.llvm.org/
+HOMEPAGE=	https://compiler-rt.llvm.org/
 COMMENT=	LLVM runtime libraries
 LICENSE=	apache-2.0
 

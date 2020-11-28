@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.33 2019/11/21 03:41:39 markd Exp $
+# $NetBSD: Makefile,v 1.42 2020/08/18 17:57:57 leot Exp $
 
 DISTNAME=	palapeli-${KAPPSVER}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	games
 
 HOMEPAGE=	https://kde.org/applications/games/palapeli/
@@ -10,7 +10,7 @@ LICENSE=	gnu-lgpl-v2 AND gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/applications.mk"
 
-BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
 

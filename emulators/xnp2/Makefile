@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.29 2019/07/21 22:24:47 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2020/08/17 20:18:40 leot Exp $
 
 DISTNAME=		xnp2-0.86
-PKGREVISION=		8
+PKGREVISION=		11
 CATEGORIES=		emulators
 MASTER_SITES=		http://www.nonakap.org/np2/release/
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		tsutsui@NetBSD.org
-HOMEPAGE=		http://www.nonakap.org/np2/
+HOMEPAGE=		https://www.nonakap.org/np2/
 COMMENT=		Neko Project II PC-9801 emulator
 LICENSE=		modified-bsd
 

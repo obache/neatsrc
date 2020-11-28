@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.28 2019/11/02 22:37:56 rillig Exp $
+# $NetBSD: Makefile,v 1.30 2020/08/17 20:18:58 leot Exp $
 #
 
 DISTNAME=	extrema-4.4.5
+PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=extrema/}
 
@@ -16,5 +17,6 @@ USE_LANGUAGES=		c c++
 USE_TOOLS+=		gmake
 CONFIGURE_ARGS+=	--with-wxGTK
 
-.include "../../mk/wxGTK.mk"
+# \todo Test with wxGTK30 and switch.
+.include "../../x11/wxGTK28/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

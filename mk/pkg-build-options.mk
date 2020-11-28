@@ -1,23 +1,31 @@
-# $NetBSD: pkg-build-options.mk,v 1.12 2017/03/08 16:16:40 jperkin Exp $
+# $NetBSD: pkg-build-options.mk,v 1.16 2020/03/15 10:33:42 rillig Exp $
 #
 # This procedure determines the PKG_OPTIONS that have been in effect
 # when the package ${pkgbase} has been built. When the package is not
-# yet installed, the current PKG_OPTIONS are queried.
+# yet installed, its current PKG_OPTIONS are queried.
 #
 # Parameters:
 #	pkgbase
-#		The basename of the package.
+#		The package identifier, as in the package's buildlink3.mk
+#		file.
 #
 # Returns:
 #	PKG_BUILD_OPTIONS.${pkgbase}
 #		The build options of the package.
 #
 # Example:
+#	# in emulators/wine/buildlink3.mk
 #	pkgbase := wine
 #	.include "../../mk/pkg-build-options.mk"
 #
 # Keywords: options pkg-build-options PKG_BUILD_OPTIONS
 #
+
+.if !defined(pkgbase)
+.  for including in ${.INCLUDEDFROMDIR}/${.INCLUDEDFROMFILE}
+PKG_FAIL_REASON+=	"[pkg-build-options.mk] ${including}: pkgbase must be set"
+.  endfor
+.endif
 
 .include "bsd.fast.prefs.mk"
 
@@ -61,3 +69,5 @@ MAKEFLAGS+=	PKG_BUILD_OPTIONS.${b}=${PKG_BUILD_OPTIONS.${b}:Q}
 MAKEVARS+=	PKG_BUILD_OPTIONS.${b}
 .  endfor
 .endif
+
+.undef pkgbase	# prepare for the next invocation

@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.16 2019/06/18 14:41:09 nia Exp $
+# $NetBSD: options.mk,v 1.20 2020/04/29 15:11:10 nia Exp $
 
 # Global and legacy options
 
@@ -7,11 +7,11 @@ PKG_OPTIONS_VAR=	PKG_OPTIONS.ffmpeg3
 PKG_OPTIONS_OPTIONAL_GROUPS=	ssl
 PKG_OPTIONS_GROUP.ssl=		gnutls openssl
 
-PKG_SUPPORTED_OPTIONS=	ass bluray doc fdk-aac fontconfig freetype \
-			lame libvpx opencore-amr opus rpi rtmp \
-			tesseract theora vorbis x11 x264 x265 xvid
-PKG_SUGGESTED_OPTIONS=	lame ass bluray freetype fontconfig libvpx openssl \
-			theora vorbis x11 x264 xvid
+PKG_SUPPORTED_OPTIONS=	ass bluray doc fdk-aac fontconfig freetype jack \
+			lame libvpx opencore-amr opus pulseaudio rpi rtmp \
+			speex tesseract theora vorbis x11 x264 x265 xvid
+PKG_SUGGESTED_OPTIONS=	lame ass bluray freetype fontconfig gnutls libvpx \
+			opus speex theora vorbis x11 x264 x265 xvid
 
 PKG_OPTIONS_LEGACY_OPTS+=	xcb:x11
 
@@ -68,7 +68,7 @@ CONFIGURE_ARGS+=	--disable-htmlpages
 
 # Fraunhofer FDK AAC codec support
 .if !empty(PKG_OPTIONS:Mfdk-aac)
-RESTRICTED=		This software may require the payment of patent royalties
+RESTRICTED=		ffmpeg built with fdk-aac combines GPL and GPL-incompatible code
 NO_BIN_ON_CDROM=	${RESTRICTED}
 NO_BIN_ON_FTP=		${RESTRICTED}
 CONFIGURE_ARGS+=	--enable-libfdk_aac
@@ -88,11 +88,7 @@ CONFIGURE_ARGS+=	--disable-gnutls
 .if !empty(PKG_OPTIONS:Mopencore-amr)
 CONFIGURE_ARGS+=	--enable-libopencore-amrnb
 CONFIGURE_ARGS+=	--enable-libopencore-amrwb
-# "The OpenCORE external libraries are under the Apache License
-# 2.0. That license is incompatible with the LGPL v2.1 and the GPL
-# v2, but not with version 3 of those licenses. So to combine the
-# OpenCORE libraries with FFmpeg, the license version needs to be
-# upgraded by passing --enable-version3 to configure."
+# Apache License 2.0 is incompatible with (L)GPL versions before 3
 CONFIGURE_ARGS+=	--enable-version3
 # TODO: LICENSE
 .include "../../audio/opencore-amr/buildlink3.mk"
@@ -108,6 +104,22 @@ CONFIGURE_ARGS+=	--enable-openssl
 .include "../../security/openssl/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-openssl
+.endif
+
+# jack option
+.if !empty(PKG_OPTIONS:Mjack)
+CONFIGURE_ARGS+=	--enable-jack
+.include "../../audio/jack/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--disable-jack
+.endif
+
+# pulseaudio option
+.if !empty(PKG_OPTIONS:Mpulseaudio)
+CONFIGURE_ARGS+=	--enable-libpulse
+.include "../../audio/pulseaudio/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--disable-libpulse
 .endif
 
 # RTMP support via librtmp
@@ -148,6 +160,12 @@ CONFIGURE_ARGS+=	--enable-libmp3lame
 .if !empty(PKG_OPTIONS:Mopus)
 CONFIGURE_ARGS+=	--enable-libopus
 .include "../../audio/libopus/buildlink3.mk"
+.endif
+
+# Speex support
+.if !empty(PKG_OPTIONS:Mspeex)
+CONFIGURE_ARGS+=	--enable-libspeex
+.include "../../audio/speex/buildlink3.mk"
 .endif
 
 # Raspberry Pi support

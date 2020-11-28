@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.52 2019/06/08 10:40:57 rillig Exp $
+# $NetBSD: Makefile,v 1.56 2020/06/29 19:30:04 leot Exp $
 
 DISTNAME=	nvi-1.81.6
-PKGREVISION=	11
+PKGREVISION=	13
 CATEGORIES=	editors
 MASTER_SITES=	${HOMEPAGE}
 EXTRACT_SUFX=	.tar.bz2
@@ -9,6 +9,7 @@ EXTRACT_SUFX=	.tar.bz2
 MAINTAINER=	pkgsrc-users@NetBSD.org
 #HOMEPAGE=	http://www.kotnet.org/~skimo/nvi/devel/
 COMMENT=	Berkeley nvi with additional features
+LICENSE=	modified-bsd
 
 .include "options.mk"
 
@@ -21,9 +22,6 @@ CONFIGURE_ARGS+=	--program-transform-name='s,^,n,'
 CONFIGURE_ENV+=		vi_cv_path_shell=${TOOLS_SH}
 
 .if ${OPSYS} == "NetBSD"
-.  if !empty(OS_VERSION:M[2-9].*) || !empty(OS_VERSION:M1.6[A-Z]*)
-CONFIGURE_ENV+=		vi_cv_include_sys_select=no
-.  endif
 # XXX ignore NetBSD 2.0F and later's granpt(2) and SysV pty for just now
 CONFIGURE_ENV+=		vi_cv_sys5_pty=no
 # XXX also ignore it on Darwin (fixes Tiger build)
@@ -37,7 +35,6 @@ LDFLAGS+=		-flat_namespace
 
 # Use of db1 is not officially supported.
 BDB_ACCEPTED=		db3 db4
-CONFIGURE_ARGS+=	--with-db=system
 .include "../../mk/bdb.buildlink3.mk"
 .if ${BDB_TYPE} == "db1"
 CONFIGURE_ARGS+=	--with-db_type=db1
@@ -51,4 +48,5 @@ pre-configure:
 	${CHMOD} 755 configure && \
 	aclocal -I m4 && autoheader && autoconf
 
+.include "../../mk/curses.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

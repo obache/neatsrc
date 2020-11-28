@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2017/05/21 06:49:09 jlam Exp $
+# $NetBSD: Makefile,v 1.10 2020/03/20 11:58:09 nia Exp $
 
 DISTNAME=	vmpsd-1.3
 PKGNAME=	openvmps-1.3

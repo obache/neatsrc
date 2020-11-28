@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2019/07/21 22:24:49 wiz Exp $
+# $NetBSD: Makefile,v 1.17 2020/08/18 17:57:49 leot Exp $
 
 DISTNAME=	atque-1.1.2
-PKGREVISION=	9
+PKGREVISION=	13
 CATEGORIES=	games editors
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=igniferroque/}
 EXTRACT_SUFX=	.tar.bz2

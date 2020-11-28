@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:29:50 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:42 markd Exp $
 
 DISTNAME=	doublestroke
 PKGNAME=	tex-${DISTNAME}-1.111
+PKGREVISION=	1
 TEXLIVE_REV=	15878
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/doublestroke
+HOMEPAGE=	https://ctan.org/pkg/doublestroke
 COMMENT=	Typeset mathematical double stroke symbols
 #LICENSE=	other-free
 

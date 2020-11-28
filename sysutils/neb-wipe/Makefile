@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2019/11/04 21:28:49 rillig Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/20 11:58:22 nia Exp $
 
 DISTNAME=		neb-wipe-src-1.0
 PKGNAME=		neb-wipe-1.0

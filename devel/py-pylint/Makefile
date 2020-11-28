@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.38 2019/11/14 10:03:46 adam Exp $
+# $NetBSD: Makefile,v 1.43 2020/08/21 21:55:41 adam Exp $
 
-DISTNAME=	pylint-2.4.4
+DISTNAME=	pylint-2.6.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pylint/}
@@ -13,6 +13,7 @@ LICENSE=	gnu-gpl-v2
 DEPENDS+=	${PYPKGPREFIX}-astroid>=2.2.0:../../devel/py-astroid
 DEPENDS+=	${PYPKGPREFIX}-isort>=4.2.5:../../devel/py-isort
 DEPENDS+=	${PYPKGPREFIX}-mccabe>=0.6:../../devel/py-mccabe
+DEPENDS+=	${PYPKGPREFIX}-toml>=0.7.1:../../textproc/py-toml
 BUILD_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 
@@ -21,8 +22,6 @@ USE_LANGUAGES=	# none
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 INSTALLATION_DIRS=	${PKGMANDIR}/man1
-
-REPLACE_PYTHON+=	pylint/test/data/ascript
 
 post-install:
 .for file in epylint pylint pyreverse symilar
@@ -33,8 +32,7 @@ post-install:
 .endfor
 
 do-test:
-	cd ${WRKSRC} && pytest-${PYVERSSUFFIX}
+	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} PYTHONPATH=. pytest-${PYVERSSUFFIX}
 
-.include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

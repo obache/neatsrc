@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2015/05/23 14:12:46 bsiegert Exp $
+# $NetBSD: Makefile,v 1.18 2020/04/26 13:51:52 rillig Exp $
 #
 
 DISTNAME=	anacron-2.3
@@ -24,6 +24,7 @@ SUBST_SED.hdr=		-e 's|SENDMAIL ".*"|SENDMAIL "/usr/sbin/sendmail"|'
 .else
 SUBST_SED.hdr=		-e 's|SENDMAIL ".*"|SENDMAIL "/usr/lib/sendmail"|'
 .endif
+SUBST_NOOP_OK.hdr=	yes # may already be /usr/sbin/sendmail
 
 SUBST_CLASSES+=		man
 SUBST_MESSAGE.man=	Setting up manpages.

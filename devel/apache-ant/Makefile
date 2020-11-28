@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.49 2019/11/13 12:37:33 wiz Exp $
+# $NetBSD: Makefile,v 1.52 2020/10/08 12:38:44 wiz Exp $
 
-DISTNAME=	apache-ant-1.10.7-bin
+DISTNAME=	apache-ant-1.10.9-bin
 PKGNAME=	${DISTNAME:S/-bin//}
 CATEGORIES=	devel java
 MASTER_SITES=	${MASTER_SITE_APACHE:=ant/binaries/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	tonio@NetBSD.org
-HOMEPAGE=	http://ant.apache.org/
+HOMEPAGE=	https://ant.apache.org/
 COMMENT=	Apache Project's Java-Based make(1) replacement
 LICENSE=	apache-2.0
 

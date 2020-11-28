@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.69 2019/08/11 13:18:42 wiz Exp $
+# $NetBSD: Makefile,v 1.72 2020/08/31 18:07:19 wiz Exp $
 
 DISTNAME=	gconfmm-2.28.3
-PKGREVISION=	20
+PKGREVISION=	23
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gconfmm/2.28/}
 EXTRACT_SUFX=	.tar.bz2

@@ -1,0 +1,16 @@
+$NetBSD: distinfo,v 1.4 2020/03/11 15:40:36 pho Exp $
+
+SHA1 (heng-graf-16x16.tar.gz) = 27166a215209f3ec0f2c4a61761fce5d802cddc1
+RMD160 (heng-graf-16x16.tar.gz) = eb2e8034d43709b9b7e06b69eac4b6a84d026cc1
+SHA512 (heng-graf-16x16.tar.gz) = 4641e12122b13015d03f8a7f3dcba72797495451f15c04eab2d6ea1fd57d082e11eea3115056c2a2203032db973bea01476ecb2389a7a730e98e972c41756dfa
+Size (heng-graf-16x16.tar.gz) = 381027 bytes
+SHA1 (hengband-2.2.1r.tar.gz) = 9267909474496e180adf799c59cada62eeea0753
+RMD160 (hengband-2.2.1r.tar.gz) = 5d8d13da739bbe8bbc0da6d654331e6fb986aac8
+SHA512 (hengband-2.2.1r.tar.gz) = ac92922ed193498fd2020bb5c543b118b1f670e03a5af7718328ab86a667cf8273ddd693966026cba328ec767efdc1ac81ec66ac392328cc16dec469828af9f9
+Size (hengband-2.2.1r.tar.gz) = 2976734 bytes
+SHA1 (patch-lib_Makefile.am) = 35a066930834f9ea23c6ce9fb2a088c7ec86c28a
+SHA1 (patch-lib_edit_Makefile.am) = 9fd33498d6d83eeeb187e2491eac3ac15e7d412c
+SHA1 (patch-lib_xtra_graf_Makefile.am) = 71d8e17bfc39a689ab30f3a02b5f052687bcf1db
+SHA1 (patch-src_Makefile.am) = b71e0e4cc828c98d5bd4d89e3b263a406c0c8620
+SHA1 (patch-src_cmd3.c) = d2e4e61524b125069a5709462add001a7e7388ff
+SHA1 (patch-src_init2.c) = fe7064f23bce494ced5a524f2a60117ac0ef56ff

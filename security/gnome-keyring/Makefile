@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.93 2019/07/21 22:24:11 wiz Exp $
+# $NetBSD: Makefile,v 1.97 2020/10/23 09:20:59 tnn Exp $
 
 DISTNAME=	gnome-keyring-2.32.1
-PKGREVISION=	27
+PKGREVISION=	30
 CATEGORIES=	security gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gnome-keyring/2.32/}
 EXTRACT_SUFX=	.tar.bz2
@@ -19,12 +19,6 @@ PKGCONFIG_OVERRIDE+=	gcr/gcr.pc.in
 PKGCONFIG_OVERRIDE+=	gp11/gp11.pc.in
 
 CFLAGS.HPUX+=		-DMAP_ANON=MAP_ANONYMOUS
-
-# Workaround a bug with NetBSD's openpam
-# The bug is described in PR security/39313
-#
-CFLAGS.NetBSD+=		-DNO_STATIC_MODULES
-
 CONFIGURE_ENV.SunOS+=	ac_cv_header_security_pam_modules_h=yes
 
 .include "../../mk/dlopen.buildlink3.mk"

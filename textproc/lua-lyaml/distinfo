@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.2 2020/10/10 08:16:08 nia Exp $
+
+SHA1 (lyaml-6.2.6.tar.gz) = 9fd7f51651d6200c5cdc933e39b85c8f2212b5bf
+RMD160 (lyaml-6.2.6.tar.gz) = b5440dee0a3e78248e4d2d11584fa51eb904b521
+SHA512 (lyaml-6.2.6.tar.gz) = 6f3398f33e54e2800b306a5d06519f879a72d523c346ab84f062b1f95850d46e1b31588003d1c4b5654e343b78ec9c07b85a48d0fce304e8d69a5566a8585373
+Size (lyaml-6.2.6.tar.gz) = 48812 bytes

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.22 2019/11/02 22:54:26 rillig Exp $
+# $NetBSD: Makefile,v 1.24 2020/05/10 13:54:19 rillig Exp $
 
 DISTNAME=	fastjar-0.98
 PKGREVISION=	1
@@ -11,6 +11,7 @@ COMMENT=	C language version of the 'jar' archiver normally used by Java
 LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	YES
+TOOLS_BROKEN=	perl
 
 INFO_FILES=		YES
 INSTALLATION_DIRS=	${PKGMANDIR}/man1

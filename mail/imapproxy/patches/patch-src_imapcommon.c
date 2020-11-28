@@ -1,11 +1,37 @@
-$NetBSD: patch-src_imapcommon.c,v 1.1 2013/04/15 15:41:55 manu Exp $
+$NetBSD: patch-src_imapcommon.c,v 1.3 2020/04/16 14:03:29 manu Exp $
+
+Build fixes for OpenSSL 1.1.1
 
 SASL PLAIN Support. Patch submitted upstream
 http://sourceforge.net/tracker/?func=detail&aid=3610674&group_id=311&atid=300311
 
---- src/imapcommon.c.orig	2010-02-20 18:16:58.000000000 +0100
-+++ src/imapcommon.c	2013-04-15 12:12:45.000000000 +0200
-@@ -689,13 +689,96 @@
+--- src/imapcommon.c.orig	2010-07-26 09:08:47.000000000 +0200
++++ src/imapcommon.c	2020-04-16 15:49:08.132245848 +0200
+@@ -397,18 +397,19 @@
+     ITD_Struct Server;
+     int rc;
+     unsigned int Expiration;
+ 
+-    EVP_MD_CTX mdctx;
++    EVP_MD_CTX *mdctx = EVP_MD_CTX_new();
+     int md_len;
+ 
+     Expiration = PC_Struct.cache_expiration_time;
+     memset( &Server, 0, sizeof Server );
+     
+     /* need to md5 the passwd regardless, so do that now */
+-    EVP_DigestInit(&mdctx, EVP_md5());
+-    EVP_DigestUpdate(&mdctx, Password, strlen(Password));
+-    EVP_DigestFinal(&mdctx, md5pw, &md_len);
++    EVP_DigestInit(mdctx, EVP_md5());
++    EVP_DigestUpdate(mdctx, Password, strlen(Password));
++    EVP_DigestFinal(mdctx, md5pw, &md_len);
++    EVP_MD_CTX_free(mdctx);
+     
+     /* see if we have a reusable connection available */
+     ICC_Active = NULL;
+     HashIndex = Hash( Username, HASH_TABLE_SIZE );
+@@ -689,13 +690,96 @@
      }
  #endif /* HAVE_LIBSSL */
  

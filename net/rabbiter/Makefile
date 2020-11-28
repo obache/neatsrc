@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.9 2015/12/30 14:39:12 taca Exp $
+# $NetBSD: Makefile,v 1.12 2020/05/21 16:04:23 taca Exp $
 #
 
 DISTNAME=	rabbiter-2.0.1
@@ -7,7 +7,7 @@ CATEGORIES=	net ruby
 MASTER_SITES=	${MASTER_SITE_RUBYGEMS}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://rabbit-shocker.org/en/rabbiter/
+HOMEPAGE=	https://rabbit-shocker.org/en/rabbiter/
 COMMENT=	Twitter client for Rabbit
 LICENSE=	gnu-gpl-v2 # or later
 

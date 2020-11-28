@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.9 2018/11/30 19:06:32 rillig Exp $
+# $NetBSD: Makefile,v 1.11 2020/04/26 13:11:17 rillig Exp $
 #
 
-DISTNAME=	regress-make-18.11
+DISTNAME=	regress-make-20.04.26
 CATEGORIES=	regress
 DISTFILES=	# empty
 
@@ -15,25 +15,25 @@ NUM_MAKE_VERSION=	${MAKE_VERSION:C/[^0-9]//g}
 REGRESS_TESTS=	# none
 
 # Has been fixed somewhere in 2005.
-.if ${NUM_MAKE_VERSION} < 20050101
+.if ${NUM_MAKE_VERSION} >= 20050101
 REGRESS_TESTS+=	bug1
 .endif
 
 REGRESS_TESTS+=	bug2
 
 # Has been fixed somewhere in 2006.
-.if ${NUM_MAKE_VERSION} < 20060101
+.if ${NUM_MAKE_VERSION} >= 20060101
 REGRESS_TESTS+=	continue
 .endif
 
 REGRESS_TESTS+=	dblquote for ltarget nestfor
 
-.if ${NUM_MAKE_VERSION} < 20060629
+.if ${NUM_MAKE_VERSION} >= 20060629
 REGRESS_TESTS+=	newline
 .endif
 
 # The NetBSD 3.0 /bin/sh is buggy.
-.if !(${OPSYS} == "NetBSD" && !empty(OS_VERSION:M3.0*))
+.if !(${OPSYS} == "NetBSD" && ${OS_VERSION:M3.0*})
 REGRESS_TESTS+=	quoting
 .endif
 
@@ -48,7 +48,7 @@ do-build: do-regress
 do-regress:
 	@printf "Testing bmake(1) version %s\\n" ${NUM_MAKE_VERSION:Q}""
 .for t in ${REGRESS_TESTS}
-	@${_PKG_SILENT}${_PKG_DEBUG}					\
+	@${RUN}								\
 	${ECHO_MSG} "Running testcase "${t:Q};				\
 	${MAKE} ${MAKEFLAGS} -s -f ${FILESDIR:Q}/${t:Q}.mk		\
 	| diff -u ${FILESDIR:Q}/${t:Q}.out -

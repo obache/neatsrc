@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.3 2019/11/02 15:07:16 taca Exp $
+$NetBSD: distinfo,v 1.5 2020/05/25 14:01:30 taca Exp $
 
-SHA1 (mime-types-data-3.2019.1009.gem) = 1969d3f18826e432dc9588d8ae7a191b3bc83223
-RMD160 (mime-types-data-3.2019.1009.gem) = 5e7a34c08bf65797626499dc55756b740eb91173
-SHA512 (mime-types-data-3.2019.1009.gem) = f4a18fccb5bb4cb558c273276ba83cc1189faa9ce97ea671f2168449b9b1d35fa0be26d7147c2b80ef12624b427a754b9fa78fc4684c835b4a51f7b6d888d6cf
-Size (mime-types-data-3.2019.1009.gem) = 160768 bytes
+SHA1 (mime-types-data-3.2020.0512.gem) = b88617eb20be7bf97ca26ff37480ea402a89fa3c
+RMD160 (mime-types-data-3.2020.0512.gem) = dc72a1c5bc595c28d98a04c18fff4800bd5e32d1
+SHA512 (mime-types-data-3.2020.0512.gem) = 019e45ed63ec86ef3eb4784a1526d4f163daaec676786b21c345bb8e1c57b26444ac7ee11fb25ffa9bbc687a60ae98d1cbc5d9ef60b446f50c5896a30299bd71
+Size (mime-types-data-3.2020.0512.gem) = 164352 bytes

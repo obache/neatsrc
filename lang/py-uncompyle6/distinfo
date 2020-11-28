@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.17 2020/01/08 15:19:14 adam Exp $
+$NetBSD: distinfo,v 1.24 2020/09/10 09:27:26 adam Exp $
 
-SHA1 (uncompyle6-3.6.2.tar.gz) = 5f5156784593d127bd8d14327693ef1786fcf39b
-RMD160 (uncompyle6-3.6.2.tar.gz) = e00ad186baa9f58477c52733e2123f175ae79b82
-SHA512 (uncompyle6-3.6.2.tar.gz) = 70fae57ed0edc2cc2f8f3701d190a72c9a5ce0ee4ca60f04f6f56a300edb7bacb5ab81b3184461eef27258d556b56379ef0a2ad670259935dd381e03c8907b26
-Size (uncompyle6-3.6.2.tar.gz) = 2307106 bytes
+SHA1 (uncompyle6-3.7.4.tar.gz) = 6e4472ae97e716dff28353e4c52d2296164b6f01
+RMD160 (uncompyle6-3.7.4.tar.gz) = 5b3eb3edff065c151ab240f7691d49a10ee78a2e
+SHA512 (uncompyle6-3.7.4.tar.gz) = 073e1712b7a80070502fe18c928d1c6e09bfb9574e0753f14524802dfcfd2639de2225cc89b201e48a1f50fb8c21dc97b2bfa7082725a882adc92af922367cdd
+Size (uncompyle6-3.7.4.tar.gz) = 2381166 bytes

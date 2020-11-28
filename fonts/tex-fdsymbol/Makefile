@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:29:58 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:44 markd Exp $
 
 DISTNAME=	fdsymbol
 PKGNAME=	tex-${DISTNAME}-0.8
+PKGREVISION=	1
 TEXLIVE_REV=	26722
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/fdsymbol
+HOMEPAGE=	https://ctan.org/pkg/fdsymbol
 COMMENT=	Maths symbol font
 LICENSE=	ofl-v1.1
 

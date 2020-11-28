@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.35 2019/06/08 11:04:29 rillig Exp $
+# $NetBSD: Makefile,v 1.37 2020/08/17 20:18:14 leot Exp $
 #
 
 DISTNAME=	magic-7.5.188
-PKGREVISION=	8
+PKGREVISION=	9
 CATEGORIES=	cad
 MASTER_SITES=	http://opencircuitdesign.com/magic/archive/
 EXTRACT_SUFX=	.tgz
@@ -33,6 +33,12 @@ CPPFLAGS+=	-DIS_BIG_ENDIAN
 .else
 CPPFLAGS+=	-DIS_LITTLE_ENDIAN
 .endif
+
+# DBundo.c: In function 'dbUndoPaintForw':
+# DBundo.c:268:42: error: array subscript has type 'char' [-Werror=char-subscripts]
+#         DBNMPaintPlane(dbUndoLastCell->cd_planes[up->pue_plane],
+# Maybe fix this later.
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
 
 USE_TOOLS+=		awk:run
 REPLACE_INTERPRETER+=	awk

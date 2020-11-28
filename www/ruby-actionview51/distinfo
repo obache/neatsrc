@@ -1,6 +1,0 @@
-$NetBSD: distinfo,v 1.4 2019/04/14 10:22:11 taca Exp $
-
-SHA1 (actionview-5.1.6.2.gem) = 3aa67934e18f1194d05e9c560431680ff0be2ba8
-RMD160 (actionview-5.1.6.2.gem) = e59ce9989b2e75f1628bf8b446ee70c8d0456277
-SHA512 (actionview-5.1.6.2.gem) = f2dbce30d546ccc6c5d3a85cbb7cdca5bd303a82e49b68f14437f155ec3593df773f26805d0178ab5b6351775fba162b8667bcb44fbd33f41c2e6426778c2409
-Size (actionview-5.1.6.2.gem) = 161792 bytes

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.37 2019/11/02 21:09:16 rillig Exp $
+# $NetBSD: Makefile,v 1.39 2020/03/20 11:57:23 nia Exp $
 
 DISTNAME=	pykaraoke-0.7.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}

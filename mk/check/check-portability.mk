@@ -1,41 +1,45 @@
-# $NetBSD: check-portability.mk,v 1.9 2019/10/06 13:38:22 rillig Exp $
+# $NetBSD: check-portability.mk,v 1.19 2020/06/07 10:42:04 rillig Exp $
 #
-# This file contains some checks that are applied to the configure
-# scripts to check for certain constructs that are known to cause
-# problems on some platforms. The detailed checks are in
-# check-portability.sh.
+# This file checks that the extracted shell programs don't contain
+# bashisms or other constructs that only work on some platforms.
 #
 # User-settable variables:
 #
 # CHECK_PORTABILITY
-#	Whether to enable some portability checks for the configure
-#	scripts before they are run.
+#	Whether to enable the portability checks.
 #
 #	Default value: yes for PKG_DEVELOPERs, no otherwise.
+#
+# CHECK_PORTABILITY_EXPERIMENTAL
+#	Enable additional experimental portability checks. New checks
+#	may be added without further notice, so expect some packages
+#	that previously succeeded to suddenly fail to build.
+#
+#	Default value: no
 #
 # Package-settable variables:
 #
 # CHECK_PORTABILITY_SKIP
-#	The list of files that should be skipped in the portability
-#	check.
+#	The filename patterns that should not be checked.
+#	Note that a * in a pattern also matches a slash in a pathname.
 #
-#	Default value: empty.
-#	Example: debian/*
+#	Default value: ${REPLACE_BASH}
+#	Examples: debian/* test/* *.bash
 
 _VARGROUPS+=			check-portability
-_USER_VARS.check-portability=	CHECK_PORTABILITY
-_PKG_VARS.check-portability=	CHECK_PORTABILITY_SKIP
+_USER_VARS.check-portability=	CHECK_PORTABILITY \
+				CHECK_PORTABILITY_EXPERIMENTAL
+_PKG_VARS.check-portability=	CHECK_PORTABILITY_SKIP REPLACE_BASH
+_USE_VARS.check-portability=	PKG_DEVELOPER
+_LISTED_VARS.check-portability=	REPLACE_BASH
 
 .if ${PKG_DEVELOPER:Uno} != "no"
 CHECK_PORTABILITY?=		yes
 .endif
 CHECK_PORTABILITY?=		no
-.if defined(SKIP_PORTABILITY_CHECK)
-PKG_FAIL_REASON+=		"[check-portability.mk] SKIP_PORTABILITY_CHECK is obsolete."
-.endif
-CHECK_PORTABILITY_SKIP?=	# none
+CHECK_PORTABILITY_SKIP?=	${REPLACE_BASH}
 
-.if ${CHECK_PORTABILITY:M[Yy][Ee][Ss]} != ""
+.if ${CHECK_PORTABILITY:tl} == yes && ${CHECK_PORTABILITY_SKIP} != "*"
 pre-configure-checks-hook: _check-portability
 .endif
 .PHONY: _check-portability
@@ -44,5 +48,9 @@ _check-portability:
 	${RUN}								\
 	[ -d ${WRKSRC}/. ] || exit 0;					\
 	cd ${WRKSRC};							\
-	env	SKIP_FILTER=${CHECK_PORTABILITY_SKIP:@p@${p}) skip=yes;;@:Q} \
-		sh ${PKGSRCDIR}/mk/check/check-portability.sh
+	${SETENV}							\
+		SKIP_FILTER=${CHECK_PORTABILITY_SKIP:@p@${p}) skip=yes;;@:Q} \
+		PREFIX=${PREFIX}					\
+		PATCHDIR=${PATCHDIR}					\
+		CHECK_PORTABILITY_EXPERIMENTAL=${CHECK_PORTABILITY_EXPERIMENTAL:Uno} \
+		${SH} ${PKGSRCDIR}/mk/check/check-portability.sh

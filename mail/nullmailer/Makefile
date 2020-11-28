@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.47 2019/07/20 22:46:31 wiz Exp $
+# $NetBSD: Makefile,v 1.50 2020/05/22 10:56:20 adam Exp $
 
 DISTNAME=		nullmailer-2.2
-PKGREVISION=		1
+PKGREVISION=		3
 CATEGORIES=		mail
 MASTER_SITES=		${HOMEPAGE:Q}
 
 MAINTAINER=		schmonz@NetBSD.org
-HOMEPAGE=		http://untroubled.org/nullmailer/
+HOMEPAGE=		https://untroubled.org/nullmailer/
 COMMENT=		Simple relay-only mail transport agent
 LICENSE=		gnu-gpl-v2
 

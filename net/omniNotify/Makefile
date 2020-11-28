@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2019/11/03 11:45:45 rillig Exp $
+# $NetBSD: Makefile,v 1.6 2020/03/20 11:58:09 nia Exp $
 #
 
 DISTNAME=	omniNotify-2.1

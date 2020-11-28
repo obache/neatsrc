@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.3 2019/09/14 03:12:15 tsutsui Exp $
+$NetBSD: distinfo,v 1.4 2020/10/03 15:41:30 tsutsui Exp $
 
 SHA1 (unicode-character-database-13.0.0/UCD.zip) = 3f2fb9c659269ed38ab9386787f5864340d95e89
 RMD160 (unicode-character-database-13.0.0/UCD.zip) = c35813a5f053d66416e19cbe04b942133d793be3

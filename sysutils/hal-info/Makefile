@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.26 2019/08/11 13:23:08 wiz Exp $
+# $NetBSD: Makefile,v 1.28 2020/08/31 18:11:27 wiz Exp $
 
 DISTNAME=		hal-info-20091130
-PKGREVISION=		7
+PKGREVISION=		8
 CATEGORIES=		sysutils
 MASTER_SITES=		http://hal.freedesktop.org/releases/
 
@@ -19,5 +19,8 @@ USE_TOOLS+=		gmake intltool msgfmt perl pkg-config
 USE_LIBTOOL=		YES
 
 TEST_TARGET=		check
+
+# patched in configure
+CHECK_PORTABILITY_SKIP+=	configure.in
 
 .include "../../mk/bsd.pkg.mk"

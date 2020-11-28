@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.9 2019/04/25 07:33:02 maya Exp $
+# $NetBSD: Makefile,v 1.11 2020/04/27 03:47:31 rillig Exp $
 
 DISTNAME=	llvm-${PKGVERSION_NOREV}.src
 PKGNAME=	libLLVM34-3.4.2
@@ -7,7 +7,7 @@ CATEGORIES=	lang
 MASTER_SITES=	http://llvm.org/releases/${PKGVERSION_NOREV}/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://llvm.org/
+HOMEPAGE=	https://llvm.org/
 COMMENT=	Low Level Virtual Machine compiler infrastructure (previous version)
 
 LICENSE=	modified-bsd
@@ -41,7 +41,6 @@ SUBST_CLASSES+=		fix-pfx
 SUBST_STAGE.fix-pfx=	pre-configure
 SUBST_MESSAGE.fix-pfx=	Adjusting installation directories to avoid conflict with clang
 SUBST_FILES.fix-pfx=	Makefile.config.in
-SUBST_FILES.fix-pfx+=	cmake/modules/Makefile
 SUBST_SED.fix-pfx=	-e 's,(PROJ_prefix)/bin$$,(PROJ_prefix)/libexec/libLLVM34,g'
 SUBST_SED.fix-pfx+=	-e 's,(PROJ_prefix)/lib$$,(PROJ_prefix)/lib/libLLVM34,g'
 SUBST_SED.fix-pfx+=	-e 's,(PROJ_prefix)/include$$,(PROJ_prefix)/include/libLLVM34,g'

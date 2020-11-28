@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.47 2019/08/11 13:23:21 wiz Exp $
+# $NetBSD: Makefile,v 1.51 2020/08/31 18:11:39 wiz Exp $
 
 DISTNAME=	xps-4.2
-PKGREVISION=	10
+PKGREVISION=	11
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=motif-pstree/}
 
@@ -14,6 +14,12 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	x_applibdir=${PREFIX}/lib/X11/app-defaults
 
 CFLAGS.NetBSD+=	-D_KMEMUSER
+
+# os.c: In function 'GetStatus':
+# os.c:176:34: error: array subscript has type 'char' [-Werror=char-subscripts]
+#    EndNode->color = base.nodeColor[pstat];
+# Maybe fix this later.
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
 
 post-extract:
 	${LN} -s FreeBSD ${WRKSRC}/src/DragonFly

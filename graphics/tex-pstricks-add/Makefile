@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.9 2019/12/06 20:04:35 markd Exp $
+# $NetBSD: Makefile,v 1.11 2020/04/27 02:08:14 markd Exp $
 
 DISTNAME=	pstricks-add
-PKGNAME=	tex-${DISTNAME}-3.87
-TEXLIVE_REV=	49680
+PKGNAME=	tex-${DISTNAME}-3.89a
+TEXLIVE_REV=	53763
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/pstricks-add
+HOMEPAGE=	https://ctan.org/pkg/pstricks-add
 COMMENT=	Collection of add-ons and bugfixes for PSTricks
 LICENSE=	lppl-1.3c
 
@@ -17,6 +17,5 @@ DEPENDS+=	tex-pst-plot-[0-9]*:../../graphics/tex-pst-plot
 DEPENDS+=	tex-pstricks-[0-9]*:../../graphics/tex-pstricks
 DEPENDS+=	tex-xkeyval-[0-9]*:../../print/tex-xkeyval
 
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,5 +1,5 @@
-@comment $NetBSD: PLIST,v 1.6 2019/11/06 11:59:38 wiz Exp $
-bin/khard-${PYVERSSUFFIX}
+@comment $NetBSD: PLIST,v 1.9 2020/08/24 08:08:59 wiz Exp $
+bin/khard
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
@@ -29,6 +29,9 @@ ${PYSITELIB}/khard/config.pyc
 ${PYSITELIB}/khard/config.pyo
 ${PYSITELIB}/khard/data/config.spec
 ${PYSITELIB}/khard/data/template.yaml
+${PYSITELIB}/khard/formatter.py
+${PYSITELIB}/khard/formatter.pyc
+${PYSITELIB}/khard/formatter.pyo
 ${PYSITELIB}/khard/helpers.py
 ${PYSITELIB}/khard/helpers.pyc
 ${PYSITELIB}/khard/helpers.pyo
@@ -38,6 +41,9 @@ ${PYSITELIB}/khard/khard.pyo
 ${PYSITELIB}/khard/object_type.py
 ${PYSITELIB}/khard/object_type.pyc
 ${PYSITELIB}/khard/object_type.pyo
+${PYSITELIB}/khard/query.py
+${PYSITELIB}/khard/query.pyc
+${PYSITELIB}/khard/query.pyo
 ${PYSITELIB}/khard/version.py
 ${PYSITELIB}/khard/version.pyc
 ${PYSITELIB}/khard/version.pyo

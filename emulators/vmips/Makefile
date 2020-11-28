@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2018/08/27 07:15:47 wiz Exp $
+# $NetBSD: Makefile,v 1.14 2020/03/20 11:57:36 nia Exp $
 
 DISTNAME=		vmips-1.5.1
 CATEGORIES=		emulators

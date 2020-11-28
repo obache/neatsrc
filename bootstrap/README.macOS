@@ -1,0 +1,228 @@
+$NetBSD: README.macOS,v 1.1 2020/08/14 07:35:26 schmonz Exp $
+
+This file describes the use of current versions of pkgsrc with
+multiple versions of Darwin and macOS, omitting information about
+previous pkgsrc versions.
+
+* Darwin vs macOS
+
+macOS consists of Darwin (kernel/userland) plus Mac stuff on top.
+pkgsrc used to target Darwin, but given the tools issued discussed
+below it is not clear that it works on Darwin without macOS.  Darwin
+from Apple is no longer open source.
+
+Users of non-macOS Darwin are invited to submit patches to this file.
+The only known project is:
+  http://www.puredarwin.org/
+
+Until then, this file remains macOS-centric.
+
+* system tools issues
+
+** native headers vs SDK
+
+macOS used to include system headers in /usr/include, so that one
+could treat it like a relatively normal POSIX system.  Starting at
+approximately 10.9, headers were no longer available at the standard
+location, and one has to use an SDK that puts headers someplace else.
+pkgsrc supports this, but there has been some confusion where a 10.9
+system produced binaries for 10.10, which only mostly works.  The
+confusion is believed to be resolved.
+
+*** SDK version issues
+
+The SDK supported versions and default versions do are not always the
+same as the current system version.  The following may be useful in
+understanding one's situation:
+
+  /usr/bin/xcrun --show-sdk-version
+  sw_vers -productVersion
+
+pkgsrc attempts to query the system version, and then ask the sdk to
+use that version.  See mk/platform/Darwin.mk for the code.
+
+** gcc vs clang
+
+Older versions of OS X (when XCode is installed) provided gcc, and
+pkgsrc defaulted to using gcc.  With 10.9, gcc is no longer present.
+
+** i386 vs x86_64 ABI issue
+
+This entire section is only about Intel Macs.
+
+OS X 10.6 and higher supports x86-64 binaries on Intel Macs with
+x86-64 processors, which is now most of them.  i386 binaries are also
+supported on most (all?) Intel machines.
+
+*** issues related to ABI 32 vs 64
+
+Note that a pkgsrc package built in x86_64 mode will not run on an
+Intel Mac that is i386 only.  For a longer discussion, see:
+http://mail-index.NetBSD.org/pkgsrc-users/2009/09/24/msg010817.html
+
+Somewhat separately from pkgsrc's ABI choice, there have been issues
+with packages which get confused because "MACHINE_ARCH" is in some OS
+versions set to "i386" (on a 64-bit system!).  As of 2016 this should
+be mostly resolved.
+  version:  uname -m : uname -p
+  10.6: i386 : i386
+  10.9: x86_64 : i386
+
+*** default ABI
+
+The ABI is chosen at bootstrap time and encoded into mk.conf.  So a
+change in the default is about what a new bootstrap will do;
+already-bootstrapped systems should remain unchanged.  They should be
+able to build and run new packages using the old ABI value.
+
+pkgsrc used to set the default ABI as i386, both on systems with i386
+processors and on systems with x86_64 processors.  On 2015-11-09 the
+default was changed so that ABI=64 is chosen on machines where "uname
+-m" reports x86_64.  (It remains i386 on others, which are not capable
+of running x86_64 binaries.)
+
+Generally, users will not need to deal with the default ABI change,
+except that packages are mostly only portable across machines with the
+same bootstrapping parameters.
+
+If one unpacks a new binary bootstrap kit over an existing
+installation, one can end up with a mix. The standard advice is not to
+do this, and to rrebuild/reinstall all packages from scratch or a
+compatible binary package set.  But, one could also mark packages with
+the wrong ABI as rebuild=YES and use pkg_rolling-replace.
+
+*** change in storage of ABI information
+
+On 2016-01-24, the way ABI information was stored in pkgsrc was
+rationalized and simplified.  The new code could compute the wrong ABI
+for some previously-bootstrapped installations.  The problem can be
+resolved by building bmake with MACHINE_ARCH=x86_64 and updating that
+package, as described in mail archives:
+
+  https://mail-index.netbsd.org/pkgsrc-users/2016/01/25/msg022870.html
+
+(One would expect to be able to use make replace to do this.  One
+minor issue is that it requires pkg_tarup, although that will be
+present on systems of those who use make replace.  There also may be
+an error with architecture mismatch from pkg_install requiring a "-f"
+option.  Repeatable data about recovery is somewhat hard to obtain, as
+most are past this issue already and no longer interested in
+experimenting.)
+
+** sed in 10.9
+
+The sed that comes with 10.9 appears to be broken; it exits when
+called on files with UTF-8 or other apparently-binary content.
+Therefore, pkgsrc uses nbsed on 10.9.
+
+* Developer tools and prerequisites
+
+** XCode
+
+This section applies to 10.6 through 10.13.
+
+If you haven't already, you will need to install the macOS
+Developer Tools package (XCode) to obtain a compiler, etc.  The
+procedure depends on the version of macOS; recent versions use the
+App Store.
+
+*** Command-line Tools
+
+If one installs "Commmand Line Tools", then pkgsrc can use the
+compiler.
+
+Since Xcode 7 (installed from the Apple Store) the development
+environment can upgrade itself without interaction from the user, but
+will not automatically update the Command Line Tools.  This will
+cause system header files like stdlib.h not to be found by pkgsrc.
+The command `xcode-select --install' will install the Command Line
+Tools for Xcode.
+
+In the past at least, Command Line Tools for Xcode could be obtained
+from https://developer.apple.com/downloads/
+
+** cvs
+
+Note that as of 10.9, cvs is no longer provided by Apple.  You can build
+devel/scmcvs.  To obtain pkgsrc in order to bootstrap and build cvs,
+it may be useful to `git clone https://github.com/NetBSD/pkgsrc.git`.
+
+** X11
+
+X11 used to be built into macOS, but as of 10.8 it is no longer
+included.  You can install XQuartz from
+https://www.xquartz.org, or try the newly-added pkgsrc
+version.
+
+* macOS Versions
+
+Because Apple drops support for previous hardware faster than the
+hardware fails, many machines cannot be upgraded to recent versions of
+macOS, creating a greater than usual desire to support old systems.
+Because of the particular history of deprecation, most systems tend to
+run relatively recent versions or specific older versions (10.6 and
+10.5).
+
+The stance of pkgsrc is generally to avoid breaking older systems
+unless keeping support would cause difficulty, and to accept clean
+patches when there is no harm to non-deprecated versions.  This
+section is partly to document what versions tend to be used and why,
+and partly to enable cleaning up bug reports without fixes for very
+old systems.
+
+pkgsrc PRs about 10.5 or older that do not contain fixes may be closed
+without fixing.
+
+macOS 10.14 is either new or current.
+
+macOS 10.13 is current; significant amounts of hardware cannot be
+upgraded beyond this version.
+
+macOS 10.12 is current; Joyent has an active bulk build.
+
+OS X 10.11 is semi-current; significant amounts of hardware cannot
+be upgraded beyond this version.
+
+OS X 10.10 is old.
+
+OS X 10.9 (Darwin 13.4.0) is old.  (From this point on, this list is
+more of a history lesson than useful for running pkgsrc.)
+
+OS X 10.8 is old, and there are no no known reasons to it instead of a
+newer version.
+
+OS X 10.7 is the last version that works on a few Intel Macs, e.g. the
+Mac Pro 1.1 and 2.1 and some Mac Minis.
+
+OS X 10.6 is the last version that works on Intel Macs lacking amd64
+support, e.g. Mac Minis and Macbooks with Core Duo.
+
+OS X 10.5 is the last version that works on PowerPC Macs.
+
+OS X 10.4 (Darwin 8.11.0) is the last version that works on PowerPC G3
+and slower G4 Macs.
+
+* Bulk builds
+
+Clearly, it is desirable for a bulk build to be useful on as many
+computers as possible.  The main issues are which ABI and which macOS
+version.  Targeting older versions makes a build run on more systems,
+and targeting newer versions makes the build closer to what would be
+obtained from bootstrapping on a newer version and thus avoids some
+issues.   This section has pointers to active bulk builds.
+
+** 10.4, --abi=32 powerpc, gcc
+
+Sevan Janiyan <Sevan@NetBSD.org> provides a bulk build for the -current branch
+(--abi=32, OS X 10.4/PowerPC, gcc 4.0.1 from Xcode 2.5, X11_TYPE=modular):
+  https://www.geeklan.co.uk/?p=1579
+  US repo: http://sevan.mit.edu/packages
+  Euro mirror: http://pkgsrc.geeklan.co.uk/packages/current/Darwin-8
+  See
+  https://mail-index.netbsd.org/pkgsrc-bulk/2015/11/07/msg012171.html
+
+** 10.12, --abi=64 x86-64, clang
+
+Joyent provide a bulk build for 10.12/x86_64, and therefore clang, at:
+  http://pkgsrc.joyent.com/install-on-osx/
+

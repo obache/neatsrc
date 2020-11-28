@@ -1,14 +1,17 @@
-# $NetBSD: Makefile,v 1.13 2019/11/02 16:25:24 rillig Exp $
+# $NetBSD: Makefile,v 1.16 2020/04/24 11:23:08 nia Exp $
 
 VERSION=	5.7.3p2
 DISTNAME=	opensmtpd-${VERSION}
+PKGREVISION=	1
 CATEGORIES=	mail net
 MASTER_SITES=	https://www.opensmtpd.org/archives/
 
-MAINTAINER=	ftigeot@wolfpond.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.opensmtpd.org/
 COMMENT=	The OpenSMTPD mail transfer agent, a replacement for sendmail
 LICENSE=	isc AND modified-bsd AND 2-clause-bsd
+
+BROKEN=		"Fails to build with OpenSSL 1.1"
 
 CONFLICTS+=		courier-mta-[0-9]* fastforward>=0.51nb2 sendmail-[0-9]*
 CONFLICTS+=		esmtp>=1.2 nullmailer-[0-9]* postfix-[0-9]*

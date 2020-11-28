@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.11 2019/10/09 10:41:02 adam Exp $
+$NetBSD: distinfo,v 1.14 2020/08/26 11:37:24 adam Exp $
 
-SHA1 (jupyter_client-5.3.4.tar.gz) = c7af604b64d3a496360826de48bf3d18ada9e672
-RMD160 (jupyter_client-5.3.4.tar.gz) = 8dc84b386f1d095f79da23e6953b7f793e71e7b3
-SHA512 (jupyter_client-5.3.4.tar.gz) = 54b5206c08f5119feb50deb2d815d79a178799ad5c1231a0d03fc950ebbf6cb2f7c3a757024f788d416f808c57aa8476fcfa110f63182314bf2d5cdeb9a006cf
-Size (jupyter_client-5.3.4.tar.gz) = 275850 bytes
+SHA1 (jupyter_client-6.1.7.tar.gz) = a50a9cc3a2b3dba42d35728c28e9809cb2412a2b
+RMD160 (jupyter_client-6.1.7.tar.gz) = 642ad87a30d9923939caeb51f321d433a47564ea
+SHA512 (jupyter_client-6.1.7.tar.gz) = 154734e75b26ac2db2a724aa40dd4f4bb7599f8a55dad03bbe09e3f29dd224d4cdf566b479661d20e3c13d79c062bc545ab709eab6fe645eff86a4c23c619d14
+Size (jupyter_client-6.1.7.tar.gz) = 293252 bytes

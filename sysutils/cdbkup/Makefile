@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.29 2019/08/11 13:23:03 wiz Exp $
+# $NetBSD: Makefile,v 1.31 2020/08/31 18:11:24 wiz Exp $
 
 DISTNAME=		cdbkup-1.0
-PKGREVISION=		14
+PKGREVISION=		15
 CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=cdbkup/}
 
@@ -18,6 +18,9 @@ CONFIGURE_ENV+=		DATE=${TOOLS_DATE:Q}
 CONFIGURE_ENV+=		GNUTAR=${TOOLS_GTAR:Q}
 CONFIGURE_ENV+=		ac_cv_path_BZIP=${TOOLS_PATH.bzip2:Q}
 CONFIGURE_ENV+=		ac_cv_path_GZIP=${TOOLS_PATH.gzip:Q}
+
+# Actually a bash script, would need REPLACE_BASH for running
+CHECK_PORTABILITY_SKIP+=	test/test-suite.in
 
 .include "../../mk/bsd.prefs.mk"
 

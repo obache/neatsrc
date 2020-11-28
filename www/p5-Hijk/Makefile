@@ -1,20 +1,20 @@
-# $NetBSD: Makefile,v 1.12 2019/08/11 13:24:48 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2020/09/08 13:16:46 wiz Exp $
 
 DISTNAME=	Hijk-0.28
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	www
-MASTER_SITES=	http://search.cpan.org/CPAN/authors/id/G/GU/GUGOD/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/G/GU/GUGOD/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://cpan.metacpan.org/authors/id/A/AV/AVAR/
+HOMEPAGE=	https://metacpan.org/pod/Hijk
 COMMENT=	Hijk - Fast & minimal low-level HTTP client
 LICENSE=	mit
 
 # for make test
 BUILD_DEPENDS+=	p5-Test-Exception-[0-9]*:../../devel/p5-Test-Exception
 BUILD_DEPENDS+=	p5-URI-[0-9]*:../../www/p5-URI
-BUILD_DEPENDS+=	p5-Time-HiRes-[0-9]*:../../time/p5-Time-HiRes
+#BUILD_DEPENDS+=	p5-Time-HiRes-[0-9]*:../../time/p5-Time-HiRes
 BUILD_DEPENDS+=	p5-Net-Server>=0:../../net/p5-Net-Server
 BUILD_DEPENDS+=	p5-Plack>=0:../../www/p5-Plack
 

@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.3 2018/12/15 21:12:18 wiz Exp $
+# $NetBSD: Makefile,v 1.7 2020/08/18 17:57:40 leot Exp $
 
 DISTNAME=	sphinx3-0.8
+PKGREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=cmusphinx/}
 
-MAINTAINER=	fhajny@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://cmusphinx.sourceforge.net/
 COMMENT=	CMUSphinx speech recognition frontend
 LICENSE=	2-clause-bsd

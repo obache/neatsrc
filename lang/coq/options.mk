@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.8 2019/11/03 19:03:57 rillig Exp $
+# $NetBSD: options.mk,v 1.10 2020/03/01 05:25:13 dholland Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.coq
 PKG_SUPPORTED_OPTIONS=	doc coqide
@@ -51,8 +51,10 @@ CONFIGURE_ARGS+=		-with-doc no
 .endif
 
 .if !empty(PKG_OPTIONS:Mcoqide)
-.include "../../x11/ocaml-lablgtk/buildlink3.mk"
-.include "../../x11/gtk2/buildlink3.mk"
+.include "../../x11/ocaml-lablgtk3/buildlink3.mk"
+.include "../../x11/gtk3/buildlink3.mk"
+DEPENDS+=	adwaita-icon-theme-[0-9]*:../../graphics/adwaita-icon-theme
+CONFIGURE_ARGS+=	-coqide ${COQIDE_TYPE}
 PLIST.coqide=		yes
 .else
 CONFIGURE_ARGS+= -coqide no

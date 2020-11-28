@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.29 2019/08/11 13:18:10 wiz Exp $
+# $NetBSD: Makefile,v 1.31 2020/08/31 18:06:46 wiz Exp $
 
 DISTNAME=		convmv-2.05
-PKGREVISION=		2
+PKGREVISION=		3
 CATEGORIES=		converters
 MASTER_SITES=		https://www.j3e.de/linux/convmv/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://j3e.de/linux/convmv/
+HOMEPAGE=		https://j3e.de/linux/convmv/
 COMMENT=		Converts filenames from one encoding to another
 LICENSE=		gnu-gpl-v2
 

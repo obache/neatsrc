@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.5 2019/11/24 03:57:31 markd Exp $
+$NetBSD: distinfo,v 1.7 2020/06/09 11:56:06 markd Exp $
 
-SHA1 (poxml-19.08.3.tar.xz) = 4b870b2882cdd99c17e9f58b846e717b3b1943e7
-RMD160 (poxml-19.08.3.tar.xz) = bed3598c74c1b1e4e863093dac87497b6aae57a1
-SHA512 (poxml-19.08.3.tar.xz) = 34cc4323def1c62f0d7e088ff664a9001cb9b0b594bc9f47cb5c6546ab43555cffc5c6c0d2d695a81611fd0fa1bc6b7c2693f2b938645721368adc1da1f836f9
-Size (poxml-19.08.3.tar.xz) = 43192 bytes
+SHA1 (poxml-20.04.1.tar.xz) = 228e5e4c058cb40a2ffa76e88dc7a4d1d663214c
+RMD160 (poxml-20.04.1.tar.xz) = dcca7eb4cb9cb40fc43a448da77d6241bf0975dc
+SHA512 (poxml-20.04.1.tar.xz) = dee5ada910f67e9aa364fae1b6656e4882e4459463093433f6a750dece204d1e541dae65386ed3e7b6a7420625d1667d31706857e75e7619b6061ef04cade31f
+Size (poxml-20.04.1.tar.xz) = 43156 bytes

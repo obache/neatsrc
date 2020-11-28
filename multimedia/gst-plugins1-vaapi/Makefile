@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.1 2019/12/29 06:38:56 ryoon Exp $
+# $NetBSD: Makefile,v 1.3 2020/05/16 15:48:38 rillig Exp $
 
 DISTNAME=	gstreamer-vaapi-1.16.2
 PKGNAME=	${DISTNAME:S/^gstreamer/gst-plugins1/1}
+PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	https://gstreamer.freedesktop.org/src/gstreamer-vaapi/
 EXTRACT_SUFX=	.tar.xz
@@ -12,12 +13,6 @@ COMMENT=	Open source multimedia framework - VA-API plugin
 LICENSE=	gnu-lgpl-v2.1
 
 USE_TOOLS+=	pkg-config
-
-SUBST_CLASSES+=		py
-SUBST_STAGE.py=		pre-configure
-SUBST_MESSAGE.py=	Setting the Python executable name.
-SUBST_FILES.py+=	meson.build
-SUBST_VARS.py+=		PYVERSSUFFIX
 
 MESON_ARGS+=	-Ddisable_doc=true
 

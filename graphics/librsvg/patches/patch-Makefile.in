@@ -1,0 +1,15 @@
+$NetBSD: patch-Makefile.in,v 1.2 2020/03/10 20:18:20 wiz Exp $
+
+Make it possible to respect MAKE_JOBS.
+
+--- Makefile.in.orig	2020-03-06 21:48:49.000000000 +0000
++++ Makefile.in
+@@ -1759,7 +1759,7 @@ librsvg_c_api.la: $(librsvg_c_api_la_OBJ
+ 	PKG_CONFIG_ALLOW_CROSS=1						\
+ 	PKG_CONFIG='$(PKG_CONFIG)'						\
+ 	CARGO_TARGET_DIR=$(CARGO_TARGET_DIR)					\
+-	$(CARGO) --locked build $(CARGO_VERBOSE) $(CARGO_TARGET_ARGS) $(CARGO_RELEASE_ARGS) \
++	$(CARGO) --locked build $(CARGO_MAKE_JOBS) $(CARGO_VERBOSE) $(CARGO_TARGET_ARGS) $(CARGO_RELEASE_ARGS) \
+ 	&& cd $(LIBRSVG_BUILD_DIR) && $(LINK) $< && mv $(RUST_LIB) .libs/librsvg_c_api.a
+ 
+ @HAVE_INTROSPECTION_TRUE@-include $(INTROSPECTION_MAKEFILE)

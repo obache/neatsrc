@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.83 2019/07/21 22:25:30 wiz Exp $
+# $NetBSD: Makefile,v 1.91 2020/08/17 20:19:44 leot Exp $
 
 DISTNAME=		ettercap-0.6.b
-PKGREVISION=		39
+PKGREVISION=		43
 CATEGORIES=		security net
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=ettercap/}
 
@@ -9,6 +9,8 @@ MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://ettercap.sourceforge.net/
 COMMENT=		Multipurpose sniffer/interceptor/logger for switched LAN
 LICENSE=		gnu-gpl-v2
+
+BROKEN=			"Fails to build with OpenSSL 1.1"
 
 CONFLICTS+=		ettercap-NG-[0-9]*
 
@@ -22,7 +24,6 @@ CONFIGURE_ARGS+=	--enable-https
 
 # needs putwin()
 INCOMPAT_CURSES=	NetBSD-[0-4].*
-USE_OLD_DES_API=	yes
 PTHREAD_OPTS+=		require
 PTHREAD_AUTO_VARS=	yes
 MAKE_ENV+=		MACHINE_ARCH=${MACHINE_ARCH:Q}

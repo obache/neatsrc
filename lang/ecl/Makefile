@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.25 2019/03/01 13:30:52 leot Exp $
+# $NetBSD: Makefile,v 1.27 2020/07/09 08:23:37 yhardy Exp $
 
-DISTNAME=		ecl-16.1.3
+DISTNAME=		ecl-20.4.24
 CATEGORIES=		lang
 MASTER_SITES=		https://common-lisp.net/project/ecl/static/files/release/
 EXTRACT_SUFX=		.tgz
@@ -15,6 +15,7 @@ GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake makeinfo
 INFO_FILES=		yes
+TEXINFO_REQD=		5.2
 
 CONFIGURE_ARGS+=	--enable-boehm=system --enable-gmp=system
 

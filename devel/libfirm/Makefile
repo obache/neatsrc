@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2014/11/06 20:46:01 asau Exp $
+# $NetBSD: Makefile,v 1.8 2020/05/31 15:26:59 rillig Exp $
 #
 
 DISTNAME=	libfirm-1.21.0
@@ -15,10 +15,6 @@ USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config
 
 PKGCONFIG_OVERRIDE+=	libfirm.pc.in
-
-.if exists(/usr/include/wchar.h)
-CONFIGURE_ARGS+=	--enable-wchar-support
-.endif
 
 #
 # NOTE: jvm support requires dlopen/dlsym

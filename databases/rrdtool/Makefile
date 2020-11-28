@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.136 2019/11/02 15:38:11 rillig Exp $
+# $NetBSD: Makefile,v 1.142 2020/08/31 18:07:14 wiz Exp $
 
-PKGREVISION= 1
+PKGREVISION= 6
 .include "Makefile.common"
 
 DEPENDS+=		dejavu-ttf>=2.26:../../fonts/dejavu-ttf
@@ -21,12 +21,6 @@ PERL5_PACKLIST+=	auto/RRDs/.packlist
 
 # rrdtool explicitly forbids any use of -ffast-math
 BUILDLINK_TRANSFORM+=	rm:-ffast-math
-
-SUBST_CLASSES+=		prefix
-SUBST_STAGE.prefix=	post-build
-SUBST_MESSAGE.prefix=	Fixing $${prefix} in scripts.
-SUBST_FILES.prefix=	examples/cgi-demo.cgi
-SUBST_SED.prefix=	-e '1s,^\#! \$${prefix},\#! ${PREFIX},'
 
 TEST_TARGET=		check
 

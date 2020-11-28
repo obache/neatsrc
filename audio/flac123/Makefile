@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2014/10/10 21:20:28 snj Exp $
+# $NetBSD: Makefile,v 1.16 2020/01/26 05:26:09 rillig Exp $
 
 DISTNAME=	flac123-0.0.12-release
 PKGNAME=	${DISTNAME:S/-release//}

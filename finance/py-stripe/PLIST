@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.9 2020/01/08 11:19:03 adam Exp $
+@comment $NetBSD: PLIST,v 1.15 2020/09/30 06:52:40 adam Exp $
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
@@ -71,6 +71,12 @@ ${PYSITELIB}/stripe/api_resources/balance_transaction.pyo
 ${PYSITELIB}/stripe/api_resources/bank_account.py
 ${PYSITELIB}/stripe/api_resources/bank_account.pyc
 ${PYSITELIB}/stripe/api_resources/bank_account.pyo
+${PYSITELIB}/stripe/api_resources/billing_portal/__init__.py
+${PYSITELIB}/stripe/api_resources/billing_portal/__init__.pyc
+${PYSITELIB}/stripe/api_resources/billing_portal/__init__.pyo
+${PYSITELIB}/stripe/api_resources/billing_portal/session.py
+${PYSITELIB}/stripe/api_resources/billing_portal/session.pyc
+${PYSITELIB}/stripe/api_resources/billing_portal/session.pyo
 ${PYSITELIB}/stripe/api_resources/bitcoin_receiver.py
 ${PYSITELIB}/stripe/api_resources/bitcoin_receiver.pyc
 ${PYSITELIB}/stripe/api_resources/bitcoin_receiver.pyo
@@ -101,6 +107,9 @@ ${PYSITELIB}/stripe/api_resources/coupon.pyo
 ${PYSITELIB}/stripe/api_resources/credit_note.py
 ${PYSITELIB}/stripe/api_resources/credit_note.pyc
 ${PYSITELIB}/stripe/api_resources/credit_note.pyo
+${PYSITELIB}/stripe/api_resources/credit_note_line_item.py
+${PYSITELIB}/stripe/api_resources/credit_note_line_item.pyc
+${PYSITELIB}/stripe/api_resources/credit_note_line_item.pyo
 ${PYSITELIB}/stripe/api_resources/customer.py
 ${PYSITELIB}/stripe/api_resources/customer.pyc
 ${PYSITELIB}/stripe/api_resources/customer.pyo
@@ -161,6 +170,9 @@ ${PYSITELIB}/stripe/api_resources/issuing/dispute.pyo
 ${PYSITELIB}/stripe/api_resources/issuing/transaction.py
 ${PYSITELIB}/stripe/api_resources/issuing/transaction.pyc
 ${PYSITELIB}/stripe/api_resources/issuing/transaction.pyo
+${PYSITELIB}/stripe/api_resources/line_item.py
+${PYSITELIB}/stripe/api_resources/line_item.pyc
+${PYSITELIB}/stripe/api_resources/line_item.pyo
 ${PYSITELIB}/stripe/api_resources/list_object.py
 ${PYSITELIB}/stripe/api_resources/list_object.pyc
 ${PYSITELIB}/stripe/api_resources/list_object.pyo
@@ -191,9 +203,15 @@ ${PYSITELIB}/stripe/api_resources/person.pyo
 ${PYSITELIB}/stripe/api_resources/plan.py
 ${PYSITELIB}/stripe/api_resources/plan.pyc
 ${PYSITELIB}/stripe/api_resources/plan.pyo
+${PYSITELIB}/stripe/api_resources/price.py
+${PYSITELIB}/stripe/api_resources/price.pyc
+${PYSITELIB}/stripe/api_resources/price.pyo
 ${PYSITELIB}/stripe/api_resources/product.py
 ${PYSITELIB}/stripe/api_resources/product.pyc
 ${PYSITELIB}/stripe/api_resources/product.pyo
+${PYSITELIB}/stripe/api_resources/promotion_code.py
+${PYSITELIB}/stripe/api_resources/promotion_code.pyc
+${PYSITELIB}/stripe/api_resources/promotion_code.pyo
 ${PYSITELIB}/stripe/api_resources/radar/__init__.py
 ${PYSITELIB}/stripe/api_resources/radar/__init__.pyc
 ${PYSITELIB}/stripe/api_resources/radar/__init__.pyo
@@ -230,6 +248,9 @@ ${PYSITELIB}/stripe/api_resources/reversal.pyo
 ${PYSITELIB}/stripe/api_resources/review.py
 ${PYSITELIB}/stripe/api_resources/review.pyc
 ${PYSITELIB}/stripe/api_resources/review.pyo
+${PYSITELIB}/stripe/api_resources/setup_attempt.py
+${PYSITELIB}/stripe/api_resources/setup_attempt.pyc
+${PYSITELIB}/stripe/api_resources/setup_attempt.pyo
 ${PYSITELIB}/stripe/api_resources/setup_intent.py
 ${PYSITELIB}/stripe/api_resources/setup_intent.pyc
 ${PYSITELIB}/stripe/api_resources/setup_intent.pyo

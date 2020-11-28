@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.71 2019/11/02 22:18:22 rillig Exp $
+# $NetBSD: Makefile,v 1.75 2020/08/31 18:06:41 wiz Exp $
 
 PKGNAME=	finch-${PIDGIN_VERSION}
-PKGREVISION=	3
+PKGREVISION=	1
 
 COMMENT=	Multi-protocol Instant Messaging client console frontend
 
@@ -45,6 +45,7 @@ BUILDLINK_API_DEPENDS.libpurple+=	libpurple-${PIDGIN_VERSION}{,nb*}
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/libidn/buildlink3.mk"
+.include "../../devel/libgnt/buildlink3.mk"
 .include "../../devel/ncursesw/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

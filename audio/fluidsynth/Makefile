@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.33 2019/12/19 23:59:56 joerg Exp $
+# $NetBSD: Makefile,v 1.42 2020/10/03 10:26:06 nia Exp $
 
-DISTNAME=	fluidsynth-2.1.0
-PKGREVISION=	1
+DISTNAME=	fluidsynth-2.1.5
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=FluidSynth/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -21,12 +20,8 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=TRUE
 
 PKGCONFIG_OVERRIDE=	fluidsynth.pc.in
 
-CPPFLAGS.SunOS+=	-Du_int8_t=uint8_t -Du_int16_t=uint16_t
-CPPFLAGS.SunOS+=	-Du_int32_t=uint32_t -Du_int64_t=uint64_t
-CPPFLAGS.SunOS+=	-DSOUND_PCM_WRITE_CHANNELS=SNDCTL_DSP_CHANNELS
 LDFLAGS.SunOS+=		-lsocket
 
-.include "../../mk/bsd.prefs.mk"
 .include "../../mk/oss.buildlink3.mk"
 
 .if ${OSS_TYPE} != "none"
@@ -36,9 +31,7 @@ SUBST_STAGE.oss=	pre-configure
 SUBST_MESSAGE.oss=	Correcting the path to the OSS device.
 SUBST_FILES.oss+=	src/drivers/fluid_oss.c
 SUBST_SED.oss+=		-e "s,/dev/dsp,${DEVOSSAUDIO},g"
-.  if ${OPSYS} == "NetBSD"
-SUBST_SED.oss+=		-e "s,/dev/midi,/dev/rmidi0,g"
-.  endif
+SUBST_SED.oss+=		-e "s,/dev/midi,${DEVOSSMIDI},g"
 .endif
 
 .include "options.mk"
@@ -54,6 +47,5 @@ SUBST_MESSAGE.readline=	Adjust find_library name for readline
 SUBST_FILES.readline+=	cmake_admin/FindReadline.cmake
 SUBST_SED.readline+=	-e "s, NAMES readline , NAMES edit ,g"
 .endif
-.include "../../mk/oss.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

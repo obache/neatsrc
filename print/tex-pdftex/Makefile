@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.27 2019/12/06 20:23:01 markd Exp $
+# $NetBSD: Makefile,v 1.30 2020/05/10 04:32:06 markd Exp $
 
 DISTNAME=	pdftex
-PKGNAME=	tex-${DISTNAME}-2018
-TEXLIVE_REV=	48806
+PKGNAME=	tex-${DISTNAME}-2020
+PKGREVISION=	1
+TEXLIVE_REV=	54227
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/pdftex
+HOMEPAGE=	https://ctan.org/pkg/pdftex
 COMMENT=	TeX extension for direct creation of PDF
 LICENSE=	gnu-gpl-v2
 
@@ -13,7 +14,9 @@ DEPENDS+=	tex-dehyph-[0-9]*:../../print/tex-dehyph
 DEPENDS+=	tex-dvips-[0-9]*:../../print/tex-dvips
 DEPENDS+=	tex-etex-[0-9]*:../../print/tex-etex
 DEPENDS+=	tex-hyphen-base-[0-9]*:../../print/tex-hyphen-base
+DEPENDS+=	tex-hyph-utf8-[0-9]*:../../print/tex-hyph-utf8
 DEPENDS+=	tex-kpathsea-[0-9]*:../../print/tex-kpathsea
+DEPENDS+=	tex-knuth-lib-[0-9]*:../../fonts/tex-knuth-lib
 DEPENDS+=	tex-plain-[0-9]*:../../print/tex-plain
 DEPENDS+=	tex-tex-ini-files-[0-9]*:../../print/tex-tex-ini-files
 DEPENDS+=	tex-updmap-map-[0-9]*:../../print/tex-updmap-map
@@ -29,7 +32,6 @@ TEX_FORMATS+=		"pdftex pdftex language.def -translate-file=cp227.tcx *pdfetex.in
 
 TEX_MAP_FILES+=	dummy-space.map
 
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 
 post-extract:

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2019/08/22 13:30:31 fcambus Exp $
+# $NetBSD: Makefile,v 1.9 2020/09/09 09:19:34 fcambus Exp $
 
-DISTNAME=	kore-3.3.1
+DISTNAME=	kore-4.0.1
 CATEGORIES=	www
 MASTER_SITES=	https://kore.io/releases/
 
@@ -14,6 +14,9 @@ USE_TOOLS+=	gmake
 
 MAKE_FLAGS+=	MAN_DIR="${PREFIX}/${PKGMANDIR}"
 MAKE_FLAGS+=	TASKS=1
+
+pre-build:
+	${MKDIR} ${WRKSRC}/obj
 
 .include "options.mk"
 

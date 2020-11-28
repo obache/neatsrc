@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.97 2019/11/18 20:46:01 nia Exp $
+# $NetBSD: Makefile,v 1.101 2020/08/31 18:09:47 wiz Exp $
 
 DISTNAME=	erlang-${DIST_VERSION_MAJOR}.${DIST_VERSION_MINOR}${!empty(DIST_VERSION_PATCH):?.:}${DIST_VERSION_PATCH}
 PKGNAME=	${DISTNAME:S/OTP-/erlang-/}
+PKGREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GITHUB:=erlang/}
 GITHUB_PROJECT=	otp
@@ -34,19 +35,15 @@ CONFIGURE_ARGS+=	--enable-threads
 
 MAKE_ENV+=		DESTDIR=${DESTDIR}
 
-do-configure-post-hook: replace-interpreter
-
 REPLACE_INTERPRETER+=	escript
 REPLACE.escript.old=	.*escript
 REPLACE.escript.new=	${PREFIX}/bin/escript
-REPLACE_FILES.escript=	\
-	lib/diameter/bin/diameterc \
-	lib/erl_docgen/priv/bin/codeline_preprocessing.escript \
-	lib/erl_docgen/priv/bin/xml_from_edoc.escript \
-	lib/reltool/examples/display_args \
-	lib/reltool/examples/mnesia_core_dump_viewer \
-	lib/snmp/bin/snmpc \
-	lib/snmp/src/compile/snmpc.src
+REPLACE_FILES.escript+=	lib/diameter/bin/diameterc
+REPLACE_FILES.escript+=	lib/erl_docgen/priv/bin/codeline_preprocessing.escript
+REPLACE_FILES.escript+=	lib/erl_docgen/priv/bin/xml_from_edoc.escript
+REPLACE_FILES.escript+=	lib/reltool/examples/display_args
+REPLACE_FILES.escript+=	lib/reltool/examples/mnesia_core_dump_viewer
+REPLACE_FILES.escript+=	lib/snmp/src/compile/snmpc.src
 
 SUBST_CLASSES+=		target
 SUBST_STAGE.target=	pre-configure
@@ -56,7 +53,6 @@ SUBST_MESSAGE.target=	Fixing target name.
 
 TEST_TARGET=		tests
 TEST_MAKE_FLAGS=	ERL_TOP=${WRKSRC}
-REPLACE_PERL+=		make/make_emakefile
 
 SMF_NAME=		epmd
 
@@ -90,8 +86,11 @@ pre-build:
 versions: do-extract
 	@${ECHO} "# \$$NetBSD\$$" > ${.CURDIR}/versions.mk
 	@${ECHO} "# Do not edit, regenerate using 'make versions'" >> ${.CURDIR}/versions.mk
-	${AWK} -F: '/OTP-${PKGVERSION_NOREV} :/{print $$2}' ${WRKSRC}/otp_versions.table |\
-		${SED} -e 's/# //g' -e 's/-/ /g' -e 's,^ ,_VERSIONS=	,' >> ${.CURDIR}/versions.mk
+	${AWK} -F: '/OTP-${PKGVERSION_NOREV} :/{print $$2}' ${WRKSRC}/otp_versions.table | \
+		${SED} -e 's/# //g' -e 's/-/ /g' \
+		       -e 's,^ ,_VERSIONS=	,' \
+		       -e 's, *$$,,' \
+			>> ${.CURDIR}/versions.mk
 
 post-install:
 	chmod -R go-w ${DESTDIR}${PREFIX}/lib/erlang/lib

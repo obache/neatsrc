@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.3 2019/12/06 20:22:00 markd Exp $
+# $NetBSD: Makefile,v 1.5 2020/05/10 04:32:05 markd Exp $
 
 DISTNAME=	mex
 PKGNAME=	tex-${DISTNAME}-1.05
+PKGREVISION=	1
 TEXLIVE_REV=	40855
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/mex
+HOMEPAGE=	https://ctan.org/pkg/mex
 COMMENT=	Polish formats for TeX
 LICENSE=	public-domain
 

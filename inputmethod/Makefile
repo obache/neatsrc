@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.76 2018/08/18 01:22:30 ryoon Exp $
+# $NetBSD: Makefile,v 1.78 2020/05/15 09:46:24 nia Exp $
 #
 
 COMMENT=	Input method tools and libraries
@@ -69,7 +69,6 @@ SUBDIR+=	ibus-unikey
 SUBDIR+=	iiimecf
 SUBDIR+=	im-ja
 SUBDIR+=	imhangul
-SUBDIR+=	imhangul_status_applet
 SUBDIR+=	input-pad
 SUBDIR+=	ja-freewnn-lib
 SUBDIR+=	ja-freewnn-server
@@ -103,7 +102,6 @@ SUBDIR+=	presage
 SUBDIR+=	py-cangjie
 SUBDIR+=	py-input-pad
 SUBDIR+=	py-zinnia
-SUBDIR+=	qt5-uim
 SUBDIR+=	ruby-zinnia
 SUBDIR+=	scim
 SUBDIR+=	scim-anthy

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2017/10/13 16:00:59 adam Exp $
+# $NetBSD: Makefile,v 1.18 2020/01/26 05:26:11 rillig Exp $
 
 DISTNAME=	libmodplug-0.8.9.0
 CATEGORIES=	audio

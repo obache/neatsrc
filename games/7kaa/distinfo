@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.4 2020/01/08 16:59:07 nia Exp $
+$NetBSD: distinfo,v 1.6 2020/08/09 15:03:29 nia Exp $
 
-SHA1 (7kaa-2.15.3.tar.xz) = 25f680eb2e11e53bc04d6b9ecd5bc679b5b3cd22
-RMD160 (7kaa-2.15.3.tar.xz) = e48c20243efa42775d9fd2c452b01aa364082b8d
-SHA512 (7kaa-2.15.3.tar.xz) = 8881f73d1182bdeb6676484f9bf3cf3e48defda5cc40d9864fe3425c27666d2ace8e566052c0d8d1e00f5c9e1a044660653e5851513a00e656c975450a765554
-Size (7kaa-2.15.3.tar.xz) = 46852980 bytes
+SHA1 (7kaa-2.15.4p1.tar.xz) = 72b3ce608b5fccf4d8aaa6cf0425bda3e09a0667
+RMD160 (7kaa-2.15.4p1.tar.xz) = adb84c0ec0c6df14f88eed300a0c511a41c99a69
+SHA512 (7kaa-2.15.4p1.tar.xz) = eac0ca91755f828cfc8b0ea07ad1d0c08030c60ac236473992cc7887f8da43a3246a1f375f569e4fc71afaf7c5797ae6911b8b617217077429e5f5c51af4f4b6
+Size (7kaa-2.15.4p1.tar.xz) = 46927880 bytes
 SHA1 (patch-src_LocaleRes.cpp) = c1e8f370d0add3ef744aa430fab2ce11424dcdec

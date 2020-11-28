@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.149 2018/12/20 17:54:09 adam Exp $
+# $NetBSD: Makefile,v 1.152 2020/02/10 15:13:06 adam Exp $
 
 .include "../../databases/openldap/Makefile.version"
 
@@ -6,7 +6,7 @@ DISTNAME=	openldap-${OPENLDAP_VERSION}
 CATEGORIES=	databases
 
 MAINTAINER=	adam@NetBSD.org
-HOMEPAGE=	http://www.openldap.org/
+HOMEPAGE=	https://www.openldap.org/
 COMMENT=	Lightweight Directory Access Protocol meta-package
 LICENSE=	modified-bsd
 

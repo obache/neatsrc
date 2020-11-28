@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.32 2019/11/03 17:04:25 rillig Exp $
+# $NetBSD: Makefile,v 1.38 2020/05/22 10:56:22 adam Exp $
 
-VERSION=	2.0.3
+VERSION=	2.0.6
 GITHUB_PROJECT=	opam
 DISTNAME=	${GITHUB_PROJECT}-${VERSION}
 PKGNAME=	ocaml-${DISTNAME}
@@ -9,7 +9,7 @@ CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ocaml/}
 
 MAINTAINER=	jaapb@NetBSD.org
-HOMEPAGE=	http://opam.ocaml.org/
+HOMEPAGE=	https://opam.ocaml.org/
 COMMENT=	OCaml package manager
 LICENSE=	gnu-lgpl-v3
 MAKE_JOBS_SAFE=	no

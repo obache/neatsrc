@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.14 2019/10/25 14:48:02 gdt Exp $
+# $NetBSD: Makefile,v 1.19 2020/08/30 06:03:53 tnn Exp $
 
-DISTNAME=	unifi-5.11.50
+DISTNAME=	unifi-5.14.23
 CATEGORIES=	net
 MASTER_SITES=	-http://dl.ubnt.com/unifi/${PKGVERSION_NOREV}/UniFi.unix.zip
 EXTRACT_SUFX=	.zip
@@ -73,7 +73,7 @@ OWN_DIRS_PERMS+=	${PREFIX}/unifi/${d} ${UNIFI_USER} ${UNIFI_GROUP} 0700
 
 post-extract:
 # drop executable bit
-	find ${WRKSRC} -type f -print | xargs chmod -x
+	find ${WRKSRC} -type f -print0 | xargs -0 chmod -x
 	mkdir ${WRKDIR}/${SNAPPY_JAVA}/target
 	ln -s ${WRKDIR}/${SNAPPY} ${WRKDIR}/${SNAPPY_JAVA}/target
 

@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.92 2019/11/04 19:57:59 rillig Exp $
+# $NetBSD: Makefile,v 1.101 2020/10/26 10:57:15 triaxx Exp $
 
 INSTALLVERSION=	5.3
 VERSION=	${INSTALLVERSION}.3
 DISTNAME=	gutenprint-${VERSION}
 PKGNAME=	gutenprint-lib-${VERSION}
+PKGREVISION=	7
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=gimp-print/}
 EXTRACT_SUFX=	.tar.xz
@@ -29,6 +30,8 @@ USE_LIBTOOL=		YES
 USE_LANGUAGES+=		c99
 
 GNU_CONFIGURE=		YES
+
+.include "../../print/gutenprint-lib/options.mk"
 
 # gutenprint has many options, and really should be split into
 # multiple packages.  Splitting is difficult because of the structure
@@ -80,10 +83,6 @@ CONFIGURE_ARGS+=	--enable-escputil
 # why, so just disable it to reduce dependencies.
 CONFIGURE_ARGS+=	--without-readline
 
-# gimp2 plugin, on by default, and named gutenprint
-#CONFIGURE_ARGS+=	--with-gimp2
-#CONFIGURE_ARGS+=	--with-gimp2-as-gutenprint
-
 # XXX Make command.types be a CONF_FILE
 
 # XXX Replace patch-aa with SUBST_SED to use PREFIX rather than hard-coded /usr/pkg.
@@ -92,10 +91,6 @@ TEST_TARGET=		check
 
 # A libintl is optional in gutenprint.
 .include "../../devel/gettext-lib/buildlink3.mk"
-
-# gutenprint-gimp: gimp plugin
-.include "../../graphics/gimp/buildlink3.mk"
-.include "../../x11/gtk2/buildlink3.mk"
 
 # gutenprint-cups: cups support
 .include "../../print/cups-base/buildlink3.mk"

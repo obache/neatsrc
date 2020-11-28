@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.225 2019/04/10 08:24:03 adam Exp $
+# $NetBSD: Makefile,v 1.231 2020/08/09 21:40:42 rillig Exp $
 
 # Notes to package maintainers:
 #
@@ -10,7 +10,7 @@ PKGNAME=		pkg_install-${VERSION}
 CATEGORIES=		pkgtools
 
 MAINTAINER=		agc@NetBSD.org
-HOMEPAGE=		http://www.pkgsrc.org/
+HOMEPAGE=		https://www.pkgsrc.org/
 COMMENT=		Package management and administration tools for pkgsrc
 LICENSE=		modified-bsd
 
@@ -30,7 +30,7 @@ NBCOMPAT_CONFIGURE_ARGS+=	--enable-bsd-getopt --enable-db
 SKIP_AUDIT_PACKAGES=	yes
 NO_PKGTOOLS_REQD_CHECK=	yes
 PKG_PRESERVE=		yes
-CHECK_PERMS=		no
+CHECK_PERMS_SKIP=	*
 
 # These are needed to solve a chicken-and-egg problem where pkgsrc uses
 # newer features of pkg_install, but older NetBSD installations won't
@@ -91,7 +91,7 @@ INSTALL_SRC=		${PKGDIR}/INSTALL
 FILES_SUBST+=		PKG_DBDIR=${PKG_DBDIR}			\
 			PKG_TOOLS_BIN=${PKG_TOOLS_BIN:Q}	\
 			MKDIR=${MKDIR:Q}
-MESSAGE_SUBST+=		PKGVULNDIR=${PKG_DBDIR}			\
+MESSAGE_SUBST+=		PKGVULNDIR=${PKG_DBDIR} \
 			EGDIR=${EGDIR}
 
 .include "../../mk/compiler.mk"
@@ -145,7 +145,7 @@ LIBARCHIVE_CONFIGURE_ARGS+=	--without-lzma
 .  endif
 
 LIBARCHIVE_LIBS=	${SED} -n -e 's/^Libs.private://p' \
-	${WRKDIR}/libarchive/build/pkgconfig/libarchive.pc 2>/dev/null || echo
+			${WRKDIR}/libarchive/build/pkgconfig/libarchive.pc 2>/dev/null || echo
 LIBS+=			${LIBARCHIVE_LIBS:sh}
 
 CONFIG_EXTRA_OVERRIDE_DIRS+=	${WRKDIR}/libarchive
@@ -208,9 +208,7 @@ sub-inplace-build:
 		${SETENV} ${MAKE_ENV} ${BSD_MAKE_ENV}			\
 		${MAKE_PROGRAM} ${MAKE_FLAGS} ${BUILD_MAKE_FLAGS}	\
 			-f ${MAKE_FILE} depend all
-	cd ${WRKDIR}/netpgp &&					\
-	${SED} -e '/zlib/d' Makefile.lib.in >Makefile.in &&		\
-	${RM} -f bzlib.h zlib.h &&					\
+	cd ${WRKDIR}/netpgp && ${CP} Makefile.lib.in Makefile.in &&	\
 	${CONFIG_SHELL} ${CONFIG_SHELL_FLAGS} ./configure &&		\
 	${SETENV} ${MAKE_ENV} ${BSD_MAKE_ENV} ${MAKE_PROGRAM}		\
 		${MAKE_FLAGS} ${BUILD_MAKE_FLAGS} -f ${MAKE_FILE} all

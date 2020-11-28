@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.29 2019/08/11 13:20:59 wiz Exp $
+# $NetBSD: Makefile,v 1.31 2020/09/07 10:28:31 wiz Exp $
 
-DISTNAME=	Path-Tiny-0.108
+DISTNAME=	Path-Tiny-0.114
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	2
-CATEGORIES=	devel perl5
+CATEGORIES=	filesystems devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/D/DA/DAGOLDEN/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

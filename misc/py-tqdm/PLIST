@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2020/01/07 08:51:30 adam Exp $
+@comment $NetBSD: PLIST,v 1.9 2020/08/11 18:44:53 joerg Exp $
 bin/tqdm-${PYVERSSUFFIX}
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
@@ -36,6 +36,9 @@ ${PYSITELIB}/tqdm/_utils.pyo
 ${PYSITELIB}/tqdm/_version.py
 ${PYSITELIB}/tqdm/_version.pyc
 ${PYSITELIB}/tqdm/_version.pyo
+${PYSITELIB}/tqdm/asyncio.py
+${PYSITELIB}/tqdm/asyncio.pyc
+${PYSITELIB}/tqdm/asyncio.pyo
 ${PYSITELIB}/tqdm/auto.py
 ${PYSITELIB}/tqdm/auto.pyc
 ${PYSITELIB}/tqdm/auto.pyo
@@ -45,9 +48,28 @@ ${PYSITELIB}/tqdm/autonotebook.pyo
 ${PYSITELIB}/tqdm/cli.py
 ${PYSITELIB}/tqdm/cli.pyc
 ${PYSITELIB}/tqdm/cli.pyo
+${PYSITELIB}/tqdm/completion.sh
 ${PYSITELIB}/tqdm/contrib/__init__.py
 ${PYSITELIB}/tqdm/contrib/__init__.pyc
 ${PYSITELIB}/tqdm/contrib/__init__.pyo
+${PYSITELIB}/tqdm/contrib/bells.py
+${PYSITELIB}/tqdm/contrib/bells.pyc
+${PYSITELIB}/tqdm/contrib/bells.pyo
+${PYSITELIB}/tqdm/contrib/concurrent.py
+${PYSITELIB}/tqdm/contrib/concurrent.pyc
+${PYSITELIB}/tqdm/contrib/concurrent.pyo
+${PYSITELIB}/tqdm/contrib/discord.py
+${PYSITELIB}/tqdm/contrib/discord.pyc
+${PYSITELIB}/tqdm/contrib/discord.pyo
+${PYSITELIB}/tqdm/contrib/itertools.py
+${PYSITELIB}/tqdm/contrib/itertools.pyc
+${PYSITELIB}/tqdm/contrib/itertools.pyo
+${PYSITELIB}/tqdm/contrib/telegram.py
+${PYSITELIB}/tqdm/contrib/telegram.pyc
+${PYSITELIB}/tqdm/contrib/telegram.pyo
+${PYSITELIB}/tqdm/contrib/utils_worker.py
+${PYSITELIB}/tqdm/contrib/utils_worker.pyc
+${PYSITELIB}/tqdm/contrib/utils_worker.pyo
 ${PYSITELIB}/tqdm/gui.py
 ${PYSITELIB}/tqdm/gui.pyc
 ${PYSITELIB}/tqdm/gui.pyo

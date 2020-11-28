@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.34 2019/09/18 14:17:10 ryoon Exp $
+# $NetBSD: Makefile,v 1.38 2020/08/18 17:57:46 leot Exp $
 
-DISTNAME=	fMSX53
-PKGNAME=	fmsx-5.3
-PKGREVISION=	2
+DISTNAME=	fMSX54
+PKGNAME=	fmsx-5.4
+PKGREVISION=	1
 CATEGORIES=	emulators x11
-MASTER_SITES=	http://fms.komkon.org/fMSX/
+MASTER_SITES=	https://fms.komkon.org/fMSX/
 EXTRACT_SUFX=	.zip
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://fms.komkon.org/fMSX/
+HOMEPAGE=	https://fms.komkon.org/fMSX/
 COMMENT=	MSX (Z80-based computer) emulator
 
 RESTRICTED=		The binary based on modified source code is not redistributable
@@ -36,8 +36,6 @@ DEFS+=		-DLSB_FIRST
 BROKEN=		"Unknown endian"
 .endif
 
-MAKE_ENV+=	DEFS=${DEFS:Q}
-
 INSTALLATION_DIRS=	bin share/doc
 
 # Makefile of fMSX doesn't have install target.
@@ -45,7 +43,8 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/fMSX/Unix/fmsx ${DESTDIR}${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/fMSX/fMSX.html ${DESTDIR}${PREFIX}/share/doc
 
-.include "../../audio/pulseaudio/buildlink3.mk"
+.include "options.mk"
+MAKE_ENV+=	DEFS=${DEFS:Q}
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

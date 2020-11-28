@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2019/08/09 19:06:46 brook Exp $
+# $NetBSD: Makefile,v 1.3 2020/09/22 08:37:54 mef Exp $
 
 R_PKGNAME=	pkgbuild
-R_PKGVER=	1.0.4
+R_PKGVER=	1.1.0
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -16,7 +16,10 @@ DEPENDS+=	R-rprojroot>=1.3.2:../../devel/R-rprojroot
 DEPENDS+=	R-withr>=2.1.2:../../devel/R-withr
 DEPENDS+=	R-prettyunits>=1.0.2:../../math/R-prettyunits
 
-USE_LANGUAGES=	# none
+TEST_DEPENDS+=	R-testthat-[0-9]*:../../devel/R-testthat
+
+# need for make test
+USE_LANGUAGES=	c
 
 .include "../../math/R/Makefile.extension"
 .include "../../mk/bsd.pkg.mk"

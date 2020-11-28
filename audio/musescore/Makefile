@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2019/10/16 23:22:08 nia Exp $
+# $NetBSD: Makefile,v 1.14 2020/10/18 03:33:13 gutteridge Exp $
 
-DISTNAME=	musescore-3.2.3
+DISTNAME=	musescore-3.5.2
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=musescore/}
 GITHUB_PROJECT=	MuseScore
@@ -16,7 +16,7 @@ USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c c++11
 
 # C++11
-GCC_REQD+=	4.7
+GCC_REQD+=	4.8
 
 CONFIGURE_DIRS=	bindir
 CMAKE_ARG_PATH=	..
@@ -27,10 +27,13 @@ CMAKE_ARGS+=	-DUSE_SYSTEM_FREETYPE=ON
 CMAKE_ARGS+=	-DDOWNLOAD_SOUNDFONT=OFF
 CMAKE_ARGS+=	-DBUILD_PCH=OFF
 CMAKE_ARGS+=	-DBUILD_PORTMIDI=OFF
+CMAKE_ARGS+=	-DBUILD_TELEMETRY_MODULE=OFF
 CMAKE_ARGS+=	-DBUILD_WEBENGINE=OFF
 
 pre-configure:
 	${MKDIR} ${WRKSRC}/bindir
+
+DEPENDS+=	qt5-qttranslations>=5.15.1:../../x11/qt5-qttranslations
 
 .include "options.mk"
 .include "../../audio/lame/buildlink3.mk"
@@ -38,8 +41,10 @@ pre-configure:
 .include "../../audio/libvorbis/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
+BUILDLINK_API_DEPENDS.qt5-qtbase+=      qt5-qtbase>=5.15.1
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtdeclarative/buildlink3.mk"
+.include "../../x11/qt5-qtquickcontrols2/buildlink3.mk"
 .include "../../x11/qt5-qtsvg/buildlink3.mk"
 .include "../../x11/qt5-qttools/buildlink3.mk"
 .include "../../x11/qt5-qtxmlpatterns/buildlink3.mk"

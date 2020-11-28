@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.2 2019/12/10 18:16:56 ng0 Exp $
+# $NetBSD: Makefile,v 1.4 2020/06/22 08:01:49 nikita Exp $
 
-DISTNAME=	guile-json-3.3.0
+DISTNAME=	guile-json-4.1.0
 CATEGORIES=	textproc
 MASTER_SITES=	http://download.savannah.gnu.org/releases/guile-json/
 
-MAINTAINER=	ng0@NetBSD.org
+MAINTAINER=	nikita@NetBSD.org
 HOMEPAGE=	https://github.com/aconchillo/guile-json
 COMMENT=	JSON module for Guile
 LICENSE=	gnu-gpl-v3

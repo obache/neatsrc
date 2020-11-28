@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.58 2019/12/29 10:15:04 markd Exp $
+# $NetBSD: Makefile,v 1.70 2020/08/17 20:17:31 leot Exp $
 
 OIIOVER=	1.8.15
 DISTNAME=	oiio-Release-${OIIOVER}
 PKGNAME=	${DISTNAME:S/oiio-Release/openimageio/}
-PKGREVISION=	8
+PKGREVISION=	19
 CATEGORIES=	graphics
 MASTER_SITES=	-https://github.com/OpenImageIO/oiio/archive/Release-${OIIOVER}.tar.gz
 
@@ -12,8 +12,11 @@ HOMEPAGE=	https://sites.google.com/site/openimageio/
 COMMENT=	OpenImageIO is a library for reading and writing images
 LICENSE=	modified-bsd
 
+UNLIMIT_RESOURCES=	datasize virtualsize
+
 USE_CMAKE=		yes
 USE_LANGUAGES=		c gnu++11
+BUILDLINK_TRANSFORM+=	rm:-std=c++11 # for alloca(3)
 USE_TOOLS+=		gmake
 
 OBJDIR=			../build

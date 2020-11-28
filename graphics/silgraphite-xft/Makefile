@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.9 2018/03/12 11:15:37 wiz Exp $
+# $NetBSD: Makefile,v 1.12 2020/08/17 20:17:32 leot Exp $
 
 DISTNAME=	silgraphite-2.3.1
 PKGNAME=	${DISTNAME:S/silgraphite/silgraphite-xft/}
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=silgraphite/}
 

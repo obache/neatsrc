@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.55 2019/11/02 22:38:00 rillig Exp $
+# $NetBSD: buildlink3.mk,v 1.59 2020/08/17 20:17:31 leot Exp $
 
 BUILDLINK_TREE+=	librsvg
 
@@ -12,13 +12,16 @@ BUILDLINK_API_DEPENDS.librsvg+=		librsvg>=2.12.6nb1
 .include "../../graphics/librsvg/available.mk"
 
 .if ${LIBRSVG_TYPE} == "rust"
+BUILDLINK_ABI_DEPENDS.librsvg?=	librsvg>=2.48.3nb2
 BUILDLINK_PKGSRCDIR.librsvg?=	../../graphics/librsvg
 BUILDLINK_API_DEPENDS.librsvg+=	librsvg>=2.41
-BUILDLINK_ABI_DEPENDS.librsvg+=	librsvg>=2.44.14nb2
+BUILDLINK_ABI_DEPENDS.librsvg+=	librsvg>=2.48.0
 .elif ${LIBRSVG_TYPE} == "c"
 BUILDLINK_PKGSRCDIR.librsvg?=	../../graphics/librsvg-c
 BUILDLINK_API_DEPENDS.librsvg+=	librsvg<2.41
 BUILDLINK_ABI_DEPENDS.librsvg+=	librsvg>=2.40.20nb4
+
+.include "../../textproc/libcroco/buildlink3.mk"
 .else
 PKG_FAIL_REASON+=		"[graphics/librsvg/buildlink3.mk] Invalid value ${LIBRSVG_TYPE} for LIBRSVG_TYPE."
 .endif
@@ -27,7 +30,6 @@ PKG_FAIL_REASON+=		"[graphics/librsvg/buildlink3.mk] Invalid value ${LIBRSVG_TYP
 .include "../../graphics/cairo/buildlink3.mk"
 .include "../../graphics/cairo-gobject/buildlink3.mk"
 .include "../../graphics/gdk-pixbuf2/buildlink3.mk"
-.include "../../textproc/libcroco/buildlink3.mk"
 .endif # LIBRSVG_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-librsvg

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.45 2019/08/06 09:27:30 maya Exp $
+# $NetBSD: Makefile,v 1.47 2020/03/20 11:57:28 nia Exp $
 
 DISTNAME=	libusb-0.1.12
 PKGREVISION=	7

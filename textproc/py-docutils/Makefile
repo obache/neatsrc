@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.48 2019/08/13 12:35:12 adam Exp $
+# $NetBSD: Makefile,v 1.52 2020/07/13 20:05:12 wiz Exp $
 
-DISTNAME=	docutils-0.15.2
+DISTNAME=	docutils-0.16
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	textproc python
 MASTER_SITES=	${MASTER_SITE_PYPI:=d/docutils/}
 
-MAINTAINER=	darcy@NetBSD.org
-HOMEPAGE=	http://docutils.sourceforge.net/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://docutils.sourceforge.io/
 COMMENT=	Python tool to generate documents
 LICENSE=	public-domain AND 2-clause-bsd
 
@@ -30,14 +30,8 @@ post-install:
 	${MV} ${bin}.py ${bin}-${PYVERSSUFFIX} || ${TRUE}
 .endfor
 
-.include "../../lang/python/pyversion.mk"
-
 do-test:
-.if ${_PYTHON_VERSION} == 27
 	cd ${WRKSRC} && ${PYTHONBIN} test/alltests.py
-.else
-	cd ${WRKSRC} && ${PYTHONBIN} test3/alltests.py
-.endif
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"

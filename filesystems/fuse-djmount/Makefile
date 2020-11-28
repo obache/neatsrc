@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2013/07/15 02:02:22 ryoon Exp $
+# $NetBSD: Makefile,v 1.10 2020/03/20 11:57:37 nia Exp $
 
 DISTNAME=	djmount-0.71
 PKGNAME=	fuse-${DISTNAME}

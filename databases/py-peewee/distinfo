@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.55 2019/12/08 21:46:35 adam Exp $
+$NetBSD: distinfo,v 1.57 2020/04/24 08:26:56 adam Exp $
 
-SHA1 (peewee-3.13.1.tar.gz) = f54ae7f85b657cbbd44477a2b708fb720451f247
-RMD160 (peewee-3.13.1.tar.gz) = f3e0cc75c6c63d58518eb1786d85a6f76a9bf7b7
-SHA512 (peewee-3.13.1.tar.gz) = 34ee10adeb23ca109b6d35e57524504bb5f48d369220afa1027a8d7417583b55acd9d2515afce9b697ad0cde1596ea8cb6a4573d757b9c862941b3f1ed6bda9d
-Size (peewee-3.13.1.tar.gz) = 843897 bytes
+SHA1 (peewee-3.13.3.tar.gz) = acac756c95e312c30324df1434e3af5e3bbf64ba
+RMD160 (peewee-3.13.3.tar.gz) = 46f892773a5dcbad7390aabbe2bc64306c6edb45
+SHA512 (peewee-3.13.3.tar.gz) = 829bea39366d0ebeef19a8c169ac7ad724496770411549baddff33a82f2962c026a34bfce2ed7b6eb08527311504516467c49918a91de5fd670dd871b5ec4447
+Size (peewee-3.13.3.tar.gz) = 2293231 bytes
 SHA1 (patch-setup.py) = 2d4d9fde18df606b584dffe04aa9da22de3e4dcc

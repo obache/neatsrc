@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.29 2019/04/03 00:33:00 ryoon Exp $
+# $NetBSD: Makefile,v 1.32 2020/06/02 08:22:53 adam Exp $
 
 DISTNAME=	monotorrent-0.72
-PKGREVISION=	22
+PKGREVISION=	24
 CATEGORIES=	net
 MASTER_SITES=	http://projects.qnetp.net/attachments/download/13/
 
 MAINTAINER=	kefren@NetBSD.org
-HOMEPAGE=	http://monotorrent.com/
+HOMEPAGE=	https://github.com/alanmcgovern/monotorrent
 COMMENT=	Open source bittorrent library
 
 GNU_CONFIGURE=	yes

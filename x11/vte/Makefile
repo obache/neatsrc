@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.114 2019/07/21 22:24:20 wiz Exp $
+# $NetBSD: Makefile,v 1.118 2020/08/17 20:18:01 leot Exp $
 #
 
 .include "Makefile.common"
 
-PKGREVISION=	24
+PKGREVISION=	27
 CATEGORIES=	x11
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -17,7 +17,6 @@ GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake intltool msgfmt pkg-config
 
 CONFIGURE_ARGS+=	--disable-python
-CONFIGURE_ARGS+=	--with-ft-exec-prefix=${BUILDLINK_PREFIX.freetype2}
 CONFIGURE_ARGS+=	--enable-Bsymbolic=auto
 
 BUILDLINK_API_DEPENDS.glib2+=		glib2>=2.10.0

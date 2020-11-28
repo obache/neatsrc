@@ -1,10 +1,6 @@
-$NetBSD: distinfo,v 1.7 2018/11/20 17:45:38 maya Exp $
+$NetBSD: distinfo,v 1.10 2020/07/14 12:41:21 nia Exp $
 
-SHA1 (luaposix-34.0.4.tar.gz) = 848b18807f7906386354e0be74079c0ccc56aab9
-RMD160 (luaposix-34.0.4.tar.gz) = 6aa8c5a57b1df85c00ffa3f24c5e6cecf28169c0
-SHA512 (luaposix-34.0.4.tar.gz) = c6399d87d490ab5bc3e220183dc181121fe3ac0d802b6f6400dbe71c491d810b4e705ab098242ac195a0b179b9b22c098072c05b7f8e534a6a60a12931ee1585
-Size (luaposix-34.0.4.tar.gz) = 175194 bytes
-SHA1 (patch-ext_posix_stdlib.c) = 1ab4263d3578288ef54649ec6c91115019e664ce
-SHA1 (patch-ext_posix_sys_socket.c) = 665f96727cee1aa4a4841b83be5b7ff270a0b505
-SHA1 (patch-ext_posix_time.c) = 2ef51e2a5db9e41afa557954edf2ac6aff33e3f2
-SHA1 (patch-lukefile) = 41773ee71524080a35c924bd623a250c44791a2b
+SHA1 (luaposix-35.0.tar.gz) = 31a8c48fc57ff1a4199df27618e098beabcee946
+RMD160 (luaposix-35.0.tar.gz) = 6ae6a865c21fda8a1caa291cfb2cef7255302dc2
+SHA512 (luaposix-35.0.tar.gz) = 4bb61892b78d9e59418a9a6360b9f611fb9b5438b9261a2c6672f053a1b21dfd9a2060b8d2f0d3eac6185773cf84672c1769c081c4ab53d2ddae2232e4a9269b
+Size (luaposix-35.0.tar.gz) = 178091 bytes

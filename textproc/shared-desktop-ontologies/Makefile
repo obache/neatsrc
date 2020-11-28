@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2013/11/07 09:31:37 markd Exp $
+# $NetBSD: Makefile,v 1.9 2020/03/20 11:58:29 nia Exp $
 
 DISTNAME=	shared-desktop-ontologies-0.11.0
 CATEGORIES=	textproc

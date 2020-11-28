@@ -1,12 +1,12 @@
-$NetBSD: distinfo,v 1.30 2019/09/04 11:58:54 tnn Exp $
+$NetBSD: distinfo,v 1.33 2020/10/22 13:47:34 tnn Exp $
 
-SHA1 (synergy-core-1.10.3.tar.gz) = fc406fb77e0b89d156b2d8cd5e978a3e90be7ddb
-RMD160 (synergy-core-1.10.3.tar.gz) = f6d588c7b6d780dac7f0ccb2612b4e2100a1a161
-SHA512 (synergy-core-1.10.3.tar.gz) = 01497fe362395dd9d26d44f7468ca5c01ee7cd2f590b6c28a67e094f969fdca3b8f78570cca4f188c16fc2575ca895daf8d6ffd07378964ed01da1540db05c8e
-Size (synergy-core-1.10.3.tar.gz) = 7596446 bytes
-SHA1 (patch-CMakeLists.txt) = 09d8e49897c99fba3e7f9b58da72b6d3f6e3c4f1
-SHA1 (patch-src_lib_server_CConfig.cpp) = 94c5e9a57f9880ab8fcb75320bd2dbb306540966
-SHA1 (patch-tools_gmock-1.6.0_configure) = 0a3a23076b15858b79a8b3c2a9144ddaaad7ebe3
-SHA1 (patch-tools_gmock-1.6.0_include_gmock_internal_gmock-port.h) = 70d0f775e952a67b2680c480f757e60eb183e5be
-SHA1 (patch-tools_gtest-1.6.0_configure) = df73a2566790e23501795af54f9c17324e7a6c83
-SHA1 (patch-tools_gtest-1.6.0_include_gtest_internal_gtest-port.h) = ee496a203a5372a06a83a3d73d6d87b1b0c58157
+SHA1 (googletest-1.10.0.tar.gz) = 9c89be7df9c5e8cb0bc20b3c4b39bf7e82686770
+RMD160 (googletest-1.10.0.tar.gz) = f2f7f96adf1ab8aae3f6204fdba3ff150fd4396b
+SHA512 (googletest-1.10.0.tar.gz) = bd52abe938c3722adc2347afad52ea3a17ecc76730d8d16b065e165bc7477d762bce0997a427131866a89f1001e3f3315198204ffa5d643a9355f1f4d0d7b1a9
+Size (googletest-1.10.0.tar.gz) = 904349 bytes
+SHA1 (synergy-core-1.12.0.tar.gz) = 48d70c1d09b4c6c93cf3866ad0da289825bbba36
+RMD160 (synergy-core-1.12.0.tar.gz) = bcef3d62a1c67e97089fbb85f5a1439e0db92f38
+SHA512 (synergy-core-1.12.0.tar.gz) = 234e8eb42624f006aa45dfcf50a80089a82347c7151da040f10066b412f729adf01600bc9ec2274a0941965e91ab7bab74abd398287a20906dd4a70b1948db5a
+Size (synergy-core-1.12.0.tar.gz) = 8237539 bytes
+SHA1 (patch-CMakeLists.txt) = 76fc21ec8ed63b35e71ed3a08012a05b7ef65ddf
+SHA1 (patch-src_lib_server_Config.cpp) = 94c5e9a57f9880ab8fcb75320bd2dbb306540966

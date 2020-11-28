@@ -1,28 +1,30 @@
-# $NetBSD: options.mk,v 1.1 2020/01/04 10:57:18 taca Exp $
+# $NetBSD: options.mk,v 1.4 2020/06/21 16:05:55 taca Exp $
 
-PKG_OPTIONS_VAR=	PKG_OPTIONS.squid4
-PKG_SUPPORTED_OPTIONS=	ecap gnutls inet6 snmp openssl squid-backend-aufs \
-			squid-backend-diskd squid-backend-rock \
-			squid-backend-ufs squid-unlinkd squid-kerberos-helper \
-			squid-ldap-helper squid-pam-helper
-PKG_OPTIONS_LEGACY_OPTS+= \
-	diskd:squid-backend-diskd \
-	null:squid-backend-null ufs:squid-backend-ufs \
-	linux-netfilter:squid-netfilter ipf-transparent:squid-ipf \
-	pf-transparent:squid-pf unlinkd:squid-unlinkd \
-	arp-acl:squid-arp-acl pam-helper:squid-pam-helper
+PKG_OPTIONS_VAR=		PKG_OPTIONS.squid4
+PKG_SUPPORTED_OPTIONS=		inet6 snmp squid-backend-aufs \
+				squid-backend-diskd squid-backend-rock \
+				squid-backend-ufs squid-ecap squid-esi \
+				squid-unlinkd squid-kerberos-helper \
+				squid-ldap-helper squid-pam-helper
+PKG_OPTIONS_REQUIRED_GROUPS=	ssl
+PKG_OPTIONS_GROUP.ssl=		openssl gnutls
+PKG_OPTIONS_LEGACY_OPTS+=	diskd:squid-backend-diskd \
+				ecap:squid-ecap esi:squid-esi \
+				null:squid-backend-null ufs:squid-backend-ufs \
+				linux-netfilter:squid-netfilter \
+				ipf-transparent:squid-ipf \
+				pf-transparent:squid-pf unlinkd:squid-unlinkd \
+				arp-acl:squid-arp-acl \
+				pam-helper:squid-pam-helper
 
-PLIST_VARS+=	diskd snmp unlinkd
 PLIST_VARS+=	ba_LDAP ba_NCSA ba_PAM ba_getpwnam
-PLIST_VARS+=	da_file da_LDAP
-PLIST_VARS+=	na_sml_lm
-PLIST_VARS+=	ta_kerberos
-PLIST_VARS+=	eacl_file_userip eacl_LDAP_group eacl_unix_group
-PLIST_VARS+=	openssl
+PLIST_VARS+=	da_LDAP da_file diskd
+PLIST_VARS+=	eacl_LDAP_group eacl_file_userip eacl_unix_group
+PLIST_VARS+=	openssl ta_kerberos unlinkd
 
-PKG_SUGGESTED_OPTIONS=	inet6 snmp openssl squid-backend-aufs \
+PKG_SUGGESTED_OPTIONS=	inet6 openssl snmp squid-backend-aufs \
 			squid-backend-diskd squid-backend-ufs \
-			squid-pam-helper squid-unlinkd
+			squid-esi squid-pam-helper squid-unlinkd
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -58,8 +60,8 @@ PKG_SUPPORTED_OPTIONS+=	squid-arp-acl
 .include "../../mk/bsd.options.mk"
 
 # Note: NIS helper cannot be build; it requires crypt.h header file.
-SQUID_BASIC_AUTH_HELPERS?=	DB LDAP NCSA PAM fake getpwnam
-SQUID_DIGEST_AUTH_HELPERS?=	LDAP file
+SQUID_BASIC_AUTH_HELPERS?=	DB NCSA PAM fake getpwnam
+SQUID_DIGEST_AUTH_HELPERS?=	file
 SQUID_NTLM_AUTH_HELPERS?=	SMB_LM fake
 SQUID_EXTERNAL_ACL_HELPERS?=	file_userip unix_group
 
@@ -84,7 +86,7 @@ CONFIGURE_ARGS+=	--enable-ipfw-transparent
 CONFIGURE_ARGS+=	--enable-arp-acl
 .endif
 
-.if !empty(PKG_OPTIONS:Mecap)
+.if !empty(PKG_OPTIONS:Msquid-ecap)
 CONFIGURE_ARGS+=	--enable-ecap
 USE_TOOLS+=		pkg-config
 CHECK_WRKREF_SKIP+=	sbin/squid
@@ -92,6 +94,13 @@ USE_LANGUAGES+=		c++11
 .include "../../www/libecap/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-ecap
+.endif
+
+.if !empty(PKG_OPTIONS:Msquid-esi)
+CONFIGURE_ARGS+=	--enable-esi
+.include "../../textproc/expat/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--disable-esi
 .endif
 
 .if !empty(PKG_SUPPORTED_OPTIONS:Minet6) && empty(PKG_OPTIONS:Minet6)
@@ -122,7 +131,6 @@ SQUID_BASIC_AUTH_HELPERS+=	PAM
 
 .if !empty(PKG_OPTIONS:Msnmp)
 CONFIGURE_ARGS+=	--enable-snmp
-PLIST.snmp=		yes
 .else
 CONFIGURE_ARGS+=	--disable-snmp
 .endif
@@ -136,9 +144,8 @@ PLIST.openssl=		yes
 
 .if !empty(PKG_OPTIONS:Mgnutls)
 CONFIGURE_ARGS+=	--with-gnutls=${PREFIX:Q}
-CONFIGURE_ARGS+=	--enable-ssl-crtd --without-openssl
+CONFIGURE_ARGS+=	--without-openssl
 .  include "../../security/gnutls/buildlink3.mk"
-PLIST.openssl=		yes
 .endif
 
 .if !empty(PKG_OPTIONS:Msquid-backend-aufs)

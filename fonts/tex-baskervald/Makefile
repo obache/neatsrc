@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:29:36 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:38 markd Exp $
 
 DISTNAME=	baskervald
 PKGNAME=	tex-${DISTNAME}-1.016
+PKGREVISION=	1
 TEXLIVE_REV=	19490
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/baskervaldadf
+HOMEPAGE=	https://ctan.org/pkg/baskervaldadf
 COMMENT=	Baskervald ADF fonts collection with TeX/LaTeX support
 LICENSE=	lppl-1.3c
 

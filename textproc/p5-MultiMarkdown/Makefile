@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.4 2019/08/11 13:23:32 wiz Exp $
+# $NetBSD: Makefile,v 1.7 2020/09/08 13:16:44 wiz Exp $
 
 DISTNAME=	Text-MultiMarkdown-1.000035
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	textproc
-MASTER_SITES=	https://cpan.metacpan.org/authors/id/B/BO/BOBTFISH/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/B/BO/BOBTFISH/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://cpan.metacpan.org/authors/id/B/BO/BOBTFISH/
+HOMEPAGE=	https://metacpan.org/pod/Text::MultiMarkdown
 COMMENT=	Perl5 convert MultiMarkdown syntax to (X)HTML
 LICENSE=	modified-bsd
 

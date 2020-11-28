@@ -1,4 +1,4 @@
-# $NetBSD: license.mk,v 1.103 2019/12/07 04:47:32 gutteridge Exp $
+# $NetBSD: license.mk,v 1.107 2020/08/18 20:18:32 riastradh Exp $
 #
 # This file handles everything about the LICENSE variable. It is
 # included automatically by bsd.pkg.mk.
@@ -42,8 +42,7 @@
 #	LICENSE=	(license1 AND license2) OR license3
 #	Parenthesis are required when mixing AND and OR.
 #
-#	Every package should specify its license.  (Prior to early 2009,
-#	Open Source and Free software did not have license tags.)
+#	Every package should specify its license.
 #
 #	Licenses are collected in the licenses/ subdirectory of
 #	pkgsrc.  For open source license, we generally use the same
@@ -114,6 +113,7 @@
 # except that we exclude the AGPL (clearly a Free license), following
 # the decision of the board of TNF.
 DEFAULT_ACCEPTABLE_LICENSES= \
+	afl-3.0 \
 	apache-1.1 apache-2.0 \
 	arphic-public \
 	artistic artistic-2.0 \
@@ -147,7 +147,7 @@ DEFAULT_ACCEPTABLE_LICENSES= \
 	ms-pl \
 	ofl-v1.0 ofl-v1.1 \
 	openssl \
-	original-bsd modified-bsd 2-clause-bsd \
+	original-bsd modified-bsd 2-clause-bsd 0-clause-bsd \
 	osl \
 	paratype \
 	php \
@@ -218,13 +218,9 @@ SKIP_LICENSE_CHECK?=	no
 _ACCEPTABLE_LICENSE=	skipped
 .else
 _ACCEPTABLE_LICENSE!=	\
-    if test `${PKG_ADMIN} -V` -lt 20090528; then \
-	echo outdated; \
-    else \
 	${PKGSRC_SETENV} PKGSRC_ACCEPTABLE_LICENSES=${ACCEPTABLE_LICENSES:Q} \
 	PKGSRC_DEFAULT_ACCEPTABLE_LICENSES=${DEFAULT_ACCEPTABLE_LICENSES:Q} \
-	${PKG_ADMIN} check-license ${LICENSE:Q} || echo failure; \
-    fi
+	${PKG_ADMIN} check-license ${LICENSE:Q} || echo failure
 .endif
 
 .if ${_ACCEPTABLE_LICENSE} == "no"
@@ -285,7 +281,7 @@ guess-license: .PHONY
 
 	${RUN} \
 	\
-	type ninka > /dev/null 2>&1 || ${FAIL_MSG} "To guess the license, wip/ninka must be installed."; \
+	type ninka > /dev/null 2>&1 || ${FAIL_MSG} "To guess the license, devel/ninka must be installed."; \
 	\
 	${PHASE_MSG} "Guessing licenses for ${PKGNAME}"; \
 	\

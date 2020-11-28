@@ -104,13 +104,11 @@ func (s *Suite) TearDownTest(c *check.C) {
 func Test__qa(t *testing.T) {
 	ck := intqa.NewQAChecker(t.Errorf)
 
-	ck.Configure("buildlink3.go", "*", "*", -intqa.EMissingTest)     // TODO
 	ck.Configure("distinfo.go", "*", "*", -intqa.EMissingTest)       // TODO
 	ck.Configure("files.go", "*", "*", -intqa.EMissingTest)          // TODO
 	ck.Configure("licenses.go", "*", "*", -intqa.EMissingTest)       // TODO
 	ck.Configure("line.go", "*", "*", -intqa.EMissingTest)           // TODO
 	ck.Configure("linechecker.go", "*", "*", -intqa.EMissingTest)    // TODO
-	ck.Configure("lineslexer.go", "*", "*", -intqa.EMissingTest)     // TODO
 	ck.Configure("lines.go", "*", "*", -intqa.EMissingTest)          // TODO
 	ck.Configure("logging.go", "*", "*", -intqa.EMissingTest)        // TODO
 	ck.Configure("mkline.go", "*", "*", -intqa.EMissingTest)         // TODO
@@ -121,8 +119,6 @@ func Test__qa(t *testing.T) {
 	ck.Configure("mkshparser.go", "*", "*", -intqa.EMissingTest)     // TODO
 	ck.Configure("mkshtypes.go", "*", "*", -intqa.EMissingTest)      // TODO
 	ck.Configure("mkshwalker.go", "*", "*", -intqa.EMissingTest)     // TODO
-	ck.Configure("mktokenslexer.go", "*", "*", -intqa.EMissingTest)  // TODO
-	ck.Configure("mktypes.go", "*", "*", -intqa.EMissingTest)        // TODO
 	ck.Configure("options.go", "*", "*", -intqa.EMissingTest)        // TODO
 	ck.Configure("package.go", "*", "*", -intqa.EMissingTest)        // TODO
 	ck.Configure("paragraph.go", "*", "*", -intqa.EMissingTest)      // TODO
@@ -144,6 +140,9 @@ func Test__qa(t *testing.T) {
 	ck.Configure("vardefs.go", "*", "*", -intqa.EMissingTest)   // TODO
 	ck.Configure("vargroups.go", "*", "*", -intqa.EMissingTest) // TODO
 	ck.Configure("vartype.go", "*", "*", -intqa.EMissingTest)   // TODO
+
+	// Don't require tests for helper methods.
+	ck.Configure("*.go", "VartypeCheck", "[a-z]*", -intqa.EMissingTest)
 
 	// For now, don't require tests for all the test code.
 	// Having good coverage for the main code is more important.
@@ -240,7 +239,7 @@ func (t *Tester) SetUpVartypes() {
 
 func (t *Tester) SetUpMasterSite(varname string, urls ...string) {
 	if !G.Pkgsrc.vartypes.IsDefinedExact(varname) {
-		G.Pkgsrc.vartypes.DefineParse(varname, BtFetchURL,
+		t.SetUpType(varname, BtFetchURL,
 			List|SystemProvided,
 			"buildlink3.mk: none",
 			"*: use")
@@ -447,13 +446,18 @@ func (t *Tester) SetUpCategory(name RelPath) {
 //
 // If the package path does not really matter for this test,
 // just use "category/package".
+//
+// To get short pathnames in the diagnostics, t.Chdir is often called
+// afterwards, if the test only sets up a single package.
+// In that case, the returned path is often not used since passing it
+// to Pkglint.Check would generate the long pathnames in the diagnostics.
 func (t *Tester) SetUpPackage(pkgpath RelPath, makefileLines ...string) CurrPath {
 	assertf(
 		matches(pkgpath.String(), `^[^/]+/[^/]+$`),
 		"pkgpath %q must have the form \"category/package\"", pkgpath)
 
 	distname := pkgpath.Base()
-	category := pkgpath.DirNoClean()
+	category := pkgpath.Dir()
 	if category == "wip" {
 		// To avoid boilerplate CATEGORIES definitions for wip packages.
 		category = "local"
@@ -490,7 +494,7 @@ func (t *Tester) SetUpPackage(pkgpath RelPath, makefileLines ...string) CurrPath
 	mlines := []string{
 		MkCvsID,
 		"",
-		"DISTNAME=\t" + distname + "-1.0",
+		"DISTNAME=\t" + distname.String() + "-1.0",
 		"#PKGNAME=\tpackage-1.0",
 		"CATEGORIES=\t" + category.String(),
 		"MASTER_SITES=\t# none",
@@ -548,7 +552,7 @@ func (t *Tester) CreateFileLines(filename RelPath, lines ...string) CurrPath {
 	}
 
 	abs := t.File(filename)
-	err := os.MkdirAll(abs.DirNoClean().String(), 0777)
+	err := os.MkdirAll(abs.Dir().String(), 0777)
 	t.c.Assert(err, check.IsNil)
 
 	err = abs.WriteString(content.String())
@@ -565,28 +569,34 @@ func (t *Tester) CreateFileDummyPatch(filename RelPath) {
 	// Patch files only make sense in category/package/patches directories.
 	assert(G.Pkgsrc.Rel(t.File(filename)).Count() == 4)
 
+	patchedFile := replaceAll(filename.String(), `.*?\bpatches/patch-`, "")
+
 	t.CreateFileLines(filename,
 		CvsID,
 		"",
 		"Documentation",
 		"",
 		"--- oldfile",
-		"+++ newfile",
+		"+++ "+patchedFile,
 		"@@ -1 +1 @@",
 		"-old",
 		"+new")
 }
 
 func (t *Tester) CreateFileBuildlink3(filename RelPath, customLines ...string) {
+	lower := filename.Dir().Base()
+	t.CreateFileBuildlink3Id(filename, lower.String(), customLines...)
+}
+
+func (t *Tester) CreateFileBuildlink3Id(filename RelPath, id string, customLines ...string) {
 	// Buildlink3.mk files only make sense in category/package directories.
 	assert(G.Pkgsrc.Rel(t.File(filename)).Count() == 3)
 
-	dir := filename.DirClean()
-	lower := dir.Base()
+	dir := filename.Dir().Clean()
 	// see pkgtools/createbuildlink/files/createbuildlink, "package specific variables"
-	upper := strings.Replace(strings.ToUpper(lower), "-", "_", -1)
+	upperID := strings.Replace(strings.ToUpper(id), "-", "_", -1)
 
-	width := tabWidthSlice("BUILDLINK_API_DEPENDS.", lower, "+=\t")
+	width := tabWidthSlice("BUILDLINK_API_DEPENDS.", id, "+=\t")
 
 	aligned := func(format string, args ...interface{}) string {
 		msg := sprintf(format, args...)
@@ -600,21 +610,22 @@ func (t *Tester) CreateFileBuildlink3(filename RelPath, customLines ...string) {
 	lines = append(lines,
 		MkCvsID,
 		"",
-		sprintf("BUILDLINK_TREE+=\t%s", lower),
+		sprintf("BUILDLINK_TREE+=\t%s", id),
 		"",
-		sprintf(".if !defined(%s_BUILDLINK3_MK)", upper),
-		sprintf("%s_BUILDLINK3_MK:=", upper),
+		sprintf(".if !defined(%s_BUILDLINK3_MK)", upperID),
+		sprintf("%s_BUILDLINK3_MK:=", upperID),
 		"",
-		aligned("BUILDLINK_API_DEPENDS.%s+=", lower)+sprintf("%s>=0", lower),
-		aligned("BUILDLINK_PKGSRCDIR.%s?=", lower)+sprintf("../../%s", dir),
-		aligned("BUILDLINK_DEPMETHOD.%s?=", lower)+"build",
+		aligned("BUILDLINK_API_DEPENDS.%s+=", id)+sprintf("%s>=0", id),
+		// TODO: Add ABI_DEPENDS; see Test_LoadBuildlink3Data
+		aligned("BUILDLINK_PKGSRCDIR.%s?=", id)+sprintf("../../%s", dir),
+		aligned("BUILDLINK_DEPMETHOD.%s?=", id)+"build",
 		"")
 	lines = append(lines, customLines...)
 	lines = append(lines,
 		"",
-		sprintf(".endif # %s_BUILDLINK3_MK", upper),
+		sprintf(".endif # %s_BUILDLINK3_MK", upperID),
 		"",
-		sprintf("BUILDLINK_TREE+=\t-%s", lower))
+		sprintf("BUILDLINK_TREE+=\t-%s", id))
 
 	t.CreateFileLines(filename, lines...)
 }
@@ -639,7 +650,7 @@ func (t *Tester) Copy(source, target RelPath) {
 
 	data, err := absSource.ReadString()
 	assertNil(err, "Copy.Read")
-	err = os.MkdirAll(absTarget.DirClean().String(), 0777)
+	err = os.MkdirAll(absTarget.Dir().Clean().String(), 0777)
 	assertNil(err, "Copy.MkdirAll")
 	err = absTarget.WriteString(data)
 	assertNil(err, "Copy.Write")
@@ -721,10 +732,10 @@ func (t *Tester) SetUpHierarchy() (
 	//
 	// This is the same mechanism that is used in Pkgsrc.Relpath.
 	includePath := func(including, included RelPath) RelPath {
-		fromDir := including.DirClean()
+		fromDir := including.Dir().Clean()
 		to := basedir.Rel(included.AsPath())
-		if fromDir == to.DirNoClean() {
-			return NewRelPathString(to.Base())
+		if fromDir == to.Dir() {
+			return to.Base()
 		} else {
 			return fromDir.Rel(basedir).JoinNoClean(to).CleanDot()
 		}
@@ -947,8 +958,9 @@ func (t *Tester) ExpectPanic(action func(), expectedMessage string) {
 
 // ExpectPanicMatches runs the given action and expects that this action
 // calls assert or assertf, or uses some other way to panic.
-func (t *Tester) ExpectPanicMatches(action func(), expectedMessage string) {
-	t.Check(action, check.PanicMatches, expectedMessage)
+// The expectedMessage is anchored on both ends.
+func (t *Tester) ExpectPanicMatches(action func(), expectedMessage regex.Pattern) {
+	t.Check(action, check.PanicMatches, string(expectedMessage))
 }
 
 // ExpectAssert runs the given action and expects that this action calls assert.
@@ -976,46 +988,19 @@ func (t *Tester) ExpectDiagnosticsAutofix(action func(autofix bool), diagnostics
 	t.CheckOutput(diagnostics)
 }
 
-// NewRawLines creates lines from line numbers and raw text, including newlines.
-//
-// Arguments are sequences of either (lineno, orignl) or (lineno, orignl, textnl).
-//
-// Specifying textnl is only useful when simulating a line that has already been
-// modified by Autofix.
-func (t *Tester) NewRawLines(args ...interface{}) []*RawLine {
-	rawlines := make([]*RawLine, len(args)/2)
-	j := 0
-	for i := 0; i < len(args); i += 2 {
-		lineno := args[i].(int)
-		orignl := args[i+1].(string)
-		textnl := orignl
-		if i+2 < len(args) {
-			if s, ok := args[i+2].(string); ok {
-				textnl = s
-				i++
-			}
-		}
-		rawlines[j] = &RawLine{lineno, orignl, textnl}
-		j++
-	}
-	return rawlines[:j]
-}
-
 // NewLine creates an in-memory line with the given text.
 // This line does not correspond to any line in a file.
 func (t *Tester) NewLine(filename CurrPath, lineno int, text string) *Line {
-	textnl := text + "\n"
-	rawLine := RawLine{lineno, textnl, textnl}
-	return NewLine(filename, lineno, text, &rawLine)
+	return NewLine(filename, lineno, text, &RawLine{text + "\n"})
 }
 
 // NewMkLine creates an in-memory line in the Makefile format with the given text.
 func (t *Tester) NewMkLine(filename CurrPath, lineno int, text string) *MkLine {
 	basename := filename.Base()
 	assertf(
-		hasSuffix(basename, ".mk") ||
+		basename.HasSuffixText(".mk") ||
 			basename == "Makefile" ||
-			hasPrefix(basename, "Makefile.") ||
+			basename.HasPrefixText("Makefile.") ||
 			basename == "mk.conf",
 		"filename %q must be realistic, otherwise the variable permissions are wrong", filename)
 
@@ -1065,7 +1050,7 @@ func (t *Tester) NewMkLines(filename CurrPath, lines ...string) *MkLines {
 func (t *Tester) NewMkLinesPkg(filename CurrPath, pkg *Package, lines ...string) *MkLines {
 	basename := filename.Base()
 	assertf(
-		hasSuffix(basename, ".mk") || basename == "Makefile" || hasPrefix(basename, "Makefile."),
+		basename.HasSuffixText(".mk") || basename == "Makefile" || basename.HasPrefixText("Makefile."),
 		"filename %q must be realistic, otherwise the variable permissions are wrong", filename)
 
 	var rawText strings.Builder

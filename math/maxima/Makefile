@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.52 2019/08/11 13:21:44 wiz Exp $
+# $NetBSD: Makefile,v 1.59 2020/08/31 18:10:11 wiz Exp $
 
-DISTNAME=		maxima-5.41.0
-PKGREVISION=		3
+DISTNAME=		maxima-5.44.0
+PKGREVISION=		1
 CATEGORIES=		math
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=maxima/}
 
@@ -13,9 +13,11 @@ LICENSE=		gnu-gpl-v2
 # Note: lisp backend is depended and setup up for in options.mk
 DEPENDS+=		tk-[0-9]*:../../x11/tk
 
+CHECK_PORTABILITY_SKIP=	doc/info/fix_tab
+
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake makeinfo perl
-REPLACE_SH=		doc/misc/grepforvariables.sh
+TEXINFO_REQD=		5.0
 
 INFO_FILES=		yes
 TEST_TARGET=		check

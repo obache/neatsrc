@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.17 2013/12/23 11:57:06 wiz Exp $
+# $NetBSD: Makefile,v 1.19 2020/03/20 11:58:25 nia Exp $
 
 DISTNAME=		expatobjc-1.0
 PKGREVISION=		5

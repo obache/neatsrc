@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.2 2020/09/22 08:06:19 mef Exp $
+
+SHA1 (R/rversions_2.0.2.tar.gz) = 401a2301023c01973f3c30f108af4f8b942f5f55
+RMD160 (R/rversions_2.0.2.tar.gz) = cfd5cd7fbbe635a95d05e297e4334ed4235b1046
+SHA512 (R/rversions_2.0.2.tar.gz) = f0ed8990fb1753ed54972528d1f6d609616d7c3747b1574dc1dc5cc1bd599acc91e0047297a840ffdaa1196ecdfd6bc16324ead7ed564f961b4e993c2dd384c1
+Size (R/rversions_2.0.2.tar.gz) = 41558 bytes

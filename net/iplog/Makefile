@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2013/02/06 19:30:57 jperkin Exp $
+# $NetBSD: Makefile,v 1.18 2020/03/20 11:58:07 nia Exp $
 #
 
 DISTNAME=	iplog-2.2.3

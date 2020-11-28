@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.65 2019/11/26 14:14:23 wiz Exp $
+# $NetBSD: Makefile,v 1.70 2020/09/19 13:28:44 schmonz Exp $
 
-DISTNAME=	wxsvg-1.5.20
+DISTNAME=	wxsvg-1.5.22
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=wxsvg/}
 EXTRACT_SUFX=	.tar.bz2
@@ -11,10 +11,16 @@ COMMENT=	C++ library to create, manipulate and render SVG files
 LICENSE=	gnu-lgpl-v2
 
 GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--enable-libav
+CONFIGURE_ARGS+=	--enable-render=cairo
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake pkg-config
 
+GNU_CONFIGURE_WX_VERSION=	no
+
+.include "../../devel/pango/buildlink3.mk"
+.include "../../graphics/cairo/buildlink3.mk"
 .include "../../graphics/libexif/buildlink3.mk"
 .include "../../multimedia/ffmpeg4/buildlink3.mk"
 .include "../../x11/wxGTK30/buildlink3.mk"

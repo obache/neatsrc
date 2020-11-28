@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.5 2019/11/25 10:15:37 markd Exp $
+$NetBSD: distinfo,v 1.7 2020/06/09 11:56:18 markd Exp $
 
-SHA1 (ksystemlog-19.08.3.tar.xz) = 11cf9cc16bf7b9c0912ea4a1f683338e426cedd0
-RMD160 (ksystemlog-19.08.3.tar.xz) = d25a56fb42983e4b83596a360c96a0f032a3d714
-SHA512 (ksystemlog-19.08.3.tar.xz) = bc2f1f73a04b417579d12351d78a0c66a2814590cffaa191c3d5158e3f0819aa7a24bb69603b6883e4ea753944444fdd2986393c9c8ed83dca81408cd56a655d
-Size (ksystemlog-19.08.3.tar.xz) = 1928428 bytes
+SHA1 (ksystemlog-20.04.1.tar.xz) = 5544e56bd9b56b0653b233b47ff7cf48adf14a6c
+RMD160 (ksystemlog-20.04.1.tar.xz) = 57a3a258941ee19a1e76adf8d70edb040d7ee1f5
+SHA512 (ksystemlog-20.04.1.tar.xz) = d2b2269be0beec03788982822c7cd4512338ead6de7c1080066e654253c38d6f5f4d0c6d2d301034b77b22f73083fd0570d8a8320444b542593cf0ed3771bdcf
+Size (ksystemlog-20.04.1.tar.xz) = 1929568 bytes

@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.67 2019/08/21 14:16:40 ryoon Exp $
+$NetBSD: distinfo,v 1.72 2020/10/25 11:07:48 ryoon Exp $
 
-SHA1 (nsd-4.2.2.tar.gz) = b0a8a9765cbce402a7534f5aaa38cd0b1f21644f
-RMD160 (nsd-4.2.2.tar.gz) = fb83c39dfd5e5350871af67c7fc2629347bde740
-SHA512 (nsd-4.2.2.tar.gz) = 43e2ee980a11ed0ad521cc9d8be1e2d29fa8ab552bdda043ffa7e5bc71cf07ad49319629f71e93dcf1dabd315f93bcfb9fd8b5847f27b125cf151fb4f63779b2
-Size (nsd-4.2.2.tar.gz) = 1149182 bytes
+SHA1 (nsd-4.3.3.tar.gz) = a3bb7b8915db1b014a7b284bf31f4cc90dfadecd
+RMD160 (nsd-4.3.3.tar.gz) = d7328dafbf21cf261abc7041c747ffba3c3c43b0
+SHA512 (nsd-4.3.3.tar.gz) = 5e7e2037e0939af20af137c913943904e36cf7da517292d40dbbd4f7ebc878b0e97acd7f6cbbaaebbb525a84f6d6ae9e82c34df9c8482075653c4802777a9fa6
+Size (nsd-4.3.3.tar.gz) = 1181082 bytes
 SHA1 (patch-aa) = d9a423d5faa8da9a213b21fd2712225ac9645091

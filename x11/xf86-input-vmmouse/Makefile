@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.23 2018/03/07 11:57:41 wiz Exp $
+# $NetBSD: Makefile,v 1.25 2020/06/28 13:52:19 nia Exp $
 
 DISTNAME=	xf86-input-vmmouse-13.1.0
 PKGREVISION=	2
@@ -7,13 +7,16 @@ MASTER_SITES=	${MASTER_SITE_XORG:=driver/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	joerg@NetBSD.org
-HOMEPAGE=	http://xorg.freedesktop.org/
+HOMEPAGE=	https://xorg.freedesktop.org/
 COMMENT=	Modular Xorg VMware virtual mouse driver
 
 USE_LANGUAGES=	c99
 USE_LIBTOOL=	YES
 GNU_CONFIGURE=	YES
 USE_TOOLS+=	gmake pkg-config
+
+# #error The vmmouse protocol is only supported on x86 architectures.
+ONLY_FOR_PLATFORM+=	*-*-i386 *-*-x86_64
 
 CONFIGURE_ENV.SunOS+=	DRIVER_MAN_SUFFIX=4
 

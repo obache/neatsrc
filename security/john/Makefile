@@ -1,17 +1,17 @@
-# $NetBSD: Makefile,v 1.27 2019/11/04 21:12:54 rillig Exp $
+# $NetBSD: Makefile,v 1.31 2020/08/08 12:48:56 leot Exp $
 #
 
-DISTNAME=	john-1.8.0
+DISTNAME=	john-1.9.0
+PKGREVISION=	1
 CATEGORIES=	security textproc
-MASTER_SITES=	http://www.openwall.com/john/j/
+MASTER_SITES=	http://www.openwall.com/john/k/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.openwall.com/john/
+HOMEPAGE=	https://www.openwall.com/john/
 COMMENT=	Unix Password Cracker
 LICENSE=	gnu-gpl-v2
 
-NO_CONFIGURE=	yes
 BUILD_DIRS=	src
 TEST_TARGET=	check
 
@@ -68,12 +68,17 @@ BUILD_TARGET=		generic
 BUILD_TARGET=		generic
 .endif
 
-INSTALLATION_DIRS=	bin share/john
+# Avoid possible per-platform optimization
+MAKE_FLAGS+=	OPT_NORMAL=
+MAKE_FLAGS+=	OPT_INLINE=
 
-SUBST_CLASSES+=		john
-SUBST_STAGE.john=	pre-build
-SUBST_FILES.john=	src/params.h
-SUBST_VARS.john=	PREFIX
+INSTALLATION_DIRS=	bin share/john share/doc/john
+
+SUBST_CLASSES+=			fix-paths
+SUBST_STAGE.fix-paths=		pre-configure
+SUBST_MESSAGE.fix-paths=	Fixing hardcoded paths.
+SUBST_FILES.fix-paths=		src/params.h
+SUBST_VARS.fix-paths=		PREFIX
 
 do-install:
 	# programs and scripts
@@ -86,8 +91,13 @@ do-install:
 	${LN} -sf john ${DESTDIR}${PREFIX}/bin/${i}
 .endfor
 	# data files
-.for i in ascii.chr digits.chr lm_ascii.chr password.lst
+.for i in alnum.chr alpha.chr ascii.chr digits.chr lm_ascii.chr lower.chr \
+    lowernum.chr lowerspace.chr upper.chr uppernum.chr password.lst
 	${INSTALL_DATA} ${WRKSRC}/run/${i} ${DESTDIR}${PREFIX}/share/john
+.endfor
+	# documentation
+.for i in CONFIG EXAMPLES FAQ MODES OPTIONS README RULES
+	${INSTALL_DATA} ${WRKSRC}/doc/${i} ${DESTDIR}${PREFIX}/share/doc/john
 .endfor
 
 .include "../../mk/bsd.pkg.mk"

@@ -351,6 +351,54 @@ func (s *Suite) Test_Pkgsrc_loadDocChangesFromFile__old(c *check.C) {
 		"WARN: ~/doc/CHANGES-2018:6: Invalid doc/CHANGES line: \tUpdated pkgpath to 1.0 [author d]")
 }
 
+func (s *Suite) Test_Pkgsrc_checkChangeVersion(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCommandLine("-Cglobal", "-Wall")
+	t.CreateFileLines("doc/CHANGES-2020",
+		"\tAdded category/package version 1.0 [author1 2020-01-01]",
+		"\tAdded category/package version 1.0 [author1 2020-01-01]",
+		"\tAdded category/package version 2.3 [author1 2020-01-01]",
+		"\tUpdated category/package to 0.9 [author1 2020-01-01]",
+		"\tDowngraded category/package to 1.0 [author1 2020-01-01]",
+		"\tDowngraded category/package to 0.8 [author 2020-01-01]",
+		"\tRenamed category/package to category/renamed [author1 2020-01-01]",
+		"\tMoved category/package to other/renamed [author1 2020-01-01]")
+	t.Chdir("doc")
+
+	G.Pkgsrc.loadDocChangesFromFile("CHANGES-2020")
+
+	// In line 3 there is no warning about the repeated addition since
+	// the multi-packages (Lua, PHP, Python) may add a package in
+	// several versions to the same PKGPATH.
+	t.CheckOutputLines(
+		"WARN: CHANGES-2020:2: Package \"category/package\" was already added in line 1.",
+		"WARN: CHANGES-2020:4: Updating \"category/package\" from 2.3 in line 3 to 0.9 should increase the version number.",
+		"WARN: CHANGES-2020:5: Downgrading \"category/package\" from 0.9 in line 4 to 1.0 should decrease the version number.")
+}
+
+func (s *Suite) Test_Pkgsrc_checkChangeVersionNumber(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCommandLine("-Cglobal", "-Wall")
+	t.CreateFileLines("doc/CHANGES-2020",
+		"\tAdded category/package version v1 [author1 2020-01-01]",
+		"\tUpdated category/package to v2 [author1 2020-01-01]",
+		"\tDowngraded category/package to v2 [author1 2020-01-01]",
+		"\tUpdated category/package to 2020/03 [author1 2020-01-01]")
+	t.Chdir("doc")
+
+	G.Pkgsrc.loadDocChangesFromFile("CHANGES-2020")
+
+	t.CheckOutputLines(
+		"WARN: CHANGES-2020:1: Version number \"v1\" should start with a digit.",
+		"WARN: CHANGES-2020:2: Version number \"v2\" should start with a digit.",
+		"WARN: CHANGES-2020:3: Version number \"v2\" should start with a digit.",
+		"WARN: CHANGES-2020:3: Downgrading \"category/package\" from v2 in line 2 "+
+			"to v2 should decrease the version number.",
+		"WARN: CHANGES-2020:4: Malformed version number \"2020/03\".")
+}
+
 func (s *Suite) Test_Pkgsrc_parseDocChange(c *check.C) {
 	t := s.Init(c)
 
@@ -427,6 +475,10 @@ func (s *Suite) Test_Pkgsrc_parseDocChange(c *check.C) {
 		nil...)
 
 	test("\tRemoved pkgpath successor pkgpath [author 2019-01-01]",
+		nil...)
+
+	// Since 2020-10-06
+	test("\tRemoved pkgpath version 1.3.4 [author 2019-01-01]",
 		nil...)
 
 	// "and" is wrong
@@ -510,18 +562,20 @@ func (s *Suite) Test_Pkgsrc_checkRemovedAfterLastFreeze__check_global(c *check.C
 	// And for finding the removal reliably, it doesn't matter how long ago
 	// the last package change was.
 
-	// The empty lines in the following output demonstrate the cheating
-	// by creating fake lines from Change.Location.
 	t.CheckOutputLines(
+		">\t\tUpdated category/updated-before to 1.0 [updater 2019-04-01]",
 		"ERROR: ~/doc/CHANGES-2019:3: Package category/updated-before "+
 			"must either exist or be marked as removed.",
 		"",
+		">\t\tUpdated category/updated-after to 1.0 [updater 2019-07-01]",
 		"ERROR: ~/doc/CHANGES-2019:6: Package category/updated-after "+
 			"must either exist or be marked as removed.",
 		"",
+		">\t\tAdded category/added-after version 1.0 [updater 2019-07-01]",
 		"ERROR: ~/doc/CHANGES-2019:7: Package category/added-after "+
 			"must either exist or be marked as removed.",
 		"",
+		">\t\tDowngraded category/downgraded to 1.0 [author 2019-07-03]",
 		"ERROR: ~/doc/CHANGES-2019:9: Package category/downgraded "+
 			"must either exist or be marked as removed.")
 }
@@ -660,6 +714,8 @@ func (s *Suite) Test_Pkgsrc_loadTools(c *check.C) {
 		"USE_TOOLS+=\tm4:pkgsrc")
 	t.CreateFileLines("mk/bsd.pkg.mk",
 		"USE_TOOLS+=\tmv")
+	t.CreateFileLines("mk/tools/tools.NetBSD.mk",
+		"TOOLS_PLATFORM.ggrep=\t/usr/bin/grep")
 
 	G.Pkgsrc.loadTools()
 
@@ -676,6 +732,7 @@ func (s *Suite) Test_Pkgsrc_loadTools(c *check.C) {
 		"TRACE: 1   tool echo -n:ECHO_N:var:AfterPrefsMk",
 		"TRACE: 1   tool false:FALSE:var:AtRunTime",
 		"TRACE: 1   tool gawk:AWK::Nowhere",
+		"TRACE: 1   tool ggrep:::Nowhere",
 		"TRACE: 1   tool m4:::AfterPrefsMk",
 		"TRACE: 1   tool msgfmt:::AtRunTime",
 		"TRACE: 1   tool mv:MV::AtRunTime",
@@ -778,6 +835,19 @@ func (s *Suite) Test_Pkgsrc_loadTools__no_tools_found(c *check.C) {
 	t.ExpectFatal(
 		G.Pkgsrc.loadTools,
 		"FATAL: ~/mk/tools/bsd.tools.mk: Too few tool files.")
+}
+
+// Just for code coverage, for the IsRelevant callback.
+func (s *Suite) Test_Pkgsrc_loadToolsPlatform__redundant(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPkgsrc()
+	t.SetUpTool("tool", "", AfterPrefsMk)
+	t.CreateFileLines("mk/tools/tools.NetBSD.mk",
+		"TOOLS_PLATFORM.tool?=\t/bin/available",
+		"TOOLS_PLATFORM.tool?=\t/bin/available")
+	t.Chdir(".")
+	t.FinishSetUp()
 }
 
 func (s *Suite) Test_Pkgsrc_initDeprecatedVars(c *check.C) {
@@ -1077,6 +1147,18 @@ func (s *Suite) Test_Pkgsrc_ListVersions__error_is_cached(c *check.C) {
 	t.CheckOutputEmpty() // No repeated error message
 }
 
+func (s *Suite) Test_Pkgsrc_ListVersions__empty_directories_are_ignored(c *check.C) {
+	t := s.Init(c)
+
+	t.CreateFileLines("lang/lang123/Makefile")
+	t.CreateFileLines("lang/lang124/empty/empty/empty/empty/CVS/Entries")
+
+	versions := G.Pkgsrc.ListVersions("lang", `^lang[0-9]+$`, "lang/$0", true)
+
+	// lang/lang124 is not mentioned since it is "essentially empty".
+	t.CheckDeepEquals(versions, []string{"lang/lang123"})
+}
+
 // See PR 46570, Ctrl+F "3. In lang/perl5".
 func (s *Suite) Test_Pkgsrc_VariableType(c *check.C) {
 	t := s.Init(c)
@@ -1257,7 +1339,7 @@ func (s *Suite) Test_Pkgsrc_ReadDir(c *check.C) {
 		names = append(names, info.Name())
 	}
 
-	t.CheckDeepEquals(names, []string{"aaa-subdir", "file", "subdir"})
+	t.CheckDeepEquals(names, []string{"aaa-subdir", "empty", "file", "subdir"})
 }
 
 func (s *Suite) Test_Pkgsrc_Relpath(c *check.C) {
@@ -1405,10 +1487,28 @@ func (s *Suite) Test_Pkgsrc_File(c *check.C) {
 	test("filename", "filename")
 }
 
+func (s *Suite) Test_Pkgsrc_FilePkg(c *check.C) {
+	t := s.Init(c)
+
+	t.Chdir(".")
+
+	test := func(rel PackagePath, abs CurrPath) {
+		actual := G.Pkgsrc.FilePkg(rel)
+		t.CheckEquals(actual, abs)
+	}
+
+	test("", "")
+	test("category/package", "")
+	test("../package", "")
+	test("../../category", "")
+	test("../../category/package", "category/package")
+	test("../../../something", "")
+}
+
 func (s *Suite) Test_Change_Version(c *check.C) {
 	t := s.Init(c)
 
-	loc := Location{"doc/CHANGES-2019", 5, 5}
+	loc := Location{"doc/CHANGES-2019", 5}
 	added := Change{loc, Added, "category/path", "1.0", "author", "2019-01-01"}
 	updated := Change{loc, Updated, "category/path", "1.0", "author", "2019-01-01"}
 	downgraded := Change{loc, Downgraded, "category/path", "1.0", "author", "2019-01-01"}
@@ -1423,7 +1523,7 @@ func (s *Suite) Test_Change_Version(c *check.C) {
 func (s *Suite) Test_Change_Target(c *check.C) {
 	t := s.Init(c)
 
-	loc := Location{"doc/CHANGES-2019", 5, 5}
+	loc := Location{"doc/CHANGES-2019", 5}
 	renamed := Change{loc, Renamed, "category/path", "category/other", "author", "2019-01-01"}
 	moved := Change{loc, Moved, "category/path", "category/other", "author", "2019-01-01"}
 	downgraded := Change{loc, Downgraded, "category/path", "1.0", "author", "2019-01-01"}
@@ -1433,26 +1533,28 @@ func (s *Suite) Test_Change_Target(c *check.C) {
 	t.ExpectAssert(func() { downgraded.Target() })
 }
 
-func (s *Suite) Test_Change_Successor(c *check.C) {
+func (s *Suite) Test_Change_SuccessorOrVersion(c *check.C) {
 	t := s.Init(c)
 
-	loc := Location{"doc/CHANGES-2019", 5, 5}
+	loc := Location{"doc/CHANGES-2019", 5}
 	removed := Change{loc, Removed, "category/path", "", "author", "2019-01-01"}
 	removedSucc := Change{loc, Removed, "category/path", "category/successor", "author", "2019-01-01"}
+	removedVersion := Change{loc, Removed, "category/path", "1.3.4", "author", "2019-01-01"}
 	downgraded := Change{loc, Downgraded, "category/path", "1.0", "author", "2019-01-01"}
 
-	t.CheckEquals(removed.Successor(), "")
-	t.CheckEquals(removedSucc.Successor(), "category/successor")
-	t.ExpectAssert(func() { downgraded.Successor() })
+	t.CheckEquals(removed.SuccessorOrVersion(), "")
+	t.CheckEquals(removedSucc.SuccessorOrVersion(), "category/successor")
+	t.CheckEquals(removedVersion.SuccessorOrVersion(), "1.3.4")
+	t.ExpectAssert(func() { downgraded.SuccessorOrVersion() })
 }
 
 func (s *Suite) Test_Change_IsAbove(c *check.C) {
 	t := s.Init(c)
 
 	var changes = []*Change{
-		{Location{"", 1, 1}, 0, "", "", "", "2011-07-01"},
-		{Location{"", 2, 2}, 0, "", "", "", "2011-07-01"},
-		{Location{"", 1, 1}, 0, "", "", "", "2011-07-02"}}
+		{Location{"", 1}, 0, "", "", "", "2011-07-01"},
+		{Location{"", 2}, 0, "", "", "", "2011-07-01"},
+		{Location{"", 1}, 0, "", "", "", "2011-07-02"}}
 
 	test := func(i int, chi *Change, j int, chj *Change) {
 		actual := chi.IsAbove(chj)

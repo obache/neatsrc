@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.15 2019/12/06 20:21:48 markd Exp $
+# $NetBSD: Makefile,v 1.17 2020/08/31 18:11:04 wiz Exp $
 
 DISTNAME=	kotex-utils
 PKGNAME=	tex-${DISTNAME}-2.1.0
-PKGREVISION=	3
+PKGREVISION=	4
 TEXLIVE_REV=	38727
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/kotex-utils
+HOMEPAGE=	https://ctan.org/pkg/kotex-utils
 COMMENT=	Utility scripts and support files for typesetting Korean
 LICENSE=	lppl-1.3c
 

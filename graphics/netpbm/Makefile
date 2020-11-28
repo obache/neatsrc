@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.221 2019/08/11 13:21:12 wiz Exp $
+# $NetBSD: Makefile,v 1.226 2020/08/31 18:09:41 wiz Exp $
 
 DISTNAME=	netpbm-10.79.04
-PKGREVISION=	3
+PKGREVISION=	5
 CATEGORIES=	graphics
 MASTER_SITES=	#
 # manually created from svn checkout of
@@ -75,7 +75,7 @@ MAKE_FLAGS+=	NETWORKLD="-lsocket -lresolv"
     (!empty(CC_VERSION:Mgcc-[6-9]*) || !empty(PKGSRC_COMPILER:Mclang))
 SUBST_CLASSES+=		xopen
 SUBST_STAGE.xopen=	pre-configure
-SUBST_FILES.xopen=	*.c */*.c */*/*.c */*/*/*.c */*/*/*/*.c */*/*/*/*/*.c
+SUBST_FILES.xopen=	*/*.c */*/*.c */*/*/*.c */*/*/*/*.c */*/*/*/*/*.c
 SUBST_FILES.xopen+=	lib/util/lexheader
 SUBST_SED.xopen=	-e '/_XOPEN_SOURCE/s/500/600/'
 SUBST_SED.xopen+=	-e '/_XOPEN_SOURCE/s/1$$/600/'

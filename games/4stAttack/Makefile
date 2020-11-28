@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.36 2019/09/02 13:20:19 adam Exp $
+# $NetBSD: Makefile,v 1.38 2020/03/20 11:57:39 nia Exp $
 
 DISTNAME=		4stAttack-2.1.4
 PKGREVISION=		19

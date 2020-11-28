@@ -1,18 +1,18 @@
-# $NetBSD: Makefile,v 1.16 2019/08/11 13:18:17 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2020/08/31 18:06:52 wiz Exp $
 
 GCC_DIST_VERSION=	4.9.2
 GCC_PKGNAME=		gcc-mips-${GCC_DIST_VERSION}
 
 DISTNAME=	gcc-${GCC_DIST_VERSION}
 PKGNAME=	${GCC_PKGNAME}
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	cross lang
 MASTER_SITES=	${MASTER_SITE_GNU:=gcc/gcc-${GCC_DIST_VERSION}/}
 EXTRACT_SUFX=	.tar.bz2
 PLIST_SUBST+=	GCC_DIST_VERSION=${GCC_DIST_VERSION:Q}
 
 MAINTAINER=	martin@NetBSD.org
-HOMEPAGE=	http://gcc.gnu.org/
+HOMEPAGE=	https://gcc.gnu.org/
 COMMENT=	The GNU Compiler Collection (GCC) - 4.9 for mips (especially playstation2)
 LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND gnu-lgpl-v3
 
@@ -20,6 +20,8 @@ DISTFILES=		${DEFAULT_DISTFILES}
 EXTRACT_ONLY=		${DEFAULT_DISTFILES}
 
 NOT_FOR_PLATFORM=	Interix-*-*
+
+CHECK_PORTABILITY_SKIP=	contrib/*
 
 USE_LANGUAGES=		c c++03
 USE_TOOLS+=		gmake makeinfo sed:run perl
@@ -32,12 +34,6 @@ INFO_FILES=		yes
 
 UNLIMIT_RESOURCES+=	datasize
 UNLIMIT_RESOURCES+=	stacksize
-
-SUBST_CLASSES+=		vars
-SUBST_MESSAGE.vars=	Setting target machine name path in ${SUBST_FILES.vars}
-SUBST_STAGE.vars=	pre-configure
-SUBST_FILES.vars=	gcc/Makefile.in
-SUBST_VARS.vars=	GCC_TARGET_MACHINE
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -61,6 +57,10 @@ CONFIGURE_ENV+=		LDFLAGS_FOR_TARGET=${LDFLAGS_FOR_TARGET:Q}
 # CONFIGURE_ENV+=		${prg:tu}_FOR_TARGET=${PREFIX}/bin/${TARGET}-${prg}
 CONFIGURE_ARGS+=	--with-${prg}=${PREFIX}/bin/${TARGET}-${prg}
 .endfor
+
+# There are several options that are reported as unknown.
+# These are just not documented, but they exist, such as enable_libatomic.
+GNU_CONFIGURE_STRICT=	no
 
 CONFIGURE_ARGS+=	--disable-nls
 CONFIGURE_ARGS+=	--disable-libquadmath

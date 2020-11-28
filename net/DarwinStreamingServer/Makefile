@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.26 2019/11/03 11:45:28 rillig Exp $
+# $NetBSD: Makefile,v 1.29 2020/08/31 18:10:31 wiz Exp $
 
 DISTNAME=	DarwinStreamingSrvr5.5.5-Source
 PKGNAME=	DarwinStreamingServer-5.5.5
-PKGREVISION=	13
+PKGREVISION=	14
 CATEGORIES=	net multimedia
 MASTER_SITES=	http://static.macosforge.org/dss/downloads/
 
@@ -18,6 +18,10 @@ NO_BIN_ON_CDROM=	${RESTRICTED}
 NO_BIN_ON_FTP=		${RESTRICTED}
 
 USE_LANGUAGES=	c c++03
+
+# 5.5.5 does this in StrPtrLen.cpp, function StrPtrLen::NumEqualIgnoreCase.
+# Fixed in 6.0.3
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
 
 MAKE_FILE=	Makefile.POSIX
 MAKE_ENV+=	CCOMP=${CC:Q} CPLUS=${CXX:Q}\ -fPIC LINKER=${CXX:Q}
@@ -79,28 +83,7 @@ CONF_FILES+=		share/examples/streaming/streamingserver.xml-POSIX ${PKG_SYSCONFDI
 SUBST_CLASSES+=		makefile
 SUBST_STAGE.makefile=	pre-configure
 SUBST_MESSAGE.makefile=	Fixing Makefiles
-SUBST_FILES.makefile+=	APIModules/QTSSDemoAuthorizationModule.bproj/Makefile.POSIX
-SUBST_FILES.makefile+=	APIModules/QTSSHomeDirectoryModule/Makefile.POSIX
-SUBST_FILES.makefile+=	APIModules/QTSSRawFileModule.bproj/Makefile.POSIX
-SUBST_FILES.makefile+=	APIModules/QTSSRefMovieModule/Makefile.POSIX
-SUBST_FILES.makefile+=	APIModules/QTSSSpamDefenseModule.bproj/Makefile.POSIX
-SUBST_FILES.makefile+=	APIStubLib/makefile.apistublib.POSIX
-SUBST_FILES.makefile+=	CommonUtilitiesLib/Makefile.POSIX
-SUBST_FILES.makefile+=	HTTPUtilitiesLib/Makefile.POSIX
-SUBST_FILES.makefile+=	MP3Broadcaster/Makefile.POSIX
-SUBST_FILES.makefile+=	Makefile.POSIX
-SUBST_FILES.makefile+=	PlaylistBroadcaster.tproj/Makefile.POSIX
-SUBST_FILES.makefile+=	QTFileLib/Makefile.POSIX
-SUBST_FILES.makefile+=	QTFileTools/QTBroadcaster.tproj/Makefile.POSIX
-SUBST_FILES.makefile+=	QTFileTools/QTFileInfo.tproj/Makefile.POSIX
-SUBST_FILES.makefile+=	QTFileTools/QTFileTest.tproj/Makefile.POSIX
-SUBST_FILES.makefile+=	QTFileTools/QTRTPFileTest.tproj/Makefile.POSIX
-SUBST_FILES.makefile+=	QTFileTools/QTRTPGen.tproj/Makefile.POSIX
-SUBST_FILES.makefile+=	QTFileTools/QTSDPGen.tproj/Makefile.POSIX
-SUBST_FILES.makefile+=	QTFileTools/QTSampleLister.tproj/Makefile.POSIX
-SUBST_FILES.makefile+=	QTFileTools/QTTrackInfo.tproj/Makefile.POSIX
-SUBST_FILES.makefile+=	StreamingProxy.tproj/Makefile.POSIX
-SUBST_FILES.makefile+=	qtpasswd.tproj/Makefile.POSIX
+SUBST_FILES.makefile=	Makefile.POSIX */Makefile.POSIX */*/Makefile.POSIX
 SUBST_SED.makefile+=	-e "s|-O[023]||"
 
 SUBST_CLASSES+=		path

@@ -1,19 +1,22 @@
-# $NetBSD: Makefile,v 1.8 2020/01/09 20:51:59 nia Exp $
+# $NetBSD: Makefile,v 1.35 2020/08/31 18:12:33 wiz Exp $
 
 FIREFOX_VER=		${MOZ_BRANCH}${MOZ_BRANCH_MINOR}
-MOZ_BRANCH=		68.4
-MOZ_BRANCH_MINOR=	.1esr
+MOZ_BRANCH=		68.12
+MOZ_BRANCH_MINOR=	.0esr
 
 DISTNAME=	firefox-${FIREFOX_VER}.source
 PKGNAME=	${DISTNAME:S/.source//:S/b/beta/:S/esr//:S/firefox-/firefox68-/}
+PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES+=	${MASTER_SITE_MOZILLA:=firefox/releases/${FIREFOX_VER}/source/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	https://www.mozilla.com/en-US/firefox/
-COMMENT=	Web browser with support for extensions (version ${FIREFOX_VER:C/\..*//})
+COMMENT=	Web browser with support for extensions (version ${FIREFOX_VER:tu:C/\\.[[:digit:]\.]*//})
 LICENSE=	mpl-1.1
+
+SUPERSEDES+=	firefox60-[0-9]*
 
 WRKSRC=		${WRKDIR}/firefox-${FIREFOX_VER:S/esr//}
 
@@ -72,24 +75,6 @@ MOZILLA_NAME=	Browser
 post-extract:
 	${CP} ${FILESDIR}/cubeb_sun.c ${WRKSRC}/media/libcubeb/src/cubeb_sun.c
 	mv ${WRKSRC}/gfx/ycbcr/yuv_row_arm.s ${WRKSRC}/gfx/ycbcr/yuv_row_arm.S
-# XXX Hack taken from lang/rust.
-# patch(1) in NetBSD does not handle .cargo-checksum.json like long width file.
-# Replace checksum fields for following patches:
-# patch-third__party_rust_libc_src_unix_bsd_netbsdlike_netbsd_mod.rs,v 1.1
-# patch-third__party_rust_libc_src_unix_bsd_netbsdlike_netbsd_other_mod.rs,v 1.1
-	${CP} ${WRKSRC}/third_party/rust/libc/.cargo-checksum.json \
-	      ${WRKSRC}/third_party/rust/libc/.cargo-checksum.json.orig
-	${CAT} ${WRKSRC}/third_party/rust/libc/.cargo-checksum.json.orig | \
-		${SED} -e 's/4d9f7091af8e166943ac6f42ce85558909e5b6e61325039bff7adfbcf4b90212/7f3da734d5e2e9426051da4f406e46d9e9bed43ed2d7d048e8afc8af7ed44795/' | \
-		${SED} -e 's/1cd66ed5967c788562d4ad626cfbeb1544f4b9267111de5f6790379b8327f28e/6ae549dd21581748b2f1d82880eaca3445c11e3354965e5b49b20342075a3e52/' \
-		> ${WRKSRC}/third_party/rust/libc/.cargo-checksum.json
-	${CP} ${WRKSRC}/third_party/rust/bindgen/.cargo-checksum.json \
-		${WRKSRC}/third_party/rust/bindgen/.cargo-checksum.json.orig
-	${CAT} ${WRKSRC}/third_party/rust/bindgen/.cargo-checksum.json.orig | \
-		${SED} -e 's/5788372d27bdbaaf0454bc17be31a5480918bc41a8a1c4832e8c61185c07f9cd/8c92a52c0f859c7bec7bfbc36b9d18f904baab0c8c9dc1b3e7af34de1a0b0da4/' | \
-		${SED} -e 's/8dc10043d872e68e660ef96edca4d9733f95be45cdad4893462fa929b335014f/71f1a37f75b971ea5b0d8457473cc410947dbf706cb6d2c0338916910b78a675/' | \
-		${SED} -e 's/34f9aa76b6c9c05136bb69dcd6455397faef571a567254d2c541d50a962994db/e5581852eec87918901a129284b4965aefc8a19394187a8095779a084f28fabe/' \
-		> ${WRKSRC}/third_party/rust/bindgen/.cargo-checksum.json
 
 pre-configure:
 	cd ${WRKSRC} && autoconf

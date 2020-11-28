@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2019/07/04 13:41:56 ryoon Exp $
+# $NetBSD: Makefile,v 1.17 2020/04/04 04:19:36 mef Exp $
 
 DISTNAME=	scala-2.13.0
 CATEGORIES=	lang
@@ -6,7 +6,7 @@ MASTER_SITES=	http://www.scala-lang.org/files/archive/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	yyamano@NetBSD.org
-HOMEPAGE=	http://www.scala-lang.org/
+HOMEPAGE=	https://www.scala-lang.org/
 COMMENT=	Scala is a multi-paradigm programming language
 LICENSE=	apache-2.0
 
@@ -14,7 +14,7 @@ USE_JAVA=	run
 USE_JAVA2=	8
 NO_BUILD=	yes
 
-USE_TOOLS+=	bash:run
+USE_TOOLS+=	bash:run tar
 REPLACE_BASH+=	bin/fsc bin/scala bin/scalac \
 		bin/scaladoc bin/scalap
 

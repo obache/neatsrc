@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.48 2018/03/12 11:17:04 wiz Exp $
+# $NetBSD: Makefile,v 1.50 2020/08/17 20:19:27 leot Exp $
 #
 
 DISTNAME=	rat-3.0.28
-PKGREVISION=	9
+PKGREVISION=	10
 CATEGORIES=	mbone
 MASTER_SITES=	http://www-mice.cs.ucl.ac.uk/multimedia/software/rat/3.0.28/
 
@@ -24,6 +24,8 @@ post-patch:
 	${CP} ${WRKSRC}/Makefile_NetBSD_1 ${WRKSRC}/Makefile_NetBSD_6
 	${CP} ${WRKSRC}/Makefile_NetBSD_1 ${WRKSRC}/Makefile_NetBSD_7
 	${CP} ${WRKSRC}/Makefile_NetBSD_1 ${WRKSRC}/Makefile_NetBSD_8
+	${CP} ${WRKSRC}/Makefile_NetBSD_1 ${WRKSRC}/Makefile_NetBSD_9
+	${CP} ${WRKSRC}/Makefile_NetBSD_1 ${WRKSRC}/Makefile_NetBSD_10
 	${CP} ${WRKSRC}/Makefile_NetBSD_1 ${WRKSRC}/Makefile_DragonFly_2
 	${CP} ${WRKSRC}/Makefile_NetBSD_1 ${WRKSRC}/Makefile_DragonFly_3
 

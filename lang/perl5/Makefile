@@ -1,7 +1,9 @@
-# $NetBSD: Makefile,v 1.260 2019/11/24 01:08:21 gdt Exp $
+# $NetBSD: Makefile,v 1.267 2020/09/04 14:07:51 wiz Exp $
 
 .include "license.mk"
 .include "Makefile.common"
+
+PKGREVISION=	1
 
 COMMENT=	Practical Extraction and Report Language
 
@@ -10,75 +12,77 @@ CONFLICTS+=	perl-base-[0-9]* perl-thread-[0-9]*
 # CONFLICTS packages older than CORE modules version.
 # based on 'corelist -v ${PKGVERSION}'
 # update based on 'corelist -diff ${PREV_PKGVERSION} ${PKGVERSION}'
-CONFLICTS+=	p5-Archive-Tar<2.32
+CONFLICTS+=	p5-Archive-Tar<2.36
 CONFLICTS+=	p5-Attribute-Handlers<1.01
 CONFLICTS+=	p5-AutoLoader<5.74
-CONFLICTS+=	p5-CPAN<2.2200			# 2.20.00
+CONFLICTS+=	p5-CPAN<2.2700			# 2.27.00
 CONFLICTS+=	p5-CPAN-Meta<2.150010
 CONFLICTS+=	p5-CPAN-Meta-Requirements<2.140
 CONFLICTS+=	p5-CPAN-Meta-YAML<0.018
-CONFLICTS+=	p5-Compress-Raw-Bzip2<2.084
-CONFLICTS+=	p5-Compress-Raw-Zlib<2.084
-CONFLICTS+=	p5-DB_File<1.843
-CONFLICTS+=	p5-Devel-PPPort<3.52
+CONFLICTS+=	p5-Compress-Raw-Bzip2<2.093
+CONFLICTS+=	p5-Compress-Raw-Zlib<2.093
+CONFLICTS+=	p5-DB_File<1.853
+CONFLICTS+=	p5-Devel-PPPort<3.57
 CONFLICTS+=	p5-Digest<1.17.01		# 1.17_01
-CONFLICTS+=	p5-Digest-MD5<2.55
+CONFLICTS+=	p5-Digest-MD5<2.55.01
 CONFLICTS+=	p5-Digest-SHA<6.02
-CONFLICTS+=	p5-Encode<3.01
-CONFLICTS+=	p5-ExtUtils-CBuilder<0.28.02.31	# 0.280231
-CONFLICTS+=	p5-ExtUtils-Command<7.34
+CONFLICTS+=	p5-Encode<3.06
+CONFLICTS+=	p5-ExtUtils-CBuilder<0.28.02.34	# 0.280234
+CONFLICTS+=	p5-ExtUtils-Command<7.44
 CONFLICTS+=	p5-ExtUtils-Embed<1.35
 CONFLICTS+=	p5-ExtUtils-Install<2.14
-CONFLICTS+=	p5-ExtUtils-MakeMaker<7.34
+CONFLICTS+=	p5-ExtUtils-MakeMaker<7.44
 CONFLICTS+=	p5-ExtUtils-Manifest<1.72
 CONFLICTS+=	p5-ExtUtils-ParseXS<3.40
 CONFLICTS+=	p5-File-Path<2.16
 CONFLICTS+=	p5-File-Temp<0.23.09	# 0.2309
-CONFLICTS+=	p5-Getopt-Long<2.50
+CONFLICTS+=	p5-Getopt-Long<2.51
 CONFLICTS+=	p5-HTTP-Tiny<0.076
-CONFLICTS+=	p5-I18N-LangTags<0.43
-CONFLICTS+=	p5-IO<1.3900			# 1.39
-CONFLICTS+=	p5-IO-Compress<2.084		# IO::Compress::*, Compress::*
+CONFLICTS+=	p5-I18N-LangTags<0.44
+CONFLICTS+=	p5-IO<1.4300			# 1.43
+CONFLICTS+=	p5-IO-Compress<2.093		# IO::Compress::*, Compress::*
 CONFLICTS+=	p5-IO-Zlib<1.10
 CONFLICTS+=	p5-IPC-Cmd<1.02
 CONFLICTS+=	p5-IPC-SysV<2.07
-CONFLICTS+=	p5-JSON-PP<4.02
+CONFLICTS+=	p5-JSON-PP<4.04
 CONFLICTS+=	p5-Locale-Maketext<1.29
 CONFLICTS+=	p5-Locale-Maketext-Simple<0.21.01	# 0.21_01
 CONFLICTS+=	p5-MIME-Base64<3.15
 CONFLICTS+=	p5-Math-Complex<1.59.01			# 5901
 CONFLICTS+=	p5-Memoize<1.03.01
-CONFLICTS+=	p5-Module-CoreList<5.20191110
+CONFLICTS+=	p5-Module-CoreList<5.20200620
 CONFLICTS+=	p5-Module-Load<0.34
 CONFLICTS+=	p5-NEXT<0.67.01				# 1.67_01
 CONFLICTS+=	p5-Parse-CPAN-Meta<2.150010
 CONFLICTS+=	p5-Pod-Escapes<1.07
 CONFLICTS+=	p5-Pod-Parser<1.63
-CONFLICTS+=	p5-Pod-Simple<3.35
+CONFLICTS+=	p5-Pod-Simple<3.40
 CONFLICTS+=	p5-Pod-Usage<1.69
-CONFLICTS+=	p5-Storable<3.15
-CONFLICTS+=	p5-Sys-Syslog<0.35
-CONFLICTS+=	p5-Term-ANSIColor<4.06
+CONFLICTS+=	p5-Storable<3.21
+CONFLICTS+=	p5-Sys-Syslog<0.36
+CONFLICTS+=	p5-Term-ANSIColor<5.01
 CONFLICTS+=	p5-Term-Cap<1.17
 #CONFLICTS+=	p5-Term-ReadLine<1.17	# devel/p5-Term-ReadLine is -Gnu
-CONFLICTS+=	p5-Test-Harness<3.38
-CONFLICTS+=	p5-Test-Simple<1.302162
+CONFLICTS+=	p5-Test-Harness<3.42
+CONFLICTS+=	p5-Test-Simple<1.302175
 CONFLICTS+=	p5-Text-Tabs+Wrap<2013.0523	# Text::Tabs + Text::Wrap
 CONFLICTS+=	p5-Tie-File<1.02
 CONFLICTS+=	p5-Tie-RefHash<1.39
-CONFLICTS+=	p5-Time-HiRes<1.9760
+CONFLICTS+=	p5-Time-HiRes<1.9764
 CONFLICTS+=	p5-Time-Local<1.28
-CONFLICTS+=	p5-Time-Piece<1.33
+CONFLICTS+=	p5-Time-Piece<1.34.01
 CONFLICTS+=	p5-Unicode-Collate<1.27
-CONFLICTS+=	p5-Unicode-Normalize<1.26
+CONFLICTS+=	p5-Unicode-Normalize<1.27
 CONFLICTS+=	p5-XSLoader<0.30
-CONFLICTS+=	p5-autodie<2.29
+CONFLICTS+=	p5-autodie<2.32
 CONFLICTS+=	p5-constant<1.33
 CONFLICTS+=	p5-experimental<0.020
 CONFLICTS+=	p5-parent<0.237
 CONFLICTS+=	p5-version<0.9924
 
 SUPERSEDES+=	p5-Tie-File<=1.02
+SUPERSEDES+=	p5-Time-HiRes<=1.9764
+SUPERSEDES+=	p5-DB_File<=1.853
 SUPERSEDES+=	p5-Memoize<=1.03.01
 SUPERSEDES+=	p5-I18N-LangTags<=0.43
 SUPERSEDES+=	p5-Locale-Maketext<=1.29
@@ -114,6 +118,7 @@ CONFIGURE_SCRIPT=	./Configure
 CONFIGURE_ARGS+=	-sde
 CONFIGURE_ARGS+=	-Dldflags=${LDFLAGS:Q}
 MAKE_ENV+=		LC_ALL="C"
+LDFLAGS.QNX+=		-lm
 
 .if ${OPSYS} == "SunOS"
 USE_TOOLS+=	bash
@@ -179,7 +184,7 @@ CONFIGURE_ARGS+=	-Duseshrplib
 USE_TOOLS+=		hostname ln rm sed test
 SUBST_VARS.policysh+=	TOOLS_HOSTNAME_CMD
 SUBST_VARS.policysh+=	TOOLS_LN
-TOOLS_ALIASES.sed+=	${TOOLS_SED:T}
+TOOLS_ALIASES.sed=	${TOOLS_SED:T}
 SUBST_VARS.policysh+=	TOOLS_SED
 SUBST_VARS.policysh+=	TOOLS_SH
 SUBST_VARS.policysh+=	TOOLS_TEST
@@ -252,14 +257,6 @@ REPLACE_PERL+=		ext/ExtUtils-Miniperl/lib/ExtUtils/Miniperl.pm
 REPLACE_PERL+=		ext/File-DosGlob/lib/File/DosGlob.pm
 REPLACE_PERL+=		lib/unicore/mktables
 
-# And replace a perl interpreter during the pre-install stage
-# I think this may be a bootstrap script, so can't use REPLACE_PERL
-# because that is acted upon already in the pre-configure stage
-SUBST_CLASSES+=		miniperl
-SUBST_STAGE.miniperl=	pre-install
-SUBST_FILES.miniperl=	lib/ExtUtils/xsubpp
-SUBST_SED.miniperl=	-e "1s:\#!./miniperl:\#!${PERL5}:"
-
 .if ${PKGSRC_COMPILER:Mxlc}
 SUBST_CLASSES+=		cpprun
 SUBST_STAGE.cpprun=	pre-install
@@ -277,7 +274,7 @@ SUBST_SED.cpprun=	-e "s/cpprun=''/cpprun='cc -E'/"
 #
 SUBST_CLASSES+=		dirmode
 SUBST_STAGE.dirmode=	pre-configure
-SUBST_FILES.dirmode=	installhtml install_lib.pl
+SUBST_FILES.dirmode=	install_lib.pl
 SUBST_SED.dirmode=	-e "s/755/${PKGDIRMODE}/g;/umask(/d"
 
 post-extract:
@@ -300,8 +297,8 @@ PERL5_PACKLIST_DESTDIR=	no
 FILES_SUBST+=		PERL5_COMMENT=\#
 FILES_SUBST+=		PERL5_PACKLIST=
 
+.PHONY: perl5-post-install
 post-install: perl5-post-install
-
 perl5-post-install:
 	${RUN}if ${TEST} -x ${DESTDIR}${PREFIX}/bin/a2p; then		\
 		strip ${DESTDIR}${PREFIX}/bin/a2p;			\

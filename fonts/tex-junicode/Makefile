@@ -1,14 +1,16 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:30:08 markd Exp $
+# $NetBSD: Makefile,v 1.5 2020/05/10 04:31:47 markd Exp $
 
 DISTNAME=	junicode
-PKGNAME=	tex-${DISTNAME}-0.7.7
-TEXLIVE_REV=	28286
+PKGNAME=	tex-${DISTNAME}-1.0.2
+PKGREVISION=	1
+TEXLIVE_REV=	53954
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/junicode
+HOMEPAGE=	https://ctan.org/pkg/junicode
 COMMENT=	TrueType font for mediaevalists
-LICENSE=	gnu-gpl-v2
+LICENSE=	ofl-v1.1
 
-TEXLIVE_UNVERSIONED=	yes
+TEX_MAP_FILES+=	Junicode.map
+
 .include "../../print/texlive/package.mk"
 .include "../../mk/bsd.pkg.mk"

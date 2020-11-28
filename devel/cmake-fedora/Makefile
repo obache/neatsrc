@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.12 2017/11/01 06:44:49 maya Exp $
+# $NetBSD: Makefile,v 1.13 2020/07/31 09:21:23 wiz Exp $
 
 DISTNAME=	cmake-fedora-2.9.2-Source
 PKGNAME=	${DISTNAME:S/-Source//}
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://releases.pagure.org/cmake-fedora/
 
@@ -20,7 +21,8 @@ NO_BUILD=	yes
 
 TEST_TARGET=	test_all
 
-.include "../../devel/cmake/Makefile.version"
+.include "../../devel/cmake/version.mk"
+
 PLIST_SUBST+=	CMAKE_API=${CMAKE_API}
 PRINT_PLIST_AWK+=	/^share\/cmake-${CMAKE_API}/ \
 			{ gsub(/cmake-${CMAKE_API}/, "cmake-$${CMAKE_API}") }

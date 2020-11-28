@@ -1,4 +1,4 @@
-# $NetBSD: print-plist.mk,v 1.34 2018/03/11 14:53:10 rillig Exp $
+# $NetBSD: print-plist.mk,v 1.36 2020/06/10 16:06:09 leot Exp $
 #
 # Automatic PLIST generation
 #  - files & symlinks first
@@ -98,13 +98,16 @@ print-PLIST:
 		BEGIN { comment = "@comment $$NetBSD$$";}		\
 		/^@comment \$$NetBSD.*\$$$$/ { comment=$$0; exit;} 	\
 		END { print comment; }'
-	${RUN} ${ALL_ENV};					\
+	${RUN} ${ALL_ENV};						\
 	shlib_type=${SHLIB_TYPE:Q};					\
 	case $$shlib_type in 						\
 	"a.out")	genlinks=1 ;;					\
 	*)		genlinks=0 ;;					\
 	esac;								\
 	${_PRINT_PLIST_FILES_CMD}					\
+	 | ${AWK} '							\
+		${EARLY_PRINT_PLIST_AWK}				\
+		{ print $$0; }'						\
 	 | ${_PRINT_PLIST_LIBTOOLIZE_FILTER}				\
 	 | ${SORT}							\
 	 | ${AWK} '							\
@@ -135,6 +138,9 @@ print-PLIST:
 		{ print $$0; }'
 	${RUN}\
 	for i in `${_PRINT_PLIST_DIRS_CMD}				\
+			| ${AWK} '					\
+				${EARLY_PRINT_PLIST_AWK}		\
+				{ print $$0; }'				\
 			| ${SORT} -r					\
 			| ${AWK} '					\
 				/emul\/linux\/proc/ { next; }		\
@@ -155,3 +161,18 @@ print-PLIST:
 	done								\
 	| ${AWK} '${_PRINT_PLIST_AWK_SUBST} { print $$0; }'
 .endif # target(print-PLIST)
+
+_VARGROUPS+=		print-PLIST
+_PKG_VARS.print-PLIST=	\
+	PKGNAME_NOREV PKGVERSION \
+	PKGLOCALEDIR PKGGNUDIR PKGINFODIR PKGMANDIR PKG_DBDIR \
+	FONTS_DIRS.x11 FONTS_DIRS.ttf FONTS_DIRS.type1 \
+	INFO_FILES ICON_THEMES PRINT_PLIST_AWK
+_SYS_VARS.print-PLIST=	\
+	PREFIX DESTDIR LIBTOOLIZE_PLIST SHLIB_TYPE WRKDIR
+_USE_VARS.print-PLIST=	ALL_ENV
+_IGN_VARS.print-PLIST=	_*
+_LISTED_VARS.print-PLIST= \
+	*_SUBST *_AWK
+_SORTED_VARS.print-PLIST= \
+	*_ENV

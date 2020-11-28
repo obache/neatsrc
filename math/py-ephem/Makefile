@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.17 2019/09/05 10:39:50 adam Exp $
+# $NetBSD: Makefile,v 1.19 2020/05/13 14:53:29 adam Exp $
 
-DISTNAME=	ephem-3.7.7.0
+DISTNAME=	ephem-3.7.7.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	math geography python
 MASTER_SITES=	${MASTER_SITE_PYPI:=e/ephem/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://rhodesmill.org/pyephem/
+HOMEPAGE=	https://rhodesmill.org/pyephem/
 COMMENT=	Scientific-grade astronomical computations for Python
 LICENSE=	gnu-lgpl-v3 OR gnu-gpl-v3
 

@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.21 2019/10/28 09:46:18 kamil Exp $
+# $NetBSD: Makefile,v 1.26 2020/08/23 08:15:48 ryoon Exp $
 #
 
 PKGNAME=		fcitx-4.2.9.7
+PKGREVISION=		10
 DISTNAME=		${PKGNAME_NOREV}_dict
-CATEGORIES=		inputmethod chinese
+CATEGORIES=		inputmethod
 MASTER_SITES=		https://download.fcitx-im.org/fcitx/
 EXTRACT_SUFX=		.tar.xz
 

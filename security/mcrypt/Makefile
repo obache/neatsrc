@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.27 2018/05/30 14:58:03 ginsbach Exp $
+# $NetBSD: Makefile,v 1.29 2020/03/20 11:58:17 nia Exp $
 
 DISTNAME=	mcrypt-2.6.8
 PKGREVISION=	4

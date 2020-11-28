@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2016/02/25 15:49:43 jperkin Exp $
+# $NetBSD: Makefile,v 1.27 2020/03/20 11:58:04 nia Exp $
 
 DISTNAME=	libmpeg2-0.5.1
 PKGNAME=	libmpeg2-0.5.1

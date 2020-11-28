@@ -197,7 +197,7 @@ func (ctx *SubstContext) activate(mkline *MkLine, deactivate bool) bool {
 		return true
 	}
 
-	if ctx.once.FirstTime(id) && !containsWord(mkline.Rationale(), id) {
+	if ctx.once.FirstTime(id) && !mkline.HasRationale(id) {
 		mkline.Warnf("Before defining %s, the SUBST class "+
 			"should be declared using \"SUBST_CLASSES+= %s\".",
 			mkline.Varname(), id)
@@ -218,6 +218,8 @@ func (ctx *SubstContext) deactivate(diag Diagnoser) {
 }
 
 func (*SubstContext) isForeign(varcanon string) bool {
+	// keep in sync with substBlock.varassign
+
 	switch varcanon {
 	case
 		"SUBST_STAGE.*",
@@ -225,7 +227,10 @@ func (*SubstContext) isForeign(varcanon string) bool {
 		"SUBST_FILES.*",
 		"SUBST_SED.*",
 		"SUBST_VARS.*",
-		"SUBST_FILTER_CMD.*":
+		"SUBST_FILTER_CMD.*",
+		"SUBST_SKIP_TEXT_CHECK.*", // TODO: remove this from subst.mk (unneeded)
+		"SUBST_SHOW_DIFF.*",       // TODO: remove this from subst.mk (unneeded)
+		"SUBST_NOOP_OK.*":
 		return false
 	}
 	return true
@@ -399,6 +404,8 @@ func newSubstBlock(id string) *substBlock {
 }
 
 func (b *substBlock) varassign(mkline *MkLine, pkg *Package) {
+	// keep in sync with SubstBlock.isForeign
+
 	switch mkline.Varcanon() {
 	case "SUBST_STAGE.*":
 		b.varassignStage(mkline, pkg)
@@ -410,9 +417,11 @@ func (b *substBlock) varassign(mkline *MkLine, pkg *Package) {
 		b.varassignSed(mkline)
 	case "SUBST_VARS.*":
 		b.varassignVars(mkline)
-	default:
+	case "SUBST_FILTER_CMD.*":
 		b.varassignFilterCmd(mkline)
 	}
+
+	b.varassignAllowForeign(mkline)
 }
 
 func (b *substBlock) varassignStage(mkline *MkLine, pkg *Package) {
@@ -482,6 +491,12 @@ func (b *substBlock) varassignVars(mkline *MkLine) {
 func (b *substBlock) varassignFilterCmd(mkline *MkLine) {
 	b.dupString(mkline, ssFilterCmd)
 	b.addSeen(ssTransform)
+}
+
+func (b *substBlock) varassignAllowForeign(mkline *MkLine) {
+	mkline.ForEachUsed(func(varUse *MkVarUse, time VucTime) {
+		b.allowVar(varUse.varname)
+	})
 }
 
 func (b *substBlock) suggestSubstVars(mkline *MkLine) {

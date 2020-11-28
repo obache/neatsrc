@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.96 2019/11/03 19:04:04 rillig Exp $
+# $NetBSD: Makefile,v 1.102 2020/09/13 13:03:37 mef Exp $
 #
 
 DISTNAME=		parrot-${PARROT_VERSION}
-PKGREVISION=		20
+PKGREVISION=		23
 CATEGORIES=		lang
 MASTER_SITES=		ftp://ftp.parrot.org/pub/parrot/releases/${PARROT_RTYPE}/${PARROT_VERSION}/
 
@@ -52,6 +52,12 @@ PLIST_SRC+=		${PLIST_SRC_DFLT}
 PLIST_SRC+=		PLIST.shared
 .endif
 
+SUBST_CLASSES+=		path
+SUBST_STAGE.path=	pre-configure
+SUBST_MESSAGE.path=	To avoid work/.tools/bin/perl recorded in installation
+SUBST_FILES.path=	config/gen/config_pm/myconfig.in
+SUBST_SED.path=		-e 's,@perl@,${PREFIX}/bin/perl,'
+
 REPLACE_PERL+=		tools/build/ops2c.pl
 REPLACE_PERL+=		tools/build/pmc2c.pl
 REPLACE_PERL+=		tools/dev/create_language.pl
@@ -59,11 +65,6 @@ REPLACE_PERL+=		tools/dev/gen_makefile.pl
 REPLACE_PERL+=		tools/dev/mk_language_shell.in
 REPLACE_PERL+=		tools/dev/pprof2cg.pl
 REPLACE_PERL+=		tools/dev/reconfigure.pl
-
-REPLACE_INTERPRETER+=	parrot
-REPLACE.parrot.old=	.*parrot[^[:space:]]*
-REPLACE.parrot.new=	${PREFIX}/bin/parrot
-REPLACE_FILES.parrot+=	tools/dev/pbc_to_exe.pir
 
 REPLACE_INTERPRETER+=		parrot-nqp
 REPLACE.parrot-nqp.old=		.*parrot-nqp[^[:space:]]*

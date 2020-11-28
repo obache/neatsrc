@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2019/12/03 16:50:59 adam Exp $
+# $NetBSD: Makefile,v 1.16 2020/09/04 20:34:30 wiz Exp $
 
 DISTNAME=	jsonschema-3.2.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
@@ -13,7 +13,6 @@ LICENSE=	modified-bsd
 BUILD_DEPENDS+=	${PYPKGPREFIX}-setuptools_scm-[0-9]*:../../devel/py-setuptools_scm
 DEPENDS+=	${PYPKGPREFIX}-attrs>=17.4.0:../../devel/py-attrs
 DEPENDS+=	${PYPKGPREFIX}-pyrsistent>=0.14.0:../../devel/py-pyrsistent
-DEPENDS+=	${PYPKGPREFIX}-setuptools-[0-9]*:../../devel/py-setuptools
 DEPENDS+=	${PYPKGPREFIX}-six>=1.11.0:../../lang/py-six
 TEST_DEPENDS+=	${PYPKGPREFIX}-twisted-[0-9]*:../../net/py-twisted
 
@@ -24,6 +23,8 @@ DEPENDS+=	${PYPKGPREFIX}-functools32-[0-9]*:../../devel/py-functools32
 DEPENDS+=	${PYPKGPREFIX}-importlib-metadata-[0-9]*:../../devel/py-importlib-metadata
 .endif
 
+PYTHON_VERSIONED_DEPENDENCIES+=	setuptools
+
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && \
 	${MV} jsonschema jsonschema-${PYVERSSUFFIX} || ${TRUE}
@@ -32,4 +33,5 @@ do-test:
 	cd ${WRKSRC}/jsonschema && ${PYTHONBIN} -m unittest discover -v
 
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

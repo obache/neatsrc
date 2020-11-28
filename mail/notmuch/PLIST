@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.18 2019/06/12 13:26:27 ryoon Exp $
+@comment $NetBSD: PLIST,v 1.20 2020/09/06 03:11:31 ryoon Exp $
 bin/notmuch
 ${PLIST.emacs}bin/notmuch-emacs-mua
 include/notmuch.h
@@ -23,7 +23,7 @@ ${PLIST.doc}info/notmuch-tag.info
 ${PLIST.doc}info/notmuch.info
 lib/libnotmuch.so
 lib/libnotmuch.so.5
-lib/libnotmuch.so.5.2.0
+lib/libnotmuch.so.5.3.0
 ${PLIST.doc}man/man1/notmuch-address.1
 ${PLIST.doc}man/man1/notmuch-compact.1
 ${PLIST.doc}man/man1/notmuch-config.1
@@ -87,5 +87,5 @@ ${PLIST.emacs}share/emacs/site-lisp/notmuch-wash.el
 ${PLIST.emacs}share/emacs/site-lisp/notmuch-wash.elc
 ${PLIST.emacs}share/emacs/site-lisp/notmuch.el
 ${PLIST.emacs}share/emacs/site-lisp/notmuch.elc
-share/zsh/functions/Completion/Unix/_email-notmuch
-share/zsh/functions/Completion/Unix/_notmuch
+share/zsh/site-functions/_email-notmuch
+share/zsh/site-functions/_notmuch

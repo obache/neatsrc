@@ -1,16 +1,25 @@
-# $NetBSD: Makefile,v 1.102 2019/08/11 13:22:48 wiz Exp $
+# $NetBSD: Makefile,v 1.110 2020/10/08 19:52:36 gdt Exp $
 
-DISTNAME=	krb5-1.16.2
+BRANCHNAME=	1.18
+DISTNAME=	krb5-${BRANCHNAME}.2
 PKGNAME=	mit-${DISTNAME}
-PKGREVISION=	3
 CATEGORIES=	security
-MASTER_SITES=	http://web.mit.edu/kerberos/dist/krb5/${PKGVERSION_NOREV:R}/
+# It is not clear how stable this URL scheme is.
+MASTER_SITES=	http://web.mit.edu/kerberos/dist/krb5/${BRANCHNAME}/
 
 MAINTAINER=	tez@NetBSD.org
-HOMEPAGE=	http://web.mit.edu/kerberos/
+HOMEPAGE=	https://web.mit.edu/kerberos/
 COMMENT=	MIT Kerberos 5 authentication system
 
-MAKE_JOBS_SAFE=		no
+# There is a file NOTICE in the sources, which is enormous.  Most
+# licenses appear to be some flavor of X11, 3-clause BSD, 4-clause
+# BSD.
+# 20201007: gdt emailed upstream asking for clarification on the AES
+# license, which is not entirely clearly Free, by the text.
+#LICENSE=
+
+# \todo Debug and/or report upstream.
+MAKE_JOBS_SAFE=	no
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/src
 
@@ -39,22 +48,18 @@ BUILD_DEFS+=		VARBASE
 
 CONFIGURE_ARGS+=	--localstatedir=${MIT_KRB5_STATEDIR}
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
-CONFIGURE_ARGS+=	--enable-shared
-CONFIGURE_ARGS+=	--enable-dns-for-realm
+CONFIGURE_ARGS+=	--disable-aesni
 CONFIGURE_ARGS+=	--disable-kdc-lookaside-cache
 CONFIGURE_ARGS+=	--disable-thread-support
-CONFIGURE_ARGS+=	--without-tcl
+CONFIGURE_ARGS+=	--enable-shared
+CONFIGURE_ARGS+=	--enable-dns-for-realm
 CONFIGURE_ARGS+=	--enable-pkgsrc-libtool
 CONFIGURE_ARGS+=	--without-system-verto
-CONFIGURE_ARGS+=	--disable-aesni
+CONFIGURE_ARGS+=	--without-tcl
 CONFIGURE_ENV+=		BUILDLINK_PREFIX_OPENSSL=${BUILDLINK_PREFIX.openssl}
 CONFIGURE_ENV+=		DEFKTNAME=FILE:${PKG_SYSCONFDIR}/krb5.keytab
 MAKE_ENV+=		ROOT_USER=${ROOT_USER}
 LIBS.SunOS=		-lrt
-
-PATCH_DIST_ARGS=	-d ${WRKSRC} -p2
-
-INFO_FILES=		YES
 
 OWN_DIRS_PERMS=		${MIT_KRB5_STATEDIR}/krb5kdc			\
 			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0700
@@ -74,13 +79,6 @@ INSTALLATION_DIRS=	bin include/gssapi include/gssrpc ${PKGINFODIR}	\
 pre-configure:
 	cd ${WRKSRC} && autoconf -I ${WRKSRC} -f
 
-post-install:
-	cd ${WRKDIR}/${DISTNAME}/doc;					\
-	for f in *.info *.info-[0-9]*; do				\
-		${TEST} ! -f "$$f" ||					\
-		${INSTALL_MAN} "$$f" ${DESTDIR}${PREFIX}/${PKGINFODIR};	\
-	done
-
-BUILDLINK_API_DEPENDS.openssl+= openssl>=1.0.1
+.include "../../databases/lmdb/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

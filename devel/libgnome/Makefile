@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.121 2019/07/21 22:24:00 wiz Exp $
+# $NetBSD: Makefile,v 1.127 2020/08/17 20:17:22 leot Exp $
 #
 
 DISTNAME=	libgnome-2.32.1
-PKGREVISION=	35
+PKGREVISION=	40
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libgnome/2.32/}
 EXTRACT_SUFX=	.tar.bz2
@@ -20,6 +20,7 @@ USE_PKGLOCALEDIR=	YES
 PKGCONFIG_OVERRIDE=	libgnome/libgnome-2.0.pc.in
 
 CONFIGURE_ARGS=		--enable-gtk-doc=no
+CONFIGURE_ARGS+=	--disable-esd
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE:Q}
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASEDIR:Q}
 INSTALL_MAKE_FLAGS+=	${MAKE_FLAGS}
@@ -53,8 +54,6 @@ GCONF_SCHEMAS+=	desktop_gnome_typing_break.schemas
 GCONF_SCHEMAS+=	desktop_gnome_applications_at_mobility.schemas
 GCONF_SCHEMAS+=	desktop_gnome_applications_at_visual.schemas
 GCONF_SCHEMAS+=	desktop_gnome_applications_office.schemas
-
-.include "options.mk"
 
 .include "../../audio/libcanberra/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"

@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.85 2019/08/11 13:21:13 wiz Exp $
+# $NetBSD: Makefile,v 1.89 2020/09/07 11:21:28 wiz Exp $
 
-DISTNAME=	GD-2.71
+DISTNAME=	GD-2.72
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	graphics perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=GD/}
 
@@ -11,7 +10,7 @@ HOMEPAGE=	https://metacpan.org/release/GD
 COMMENT=	Perl5 interface to gd graphics library
 LICENSE=	gnu-gpl-v2 OR artistic-2.0
 
-USE_LANGUAGES=		c
+BUILD_DEPENDS+=	p5-ExtUtils-PkgConfig>=1:../../devel/p5-ExtUtils-PkgConfig
 
 # This is required at least on some Solaris builds to get a runnable
 # package, and should be harmless on other platforms. See PR 45873.

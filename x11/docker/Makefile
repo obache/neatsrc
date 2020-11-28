@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.9 2012/10/29 05:06:09 asau Exp $
+# $NetBSD: Makefile,v 1.11 2020/03/08 16:51:41 wiz Exp $
 #
 
 DISTNAME=	docker-1.5
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	x11
 MASTER_SITES=	http://offload1.icculus.org/openbox/2/docker/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://icculus.org/openbox/2/docker/
+HOMEPAGE=	https://icculus.org/openbox/2/docker/
 COMMENT=	WindowMaker dock app which acts as a system tray
 LICENSE=	gnu-gpl-v2
 

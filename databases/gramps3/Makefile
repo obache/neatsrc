@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.74 2019/09/02 13:19:46 adam Exp $
+# $NetBSD: Makefile,v 1.80 2020/08/17 20:18:21 leot Exp $
 
-DISTNAME=		gramps-3.4.4
-PKGREVISION=		15
+DISTNAME=		gramps-3.4.9
+PKGREVISION=		4
 CATEGORIES=		databases
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=gramps/}
 
@@ -38,7 +38,7 @@ DEPENDS+=	librsvg-[0-9]*:../../graphics/librsvg
 .include "../../databases/py-bsddb3/buildlink3.mk"
 .include "../../graphics/gnome-icon-theme/buildlink3.mk"
 .include "../../lang/python/application.mk"
-BUILDLINK_API_DEPENDS.pygtk2+=	${PYPKGPREFIX}-gtk2>=2.10
+BUILDLINK_API_DEPENDS.pygtk2+=	${PYPKGPREFIX}-gtk2>=2.24.0nb30
 .include "../../x11/py-gtk2/buildlink3.mk"
 .include "../../x11/py-gnome2/buildlink3.mk"
 .include "../../databases/shared-mime-info/mimedb.mk"

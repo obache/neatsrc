@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.204 2019/12/06 14:00:08 nia Exp $
+# $NetBSD: Makefile,v 1.217 2020/09/07 15:47:15 leot Exp $
 
-DISTNAME=	gnutls-3.6.11.1
+DISTNAME=	gnutls-3.6.15
 CATEGORIES=	security devel
 MASTER_SITES=	${MASTER_SITE_GNUPG:=gnutls/v${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -21,8 +21,6 @@ USE_TOOLS+=			msgfmt msgmerge xgettext
 GNU_CONFIGURE=			yes
 # this library duplicates (and conflicts with) openssl
 CONFIGURE_ARGS+=		--disable-openssl-compatibility
-CONFIGURE_ARGS+=		--disable-guile
-CONFIGURE_ARGS+=		--disable-libdane
 CONFIGURE_ARGS+=		--without-idn
 CONFIGURE_ARGS+=		--without-tpm
 CONFIGURE_ARGS+=		--disable-valgrind-tests
@@ -46,9 +44,6 @@ REPLACE_BASH+=		tests/gnutls-cli-debug.sh
 REPLACE_BASH+=		tests/ocsp-tests/ocsp-must-staple-connection
 REPLACE_BASH+=		tests/ocsp-tests/ocsp-tls-connection
 REPLACE_BASH+=		tests/starttls.sh
-REPLACE_BASH+=		tests/suite/cbc-record-check.sh
-REPLACE_BASH+=		tests/suite/testcompat-main-openssl
-REPLACE_BASH+=		tests/suite/testcompat-main-polarssl
 REPLACE_BASH+=		tests/cert-tests/pkcs12-utf8
 
 REPLACE_PERL+=		doc/scripts/gdoc doc/scripts/sort2.pl
@@ -68,6 +63,34 @@ SUBST_MESSAGE.shell=	Fixing path to bash.
 EGDIR=		${PREFIX}/share/examples/gnutls
 
 INSTALLATION_DIRS=	${EGDIR} include/gnutls
+
+.include "../../mk/bsd.prefs.mk"
+
+.if ${MACHINE_ARCH} == "x86_64"
+GNUTLS_GAS_VERSION!=	\
+	( env LC_ALL=C as --version 2>&1 | ${GREP} 'GNU assembler version' | ${AWK} '{print $$4}') 2>/dev/null || ${ECHO} 0
+.  if ${GNUTLS_GAS_VERSION} != 0
+GNUTLS_GAS_NEW_ENOUGH=	no
+# for ssse3, >=2.22
+# better to BUILD_DEPENDS on binutils's gas
+GNUTLS_GAS_ACCEPTABLE_PATTERNS=	\
+	2.2[2-9]		\
+	2.2[2-9].*		\
+	2.2[2-9]-[0-9]*.*	\
+	2.[3-9][0-9]		\
+	2.[3-9][0-9].*		\
+	2.[3-9][0-9]-[0-9]*.*	\
+	[3-9]*.*
+.    for gas_pattern in ${GNUTLS_GAS_ACCEPTABLE_PATTERNS}
+.      if !empty(GNUTLS_GAS_VERSION:M${gas_pattern})
+GNUTLS_GAS_NEW_ENOUGH=	yes
+.      endif
+.    endfor
+.    if !empty(GNUTLS_GAS_NEW_ENOUGH:M[nN][oO])
+CONFIGURE_ARGS+=	--disable-hardware-acceleration
+.    endif
+.  endif
+.endif
 
 post-install:
 	cd ${WRKSRC}/doc/examples && ${INSTALL_DATA} *.c ${DESTDIR}${EGDIR}

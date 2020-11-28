@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.33 2019/10/12 20:23:07 rillig Exp $
+# $NetBSD: Makefile,v 1.35 2020/08/31 18:10:20 wiz Exp $
 #
 
 DISTNAME=	bbweather-0.6.3
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	misc
 MASTER_SITES=	http://www.netmeister.org/apps/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.netmeister.org/apps/bbweather/
+HOMEPAGE=	https://www.netmeister.org/apps/bbweather/
 COMMENT=	Show current weather conditions
 
 DEPENDS+=	wget>=1.7:../../net/wget

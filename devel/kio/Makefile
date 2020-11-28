@@ -1,6 +1,8 @@
-# $NetBSD: Makefile,v 1.34 2019/11/11 07:57:10 markd Exp $
+# $NetBSD: Makefile,v 1.48 2020/08/18 17:57:27 leot Exp $
 
-DISTNAME=	kio-${KF5VER}
+DISTNAME=	kio-5.70.1
+#DISTNAME=	kio-${KF5VER}
+PKGREVISION=	2
 CATEGORIES=	devel
 
 HOMEPAGE=	https://community.kde.org/Frameworks
@@ -11,14 +13,12 @@ LICENSE=	gnu-lgpl-v2.1
 
 USE_TOOLS+=	msgmerge
 
-#CMAKE_ARGS+=	-DKAUTH_DBUS_DIR=${PREFIX}/share/examples/kio
-
 LDFLAGS.SunOS+=	-lsocket
 
 SUBST_CLASSES+=		xdg
 SUBST_STAGE.xdg=	pre-configure
 SUBST_MESSAGE.xdg=	Install via examples dir.
-SUBST_FILES.xdg=	src/core/CMakeLists.txt CMakeLists.txt
+SUBST_FILES.xdg=	src/core/CMakeLists.txt
 SUBST_FILES.xdg+=	src/urifilters/shorturi/CMakeLists.txt
 SUBST_SED.xdg=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_XDG_EX_DIR}:'
 

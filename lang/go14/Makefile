@@ -1,16 +1,16 @@
-# $NetBSD: Makefile,v 1.20 2019/11/03 19:04:01 rillig Exp $
+# $NetBSD: Makefile,v 1.23 2020/10/20 11:22:27 nia Exp $
 
 .include "../../lang/go/version.mk"
 
 DISTNAME=	go${GO14_VERSION}.src
 PKGNAME=	go14-${GO14_VERSION}
-PKGREVISION=	10
+PKGREVISION=	11
 CATEGORIES=	lang
 MASTER_SITES=	https://storage.googleapis.com/golang/
 PATCH_SITES=	https://codereview.appspot.com/download/
 
 MAINTAINER=	bsiegert@NetBSD.org
-HOMEPAGE=	http://golang.org/
+HOMEPAGE=	https://golang.org/
 COMMENT=	The Go programming language
 LICENSE=	modified-bsd
 
@@ -66,6 +66,9 @@ REPLACE_PERL+=	src/net/http/cgi/testdata/test.cgi
 REPLACE_PERL+=	src/regexp/syntax/make_perl_groups.pl
 REPLACE_PERL+=	src/syscall/*.pl
 REPLACE_PERL+=	test/errchk
+
+NOT_FOR_PLATFORM+=	*-*-aarch64
+NOT_FOR_PLATFORM+=	*-*-aarch64eb
 
 # uses its own linker which does not support relro in 1.4.x
 CHECK_RELRO_SKIP=	go14/bin/go

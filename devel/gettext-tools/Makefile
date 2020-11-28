@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.39 2019/11/03 10:39:12 rillig Exp $
+# $NetBSD: Makefile,v 1.41 2020/08/12 23:31:10 joerg Exp $
 
 .include "../../devel/gettext/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/-/-tools-/}
 COMMENT=	Tools for providing messages in different languages
+PKGREVISION=	1
 
 DISTINFO_FILE=	${.CURDIR}/../../devel/gettext/distinfo
 PATCHDIR=	${.CURDIR}/../../devel/gettext/patches
@@ -41,7 +42,7 @@ PLIST_VARS+=	glibc
 
 .include "../../mk/bsd.prefs.mk"
 
-.if ${OPSYS} == "Linux"
+.if !empty(GLIBC_VERSION)
 PLIST.glibc=	yes
 .endif
 

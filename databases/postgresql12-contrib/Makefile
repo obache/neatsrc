@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.2 2019/11/02 15:38:08 rillig Exp $
+# $NetBSD: Makefile,v 1.8 2020/08/31 18:07:11 wiz Exp $
 
-PKGNAME=	${DISTNAME:C/-/12-contrib-/}
+PKGNAME=	${DISTNAME:S/-/12-contrib-/}
+PKGREVISION=	1
 COMMENT=	Contrib subtree of tools and plug-ins
 
 .include "../../databases/postgresql12/Makefile.common"
@@ -53,6 +54,7 @@ BUILD_DIRS+=		contrib/unaccent
 BUILD_DIRS+=		contrib/vacuumlo
 
 CONFIGURE_ARGS+=	--with-openssl
+TOOLS_BROKEN+=		perl
 
 PLIST_VARS+=		uuid
 .if ${OPSYS:M*BSD} || ${OPSYS} == "Linux" || ${OPSYS} == "SunOS"

@@ -354,6 +354,69 @@ func (s *Suite) Test_MkVarUseChecker_checkModifiersRange(c *check.C) {
 	mklines.Check()
 }
 
+func (s *Suite) Test_MkVarUseChecker_checkModifierLoop(c *check.C) {
+	t := s.Init(c)
+
+	autofixTest := func(before, after string, autofix bool) {
+		mklines := t.NewMkLines("filename.mk",
+			MkCvsID,
+			"VAR=\t"+before)
+		mklines.ForEach(func(mkline *MkLine) {
+			mkline.ForEachUsed(func(varUse *MkVarUse, time VucTime) {
+				ck := NewMkVarUseChecker(varUse, nil, mkline)
+				ck.checkModifiers()
+			})
+		})
+		if autofix {
+			t.CheckEquals(mklines.mklines[1].Text, "VAR=\t"+after)
+		}
+	}
+
+	test := func(before, after string, diagnostics ...string) {
+		t.ExpectDiagnosticsAutofix(
+			func(autofix bool) { autofixTest(before, after, autofix) },
+			diagnostics...)
+	}
+
+	test("${VAR:@l@-l${l}@}", "${VAR:S,^,-l,}",
+		"NOTE: filename.mk:2: The modifier \"@l@-l${l}@\" "+
+			"can be replaced with the simpler \"S,^,-l,\".",
+		"AUTOFIX: filename.mk:2: Replacing \"@l@-l${l}@\" with \"S,^,-l,\".")
+
+	// The comma is used in the :S modifier as the separator,
+	// therefore the modifier is left as-is.
+	test("${VAR:@word@-Wl,${word}@}", "${VAR:@word@-Wl,${word}@}",
+		nil...)
+
+	test("${VAR:@l@${l}suffix@}", "${VAR:=suffix}",
+		"NOTE: filename.mk:2: The modifier \"@l@${l}suffix@\" "+
+			"can be replaced with the simpler \"=suffix\".",
+		"AUTOFIX: filename.mk:2: Replacing \"@l@${l}suffix@\" with \"=suffix\".")
+
+	// Escaping the colon is not yet supported.
+	test("${VAR:@word@${word}: suffix@}", "${VAR:@word@${word}: suffix@}",
+		nil...)
+
+	// The loop variable must be mentioned exactly once.
+	test("${VAR:@var@${var}${var}@}", "${VAR:@var@${var}${var}@}",
+		nil...)
+
+	// Other variables are fine though.
+	test("${VAR:@var@${var}${OTHER}@}", "${VAR:=${OTHER}}",
+		"NOTE: filename.mk:2: The modifier \"@var@${var}${OTHER}@\" "+
+			"can be replaced with the simpler \"=${OTHER}\".",
+		"AUTOFIX: filename.mk:2: Replacing \"@var@${var}${OTHER}@\" with \"=${OTHER}\".")
+
+	// If the loop variable has modifiers, the :@var@ is probably appropriate.
+	test("${VAR:@var@${var:Q}@}", "${VAR:@var@${var:Q}@}",
+		nil...)
+
+	test("${VAR:@p@${p}) continue;; @}", "${VAR:=) continue;; }",
+		"NOTE: filename.mk:2: The modifier \"@p@${p}) continue;; @\" "+
+			"can be replaced with the simpler \"=) continue;; \".",
+		"AUTOFIX: filename.mk:2: Replacing \"@p@${p}) continue;; @\" with \"=) continue;; \".")
+}
+
 func (s *Suite) Test_MkVarUseChecker_checkVarname(c *check.C) {
 	t := s.Init(c)
 
@@ -377,6 +440,122 @@ func (s *Suite) Test_MkVarUseChecker_checkVarname(c *check.C) {
 		"WARN: filename.mk:1: Please use \"${.TARGET}\" instead of \"$@\".",
 		"WARN: filename.mk:3: Please use PREFIX instead of LOCALBASE.",
 		"AUTOFIX: filename.mk:3: Replacing \"LOCALBASE\" with \"PREFIX\".")
+}
+
+func (s *Suite) Test_MkVarUseChecker_checkVarnameBuildlink(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpOption("option", "Description.")
+	t.CreateFileLines("mk/bsd.options.mk")
+	t.SetUpPackage("category/library")
+	t.CreateFileBuildlink3Id("category/library/buildlink3.mk", "lib")
+	t.SetUpPackage("category/package",
+		"CONFIGURE_ARGS+=\t--with-library=${BUILDLINK_PREFIX.library}",
+		"CONFIGURE_ARGS+=\t--with-lib=${BUILDLINK_PREFIX.lib}",
+		"CONFIGURE_ARGS+=\t--with-package=${BUILDLINK_PREFIX.package}",
+		"CONFIGURE_ARGS+=\t--with-package=${BUILDLINK_PREFIX.${PKGBASE}}",
+		"",
+		".include \"../../category/library/buildlink3.mk\"")
+	t.CreateFileLines("category/package/options.mk",
+		MkCvsID,
+		"",
+		"PKG_OPTIONS_VAR=\tPKG_OPTIONS.package",
+		"PKG_SUPPORTED_OPTIONS=\toption",
+		".include \"../../mk/bsd.options.mk\"",
+		".if ${PKG_OPTIONS:Moption}",
+		"CONFIGURE_ARGS+=\t--with-option=${BUILDLINK_PREFIX.package}",
+		".endif")
+	t.CreateFileBuildlink3("category/package/buildlink3.mk",
+		"BL3=\t${BUILDLINK_PREFIX.unknown-bl3}",
+		"BL3+=\t${BUILDLINK_PREFIX.package}")
+	t.CreateFileLines("category/package/builtin.mk",
+		MkCvsID,
+		"BUILTIN=\t${BUILDLINK_PREFIX.unknown-builtin}",
+		"BUILTIN+=\t${BUILDLINK_PREFIX.package}")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"WARN: Makefile:20: Buildlink identifier \"library\" is not known in this package.",
+		"WARN: Makefile:22: Buildlink identifier \"package\" is not known in this package.",
+		"WARN: buildlink3.mk:12: BL3 is defined but not used.",
+		"WARN: buildlink3.mk:12: Buildlink identifier \"unknown-bl3\" is not known in this package.",
+		"WARN: builtin.mk:2: BUILTIN is defined but not used.",
+		"WARN: builtin.mk:2: Buildlink identifier \"unknown-builtin\" is not known in this package.",
+		"WARN: options.mk:7: Buildlink identifier \"package\" is not known in this package.")
+}
+
+func (s *Suite) Test_MkVarUseChecker_checkVarnameBuildlink__no_buildlink3_file(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package")
+	t.CreateFileLines("category/package/module.mk",
+		MkCvsID,
+		"CONFIGURE_ARGS+=\t--prefix=${BUILDLINK_PREFIX.package}")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"WARN: module.mk:2: Buildlink identifier \"package\" is not known in this package.")
+}
+
+func (s *Suite) Test_MkVarUseChecker_checkVarnameBuildlink__no_buildlink3_data(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package")
+	t.CreateFileLines("category/package/module.mk",
+		MkCvsID,
+		"CONFIGURE_ARGS+=\t--prefix=${BUILDLINK_PREFIX.package}")
+	t.CreateFileLines("category/package/buildlink3.mk",
+		MkCvsID,
+		"# Empty, for whatever reason.  This doesn't happen in practice.")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"NOTE: buildlink3.mk:2: Empty line expected below this line.",
+		"WARN: buildlink3.mk:EOF: Expected a BUILDLINK_TREE line.",
+		"WARN: module.mk:2: Buildlink identifier \"package\" is not known in this package.")
+}
+
+func (s *Suite) Test_MkVarUseChecker_checkVarnameBuildlink__mysql_ok(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package")
+	t.CreateFileLines("mk/mysql.buildlink3.mk")
+	t.CreateFileLines("category/package/module.mk",
+		MkCvsID,
+		"CONFIGURE_ARGS+=\t--prefix=${BUILDLINK_PREFIX.mysql-client}",
+		".include \"../../mk/mysql.buildlink3.mk\"")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_MkVarUseChecker_checkVarnameBuildlink__mysql_bad(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package")
+	t.CreateFileLines("mk/mysql.buildlink3.mk")
+	t.CreateFileLines("category/package/module.mk",
+		MkCvsID,
+		"CONFIGURE_ARGS+=\t--prefix=${BUILDLINK_PREFIX.mysql-client}")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"WARN: module.mk:2: Buildlink identifier \"mysql-client\" is not known in this package.")
 }
 
 func (s *Suite) Test_MkVarUseChecker_checkPermissions(c *check.C) {
@@ -455,9 +634,9 @@ func (s *Suite) Test_MkVarUseChecker_checkPermissions__load_time_in_condition(c 
 	t := s.Init(c)
 
 	t.SetUpPkgsrc()
-	G.Pkgsrc.vartypes.DefineParse("LOAD_TIME", BtPathPattern, List,
+	t.SetUpType("LOAD_TIME", BtPathPattern, List,
 		"special:filename.mk: use-loadtime")
-	G.Pkgsrc.vartypes.DefineParse("RUN_TIME", BtPathPattern, List,
+	t.SetUpType("RUN_TIME", BtPathPattern, List,
 		"special:filename.mk: use")
 	t.Chdir(".")
 	t.FinishSetUp()
@@ -479,9 +658,9 @@ func (s *Suite) Test_MkVarUseChecker_checkPermissions__load_time_in_for_loop(c *
 	t := s.Init(c)
 
 	t.SetUpPkgsrc()
-	G.Pkgsrc.vartypes.DefineParse("LOAD_TIME", BtPathPattern, List,
+	t.SetUpType("LOAD_TIME", BtPathPattern, List,
 		"special:filename.mk: use-loadtime")
-	G.Pkgsrc.vartypes.DefineParse("RUN_TIME", BtPathPattern, List,
+	t.SetUpType("RUN_TIME", BtPathPattern, List,
 		"special:filename.mk: use")
 	t.Chdir(".")
 	t.FinishSetUp()
@@ -532,16 +711,16 @@ func (s *Suite) Test_MkVarUseChecker_checkPermissions__load_time_run_time(c *che
 	t := s.Init(c)
 
 	t.SetUpPkgsrc()
-	G.Pkgsrc.vartypes.DefineParse("LOAD_TIME", BtUnknown, NoVartypeOptions,
+	t.SetUpType("LOAD_TIME", BtUnknown, NoVartypeOptions,
 		"*.mk: use, use-loadtime")
-	G.Pkgsrc.vartypes.DefineParse("RUN_TIME", BtUnknown, NoVartypeOptions,
+	t.SetUpType("RUN_TIME", BtUnknown, NoVartypeOptions,
 		"*.mk: use")
-	G.Pkgsrc.vartypes.DefineParse("WRITE_ONLY", BtUnknown, NoVartypeOptions,
+	t.SetUpType("WRITE_ONLY", BtUnknown, NoVartypeOptions,
 		"*.mk: set")
-	G.Pkgsrc.vartypes.DefineParse("LOAD_TIME_ELSEWHERE", BtUnknown, NoVartypeOptions,
+	t.SetUpType("LOAD_TIME_ELSEWHERE", BtUnknown, NoVartypeOptions,
 		"Makefile: use-loadtime",
 		"*.mk: set")
-	G.Pkgsrc.vartypes.DefineParse("RUN_TIME_ELSEWHERE", BtUnknown, NoVartypeOptions,
+	t.SetUpType("RUN_TIME_ELSEWHERE", BtUnknown, NoVartypeOptions,
 		"Makefile: use",
 		"*.mk: set")
 	t.Chdir(".")
@@ -592,13 +771,13 @@ func (s *Suite) Test_MkVarUseChecker_checkPermissions__indirectly(c *check.C) {
 	t.SetUpVartypes()
 	mklines := t.NewMkLines("file.mk",
 		MkCvsID,
-		"IGNORE_PKG.package=\t${ONLY_FOR_UNPRIVILEGED}")
+		"IGNORE_PKG.package=\t${NOT_FOR_UNPRIVILEGED}")
 
 	mklines.Check()
 
 	t.CheckOutputLines(
 		"WARN: file.mk:2: IGNORE_PKG.package should be set to YES or yes.",
-		"WARN: file.mk:2: ONLY_FOR_UNPRIVILEGED should not be used indirectly at load time (via IGNORE_PKG.package).")
+		"WARN: file.mk:2: NOT_FOR_UNPRIVILEGED should not be used indirectly at load time (via IGNORE_PKG.package).")
 }
 
 // This test is only here for branch coverage.
@@ -637,7 +816,7 @@ func (s *Suite) Test_MkVarUseChecker_checkPermissions__write_only_usable_in_othe
 func (s *Suite) Test_MkVarUseChecker_checkPermissions__usable_only_at_loadtime_in_other_file(c *check.C) {
 	t := s.Init(c)
 
-	G.Pkgsrc.vartypes.DefineParse("VAR", BtFilename, NoVartypeOptions,
+	t.SetUpType("VAR", BtFilename, NoVartypeOptions,
 		"*: set, use-loadtime")
 	mklines := t.NewMkLines("Makefile",
 		MkCvsID,
@@ -656,9 +835,8 @@ func (s *Suite) Test_MkVarUseChecker_checkPermissions__assigned_to_infrastructur
 
 	// This combination of BtUnknown and all permissions is typical for
 	// otherwise unknown variables from the pkgsrc infrastructure.
-	G.Pkgsrc.vartypes.Define("INFRA", BtUnknown, NoVartypeOptions,
-		NewACLEntry("*", aclpAll))
-	G.Pkgsrc.vartypes.DefineParse("VAR", BtUnknown, NoVartypeOptions,
+	t.SetUpType("INFRA", BtUnknown, NoVartypeOptions)
+	t.SetUpType("VAR", BtUnknown, NoVartypeOptions,
 		"buildlink3.mk: none",
 		"*: use")
 	mklines := t.NewMkLines("buildlink3.mk",
@@ -692,10 +870,10 @@ func (s *Suite) Test_MkVarUseChecker_checkPermissions__assigned_to_load_time(c *
 	// to use its value in LOAD_TIME, as the latter might be evaluated later
 	// at load time, and at that point VAR would be evaluated as well.
 
-	G.Pkgsrc.vartypes.DefineParse("LOAD_TIME", BtMessage, NoVartypeOptions,
+	t.SetUpType("LOAD_TIME", BtMessage, NoVartypeOptions,
 		"buildlink3.mk: set",
 		"*.mk: use-loadtime")
-	G.Pkgsrc.vartypes.DefineParse("VAR", BtUnknown, NoVartypeOptions,
+	t.SetUpType("VAR", BtUnknown, NoVartypeOptions,
 		"buildlink3.mk: none",
 		"*.mk: use")
 	mklines := t.NewMkLines("buildlink3.mk",
@@ -754,7 +932,7 @@ func (s *Suite) Test_MkVarUseChecker_warnPermissions__not_directly_and_no_altern
 	t.CheckEquals(toolDependsType.AlternativeFiles(aclpUseLoadtime), "")
 
 	apiDependsType := G.Pkgsrc.VariableType(nil, "BUILDLINK_API_DEPENDS.*")
-	t.CheckEquals(apiDependsType.String(), "Dependency (list, package-settable)")
+	t.CheckEquals(apiDependsType.String(), "DependencyPattern (list, package-settable)")
 	t.CheckEquals(apiDependsType.AlternativeFiles(aclpUse), "")
 	t.CheckEquals(apiDependsType.AlternativeFiles(aclpUseLoadtime), "buildlink3.mk or builtin.mk only")
 
@@ -957,6 +1135,82 @@ func (s *Suite) Test_MkVarUseChecker_warnToolLoadTime__local_tool(c *check.C) {
 		"WARN: ~/category/package/Makefile:7: The tool ${MK_TOOL} cannot be used at load time.")
 }
 
+func (s *Suite) Test_MkVarUseChecker_checkAssignable(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpVartypes()
+	mklines := t.NewMkLines("filename.mk",
+		"BUILTIN_FIND_FILES_VAR:=\tBIN_FILE",
+		"BUILTIN_FIND_FILES.BIN_FILE=\t${TOOLS_PLATFORM.file} /bin/file /usr/bin/file",
+		"PKG_SHELL.user=\t${TOOLS_PLATFORM.false:Q}")
+
+	mklines.ForEach(func(mkline *MkLine) {
+		ck := NewMkAssignChecker(mkline, mklines)
+		ck.checkRight()
+	})
+
+	t.CheckOutputLines(
+		"WARN: filename.mk:2: Incompatible types: "+
+			"TOOLS_PLATFORM.file (type \"ShellCommand\") "+
+			"cannot be assigned to type \"Pathname\".",
+		"WARN: filename.mk:3: Incompatible types: "+
+			"TOOLS_PLATFORM.false (type \"ShellCommand\") "+
+			"cannot be assigned to type \"Pathname\".")
+}
+
+// NetBSD's chsh program only allows a simple pathname for the shell, without
+// any command line arguments. This makes sense since the shell is started
+// using execve, not system (which would require shell-like argument parsing).
+//
+// Under the assumption that TOOLS_PLATFORM.sh does not contain any command
+// line arguments, it's ok in that special case. This covers most of the
+// real-life situations where this type mismatch (Pathname := ShellCommand)
+// occurs.
+func (s *Suite) Test_MkVarUseChecker_checkAssignable__shell_command_to_pathname(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpVartypes()
+	t.SetUpTool("sh", "SH", AtRunTime)
+	t.SetUpTool("bash", "BASH", AtRunTime)
+	mklines := t.NewMkLines("filename.mk",
+		"PKG_SHELL.user=\t${TOOLS_PLATFORM.sh}",
+		"PKG_SHELL.user=\t${SH}",
+		"PKG_SHELL.user=\t${BASH}",
+		"PKG_SHELL.user=\t/bin/sh")
+
+	mklines.ForEach(func(mkline *MkLine) {
+		ck := NewMkAssignChecker(mkline, mklines)
+		ck.checkRight()
+	})
+
+	t.CheckOutputLines(
+		"WARN: filename.mk:1: Please use ${TOOLS_PLATFORM.sh:Q} " +
+			"instead of ${TOOLS_PLATFORM.sh}.")
+}
+
+func (s *Suite) Test_MkVarUseChecker_checkAssignable__shell_command_in_exists(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpTool("sh", "SH", AfterPrefsMk)
+	t.SetUpTool("bash", "BASH", AfterPrefsMk)
+	t.SetUpPkgsrc()
+	t.Chdir(".")
+	t.FinishSetUp()
+	mklines := t.NewMkLines("filename.mk",
+		MkCvsID,
+		".include \"mk/bsd.prefs.mk\"",
+		".if exists(${TOOLS_PLATFORM.sh})",
+		".elif exists(${SH})",
+		".elif exists(${BASH})",
+		".endif")
+
+	mklines.Check()
+
+	// TODO: Call MkVarUseChecker.checkAssignable with a VarUseContext of type
+	//  BtPathname here.
+	t.CheckOutputEmpty()
+}
+
 func (s *Suite) Test_MkVarUseChecker_checkQuoting(c *check.C) {
 	t := s.Init(c)
 
@@ -1153,6 +1407,71 @@ func (s *Suite) Test_MkVarUseChecker_fixQuotingModifiers(c *check.C) {
 		"AUTOFIX: ~/filename.mk:5: Replacing \"${CFLAGS:N*:Q}\" with \"${CFLAGS:N*:M*:Q}\".")
 }
 
+func (s *Suite) Test_MkVarUseChecker_checkToolsPlatform(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPkgsrc()
+	t.SetUpTool("available", "", AfterPrefsMk)
+	t.SetUpTool("cond1", "", AfterPrefsMk)
+	t.SetUpTool("cond2", "", AfterPrefsMk)
+	t.SetUpTool("undefined", "", AfterPrefsMk)
+	t.SetUpTool("non-const", "", AfterPrefsMk)
+	t.CreateFileLines("mk/tools/tools.NetBSD.mk",
+		"OTHER_VAR?=\tother value", // Just for code coverage
+		"TOOLS_PLATFORM.available?=\t/bin/available",
+		"TOOLS_PLATFORM.cond1?=\t/usr/cond1",
+		"TOOLS_PLATFORM.cond2?=\t/usr/cond2",
+		"TOOLS_PLATFORM.undefined?=\t/usr/undefined",
+		"",
+		"TOOLS_PLATFORM.non-const?=\t/non-const-initial",
+		"READ=\t${TOOLS_PLATFORM.non-const}", // Make the variable non-const
+		"TOOLS_PLATFORM.non-const?=\t/non-const-final")
+	t.CreateFileLines("mk/tools/tools.SunOS.mk",
+		"TOOLS_PLATFORM.available?=\t/bin/available",
+		"",
+		".if exists(/usr/gnu/bin/cond1)",
+		"TOOLS_PLATFORM.cond1?=\t/usr/gnu/bin/cond1",
+		".endif",
+		"",
+		".if exists(/usr/gnu/bin/cond2)",
+		"TOOLS_PLATFORM.cond2?=\t/usr/gnu/bin/cond2",
+		".else",
+		"TOOLS_PLATFORM.cond2?=\t/usr/sfw/bin/cond2",
+		".endif",
+		"",
+		"# No definition for undefined.")
+	t.Chdir(".")
+	t.FinishSetUp()
+	mklines := t.NewMkLines("filename.mk",
+		MkCvsID,
+		"",
+		".include \"mk/bsd.prefs.mk\"",
+		"",
+		".if ${OPSYS} == SunOS",
+		"post-build:",
+		"\t${TOOLS_PLATFORM.available}",
+		"\t${TOOLS_PLATFORM.cond1}",
+		"\t${TOOLS_PLATFORM.cond2}",
+		"\t${TOOLS_PLATFORM.undefined}",
+		".endif",
+		"",
+		"do-build:",
+		"\t${TOOLS_PLATFORM.available}",
+		"\t${TOOLS_PLATFORM.cond1}",
+		"\t${TOOLS_PLATFORM.cond2}",
+		"\t${TOOLS_PLATFORM.undefined}",
+		"",
+		".if defined(TOOLS_PLATFORM.undefined)",
+		"\t${TOOLS_PLATFORM.undefined}",
+		".endif")
+
+	mklines.Check()
+
+	t.CheckOutputLines(
+		"WARN: filename.mk:15: TOOLS_PLATFORM.cond1 may be undefined on SunOS.",
+		"WARN: filename.mk:17: TOOLS_PLATFORM.undefined is undefined on SunOS.")
+}
+
 func (s *Suite) Test_MkVarUseChecker_checkBuildDefs(c *check.C) {
 	t := s.Init(c)
 
@@ -1194,4 +1513,43 @@ func (s *Suite) Test_MkVarUseChecker_checkDeprecated(c *check.C) {
 		"WARN: filename.mk:3: USE_CROSSBASE is used but not defined.",
 		"WARN: filename.mk:3: Use of \"USE_CROSSBASE\" is deprecated. "+
 			"Has been removed.")
+}
+
+// This test demonstrates some typos that an inexperienced pkgsrc developer
+// might make. This scenario is not intended to be realistic.
+func (s *Suite) Test_MkVarUseChecker_checkPkgBuildOptions(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpOption("option", "")
+	t.SetUpPackage("category/package",
+		".include \"../../category/lib/buildlink3.mk\"")
+	t.SetUpPackage("category/lib")
+	t.CreateFileLines("mk/pkg-build-options.mk")
+	t.CreateFileBuildlink3("category/package/buildlink3.mk",
+		".include \"../../mk/bsd.fast.prefs.mk\"",
+		"",
+		".if ${PKG_BUILD_OPTIONS.lib:Moption}", // Too early
+		".endif",
+		"",
+		".if ${PKG_BUILD_OPTIONS.unrelated:Moption}",
+		".include \"../../category/lib/buildlink3.mk\"",
+		".endif",
+		"",
+		".if ${PKG_BUILD_OPTIONS.lib:Moption}", // Only defined conditionally
+		".endif")
+	t.CreateFileBuildlink3("category/lib/buildlink3.mk",
+		"pkgbase := lib",
+		".include \"../../mk/pkg-build-options.mk\"")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"WARN: Makefile:20: \"../../category/lib/buildlink3.mk\" is included unconditionally here "+
+			"and conditionally in buildlink3.mk:18 (depending on PKG_BUILD_OPTIONS.unrelated).",
+		"WARN: buildlink3.mk:17: The PKG_BUILD_OPTIONS for \"unrelated\" are not available to this package.",
+		"WARN: buildlink3.mk:14: Wrong PKG_BUILD_OPTIONS, expected \"package\" instead of \"lib\".",
+		"WARN: buildlink3.mk:17: Wrong PKG_BUILD_OPTIONS, expected \"package\" instead of \"unrelated\".",
+		"WARN: buildlink3.mk:21: Wrong PKG_BUILD_OPTIONS, expected \"package\" instead of \"lib\".")
 }

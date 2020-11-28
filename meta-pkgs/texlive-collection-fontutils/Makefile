@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.9 2019/05/15 11:35:23 markd Exp $
+# $NetBSD: Makefile,v 1.12 2020/05/10 11:32:14 tnn Exp $
 
 DISTNAME=	collection-fontutils
-PKGNAME=	texlive-${DISTNAME}-2019
+PKGNAME=	texlive-${DISTNAME}-2020
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	37105
+TEXLIVE_REV=	54074
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Graphics and font utilities for TeX
 
 DEPENDS+=	texlive-collection-basic-[0-9]*:../../meta-pkgs/texlive-collection-basic
@@ -20,7 +20,7 @@ DEPENDS+=	tex-epstopdf-[0-9]*:../../graphics/tex-epstopdf
 DEPENDS+=	lcdftypetools-[0-9]*:../../fonts/lcdftypetools
 # metatype1 is empty
 DEPENDS+=	ps2pkm-[0-9]*:../../fonts/ps2pkm
-DEPENDS+=	tex-pstools-[0-9]*:../../graphics/tex-pstools
+DEPENDS+=	ps2eps-[0-9]*:../../graphics/ps2eps
 DEPENDS+=	psutils-[0-9]*:../../print/psutils
 DEPENDS+=	tex-dvipsconfig-[0-9]*:../../fonts/tex-dvipsconfig
 DEPENDS+=	tex-fontinst-[0-9]*:../../fonts/tex-fontinst

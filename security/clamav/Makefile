@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.59 2019/12/03 12:55:16 taca Exp $
+# $NetBSD: Makefile,v 1.72 2020/09/19 13:41:42 taca Exp $
 
 .include "Makefile.common"
 
@@ -56,7 +56,7 @@ SUBST_FILES.vars=	etc/clamav-milter.conf.sample etc/clamd.conf.sample
 SUBST_VARS.vars=	CLAMAV_DBDIR
 
 RCD_SCRIPTS=	clamd freshclamd
-SMF_METHODS=	${RCD_SCRIPTS}
+SMF_METHODS=	clamd freshclamd
 SMF_INSTANCES=	${SMF_METHODS}
 
 PKG_GROUPS+=	${CLAMAV_GROUP}

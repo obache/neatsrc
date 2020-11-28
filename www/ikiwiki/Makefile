@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.167 2019/09/01 02:19:37 schmonz Exp $
-#
+# $NetBSD: Makefile,v 1.171 2020/09/01 08:04:23 wiz Exp $
 
-DISTNAME=		ikiwiki_3.20190228.orig
+DISTNAME=		ikiwiki_3.20200202.3.orig
 PKGNAME=		${DISTNAME:S/_/-/:S/.orig//}
-PKGREVISION=		5
+PKGREVISION=		2
 CATEGORIES=		www textproc
 MASTER_SITES=		${MASTER_SITE_DEBIAN:=pool/main/i/ikiwiki/}
 EXTRACT_SUFX=		.tar.xz
@@ -33,7 +32,7 @@ DEPENDS+=		p5-gettext-[0-9]*:../../devel/p5-gettext
 DEPENDS+=		p5-YAML-LibYAML-[0-9]*:../../textproc/p5-YAML-LibYAML
 DEPENDS+=		p5-LWPx-ParanoidAgent-[0-9]*:../../www/p5-LWPx-ParanoidAgent
 
-WRKSRC=			${WRKDIR}/${PKGNAME_NOREV:S/ikiwiki-/IkiWiki-/}
+WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
 PERL5_PACKLIST=		auto/IkiWiki/.packlist
 USE_TOOLS+=		gmake msgfmt perl:run xgettext
 

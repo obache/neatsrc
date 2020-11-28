@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.10 2019/04/25 07:32:48 maya Exp $
+# $NetBSD: Makefile,v 1.15 2020/08/19 08:52:44 adam Exp $
 
-DISTNAME=	ninja-1.9.0
+DISTNAME=	ninja-1.10.1
 PKGNAME=	${DISTNAME:S/ninja/ninja-build/}
-PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ninja-build/}
-GITHUB_TAG=	v${PKGVERSION_NOREV}
 GITHUB_PROJECT=	ninja
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	https://ninja-build.org/
@@ -15,13 +14,33 @@ LICENSE=	apache-2.0
 
 BUILD_DEPENDS+=	re2c>=0.11.3:../../devel/re2c
 
-USE_LANGUAGES=	c c++
+.include "../../mk/bsd.prefs.mk"
 
-SUBST_CLASSES+=		prefix
-SUBST_STAGE.prefix=	pre-configure
-SUBST_MESSAGE.prefix=	Fix PREFIX
-SUBST_FILES.prefix=	configure.py
-SUBST_VARS.prefix=	PREFIX
+.if ${OPSYS} == "Darwin"
+#
+# Under MacOS X the LD_LIBRARY_PATH variable is unset by the build system
+# running executables under /bin (namely /bin/sh).  This is part of MacOS X
+# System Integrity Protection.
+#
+# Because many (most?) users of ninja/meson seem to need hacks involving
+# LD_LIBRARY_PATH, use a non-SIP-triggering shell under MacOS X.
+#
+# macOS bootstraps are transitioning to mksh as the system shell, once that
+# has been in place for a while we can remove the pdksh support, and ideally
+# just replace this whole section with -DNINJA_SHELL=${TOOLS_PLATFORM.sh}
+#
+.  if ${TOOLS_PLATFORM.sh:M?*/bin/mksh}
+DEPENDS+=	mksh-[0-9]*:../../shells/mksh
+CFLAGS+=	-DNINJA_SHELL=${PREFIX}/bin/mksh
+.  else
+DEPENDS+=	pdksh-[0-9]*:../../shells/pdksh
+CFLAGS+=	-DNINJA_SHELL=${PREFIX}/bin/pdksh
+.  endif
+.else
+CFLAGS+=	-DNINJA_SHELL=/bin/sh
+.endif
+
+USE_LANGUAGES=	c c++
 
 INSTALLATION_DIRS=	bin share/doc/ninja share/ninja
 

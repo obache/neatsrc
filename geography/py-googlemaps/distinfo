@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.5 2020/09/03 14:03:24 kleink Exp $
+
+SHA1 (googlemaps-4.4.2.tar.gz) = cfb88c1831a6e42fda54bfb5f473e682e0adb004
+RMD160 (googlemaps-4.4.2.tar.gz) = 78fb01d94fb822bf73d5aebad40df957d13feed7
+SHA512 (googlemaps-4.4.2.tar.gz) = 38dd8f3ada1985915222a8597bae38346c74f40f3eded8de30a5e1c41f0b1dc56bc3517a0e7f499c341d16f32f697ef40d14f0008f37b511f8fa6f5a5af33ede
+Size (googlemaps-4.4.2.tar.gz) = 29681 bytes

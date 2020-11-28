@@ -535,7 +535,7 @@ func (s *Suite) Test_MkLine_ResolveVarsInRelativePath(c *check.C) {
 	mkline := mklines.mklines[0]
 	var pkg *Package = nil
 
-	test := func(before RelPath, after RelPath) {
+	test := func(before PackagePath, after PackagePath) {
 		t.CheckEquals(mkline.ResolveVarsInRelativePath(before, pkg), after)
 	}
 
@@ -634,7 +634,7 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__append_URL_to_list_of_URLs(c *
 
 	t.CheckEquals(nq, no)
 
-	NewMkAssignChecker(mkline, mklines).checkVarassign()
+	NewMkAssignChecker(mkline, mklines).check()
 
 	t.CheckOutputEmpty() // Up to version 5.3.6, pkglint warned about a missing :Q here, which was wrong.
 }
@@ -648,7 +648,7 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__append_list_to_list(c *check.C
 		MkCvsID,
 		"MASTER_SITES=\t${MASTER_SITE_SOURCEFORGE:=squirrel-sql/}")
 
-	NewMkAssignChecker(mklines.mklines[1], mklines).checkVarassign()
+	NewMkAssignChecker(mklines.mklines[1], mklines).check()
 
 	// Assigning lists to lists is ok.
 	t.CheckOutputEmpty()
@@ -669,7 +669,7 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__eval_shell(c *check.C) {
 
 	mklines.ForEach(func(mkline *MkLine) {
 		if mkline.IsVarassign() {
-			NewMkAssignChecker(mkline, mklines).checkVarassign()
+			NewMkAssignChecker(mkline, mklines).check()
 		}
 	})
 
@@ -685,7 +685,7 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__command_in_single_quotes(c *ch
 		MkCvsID,
 		"SUBST_SED.hpath=\t-e 's|^\\(INSTALL[\t:]*=\\).*|\\1${INSTALL}|'")
 
-	NewMkAssignChecker(mklines.mklines[1], mklines).checkVarassign()
+	NewMkAssignChecker(mklines.mklines[1], mklines).check()
 
 	t.CheckOutputLines(
 		"WARN: Makefile:2: Please use ${INSTALL:Q} instead of ${INSTALL} " +
@@ -799,8 +799,7 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__command_in_subshell(c *check.C
 	MkLineChecker{mklines, mklines.mklines[2]}.Check()
 
 	// Don't suggest to use ${AWK:Q}.
-	t.CheckOutputLines(
-		"WARN: xpi.mk:2: Invoking subshells via $(...) is not portable enough.")
+	t.CheckOutputEmpty()
 }
 
 // LDFLAGS (and even more so CPPFLAGS and CFLAGS) may contain special
@@ -934,7 +933,7 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__PKGNAME_and_URL_list_in_URL_li
 		MkCvsID,
 		"MASTER_SITES=\tftp://ftp.gtk.org/${PKGNAME}/ ${MASTER_SITE_GNOME:=subdir/}")
 
-	NewMkAssignChecker(mklines.mklines[1], mklines).checkVarassignRightVaruse()
+	NewMkAssignChecker(mklines.mklines[1], mklines).checkRightVaruse()
 
 	t.CheckOutputEmpty() // Don't warn about missing :Q modifiers.
 }
@@ -949,7 +948,7 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__tool_in_CONFIGURE_ENV(c *check
 		"",
 		"CONFIGURE_ENV+=\tSYS_TAR_COMMAND_PATH=${TOOLS_TAR:Q}")
 
-	NewMkAssignChecker(mklines.mklines[2], mklines).checkVarassignRightVaruse()
+	NewMkAssignChecker(mklines.mklines[2], mklines).checkRightVaruse()
 
 	// The TOOLS_* variables only contain the path to the tool,
 	// without any additional arguments that might be necessary
@@ -970,8 +969,8 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__backticks(c *check.C) {
 		"COMPILE_CMD=\tcc `${CAT} ${WRKDIR}/compileflags`",
 		"COMMENT_CMD=\techo `echo ${COMMENT}`")
 
-	NewMkAssignChecker(mklines.mklines[2], mklines).checkVarassignRightVaruse()
-	NewMkAssignChecker(mklines.mklines[3], mklines).checkVarassignRightVaruse()
+	NewMkAssignChecker(mklines.mklines[2], mklines).checkRightVaruse()
+	NewMkAssignChecker(mklines.mklines[3], mklines).checkRightVaruse()
 
 	// Both CAT and WRKDIR are safe from quoting, therefore no warnings.
 	// But COMMENT may contain arbitrary characters and therefore must
@@ -1034,6 +1033,10 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__shellword_part(c *check.C) {
 }
 
 // Tools, when used in a shell command, must not be quoted.
+// Shell commands may have command line arguments, pathnames must not.
+// The original intention of having both CONFIG_SHELL and CONFIG_SHELL_FLAGS
+// was to separate the command from its arguments.
+// It doesn't hurt though if the command includes some of the arguments as well.
 func (s *Suite) Test_MkLine_VariableNeedsQuoting__tool_in_shell_command(c *check.C) {
 	t := s.Init(c)
 
@@ -1043,11 +1046,14 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__tool_in_shell_command(c *check
 	mklines := t.SetUpFileMkLines("Makefile",
 		MkCvsID,
 		"",
-		"CONFIG_SHELL=\t${BASH}")
+		"CONFIG_SHELL=\t${BASH}",
+		"DIST_SUBDIR=\t${BASH}")
 
 	mklines.Check()
 
-	t.CheckOutputEmpty()
+	t.CheckOutputLines(
+		"WARN: ~/Makefile:4: Incompatible types: " +
+			"BASH (type \"ShellCommand\") cannot be assigned to type \"Pathname\".")
 }
 
 // This test provides code coverage for the "switch vuc.quoting" in the case
@@ -1164,7 +1170,7 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__uncovered_cases(c *check.C) {
 		"",
 		"GO_SRCPATH=\t\t${HOMEPAGE:S,https://,,}",
 		"LINKER_RPATH_FLAG:=\t${LINKER_RPATH_FLAG:S/-rpath/& /}",
-		"HOMEPAGE=\t\thttp://godoc.org/${GO_SRCPATH}",
+		"HOMEPAGE=\t\thttps://godoc.org/${GO_SRCPATH}",
 		"PATH:=\t\t\t${PREFIX}/cross/bin:${PATH}",
 		"NO_SRC_ON_FTP=\t\t${RESTRICTED}")
 

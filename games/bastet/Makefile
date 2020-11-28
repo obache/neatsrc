@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.20 2019/11/02 14:58:34 nia Exp $
+# $NetBSD: Makefile,v 1.24 2020/05/16 12:43:10 rillig Exp $
 
 DISTNAME=	bastet-0.43.2
+PKGREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=fph/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://fph.altervista.org/prog/bastet.html
+HOMEPAGE=	https://fph.altervista.org/prog/bastet.html
 COMMENT=	Bastard Tetris
 LICENSE=	gnu-gpl-v3
 
@@ -21,7 +22,7 @@ SUBST_CLASSES+=		vardir
 SUBST_STAGE.vardir=	pre-configure
 SUBST_FILES.vardir=	Config.cpp
 SUBST_MESSAGE.vardir=	Fixing VARBASE.
-SUBST_SED.vardir=	-e "s|/var/games|${VARBASE}/games|1"
+SUBST_SED.vardir=	-e "s|/var/games|${VARBASE}/games|"
 
 REQD_FILES_PERMS+=	/dev/null ${VARBASE}/games/bastet.scores2 ${GAMEDATA_PERMS}
 

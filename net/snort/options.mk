@@ -1,14 +1,10 @@
-# $NetBSD: options.mk,v 1.8 2017/06/15 18:27:50 nils Exp $
+# $NetBSD: options.mk,v 1.10 2020/10/01 19:45:02 nils Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.snort
 
 PKG_SUPPORTED_OPTIONS=	debug snort-prelude ssl snmp snort-gre
 PKG_SUPPORTED_OPTIONS+=	snort-dynamicplugin snort-timestats
-PKG_SUPPORTED_OPTIONS+=	snort-rulestate inet6
-# does not work on SunOS
-.if ${OPSYS} != "SunOS"
-PKG_SUGGESTED_OPTIONS=	inet6
-.endif
+PKG_SUPPORTED_OPTIONS+=	snort-rulestate
 
 
 PKG_OPTIONS_OPTIONAL_GROUPS=	flex
@@ -34,13 +30,6 @@ CONFIGURE_ARGS+=	--enable-dynamicplugin
 ###
 .if !empty(PKG_OPTIONS:Msnort-rulestate)
 CONFIGURE_ARGS+=	--enable-rulestate
-.endif
-
-###
-### Enable ipv6 support
-###
-.if !empty(PKG_OPTIONS:Minet6)
-CONFIGURE_ARGS+=	--enable-ipv6
 .endif
 
 ###
@@ -106,7 +95,6 @@ SUBST_MESSAGE.conf=	Fixing configuration script.
 ###
 .if !empty(PKG_OPTIONS:Msnort-flexresp2)
 .include "../../devel/libnet11/buildlink3.mk"
-.include "../../net/libdnet/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-libnet-includes=${BUILDLINK_PREFIX.libnet11}/include/libnet11
 CONFIGURE_ARGS+=	--with-libnet-libraries=${BUILDLINK_PREFIX.libnet11}/lib/libnet11
 CONFIGURE_ARGS+=	--enable-flexresp2

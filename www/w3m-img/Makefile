@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.29 2016/11/06 19:27:16 wiz Exp $
+# $NetBSD: Makefile,v 1.31 2020/03/12 18:22:55 wiz Exp $
 
 PKGNAME=	w3m-img-${W3M_PKGVERS}
 COMMENT=	Multilingualized version of w3m with inline image support

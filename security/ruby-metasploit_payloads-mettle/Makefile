@@ -1,12 +1,14 @@
-# $NetBSD: Makefile,v 1.7 2018/09/23 17:57:29 taca Exp $
+# $NetBSD: Makefile,v 1.11 2020/09/14 14:07:28 taca Exp $
 
-DISTNAME=	metasploit_payloads-mettle-0.4.2
+DISTNAME=	metasploit_payloads-mettle-1.0.3
 CATEGORIES=	security
 
 MAINTAINER=	minskim@NetBSD.org
 HOMEPAGE=	https://www.metasploit.com/
 COMMENT=	Compiled binaries for Metasploit\'s next-gen Meterpreter
 LICENSE=	modified-bsd
+
+USE_LANGUAGES=	# none
 
 # These are pre-built binaries.
 CHECK_RELRO_SKIP+=	${GEM_LIBDIR}/build/*

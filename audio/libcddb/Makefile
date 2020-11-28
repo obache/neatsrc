@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.29 2018/08/19 20:16:39 wiz Exp $
+# $NetBSD: Makefile,v 1.31 2020/01/26 05:26:11 rillig Exp $
 
 DISTNAME=	libcddb-1.3.2
 PKGREVISION=	1

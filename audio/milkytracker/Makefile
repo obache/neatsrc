@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.13 2019/10/01 19:37:50 nia Exp $
+# $NetBSD: Makefile,v 1.16 2020/08/18 17:57:37 leot Exp $
 
 DISTNAME=	milkytracker-1.02.00
+PKGREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=milkytracker/}
 GITHUB_PROJECT=	MilkyTracker
@@ -14,6 +15,12 @@ LICENSE=	gnu-gpl-v3
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c c++03
+
+# Resolve inconsistent PLIST on diferent platforms.
+# As in docs/CMakeLists.txt, on "BSD", "share/doc/milkytracker" is always used
+# Otherwise, "share/doc/MilkyTracker" is used.
+# This is silly.
+CMAKE_ARGS+=	-DCMAKE_INSTALL_DOCDIR="share/doc/milkytracker"
 
 INSTALLATION_DIRS+=	share/appdata
 INSTALLATION_DIRS+=	share/applications

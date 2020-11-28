@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.15 2019/08/11 13:18:17 wiz Exp $
+# $NetBSD: Makefile,v 1.17 2020/05/10 13:51:34 rillig Exp $
 #
 
-DISTNAME=	cc65-2.17
+DISTNAME=	cc65-2.18
 PKGNAME=	${DISTNAME:S/-sources//}
-PKGREVISION=	1
 CATEGORIES=	cross lang
 MASTER_SITES=	${MASTER_SITE_GITHUB:=cc65/}
 GITHUB_PROJECT=	cc65
@@ -15,15 +14,9 @@ COMMENT=	C cross compiler for 6502 target systems
 LICENSE=	zlib
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
-USE_TOOLS+=	gmake perl
+USE_TOOLS+=	gmake
 REPLACE_PERL=	util/ca65html
 
 INSTALL_MAKE_FLAGS+=	PREFIX=${PREFIX}
-
-SUBST_CLASSES+=		perl
-SUBST_MESSAGE.perl=	Fixing the path of perl.
-SUBST_STAGE.perl=	pre-configure
-SUBST_FILES.perl=	src/ca65/macpack/cvt-mac.pl src/ld65/cfg/cvt-cfg.pl
-SUBST_SED.perl=		-e "s,/usr/bin/perl,${PREFIX}/bin/perl,g"
 
 .include "../../mk/bsd.pkg.mk"

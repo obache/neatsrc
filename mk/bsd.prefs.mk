@@ -1,4 +1,4 @@
-# $NetBSD: bsd.prefs.mk,v 1.405 2019/11/09 21:24:24 maya Exp $
+# $NetBSD: bsd.prefs.mk,v 1.408 2020/06/07 05:59:30 rillig Exp $
 #
 # This file includes the mk.conf file, which contains the user settings.
 #
@@ -568,7 +568,7 @@ X11BASE?=	/usr/X11R6
 X11BASE?=	/usr/X11
 .  elif !empty(MACHINE_PLATFORM:MDarwin-??.*-*)
 X11BASE?=	/opt/X11
-.  elif ${OPSYS} == "NetBSD" && ${X11FLAVOUR:U} == "Xorg"
+.  elif ${OPSYS} == "NetBSD"
 X11BASE?=	/usr/X11R7
 .  elif exists(/usr/X11R7/lib/libX11.so)
 X11BASE?=	/usr/X11R7
@@ -853,8 +853,9 @@ RECURSIVE_MAKE=		${PKGSRC_SETENV} ${PKGSRC_MAKE_ENV} ${MAKE}
 
 _VARGROUPS+=		dirs
 _USER_VARS.dirs=	DISTDIR LOCALBASE PACKAGES PKG_SYSCONFDIR WRKOBJDIR
+_USER_VARS.dirs+=	PKG_DBDIR
 _PKG_VARS.dirs=		WRKSRC PATCHDIR FILESDIR PKGDIR
-_SYS_VARS.dirs=		WRKDIR DESTDIR PKG_SYSCONFBASEDIR
+_SYS_VARS.dirs=		WRKDIR DESTDIR PREFIX PKG_SYSCONFBASEDIR
 
 # List of 64bit operating systems with sizeof(int) != sizeof(void *).
 # This can be used with BROKEN_ON_PLATFORM for software that is not

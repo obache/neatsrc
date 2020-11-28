@@ -1,5 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2019/11/04 22:09:54 rillig Exp $
-#
+# $NetBSD: Makefile,v 1.18 2020/03/13 15:46:21 nia Exp $
 
 FIREFOX_VER=	52.9.0esr
 PKGNAME=	firefox52-l10n-${FIREFOX_VER:S/esr//}
@@ -11,6 +10,8 @@ MASTER_SITES=	${MASTER_SITE_MOZILLA:=firefox/releases/${FIREFOX_VER}/linux-i686/
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.mozilla.com/en-US/firefox/
 COMMENT=	Language packs for www/firefox (version ${PKGVERSION_NOREV:C/\..*//})
+
+DEPENDS+=	firefox52>=${PKGVERSION_NOREV}:../../www/firefox52
 
 DIST_SUBDIR=	${PKGNAME_NOREV}
 DISTFILES=	${XPI_FILES}

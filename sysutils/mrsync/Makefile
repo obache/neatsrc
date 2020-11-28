@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2014/10/09 14:06:58 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/20 11:58:22 nia Exp $
 
 DISTNAME=	mrsync.20090219
 PKGNAME=	${DISTNAME:S/./-/}

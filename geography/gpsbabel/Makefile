@@ -1,17 +1,17 @@
-# $NetBSD: Makefile,v 1.22 2019/09/18 14:17:11 ryoon Exp $
+# $NetBSD: Makefile,v 1.32 2020/08/30 19:13:38 gdt Exp $
 #
 
 DISTNAME=	gpsbabel-1.6.0
-PKGREVISION=	1
+PKGREVISION=	8
 CATEGORIES=	geography
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_BACKUP}
 # Download from official site apparently only via interactive form,
 # but code is gnu-gpl-v2 so hosted elsewhere.
 # older versions were at
 # MASTER_SITES+=	http://archlinux-stuff.googlecode.com/files/
 
 MAINTAINER=	gdt@NetBSD.org
-HOMEPAGE=	http://www.gpsbabel.org/
+HOMEPAGE=	https://www.gpsbabel.org/
 #HOMEPAGE=	https://github.com/gpsbabel/gpsbabel
 COMMENT=	Utility to convert and fetch GPS related data
 LICENSE=	gnu-gpl-v2
@@ -37,6 +37,7 @@ LIBS.Darwin+=	-lexpat
 #    va_start(args, fmt);
 #                       ^
 
+# gpsbabel 1.6.0 really does need libusb 0.1, and uses usb_interrupt_read
 .include "../../mk/libusb.buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"

@@ -1,13 +1,16 @@
-# $NetBSD: Makefile,v 1.47 2018/09/05 13:29:30 fhajny Exp $
+# $NetBSD: Makefile,v 1.51 2020/05/17 00:54:00 tnn Exp $
 
-DISTNAME=	elasticsearch-6.4.0
-CATEGORIES=	textproc
+DISTNAME=	elasticsearch-6.8.8
+CATEGORIES=	databases textproc
 MASTER_SITES=	https://artifacts.elastic.co/downloads/elasticsearch/
 
 MAINTAINER=	imil@NetBSD.org
 HOMEPAGE=	http://www.elasticsearch.org/
 COMMENT=	Distributed RESTful Search Engine
 LICENSE=	apache-2.0
+
+# Uses javah, which doesn't exist in JDK10+ anymore.
+PKG_JVMS_ACCEPTED=	openjdk8 oracle-jdk8 sun-jdk7
 
 # Build our own native JNA, the version should match the one that ES ships with
 JNA=			jna-4.5.1
@@ -32,7 +35,7 @@ DOCS=		LICENSE.txt NOTICE.txt README.textile
 
 .include "../../mk/bsd.prefs.mk"
 
-BUILD_DEFS+=	ES_USER ES_GROUP ES_DBDIR ES_LOGDIR ES_PIDDIR
+BUILD_DEFS+=	ES_USER ES_GROUP ES_DBDIR ES_LOGDIR ES_PIDDIR VARBASE
 
 ES_USER?=	elasticsearch
 ES_GROUP?=	${ES_USER}
@@ -68,14 +71,17 @@ SUBST_STAGE.paths=	pre-configure
 SUBST_FILES.paths=	bin/elasticsearch-env config/elasticsearch.yml
 SUBST_VARS.paths=	PKG_JAVA_HOME PKG_SYSCONFDIR ES_DBDIR ES_BASEDIR ES_LOGDIR
 
+BUILDLINK_TRANSFORM+=	rm:-Wno-unknown-warning-option
+BUILDLINK_TRANSFORM+=	rm:-Werror
+
 post-extract:
 	${RM} ${WRKSRC}/lib/${JNA}.jar
 	${MV} ${WRKDIR}/${JNA} ${WRKSRC}/jna
 
 do-build:
 	# Override silly SunOS et al. assumptions.
-	cd ${WRKSRC}/jna && ${SETENV} ${MAKE_ENV} ant -Ddynlink.native=true -Dgrep=grep -Dmake.PATH=PATH=${PATH:Q} -Dmake=make native
-	cd ${WRKSRC}/jna/build/classes && ${SETENV} ${MAKE_ENV} jar cf ${WRKSRC}/lib/${JNA}.jar com/
+	${_ULIMIT_CMD} cd ${WRKSRC}/jna && ${SETENV} ${MAKE_ENV} ant -Ddynlink.native=true -Dgrep=grep -Dmake.PATH=PATH=${PATH:Q} -Dmake=make native
+	${_ULIMIT_CMD} cd ${WRKSRC}/jna/build/classes && ${SETENV} ${MAKE_ENV} jar cf ${WRKSRC}/lib/${JNA}.jar com/
 
 do-install:
 .for f in ${CONFS}

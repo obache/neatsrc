@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.73 2018/07/26 16:55:29 jperkin Exp $
+# $NetBSD: Makefile,v 1.75 2020/03/22 10:50:35 rillig Exp $
 #
 
 DISTNAME=	Gauche-0.9.6
@@ -7,7 +7,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=gauche/}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	enami@NetBSD.org
-HOMEPAGE=	http://practical-scheme.net/gauche/
+HOMEPAGE=	https://practical-scheme.net/gauche/
 COMMENT=	R7RS Scheme implementation aimed to be a handy tool for daily works
 LICENSE=	modified-bsd # see work/${DISTNAME}/COPYING
 
@@ -17,6 +17,7 @@ DEPENDS+=		slib-[0-9]*:../../devel/slib
 
 MAKE_JOBS_SAFE=		no
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_STRICT=	no # has several configure programs
 CONFIGURE_ARGS+=	--with-slib=${LOCALBASE}/share/slib
 CONFIGURE_ARGS+=	--enable-threads=pthreads
 CONFIGURE_ARGS+=	--with-iconv=${BUILDLINK_PREFIX.iconv}

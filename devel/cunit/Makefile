@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2015/10/19 08:32:39 wiz Exp $
+# $NetBSD: Makefile,v 1.7 2020/01/26 05:26:23 rillig Exp $
 
 DISTNAME=		CUnit-2.1-0-src
 PKGNAME=		CUnit-2.1

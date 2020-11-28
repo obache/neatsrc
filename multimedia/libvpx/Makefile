@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.80 2019/11/23 19:37:20 gdt Exp $
+# $NetBSD: Makefile,v 1.85 2020/10/25 12:43:45 nia Exp $
 
-DISTNAME=	libvpx-1.8.1
+DISTNAME=	libvpx-1.9.0
 PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=webmproject/}
@@ -12,7 +12,7 @@ HOMEPAGE=	https://chromium.googlesource.com/webm/libvpx
 COMMENT=	On2 VP8 library from Google
 LICENSE=	modified-bsd
 
-USE_LANGUAGES=		c c++11
+USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake bash:build perl:build
 HAS_CONFIGURE=		yes
@@ -23,16 +23,13 @@ CONFIGURE_ARGS+=	--enable-runtime-cpu-detect
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--disable-unit-tests
 
+# Uses -std=c++11
+GCC_REQD+=		4.8
+
 .include "../../mk/bsd.prefs.mk"
 
 .if ${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64"
-# PR pkg/48508: GCC 4.4 or later is required to compile ssse3 code on NetBSD & Solaris.
-# Because building pkgsrc with gcc < 4.4 doesn't really work in the
-# first place, for simplicitly, just set GCC_REQD unconditionally
-# rather than trying to limit by OS.
-GCC_REQD+=	4.4
-
-BUILD_DEPENDS+=		yasm-[0-9]*:../../devel/yasm
+TOOL_DEPENDS+=		yasm-[0-9]*:../../devel/yasm
 .endif
 
 REPLACE_BASH=		configure
@@ -45,36 +42,22 @@ REPLACE_PERL=		build/make/ads2gas.pl
 .if ${OPSYS} == "Darwin"
 BUILDLINK_TRANSFORM+=	rm:-Wl,-Bsymbolic
 .  if ${MACHINE_ARCH} == "i386"
-.    if !empty(OS_VERSION:M1[3-9].*)
-CONFIGURE_ARGS+=	--target=x86-darwin13-gcc
-.    elif !empty(OS_VERSION:M12.*)
-CONFIGURE_ARGS+=	--target=x86-darwin12-gcc
-.    elif !empty(OS_VERSION:M11.*)
-CONFIGURE_ARGS+=	--target=x86-darwin11-gcc
-.    elif !empty(OS_VERSION:M10.*)
-CONFIGURE_ARGS+=	--target=x86-darwin10-gcc
+.    if !empty(OS_VERSION:M1[8-9].*)
+CONFIGURE_ARGS+=	--target=x86-darwin17-gcc
+.    elif !empty(OS_VERSION:M1[0-7].*)
+CONFIGURE_ARGS+=	--target=x86-darwin${OS_VERSION:C/\.[0-9]*//g}-gcc
 .    elif !empty(OS_VERSION:M9.*)
 CONFIGURE_ARGS+=	--target=x86-darwin9-gcc
 .    else
 CONFIGURE_ARGS+=	--target=x86-darwin8-gcc
 .    endif
 .  elif ${MACHINE_ARCH} == "x86_64"
-.    if !empty(OS_VERSION:M1[3-9].*)
-CONFIGURE_ARGS+=	--target=x86_64-darwin13-gcc
-.    elif !empty(OS_VERSION:M12.*)
-CONFIGURE_ARGS+=	--target=x86_64-darwin12-gcc
-.    elif !empty(OS_VERSION:M11.*)
-CONFIGURE_ARGS+=	--target=x86_64-darwin11-gcc
-.    elif !empty(OS_VERSION:M10.*)
-CONFIGURE_ARGS+=	--target=x86_64-darwin10-gcc
+.    if !empty(OS_VERSION:M1[8-9].*) || !empty(OS_VERSION:M2[0-9].*)
+CONFIGURE_ARGS+=	--target=x86_64-darwin17-gcc
+.    elif !empty(OS_VERSION:M1[0-7].*)
+CONFIGURE_ARGS+=	--target=x86_64-darwin${OS_VERSION:C/\.[0-9]*//g}-gcc
 .    else
 CONFIGURE_ARGS+=	--target=x86_64-darwin9-gcc
-.    endif
-.  elif ${MACHINE_ARCH} == "powerpc"
-.    if !empty(OS_VERSION:M9.*)
-CONFIGURE_ARGS+=	--target=ppc32-darwin9-gcc
-.    else
-CONFIGURE_ARGS+=	--target=ppc32-darwin8-gcc
 .    endif
 .  endif
 .elif ${OPSYS} == "SunOS" && !empty(PKGSRC_COMPILER:Mgcc*)

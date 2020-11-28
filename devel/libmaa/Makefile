@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.13 2019/04/23 19:02:48 cheusov Exp $
+# $NetBSD: Makefile,v 1.18 2020/06/16 12:40:23 leot Exp $
 
-DISTNAME=		libmaa-1.4.4
+DISTNAME=		libmaa-1.4.7
+PKGREVISION=		1
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=dict/}
 

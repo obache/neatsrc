@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.230 2020/01/02 15:54:53 gutteridge Exp $
+# $NetBSD: Makefile,v 1.236 2020/09/15 10:45:41 prlw1 Exp $
 
-DISTNAME=	pango-1.44.7
+DISTNAME=	pango-1.46.1
 CATEGORIES=	devel fonts
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/pango/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -16,9 +16,16 @@ USE_LANGUAGES=		c c++
 USE_TOOLS+=		gmake pkg-config
 INSTALLATION_DIRS=	${PKGMANDIR}/man1
 
+SUBST_CLASSES+=		wrksrc
+SUBST_STAGE.wrksrc=	pre-configure
+SUBST_FILES.wrksrc=	output/utils/pango-view.sh
+SUBST_VARS.wrksrc=	WRKSRC
+
 PKGCONFIG_OVERRIDE+=		output/meson-private/pango.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/pangocairo.pc
+PKGCONFIG_OVERRIDE+=		output/meson-private/pangofc.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/pangoft2.pc
+PKGCONFIG_OVERRIDE+=		output/meson-private/pangoot.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/pangoxft.pc
 PKGCONFIG_OVERRIDE_STAGE=	pre-install
 MAKE_ENV+=			LD_LIBRARY_PATH=${WRKSRC}/output/${PKGBASE}
@@ -28,6 +35,10 @@ CHECK_PORTABILITY_SKIP+=	docs/check.docs
 
 BUILDLINK_TRANSFORM+=	rm:-Werror=implicit-fallthrough # clang10svn
 
+post-extract:
+	${MKDIR} -p ${WRKSRC}/output/utils
+	${CP} ${FILESDIR}/pango-view.sh ${WRKSRC}/output/utils
+
 post-install:
 	${MV} ${DESTDIR}${PREFIX}/share/man/man1/pango-view.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/pango-view.1 || ${TRUE}
 
@@ -36,13 +47,13 @@ post-install:
 
 BUILDLINK_API_DEPENDS.fribidi+=	fribidi>=0.19.7
 .include "../../converters/fribidi/buildlink3.mk"
-BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.59
+BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.60
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_DEPMETHOD.gobject-introspection=	build
 .include "../../devel/gobject-introspection/buildlink3.mk"
 BUILDLINK_API_DEPENDS.fontconfig+=	fontconfig>=2.11.91
 .include "../../fonts/fontconfig/buildlink3.mk"
-BUILDLINK_API_DEPENDS.harfbuzz+= harfbuzz>=2.0
+BUILDLINK_API_DEPENDS.harfbuzz+= harfbuzz>=2.7.2
 .include "../../fonts/harfbuzz/buildlink3.mk"
 .if ${LIBRSVG_TYPE} == "rust"
 .include "../../graphics/graphite2/buildlink3.mk"

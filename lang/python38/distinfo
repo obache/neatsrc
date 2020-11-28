@@ -1,13 +1,14 @@
-$NetBSD: distinfo,v 1.4 2020/01/06 22:54:51 leot Exp $
+$NetBSD: distinfo,v 1.12 2020/09/28 19:31:55 adam Exp $
 
-SHA1 (Python-3.8.1.tar.xz) = a48fd28a037c0bcd7b7fc4d914c023f584e910ed
-RMD160 (Python-3.8.1.tar.xz) = 057623eae4d7b82eb037176f8e80c87a30bd3586
-SHA512 (Python-3.8.1.tar.xz) = d41381848cc1ec8009643b71875f395a9ac2c8e12a5b1efef33caf8a9e99a337c790d4354695c85352d11b62092ae372b5af62f78724363fcbf3504ff9a6ddca
-Size (Python-3.8.1.tar.xz) = 17828408 bytes
+SHA1 (Python-3.8.6.tar.xz) = 6ee446eaacf901a3305565bd6569e2de135168e3
+RMD160 (Python-3.8.6.tar.xz) = 89c134d2d1bc02975cf959cc4a7ee63dba5c5388
+SHA512 (Python-3.8.6.tar.xz) = 22faec84f6e172e1ac7c6bd6fd37e9b6ae4afc91cf5136aa8cac8ebbed8d18793f9196e8749b8ccc43447cb6c41cb450f65ea72dd363c06dfaeb14e0455f5560
+Size (Python-3.8.6.tar.xz) = 18233864 bytes
 SHA1 (patch-Lib_ctypes_util.py) = 032cc99ebad93ddddfd89073c60424a952e3faa3
 SHA1 (patch-Lib_distutils_command_install.py) = 6fc6f5d918b7581fc62cd0fe55857ee932c3a341
 SHA1 (patch-Lib_distutils_sysconfig.py) = 6822eafb4dfded86d7f7353831816aeb8119e6cf
 SHA1 (patch-Lib_distutils_unixccompiler.py) = 2e65a8dd5dd3fe25957206c062106fa7a6fc4e69
+SHA1 (patch-Lib_lib2to3_pgen2_driver.py) = 5d6dab14197f27363394ff1aeee22a8ced8026d2
 SHA1 (patch-Lib_sysconfig.py) = a4f009ed73ebbd9d9c4bf7e12b7981182ed8fd7c
 SHA1 (patch-Makefile.pre.in) = d42f9f5bca1dd663f64122dc95b49111452fe6e8
 SHA1 (patch-Modules_makesetup) = a06786eebffadecedba5e3a50a9785fb47613567
@@ -15,6 +16,6 @@ SHA1 (patch-Modules_nismodule.c) = 1bafe9b06359586d027a77011b103877590d947d
 SHA1 (patch-Modules_socketmodule.c) = e99fd9e30e3feafef1747a2f52446d8fec543362
 SHA1 (patch-Modules_socketmodule.h) = 13a3290eb72078067060d3e71b7baa08f3eb591c
 SHA1 (patch-Python_thread__pthread.h) = fb81eaa604b4ed7c1b64c3f4731d58a8aee257be
-SHA1 (patch-configure) = 21540fd8328ab721b04d09aae377caf2f2978f8c
+SHA1 (patch-configure) = 11991489b71557cc934e268981703e9b1dbba4c6
 SHA1 (patch-pyconfig.h.in) = 4bc6e95441cb5faae94d1d52aeaaa10ae01385b6
-SHA1 (patch-setup.py) = b6f6fd38ad557680eba4878a9a03ec654c573361
+SHA1 (patch-setup.py) = ee2adad91434f2739a266c8b5eaad07767b9571a

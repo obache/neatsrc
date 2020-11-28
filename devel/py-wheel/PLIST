@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2019/02/15 12:55:38 adam Exp $
+@comment $NetBSD: PLIST,v 1.8 2020/08/21 07:54:23 adam Exp $
 bin/wheel-${PYVERSSUFFIX}
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
@@ -28,18 +28,30 @@ ${PYSITELIB}/wheel/cli/pack.pyo
 ${PYSITELIB}/wheel/cli/unpack.py
 ${PYSITELIB}/wheel/cli/unpack.pyc
 ${PYSITELIB}/wheel/cli/unpack.pyo
+${PYSITELIB}/wheel/macosx_libfile.py
+${PYSITELIB}/wheel/macosx_libfile.pyc
+${PYSITELIB}/wheel/macosx_libfile.pyo
 ${PYSITELIB}/wheel/metadata.py
 ${PYSITELIB}/wheel/metadata.pyc
 ${PYSITELIB}/wheel/metadata.pyo
-${PYSITELIB}/wheel/pep425tags.py
-${PYSITELIB}/wheel/pep425tags.pyc
-${PYSITELIB}/wheel/pep425tags.pyo
 ${PYSITELIB}/wheel/pkginfo.py
 ${PYSITELIB}/wheel/pkginfo.pyc
 ${PYSITELIB}/wheel/pkginfo.pyo
 ${PYSITELIB}/wheel/util.py
 ${PYSITELIB}/wheel/util.pyc
 ${PYSITELIB}/wheel/util.pyo
+${PYSITELIB}/wheel/vendored/__init__.py
+${PYSITELIB}/wheel/vendored/__init__.pyc
+${PYSITELIB}/wheel/vendored/__init__.pyo
+${PYSITELIB}/wheel/vendored/packaging/__init__.py
+${PYSITELIB}/wheel/vendored/packaging/__init__.pyc
+${PYSITELIB}/wheel/vendored/packaging/__init__.pyo
+${PYSITELIB}/wheel/vendored/packaging/_typing.py
+${PYSITELIB}/wheel/vendored/packaging/_typing.pyc
+${PYSITELIB}/wheel/vendored/packaging/_typing.pyo
+${PYSITELIB}/wheel/vendored/packaging/tags.py
+${PYSITELIB}/wheel/vendored/packaging/tags.pyc
+${PYSITELIB}/wheel/vendored/packaging/tags.pyo
 ${PYSITELIB}/wheel/wheelfile.py
 ${PYSITELIB}/wheel/wheelfile.pyc
 ${PYSITELIB}/wheel/wheelfile.pyo

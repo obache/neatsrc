@@ -1,15 +1,13 @@
-# $NetBSD: Makefile,v 1.2 2019/10/29 19:17:09 bouyer Exp $
+# $NetBSD: Makefile,v 1.10 2020/08/17 20:17:56 leot Exp $
 
+PKGREVISION= 1
 .include "../../x11/qt5-qscintilla/Makefile.common"
 
-
-PKGNAME=	${PYPKGPREFIX}-qt5-${DISTNAME:tl:S/_gpl-/-/}
+PKGNAME=	${PYPKGPREFIX}-qt5-${DISTNAME:tl}
 COMMENT=	QScintilla -- Python bindings
-PKGREVISION=	1
 
-WRKSRC=		${WRKDIR}/${DISTNAME}/Python
-
-PY_PATCHPLIST=		yes
+BUILD_DIRS=	Python
+PY_PATCHPLIST=	yes
 
 MAKE_FLAGS+=		TARGET=Qsci.la TARGETD=Qsci.la TARGETL=Qsci.la
 INSTALL_MAKE_FLAGS+=	INSTALL_ROOT=${DESTDIR}
@@ -17,12 +15,14 @@ LIBS+=			-lqscintilla2
 MAKE_FLAGS+=		LDFLAGS=${LDFLAGS:Q}\ ${LIBS:Q}
 
 do-configure:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHONBIN} configure.py \
-	    --pyqt PyQt5 \
-	    --qmake=${QTDIR}/bin/qmake --sip=${PREFIX}/bin/sip${PYVERSSUFFIX} \
-	    --pyqt-sipdir=${PREFIX}/share/sip${PYVERSSUFFIX}/PyQt5 \
-	    --qsci-sipdir=${PREFIX}/share/sip${PYVERSSUFFIX}/PyQt5 \
-	    --qsci-libdir=${QTDIR}/lib
+	cd ${WRKSRC}/Python && ${SETENV} ${MAKE_ENV} ${PYTHONBIN} configure.py \
+		--pyqt PyQt5 \
+		--qmake=${QTDIR}/bin/qmake \
+		--sip=${PREFIX}/bin/sip${PYVERSSUFFIX} \
+		--pyqt-sipdir=${PREFIX}/share/sip${PYVERSSUFFIX}/PyQt5 \
+		--qsci-sipdir=${PREFIX}/share/sip${PYVERSSUFFIX}/PyQt5 \
+		--qsci-libdir=${QTDIR}/lib \
+		--apidir=${QTDIR}/qsci${PYVERSSUFFIX}
 
 .include "../../lang/python/extension.mk"
 .include "../../x11/py-sip/buildlink3.mk"

@@ -1,8 +1,6 @@
-# $NetBSD: Makefile,v 1.74 2019/11/02 22:38:06 rillig Exp $
+# $NetBSD: Makefile,v 1.79 2020/08/19 19:54:11 bouyer Exp $
 
-DISTNAME=	xfig-3.2.6a
-PKGNAME=	${DISTNAME:S/-full//}
-PKGREVISION=	1
+DISTNAME=	xfig-3.2.7b
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=mcj/}
 EXTRACT_SUFX=	.tar.xz
@@ -10,14 +8,23 @@ EXTRACT_SUFX=	.tar.xz
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://mcj.sourceforge.net/
 COMMENT=	CAD-like 2D drawing tool, good for colorful scale drawings & ISOs
+# not completely, but near enough
+LICENSE=	mit
 
 DEPENDS+=	fig2dev-[0-9]*:../../print/fig2dev
+TOOL_DEPENDS+=	netpbm-[0-9]*:../../graphics/netpbm
 
 XAW_TYPE?=		3d
 
 GNU_CONFIGURE=		yes
 
 CONFIGURE_ARGS+=	--with-appdefaultdir=${PREFIX}/lib/X11/app-defaults
+
+# w_cmdpanel.c: In function 'change_orient':
+# w_cmdpanel.c:893:36: error: array subscript has type 'char' [-Werror=char-subscripts]
+#      FirstArg(XtNlabel, orient_items[appres.landscape]);
+# Maybe fix this later.
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
 
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.222 2020/01/08 10:37:34 wiz Exp $
+# $NetBSD: Makefile,v 1.240 2020/09/28 19:22:03 adam Exp $
 
-DISTNAME=	wireshark-3.2.0
+DISTNAME=	wireshark-3.2.7
 CATEGORIES=	net
 MASTER_SITES=	https://www.wireshark.org/download/src/
 EXTRACT_SUFX=	.tar.xz
@@ -67,6 +67,7 @@ BUILDLINK_TRANSFORM+=	rm:-DGDK_PIXBUF_DISABLE_DEPRECATED
 
 .include "../../archivers/brotli/buildlink3.mk"
 .include "../../archivers/lz4/buildlink3.mk"
+.include "../../archivers/minizip/buildlink3.mk"
 .include "../../archivers/zstd/buildlink3.mk"
 .include "../../audio/speexdsp/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"

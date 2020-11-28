@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.29 2019/11/05 08:58:17 adam Exp $
+# $NetBSD: Makefile,v 1.35 2020/10/03 06:02:18 adam Exp $
 
-DISTNAME=	flake8-3.7.9
+DISTNAME=	flake8-3.8.4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=f/flake8/}
@@ -10,9 +10,8 @@ HOMEPAGE=	https://gitlab.com/pycqa/flake8
 COMMENT=	Modular source code checker for Python programs
 LICENSE=	mit
 
-DEPENDS+=	${PYPKGPREFIX}-codestyle>=2.5.0:../../devel/py-codestyle
-DEPENDS+=	${PYPKGPREFIX}-entrypoints>=0.3:../../devel/py-entrypoints
-DEPENDS+=	${PYPKGPREFIX}-flakes>=2.1.0:../../devel/py-flakes
+DEPENDS+=	${PYPKGPREFIX}-codestyle>=2.6.0:../../devel/py-codestyle
+DEPENDS+=	${PYPKGPREFIX}-flakes>=2.2.0:../../devel/py-flakes
 DEPENDS+=	${PYPKGPREFIX}-mccabe>=0.6.0:../../devel/py-mccabe
 .include "../../lang/python/pyversion.mk"
 .if ${_PYTHON_VERSION} == 27
@@ -21,10 +20,12 @@ DEPENDS+=	${PYPKGPREFIX}-enum34-[0-9]*:../../devel/py-enum34
 DEPENDS+=	${PYPKGPREFIX}-functools32-[0-9]*:../../devel/py-functools32
 DEPENDS+=	${PYPKGPREFIX}-typing-[0-9]*:../../devel/py-typing
 .endif
+.if ${_PYTHON_VERSION} < 38
+DEPENDS+=	${PYPKGPREFIX}-importlib-metadata-[0-9]*:../../devel/py-importlib-metadata
+.endif
 BUILD_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
 TEST_DEPENDS+=	${PYPKGPREFIX}-mock>=2.0.0:../../devel/py-mock
 TEST_DEPENDS+=	${PYPKGPREFIX}-pylint-[0-9]*:../../devel/py-pylint
-TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 
 USE_LANGUAGES=	# none
 

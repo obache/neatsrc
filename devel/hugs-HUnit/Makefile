@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2013/11/21 23:50:04 jmmv Exp $
+# $NetBSD: Makefile,v 1.7 2020/03/20 11:57:26 nia Exp $
 #
 
 DISTNAME=	HUnit-1.1.20060921

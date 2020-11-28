@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2019/11/03 11:45:32 rillig Exp $
+# $NetBSD: Makefile,v 1.16 2020/03/20 11:58:05 nia Exp $
 #
 
 DISTNAME=	choparp-20021107

@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.34 2019/09/02 13:20:21 adam Exp $
+# $NetBSD: Makefile,v 1.37 2020/10/12 21:51:59 bacon Exp $
 
 DISTNAME=	pymol-v1.5.0.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/pymol-v/mol-/}
 EGG_NAME=	pymol-1.5.0.1
-PKGREVISION=	6
+PKGREVISION=	8
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pymol/}
 EXTRACT_SUFX=	.tar.bz2
@@ -11,8 +11,6 @@ EXTRACT_SUFX=	.tar.bz2
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.pymol.org/
 COMMENT=	Molecular Visualization System
-
-DEPENDS+=	${PYPKGPREFIX}-numpy-[0-9]*:../../math/py-numpy
 
 PYTHON_VERSIONED_DEPENDENCIES=	Pmw
 PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 1.5.0.1
@@ -48,4 +46,5 @@ post-install:
 .include "../../lang/python/application.mk"
 .include "../../lang/python/versioned_dependencies.mk"
 .include "../../lang/python/distutils.mk"
+.include "../../math/py-numpy/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

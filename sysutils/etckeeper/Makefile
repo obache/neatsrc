@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.17 2019/12/24 06:00:24 schmonz Exp $
+# $NetBSD: Makefile,v 1.20 2020/09/17 08:50:01 schmonz Exp $
 #
 
-DISTNAME=	etckeeper_1.18.12.orig
+DISTNAME=	etckeeper_1.18.14.orig
 PKGNAME=	${DISTNAME:S/_/-/:S/.orig$//}
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_DEBIAN:=pool/main/e/etckeeper/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://etckeeper.branchable.com/
+HOMEPAGE=	https://etckeeper.branchable.com/
 COMMENT=	Store /etc in git, mercurial, bzr or darcs
 LICENSE=	gnu-gpl-v2
 
@@ -15,7 +15,6 @@ WRKSRC=		${WRKDIR}/${PKGNAME_NOREV:S/.1$//}
 USE_LANGUAGES=	# none
 USE_TOOLS+=	gawk perl:run
 
-NO_CONFIGURE=	yes
 NO_BUILD=	yes
 AUTO_MKDIRS=	yes
 
@@ -40,21 +39,18 @@ CONF_FILES_PERMS+=	${EGDIR}/${file} ${PKG_SYSCONFDIR}/${file} \
 .endfor
 
 SUBST_CLASSES+=		config
-SUBST_STAGE.config=	pre-install
-SUBST_FILES.config+=	etckeeper
-SUBST_FILES.config+=	etckeeper.8
+SUBST_STAGE.config=	do-configure
+SUBST_FILES.config+=	etckeeper etckeeper.8
 SUBST_FILES.config+=	pre-install.d/10packagelist
 SUBST_FILES.config+=	post-install.d/50vcs-commit
-SUBST_FILES.config+=	bash_completion
-SUBST_FILES.config+=	debian/cron.daily
-SUBST_VARS.config+=	PKG_SYSCONFBASEDIR
-SUBST_VARS.config+=	PKG_SYSCONFDIR
-SUBST_VARS.config+=	VARBASE
-SUBST_VARS.config+=	PREFIX
+SUBST_FILES.config+=	bash_completion zsh_completion
+SUBST_FILES.config+=	daily debian/cron.daily
+SUBST_VARS.config+=	PREFIX VARBASE PKG_SYSCONFBASEDIR PKG_SYSCONFDIR
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/etckeeper ${DESTDIR}${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/etckeeper.conf ${DESTDIR}${EGDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/daily ${DESTDIR}${EGDIR}
 	for file in ${CF_FILES}; do					\
 	  ${INSTALL_DATA} ${WRKSRC}/$${file} ${DESTDIR}${EGDIR}/$${file} ;\
 	done
@@ -67,6 +63,8 @@ do-install:
 			${DESTDIR}${PREFIX}/share/doc/etckeeper/README.md
 	${INSTALL_DATA} ${WRKSRC}/bash_completion \
 			${DESTDIR}${PREFIX}/share/bash-completion.d/etckeeper
+	${INSTALL_DATA} ${WRKSRC}/zsh_completion \
+			${DESTDIR}${PREFIX}/share/zsh/site-functions/_etckeeper
 
 gen-cf-files: .PHONY
 	{ \

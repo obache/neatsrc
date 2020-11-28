@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2016/07/20 23:15:52 cheusov Exp $
+# $NetBSD: Makefile,v 1.3 2020/03/20 11:58:25 nia Exp $
 
 DISTNAME=	csvutils-0.9.3
 CATEGORIES=	textproc

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.34 2019/11/05 14:58:43 adam Exp $
+# $NetBSD: Makefile.common,v 1.44 2020/05/03 11:41:45 wiedi Exp $
 # used by x11/qt5-mysql/Makefile
 # used by x11/qt5-odbc/Makefile
 # used by x11/qt5-psql/Makefile
@@ -31,19 +31,24 @@
 # used by x11/qt5-qtxmlpatterns/Makefile
 
 .include "../../x11/qt5/Makefile.common"
-.include "options.mk"
 
 .include "../../mk/dlopen.buildlink3.mk"
 BUILDLINK_TRANSFORM+=	opt:-ldl:${BUILDLINK_LDADD.dl:Q}
 
-USE_LANGUAGES=		c c++11
+USE_LANGUAGES=		c gnu++11
 USE_TOOLS+=		gmake perl:build pkg-config
+
+# https://doc.qt.io/qt-5/supported-platforms.html
+GCC_REQD+=		5
 
 # Avoid failures to due 'register' usage in X11 headers.
 CFLAGS+=		-Wno-register
 
 # wcstof(3) etc. is used in C++ code.
 CFLAGS.NetBSD+=		-D_NETBSD_SOURCE
+
+# include/openssl/e_os2.h:283:25: error: '_Noreturn' does not name a type
+CXXFLAGS.SunOS+=	-D_Noreturn=""
 
 # for GL_GLEXT_LEGACY with GL/gl.h error, GL_ARB_shader_objects is not defined.
 BUILDLINK_TRANSFORM+=	rm:-Wundef
@@ -53,11 +58,9 @@ BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,-rpath-link,${PREFIX}/qt5/lib
 BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,-rpath-link,${WRKSRC}/lib
 
 MAKE_ENV+=		QTPREFIX=${QTPREFIX:Q}
-PLIST_VARS+=		mac unix
-.if ${OPSYS} == "Darwin"
-PLIST.mac=		yes
-.else
-PLIST.unix=		yes
+PLIST_VARS+=		notdarwin
+.if ${OPSYS} != "Darwin"
+PLIST.notdarwin=	yes
 .endif
 
 # avoid creating a .qt directory in the users home directory

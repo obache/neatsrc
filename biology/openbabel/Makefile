@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.36 2019/11/20 18:07:55 kamil Exp $
+# $NetBSD: Makefile,v 1.42 2020/08/17 20:17:17 leot Exp $
 #
 
 GITHUB_PROJECT=	openbabel
@@ -13,7 +13,7 @@ HOMEPAGE=	http://openbabel.org/
 COMMENT=	Chemistry file translation program
 LICENSE=	gnu-gpl-v2
 
-RELVERSION=	3-0-0
+RELVERSION=	3-1-1
 
 USE_LANGUAGES=	c gnu++11
 USE_TOOLS+=	pkg-config
@@ -31,8 +31,10 @@ CMAKE_ARGS+=	-DLLVM_CONFIG=${LLVM_CONFIG_PATH:Q}
 post-extract:
 	${MKDIR} ${WRKDIR}/build
 
-.include "../../graphics/cairo/buildlink3.mk"
+.include "../../devel/boost-headers/buildlink3.mk"
+.include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../math/eigen2/buildlink3.mk"
+.include "../../graphics/cairo/buildlink3.mk"
+.include "../../math/eigen3/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.32 2019/11/02 15:38:08 rillig Exp $
+# $NetBSD: Makefile,v 1.34 2020/01/26 05:26:20 rillig Exp $
 
 DISTNAME=	pyPgSQL-2.4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}

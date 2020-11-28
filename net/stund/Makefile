@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2018/07/18 00:06:23 joerg Exp $
+# $NetBSD: Makefile,v 1.4 2020/03/20 11:58:11 nia Exp $
 
 DISTNAME=	stund-0.97
 CATEGORIES=	net

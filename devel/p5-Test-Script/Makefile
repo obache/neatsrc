@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.28 2019/10/28 13:25:48 mef Exp $
+# $NetBSD: Makefile,v 1.30 2020/09/08 13:09:57 wiz Exp $
 
 DISTNAME=	Test-Script-1.26
 PKGNAME=	p5-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	perl5 devel
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Test/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://cpan.metacpan.org/authors/id/A/AD/ADAMK/
+HOMEPAGE=	https://metacpan.org/pod/Test::Script
 COMMENT=	Test::Script - Cross-platform basic tests for scripts
 LICENSE=	${PERL5_LICENSE}
 

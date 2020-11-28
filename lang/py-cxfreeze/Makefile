@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2018/02/09 08:04:41 adam Exp $
+# $NetBSD: Makefile,v 1.13 2020/03/20 11:57:56 nia Exp $
 
 DISTNAME=	cx_Freeze-5.1.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/_F/f/}

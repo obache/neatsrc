@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.6 2019/05/31 17:34:34 adam Exp $
+# $NetBSD: Makefile,v 1.8 2020/10/02 19:34:32 adam Exp $
 
-DISTNAME=	livereload-2.6.1
+DISTNAME=	livereload-2.6.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=l/livereload/}

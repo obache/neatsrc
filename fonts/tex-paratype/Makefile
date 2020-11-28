@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:32:19 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:51 markd Exp $
 
 DISTNAME=	paratype
 PKGNAME=	tex-${DISTNAME}-2014
+PKGREVISION=	1
 TEXLIVE_REV=	32859
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/paratype
+HOMEPAGE=	https://ctan.org/pkg/paratype
 COMMENT=	LaTeX support for free fonts by ParaType
 LICENSE=	lppl-1.3c
 

@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.10 2019/11/03 10:18:27 rillig Exp $
+# $NetBSD: Makefile,v 1.13 2020/03/20 11:57:30 nia Exp $
 
-VERSION=	3.4.0
-DISTNAME=	python2-pythondialog-${VERSION}
-PKGNAME=	${PYPKGPREFIX}-dialog-${VERSION}
+DISTNAME=	python2-pythondialog-3.5.1
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/^python2-python//}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/python2-pythondialog/}
 
@@ -11,8 +10,10 @@ HOMEPAGE=	http://pythondialog.sourceforge.net/
 COMMENT=	Python wrapper for the dialog utility
 LICENSE=	gnu-lgpl-v2.1
 
+USE_LANGUAGES=	# none
+
 PYTHON_VERSIONS_ACCEPTED=	27
 
 .include "../../misc/dialog/buildlink3.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

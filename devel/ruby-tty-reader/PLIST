@@ -1,0 +1,17 @@
+@comment $NetBSD: PLIST,v 1.2 2020/09/14 00:14:42 taca Exp $
+${GEM_HOME}/cache/${GEM_NAME}.gem
+${GEM_LIBDIR}/CHANGELOG.md
+${GEM_LIBDIR}/LICENSE.txt
+${GEM_LIBDIR}/README.md
+${GEM_LIBDIR}/lib/tty-reader.rb
+${GEM_LIBDIR}/lib/tty/reader.rb
+${GEM_LIBDIR}/lib/tty/reader/console.rb
+${GEM_LIBDIR}/lib/tty/reader/history.rb
+${GEM_LIBDIR}/lib/tty/reader/key_event.rb
+${GEM_LIBDIR}/lib/tty/reader/keys.rb
+${GEM_LIBDIR}/lib/tty/reader/line.rb
+${GEM_LIBDIR}/lib/tty/reader/mode.rb
+${GEM_LIBDIR}/lib/tty/reader/version.rb
+${GEM_LIBDIR}/lib/tty/reader/win_api.rb
+${GEM_LIBDIR}/lib/tty/reader/win_console.rb
+${GEM_HOME}/specifications/${GEM_NAME}.gemspec

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.37 2019/11/13 21:23:23 wiz Exp $
+# $NetBSD: Makefile,v 1.43 2020/09/17 21:13:18 schmonz Exp $
 
-DISTNAME=	po4a-0.57
+DISTNAME=	po4a-0.60
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mquinson/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
@@ -14,18 +14,22 @@ DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 DEPENDS+=	p5-gettext>=1.01:../../devel/p5-gettext
 DEPENDS+=	p5-SGMLS-[0-9]*:../../textproc/p5-SGMLS
 DEPENDS+=	p5-Term-ReadKey-[0-9]*:../../devel/p5-Term-ReadKey
+DEPENDS+=	p5-Pod-Parser-[0-9]*:../../textproc/p5-Pod-Parser
 DEPENDS+=	p5-Text-WrapI18N-[0-9]*:../../textproc/p5-Text-WrapI18N
-DEPENDS+=	p5-CPAN-Meta>=2.141170:../../devel/p5-CPAN-Meta
 DEPENDS+=	p5-PerlIO-utf8_strict-[0-9]*:../../devel/p5-PerlIO-utf8_strict
 DEPENDS+=	p5-Unicode-LineBreak-[0-9]*:../../textproc/p5-Unicode-LineBreak
 DEPENDS+=	p5-YAML-Tiny-[0-9]*:../../textproc/p5-YAML-Tiny
+# kpsewhich
+DEPENDS+=	kpathsea-[0-9]*:../../print/kpathsea
+# article.cls
+DEPENDS+=	tex-latex-[0-9]*:../../print/tex-latex
 
 USE_TOOLS+=		pkg-config perl:run msgmerge:run msgfmt:run
 
 PERL5_MODULE_TYPE=	Module::Build
 PERL5_PACKLIST=		auto/po4a/.packlist
 
-REPLACE_PERL=		scripts/msguntypot po4a po4a-gettextize po4a-normalize
+REPLACE_PERL=		msguntypot po4a po4a-gettextize po4a-normalize
 REPLACE_PERL+=		po4a-translate po4a-updatepo
 REPLACE_PERL+=		lib/Locale/Po4a/*
 

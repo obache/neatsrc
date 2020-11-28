@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.36 2019/09/02 13:19:57 adam Exp $
+# $NetBSD: Makefile,v 1.43 2020/08/17 20:18:36 leot Exp $
 
 DISTNAME=	zim-0.59
-PKGREVISION=	17
+PKGREVISION=	22
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	editors
 MASTER_SITES=	http://zim-wiki.org/downloads/
 
 MAINTAINER=	ryoon@NetBSD.org
-HOMEPAGE=	http://zim-wiki.org/
+HOMEPAGE=	https://zim-wiki.org/
 COMMENT=	Zim brings the concept of a wiki to your desktop
 LICENSE=	gnu-gpl-v2
 
@@ -19,7 +19,7 @@ DEPENDS+=	xdg-utils-[0-9]*:../../misc/xdg-utils
 USE_LANGUAGES=	# none
 
 REPLACE_PYTHON=	${WRKSRC}/zim.py
-PYTHON_VERSIONS_ACCEPTED=	 27 # py-gtk2
+PYTHON_VERSIONS_ACCEPTED= 27 # py-gtk2
 
 SUBST_CLASSES+=		data-path
 SUBST_STAGE.data-path=	pre-configure
@@ -29,9 +29,8 @@ SUBST_SED.data-path=	-e 's,/usr/local/share/,${PREFIX}/share/,'
 SUBST_CLASSES+=			fix-python
 SUBST_STAGE.fix-python=		pre-configure
 SUBST_MESSAGE.fix-python=	Fixing dynamic python
-SUBST_FILES.fix-python+=	zim/_lib/xdot.py
-SUBST_FILES.fix-python+=	zim/_version.py
 SUBST_FILES.fix-python+=	zim/inc/xdot.py
+SUBST_FILES.fix-python+=	zim/_version.py
 SUBST_SED.fix-python+=		-e 's,/usr/bin/env python,${PYTHONBIN},'
 
 SUBST_CLASSES+=			man-path

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2018/07/18 00:06:11 joerg Exp $
+# $NetBSD: Makefile,v 1.7 2020/03/20 11:57:24 nia Exp $
 #
 
 VERS=		2.3.6

@@ -1,4 +1,4 @@
-<!-- $NetBSD: editing.xml,v 1.15 2013/03/26 20:21:38 wiz Exp $ -->
+<!-- $NetBSD: editing.xml,v 1.17 2020/08/12 14:40:33 bacon Exp $ -->
 
 <appendix id="editing">
 <title>Editing guidelines for the pkgsrc guide</title>
@@ -20,14 +20,14 @@
 	<listitem><para><filename>pkgsrc/doc/pkgsrc.html</filename></para></listitem>
 
 	<listitem><para><ulink
-	url="http://www.NetBSD.org/docs/pkgsrc/"/></para></listitem>
+	url="https://www.NetBSD.org/docs/pkgsrc/"/></para></listitem>
 
 	<listitem><para><ulink
-	url="http://www.NetBSD.org/docs/pkgsrc/pkgsrc.pdf"/>:
+	url="https://www.NetBSD.org/docs/pkgsrc/pkgsrc.pdf"/>:
 	The PDF version of the pkgsrc guide.</para></listitem>
 
 	<listitem><para><ulink
-	url="http://www.NetBSD.org/docs/pkgsrc/pkgsrc.ps"/>:
+	url="https://www.NetBSD.org/docs/pkgsrc/pkgsrc.ps"/>:
 	PostScript version of the pkgsrc guide.</para></listitem>
 
 	</itemizedlist>
@@ -39,6 +39,10 @@
 	<para>The procedure to edit the pkgsrc guide is:</para>
 
 	<procedure>
+
+	<step><para>Make sure you have checked out the htdocs repository
+	into a sibling directory of your pkgsrc directory.  You will need
+	the ability to commit from both pkgsrc and htdocs.</para></step> 
 
 	<step><para>Make sure you have the packages needed to
 	regenerate the pkgsrc guide (and other XML-based NetBSD

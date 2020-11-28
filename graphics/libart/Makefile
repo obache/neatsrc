@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2014/10/09 14:06:36 wiz Exp $
+# $NetBSD: Makefile,v 1.9 2020/06/12 14:31:12 ryoon Exp $
 
 TDE_PKGNAME=		libart-lgpl
 TDE_SUBDIR=		dependencies
@@ -6,6 +6,7 @@ PKGNAME=		libart-${_TDE_RELEASE}
 CATEGORIES=		graphics
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
+HOMEPAGE=		https://www.levien.com/libart/
 COMMENT=		High-performance 2D graphics library
 LICENSE=		gnu-lgpl-v2
 

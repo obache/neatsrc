@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.14 2019/08/14 14:19:38 fox Exp $
+# $NetBSD: Makefile,v 1.16 2020/01/18 23:30:19 rillig Exp $
 #
 
 DISTNAME=	pgbouncer-1.10.0
+PKGREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	http://pgbouncer.github.io/downloads/files/${PKGVERSION_NOREV}/
 
 MAINTAINER=	pkgsrc@NetBSD.org
-HOMEPAGE=	http://pgbouncer.github.io/
+HOMEPAGE=	https://pgbouncer.github.io/
 COMMENT=	Lightweight connection pooler for PostgreSQL
 LICENSE=	original-bsd
 

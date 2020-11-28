@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.83 2019/12/19 22:18:17 joerg Exp $
+# $NetBSD: Makefile,v 1.91 2020/08/17 20:19:14 leot Exp $
 #
 
-DISTNAME=	xlog-2.0.17
-PKGREVISION=	2
+DISTNAME=	xlog-2.0.19
+PKGREVISION=	1
 CATEGORIES=	ham
 MASTER_SITES=	http://download.savannah.gnu.org/releases/xlog/
 LICENSE=	gnu-gpl-v3
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.nongnu.org/xlog/
+HOMEPAGE=	https://www.nongnu.org/xlog/
 COMMENT=	Amateur Radio logging program
 
 DEPENDS+=	xdg-utils-[0-9]*:../../misc/xdg-utils
@@ -17,8 +17,6 @@ GNU_CONFIGURE=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake pkg-config
 
-CONFIGURE_ARGS+=	--enable-hamlib
-
 .include "../../mk/compiler.mk"
 .if !empty(PKGSRC_COMPILER:Mclang)
 BUILDLINK_TRANSFORM+=	rm:-Wno-unused-but-set-variable
@@ -26,10 +24,18 @@ _WRAP_EXTRA_ARGS.CC+=	-Wno-error=parentheses-equality -Wno-error=tautological-co
 CWRAPPERS_APPEND.cc+=	-Wno-error=parentheses-equality -Wno-error=tautological-compare -Wno-unknown-warning-option -Wno-deprecated-declarations
 .endif
 
+# Problematic with 5.5.0 on netbsd-8.
+.if !empty(PKGSRC_COMPILER:Mgcc)
+BUILDLINK_TRANSFORM+=	rm:-Wno-stringop-truncation
+.endif
+
+# Work around https://savannah.nongnu.org/bugs/index.php?57920
+_WRAP_EXTRA_ARGS.CC+=	-Wno-deprecated-declarations
+CWRAPPERS_APPEND.cc+=	-Wno-deprecated-declarations
+
 .include "../../databases/shared-mime-info/mimedb.mk"
 .include "../../graphics/gnome-icon-theme/buildlink3.mk"
 .include "../../ham/hamlib/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
-.include "../../print/libgnomeprint/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

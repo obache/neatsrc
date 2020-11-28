@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2019/09/18 15:38:40 ryoon Exp $
+# $NetBSD: Makefile,v 1.3 2020/10/02 16:49:37 ryoon Exp $
 
 .include "../../cross/mingw-w64-x86_64-gcc-winpthreads/Makefile.common"
 

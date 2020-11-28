@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.26 2019/11/02 21:09:17 rillig Exp $
+# $NetBSD: Makefile,v 1.28 2020/01/26 05:26:14 rillig Exp $
 
 DISTNAME=	tunapie-2.1.18
 PKGREVISION=	2

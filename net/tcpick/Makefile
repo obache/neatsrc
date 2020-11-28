@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2013/12/10 12:36:35 jperkin Exp $
+# $NetBSD: Makefile,v 1.10 2020/03/20 11:58:11 nia Exp $
 
 DISTNAME=	tcpick-0.2.1
 PKGREVISION=	1

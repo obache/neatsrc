@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2019/11/02 15:38:08 rillig Exp $
+# $NetBSD: Makefile,v 1.12 2020/08/31 18:07:12 wiz Exp $
 
-PKGNAME=	${DISTNAME:C/-/95-contrib-/}
+PKGNAME=	${DISTNAME:S/-/95-contrib-/}
+PKGREVISION=	1
 COMMENT=	Contrib subtree of tools and plug-ins
 
 .include "../../databases/postgresql95/Makefile.common"
@@ -54,6 +55,7 @@ BUILD_DIRS+=		contrib/tsm_system_time
 BUILD_DIRS+=		contrib/unaccent
 BUILD_DIRS+=		contrib/vacuumlo
 
+TOOLS_BROKEN+=		perl
 CONFIGURE_ARGS+=	--with-openssl
 
 PLIST_VARS+=		uuid

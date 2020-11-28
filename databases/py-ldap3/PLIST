@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.4 2019/09/06 06:02:53 adam Exp $
+@comment $NetBSD: PLIST,v 1.6 2020/08/10 06:12:08 adam Exp $
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
@@ -277,6 +277,9 @@ ${PYSITELIB}/ldap3/strategy/restartable.pyo
 ${PYSITELIB}/ldap3/strategy/reusable.py
 ${PYSITELIB}/ldap3/strategy/reusable.pyc
 ${PYSITELIB}/ldap3/strategy/reusable.pyo
+${PYSITELIB}/ldap3/strategy/safeSync.py
+${PYSITELIB}/ldap3/strategy/safeSync.pyc
+${PYSITELIB}/ldap3/strategy/safeSync.pyo
 ${PYSITELIB}/ldap3/strategy/sync.py
 ${PYSITELIB}/ldap3/strategy/sync.pyc
 ${PYSITELIB}/ldap3/strategy/sync.pyo
@@ -310,6 +313,9 @@ ${PYSITELIB}/ldap3/utils/ntlm.pyo
 ${PYSITELIB}/ldap3/utils/ordDict.py
 ${PYSITELIB}/ldap3/utils/ordDict.pyc
 ${PYSITELIB}/ldap3/utils/ordDict.pyo
+${PYSITELIB}/ldap3/utils/port_validators.py
+${PYSITELIB}/ldap3/utils/port_validators.pyc
+${PYSITELIB}/ldap3/utils/port_validators.pyo
 ${PYSITELIB}/ldap3/utils/repr.py
 ${PYSITELIB}/ldap3/utils/repr.pyc
 ${PYSITELIB}/ldap3/utils/repr.pyo

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2015/08/18 07:31:16 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2020/03/20 11:58:13 nia Exp $
 
 DISTNAME=		clusterit-2.5
 PKGREVISION=		2

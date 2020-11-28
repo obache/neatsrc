@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:30:05 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:46 markd Exp $
 
 DISTNAME=	hacm
 PKGNAME=	tex-${DISTNAME}-0.1
+PKGREVISION=	1
 TEXLIVE_REV=	27671
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/hacm
+HOMEPAGE=	https://ctan.org/pkg/hacm
 COMMENT=	Font support for the Arka language
 LICENSE=	lppl-1.3c
 

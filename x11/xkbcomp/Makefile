@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.17 2018/06/15 08:50:25 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2020/02/20 22:38:03 wiz Exp $
 
-DISTNAME=		xkbcomp-1.4.2
+DISTNAME=		xkbcomp-1.4.3
 CATEGORIES=		x11
 MASTER_SITES=		${MASTER_SITE_XORG:=app/}
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		joerg@NetBSD.org
-HOMEPAGE=		http://xorg.freedesktop.org/
+HOMEPAGE=		https://xorg.freedesktop.org/
 COMMENT=		XKBD keymap compiler
 
 GNU_CONFIGURE=		yes
@@ -15,6 +15,11 @@ USE_TOOLS+=		pkg-config
 PKGCONFIG_OVERRIDE=	xkbcomp.pc.in
 
 CONFIGURE_ENV+=		APP_MAN_SUFFIX=1
+
+.include "../../mk/compiler.mk"
+.if !empty(PKGSRC_COMPILER:Mclang)
+CFLAGS+=		-Wno-error=string-compare
+.endif
 
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libxkbfile/buildlink3.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2016/04/20 12:10:25 nros Exp $
+# $NetBSD: Makefile,v 1.10 2020/01/26 05:26:09 rillig Exp $
 
 DISTNAME=		easyh10-1.5
 PKGREVISION=		1

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.35 2019/09/16 19:24:54 adam Exp $
+# $NetBSD: Makefile,v 1.45 2020/09/14 20:08:27 adam Exp $
 
 DISTNAME=	qtgraphicaleffects-everywhere-src-${QTVERSION}
 PKGNAME=	qt5-qtgraphicaleffects-${QTVERSION}
@@ -8,7 +8,6 @@ BUILD_TARGET=		sub-src
 MAKE_ENV+=		QTDIR=${QTDIR}
 
 INSTALL_ENV+=		INSTALL_ROOT=${DESTDIR}
-INSTALLATION_DIRS+=	lib/pkgconfig
 
 .include "../../x11/qt5-qtbase/Makefile.common"
 

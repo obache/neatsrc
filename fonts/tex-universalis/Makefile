@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:32:30 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:55 markd Exp $
 
 DISTNAME=	universalis
 PKGNAME=	tex-${DISTNAME}-2014
+PKGREVISION=	1
 TEXLIVE_REV=	33860
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/universalis
+HOMEPAGE=	https://ctan.org/pkg/universalis
 COMMENT=	Universalis font, with support
 LICENSE=	gnu-gpl-v2
 

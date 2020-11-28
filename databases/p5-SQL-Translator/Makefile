@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.38 2019/11/02 15:38:06 rillig Exp $
+# $NetBSD: Makefile,v 1.41 2020/09/20 07:15:22 wiz Exp $
 
-DISTNAME=	SQL-Translator-1.60
+DISTNAME=	SQL-Translator-1.62
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	databases perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=SQL/}
@@ -16,7 +16,6 @@ DEPENDS+=	p5-Class-Base-[0-9]*:../../devel/p5-Class-Base
 DEPENDS+=	p5-Class-Data-Inheritable>=0.02:../../devel/p5-Class-Data-Inheritable
 #DEPENDS+=	p5-Class-MakeMethods-[0-9]*:../../devel/p5-Class-MakeMethods
 #DEPENDS+=	p5-Digest-SHA1>=2.0:../../security/p5-Digest-SHA1
-# Digest::SHA is required, not Digest::SHA1
 DEPENDS+=	p5-File-ShareDir>=1.0:../../devel/p5-File-ShareDir
 DEPENDS+=	p5-IO-stringy>=2.110:../../devel/p5-IO-stringy
 DEPENDS+=	p5-List-MoreUtils>=0.09:../../devel/p5-List-MoreUtils
@@ -25,6 +24,7 @@ DEPENDS+=	p5-Package-Variant>=1.001001:../../devel/p5-Package-Variant
 DEPENDS+=	p5-Parse-RecDescent>=1.967.9:../../devel/p5-Parse-RecDescent
 DEPENDS+=	p5-XML-Writer>=0.500:../../textproc/p5-XML-Writer
 DEPENDS+=	p5-File-ShareDir-Install-[0-9]*:../../devel/p5-File-ShareDir-Install
+DEPENDS+=	p5-JSON-MaybeXS-[0-9]*:../../converters/p5-JSON-MaybeXS
 
 # Recommended
 DEPENDS+=	p5-GD-[0-9]*:../../graphics/p5-GD

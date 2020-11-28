@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.50 2019/08/11 13:18:44 wiz Exp $
+# $NetBSD: Makefile,v 1.56 2020/08/31 18:07:21 wiz Exp $
 
 PKGNAME=	java-subversion-${SVNVER}
 PKGREVISION=	1

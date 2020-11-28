@@ -1,8 +1,7 @@
-@comment $NetBSD: PLIST.Linux,v 1.2 2019/03/29 21:31:18 markd Exp $
+@comment $NetBSD: PLIST.Linux,v 1.4 2020/10/12 19:32:54 mcf Exp $
 qt5/lib/cmake/Qt5Location/Qt5Location_QGeoServiceProviderFactoryMapboxGL.cmake
-qt5/lib/cmake/Qt5Positioning/Qt5Positioning_QGeoPositionInfoSourceFactoryGeoclue2.cmake
-qt5/lib/cmake/Qt5Positioning/Qt5Positioning_QGeoPositionInfoSourceFactoryGeoclue.cmake
+${PLIST.dbus}qt5/lib/cmake/Qt5Positioning/Qt5Positioning_QGeoPositionInfoSourceFactoryGeoclue.cmake
+${PLIST.dbus}qt5/lib/cmake/Qt5Positioning/Qt5Positioning_QGeoPositionInfoSourceFactoryGeoclue2.cmake
 qt5/plugins/geoservices/libqtgeoservices_mapboxgl.so
-qt5/plugins/position/libqtposition_geoclue2.so
-qt5/plugins/position/libqtposition_geoclue.so
-
+${PLIST.dbus}qt5/plugins/position/libqtposition_geoclue.so
+${PLIST.dbus}qt5/plugins/position/libqtposition_geoclue2.so

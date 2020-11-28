@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.24 2019/12/19 00:38:39 taca Exp $
+@comment $NetBSD: PLIST,v 1.26 2020/06/18 14:08:36 taca Exp $
 share/doc/drupal/CHANGELOG.txt
 share/doc/drupal/COPYRIGHT.txt
 share/doc/drupal/INSTALL.mysql.txt
@@ -114,6 +114,7 @@ share/drupal/misc/forum-icons.png
 share/drupal/misc/grippie.png
 share/drupal/misc/help.png
 share/drupal/misc/jquery-extend-3.4.0.js
+share/drupal/misc/jquery-html-prefilter-3.5.0-backport.js
 share/drupal/misc/jquery.ba-bbq.js
 share/drupal/misc/jquery.cookie.js
 share/drupal/misc/jquery.form.js
@@ -160,7 +161,6 @@ share/drupal/misc/timezone.js
 share/drupal/misc/tree-bottom.png
 share/drupal/misc/tree.png
 share/drupal/misc/typo3/drupal-security/PharExtensionInterceptor.php
-share/drupal/misc/typo3/phar-stream-wrapper/.gitignore
 share/drupal/misc/typo3/phar-stream-wrapper/LICENSE
 share/drupal/misc/typo3/phar-stream-wrapper/README.md
 share/drupal/misc/typo3/phar-stream-wrapper/composer.json
@@ -759,6 +759,7 @@ share/drupal/modules/simpletest/tests/psr_4_test/psr_4_test.module
 share/drupal/modules/simpletest/tests/psr_4_test/src/Tests/ExampleTest.php
 share/drupal/modules/simpletest/tests/psr_4_test/src/Tests/Nested/NestedExampleTest.php
 share/drupal/modules/simpletest/tests/registry.test
+share/drupal/modules/simpletest/tests/request_sanitizer.test
 share/drupal/modules/simpletest/tests/requirements1_test.info
 share/drupal/modules/simpletest/tests/requirements1_test.install
 share/drupal/modules/simpletest/tests/requirements1_test.module

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.17 2019/12/23 20:38:15 markd Exp $
+# $NetBSD: Makefile.common,v 1.19 2020/03/20 11:58:20 nia Exp $
 #
 # used by sysutils/cdrdao/Makefile
 # used by sysutils/gcdmaster/Makefile

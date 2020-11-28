@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.10 2019/11/11 08:33:13 markd Exp $
+$NetBSD: distinfo,v 1.12 2020/06/07 11:35:42 markd Exp $
 
-SHA1 (attica-5.64.0.tar.xz) = 74a0cf2e6faa05e0dd24ecc65d63640e124cc25d
-RMD160 (attica-5.64.0.tar.xz) = b79015e256254fd23c28de7579922ea1ee57538e
-SHA512 (attica-5.64.0.tar.xz) = a85f9bf62496b8878e77e40f101ae58371b09731d7be86eab0e5adbc0fac9c076d7f740b2dd4471e03105eadc16fc2de663a69f48caf3f5f96040789e6cd64bb
-Size (attica-5.64.0.tar.xz) = 63756 bytes
+SHA1 (attica-5.70.0.tar.xz) = c85cca637457f6c771c7e4233f18f6de8bec2432
+RMD160 (attica-5.70.0.tar.xz) = 82aba3e6bdf283810c9f614f1ab7ebdfa9f16a51
+SHA512 (attica-5.70.0.tar.xz) = bb88e7bf34b1d3c958e31ad1591bdc5620361a300fcba957ecb017c31227b4ac80a94523d7b40f9a62a4a5d45a2840d37aa199c7305e6da471d4ebaee84c9630
+Size (attica-5.70.0.tar.xz) = 67620 bytes

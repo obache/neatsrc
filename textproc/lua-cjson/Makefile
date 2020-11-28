@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.4 2017/08/16 20:21:16 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2020/07/11 15:14:30 nia Exp $
 
 DISTNAME=	lua-cjson-2.1.0
-PKGNAME=	${LUA_PKGPREFIX}-cjson-2.1.0
-PKGREVISION=	2
-CATEGORIES=	textproc
+PKGNAME=	${LUA_PKGPREFIX}-${DISTNAME:S/^lua-//1}
+PKGREVISION=	3
+CATEGORIES=	textproc lua
 MASTER_SITES=	http://www.kyne.com.au/~mark/software/download/
 
 MAINTAINER=	imil@NetBSD.org

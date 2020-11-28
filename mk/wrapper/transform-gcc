@@ -1,4 +1,4 @@
-# $NetBSD: transform-gcc,v 1.33 2018/06/19 05:02:10 khorben Exp $
+# $NetBSD: transform-gcc,v 1.35 2020/05/02 19:32:59 rillig Exp $
 #
 # This file handles the transformations needed for gcc that can be done
 # looking at only one argument at a time.
@@ -97,26 +97,14 @@ case $arg in
 -Wextra			|\
 -Werror			|\
 -Werror-implicit-function-declaration |\
+-Werror=*		|\
 -Wformat*		|\
 -Winline		|\
 -Wmissing-declarations	|\
 -Wmissing-format-attribute |\
 -Wmissing-prototypes	|\
 -Wnested-externs	|\
--Wno-error		|\
--Wno-format-y2k		|\
--Wno-format-zero-length	|\
--Wno-implicit-int	|\
--Wno-import		|\
--Wno-inline		|\
--Wno-long-long		|\
--Wno-sign-compare	|\
--Wno-traditional	|\
--Wno-undef		|\
--Wno-uninitialized	|\
--Wno-unused		|\
--Wno-unused-parameter	|\
--Wno-write-strings	|\
+-Wno-*			|\
 -Wparentheses		|\
 -Wpointer-arith		|\
 -Wredundant-decls	|\

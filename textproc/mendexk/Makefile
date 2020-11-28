@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.12 2019/05/09 09:47:37 adam Exp $
+# $NetBSD: Makefile,v 1.14 2020/05/10 03:56:40 markd Exp $
 
 .include "../../print/texlive/Makefile.common"
 
-PKGNAME=	mendexk-3.1
+PKGNAME=	mendexk-3.2
 CATEGORIES=	textproc
 
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Replacement for makeindex with many enhancements
 LICENSE=	modified-bsd
 

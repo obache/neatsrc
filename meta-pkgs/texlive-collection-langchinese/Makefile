@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.14 2019/05/15 09:16:19 markd Exp $
+# $NetBSD: Makefile,v 1.16 2020/05/10 04:13:25 markd Exp $
 
 DISTNAME=	collection-langchinese
-PKGNAME=	texlive-${DISTNAME}-2019pre1
+PKGNAME=	texlive-${DISTNAME}-2020pre1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	50930
+TEXLIVE_REV=	54074
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Chinese TeX packages
 
 DEPENDS+=	texlive-collection-langcjk-[0-9]*:../../meta-pkgs/texlive-collection-langcjk

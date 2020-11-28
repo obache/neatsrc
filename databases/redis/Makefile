@@ -1,18 +1,22 @@
-# $NetBSD: Makefile,v 1.47 2019/11/20 09:43:28 adam Exp $
+# $NetBSD: Makefile,v 1.62 2020/10/27 10:22:34 adam Exp $
 
-DISTNAME=	redis-5.0.7
+DISTNAME=	redis-6.0.9
 CATEGORIES=	databases
 MASTER_SITES=	http://download.redis.io/releases/
 
-MAINTAINER=	fhajny@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://redis.io/
 COMMENT=	Persistent key-value database with built-in net interface
 LICENSE=	modified-bsd
 
-USE_LANGUAGES=		c99
-USE_TOOLS+=		gmake
+TEST_DEPENDS+=	tcl>=8.5:../../lang/tcl
+
+USE_LANGUAGES=	c99
+USE_TOOLS+=	gmake pkg-config
 
 .include "../../mk/bsd.prefs.mk"
+
+.include "options.mk"
 
 RCD_SCRIPTS+=		redis
 RCD_SCRIPT_SRC.redis=	${FILESDIR}/redis.sh
@@ -22,9 +26,10 @@ DOCFILES+=		00-RELEASENOTES BUGS COPYING README.md
 EGDIR=			${PREFIX}/share/examples/${PKGBASE}
 INSTALLATION_DIRS+=	bin ${DOCDIR} ${EGDIR} ${EGDIR}/utils ${EGDIR}/tests
 CONF_FILES=		${EGDIR}/redis.conf.example ${PKG_SYSCONFDIR}/redis.conf
+CONF_FILES_MODE=	0640
 
 BUILD_DEFS+=		VARBASE REDIS_USER REDIS_GROUP REDIS_DATADIR
-BUILD_DEFS+=		REDIS_LOGDIR REDIS_PIDDIR
+BUILD_DEFS+=		REDIS_LOGDIR REDIS_PIDDIR PKG_SYSCONFDIR
 
 REDIS_USER?=		redis
 REDIS_GROUP?=		redis

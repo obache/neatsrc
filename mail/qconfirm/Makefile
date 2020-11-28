@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2019/07/09 18:23:15 schmonz Exp $
+# $NetBSD: Makefile,v 1.3 2020/06/25 05:42:39 schmonz Exp $
 
 DISTNAME=		qconfirm-0.14.3
 CATEGORIES=		mail

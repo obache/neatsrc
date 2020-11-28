@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.19 2016/02/28 10:14:53 ryoon Exp $
+# $NetBSD: Makefile,v 1.21 2020/04/25 22:23:05 jym Exp $
 #
 
 DISTNAME=	apache-tomcat-${TOMCAT_VER}
 CATEGORIES=	www
+PKGREVISION=	1
 MASTER_SITES=	${MASTER_SITE_APACHE:=tomcat/tomcat-6/v${TOMCAT_VER}/bin/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://tomcat.apache.org/
+HOMEPAGE=	https://tomcat.apache.org/
 COMMENT=	Implementation of Java Servlet and JavaServer Pages technologies
 LICENSE=	apache-2.0
 

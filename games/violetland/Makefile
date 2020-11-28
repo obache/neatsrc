@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.13 2019/08/22 12:23:15 ryoon Exp $
+# $NetBSD: Makefile,v 1.16 2020/05/06 14:04:35 adam Exp $
 
 DISTNAME=	violetland-0.5-source-with-dependencies
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
 PKGNAME=	${DISTNAME:S/-source-with-dependencies//}
-PKGREVISION=	10
+PKGREVISION=	12
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ooxi/}
 
 WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://violetland.github.io/
+HOMEPAGE=	https://violetland.github.io/
 COMMENT=	Help a girl by name of Violet to struggle with monsters
 LICENSE=	gnu-gpl-v3 AND cc-by-sa-v3.0
 

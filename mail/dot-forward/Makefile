@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.27 2019/05/23 19:23:05 rillig Exp $
+# $NetBSD: Makefile,v 1.29 2020/06/25 05:42:38 schmonz Exp $
 #
 
 DISTNAME=		dot-forward-0.71
@@ -7,7 +7,7 @@ CATEGORIES=		mail
 MASTER_SITES=		http://cr.yp.to/software/
 
 MAINTAINER=		schmonz@NetBSD.org
-HOMEPAGE=		http://cr.yp.to/dot-forward.html
+HOMEPAGE=		https://cr.yp.to/dot-forward.html
 COMMENT=		Reads sendmail's .forward files under qmail
 LICENSE=		public-domain
 
@@ -18,6 +18,8 @@ DJB_BUILD_TARGETS=	install instcheck
 DJB_RESTRICTED=		no
 
 INSTALLATION_DIRS=	${PKGMANDIR}
+
+SUBST_CLASSES+=		djberrno
 
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	do-configure

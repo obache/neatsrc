@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.141 2019/11/03 10:39:10 rillig Exp $
+# $NetBSD: Makefile,v 1.151 2020/10/25 04:42:43 nia Exp $
 
-DISTNAME=	doxygen-1.8.16.src
+DISTNAME=	doxygen-1.8.20.src
 PKGNAME=	${DISTNAME:S/.src//}
 CATEGORIES=	devel
 MASTER_SITES=	http://doxygen.nl/files/
@@ -16,8 +16,10 @@ WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
 UNLIMIT_RESOURCES+=	datasize
 # doxygen upstream uses this version of flex
 FLEX_REQD=		2.5.35
+# Uses -std=c++14
+GCC_REQD+=		5
 USE_CMAKE=		yes
-USE_LANGUAGES=		c c++14
+USE_LANGUAGES=		c c++
 USE_TOOLS+=		gmake gs:run perl:run bison flex
 MAKE_ENV+=		PKGSRC_CFLAGS=${CFLAGS:Q}
 MAKE_FLAGS+=		MAN1DIR=${PKGMANDIR}/man1

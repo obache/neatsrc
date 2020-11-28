@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.7 2020/01/03 12:09:06 adam Exp $
+# $NetBSD: Makefile,v 1.13 2020/10/16 07:41:10 bsiegert Exp $
 
-DISTNAME=	gsutil-4.46
+DISTNAME=	gsutil-4.53
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	net python
 MASTER_SITES=	${MASTER_SITE_PYPI:=g/gsutil/}
@@ -10,29 +10,32 @@ HOMEPAGE=	https://cloud.google.com/storage/docs/gsutil
 COMMENT=	Command line tool for interacting with cloud storage services
 LICENSE=	apache-2.0
 
-REPLACE_PYTHON+=	test/gsutil_measure_imports
 REPLACE_PYTHON+=	gslib/vendored/boto/boto/pyami/launch_ami.py
 REPLACE_PYTHON+=	gslib/vendored/boto/boto/services/bs.py
 REPLACE_PYTHON+=	gslib/vendored/boto/tests/fps/test.py
 REPLACE_PYTHON+=	gslib/vendored/boto/tests/test.py
+REPLACE_PYTHON+=	gslib/vendored/oauth2client/samples/django/django_user/manage.py
+REPLACE_PYTHON+=	gslib/vendored/oauth2client/samples/django/google_user/manage.py
 
 DEPENDS+=	${PYPKGPREFIX}-OpenSSL>=0.13:../../security/py-OpenSSL
-DEPENDS+=	${PYPKGPREFIX}-SocksiPy-branch>=1.01:../../net/py-socksipy-branch
 DEPENDS+=	${PYPKGPREFIX}-argcomplete>=1.9.4:../../devel/py-argcomplete
-DEPENDS+=	${PYPKGPREFIX}-boto>=2.48.0:../../net/py-boto
 DEPENDS+=	${PYPKGPREFIX}-crcmod>=1.7:../../security/py-crcmod
 DEPENDS+=	${PYPKGPREFIX}-fasteners>=0.14.1:../../devel/py-fasteners
-DEPENDS+=	${PYPKGPREFIX}-gcs-oauth2-boto-plugin>=2.5:../../net/py-gcs-oauth2-boto-plugin
+DEPENDS+=	${PYPKGPREFIX}-gcs-oauth2-boto-plugin>=2.7:../../net/py-gcs-oauth2-boto-plugin
 DEPENDS+=	${PYPKGPREFIX}-google-apitools>=0.5.30:../../www/py-google-apitools
 DEPENDS+=	${PYPKGPREFIX}-google-reauth>=0.1.0:../../security/py-google-reauth
-DEPENDS+=	${PYPKGPREFIX}-httplib2>=0.11.3:../../www/py-httplib2
+DEPENDS+=	${PYPKGPREFIX}-httplib2>=0.18:../../www/py-httplib2
 DEPENDS+=	${PYPKGPREFIX}-mock>=2.0.0:../../devel/py-mock
 DEPENDS+=	${PYPKGPREFIX}-monotonic>=1.4:../../time/py-monotonic
-DEPENDS+=	${PYPKGPREFIX}-oauth2client>=4.1.3:../../security/py-oauth2client
 DEPENDS+=	${PYPKGPREFIX}-retry_decorator>=1.0.0:../../devel/py-retry_decorator
 DEPENDS+=	${PYPKGPREFIX}-six>=1.12.0:../../lang/py-six
 
 USE_LANGUAGES=	# none
+
+CHECK_INTERPRETER_SKIP+=	${PYSITELIB}/gslib/vendored/oauth2client/scripts/build_docs.sh
+CHECK_INTERPRETER_SKIP+=	${PYSITELIB}/gslib/vendored/oauth2client/scripts/install.sh
+CHECK_INTERPRETER_SKIP+=	${PYSITELIB}/gslib/vendored/oauth2client/scripts/run.sh
+CHECK_INTERPRETER_SKIP+=	${PYSITELIB}/gslib/vendored/oauth2client/scripts/run_system_tests.sh
 
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && ${MV} gsutil gsutil-${PYVERSSUFFIX} || ${TRUE}

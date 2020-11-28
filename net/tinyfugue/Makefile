@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.35 2019/11/03 11:45:54 rillig Exp $
+# $NetBSD: Makefile,v 1.37 2020/03/20 11:58:11 nia Exp $
 
 DISTNAME=	tf-40s1
 PKGNAME=	tf-4.0s1

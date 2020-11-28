@@ -1,7 +1,12 @@
-# $NetBSD: Makefile,v 1.1 2019/09/11 16:26:17 micha Exp $
+# $NetBSD: Makefile,v 1.6 2020/08/17 20:18:43 leot Exp $
 
-DISTNAME=	eureka-124-source
-PKGNAME=	${DISTNAME:S/-source//:S/-1/-1./}
+DISTNAME=	eureka-1.27b-source
+# Some macOS patches were added after the release of 1.27 but unfortunately
+# the archive name was not changed (pkgsrc used 1.27.1 for this version).
+# The second patch release is called 1.27b, we use version 1.27.2 for it.
+# Switch back to upstream naming scheme for next major/minor release.
+PKGNAME=	${DISTNAME:S/-source//:S/b/.2/}
+PKGREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=eureka-editor/}
 
@@ -10,33 +15,33 @@ HOMEPAGE=	https://sourceforge.net/projects/eureka-editor/
 COMMENT=	Doom/Heretic/Hexen map editor
 LICENSE=	gnu-gpl-v2
 
-USE_LANGUAGES=	c++
+# Makefile declares "-std=c++03"
+USE_LANGUAGES=	c++03
 USE_TOOLS+=	gmake
 
-WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}-source
+WRKSRC=		${WRKDIR}/eureka-1.27b-source
 
 # DOOMWADDIR is intentionally shared with other Doom packages
-DOOMWADDIR=	share/doom
+DOOMWADDIR=		share/doom
+INSTALLATION_DIRS=	bin
 
 # Modify internal search path to check ${PREFIX}/share hierarchy first
 SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	do-configure
-SUBST_MESSAGE.prefix=	Preparing main.cc file ...
+SUBST_MESSAGE.prefix=	Preparing main.cc ...
 SUBST_FILES.prefix=	src/main.cc
 SUBST_SED.prefix=	-e 's,PKGSRC_PREFIX,${PREFIX},'
 
 # Modify internal search path for DOOMWADDIR (if environment variable not set)
 SUBST_CLASSES+=		dwd
 SUBST_STAGE.dwd=	do-configure
-SUBST_MESSAGE.dwd=	Preparing m_files.cc file ...
+SUBST_MESSAGE.dwd=	Preparing m_files.cc ...
 SUBST_FILES.dwd=	src/m_files.cc
 SUBST_SED.dwd=		-e 's,PKGSRC_DOOMWADDIR,${PREFIX}/${DOOMWADDIR},'
 
-# Can be used by FLTK for fl_open_uri() on X11
-DEPENDS+=			xdg-utils>=1.1:../../misc/xdg-utils
+.include "options.mk"
 
 BUILDLINK_API_DEPENDS.zlib+=	zlib>=1.2.3
 .include "../../devel/zlib/buildlink3.mk"
-# FLTK version 1.4 is supported too
-.include "../../x11/fltk13/buildlink3.mk"
+
 .include "../../mk/bsd.pkg.mk"

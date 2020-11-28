@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.3 2019/12/06 19:29:58 markd Exp $
+# $NetBSD: Makefile,v 1.5 2020/05/10 04:31:44 markd Exp $
 
 DISTNAME=	fge
 PKGNAME=	tex-${DISTNAME}-1.25
+PKGREVISION=	1
 TEXLIVE_REV=	37628
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/fge
+HOMEPAGE=	https://ctan.org/pkg/fge
 COMMENT=	Font for Frege's Grundgesetze der Arithmetik
 LICENSE=	lppl-1.3c
 

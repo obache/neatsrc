@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.47 2019/11/09 20:01:14 jperkin Exp $
+# $NetBSD: Makefile,v 1.52 2020/08/31 18:06:55 wiz Exp $
 #
 
 DISTNAME=		libcassandra-20101010
-PKGREVISION=		33
+PKGREVISION=		37
 CATEGORIES=		databases
 MASTER_SITES=		ftp://ftp.ancient-solutions.com/pub/bsdprojects/NetBSD/packages/distfiles/
 
@@ -32,7 +32,7 @@ MAKE_ENV+=		AM_DEFAULT_VERBOSITY=1
 
 .include "../../mk/compiler.mk"
 .if !empty(PKGSRC_COMPILER:Mclang)
-CXXFLAGS+=	-Wno-unknown-warning-option
+CXXFLAGS+=	-Wno-unknown-warning-option -Wno-unused-parameter
 CXXFLAGS+=	-Wno-c++11-extensions -Wno-error=unused-local-typedef
 .endif
 

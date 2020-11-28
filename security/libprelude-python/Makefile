@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.25 2019/09/02 13:19:55 adam Exp $
+# $NetBSD: Makefile,v 1.28 2020/06/01 20:04:40 rillig Exp $
 
 PKGNAME=		libprelude-python-${VERSION}
-PKGREVISION=		13
+PKGREVISION=		15
 COMMENT=		Python bindings to LibPrelude
 
 .include "../../security/libprelude/Makefile.common"
 
+TOOLS_BROKEN+=		perl
 CONFIGURE_ARGS+=	--with-python
 CONFIGURE_ENV+=		PYTHON=${PYTHONBIN:Q}
 PY_PATCHPLIST=		yes

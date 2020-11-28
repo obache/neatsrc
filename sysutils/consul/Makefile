@@ -1,14 +1,16 @@
-# $NetBSD: Makefile,v 1.49 2020/01/10 13:32:18 bsiegert Exp $
+# $NetBSD: Makefile,v 1.59 2020/10/15 13:08:29 bsiegert Exp $
 
 DISTNAME=	consul-1.2.3
-PKGREVISION=	12
+PKGREVISION=	20
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=hashicorp/}
 
-MAINTAINER=	fhajny@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.consul.io/
 COMMENT=	Tool for service discovery, monitoring and configuration
 LICENSE=	mpl-2.0
+
+UNLIMIT_RESOURCES=	datasize virtualsize
 
 EXTRACT_USING=	bsdtar
 

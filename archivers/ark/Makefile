@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.50 2019/11/17 03:55:09 markd Exp $
+# $NetBSD: Makefile,v 1.62 2020/09/20 11:05:31 markd Exp $
 
 DISTNAME=	ark-${KAPPSVER}
+PKGREVISION=	3
 CATEGORIES=	x11
 
-HOMEPAGE=	http://kde.org/applications/utilities/ark/
+HOMEPAGE=	https://kde.org/applications/utilities/ark/
 COMMENT=	Manages various archive formats within the KDE environment
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2 AND gnu-fdl-v1.2
 

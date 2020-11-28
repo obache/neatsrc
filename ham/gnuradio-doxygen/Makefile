@@ -1,25 +1,26 @@
-# $NetBSD: Makefile,v 1.29 2019/10/21 21:55:04 adam Exp $
+# $NetBSD: Makefile,v 1.36 2020/10/05 21:23:06 mef Exp $
 
 PKGNAME=	gnuradio-doxygen-${VERSION}
-PKGREVISION=	2
+PKGREVISION=	1
 COMMENT=	Doxygen documentation of GNU Radio
 
 .include	"../../ham/gnuradio-core/Makefile.common"
 .include	"../../ham/gnuradio-core/Nocore.mk"
 
-BUILD_DEPENDS+=	doxygen>=1.8.15:../../devel/doxygen
+BUILD_DEPENDS+=	doxygen>=1.8.20:../../devel/doxygen
+BUILD_DEPENDS+=	${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 BUILD_DEPENDS+=	graphviz-[0-9]*:../../graphics/graphviz
 
 DEPENDS+=	web2c-[0-9]*:../../print/web2c
 # in case those packages are already installed by other requirement..
 DEPENDS+=	texlive-collection-latex-[0-9]*:../../meta-pkgs/texlive-collection-latex
-DEPENDS+=	tex-newunicodechar-[-0-9]*:../../print/tex-newunicodechar
+DEPENDS+=	tex-newunicodechar-[0-9]*:../../print/tex-newunicodechar
 
-PYTHON_VERSIONED_DEPENDENCIES=	sphinx:build
-
-CMAKE_ARGS+=	-DENABLE_DEFAULT=False
+CMAKE_ARGS+=	-DENABLE_DEFAULT=OFF
 CMAKE_ARGS+=	-DENABLE_DOXYGEN=ON
 CMAKE_ARGS+=	-DENABLE_SPHINX=ON
+CMAKE_ARGS+=	-DSPHINX_EXECUTABLE=${PREFIX}/bin/sphinx-build-${PYVERSSUFFIX}
 
-.include "../../lang/python/versioned_dependencies.mk"
+MAKE_JOBS_SAFE=	no
+
 .include "../../mk/bsd.pkg.mk"

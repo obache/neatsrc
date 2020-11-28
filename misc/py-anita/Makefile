@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.59 2020/01/06 11:48:03 gson Exp $
+# $NetBSD: Makefile,v 1.64 2020/08/22 11:24:04 gson Exp $
 
-DISTNAME=	anita-2.2
+DISTNAME=	anita-2.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	misc
 MASTER_SITES=	http://www.gson.org/netbsd/anita/download/
 
 MAINTAINER=	gson@NetBSD.org
-HOMEPAGE=	http://www.gson.org/netbsd/anita/
+HOMEPAGE=	https://www.gson.org/netbsd/anita/
 COMMENT=	Automated NetBSD Installation and Test Application
 LICENSE=	isc
 
@@ -15,10 +15,14 @@ DEPENDS+=	${PYPKGPREFIX}-pexpect>=2.1:../../devel/py-pexpect
 
 USE_LANGUAGES=	#none
 
+.include "../../mk/bsd.prefs.mk"
+
+.if ${PKGMANDIR} != man
 SUBST_CLASSES+=		manpath
 SUBST_STAGE.manpath=	pre-configure
 SUBST_FILES.manpath=	setup.py
 SUBST_SED.manpath=	-e 's,man/,${PKGMANDIR}/,g'
+.endif
 
 do-test:
 	${TRUE}		# Tests not integrated into pkgsrc

@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.3 2019/11/24 01:31:38 gdt Exp $
+# $NetBSD: Makefile,v 1.12 2020/08/30 08:19:06 tnn Exp $
 
-DISTNAME=	qwt-6.1.4
-PKGNAME=	qwt6-qt5-6.1.4
+DISTNAME=	qwt-6.1.5
+PKGNAME=	qwt6-qt5-6.1.5
+PKGREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=qwt/}
 EXTRACT_SUFX=	.tar.bz2
@@ -20,6 +21,11 @@ AUTO_MKDIRS=		yes
 INSTALL_MAKE_FLAGS+=	INSTALL_ROOT=${DESTDIR}
 
 PLIST_SUBST+=	VERSION=${PKGVERSION_NOREV}
+
+# remove tex temp files that should not be installed
+post-extract:
+	rm -f ${WRKSRC}/doc/html/_form*
+	rm -f ${WRKSRC}/doc/html/functions_*~.html
 
 do-configure:
 	cd ${WRKSRC} && env ${CONFIGURE_ENV} ${QTDIR}/bin/qmake

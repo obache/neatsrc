@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2012/10/28 06:31:09 asau Exp $
+# $NetBSD: Makefile,v 1.16 2020/03/20 11:58:35 nia Exp $
 
 DISTNAME=	weex-2.6.1.5
 PKGREVISION=	1

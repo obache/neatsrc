@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.22 2019/08/11 13:24:09 wiz Exp $
-#
+# $NetBSD: Makefile,v 1.24 2020/09/04 13:45:16 wiz Exp $
 
 DISTNAME=	MooseX-Types-DateTime-0.13
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=MooseX/}
 
@@ -21,7 +20,6 @@ DEPENDS+=	p5-Time-Duration-Parse>=0.06:../../time/p5-Time-Duration-Parse
 DEPENDS+=	p5-namespace-clean>=0.08:../../devel/p5-namespace-clean
 
 BUILD_DEPENDS+=	p5-Test-Exception>=0.27:../../devel/p5-Test-Exception
-BUILD_DEPENDS+=	p5-Test-Simple>=1.001010:../../devel/p5-Test-Simple
 BUILD_DEPENDS+=	p5-Package-DeprecationManager-[0-9]*:../../devel/p5-Package-DeprecationManager
 
 USE_LANGUAGES=	# empty

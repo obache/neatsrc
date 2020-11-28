@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.6 2019/11/02 16:25:28 rillig Exp $
+# $NetBSD: Makefile,v 1.15 2020/08/18 17:58:05 leot Exp $
 
 DISTNAME=	thunderbird-${TB_VER}.source
 PKGNAME=	thunderbird${TB_VER:C/\..*$//}-${TB_VER}
-PKGREVISION=	5
+PKGREVISION=	13
 TB_VER=		52.9.1
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_MOZILLA:=thunderbird/releases/${TB_VER}/source/}
@@ -24,6 +24,8 @@ CONFIG_SUB_OVERRIDE+=	ldap/sdks/c-sdk/config/autoconf/config.sub
 CONFIGURE_ARGS+=	--enable-application=mail
 # Disable WebRTC support for Thunderbird unconditionally.
 CONFIGURE_ARGS+=	--disable-webrtc
+CONFIGURE_ARGS+=	--disable-dbus
+CONFIGURE_ARGS+=	--disable-gnomeui
 
 NOT_PAX_MPROTECT_SAFE+=	lib/${PKGBASE}/thunderbird
 NOT_PAX_MPROTECT_SAFE+=	lib/${PKGBASE}/thunderbird-bin
@@ -63,7 +65,7 @@ pre-configure:
 
 do-build:
 # XXX for some reason it doesn't work unless -j is explicitly specified
-	cd ${WRKSRC}/${OBJDIR} && ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} -j${MAKE_JOBS:U1}
+	${RUN} ${_ULIMIT_CMD} cd ${WRKSRC}/${OBJDIR} && ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} -j${MAKE_JOBS:U1}
 
 MOZILLA=	${PKGBASE}
 MOZILLA_NAME=	${PKGBASE}

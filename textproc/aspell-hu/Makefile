@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2017/09/16 19:27:11 wiz Exp $
+# $NetBSD: Makefile,v 1.4 2020/03/20 11:58:24 nia Exp $
 #
 
 DISTNAME=	aspell6-hu-0.99.4.2-0

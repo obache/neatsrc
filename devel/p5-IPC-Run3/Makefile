@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.21 2019/08/11 13:19:40 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2020/09/08 13:09:54 wiz Exp $
 
 DISTNAME=	IPC-Run3-0.048
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	perl5 devel
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=IPC/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://cpan.metacpan.org/authors/id/R/RJ/RJBS/
+HOMEPAGE=	https://metacpan.org/pod/IPC::Run3
 COMMENT=	IPC::Run3 - run a subprocess in batch mode
 LICENSE=	original-bsd OR artistic OR gnu-gpl-v2
 

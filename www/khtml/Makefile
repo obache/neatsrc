@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.35 2019/11/11 09:10:44 markd Exp $
+# $NetBSD: Makefile,v 1.48 2020/08/31 18:12:34 wiz Exp $
 
 DISTNAME=	khtml-${KF5VER}
+PKGREVISION=	3
 CATEGORIES=	www
 
 HOMEPAGE=	https://community.kde.org/Frameworks
@@ -16,15 +17,16 @@ USE_TOOLS+=	perl msgfmt
 SUBST_CLASSES+=		fix-moc
 SUBST_STAGE.fix-moc=	post-configure
 SUBST_MESSAGE.fix-moc=	Cleaning up MOC includes
-SUBST_FILES.fix-moc=	_KDE_build/src/CMakeFiles/khtmlpart_autogen.dir/AutogenInfo.cmake 
-SUBST_FILES.fix-moc+=	_KDE_build/src/CMakeFiles/khtmlimagepart_autogen.dir/AutogenInfo.cmake 
-SUBST_FILES.fix-moc+=	_KDE_build/src/kmultipart/CMakeFiles/kmultipart_autogen.dir/AutogenInfo.cmake 
-SUBST_SED.fix-moc=	-e 's,;${PREFIX}/include;,;,g'
+SUBST_FILES.fix-moc=	_KDE_build/src/CMakeFiles/khtmlpart_autogen.dir/AutogenInfo.json 
+SUBST_FILES.fix-moc+=	_KDE_build/src/CMakeFiles/khtmlimagepart_autogen.dir/AutogenInfo.json 
+SUBST_FILES.fix-moc+=	_KDE_build/src/kmultipart/CMakeFiles/kmultipart_autogen.dir/AutogenInfo.json 
+SUBST_NOOP_OK.fix-moc=	yes
+SUBST_SED.fix-moc=	-e 's;"${PREFIX}/include",;;g'
 
 SUBST_CLASSES+=		xdg
 SUBST_STAGE.xdg=	pre-configure
 SUBST_MESSAGE.xdg=	Install via examples dir.
-SUBST_FILES.xdg=	CMakeLists.txt src/CMakeLists.txt
+SUBST_FILES.xdg=	src/CMakeLists.txt
 SUBST_SED.xdg=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_XDG_EX_DIR}:'
 
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg

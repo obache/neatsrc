@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2019/11/24 04:01:14 markd Exp $
+@comment $NetBSD: PLIST,v 1.7 2020/06/14 11:27:41 markd Exp $
 bin/po2xmi5
 bin/umbrello5
 bin/xmi2pot5
@@ -22,18 +22,29 @@ share/doc/HTML/en/umbrello/apphelp/index.cache.bz2
 share/doc/HTML/en/umbrello/apphelp/index.docbook
 share/doc/HTML/en/umbrello/association.png
 share/doc/HTML/en/umbrello/authors.docbook
+share/doc/HTML/en/umbrello/auto-layout-settings.png
 share/doc/HTML/en/umbrello/category.png
 share/doc/HTML/en/umbrello/class-diagram.png
+share/doc/HTML/en/umbrello/class-settings.png
 share/doc/HTML/en/umbrello/class.png
+share/doc/HTML/en/umbrello/code-generation-formatting-settings.png
+share/doc/HTML/en/umbrello/code-generation-general-settings.png
+share/doc/HTML/en/umbrello/code-generation-language-general.png
+share/doc/HTML/en/umbrello/code-generation-language-method-settings.png
+share/doc/HTML/en/umbrello/code-import-settings.png
 share/doc/HTML/en/umbrello/code-import.png
+share/doc/HTML/en/umbrello/code-viewer-settings.png
 share/doc/HTML/en/umbrello/code_import_and_generation.docbook
 share/doc/HTML/en/umbrello/collaboration-diagram.png
 share/doc/HTML/en/umbrello/composition.png
 share/doc/HTML/en/umbrello/credits.docbook
+share/doc/HTML/en/umbrello/diagram-font-settings.png
 share/doc/HTML/en/umbrello/disjoint-specialization.png
 share/doc/HTML/en/umbrello/entity-relationship-diagram.png
 share/doc/HTML/en/umbrello/entity.png
 share/doc/HTML/en/umbrello/folders.png
+share/doc/HTML/en/umbrello/font-settings.png
+share/doc/HTML/en/umbrello/general-settings.png
 share/doc/HTML/en/umbrello/generalization.png
 share/doc/HTML/en/umbrello/generation-options.png
 share/doc/HTML/en/umbrello/index.cache.bz2
@@ -42,11 +53,13 @@ share/doc/HTML/en/umbrello/introduction.docbook
 share/doc/HTML/en/umbrello/other_features.docbook
 share/doc/HTML/en/umbrello/overlapping-specialization.png
 share/doc/HTML/en/umbrello/sequence-diagram.png
+share/doc/HTML/en/umbrello/settings.docbook
 share/doc/HTML/en/umbrello/state-diagram.png
 share/doc/HTML/en/umbrello/umbrello-main-screen.png
 share/doc/HTML/en/umbrello/umbrello-ui.png
 share/doc/HTML/en/umbrello/uml_basics.docbook
 share/doc/HTML/en/umbrello/use-case-diagram.png
+share/doc/HTML/en/umbrello/user-interface-settings.png
 share/doc/HTML/en/umbrello/working_with_umbrello.docbook
 share/doc/HTML/es/umbrello/apphelp/index.cache.bz2
 share/doc/HTML/es/umbrello/apphelp/index.docbook
@@ -141,6 +154,7 @@ share/locale/es/LC_MESSAGES/umbrello.mo
 share/locale/es/LC_MESSAGES/umbrello_kdevphp.mo
 share/locale/es/LC_MESSAGES/umbrello_kdevphp5.mo
 share/locale/et/LC_MESSAGES/umbrello.mo
+share/locale/et/LC_MESSAGES/umbrello_kdevphp.mo
 share/locale/et/LC_MESSAGES/umbrello_kdevphp5.mo
 share/locale/eu/LC_MESSAGES/umbrello.mo
 share/locale/fa/LC_MESSAGES/umbrello.mo
@@ -256,6 +270,7 @@ share/umbrello5/layouts/object-export.desktop
 share/umbrello5/layouts/object-horizontal.desktop
 share/umbrello5/layouts/object-vertical.desktop
 share/umbrello5/layouts/state-export.desktop
+share/umbrello5/layouts/state-horizontal.desktop
 share/umbrello5/layouts/state-vertical.desktop
 share/umbrello5/layouts/usecase-default.desktop
 share/umbrello5/simple4125/sdbcent.mod

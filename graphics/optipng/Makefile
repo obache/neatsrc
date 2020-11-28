@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.34 2018/06/27 11:52:17 adam Exp $
+# $NetBSD: Makefile,v 1.36 2020/03/20 11:57:51 nia Exp $
 
 DISTNAME=	optipng-0.7.7
 CATEGORIES=	graphics

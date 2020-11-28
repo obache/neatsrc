@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.3 2019/12/06 19:29:32 markd Exp $
+# $NetBSD: Makefile,v 1.5 2020/05/10 04:31:37 markd Exp $
 
 DISTNAME=	archaic
 PKGNAME=	tex-${DISTNAME}-2015
+PKGREVISION=	1
 TEXLIVE_REV=	38005
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/archaic
+HOMEPAGE=	https://ctan.org/pkg/archaic
 COMMENT=	Collection of archaic fonts
 LICENSE=	lppl-1.3c
 

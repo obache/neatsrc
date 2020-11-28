@@ -1,10 +1,17 @@
-# $NetBSD: options.mk,v 1.14 2020/01/04 01:52:23 nia Exp $
+# $NetBSD: options.mk,v 1.18 2020/06/09 19:36:52 nia Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.SDL2
 PKG_OPTIONS_REQUIRED_GROUPS=	gl
-PKG_SUPPORTED_OPTIONS=		alsa dbus esound nas jack pulseaudio wayland x11
+PKG_SUPPORTED_OPTIONS=		alsa dbus nas jack pulseaudio wayland x11
 PKG_SUGGESTED_OPTIONS.Linux=	alsa
 PKG_OPTIONS_GROUP.gl=		opengl
+PKG_SUGGESTED_OPTIONS+=		opengl
+
+.include "../../mk/bsd.fast.prefs.mk"
+
+.if ${OPSYS} == "NetBSD" && !empty(MACHINE_ARCH:Mearm*)
+PKG_OPTIONS_GROUP.gl+=	rpi
+.endif
 
 .if ${OPSYS} != "Darwin"
 PKG_SUGGESTED_OPTIONS+=	x11
@@ -14,15 +21,6 @@ PKG_SUGGESTED_OPTIONS+=	x11
 
 .if ${PLATFORM_SUPPORTS_WAYLAND} == "yes"
 PKG_SUGGESTED_OPTIONS+=	wayland
-.endif
-
-.include "../../mk/bsd.fast.prefs.mk"
-
-.if !empty(MACHINE_ARCH:M*arm*)
-PKG_OPTIONS_GROUP.gl+=	rpi
-PKG_SUGGESTED_OPTIONS+=	rpi
-.else
-PKG_SUGGESTED_OPTIONS+=	opengl
 .endif
 
 .include "../../mk/bsd.options.mk"
@@ -37,12 +35,6 @@ CONFIGURE_ARGS+=	--disable-alsa
 .include "../../sysutils/dbus/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-dbus
-.endif
-
-.if !empty(PKG_OPTIONS:Mesound)
-.include "../../audio/esound/buildlink3.mk"
-.else
-CONFIGURE_ARGS+=	--disable-esd
 .endif
 
 .if !empty(PKG_OPTIONS:Mjack)
@@ -93,7 +85,6 @@ SUBST_SED.vc+=		-e "s;/opt/vc;${PREFIX};g"
 
 .if !empty(PKG_OPTIONS:Mwayland)
 CONFIGURE_ARGS+=	--enable-video-wayland
-CONFIGURE_ARGS+=	--disable-wayland-shared
 .include "../../devel/wayland/buildlink3.mk"
 .include "../../devel/wayland-protocols/buildlink3.mk"
 .include "../../x11/libxkbcommon/buildlink3.mk"

@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.31 2019/11/27 21:20:52 markd Exp $
+# $NetBSD: Makefile,v 1.40 2020/08/18 17:57:54 leot Exp $
 
 DISTNAME=	kpat-${KAPPSVER}
+PKGREVISION=	2
 CATEGORIES=	games
 
 HOMEPAGE=	https://kde.org/applications/games/kpat/
@@ -9,7 +10,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/applications.mk"
 
-BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge pkg-config
 

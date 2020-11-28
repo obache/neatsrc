@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.46 2019/12/19 22:09:49 joerg Exp $
+# $NetBSD: buildlink3.mk,v 1.49 2020/06/12 11:40:19 nia Exp $
 
 BUILDLINK_TREE+=	libpurple
 
@@ -6,20 +6,20 @@ BUILDLINK_TREE+=	libpurple
 LIBPURPLE_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.libpurple+=	libpurple>=2.11.0
-BUILDLINK_ABI_DEPENDS.libpurple+=	libpurple>=2.13.0nb6
+BUILDLINK_ABI_DEPENDS.libpurple+=	libpurple>=2.13.0nb13
 BUILDLINK_PKGSRCDIR.libpurple?=		../../chat/libpurple
 
 pkgbase := libpurple
 .include "../../mk/pkg-build-options.mk"
 
-.if !empty(PKG_BUILD_OPTIONS.libpurple:Mdbus)
+.if ${PKG_BUILD_OPTIONS.libpurple:Mdbus}
 .  include "../../sysutils/dbus/buildlink3.mk"
 .  include "../../sysutils/dbus-glib/buildlink3.mk"
 .endif
-.if !empty(PKG_BUILD_OPTIONS.libpurple:Mfarstream)
+.if ${PKG_BUILD_OPTIONS.libpurple:Mfarstream}
 .  include "../../chat/farstream/buildlink3.mk"
 .endif
-.if !empty(PKG_BUILD_OPTIONS.libpurple:Mgstreamer)
+.if ${PKG_BUILD_OPTIONS.libpurple:Mgstreamer}
 .  include "../../multimedia/gstreamer1/buildlink3.mk"
 .  include "../../multimedia/gst-plugins1-base/buildlink3.mk"
 .endif

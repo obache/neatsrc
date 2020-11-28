@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.12 2019/05/09 09:47:36 adam Exp $
+# $NetBSD: Makefile,v 1.14 2020/05/10 03:56:39 markd Exp $
 
 .include "../../print/texlive/Makefile.common"
 
-PKGNAME=	ptexenc-1.3.7
+PKGNAME=	ptexenc-1.3.8
 CATEGORIES=	print
 
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Library for Japanese pTeX and its tools
 LICENSE=	modified-bsd
 

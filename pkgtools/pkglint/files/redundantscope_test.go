@@ -25,8 +25,8 @@ func (s *Suite) Test_RedundantScope__single_file_default(c *check.C) {
 	t.CheckOutputLines(
 		"NOTE: file.mk:7: Default assignment of VAR.def has no effect because of line 1.",
 		"NOTE: file.mk:8: Definition of VAR.asg is redundant because of line 2.",
-		"NOTE: file.mk:10: Definition of VAR.evl is redundant because of line 4.")
-	// TODO: "VAR.shl: is overwritten later"
+		"NOTE: file.mk:10: Definition of VAR.evl is redundant because of line 4.",
+		"NOTE: file.mk:5: Default assignment of VAR.shl has no effect because of line 11.")
 }
 
 // In a single file, five variables get assigned are value and are later overridden
@@ -52,8 +52,8 @@ func (s *Suite) Test_RedundantScope__single_file_assign(c *check.C) {
 	t.CheckOutputLines(
 		"NOTE: file.mk:7: Default assignment of VAR.def has no effect because of line 1.",
 		"NOTE: file.mk:8: Definition of VAR.asg is redundant because of line 2.",
-		"NOTE: file.mk:10: Definition of VAR.evl is redundant because of line 4.")
-	// TODO: "VAR.shl: is overwritten later"
+		"NOTE: file.mk:10: Definition of VAR.evl is redundant because of line 4.",
+		"NOTE: file.mk:5: Definition of VAR.shl is redundant because of line 11.")
 }
 
 // In a single file, five variables get appended a value and are later overridden
@@ -79,8 +79,8 @@ func (s *Suite) Test_RedundantScope__single_file_append(c *check.C) {
 	t.CheckOutputLines(
 		"NOTE: file.mk:7: Default assignment of VAR.def has no effect because of line 1.",
 		"WARN: file.mk:2: Variable VAR.asg is overwritten in line 8.",
-		"WARN: file.mk:4: Variable VAR.evl is overwritten in line 10.")
-	// TODO: "VAR.shl: is overwritten later"
+		"WARN: file.mk:4: Variable VAR.evl is overwritten in line 10.",
+		"NOTE: file.mk:5: Definition of VAR.shl is redundant because of line 11.")
 }
 
 // In a single file, five variables get assigned a value using the := operator,
@@ -107,8 +107,8 @@ func (s *Suite) Test_RedundantScope__single_file_eval(c *check.C) {
 	t.CheckOutputLines(
 		"NOTE: file.mk:7: Default assignment of VAR.def has no effect because of line 1.",
 		"NOTE: file.mk:8: Definition of VAR.asg is redundant because of line 2.",
-		"NOTE: file.mk:10: Definition of VAR.evl is redundant because of line 4.")
-	// TODO: "VAR.shl: is overwritten later"
+		"NOTE: file.mk:10: Definition of VAR.evl is redundant because of line 4.",
+		"NOTE: file.mk:5: Definition of VAR.shl is redundant because of line 11.")
 }
 
 // In a single file, five variables get assigned a value using the != operator,
@@ -162,9 +162,9 @@ func (s *Suite) Test_RedundantScope__single_file_default_ref(c *check.C) {
 
 	t.CheckOutputLines(
 		"NOTE: file.mk:7: Default assignment of VAR.def has no effect because of line 1.",
-		"NOTE: file.mk:8: Definition of VAR.asg is redundant because of line 2.")
-	// TODO: "VAR.evl: is overwritten later",
-	// TODO: "VAR.shl: is overwritten later"
+		"NOTE: file.mk:8: Definition of VAR.asg is redundant because of line 2.",
+		"NOTE: file.mk:5: Default assignment of VAR.shl has no effect because of line 11.")
+	// TODO: "VAR.evl: is overwritten later"
 }
 
 // In a single file, five variables get assigned are value and are later overridden
@@ -189,9 +189,9 @@ func (s *Suite) Test_RedundantScope__single_file_assign_ref(c *check.C) {
 
 	t.CheckOutputLines(
 		"NOTE: file.mk:7: Default assignment of VAR.def has no effect because of line 1.",
-		"NOTE: file.mk:8: Definition of VAR.asg is redundant because of line 2.")
-	// TODO: "VAR.evl: is overwritten later",
-	// TODO: "VAR.shl: is overwritten later"
+		"NOTE: file.mk:8: Definition of VAR.asg is redundant because of line 2.",
+		"NOTE: file.mk:5: Definition of VAR.shl is redundant because of line 11.")
+	// TODO: "VAR.evl: is overwritten later"
 }
 
 // In a single file, five variables get appended a value and are later overridden
@@ -216,9 +216,9 @@ func (s *Suite) Test_RedundantScope__single_file_append_ref(c *check.C) {
 
 	t.CheckOutputLines(
 		"NOTE: file.mk:7: Default assignment of VAR.def has no effect because of line 1.",
-		"WARN: file.mk:2: Variable VAR.asg is overwritten in line 8.")
-	// TODO: "VAR.evl: is overwritten later",
-	// TODO: "VAR.shl: is overwritten later"
+		"WARN: file.mk:2: Variable VAR.asg is overwritten in line 8.",
+		"NOTE: file.mk:5: Definition of VAR.shl is redundant because of line 11.")
+	// TODO: "VAR.evl: is overwritten later"
 }
 
 // In a single file, five variables get assigned a value using the := operator,
@@ -428,6 +428,7 @@ func (s *Suite) Test_RedundantScope__before_including_same_value(c *check.C) {
 		"NOTE: including.mk:2: Default assignment of VAR.def.asg has no effect because of included.mk:2.",
 		"NOTE: including.mk:4: Definition of VAR.asg.def is redundant because of included.mk:4.",
 		"NOTE: including.mk:5: Definition of VAR.asg.asg is redundant because of included.mk:5.",
+		"NOTE: including.mk:7: Definition of VAR.app.def is redundant because of included.mk:7.",
 		"WARN: including.mk:8: Variable VAR.app.asg is overwritten in included.mk:8.")
 }
 
@@ -1228,13 +1229,8 @@ func (s *Suite) Test_RedundantScope__shell_and_eval_literal(c *check.C) {
 
 	NewRedundantScope().Check(mklines)
 
-	// Even when := is used with a literal value (which is usually
-	// only done for procedure calls), the shell evaluation can have
-	// so many different side effects that pkglint cannot reliably
-	// help in this situation.
-	//
-	// TODO: Why not? The evaluation in line 1 is trivial to analyze.
-	t.CheckOutputEmpty()
+	t.CheckOutputLines(
+		"NOTE: module.mk:1: Definition of VAR is redundant because of line 2.")
 }
 
 func (s *Suite) Test_RedundantScope__included_OPSYS_variable(c *check.C) {
@@ -1445,10 +1441,7 @@ func (s *Suite) Test_RedundantScope__is_relevant_for_infrastructure(c *check.C) 
 		scope := NewRedundantScope()
 		scope.IsRelevant = func(mkline *MkLine) bool {
 			// See checkfilePackageMakefile.
-			if !G.Infrastructure && !G.Opts.CheckGlobal {
-				return !G.Pkgsrc.IsInfra(mkline.Filename)
-			}
-			return true
+			return G.CheckGlobal || !G.Pkgsrc.IsInfra(mkline.Filename())
 		}
 
 		scope.Check(mklines)
@@ -1585,6 +1578,140 @@ func (s *Suite) Test_RedundantScope_handleVarassign__assign_then_eval(c *check.C
 	t.CheckOutputLines(
 		"NOTE: mk/bsd.options.mk:2: " +
 			"Definition of PKG_OPTIONS is redundant because of line 1.")
+}
+
+func (s *Suite) Test_RedundantScope_checkAppendUnique__redundant_before_including(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"CATEGORIES=\tcategory perl5",
+		".include \"included.mk\"")
+	t.CreateFileLines("category/package/included.mk",
+		MkCvsID,
+		"CATEGORIES+=\tperl5 python",
+		"CATEGORIES+=\tpython",
+		"CATEGORIES?=\tcategory japanese")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	// The second line sounds a bit strange since it references a line
+	// further down in the file. It's correct though.
+	t.CheckOutputLines(
+		"NOTE: Makefile:5: Adding \"perl5\" to CATEGORIES is redundant "+
+			"because it will later be appended in included.mk:2.",
+		"NOTE: included.mk:2: Adding \"python\" to CATEGORIES is redundant "+
+			"because it will later be appended in line 3.")
+}
+
+func (s *Suite) Test_RedundantScope_checkAppendUnique__redundant_after_including(c *check.C) {
+	t := s.Init(c)
+
+	// The assignment to CATEGORIES must be commented out in this test.
+	// The redundancy check only works if either _all_ previous variable
+	// assignments happen in included files or if _all_ previous variable
+	// assignments happen in including files.
+	//
+	// See Tester.SetUpPackage for the magic that is involved in defining
+	// a package during testing. That magic is also the reason for having
+	// both included1.mk and included2.mk.
+	t.SetUpPackage("category/package",
+		"#CATEGORIES=\tcategory",
+		".include \"included1.mk\"")
+	t.CreateFileLines("category/package/included1.mk",
+		MkCvsID,
+		".include \"included2.mk\"",
+		"CATEGORIES+=\tcategory perl5 python japanese")
+	t.CreateFileLines("category/package/included2.mk",
+		MkCvsID,
+		"CATEGORIES+=\tcategory perl5 japanese chinese")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"NOTE: included1.mk:3: Appending \"category\" to CATEGORIES is redundant "+
+			"because it is already added in included2.mk:2.",
+		"NOTE: included1.mk:3: Appending \"perl5\" to CATEGORIES is redundant "+
+			"because it is already added in included2.mk:2.",
+		"NOTE: included1.mk:3: Appending \"japanese\" to CATEGORIES is redundant "+
+			"because it is already added in included2.mk:2.")
+}
+
+func (s *Suite) Test_RedundantScope_checkAppendUnique__redundant_and_later_conditional(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"CATEGORIES=\tcategory",
+		".include \"included.mk\"")
+	t.CreateFileLines("category/package/included.mk",
+		MkCvsID,
+		"CATEGORIES+=\tperl5 python",
+		"CATEGORIES+=\tpython",
+		"CATEGORIES?=\tcategory japanese",
+		"",
+		".if 1",
+		"CATEGORIES+=\tchinese",
+		".endif")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	// Even though the "chinese" category is conditional, pkglint can
+	// diagnose that everything that happens before that conditional
+	// assignment adds to the constant value of the variable.
+	// Therefore it flags the duplicate category "python".
+	t.CheckOutputLines(
+		"NOTE: included.mk:2: Adding \"python\" to CATEGORIES is redundant " +
+			"because it will later be appended in line 3.")
+}
+
+// The := assignment operator is equivalent to the simple = operator
+// if its right-hand side does not contain references to any variables.
+func (s *Suite) Test_RedundantScope_checkAppendUnique__eval_assignment(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"CATEGORIES:=\tcategory",
+		".include \"included.mk\"")
+	t.CreateFileLines("category/package/included.mk",
+		MkCvsID,
+		"CATEGORIES+=\tcategory")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"NOTE: Makefile:5: Adding \"category\" to CATEGORIES is redundant " +
+			"because it will later be appended in included.mk:2.")
+}
+
+func (s *Suite) Test_RedundantScope_checkAppendUnique__not_redundant(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCategory("perl")
+	t.SetUpPackage("category/package",
+		"CATEGORIES:=\tcategory",
+		".include \"included1.mk\"",
+		".include \"included2.mk\"")
+	t.Chdir("category/package")
+	t.CreateFileLines("included1.mk",
+		MkCvsID,
+		"CATEGORIES+=\tperl")
+	t.CreateFileLines("included2.mk",
+		MkCvsID,
+		"CATEGORIES+=\tperl")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	// The additions in included1.mk and included2.mk are not redundant
+	// since neither of them includes the other.
+	t.CheckOutputEmpty()
 }
 
 func (s *Suite) Test_includePath_includes(c *check.C) {

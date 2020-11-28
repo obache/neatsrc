@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.11 2019/07/21 22:25:04 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2020/08/17 20:19:08 leot Exp $
 
 DISTNAME=	rawtherapee-5.6
-PKGREVISION=	1
+PKGREVISION=	5
 CATEGORIES=	graphics
 MASTER_SITES=	http://rawtherapee.com/shared/source/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	ryoon@NetBSD.org
-HOMEPAGE=	http://rawtherapee.com/
+HOMEPAGE=	https://rawtherapee.com/
 COMMENT=	Powerful cross-platform raw photo processing program
 LICENSE=	gnu-gpl-v3
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.31 2019/11/03 19:03:59 rillig Exp $
+# $NetBSD: Makefile,v 1.33 2020/10/23 00:39:37 gutteridge Exp $
 
 GCC_PKGNAME=	gcc48
 .include	"../../lang/${GCC_PKGNAME}/version.mk"
@@ -8,13 +8,13 @@ PKGNAME=	${GCC_PKGNAME}-libs-${GCC48_DIST_VERSION}
 ## The PKGREVISION of this package needs to be at least 1 more than the
 ## PKGREVISION of the lang/gcc48 package so that with the dependence pattern
 ## '{gcc48,gcc48-libs}>=4.8.*' pkg_all will choose gcc48-libs over gcc48.
-PKGREVISION=	8
+PKGREVISION=	10
 CATEGORIES=	lang
 MASTER_SITES=	# empty
 DISTFILES=	# empty
 
 MAINTAINER=	sbd@NetBSD.org
-HOMEPAGE=	http://gcc.gnu.org/
+HOMEPAGE=	https://gcc.gnu.org/
 COMMENT=	The GNU Compiler Collection (GCC) support shared libraries.
 LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND gnu-lgpl-v3
 

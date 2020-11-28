@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.3 2019/10/07 09:28:12 prlw1 Exp $
+# $NetBSD: Makefile,v 1.5 2020/04/19 01:16:37 joerg Exp $
 
 DISTNAME=	gst-transcoder-1.16.0
 PKGNAME=	${DISTNAME:S/^gst/gst-plugins1/1}
+PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=pitivi/}
 GITHUB_PROJECT=	gst-transcoder
@@ -26,6 +27,7 @@ MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output
 MESON_ARGS+=	-Ddisable_doc=true
 
 .include "../../devel/meson/build.mk"
+.include "../../devel/gobject-introspection/buildlink3.mk"
 .include "../../multimedia/gstreamer1/buildlink3.mk"
 .include "../../multimedia/gst-plugins1-base/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.8 2018/09/24 10:05:02 adam Exp $
+$NetBSD: distinfo,v 1.10 2020/09/29 16:58:01 adam Exp $
 
-SHA1 (greenlet-0.4.15.tar.gz) = 0da9c069c38bf297923a1da0c601ef71c07ffb6d
-RMD160 (greenlet-0.4.15.tar.gz) = 3f86fd4cd35c205f098daa6de504a9b5ed9082ab
-SHA512 (greenlet-0.4.15.tar.gz) = a3b7856aadc988fe153f5cf62552dd6219358f35ee2ca136e5eb5c9871cb7545986753af299e6b3e95877e9aa564559e95c548785f78e680766630b047a1ec89
-Size (greenlet-0.4.15.tar.gz) = 59694 bytes
+SHA1 (greenlet-0.4.17.tar.gz) = 59d0c79e82ac60c3fe00179d355e34493aebae27
+RMD160 (greenlet-0.4.17.tar.gz) = c5117b311c0d42092b6d8b8435ce5d3a4f8fc890
+SHA512 (greenlet-0.4.17.tar.gz) = 41afd80a6cd5e9cf9c8149016f24d0944d2651288d50094ef04bb6759202903c436af639872d7aab631ed8fe13aad7d4405beb428415b198a3ba30a96d4bd3de
+Size (greenlet-0.4.17.tar.gz) = 61381 bytes
 SHA1 (patch-slp__platformselect.h) = 9df936439c29d8e824e8a17bdf9e687d3c2d8ecd

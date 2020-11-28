@@ -1,17 +1,23 @@
-# $NetBSD: Makefile,v 1.31 2018/01/26 13:28:27 jperkin Exp $
+# $NetBSD: Makefile,v 1.34 2020/09/22 18:22:59 bsiegert Exp $
 
 DISTNAME=	libproxy-0.4.15
+PKGREVISION=	1
 CATEGORIES=	www gnome
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libproxy/}
 
+PATCH_SITES=		https://github.com/libproxy/libproxy/commit/
+PATCHFILES=		a83dae404feac517695c23ff43ce1e116e2bfbe0.patch
+PATCH_DIST_STRIP=	-p1
+
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://libproxy.github.io/libproxy/
+HOMEPAGE=	https://libproxy.github.io/libproxy/
 COMMENT=	Library that provides automatic proxy configuration management
 LICENSE=	gnu-lgpl-v2.1
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c99 c++03
-USE_TOOLS+=	pkg-config gmake
+USE_TOOLS+=	pkg-config
+
 CMAKE_ARGS+=	-DWITH_PERL:BOOL=OFF
 CMAKE_ARGS+=	-DWITH_PYTHON2:BOOL=OFF
 CMAKE_ARGS+=	-DWITH_PYTHON3:BOOL=OFF

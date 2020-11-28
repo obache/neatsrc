@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.13 2020/01/10 13:32:13 bsiegert Exp $
+# $NetBSD: Makefile,v 1.22 2020/10/15 13:08:33 bsiegert Exp $
 
-DISTNAME=	parse-2.3.5
+DISTNAME=	parse-2.4.2
 PKGNAME=	go-${DISTNAME}
-PKGREVISION=	11
+PKGREVISION=	5
 MASTER_SITES=	${MASTER_SITE_GITHUB:=tdewolff/}
 CATEGORIES=	www
 GITHUB_PROJECT=	parse

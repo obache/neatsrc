@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.124 2019/08/11 13:24:15 wiz Exp $
+# $NetBSD: Makefile,v 1.133 2020/08/31 18:12:30 wiz Exp $
 
-DISTNAME=	WindowMaker-0.95.8
+DISTNAME=	WindowMaker-0.95.9
 PKGNAME=	${DISTNAME:tl}
-PKGREVISION=	6
-CATEGORIES=	x11 wm windowmaker
-MASTER_SITES=	http://windowmaker.org/pub/source/release/
+PKGREVISION=	3
+CATEGORIES=	wm windowmaker
+MASTER_SITES=	https://windowmaker.org/pub/source/release/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.windowmaker.org/
+HOMEPAGE=	https://www.windowmaker.org/
 COMMENT=	GNUStep-compliant NEXTSTEP(tm) window manager clone
 LICENSE=	gnu-gpl-v2
 
@@ -32,6 +32,12 @@ INSTALLATION_DIRS=	share/WindowMaker/SoundSets
 INSTALLATION_DIRS+=	share/WindowMaker/Sounds
 INSTALLATION_DIRS+=	share/doc/WindowMaker
 
+PKGCONFIG_OVERRIDE=		WINGs/WINGs.pc
+PKGCONFIG_OVERRIDE+=		WINGs/WUtil.pc
+PKGCONFIG_OVERRIDE+=		wmlib/wmlib.pc
+PKGCONFIG_OVERRIDE+=		wrlib/wrlib.pc
+PKGCONFIG_OVERRIDE_STAGE=	post-build
+
 .include "../../mk/compiler.mk"
 
 .if !empty(MACHINE_PLATFORM:MSunOS-5.11-*)
@@ -55,7 +61,6 @@ SUBST_CLASSES+=		fix-path
 SUBST_STAGE.fix-path=	pre-configure
 SUBST_MESSAGE.fix-path=	Fixing absolute paths.
 SUBST_FILES.fix-path=	WINGs/wapplication.c
-SUBST_FILES.fix-path+=	WindowMaker/Defaults/WindowMaker.in
 SUBST_FILES.fix-path+=	WPrefs.app/Paths.c
 SUBST_FILES.fix-path+=	WindowMaker/menu*
 SUBST_FILES.fix-path+=	WindowMaker/plmenu*

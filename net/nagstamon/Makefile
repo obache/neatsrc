@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.57 2019/09/02 13:19:50 adam Exp $
+# $NetBSD: Makefile,v 1.63 2020/08/17 20:19:49 leot Exp $
 
 VERSION=	1.0.1
 DISTNAME=	Nagstamon-${VERSION}
 PKGNAME=	${DISTNAME:S/N/n/}
-PKGREVISION=	12
+PKGREVISION=	17
 CATEGORIES=	net python
 MASTER_SITES=	https://nagstamon.ifw-dresden.de/files-nagstamon/stable/
 
 MAINTAINER=	imil@gcu.info
-HOMEPAGE=	http://nagstamon.ifw-dresden.de/
+HOMEPAGE=	https://nagstamon.ifw-dresden.de/
 COMMENT=	Nagios status monitor which takes place in systray or on desktop
 LICENSE=	gnu-gpl-v2
 

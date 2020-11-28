@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.3 2018/04/14 00:56:24 schmonz Exp $
+# $NetBSD: Makefile,v 1.7 2020/06/25 05:42:37 schmonz Exp $
 
 DISTNAME=		qmail-autoresponder-2.0
 CATEGORIES=		mail
 MASTER_SITES=		${HOMEPAGE}
 
 MAINTAINER=		schmonz@NetBSD.org
-HOMEPAGE=		http://untroubled.org/qmail-autoresponder/
+HOMEPAGE=		https://untroubled.org/qmail-autoresponder/
 COMMENT=		Rate-limited autoresponder for qmail
 LICENSE=		gnu-gpl-v2
 
@@ -19,6 +19,8 @@ DJB_MAKE_TARGETS=	no
 BUILD_TARGET=		all
 
 LDFLAGS.SunOS+=		-lsocket
+
+.include "options.mk"
 
 pre-configure:
 	${TOUCH} ${WRKSRC}/conf-bgincs ${WRKSRC}/conf-bglibs

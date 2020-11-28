@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.40 2018/08/14 16:07:10 schmonz Exp $
+# $NetBSD: Makefile,v 1.45 2020/06/26 16:37:23 schmonz Exp $
 
 DISTNAME=		daemontools-0.76
 PKGREVISION=		3
@@ -7,12 +7,14 @@ MASTER_SITES=		http://cr.yp.to/daemontools/ ftp://cr.yp.to/daemontools/
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX} ${MANPAGES}
 
 MAINTAINER=		schmonz@NetBSD.org
-HOMEPAGE=		http://cr.yp.to/daemontools.html
+HOMEPAGE=		https://cr.yp.to/daemontools.html
 COMMENT=		Service monitoring and logging utilities by djb
 LICENSE=		public-domain
 
 MANPAGES=		${DISTNAME}-man-20020131.tar.gz
 SITES.${MANPAGES}=	http://smarden.org/pape/djb/manpages/
+
+CONFLICTS+=		daemontools-encore-[0-9]*
 
 DJB_RESTRICTED=		no
 
@@ -25,7 +27,8 @@ USE_TOOLS+=		file
 
 INSTALLATION_DIRS=	bin man ${PKGMANDIR}/man8
 
-SUBST_FILES.djbware+=	src/error.h
+SUBST_CLASSES+=		djberrno
+SUBST_FILES.djberrno=	src/error.h
 
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	do-configure
@@ -34,6 +37,8 @@ SUBST_SED.paths=	-e 's|/usr/local/sbin:/bin|/usr/local/sbin:${PREFIX}/bin:${PREF
 SUBST_SED.paths+=	-e 's|/command/svc |${PREFIX}/bin/svc |g'
 
 MAKE_ENV+=		PKGSRC_SHELL=${TOOLS_PLATFORM.sh}
+
+.include "options.mk"
 
 do-install:
 	(while read cmd; do \

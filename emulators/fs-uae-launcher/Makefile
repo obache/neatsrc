@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.14 2019/11/18 20:01:03 adam Exp $
+# $NetBSD: Makefile,v 1.17 2020/08/31 23:07:02 wiz Exp $
 
-DISTNAME=	fs-uae-launcher-3.0.2
+DISTNAME=	fs-uae-launcher-3.0.5
 CATEGORIES=	emulators
 MASTER_SITES=	https://fs-uae.net/stable/${PKGVERSION_NOREV}/
 
@@ -12,7 +12,6 @@ LICENSE=	gnu-gpl-v2
 DEPENDS+=	fs-uae>=${PKGVERSION_NOREV}:../../emulators/fs-uae
 DEPENDS+=	${PYPKGPREFIX}-lhafile-[0-9]*:../../archivers/py-lhafile
 DEPENDS+=	${PYPKGPREFIX}-requests-[0-9]*:../../devel/py-requests
-DEPENDS+=	${PYPKGPREFIX}-setuptools-[0-9]*:../../devel/py-setuptools
 DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
 DEPENDS+=	${PYPKGPREFIX}-qt5>=5.4:../../x11/py-qt5
 .include "../../mk/bsd.prefs.mk"
@@ -25,8 +24,10 @@ INSTALL_TARGET=		install-data
 USE_TOOLS+=		gmake msgfmt
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
-PYSETUPINSTALLARGS=		--install-lib=${PREFIX:Q}/share/fs-uae-launcher
-PYSETUPINSTALLARGS+=		--install-scripts=${PREFIX:Q}/share/fs-uae-launcher
+PYTHON_VERSIONED_DEPENDENCIES+=	setuptools
+
+PYSETUPINSTALLARGS=	--install-lib=${PREFIX:Q}/share/fs-uae-launcher
+PYSETUPINSTALLARGS+=	--install-scripts=${PREFIX:Q}/share/fs-uae-launcher
 
 REPLACE_PYTHON+=	fs-uae-launcher
 
@@ -36,8 +37,7 @@ SUBST_CLASSES+=		prefix
 SUBST_MESSAGE.prefix=	Fixing installation prefix.
 SUBST_STAGE.prefix=	pre-configure
 SUBST_FILES.prefix=	Makefile
-SUBST_FILES.prefix+=	fs_uae_launcher/FSUAELauncher.py
-SUBST_FILES.prefix+=	game_center/gamecenterutil.py
+SUBST_FILES.prefix+=	launcher/ui/launcherwindow.py
 SUBST_SED.prefix=	-e 's,/usr/local,${PREFIX},'
 
 post-install:
@@ -48,4 +48,5 @@ post-install:
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

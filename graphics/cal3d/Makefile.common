@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.13 2019/11/02 22:37:54 rillig Exp $
+# $NetBSD: Makefile.common,v 1.15 2020/03/20 11:57:46 nia Exp $
 #
 # used by graphics/cal3d/Makefile
 # used by graphics/cal3d-examples/Makefile

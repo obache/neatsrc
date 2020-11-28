@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.9 2019/12/16 21:25:45 schmonz Exp $
+# $NetBSD: Makefile,v 1.16 2020/10/21 08:47:33 schmonz Exp $
 
-DISTNAME=		fehQlibs-13c
+DISTNAME=		fehQlibs-16
 PKGNAME=		${DISTNAME:S/Qlibs-/qlibs-0.9./}
 CATEGORIES=		net
 MASTER_SITES=		https://www.fehcom.de/ipnet/fehQlibs/
@@ -19,13 +19,22 @@ SUBST_CLASSES+=		echo
 SUBST_STAGE.echo=	pre-configure
 SUBST_FILES.echo=	configure install
 SUBST_SED.echo=		-e 's|echo -n|${ECHO_N}|g'
+SUBST_NOOP_OK.echo=	yes # ECHO_N may be "echo -n"
 
 SUBST_CLASSES+=		etc
 SUBST_STAGE.etc=	do-configure
 SUBST_FILES.etc=	dnsstub/dns_rcrw.c
 SUBST_SED.etc=		-e 's|/etc/dnsrewrite|${PKG_SYSCONFBASE}/dnsrewrite|g'
 
+SUBST_CLASSES+=		ldflags
+SUBST_STAGE.ldflags=	pre-configure
+SUBST_FILES.ldflags=	Makefile
+SUBST_SED.ldflags=	-e 's|\$$(MAKELIB) \$$(LDFLAGS) |$$(MAKELIB) |g'
+
 BUILD_DEFS+=		PKG_SYSCONFBASE
+
+post-extract:
+	rm -f ${WRKSRC}/include/*.orig
 
 do-configure:
 	cd ${WRKSRC};								\

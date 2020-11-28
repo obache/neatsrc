@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.56 2017/01/19 18:52:03 agc Exp $
+# $NetBSD: Makefile,v 1.62 2020/05/22 10:55:58 adam Exp $
 
-DISTNAME=	ekg-1.7
-PKGREVISION=	11
+DISTNAME=	ekg-20200501
+PKGREVISION=	1
 CATEGORIES=	chat
 MASTER_SITES=	http://ekg.chmurka.net/
 MASTER_SITES+=	http://ekg.chmurka.net/archive/
@@ -9,20 +9,22 @@ MASTER_SITES+=	http://ekg.chmurka.net/archive/
 MAINTAINER=	adam@NetBSD.org
 HOMEPAGE=	http://ekg.chmurka.net/
 COMMENT=	Experimental Gadu-Gadu Client (Polish instant messaging system)
+LICENSE=	gnu-gpl-v2
 
 USE_LIBTOOL=		yes
 USE_NCURSES=		yes
 USE_TOOLS+=		gmake pkg-config
 GNU_CONFIGURE=		yes
-PKGCONFIG_OVERRIDE=	lib/libgadu.pc.in
 CONFIGURE_ARGS+=	--enable-ui-ncurses
 CONFIGURE_ARGS+=	--enable-ui-readline
-CONFIGURE_ARGS+=	--with-curses=${BUILDLINK_PREFIX.ncurses}
+CONFIGURE_ARGS+=	--with-curses=${BUILDLINK_PREFIX.curses}
 CONFIGURE_ARGS+=	--with-readline=${BUILDLINK_PREFIX.readline}
 CONFIGURE_ARGS+=	--without-debug
+PKGCONFIG_OVERRIDE=	lib/libgadu.pc.in
+
+FAKE_NCURSES=		yes
 
 .include "../../mk/pthread.buildlink3.mk"
-
 .if defined(PTHREAD_TYPE) && (${PTHREAD_TYPE} != "none")
 CONFIGURE_ARGS+=	--with-pthread
 .endif
@@ -32,9 +34,11 @@ CONFIGURE_ARGS+=	--with-pthread
 LIBS+=	-lexecinfo
 .endif
 
-.include "../../devel/ncurses/buildlink3.mk"
+.include "../../chat/libgadu/buildlink3.mk"
 .include "../../devel/readline/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../mk/jpeg.buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
+.include "../../mk/curses.buildlink3.mk"
+.include "../../devel/ncurses/buildlink3.mk"
+.include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

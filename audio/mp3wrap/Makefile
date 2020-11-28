@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2012/10/02 23:47:59 asau Exp $
+# $NetBSD: Makefile,v 1.4 2020/01/26 05:26:12 rillig Exp $
 #
 
 DISTNAME=	mp3wrap-0.5-src

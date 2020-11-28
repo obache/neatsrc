@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2014/10/09 14:07:15 wiz Exp $
+# $NetBSD: Makefile,v 1.15 2020/03/20 11:58:36 nia Exp $
 
 DISTNAME=	BWidget-1.9.0
 PKGNAME=	tk-${DISTNAME}

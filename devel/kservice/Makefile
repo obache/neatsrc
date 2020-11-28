@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.23 2019/08/27 21:10:00 markd Exp $
+# $NetBSD: Makefile,v 1.33 2020/08/17 20:17:21 leot Exp $
 
 DISTNAME=	kservice-${KF5VER}
+PKGREVISION=	1
 CATEGORIES=	devel
 
 HOMEPAGE=	https://community.kde.org/Frameworks
@@ -16,7 +17,7 @@ USE_TOOLS+=	bison flex msgmerge
 SUBST_CLASSES+=		xdg
 SUBST_STAGE.xdg=	pre-configure
 SUBST_MESSAGE.xdg=	Install via examples dir.
-SUBST_FILES.xdg=	CMakeLists.txt src/CMakeLists.txt
+SUBST_FILES.xdg=	src/CMakeLists.txt
 SUBST_SED.xdg=		-e 's:{KDE_INSTALL_SYSCONFDIR}/xdg/menus:{KDE_INSTALL_DATAROOTDIR}/examples/kservice:'
 
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg/menus

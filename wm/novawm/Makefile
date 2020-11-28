@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.18 2012/10/08 12:42:22 asau Exp $
+# $NetBSD: Makefile,v 1.20 2020/03/20 11:58:33 nia Exp $
 #
 
 DISTNAME=	NovaWM-0.8_alpha

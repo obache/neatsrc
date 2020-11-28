@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.26 2019/11/04 19:58:01 rillig Exp $
+# $NetBSD: Makefile,v 1.29 2020/08/17 20:19:56 leot Exp $
 
+PKGREVISION= 1
 .include "../../print/poppler/Makefile.common"
 
 PKGNAME=	poppler-includes-${POPPLER_VERS}
@@ -9,8 +10,6 @@ COMMENT=	Poppler Xpdf includes (unsupported)
 CONFLICTS+=	poppler-0.5.1{,nb*}
 
 NO_BUILD=	yes
-
-CMAKE_ARGS+=	-DENABLE_XPDF_HEADERS=ON
 
 INCDIR=	${DESTDIR}${PREFIX}/include
 

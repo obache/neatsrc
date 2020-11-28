@@ -1,20 +1,19 @@
-# $NetBSD: Makefile,v 1.64 2019/08/22 12:22:58 ryoon Exp $
+# $NetBSD: Makefile,v 1.82 2020/10/04 00:08:38 gdt Exp $
 
-MAJOR=		2.5
-DISTNAME=	postgis-${MAJOR}.3
+# Note that the directory is still postgis2, for historical reasons.
+# It remains, due to inertia, until there is a good basis to be sure
+# no other changes will be needed.
+MAJOR=		3.0
+DISTNAME=	postgis-${MAJOR}.2
 PKGNAME=	postgresql${PGSQL_VERSION}-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	databases geography
 MASTER_SITES=	https://download.osgeo.org/postgis/source/
 
 MAINTAINER=	gdt@NetBSD.org
-HOMEPAGE=	http://postgis.net/
+HOMEPAGE=	https://postgis.net/
 COMMENT=	Spatial database capabilities for PostgreSQL
 
 LICENSE=	gnu-gpl-v2
-
-# Needs 9.4 or higher
-PGSQL_VERSIONS_ACCEPTED=	10 96 95 94
 
 DEPENDS+=		postgresql${PGSQL_VERSION}-server-[0-9]*:../../databases/postgresql${PGSQL_VERSION}-server
 BUILD_DEPENDS+=		docbook-xsl-[0-9]*:../../textproc/docbook-xsl
@@ -32,11 +31,10 @@ CONFLICTS=		postgis-[0-9]*
 # gmake complains about adding + to parent rule
 MAKE_JOBS_SAFE=		no
 
-
 USE_GCC_RUNTIME=	yes
 USE_LANGUAGES=		c c++ c99
 USE_LIBTOOL=		yes
-USE_TOOLS+=		gmake lex pax perl
+USE_TOOLS+=		gmake lex pax perl pkg-config
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-rpath
 CONFIGURE_ARGS+=	--datadir=${PREFIX}/share/postgresql/contrib
@@ -55,14 +53,6 @@ DOCDIR=			${PREFIX}/share/doc/postgis
 PLIST_SUBST+=		MAJOR=${MAJOR}
 PRINT_PLIST_AWK+=	{ gsub(/postgis-${MAJOR:S|/|\\/|g}/, "postgis-$${MAJOR}") }
 PRINT_PLIST_AWK+=	{ gsub(/topology-${MAJOR:S|/|\\/|g}/, "topology-$${MAJOR}") }
-
-SUBST_CLASSES+=		paths
-SUBST_FILES.paths=	extras/template_gis/profile \
-			extras/template_gis/createdb.postgis.1 \
-			extras/template_gis/mktemplate_gis.1 \
-			extras/template_gis/postgis_env.sh.in
-SUBST_VARS.paths+=	PKG_SYSCONFDIR
-SUBST_STAGE.paths=	pre-configure
 
 INSTALLATION_DIRS=	${DOCDIR} ${DOCDIR}/images ${PKGMANDIR}/man1
 
@@ -90,9 +80,11 @@ MAKE_ENV+=		"XSLTPROCFLAGS=--timing"
 .include "../../textproc/libxslt/buildlink3.mk"
 
 # NORMAL DEPENDS
+.include "../../devel/protobuf-c/buildlink3.mk"
 .include "../../geography/gdal-lib/buildlink3.mk"
 .include "../../geography/geos/buildlink3.mk"
 .include "../../geography/proj/buildlink3.mk"
+.include "../../textproc/json-c/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../mk/pgsql.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

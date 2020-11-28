@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.2 2020/05/04 15:36:08 adam Exp $
+
+SHA1 (sh-1.13.1.tar.gz) = 1528fcd0efc4c83a70ab82a5161faf9621b2ad59
+RMD160 (sh-1.13.1.tar.gz) = 347c2ca669cbdd9356fae239ed3c9e27b693997a
+SHA512 (sh-1.13.1.tar.gz) = 2d5a275abe3b7f1f1d26a97dd03bcbd6e2e05d1c75f26d5a629fead230d2fb2acd368b5473255526ba53c8fea4031112f272d917e820e294e49be9bbeb5d2116
+Size (sh-1.13.1.tar.gz) = 62768 bytes

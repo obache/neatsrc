@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2020/01/08 20:53:28 adam Exp $
+# $NetBSD: Makefile,v 1.9 2020/08/10 06:56:56 adam Exp $
 
-DISTNAME=	hstspreload-2020.1.7
+DISTNAME=	hstspreload-2020.8.8
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=h/hstspreload/}
@@ -11,6 +11,8 @@ COMMENT=	Chromium HSTS Preload list
 LICENSE=	modified-bsd
 
 USE_LANGUAGES=	# none
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

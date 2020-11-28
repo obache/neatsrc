@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.30 2019/08/11 13:22:36 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2020/09/20 11:25:41 wiz Exp $
 
-PKGNAME=	pkg_notify-0.4.6
-PKGREVISION=	2
+PKGNAME=	pkg_notify-0.4.8
 CATEGORIES=	pkgtools
 
 MAINTAINER=	imil@gcu.info
@@ -23,7 +22,7 @@ CONF_FILES=		${EGDIR}/${PKGBASE}.list \
 .include "../../mk/bsd.prefs.mk"
 
 SUBST_CLASSES+=			pkg_notify
-SUBST_STAGE.pkg_notify=		pre-install
+SUBST_STAGE.pkg_notify=		build
 SUBST_FILES.pkg_notify=		pkg_notify
 SUBST_FILES.pkg_notify+=	pkg_notify.1
 SUBST_VARS.pkg_notify=		PKGSRCDIR

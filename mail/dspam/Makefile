@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.99 2019/08/11 13:21:26 wiz Exp $
+# $NetBSD: Makefile,v 1.107 2020/08/31 18:09:55 wiz Exp $
 
 DISTNAME=	dspam-3.10.2
-PKGREVISION=	26
+PKGREVISION=	30
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=dspam/}
 
@@ -27,7 +27,6 @@ PKGCONFIG_OVERRIDE+=	src/dspam.pc.in
 
 SUBST_CLASSES+=		cgi
 SUBST_STAGE.cgi=	pre-configure
-SUBST_FILES.cgi=	webui/cgi-bin/templates/nav_performance.html
 SUBST_FILES.cgi+=	webui/cgi-bin/configure.pl.in
 SUBST_FILES.cgi+=	webui/cgi-bin/dspam.cgi webui/cgi-bin/admin.cgi
 SUBST_FILES.cgi+=	webui/cgi-bin/graph.cgi webui/cgi-bin/admingraph.cgi
@@ -40,7 +39,6 @@ SUBST_SED.cgi+=		-e "s|\$$FILE = \"./default.prefs\";|\$$FILE = \"${PKG_SYSCONFD
 SUBST_MESSAGE.cgi=	Fixing paths and default options.
 
 BUILD_DEFS+=		DSPAM_HOME VARBASE
-BUILD_DEFS+=		DSPAM_SIGNATURE_LIFE
 BUILD_DEFS+=		DSPAM_BINMODE
 BUILD_DEFS+=		DSPAM_LOGDIR
 BUILD_DEFS+=		DSPAM_LOGFILE
@@ -52,8 +50,12 @@ BUILD_DEFS+=		APACHE_GROUP
 
 .include "../../mk/bsd.prefs.mk"
 
+# Can be removed after 2020Q4.
+.if defined(DSPAM_SIGNATURE_LIFE)
+PKG_FAIL_REASON+=	"DSPAM_SIGNATURE_LIFE is not used anymore."
+.endif
+
 DSPAM_HOME?=		${VARBASE}/dspam
-DSPAM_SIGNATURE_LIFE?=	14
 
 DSPAM_BINMODE?=		4511
 DSPAM_USER?=		dspam
@@ -69,7 +71,6 @@ DSPAM_WWWGROUP?=	${APACHE_GROUP}
 PKG_GROUPS_VARS+=	DSPAM_GROUP DSPAM_WWWGROUP
 PKG_USERS_VARS+=	DSPAM_USER DSPAM_WWWUSER
 
-CONFIGURE_ARGS+=	--with-signature-life=${DSPAM_SIGNATURE_LIFE}
 CONFIGURE_ARGS+=	--with-dspam-home=${DSPAM_HOME}			\
 			--with-dspam-home-owner=${DSPAM_USER}		\
 			--with-dspam-home-group=${DSPAM_GROUP}		\
@@ -110,6 +111,7 @@ OWN_DIRS_PERMS+=	${DSPAM_PIDDIR} ${DSPAM_USER} ${DSPAM_GROUP} 0770
 
 FILES_SUBST+=		DSPAM_USER=${DSPAM_USER}
 FILES_SUBST+=		DSPAM_GROUP=${DSPAM_GROUP}
+FILES_SUBST+=		DSPAM_HOME=${DSPAM_HOME}
 FILES_SUBST+=		DSPAM_PIDDIR=${DSPAM_PIDDIR}
 
 SUBST_CLASSES+=		conf

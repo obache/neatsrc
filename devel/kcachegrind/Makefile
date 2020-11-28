@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.29 2019/12/09 14:20:55 taca Exp $
+# $NetBSD: Makefile,v 1.39 2020/08/31 18:07:22 wiz Exp $
 
 DISTNAME=	kcachegrind-${KAPPSVER}
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	devel
 
 HOMEPAGE=	https://kde.org/applications/development/kcachegrind/
@@ -10,7 +10,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/applications.mk"
 
-BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge perl:run
 

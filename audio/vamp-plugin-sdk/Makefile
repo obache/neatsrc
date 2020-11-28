@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.3 2019/11/23 11:46:35 nia Exp $
+# $NetBSD: Makefile,v 1.6 2020/08/18 17:57:26 leot Exp $
 
-DISTNAME=	vamp-plugin-sdk-2.8.0
+DISTNAME=	vamp-plugin-sdk-2.9.0
+PKGREVISION=	1
 CATEGORIES=	audio
-MASTER_SITES=	https://code.soundsoftware.ac.uk/attachments/download/2450/
+MASTER_SITES=	https://code.soundsoftware.ac.uk/attachments/download/2588/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.vamp-plugins.org/
@@ -10,9 +11,18 @@ COMMENT=	The Vamp audio analysis plugin system
 LICENSE=	x11
 
 USE_TOOLS+=	pkg-config gmake
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c c++11
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
+
+# C++11
+GCC_REQD+=	4.7
+
+SUBST_CLASSES+=		dl
+SUBST_STAGE.dl=		pre-configure
+SUBST_MESSAGE.dl=	Fixing usage of -ldl in pkgconfig file.
+SUBST_FILES.dl+=	pkgconfig/vamp-hostsdk.pc.in
+SUBST_SED.dl=		-e "s,-ldl,${DL_LIBS},g"
 
 PKGCONFIG_OVERRIDE+=	pkgconfig/vamp-hostsdk.pc.in
 PKGCONFIG_OVERRIDE+=	pkgconfig/vamp-sdk.pc.in

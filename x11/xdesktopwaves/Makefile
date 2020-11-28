@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2013/09/03 17:54:41 shattered Exp $
+# $NetBSD: Makefile,v 1.17 2020/01/26 05:26:28 rillig Exp $
 #
 
 DISTNAME=	xdesktopwaves-1.3

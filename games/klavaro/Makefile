@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.25 2019/08/22 12:23:10 ryoon Exp $
+# $NetBSD: Makefile,v 1.34 2020/08/17 20:18:47 leot Exp $
 
 DISTNAME=	klavaro-2.01
-PKGREVISION=	23
+PKGREVISION=	30
 CATEGORIES=	games
 MASTER_SITES=	http://downloads.sourceforge.net/project/klavaro/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	ryoon@NetBSD.org
-HOMEPAGE=	http://klavaro.sourceforge.net/
+HOMEPAGE=	https://klavaro.sourceforge.io/
 COMMENT=	Touch Typing Tutor
 LICENSE=	gnu-gpl-v2
 

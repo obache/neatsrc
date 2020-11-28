@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2019/08/21 12:41:24 adam Exp $
+# $NetBSD: Makefile,v 1.3 2020/08/09 23:37:32 joerg Exp $
 
 DISTNAME=	ipywidgets-7.5.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
@@ -6,7 +6,7 @@ CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=i/ipywidgets/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ipython.org/
+HOMEPAGE=	https://ipython.org/
 COMMENT=	IPython HTML widgets for Jupyter
 LICENSE=	modified-bsd
 
@@ -18,7 +18,7 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-test-cov-[0-9]*:../../devel/py-test-cov
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27	# py-ipykernel
+PYTHON_VERSIONS_INCOMPATIBLE=	27 36	# py-ipykernel
 
 do-test:
 	cd ${WRKSRC} && py.test-${PYVERSSUFFIX}

@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.34 2020/01/10 13:32:25 bsiegert Exp $
+# $NetBSD: Makefile,v 1.44 2020/10/15 13:08:23 bsiegert Exp $
 
 DISTNAME=		tools
 PKGNAME=		go-tools-1.11.20181009
-PKGREVISION=		13
+PKGREVISION=		21
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_GITHUB:=golang/}
 GITHUB_PROJECT=		${DISTNAME}
 GITHUB_TAG=		34804b1
 
 MAINTAINER=		bsiegert@NetBSD.org
-HOMEPAGE=		http://golang.org/
+HOMEPAGE=		https://golang.org/
 COMMENT=		Tools for use with Go, including godoc
 LICENSE=		modified-bsd
 
@@ -53,6 +53,5 @@ post-install:
 
 .include "../../lang/go/go-package.mk"
 .include "../../devel/google-api-go-client/buildlink3.mk"
-BUILDLINK_API_DEPENDS.go-crypto+=	go-crypto>=0.0.20180308
 .include "../../security/go-crypto/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

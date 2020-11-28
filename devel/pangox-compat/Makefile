@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.17 2019/07/11 09:28:44 nia Exp $
+# $NetBSD: Makefile,v 1.20 2020/08/17 20:17:24 leot Exp $
 
 DISTNAME=	pangox-compat-0.0.2
-PKGREVISION=	7
+PKGREVISION=	10
 CATEGORIES=	devel fonts
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/pangox-compat/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz

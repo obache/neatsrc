@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.28 2018/01/14 14:58:38 rillig Exp $
+# $NetBSD: Makefile,v 1.30 2020/03/20 11:57:46 nia Exp $
 
 DISTNAME=	aalib-1.4rc5
 PKGNAME=	${DISTNAME:S/rc5/.0.5/}

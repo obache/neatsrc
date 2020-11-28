@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.11 2020/01/08 12:31:45 nia Exp $
+# $NetBSD: Makefile,v 1.20 2020/10/26 14:15:29 pin Exp $
 
-DISTNAME=	kitty-0.15.1
+DISTNAME=	kitty-0.19.1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=kovidgoyal/}
 GITHUB_PROJECT=	kitty
@@ -16,25 +16,25 @@ USE_LANGUAGES=	c99
 EXTRACT_USING=	bsdtar
 USE_TOOLS+=	gmake pkg-config
 
+# don't force LTO
+BUILDLINK_TRANSFORM+=	rm:-flto
+
 # kitty's homegrown packaging expects the functionality of tic(1) that
 # comes with ncurses.
 USE_NCURSES=	yes
 
-TOOL_DEPENDS+=	${PYPKGPREFIX}-setuptools-[0-9]*:../../devel/py-setuptools
+PYTHON_VERSIONED_DEPENDENCIES+=	setuptools:tool
 
 SUBST_CLASSES+=		python
 SUBST_STAGE.python=	pre-build
 SUBST_MESSAGE.python=	Replacing path to Sphinx.
-SUBST_FILES.python+=	Makefile
-SUBST_FILES.python+=	docs/Makefile
+SUBST_FILES.python=	docs/Makefile
 SUBST_SED.python+=	-e "s,sphinx-build,sphinx-build-${PYVERSSUFFIX},g"
 
-REPLACE_PYTHON+=	kitty/launcher/kitty
-
-INSTALLATION_DIRS+=	man/man1
+INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
-PYTHON_VERSIONED_DEPENDENCIES=	sphinx:tool
+PYTHON_VERSIONED_DEPENDENCIES+=	sphinx:tool
 
 do-build:
 	cd ${WRKSRC} && ${MAKE_ENV} ${PYTHONBIN} setup.py linux-package
@@ -54,7 +54,9 @@ do-install:
 .include "../../fonts/fontconfig/buildlink3.mk"
 .endif
 
+.include "options.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
+.include "../../graphics/lcms2/buildlink3.mk"
 .include "../../devel/ncurses/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../fonts/harfbuzz/buildlink3.mk"
@@ -73,4 +75,5 @@ do-install:
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"
 BUILDLINK_TRANSFORM+=	opt:-ldl:${BUILDLINK_LDADD.dl:Q}
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.14 2019/05/14 13:23:10 adam Exp $
+@comment $NetBSD: PLIST,v 1.16 2020/10/29 19:47:13 markd Exp $
 bin/aleph
 bin/bibtex
 bin/ctangle

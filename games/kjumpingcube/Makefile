@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.32 2019/11/19 13:31:05 jperkin Exp $
+# $NetBSD: Makefile,v 1.41 2020/08/18 17:57:53 leot Exp $
 
 DISTNAME=	kjumpingcube-${KAPPSVER}
+PKGREVISION=	2
 CATEGORIES=	games
 
 HOMEPAGE=	https://kde.org/applications/games/kjumpingcube/
@@ -9,7 +10,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/applications.mk"
 
-BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
 

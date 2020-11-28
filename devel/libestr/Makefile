@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.2 2015/01/16 16:40:45 fhajny Exp $
-#
+# $NetBSD: Makefile,v 1.4 2020/03/24 15:28:09 nia Exp $
 
-DISTNAME=		libestr-0.1.10
+DISTNAME=		libestr-0.1.11
 CATEGORIES=		devel
-MASTER_SITES=		http://libestr.adiscon.com/files/download/
+MASTER_SITES=		https://libestr.adiscon.com/files/download/
 
 MAINTAINER=		bartosz.kuzma@gmail.com
-HOMEPAGE=		http://libestr.adiscon.com/
+HOMEPAGE=		https://libestr.adiscon.com/
 COMMENT=		Library for some string essentials
 LICENSE=		gnu-gpl-v2
 

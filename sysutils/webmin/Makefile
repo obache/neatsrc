@@ -1,6 +1,5 @@
-# $NetBSD: Makefile,v 1.48 2019/11/04 21:28:58 rillig Exp $
+# $NetBSD: Makefile,v 1.56 2020/09/07 10:42:44 mef Exp $
 
-PKGREVISION= 2
 .include "version.mk"
 
 DISTNAME=	webmin-${WBM_VERSION}
@@ -32,6 +31,19 @@ FILES_SUBST+=		WEBMIN_VARDIR=${WEBMIN_VARDIR:Q}
 MESSAGE_SUBST+=		WEBMIN_DIR=${WEBMIN_DIR:Q}
 BUILD_DEFS+=		VARBASE
 
+# patching always fails due to version is written closed the patching line,
+SUBST_CLASSES+=		os
+SUBST_STAGE.os=		pre-configure
+SUBST_FILES.os=		man/module.info init/module.info
+SUBST_MESSAGE.os=	Add DragonFly
+SUBST_SED.os=		-e 's/macos netbsd/macos netbsd dragonfly/'
+
+SUBST_CLASSES+=			dragonfly
+SUBST_STAGE.dragonfly=		pre-configure
+SUBST_FILES.dragonfly=		cron/module.info
+SUBST_MESSAGE.dragonfly=	Add DragonFly
+SUBST_SED.dragonfly=		-e 's/macos openbsd/macos openbsd dragonfly/'
+
 WEBMIN_MINIMAL_MODULES=	acl cron init inittab man proc servers webmin webminlog
 
 PKG_SYSCONFSUBDIR=	webmin
@@ -60,6 +72,19 @@ CONF_FILES_PERMS+=	${WEBMIN_EGDIR}/${f} ${PKG_SYSCONFDIR}/${f}	\
 .endfor
 RCD_SCRIPTS=		webmin
 
+REPLACE_PYTHON=	webmin/acme_tiny.py
+
+REPLACE_PERL=	\
+	bin/disable-proxy \
+	bin/disable-twofactor \
+	bin/enable-proxy \
+	bin/language-manager \
+	bin/list-config \
+	bin/set-config \
+	bin/update-devel \
+	bin/webmin
+
+
 CHECK_INTERPRETER_SKIP+=	share/webmin/webmin-gentoo-init
 
 ALL_ENV+=	tempdir=${WRKDIR}/.tmp
@@ -72,6 +97,7 @@ post-extract:
 	${CP} ${FILESDIR}/man_config-dragonfly ${WRKSRC}/man/config-dragonfly
 	${CP} ${FILESDIR}/proc_config-dragonfly ${WRKSRC}/proc/config-dragonfly
 	${RM} -r ${WRKSRC}/acl/Authen-SolarisRBAC-0.1*
+	${RM} ${WRKSRC}/update-from-repo.sh # contains lots of bashisms
 
 pre-configure:
 	cd ${WRKSRC} &&							\
@@ -143,5 +169,5 @@ do-install:
 	${CHMOD} -x *.pl */*.pl */*.gif */*/*.gif */*/*.html */*.ca lang/* \
 	*/lang/* */*.svg */*.png */*.eu
 
-
+.include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"

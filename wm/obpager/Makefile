@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2018/07/18 00:06:25 joerg Exp $
+# $NetBSD: Makefile,v 1.7 2020/03/20 11:58:33 nia Exp $
 #
 
 DISTNAME=	obpager-1.8

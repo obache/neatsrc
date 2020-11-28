@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.4 2016/03/05 11:27:52 jperkin Exp $
+# $NetBSD: Makefile,v 1.7 2020/03/06 13:01:47 nia Exp $
 
-DISTNAME=	libeXosip2-4.1.0
-PKGREVISION=	1
-CATEGORIES=	devel net
-MASTER_SITES=	http://download.savannah.nongnu.org/releases/exosip/
+DISTNAME=	libexosip2-5.1.1
+PKGNAME=	${DISTNAME:S/exosip/eXosip/1}
+CATEGORIES=	net devel
+MASTER_SITES=	https://download.savannah.nongnu.org/releases/exosip/
 
 MAINTAINER=	schwarz@NetBSD.org
-HOMEPAGE=	http://savannah.nongnu.org/projects/exosip
+HOMEPAGE=	https://savannah.nongnu.org/projects/exosip
 COMMENT=	The Extended Open SIP library
 LICENSE=	gnu-gpl-v2
 
@@ -15,11 +15,10 @@ USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config
 USE_FEATURES+=	getopt_long
 
-.include "options.mk"
-
 LIBS.SunOS+=	-lsocket -lnsl
 LIBS.Darwin+=	-framework CoreServices -framework Security
 
+.include "options.mk"
 .include "../../net/libcares/buildlink3.mk"
 .include "../../devel/libosip/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

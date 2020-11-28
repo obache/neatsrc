@@ -1,9 +1,9 @@
-# $NetBSD: Makefile.common,v 1.6 2016/11/14 14:45:27 wiz Exp $
+# $NetBSD: Makefile.common,v 1.9 2020/08/03 09:51:28 wiz Exp $
 #
 # used by multimedia/mediainfo/Makefile
 # used by multimedia/libmediainfo/Makefile
 
-MIVER=			0.7.90
+MIVER=			20.03
 
 DISTNAME=		mediainfo_${MIVER}_AllInclusive
 CATEGORIES=		multimedia
@@ -11,7 +11,7 @@ MASTER_SITES=		http://mediaarea.net/download/source/mediainfo/${MIVER}/
 EXTRACT_SUFX=		.7z
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://mediaarea.net/en/MediaInfo
+HOMEPAGE=		https://mediaarea.net/en/MediaInfo
 COMMENT=		Utility to supply technical info about audio and video
 
 DISTINFO_FILE=		${.CURDIR}/../../multimedia/mediainfo/distinfo

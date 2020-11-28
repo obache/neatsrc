@@ -1,6 +1,7 @@
-@comment $NetBSD: PLIST,v 1.68 2019/12/05 09:34:06 adam Exp $
+@comment $NetBSD: PLIST,v 1.70 2020/08/12 15:54:38 taca Exp $
 bin/doveadm
 bin/doveconf
+bin/dovecot-sysreport
 bin/dsync
 include/dovecot/access-lookup.h
 include/dovecot/acl-api-private.h
@@ -26,6 +27,7 @@ include/dovecot/auth-master-connection.h
 include/dovecot/auth-master.h
 include/dovecot/auth-penalty.h
 include/dovecot/auth-policy.h
+include/dovecot/auth-request-handler-private.h
 include/dovecot/auth-request-handler.h
 include/dovecot/auth-request-stats.h
 include/dovecot/auth-request-var-expand.h
@@ -402,8 +404,10 @@ include/dovecot/mdbox-settings.h
 include/dovecot/mdbox-storage-rebuild.h
 include/dovecot/mdbox-storage.h
 include/dovecot/mdbox-sync.h
+include/dovecot/mech-digest-md5-private.h
 include/dovecot/mech-otp-skey-common.h
 include/dovecot/mech-plain-common.h
+include/dovecot/mech-scram.h
 include/dovecot/mech.h
 include/dovecot/memarea.h
 include/dovecot/mempool.h
@@ -447,6 +451,7 @@ include/dovecot/ostream-null.h
 include/dovecot/ostream-private.h
 include/dovecot/ostream-rawlog.h
 include/dovecot/ostream-unix.h
+include/dovecot/ostream-wrapper.h
 include/dovecot/ostream-zlib.h
 include/dovecot/ostream.h
 include/dovecot/passdb-blocking.h
@@ -722,6 +727,7 @@ man/man1/doveadm-who.1
 man/man1/doveadm.1
 man/man1/doveconf.1
 man/man1/dovecot-lda.1
+man/man1/dovecot-sysreport.1
 man/man1/dovecot.1
 man/man1/dsync.1
 man/man7/doveadm-search-query.7

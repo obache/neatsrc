@@ -1,19 +1,26 @@
-# $NetBSD: Makefile,v 1.2 2017/09/04 18:08:28 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2020/10/21 11:46:53 adam Exp $
 
-DISTNAME=		humanize-0.5.1
-PKGNAME=		${PYPKGPREFIX}-${DISTNAME}
-CATEGORIES=		python textproc
-MASTER_SITES=		${MASTER_SITE_PYPI:=h/humanize/}
+DISTNAME=	humanize-3.1.0
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+CATEGORIES=	textproc python
+MASTER_SITES=	${MASTER_SITE_PYPI:=h/humanize/}
 
-MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		https://travis-ci.org/jmoiron/humanize
-COMMENT=		Convert numbers into easily readable format
-LICENSE=		mit
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://github.com/jmoiron/humanize
+COMMENT=	Convert numbers into easily readable format
+LICENSE=	mit
 
-# TEST_DEPENDS
-#BUILD_DEPENDS+=		${PYPKGPREFIX}-mock-[0-9]*:../../devel/py-mock
-#BUILD_DEPENDS+=		${PYPKGPREFIX}-pbr-[0-9]*:../../devel/py-pbr
-# tests not included in distfile
+BUILD_DEPENDS+=	${PYPKGPREFIX}-setuptools_scm>=1.15.0:../../devel/py-setuptools_scm
+DEPENDS+=	${PYPKGPREFIX}-setuptools-[0-9]*:../../devel/py-setuptools
+TEST_DEPENDS+=	${PYPKGPREFIX}-freezegun-[0-9]*:../../devel/py-freezegun
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-cov-[0-9]*:../../devel/py-test-cov
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
+
+USE_LANGUAGES=	# none
+
+PYSETUPTESTTARGET=	pytest
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

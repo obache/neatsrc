@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.4 2020/01/11 09:48:11 rillig Exp $
+# $NetBSD: Makefile,v 1.24 2020/09/17 12:26:38 ryoon Exp $
 
-GCC9_PKGBASE=	gcc9
-GCC9_VERSION=	9.2.0
+GCC_PKGNAME=	gcc9
+.include "version.mk"
+PKGREVISION=	4
 
-DISTNAME=	gcc-${GCC9_VERSION}
-PKGNAME=	${GCC9_PKGBASE}-${GCC9_VERSION}
-PKGREVISION=	1
+DISTNAME=	gcc-${GCC9_DIST_VERSION}
+PKGNAME=	${GCC_PKGNAME}-${GCC9_DIST_VERSION}
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GNU:=gcc/gcc-${GCC9_VERSION}/}
 EXTRACT_SUFX=	.tar.xz
@@ -28,25 +28,47 @@ GNU_CONFIGURE_STRICT=	no # has several configure scripts
 OBJDIR=			${WRKDIR}/build
 CONFIGURE_DIRS=		${OBJDIR}
 CONFIGURE_SCRIPT=	../${DISTNAME}/configure
-GCC9_SUBPREFIX=		${GCC9_PKGBASE}
+GCC9_SUBPREFIX=		gcc9
 GCC9_PREFIX=		${PREFIX}/${GCC9_SUBPREFIX}
 GNU_CONFIGURE_PREFIX=	${GCC9_PREFIX}
 INFO_FILES=		yes
 CONFIGURE_ARGS+=	--disable-libstdcxx-pch
 CONFIGURE_ARGS+=	--with-system-zlib
+CONFIGURE_ARGS.Linux+=	--without-system-zlib # to prevent "-lz not found"
 
 UNLIMIT_RESOURCES=	datasize stacksize
 
-SUBST_CLASSES+=		vars
-SUBST_MESSAGE.vars=	Setting target machine name path
-SUBST_STAGE.vars=	pre-configure
-SUBST_FILES.vars=	gcc/Makefile.in
-SUBST_VARS.vars=	GCC_TARGET_MACHINE
-
-# https://gcc.gnu.org/bugzilla/show_bug.cgi?id=90142
-CHECK_PORTABILITY_SKIP=	contrib/download_prerequisites
+CHECK_PORTABILITY_SKIP+=	contrib/* # not needed during the build
 
 .include "../../mk/bsd.prefs.mk"
+
+# Prevent compilation error on RedHat EL 7:
+#
+# compute_powtab.c: In function 'mpn_compute_powtab_mul':
+# compute_powtab.c:142:3: error: 'for' loop initial declarations are only allowed in C99 mode
+#    for (long pi = start_idx; pi >= 0; pi--)
+#
+# I know that -std is not a preprocessor flag, but gcc9 ignores the CFLAGS,
+# for whatever reason.
+CPPFLAGS.Linux+=	-std=gnu99
+
+# Even though the build and target host is x86_64-sun-solaris2.11,
+# it fails to compile some seemingly linux-specific code.
+# https://bugs.llvm.org/show_bug.cgi?id=44665
+#
+# libtool: compile:  /home/pbulk/build/lang/gcc9/work/build/./gcc/xgcc [...]
+#   -c ../../../../gcc-9.2.0/libsanitizer/sanitizer_common/sanitizer_linux.cc
+# ...
+# ../../../../gcc-9.2.0/libsanitizer/sanitizer_common/sanitizer_linux.cc: In constructor '__sanitizer::ThreadLister::ThreadLister(__sanitizer::pid_t)':
+# ../../../../gcc-9.2.0/libsanitizer/sanitizer_common/sanitizer_linux.cc:932:63: error: 'O_DIRECTORY' was not declared in this scope
+#  932 |   descriptor_ = internal_open(task_directory_path, O_RDONLY | O_DIRECTORY);
+#      |                                                               ^~~~~~~~~~~
+BROKEN_ON_PLATFORM+=	SunOS-*-x86_64
+
+# Configuring stage 1 in ./gcc
+# ...
+# *** Configuration aarch64--netbsd not supported
+NOT_FOR_PLATFORM+=	NetBSD-*-aarch64
 
 LANGS=			c
 
@@ -54,7 +76,7 @@ LANGS=			c
 LINKER_RPATH_FLAG:=	${LINKER_RPATH_FLAG:S/-rpath/& /}
 
 ## The Library rpath to use in end programs.
-LDFLAGS_FOR_TARGET=	${LDFLAGS:M${COMPILER_RPATH_FLAG}*:N*/usr/lib*}
+LDFLAGS_FOR_TARGET=	${LDFLAGS:M${COMPILER_RPATH_FLAG}*:N*/usr/lib*} ${LDFLAGS:M-Wl,-z*}
 
 # The "-static-libstdc++ -static-libgcc" flags are normally added to the
 # boot-ldflags by configure but because we are supply the boot-ldflags
@@ -156,12 +178,11 @@ SUBST_FILES.ccs=	contrib/make_sunver.pl
 SUBST_SED.ccs=		-e 's,/usr/ccs/bin,/usr/bin,g'
 .endif
 
-# https://gcc.gnu.org/bugzilla/show_bug.cgi?id=91621
-# Already fixed for GCC 10 and GCC 9, somewhere > 9.2.
-SUBST_CLASSES+=		eqeq
-SUBST_STAGE.eqeq=	pre-configure
-SUBST_FILES.eqeq=	libgo/mksysinfo.sh
-SUBST_SED.eqeq=		-e 's,== "",= "",'
+SUBST_CLASSES+=		vars
+SUBST_MESSAGE.vars=	Setting target machine name path in ${SUBST_FILES.vars}
+SUBST_STAGE.vars=	pre-configure
+SUBST_FILES.vars=	gcc/Makefile.in
+SUBST_VARS.vars=	MACHINE_GNU_PLATFORM
 
 pre-configure:
 	${RUN} cd ${WRKSRC} && ${MKDIR} ${OBJDIR}

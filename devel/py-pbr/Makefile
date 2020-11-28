@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.27 2019/06/02 03:12:48 mef Exp $
+# $NetBSD: Makefile,v 1.29 2020/05/03 18:29:16 adam Exp $
 
-DISTNAME=	pbr-5.2.1
+DISTNAME=	pbr-5.4.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pbr/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://docs.openstack.org/developer/pbr/
+HOMEPAGE=	https://docs.openstack.org/pbr/
 COMMENT=	Python Build Reasonableness
 LICENSE=	apache-2.0
 

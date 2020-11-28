@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2013/12/23 11:57:06 wiz Exp $
+# $NetBSD: Makefile,v 1.17 2020/03/20 11:58:28 nia Exp $
 
 DISTNAME=	${PKGNAME}b-src
 PKGNAME=	makeztxt-1.40

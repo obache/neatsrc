@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2016/07/10 12:06:21 mef Exp $
+# $NetBSD: Makefile,v 1.9 2020/01/26 05:26:14 rillig Exp $
 #
 
 DISTNAME=	SPTK-3.9

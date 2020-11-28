@@ -10,10 +10,10 @@ PEP_3147_MK=	defined
 .if empty(_PYTHON_VERSION:M2?)
 PLIST_AWK+=		-f ${PKGSRCDIR}/lang/python/plist-python.awk
 PLIST_AWK_ENV+=		PYVERS="${PYVERSSUFFIX:S/.//}"
-PRINT_PLIST_AWK+=	/^[^@]/ && /[^\/]+\.py[co]$$/ {
-PRINT_PLIST_AWK+=	gsub(/__pycache__\//, "")
-PRINT_PLIST_AWK+=	gsub(/opt-1\.pyc$$/, "pyo")
-PRINT_PLIST_AWK+=	gsub(/\.cpython-${_PYTHON_VERSION}/, "")}
+EARLY_PRINT_PLIST_AWK+=	/^[^@]/ && /[^\/]+\.py[co]$$/ {
+EARLY_PRINT_PLIST_AWK+=	gsub(/__pycache__\//, "")
+EARLY_PRINT_PLIST_AWK+=	gsub(/opt-1\.pyc$$/, "pyo")
+EARLY_PRINT_PLIST_AWK+=	gsub(/\.cpython-${_PYTHON_VERSION}/, "")}
 .endif
 
 .endif

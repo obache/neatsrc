@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.10 2019/04/17 09:42:45 wiz Exp $
+# $NetBSD: Makefile,v 1.12 2020/03/31 17:01:13 wiz Exp $
 
-DISTNAME=	http-parser-2.9.2
+DISTNAME=	http-parser-2.9.4
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=nodejs/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}

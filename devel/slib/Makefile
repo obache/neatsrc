@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.38 2018/07/04 13:40:15 jperkin Exp $
+# $NetBSD: Makefile,v 1.40 2020/02/19 14:33:00 gdt Exp $
 
-DISTNAME=	slib-3b5
+DISTNAME=	slib-3b6
 #
 # Convert the version number as follows 2d2 -> 2.4.2, where the d is
 # changed to a 4, representing the 4th letter.
@@ -8,13 +8,12 @@ DISTNAME=	slib-3b5
 #
 # Also update guile-slib
 #
-PKGNAME=	slib-3.2.5
-PKGREVISION=	1
+PKGNAME=	slib-3.2.6
 CATEGORIES=	devel
-MASTER_SITES=	http://swissnet.ai.mit.edu/ftpdir/scm/
+MASTER_SITES=	http://groups.csail.mit.edu/mac/ftpdir/scm/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://swissnet.ai.mit.edu/~jaffer/SLIB.html
+HOMEPAGE=	http://people.csail.mit.edu/jaffer/SLIB.html
 COMMENT=	Portable Scheme library of compatibility and utility functions
 
 #LICENSE=	TODO: many licenses, all either PD or acceptable, in theory

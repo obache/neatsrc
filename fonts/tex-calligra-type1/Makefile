@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:29:40 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:39 markd Exp $
 
 DISTNAME=	calligra-type1
 PKGNAME=	tex-${DISTNAME}-001.000
+PKGREVISION=	1
 TEXLIVE_REV=	24302
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/calligra-type1
+HOMEPAGE=	https://ctan.org/pkg/calligra-type1
 COMMENT=	Type 1 version of Calligra
 #LICENSE=	other-free
 

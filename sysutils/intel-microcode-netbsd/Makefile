@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.36 2019/11/17 13:19:21 msaitoh Exp $
+# $NetBSD: Makefile,v 1.42 2020/07/20 21:43:19 khorben Exp $
 
-VERSION=	20191115
+VERSION=	20200616
 DISTNAME=	microcode-${VERSION}
 PKGNAME=	intel-microcode-netbsd-${VERSION}
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=intel/}
 GITHUB_PROJECT=	Intel-Linux-Processor-Microcode-Data-Files
@@ -33,7 +34,7 @@ do-build:
 	cd ${WRKSRC} && ${CC} extract.c -o extract
 
 do-install:
-	@(if [ -f ${WRKSRC}/microcode.dat ]; then \
+	(if [ -f ${WRKSRC}/microcode.dat ]; then \
 		cd ${DESTDIR}${PREFIX}/${FWDIR} && \
 			${WRKSRC}/extract ${WRKSRC}/microcode.dat ; \
 	else \

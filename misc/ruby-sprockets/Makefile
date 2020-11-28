@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.18 2019/12/25 00:17:23 joerg Exp $
+# $NetBSD: Makefile,v 1.20 2020/06/07 08:37:12 taca Exp $
 
-DISTNAME=	sprockets-4.0.0
+DISTNAME=	sprockets-4.0.2
 CATEGORIES=	www
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -12,7 +12,6 @@ DEPENDS+=	${RUBY_PKGPREFIX}-rack>=2.0<3:../../www/ruby-rack
 DEPENDS+=	${RUBY_PKGPREFIX}-concurrent-ruby>=1.0<2:../../devel/ruby-concurrent-ruby
 
 USE_LANGUAGES=	# none
-RUBY_VERSIONS_INCOMPATIBLE=	24
 
 RUBYGEM_OPTIONS+=	--format-executable
 

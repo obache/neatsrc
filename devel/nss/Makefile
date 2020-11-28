@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.176 2020/01/10 03:43:20 ryoon Exp $
+# $NetBSD: Makefile,v 1.193 2020/10/31 19:36:30 wiz Exp $
 
 DISTNAME=		nss-${NSS_RELEASE:S/.0$//}
-NSS_RELEASE=		3.49.0
-CATEGORIES=		security
+NSS_RELEASE=		3.58.0
+PKGREVISION=		1
+CATEGORIES=		devel security
 MASTER_SITES=		${MASTER_SITE_MOZILLA_ALL:=security/nss/releases/NSS_${NSS_DIST_DIR_VERSION:S/_0$//}_RTM/src/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
@@ -40,6 +41,7 @@ SUBST_SED.zlib=			-e 's,^ZLIB_LIBS,\#ZLIB_LIBS,g'
 
 BUILDLINK_TRANSFORM+=	rm:-Werror
 BUILDLINK_TRANSFORM+=	rm:-ansi
+LDFLAGS.NetBSD+=	-lrt # sem_wait(3)
 
 MAKE_ENV.Linux+=	FREEBL_NO_DEPEND=0
 
@@ -53,11 +55,11 @@ SO_SUFFIX=		so.1.0
 PLIST_SUBST+=		SO_SUFFIX=${SO_SUFFIX:Q}
 
 .if !empty(PKGSRC_COMPILER:Mclang) || !empty(PKGSRC_COMPILER:Mgcc)
-MAKE_ENV.SunOS+=	NS_USE_GCC=YES
+MAKE_ENV+=		NS_USE_GCC=YES
 .endif
 
 .if !empty(PKGSRC_COMPILER:Mclang)
-MAKE_ENV.SunOS+=	CC_IS_CLANG=YES
+MAKE_ENV+=		CC_IS_CLANG=YES
 .endif
 
 .for platform in ${LP64PLATFORMS}
@@ -115,7 +117,7 @@ do-install:
 	(cd ${DIST}/public && pax -Lrw . ${DESTDIR}${PREFIX}/include/nss/ )
 	(cd ${DIST}/*_OPT.OBJ/lib && \
 		pax -Lrw *.${SO_SUFFIX} ${DESTDIR}${PREFIX}/lib/nss/ )
-	${INSTALL_LIB} ${DIST}/*_OPT.OBJ/lib/libcrmf.a \
+	${INSTALL_DATA} ${DIST}/*_OPT.OBJ/lib/libcrmf.a \
 		${DESTDIR}${PREFIX}/lib/nss/
 	${INSTALL_DATA} ${WRKSRC}/nss.pc ${DESTDIR}${PREFIX}/lib/pkgconfig/nss.pc
 	${INSTALL_SCRIPT} ${WRKSRC}/nss-config ${DESTDIR}${PREFIX}/bin/nss-config
@@ -126,7 +128,7 @@ do-install:
 # For consistency of libxul.so link in www/firefox.
 BUILDLINK_API_DEPENDS.sqlite3+=	sqlite3>=3.8.4.2
 .include "../../databases/sqlite3/buildlink3.mk"
-BUILDLINK_API_DEPENDS.nspr+=	nspr>=4.23
+BUILDLINK_API_DEPENDS.nspr+=	nspr>=4.29
 .include "../../devel/nspr/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

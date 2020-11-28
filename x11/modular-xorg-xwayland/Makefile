@@ -1,7 +1,13 @@
-# $NetBSD: Makefile,v 1.4 2019/11/26 10:02:42 wiz Exp $
+# $NetBSD: Makefile,v 1.10 2020/08/26 10:29:07 wiz Exp $
 
 DISTNAME=	xorg-server-${XORG_VERSION}
 PKGNAME=	modular-xorg-xwayland-${XORG_VERSION}
+
+.include "../../devel/wayland/platform.mk"
+
+.if empty(PLATFORM_SUPPORTS_WAYLAND:M[Yy][Ee][Ss])
+PKG_SKIP_REASON+=	"Platform does not support Wayland"
+.endif
 
 DISTINFO_FILE=		${.CURDIR}/../../x11/modular-xorg-server/distinfo
 PATCHDIR=		${.CURDIR}/../../x11/modular-xorg-server/patches

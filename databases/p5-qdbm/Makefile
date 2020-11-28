@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.23 2019/11/02 15:38:06 rillig Exp $
+# $NetBSD: Makefile,v 1.25 2020/08/31 18:07:08 wiz Exp $
 #
 
-PKGREVISION= 5
+PKGREVISION= 6
 .include "../../databases/qdbm/Makefile.common"
 
 PKGNAME=	p5-qdbm-1.0.0.${QDBM_VERSION}
@@ -22,6 +22,7 @@ GNU_CONFIGURE=		yes
 USE_TOOLS+=		perl
 PERL5_CONFIGURE=	no
 TEST_TARGET=		check
+GNU_CONFIGURE_PTHREAD=	no
 
 PERL5_PACKLIST=	auto/Curia/.packlist auto/Depot/.packlist auto/Villa/.packlist
 REPLACE_PERL=	${MY_SUBDIR}/curia/plcrtest ${MY_SUBDIR}/depot/pldptest \

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.43 2019/12/09 14:20:55 taca Exp $
+# $NetBSD: Makefile,v 1.50 2020/08/31 18:10:32 wiz Exp $
 
-DISTNAME=	cacti-1.2.3
+DISTNAME=	cacti-1.2.11
 PKGREVISION=	3
 CATEGORIES=	net
 MASTER_SITES=	https://www.cacti.net/downloads/
@@ -51,7 +51,8 @@ CACTI_RRADIR?=		${VARBASE}/db/cacti-rra
 REPLACE_INTERPRETER+=	php
 REPLACE.php.old=	.*php[^ ]*
 REPLACE.php.new=	${PREFIX}/bin/php
-REPLACE_FILES.php=	cli/*.php
+REPLACE_FILES.php=	include/vendor/cldr-to-gettext-plural-rules/bin/export-plural-rules
+
 
 REPLACE_PERL+=		scripts/*.pl
 
@@ -79,13 +80,8 @@ SUBST_VARS.paths+=	PKG_PHP_MAJOR_VERS SH
 
 SUBST_CLASSES+=		perl-xml
 SUBST_STAGE.perl-xml=	pre-configure
-SUBST_FILES.perl-xml=	resource/script_queries/*.xml
+SUBST_FILES.perl-xml=	resource/script_queries/unix_disk.xml
 SUBST_SED.perl-xml=	-e 's,>perl,>${PERL5},'
-
-SUBST_CLASSES+=		docs
-SUBST_STAGE.docs=	pre-configure
-SUBST_FILES.docs=	docs/*.html
-SUBST_SED.docs=		-e 's,/var/www/html/cacti,${CACTIDIR},g'
 
 OWN_DIRS_PERMS+=	${CACTI_LOGDIR} ${CACTI_USER} ${APACHE_GROUP} 775
 OWN_DIRS_PERMS+=	${CACTIDIR}/cache ${CACTI_USER} ${APACHE_GROUP} 775

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.33 2018/03/12 11:17:53 wiz Exp $
+# $NetBSD: Makefile,v 1.35 2020/08/17 20:20:30 leot Exp $
 #
 
 DISTNAME=		matchbox-panel-0.9.2
-PKGREVISION=		13
+PKGREVISION=		14
 CATEGORIES=		x11
 MASTER_SITES=		http://matchbox-project.org/sources/matchbox-panel/0.9/
 EXTRACT_SUFX=		.tar.bz2
@@ -29,7 +29,8 @@ MAKE_ENV+=		PKGLOCALEDIR=${PKGLOCALEDIR}
 
 PLIST_VARS=		apm
 .if ${OPSYS} == "DragonFly" || ${OPSYS} == "SunOS" || \
-    (${OPSYS} == "NetBSD" && ${MACHINE_ARCH} == "x86_64")
+    (${OPSYS} == "NetBSD" && \
+      (${MACHINE_ARCH} == "x86_64" || ${MACHINE_ARCH} == "aarch64"))
 # Nada
 .else
 PLIST.apm=		yes

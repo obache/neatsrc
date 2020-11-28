@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.4 2019/11/24 12:31:37 dsainty Exp $
+# $NetBSD: options.mk,v 1.6 2020/04/04 03:22:02 mef Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.avr-libc
 PKG_SUPPORTED_OPTIONS+=		doc
@@ -52,12 +52,21 @@ post-install:
                 ${DESTDIR}${PREFIX}/share/doc/avr-libc
 	## delete following or similar files, which includes PATH at build time.
 	##_usr_pkgsrc_cross_avr-libc_work_avr-libc-1.8.0_libc_string_.3
-	${RM} ${DESTDIR}${PREFIX}/share/doc/avr-libc/man/man3/*${PKGVERSION_NOREV}*
+	${RM} -f ${DESTDIR}${PREFIX}/share/doc/avr-libc/man/man3/*${PKGVERSION_NOREV}*
 .  for f in Makefile demo.c demo.bin demo.hex demo.pdf demo.srec
 	${INSTALL_DATA} ${WRKSRC}/doc/examples/demo/${f} \
 		${DESTDIR}${PREFIX}/share/doc/avr-libc/examples/demo
 .  endfor
 
+.  for f in largedemo-setup.jpg largedemo-wiring.jpg largedemo-wiring2.jpg  stdiodemo-setup.jpg
+	${INSTALL_DATA} ${WRKSRC}/doc/api/latex_src/${f} \
+		${DESTDIR}${PREFIX}/share/doc/avr-libc/avr-libc-user-manual
+.  endfor
+
+.  for f in malloc-std.png malloc-x1.png releases.png malloc-x2.png
+	${INSTALL_DATA} ${WRKSRC}/doc/api/${f} \
+		${DESTDIR}${PREFIX}/share/doc/avr-libc/avr-libc-user-manual
+.  endfor
 
 PLIST.doc=		yes
 

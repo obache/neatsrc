@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1.1.1 2014/08/29 21:40:52 abs Exp $
+# $NetBSD: Makefile,v 1.3 2020/01/26 05:26:22 rillig Exp $
 
 DISTNAME=	ant-contrib-0.6-bin
 PKGNAME=	${DISTNAME:S/-bin//}

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2019/07/18 00:22:13 fox Exp $
+# $NetBSD: Makefile,v 1.5 2020/08/14 20:50:21 tnn Exp $
 
 DISTNAME=	exa-0.9.0
 CATEGORIES=	sysutils
@@ -83,9 +83,6 @@ INSTALLATION_DIRS=	bin \
 			share/bash-completion/completions \
 			share/fish/vendor_completions.d \
 			share/zsh/site-functions
-
-do-build:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${PREFIX}/bin/cargo build --locked --frozen --release
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/target/release/exa ${DESTDIR}${PREFIX}/bin

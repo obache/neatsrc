@@ -1,16 +1,16 @@
-# $NetBSD: options.mk,v 1.10 2019/06/18 14:41:09 nia Exp $
+# $NetBSD: options.mk,v 1.16 2020/09/12 00:45:22 manu Exp $
 
 # Global and legacy options
 
 PKG_OPTIONS_OPTIONAL_GROUPS=	ssl
-PKG_OPTIONS_GROUP.ssl=		gnutls openssl
+PKG_OPTIONS_GROUP.ssl=		gnutls mbedtls openssl
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.ffmpeg4
-PKG_SUPPORTED_OPTIONS=	ass av1 bluray doc fdk-aac fontconfig freetype \
-			gnutls lame libvpx opencore-amr opus pulseaudio rpi \
-			rtmp tesseract theora vorbis x11 x264 x265 xvid
-PKG_SUGGESTED_OPTIONS=	lame ass av1 bluray freetype fontconfig libvpx \
-			openssl theora vorbis x11 x264 xvid
+PKG_SUPPORTED_OPTIONS=	ass av1 bluray doc fdk-aac fontconfig freetype jack \
+			lame libvpx libwebp opencore-amr opus pulseaudio rpi rtmp \
+			speex tesseract theora vorbis x11 x264 x265 xvid
+PKG_SUGGESTED_OPTIONS=	ass av1 bluray freetype fontconfig gnutls lame \
+			libvpx libwebp opus speex theora vorbis x11 x264 x265 xvid
 
 PKG_OPTIONS_LEGACY_OPTS+=	xcb:x11
 
@@ -76,7 +76,7 @@ CONFIGURE_ARGS+=	--disable-htmlpages
 
 # Fraunhofer FDK AAC codec support
 .if !empty(PKG_OPTIONS:Mfdk-aac)
-RESTRICTED=		This software may require the payment of patent royalties
+RESTRICTED=		ffmpeg built with fdk-aac combines GPL and GPL-incompatible code
 NO_BIN_ON_CDROM=	${RESTRICTED}
 NO_BIN_ON_FTP=		${RESTRICTED}
 CONFIGURE_ARGS+=	--enable-libfdk_aac
@@ -92,17 +92,24 @@ CONFIGURE_ARGS+=	--enable-gnutls
 CONFIGURE_ARGS+=	--disable-gnutls
 .endif
 
+# mbedTLS support
+.if !empty(PKG_OPTIONS:Mmbedtls)
+CONFIGURE_ARGS+=	--enable-mbedtls
+# Apache License 2.0 is incompatible with (L)GPL versions before 3
+CONFIGURE_ARGS+=	--enable-version3
+ADDITIONAL_LICENSE+=	AND gnu-lgpl-v3
+.include "../../security/mbedtls/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--disable-mbedtls
+.endif
+
 # opencore-amr option
 .if !empty(PKG_OPTIONS:Mopencore-amr)
 CONFIGURE_ARGS+=	--enable-libopencore-amrnb
 CONFIGURE_ARGS+=	--enable-libopencore-amrwb
-# "The OpenCORE external libraries are under the Apache License
-# 2.0. That license is incompatible with the LGPL v2.1 and the GPL
-# v2, but not with version 3 of those licenses. So to combine the
-# OpenCORE libraries with FFmpeg, the license version needs to be
-# upgraded by passing --enable-version3 to configure."
+# Apache License 2.0 is incompatible with (L)GPL versions before 3
 CONFIGURE_ARGS+=	--enable-version3
-ADDITIONAL_LICENSE+=		AND gnu-lgpl-v3
+ADDITIONAL_LICENSE+=	AND gnu-lgpl-v3
 .include "../../audio/opencore-amr/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-libopencore-amrnb
@@ -116,6 +123,14 @@ CONFIGURE_ARGS+=	--enable-openssl
 .include "../../security/openssl/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-openssl
+.endif
+
+# jack option
+.if !empty(PKG_OPTIONS:Mjack)
+CONFIGURE_ARGS+=	--enable-libjack
+.include "../../audio/jack/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--disable-libjack
 .endif
 
 # pulseaudio option
@@ -164,6 +179,12 @@ CONFIGURE_ARGS+=	--enable-libmp3lame
 .if !empty(PKG_OPTIONS:Mopus)
 CONFIGURE_ARGS+=	--enable-libopus
 .include "../../audio/libopus/buildlink3.mk"
+.endif
+
+# Speex support
+.if !empty(PKG_OPTIONS:Mspeex)
+CONFIGURE_ARGS+=	--enable-libspeex
+.include "../../audio/speex/buildlink3.mk"
 .endif
 
 # Raspberry Pi support
@@ -226,6 +247,14 @@ CONFIGURE_ARGS+=	--enable-libvpx
 .include "../../multimedia/libvpx/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-libvpx
+.endif
+
+# WEBP support
+.if !empty(PKG_OPTIONS:Mlibwebp)
+CONFIGURE_ARGS+=	--enable-libwebp
+.include "../../graphics/libwebp/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--disable-libwebp
 .endif
 
 # X11 screen capture support using libxcb

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.16 2018/02/02 17:55:39 jperkin Exp $
+# $NetBSD: Makefile,v 1.19 2020/05/22 10:55:43 adam Exp $
 
 DISTNAME=	libmusicbrainz-3.0.3
-PKGREVISION=	5
+PKGREVISION=	7
 CATEGORIES=	audio
 MASTER_SITES=	ftp://ftp.musicbrainz.org/pub/musicbrainz/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://musicbrainz.org/doc/libmusicbrainz
+HOMEPAGE=	https://musicbrainz.org/doc/libmusicbrainz
 COMMENT=	MusicBrainz (user-maintained community music metadatabase) library v3
 LICENSE=	gnu-lgpl-v2.1
 

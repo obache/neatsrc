@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.12 2019/10/16 09:37:27 maya Exp $
+# $NetBSD: Makefile,v 1.14 2020/09/01 14:06:52 taca Exp $
 
-DISTNAME=	zkt-1.1.2
-PKGREVISION=	2
+DISTNAME=	zkt-1.1.4
 CATEGORIES=	security
 MASTER_SITES=	http://www.hznet.de/dns/zkt/
 
 MAINTAINER=	pettai@NetBSD.org
-HOMEPAGE=	http://www.hznet.de/dns/zkt/
+HOMEPAGE=	https://www.hznet.de/dns/zkt/
 COMMENT=	DNSSEC Zone Key Tool
 LICENSE=	original-bsd
 
@@ -30,7 +29,7 @@ CONFIGURE_ARGS+=	--enable-bind_util_path=/usr/sbin
 
 .if ${OPSYS} == "DragonFly"
 CONFIGURE_ARGS+=	--enable-bind_util_path=${BUILDLINK_PREFIX.bind}/sbin
-.include "../../net/bind914/buildlink3.mk"
+.include "../../net/bind916/buildlink3.mk"
 .endif
 
 do-install:
@@ -52,8 +51,8 @@ do-install:
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man8/zkt-keyman.8
 	${INSTALL_MAN} ${WRKSRC}/man/zkt-signer.8 \
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man8/zkt-signer.8
-	${INSTALL_DATA} ${WRKSRC}/README \
-		${DESTDIR}${PREFIX}/share/doc/zkt/README
+	${INSTALL_DATA} ${WRKSRC}/README.md \
+		${DESTDIR}${PREFIX}/share/doc/zkt/README.md
 	${INSTALL_DATA} ${WRKSRC}/README.logging \
 		${DESTDIR}${PREFIX}/share/doc/zkt/README.logging
 

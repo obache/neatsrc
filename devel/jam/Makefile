@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2018/01/07 21:24:11 rillig Exp $
+# $NetBSD: Makefile,v 1.18 2020/03/20 11:57:27 nia Exp $
 #
 
 DISTNAME=	ft${PKGNAME_NOREV}

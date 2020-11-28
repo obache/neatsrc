@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.38 2014/10/09 14:06:45 wiz Exp $
+# $NetBSD: Makefile,v 1.40 2020/01/26 05:26:25 rillig Exp $
 
 DISTNAME=	nc110
 PKGNAME=	netcat-1.10
@@ -8,7 +8,7 @@ MASTER_SITES=	ftp://coast.cs.purdue.edu/pub/tools/unix/netutils/netcat/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://nc110.sourceforge.net/
+HOMEPAGE=	https://nc110.sourceforge.io/
 COMMENT=	Read and write data across network connections
 
 WRKSRC=		${WRKDIR}

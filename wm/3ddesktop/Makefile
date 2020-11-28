@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.35 2015/04/25 14:24:58 tnn Exp $
+# $NetBSD: Makefile,v 1.37 2020/03/20 11:58:31 nia Exp $
 #
 
 DISTNAME=		3ddesktop-0.2.9

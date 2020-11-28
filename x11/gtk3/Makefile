@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.139 2020/01/05 17:55:22 nia Exp $
+# $NetBSD: Makefile,v 1.156 2020/10/01 11:54:11 prlw1 Exp $
 
-DISTNAME=	gtk+-3.24.13
+DISTNAME=	gtk+-3.24.23
 PKGNAME=	${DISTNAME:S/gtk/gtk3/}
-PKGREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtk+/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -12,16 +11,16 @@ HOMEPAGE=	https://www.gtk.org/
 COMMENT=	GIMP Toolkit v3 - libraries for building X11 user interfaces
 LICENSE=	gnu-lgpl-v2.1
 
-USE_PKGLOCALEDIR=		yes
-USE_TOOLS+=			ggrep gmake msgfmt perl pkg-config bash xgettext msgmerge
-USE_LANGUAGES=			c c++
-USE_LIBTOOL=			yes
-PTHREAD_AUTO_VARS=		yes
-TOOL_DEPENDS+=			gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
-
-GETTEXT_TOOLS_REQD=		0.19.3
-
+USE_LANGUAGES=		c c++
+USE_LIBTOOL=		yes
+USE_PKGLOCALEDIR=	yes
+USE_TOOLS+=		ggrep gmake perl pkg-config bash xgettext msgmerge
 GNU_CONFIGURE=		yes
+PTHREAD_AUTO_VARS=	yes
+TOOL_DEPENDS+=		gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
+
+GETTEXT_TOOLS_REQD=	0.19.3
+
 # XXX there is a subtle bashism in "configure" or a bug in NetBSD's sh
 CONFIG_SHELL=		${TOOLS_PATH.bash}
 CONFIGURE_ARGS+=	--sysconfdir=${PREFIX}/libdata
@@ -67,6 +66,7 @@ INSTALL_TEMPLATES+=	../../x11/gtk2/files/icon-cache.tmpl
 _BUILDING_GTK3=	yes
 .include "modules.mk"
 
+.include "../../converters/fribidi/buildlink3.mk"
 .include "../../databases/shared-mime-info/buildlink3.mk"
 BUILDLINK_API_DEPENDS.atk+=	atk>=2.15.1
 .include "../../devel/atk/buildlink3.mk"

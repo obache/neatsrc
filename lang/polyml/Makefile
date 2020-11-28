@@ -1,14 +1,18 @@
-# $NetBSD: Makefile,v 1.21 2019/12/19 22:18:47 joerg Exp $
+# $NetBSD: Makefile,v 1.24 2020/08/14 00:47:10 dholland Exp $
 
 DISTNAME=	polyml-5.7.1
+PKGREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GITHUB:=polyml/}
 GITHUB_PROJECT=	polyml
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	asau@inbox.ru
-HOMEPAGE=	http://polyml.org/
+HOMEPAGE=	https://polyml.org/
 COMMENT=	Poly/ML is an implementation of Standard ML
+
+# See PR 55569; build hangs
+NOT_FOR_BULK_PLATFORM=	*-*-*
 
 # ONLY_FOR_PLATFORM=	*-*-i386 *-*-x86_64 *-*-sparc *-*-powerpc
 

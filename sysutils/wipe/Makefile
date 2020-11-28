@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2019/11/16 10:14:15 mef Exp $
+# $NetBSD: Makefile,v 1.12 2020/03/20 11:58:23 nia Exp $
 #
 
 DISTNAME=		wipe-2.3.1

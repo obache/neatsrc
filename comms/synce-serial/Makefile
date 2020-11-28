@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2012/10/03 11:24:45 asau Exp $
+# $NetBSD: Makefile,v 1.7 2020/03/20 11:57:24 nia Exp $
 #
 
 DISTNAME=		synce-serial-0.9.1

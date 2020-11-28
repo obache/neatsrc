@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.34 2019/08/11 13:22:38 wiz Exp $
+# $NetBSD: Makefile,v 1.36 2020/08/31 18:11:00 wiz Exp $
 
 DISTNAME=	chktex-1.7.6
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	print
 MASTER_SITES=	http://download.savannah.gnu.org/releases/chktex/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.nongnu.org/chktex/
+HOMEPAGE=	https://www.nongnu.org/chktex/
 COMMENT=	LaTeX semantic checker
 LICENSE=	gnu-gpl-v2
 

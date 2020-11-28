@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2019/11/12 15:32:51 taca Exp $
+# $NetBSD: Makefile,v 1.4 2020/09/20 15:42:11 taca Exp $
 
-DISTNAME=	regexp_parser-1.6.0
+DISTNAME=	regexp_parser-1.8.0
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -8,7 +8,7 @@ HOMEPAGE=	https://github.com/ammar/regexp_parser
 COMMENT=	Scanner, lexer, parser for ruby's regular expressions
 LICENSE=	mit
 
-USE_LANGUAGES=	# empty
+USE_LANGUAGES=	# none
 
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

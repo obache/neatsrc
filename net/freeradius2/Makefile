@@ -1,23 +1,24 @@
-# $NetBSD: Makefile,v 1.52 2019/11/03 11:45:34 rillig Exp $
+# $NetBSD: Makefile,v 1.58 2020/08/31 18:10:33 wiz Exp $
 
 DISTNAME=	freeradius-server-2.2.10
 PKGNAME=	${DISTNAME:S/-server//}
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	net
 MASTER_SITES=	ftp://ftp.freeradius.org/pub/freeradius/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://freeradius.org/
+HOMEPAGE=	https://freeradius.org/
 COMMENT=	Free RADIUS server implementation
 LICENSE=	gnu-gpl-v2
+
+BROKEN=		"Fails to build with OpenSSL 1.1"
 
 CONFLICTS+=		radiusd-cistron-[0-9]*
 CONFLICTS+=		freeradius<2.0
 USE_TOOLS+=		gmake perl:run
 USE_LANGUAGES+=		c c++
 USE_LIBTOOL=		yes
-USE_OLD_DES_API=	yes
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -45,8 +46,6 @@ OWN_DIRS_PERMS+=	${VARBASE}/log/radiusd/radacct \
 			${RADIUS_USER} ${RADIUS_GROUP} 0750
 
 EGDIR=			${PREFIX}/share/examples/freeradius
-
-BUILDLINK_API_DEPENDS.openssl+=	openssl>=0.9.7
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
@@ -81,42 +80,42 @@ SUBST_MESSAGE.config=	Fixing configuration files.
 .include "options.mk"
 
 EGFILES=	acct_users attrs attrs.access_reject attrs.accounting_response \
-	attrs.pre-proxy certs/README certs/Makefile certs/bootstrap \
-	certs/ca.cnf certs/client.cnf certs/server.cnf \
-	certs/xpextensions clients.conf dictionary eap.conf experimental.conf \
-	hints huntgroups ldap.attrmap modules/acct_unique modules/always \
-	modules/attr_filter modules/attr_rewrite modules/chap modules/checkval \
-	modules/counter modules/detail modules/detail.example.com \
-	modules/detail.log modules/digest modules/echo modules/etc_group \
-	modules/exec modules/expiration modules/expr modules/files \
-	modules/inner-eap modules/ippool modules/krb5 modules/ldap \
-	modules/linelog modules/logintime modules/mac2ip modules/mac2vlan \
-	modules/mschap modules/otp modules/pam modules/pap modules/passwd \
-	modules/perl modules/policy modules/preprocess modules/radutmp \
-	modules/realm modules/smbpasswd modules/smsotp modules/sql_log \
-	modules/sqlcounter_expire_on_login modules/sradutmp modules/unix \
-	modules/wimax policy.conf policy.txt preproxy_users proxy.conf \
-	radiusd.conf sites-available/README sites-available/buffered-sql \
-	sites-available/control-socket \
-	sites-available/copy-acct-to-home-server \
-	sites-available/decoupled-accounting sites-available/default \
-	sites-available/dhcp sites-available/dynamic-clients \
-	sites-available/example sites-available/inner-tunnel \
-	sites-available/originate-coa sites-available/proxy-inner-tunnel \
-	sites-available/robust-proxy-accounting sites-available/status \
-	sites-available/virtual.example.com sites-available/vmps sql.conf \
-	sql/mssql/dialup.conf sql/mssql/schema.sql sql/mysql/admin.sql \
-	sql/mysql/counter.conf sql/mysql/dialup.conf sql/mysql/ippool.conf \
-	sql/mysql/ippool.sql sql/mysql/nas.sql sql/mysql/schema.sql \
-	sql/mysql/wimax.conf sql/mysql/wimax.sql sql/oracle/dialup.conf \
-	sql/oracle/ippool.conf sql/oracle/ippool.sql sql/oracle/msqlippool.txt \
-	sql/oracle/nas.sql sql/oracle/schema.sql sql/postgresql/admin.sql \
-	sql/postgresql/cisco_h323_db_schema.sql sql/postgresql/counter.conf \
-	sql/postgresql/dialup.conf sql/postgresql/ippool.conf \
-	sql/postgresql/ippool.sql sql/postgresql/nas.sql \
-	sql/postgresql/schema.sql \
-	sql/postgresql/update_radacct_group_trigger.sql \
-	sql/postgresql/voip-postpaid.conf sqlippool.conf templates.conf users
+		attrs.pre-proxy certs/README certs/Makefile certs/bootstrap \
+		certs/ca.cnf certs/client.cnf certs/server.cnf \
+		certs/xpextensions clients.conf dictionary eap.conf experimental.conf \
+		hints huntgroups ldap.attrmap modules/acct_unique modules/always \
+		modules/attr_filter modules/attr_rewrite modules/chap modules/checkval \
+		modules/counter modules/detail modules/detail.example.com \
+		modules/detail.log modules/digest modules/echo modules/etc_group \
+		modules/exec modules/expiration modules/expr modules/files \
+		modules/inner-eap modules/ippool modules/krb5 modules/ldap \
+		modules/linelog modules/logintime modules/mac2ip modules/mac2vlan \
+		modules/mschap modules/otp modules/pam modules/pap modules/passwd \
+		modules/perl modules/policy modules/preprocess modules/radutmp \
+		modules/realm modules/smbpasswd modules/smsotp modules/sql_log \
+		modules/sqlcounter_expire_on_login modules/sradutmp modules/unix \
+		modules/wimax policy.conf policy.txt preproxy_users proxy.conf \
+		radiusd.conf sites-available/README sites-available/buffered-sql \
+		sites-available/control-socket \
+		sites-available/copy-acct-to-home-server \
+		sites-available/decoupled-accounting sites-available/default \
+		sites-available/dhcp sites-available/dynamic-clients \
+		sites-available/example sites-available/inner-tunnel \
+		sites-available/originate-coa sites-available/proxy-inner-tunnel \
+		sites-available/robust-proxy-accounting sites-available/status \
+		sites-available/virtual.example.com sites-available/vmps sql.conf \
+		sql/mssql/dialup.conf sql/mssql/schema.sql sql/mysql/admin.sql \
+		sql/mysql/counter.conf sql/mysql/dialup.conf sql/mysql/ippool.conf \
+		sql/mysql/ippool.sql sql/mysql/nas.sql sql/mysql/schema.sql \
+		sql/mysql/wimax.conf sql/mysql/wimax.sql sql/oracle/dialup.conf \
+		sql/oracle/ippool.conf sql/oracle/ippool.sql sql/oracle/msqlippool.txt \
+		sql/oracle/nas.sql sql/oracle/schema.sql sql/postgresql/admin.sql \
+		sql/postgresql/cisco_h323_db_schema.sql sql/postgresql/counter.conf \
+		sql/postgresql/dialup.conf sql/postgresql/ippool.conf \
+		sql/postgresql/ippool.sql sql/postgresql/nas.sql \
+		sql/postgresql/schema.sql \
+		sql/postgresql/update_radacct_group_trigger.sql \
+		sql/postgresql/voip-postpaid.conf sqlippool.conf templates.conf users
 EGDIRS=		certs modules sql sql/mssql sql/mysql sql/oracle \
 		sql/postgresql sites-available sites-enabled
 

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.29 2020/01/08 14:57:29 adam Exp $
+@comment $NetBSD: PLIST,v 1.33 2020/04/12 20:41:57 wiz Exp $
 bin/gtk-builder-tool
 bin/gtk-encode-symbolic-svg
 bin/gtk-launch
@@ -486,6 +486,7 @@ share/glib-2.0/schemas/org.gtk.Settings.Debug.gschema.xml
 share/glib-2.0/schemas/org.gtk.Settings.EmojiChooser.gschema.xml
 share/glib-2.0/schemas/org.gtk.Settings.FileChooser.gschema.xml
 share/gtk-3.0/gtkbuilder.rng
+share/gtk-3.0/valgrind/gtk.supp
 share/gtk-doc/html/gail-libgail-util3/gail-libgail-util3-GailMisc.html
 share/gtk-doc/html/gail-libgail-util3/gail-libgail-util3-GailTextUtil.html
 share/gtk-doc/html/gail-libgail-util3/gail-libgail-util3.devhelp2
@@ -1111,6 +1112,7 @@ share/gtk-doc/html/gtk3/panes.png
 share/gtk-doc/html/gtk3/placessidebar.png
 share/gtk-doc/html/gtk3/platform-support.html
 share/gtk-doc/html/gtk3/popup-anchors.png
+share/gtk-doc/html/gtk3/popup-at.svg
 share/gtk-doc/html/gtk3/popup-flip.png
 share/gtk-doc/html/gtk3/popup-slide.png
 share/gtk-doc/html/gtk3/printdialog.png
@@ -1213,6 +1215,8 @@ share/locale/ca/LC_MESSAGES/gtk30-properties.mo
 share/locale/ca/LC_MESSAGES/gtk30.mo
 share/locale/ca@valencia/LC_MESSAGES/gtk30-properties.mo
 share/locale/ca@valencia/LC_MESSAGES/gtk30.mo
+share/locale/ckb/LC_MESSAGES/gtk30-properties.mo
+share/locale/ckb/LC_MESSAGES/gtk30.mo
 share/locale/crh/LC_MESSAGES/gtk30-properties.mo
 share/locale/crh/LC_MESSAGES/gtk30.mo
 share/locale/cs/LC_MESSAGES/gtk30-properties.mo

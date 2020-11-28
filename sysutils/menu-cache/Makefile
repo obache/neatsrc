@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.4 2018/05/22 16:03:00 youri Exp $
+# $NetBSD: Makefile,v 1.8 2020/04/30 18:52:33 wiedi Exp $
 #
 
 DISTNAME=	menu-cache-1.1.0
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=lxde/}
 EXTRACT_SUFX=	.tar.xz
@@ -17,6 +18,8 @@ USE_LIBTOOL=		yes
 USE_TOOLS+=		pkg-config
 
 PKGCONFIG_OVERRIDE+=	libmenu-cache/libmenu-cache.pc.in
+
+LDFLAGS.SunOS+=	-lsocket -lnsl
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/README \

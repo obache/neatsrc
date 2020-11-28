@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.34 2019/11/03 19:03:57 rillig Exp $
+# $NetBSD: Makefile,v 1.37 2020/08/31 18:09:48 wiz Exp $
 
 PKGNAME=	gcc-aux-${SNAPSHOT}
-PKGREVISION=	4
+PKGREVISION=	5
 DISTNAME=	gcc-${GCC_VERSION}
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GNU:=gcc/gcc-${GCC_VERSION}/}
@@ -21,14 +21,16 @@ APPLY_DIFFS=	core ada cxx
 .include "../../mk/bsd.prefs.mk"
 .include "options.mk"
 
+CHECK_PORTABILITY_SKIP+=	contrib/* # not needed
+
 # Requires bootstrap compiler, which is only available for on selected systems
 # Disable SunOS for now until multilib version can be built and tested.
 
 ONLY_FOR_PLATFORM=	DragonFly-*-x86_64   \
 			FreeBSD-*-i386       \
 			FreeBSD-*-x86_64     \
-			NetBSD-[5-9]*-i386   \
-			NetBSD-[5-9]*-x86_64 \
+			NetBSD-*-i386   \
+			NetBSD-*-x86_64 \
 			SunOS-5.1[1-9]*-i386 \
 			SunOS-5.1[1-9]*-x86_64
 

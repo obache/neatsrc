@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2019/09/02 13:20:08 adam Exp $
+# $NetBSD: Makefile,v 1.16 2020/01/26 05:26:13 rillig Exp $
 
 DISTNAME=	pyid3lib-0.5.1
 PKGNAME=	${PYPKGPREFIX}-id3lib-0.5.1

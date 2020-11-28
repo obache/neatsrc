@@ -1,4 +1,4 @@
-# $NetBSD: fetch.mk,v 1.70 2018/01/11 08:54:37 alnsn Exp $
+# $NetBSD: fetch.mk,v 1.75 2020/08/04 21:54:46 rillig Exp $
 
 .if empty(INTERACTIVE_STAGE:Mfetch) && empty(FETCH_MESSAGE:U)
 _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP:=${DIST_SUBDIR}${DIST_SUBDIR:D/}}
@@ -80,7 +80,7 @@ SITES.${fetchfile:T:S/=/--/}?= ${PATCH_SITES}
 ###
 _FETCH_TARGETS+=	${_PKG_INSTALL_DEPENDS:Dpkg_install-depends}
 _FETCH_TARGETS+=	bootstrap-depends
-_FETCH_TARGETS+=	check-vulnerable
+#_FETCH_TARGETS+=	check-vulnerable
 _FETCH_TARGETS+=	pre-fetch
 _FETCH_TARGETS+=	do-fetch
 _FETCH_TARGETS+=	post-fetch
@@ -218,6 +218,7 @@ fetch-check-interactive: .USEBEFORE
 # FETCH_CHECK_CERT, if defined, will cause the fetch command to force
 #	checking server certificate with secure connection.
 #
+# Keywords: ip4 ipv4 ip6 ipv6
 
 .if defined(FETCH_PROXY)
 FETCH_PROXY.ftp?=	${FETCH_PROXY}
@@ -264,6 +265,12 @@ _FETCH_CMD.wget=		${PKGSRC_SETENV} \
 				${FETCH_PROXY.http:Dhttp_proxy=${FETCH_PROXY.http:Q}} \
 				${FETCH_PROXY.https:Dhttps_proxy=${FETCH_PROXY.https:Q}} \
 				${TOOLS_PATH.wget}
+
+_FETCH_BEFORE_ARGS.ofhttp=	-f # (or --insecure to ignore SSL errors)
+_FETCH_AFTER_ARGS.ofhttp=	# empty
+_FETCH_RESUME_ARGS.ofhttp=	-c
+_FETCH_OUTPUT_ARGS.ofhttp=	-o
+_FETCH_CMD.ofhttp=		${PKGSRC_SETENV} ofhttp
 
 # Protocol-specific variables are passed as environment variables.
 # Generic FETCH_PROXY is passed via the --proxy argument to support
@@ -331,7 +338,7 @@ do-fetch-file: .USE
 		case $$d in						\
 		""|${DISTDIR})	continue ;;				\
 		esac;							\
-		file="$$d/${DIST_SUBDIR}/${.TARGET:T}";			\
+		file="$$d/${DIST_SUBDIR:D${DIST_SUBDIR}/}${.TARGET:T}";	\
 		if ${TEST} -f $$file; then				\
 			${ECHO} "Using $$file";				\
 			${RM} -f ${.TARGET};				\

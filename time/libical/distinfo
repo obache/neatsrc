@@ -1,11 +1,9 @@
-$NetBSD: distinfo,v 1.10 2019/11/10 11:12:53 nia Exp $
+$NetBSD: distinfo,v 1.13 2020/05/19 15:33:10 nia Exp $
 
-SHA1 (libical-3.0.6.tar.gz) = bbcb0d60f396b247b952c22e9c1d9e41fc4c4d6e
-RMD160 (libical-3.0.6.tar.gz) = ce6f5242acca55a30ff0c1a33f7aa8cd9553df99
-SHA512 (libical-3.0.6.tar.gz) = d1a3397071c2989983893e3bbaeb088f7cb9a3639dca39709e9422c334dd1e9a869bba9292a250f83eb2a5b6727bd91b73c8e420bd1814422d97aff9fc6b26fc
-Size (libical-3.0.6.tar.gz) = 879939 bytes
+SHA1 (libical-3.0.8.tar.gz) = d2a9cecb9b8d825d5b6989e44b424235a27173a7
+RMD160 (libical-3.0.8.tar.gz) = 1b5fa93675e74e6721107214202ab922fd5a164c
+SHA512 (libical-3.0.8.tar.gz) = ce015e6d4c1c7cb4af7b45748ce8251c663f80f6a4357ddff6a97796642619abe882f4cadeca10cabeb1b25577869f436da15bca882e032eb3ff0475f6010d8b
+Size (libical-3.0.8.tar.gz) = 881462 bytes
 SHA1 (patch-cmake_modules_FindICU.cmake) = fe268ad492efa9282dbc20256035d05ff78b32e2
 SHA1 (patch-src_libical-glib_tools_generator.c) = 8e787aec59528313e97c56ecbbb6a3dd91207e22
-SHA1 (patch-src_libical_icalcomponent.c) = 6f86ee6e4daba04178f25f8d042dd4773dbb1cab
-SHA1 (patch-src_libical_icaltimezone.c) = 864fd3f4296983aeef5e00dd03a0d92b4348f8b1
-SHA1 (patch-src_libical_icaltz-util.c) = 60a7359284a54d345ffe71f75081e9ac27b666b9
+SHA1 (patch-src_libical_icaltz-util.c) = eb3b6d1d63faf138897968d4e2c4ee8da4ada15a

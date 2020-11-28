@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.76 2019/11/04 21:12:52 rillig Exp $
+# $NetBSD: Makefile,v 1.78 2020/05/14 14:31:16 nia Exp $
 
+PKGREVISION=	1
 COMMENT=	Simple Authentication and Security Layer
 
 .include "Makefile.common"
@@ -51,8 +52,8 @@ CONFIGURE_ARGS+=	--enable-sample=no
 #
 CYRUS_USER?=		cyrus
 CYRUS_GROUP?=		mail
-FILES_SUBST+=		CYRUS_USER=${CYRUS_USER:Q}
-FILES_SUBST+=		ROOT_USER=${ROOT_USER:Q}
+FILES_SUBST+=		CYRUS_USER=${CYRUS_USER}
+FILES_SUBST+=		ROOT_USER=${ROOT_USER}
 PKG_GROUPS_VARS+=	CYRUS_GROUP
 PKG_USERS_VARS+=	CYRUS_USER
 

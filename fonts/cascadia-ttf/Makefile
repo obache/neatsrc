@@ -1,14 +1,12 @@
-# $NetBSD: Makefile,v 1.1 2019/11/28 13:27:21 wiz Exp $
+# $NetBSD: Makefile,v 1.4 2020/10/08 12:41:10 wiz Exp $
 
-GITHUB_PROJECT=	cascadia-code
-DISTNAME=	cascadia-ttf-1911.21
+DISTNAME=	CascadiaCode-2009.22
+PKGNAME=	${DISTNAME:S/CascadiaCode/cascadia-ttf/}
 CATEGORIES=	fonts
-MASTER_SITES=	https://github.com/microsoft/cascadia-code/releases/download/v${PKGVERSION_NOREV}/
-DIST_SUBDIR=	${DISTNAME}
-DISTFILES=	Cascadia.ttf
-DISTFILES+=	CascadiaMono.ttf
-DISTFILES+=	CascadiaMonoPL.ttf
-DISTFILES+=	CascadiaPL.ttf
+MASTER_SITES=	${MASTER_SITE_GITHUB:=microsoft/}
+GITHUB_PROJECT=	cascadia-code
+GITHUB_RELEASE=	v${PKGVERSION_NOREV}
+EXTRACT_SUFX=	.zip
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/microsoft/cascadia-code/
@@ -16,8 +14,6 @@ COMMENT=	Microsoft Cascadia Code font
 LICENSE=	ofl-v1.1
 
 WRKSRC=		${WRKDIR}
-
-USE_LANGUAGES=	# none
 
 .include "../../mk/fonts.mk"
 .include "../../mk/bsd.pkg.mk"

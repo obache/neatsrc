@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.31 2019/07/17 13:33:00 triaxx Exp $
+@comment $NetBSD: PLIST,v 1.32 2020/01/28 08:16:51 triaxx Exp $
 bin/mailq
 bin/newaliases
 lib/postfix/libpostfix-dns.so

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.29 2019/11/03 19:24:34 rillig Exp $
+# $NetBSD: Makefile,v 1.31 2020/05/31 14:11:42 mef Exp $
 #
 DISTNAME=		simulavr-1.0.0
 PKGREVISION=		5
@@ -6,7 +6,7 @@ CATEGORIES=		emulators
 MASTER_SITES=		http://download.savannah.gnu.org/releases/simulavr/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.nongnu.org/simulavr/
+HOMEPAGE=		https://www.nongnu.org/simulavr/
 COMMENT=		Simulator for Atmel AVR microcontrollers
 LICENSE=		gnu-gpl-v2
 
@@ -39,6 +39,7 @@ SUBST_STAGE.prefix=	pre-configure
 SUBST_MESSAGE.prefix=	Fix include path finding Python.h
 SUBST_FILES.prefix=	src/Makefile.in
 SUBST_VARS.prefix=	PREFIX
+SUBST_VARS.prefix+=	PY_VER_SUFFIX
 
 # Following SUBST_CLASSES are from diff against git version (as of 2013-08-08)
 # See also

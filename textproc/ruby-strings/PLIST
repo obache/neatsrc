@@ -1,0 +1,15 @@
+@comment $NetBSD: PLIST,v 1.2 2020/09/14 00:08:12 taca Exp $
+${GEM_HOME}/cache/${GEM_NAME}.gem
+${GEM_LIBDIR}/CHANGELOG.md
+${GEM_LIBDIR}/LICENSE.txt
+${GEM_LIBDIR}/README.md
+${GEM_LIBDIR}/lib/strings.rb
+${GEM_LIBDIR}/lib/strings/align.rb
+${GEM_LIBDIR}/lib/strings/extensions.rb
+${GEM_LIBDIR}/lib/strings/fold.rb
+${GEM_LIBDIR}/lib/strings/pad.rb
+${GEM_LIBDIR}/lib/strings/padder.rb
+${GEM_LIBDIR}/lib/strings/truncate.rb
+${GEM_LIBDIR}/lib/strings/version.rb
+${GEM_LIBDIR}/lib/strings/wrap.rb
+${GEM_HOME}/specifications/${GEM_NAME}.gemspec

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.18 2019/12/09 14:20:54 taca Exp $
+# $NetBSD: Makefile,v 1.20 2020/03/20 11:57:25 nia Exp $
 #
 
 DISTNAME=	adodb496a

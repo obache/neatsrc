@@ -1,16 +1,17 @@
-# $NetBSD: Makefile,v 1.2 2019/12/19 22:10:35 joerg Exp $
+# $NetBSD: Makefile,v 1.5 2020/09/14 18:15:34 joerg Exp $
 
 # using configure options and sources from
 # https://github.com/earlephilhower/esp-quick-toolchain
 
 DISTNAME=		gcc-xtensa-4.8.2
 PKGNAME=		${DISTNAME:C/gcc-xtensa/xtensa-lx106-elf-gcc/}
+PKGREVISION=		1
 CATEGORIES=		cross
 MASTER_SITES=		${MASTER_SITE_GITHUB:=jcmvbkbc/}
 GITHUB_PROJECT=		gcc-xtensa
 GITHUB_TAG=		a0936f8b396491bc7894c8bc5e80971cc9138e94
 
-DIST_SUBDIR=		${PKGNAME}
+DIST_SUBDIR=		${PKGNAME_NOREV}
 
 # Custom xtensa newlib       
 DISTFILES=		${DEFAULT_DISTFILES}
@@ -83,6 +84,8 @@ CONFIGURE_ARGS+=	--enable-languages=c,c++
 CONFIGURE_ARGS+=	--enable-lto
 CONFIGURE_ARGS+=	--enable-static=yes
 CONFIGURE_ARGS+=	--disable-libstdcxx-verbose
+
+CHECK_PORTABILITY_SKIP+=	contrib/*
 
 post-extract:
 	${LN} -s ${WRKDIR}/newlib-*/newlib ${WRKSRC}/newlib

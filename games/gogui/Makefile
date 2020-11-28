@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2012/10/06 11:54:41 asau Exp $
+# $NetBSD: Makefile,v 1.10 2020/03/20 11:57:41 nia Exp $
 #
 
 DISTNAME=		gogui-0.9.3

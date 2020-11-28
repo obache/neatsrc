@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.18 2020/01/03 08:21:36 adam Exp $
+# $NetBSD: Makefile,v 1.33 2020/10/30 12:58:31 adam Exp $
 
-DISTNAME=	grpc-1.26.0
+DISTNAME=	grpc-1.33.2
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=grpc/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -16,17 +16,29 @@ USE_TOOLS+=	pkg-config
 
 CMAKE_ARGS+=	-DBUILD_SHARED_LIBS=ON
 # use cmake's find_package() to locate a pre-installed dependency
+CMAKE_ARGS+=	-DgRPC_ABSL_PROVIDER=package
 CMAKE_ARGS+=	-DgRPC_BENCHMARK_PROVIDER=package
 CMAKE_ARGS+=	-DgRPC_CARES_PROVIDER=package
 CMAKE_ARGS+=	-DgRPC_GFLAGS_PROVIDER=package
 CMAKE_ARGS+=	-DgRPC_PROTOBUF_PROVIDER=package
+CMAKE_ARGS+=	-DgRPC_RE2_PROVIDER=package
 CMAKE_ARGS+=	-DgRPC_SSL_PROVIDER=package
 CMAKE_ARGS+=	-DgRPC_ZLIB_PROVIDER=package
 
+.include "../../mk/bsd.prefs.mk"
+
+# 64 bit atomic ops are required
+.if ${MACHINE_ARCH} == "i386"
+CFLAGS+=		-march=i586
+CXXFLAGS+=		-march=i586
+.endif
+
 .include "../../benchmarks/google-benchmark/buildlink3.mk"
+.include "../../devel/abseil/buildlink3.mk"
 .include "../../devel/gflags/buildlink3.mk"
 BUILDLINK_API_DEPENDS.protobuf+=	protobuf>=3.5
 .include "../../devel/protobuf/buildlink3.mk"
+.include "../../devel/re2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libcares+=	libcares>=1.15.0nb1
 .include "../../net/libcares/buildlink3.mk"

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.14 2019/09/06 06:02:53 adam Exp $
+# $NetBSD: Makefile,v 1.17 2020/09/07 09:31:12 adam Exp $
 
-DISTNAME=	ldap3-2.6.1
+DISTNAME=	ldap3-2.8.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	databases python
 MASTER_SITES=	${MASTER_SITE_PYPI:=l/ldap3/}
@@ -10,7 +10,7 @@ HOMEPAGE=	https://github.com/cannatag/ldap3
 COMMENT=	Strictly RFC 4510 conforming LDAP V3 pure Python client library
 LICENSE=	gnu-lgpl-v3
 
-DEPENDS+=	${PYPKGPREFIX}-asn1>=0.1.8:../../security/py-asn1
+DEPENDS+=	${PYPKGPREFIX}-asn1>=0.4.6:../../security/py-asn1
 TEST_DEPENDS+=	${PYPKGPREFIX}-gssapi-[0-9]*:../../security/py-gssapi
 
 USE_LANGUAGES=	# none

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.103 2019/12/29 16:24:30 adam Exp $
+# $NetBSD: Makefile,v 1.116 2020/09/28 19:23:34 adam Exp $
 
-DISTNAME=	stellarium-0.19.3
+DISTNAME=	stellarium-0.20.3
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Stellarium/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
@@ -14,6 +14,8 @@ USE_CMAKE=		yes
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		msgfmt perl pod2man
 
+CMAKE_ARGS+=	-DENABLE_GPS=OFF
+
 PLIST_VARS+=		desktop
 
 .include "../../mk/bsd.prefs.mk"
@@ -24,8 +26,8 @@ PLIST.desktop=		yes
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
-.include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
+.include "../../graphics/png/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../x11/qt5-qtscript/buildlink3.mk"
 .include "../../x11/qt5-qtserialport/buildlink3.mk"

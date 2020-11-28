@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.180 2020/01/04 01:50:32 nia Exp $
+# $NetBSD: Makefile,v 1.194 2020/05/03 11:04:46 nia Exp $
 
-DISTNAME=	mesa-19.2.7
+DISTNAME=	mesa-20.0.6
 PKGNAME=	${DISTNAME:S/mesa/MesaLib/}
-PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	https://mesa.freedesktop.org/archive/
 EXTRACT_SUFX=	.tar.xz
@@ -47,21 +46,16 @@ PLIST_VARS+=		r300 svga nouveau vc4 lima panfrost
 PLIST_VARS+=		kms vaapi
 
 .if ${MESALIB_SUPPORTS_DRI} == "yes"
-BUILDLINK_API_DEPENDS.libdrm+=	libdrm>=2.4.81
+BUILDLINK_API_DEPENDS.libdrm+=	libdrm>=2.4.100
 .include "../../x11/libdrm/buildlink3.mk"
 MESA_PLATFORMS+=	drm surfaceless
 MESON_ARGS+=		-Degl=true
 MESON_ARGS+=		-Dgbm=true
 MESON_ARGS+=		-Dgallium-xa=true
-PLIST.kms=		yes
-.  include "../../multimedia/libva/available.mk"
-.  if ${VAAPI_AVAILABLE} == "yes"
-MESON_ARGS+=		-Dgallium-va=true
-PLIST.vaapi=		yes
-.    include "../../multimedia/libva/buildlink3.mk"
-.  else
-MESON_ARGS+=		-Dgallium-va=false
+.  if ${X11_TYPE} == "native" && !exists(${X11BASE}/include/xcb/dri3.h)
+MESON_ARGS+=		-Ddri3=false
 .  endif
+PLIST.kms=		yes
 .  if !empty(MACHINE_ARCH:M*arm*) || \
       ${MACHINE_ARCH} == "aarch64"
 # ARM Mali Utgard
@@ -109,6 +103,16 @@ PLIST.r100=		yes
 PLIST.r200=		yes
 PLIST.r300=		yes
 .  endif
+.  include "../../multimedia/libva/available.mk"
+.  if ${VAAPI_AVAILABLE} == "yes" && \
+      !(empty(GALLIUM_DRIVERS:Mr600) && empty(GALLIUM_DRIVERS:Mradeonsi) && \
+        empty(GALLIUM_DRIVERS:Mnouveau))
+MESON_ARGS+=		-Dgallium-va=true
+PLIST.vaapi=		yes
+.    include "../../multimedia/libva/buildlink3.mk"
+.  else
+MESON_ARGS+=		-Dgallium-va=false
+.  endif
 .else
 MESA_PLATFORMS+=	surfaceless
 MESON_ARGS+=		-Degl=false
@@ -122,6 +126,8 @@ MESON_ARGS+=	-Dplatforms=${MESA_PLATFORMS:ts,}
 
 .if ${MACHINE_ARCH} == "i386"
 MESON_ARGS+=	-Dglx-read-only-text=true
+CFLAGS+=	-march=i586
+CXXFLAGS+=	-march=i586
 .endif
 
 MESON_ARGS+=	-Dgles1=true
@@ -171,9 +177,6 @@ PKGCONFIG_OVERRIDE+=		output/meson-private/egl.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/osmesa.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/xatracker.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/gl.pc
-
-pre-configure:
-	${TOUCH} ${WRKSRC}/src/glx/apple_dummy.cpp
 
 post-install:
 	${MV} ${DESTDIR}${PREFIX}/share/drirc.d/00-mesa-defaults.conf ${DESTDIR}${EGDIR}

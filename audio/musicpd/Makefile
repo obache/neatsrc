@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.204 2019/12/31 12:24:54 wiz Exp $
+# $NetBSD: Makefile,v 1.227 2020/10/18 14:43:59 wiz Exp $
 
-DISTNAME=	mpd-0.21.18
+DISTNAME=	mpd-0.22.1
 PKGNAME=	${DISTNAME:S/mpd/musicpd/}
 CATEGORIES=	audio
-MASTER_SITES=	https://www.musicpd.org/download/mpd/0.21/
+MASTER_SITES=	https://www.musicpd.org/download/mpd/0.22/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -14,12 +14,12 @@ LICENSE=	gnu-gpl-v2
 CONFLICTS=	mpd-[0-9]*
 
 USE_TOOLS+=	pkg-config
-USE_LANGUAGES=	c99 c++14
+USE_LANGUAGES=	c c++
 
-# c++14
-GCC_REQD+=	6
+# c++17
+GCC_REQD+=	8
 
-MESON_ARGS+=	-Ddocumentation=true
+MESON_ARGS+=	-Ddocumentation=enabled
 
 # worrying libraries with limited maintainance:
 # - audiofile, many CVEs, no activity since 2016
@@ -86,7 +86,7 @@ CPPFLAGS.SunOS+=	-std=gnu99 -D_XOPEN_SOURCE=600 -D__EXTENSIONS__
 
 SUBST_CLASSES+=		conf
 SUBST_STAGE.conf=	pre-configure
-SUBST_FILES.conf=	${WRKSRC}/mpd.conf
+SUBST_FILES.conf=	mpd.conf
 SUBST_MESSAGE.conf=	Setting variables in the configuration file.
 SUBST_VARS.conf+=	VARBASE
 SUBST_VARS.conf+=	MPD_USER
@@ -111,13 +111,16 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/mpdconf.example ${DESTDIR}${EGDIR}
 
 .include "../../devel/meson/build.mk"
-BUILDLINK_ABI_DEPENDS.flac+=	flac>=1.2
+BUILDLINK_API_DEPENDS.flac+=	flac>=1.2
 .include "../../audio/flac/buildlink3.mk"
+.include "../../audio/libid3tag/buildlink3.mk"
 .include "../../audio/libopus/buildlink3.mk"
+.include "../../audio/libsndfile/buildlink3.mk"
 .include "../../audio/mpg123/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
+.include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../lang/python/versioned_dependencies.mk"
 .include "../../security/libgcrypt/buildlink3.mk"

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.10 2019/08/02 14:32:18 jperkin Exp $
+# $NetBSD: Makefile,v 1.13 2020/10/01 10:27:58 otis Exp $
 
-DISTNAME=	dnsdist-1.3.3
+DISTNAME=	dnsdist-1.5.1
 CATEGORIES=	net
 MASTER_SITES=	https://downloads.powerdns.com/releases/
 EXTRACT_SUFX=	.tar.bz2
@@ -31,10 +31,10 @@ CONF_FILES+=	share/examples/dnsdist/dnsdist.conf \
 CONFIGURE_ARGS+=	--enable-dns-over-tls
 CONFIGURE_ARGS+=	--enable-dnscrypt
 CONFIGURE_ARGS+=	--enable-fstrm
-CONFIGURE_ARGS+=	--enable-libsodium
-CONFIGURE_ARGS+=	--enable-libssl
-CONFIGURE_ARGS+=	--enable-re2
+CONFIGURE_ARGS+=	--with-libsodium
+CONFIGURE_ARGS+=	--with-libssl
 CONFIGURE_ARGS+=	--with-protobuf
+CONFIGURE_ARGS+=	--with-re2
 CONFIGURE_ARGS+=	--without-net-snmp
 CONFIGURE_ENV+=		LIBEDIT_CFLAGS="-I${BUILDLINK_PREFIX.libedit}/include"
 CONFIGURE_ENV+=		LIBEDIT_LIBS="-L${BUILDLINK_PREFIX.libedit}/lib -ledit"

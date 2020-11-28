@@ -1,28 +1,21 @@
-# $NetBSD: Makefile,v 1.21 2019/11/09 12:02:29 nia Exp $
+# $NetBSD: Makefile,v 1.26 2020/07/07 09:00:34 nia Exp $
 
-DISTNAME=		fish-3.0.2
+DISTNAME=		fish-3.1.2
+PKGREVISION=		1
 CATEGORIES=		shells
 MASTER_SITES=		${MASTER_SITE_GITHUB:=fish-shell/}
 GITHUB_PROJECT=		fish-shell
+GITHUB_RELEASE=		${PKGVERSION_NOREV}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.fishshell.com/
 COMMENT=		User friendly command line shell for UNIX-like operating systems
 LICENSE=		gnu-gpl-v2
 
-EXTRACT_USING=		gtar
-
-WRKSRC=			${WRKDIR}/fish-shell-${PKGVERSION_NOREV}
-
 USE_LANGUAGES+=		c c++03
-USE_LIBTOOL=		yes
-GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
-USE_TOOLS+=		gmake autoreconf autoconf automake
+USE_CMAKE=		yes
 USE_TOOLS+=		msgfmt
-
-EGDIR=			${PREFIX}/share/examples
-INSTALL_ENV+=		EGDIR=${EGDIR}
+CMAKE_ARGS+=		-DIntl_INCLUDE_DIR=${PREFIX}/include
 
 PKG_SHELL=		bin/fish
 
@@ -40,20 +33,23 @@ CXXFLAGS.NetBSD+=	-fpermissive
 LDFLAGS+=		-lexecinfo
 .endif
 
-# Upstream intentionally omits open.1 on Darwin
-PLIST_VARS+=	open
-.if ${OPSYS} != "Darwin"
+# Upstream intentionally omits open.1 on Darwin, but adds realpath.1
+PLIST_VARS+=	open realpath
+.if ${OPSYS} == "Darwin"
+PLIST.realpath= yes
+.else
 PLIST.open=	yes
 .endif
 
-pre-configure:
-	${RUN} cd ${WRKSRC} && autoreconf -fiv
-
-.include "options.mk"
+post-extract:
+	${RM} ${WRKSRC}/version
 
 .include "../../devel/pcre2/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/gettext-tools/buildlink3.mk"
+.if !empty(PKGSRC_COMPILER:M*gcc*)
+.  include "../../devel/libatomic/buildlink3.mk"
+.endif
 .include "../../lang/python/application.mk"
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

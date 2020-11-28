@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.78 2019/11/02 22:38:06 rillig Exp $
+# $NetBSD: Makefile,v 1.80 2020/03/20 11:57:53 nia Exp $
 
 DISTNAME=	xpaint-2.7.8.1
 PKGREVISION=	11

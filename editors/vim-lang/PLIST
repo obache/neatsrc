@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.25 2019/06/17 22:28:20 morr Exp $
+@comment $NetBSD: PLIST,v 1.28 2020/09/18 23:58:29 morr Exp $
 man/da.ISO8859-1/man1/ex.1
 man/da.ISO8859-1/man1/rview.1
 man/da.ISO8859-1/man1/rvim.1
@@ -131,6 +131,30 @@ man/ru.UTF-8/man1/view.1
 man/ru.UTF-8/man1/vim.1
 man/ru.UTF-8/man1/vimdiff.1
 man/ru.UTF-8/man1/vimtutor.1
+man/tr.ISO8859-9/man1/evim.1
+man/tr.ISO8859-9/man1/ex.1
+man/tr.ISO8859-9/man1/rview.1
+man/tr.ISO8859-9/man1/rvim.1
+man/tr.ISO8859-9/man1/view.1
+man/tr.ISO8859-9/man1/vim.1
+man/tr.ISO8859-9/man1/vimdiff.1
+man/tr.ISO8859-9/man1/vimtutor.1
+man/tr.UTF-8/man1/evim.1
+man/tr.UTF-8/man1/ex.1
+man/tr.UTF-8/man1/rview.1
+man/tr.UTF-8/man1/rvim.1
+man/tr.UTF-8/man1/view.1
+man/tr.UTF-8/man1/vim.1
+man/tr.UTF-8/man1/vimdiff.1
+man/tr.UTF-8/man1/vimtutor.1
+man/tr/man1/evim.1
+man/tr/man1/ex.1
+man/tr/man1/rview.1
+man/tr/man1/rvim.1
+man/tr/man1/view.1
+man/tr/man1/vim.1
+man/tr/man1/vimdiff.1
+man/tr/man1/vimtutor.1
 share/vim/${VIM_SUBDIR}/keymap/README.txt
 share/vim/${VIM_SUBDIR}/keymap/accents.vim
 share/vim/${VIM_SUBDIR}/keymap/arabic.vim
@@ -150,6 +174,8 @@ share/vim/${VIM_SUBDIR}/keymap/czech_utf-8.vim
 share/vim/${VIM_SUBDIR}/keymap/dvorak.vim
 share/vim/${VIM_SUBDIR}/keymap/esperanto.vim
 share/vim/${VIM_SUBDIR}/keymap/esperanto_utf-8.vim
+share/vim/${VIM_SUBDIR}/keymap/french-azerty.vim
+share/vim/${VIM_SUBDIR}/keymap/german-qwertz.vim
 share/vim/${VIM_SUBDIR}/keymap/greek.vim
 share/vim/${VIM_SUBDIR}/keymap/greek_cp1253.vim
 share/vim/${VIM_SUBDIR}/keymap/greek_cp737.vim
@@ -183,6 +209,7 @@ share/vim/${VIM_SUBDIR}/keymap/russian-jcuken.vim
 share/vim/${VIM_SUBDIR}/keymap/russian-jcukenmac.vim
 share/vim/${VIM_SUBDIR}/keymap/russian-jcukenwin.vim
 share/vim/${VIM_SUBDIR}/keymap/russian-jcukenwintype.vim
+share/vim/${VIM_SUBDIR}/keymap/russian-typograph.vim
 share/vim/${VIM_SUBDIR}/keymap/russian-yawerty.vim
 share/vim/${VIM_SUBDIR}/keymap/serbian-latin.vim
 share/vim/${VIM_SUBDIR}/keymap/serbian-latin_utf-8.vim
@@ -201,6 +228,8 @@ share/vim/${VIM_SUBDIR}/keymap/slovak_utf-8.vim
 share/vim/${VIM_SUBDIR}/keymap/tamil_tscii.vim
 share/vim/${VIM_SUBDIR}/keymap/thaana-phonetic_utf-8.vim
 share/vim/${VIM_SUBDIR}/keymap/thaana.vim
+share/vim/${VIM_SUBDIR}/keymap/turkish-f.vim
+share/vim/${VIM_SUBDIR}/keymap/turkish-q.vim
 share/vim/${VIM_SUBDIR}/keymap/ukrainian-dvorak.vim
 share/vim/${VIM_SUBDIR}/keymap/ukrainian-jcuken.vim
 share/vim/${VIM_SUBDIR}/keymap/vietnamese-telex_utf-8.vim
@@ -349,6 +378,12 @@ share/vim/${VIM_SUBDIR}/lang/menu_sv.latin1.vim
 share/vim/${VIM_SUBDIR}/lang/menu_sv.utf-8.vim
 share/vim/${VIM_SUBDIR}/lang/menu_sv_se.latin1.vim
 share/vim/${VIM_SUBDIR}/lang/menu_sv_se.utf-8.vim
+share/vim/${VIM_SUBDIR}/lang/menu_tr.cp1254.vim
+share/vim/${VIM_SUBDIR}/lang/menu_tr.iso_8859-9.vim
+share/vim/${VIM_SUBDIR}/lang/menu_tr.utf-8.vim
+share/vim/${VIM_SUBDIR}/lang/menu_tr_tr.cp1254.vim
+share/vim/${VIM_SUBDIR}/lang/menu_tr_tr.iso_8859-9.vim
+share/vim/${VIM_SUBDIR}/lang/menu_tr_tr.utf-8.vim
 share/vim/${VIM_SUBDIR}/lang/menu_uk_ua.cp1251.vim
 share/vim/${VIM_SUBDIR}/lang/menu_uk_ua.koi8-u.vim
 share/vim/${VIM_SUBDIR}/lang/menu_vi_vn.vim
@@ -377,6 +412,7 @@ share/vim/${VIM_SUBDIR}/lang/sk.cp1250/LC_MESSAGES/vim.mo
 share/vim/${VIM_SUBDIR}/lang/sk/LC_MESSAGES/vim.mo
 share/vim/${VIM_SUBDIR}/lang/sr/LC_MESSAGES/vim.mo
 share/vim/${VIM_SUBDIR}/lang/sv/LC_MESSAGES/vim.mo
+share/vim/${VIM_SUBDIR}/lang/tr/LC_MESSAGES/vim.mo
 share/vim/${VIM_SUBDIR}/lang/uk.cp1251/LC_MESSAGES/vim.mo
 share/vim/${VIM_SUBDIR}/lang/uk/LC_MESSAGES/vim.mo
 share/vim/${VIM_SUBDIR}/lang/vi/LC_MESSAGES/vim.mo

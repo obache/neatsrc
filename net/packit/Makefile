@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2018/01/26 10:52:04 maya Exp $
+# $NetBSD: Makefile,v 1.12 2020/03/20 11:58:09 nia Exp $
 
 DISTNAME=	packit-1.0
 PKGREVISION=	4

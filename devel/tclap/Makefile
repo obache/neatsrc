@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2016/01/03 20:41:58 markd Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/20 11:57:33 nia Exp $
 
 DISTNAME=	tclap-1.2.1
 CATEGORIES=	devel

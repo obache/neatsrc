@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.19 2019/11/02 16:25:21 rillig Exp $
+# $NetBSD: Makefile,v 1.21 2020/08/31 18:09:56 wiz Exp $
 #
 
 DISTNAME=	fml-7.99.1
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.fml.org/pub/fml8/
 
@@ -41,8 +41,7 @@ CONF_FILES+=		${EGDIR}/${f} ${PKG_SYSCONFDIR}/${f}
 .endfor
 OWN_DIRS_PERMS+=	${FMLDIR} ${FML_USER} ${FML_GROUP} 0755
 
-CONFIGURE_ARGS+=	--with-sysconfdir=${PKG_SYSCONFDIR} \
-			--with-mlspooldir=${FMLDIR} \
+CONFIGURE_ARGS+=	--with-mlspooldir=${FMLDIR} \
 			--with-default-domain=example.net \
 			--with-default-hostname=mail \
 			--with-fml-owner=${FML_USER} \

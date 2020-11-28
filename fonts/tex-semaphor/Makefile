@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:32:25 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:53 markd Exp $
 
 DISTNAME=	semaphor
 PKGNAME=	tex-${DISTNAME}-2014
+PKGREVISION=	1
 TEXLIVE_REV=	18651
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/semaphor
+HOMEPAGE=	https://ctan.org/pkg/semaphor
 COMMENT=	Semaphore alphabet font
 LICENSE=	gnu-gpl-v2
 

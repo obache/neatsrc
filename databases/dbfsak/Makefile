@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2017/03/30 15:54:03 adam Exp $
+# $NetBSD: Makefile,v 1.6 2020/01/26 05:26:19 rillig Exp $
 
 DISTNAME=	dbfsak-5.0.src
 PKGNAME=	${DISTNAME:S/.src//}

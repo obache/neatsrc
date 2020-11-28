@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:29:55 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:43 markd Exp $
 
 DISTNAME=	esrelation
 PKGNAME=	tex-${DISTNAME}-2015
+PKGREVISION=	1
 TEXLIVE_REV=	37236
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/esrelation
+HOMEPAGE=	https://ctan.org/pkg/esrelation
 COMMENT=	Provides a symbol set for describing relations between ordered pairs
 LICENSE=	lppl-1.3c
 

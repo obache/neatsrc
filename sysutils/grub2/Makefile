@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.19 2019/11/04 21:28:46 rillig Exp $
+# $NetBSD: Makefile,v 1.24 2020/06/04 20:17:19 triaxx Exp $
 
-DISTNAME=		grub-2.02
+DISTNAME=		grub-2.04
 PKGNAME=		${DISTNAME:S/grub/grub2/}
+PKGREVISION=		1
 CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_GNU:=grub/}
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.gnu.org/software/grub/
+HOMEPAGE=		https://www.gnu.org/software/grub/
 COMMENT=		GRand Unified Bootloader, version 2
 LICENSE=		gnu-gpl-v3
 
@@ -15,8 +16,14 @@ CONFLICTS=		grub-[0-9]*
 
 ONLY_FOR_PLATFORM=	*-*-i386 *-*-x86_64
 
+SSP_SUPPORTED=		no
+FORTIFY_SUPPORTED=	no
+
 USE_LANGUAGES+=		c c++
 USE_TOOLS+=		gmake flex bison gettext:run awk pkg-config
+
+.include "../../lang/python/tool.mk"
+PYTHON_FOR_BUILD_ONLY=	tool
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
@@ -26,10 +33,9 @@ CONFIGURE_ARGS+=	--disable-grub-emu-pci
 INFO_FILES=		yes
 USE_PKGLOCALEDIR=	yes
 
-SSP_SUPPORTED=		no
-FORTIFY_SUPPORTED=	no
-
 .include "../../mk/bsd.prefs.mk"
+
+CFLAGS+=		-Wno-unused-value
 
 #
 # Build requirements, taken from the INSTALL file in GRUB's distribution:
@@ -118,13 +124,13 @@ SUBST_SED.fix-paths-1=		-e 's,\(\$${sysconfdir}"\{0\,1\}\)/grub.d,\1,g'
 SUBST_SED.fix-paths-1+=		-e 's,\(\$${sysconfdir}"\{0\,1\}\)/default/grub,\1/default.conf,g'
 
 #
-# Adjust the search paths for DejaVu fonts in configure.
+# Adjust the search paths for fonts in configure.
 #
-SUBST_CLASSES+=			fix-dejavu
-SUBST_STAGE.fix-dejavu=		pre-configure
-SUBST_MESSAGE.fix-dejavu=	Fixing dejavu search paths in configure.
-SUBST_FILES.fix-dejavu=		configure
-SUBST_SED.fix-dejavu=		-e 's, \(/usr/share/fonts/dejavu\), \1 ${PREFIX}/share/fonts/X11/TTF,g'
+SUBST_CLASSES+=			fix-fonts
+SUBST_STAGE.fix-fonts=		pre-configure
+SUBST_MESSAGE.fix-fonts=	Fixing fonts search paths in configure.
+SUBST_FILES.fix-fonts=		configure
+SUBST_VARS.fix-fonts=		PREFIX
 
 #
 # Do not use `\t' with sed, as it's not portable.

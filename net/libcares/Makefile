@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.26 2019/05/31 08:09:41 adam Exp $
+# $NetBSD: Makefile,v 1.28 2020/06/01 19:11:37 adam Exp $
 
-DISTNAME=	c-ares-1.15.0
+DISTNAME=	c-ares-1.16.1
 PKGNAME=	${DISTNAME:S/c-/libc/1}
-PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	https://c-ares.haxx.se/download/
 

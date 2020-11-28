@@ -1,4 +1,4 @@
-#	$NetBSD: bsd.pkg.mk,v 1.2033 2019/11/04 17:47:30 rillig Exp $
+#	$NetBSD: bsd.pkg.mk,v 1.2039 2020/05/10 06:52:49 rillig Exp $
 #
 # This file is in the public domain.
 #
@@ -154,7 +154,7 @@ ${_var_}+=	${${_var_}.*}
 
 CPPFLAGS+=	${CPP_PRECOMP_FLAGS}
 
-# To sanitise environment set PKGSRC_SETENV=${SETENV} -i
+# To sanitize the environment, set PKGSRC_SETENV=${SETENV} -i.
 # This will however cause build failures (e.g. "www/firefox"). Settings
 # like "ALLOW_VULNERABLE_PACKAGES" will also not be correctly passed
 # to dependence builds.
@@ -208,8 +208,8 @@ _BUILD_DEFS+=		PKGINFODIR
 _BUILD_DEFS+=		PKGMANDIR
 _BUILD_DEFS+=		_USE_DESTDIR
 
-# Store the result in the +BUILD_INFO file so we can query for the build
-# options using "pkg_info -Q PKG_OPTIONS <pkg>".
+# Store the result in the +BUILD_INFO file so mk/pkg-build-options.mk
+# can query for the build options using "pkg_info -Q PKG_OPTIONS <pkg>".
 #
 .if defined(PKG_SUPPORTED_OPTIONS) && defined(PKG_OPTIONS)
 _BUILD_DEFS+=            PKG_OPTIONS
@@ -222,16 +222,16 @@ _BUILD_DEFS+=            PKG_OPTIONS
 _BUILD_DEFS+=            MULTI
 .endif
 
-# ZERO_FILESIZE_P exits with a successful return code if the given file
+# _ZERO_FILESIZE_P exits with a successful return code if the given file
 #	has zero length.
-# NONZERO_FILESIZE_P exits with a successful return code if the given file
+# _NONZERO_FILESIZE_P exits with a successful return code if the given file
 #	has nonzero length.
 #
 _ZERO_FILESIZE_P=	${AWK} 'END { exit (NR > 0) ? 1 : 0; }'
 _NONZERO_FILESIZE_P=	${AWK} 'END { exit (NR > 0) ? 0 : 1; }'
 
 # Automatically increase process limit where necessary for building.
-_ULIMIT_CMD=		${UNLIMIT_RESOURCES:@_lim_@${ULIMIT_CMD_${_lim_}};@}
+_ULIMIT_CMD=		${UNLIMIT_RESOURCES:@_lim_@${ULIMIT_CMD_${_lim_}:U\:};@}
 
 _NULL_COOKIE=		${WRKDIR}/.null
 
@@ -343,6 +343,7 @@ DO_NADA?=		${TRUE}
 
 # the FAIL command executes its arguments and then exits with a non-zero
 # status.
+# Example: ${FAIL} ${ERROR_MSG} "This is unexpected."
 FAIL?=			${SH} ${PKGSRCDIR}/mk/scripts/fail
 
 #
@@ -391,7 +392,7 @@ USE_TOOLS+=	expr
 .endif
 
 # Locking
-.include "internal/locking.mk"
+.include "misc/locking.mk"
 
 # Tools
 .include "tools/bsd.tools.mk"
@@ -442,8 +443,11 @@ _PATH_ORIG:=		${PATH}
 MAKEFLAGS+=		_PATH_ORIG=${_PATH_ORIG:Q}
 .endif
 
-_PATH_COMPONENTS=	${WRAPPER_BINDIR} ${TOOLS_BINDIR} ${PREPEND_PATH:[-1..1]} ${_PATH_ORIG:C,:, ,}
-PATH=	${_PATH_COMPONENTS:ts:}
+_PATH_COMPONENTS= \
+	${WRAPPER_BINDIR} ${TOOLS_BINDIR} \
+	${PREPEND_PATH:[-1..1]} \
+	${_PATH_ORIG:S, ,__space_in_path__,gW:S,:, ,g}
+PATH=	${_PATH_COMPONENTS:ts::S,__space_in_path__, ,g}
 
 ################################################################
 # Many ways to disable a package.
@@ -477,7 +481,7 @@ PKG_SKIP_REASON+= "${PKGNAME} may not be placed in source form on a CDROM:" \
 PKG_SKIP_REASON+= "${PKGNAME} is restricted:" \
 	 "    "${RESTRICTED:Q}
 .  endif
-.  if defined(USE_X11) && (${X11_TYPE} == "native") && !exists(${X11BASE})
+.  if defined(USE_X11) && (${USE_X11} != "weak") && (${X11_TYPE} == "native") && !exists(${X11BASE})
 PKG_FAIL_REASON+= "${PKGNAME} uses X11, but ${X11BASE} not found"
 .  endif
 .  if ${BROKEN:U:M*}

@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.5 2019/11/30 17:23:08 sjmulder Exp $
+$NetBSD: distinfo,v 1.7 2020/06/13 10:03:04 fcambus Exp $
 
-SHA1 (ncdu-1.14.1.tar.gz) = 143c09158094adbb44f37945b7ba8bb1428862b1
-RMD160 (ncdu-1.14.1.tar.gz) = 033f15375d7cbb46d5ebcfad67f8eac7debe47a8
-SHA512 (ncdu-1.14.1.tar.gz) = 7db9115f7ba20d43c47bc7187347658d7a4dc36da6ffdc54308d3966a431c24b87c3266854d69685c3ea5e29805b5a631805a783d6431e30bd83c411b398515d
-Size (ncdu-1.14.1.tar.gz) = 146346 bytes
+SHA1 (ncdu-1.15.1.tar.gz) = 1d88eb2b29bfb559ac75109616bba53e48d4d083
+RMD160 (ncdu-1.15.1.tar.gz) = 66fbf2a62d9ac359360b3e3265486658e77786fd
+SHA512 (ncdu-1.15.1.tar.gz) = 572379264b9bd0d782151bd2f79add0e7a6d092029a041ff8f9288e928a4b6a6733467bca7c1702cbb44c3861279da1bc3d4278df6fba1814fe1dc909f2d8087
+Size (ncdu-1.15.1.tar.gz) = 148242 bytes

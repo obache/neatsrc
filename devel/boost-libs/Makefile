@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.78 2019/12/31 13:30:27 nros Exp $
+# $NetBSD: Makefile,v 1.82 2020/06/02 08:23:34 adam Exp $
 
 BOOST_PACKAGE=		libs
 BOOST_COMMENT=		(binary libraries)
 BOOST_CONFIG=		installed
 BOOST_INSTALL_LIBS=	yes
 
+PKGREVISION= 1
 .include "../../meta-pkgs/boost/Makefile.common"
 
 INSTALLATION_DIRS+=	lib
@@ -12,7 +13,13 @@ INSTALLATION_DIRS+=	lib
 BJAM_ARGS+=		--without-python
 PLIST_VARS+=		backtrace context fiber log longdbl
 
-.if ${OPSYS} == "NetBSD" && ((${MACHINE_ARCH} == "i386") || (!empty(MACHINE_ARCH:Mearm*) && !empty(PKGSRC_COMPILER:Mgcc)))
+.include "../../mk/compiler.mk"
+
+.if (${OPSYS} == "NetBSD" && \
+	((${MACHINE_ARCH} == "i386") || \
+	(!empty(MACHINE_ARCH:Mearm*) && !empty(PKGSRC_COMPILER:Mgcc)))) || \
+    (!empty(MACHINE_PLATFORM:MNetBSD-8.*-x86_64) && \
+	!empty(CC_VERSION:Mgcc-7.*))
 BJAM_ARGS+=		pch=off
 .endif
 

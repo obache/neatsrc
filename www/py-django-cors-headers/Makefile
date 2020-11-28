@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.13 2020/01/08 11:27:01 adam Exp $
+# $NetBSD: Makefile,v 1.16 2020/09/30 06:51:08 adam Exp $
 
-DISTNAME=	django-cors-headers-3.2.1
+DISTNAME=	django-cors-headers-3.5.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=d/django-cors-headers/}
@@ -10,7 +10,7 @@ HOMEPAGE=	https://github.com/adamchainz/django-cors-headers
 COMMENT=	Django application for handling headers required for CORS
 LICENSE=	mit
 
-DEPENDS+=	${PYPKGPREFIX}-django>=1.11:../../www/py-django
+DEPENDS+=	${PYPKGPREFIX}-django>=2.0:../../www/py-django2
 
 USE_LANGUAGES=	# none
 

@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.87 2019/12/26 21:57:50 leot Exp $
+# $NetBSD: Makefile,v 1.91 2020/09/02 22:16:48 kim Exp $
 
 DISTNAME=	tin-2.4.4
+PKGREVISION=	3
 CATEGORIES=	news
 MASTER_SITES=	ftp://ftp.tin.org/pub/news/clients/tin/stable/
-MASTER_SITES+=	ftp://ftp.funet.fi/pub/unix/news/tin-unoff/
+MASTER_SITES+=	http://ftp.funet.fi/pub/unix/news/tin-unoff/
 MASTER_SITES+=	ftp://ftp.lip6.fr/pub/unix/news/readers/tin-unoff/
 MASTER_SITES+=	ftp://ftp.cuhk.edu.hk/pub/packages/news/tin/stable/
 MASTER_SITES+=	ftp://sunsite.icm.edu.pl/pub/unix/news/tin/stable/

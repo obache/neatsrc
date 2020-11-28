@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2014/10/09 14:06:01 wiz Exp $
+# $NetBSD: Makefile,v 1.12 2020/01/26 05:26:15 rillig Exp $
 #
 
 DISTNAME=	cascade-1.4

@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.45 2019/11/02 16:25:23 rillig Exp $
+# $NetBSD: Makefile,v 1.48 2020/03/20 11:57:58 nia Exp $
 #
 
 DISTNAME=	milter-manager-2.1.5
+PKGREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_OSDN:=milter-manager/71587/}
 

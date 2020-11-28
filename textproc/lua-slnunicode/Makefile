@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.7 2015/03/18 10:24:49 joerg Exp $
+# $NetBSD: Makefile,v 1.9 2020/07/02 10:26:19 nia Exp $
 
 DISTNAME=	slnunicode-1.1apl1
 PKGNAME=	${LUA_PKGPREFIX}-${DISTNAME}
 PKGREVISION=	2
-CATEGORIES=	textproc
+CATEGORIES=	textproc lua
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 
 MAINTAINER=	ryoon@NetBSD.org
@@ -11,7 +11,8 @@ HOMEPAGE=	https://github.com/phi-gamma/slnunicode/
 COMMENT=	Unicode library for Lua
 
 BUILD_TARGET=	unicode.so
-LUA_VERSIONS_INCOMPATIBLE=	51 53
+
+LUA_VERSIONS_ACCEPTED=	52
 
 MAKE_ENV+=	LUA_EXECUTABLE=${LUA_INTERPRETER}
 

@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:29:37 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:39 markd Exp $
 
 DISTNAME=	berenisadf
 PKGNAME=	tex-${DISTNAME}-1.004
+PKGREVISION=	1
 TEXLIVE_REV=	32215
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/berenisadf
+HOMEPAGE=	https://ctan.org/pkg/berenisadf
 COMMENT=	Berenis ADF fonts and TeX/LaTeX support
 #LICENSE=	other-free
 

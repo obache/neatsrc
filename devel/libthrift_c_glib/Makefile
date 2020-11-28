@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2019/09/18 11:27:52 adam Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/13 03:39:52 rillig Exp $
 
+PKGREVISION= 2
 .include "../../devel/thrift/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/thrift/libthrift_c_glib/}
@@ -8,6 +9,7 @@ COMMENT=	C (Glib) bindings for the Apache Thrift RPC system
 DEPENDS+=	thrift-[0-9]*:../../devel/thrift
 BUILD_DIRS=	lib/c_glib
 
+TOOLS_BROKEN+=		perl
 CONFIGURE_ENV+=		THRIFT=${PREFIX}/bin/thrift
 PKGCONFIG_OVERRIDE=	lib/c_glib/thrift_c_glib.pc.in
 

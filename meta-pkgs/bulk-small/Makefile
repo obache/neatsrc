@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.25 2019/11/03 19:35:54 rillig Exp $
+# $NetBSD: Makefile,v 1.29 2020/08/31 18:10:19 wiz Exp $
 
-DISTNAME=	bulk-small-20180101
-PKGREVISION=	3
+DISTNAME=	bulk-small-20200430
+PKGREVISION=	1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -82,7 +82,6 @@ BUILD_DEPENDS+=	tcsh-[0-9]*:../../shells/tcsh
 BUILD_DEPENDS+=	zsh-[0-9]*:../../shells/zsh
 BUILD_DEPENDS+=	icewm>=1.2<1.3:../../wm/icewm
 BUILD_DEPENDS+=	fluxbox-[0-9]*:../../wm/fluxbox
-BUILD_DEPENDS+=	fvwm-[0-9]*:../../wm/fvwm
 BUILD_DEPENDS+=	apache>=2.4:../../www/apache24
 BUILD_DEPENDS+=	bozohttpd-[0-9]*:../../www/bozohttpd
 BUILD_DEPENDS+=	curl-[0-9]*:../../www/curl
@@ -111,7 +110,6 @@ BUILD_DEPENDS+=		flex-[0-9]*:../../devel/flex
 BUILD_DEPENDS+=		gmake-[0-9]*:../../devel/gmake
 BUILD_DEPENDS+=		libtool-base-[0-9]*:../../devel/libtool-base
 BUILD_DEPENDS+=		m4-[0-9]*:../../devel/m4
-BUILD_DEPENDS+=		pkg-config-[0-9]*:../../devel/pkg-config
 #BUILD_DEPENDS+=	osabi-[0-9]*:../../pkgtools/osabi
 BUILD_DEPENDS+=		pkg_tarup-[0-9]*:../../pkgtools/pkg_tarup
 

@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.46 2019/07/21 22:25:10 wiz Exp $
+# $NetBSD: Makefile,v 1.50 2020/08/17 20:19:16 leot Exp $
 
 DISTNAME=	imhangul-2.1.1
+PKGREVISION=	25
 CATEGORIES=	inputmethod korean
 MASTER_SITES=	${MASTER_SITE_GOOGLECODE:=imhangul/}
 EXTRACT_SUFX=	.tar.bz2

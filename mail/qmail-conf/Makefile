@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.33 2019/11/02 16:25:26 rillig Exp $
+# $NetBSD: Makefile,v 1.37 2020/06/26 16:37:23 schmonz Exp $
 #
 
 DISTNAME=		qmail-conf-0.60
@@ -18,7 +18,10 @@ DEPENDS+=		qmail>=1.03nb7:../../mail/qmail
 DJB_RESTRICTED=		NO
 DJB_CONFIG_CMDS=	${ECHO} ${PREFIX:Q} > ${WRKSRC}/conf-ucspi-tcp;
 
-SUBST_FILES.djbware+=	../djbdns-1.05/error.h
+SUBST_CLASSES+=		djberrno
+SUBST_FILES.djberrno=	../djbdns-1.05/error.h
+
+.include "options.mk"
 
 pre-build:
 	cd ${WRKSRC} && ${MAKE} -f Makefile.ini djbdns="../djbdns-1.05"

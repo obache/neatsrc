@@ -1,14 +1,15 @@
-# $NetBSD: Makefile,v 1.26 2019/10/30 15:50:07 kamil Exp $
+# $NetBSD: Makefile,v 1.34 2020/08/18 17:58:06 leot Exp $
 #
 
 DISTNAME=	release-0.12.0
 PKGNAME=	${DISTNAME:C/release/speedcrunch/}
+PKGREVISION=	7
 CATEGORIES=	math
 MASTER_SITES=	http://bitbucket.org/heldercorreia/speedcrunch/get/
 DIST_SUBDIR=	speedcrunch
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.speedcrunch.org/
+HOMEPAGE=	https://www.speedcrunch.org/
 COMMENT=	Calculator
 LICENSE=	gnu-gpl-v2
 

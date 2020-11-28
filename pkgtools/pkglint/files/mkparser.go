@@ -113,7 +113,7 @@ func (p *MkParser) mkCondCompare() *MkCond {
 		if cond != nil {
 			lexer.SkipHspace()
 			if lexer.SkipByte(')') {
-				return cond
+				return &MkCond{Paren: cond}
 			}
 		}
 		lexer.Reset(mark)
@@ -247,11 +247,6 @@ func (p *MkParser) mkCondFunc() *MkCond {
 			}
 		}
 
-		// TODO: Consider suggesting ${VAR} instead of !empty(VAR) since it is shorter and
-		//  avoids unnecessary negation, which makes the expression less confusing.
-		//  This applies especially to the ${VAR:Mpattern} form.
-		//  See MkCondChecker.simplify.
-
 	case "commands", "exists", "make", "target":
 		argMark := lexer.Mark()
 		for p.mklex.VarUse() != nil || lexer.SkipBytesFunc(func(b byte) bool { return b != '$' && b != ')' }) {
@@ -341,8 +336,8 @@ type DependencyPattern struct {
 	Wildcard string // "[0-9]*", "1.5.*", "${PYVER}"
 }
 
-// Dependency parses a dependency pattern like "pkg>=1<2" or "pkg-[0-9]*".
-func (p *MkParser) Dependency() *DependencyPattern {
+// DependencyPattern parses a dependency pattern like "pkg>=1<2" or "pkg-[0-9]*".
+func (p *MkParser) DependencyPattern() *DependencyPattern {
 	lexer := p.lexer
 
 	parseVersion := func() string {
@@ -454,6 +449,7 @@ type MkCond struct {
 	Term    *MkCondTerm
 	Compare *MkCondCompare
 	Call    *MkCondCall
+	Paren   *MkCond
 }
 type MkCondCompare struct {
 	Left MkCondTerm
@@ -478,11 +474,13 @@ type MkCondCall struct {
 // MkCondCallback defines the actions for walking a Makefile condition
 // using MkCondWalker.Walk.
 type MkCondCallback struct {
+	And     func(conds []*MkCond)
 	Not     func(cond *MkCond)
 	Defined func(varname string)
 	Empty   func(empty *MkVarUse)
 	Compare func(left *MkCondTerm, op string, right *MkCondTerm)
 	Call    func(name string, arg string)
+	Paren   func(cond *MkCond)
 
 	// Var is called for every atomic expression that consists solely
 	// of a variable use, possibly enclosed in double quotes, but without
@@ -507,6 +505,9 @@ func (w *MkCondWalker) Walk(cond *MkCond, callback *MkCondCallback) {
 		}
 
 	case cond.And != nil:
+		if callback.And != nil {
+			callback.And(cond.And)
+		}
 		for _, and := range cond.And {
 			w.Walk(and, callback)
 		}
@@ -560,6 +561,12 @@ func (w *MkCondWalker) Walk(cond *MkCond, callback *MkCondCallback) {
 			callback.Call(call.Name, call.Arg)
 		}
 		w.walkStr(cond.Call.Arg, callback)
+
+	case cond.Paren != nil:
+		if callback.Paren != nil {
+			callback.Paren(cond.Paren)
+		}
+		w.Walk(cond.Paren, callback)
 	}
 }
 

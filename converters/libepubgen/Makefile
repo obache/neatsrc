@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2019/08/22 12:22:55 ryoon Exp $
+# $NetBSD: Makefile,v 1.9 2020/05/06 14:04:06 adam Exp $
 
-DISTNAME=	libepubgen-0.1.0
-PKGREVISION=	5
+DISTNAME=	libepubgen-0.1.1
+PKGREVISION=	1
 CATEGORIES=	converters
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libepubgen/}
 EXTRACT_SUFX=	.tar.bz2
@@ -16,12 +16,10 @@ USE_LIBTOOL=	yes
 USE_TOOLS+=	gmake pkg-config
 USE_LANGUAGES=	c c++
 
-BUILDLINK_TRANSFORM+=	rm:-Werror
-
 CONFIGURE_ARGS+=	--disable-tests
 CONFIGURE_ARGS+=	--without-docs
 
-PKGCONFIG_OVERRIDE+=	libepubgen-0.1.pc
+PKGCONFIG_OVERRIDE+=	libepubgen.pc.in
 
 .include "../../converters/librevenge/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"

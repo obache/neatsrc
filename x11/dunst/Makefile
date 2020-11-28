@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.17 2019/07/24 17:25:35 nia Exp $
+# $NetBSD: Makefile,v 1.21 2020/08/17 20:20:24 leot Exp $
 
-DISTNAME=	dunst-1.4.1
+DISTNAME=	dunst-1.5.0
+PKGREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=dunst-project/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -30,6 +31,7 @@ INSTALLATION_DIRS+=	share/dunst
 .include "../../devel/pango/buildlink3.mk"
 .include "../../graphics/gdk-pixbuf2/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"
+.include "../../sysutils/libnotify/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXScrnSaver/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"

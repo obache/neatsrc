@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2019/07/04 07:44:52 adam Exp $
+# $NetBSD: Makefile,v 1.4 2020/04/08 09:42:05 adam Exp $
 
 .include "../../net/freeradius/Makefile.module"
 

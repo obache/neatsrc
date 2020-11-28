@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.12 2016/10/03 07:19:32 spz Exp $
+# $NetBSD: Makefile,v 1.14 2020/03/08 16:48:50 wiz Exp $
 #
 
 DISTNAME=	sound-theme-freedesktop-0.8
+PKGREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://cgit.freedesktop.org/sound-theme-freedesktop/snapshot/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.freedesktop.org/wiki/Specifications/sound-theme-spec
+HOMEPAGE=	https://www.freedesktop.org/wiki/Specifications/sound-theme-spec
 COMMENT=	Set of audio files for FreeDesktop
 #LICENSE=	# See -> grep License CREDITS
 

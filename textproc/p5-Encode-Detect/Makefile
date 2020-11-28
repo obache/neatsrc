@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.20 2019/08/11 13:23:28 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2020/08/31 18:11:46 wiz Exp $
 #
 
 DISTNAME=		Encode-Detect-1.01
 PKGNAME=		p5-${DISTNAME}
-PKGREVISION=		11
+PKGREVISION=		12
 CATEGORIES=		textproc perl5
 MASTER_SITES=		${MASTER_SITE_PERL_CPAN:=Encode/}
 
@@ -18,6 +18,16 @@ USE_LANGUAGES+=		c c++
 
 PERL5_PACKLIST=		auto/Encode/Detect/.packlist
 PERL5_MODULE_TYPE=	Module::Build
+
+# https://rt.cpan.org/Public/Bug/Display.html?id=132207
+SUBST_CLASSES+=		char
+SUBST_STAGE.char=	pre-configure
+SUBST_MESSAGE.char=	Fixing 'char array subscript' errors.
+SUBST_FILES.char=	src/JpCntx.* src/nsSBCharSetProber.h src/Lang*Model.cpp
+SUBST_SED.char=		-e 's,^extern \(char jp2CharContext\),extern unsigned \1,'
+SUBST_SED.char+=	-e 's,^char jp2CharContext,unsigned &,'
+SUBST_SED.char+=	-e 's,^  char \*precedenceMatrix,  unsigned &,'
+SUBST_SED.char+=	-e 's,^char [[:alnum:]]*LangModel,unsigned &,'
 
 .include "../../lang/perl5/module.mk"
 .include "../../mk/bsd.pkg.mk"

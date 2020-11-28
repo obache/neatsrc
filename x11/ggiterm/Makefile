@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2015/08/17 17:11:31 wiz Exp $
+# $NetBSD: Makefile,v 1.15 2020/05/04 15:02:58 nia Exp $
 #
 
 DISTNAME=		ggiterm-0.7.1
@@ -14,6 +14,8 @@ USE_PKGLOCALEDIR=	yes
 GNU_CONFIGURE=		yes
 
 PTHREAD_AUTO_VARS=	yes
+
+CONFIGURE_ARGS+=	--disable-freetypetest
 
 INSTALLATION_DIRS=	share/doc/ggiterm
 

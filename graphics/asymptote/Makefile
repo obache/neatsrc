@@ -1,27 +1,29 @@
-# $NetBSD: Makefile,v 1.31 2019/11/02 22:37:53 rillig Exp $
+# $NetBSD: Makefile,v 1.40 2020/09/24 13:25:09 mef Exp $
 
 DISTNAME=	asymptote-2.41
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=asymptote/}
 EXTRACT_SUFX=	.tgz
 DISTFILES=	${DISTNAME}.src${EXTRACT_SUFX}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://asymptote.sourceforge.net/
+HOMEPAGE=	https://asymptote.sourceforge.io/
 COMMENT=	Powerful descriptive vector graphics language for technical drawings
 LICENSE=	gnu-gpl-v3 AND gnu-lgpl-v3
 
-BUILD_DEPENDS+=	dvipsk-[0-9]*:../../print/dvipsk
-BUILD_DEPENDS+=	makeindexk-[0-9]*:../../textproc/makeindexk
-BUILD_DEPENDS+=	tex-latex-bin-[0-9]*:../../print/tex-latex-bin
-BUILD_DEPENDS+=	tex-ec-[0-9]*:../../fonts/tex-ec
-BUILD_DEPENDS+=	tex-epsf-[0-9]*:../../print/tex-epsf
-BUILD_DEPENDS+=	tex-pdftex-[0-9]*:../../print/tex-pdftex
-BUILD_DEPENDS+=	tex-parskip-[0-9]*:../../print/tex-parskip
-BUILD_DEPENDS+=	tex-texinfo-[0-9]*:../../print/tex-texinfo
-BUILD_DEPENDS+=	tex-tools-[0-9]*:../../print/tex-tools
-BUILD_DEPENDS+=	ghostscript-agpl>=9.16:../../print/ghostscript-agpl
+TOOL_DEPENDS+=	dvipsk-[0-9]*:../../print/dvipsk
+TOOL_DEPENDS+=	makeindexk-[0-9]*:../../textproc/makeindexk
+TOOL_DEPENDS+=	tex-latex-bin-[0-9]*:../../print/tex-latex-bin
+TOOL_DEPENDS+=	tex-ec-[0-9]*:../../fonts/tex-ec
+TOOL_DEPENDS+=	tex-epsf-[0-9]*:../../print/tex-epsf
+TOOL_DEPENDS+=	tex-etoolbox-[0-9]*:../../devel/tex-etoolbox
+TOOL_DEPENDS+=	tex-kvsetkeys-[0-9]*:../../print/tex-kvsetkeys
+TOOL_DEPENDS+=	tex-pdftex-[0-9]*:../../print/tex-pdftex
+TOOL_DEPENDS+=	tex-parskip-[0-9]*:../../print/tex-parskip
+TOOL_DEPENDS+=	tex-texinfo-[0-9]*:../../print/tex-texinfo
+TOOL_DEPENDS+=	tex-tools-[0-9]*:../../print/tex-tools
+TOOL_DEPENDS+=	ghostscript-agpl>=9.16:../../print/ghostscript-agpl
 DEPENDS+=	tex-geometry-[0-9]*:../../print/tex-geometry
 
 UNLIMIT_RESOURCES=	datasize
@@ -29,7 +31,7 @@ MAKE_JOBS_SAFE=		no # random failure during build as of 2.38
 
 GNU_CONFIGURE=		yes
 INFO_FILES=		yes
-USE_LANGUAGES=		c c++
+USE_LANGUAGES=		c c++03
 
 CONFIGURE_ARGS+=	--enable-gc=system
 CONFIGURE_ARGS+=	--infodir=${PREFIX}/info
@@ -45,8 +47,21 @@ SUBST_MESSAGE.python=	Fixing path to python interpreter.
 SUBST_SED.python+=	-e "s|/usr/bin/env python|${PYTHONBIN:Q}|g"
 
 # DragonFly has stripped makeinfo in the base - without texi2dvi.
-OPSYSVARS+=			BUILD_DEPENDS
-BUILD_DEPENDS.DragonFly+=	gtexinfo-[0-9]*:../../devel/gtexinfo
+OPSYSVARS+=			TOOL_DEPENDS
+TOOL_DEPENDS.DragonFly+=	gtexinfo-[0-9]*:../../devel/gtexinfo
+
+#
+# Ghostscript running in a pipe fails with:
+#
+# ../asy -dir ../base -config "" -render=0 -f pdf -noprc helix.asy
+# GPL Ghostscript 9.53.0:
+#   *** EPS files may not contain multiple pages.
+#   *** Use of the %d filename format is required to output pages to multiple EPS files.
+# GPL Ghostscript 9.53.0: Unrecoverable error, exit code 1
+#
+# leaving asy hanging indefinitely.
+#
+NOT_FOR_BULK_PLATFORM+=	SunOS-* NetBSD-*
 
 post-install:
 	${MV} ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/xasy.1x \

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.29 2019/08/22 12:22:59 ryoon Exp $
+# $NetBSD: Makefile,v 1.38 2020/08/31 18:07:15 wiz Exp $
 
 PKGNAME=		${DISTNAME:S/sqlrelay/sqlrelay-sqlite/}
-PKGREVISION=		16
+PKGREVISION=		24
 COMMENT=		SQLite support for SQL Relay
 
 .include "../../databases/sqlrelay/Makefile.common"
@@ -13,6 +13,7 @@ CONFIGURE_ARGS+=	--disable-postgresql
 CONFIGURE_ARGS+=	--disable-mysql
 CONFIGURE_ARGS+=	--disable-freetds
 CONFIGURE_ARGS+=	--disable-odbc
+CONFIGURE_ARGS+=	--disable-perl
 
 BUILD_DIRS=		src/connections
 

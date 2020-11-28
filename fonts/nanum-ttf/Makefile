@@ -1,20 +1,19 @@
-# $NetBSD: Makefile,v 1.4 2014/06/01 16:35:36 wiz Exp $
+# $NetBSD: Makefile,v 1.6 2020/07/13 16:59:59 minskim Exp $
 
-DISTNAME=	NanumFont_TTF_ALL
-PKGNAME=	nanum-ttf-3.0
-PKGREVISION=	1
+DISTNAME=	fonts-nanum_${PKGVERSION_NOREV}.orig
+PKGNAME=	nanum-ttf-20200506
 CATEGORIES=	fonts
-MASTER_SITES=	http://cdn.naver.com/naver/NanumFont/fontfiles/
-EXTRACT_SUFX=	.zip
+MASTER_SITES=	${MASTER_SITE_DEBIAN:=pool/main/f/fonts-nanum/}
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://hangeul.naver.com/
+HOMEPAGE=	https://hangeul.naver.com/
 COMMENT=	Korean fonts distributed by Naver
 LICENSE=	ofl-v1.1
 
 NO_CONFIGURE=	yes
 NO_BUILD=	yes
-WRKSRC=		${WRKDIR}
+WRKSRC=		${WRKDIR}/fonts-nanum-${PKGVERSION_NOREV}
 
 FONTS_DIRS.ttf=	${PREFIX}/share/fonts/X11/TTF
 

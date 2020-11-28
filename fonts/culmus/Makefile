@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2019/04/04 07:34:59 maya Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/22 09:50:44 nia Exp $
 
-DISTNAME=	culmus-0.132
+DISTNAME=	culmus-0.133
 CATEGORIES=	fonts
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=culmus/}
 

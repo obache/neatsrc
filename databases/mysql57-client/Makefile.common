@@ -1,9 +1,9 @@
-# $NetBSD: Makefile.common,v 1.21 2019/10/14 20:19:29 adam Exp $
+# $NetBSD: Makefile.common,v 1.29 2020/10/21 13:34:50 adam Exp $
 #
 # used by databases/mysql57-client/Makefile
 # used by databases/mysql57-server/Makefile
 
-DISTNAME=	mysql-5.7.28
+DISTNAME=	mysql-5.7.32
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL:=MySQL-5.7/}
 
@@ -45,32 +45,33 @@ CFLAGS.IRIX+=		-DIRIX5 -DNEEDS_BSTRING_H
 BUILD_DEFS+=		VARBASE
 
 # paths
-CMAKE_ARGS+=		-DINSTALL_DOCDIR="share/doc/mysql"
-CMAKE_ARGS+=		-DINSTALL_DOCREADMEDIR="share/doc/mysql"
-CMAKE_ARGS+=		-DINSTALL_INCLUDEDIR="include/mysql"
-CMAKE_ARGS+=		-DINSTALL_MANDIR="${PKGMANDIR}"
-CMAKE_ARGS+=		-DINSTALL_MYSQLSHAREDIR="share/mysql"
-CMAKE_ARGS+=		-DINSTALL_MYSQLTESTDIR="share/mysql/test"
-CMAKE_ARGS+=		-DINSTALL_PLUGINDIR="lib/mysql/plugin"
-CMAKE_ARGS+=		-DINSTALL_SBINDIR="sbin"
-CMAKE_ARGS+=		-DINSTALL_SCRIPTDIR="bin"
-CMAKE_ARGS+=		-DINSTALL_SQLBENCHDIR="share/mysql/sql-bench"
-CMAKE_ARGS+=		-DINSTALL_SUPPORTFILESDIR="share/mysql"
-CMAKE_ARGS+=		-DMYSQL_DATADIR=${MYSQL_DATADIR}
+CMAKE_ARGS+=	-DINSTALL_DOCDIR="share/doc/mysql"
+CMAKE_ARGS+=	-DINSTALL_DOCREADMEDIR="share/doc/mysql"
+CMAKE_ARGS+=	-DINSTALL_INCLUDEDIR="include/mysql"
+CMAKE_ARGS+=	-DINSTALL_MANDIR="${PKGMANDIR}"
+CMAKE_ARGS+=	-DINSTALL_MYSQLSHAREDIR="share/mysql"
+CMAKE_ARGS+=	-DINSTALL_MYSQLTESTDIR="share/mysql/test"
+CMAKE_ARGS+=	-DINSTALL_PLUGINDIR="lib/mysql/plugin"
+CMAKE_ARGS+=	-DINSTALL_SBINDIR="sbin"
+CMAKE_ARGS+=	-DINSTALL_SCRIPTDIR="bin"
+CMAKE_ARGS+=	-DINSTALL_SQLBENCHDIR="share/mysql/sql-bench"
+CMAKE_ARGS+=	-DINSTALL_SUPPORTFILESDIR="share/mysql"
+CMAKE_ARGS+=	-DMYSQL_DATADIR=${MYSQL_DATADIR}
 
-CMAKE_ARGS+=		-DCMAKE_BUILD_TYPE=Release
+CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
 
-CMAKE_ARGS+=		-DWITH_BOOST="system"
-CMAKE_ARGS+=		-DWITH_LZ4="system"
-CMAKE_ARGS+=		-DWITH_SSL="system"
-CMAKE_ARGS+=		-DOPENSSL_ROOT_DIR:PATH=${SSLBASE}
-CMAKE_ARGS+=		-DWITH_ZLIB="system"
-CMAKE_ARGS+=		-DZLIB_ROOT:PATH=${BUILDLINK_PREFIX.zlib}
-CMAKE_ARGS+=		-DDEFAULT_CHARSET=${MYSQL_CHARSET}
-CMAKE_ARGS+=		-DDEFAULT_COLLATION=${MYSQL_COLLATION}
-CMAKE_ARGS+=		-DWITH_EXTRA_CHARSETS=${MYSQL_EXTRA_CHARSET}
+CMAKE_ARGS+=	-DWITH_BOOST="system"
+CMAKE_ARGS+=	-DWITH_EDITLINE="system"
+CMAKE_ARGS+=	-DEDITLINE_INCLUDE_DIR=${BUILDLINK_PREFIX.editline:Q}/${BUILDLINK_INCDIRS.editline}
+CMAKE_ARGS+=	-DWITH_LIBEVENT="system"
+CMAKE_ARGS+=	-DWITH_LZ4="system"
+CMAKE_ARGS+=	-DWITH_SSL="system"
+CMAKE_ARGS+=	-DWITH_ZLIB="system"
+CMAKE_ARGS+=	-DDEFAULT_CHARSET=${MYSQL_CHARSET}
+CMAKE_ARGS+=	-DDEFAULT_COLLATION=${MYSQL_COLLATION}
+CMAKE_ARGS+=	-DWITH_EXTRA_CHARSETS=${MYSQL_EXTRA_CHARSET}
 
-CMAKE_ARGS+=		-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=True
+CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=True
 
 # we need atomic builtins
 .if ${OPSYS} == "NetBSD" && ${MACHINE_ARCH} == "i386"
@@ -111,11 +112,14 @@ SUBST_SED.scr=		-e "s,chown,${CHOWN},g"
 SUBST_SED.scr+=		-e "s,/bin/sh,${RCD_SCRIPTS_SHELL},g"
 SUBST_SED.scr+=		-e "s,@SHELL_PATH@,${RCD_SCRIPTS_SHELL},g"
 SUBST_MESSAGE.scr=	Fixing scripts.
+SUBST_NOOP_OK.scr=	yes # since RCD_SCRIPTS_SHELL may be /bin/sh
 
 SUBST_CLASSES+=		addrpath
 SUBST_STAGE.addrpath=	pre-configure
 SUBST_FILES.addrpath+=	scripts/CMakeLists.txt
 SUBST_VARS.addrpath=	COMPILER_RPATH_FLAG
+
+CHECK_PORTABILITY_SKIP+=	packaging/deb-in/mysql-packagesource-server.config.in
 
 .include "../../mk/readline.buildlink3.mk"
 .if ${READLINE_TYPE} == "readline"
@@ -124,8 +128,9 @@ CMAKE_ARGS+=		-DWITH_READLINE="system"
 CMAKE_ARGS+=		-DWITH_EDITLINE="system"
 .endif
 
-.include "../../mk/curses.buildlink3.mk"
 .include "../../archivers/lz4/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
+.include "../../devel/libevent/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
+.include "../../mk/curses.buildlink3.mk"

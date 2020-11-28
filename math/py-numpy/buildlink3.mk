@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.4 2014/02/28 09:43:10 adam Exp $
+# $NetBSD: buildlink3.mk,v 1.7 2020/10/13 17:32:16 wiz Exp $
 
 BUILDLINK_TREE+=	py-numpy
 
@@ -8,15 +8,20 @@ PY_NUMPY_BUILDLINK3_MK:=
 .include "../../lang/python/pyversion.mk"
 
 BUILDLINK_API_DEPENDS.py-numpy+=	${PYPKGPREFIX}-numpy>=1.0
+.if ${_PYTHON_VERSION} == 27
+BUILDLINK_ABI_DEPENDS.py-numpy?=	${PYPKGPREFIX}-numpy>=1.16.6nb1
+BUILDLINK_PKGSRCDIR.py-numpy?=		../../math/py-numpy16
+.else
+BUILDLINK_ABI_DEPENDS.py-numpy?=	${PYPKGPREFIX}-numpy>=1.19.2nb1
 BUILDLINK_PKGSRCDIR.py-numpy?=		../../math/py-numpy
+.endif
 BUILDLINK_INCDIRS.py-numpy=		${PYSITELIB}/numpy/core/include
 BUILDLINK_LIBDIRS.py-numpy=		${PYSITELIB}/numpy/core/lib
 
 .include "../../mk/bsd.fast.prefs.mk"
 
 .if ${OPSYS} != "Darwin"
-.include "../../math/blas/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .endif
 .endif # PY_NUMPY_BUILDLINK3_MK
 

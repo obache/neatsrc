@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.12 2017/08/27 09:13:16 adam Exp $
+# $NetBSD: Makefile,v 1.14 2020/01/18 23:30:41 rillig Exp $
 
-DISTNAME=	snappy-1.1.7
+DISTNAME=	snappy-1.1.8
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=google/}
 
 MAINTAINER=	agc@NetBSD.org
-HOMEPAGE=	http://google.github.io/snappy/
+HOMEPAGE=	https://google.github.io/snappy/
 COMMENT=	General purpose data compression library
 LICENSE=	apache-2.0
 
@@ -13,6 +13,8 @@ GITHUB_TAG=	${PKGVERSION_NOREV}
 
 USE_CMAKE=		yes
 USE_LANGUAGES=		c c++
+TEST_TARGET=		test
+TEST_ENV+=		LD_LIBRARY_PATH=${WRKSRC}
 
 CMAKE_ARGS+=	-DBUILD_SHARED_LIBS=ON
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2017/01/04 14:06:10 roy Exp $
+# $NetBSD: Makefile,v 1.8 2020/03/20 11:58:30 nia Exp $
 #
 
 DISTNAME=	xml-coreutils-0.8a

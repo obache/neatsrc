@@ -1,23 +1,16 @@
-# $NetBSD: options.mk,v 1.21 2020/01/07 15:41:22 wiz Exp $
+# $NetBSD: options.mk,v 1.24 2020/09/03 15:26:22 ryoon Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.thunderbird
 
-PKG_SUPPORTED_OPTIONS=	alsa dbus debug mozilla-jemalloc gnome \
-			official-mozilla-branding oss pulseaudio \
-			mozilla-lightning wayland
-PKG_SUGGESTED_OPTIONS+=	mozilla-lightning
+PKG_SUPPORTED_OPTIONS=	alsa dbus debug mozilla-jemalloc \
+			official-mozilla-branding pulseaudio
 
-PLIST_VARS+=		branding nobranding debug gnome jemalloc
-
-.include "../../devel/wayland/platform.mk"
-.if ${PLATFORM_SUPPORTS_WAYLAND} == "yes"
-PKG_SUGGESTED_OPTIONS+=	wayland
-.endif
+PLIST_VARS+=		branding nobranding debug jemalloc
 
 .if ${OPSYS} == "Linux"
-PKG_SUGGESTED_OPTIONS+=	pulseaudio mozilla-jemalloc dbus
+PKG_SUGGESTED_OPTIONS+=	alsa pulseaudio mozilla-jemalloc dbus
 .else
-PKG_SUGGESTED_OPTIONS+=	oss dbus
+PKG_SUGGESTED_OPTIONS+=	dbus
 .endif
 
 .include "../../mk/bsd.options.mk"
@@ -27,11 +20,6 @@ CONFIGURE_ARGS+=	--enable-alsa
 .include "../../audio/alsa-lib/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-alsa
-.endif
-
-.if !empty(PKG_OPTIONS:Moss)
-CONFIGURE_ARGS+=	--with-oss
-.include "../../mk/oss.buildlink3.mk"
 .endif
 
 .if !empty(PKG_OPTIONS:Mmozilla-jemalloc)
@@ -59,14 +47,6 @@ CONFIGURE_ARGS+=	--enable-pulseaudio
 CONFIGURE_ARGS+=	--disable-pulseaudio
 .endif
 
-.if !empty(PKG_OPTIONS:Mmozilla-lightning)
-CONFIGURE_ARGS+=	--enable-calendar
-PLIST_SRC+=		PLIST.lightning
-XPI_FILES+=		${WRKSRC}/${OBJDIR}/bin/distribution/extensions/lightning.xpi
-.else
-CONFIGURE_ARGS+=	--disable-calendar
-.endif
-
 .if !empty(PKG_OPTIONS:Mdbus)
 .include "../../sysutils/dbus-glib/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-dbus
@@ -84,10 +64,4 @@ NO_BIN_ON_FTP=		${RESTRICTED}
 .else
 CONFIGURE_ARGS+=	--disable-official-branding
 PLIST.nobranding=	yes
-.endif
-
-PLIST_VARS+=		wayland
-.if !empty(PKG_OPTIONS:Mwayland)
-# \todo Instead of using an option, determine if gtk3 was built with wayland.
-PLIST.wayland=		yes
 .endif

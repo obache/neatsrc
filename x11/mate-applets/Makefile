@@ -1,9 +1,11 @@
-# $NetBSD: Makefile,v 1.29 2019/12/30 22:36:19 gutteridge Exp $
+# $NetBSD: Makefile,v 1.36 2020/08/24 04:41:42 gutteridge Exp $
 
 PYTHON_VERSIONS_ACCEPTED=	27
+
+PKGREVISION= 4
 .include "../../meta-pkgs/mate/Makefile.common"
 
-DISTNAME=	mate-applets-${VERSION:R}.2
+DISTNAME=	mate-applets-${VERSION}
 CATEGORIES=	x11
 
 COMMENT=	MATE panel applets

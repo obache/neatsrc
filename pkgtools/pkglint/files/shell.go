@@ -57,10 +57,8 @@ func (scc *SimpleCommandChecker) checkCommandStart() {
 		break
 	case hasPrefix(shellword, "./"): // All commands from the current directory are fine.
 		break
-	case matches(shellword, `\$\{(PKGSRCDIR|PREFIX)(:Q)?\}`):
-		break
 	default:
-		if G.Opts.WarnExtra && !scc.mklines.indentation.DependsOn("OPSYS") {
+		if G.WarnExtra && !scc.mklines.indentation.DependsOn("OPSYS") {
 			scc.mkline.Warnf("Unknown shell command %q.", shellword)
 			scc.mkline.Explain(
 				"To make the package portable to all platforms that pkgsrc supports,",
@@ -168,7 +166,8 @@ func (scc *SimpleCommandChecker) handleCommandVariable() bool {
 
 	varname := varuse.varname
 
-	if vartype := G.Pkgsrc.VariableType(scc.mklines, varname); vartype != nil && vartype.basicType.name == "ShellCommand" {
+	vartype := G.Pkgsrc.VariableType(scc.mklines, varname)
+	if vartype != nil && (vartype.basicType == BtShellCommand || vartype.basicType == BtPathname) {
 		scc.checkInstallCommand(shellword)
 		return true
 	}
@@ -279,7 +278,7 @@ func (scc *SimpleCommandChecker) checkAutoMkdirs() {
 		autoMkdirs := false
 		if scc.mklines.pkg != nil {
 			plistLine := scc.mklines.pkg.Plist.Dirs[prefixRel]
-			if plistLine != nil && !containsVarUse(plistLine.Text) {
+			if plistLine != nil && !containsVarUse(plistLine.Line.Text) {
 				autoMkdirs = true
 			}
 		}
@@ -396,60 +395,6 @@ type ShellLineChecker struct {
 	// checkVarUse is set to false when checking a single shell word
 	// in order to skip duplicate warnings in variable assignments.
 	checkVarUse bool
-}
-
-func (ck *ShellLineChecker) checkConditionalCd(list *MkShList) {
-	if trace.Tracing {
-		defer trace.Call0()()
-	}
-
-	getSimple := func(list *MkShList) *MkShSimpleCommand {
-		if len(list.AndOrs) == 1 {
-			if len(list.AndOrs[0].Pipes) == 1 {
-				if len(list.AndOrs[0].Pipes[0].Cmds) == 1 {
-					return list.AndOrs[0].Pipes[0].Cmds[0].Simple
-				}
-			}
-		}
-		return nil
-	}
-
-	checkConditionalCd := func(cmd *MkShSimpleCommand) {
-		if NewStrCommand(cmd).Name == "cd" {
-			ck.Errorf("The Solaris /bin/sh cannot handle \"cd\" inside conditionals.")
-			ck.Explain(
-				"When the Solaris shell is in \"set -e\" mode and \"cd\" fails, the",
-				"shell will exit, no matter if it is protected by an \"if\" or the",
-				"\"||\" operator.")
-		}
-	}
-
-	// TODO: It might be worth reversing the logic, like this:
-	//  walker.Callback.Simple = { if inside if.cond || loop.cond { ... } }
-	walker := NewMkShWalker()
-	walker.Callback.If = func(ifClause *MkShIf) {
-		for _, cond := range ifClause.Conds {
-			if simple := getSimple(cond); simple != nil {
-				checkConditionalCd(simple)
-			}
-		}
-	}
-	walker.Callback.Loop = func(loop *MkShLoop) {
-		if simple := getSimple(loop.Cond); simple != nil {
-			checkConditionalCd(simple)
-		}
-	}
-	walker.Callback.Pipeline = func(pipeline *MkShPipeline) {
-		if pipeline.Negated {
-			ck.Warnf("The Solaris /bin/sh does not support negation of shell commands.")
-			ck.Explain(
-				"The GNU Autoconf manual has many more details of what shell",
-				"features to avoid for portable programs.",
-				"It can be read at:",
-				"https://www.gnu.org/software/autoconf/manual/autoconf.html#Limitations-of-Builtins")
-		}
-	}
-	walker.Walk(list)
 }
 
 func (ck *ShellLineChecker) checkSetE(list *MkShList, index int) {
@@ -577,7 +522,7 @@ func (ck *ShellLineChecker) checkPipeExitcode(pipeline *MkShPipeline) {
 		return false, ""
 	}
 
-	if G.Opts.WarnExtra && len(pipeline.Cmds) > 1 {
+	if G.WarnExtra && len(pipeline.Cmds) > 1 {
 		if canFail, cmd := canFail(); canFail {
 			if cmd != "" {
 				ck.Warnf("The exitcode of %q at the left of the | operator is ignored.", cmd)
@@ -658,6 +603,8 @@ func (ck *ShellLineChecker) CheckShellCommandLine(shelltext string) {
 			line.Errorf("Use of _PKG_SILENT and _PKG_DEBUG is obsolete. Use ${RUN} instead.")
 		}
 	}
+	lexer.SkipHspace()
+	lexer.SkipString("${_ULIMIT_CMD}") // It brings its own semicolon, just like ${RUN}.
 
 	ck.CheckShellCommand(lexer.Rest(), &setE, RunTime)
 	ck.checkMultiLineComment()
@@ -732,8 +679,6 @@ func (ck *ShellLineChecker) CheckShellCommand(shellcmd string, pSetE *bool, time
 		return
 	}
 
-	ck.checkConditionalCd(program)
-
 	walker := NewMkShWalker()
 	walker.Callback.SimpleCommand = func(command *MkShSimpleCommand) {
 		scc := NewSimpleCommandChecker(command, time, ck.mkline, ck.MkLines)
@@ -744,7 +689,7 @@ func (ck *ShellLineChecker) CheckShellCommand(shellcmd string, pSetE *bool, time
 		}
 	}
 	walker.Callback.AndOr = func(andor *MkShAndOr) {
-		if G.Opts.WarnExtra && !*pSetE && walker.Current().Index != 0 {
+		if G.WarnExtra && !*pSetE && walker.Current().Index != 0 {
 			ck.checkSetE(walker.Parent(1).(*MkShList), walker.Current().Index)
 		}
 	}
@@ -827,11 +772,6 @@ outer:
 				ck.checkShVarUsePlain(atom, checkQuoting)
 
 			case atom.Type == shtSubshell:
-				ck.Warnf("Invoking subshells via $(...) is not portable enough.")
-				ck.Explain(
-					"The Solaris /bin/sh does not know this way to execute a command in a subshell.",
-					"Please use backticks (`...`) as a replacement.")
-
 				// Early return to avoid further parse errors.
 				// As of December 2018, it might be worth continuing again since the
 				// shell parser has improved in 2018.
@@ -922,7 +862,7 @@ func (ck *ShellLineChecker) checkShVarUsePlain(atom *ShAtom, checkQuoting bool) 
 	if shVarname == "@" {
 		ck.Warnf("The $@ shell variable should only be used in double quotes.")
 
-	} else if G.Opts.WarnQuoting && checkQuoting && ck.variableNeedsQuoting(shVarname) {
+	} else if G.WarnQuoting && checkQuoting && ck.variableNeedsQuoting(shVarname) {
 		ck.Warnf("Unquoted shell variable %q.", shVarname)
 		ck.Explain(
 			"When a shell variable contains whitespace, it is expanded (split into multiple words)",
@@ -1022,8 +962,8 @@ func (ck *ShellLineChecker) checkMultiLineComment() {
 		return
 	}
 
-	for _, line := range mkline.raw[:len(mkline.raw)-1] {
-		text := strings.TrimSuffix(line.Text(), "\\")
+	for rawIndex, rawLine := range mkline.raw[:len(mkline.raw)-1] {
+		text := strings.TrimSuffix(mkline.RawText(rawIndex), "\\")
 		tokens, rest := splitIntoShellTokens(nil, text)
 		if rest != "" {
 			return
@@ -1031,18 +971,23 @@ func (ck *ShellLineChecker) checkMultiLineComment() {
 
 		for _, token := range tokens {
 			if hasPrefix(token, "#") {
-				ck.warnMultiLineComment(line)
+				ck.warnMultiLineComment(rawIndex, rawLine)
 				return
 			}
 		}
 	}
 }
 
-func (ck *ShellLineChecker) warnMultiLineComment(raw *RawLine) {
-	line := NewLine(ck.mkline.Filename, raw.Lineno, raw.Text(), raw)
+func (ck *ShellLineChecker) warnMultiLineComment(rawIndex int, raw *RawLine) {
+	line := ck.mkline.Line
+	singleLine := NewLine(
+		line.Filename(),
+		line.Location.Lineno(rawIndex),
+		line.RawText(rawIndex),
+		raw)
 
-	line.Warnf("The shell comment does not stop at the end of this line.")
-	line.Explain(
+	singleLine.Warnf("The shell comment does not stop at the end of this line.")
+	singleLine.Explain(
 		"When a shell command is spread out on multiple lines that are",
 		"continued with a backslash, they will nevertheless be converted to",
 		"a single line before the shell sees them.",
@@ -1062,10 +1007,6 @@ func (ck *ShellLineChecker) warnMultiLineComment(raw *RawLine) {
 		"variable with the empty name, which is guaranteed to be undefined:",
 		"",
 		"\t${:D this is commented out}")
-}
-
-func (ck *ShellLineChecker) Errorf(format string, args ...interface{}) {
-	ck.mkline.Errorf(format, args...)
 }
 
 func (ck *ShellLineChecker) Warnf(format string, args ...interface{}) {

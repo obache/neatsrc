@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.69 2019/06/28 19:11:11 schmonz Exp $
+# $NetBSD: Makefile,v 1.73 2020/10/08 19:18:26 schmonz Exp $
 
 DISTNAME=		djbdns-1.05
-PKGREVISION=		14
+PKGREVISION=		15
 CATEGORIES=		net
 MASTER_SITES=		http://cr.yp.to/djbdns/
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX} ${MANPAGES}
 
 MAINTAINER=		schmonz@NetBSD.org
-HOMEPAGE=		http://cr.yp.to/djbdns.html
+HOMEPAGE=		https://cr.yp.to/djbdns.html
 COMMENT=		Collection of secure and reliable DNS tools
 LICENSE=		public-domain
 
@@ -17,6 +17,8 @@ SITES.${MANPAGES}=	http://smarden.org/pape/djb/manpages/
 CONFLICTS+=		djbdnscurve6-[0-9]*
 
 DJB_RESTRICTED=		no
+
+SUBST_CLASSES+=		djberrno
 
 SUBST_CLASSES+=		etc
 SUBST_STAGE.etc=	do-configure
@@ -31,6 +33,8 @@ CONF_FILES+=		${EGDIR}/dnsroots.global ${PKG_SYSCONFDIR}/dnsroots.global
 BUILD_DEFS+=		PKG_SYSCONFBASE
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1 ${PKGMANDIR}/man5 ${PKGMANDIR}/man8 share/examples/${PKGBASE}
+
+.include "options.mk"
 
 post-install:
 	cd ${WRKDIR}/${PKGBASE}-man; for i in 1 5 8; do		 	\

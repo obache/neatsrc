@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.14 2019/11/21 06:35:44 markd Exp $
+$NetBSD: distinfo,v 1.16 2020/06/09 11:56:16 markd Exp $
 
-SHA1 (rocs-19.08.3.tar.xz) = dc1266a860e54795a6ccf071a282fb368fb11043
-RMD160 (rocs-19.08.3.tar.xz) = 495a223e373871013960fe03f5c56400b9709dc5
-SHA512 (rocs-19.08.3.tar.xz) = be33c38d698ee71ca3fd629c96dabd60cf47ac684021a6b8a60ded856476093c0cb09a7b75252b17457abe5430439cf19d81ef108f7d18ae4782e0d6c0c20d7b
-Size (rocs-19.08.3.tar.xz) = 1518032 bytes
+SHA1 (rocs-20.04.1.tar.xz) = 7cf556ff9143bb7c0865cadcb11bacf08791918f
+RMD160 (rocs-20.04.1.tar.xz) = 7785b1db9f6905a80a5271dbce9d0ee158cdbc4e
+SHA512 (rocs-20.04.1.tar.xz) = c639800a4ecd8c0c1ee1ef7e764c30853db97572cda70c68ab519157e8a30de2b2933fb3c6cd2f6a30c984dd64391b2969072cde34b4a5daa365e073906799e5
+Size (rocs-20.04.1.tar.xz) = 1507368 bytes

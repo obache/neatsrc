@@ -1,30 +1,33 @@
-# $NetBSD: Makefile,v 1.45 2020/01/02 10:24:57 adam Exp $
+# $NetBSD: Makefile,v 1.55 2020/09/08 17:38:42 adam Exp $
 
-DISTNAME=	ipython-7.11.1
+DISTNAME=	ipython-7.18.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=i/ipython/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ipython.org/
+HOMEPAGE=	https://ipython.org/
 COMMENT=	Interactive computing environment for Python
 LICENSE=	modified-bsd
 
 DEPENDS+=	${PYPKGPREFIX}-backcall-[0-9]*:../../devel/py-backcall
 DEPENDS+=	${PYPKGPREFIX}-decorator-[0-9]*:../../devel/py-decorator
-DEPENDS+=	${PYPKGPREFIX}-jedi>=0.10:../../editors/py-jedi
+DEPENDS+=	${PYPKGPREFIX}-jedi>=0.16:../../editors/py-jedi
 DEPENDS+=	${PYPKGPREFIX}-pexpect-[0-9]*:../../devel/py-pexpect
 DEPENDS+=	${PYPKGPREFIX}-pickleshare-[0-9]*:../../databases/py-pickleshare
-DEPENDS+=	${PYPKGPREFIX}-prompt_toolkit>=2.0.0:../../devel/py-prompt_toolkit2
+DEPENDS+=	${PYPKGPREFIX}-prompt_toolkit>=3.0.1:../../devel/py-prompt_toolkit2
 DEPENDS+=	${PYPKGPREFIX}-pygments-[0-9]*:../../textproc/py-pygments
-DEPENDS+=	${PYPKGPREFIX}-setuptools>=18.5:../../devel/py-setuptools
-DEPENDS+=	${PYPKGPREFIX}-simplegeneric>0.8:../../devel/py-simplegeneric
 DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
 DEPENDS+=	${PYPKGPREFIX}-traitlets>=4.2:../../devel/py-traitlets
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == Darwin
+DEPENDS+=	${PYPKGPREFIX}-appnope-[0-9]*:../../sysutils/py-appnope
+.endif
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27
+PYTHON_VERSIONS_INCOMPATIBLE=	27 36
+PYTHON_VERSIONED_DEPENDENCIES+=	setuptools
 
 post-install:
 	cd ${DESTDIR}${PREFIX} && \
@@ -34,4 +37,5 @@ post-install:
 	${MV} ${PKGMANDIR}/man1/ipython.1 ${PKGMANDIR}/man1/ipython-${PYVERSSUFFIX}.1 || ${TRUE}
 
 .include "../../lang/python/distutils.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

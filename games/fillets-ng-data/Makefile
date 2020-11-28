@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2019/09/07 14:49:58 nia Exp $
+# $NetBSD: Makefile,v 1.12 2020/03/20 11:57:41 nia Exp $
 #
 
 DISTNAME=	fillets-ng-data-1.0.1

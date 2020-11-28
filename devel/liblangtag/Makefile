@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.15 2019/11/03 10:39:17 rillig Exp $
+# $NetBSD: Makefile,v 1.17 2020/06/02 08:23:39 adam Exp $
 
 DISTNAME=	liblangtag-0.6.3
+PKGREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	https://bitbucket.org/tagoh/liblangtag/downloads/
 EXTRACT_SUFX=	.tar.bz2

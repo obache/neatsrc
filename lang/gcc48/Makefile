@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.43 2019/08/11 13:21:19 wiz Exp $
+# $NetBSD: Makefile,v 1.48 2020/10/23 00:45:47 gutteridge Exp $
 
 GCC_PKGNAME=	gcc48
 .include	"version.mk"
@@ -6,15 +6,15 @@ GCC_PKGNAME=	gcc48
 DISTNAME=	gcc-${GCC48_DIST_VERSION}
 PKGNAME=	${GCC_PKGNAME}-${GCC48_DIST_VERSION}
 ## When bumping the PKGREVISION of this package the PKGREVISION of
-## lang/gcc48-libs needs to be bump to be at least 1 more than the
+## lang/gcc48-libs needs to be bumped to be at least 1 more than the
 ## PKGREVISION of this package!
-PKGREVISION=	8
+PKGREVISION=	9
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GNU:=gcc/gcc-${GCC48_DIST_VERSION}/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://gcc.gnu.org/
+HOMEPAGE=	https://gcc.gnu.org/
 COMMENT=	The GNU Compiler Collection (GCC) - 4.8 Release Series
 LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND gnu-lgpl-v3
 
@@ -23,10 +23,13 @@ EXTRACT_ONLY=		${DEFAULT_DISTFILES}
 
 NOT_FOR_PLATFORM=	Interix-*-*
 
+CHECK_PORTABILITY_SKIP+=	contrib/* # not needed
+
 USE_LANGUAGES=		c c++03
 USE_TOOLS+=		gmake makeinfo sed:run
 USE_TOOLS.NetBSD+=	gsed
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_STRICT=	no # has sub-configures
 GCC_REQD+=		4.4
 ## Build outside ${WRKSRC}
 OBJDIR=			../build
@@ -138,6 +141,12 @@ BUILDLINK_DEPMETHOD.binutils=	full
 CONFIGURE_ARGS+=	--with-gnu-as --with-as=${PREFIX}/bin/gas
 .  endif
 .endif
+
+# libgfortran/runtime/environ.c:119:5: error: array subscript has type 'char'
+# See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=95177
+# See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=95178
+# Not worth fixing though since nobody cared between 2014 and 2020.
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
 
 pre-configure:
 .if ${OPSYS} == "OpenBSD"

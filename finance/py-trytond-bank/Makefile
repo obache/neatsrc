@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.9 2019/11/02 16:08:48 rillig Exp $
+# $NetBSD: Makefile,v 1.11 2020/03/13 20:20:49 wiz Exp $
 TRYTON_MODULE_NAME=	trytond_bank
 .include "../../devel/py-trytond/Makefile.common"
 CATEGORIES=	finance python
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tryton.org/
+HOMEPAGE=	https://www.tryton.org/
 COMMENT=	Bank module of the Tryton application platform
 LICENSE=	gnu-gpl-v3
 
@@ -16,7 +16,6 @@ DEPENDS+=	${PYPKGPREFIX}-trytond>=${TRYTON_BASEVER}:../../devel/py-trytond
 USE_LANGUAGES=	# none
 
 REPLACE_PYTHON+=		tests/test_bank.py
-PYTHON_VERSIONS_ACCEPTED=	27 # py-simplesoap via py-stdnum
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"

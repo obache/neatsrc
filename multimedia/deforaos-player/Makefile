@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.24 2020/01/11 08:30:38 khorben Exp $
+# $NetBSD: Makefile,v 1.29 2020/08/17 20:17:37 leot Exp $
 
 DISTNAME=	Player-0.2.0
 PKGNAME=	deforaos-player-0.2.0
+PKGREVISION=	3
 CATEGORIES=	multimedia
 MASTER_SITES=	https://ftp.defora.org/pub/DeforaOS/Apps/Desktop/src/Player/
 
@@ -18,6 +19,8 @@ BUILD_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 BUILD_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 
 DEPENDS+=	mpv-[0-9]*:../../multimedia/mpv
+
+CFLAGS+=	-fPIC
 
 MAKE_FLAGS+=	DESTDIR=${DESTDIR}
 MAKE_FLAGS+=	PREFIX=${PREFIX}
@@ -36,7 +39,6 @@ post-install:
 	${RMDIR} ${DESTDIR}${PREFIX}/share/man/man1
 	${RMDIR} ${DESTDIR}${PREFIX}/share/man
 .endif
-	cd ${DESTDIR}${PREFIX} && ${MV} share/doc/html/Player/* share/doc/deforaos-player/
 
 .include "options.mk"
 

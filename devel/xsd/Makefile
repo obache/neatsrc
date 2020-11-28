@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.34 2019/08/22 12:23:04 ryoon Exp $
+# $NetBSD: Makefile,v 1.38 2020/05/09 15:18:32 joerg Exp $
 
 DISTNAME=		xsd-3.2.0+dep
 EXTRACT_SUFX=		.tar.bz2
 PKGNAME=		xsd-3.2.0
-PKGREVISION=		22
+PKGREVISION=		24
 CATEGORIES=		devel textproc
 MASTER_SITES=		https://www.codesynthesis.com/download/xsd/3.2/
 
@@ -19,6 +19,10 @@ SUBST_CLASSES+=		rpath
 SUBST_STAGE.rpath=	post-configure
 SUBST_FILES.rpath=	*/*/*/configuration-dynamic.make
 SUBST_SED.rpath=	-e 's|cxx_rpath[ ]*:=[ ]*n|cxx_rpath := y|g'
+
+post-extract:
+	${RM} -f ${WRKSRC}/libcult-1.4.2/version ${WRKSRC}/libfrontend-elements-1.1.1/version
+	${RM} -f ${WRKSRC}/libxsd-frontend-1.15.0/version
 
 do-build:
 	# XXX: rpath needs a better hack. TODO: add optimization

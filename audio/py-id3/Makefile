@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2019/11/02 21:09:16 rillig Exp $
+# $NetBSD: Makefile,v 1.14 2020/01/26 05:26:13 rillig Exp $
 
 DISTNAME=	id3-py_1.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py_//}

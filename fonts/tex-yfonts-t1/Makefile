@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:32:33 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:56 markd Exp $
 
 DISTNAME=	yfonts-t1
 PKGNAME=	tex-${DISTNAME}-1.0
+PKGREVISION=	1
 TEXLIVE_REV=	36013
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/yfonts-t1
+HOMEPAGE=	https://ctan.org/pkg/yfonts-t1
 COMMENT=	Old German-style fonts, in Adobe type 1 format
 #LICENSE=	otherfree
 

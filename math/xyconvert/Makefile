@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2020/01/07 13:35:44 nros Exp $
+# $NetBSD: Makefile,v 1.6 2020/08/17 20:19:27 leot Exp $
 #
 
+PKGREVISION= 4
 .include "../../math/xylib/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/lib/convert/g}
@@ -9,6 +10,8 @@ BUILD_TARGET=	gui/xyconvert
 
 DISTINFO_FILE=	../../math/xylib/distinfo
 PATCHDIR=	../../math/xylib/patches
+
+GNU_CONFIGURE_WX_VERSION=	no
 
 do-install:
 	${INSTALL_PROGRAM_DIR} ${DESTDIR}${PREFIX}/bin

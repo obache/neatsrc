@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.30 2019/03/17 15:05:49 leot Exp $
+# $NetBSD: Makefile,v 1.32 2020/08/09 23:16:48 joerg Exp $
 
 .include "Makefile.common"
 
 PKGNAME=		swi-prolog-lite-${SWIPLVERS}
-PKGREVISION=		1
+PKGREVISION=		2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 COMMENT=		ISO/Edinburgh-style Prolog compiler
@@ -22,6 +22,8 @@ CMAKE_ARGS+=		-DSWIPL_PACKAGES_JAVA=OFF
 CMAKE_ARGS+=		-DSWIPL_PACKAGES_X=OFF
 
 USE_TOOLS+=		bash:run
+
+MAKE_ENV+=		OPENSSL_CONF=/dev/null
 
 .include "../../mk/bsd.prefs.mk"
 

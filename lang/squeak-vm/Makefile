@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.46 2019/12/20 00:01:37 joerg Exp $
+# $NetBSD: Makefile,v 1.50 2020/08/18 17:58:04 leot Exp $
 #
 
 SQUEAK_VERSION=	4.10.2.2614
 
 DISTNAME=	Squeak-${SQUEAK_VERSION}-src
 PKGNAME=	squeak-vm-${SQUEAK_VERSION:C/-/./}
-PKGREVISION=	18
+PKGREVISION=	21
 CATEGORIES=	lang
 MASTER_SITES=	http://squeakvm.org/unix/release/
 MASTER_SITES+=	http://ftp.squeak.org/3.10/unix-linux/
@@ -20,7 +20,7 @@ CHECK_PORTABILITY_SKIP=	unix/config/configure	# not used anymore
 
 USE_LANGUAGES=	c c++
 USE_CMAKE=	yes
-USE_TOOLS=	gzip
+USE_TOOLS+=	gzip pkg-config
 
 CONFIGURE_DIRS=	build
 CMAKE_ARG_PATH=	../unix
@@ -56,7 +56,7 @@ pre-configure:
 .include "../../x11/libXt/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../mk/oss.buildlink3.mk"
-.if $(OSS_TYPE) != "none"
+.if ${OSS_TYPE} != "none"
 PLIST.oss=	yes
 CMAKE_ARGS+=	-DLIBOSSAUDIO=${LIBOSSAUDIO:S/-l//}
 .endif

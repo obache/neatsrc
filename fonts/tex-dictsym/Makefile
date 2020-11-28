@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:29:49 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:42 markd Exp $
 
 DISTNAME=	dictsym
 PKGNAME=	tex-${DISTNAME}-2014
+PKGREVISION=	1
 TEXLIVE_REV=	20031
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/dictsym
+HOMEPAGE=	https://ctan.org/pkg/dictsym
 COMMENT=	DictSym font and macro package
 LICENSE=	lppl-1.3c
 

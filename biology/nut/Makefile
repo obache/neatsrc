@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.28 2012/09/11 20:32:13 asau Exp $
+# $NetBSD: Makefile,v 1.30 2020/01/26 05:26:15 rillig Exp $
 
 DISTNAME=	nut-15.8
 CATEGORIES=	biology

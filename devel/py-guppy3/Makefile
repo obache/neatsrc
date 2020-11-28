@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.4 2019/12/15 14:49:38 adam Exp $
+# $NetBSD: Makefile,v 1.6 2020/10/13 21:18:35 gutteridge Exp $
 
-DISTNAME=	guppy3-3.0.9
+DISTNAME=	guppy3-3.1.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=g/guppy3/}
@@ -11,8 +11,6 @@ COMMENT=	Python programming environment and heap analysis toolset
 LICENSE=	mit
 
 DEPENDS+=	${PYPKGPREFIX}-Tk-[0-9]*:../../x11/py-Tk
-
-USE_LANGUAGES=	c
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 

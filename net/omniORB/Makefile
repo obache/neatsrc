@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2019/11/03 11:45:46 rillig Exp $
+# $NetBSD: Makefile,v 1.23 2020/03/20 11:58:09 nia Exp $
 
 DISTNAME=		omniORB-4.1.7
 PKGREVISION=		2

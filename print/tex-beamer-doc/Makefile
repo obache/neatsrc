@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.11 2019/12/06 20:18:58 markd Exp $
+# $NetBSD: Makefile,v 1.13 2020/05/10 23:27:33 markd Exp $
 
 DISTNAME=	beamer.doc
-PKGNAME=	tex-${DISTNAME:S/./-/}-3.56
-TEXLIVE_REV=	51711
+PKGNAME=	tex-${DISTNAME:S/./-/}-3.58
+TEXLIVE_REV=	55046
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://ctan.org/pkg/beamer
 COMMENT=	Documentation for tex-beamer
-LICENSE=	lppl-1.3c OR gnu-gpl-v2
+LICENSE=	lppl-1.3c AND gnu-gpl-v2 AND gnu-fdl-v1.3
 
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 .include "../../mk/bsd.pkg.mk"

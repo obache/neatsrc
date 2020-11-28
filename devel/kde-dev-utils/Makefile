@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.27 2019/11/25 10:09:32 markd Exp $
+# $NetBSD: Makefile,v 1.36 2020/08/18 17:57:43 leot Exp $
 
 DISTNAME=	kde-dev-utils-${KAPPSVER}
+PKGREVISION=	2
 CATEGORIES=	devel
 
 HOMEPAGE=	https://kde.org/applications/development/
@@ -8,8 +9,6 @@ COMMENT=	Small utilities for developers using KDE/Qt libs/frameworks
 LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/applications.mk"
-
-#BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
 

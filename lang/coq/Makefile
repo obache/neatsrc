@@ -1,19 +1,20 @@
-# $NetBSD: Makefile,v 1.126 2019/11/03 19:03:57 rillig Exp $
+# $NetBSD: Makefile,v 1.135 2020/08/17 20:19:20 leot Exp $
 #
 
-DISTNAME=	coq-8.9.1
-PKGREVISION=	3
+DISTNAME=	coq-8.10.2
+PKGREVISION=	5
 CATEGORIES=	lang math
 MASTER_SITES=	${MASTER_SITE_GITHUB:=coq/}
 GITHUB_TAG=	V${PKGVERSION_NOREV:S/_/+/}
 
 MAINTAINER=	jaapb@NetBSD.org
-HOMEPAGE=	http://coq.inria.fr/
+HOMEPAGE=	https://coq.inria.fr/
 COMMENT=	Theorem prover which extracts programs from proofs
 LICENSE=	gnu-lgpl-v2.1
 
-WRKSRC=		${WRKDIR}/${GITHUB_PROJECT}-${PKGVERSION_NOREV:S/_/-/}
+WRKSRC=		${WRKDIR}/${GITHUB_PROJECT}-${PKGVERSION_NOREV:S/+/-/}
 
+USE_TOOLS+=		bash
 USE_TOOLS+=		gmake
 HAS_CONFIGURE=		yes
 CONFIGURE_ARGS+=	-prefix ${PREFIX}
@@ -22,6 +23,7 @@ CONFIGURE_ARGS+=	-mandir ${PREFIX}/${PKGMANDIR}
 CONFIGURE_ARGS+=	-configdir ${PKG_SYSCONFDIR}/xdg/coq
 CONFIGURE_ARGS+=	-docdir ${PREFIX}/share/doc/coq
 CONFIGURE_ARGS+=	-coqdocdir ${PREFIX}/share/texmf-dist/tex/latex/coq
+CONFIGURE_ARGS+=	-flambda-opts '-O3 -unbox-closures'
 
 BUILDLINK_API_DEPENDS.ocaml+=	ocaml>=3.10
 
@@ -30,17 +32,18 @@ BUILDLINK_API_DEPENDS.ocaml+=	ocaml>=3.10
 
 PLIST_VARS+=		native
 .if ${OCAML_USE_OPT_COMPILER} == "yes"
-PLIST_SUBST+=		COQIDE_TYPE="opt"
+COQIDE_TYPE=		opt
 PLIST.native=		yes
 CONFIGURE_ARGS+=	-native-compiler yes
 UNLIMIT_RESOURCES+=	stacksize # compilation of some files needs this
 BUILD_TARGET=		world
 .else
-PLIST_SUBST+=		COQIDE_TYPE="byte"
+COQIDE_TYPE=		byte
 CONFIGURE_ARGS+=	-native-compiler no
 BUILD_TARGET=		byte
 INSTALL_TARGET=		install-byte
 .endif
+PLIST_SUBST+=		COQIDE_TYPE=${COQIDE_TYPE}
 
 .if (${MACHINE_ARCH} == "i386") || (${MACHINE_ARCH} == "x86_64")
 .  if !empty(MACHINE_PLATFORM:MLinux-*-*) || \
@@ -70,13 +73,6 @@ PLIST_VARS+=		coqide natdynlink doc
 EGDIR=		${PREFIX}/share/coq/examples
 #CONF_FILES=	{EGDIR}/coqide-gtk2rc ${PKG_SYSCONFDIR}/xdg/coq/coqide-gtk2rc
 
-SUBST_CLASSES+=			fix-paths
-SUBST_STAGE.fix-paths=		post-configure
-SUBST_MESSAGE.fix-paths=	Remove buildlink references from Coq_config module
-SUBST_FILES.fix-paths=		config/coq_config.ml
-SUBST_SED.fix-paths=		-e "s,${BUILDLINK_DIR},${PREFIX},g"
-
-.include "../../lang/camlp5/buildlink3.mk"
 .include "../../math/ocaml-num/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

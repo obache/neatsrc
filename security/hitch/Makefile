@@ -1,16 +1,13 @@
-# $NetBSD: Makefile,v 1.11 2019/11/04 21:12:53 rillig Exp $
+# $NetBSD: Makefile,v 1.17 2020/08/15 02:16:18 tnn Exp $
 
-DISTNAME=	hitch-1.5.0
-PKGREVISION=	1
+DISTNAME=	hitch-1.6.0
 CATEGORIES=	security
 MASTER_SITES=	https://hitch-tls.org/source/
 
-MAINTAINER=	fhajny@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://hitch-tls.org/
 COMMENT=	High performance SSL/TLS proxy
 LICENSE=	2-clause-bsd
-
-BUILD_DEPENDS+=	${PYPKGPREFIX}-docutils-[0-9]*:../../textproc/py-docutils
 
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config
@@ -19,12 +16,10 @@ USE_TOOLS+=	pkg-config
 
 CHECK_PORTABILITY_SKIP+=	src/tests/*
 
-CONFIGURE_ARGS+=	--with-rst2man=${PREFIX}/bin/rst2man.py${PYVERSSUFFIX}
-
 CPPFLAGS.SunOS+=	-D__EXTENSIONS__
 LIBS.SunOS+=		-lnsl -lsocket
 
-BUILD_DEFS+=		HITCH_USER HITCH_GROUP HITCH_CERTS
+BUILD_DEFS+=		HITCH_USER HITCH_GROUP HITCH_CERTS VARBASE
 
 HITCH_USER?=		hitch
 HITCH_GROUP?=		hitch

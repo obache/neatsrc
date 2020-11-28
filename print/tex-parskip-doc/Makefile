@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.4 2019/12/06 20:23:00 markd Exp $
+# $NetBSD: Makefile,v 1.6 2020/05/03 11:57:33 markd Exp $
 
 DISTNAME=	parskip.doc
-PKGNAME=	tex-${DISTNAME:S/./-/}-2.0c
-TEXLIVE_REV=	49730
+PKGNAME=	tex-${DISTNAME:S/./-/}-2.0d
+TEXLIVE_REV=	53503
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/parskip
+HOMEPAGE=	https://ctan.org/pkg/parskip
 COMMENT=	Documentation for tex-parskip
 LICENSE=	lppl-1.3c
 
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 .include "../../mk/bsd.pkg.mk"

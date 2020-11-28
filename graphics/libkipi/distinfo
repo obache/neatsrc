@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.19 2019/11/17 02:45:29 markd Exp $
+$NetBSD: distinfo,v 1.21 2020/06/09 11:56:12 markd Exp $
 
-SHA1 (libkipi-19.08.3.tar.xz) = 49921fc73c220de000b0b06882ee8e032fc75645
-RMD160 (libkipi-19.08.3.tar.xz) = 4437e09c36b95fde8b64cc65f482a941729ba617
-SHA512 (libkipi-19.08.3.tar.xz) = 6fe9b5e96768c644fc1fc395b0787bf99504fdaed319261f04a0a88be50df5624a5cc3738e609d29da4da50b1db720098986b2da215035752b6c5d0e6b175aa4
-Size (libkipi-19.08.3.tar.xz) = 103468 bytes
+SHA1 (libkipi-20.04.1.tar.xz) = f6a40e5054d434578aaf632d98560b6f2f78989a
+RMD160 (libkipi-20.04.1.tar.xz) = 1008686590407ba782160885c5d2dd963e268795
+SHA512 (libkipi-20.04.1.tar.xz) = a7e6128f56f051f4daf01fa6b6faf0aa75d0ce8b0197a9800bf12c53d7d62e97cded0eb134e459b81162c3ed70cb9d7a6c15a0d5019ad72dc797187fdefff1cf
+Size (libkipi-20.04.1.tar.xz) = 103580 bytes

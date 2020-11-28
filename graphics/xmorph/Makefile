@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2019/11/02 22:38:06 rillig Exp $
+# $NetBSD: Makefile,v 1.15 2020/03/20 11:57:53 nia Exp $
 
 DISTNAME=	xmorph_20060817
 PKGNAME=	xmorph-20060817

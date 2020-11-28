@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.13 2019/11/03 17:12:01 rillig Exp $
+# $NetBSD: Makefile,v 1.16 2020/06/02 08:24:25 adam Exp $
 #
 
 GST_PLUGINS0.10_NAME=	v4l2
 GST_PLUGINS0.10_DIRS=	sys/v4l2
 GST_PLUGINS0.10_FLAGS=	gst_v4l2
-PKGREVISION=		2
+PKGREVISION=		4
 
-ONLY_FOR_PLATFORM=	NetBSD-[5-9]* Linux-* SunOS-5.11-*
+ONLY_FOR_PLATFORM=	NetBSD-* Linux-* SunOS-5.11-*
 
 .include "../../multimedia/gst-plugins0.10-good/Makefile.common"
 

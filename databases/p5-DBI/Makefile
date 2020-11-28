@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.83 2019/08/11 13:17:48 wiz Exp $
+# $NetBSD: Makefile,v 1.85 2020/08/31 18:06:29 wiz Exp $
 
-DISTNAME=	DBI-1.642
+DISTNAME=	DBI-1.643
 PKGNAME=	p5-${DISTNAME}
 PKGREVISION=	1
 CATEGORIES=	databases perl5

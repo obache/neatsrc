@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.18 2017/01/19 18:52:01 agc Exp $
+# $NetBSD: Makefile,v 1.20 2020/01/26 05:26:08 rillig Exp $
 #
 
 DISTNAME=	abcMIDI-${ABCMIDIVER}

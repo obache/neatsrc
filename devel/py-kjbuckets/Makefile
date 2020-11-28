@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2019/09/02 13:19:41 adam Exp $
+# $NetBSD: Makefile,v 1.23 2020/03/20 11:57:31 nia Exp $
 
 DISTNAME=	gadfly-1.0.0
 PKGNAME=	${PYPKGPREFIX}-kjbuckets-2.2

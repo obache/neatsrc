@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.14 2018/05/02 13:07:45 wiz Exp $
+$NetBSD: distinfo,v 1.16 2020/09/07 12:48:28 wiz Exp $
 
-SHA1 (Net-GitHub-0.95.tar.gz) = 39ce587da853f1c2225770083b87bf654ef934d5
-RMD160 (Net-GitHub-0.95.tar.gz) = d396164ecaf3d4a19f6d9dfb18ecf9a106af0f09
-SHA512 (Net-GitHub-0.95.tar.gz) = 7ae3f856a2487fc677c287446e837fa7d6cb7b4fd74c1b6e4e84fefef99500b76ecdd154632a42ca1cc61a8c8b3b108401d845dd2e607db1ff09e3dfcc7f0f32
-Size (Net-GitHub-0.95.tar.gz) = 41676 bytes
+SHA1 (Net-GitHub-1.01.tar.gz) = 490c284c12683f1df0b3728009c689746bad76fc
+RMD160 (Net-GitHub-1.01.tar.gz) = 580f5b96637abd5783dbc526625f96a0a218c2c2
+SHA512 (Net-GitHub-1.01.tar.gz) = a8595f1764ce31dcabb36530adc36f8fe95a8e33eed46bb0bf3532fcb6c44f4a10e2c72a2cfd7d4d3d4c72de335b528026ee7b44947ea1051c245b99f82d68d6
+Size (Net-GitHub-1.01.tar.gz) = 43983 bytes

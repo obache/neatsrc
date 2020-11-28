@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2013/10/24 11:00:49 jperkin Exp $
+# $NetBSD: Makefile,v 1.10 2020/03/20 11:58:10 nia Exp $
 #
 
 DISTNAME=	puf-1.0.0

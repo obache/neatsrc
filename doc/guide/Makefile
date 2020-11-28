@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.59 2020/01/06 21:34:31 leot Exp $
+# $NetBSD: Makefile,v 1.68 2020/10/09 15:50:34 leot Exp $
 
 DISTNAME=		pkgsrc-guide-${PKGVERSION}
 CATEGORIES=		# empty
 MASTER_SITES=		${MASTER_SITE_LOCAL}
-DISTFILES=		htdocs-share-20200106.tar.gz
+DISTFILES=		htdocs-share-20201009.tar.gz
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.NetBSD.org/docs/pkgsrc/
@@ -26,7 +26,7 @@ HTDOCSDIR?=		/usr/cvs/htdocs
 HTDOCSDIR?=		${.CURDIR}/../../../htdocs
 
 BUILD_DEFS+=		OUTPUTS
-OUTPUTS?=		lint html html-split ascii pdf
+OUTPUTS?=		lint html html-split ascii ps pdf
 
 INSTALLATION_DIRS=	${DOCDIR}
 
@@ -80,6 +80,11 @@ do-build:
 
 post-build:
 	@${RM} -f ${WRKSRC}/pkgsrc.tmp.html
+	${RUN} cd ${WRKSRC};						\
+	${GREP} 'idm[0-9][0-9][0-9][0-9][0-9]' ./*.html || exit 0;	\
+	${FAIL_MSG} "[post-build] HTML files contain generated IDs."
+	# These IDs generate unnecessary changes to the generated files,
+	# when they are committed to pkgsrc/doc/ and htdocs.
 
 do-install:
 .if !empty(OUTPUTS:Mhtml) || !empty(OUTPUTS:Mhtml-split)
@@ -109,8 +114,13 @@ install-htdocs: build
 	cd ${WRKSRC} && ${CP} pkgsrc.txt pkgsrc.pdf pkgsrc.ps *.html	\
 		${HTDOCSDIR}/docs/pkgsrc
 
-.PHONY: regen regen-doc regen-htdocs
-regen: regen-doc regen-htdocs
+.PHONY: regen cvs-update regen-doc regen-htdocs
+regen: cvs-update regen-doc regen-htdocs
+
+regen: cvs-update
+
+cvs-update:
+	cvs -q update -dP
 
 regen-doc: build
 	@${STEP_MSG} "Updating the files in pkgsrc/doc"

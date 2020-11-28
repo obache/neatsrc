@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.2 2020/01/16 15:59:49 taca Exp $
+
+SHA1 (ruby2_keywords-0.0.2.gem) = 0be571aacb5d6a212a30af3f322a7000d8af1ef9
+RMD160 (ruby2_keywords-0.0.2.gem) = 3c1611c982314fd05a9ef1d04c884bf9348c958d
+SHA512 (ruby2_keywords-0.0.2.gem) = a7bc02980e073a899bf3de2e32711ca9820657d43cc44dede44ca31681d8586e7f808a93b6f6778aaaaf8b84da37a48c8062e69ca33477d9469e9634d616ed8d
+Size (ruby2_keywords-0.0.2.gem) = 4608 bytes

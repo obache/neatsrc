@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.2 2020/01/09 14:02:32 wiz Exp $
+$NetBSD: distinfo,v 1.4 2020/09/28 22:56:38 khorben Exp $
 
-SHA1 (claripy-8.20.1.7-ea20bb80a84aab942f89cffbf035675dc0cf1af4.tar.gz) = 41740deb57d5aeb38ac39392b1e361058670f089
-RMD160 (claripy-8.20.1.7-ea20bb80a84aab942f89cffbf035675dc0cf1af4.tar.gz) = 396fe0b706b6be78e46f5475459c8cc1e80f9996
-SHA512 (claripy-8.20.1.7-ea20bb80a84aab942f89cffbf035675dc0cf1af4.tar.gz) = f18458f07dd7a145ba35692b8470e6fd0f792d3c7e245b24933369d7f6b7ee0bf6dfc16b64eb027fa993a6c45ce1ddab8b99db7db83de5f420e10c731f3e03e4
-Size (claripy-8.20.1.7-ea20bb80a84aab942f89cffbf035675dc0cf1af4.tar.gz) = 149530 bytes
+SHA1 (claripy-9.0.4378.tar.gz) = 149b752a13c430055ed522935ef9b1f118d10495
+RMD160 (claripy-9.0.4378.tar.gz) = afba52ea4218531405575dcbe5440c0935a5a12d
+SHA512 (claripy-9.0.4378.tar.gz) = 6b55a382489fc38f9829320ebb403b48cdb1936fa00ba38e3bc3c1fc233a6e4ff108ee1b9c453764590879395876a0376697a28baa82d61523fa5c760b65f596
+Size (claripy-9.0.4378.tar.gz) = 150355 bytes

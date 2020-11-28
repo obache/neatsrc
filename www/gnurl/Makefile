@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.9 2019/12/14 13:28:29 ng0 Exp $
+# $NetBSD: Makefile,v 1.16 2020/09/16 21:00:20 nikita Exp $
 
-DISTNAME=	gnurl-7.67.0
+DISTNAME=	gnurl-7.72.0
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GNU:=gnunet/}
 EXTRACT_SUFX=	.tar.Z
 
-MAINTAINER=	ng0@NetBSD.org
+MAINTAINER=	nikita@NetBSD.org
 HOMEPAGE=	https://gnunet.org/en/gnurl.html
 COMMENT=	Client that groks URLs (micro fork of curl)
 # not completely, the curl license is inspired by mit
@@ -30,8 +30,6 @@ CONFIGURE_ARGS+=	--without-winidn
 CONFIGURE_ARGS+=	--without-librtmp
 CONFIGURE_ARGS+=	--without-nghttp2
 CONFIGURE_ARGS+=	--without-nss
-# \todo: is cyassl deprecated?
-CONFIGURE_ARGS+=	--without-cyassl
 CONFIGURE_ARGS+=	--without-ssl
 CONFIGURE_ARGS+=	--without-winssl
 CONFIGURE_ARGS+=	--without-darwinssl
@@ -52,8 +50,6 @@ CONFIGURE_ARGS+=	--disable-smb
 CONFIGURE_ARGS+=	--disable-ntlm-wb
 CONFIGURE_ARGS+=	--with-gnutls
 CONFIGURE_ARGS+=	--with-libidn2
-# \todo: is with libz deprecated?
-CONFIGURE_ARGS+=	--with-libz=${BUILDLINK_PREFIX.zlib}
 # Fallback to gnutls preferred CA certificates
 CONFIGURE_ARGS+=	--without-ca-bundle
 CONFIGURE_ARGS+=	--without-ca-path

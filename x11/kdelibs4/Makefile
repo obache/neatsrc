@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.107 2019/11/03 09:14:09 rillig Exp $
+# $NetBSD: Makefile,v 1.119 2020/08/17 20:17:52 leot Exp $
 
 DISTNAME=	kdelibs-4.14.38
 PKGNAME=	${DISTNAME:S/-4/4-4/}
-PKGREVISION=	8
+PKGREVISION=	16
 CATEGORIES=	x11
 COMMENT=	Support libraries for the KDE integrated X11 desktop
 MASTER_SITES=	${MASTER_SITE_KDE:=applications/17.08.3/src/}
@@ -48,8 +48,7 @@ REPLACE_PERL+= \
 	kio/useragent.pl \
 	kio/misc/fileshareset \
 	kioslave/http/kcookiejar/kcookiescfg.pl \
-	kdeui/preparetips \
-	plasma/data/kconfig_updates/plasma_popupapplet_fix_groups.pl
+	kdeui/preparetips
 
 CHECK_PORTABILITY_SKIP+=	kate/tests/hl/highlight.sh
 
@@ -57,16 +56,10 @@ SUBST_CLASSES+=			kdelibsfix
 SUBST_STAGE.kdelibsfix=		pre-configure
 SUBST_MESSAGE.kdelibsfix=	Fixing hardcoded paths.
 SUBST_FILES.kdelibsfix=		kde3support/kdeui/k3sconfig.cpp
-SUBST_FILES.kdelibsfix+=	kio/kssl/kopenssl.cpp
 SUBST_VARS.kdelibsfix=		LOCALBASE
 
 # Avoid the WRKDIR path in the installed cmake file
-SUBST_CLASSES+=			phononrelpath
-SUBST_STAGE.phononrelpath=	post-configure
-SUBST_MESSAGE.phononrelpath=	Fixing phonon RELWITHDEBINFO path
-SUBST_FILES.phononrelpath=	_KDE_build/CMakeFiles/Export/${LOCALBASE:S^/^_^}/share/kde/apps/cmake/modules/KDELibs4LibraryTargets-${TARGET_NAME}.cmake
-SUBST_FILES.phononrelpath+=	_KDE_build/experimental/libkdeclarative/CMakeFiles/Export/${LOCALBASE:S^/^_^}/lib/cmake/KDeclarative/KDeclarativeLibraryTargets-${TARGET_NAME}.cmake
-SUBST_SED.phononrelpath=	-e 's:${BUILDLINK_DIR}:${PREFIX}:'
+# SUBST BLOCK deleted
 
 USE_TOOLS+=	flex gmake
 PLIST_VARS+=	kgrantpty mac notmac
@@ -89,6 +82,7 @@ LDFLAGS.SunOS+=		-lintl
 
 # jasper uses SIZE_MAX and friends in its headers.
 CXXFLAGS+=	-D__STDC_LIMIT_MACROS
+CXXFLAGS+=	-fpermissive
 
 BUILDLINK_DEPMETHOD.qt4-tools=		full
 .include "../../meta-pkgs/kde4/kde4.mk"

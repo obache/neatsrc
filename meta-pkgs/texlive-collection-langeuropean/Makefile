@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.8 2019/08/05 09:32:28 markd Exp $
+# $NetBSD: Makefile,v 1.10 2020/05/10 04:13:25 markd Exp $
 
 DISTNAME=	collection-langeuropean
-PKGNAME=	texlive-${DISTNAME}-2019pre2
+PKGNAME=	texlive-${DISTNAME}-2020pre1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	46803
+TEXLIVE_REV=	54568
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Other European languages TeX packages
 
 DEPENDS+=	texlive-collection-basic-[0-9]*:../../meta-pkgs/texlive-collection-basic
@@ -57,6 +57,7 @@ DEPENDS+=	tex-hyphen-kurmanji-[0-9]*:../../print/tex-hyphen-kurmanji
 DEPENDS+=	tex-hyphen-latin-[0-9]*:../../print/tex-hyphen-latin
 DEPENDS+=	tex-hyphen-latvian-[0-9]*:../../print/tex-hyphen-latvian
 DEPENDS+=	tex-hyphen-lithuanian-[0-9]*:../../print/tex-hyphen-lithuanian
+DEPENDS+=	tex-hyphen-macedonian-[0-9]*:../../print/tex-hyphen-macedonian
 DEPENDS+=	tex-hyphen-norwegian-[0-9]*:../../print/tex-hyphen-norwegian
 DEPENDS+=	tex-hyphen-occitan-[0-9]*:../../print/tex-hyphen-occitan
 DEPENDS+=	tex-hyphen-piedmontese-[0-9]*:../../print/tex-hyphen-piedmontese

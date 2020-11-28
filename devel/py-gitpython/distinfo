@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.4 2020/10/31 21:14:51 adam Exp $
+
+SHA1 (GitPython-3.1.11.tar.gz) = a2b501d3aba2931f93f836aa6519087a847dad2f
+RMD160 (GitPython-3.1.11.tar.gz) = b94878d4dd66a30b2fcb4f5f839cc15f97a87d28
+SHA512 (GitPython-3.1.11.tar.gz) = fe4baf9c8b3668f29fbc476ec2ba0a8d58a50ffe596b9f3037ddb4cb5c0c7faf0d34c6efac7567074f1b28b866e42dad19c91a5381eef606d3b3ff74b77649de
+Size (GitPython-3.1.11.tar.gz) = 170908 bytes

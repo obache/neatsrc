@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.19 2019/08/22 12:23:24 ryoon Exp $
+# $NetBSD: Makefile,v 1.22 2020/05/06 14:04:09 adam Exp $
 
 DISTNAME=	librime-1.6.1
+PKGREVISION=	16
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	-https://github.com/rime/librime/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://rime.im/
+HOMEPAGE=	https://rime.im/
 COMMENT=	Rime input method engine
 LICENSE=	modified-bsd
 

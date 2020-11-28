@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2019/04/25 07:33:32 maya Exp $
+# $NetBSD: Makefile,v 1.14 2020/01/26 05:26:28 rillig Exp $
 #
 
 DISTNAME=	wallpaper-2.0

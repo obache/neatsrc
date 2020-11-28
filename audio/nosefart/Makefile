@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2015/02/13 22:05:28 snj Exp $
+# $NetBSD: Makefile,v 1.17 2020/01/26 05:26:12 rillig Exp $
 
 DISTNAME=		nosefart-2.9-mls
 PKGNAME=		${DISTNAME:S/-mls//}

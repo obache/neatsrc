@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.33 2019/11/02 16:25:23 rillig Exp $
+# $NetBSD: Makefile,v 1.36 2020/06/26 16:37:23 schmonz Exp $
 #
 
 DISTNAME=		mess822-0.58
@@ -7,7 +7,7 @@ CATEGORIES=		mail
 MASTER_SITES=		http://cr.yp.to/software/
 
 MAINTAINER=		schmonz@NetBSD.org
-HOMEPAGE=		http://cr.yp.to/mess822.html
+HOMEPAGE=		https://cr.yp.to/mess822.html
 COMMENT=		Library for parsing Internet mail messages
 LICENSE=		public-domain
 
@@ -20,7 +20,8 @@ DJB_BUILD_TARGETS=	install instcheck
 
 AUTO_MKDIRS=		yes
 
-SUBST_FILES.djbware+=	cdb_seek.c
+SUBST_CLASSES+=		djberrno
+SUBST_FILES.djberrno=	cdb_seek.c error.h
 
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	do-configure

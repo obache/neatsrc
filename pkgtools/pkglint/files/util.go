@@ -58,22 +58,11 @@ func match2(s string, re regex.Pattern) (matched bool, m1, m2 string) {
 func match3(s string, re regex.Pattern) (matched bool, m1, m2, m3 string) {
 	return G.res.Match3(s, re)
 }
-func match4(s string, re regex.Pattern) (matched bool, m1, m2, m3, m4 string) {
-	return G.res.Match4(s, re)
-}
-func match5(s string, re regex.Pattern) (matched bool, m1, m2, m3, m4, m5 string) {
-	return G.res.Match5(s, re)
-}
 func replaceAll(s string, re regex.Pattern, repl string) string {
 	return G.res.Compile(re).ReplaceAllString(s, repl)
 }
 func replaceAllFunc(s string, re regex.Pattern, repl func(string) string) string {
 	return G.res.Compile(re).ReplaceAllStringFunc(s, repl)
-}
-
-func containsWord(s, word string) bool {
-	return strings.Contains(s, word) &&
-		matches(s, regex.Pattern(`\b`+regexp.QuoteMeta(word)+`\b`))
 }
 
 func containsStr(slice []string, s string) bool {
@@ -91,6 +80,15 @@ func mapStr(slice []string, fn func(s string) string) []string {
 		result[i] = fn(str)
 	}
 	return result
+}
+
+func anyStr(slice []string, fn func(s string) bool) bool {
+	for _, str := range slice {
+		if fn(str) {
+			return true
+		}
+	}
+	return false
 }
 
 func filterStr(slice []string, fn func(s string) bool) []string {
@@ -206,12 +204,16 @@ func condInt(cond bool, trueValue, falseValue int) int {
 }
 
 func keysJoined(m map[string]bool) string {
+	return strings.Join(keysSorted(m), " ")
+}
+
+func keysSorted(m map[string]bool) []string {
 	var keys []string
 	for key := range m {
 		keys = append(keys, key)
 	}
 	sort.Strings(keys)
-	return strings.Join(keys, " ")
+	return keys
 }
 
 func copyStringMkLine(m map[string]*MkLine) map[string]*MkLine {
@@ -321,7 +323,7 @@ func isEmptyDir(filename CurrPath) bool {
 func getSubdirs(filename CurrPath) []RelPath {
 	dirents, err := filename.ReadDir()
 	if err != nil {
-		NewLineWhole(filename).Fatalf("Cannot be read: %s", err)
+		G.Logger.TechFatalf(filename, "Cannot be read: %s", err)
 	}
 
 	var subdirs []RelPath
@@ -380,7 +382,7 @@ func isLocallyModified(filename CurrPath) bool {
 //
 // See http://cvsman.com/cvs-1.12.12/cvs_19.php.
 type CvsEntry struct {
-	Name      string
+	Name      RelPath
 	Revision  string
 	Timestamp string
 	Options   string
@@ -547,17 +549,19 @@ type Once struct {
 }
 
 func (o *Once) FirstTime(what string) bool {
-	firstTime := o.check(o.keyString(what))
+	key := o.keyString(what)
+	firstTime := o.check(key)
 	if firstTime && o.Trace {
-		G.Logger.out.WriteLine(sprintf("FirstTime: %s", what))
+		G.Logger.out.WriteLine("FirstTime: " + what)
 	}
 	return firstTime
 }
 
 func (o *Once) FirstTimeSlice(whats ...string) bool {
-	firstTime := o.check(o.keyStrings(whats))
+	key := o.keyStrings(whats)
+	firstTime := o.check(key)
 	if firstTime && o.Trace {
-		G.Logger.out.WriteLine(sprintf("FirstTime: %s", strings.Join(whats, ", ")))
+		G.Logger.out.WriteLine("FirstTime: " + strings.Join(whats, ", "))
 	}
 	return firstTime
 }
@@ -596,273 +600,6 @@ func (o *Once) check(key uint64) bool {
 	}
 	o.seen[key] = struct{}{}
 	return true
-}
-
-// Scope remembers which variables are defined and which are used
-// in a certain scope, such as a package or a file.
-//
-// TODO: Decide whether the scope should consider variable assignments
-//  from the pkgsrc infrastructure. For Package.checkGnuConfigureUseLanguages
-//  it would be better to ignore them completely.
-//
-// TODO: Merge this code with Var, which defines essentially the
-//  same features.
-//
-// See also substScope, which already analyzes the possible variable values
-// based on the conditional code paths.
-//
-// See also RedundantScope.
-type Scope struct {
-	firstDef       map[string]*MkLine // TODO: Can this be removed?
-	lastDef        map[string]*MkLine
-	value          map[string]string
-	used           map[string]*MkLine
-	usedAtLoadTime map[string]bool
-	fallback       map[string]string
-}
-
-func NewScope() Scope {
-	return Scope{
-		make(map[string]*MkLine),
-		make(map[string]*MkLine),
-		make(map[string]string),
-		make(map[string]*MkLine),
-		make(map[string]bool),
-		make(map[string]string)}
-}
-
-// Define marks the variable and its canonicalized form as defined.
-func (s *Scope) Define(varname string, mkline *MkLine) {
-	s.def(varname, mkline)
-	varcanon := varnameCanon(varname)
-	if varcanon != varname {
-		s.def(varcanon, mkline)
-	}
-}
-
-func (s *Scope) def(name string, mkline *MkLine) {
-	if s.firstDef[name] == nil {
-		s.firstDef[name] = mkline
-		if trace.Tracing {
-			trace.Step2("Defining %q for the first time in %s", name, mkline.String())
-		}
-	} else if trace.Tracing {
-		trace.Step2("Defining %q in %s", name, mkline.String())
-	}
-
-	s.lastDef[name] = mkline
-
-	// In most cases the defining lines are indeed variable assignments.
-	// Exceptions are comments from documentation sections, which still mark
-	// it as defined so that it doesn't produce the "used but not defined" warning;
-	// see MkLines.collectDocumentedVariables.
-	if !mkline.IsVarassign() {
-		return
-	}
-
-	switch mkline.Op() {
-	case opAssignAppend:
-		value := mkline.Value()
-		if trace.Tracing {
-			trace.Stepf("Scope.Define.append %s: %s = %q + %q",
-				&mkline.Location, name, s.value[name], value)
-		}
-		s.value[name] += " " + value
-	case opAssignDefault:
-		// No change to the value.
-		// FIXME: If there is no value yet, set it.
-	case opAssignShell:
-		delete(s.value, name)
-	default:
-		s.value[name] = mkline.Value()
-	}
-}
-
-func (s *Scope) Fallback(varname string, value string) {
-	s.fallback[varname] = value
-}
-
-// Use marks the variable and its canonicalized form as used.
-func (s *Scope) Use(varname string, line *MkLine, time VucTime) {
-	use := func(name string) {
-		if s.used[name] == nil {
-			s.used[name] = line
-			if trace.Tracing {
-				trace.Step2("Using %q in %s", name, line.String())
-			}
-		}
-		if time == VucLoadTime {
-			s.usedAtLoadTime[name] = true
-		}
-	}
-
-	use(varname)
-	use(varnameCanon(varname))
-}
-
-// Mentioned returns the first line in which the variable is either:
-//  - defined,
-//  - mentioned in a commented variable assignment,
-//  - mentioned in a documentation comment.
-func (s *Scope) Mentioned(varname string) *MkLine {
-	return s.firstDef[varname]
-}
-
-// IsDefined tests whether the variable is defined.
-// It does NOT test the canonicalized variable name.
-//
-// Even if IsDefined returns true, FirstDefinition doesn't necessarily return true
-// since the latter ignores the default definitions from vardefs.go, keyword dummyVardefMkline.
-func (s *Scope) IsDefined(varname string) bool {
-	mkline := s.firstDef[varname]
-	return mkline != nil && mkline.IsVarassign()
-}
-
-// IsDefinedSimilar tests whether the variable or its canonicalized form is defined.
-func (s *Scope) IsDefinedSimilar(varname string) bool {
-	if s.IsDefined(varname) {
-		if trace.Tracing {
-			trace.Step1("Variable %q is defined", varname)
-		}
-		return true
-	}
-
-	varcanon := varnameCanon(varname)
-	if s.IsDefined(varcanon) {
-		if trace.Tracing {
-			trace.Step2("Variable %q (similar to %q) is defined", varcanon, varname)
-		}
-		return true
-	}
-	return false
-}
-
-// IsUsed tests whether the variable is used.
-// It does NOT test the canonicalized variable name.
-func (s *Scope) IsUsed(varname string) bool {
-	return s.used[varname] != nil
-}
-
-// IsUsedSimilar tests whether the variable or its canonicalized form is used.
-func (s *Scope) IsUsedSimilar(varname string) bool {
-	if s.used[varname] != nil {
-		return true
-	}
-	return s.used[varnameCanon(varname)] != nil
-}
-
-// IsUsedAtLoadTime returns true if the variable is used at load time
-// somewhere.
-func (s *Scope) IsUsedAtLoadTime(varname string) bool {
-	return s.usedAtLoadTime[varname]
-}
-
-// FirstDefinition returns the line in which the variable has been defined first.
-//
-// Having multiple definitions is typical in the branches of "if" statements.
-//
-// Another typical case involves two files: the included file defines a default
-// value, and the including file later overrides that value. Or the other way
-// round: the including file sets a value first, and the included file then
-// assigns a default value using ?=.
-func (s *Scope) FirstDefinition(varname string) *MkLine {
-	mkline := s.firstDef[varname]
-	if mkline != nil && mkline.IsVarassign() {
-		lastLine := s.LastDefinition(varname)
-		if trace.Tracing && lastLine != mkline {
-			trace.Stepf("%s: FirstDefinition differs from LastDefinition in %s.",
-				mkline.String(), mkline.RelMkLine(lastLine))
-		}
-		return mkline
-	}
-	return nil // See NewPackage and G.Pkgsrc.UserDefinedVars
-}
-
-// LastDefinition returns the line in which the variable has been defined last.
-//
-// Having multiple definitions is typical in the branches of "if" statements.
-//
-// Another typical case involves two files: the included file defines a default
-// value, and the including file later overrides that value. Or the other way
-// round: the including file sets a value first, and the included file then
-// assigns a default value using ?=.
-func (s *Scope) LastDefinition(varname string) *MkLine {
-	mkline := s.lastDef[varname]
-	if mkline != nil && mkline.IsVarassign() {
-		return mkline
-	}
-	return nil // See NewPackage and G.Pkgsrc.UserDefinedVars
-}
-
-// Commented returns whether the variable has only been defined in commented
-// variable assignments. These are ignored by bmake but used heavily in
-// mk/defaults/mk.conf for documentation.
-func (s *Scope) Commented(varname string) *MkLine {
-	var mklines []*MkLine
-	if first := s.firstDef[varname]; first != nil {
-		mklines = append(mklines, first)
-	}
-	if last := s.lastDef[varname]; last != nil {
-		mklines = append(mklines, last)
-	}
-
-	for _, mkline := range mklines {
-		if mkline.IsVarassign() {
-			return nil
-		}
-	}
-
-	for _, mkline := range mklines {
-		if mkline.IsCommentedVarassign() {
-			return mkline
-		}
-	}
-
-	return nil
-}
-
-func (s *Scope) FirstUse(varname string) *MkLine {
-	return s.used[varname]
-}
-
-// LastValue returns the value from the last variable definition.
-//
-// If an empty string is returned this can mean either that the
-// variable value is indeed the empty string or that the variable
-// was not found, or that the variable value cannot be determined
-// reliably. To distinguish these cases, call LastValueFound instead.
-func (s *Scope) LastValue(varname string) string {
-	value, _ := s.LastValueFound(varname)
-	return value
-}
-
-func (s *Scope) LastValueFound(varname string) (value string, found bool) {
-	value, found = s.value[varname]
-	if found {
-		return
-	}
-
-	mkline := s.LastDefinition(varname)
-	if mkline != nil && mkline.Op() != opAssignShell {
-		return mkline.Value(), true
-	}
-	if fallback, ok := s.fallback[varname]; ok {
-		return fallback, true
-	}
-	return "", false
-}
-
-func (s *Scope) DefineAll(other Scope) {
-	var varnames []string
-	for varname := range other.firstDef {
-		varnames = append(varnames, varname)
-	}
-	sort.Strings(varnames)
-
-	for _, varname := range varnames {
-		s.Define(varname, other.firstDef[varname])
-		s.Define(varname, other.lastDef[varname])
-	}
 }
 
 // The MIT License (MIT)
@@ -928,7 +665,7 @@ func naturalLess(str1, str2 string) bool {
 			if nr1, nr2 := str1[nonZero1:idx1], str2[nonZero2:idx2]; nr1 != nr2 {
 				return nr1 < nr2
 			}
-			// Otherwise, the one with less zeros is less.
+			// Otherwise, the one with fewer zeros is less.
 			// Because everything up to the number is equal, comparing the index
 			// after the zeros is sufficient.
 			if nonZero1 != nonZero2 {
@@ -1056,7 +793,7 @@ func (c *FileCache) Get(filename CurrPath, options LoadOptions) *Lines {
 
 		lines := make([]*Line, entry.lines.Len())
 		for i, line := range entry.lines.Lines {
-			lines[i] = NewLineMulti(filename, int(line.firstLine), int(line.lastLine), line.Text, line.raw)
+			lines[i] = NewLineMulti(filename, line.Location.lineno, line.Text, line.raw)
 		}
 		return NewLines(filename, lines)
 	}
@@ -1186,32 +923,32 @@ func joinSkipEmpty(sep string, elements ...string) string {
 	return strings.Join(nonempty, sep)
 }
 
-func joinSkipEmptyCambridge(conn string, elements ...string) string {
-	var nonempty []string
+// joinCambridge returns "first, second conn third".
+// It is used when each element is a single word.
+// Empty elements are ignored completely.
+func joinCambridge(conn string, elements ...string) string {
+	parts := make([]string, 0, 2+2*len(elements))
 	for _, element := range elements {
 		if element != "" {
-			nonempty = append(nonempty, element)
+			parts = append(parts, ", ", element)
 		}
 	}
 
-	var sb strings.Builder
-	for i, element := range nonempty {
-		if i > 0 {
-			if i == len(nonempty)-1 {
-				sb.WriteRune(' ')
-				sb.WriteString(conn)
-				sb.WriteRune(' ')
-			} else {
-				sb.WriteString(", ")
-			}
-		}
-		sb.WriteString(element)
+	if len(parts) == 0 {
+		return ""
+	}
+	if len(parts) < 4 {
+		return parts[1]
 	}
 
-	return sb.String()
+	parts = append(parts[1:len(parts)-2], " ", conn, " ", parts[len(parts)-1])
+	return strings.Join(parts, "")
 }
 
-func joinSkipEmptyOxford(conn string, elements ...string) string {
+// joinOxford returns "first, second, conn third".
+// It is used when each element may consist of multiple words.
+// Empty elements are ignored completely.
+func joinOxford(conn string, elements ...string) string {
 	var nonempty []string
 	for _, element := range elements {
 		if element != "" {
@@ -1226,6 +963,8 @@ func joinSkipEmptyOxford(conn string, elements ...string) string {
 	return strings.Join(nonempty, ", ")
 }
 
+var pathMatchers = make(map[string]*pathMatcher)
+
 type pathMatcher struct {
 	matchType       pathMatchType
 	pattern         string
@@ -1233,6 +972,15 @@ type pathMatcher struct {
 }
 
 func newPathMatcher(pattern string) *pathMatcher {
+	matcher := pathMatchers[pattern]
+	if matcher == nil {
+		matcher = newPathMatcherUncached(pattern)
+		pathMatchers[pattern] = matcher
+	}
+	return matcher
+}
+
+func newPathMatcherUncached(pattern string) *pathMatcher {
 	assert(strings.IndexByte(pattern, '[') == -1)
 	assert(strings.IndexByte(pattern, '?') == -1)
 
@@ -1367,15 +1115,15 @@ type LazyStringBuilder struct {
 	buf      []byte
 }
 
+func NewLazyStringBuilder(expected string) LazyStringBuilder {
+	return LazyStringBuilder{expected: expected}
+}
+
 func (b *LazyStringBuilder) Write(p []byte) (n int, err error) {
 	for _, c := range p {
 		b.WriteByte(c)
 	}
 	return len(p), nil
-}
-
-func NewLazyStringBuilder(expected string) LazyStringBuilder {
-	return LazyStringBuilder{expected: expected}
 }
 
 func (b *LazyStringBuilder) Len() int {
@@ -1462,33 +1210,49 @@ func (i *optInt) set(value int) {
 }
 
 type bag struct {
-	slice []struct {
-		key   interface{}
-		value int
-	}
+	// Wrapping the slice in an extra struct avoids 'receiver might be nil'
+	// warnings.
+
+	entries []bagEntry
 }
 
-func (mi *bag) sortDesc() {
-	less := func(i, j int) bool { return mi.slice[j].value < mi.slice[i].value }
-	sort.SliceStable(mi.slice, less)
+func (b *bag) sortDesc() {
+	es := b.entries
+	less := func(i, j int) bool { return es[j].count < es[i].count }
+	sort.SliceStable(es, less)
 }
 
-func (mi *bag) opt(index int) int {
-	if uint(index) < uint(len(mi.slice)) {
-		return mi.slice[index].value
+func (b *bag) opt(index int) int {
+	if uint(index) < uint(len(b.entries)) {
+		return b.entries[index].count
 	}
 	return 0
 }
 
-func (mi *bag) key(index int) interface{} {
-	return mi.slice[index].key
+func (b *bag) key(index int) interface{} { return b.entries[index].key }
+
+func (b *bag) add(key interface{}, count int) {
+	b.entries = append(b.entries, bagEntry{key, count})
 }
 
-func (mi *bag) add(key interface{}, value int) {
-	mi.slice = append(mi.slice, struct {
-		key   interface{}
-		value int
-	}{key, value})
+func (b *bag) len() int { return len(b.entries) }
+
+type bagEntry struct {
+	key   interface{}
+	count int
 }
 
-func (mi *bag) len() int { return len(mi.slice) }
+type lazyBool struct {
+	fn    func() bool
+	value bool
+}
+
+func newLazyBool(fn func() bool) *lazyBool { return &lazyBool{fn, false} }
+
+func (b *lazyBool) get() bool {
+	if b.fn != nil {
+		b.value = b.fn()
+		b.fn = nil
+	}
+	return b.value
+}

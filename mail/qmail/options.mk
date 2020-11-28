@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.67 2019/11/02 16:25:26 rillig Exp $
+# $NetBSD: options.mk,v 1.69 2020/05/23 20:50:02 schmonz Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.qmail
 PKG_SUPPORTED_OPTIONS+=		eai inet6 pam syncdir tai-system-clock tls
@@ -40,6 +40,7 @@ QMAILPATCHES+=			srs:${SRS_PATCH}
 SRS_PATCH=			notqmail-1.07-tls-20190517-qmailremote-20190819-srs-20190819.patch
 PATCHFILES+=			${SRS_PATCH}
 SITES.${SRS_PATCH}=		https://schmonz.com/qmail/srs/
+PATCH_DIST_CAT.${SRS_PATCH}=	${SED} -e 's|compile forward.c sig.h readwrite.h exit.h env.h qmail.h substdio.h|compile forward.c sig.h readwrite.h env.h qmail.h substdio.h|g' < ${SRS_PATCH}
 SUBST_CLASSES+=			srsinclude
 SUBST_STAGE.srsinclude=		do-configure
 SUBST_FILES.srsinclude=		srs.c
@@ -73,6 +74,9 @@ SITES.${TAILEAPSECS_PATCH}=		https://su.bze.ro/software/
 PATCH_DIST_STRIP.${TAILEAPSECS_PATCH}=	-p1
 PATCH_DIST_CAT.${TAILEAPSECS_PATCH}=	\
 				${SED} -e 's|"/etc/leapsecs.dat"|"@PKG_SYSCONFDIR@/leapsecs.dat"|' \
+				-e 's|.*\./tryulong32.*| uid.o: \\\\|' \
+				-e 's|.*cat uint32.*| compile uid.c uidgid.h subfd.h substdio.h exit.h|' \
+				-e 's|.*rm -f tryulong32.*| 	./compile uid.c|' \
 				< ${TAILEAPSECS_PATCH}
 SUBST_CLASSES+=				libtai
 SUBST_STAGE.libtai=			do-configure
@@ -85,7 +89,7 @@ PLIST_VARS+=			tls
 .if !empty(PKG_OPTIONS:Mtls)
 PLIST.tls=			yes
 .  include "../../security/openssl/buildlink3.mk"
-CPPFLAGS+=			-DTLS=20190408	# NOTE: match what's _in_ the patch
+CPPFLAGS+=			-DTLS=20200107	# NOTE: match what's _in_ the patch
 USE_TOOLS+=			openssl
 SUBST_CLASSES+=			tmprsadh
 SUBST_STAGE.tmprsadh=		do-configure

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.24 2019/11/03 17:12:03 rillig Exp $
+# $NetBSD: Makefile,v 1.28 2020/08/17 20:19:41 leot Exp $
 
 DISTNAME=	omxplayer-20170112
-PKGREVISION=	12
+PKGREVISION=	16
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=popcornmix/}
 GITHUB_PROJECT=	omxplayer
@@ -24,6 +24,8 @@ ONLY_FOR_PLATFORM=	NetBSD-*-earm*hf
 
 CFLAGS+=	-DPREFIX=\"${PREFIX}\"
 CFLAGS+=	-Dfopen64=fopen -Dfseeko64=fseeko -Dftello64=ftello
+
+NOT_PAX_MPROTECT_SAFE+=	bin/omxplayer.bin
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/omxplayer.bin ${DESTDIR}${PREFIX}/bin

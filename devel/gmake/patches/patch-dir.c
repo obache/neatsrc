@@ -1,4 +1,4 @@
-$NetBSD: patch-dir.c,v 1.1 2018/04/30 01:47:30 minskim Exp $
+$NetBSD: patch-dir.c,v 1.3 2020/06/12 23:50:16 sevan Exp $
 
 Support GLIBC glob interface version 2.
 

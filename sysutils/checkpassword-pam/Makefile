@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2018/10/24 15:49:40 schmonz Exp $
+# $NetBSD: Makefile,v 1.14 2020/03/20 11:58:20 nia Exp $
 #
 
 DISTNAME=		checkpassword-pam-0.99

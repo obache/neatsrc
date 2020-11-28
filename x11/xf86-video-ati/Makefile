@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.50 2019/11/14 10:24:36 wiz Exp $
+# $NetBSD: Makefile,v 1.52 2020/03/08 18:30:53 maya Exp $
 
 DISTNAME=	xf86-video-ati-19.1.0
+PKGREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_XORG:=driver/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	joerg@NetBSD.org
-HOMEPAGE=	http://xorg.freedesktop.org/
+HOMEPAGE=	https://xorg.freedesktop.org/
 COMMENT=	Modular Xorg ATI Radeon video driver
 LICENSE=	mit AND x11
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.17 2015/07/04 16:18:42 joerg Exp $
+# $NetBSD: Makefile,v 1.19 2020/01/26 05:26:27 rillig Exp $
 #
 
 DISTNAME=	imwheel-0.9.9

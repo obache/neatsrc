@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.22 2016/04/20 12:10:27 nros Exp $
+# $NetBSD: Makefile,v 1.24 2020/01/26 05:26:10 rillig Exp $
 #
 
 DISTNAME=	a52dec-0.7.4

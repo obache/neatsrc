@@ -1,10 +1,9 @@
-# $NetBSD: options.mk,v 1.5 2019/11/04 21:13:03 rillig Exp $
+# $NetBSD: options.mk,v 1.7 2020/08/17 06:58:02 riastradh Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.tor-browser
-PKG_SUPPORTED_OPTIONS+=	alsa debug debug-info mozilla-jemalloc pulseaudio
-PLIST_VARS+=		debug
+PKG_SUPPORTED_OPTIONS+=	alsa dbus debug debug-info mozilla-jemalloc pulseaudio
 
-PKG_SUGGESTED_OPTIONS.Linux+=	alsa mozilla-jemalloc
+PKG_SUGGESTED_OPTIONS.Linux+=	alsa dbus mozilla-jemalloc
 
 .include "../../mk/bsd.fast.prefs.mk"
 
@@ -19,6 +18,13 @@ CONFIGURE_ARGS+=	--enable-alsa
 .include "../../audio/alsa-lib/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-alsa
+.endif
+
+.if !empty(PKG_OPTIONS:Mdbus)
+CONFIGURE_ARGS+=	--enable-dbus
+.include "../../sysutils/dbus-glib/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--disable-dbus
 .endif
 
 .if !empty(PKG_OPTIONS:Mmozilla-jemalloc)
@@ -40,7 +46,6 @@ O0TRACKING=-fvar-tracking-assignments -fvar-tracking
 .if !empty(PKG_OPTIONS:Mdebug)
 CONFIGURE_ARGS+=	--enable-debug="-g -O0 ${O0TRACKING}" --enable-debug-symbols --disable-optimize
 CONFIGURE_ARGS+=	--disable-install-strip
-PLIST.debug=		yes
 .else
 .  if !empty(PKG_OPTIONS:Mdebug-info)
 CONFIGURE_ARGS+=	--enable-debug-symbols

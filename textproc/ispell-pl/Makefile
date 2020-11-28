@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2013/04/25 06:40:49 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/20 11:58:27 nia Exp $
 #
 
 DISTNAME=	ispell-pl-20021127

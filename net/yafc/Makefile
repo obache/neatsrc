@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2013/07/15 02:02:27 ryoon Exp $
+# $NetBSD: Makefile,v 1.22 2020/03/20 11:58:12 nia Exp $
 
 DISTNAME=	yafc-0.7.10
 PKGREVISION=	3

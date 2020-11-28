@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2015/06/14 07:27:08 pettai Exp $
+# $NetBSD: Makefile,v 1.3 2020/03/20 11:58:16 nia Exp $
 
 DISTNAME=	dcfldd-1.3.4
 CATEGORIES=	security

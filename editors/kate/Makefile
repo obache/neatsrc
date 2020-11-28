@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.49 2019/11/17 04:22:55 markd Exp $
+# $NetBSD: Makefile,v 1.59 2020/08/18 17:57:44 leot Exp $
 
 DISTNAME=	kate-${KAPPSVER}
+PKGREVISION=	2
 CATEGORIES=	editors
 
 HOMEPAGE=	https://www.kde.org/applications/utilities/kate/
@@ -17,9 +18,10 @@ USE_TOOLS+=	msgmerge
 SUBST_CLASSES+=		fix-moc
 SUBST_STAGE.fix-moc=	post-configure
 SUBST_MESSAGE.fix-moc=	Cleaning up MOC includes
-SUBST_FILES.fix-moc=	_KDE_build/addons/*/CMakeFiles/*_autogen.dir/AutogenInfo.cmake
-SUBST_FILES.fix-moc+=	_KDE_build/addons/*/*/CMakeFiles/*_autogen.dir/AutogenInfo.cmake
-SUBST_SED.fix-moc=	-e 's,;${PREFIX}/include;,;,g'
+SUBST_FILES.fix-moc=	_KDE_build/addons/*/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_FILES.fix-moc+=	_KDE_build/addons/*/*/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_NOOP_OK.fix-moc=	yes
+SUBST_SED.fix-moc=	-e 's;"${PREFIX}/include",;;g'
 
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"

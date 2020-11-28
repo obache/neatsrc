@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.20 2019/12/03 18:21:15 adam Exp $
+# $NetBSD: Makefile,v 1.26 2020/10/15 13:53:46 adam Exp $
 
-DISTNAME=	alembic-1.3.1
+DISTNAME=	alembic-1.4.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	databases python
 MASTER_SITES=	${MASTER_SITE_PYPI:=a/alembic/}
@@ -15,9 +15,10 @@ DEPENDS+=	${PYPKGPREFIX}-editor>=0.3:../../editors/py-editor
 DEPENDS+=	${PYPKGPREFIX}-mako-[0-9]*:../../devel/py-mako
 DEPENDS+=	${PYPKGPREFIX}-sqlalchemy>=0.9.8:../../databases/py-sqlalchemy
 TEST_DEPENDS+=	${PYPKGPREFIX}-mock-[0-9]*:../../devel/py-mock
-TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 
 USE_LANGUAGES=	# none
+
+PYTHON_VERSIONED_DEPENDENCIES=	test:test
 
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && \
@@ -27,4 +28,5 @@ do-test:
 	cd ${WRKSRC} && pytest-${PYVERSSUFFIX}
 
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

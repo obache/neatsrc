@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.3 2019/12/06 19:29:49 markd Exp $
+# $NetBSD: Makefile,v 1.5 2020/05/10 04:31:42 markd Exp $
 
 DISTNAME=	dantelogo
 PKGNAME=	tex-${DISTNAME}-0.03
+PKGREVISION=	1
 TEXLIVE_REV=	38599
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/dantelogo
+HOMEPAGE=	https://ctan.org/pkg/dantelogo
 COMMENT=	Font for DANTE's logo
 LICENSE=	lppl-1.3c
 

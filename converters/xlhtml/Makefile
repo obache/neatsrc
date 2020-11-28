@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.17 2018/01/02 23:23:35 rillig Exp $
+# $NetBSD: Makefile,v 1.19 2020/01/26 05:26:19 rillig Exp $
 #
 
 DISTNAME=		xlhtml-0.5

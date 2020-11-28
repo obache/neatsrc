@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.13 2019/05/15 11:42:54 markd Exp $
+# $NetBSD: Makefile,v 1.15 2020/05/10 04:13:26 markd Exp $
 
 DISTNAME=	collection-langgerman
-PKGNAME=	texlive-${DISTNAME}-2019pre1
+PKGNAME=	texlive-${DISTNAME}-2020pre1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	48599
+TEXLIVE_REV=	54074
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	German TeX packages
 
 DEPENDS+=	texlive-collection-basic>=2014:../../meta-pkgs/texlive-collection-basic
@@ -25,7 +25,6 @@ DEPENDS+=	tex-dhua-[0-9]*:../../print/tex-dhua
 # etdipa is documentation only
 # etoolbox-de is documentation only
 # fifinddo-info is documentation only
-# geometry-de is documentation only
 DEPENDS+=	tex-german-[0-9]*:../../print/tex-german
 DEPENDS+=	tex-germbib-[0-9]*:../../print/tex-germbib
 DEPENDS+=	tex-germkorr-[0-9]*:../../print/tex-germkorr
@@ -45,6 +44,7 @@ DEPENDS+=	tex-hyphen-german-[0-9]*:../../print/tex-hyphen-german
 DEPENDS+=	tex-milog-[0-9]*:../../print/tex-milog
 # presentations is documentation only
 DEPENDS+=	tex-r_und_s-[0-9]*:../../print/tex-r_und_s
+# depend schulmathematik
 # templates-fenn is documentation only
 # templates-sommer is documentation only
 # depend termcal-de

@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:30:16 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:49 markd Exp $
 
 DISTNAME=	mintspirit
 PKGNAME=	tex-${DISTNAME}-2014
+PKGREVISION=	1
 TEXLIVE_REV=	32069
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/mintspirit
+HOMEPAGE=	https://ctan.org/pkg/mintspirit
 COMMENT=	LaTeX support for MintSpirit font families
 LICENSE=	ofl-v1.1
 

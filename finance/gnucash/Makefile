@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.286 2020/01/08 17:31:11 wiz Exp $
+# $NetBSD: Makefile,v 1.299 2020/09/27 22:02:14 wiz Exp $
 
-DISTNAME=		gnucash-3.8b
+DISTNAME=		gnucash-4.2
 CATEGORIES=		finance
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=gnucash/}
+MASTER_SITES=		${MASTER_SITE_GITHUB:=gnucash/}
 EXTRACT_SUFX=		.tar.bz2
+GITHUB_RELEASE=		${PKGVERSION_NOREV}
 
 MAINTAINER=		wiz@NetBSD.org
 HOMEPAGE=		http://www.gnucash.org/
@@ -15,10 +16,10 @@ DEPENDS+=		p5-Finance-Quote-[0-9]*:../../finance/p5-Finance-Quote
 DEPENDS+=		p5-Date-Manip-[0-9]*:../../devel/p5-Date-Manip
 DEPENDS+=		dconf-[0-9]*:../../devel/dconf
 # instead of USE_TOOLS+=msgfmt, since we need a newer version
-TOOL_DEPENDS+=		gettext-tools>=0.19.6:../../devel/gettext-tools
+TOOL_DEPENDS+=		gettext-tools>=0.20:../../devel/gettext-tools
 
-WRKSRC=			${WRKDIR}/${DISTNAME:S/b$//}
-USE_LANGUAGES=		c c++
+GCC_REQD+=		8
+USE_LANGUAGES=		c c++17
 USE_CMAKE=		yes
 USE_LIBTOOL=		yes
 INFO_FILES=		yes
@@ -52,7 +53,6 @@ CMAKE_ARGS+=		-DCOMPILE_GSCHEMAS=OFF
 
 REPLACE_PERL+=		common/gnc-test-env.pl
 REPLACE_PERL+=		libgnucash/backend/xml/test/grab-types.pl
-REPLACE_PERL+=		libgnucash/quotes/gnc-fq-dump
 REPLACE_PERL+=		util/elegant-sort.pl
 
 PLIST_SRC=		PLIST
@@ -66,21 +66,25 @@ post-install:
 
 .include "options.mk"
 
-BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.40.0
+BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.56.1
 .include "../../devel/glib2/schemas.mk"
 .include "../../devel/glib2/buildlink3.mk"
-BUILDLINK_API_DEPENDS.boost-headers+=   boost-headers>=1.64.0nb3
+BUILDLINK_API_DEPENDS.boost-headers+=   boost-headers>=1.67
 .include "../../devel/boost-headers/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
+BUILDLINK_API_DEPENDS.googletest+=	googletest>=1.8.0
 .include "../../devel/googletest/buildlink3.mk"
-.include "../../devel/swig2/buildlink3.mk"
+.include "../../devel/swig3/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/gdk-pixbuf2/buildlink3.mk"
 .include "../../lang/guile22/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../textproc/icu/buildlink3.mk"
+BUILDLINK_API_DEPENDS.libxml2+=	libxml2>=2.9.4
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../textproc/libxslt/buildlink3.mk"
+BUILDLINK_API_DEPENDS.webkit-gtk+=	webkit-gtk>=2.14.1
 .include "../../www/webkit-gtk/buildlink3.mk"
+BUILDLINK_API_DEPENDS.gtk3+=	gtk3+>=3.22.30
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

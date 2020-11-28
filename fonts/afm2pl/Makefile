@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.6 2019/05/09 09:47:34 adam Exp $
+# $NetBSD: Makefile,v 1.8 2020/05/10 03:56:37 markd Exp $
 
 .include "../../print/texlive/Makefile.common"
 
 PKGNAME=	afm2pl-0.7.1
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	fonts
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Convert an Adobe font metric file to a TeX font property list
 LICENSE=	gnu-gpl-v2
 

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.47 2017/09/03 08:36:59 wiz Exp $
+# $NetBSD: Makefile,v 1.50 2020/10/23 09:20:59 tnn Exp $
 
 DISTNAME=	pam_ldap-186
 PKGNAME=	${DISTNAME:S/_/-/}
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.padl.com/pub/
 MASTER_SITES+=	http://www.padl.com/download/
@@ -12,7 +12,7 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Pluggable authentication module for LDAP directories
 LICENSE=	gnu-lgpl-v2
 
-ONLY_FOR_PLATFORM=	NetBSD-[3-9]*-* FreeBSD-*-* SunOS-*-*
+ONLY_FOR_PLATFORM=	NetBSD-*-* FreeBSD-*-* SunOS-*-*
 
 USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake
@@ -22,10 +22,6 @@ CONFIGURE_ARGS+=	--with-ldap-lib=openldap
 CONFIGURE_ARGS+=	--with-ldap-dir=${BUILDLINK_PREFIX.openldap-client}
 CONFIGURE_ARGS+=	--with-ldap-conf-file=${PKG_SYSCONFDIR}/ldap.conf
 CONFIGURE_ARGS+=	--with-ldap-secret-file=${PKG_SYSCONFDIR}/ldap.secret
-
-# Fix (workaround?) a bug with openpam/NetBSD
-# The bug is described in PR security/39313.
-CFLAGS.NetBSD+=		-DNO_STATIC_MODULES
 
 # shared with databases/nss_ldap
 EGDIR=			${PREFIX}/share/examples/${PKGBASE}

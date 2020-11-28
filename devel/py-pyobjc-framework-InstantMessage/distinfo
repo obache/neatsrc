@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.8 2019/11/18 17:03:13 adam Exp $
+$NetBSD: distinfo,v 1.11 2020/07/09 08:36:38 adam Exp $
 
-SHA1 (pyobjc-framework-InstantMessage-6.1.tar.gz) = 819976dd6d604552b87f459c9f912e92945dee59
-RMD160 (pyobjc-framework-InstantMessage-6.1.tar.gz) = aa561e7cb93fd48bca700836e23250e9797b496a
-SHA512 (pyobjc-framework-InstantMessage-6.1.tar.gz) = 934f18da64b7fa8ba7572da57847495cf935e870681245f44f03f271ed0d76bba0acb50c4d56f336ab1ee35dfbf0d53350549097d2056906a6f4c81d005b8f96
-Size (pyobjc-framework-InstantMessage-6.1.tar.gz) = 30911 bytes
+SHA1 (pyobjc-framework-InstantMessage-6.2.2.tar.gz) = 6edef207018c802bf2df330b251e330101fec0f5
+RMD160 (pyobjc-framework-InstantMessage-6.2.2.tar.gz) = df7c817d768e9817f4473241ae2031c904f14051
+SHA512 (pyobjc-framework-InstantMessage-6.2.2.tar.gz) = d9f48c25a4bda3f753bb786a5baf6e831b0d251e75f494a4ac566914a5945a481c436b86a96dd702bce4bf72e299a45723b4ac7ed7e93564fdebb39e8733cdd2
+Size (pyobjc-framework-InstantMessage-6.2.2.tar.gz) = 29927 bytes

@@ -1,4 +1,4 @@
-$NetBSD: patch-include_imapproxy.h,v 1.1 2013/04/15 15:41:55 manu Exp $
+$NetBSD: patch-include_imapproxy.h,v 1.3 2020/04/16 14:03:29 manu Exp $
 
 SASL PLAIN Support. Patch submitted upstream
 http://sourceforge.net/tracker/?func=detail&aid=3610674&group_id=311&atid=300311

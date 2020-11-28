@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2013/02/17 19:18:10 dholland Exp $
+# $NetBSD: Makefile,v 1.13 2020/03/20 11:58:30 nia Exp $
 #
 
 DISTNAME=		xslide-0.2.2

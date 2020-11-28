@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.12 2019/08/22 12:23:24 ryoon Exp $
+# $NetBSD: buildlink3.mk,v 1.14 2020/05/06 14:04:09 adam Exp $
 #
 
 BUILDLINK_TREE+=	librime
@@ -7,7 +7,7 @@ BUILDLINK_TREE+=	librime
 LIBRIME_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.librime+=	librime>=1.0
-BUILDLINK_ABI_DEPENDS.librime?=	librime>=1.5.3nb2
+BUILDLINK_ABI_DEPENDS.librime?=	librime>=1.5.3nb16
 BUILDLINK_PKGSRCDIR.librime?=	../../inputmethod/librime
 
 .endif	# LIBRIME_BUILDLINK3_MK

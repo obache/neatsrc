@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2017/10/01 09:45:50 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/20 11:58:30 nia Exp $
 
 DISTNAME=	XQilla-2.3.3
 PKGNAME=	${DISTNAME:tl}

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.26 2019/11/04 21:43:47 rillig Exp $
+# $NetBSD: Makefile,v 1.28 2020/03/20 11:58:29 nia Exp $
 
 DISTNAME=	SaxonHE9-5-0-1J
 PKGNAME=	${DISTNAME:tl:S/-/./g:S/he/-/1}

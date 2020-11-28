@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.83 2019/11/26 22:14:41 nia Exp $
+# $NetBSD: Makefile,v 1.91 2020/08/31 18:11:24 wiz Exp $
 
 DISTNAME=	brasero-3.12.2
-CATEGORIES=	sysutils
+PKGREVISION=	5
+CATEGORIES=	sysutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/brasero/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
@@ -20,6 +21,7 @@ TOOL_DEPENDS+=	p5-XML-LibXML>=1.58:../../textproc/p5-XML-LibXML
 TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 
 CONFIGURE_ARGS+=	--disable-nautilus
+CONFIGURE_ARGS+=	--enable-compile-warnings=minimum # Disable Werror
 
 .include "../../mk/bsd.prefs.mk"
 

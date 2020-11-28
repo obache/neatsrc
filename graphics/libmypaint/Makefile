@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.3 2019/10/06 12:23:03 nia Exp $
+# $NetBSD: Makefile,v 1.7 2020/05/28 14:21:22 ryoon Exp $
 
-DISTNAME=	libmypaint-1.4.0
+DISTNAME=	libmypaint-1.6.1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mypaint/}
 GITHUB_PROJECT=	libmypaint
@@ -11,8 +11,6 @@ MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	http://mypaint.org/
 COMMENT=	Library for making brushstrokes
 LICENSE=	isc
-
-CONFLICTS+=	mypaint-[0-9]*
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes

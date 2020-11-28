@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.19 2019/11/03 11:45:49 rillig Exp $
+# $NetBSD: Makefile,v 1.21 2020/03/20 11:58:10 nia Exp $
 
 DISTNAME=	pptp-1.7.1
 PKGREVISION=	1

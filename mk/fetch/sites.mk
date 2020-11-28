@@ -1,4 +1,4 @@
-# $NetBSD: sites.mk,v 1.163 2019/05/05 18:36:05 rillig Exp $
+# $NetBSD: sites.mk,v 1.166 2020/09/02 22:16:48 kim Exp $
 #
 # This Makefile fragment defines read-only MASTER_SITE_* variables
 # representing some well-known master distribution sites for software.
@@ -15,8 +15,7 @@ MASTER_SITE_XCONTRIB+=  \
 
 MASTER_SITE_GNU+=       \
 	http://ftpmirror.gnu.org/ \
-	http://ftp.gnu.org/pub/gnu/ \
-	ftp://ftp.gnu.org/pub/gnu/
+	http://ftp.gnu.org/pub/gnu/
 
 MASTER_SITE_GITHUB+=    \
 	https://github.com/
@@ -44,21 +43,27 @@ MASTER_SITE_OSDN+=	\
 	http://osdn.dl.osdn.jp/
 
 MASTER_SITE_PERL_CPAN+= \
-	http://www.cpan.org/modules/by-module/ \
+	https://www.cpan.org/modules/by-module/ \
 	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/ \
 	http://ftp.cpan.org/pub/CPAN/modules/by-module/
 
 MASTER_SITE_R_CRAN+=    \
+	https://cran.r-project.org/src/ \
 	http://cran.r-project.org/src/ \
 	ftp://cran.r-project.org/pub/R/src/ \
 	http://cran.at.r-project.org/src/ \
 	ftp://cran.at.r-project.org/pub/R/src/ \
+	https://cran.ch.r-project.org/src/ \
 	http://cran.ch.r-project.org/src/ \
+	https://cran.uk.r-project.org/src/ \
 	http://cran.uk.r-project.org/src/ \
+	https://cran.us.r-project.org/src/ \
 	http://cran.us.r-project.org/src/ \
 	http://lib.stat.cmu.edu/R/CRAN/src/ \
 	ftp://ftp.u-aizu.ac.jp/pub/lang/R/CRAN/src/ \
+	https://stat.ethz.ch/CRAN/src/ \
 	http://stat.ethz.ch/CRAN/src/ \
+	https://www.stats.bris.ac.uk/R/src/ \
 	http://www.stats.bris.ac.uk/R/src/
 
 MASTER_SITE_TEX_CTAN+= \
@@ -178,7 +183,7 @@ MASTER_SITE_CYGWIN+= \
 	http://mirrors.kernel.org/sources.redhat.com/cygwin/ \
 	http://mirrors.xmission.com/cygwin/ \
 	${MASTER_SITE_RING_SERVER:=pc/gnu-win32/} \
-	ftp://ftp.funet.fi/pub/mirrors/cygwin.com/pub/cygwin/
+	http://ftp.funet.fi/pub/mirrors/cygwin.com/pub/cygwin/
 
 MASTER_SITE_IFARCHIVE+= \
 	http://ifarchive.flavorplex.com/if-archive/ \

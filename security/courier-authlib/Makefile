@@ -1,16 +1,16 @@
-# $NetBSD: Makefile,v 1.54 2019/08/11 13:22:45 wiz Exp $
+# $NetBSD: Makefile,v 1.58 2020/08/31 18:11:07 wiz Exp $
 
+PKGREVISION= 1
 .include "Makefile.common"
 
-DISTNAME=	courier-authlib-0.64.0
-PKGREVISION=	13
+DISTNAME=	courier-authlib-0.69.1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=courier/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Courier Authentication Library
-HOMEPAGE=	http://www.courier-mta.org/authlib/
+HOMEPAGE=	https://www.courier-mta.org/authlib/
 LICENSE=	gnu-gpl-v3
 
 CONFLICTS+=	courier-auth-[0-9]*
@@ -71,7 +71,7 @@ INSTALL_AM_MAKEFLAGS=	authdaemonrc=${EGDIR}/authdaemonrc		\
 INSTALL_MAKE_FLAGS=	${MAKE_FLAGS}					\
 			AM_MAKEFLAGS=${INSTALL_AM_MAKEFLAGS:Q}
 
-POST_INSTALL_TARGETS=	post-install-common post-install-authdaemon
+POST_INSTALL_TARGETS=	post-install-common
 
 .include "options.mk"
 
@@ -86,23 +86,17 @@ GENERATE_PLIST+=	${TEST} -f ${DESTDIR}${PREFIX}/${file} &&	\
 .endfor
 GENERATE_PLIST+=	${TRUE};
 
-INSTALLATION_DIRS+=	bin sbin
+INSTALLATION_DIRS+=	bin sbin ${EGDIR} ${DOCDIR}
 
-post-install: ${POST_INSTALL_TARGETS}
-
-post-install-common:
-	${INSTALL_DATA_DIR} ${DESTDIR}${EGDIR}
+post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/sysconftool ${DESTDIR}${PREFIX}/sbin
-	${INSTALL_DATA_DIR} ${DESTDIR}${DOCDIR}
 	${INSTALL_DATA} ${WRKSRC}/INSTALL.html ${DESTDIR}${DOCDIR}
 	${INSTALL_DATA} ${WRKSRC}/README.authdebug.html ${DESTDIR}${DOCDIR}
 	${INSTALL_DATA} ${WRKSRC}/README.html ${DESTDIR}${DOCDIR}
 	${INSTALL_DATA} ${WRKSRC}/README_authlib.html ${DESTDIR}${DOCDIR}
-
-post-install-authdaemon:
-	${CHOWN} ${SHAREOWN}:${SHAREGRP} ${DESTDIR}${EGDIR}/authdaemonrc.dist
-	${CHMOD} ${SHAREMODE} ${DESTDIR}${EGDIR}/authdaemonrc.dist
+	${INSTALL_DATA} ${WRKSRC}/authdaemonrc ${DESTDIR}/${EGDIR}/authdaemonrc.dist
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/libltdl/buildlink3.mk"
+.include "../../mail/courier-unicode/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

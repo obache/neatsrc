@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.26 2019/12/16 16:30:13 taca Exp $
+# $NetBSD: Makefile,v 1.33 2020/10/04 06:19:18 taca Exp $
 #
 
 MODNAME=		xdebug
-PECL_VERSION=		2.9.0
+PECL_VERSION=		2.9.8
 CATEGORIES=		devel
 MASTER_SITES=		http://xdebug.org/files/
 EXTRACT_SUFX=		.tgz
 
 MAINTAINER=		jdolecek@NetBSD.org
-HOMEPAGE=		http://xdebug.org/
+HOMEPAGE=		https://xdebug.org/
 COMMENT=		PHP extension for debugging
 LICENSE=		php
 

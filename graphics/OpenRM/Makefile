@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.29 2019/08/11 13:21:07 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2020/08/31 18:09:37 wiz Exp $
 #
 
 DISTNAME=		openrm-devel-1.5.2
 PKGNAME=		OpenRM-1.5.2
-PKGREVISION=		14
+PKGREVISION=		15
 CATEGORIES=		graphics
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=openrm/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.openrm.org/
+HOMEPAGE=		https://www.openrm.org/
 COMMENT=		The OpenRM Scene Graph API
 
 WRKSRC=			${WRKDIR}/rm152
@@ -17,6 +17,8 @@ BUILD_TARGET=		libtool docs
 USE_LIBTOOL=		yes
 USE_TOOLS+=		csh perl
 REPLACE_PERL=		doc/sortlist.pl doc/source2html.pl
+
+CHECK_PORTABILITY_SKIP+=	bin/mklib.linux # uses [[, not used
 
 ALL_ENV+=		REAL_CC=${CC}
 

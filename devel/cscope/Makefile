@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.58 2018/07/04 13:40:13 jperkin Exp $
+# $NetBSD: Makefile,v 1.61 2020/05/08 16:20:38 rillig Exp $
 
 DISTNAME=	cscope-15.8a
 PKGREVISION=	2

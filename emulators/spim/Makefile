@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.44 2018/07/04 13:40:17 jperkin Exp $
+# $NetBSD: Makefile,v 1.46 2020/03/20 11:57:36 nia Exp $
 
 DISTNAME=	spim-8.0
 PKGREVISION=	1

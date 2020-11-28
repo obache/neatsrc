@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.54 2019/09/20 11:36:27 adam Exp $
+# $NetBSD: Makefile,v 1.56 2020/07/06 10:08:58 adam Exp $
 
 .include "../../devel/libevent/Makefile.common"
 

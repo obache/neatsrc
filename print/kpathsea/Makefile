@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.31 2019/05/09 09:47:35 adam Exp $
+# $NetBSD: Makefile,v 1.33 2020/05/10 03:56:38 markd Exp $
 
 .include "../../print/texlive/Makefile.common"
 
-PKGNAME=	kpathsea-6.3.1
+PKGNAME=	kpathsea-6.3.2
 CATEGORIES=	print
 
-HOMEPAGE=	http://ctan.org/pkg/kpathsea
+HOMEPAGE=	https://ctan.org/pkg/kpathsea
 COMMENT=	Path searching library for TeX-related files
 LICENSE=	gnu-lgpl-v2.1
 
@@ -18,6 +18,8 @@ PKGCONFIG_OVERRIDE=	kpathsea.pc.in
 INFO_FILES=		yes
 
 MAKE_FLAGS+=	LIBTOOL=${LIBTOOL:Q}
+
+DEPENDS+=	mktexlsr-[0-9]*:../../print/mktexlsr
 
 # A double-slash (//) in the kpathsea paths has a special
 # interpretation, it will cause kpathsea to consider all
@@ -35,14 +37,6 @@ SUBST_SED.texmfdir=	-e 's,@PREFIX@,${PREFIX:C;///*;/;g:C;/$;;},'
 SUBST_SED.texmfdir+=	-e 's,@TEXMFLOCAL@,${TEXMFLOCAL:C;///*;/;g:C;/$;;},'
 SUBST_SED.texmfdir+=	-e 's,@VARBASE@,${VARBASE:C;///*;/;g:C;/$;;},'
 SUBST_SED.texmfdir+=	-e 's,@PKG_SYSCONFDIR@,${PKG_SYSCONFDIR:C;///*;/;g:C;/$;;},'
-
-SUBST_CLASSES+=		paths
-SUBST_MESSAGE.paths=	Setting paths to commands.
-SUBST_STAGE.paths=	pre-configure
-SUBST_FILES.paths=	mktex.opt mktexdir mktexlsr mktexmf \
-			mktexnam mktexnam.opt mktexpk mktextfm mktexupd
-SUBST_SED.paths=	-e 's,@KPSEWHICH@,${PREFIX}/bin/kpsewhich,g'
-SUBST_SED.paths+=	-e 's,@MKTEXMF@,${PREFIX}/bin/mktexmf,g'
 
 PKG_SYSCONFSUBDIR=	texmf
 

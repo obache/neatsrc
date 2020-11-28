@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.39 2019/03/26 20:56:23 ryoon Exp $
+# $NetBSD: Makefile,v 1.43 2020/10/15 16:27:21 otis Exp $
 
 DISTNAME=	apache-tomcat-${TOMCAT_VER}
 CATEGORIES=	www
@@ -6,12 +6,15 @@ MASTER_SITES=	${MASTER_SITE_APACHE:=tomcat/tomcat-7/v${TOMCAT_VER}/bin/}
 MASTER_SITES+=	https://archive.apache.org/dist/tomcat/tomcat-7/v${TOMCAT_VER}/bin/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://tomcat.apache.org/
+HOMEPAGE=	https://tomcat.apache.org/
 COMMENT=	Implementation of Java Servlet and JavaServer Pages technologies
 LICENSE=	apache-2.0
 
-CONFLICTS+=	jakarta-tomcat55-[0-9]*
-CONFLICTS+=	jakarta-tomcat-[0-9]*
+CONFLICTS+=	apache-tomcat55-[0-9]*
+CONFLICTS+=	apache-tomcat6-[0-9]*
+CONFLICTS+=	apache-tomcat8-[0-9]*
+CONFLICTS+=	apache-tomcat85-[0-9]*
+CONFLICTS+=	apache-tomcat9-[0-9]*
 
 NO_BUILD=	yes
 USE_LANGUAGES=	# none
@@ -21,7 +24,7 @@ USE_TOOLS+=	pax
 
 .include "../../mk/bsd.prefs.mk"
 
-TOMCAT_VER=		7.0.93
+TOMCAT_VER=		7.0.106
 TOMCAT_HOME=		${PREFIX}/share/tomcat
 EGDIR=			${PREFIX}/share/examples/tomcat
 DOCDIR=			${PREFIX}/share/doc/tomcat

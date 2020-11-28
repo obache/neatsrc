@@ -1,6 +1,6 @@
 #!@RCD_SCRIPTS_SHELL@
 #
-# $NetBSD: imapproxy.sh,v 1.2 2011/10/07 22:37:03 shattered Exp $
+# $NetBSD: imapproxy.sh,v 1.4 2020/04/16 14:03:29 manu Exp $
 #
 
 # PROVIDE: imapproxy

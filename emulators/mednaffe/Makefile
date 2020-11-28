@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.2 2019/07/21 22:24:46 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2020/08/17 20:18:38 leot Exp $
 
 DISTNAME=	mednaffe-0.8.8
-PKGREVISION=	1
+PKGREVISION=	4
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=AmatCoder/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}

@@ -1,10 +1,10 @@
-$NetBSD: distinfo,v 1.151 2019/12/29 08:53:14 adam Exp $
+$NetBSD: distinfo,v 1.166 2020/10/08 10:57:46 adam Exp $
 
-SHA1 (cmake-3.16.2.tar.gz) = f514dbd9aa8332a28ba62dd8ce97b0aa0b099491
-RMD160 (cmake-3.16.2.tar.gz) = 6145fca39a986c18aec9b2f545061e953a4d2ce9
-SHA512 (cmake-3.16.2.tar.gz) = b5e68083713462400b38424bf1dbfe73d37a5fbe211fadac30c576246024a1d40f95fab7044804b7201a1bc2e7fd5b7093257e9534cd35538c8b274dc00f4b76
-Size (cmake-3.16.2.tar.gz) = 9109837 bytes
-SHA1 (patch-CMakeLists.txt) = a9e91beb591fa53e9813103ce0a40a9e01117694
+SHA1 (cmake-3.18.4.tar.gz) = 73ab5348c881f1a53c250b66848b6ee101c9fe1f
+RMD160 (cmake-3.18.4.tar.gz) = 1515424e50f418ad80c395c98a45ac3a7229b878
+SHA512 (cmake-3.18.4.tar.gz) = 2f0c5647ed58bf911d0bfeafc7f22a3de09aa3be86301158fa51c8560e994534d7500869067432ecf91e82213a0b36ddb5db11c5c55d2ca5e5647ac9f75717b9
+Size (cmake-3.18.4.tar.gz) = 8976659 bytes
+SHA1 (patch-CMakeLists.txt) = fabdb0590f4b97c34c2242749ae3b6af18aefc0a
 SHA1 (patch-Modules_CMakeParseImplicitLinkInfo.cmake) = f8f4d2d7be328f3b578b6aa84bc01020e8deee0e
 SHA1 (patch-Modules_Compiler_GNU.cmake) = e091c53ac3f3a6cd811119d3231563df32e76bf9
 SHA1 (patch-Modules_FindCurses.cmake) = 98cac805a6abafcfb8b61e441b50a1d6aec27ad0
@@ -12,14 +12,14 @@ SHA1 (patch-Modules_FindGTK2.cmake) = 51b7520d35fdec2a7bfcf494fe35ce0e3863e4ee
 SHA1 (patch-Modules_FindPythonInterp.cmake) = d1b39bdcd654f2a4fc63463cd20de656cce3cf8f
 SHA1 (patch-Modules_FindPythonLibs.cmake) = b5cedc6a2354beaf08e06d416c150154a7dc1f05
 SHA1 (patch-Modules_FindX11.cmake) = 124a2d51155cb4455e8b829dc74598cbd50a4e1c
-SHA1 (patch-Modules_Platform_UnixPaths.cmake) = 38720e11b7b62cb702e80da19e044f070298f2db
+SHA1 (patch-Modules_Platform_Darwin.cmake) = 11116f5b1d1e68a1ce9f76c854d3078e8e233b7a
+SHA1 (patch-Modules_Platform_UnixPaths.cmake) = 911271546d3ac52be0e8000857bdb236ac50ec1c
 SHA1 (patch-Source_CMakeLists.txt) = 533667d43048b8bc2be17a766b5dc32f3101866e
 SHA1 (patch-Source_Checks_Curses_CMakeLists.txt) = 37d95c6162cc1f4c0e47b537ac8204cb9fe75b8c
 SHA1 (patch-Source_Checks_Curses_CheckCurses.c) = c86cae48f7b39fb735eba4788d4e9d595b2ccf3b
 SHA1 (patch-Source_Checks_cm__cxx17__check.cpp) = d5e2708df6fcda078b1b5ea59264c663d2633ced
 SHA1 (patch-Source_CursesDialog_ccmake.cxx) = 7f6ca6fda5d0db615f04c18efa8ecdd6ef00cb93
 SHA1 (patch-Source_QtDialog_CMakeLists.txt) = c4007da363c5b7c925f1ff345901057f3fbdc4e1
-SHA1 (patch-Source_cmArchiveWrite.cxx) = 1b6a46252bd10618703116ef69e22f8ec5c5f31f
 SHA1 (patch-Utilities_KWIML_CMakeLists.txt) = e4bdf9fc58757e87bf7e3e3e195839eededbc796
 SHA1 (patch-Utilities_std_cm_string__view) = 90bbb578c5628b661a25974d7dd9aa6f5063271f
 SHA1 (patch-bootstrap) = fc1b689bbe705cd888e2bef4debad1a26e5885bd

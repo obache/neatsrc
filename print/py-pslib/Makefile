@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2014/01/25 10:30:18 wiz Exp $
+# $NetBSD: Makefile,v 1.13 2020/03/20 11:58:15 nia Exp $
 
 DISTNAME=	python-pslib_0.2.0.orig
 PKGNAME=	${PYPKGPREFIX}-pslib-0.2.0

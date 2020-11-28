@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.6 2019/12/11 18:43:34 adam Exp $
+$NetBSD: distinfo,v 1.9 2020/09/08 13:46:58 adam Exp $
 
-SHA1 (fmt-6.1.2.tar.gz) = dc59b27d461f1af12daf73f3e00d18bf1e9eed78
-RMD160 (fmt-6.1.2.tar.gz) = 7e620b02e18e754ee860ee0159599e3d58b2b9cb
-SHA512 (fmt-6.1.2.tar.gz) = 8770bf4bd2bb6d938e75e0cf1e665c41930dbd9d2a6825274a5a43cd1d85b9c9ca621bb040ed099429f0e16bddbc3399361c453eb1bf3fc01376e6ad9dd875b7
-Size (fmt-6.1.2.tar.gz) = 723160 bytes
+SHA1 (fmt-7.0.3.tar.gz) = e5a93554711228e235774797f7bc84b0597a6de1
+RMD160 (fmt-7.0.3.tar.gz) = 8ca4ac264e005d19aab0136d3228446a67357d89
+SHA512 (fmt-7.0.3.tar.gz) = 26afe55255414e27d58c2389fcc8643b64adc04ecc3604f87024e6421706833cbad8ee4caf514dfb7e88da4162ab3e5ff8ff81b83b5f2fb66e9959e4d1bf0f9a
+Size (fmt-7.0.3.tar.gz) = 740047 bytes

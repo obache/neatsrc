@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.119 2019/11/04 21:28:43 rillig Exp $
+# $NetBSD: Makefile,v 1.122 2020/07/17 23:38:56 wiz Exp $
 
-DISTNAME=	dbus-1.12.16
+DISTNAME=	dbus-1.12.20
 CATEGORIES=	sysutils
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.freedesktop.org/Software/dbus
+HOMEPAGE=	https://www.freedesktop.org/Software/dbus
 COMMENT=	Message bus system
 LICENSE=	gnu-gpl-v2
 
@@ -64,12 +64,11 @@ SUBST_SED.docbook=	-e 's,http://www.oasis-open.org/docbook/xml,${PREFIX}/share/x
 PTHREAD_AUTO_VARS=	yes
 
 .if ${OPSYS} == "Linux"
-PLIST.linux=		yes
+# not currently used
+#PLIST.linux=		yes
 .else
 CONFIGURE_ARGS+=	--disable-selinux
 .endif
-
-PLIST_VARS+=		linux
 
 DBUS_CONF_DIR=		${PKG_SYSCONFBASE}/dbus-1
 OWN_DIRS+=		${DBUS_CONF_DIR}/services

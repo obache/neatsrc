@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.15 2019/11/07 12:38:07 wiz Exp $
+# $NetBSD: Makefile,v 1.26 2020/08/17 20:19:54 leot Exp $
 
 DISTNAME=	dspdfviewer-1.15.1
-PKGREVISION=	13
+PKGREVISION=	23
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_GITHUB:=dannyedel/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	fox@NetBSD.org
-HOMEPAGE=	http://dspdfviewer.danny-edel.de/
+HOMEPAGE=	https://dspdfviewer.danny-edel.de/
 COMMENT=	Dual-Screen PDF Viewer for latex-beamer
 LICENSE=	gnu-gpl-v2
 

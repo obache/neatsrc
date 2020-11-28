@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.3 2019/11/23 17:26:01 gdt Exp $
+# $NetBSD: Makefile,v 1.8 2020/07/10 00:01:29 gdt Exp $
 
-VERSION=	2.3.1
+VERSION=	3.1.2
 DISTNAME=	bc-${VERSION}
 PKGNAME=	bc-gh-${VERSION}
 CATEGORIES=	math
@@ -10,6 +10,7 @@ GITHUB_RELEASE=	${VERSION}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	yzena.tech@gmail.com
+#MAINTAINER+=	gdt@NetBSD.org
 HOMEPAGE=	https://github.com/gavinhoward/bc
 COMMENT=	Implementation of POSIX bc with GNU extensions
 LICENSE=	2-clause-bsd
@@ -20,8 +21,9 @@ LICENSE=	2-clause-bsd
 
 HAS_CONFIGURE=		yes
 CONFIGURE_SCRIPT=	configure.sh
-CONFIGURE_ARGS=		-G
-CONFIGURE_ENV=		EXECSUFFIX="-gh" MANDIR="${PREFIX}/man" NLSPATH="${PREFIX}/share/locale/%L/%N"
+# -l means install all translations, not examining local locales
+CONFIGURE_ARGS=		-G -l
+CONFIGURE_ENV=		EXECSUFFIX="-gh" MANDIR="${PREFIX}/${PKGMANDIR}" NLSPATH="${PREFIX}/share/locale/%L/%N"
 
 TEST_TARGET=	test
 

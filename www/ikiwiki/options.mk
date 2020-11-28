@@ -1,10 +1,11 @@
-# $NetBSD: options.mk,v 1.20 2019/11/04 22:09:56 rillig Exp $
+# $NetBSD: options.mk,v 1.22 2020/09/01 08:04:23 wiz Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.ikiwiki
 PKG_SUPPORTED_OPTIONS=		cgi imagemagick l10n python w3m
 PKG_SUPPORTED_OPTIONS+=		cvs git svn	# not mutually exclusive
 PKG_SUPPORTED_OPTIONS+=		ikiwiki-amazon-s3 ikiwiki-highlight ikiwiki-search
-PKG_SUGGESTED_OPTIONS=		cgi
+PKG_SUPPORTED_OPTIONS+=		ikiwiki-sudo
+PKG_SUGGESTED_OPTIONS=		cgi ikiwiki-sudo
 
 .include "../../mk/bsd.options.mk"
 
@@ -12,7 +13,7 @@ PKG_SUGGESTED_OPTIONS=		cgi
 DEPENDS+=	p5-CGI-[0-9]*:../../www/p5-CGI
 DEPENDS+=	p5-CGI-FormBuilder>=3.05:../../www/p5-CGI-FormBuilder
 DEPENDS+=	p5-CGI-Session-[0-9]*:../../www/p5-CGI-Session
-DEPENDS+=	p5-DB_File-[0-9]*:../../databases/p5-DB_File
+#DEPENDS+=	p5-DB_File-[0-9]*:../../databases/p5-DB_File
 .endif
 
 .if !empty(PKG_OPTIONS:Mcvs)
@@ -41,6 +42,12 @@ DEPENDS+=	p5-highlight-[0-9]*:../../textproc/p5-highlight
 .if !empty(PKG_OPTIONS:Mikiwiki-search)
 DEPENDS+=	p5-Search-Xapian-[0-9]*:../../textproc/p5-Search-Xapian
 DEPENDS+=	xapian-omega-[0-9]*:../../textproc/xapian-omega
+.endif
+
+.if !empty(PKG_OPTIONS:Mikiwiki-sudo)
+.  if !exists(/usr/bin/sudo)
+DEPENDS+=	sudo-[0-9]*:../../security/sudo
+.  endif
 .endif
 
 .if !empty(PKG_OPTIONS:Mimagemagick)

@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:32:19 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:51 markd Exp $
 
 DISTNAME=	pigpen
 PKGNAME=	tex-${DISTNAME}-0.2
+PKGREVISION=	1
 TEXLIVE_REV=	15878
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/pigpen
+HOMEPAGE=	https://ctan.org/pkg/pigpen
 COMMENT=	Font for the pigpen (or masonic) cipher
 LICENSE=	lppl-1.3c
 

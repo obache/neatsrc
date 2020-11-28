@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.39 2019/07/21 22:24:07 wiz Exp $
+# $NetBSD: Makefile,v 1.44 2020/08/17 20:17:33 leot Exp $
 #
 
 DISTNAME=	tomoe-gtk-0.6.0
-PKGREVISION=	33
+PKGREVISION=	37
 CATEGORIES=	inputmethod
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=tomoe/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://tomoe.osdn.jp/
+HOMEPAGE=	https://tomoe.osdn.jp/
 COMMENT=	GUI library for tomoe's GTK+ GUI parts
 LICENSE=	gnu-lgpl-v2.1
 

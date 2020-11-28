@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.37 2019/08/11 13:20:29 wiz Exp $
+# $NetBSD: Makefile,v 1.40 2020/09/04 13:45:15 wiz Exp $
 
-DISTNAME=		Test-Deep-1.128
+DISTNAME=		Test-Deep-1.130
 PKGNAME=		p5-${DISTNAME}
 PKGREVISION=		2
 CATEGORIES=		devel perl5
@@ -10,8 +10,6 @@ MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		https://metacpan.org/release/Test-Deep
 COMMENT=		Perl5 module to test deep structures
 LICENSE=		${PERL5_LICENSE}
-
-DEPENDS+=		p5-Test-Simple>=1.001010:../../devel/p5-Test-Simple
 
 PERL5_PACKLIST=		auto/Test/Deep/.packlist
 

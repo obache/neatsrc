@@ -1,4 +1,4 @@
-# $NetBSD: extract.mk,v 1.38 2019/05/07 19:36:44 rillig Exp $
+# $NetBSD: extract.mk,v 1.41 2020/03/20 15:00:45 rillig Exp $
 #
 # The following variables may be set by the package Makefile and
 # specify how extraction happens:
@@ -27,11 +27,6 @@
 #	when using EXTRACT_CMD_DEFAULT.  See the comments at the head of
 #	the "extract" script for a definitive list of the available
 #	options.  The default list is empty.
-#
-#    EXTRACT_USING specifies the tool used to extract tar/ustar-format
-#	archives when using EXTRACT_CMD_DEFAULT.  The possible values are
-#	"bsdtar", "gtar", "nbtar", and "pax".
-#	By default, we use the "nbtar" tool (pkgsrc's pax-as-tar).
 #
 #    EXTRACT_ELEMENTS is a list of files within the distfile to extract
 #	when using EXTRACT_CMD_DEFAULT.  By default, this is empty, which
@@ -159,7 +154,6 @@ extract-cookie:
 ###
 .PHONY: pre-extract do-extract post-extract
 
-EXTRACT_USING?=		nbtar
 EXTRACT_ELEMENTS?=	# empty
 
 ###
@@ -216,7 +210,7 @@ EXTRACT_CMD_DEFAULT=	\
 
 EXTRACT_CMD?=	${EXTRACT_CMD_DEFAULT}
 
-DOWNLOADED_DISTFILE=	$${extract_file}
+DOWNLOADED_DISTFILE=	"$${extract_file}"
 
 .if !target(do-extract)
 do-extract: ${WRKDIR}

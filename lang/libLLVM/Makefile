@@ -1,20 +1,19 @@
-# $NetBSD: Makefile,v 1.33 2019/11/03 19:04:02 rillig Exp $
+# $NetBSD: Makefile,v 1.36 2020/03/20 17:51:57 nia Exp $
 
-DISTNAME=	llvm-7.0.1.src
+DISTNAME=	llvm-9.0.1.src
 PKGNAME=	${DISTNAME:S/llvm/libLLVM/:S/.src//}
-PKGREVISION=	2
 CATEGORIES=	lang devel
 MASTER_SITES=	http://llvm.org/releases/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://llvm.org/
+HOMEPAGE=	https://llvm.org/
 COMMENT=	Low Level Virtual Machine shared library
 LICENSE=	modified-bsd
 
 USE_LANGUAGES=		c c++11
 USE_CMAKE=		yes
-GCC_REQD+=		4.8
+GCC_REQD+=		5
 PYTHON_FOR_BUILD_ONLY=	yes
 
 CONFIGURE_DIRS=		${WRKDIR}/build
@@ -29,6 +28,8 @@ CMAKE_ARGS+=	-DLLVM_INSTALL_UTILS=OFF
 CMAKE_ARGS+=	-DLLVM_LINK_LLVM_DYLIB=ON
 CMAKE_ARGS+=	-DLLVM_INCLUDE_TESTS=OFF
 CMAKE_ARGS+=	-DLLVM_ENABLE_LIBXML2=OFF
+CMAKE_ARGS+=	-DLLVM_BUILD_UTILS=OFF
+CMAKE_ARGS+=	-DLLVM_INCLUDE_BENCHMARKS=OFF
 CMAKE_ARGS+=	-DLLVM_ENABLE_RTTI=ON
 CMAKE_ARGS+=	-DCMAKE_EXE_LINKER_FLAGS=${COMPILER_RPATH_FLAG}${PREFIX}/lib/libLLVM
 
@@ -36,18 +37,20 @@ CMAKE_ARGS.Darwin+=	-DCMAKE_LIBTOOL=/usr/bin/libtool
 
 .for tool in	bugpoint bugpoint_passes dsymutil gold llc lli llvm_ar	\
 	llvm_as llvm_as_fuzzer llvm_bcanalyzer llvm_c_test llvm_cat	\
-	llvm_cfi_verify llvm_cov llvm_cvtres llvm_cxxdump		\
-	llvm_cxxfilt llvm_demangle_fuzzer llvm_diff llvm_dis		\
-	llvm_dwarfdump llvm_dwp llvm_exegesis llvm_extract llvm_go	\
-	llvm_isel_fuzzer llvm_jitlistener llvm_link llvm_lto llvm_lto2	\
-	llvm_mc llvm_mc_assemble_fuzzer llvm_mc_disassemble_fuzzer	\
-	llvm_mca llvm_modextract llvm_mt llvm_nm llvm_objcopy		\
-	llvm_objdump llvm_opt_fuzzer llvm_opt_report llvm_pdbutil	\
-	llvm_profdata llvm_rc llvm_readobj llvm_rtdyld			\
+	llvm_cfi_verify llvm_cov llvm_cvtres llvm_cxxdump llvm_cxxfilt	\
+	llvm_cxxmap llvm_diff llvm_dis llvm_dwarfdump llvm_dwp		\
+	llvm_elfabi llvm_exegesis llvm_extract llvm_go llvm_isel_fuzzer	\
+	llvm_itanium_demangle_fuzzer llvm_jitlink llvm_jitlistener	\
+	llvm_link llvm_lipo llvm_lto llvm_lto2 llvm_mc			\
+	llvm_mc_assemble_fuzzer llvm_mc_disassemble_fuzzer llvm_mca	\
+	llvm_microsoft_demangle_fuzzer llvm_modextract llvm_mt llvm_nm	\
+	llvm_objcopy llvm_objdump llvm_opt_fuzzer llvm_opt_report	\
+	llvm_pdbutil llvm_profdata llvm_rc llvm_readobj llvm_rtdyld	\
 	llvm_size llvm_special_case_list_fuzzer llvm_split llvm_stress	\
-	llvm_strings llvm_symbolizer llvm_undname llvm_xray lto		\
-	obj2yaml opt opt_viewer sancov sanstats verify_uselistorder	\
-	xcode_toolchain yaml2obj
+	llvm_strings llvm_symbolizer llvm_undname llvm_xray		\
+	llvm_yaml_numeric_parser_fuzzer lto msbuild obj2yaml		\
+	opt opt_viewer remarks_shlib sancov sanstats			\
+	verify_uselistorder xcode_toolchain yaml2obj
 
 CMAKE_ARGS+=	-DLLVM_TOOL_${tool:tu}_BUILD=OFF
 .endfor

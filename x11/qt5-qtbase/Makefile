@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.86 2019/12/24 06:21:20 dbj Exp $
+# $NetBSD: Makefile,v 1.102 2020/09/14 20:08:26 adam Exp $
 
 DISTNAME=	qtbase-everywhere-src-${QTVERSION}
 PKGNAME=	qt5-qtbase-${QTVERSION}
@@ -13,7 +13,6 @@ CONFIGURE_ARGS+=	-L "${PREFIX}/lib"
 CONFIGURE_ARGS+=	-opensource -confirm-license
 CONFIGURE_ARGS+=	-sysconfdir "${PKG_SYSCONFDIR}/xdg"
 CONFIGURE_ARGS+=	-accessibility
-CONFIGURE_ARGS+=	-dbus-linked
 CONFIGURE_ARGS+=	-icu
 CONFIGURE_ARGS+=	-libproxy
 CONFIGURE_ARGS+=	-openssl-linked
@@ -93,10 +92,10 @@ QMAKE_LIBS_EXECINFO=		-lexecinfo
 .elif ${OPSYS} == "Darwin"
 CONFIGURE_ARGS+=		-platform macx-clang
 CONFIGURE_ARGS+=		-no-framework
-   # pkgsrc has a patch to avoid using SDK, but the configure
-   # logic gets confused if it can't find the header files
-   # so give it a direct path to them if they aren't installed
-   # in /usr/include
+# pkgsrc has a patch to avoid using SDK, but the configure
+# logic gets confused if it can't find the header files
+# so give it a direct path to them if they aren't installed
+# in /usr/include
 .  if !exists(/usr/include)
 CONFIGURE_ARGS+=	-I "$$(xcrun --show-sdk-path)"/usr/include
 .  endif
@@ -152,7 +151,7 @@ SUBST_VARS.path=	PREFIX
 BROKEN_FILES=		qt5/mkspecs/modules/qt_lib_bootstrap_private.pri
 BROKEN_FILES1=		qt5/mkspecs/qmodule.pri
 
-PC_FILES=		Qt5Concurrent.pc Qt5Core.pc Qt5DBus.pc \
+PC_FILES=		Qt5Concurrent.pc Qt5Core.pc \
 			Qt5Gui.pc Qt5Network.pc Qt5OpenGL.pc \
 			Qt5OpenGLExtensions.pc \
 			Qt5PrintSupport.pc Qt5Sql.pc Qt5Test.pc \
@@ -188,7 +187,8 @@ pre-configure:
 		-e 's:@PTHREAD_LDFLAGS@:${PTHREAD_LDFLAGS:Q}:g' \
 		-e 's:@PTHREAD_LIBS@:${PTHREAD_LIBS:Q}:g' \
 		-e 's:@COMPILER_RPATH_FLAG@:${COMPILER_RPATH_FLAG}:g' \
-		-e 's:@QMAKE_RANLIB@:${QMAKE_RANLIB:Q}:g' \
+		-e 's:@QMAKE_RANLIB@:${RANLIB}:g' \
+		-e 's:@QMAKE_EXTRA@:${QMAKE_EXTRA:Q}:g' \
 		-e 's:@QMAKE_LIBS_DYNLOAD@:${BUILDLINK_LDADD.ldd:Q}:g' \
 		-e 's:@QMAKE_LIBS_EXECINFO@:${QMAKE_LIBS_EXECINFO:Q}:g' \
 		${FILESDIR}/${QMAKE_CONF} > ${WRKSRC}/qmake.conf
@@ -198,6 +198,8 @@ pre-configure:
 		done
 	${RM} -f ${WRKSRC}/mkspecs/features/mac/default_pre.prf
 	${RM} -f ${WRKSRC}/mkspecs/features/mac/default_post.prf
+
+.include "options.mk"
 
 post-install:
 .for i in ${PC_FILES}
@@ -218,6 +220,7 @@ post-install:
 	${MV} -f ${DESTDIR}${PREFIX}/${BROKEN_FILES1}.1 \
 		${DESTDIR}${PREFIX}/${BROKEN_FILES1}
 
+.include "../../archivers/zstd/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
@@ -228,7 +231,6 @@ post-install:
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
-.include "../../sysutils/dbus/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
 .include "../../www/libproxy/buildlink3.mk"
 .if ${OPSYS} != "Darwin"
@@ -237,6 +239,7 @@ post-install:
 .  if !empty(MESALIB_SUPPORTS_EGL:Myes)
 PLIST.egl=	yes
 .  endif
+BUILDLINK_API_DEPENDS.libxcb+=	libxcb>=1.11
 .include "../../x11/libxcb/buildlink3.mk"
 .include "../../x11/xcb-util/buildlink3.mk"
 .include "../../x11/xcb-util-image/buildlink3.mk"

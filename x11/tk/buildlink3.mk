@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.37 2018/03/12 11:15:58 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.39 2020/08/17 20:18:01 leot Exp $
 
 BUILDLINK_TREE+=	tk
 
@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	tk
 TK_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.tk+=	tk>=8.5.7
-BUILDLINK_ABI_DEPENDS.tk+=	tk>=8.6.8nb1
+BUILDLINK_ABI_DEPENDS.tk+=	tk>=8.6.10nb1
 BUILDLINK_PKGSRCDIR.tk?=	../../x11/tk
 
 BUILDLINK_FILES.tk+=	bin/wish*
@@ -29,10 +29,10 @@ pkgbase := tk
 .if !empty(PKG_BUILD_OPTIONS.tk:Mxft2)
 .  include "../../x11/libXft/buildlink3.mk"
 .endif
-
-.include "../../mk/bsd.fast.prefs.mk"
-.if ${OPSYS} != "Darwin"
-.  include "../../x11/libX11/buildlink3.mk"
+.if empty(PKG_BUILD_OPTIONS.tk:Maqua)
+. include "../../x11/libX11/buildlink3.mk"
+. include "../../x11/libXext/buildlink3.mk"
+. include "../../x11/libXScrnSaver/buildlink3.mk"
 .endif
 .include "../../lang/tcl/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

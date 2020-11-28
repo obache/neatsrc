@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.16 2019/11/23 08:37:35 mef Exp $
+# $NetBSD: Makefile,v 1.20 2020/06/12 17:23:51 rillig Exp $
 
-DISTNAME=		acr-1.7.2
+DISTNAME=		acr-1.9.3
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_GITHUB:=radare/}
 EXTRACT_SUFX=		.zip
@@ -10,14 +10,11 @@ HOMEPAGE=		https://github.com/radare/acr
 COMMENT=		Autoconf replacement
 LICENSE=		gnu-gpl-v2
 
-# Only defined the install target
-NO_BUILD=		yes
-
-GNU_CONFIGURE=		yes
+GNU_CONFIGURE=		yes	# not quite, but close enough
 AUTO_MKDIRS=		yes
 
 post-install:
-	(cd ${WRKSRC}; \
-	${INSTALL_DATA} configure.acr ${DESTDIR}${PREFIX}/share/examples/acr/; \
-	)
+	${RUN} cd ${WRKSRC}; \
+	${INSTALL_DATA} configure.acr ${DESTDIR}${PREFIX}/share/examples/acr/
+
 .include "../../mk/bsd.pkg.mk"

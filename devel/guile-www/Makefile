@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.37 2016/09/15 15:38:20 gdt Exp $
+# $NetBSD: Makefile,v 1.39 2020/03/08 16:49:13 wiz Exp $
 
 DISTNAME=	guile-www-2.39
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	devel www
 MASTER_SITES=	http://download.savannah.nongnu.org/releases/guile-www/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	gdt@NetBSD.org
-HOMEPAGE=	http://www.nongnu.org/guile-www/
+HOMEPAGE=	https://www.nongnu.org/guile-www/
 COMMENT=	Guile WWW module
 
 LICENSE=	gnu-gpl-v3

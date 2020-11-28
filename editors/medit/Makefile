@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.39 2019/09/02 13:19:58 adam Exp $
+# $NetBSD: Makefile,v 1.45 2020/08/17 20:18:34 leot Exp $
 
 DISTNAME=	medit-1.2.0
-PKGREVISION=	11
+PKGREVISION=	15
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=mooedit/}
 EXTRACT_SUFX=	.tar.bz2

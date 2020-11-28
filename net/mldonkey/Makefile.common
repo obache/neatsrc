@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.52 2018/03/14 14:06:59 dholland Exp $
+# $NetBSD: Makefile.common,v 1.54 2020/03/20 11:58:08 nia Exp $
 #
 # used by net/mldonkey/Makefile
 # used by net/mldonkey-gui/Makefile

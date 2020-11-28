@@ -1,15 +1,15 @@
-# $NetBSD: Makefile.common,v 1.70 2018/07/18 00:06:24 joerg Exp $
+# $NetBSD: Makefile.common,v 1.72 2020/08/17 20:20:16 leot Exp $
 #
 # used by wm/icewm/Makefile
 # used by wm/icewm-imlib/Makefile
 
 DISTNAME=		icewm-1.2.38pre2
-PKGREVISION=		1
+PKGREVISION=		2
 CATEGORIES=		x11 wm
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=icewm/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.icewm.org/
+HOMEPAGE=		https://www.ice-wm.org/
 
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake msgfmt

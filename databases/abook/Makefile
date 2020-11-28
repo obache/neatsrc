@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.30 2019/12/21 23:30:44 joerg Exp $
+# $NetBSD: Makefile,v 1.32 2020/01/26 05:26:19 rillig Exp $
 #
 
 DISTNAME=	abook-0.6.1

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.54 2019/07/21 22:25:59 wiz Exp $
+# $NetBSD: Makefile,v 1.57 2020/08/17 20:20:27 leot Exp $
 
 DISTNAME=	hot-babe-0.2.2
-PKGREVISION=	31
+PKGREVISION=	34
 CATEGORIES=	x11
 #MASTER_SITES=	http://dindinx.net/hotbabe/downloads/
 

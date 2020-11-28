@@ -1,4 +1,4 @@
-# $NetBSD: cmake.mk,v 1.17 2019/09/02 02:23:03 rillig Exp $
+# $NetBSD: cmake.mk,v 1.20 2020/08/12 14:10:11 schmonz Exp $
 #
 # This file handles packages that use CMake as their primary build
 # system. For more information about CMake, see http://www.cmake.org/.
@@ -38,12 +38,17 @@
 # CMAKE_INSTALL_PREFIX
 #	Destination directory to install software. The default is ${PREFIX}.
 #
+# CMAKE_INSTALL_NAME_DIR
+#       Destination directory to install shlibs, used by
+#       install_name_tool(1) on macOS. The default is ${PREFIX}/lib.
+#
 
 _CMAKE_DIR=	${BUILDLINK_DIR}/share/cmake/Modules
 
 CMAKE_USE_GNU_INSTALL_DIRS?=	yes
 
 CMAKE_INSTALL_PREFIX?=	${PREFIX}
+CMAKE_INSTALL_NAME_DIR?=${PREFIX}/lib
 
 CMAKE_ARGS+=	-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
 .if empty(CMAKE_PKGSRC_BUILD_FLAGS:M[nN][oO])
@@ -53,7 +58,7 @@ CMAKE_ARGS+=    -DCMAKE_PKGSRC_BUILD_FLAGS:BOOL=TRUE
 CMAKE_ARGS+=	-DCMAKE_NO_BUILTIN_CHRPATH:BOOL=YES
 .else
 CMAKE_ARGS+=	-DCMAKE_SKIP_RPATH:BOOL=FALSE
-CMAKE_ARGS+=	-DCMAKE_INSTALL_NAME_DIR:PATH=${PREFIX}/lib
+CMAKE_ARGS+=	-DCMAKE_INSTALL_NAME_DIR:PATH=${CMAKE_INSTALL_NAME_DIR}
 .endif
 .if defined(CMAKE_USE_GNU_INSTALL_DIRS) && empty(CMAKE_USE_GNU_INSTALL_DIRS:M[nN][oO])
 CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR:PATH=lib

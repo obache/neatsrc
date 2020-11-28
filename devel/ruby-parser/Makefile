@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.32 2019/10/30 15:19:43 taca Exp $
+# $NetBSD: Makefile,v 1.34 2020/09/13 15:54:58 taca Exp $
 
-DISTNAME=	ruby_parser-3.14.1
+DISTNAME=	ruby_parser-3.15.0
 PKGNAME=	${RUBY_PKGPREFIX}-${DISTNAME:S/ruby_//}
 CATEGORIES=	devel
 

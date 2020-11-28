@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.17 2019/11/03 11:45:54 rillig Exp $
+# $NetBSD: Makefile,v 1.19 2020/08/31 18:10:54 wiz Exp $
 #
 
 DISTNAME=	tacacs-F4.0.4.28
 PKGNAME=	${DISTNAME:S,-F,-,}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	net security
 MASTER_SITES=	ftp://ftp.shrubbery.net/pub/tac_plus/
 
 MAINTAINER=	schwarz@NetBSD.org
-HOMEPAGE=	http://www.shrubbery.net/tac_plus/
+HOMEPAGE=	https://www.shrubbery.net/tac_plus/
 COMMENT=	Cisco AAA protocol (tacacs+) daemon (Shrubbery Networks version)
 LICENSE=	cisco-license
 

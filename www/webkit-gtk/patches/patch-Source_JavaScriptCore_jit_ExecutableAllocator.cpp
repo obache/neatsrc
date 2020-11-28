@@ -1,4 +1,4 @@
-$NetBSD: patch-Source_JavaScriptCore_jit_ExecutableAllocator.cpp,v 1.3 2019/03/13 20:49:40 leot Exp $
+$NetBSD: patch-Source_JavaScriptCore_jit_ExecutableAllocator.cpp,v 1.5 2020/09/11 14:47:35 leot Exp $
 
 Avoid to (pre)allocate 1GB of memory on OpenBSD:
 
@@ -6,14 +6,14 @@ Avoid to (pre)allocate 1GB of memory on OpenBSD:
 
 From OpenBSD ports.
 
---- Source/JavaScriptCore/jit/ExecutableAllocator.cpp.orig	2019-02-12 11:21:03.000000000 +0000
+--- Source/JavaScriptCore/jit/ExecutableAllocator.cpp.orig	2020-08-12 09:17:53.000000000 +0000
 +++ Source/JavaScriptCore/jit/ExecutableAllocator.cpp
-@@ -92,7 +92,7 @@ static const size_t fixedExecutableMemor
- static const size_t fixedExecutableMemoryPoolSize = 16 * 1024 * 1024;
- #elif CPU(ARM64)
- static const size_t fixedExecutableMemoryPoolSize = 128 * 1024 * 1024;
+@@ -93,7 +93,7 @@ static constexpr size_t maxIslandsPerReg
+ #else
+ static constexpr size_t fixedExecutableMemoryPoolSize = 128 * MB;
+ #endif
 -#elif CPU(X86_64)
 +#elif CPU(X86_64) && !OS(OPENBSD)
- static const size_t fixedExecutableMemoryPoolSize = 1024 * 1024 * 1024;
+ static constexpr size_t fixedExecutableMemoryPoolSize = 1 * GB;
  #else
- static const size_t fixedExecutableMemoryPoolSize = 32 * 1024 * 1024;
+ static constexpr size_t fixedExecutableMemoryPoolSize = 32 * MB;

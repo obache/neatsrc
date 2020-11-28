@@ -1,6 +1,7 @@
 package pkglint
 
 import (
+	"netbsd.org/pkglint/pkgver"
 	"netbsd.org/pkglint/regex"
 	"netbsd.org/pkglint/textproc"
 	"os"
@@ -14,8 +15,8 @@ import (
 // It just doesn't make sense to check multiple pkgsrc installations at once.
 //
 // This type only contains data that is loaded once and then stays constant.
-// Everything else (distfile hashes, package names) is recorded in the Pkglint
-// type instead.
+// Everything else (distfile hashes, package names) is recorded in the
+// InterPackage type instead.
 type Pkgsrc struct {
 	// The top directory (PKGSRCDIR).
 	topdir CurrPath
@@ -151,7 +152,7 @@ func (src *Pkgsrc) loadDocChanges() {
 	docDir := src.File("doc")
 	files := src.ReadDir("doc")
 	if len(files) == 0 {
-		NewLineWhole(docDir).Fatalf("Cannot be read for loading the package changes.")
+		G.Logger.TechFatalf(docDir, "Cannot be read for loading the package changes.")
 	}
 
 	var filenames []RelPath
@@ -179,15 +180,17 @@ func (src *Pkgsrc) loadDocChanges() {
 
 func (src *Pkgsrc) loadDocChangesFromFile(filename CurrPath) []*Change {
 
-	warn := G.Opts.CheckGlobal && !G.Wip
+	warn := G.CheckGlobal && !G.Wip
 
 	// Each date in the file should be from the same year as the filename says.
 	// This check has been added in 2018.
 	// For years earlier than 2018 pkglint doesn't care because it's not a big issue anyway.
 	year := ""
-	if _, yyyy := match1(filename.Base(), `-(\d\d\d\d)$`); yyyy >= "2018" {
+	if _, yyyy := match1(filename.Base().String(), `-(\d\d\d\d)$`); yyyy >= "2018" {
 		year = yyyy
 	}
+
+	latest := make(map[PkgsrcPath]*Change)
 
 	infra := false
 	lines := Load(filename, MustSucceed|NotEmpty)
@@ -225,32 +228,85 @@ func (src *Pkgsrc) loadDocChangesFromFile(filename CurrPath) []*Change {
 			continue
 		}
 
-		if year != "" && change.Date[0:4] != year {
-			line.Warnf("Year %q for %s does not match the filename %s.",
-				change.Date[0:4], change.Pkgpath.String(), line.Rel(filename))
-		}
-
-		if len(changes) >= 2 && year != "" {
-			if prev := changes[len(changes)-2]; change.Date < prev.Date {
-				line.Warnf("Date %q for %s is earlier than %q in %s.",
-					change.Date, change.Pkgpath.String(), prev.Date, line.RelLocation(prev.Location))
-				line.Explain(
-					"The entries in doc/CHANGES should be in chronological order, and",
-					"all dates are assumed to be in the UTC timezone, to prevent time",
-					"warps.",
-					"",
-					"To fix this, determine which of the involved dates are correct",
-					"and which aren't.",
-					"",
-					"To prevent this kind of mistakes in the future,",
-					"make sure that your system time is correct and run",
-					sprintf("%q", bmake("cce")),
-					"to commit the changes entry.")
-			}
-		}
+		src.checkChangeVersion(change, latest, line)
+		src.checkChangeDate(filename, year, change, line, changes)
 	}
 
 	return changes
+}
+
+func (src *Pkgsrc) checkChangeVersion(change *Change, latest map[PkgsrcPath]*Change, line *Line) {
+	switch change.Action {
+
+	case Added:
+		src.checkChangeVersionNumber(change, line)
+		existing := latest[change.Pkgpath]
+		if existing != nil && existing.Version() == change.Version() {
+			line.Warnf("Package %q was already added in %s.",
+				change.Pkgpath.String(), line.RelLocation(existing.Location))
+		}
+		latest[change.Pkgpath] = change
+
+	case Updated:
+		src.checkChangeVersionNumber(change, line)
+		existing := latest[change.Pkgpath]
+		if existing != nil && pkgver.Compare(change.Version(), existing.Version()) <= 0 {
+			line.Warnf("Updating %q from %s in %s to %s should increase the version number.",
+				change.Pkgpath.String(), existing.Version(), line.RelLocation(existing.Location), change.Version())
+		}
+		latest[change.Pkgpath] = change
+
+	case Downgraded:
+		src.checkChangeVersionNumber(change, line)
+		existing := latest[change.Pkgpath]
+		if existing != nil && pkgver.Compare(change.Version(), existing.Version()) >= 0 {
+			line.Warnf("Downgrading %q from %s in %s to %s should decrease the version number.",
+				change.Pkgpath.String(), existing.Version(), line.RelLocation(existing.Location), change.Version())
+		}
+		latest[change.Pkgpath] = change
+
+	default:
+		latest[change.Pkgpath] = nil
+	}
+}
+
+func (src *Pkgsrc) checkChangeVersionNumber(change *Change, line *Line) {
+	version := change.Version()
+
+	switch {
+	case !textproc.NewLexer(version).TestByteSet(textproc.Digit):
+		line.Warnf("Version number %q should start with a digit.", version)
+
+	// See rePkgname for the regular expression.
+	case !matches(version, `^([0-9][.\-0-9A-Z_a-z]*)$`):
+		line.Warnf("Malformed version number %q.", version)
+	}
+}
+
+func (src *Pkgsrc) checkChangeDate(filename CurrPath, year string, change *Change, line *Line, changes []*Change) {
+	if year != "" && change.Date[0:4] != year {
+		line.Warnf("Year %q for %s does not match the filename %s.",
+			change.Date[0:4], change.Pkgpath.String(), line.Rel(filename))
+	}
+
+	if len(changes) >= 2 && year != "" {
+		if prev := changes[len(changes)-2]; change.Date < prev.Date {
+			line.Warnf("Date %q for %s is earlier than %q in %s.",
+				change.Date, change.Pkgpath.String(), prev.Date, line.RelLocation(prev.Location))
+			line.Explain(
+				"The entries in doc/CHANGES should be in chronological order, and",
+				"all dates are assumed to be in the UTC timezone, to prevent time",
+				"warps.",
+				"",
+				"To fix this, determine which of the involved dates are correct",
+				"and which aren't.",
+				"",
+				"To prevent this kind of mistakes in the future,",
+				"make sure that your system time is correct and run",
+				sprintf("%q", bmake("cce")),
+				"to commit the changes entry.")
+		}
+	}
 }
 
 func (*Pkgsrc) parseDocChange(line *Line, warn bool) *Change {
@@ -314,7 +370,7 @@ func (*Pkgsrc) parseDocChange(line *Line, warn bool) *Change {
 		action == Added && f[2] == "version",
 		action == Updated && f[2] == "to",
 		action == Downgraded && f[2] == "to",
-		action == Removed && (f[2] == "successor" || n == 4),
+		action == Removed && (f[2] == "successor" || f[2] == "version" || n == 4),
 		(action == Renamed || action == Moved) && f[2] == "to":
 		return &Change{
 			Location: line.Location,
@@ -330,7 +386,7 @@ func (*Pkgsrc) parseDocChange(line *Line, warn bool) *Change {
 }
 
 func (src *Pkgsrc) checkRemovedAfterLastFreeze() {
-	if src.LastFreezeStart == "" || G.Wip || !G.Opts.CheckGlobal {
+	if src.LastFreezeStart == "" || G.Wip || !G.CheckGlobal {
 		return
 	}
 
@@ -347,10 +403,10 @@ func (src *Pkgsrc) checkRemovedAfterLastFreeze() {
 	sort.Slice(wrong, func(i, j int) bool { return wrong[i].IsAbove(wrong[j]) })
 
 	for _, change := range wrong {
-		// It's a bit cheated to construct a Line from only a Location,
-		// without the wrong text. That's only because I'm too lazy loading
-		// the file again, and the original text is not lying around anywhere.
-		line := NewLineMulti(change.Location.Filename, int(change.Location.firstLine), int(change.Location.lastLine), "", nil)
+		// The original line of the change is not available anymore.
+		// Therefore it is necessary to load the whole file again.
+		lines := Load(change.Location.Filename, MustSucceed)
+		line := lines.Lines[change.Location.lineno-1]
 		line.Errorf("Package %s must either exist or be marked as removed.", change.Pkgpath.String())
 	}
 }
@@ -425,7 +481,7 @@ func (src *Pkgsrc) loadTools() {
 			}
 		}
 		if len(toolFiles) <= 1 {
-			NewLineWhole(toc).Fatalf("Too few tool files.")
+			G.Logger.TechFatalf(toc, "Too few tool files.")
 		}
 	}
 
@@ -465,8 +521,84 @@ func (src *Pkgsrc) loadTools() {
 		})
 	}
 
+	src.loadToolsPlatform()
+
 	if trace.Tracing {
 		tools.Trace()
+	}
+}
+
+func (src *Pkgsrc) loadToolsPlatform() {
+	var systems []string
+	scopes := make(map[string]*RedundantScope)
+	for _, mkFile := range src.File("mk/tools").ReadPaths() {
+		m, opsys := match1(mkFile.Base().String(), `^tools\.(.+)\.mk$`)
+		if !m {
+			continue
+		}
+		systems = append(systems, opsys)
+
+		mklines := LoadMk(mkFile, nil, MustSucceed)
+		scope := NewRedundantScope()
+		// Suppress any warnings, just compute the variable state.
+		scope.IsRelevant = func(*MkLine) bool { return false }
+		scope.Check(mklines)
+		scopes[opsys] = scope
+
+		mklines.ForEach(func(mkline *MkLine) {
+			if mkline.IsVarassign() && hasPrefix(mkline.Varname(), "TOOLS_PLATFORM.") {
+				src.Tools.Define(mkline.Varparam(), "", mkline)
+			}
+		})
+	}
+
+	// 0 = undefined, 1 = conditional, 2 = definitely assigned
+	type status int
+	statusByNameAndOpsys := make(map[string]map[string]status)
+
+	for opsys, scope := range scopes {
+		for varname, varinfo := range scope.vars {
+			if varnameCanon(varname) == "TOOLS_PLATFORM.*" {
+				var s status
+				if varinfo.vari.IsConditional() {
+					if len(varinfo.vari.WriteLocations()) == 1 {
+						s = 1
+					} else {
+						// TODO: Don't just count the number of assignments,
+						//  check whether they definitely assign the variable.
+						//  See substScope.
+						s = 2
+					}
+				} else if varinfo.vari.IsConstant() {
+					s = 2
+				} else {
+					continue
+				}
+
+				name := varnameParam(varname)
+				if statusByNameAndOpsys[name] == nil {
+					statusByNameAndOpsys[name] = make(map[string]status)
+				}
+				statusByNameAndOpsys[name][opsys] = s
+			}
+		}
+	}
+
+	for name, tool := range src.Tools.byName {
+		undefined := make(map[string]bool)
+		conditional := make(map[string]bool)
+		for _, opsys := range systems {
+			undefined[opsys] = true
+			conditional[opsys] = true
+		}
+		for opsys, status := range statusByNameAndOpsys[name] {
+			delete(undefined, opsys)
+			if status == 2 {
+				delete(conditional, opsys)
+			}
+		}
+		tool.undefinedOn = keysSorted(undefined)
+		tool.conditionalOn = keysSorted(conditional)
 	}
 }
 
@@ -680,11 +812,16 @@ func (src *Pkgsrc) loadUntypedVars() {
 		mklines := LoadMk(path, nil, MustSucceed)
 		mklines.collectVariables()
 		mklines.collectUsedVariables()
-		def := func(varname string, mkline *MkLine) {
-			define(varnameCanon(varname), mkline)
-		}
-		forEachStringMkLine(mklines.allVars.firstDef, def)
-		forEachStringMkLine(mklines.allVars.used, def)
+		mklines.allVars.forEach(func(varname string, data *scopeVar) {
+			if data.firstDef != nil {
+				define(varnameCanon(varname), data.firstDef)
+			}
+		})
+		mklines.allVars.forEach(func(varname string, data *scopeVar) {
+			if data.used != nil {
+				define(varnameCanon(varname), data.used)
+			}
+		})
 	}
 
 	handleFile := func(pathName string, info os.FileInfo, err error) error {
@@ -810,9 +947,10 @@ func (src *Pkgsrc) ListVersions(category PkgsrcPath, re regex.Pattern, repl stri
 	}
 
 	var names []string
+	dir := src.File(category)
 	for _, fileInfo := range src.ReadDir(category) {
 		name := fileInfo.Name()
-		if matches(name, re) {
+		if matches(name, re) && !isEmptyDir(dir.JoinNoClean(NewRelPathString(name))) {
 			names = append(names, name)
 		}
 	}
@@ -1000,8 +1138,10 @@ func (src *Pkgsrc) IsBuildDef(varname string) bool {
 }
 
 // ReadDir lists the files and subdirectories from the given directory
-// (relative to the pkgsrc root), filtering out any ignored files (CVS/*)
-// and empty directories.
+// (relative to the pkgsrc root).
+//
+// The result may contain empty directories that are left over from CVS.
+// For performance reasons, the caller needs to filter these out; see isEmptyDir.
 func (src *Pkgsrc) ReadDir(dirName PkgsrcPath) []os.FileInfo {
 	dir := src.File(dirName)
 	files, err := dir.ReadDir()
@@ -1012,7 +1152,7 @@ func (src *Pkgsrc) ReadDir(dirName PkgsrcPath) []os.FileInfo {
 	var relevantFiles []os.FileInfo
 	for _, dirent := range files {
 		name := dirent.Name()
-		if !dirent.IsDir() || !isIgnoredFilename(name) && !isEmptyDir(dir.JoinNoClean(NewRelPathString(name))) {
+		if !dirent.IsDir() || !isIgnoredFilename(name) {
 			relevantFiles = append(relevantFiles, dirent)
 		}
 	}
@@ -1024,6 +1164,7 @@ func (src *Pkgsrc) ReadDir(dirName PkgsrcPath) []os.FileInfo {
 //
 // During pkglint testing, these files often don't exist, as they are
 // emulated by setting their data structures manually.
+// In that case, returns nil.
 func (src *Pkgsrc) LoadMkExisting(filename PkgsrcPath) *MkLines {
 	options := NotEmpty
 	if !G.Testing {
@@ -1120,6 +1261,16 @@ func (src *Pkgsrc) File(relativeName PkgsrcPath) CurrPath {
 	return src.topdir.JoinNoClean(cleaned).CleanDot()
 }
 
+// FilePkg resolves a package-relative path to the real file that it represents.
+// If the given path does not start with "../../", the result is empty.
+func (src *Pkgsrc) FilePkg(rel PackagePath) CurrPath {
+	parts := rel.AsPath().Parts()
+	if len(parts) >= 4 && parts[0] == ".." && parts[1] == ".." && parts[2] != ".." {
+		return src.File(NewPkgsrcPath(NewPath(strings.Join(parts[2:], "/"))))
+	}
+	return ""
+}
+
 // Rel returns the path of `filename`, relative to the pkgsrc top directory.
 //
 // Example:
@@ -1167,8 +1318,10 @@ func (ch *Change) Target() PkgsrcPath {
 	return NewPkgsrcPath(NewPath(ch.target))
 }
 
-// Successor returns the successor for a Removed package.
-func (ch *Change) Successor() string {
+// SuccessorOrVersion returns the successor for a Removed package,
+// or the version number of its last appearance.
+// As of 2020-10-06, no cross-validation is done on this field though.
+func (ch *Change) SuccessorOrVersion() string {
 	assert(ch.Action == Removed)
 	return ch.target
 }
@@ -1177,7 +1330,7 @@ func (ch *Change) IsAbove(other *Change) bool {
 	if ch.Date != other.Date {
 		return ch.Date < other.Date
 	}
-	return ch.Location.firstLine < other.Location.firstLine
+	return ch.Location.lineno < other.Location.lineno
 }
 
 type ChangeAction uint8

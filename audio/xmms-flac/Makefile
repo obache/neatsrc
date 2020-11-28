@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.31 2016/04/20 12:10:34 nros Exp $
+# $NetBSD: Makefile,v 1.33 2020/03/20 11:57:23 nia Exp $
 #
 
 DISTNAME=	flac-1.1.3

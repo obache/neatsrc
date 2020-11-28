@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.43 2019/08/11 13:19:13 wiz Exp $
+# $NetBSD: Makefile,v 1.45 2020/08/31 18:07:48 wiz Exp $
 
-DISTNAME=	Data-UUID-1.224
+DISTNAME=	Data-UUID-1.226
 PKGNAME=	p5-${DISTNAME}
 PKGREVISION=	1
 CATEGORIES=	devel perl5

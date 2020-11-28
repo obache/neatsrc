@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.63 2019/12/19 00:38:39 taca Exp $
+# $NetBSD: Makefile,v 1.66 2020/09/19 13:18:49 taca Exp $
 
-DISTNAME=	drupal-7.69
+DISTNAME=	drupal-7.73
 PKGNAME=	${PHP_PKG_PREFIX}-${DISTNAME}
 CATEGORIES=	www
 MASTER_SITES=	https://ftp.drupal.org/files/projects/
@@ -13,7 +13,7 @@ LICENSE=	gnu-gpl-v2
 DEPENDS+=	${PHP_PKG_PREFIX}-gd>=5.4.0:../../graphics/php-gd
 DEPENDS+=	${PHP_PKG_PREFIX}-json>=5.4.0:../../textproc/php-json
 
-PHP_VERSIONS_ACCEPTED=	56 72 73
+PHP_VERSIONS_ACCEPTED=	56 72 73 74
 
 NO_BUILD=	YES
 DRUPAL=		share/drupal
@@ -47,7 +47,7 @@ REPLACE_FILES.php=	scripts/drupal.sh scripts/password-hash.sh
 REPLACE_FILES.php+=	scripts/dump-database-d6.sh
 REPLACE_FILES.php+=	scripts/dump-database-d7.sh
 REPLACE_FILES.php+=	scripts/generate-d6-content.sh
-REPLACE_FILES.php+=	scripts/generate-d6-content.sh
+REPLACE_FILES.php+=	scripts/generate-d7-content.sh
 
 SUBST_CLASSES+=		conf
 SUBST_STAGE.conf=	pre-install

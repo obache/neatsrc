@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.15 2019/05/09 09:47:34 adam Exp $
+# $NetBSD: Makefile,v 1.17 2020/05/10 03:56:37 markd Exp $
 
 .include "../../print/texlive/Makefile.common"
 
 PKGNAME=	gsftopkk-1.19.2
-PKGREVISION=	10
+PKGREVISION=	11
 CATEGORIES=	print
 
-HOMEPAGE=	http://math.berkeley.edu/~vojta/gsftopk.html
+HOMEPAGE=	https://math.berkeley.edu/~vojta/gsftopk.html
 COMMENT=	Tool to convert bitmaps to .pk format
 
 EXTRACT_ELEMENTS+=	${DISTNAME}/texk/gsftopk

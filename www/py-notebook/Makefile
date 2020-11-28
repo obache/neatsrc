@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.17 2019/11/08 13:15:37 adam Exp $
+# $NetBSD: Makefile,v 1.19 2020/08/09 23:37:32 joerg Exp $
 
-DISTNAME=	notebook-6.0.2
+DISTNAME=	notebook-6.0.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=n/notebook/}
@@ -26,7 +26,7 @@ DEPENDS+=	${PYPKGPREFIX}-zmq>=17.0.0:../../net/py-zmq
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27	# py-ipykernel
+PYTHON_VERSIONS_INCOMPATIBLE=	27 36	# py-ipykernel
 
 post-install:
 .for name in bundlerextension nbextension notebook serverextension

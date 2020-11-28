@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.32 2019/09/18 14:17:16 ryoon Exp $
+# $NetBSD: Makefile,v 1.40 2020/08/18 17:58:12 leot Exp $
 
 DISTNAME=	wpa_supplicant-2.6
 PKGNAME=	${DISTNAME:S/supplicant/gui/}
-PKGREVISION=	4
+PKGREVISION=	11
 CATEGORIES=	net
 MASTER_SITES=	http://hostap.epitest.fi/releases/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://hostap.epitest.fi/wpa_supplicant/
+HOMEPAGE=	https://hostap.epitest.fi/wpa_supplicant/
 COMMENT=	QT GUI for wpa_supplicant(8)
 LICENSE=	gnu-gpl-v2
 

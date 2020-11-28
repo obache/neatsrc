@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.59 2019/07/21 22:25:40 wiz Exp $
+# $NetBSD: Makefile,v 1.63 2020/08/17 20:19:58 leot Exp $
 
 DISTNAME=	gpa-0.10.0
-PKGREVISION=	1
+PKGREVISION=	4
 CATEGORIES=	x11 security
 MASTER_SITES=	${MASTER_SITE_GNUPG:=gpa/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pr@alles.prima.de
-HOMEPAGE=	http://www.gnupg.org/related_software/gpa/
+HOMEPAGE=	https://www.gnupg.org/related_software/gpa/
 COMMENT=	GUI frontend to gnupg
 LICENSE=	gnu-gpl-v3
 

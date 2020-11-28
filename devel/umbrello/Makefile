@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.52 2019/11/24 04:01:14 markd Exp $
+# $NetBSD: Makefile,v 1.62 2020/08/18 17:57:44 leot Exp $
 
 DISTNAME=	umbrello-${KAPPSVER}
+PKGREVISION=	2
 CATEGORIES=	devel
 
 HOMEPAGE=	https://kde.org/applications/development/umbrello/
@@ -9,7 +10,9 @@ LICENSE=	gnu-lgpl-v2 AND gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/applications.mk"
 
-BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
+
+CMAKE_ARGS+=	-DBUILD_APIDOC=no
 
 USE_TOOLS+=	msgmerge
 

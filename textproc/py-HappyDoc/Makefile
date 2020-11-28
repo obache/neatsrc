@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.32 2019/09/02 13:20:13 adam Exp $
+# $NetBSD: Makefile,v 1.34 2020/03/20 11:58:28 nia Exp $
 
 DISTNAME=	HappyDoc_r2_1
 PKGNAME=	${PYPKGPREFIX}-HappyDoc-2.1

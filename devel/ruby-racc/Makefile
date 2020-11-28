@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.22 2015/12/13 17:09:17 taca Exp $
+# $NetBSD: Makefile,v 1.24 2020/04/27 06:53:18 taca Exp $
 
-DISTNAME=	racc-1.4.14
-PKGREVISION=	1
-CATEGORIES=	devel ruby
+DISTNAME=	racc-1.5.0
+CATEGORIES=	devel
 
 MAINTAINER=	taca@NetBSD.org
 HOMEPAGE=	https://github.com/tenderlove/racc

@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.36 2019/11/02 22:37:53 rillig Exp $
+# $NetBSD: Makefile,v 1.39 2020/06/02 08:23:58 adam Exp $
 #
 
 DISTNAME=		Cenon-3.9.6
-PKGREVISION=		16
+PKGREVISION=		18
 CATEGORIES=		graphics cad gnustep
 MASTER_SITES=		http://www.vhf-group.com/vhfInterservice/download/source/
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.cenon.info/
+HOMEPAGE=		https://www.cenon.info/
 COMMENT=		Vector graphics / CAD / DTP program
 LICENSE=		vhf-public-license
 

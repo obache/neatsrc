@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:30:03 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:45 markd Exp $
 
 DISTNAME=	gfsbodoni
 PKGNAME=	tex-${DISTNAME}-1.01
+PKGREVISION=	1
 TEXLIVE_REV=	28484
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/gfsbodoni
+HOMEPAGE=	https://ctan.org/pkg/gfsbodoni
 COMMENT=	Greek and Latin font based on Bodoni
 LICENSE=	ofl-v1.1
 

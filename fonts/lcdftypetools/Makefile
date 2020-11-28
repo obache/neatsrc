@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.8 2019/05/09 09:47:34 adam Exp $
+# $NetBSD: Makefile,v 1.10 2020/05/10 03:56:37 markd Exp $
 
 .include "../../print/texlive/Makefile.common"
 
 PKGNAME=	lcdftypetools-2.108
+PKGREVISION=	1
 CATEGORIES=	fonts
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/lcdf-typetools
+HOMEPAGE=	https://ctan.org/pkg/lcdf-typetools
 COMMENT=	Outline font manipulation tools
 LICENSE=	gnu-gpl-v2
 

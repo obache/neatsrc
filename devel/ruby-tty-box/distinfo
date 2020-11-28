@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.2 2020/09/14 00:11:53 taca Exp $
+
+SHA1 (tty-box-0.6.0.gem) = 338f3c0de874fbddb1ff5f6f5b88d13ec08441ac
+RMD160 (tty-box-0.6.0.gem) = 713a620caa665cb048f3610e55c1e564f54192b7
+SHA512 (tty-box-0.6.0.gem) = 5103fbc8d40410c6960896241e9722b1380699671cd06d5c8f80d20addc177b774385cf4ac75d8824fb86434fcceff52c808802f13ffd5eab572640e6373e747
+Size (tty-box-0.6.0.gem) = 12800 bytes

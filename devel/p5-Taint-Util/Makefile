@@ -1,17 +1,15 @@
-# $NetBSD: Makefile,v 1.4 2019/08/11 13:20:23 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2020/09/08 13:16:38 wiz Exp $
 
 DISTNAME=	Taint-Util-0.08
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	devel
-MASTER_SITES=	https://cpan.metacpan.org/authors/id/A/AV/AVAR/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/A/AV/AVAR/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://cpan.metacpan.org/authors/id/A/AV/AVAR/
+HOMEPAGE=	https://metacpan.org/pod/Taint::Util
 COMMENT=	Perl5 test for and flip the taint flag without regex matches or eval
 LICENSE=	${PERL5_LICENSE}
-
-DEPENDS+=	p5-XSLoader>=0:../../devel/p5-XSLoader
 
 PERL5_PACKLIST=	auto/Taint/Util/.packlist
 

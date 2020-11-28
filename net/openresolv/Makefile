@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.29 2019/09/08 21:01:45 roy Exp $
+# $NetBSD: Makefile,v 1.31 2020/07/22 13:52:56 roy Exp $
 
-DISTNAME=		openresolv-3.9.2
+DISTNAME=		openresolv-3.11.0
 CATEGORIES=		net
 MASTER_SITES=		ftp://roy.marples.name/pub/openresolv/
 MASTER_SITES+=		http://roy.aydogan.net/openresolv/

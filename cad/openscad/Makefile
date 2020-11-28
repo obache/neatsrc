@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.60 2019/10/29 18:22:29 kamil Exp $
+# $NetBSD: Makefile,v 1.71 2020/08/18 17:57:41 leot Exp $
 
 VERSION=	2019.05
 DISTNAME=	openscad-${VERSION}
-PKGREVISION=	3
+PKGREVISION=	12
 CATEGORIES=	cad
 MASTER_SITES=	${MASTER_SITE_GITHUB:=openscad/}
 GITHUB_TAG=	openscad-${VERSION}
 
 MAINTAINER=	reinoud@NetBSD.org
-HOMEPAGE=	http://www.openscad.org/
+HOMEPAGE=	https://www.openscad.org/
 COMMENT=	OpenSCAD - The Programmers Solid 3D CAD Modeller
 LICENSE=	gnu-gpl-v2
 
@@ -20,7 +20,6 @@ WRKSRC=		${WRKDIR}/${PKGBASE}-${DISTNAME}
 
 CHECK_PORTABILITY_SKIP+=	tests/compare-bitmaps.sh
 
-REPLACE_PYTHON=	libraries/MCAD/get_submodules.py
 .include "../../lang/python/application.mk"
 
 MAKE_ENV+=	INSTALL_ROOT=${DESTDIR}

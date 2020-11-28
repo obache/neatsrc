@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.10 2016/03/09 11:29:46 tnn Exp $
+# $NetBSD: Makefile,v 1.14 2020/06/02 08:22:32 adam Exp $
 
 DISTNAME=	libmusicbrainz-5.1.0
 PKGNAME=	${DISTNAME:S/brainz/brainz5/}
+PKGREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=metabrainz/}
 GITHUB_PROJECT=	libmusicbrainz
@@ -9,7 +10,7 @@ GITHUB_RELEASE=	release-${PKGVERSION_NOREV}
 EXTRACT_USING=	bsdtar
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://musicbrainz.org/doc/libmusicbrainz
+HOMEPAGE=	https://musicbrainz.org/doc/libmusicbrainz
 COMMENT=	MusicBrainz (user-maintained community music metadatabase) library v5
 LICENSE=	gnu-lgpl-v2.1
 

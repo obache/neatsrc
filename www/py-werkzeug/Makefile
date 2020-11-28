@@ -1,23 +1,13 @@
-# $NetBSD: Makefile,v 1.16 2019/10/11 16:29:17 adam Exp $
+# $NetBSD: Makefile,v 1.19 2020/05/16 08:37:47 adam Exp $
 
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
 
 COMMENT=	Python WSGI Utility Library
 
-TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
 
-REPLACE_PYTHON=		examples/cookieauth.py
-REPLACE_PYTHON+=	examples/manage-coolmagic.py
-REPLACE_PYTHON+=	examples/manage-couchy.py
-REPLACE_PYTHON+=	examples/manage-cupoftee.py
-REPLACE_PYTHON+=	examples/manage-i18nurls.py
-REPLACE_PYTHON+=	examples/manage-plnt.py
-REPLACE_PYTHON+=	examples/manage-shorty.py
-REPLACE_PYTHON+=	examples/manage-simplewiki.py
-REPLACE_PYTHON+=	examples/manage-webpylike.py
+REPLACE_PYTHON+=	examples/manage-*.py
 REPLACE_PYTHON+=	examples/upload.py
-REPLACE_PYTHON+=	examples/contrib/sessions.py
 REPLACE_PYTHON+=	tests/multipart/test_collect.py
 
 PYSETUPTESTTARGET=	pytest

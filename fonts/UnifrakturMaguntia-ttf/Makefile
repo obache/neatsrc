@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2020/01/08 15:24:55 wiz Exp $
+# $NetBSD: Makefile,v 1.3 2020/03/20 11:57:38 nia Exp $
 
 DISTNAME=	UnifrakturMaguntia.2017-03-19
 PKGNAME=	${DISTNAME:S/-//g:S/./-ttf-0./}

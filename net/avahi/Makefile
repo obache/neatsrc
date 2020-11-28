@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.87 2019/10/27 14:46:09 kamil Exp $
+# $NetBSD: Makefile,v 1.96 2020/09/29 10:56:56 prlw1 Exp $
 
-DISTNAME=		avahi-0.6.32
-PKGREVISION=		19
+DISTNAME=		avahi-0.8
 CATEGORIES=		net
-MASTER_SITES=		https://github.com/lathiat/avahi/releases/download/v${PKGVERSION_NOREV}/
+MASTER_SITES=		${MASTER_SITE_GITHUB:=lathiat/avahi/releases/download/v${PKGVERSION_NOREV}/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://avahi.org/
+HOMEPAGE=		https://avahi.org/
 COMMENT=		Facilitate service discovery on a local network
 LICENSE=		gnu-lgpl-v2.1
 
@@ -15,8 +14,12 @@ EXTRACT_USING=		bsdtar
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
 USE_PKGLOCALEDIR=	YES
-USE_TOOLS+=		pkg-config gmake intltool msgfmt xgettext
-MAKE_JOBS_SAFE=		no
+USE_TOOLS+=		pkg-config gmake msgfmt xgettext
+
+# Requires --desktop in msgfmt.
+_TOOLS_USE_PKGSRC.msgfmt=	yes
+
+CONFIGURE_ARGS+=	--disable-gtk
 
 PKGCONFIG_OVERRIDE+=	avahi-client.pc.in
 PKGCONFIG_OVERRIDE+=	avahi-compat-howl.pc.in
@@ -24,8 +27,10 @@ PKGCONFIG_OVERRIDE+=	avahi-compat-libdns_sd.pc.in
 PKGCONFIG_OVERRIDE+=	avahi-core.pc.in
 PKGCONFIG_OVERRIDE+=	avahi-glib.pc.in
 PKGCONFIG_OVERRIDE+=	avahi-gobject.pc.in
+PKGCONFIG_OVERRIDE+=	avahi-libevent.pc.in
 PKGCONFIG_OVERRIDE+=	avahi-qt3.pc.in
 PKGCONFIG_OVERRIDE+=	avahi-qt4.pc.in
+PKGCONFIG_OVERRIDE+=	avahi-qt5.pc.in
 PKGCONFIG_OVERRIDE+=	avahi-sharp.pc.in
 PKGCONFIG_OVERRIDE+=	avahi-ui-gtk3.pc.in
 PKGCONFIG_OVERRIDE+=	avahi-ui-sharp.pc.in
@@ -76,8 +81,11 @@ CONFIGURE_ARGS+=	--disable-doxygen-dot
 CONFIGURE_ARGS+=	--disable-doxygen-html --disable-doxygen-xml
 CONFIGURE_ARGS+=	--disable-xmltoman
 CONFIGURE_ARGS+=	--disable-autoipd
+CONFIGURE_ARGS+=	--disable-libevent
 CONFIGURE_ARGS+=	--disable-qt3
 CONFIGURE_ARGS+=	--disable-qt4
+CONFIGURE_ARGS+=	--disable-qt5
+CONFIGURE_ARGS+=	--disable-pygobject
 CONFIGURE_ARGS+=	--with-distro=none
 
 INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples

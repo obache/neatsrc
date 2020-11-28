@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.10 2019/11/02 22:54:28 rillig Exp $
+# $NetBSD: Makefile,v 1.12 2020/02/29 16:19:50 mef Exp $
 #
 
-DISTNAME=	zutils-1.6
+DISTNAME=	zutils-1.8
 CATEGORIES=	archivers
 MASTER_SITES=	http://download.savannah.gnu.org/releases/zutils/
 EXTRACT_SUFX=	.tar.lz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.nongnu.org/zutils/zutils.html
+HOMEPAGE=	https://www.nongnu.org/zutils/zutils.html
 COMMENT=	Utilities for any combination of compressed and non-compressed files
 LICENSE=	gnu-gpl-v3
 

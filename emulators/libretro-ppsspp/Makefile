@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.5 2019/11/03 19:24:33 rillig Exp $
+# $NetBSD: Makefile,v 1.9 2020/08/17 20:18:38 leot Exp $
 
 PKGNAME=	libretro-ppsspp-1.7.5
+PKGREVISION=	2
 CATEGORIES=	emulators
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -31,12 +32,12 @@ SITES.ppsspp-glslang.tar.gz= \
 SITES.ppsspp-spriv.tar.gz= \
 	-https://github.com/KhronosGroup/SPIRV-Cross/archive/${SPRIV_TAG}.tar.gz
 
-EXTRACT_USING=	bsdtar
 WRKSRC=		${WRKDIR}/ppsspp-${PKGVERSION_NOREV}
 BUILD_DIRS=	libretro
 
-USE_TOOLS+=	gmake
 USE_LANGUAGES=	c c++11
+
+LIBRETRO_CORE=	ppsspp
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -45,31 +46,27 @@ ONLY_FOR_PLATFORM=	*-*-*arm* *-*-x86_64 *-*-i386
 .if !empty(MACHINE_ARCH:M*arm*)
 CFLAGS+=		-marm
 MAKE_FLAGS+=		TARGET_ARCH=arm
+.elif ${MACHINE_ARCH} == "aarch64"
+MAKE_FLAGS+=		TARGET_ARCH=arm64
 .elif ${MACHINE_ARCH} == "x86_64"
 MAKE_FLAGS+=		TARGET_ARCH=x86_64
 .elif ${MACHINE_ARCH} == "i386"
 MAKE_FLAGS+=		TARGET_ARCH=x86
 .endif
 
-MAKE_FLAGS+=		GIT_VERSION="${PKGVERSION}-pkgsrc"
-
+LDFLAGS+=		-lpng -lsnappy -lxxhash
 LDFLAGS+=		${BUILDLINK_LDADD.libexecinfo}
-
-INSTALLATION_DIRS+=	${PREFIX}/lib/libretro
 
 post-extract:
 	${MV} ${WRKDIR}/armips-${ARMIPS_TAG}/* ${WRKSRC}/ext/armips
 	${MV} ${WRKDIR}/glslang-${GLSLANG_TAG}/* ${WRKSRC}/ext/glslang
 	${MV} ${WRKDIR}/SPIRV-Cross-${SPRIV_TAG}/* ${WRKSRC}/ext/SPIRV-Cross
 
-do-install:
-	${INSTALL_LIB} ${WRKSRC}/libretro/ppsspp_libretro.so \
-	    ${DESTDIR}${PREFIX}/lib/libretro/ppsspp_libretro.so
-
 .include "options.mk"
+.include "../../emulators/retroarch/core.mk"
 .include "../../devel/libexecinfo/buildlink3.mk"
+.include "../../devel/snappy/buildlink3.mk"
+.include "../../devel/xxhash/buildlink3.mk"
+.include "../../graphics/png/buildlink3.mk"
 .include "../../multimedia/ffmpeg4/buildlink3.mk"
-.include "../../mk/pthread.buildlink3.mk"
-.include "../../mk/dlopen.buildlink3.mk"
-BUILDLINK_TRANSFORM+=   opt:-ldl:${BUILDLINK_LDADD.dl:Q}
 .include "../../mk/bsd.pkg.mk"

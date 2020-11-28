@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.9 2017/09/16 19:27:21 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2020/03/13 20:20:49 wiz Exp $
 TRYTON_MODULE_NAME=	trytond_calendar
 .include "../../devel/py-trytond/Makefile.common"
 CATEGORIES=	python time
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tryton.org/
+HOMEPAGE=	https://www.tryton.org/
 COMMENT=	Calendar module of the Tryton application platform
 LICENSE=	gnu-gpl-v3
 
@@ -18,6 +18,8 @@ DEPENDS+=	${PYPKGPREFIX}-trytond>=${TRYTON_BASEVER}:../../devel/py-trytond
 USE_LANGUAGES=	# none
 
 REPLACE_PYTHON+=	tests/scenario_calendar.py tests/test_calendar.py
+
+PYTHON_VERSIONS_ACCEPTED=	27 # py-pywebdav
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"

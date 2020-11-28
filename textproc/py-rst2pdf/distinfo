@@ -1,8 +1,6 @@
-$NetBSD: distinfo,v 1.4 2019/06/10 15:39:44 adam Exp $
+$NetBSD: distinfo,v 1.6 2020/10/21 06:58:09 adam Exp $
 
-SHA1 (rst2pdf-0.94.1.tar.gz) = bb8474cd42b623fcc4acab5ac67626e2c1d82fa9
-RMD160 (rst2pdf-0.94.1.tar.gz) = fc363dd184aae47fdfcc497ae9c154d609c53a7b
-SHA512 (rst2pdf-0.94.1.tar.gz) = a9b7c4d9fac429bb8e61ea727ccb8cd8a157f28de9266aab597396fd56e00b8d9ca12c16a5985f2db0371e15551ced3ff7090b3a7b3a2829eec316ae5a11e7dd
-Size (rst2pdf-0.94.1.tar.gz) = 10313993 bytes
-SHA1 (patch-rst2pdf_createpdf.py) = dae3e14b3e35f5cc8bf3292ec5dc4cd13724447c
-SHA1 (patch-rst2pdf_flowables.py) = 13c639110fd34bcecfc6a79f0c1c6002af301201
+SHA1 (rst2pdf-0.98.tar.gz) = 87fcc70ee33ec11e759649c86e41a9df81438f99
+RMD160 (rst2pdf-0.98.tar.gz) = ffcf967ba3ccc7cb1241a7c2a8ff58be14298175
+SHA512 (rst2pdf-0.98.tar.gz) = f8fcc269139e1d163fc21a5f92262c1e106b98c8807d45f3b53f9e9164fa667e3508bfe7ca7fd100e7f60e4105980c15dedfe546f0a81d1cc02b3a24b8dd7e48
+Size (rst2pdf-0.98.tar.gz) = 11333895 bytes

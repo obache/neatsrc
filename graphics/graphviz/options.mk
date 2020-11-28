@@ -1,11 +1,11 @@
-# $NetBSD: options.mk,v 1.26 2019/10/28 08:43:33 kamil Exp $
+# $NetBSD: options.mk,v 1.31 2020/08/28 17:09:13 wiz Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.graphviz
-PKG_SUPPORTED_OPTIONS=	gd ghostscript gtk gts lua ocaml poppler svg tcl x11 perl # guile does not build with guile20
+PKG_SUPPORTED_OPTIONS=	gd ghostscript gtk lua ocaml perl poppler svg tcl x11 # guile does not build with guile20
 .if exists(/System/Library/Frameworks/Quartz.framework)
 PKG_SUPPORTED_OPTIONS+=	quartz
 .endif
-PKG_SUGGESTED_OPTIONS=	gd gtk lua perl tcl x11
+PKG_SUGGESTED_OPTIONS=	gd lua perl tcl x11
 # Explanation of consequence of options, to help those trying to slim down:
 #   guile ocaml lua tcl perl: extension language support
 #   x11: Omits all linking with x11, which means x11 graphics supports as
@@ -19,7 +19,7 @@ PKG_SUGGESTED_OPTIONS=	gd gtk lua perl tcl x11
 
 .include "../../mk/bsd.options.mk"
 
-PLIST_VARS+=		gd ghostscript gtk guile lua ocaml perl poppler quartz svg tcl x11
+PLIST_VARS+=		gd ghostscript gtk guile lua ocaml perl poppler quartz svg swig tcl x11
 
 .if !empty(PKG_OPTIONS:Mgd)
 .  include "../../graphics/gd/buildlink3.mk"
@@ -99,8 +99,7 @@ USING_SWIG=	yes
 .  include "../../x11/tk/buildlink3.mk"
 CONFIGURE_ENV+=		TCLCONFIG=${TCLCONFIG_SH:Q}
 CONFIGURE_ENV+=		TKCONFIG=${TKCONFIG_SH:Q}
-CONFIGURE_ARGS+=	--with-wish=${WISH}
-CONFIGURE_ARGS+=	--with-tclsh=${TCLSH}
+CONFIGURE_ARGS+=	--with-tclsh=${TCLSH:Q}
 PLIST.tcl=		yes
 PLIST_SUBST+=		TCL_BASEVER=${TCL_BASEVER}
 BUILDLINK_TRANSFORM+=	rm:-ltclstub${TCL_SONUM}
@@ -128,6 +127,7 @@ CONFIGURE_ARGS+=	--disable-perl
 .endif
 
 .if !empty(USING_SWIG:Myes)
+PLIST.swig=		yes
 .  include "../../devel/swig/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-swig

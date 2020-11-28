@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.77 2019/11/02 14:05:46 nia Exp $
+# $NetBSD: Makefile,v 1.89 2020/10/08 11:17:24 ryoon Exp $
 
-DISTNAME=	gegl-0.4.18
+DISTNAME=	gegl-0.4.26
 CATEGORIES=	graphics
 MASTER_SITES=	https://download.gimp.org/pub/gegl/0.4/
 EXTRACT_SUFX=	.tar.xz
@@ -21,6 +21,17 @@ USE_TOOLS+=	bash
 PKGCONFIG_OVERRIDE+=	gegl.pc.in
 
 PYTHON_FOR_BUILD_ONLY=	tool
+
+.include "../../mk/bsd.prefs.mk"
+
+PLIST_VARS+=		Darwin not_Darwin
+.if ${OPSYS} == "Darwin"
+PLIST.Darwin=		yes
+PLIST_SUBST+=		SOEXT="dylib"
+.else
+PLIST.not_Darwin=	yes
+PLIST_SUBST+=		SOEXT="so"
+.endif
 
 # ../gegl/opencl/gegl-cl-color.c:32:10: fatal error: opencl/colors.cl.h: No such file or directory
 # race condition in meson?

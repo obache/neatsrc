@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.4 2019/12/21 23:35:05 joerg Exp $
+# $NetBSD: Makefile,v 1.7 2020/04/11 04:00:18 khorben Exp $
 
 DISTNAME=	Asm-0.2.3
 PKGNAME=	deforaos-asm-0.2.3
-PKGREVISION=	2
+PKGREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	https://www.defora.org/os/download/download/4423/
 

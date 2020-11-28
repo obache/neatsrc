@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:30:17 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:50 markd Exp $
 
 DISTNAME=	mxedruli
 PKGNAME=	tex-${DISTNAME}-3.3c
+PKGREVISION=	1
 TEXLIVE_REV=	30021
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/mxedruli
+HOMEPAGE=	https://ctan.org/pkg/mxedruli
 COMMENT=	A pair of fonts for different Georgian alphabets
 LICENSE=	lppl-1.3c
 

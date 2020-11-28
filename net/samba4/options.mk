@@ -1,12 +1,12 @@
-# $NetBSD: options.mk,v 1.8 2019/06/22 16:11:49 jmcneill Exp $
+# $NetBSD: options.mk,v 1.11 2020/07/20 22:19:58 wiz Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.samba4
-PKG_SUPPORTED_OPTIONS=	ads fam ldap pam winbind # cups # cups option is broken for me.
-PKG_SUGGESTED_OPTIONS=	ads ldap pam winbind
+PKG_SUPPORTED_OPTIONS=	ads avahi fam ldap pam winbind # cups # cups option is broken for me.
+PKG_SUGGESTED_OPTIONS=	avahi ldap pam winbind
 
 .include "../../mk/bsd.fast.prefs.mk"
 
-SAMBA_ACL_OPSYS=	AIX Darwin FreeBSD HPUX IRIX Linux OSF1 SunOS
+SAMBA_ACL_OPSYS=	AIX Darwin FreeBSD HPUX IRIX Linux NetBSD OSF1 SunOS
 .if !empty(SAMBA_ACL_OPSYS:M${OPSYS})
 PKG_SUPPORTED_OPTIONS+=	acl
 .endif
@@ -17,7 +17,7 @@ PKG_SUGGESTED_OPTIONS+=	ads
 
 .include "../../mk/bsd.options.mk"
 
-PLIST_VARS+=		ads cups fam ldap pam winbind
+PLIST_VARS+=		ads cups dbus fam ldap pam winbind
 
 ###
 ### Access Control List support.
@@ -97,4 +97,16 @@ PLIST.winbind=		yes
 WINBINDD_RCD_SCRIPT=	winbindd
 .else
 CONFIGURE_ARGS+=	--without-winbind
+.endif
+
+###
+### Avahi DNS Service Discovery.
+###
+.if !empty(PKG_OPTIONS:Mavahi)
+.include "../../net/avahi/buildlink3.mk"
+# avahi also pulls in dbus, which affects whether the snapper module gets built
+PLIST.dbus=		yes
+CONFIGURE_ARGS+=	--enable-avahi
+.else
+CONFIGURE_ARGS+=	--disable-avahi
 .endif

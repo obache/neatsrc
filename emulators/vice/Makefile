@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.142 2020/01/01 16:31:52 rhialto Exp $
+# $NetBSD: Makefile,v 1.152 2020/08/31 18:09:29 wiz Exp $
 
 DISTNAME=	vice-3.4
-PKGREVISION=	1
+PKGREVISION=	8
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=vice-emu/}
 
@@ -18,7 +18,7 @@ NO_SRC_ON_FTP=		${RESTRICTED}
 
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++11
-USE_TOOLS+=		bash gmake pkg-config perl
+USE_TOOLS+=		bash gmake pkg-config perl flex
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-ethernet
 CONFIGURE_ARGS.NetBSD+=	--without-oss
@@ -42,7 +42,6 @@ SUBST_FILES.prefix+=	doc/vice.txt
 SUBST_SED.prefix=	-e 's|/usr/local|${PREFIX}|g'
 
 .include "options.mk"
-
 .include "../../audio/flac/buildlink3.mk"
 .include "../../audio/lame/buildlink3.mk"
 .include "../../audio/libvorbis/buildlink3.mk"

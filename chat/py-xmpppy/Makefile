@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.18 2019/09/02 13:19:53 adam Exp $
+# $NetBSD: Makefile,v 1.20 2020/01/26 05:26:17 rillig Exp $
 
 DISTNAME=	xmpppy-0.5.0rc1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}

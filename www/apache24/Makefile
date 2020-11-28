@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.86 2019/09/07 13:22:28 adam Exp $
+# $NetBSD: Makefile,v 1.95 2020/08/31 18:06:30 wiz Exp $
 #
 # When updating this package, make sure that no strings like
 # "PR 12345" are in the commit message. Upstream likes
 # to reference their own PRs this way, but this ends up
 # in NetBSD GNATS.
 
-DISTNAME=	httpd-2.4.41
+DISTNAME=	httpd-2.4.46
 PKGNAME=	${DISTNAME:S/httpd/apache/}
 PKGREVISION=	1
 CATEGORIES=	www
@@ -109,7 +109,8 @@ FIX_MAN_PERMS+=		man8/apachectl.8 man1/ab.1 man1/httxt2dbm.1
 SUBST_CLASSES+=		man
 SUBST_STAGE.man=	pre-configure
 SUBST_MESSAGE.man=	Fixing paths in man pages.
-SUBST_FILES.man=	docs/man/*.1 docs/man/*.8
+SUBST_FILES.man=	docs/man/apxs.1 docs/man/htdbm.1 \
+			docs/man/htpasswd.1 docs/man/httpd.8
 SUBST_SED.man=		-e 's,/usr/local/etc/apache,${PKG_SYSCONFDIR},'
 SUBST_SED.man+=		-e 's,/path/to/apache/etc,${PKG_SYSCONFDIR},'
 SUBST_SED.man+=		-e 's,/usr/local/apache2,${PREFIX}/share/httpd/htdocs,'
@@ -151,7 +152,7 @@ SUBST_MESSAGE.abs_srcdir=	Fixing abs_srcdir
 SUBST_FILES.abs_srcdir=		${DESTDIR}${PREFIX}/share/httpd/build/config_vars.mk
 SUBST_SED.abs_srcdir=		-e 's|^\(abs_srcdir =\) .*|\1 ${PREFIX}/share/httpd|'
 
-REPLACE_PERL=		docs/cgi-examples/printenv
+#REPLACE_PERL=		docs/cgi-examples/printenv
 
 .include "../../devel/zlib/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
@@ -194,9 +195,9 @@ post-install:
 	${CHOWN} ${MANOWN}:${MANGRP} ${DESTDIR}${PREFIX}/${PKGMANDIR}/${file}
 .endfor
 
-	${CHMOD} -x ${DESTDIR}${PREFIX}/sbin/envvars-std
+	${CHMOD} a-x ${DESTDIR}${PREFIX}/sbin/envvars-std
 .if exists(${DESTDIR}${PREFIX}/sbin/suexec)
-	${CHMOD} -w ${DESTDIR}${PREFIX}/sbin/suexec
+	${CHMOD} a-w ${DESTDIR}${PREFIX}/sbin/suexec
 .endif
 
 .include "../../mk/pthread.buildlink3.mk"

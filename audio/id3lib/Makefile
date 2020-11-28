@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.36 2019/11/02 21:09:14 rillig Exp $
+# $NetBSD: Makefile,v 1.38 2020/01/26 05:26:10 rillig Exp $
 #
 
 DISTNAME=	id3lib-3.8.3

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.51 2019/12/18 13:47:58 wiz Exp $
+# $NetBSD: Makefile,v 1.64 2020/09/27 14:58:46 wiz Exp $
 
-DISTNAME=		neomutt-20191129
+DISTNAME=		neomutt-20200925
 CATEGORIES=		mail
 MASTER_SITES=		${MASTER_SITE_GITHUB:=neomutt/}
 GITHUB_TAG=		${PKGVERSION_NOREV}
@@ -10,16 +10,20 @@ HOMEPAGE=		https://www.neomutt.org/
 COMMENT=		Fork of mutt with integrated community patches
 LICENSE=		gnu-gpl-v2 OR gnu-gpl-v3 # or newer
 
-USE_TOOLS+=		msgfmt gmake
-
 BUILD_DEPENDS+=		gettext-tools-[0-9]*:../../devel/gettext-tools
 BUILD_DEPENDS+=		libxslt-[0-9]*:../../textproc/libxslt
 BUILD_DEPENDS+=		docbook-xsl-[0-9]*:../../textproc/docbook-xsl
+BUILD_DEPENDS+=		w3m-[0-9]*:../../www/w3m
+DEPENDS+=		mime-types-[0-9]*:../../misc/mime-types
+
+USE_TOOLS+=		msgfmt gmake perl:build
 
 HAS_CONFIGURE=		yes
 EXTRACT_USING=		bsdtar
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--mandir=${PREFIX}/${PKGMANDIR}
+
+CONFIGURE_ARGS.SunOS+=	--disable-inotify
 
 EGDIR=			${PREFIX}/share/examples/neomutt
 CONF_FILES=		${EGDIR}/neomuttrc ${PKG_SYSCONFDIR}/neomuttrc

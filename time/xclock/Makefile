@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.9 2019/11/14 11:02:29 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2020/08/17 20:20:14 leot Exp $
 
 DISTNAME=	xclock-1.0.9
+PKGREVISION=	1
 CATEGORIES=	time x11
 MASTER_SITES=	${MASTER_SITE_XORG:=app/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	joerg@NetBSD.org
-HOMEPAGE=	http://xorg.freedesktop.org/
+HOMEPAGE=	https://xorg.freedesktop.org/
 COMMENT=	Analog / digital clock for X
 
 PREV_PKGPATH=	x11/xclock

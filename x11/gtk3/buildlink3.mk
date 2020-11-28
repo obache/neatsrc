@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.39 2019/08/19 13:31:19 nia Exp $
+# $NetBSD: buildlink3.mk,v 1.43 2020/08/17 20:17:50 leot Exp $
 
 BUILDLINK_TREE+=	gtk3
 
@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	gtk3
 GTK3_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.gtk3+=	gtk3+>=3.0.0
-BUILDLINK_ABI_DEPENDS.gtk3+=	gtk3+>=3.24.8nb2
+BUILDLINK_ABI_DEPENDS.gtk3+=	gtk3+>=3.24.22nb1
 BUILDLINK_PKGSRCDIR.gtk3?=	../../x11/gtk3
 
 .include "../../mk/bsd.fast.prefs.mk"
@@ -25,8 +25,8 @@ pkgbase := gtk3
 .include "../../graphics/gdk-pixbuf2/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libepoxy+=	libepoxy>=1.4
 .include "../../graphics/libepoxy/buildlink3.mk"
-.if !empty(PKG_BUILD_OPTIONS.gtk3:Mx11)
-.  if !empty(PKG_BUILD_OPTIONS.gtk3:Mgtk3-atk-bridge)
+.if ${PKG_BUILD_OPTIONS.gtk3:Mx11}
+.  if ${PKG_BUILD_OPTIONS.gtk3:Mgtk3-atk-bridge}
 .    include "../../devel/at-spi2-atk/buildlink3.mk"
 .  endif # PKG_BUILD_OPTIONS.gtk3:Mgtk3-atk-bridge
 .include "../../x11/libXcursor/buildlink3.mk"
@@ -37,7 +37,7 @@ BUILDLINK_API_DEPENDS.Xft2+=	Xft2>=2.1.2nb2
 .include "../../x11/libXi/buildlink3.mk"
 .include "../../x11/libXcomposite/buildlink3.mk"
 .endif # PKG_BUILD_OPTIONS.gtk3:Mx11
-.if !empty(PKG_BUILD_OPTIONS.gtk3:Mwayland)
+.if ${PKG_BUILD_OPTIONS.gtk3:Mwayland}
 .include "../../devel/wayland/buildlink3.mk"
 .include "../../devel/wayland-protocols/buildlink3.mk"
 .include "../../x11/libxkbcommon/buildlink3.mk"

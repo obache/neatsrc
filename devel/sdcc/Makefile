@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.55 2019/08/11 13:20:51 wiz Exp $
+# $NetBSD: Makefile,v 1.59 2020/08/31 18:09:20 wiz Exp $
 
 DISTNAME=	sdcc-src-2.8.0
 PKGNAME=	${DISTNAME:S/-src//}
-PKGREVISION=	11
+PKGREVISION=	12
 CATEGORIES=	devel lang
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=sdcc/}
 EXTRACT_SUFX=	.tar.bz2
@@ -37,6 +37,12 @@ CONFIGURE_ARGS+=	--docdir=${PREFIX}/share/doc/sdcc
 CPPFLAGS+=		-fdollars-in-identifiers
 CONFIGURE_ENV+=		MACHINE_ARCH=${MACHINE_ARCH:Q}
 CONFIGURE_ENV+=		sdcc_cv_CCggdb="no"
+
+# simi.c: In function 'simGetValue':
+# simi.c:616:14: error: array subscript has type 'char' [-Werror=char-subscripts]
+#              b[i] = strtol(resp,&resp,16);
+# Maybe fix this later.
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
 
 .include "../../mk/bsd.prefs.mk"
 

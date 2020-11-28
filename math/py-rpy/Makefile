@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.43 2017/11/28 09:07:23 adam Exp $
+# $NetBSD: Makefile,v 1.47 2020/10/12 21:52:03 bacon Exp $
 
 DISTNAME=	rpy2-2.9.1
+PKGREVISION=	2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/rpy2/rpy/}
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=r/rpy2/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://rpy.sourceforge.net/
+HOMEPAGE=	https://rpy.sourceforge.io/
 COMMENT=	R interface for Python
 LICENSE=	mpl-1.1 OR gnu-gpl-v2 OR gnu-lgpl-v2.1
 
@@ -24,7 +25,7 @@ REPLACE_PYTHON=		rpy/tests.py
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
-.include "../../devel/pcre/buildlink3.mk"
+.include "../../devel/pcre2/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
 .include "../../math/R/buildlink3.mk"

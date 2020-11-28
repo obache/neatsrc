@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.3 2020/01/10 13:32:15 bsiegert Exp $
+# $NetBSD: Makefile,v 1.12 2020/10/15 13:08:32 bsiegert Exp $
 
 GITHUB_TAG=		v${PKGVERSION_NOREV}
 DISTNAME=		go-fasthttp-1.6.0
-PKGREVISION=		2
+PKGREVISION=		10
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_GITHUB:=valyala/}
 GITHUB_PROJECT=		fasthttp
 
-MAINTAINER=		ng0@NetBSD.org
+MAINTAINER=		nikita@NetBSD.org
 HOMEPAGE=		https://github.com/valyala/fasthttp/
 COMMENT=		Fast HTTP package for Go
 LICENSE=		mit

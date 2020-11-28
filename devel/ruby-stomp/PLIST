@@ -1,8 +1,9 @@
-@comment $NetBSD: PLIST,v 1.9 2019/01/20 14:04:54 taca Exp $
+@comment $NetBSD: PLIST,v 1.11 2020/09/14 13:08:14 taca Exp $
 bin/catstomp${RUBY_SUFFIX}
 bin/stompcat${RUBY_SUFFIX}
 ${GEM_HOME}/cache/${GEM_NAME}.gem
 ${GEM_LIBDIR}/CHANGELOG.md
+${GEM_LIBDIR}/CONTRIBUTORS.md
 ${GEM_LIBDIR}/LICENSE
 ${GEM_LIBDIR}/README.md
 ${GEM_LIBDIR}/Rakefile
@@ -24,6 +25,9 @@ ${GEM_LIBDIR}/examples/artemis/cliwaiter_reliable_hb.rb
 ${GEM_LIBDIR}/examples/client_conndisc.rb
 ${GEM_LIBDIR}/examples/client_putget.rb
 ${GEM_LIBDIR}/examples/conn_conndisc.rb
+${GEM_LIBDIR}/examples/conn_get.rb
+${GEM_LIBDIR}/examples/conn_put.rb
+${GEM_LIBDIR}/examples/conn_put_pace.rb
 ${GEM_LIBDIR}/examples/conn_putget.rb
 ${GEM_LIBDIR}/examples/contrib.sh
 ${GEM_LIBDIR}/examples/contributors.rb
@@ -35,6 +39,7 @@ ${GEM_LIBDIR}/examples/historical/topic_publisher.rb
 ${GEM_LIBDIR}/examples/logexamp.rb
 ${GEM_LIBDIR}/examples/putget_file.rb
 ${GEM_LIBDIR}/examples/putget_rephdrs.rb
+${GEM_LIBDIR}/examples/showver.rb
 ${GEM_LIBDIR}/examples/ssl/SSL.md
 ${GEM_LIBDIR}/examples/ssl/misc/ssl_ctxoptions.rb
 ${GEM_LIBDIR}/examples/ssl/misc/ssl_newparm.rb

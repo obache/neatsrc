@@ -1,4 +1,4 @@
-$NetBSD: patch-posixos.c,v 1.1 2018/07/04 14:09:07 bsiegert Exp $
+$NetBSD: patch-posixos.c,v 1.3 2020/06/12 23:50:16 sevan Exp $
 
 http://git.savannah.gnu.org/cgit/make.git/commit/?id=b552b05251980f693c729e251f93f5225b400714
 

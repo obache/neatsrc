@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:29:41 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:40 markd Exp $
 
 DISTNAME=	carolmin-ps
 PKGNAME=	tex-${DISTNAME}-2014
+PKGREVISION=	1
 TEXLIVE_REV=	15878
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/carolmin-t1
+HOMEPAGE=	https://ctan.org/pkg/carolmin-t1
 COMMENT=	Adobe Type 1 format of Carolingian Minuscule fonts
 LICENSE=	lppl-1.3c
 

@@ -1,8 +1,14 @@
-# $NetBSD: Makefile,v 1.3 2019/11/14 23:07:20 nia Exp $
+# $NetBSD: Makefile,v 1.14 2020/09/14 20:08:29 adam Exp $
 
 DISTNAME=	qtwayland-everywhere-src-${QTVERSION}
 PKGNAME=	qt5-qtwayland-${QTVERSION}
 COMMENT=	Qt5 module for Wayland support
+
+.include "../../devel/wayland/platform.mk"
+
+.if empty(PLATFORM_SUPPORTS_WAYLAND:M[Yy][Ee][Ss])
+PKG_SKIP_REASON+=	"Platform does not support Wayland"
+.endif
 
 BUILD_TARGET=		sub-src
 INSTALL_ENV+=		INSTALL_ROOT=${DESTDIR}

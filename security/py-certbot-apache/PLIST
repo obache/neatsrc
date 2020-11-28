@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2019/12/15 09:48:38 adam Exp $
+@comment $NetBSD: PLIST,v 1.8 2020/05/09 14:48:12 mef Exp $
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
@@ -14,8 +14,16 @@ ${PYSITELIB}/certbot_apache/_internal/__init__.pyo
 ${PYSITELIB}/certbot_apache/_internal/apache_util.py
 ${PYSITELIB}/certbot_apache/_internal/apache_util.pyc
 ${PYSITELIB}/certbot_apache/_internal/apache_util.pyo
+${PYSITELIB}/certbot_apache/_internal/apacheparser.py
+${PYSITELIB}/certbot_apache/_internal/apacheparser.pyc
+${PYSITELIB}/certbot_apache/_internal/apacheparser.pyo
+${PYSITELIB}/certbot_apache/_internal/assertions.py
+${PYSITELIB}/certbot_apache/_internal/assertions.pyc
+${PYSITELIB}/certbot_apache/_internal/assertions.pyo
 ${PYSITELIB}/certbot_apache/_internal/augeas_lens/httpd.aug
-${PYSITELIB}/certbot_apache/_internal/centos-options-ssl-apache.conf
+${PYSITELIB}/certbot_apache/_internal/augeasparser.py
+${PYSITELIB}/certbot_apache/_internal/augeasparser.pyc
+${PYSITELIB}/certbot_apache/_internal/augeasparser.pyo
 ${PYSITELIB}/certbot_apache/_internal/configurator.py
 ${PYSITELIB}/certbot_apache/_internal/configurator.pyc
 ${PYSITELIB}/certbot_apache/_internal/configurator.pyo
@@ -25,16 +33,21 @@ ${PYSITELIB}/certbot_apache/_internal/constants.pyo
 ${PYSITELIB}/certbot_apache/_internal/display_ops.py
 ${PYSITELIB}/certbot_apache/_internal/display_ops.pyc
 ${PYSITELIB}/certbot_apache/_internal/display_ops.pyo
+${PYSITELIB}/certbot_apache/_internal/dualparser.py
+${PYSITELIB}/certbot_apache/_internal/dualparser.pyc
+${PYSITELIB}/certbot_apache/_internal/dualparser.pyo
 ${PYSITELIB}/certbot_apache/_internal/entrypoint.py
 ${PYSITELIB}/certbot_apache/_internal/entrypoint.pyc
 ${PYSITELIB}/certbot_apache/_internal/entrypoint.pyo
 ${PYSITELIB}/certbot_apache/_internal/http_01.py
 ${PYSITELIB}/certbot_apache/_internal/http_01.pyc
 ${PYSITELIB}/certbot_apache/_internal/http_01.pyo
+${PYSITELIB}/certbot_apache/_internal/interfaces.py
+${PYSITELIB}/certbot_apache/_internal/interfaces.pyc
+${PYSITELIB}/certbot_apache/_internal/interfaces.pyo
 ${PYSITELIB}/certbot_apache/_internal/obj.py
 ${PYSITELIB}/certbot_apache/_internal/obj.pyc
 ${PYSITELIB}/certbot_apache/_internal/obj.pyo
-${PYSITELIB}/certbot_apache/_internal/options-ssl-apache.conf
 ${PYSITELIB}/certbot_apache/_internal/override_arch.py
 ${PYSITELIB}/certbot_apache/_internal/override_arch.pyc
 ${PYSITELIB}/certbot_apache/_internal/override_arch.pyo
@@ -59,3 +72,8 @@ ${PYSITELIB}/certbot_apache/_internal/override_suse.pyo
 ${PYSITELIB}/certbot_apache/_internal/parser.py
 ${PYSITELIB}/certbot_apache/_internal/parser.pyc
 ${PYSITELIB}/certbot_apache/_internal/parser.pyo
+${PYSITELIB}/certbot_apache/_internal/parsernode_util.py
+${PYSITELIB}/certbot_apache/_internal/parsernode_util.pyc
+${PYSITELIB}/certbot_apache/_internal/parsernode_util.pyo
+${PYSITELIB}/certbot_apache/_internal/tls_configs/current-options-ssl-apache.conf
+${PYSITELIB}/certbot_apache/_internal/tls_configs/old-options-ssl-apache.conf

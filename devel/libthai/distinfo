@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.13 2018/02/23 15:03:42 adam Exp $
+$NetBSD: distinfo,v 1.14 2020/03/24 17:09:26 nia Exp $
 
 SHA1 (libthai-0.1.28.tar.xz) = 6fceeb37f91003958c7a163445fb3987d0a8f1af
 RMD160 (libthai-0.1.28.tar.xz) = 6f356e667687feb34cd8e77ede11a6da57c33f1a

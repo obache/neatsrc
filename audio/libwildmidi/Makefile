@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2019/07/15 14:39:54 nia Exp $
+# $NetBSD: Makefile,v 1.10 2020/08/08 21:18:30 schmonz Exp $
 
 DISTNAME=	wildmidi-0.4.3
 PKGNAME=	lib${DISTNAME}
@@ -8,13 +8,12 @@ GITHUB_PROJECT=	wildmidi
 GITHUB_TAG=	${DISTNAME}
 
 MAINTAINER=	pallegra@gmail.com
-HOMEPAGE=	http://www.mindwerks.net/projects/wildmidi/
+HOMEPAGE=	https://www.mindwerks.net/projects/wildmidi/
 COMMENT=	Midi processing library and a midi player using the GUS patch set
 LICENSE=	gnu-lgpl-v3
 
 WRKSRC=		${WRKDIR}/wildmidi-${DISTNAME}
 USE_LANGUAGES=	c99
-USE_TOOLS+=	gmake
 USE_CMAKE=	yes
 
 SUBST_CLASSES+=		man
@@ -25,7 +24,12 @@ SUBST_MESSAGE.man=	Fixing man page installation path.
 
 .include "../../mk/bsd.prefs.mk"
 
+.if ${OPSYS} == "Darwin"
+CMAKE_ARGS+=	-DWANT_OPENAL=ON
+.else
 CMAKE_ARGS+=	-DWANT_OPENAL=OFF
+.endif
+
 .if ${OPSYS} == "Linux"
 CMAKE_ARGS+=	-DWANT_ALSA=ON
 .  include "../../audio/alsa-lib/buildlink3.mk"

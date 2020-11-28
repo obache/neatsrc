@@ -1,12 +1,12 @@
-# $NetBSD: buildlink3.mk,v 1.55 2019/08/22 12:23:15 ryoon Exp $
+# $NetBSD: buildlink3.mk,v 1.65 2020/06/05 12:48:59 jperkin Exp $
 
 BUILDLINK_TREE+=	gdal-lib
 
 .if !defined(GDAL_LIB_BUILDLINK3_MK)
 GDAL_LIB_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.gdal-lib+=	gdal-lib>=1.6.1
-BUILDLINK_ABI_DEPENDS.gdal-lib+=	gdal-lib>=2.4.1nb6
+BUILDLINK_API_DEPENDS.gdal-lib+=	gdal-lib>=3.0.0
+BUILDLINK_ABI_DEPENDS.gdal-lib+=	gdal-lib>=3.0.4nb4
 BUILDLINK_PKGSRCDIR.gdal-lib?=		../../geography/gdal-lib
 
 pkgbase := gdal-lib
@@ -20,6 +20,7 @@ pkgbase := gdal-lib
 .include "../../mk/mysql.buildlink3.mk"
 .endif
 
+.include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/netcdf/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

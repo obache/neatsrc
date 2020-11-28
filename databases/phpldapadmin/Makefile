@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.41 2019/12/09 14:20:54 taca Exp $
+# $NetBSD: Makefile,v 1.44 2020/05/22 19:28:33 rillig Exp $
 
 DISTNAME=	phpldapadmin-${VERSION}
 PKGREVISION=	2
@@ -13,8 +13,6 @@ LICENSE=	gnu-gpl-v2
 
 .include "../../mk/bsd.prefs.mk"
 .include "../../lang/php/phpversion.mk"
-
-REPLACE_SH=	tools/po/make*
 
 DEPENDS+=	${PHP_PKG_PREFIX}-ldap>=4.1.2:../../databases/php-ldap
 DEPENDS+=	${PHP_PKG_PREFIX}-gettext>=4.1.2:../../devel/php-gettext

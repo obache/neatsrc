@@ -6,7 +6,7 @@ import (
 	"crypto/sha512"
 	"encoding/hex"
 	"golang.org/x/crypto/ripemd160"
-	"hash"
+	hashpkg "hash"
 	"io"
 	"strings"
 )
@@ -33,6 +33,13 @@ func CheckLinesDistinfo(pkg *Package, lines *Lines) {
 	ck.check()
 	CheckLinesTrailingEmptyLines(lines)
 	ck.checkUnrecordedPatches()
+
+	if pkg != nil {
+		pkg.distinfoDistfiles = make(map[RelPath]bool)
+		for path := range ck.infos {
+			pkg.distinfoDistfiles[path.Base()] = true
+		}
+	}
 
 	SaveAutofixChanges(lines)
 }
@@ -106,6 +113,7 @@ func (ck *distinfoLinesChecker) check() {
 	for _, filename := range ck.filenames {
 		info := ck.infos[filename]
 
+		ck.checkFilename(filename, info)
 		ck.checkAlgorithms(info)
 		for _, hash := range info.hashes {
 			ck.checkGlobalDistfileMismatch(hash)
@@ -114,6 +122,18 @@ func (ck *distinfoLinesChecker) check() {
 			}
 		}
 	}
+}
+
+func (ck *distinfoLinesChecker) checkFilename(filename RelPath, info distinfoFileInfo) {
+	if info.isPatch != no || !info.hasDistfileAlgorithms() || matches(filename.String(), `\d`) {
+		return
+	}
+
+	line := info.line()
+	line.Warnf(
+		"Distfiles without version number should be placed in a versioned DIST_SUBDIR.")
+	line.Explain(
+		seeGuide("How to handle modified distfiles with the 'old' name", "modified-distfiles-same-name"))
 }
 
 func (ck *distinfoLinesChecker) checkAlgorithms(info distinfoFileInfo) {
@@ -178,12 +198,12 @@ func (ck *distinfoLinesChecker) checkAlgorithmsDistfile(info distinfoFileInfo) {
 	for _, alg := range algorithms {
 		missing[alg] = true
 	}
-	seen := map[string]distinfoHash{}
+	seen := map[string]bool{}
 
 	for _, hash := range info.hashes {
 		alg := hash.algorithm
 		if missing[alg] {
-			seen[alg] = hash
+			seen[alg] = true
 			delete(missing, alg)
 		}
 	}
@@ -223,7 +243,7 @@ func (ck *distinfoLinesChecker) checkAlgorithmsDistfile(info distinfoFileInfo) {
 		return
 	}
 
-	computeHash := func(hasher hash.Hash) string {
+	computeHash := func(hasher hashpkg.Hash) string {
 		f, err := distfile.Open()
 		assertNil(err, "Opening distfile")
 
@@ -255,7 +275,11 @@ func (ck *distinfoLinesChecker) checkAlgorithmsDistfile(info distinfoFileInfo) {
 		}
 	}
 
-	for alg, hash := range seen {
+	for _, hash := range info.hashes {
+		alg := hash.algorithm
+		if !seen[alg] {
+			continue
+		}
 		computed := compute(alg)
 
 		if computed != hash.hash {
@@ -281,12 +305,12 @@ func (ck *distinfoLinesChecker) checkAlgorithmsDistfile(info distinfoFileInfo) {
 			if insertion == nil {
 				fix := line.Autofix()
 				fix.Errorf("Missing %s hash for %s.", alg, info.filename())
-				fix.InsertBefore(sprintf("%s (%s) = %s", alg, info.filename(), computed))
+				fix.InsertAbove(sprintf("%s (%s) = %s", alg, info.filename(), computed))
 				fix.Apply()
 			} else {
 				fix := insertion.Autofix()
 				fix.Errorf("Missing %s hash for %s.", alg, info.filename())
-				fix.InsertAfter(sprintf("%s (%s) = %s", alg, info.filename(), computed))
+				fix.InsertBelow(sprintf("%s (%s) = %s", alg, info.filename(), computed))
 				fix.Apply()
 			}
 
@@ -417,6 +441,15 @@ func (info *distinfoFileInfo) algorithms() string {
 		algs = append(algs, hash.algorithm)
 	}
 	return strings.Join(algs, ", ")
+}
+
+func (info *distinfoFileInfo) hasDistfileAlgorithms() bool {
+	h := info.hashes
+	return len(h) == 4 &&
+		h[0].algorithm == "SHA1" &&
+		h[1].algorithm == "RMD160" &&
+		h[2].algorithm == "SHA512" &&
+		h[3].algorithm == "Size"
 }
 
 type distinfoHash struct {

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.32 2019/11/21 02:56:09 markd Exp $
+# $NetBSD: Makefile,v 1.41 2020/08/18 17:57:51 leot Exp $
 
 DISTNAME=	katomic-${KAPPSVER}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	games
 
 HOMEPAGE=	https://kde.org/applications/games/katomic/
@@ -10,7 +10,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/applications.mk"
 
-BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
 

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.53 2019/11/11 21:53:06 maya Exp $
+# $NetBSD: Makefile,v 1.58 2020/09/04 11:09:01 wiz Exp $
 
 DISTNAME=	bugzilla-5.0.3
-PKGREVISION=	4
+PKGREVISION=	7
 CATEGORIES=	www devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA_ALL:=webtools/}
 
@@ -13,7 +13,6 @@ LICENSE=	mpl-2.0
 # mod_perl
 DEPENDS+=	ap2[0-9]-perl-[0-9]*:../../www/ap2-perl
 DEPENDS+=	p5-CGI-[0-9]*:../../www/p5-CGI
-DEPENDS+=	p5-Digest-SHA-[0-9]*:../../security/p5-Digest-SHA
 DEPENDS+=	p5-TimeDate-[0-9]*:../../time/p5-TimeDate
 DEPENDS+=	p5-DateTime-[0-9]*:../../time/p5-DateTime
 DEPENDS+=	p5-DateTime-TimeZone-[0-9]*:../../time/p5-DateTime-TimeZone
@@ -46,7 +45,6 @@ DEPENDS+=	p5-JSON-RPC-[0-9]*:../../www/p5-JSON-RPC
 DEPENDS+=	p5-Test-Taint-[0-9]*:../../devel/p5-Test-Taint
 DEPENDS+=	p5-HTML-Parser-[0-9]*:../../www/p5-HTML-Parser
 DEPENDS+=	p5-HTML-Scrubber-[0-9]*:../../www/p5-HTML-Scrubber
-DEPENDS+=	p5-Encode-[0-9]*:../../textproc/p5-Encode
 DEPENDS+=	p5-Encode-Detect-[0-9]*:../../textproc/p5-Encode-Detect
 DEPENDS+=	p5-Email-Reply-[0-9]*:../../mail/p5-Email-Reply
 DEPENDS+=	p5-HTML-FormatText-WithLinks-[0-9]*:../../textproc/p5-HTML-FormatText-WithLinks
@@ -94,7 +92,7 @@ REPLACE_PERL+=		*.pl *.cgi docs/makedocs.pl
 SUBST_CLASSES+=		conf
 SUBST_STAGE.conf=	pre-install
 SUBST_MESSAGE.conf=	Fixing configuration files.
-SUBST_FILES.conf=	bugzilla.conf localconfig Bugzilla/BugMail.pm
+SUBST_FILES.conf=	bugzilla.conf localconfig
 SUBST_VARS.conf=	BZ_WEB_GROUP
 SUBST_VARS.conf+=	PREFIX
 SUBST_VARS.conf+=	BZDIR
@@ -104,9 +102,10 @@ SUBST_SED.conf+=	-e "s|/usr/lib/sendmail|${SENDMAIL}|g"
 
 SUBST_CLASSES+=		diff
 SUBST_STAGE.diff=	post-configure
-SUBST_MESSAGE.diff=	Fixing diff path used for Patch Viewer (Ignore depending on OS)
+SUBST_MESSAGE.diff=	Fixing diff path used for Patch Viewer
 SUBST_FILES.diff=	localconfig
 SUBST_SED.diff=		-e "s|\$$diffpath = .*|\$$diffpath = \'${DIFF:C,/[^/]+$,,}\';|"
+SUBST_NOOP_OK.diff=	yes
 
 INSTALLATION_DIRS+=	${DOCDIR} ${DOCDIR}/en ${EGDIR} ${BZDIR} ${BZDIR}/Bugzilla
 INSTALLATION_DIRS+=	${BZDIR}/js ${BZDIR}/lib ${BZDIR}/template ${BZDIR}/skins

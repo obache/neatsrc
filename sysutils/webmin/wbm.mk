@@ -1,4 +1,4 @@
-# $NetBSD: wbm.mk,v 1.14 2019/11/04 21:28:58 rillig Exp $
+# $NetBSD: wbm.mk,v 1.17 2020/09/06 02:38:53 mef Exp $
 #
 # Makefile fragment for Webmin modules
 #
@@ -44,12 +44,14 @@ HOMEPAGE?=	http://www.webmin.com/standard.html
 USE_TOOLS+=	perl:run perl
 DEPENDS+=	webmin>=${WBM_VERSION}:../../sysutils/webmin
 
+DISTINFO_FILE?=	../../sysutils/webmin/distinfo
+
 .for m in ${WBM_DEPEND_MODULES}
 DEPENDS+=	wbm-${m}>=${WBM_VERSION}:../../sysutils/wbm-${m}
 .endfor
 
-WEBMIN_DIR=	${LOCALBASE}/share/webmin
-WEBMIN_EGDIR=	${LOCALBASE}/share/examples/webmin
+WEBMIN_DIR=	${PREFIX}/share/webmin
+WEBMIN_EGDIR=	${PREFIX}/share/examples/webmin
 WEBMIN_VARDIR=	${VARBASE}/webmin
 WBM_DIR=	${PREFIX}/share/webmin
 WBM_EGDIR=	${PREFIX}/share/examples/webmin
@@ -77,6 +79,12 @@ WEBMIN_OSVERSION_cmd=	${AWK} '/^os_version=/ {sub("os_version=",""); print}' \
 			${WEBMIN_EGDIR}/config
 
 .PHONY: wbm-configure wbm-build wbm-install
+
+post-patch:
+	${FIND} ${WBMSRC} -name "*.pl"   |xargs ${CHMOD} -x
+	${FIND} ${WBMSRC} -name "*.html" |xargs ${CHMOD} -x
+	${FIND} ${WBMSRC} -name "*.gif"  |xargs ${CHMOD} -x
+	${FIND} ${WBMSRC} -name "*.png"  |xargs ${CHMOD} -x
 
 wbm-configure:
 	${FIND} ${WBMSRC} -name "*.orig" -print | ${XARGS} ${RM} -f

@@ -1,8 +1,10 @@
-# $NetBSD: options.mk,v 1.6 2012/04/17 17:13:01 bsiegert Exp $
+# $NetBSD: options.mk,v 1.8 2020/09/20 13:30:45 nia Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.fluxbox
-PKG_SUPPORTED_OPTIONS=	gnome kde imlib2 xft xrender nls
-PKG_SUGGESTED_OPTIONS=	xrender
+PKG_SUPPORTED_OPTIONS=	imlib2 xft2 xrender nls
+PKG_SUGGESTED_OPTIONS=	xft2 xrender
+
+PKG_OPTIONS_LEGACY_OPTS+=	xft:xft2
 
 .include "../../mk/bsd.options.mk"
 
@@ -12,18 +14,6 @@ PKG_SUGGESTED_OPTIONS+=	nls
 
 PLIST_VARS+=		nls
 
-.if !empty(PKG_OPTIONS:Mgnome)
-CONFIGURE_ARGS+=	--enable-gnome
-.else
-CONFIGURE_ARGS+=	--disable-gnome
-.endif
-
-.if !empty(PKG_OPTIONS:Mkde)
-CONFIGURE_ARGS+=	--enable-kde
-.else
-CONFIGURE_ARGS+=	--disable-kde
-.endif
-
 .if !empty(PKG_OPTIONS:Mimlib2)
 CONFIGURE_ARGS+=	--enable-imlib2
 .include "../../graphics/imlib2/buildlink3.mk"
@@ -31,7 +21,7 @@ CONFIGURE_ARGS+=	--enable-imlib2
 CONFIGURE_ARGS+=	--disable-imlib2
 .endif
 
-.if !empty(PKG_OPTIONS:Mxft)
+.if !empty(PKG_OPTIONS:Mxft2)
 CONFIGURE_ARGS+=	--enable-xft
 .include "../../x11/libXft/buildlink3.mk"
 .else
@@ -48,7 +38,7 @@ CONFIGURE_ARGS+=	--disable-xrender
 .if !empty(PKG_OPTIONS:Mnls)
 CONFIGURE_ARGS+=	--enable-nls
 .include "../../converters/libiconv/buildlink3.mk"
-PLIST.nls=		Yes
+PLIST.nls=		yes
 .else
 CONFIGURE_ARGS+=	--disable-nls
 .endif

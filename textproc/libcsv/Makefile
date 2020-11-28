@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2016/07/20 23:00:13 cheusov Exp $
+# $NetBSD: Makefile,v 1.3 2020/03/20 11:58:27 nia Exp $
 
 DISTNAME=	libcsv-3.0.3
 CATEGORIES=	textproc

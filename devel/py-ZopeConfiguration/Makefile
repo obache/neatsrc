@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.4 2019/02/12 09:12:17 adam Exp $
+# $NetBSD: Makefile,v 1.6 2020/08/31 23:07:00 wiz Exp $
 
-DISTNAME=	zope.configuration-4.3.1
+DISTNAME=	zope.configuration-4.4.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/zope.c/ZopeC/}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=z/zope.configuration/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://docs.zope.org/zopetoolkit/
+HOMEPAGE=	https://github.com/zopefoundation/zope.configuration
 COMMENT=	Zope Configuration Markup Language
 LICENSE=	zpl-2.1
 
@@ -19,5 +19,8 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-zope.testing-[0-9]*:../../devel/py-zope.testing
 
 USE_LANGUAGES=	# none
 
+PYTHON_VERSIONED_DEPENDENCIES+=	setuptools
+
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

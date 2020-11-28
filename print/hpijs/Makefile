@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.32 2019/10/12 20:41:11 rillig Exp $
+# $NetBSD: Makefile,v 1.34 2020/03/20 11:58:14 nia Exp $
 
 DISTNAME=	hpijs-2.1.4
 PKGREVISION=	4

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2018/01/28 16:24:12 wiz Exp $
+# $NetBSD: Makefile,v 1.9 2020/05/31 09:27:41 rillig Exp $
 
 DISTNAME=		mintlib-CVS-20131219
 PKGNAME=		cross-freemint-${DISTNAME:S/CVS-//}
@@ -25,11 +25,14 @@ TOOLS_PLATFORM.makeinfo=
 
 TOOL_DEPENDS+=	cross-freemint-binutils-[0-9]*:../../cross/freemint-binutils
 
+CHECK_PORTABILITY_SKIP+=	gcc-*/contrib/* # not needed
+
 FREEMINT_PREFIX=	${PREFIX}/cross-freemint
 CONFIGURE_DIRS=		${GCCNAME}bin
 CONFIGURE_SCRIPT=	../${GCCNAME}/configure
 
 USE_TOOLS+=		bash:run gmake makeinfo bison flex
+TOOLS_BROKEN+=		perl
 GNU_CONFIGURE=		yes
 
 GNU_CONFIGURE_PREFIX=	${FREEMINT_PREFIX}

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2016/10/27 19:49:44 kamil Exp $
+# $NetBSD: Makefile,v 1.9 2020/03/20 11:58:19 nia Exp $
 #
 
 DISTNAME=	srm-1.2.15

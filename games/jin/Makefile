@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2015/11/08 00:10:34 dholland Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/20 11:57:42 nia Exp $
 
 DISTNAME=	jin-2.14.1-unix
 PKGNAME=	${DISTNAME:S/-unix//}

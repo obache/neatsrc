@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2019/07/11 09:25:25 nia Exp $
+# $NetBSD: Makefile,v 1.18 2020/05/31 17:15:33 rillig Exp $
 #
 
 .include "../../databases/qdbm/Makefile.common"
@@ -18,6 +18,7 @@ BUILD_DIRS=	${MY_SUBDIR}
 CONFIGURE_DIRS=	${MY_SUBDIR}
 
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_PTHREAD=	no
 MAKE_ENV+=		RUBY_EXTCONF_ARGS=${RUBY_EXTCONF_ARGS:Q}
 TEST_TARGET=		check
 #USE_RUBY_EXTCONF=	yes
@@ -30,10 +31,4 @@ REPLACE_RUBY=	${MY_SUBDIR}/curia/rbcrtest ${MY_SUBDIR}/depot/rbdptest \
 
 .include "../../databases/qdbm/buildlink3.mk"
 .include "../../lang/ruby/modules.mk"
-.if defined(PTHREAD_TYPE) && ${PTHREAD_TYPE} != "none"
-SUBST_CLASSES+=		pthread
-SUBST_STAGE.pthread=	pre-configure
-SUBST_FILES.pthread=	${MY_SUBDIR}/configure
-SUBST_SED.pthread=	-e 's|-lpthread|${PTHREAD_LIBS}|'
-.endif
 .include "../../mk/bsd.pkg.mk"

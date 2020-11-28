@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.74 2019/10/21 11:17:47 adam Exp $
+# $NetBSD: Makefile,v 1.80 2020/10/06 10:51:22 wiz Exp $
 
-DISTNAME=	cryptography-2.8
+DISTNAME=	cryptography-2.9.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	security python
 MASTER_SITES=	${MASTER_SITE_PYPI:=c/cryptography/}
@@ -16,11 +16,12 @@ DEPENDS+=	${PYPKGPREFIX}-cparser>=2.10:../../devel/py-cparser
 DEPENDS+=	${PYPKGPREFIX}-idna>=2.1:../../www/py-idna
 DEPENDS+=	${PYPKGPREFIX}-six>=1.4.1:../../lang/py-six
 TEST_DEPENDS+=	${PYPKGPREFIX}-cryptography_vectors-[0-9]*:../../security/py-cryptography_vectors
-TEST_DEPENDS+=	${PYPKGPREFIX}-hypothesis>=1.11.4:../../devel/py-hypothesis
 TEST_DEPENDS+=	${PYPKGPREFIX}-iso8601-[0-9]*:../../time/py-iso8601
 TEST_DEPENDS+=	${PYPKGPREFIX}-pretend-[0-9]*:../../devel/py-pretend
 TEST_DEPENDS+=	${PYPKGPREFIX}-pytz-[0-9]*:../../time/py-pytz
-TEST_DEPENDS+=	${PYPKGPREFIX}-test>=3.9.3:../../devel/py-test
+
+PYTHON_VERSIONED_DEPENDENCIES=	test:test
+PYTHON_VERSIONED_DEPENDENCIES+=	hypothesis:test
 
 .include "../../lang/python/pyversion.mk"
 .if ${_PYTHON_VERSION} == 27
@@ -29,8 +30,9 @@ DEPENDS+=	${PYPKGPREFIX}-ipaddress-[0-9]*:../../net/py-ipaddress
 .endif
 
 do-test:
-	cd ${WRKSRC} && py.test-${PYVERSSUFFIX}
+	cd ${WRKSRC} && pytest-${PYVERSSUFFIX}
 
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

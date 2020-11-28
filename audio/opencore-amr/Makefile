@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2017/04/15 09:49:53 adam Exp $
+# $NetBSD: Makefile,v 1.7 2020/03/20 11:57:23 nia Exp $
 
 DISTNAME=	opencore-amr-0.1.5
 CATEGORIES=	audio

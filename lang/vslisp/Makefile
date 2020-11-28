@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2016/01/17 15:14:47 joerg Exp $
+# $NetBSD: Makefile,v 1.22 2020/03/20 11:57:56 nia Exp $
 
 DISTNAME=	vslisp-4.0-1
 PKGNAME=	vslisp-4.0.1

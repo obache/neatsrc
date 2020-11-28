@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2015/09/08 18:48:27 joerg Exp $
+# $NetBSD: Makefile,v 1.27 2020/03/20 11:57:45 nia Exp $
 
 DISTNAME=	xtux-arena-src-nov-15
 PKGNAME=	xtux-0.2000.11.15

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.17 2014/10/09 14:06:37 wiz Exp $
+# $NetBSD: Makefile,v 1.19 2020/03/20 11:57:51 nia Exp $
 #
 
 DISTNAME=		PerceptualDiff-1.0.1

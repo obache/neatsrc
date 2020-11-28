@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.74 2019/10/19 10:43:28 nia Exp $
+# $NetBSD: Makefile,v 1.76 2020/08/31 18:11:40 wiz Exp $
 
 DISTNAME=		aspell-0.60.8
+PKGREVISION=		1
 CATEGORIES=		textproc
 MASTER_SITES=		${MASTER_SITE_GNU:=aspell/}
 
@@ -23,7 +24,6 @@ USE_NCURSES=		yes
 USE_PKGLOCALEDIR=	yes
 INFO_FILES=		yes
 
-CONFIGURE_ARGS+=	--enable-doc-dir=${PREFIX}/share/doc/aspell
 CONFIGURE_ARGS+=	--enable-curses=${CURSES_TYPE}
 CONFIGURE_ARGS+=	--enable-pkgdatadir=${PREFIX}/share/aspell
 CONFIGURE_ARGS+=	--enable-dict-dir=${PREFIX}/lib/aspell

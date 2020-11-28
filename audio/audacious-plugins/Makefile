@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.97 2019/09/18 14:17:04 ryoon Exp $
+# $NetBSD: Makefile,v 1.114 2020/08/18 17:57:34 leot Exp $
 
-DISTNAME=	audacious-plugins-3.10.1
-PKGREVISION=	4
+DISTNAME=	audacious-plugins-4.0.5
+PKGREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	https://distfiles.audacious-media-player.org/
 EXTRACT_SUFX=	.tar.bz2
@@ -19,37 +19,45 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--disable-ampache
 CONFIGURE_ARGS+=	--disable-bs2b
 CONFIGURE_ARGS+=	--disable-cue
+# prefer libsamplerate
+CONFIGURE_ARGS+=	--disable-soxr
 CONFIGURE_ARGS+=	--disable-notify
-# use SDL instead, it has working volume control
-CONFIGURE_ARGS+=	--disable-oss4
 CONFIGURE_ARGS+=	--disable-qtaudio
 CONFIGURE_ARGS+=	--disable-sndio
 
-PLIST_VARS+=	dbus gtk qt
+.include "../../mk/oss.buildlink3.mk"
+PLIST_VARS+=		oss4
+# Currently, don't use this on NetBSD - the volume manipulation is broken.
+# Use SDL instead, it has working volume control
+.if ${OSS_TYPE} != "none" && \
+	(${OPSYS} == "FreeBSD" || \
+	${OPSYS} == "SunOS")
+PLIST.oss4=		yes
+LDFLAGS+=		${LIBOSSAUDIO}
+SUBST_CLASSES+=		oss
+SUBST_STAGE.oss=	pre-configure
+SUBST_MESSAGE.oss=	Correcting the path to the OSS device.
+SUBST_FILES.oss+=	src/oss4/oss.h
+SUBST_SED.oss+=		-e "s,/dev/dsp,${DEVOSSAUDIO},g"
+.else
+CONFIGURE_ARGS+=	--disable-oss4
+.endif
+
+PLIST_VARS+=	dbus
 
 .include "options.mk"
 .include "../../audio/audacious/buildlink3.mk"
-.if !empty(PKG_BUILD_OPTIONS.audacious:Mdbus)
+.if ${PKG_BUILD_OPTIONS.audacious:Mdbus}
 TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 PLIST.dbus=		yes
 .else
 CONFIGURE_ARGS+=	--disable-mpris2
-.endif
-.if !empty(PKG_BUILD_OPTIONS.audacious:Mqt5)
-PLIST.qt=		yes
-CONFIGURE_ARGS+=	--enable-qt
-.endif
-.if !empty(PKG_BUILD_OPTIONS.audacious:Mgtk2)
-PLIST.gtk=		yes
-.else
-CONFIGURE_ARGS+=	--disable-gtk
 .endif
 .include "../../audio/faad2/buildlink3.mk"
 .include "../../audio/lame/buildlink3.mk"
 .include "../../audio/libcddb/buildlink3.mk"
 .include "../../audio/libsamplerate/buildlink3.mk"
 .include "../../audio/libsndfile/buildlink3.mk"
-.include "../../audio/libsoxr/buildlink3.mk"
 .include "../../audio/libvorbis/buildlink3.mk"
 .include "../../audio/mpg123/buildlink3.mk"
 .include "../../devel/SDL2/buildlink3.mk"

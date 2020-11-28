@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2015/01/01 09:22:23 dholland Exp $
+# $NetBSD: Makefile,v 1.17 2020/01/26 05:26:14 rillig Exp $
 #
 
 DISTNAME=	randread-0.2

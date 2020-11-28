@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.106 2018/03/12 11:15:53 wiz Exp $
+# $NetBSD: Makefile,v 1.108 2020/08/17 20:17:54 leot Exp $
 
 DISTNAME=	lesstif-0.95.2
-PKGREVISION=	7
+PKGREVISION=	8
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=lesstif/}
 EXTRACT_SUFX=	.tar.bz2
@@ -17,9 +17,7 @@ USE_TOOLS+=		gmake
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-debug
 CONFIGURE_ARGS+=	--disable-verbose
-CONFIGURE_ARGS+=	--enable-editres
 CONFIGURE_ARGS+=	--enable-production
-CONFIGURE_ARGS+=	--enable-xdnd
 
 # The following forces the build process to use sed as the HTML-to-text
 # converter.

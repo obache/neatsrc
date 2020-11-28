@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2016/12/31 10:01:11 dholland Exp $
+# $NetBSD: Makefile,v 1.17 2020/03/20 11:57:43 nia Exp $
 #
 
 DISTNAME=	qonk-0.3.1

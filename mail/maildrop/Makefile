@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.69 2019/11/02 16:25:22 rillig Exp $
+# $NetBSD: Makefile,v 1.72 2020/08/31 18:09:57 wiz Exp $
 
 DISTNAME=	maildrop-3.0.0
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=courier/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Courier mail delivery agent with filtering abilities
-HOMEPAGE=	http://www.courier-mta.org/maildrop/
+HOMEPAGE=	https://www.courier-mta.org/maildrop/
 
 DEPENDS+=	courier-maildir>=${COURIER_VERSION}:../../mail/courier-maildir
 

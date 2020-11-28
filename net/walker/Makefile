@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.11 2019/11/03 11:45:57 rillig Exp $
+# $NetBSD: Makefile,v 1.13 2020/08/31 18:10:55 wiz Exp $
 #
 
 DISTNAME=	walker-3.8
-PKGREVISION=	7
+PKGREVISION=	8
 CATEGORIES=	net
 MASTER_SITES=	http://josefsson.org/walker/releases/
 
 MAINTAINER=	reed@reedmedia.net
-HOMEPAGE=	http://josefsson.org/walker/
+HOMEPAGE=	https://josefsson.org/walker/
 COMMENT=	Retrieve a DNS zone using NXT/NSEC traversal
 
 DEPENDS+=	p5-Net-DNS>=0.50:../../net/p5-Net-DNS

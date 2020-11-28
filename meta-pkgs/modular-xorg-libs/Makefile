@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.26 2019/11/26 09:05:40 wiz Exp $
+# $NetBSD: Makefile,v 1.28 2020/08/17 20:19:28 leot Exp $
 
 DISTNAME=	# empty
 PKGNAME=	modular-xorg-libs-1.12
+PKGREVISION=	1
 CATEGORIES=	meta-pkgs x11
 MASTER_SITES=	${MASTER_SITE_XORG:=lib/}
 DISTFILES=	# empty
 
 MAINTAINER=	joerg@NetBSD.org
-HOMEPAGE=	http://xorg.freedesktop.org/
+HOMEPAGE=	https://xorg.freedesktop.org/
 COMMENT=	Modular Xorg library meta-package
 LICENSE=	2-clause-bsd
 

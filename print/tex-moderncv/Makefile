@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.4 2019/12/06 20:22:03 markd Exp $
+# $NetBSD: Makefile,v 1.8 2020/05/03 11:57:32 markd Exp $
 
 DISTNAME=	moderncv
-PKGNAME=	tex-${DISTNAME}-2.0.0
-TEXLIVE_REV=	37992
+PKGNAME=	tex-${DISTNAME}-2.0.0.52669
+TEXLIVE_REV=	52669
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/moderncv
+HOMEPAGE=	https://ctan.org/pkg/moderncv
 COMMENT=	Modern CV latex class
 LICENSE=	lppl-1.3c
 
@@ -13,21 +13,21 @@ DEPENDS+=	tex-changepage-[0-9]*:../../print/tex-changepage
 DEPENDS+=	tex-colortbl-[0-9]*:../../print/tex-colortbl
 DEPENDS+=	tex-ec-[0-9]*:../../fonts/tex-ec
 DEPENDS+=	tex-etoolbox>=2.1:../../devel/tex-etoolbox
-DEPENDS+=	tex-geometry-[0-9]*:../../print/tex-geometry
 DEPENDS+=	tex-fancyhdr-[0-9]*:../../print/tex-fancyhdr
 DEPENDS+=	tex-fontawesome-[0-9]*:../../fonts/tex-fontawesome
+DEPENDS+=	tex-geometry-[0-9]*:../../print/tex-geometry
+DEPENDS+=	tex-graphics-[0-9]*:../../print/tex-graphics
 DEPENDS+=	tex-hyperref-[0-9]*:../../print/tex-hyperref
-DEPENDS+=	tex-ifluatex-[0-9]*:../../print/tex-ifluatex
-DEPENDS+=	tex-ifxetex-[0-9]*:../../print/tex-ifxetex
+DEPENDS+=	tex-iftex>=1.0d:../../print/tex-iftex
 DEPENDS+=	tex-l3packages-[0-9]*:../../devel/tex-l3packages
 DEPENDS+=	tex-latex-[0-9]*:../../print/tex-latex
 DEPENDS+=	tex-marvosym-[0-9]*:../../fonts/tex-marvosym
 DEPENDS+=	tex-microtype-[0-9]*:../../print/tex-microtype
 DEPENDS+=	tex-pgf-[0-9]*:../../print/tex-pgf
+DEPENDS+=	tex-tools-[0-9]*:../../print/tex-tools
 DEPENDS+=	tex-url-[0-9]*:../../print/tex-url
 DEPENDS+=	tex-xcolor-[0-9]*:../../print/tex-xcolor
 DEPENDS+=	tex-xifthen-[0-9]*:../../devel/tex-xifthen
 
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2012/10/08 13:04:17 asau Exp $
+# $NetBSD: Makefile,v 1.16 2020/03/20 11:58:31 nia Exp $
 #
 
 DISTNAME=	bbdate-0.2.4

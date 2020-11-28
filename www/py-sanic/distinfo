@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.8 2020/01/08 21:03:21 adam Exp $
+$NetBSD: distinfo,v 1.13 2020/10/27 23:07:42 adam Exp $
 
-SHA1 (sanic-19.12.2.tar.gz) = 551764e7a1406be3ee20d655f6822aae1af77f52
-RMD160 (sanic-19.12.2.tar.gz) = af3bd32ab86c0d83d29387d009626c5b12862f1d
-SHA512 (sanic-19.12.2.tar.gz) = 1249551e45585959138028ad0d96ba0c560625f550c449480d405d5d0b2f3e361174552e24e328d1201b65074d3c1b7f4b886c7f45c99160752cdcf67d451c6b
-Size (sanic-19.12.2.tar.gz) = 135304 bytes
-SHA1 (patch-setup.py) = 12809b01cbd9ca950d64dabb2a2d1107cc361166
+SHA1 (sanic-20.9.1.tar.gz) = 5ef6504b4ceebedbe6fd86b82eb498765420476d
+RMD160 (sanic-20.9.1.tar.gz) = 9e300d42d4d7806e331d5ab43ae17b0ab9e0fbcb
+SHA512 (sanic-20.9.1.tar.gz) = 3e4ee0fbce0f5369038bfdd83abd9d3d485a915ae3ef91364e03c8e6a46dce2b7e5eba48c0680490bb175873f77454ed6ce584836b60192480cfd29e03ab4a48
+Size (sanic-20.9.1.tar.gz) = 147581 bytes
+SHA1 (patch-setup.py) = 18d343962a7b0d3a312518fd10181f5dd5653524

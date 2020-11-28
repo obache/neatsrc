@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.58 2019/11/06 11:26:59 szptvlfn Exp $
+# $NetBSD: Makefile,v 1.63 2020/08/31 18:09:47 wiz Exp $
 #
 
 DISTNAME=		scim-1.4.18
-PKGREVISION=		2
+PKGREVISION=		21
 CATEGORIES=		inputmethod
 MASTER_SITES=		-https://github.com/scim-im/scim/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 

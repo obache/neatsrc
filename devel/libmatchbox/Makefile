@@ -1,14 +1,15 @@
-# $NetBSD: Makefile,v 1.31 2018/03/12 11:15:30 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2020/08/17 20:17:23 leot Exp $
 #
 
 DISTNAME=	libmatchbox-1.9
-PKGREVISION=	8
+PKGREVISION=	10
 CATEGORIES=	devel
 MASTER_SITES=	http://downloads.yoctoproject.org/releases/matchbox/libmatchbox/1.9/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.yoctoproject.org/tools-resources/projects/matchbox/
 COMMENT=	Library for matchbox window manager for computers with small displays
+LICENSE=	gnu-lgpl-v2.1
 
 USE_LIBTOOL=	yes
 GNU_CONFIGURE=	yes

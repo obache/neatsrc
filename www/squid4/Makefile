@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2020/01/04 10:57:18 taca Exp $
+# $NetBSD: Makefile,v 1.13 2020/08/31 18:13:16 wiz Exp $
 
-DISTNAME=	squid-4.9
+DISTNAME=	squid-4.13
+PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.squid-cache.org/Versions/v4/
 MASTER_SITES+=	ftp://ftp.squid-cache.org/pub/squid/
@@ -15,6 +16,7 @@ LICENSE=	gnu-gpl-v2
 USE_LANGUAGES=		c c++11
 USE_TOOLS+=		perl:run gmake
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_STRICT=	no # has sub-configure in libltdl
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--localstatedir=${SQUID_DATADIR}
 CONFIGURE_ARGS+=	--datarootdir=${PREFIX}/share/squid
@@ -33,7 +35,8 @@ CONFIGURE_ARGS+=	--with-pidfile=${VARBASE}/run/squid.pid
 # Let 'purge' find correct config file by default.
 CPPFLAGS+=		-DDEFAULT_SQUID_CONF=\"${PKG_SYSCONFDIR}/squid.conf\"
 
-BUILD_DEFS+=		VARBASE
+BUILDLINK_TRANSFORM+=	rm:-Werror
+
 MAKE_ENV+=		INSTALL_SCRIPT=${INSTALL_SCRIPT:Q}
 MAKE_ENV+=		PKG_PREFIX=${PREFIX} VARBASE=${VARBASE}
 REPLACE_PERL+=		contrib/url-normalizer.pl contrib/user-agents.pl \
@@ -68,11 +71,12 @@ SPECIAL_PERMS+=		libexec/pinger ${SETUID_ROOT_PERMS}
 
 RCD_SCRIPTS=		squid
 RCD_SCRIPT_SRC.squid=	files/squid.sh
+SMF_NAME=		squid
 
 SUBST_CLASSES+=		confs
 SUBST_STAGE.confs=	pre-configure
 SUBST_FILES.confs=	src/cf.data.pre
-SUBST_SED.confs=	-e "s/@USER@/${SQUID_USER}/"
+SUBST_SED.confs=	-e "s/@DEFAULT_CACHE_EFFECTIVE_USER@/${SQUID_USER}/"
 SUBST_MESSAGE.confs=	Fixing configuration files.
 
 post-build:

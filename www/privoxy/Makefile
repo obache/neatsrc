@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.65 2019/11/09 14:30:29 nia Exp $
+# $NetBSD: Makefile,v 1.67 2020/08/31 18:13:15 wiz Exp $
 
 DISTNAME=	${PKGNAME_NOREV}-stable-src
 PKGNAME=	privoxy-3.0.28
+PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://www.privoxy.org/sf-download-mirror/Sources/${PKGVERSION_NOREV}%20(stable)/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.privoxy.org/
+HOMEPAGE=	https://www.privoxy.org/
 COMMENT=	Web proxy with advanced filtering capabilities
 LICENSE=	gnu-gpl-v2
 

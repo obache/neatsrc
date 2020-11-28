@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.26 2019/08/30 18:26:32 nia Exp $
+# $NetBSD: Makefile,v 1.31 2020/10/12 21:52:00 bacon Exp $
 
-DISTNAME=	PyOpenGL-3.1.1a1
+DISTNAME=	PyOpenGL-3.1.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/^Py//}
-PKGREVISION=	1
-CATEGORIES=	graphics
+PKGREVISION=	2
+CATEGORIES=	graphics python
 MASTER_SITES=	${MASTER_SITE_PYPI:=P/PyOpenGL/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -13,29 +13,23 @@ COMMENT=	Python bindings for OpenGL
 LICENSE=	modified-bsd AND mit
 
 DEPENDS+=	${PYPKGPREFIX}-Tk-[0-9]*:../../x11/py-Tk
+TEST_DEPENDS+=	${PYPKGPREFIX}-OpenGL-accelerate-[0-9]*:../../graphics/py-OpenGL-accelerate
+TEST_DEPENDS+=	${PYPKGPREFIX}-game-[0-9]*:../../devel/py-game
 
-REPLACE_PYTHON+=	*.py */*.py */*/*.py */*/*/*.py */*/*/*/*.py
+USE_LANGUAGES=	# none
 
-# Tests require:
-# - devel/py-virtualenv
-# - devel/py-game
-# - math/py-numpy
-# ...
-
-SUBST_CLASSES+=		pyver
-SUBST_MESSAGE.pyver=	Set Python version suffix for virtualenv calls.
-SUBST_STAGE.pyver=	pre-configure
-SUBST_FILES.pyver=	tests/tests.py
-SUBST_SED.pyver=	-e '121s,virtualenv,virtualenv-${PYVERSSUFFIX},'
+REPLACE_PYTHON+=	OpenGL/arrays/buffers.py
 
 do-test:
-	${RUN} ${PYTHONBIN} ${WRKSRC}/tests/tests.py
+	cd ${WRKSRC} && ${PYTHONBIN} tests/test_core.py
 
-.include "../../lang/python/application.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} != "Darwin"
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../graphics/freeglut/buildlink3.mk"
 .include "../../graphics/glu/buildlink3.mk"
+.endif
+.include "../../lang/python/application.mk"
+.include "../../lang/python/egg.mk"
 .include "../../math/py-numpy/buildlink3.mk"
-.include "../../lang/tcl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

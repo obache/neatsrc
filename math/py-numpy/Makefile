@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.61 2019/06/14 14:33:07 adam Exp $
+# $NetBSD: Makefile,v 1.72 2020/10/21 19:43:07 nia Exp $
 
-DISTNAME=	numpy-1.16.4
+DISTNAME=	numpy-1.19.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=n/numpy/}
 EXTRACT_SUFX=	.zip
@@ -11,14 +12,18 @@ HOMEPAGE=	http://www.numpy.org/
 COMMENT=	Array processing for numbers, strings, records, and objects
 LICENSE=	modified-bsd
 
-BUILD_DEPENDS+=	${PYPKGPREFIX}-cython>=0.19:../../devel/py-cython
+TEST_DEPENDS+=	${PYPKGPREFIX}-hypothesis-[0-9]*:../../devel/py-hypothesis
+BUILD_DEPENDS+=	${PYPKGPREFIX}-cython>=0.29.21:../../devel/py-cython
 TEST_DEPENDS+=	${PYPKGPREFIX}-nose-[0-9]*:../../devel/py-nose
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 
-USE_LANGUAGES=		c fortran
+# error: 'for' loop initial declarations are only allowed in C99 mode
+USE_LANGUAGES=		c99 fortran
 MAKE_ENV+=		ATLAS=None
 
 REPLACE_PYTHON+=	*.py */*.py */*/*.py */*/*/*.py
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27 # since 1.17
 
 # XXX Avoid picking up other compilers when installed
 .include "../../mk/compiler.mk"
@@ -50,19 +55,9 @@ do-test:
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
+# Consider allowing mk/blas.buildlink3.mk to handle Accelerate.framework
 .if ${OPSYS} != "Darwin"
 # blas and lapack are not needed; numpy will use Accelerate.framework
-.include "../../math/blas/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
-
-post-patch:
-	${CP} ${FILESDIR}/site.cfg ${FAKEHOMEDIR}/numpy-site.cfg
-
-SUBST_CLASSES+=		site_cfg
-SUBST_STAGE.site_cfg=	pre-configure
-SUBST_VARS.site_cfg=	LOCALBASE BUILDLINK_PREFIX.blas BUILDLINK_PREFIX.lapack
-SUBST_VARS.site_cfg+=	X11BASE
-SUBST_FILES.site_cfg=	${FAKEHOMEDIR}/numpy-site.cfg
-
+.include "../../mk/blas.buildlink3.mk"
 .endif
 .include "../../mk/bsd.pkg.mk"

@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.41 2019/12/21 14:41:32 nia Exp $
+# $NetBSD: Makefile,v 1.48 2020/08/31 18:06:41 wiz Exp $
 
 DISTNAME=	hexchat-2.14.3
+PKGREVISION=	6
 CATEGORIES=	chat
 MASTER_SITES=	https://dl.hexchat.net/hexchat/
 EXTRACT_SUFX=	.tar.xz
@@ -10,11 +11,8 @@ HOMEPAGE=	https://hexchat.github.io/
 COMMENT=	IRC client based on XChat
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1 AND mit
 
-USE_LIBTOOL=	yes
-USE_TOOLS+=	bison gmake intltool msgfmt msgmerge pkg-config xgettext
+USE_TOOLS+=	pkg-config msgfmt xgettext
 USE_LANGUAGES=	c c++
-
-PKGCONFIG_OVERRIDE+=	share/pkgconfig/hexchat-plugin.pc.in
 
 # XXX fails without GNU msgfmt
 _TOOLS_USE_PKGSRC.msgfmt=	yes
@@ -24,7 +22,6 @@ MESON_ARGS+=		-Dwith-appdata=false
 
 REPLACE_PYTHON+=	plugins/perl/generate_header.py
 REPLACE_PYTHON+=	src/common/make-te.py
-REPLACE_PYTHON+=	meson_post_install.py
 
 OPSYSVARS+=		SOEXT
 SOEXT.Darwin=		dylib
@@ -32,6 +29,8 @@ SOEXT.*=		so
 PLIST_SUBST+=		SOEXT=${SOEXT}
 
 LDFLAGS.SunOS+=		-lsocket -lnsl
+
+PKGCONFIG_OVERRIDE+=	data/pkgconfig/hexchat-plugin.pc.in
 
 .include "options.mk"
 .include "../../devel/meson/build.mk"

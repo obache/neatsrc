@@ -1,10 +1,24 @@
-$NetBSD: patch-aclocal.m4,v 1.1 2020/01/09 12:32:24 pho Exp $
+$NetBSD: patch-aclocal.m4,v 1.5 2020/08/24 17:23:12 pho Exp $
 
-Canonicalize OS name netbsd* to "netbsd".
+Hunk #1:
+  Support SunOS/x86_64.
 
---- aclocal.m4.orig	2019-08-25 12:03:36.000000000 +0000
+Hunk #2:
+  Canonicalize OS name netbsd* to "netbsd":
+  https://gitlab.haskell.org/ghc/ghc/merge_requests/2496
+
+--- aclocal.m4.orig	2020-07-08 16:43:03.000000000 +0000
 +++ aclocal.m4
-@@ -2044,6 +2044,9 @@ AC_DEFUN([GHC_CONVERT_OS],[
+@@ -661,7 +661,7 @@ AC_DEFUN([FPTOOLS_SET_C_LD_FLAGS],
+     x86_64-unknown-solaris2)
+         $2="$$2 -m64"
+         $3="$$3 -m64"
+-        $4="$$4 -m64"
++        $4="$$4 -64"
+         $5="$$5 -m64"
+         ;;
+     alpha-*)
+@@ -2047,6 +2047,9 @@ AC_DEFUN([GHC_CONVERT_OS],[
        openbsd*)
          $3="openbsd"
          ;;

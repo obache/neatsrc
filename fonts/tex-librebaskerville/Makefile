@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:30:11 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:48 markd Exp $
 
 DISTNAME=	librebaskerville
 PKGNAME=	tex-${DISTNAME}-2014
+PKGREVISION=	1
 TEXLIVE_REV=	31741
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/librebaskerville
+HOMEPAGE=	https://ctan.org/pkg/librebaskerville
 COMMENT=	LaTeX support for the Libre Baskerville family of fonts
 LICENSE=	lppl-1.3c
 

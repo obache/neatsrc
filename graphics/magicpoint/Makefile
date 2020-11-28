@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.102 2019/08/11 13:21:12 wiz Exp $
+# $NetBSD: Makefile,v 1.106 2020/08/31 18:09:41 wiz Exp $
 
 DISTNAME=		magicpoint-1.13a
-PKGREVISION=		31
+PKGREVISION=		34
 CATEGORIES=		x11 graphics
 MASTER_SITES=		ftp://sh.wide.ad.jp/WIDE/free-ware/mgp/
 
@@ -19,6 +19,7 @@ USE_IMAKE=		yes
 USE_LANGUAGES+=		c99
 USE_TOOLS+=		perl
 USE_TOOLS+=		pkg-config
+USE_TOOLS+=		bison
 
 CONFIGURE_ARGS+=	--enable-freetype-charset16
 CONFIGURE_ARGS+=	--enable-locale

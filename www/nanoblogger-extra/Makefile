@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2017/02/21 15:59:34 joerg Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/20 11:58:34 nia Exp $
 #
 
 DISTNAME=	nanoblogger-extra-3.4.2

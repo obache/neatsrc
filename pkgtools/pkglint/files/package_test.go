@@ -20,6 +20,8 @@ func (s *Suite) Test_Package__varuse_at_load_time(c *check.C) {
 		"TOOLS_CREATE+=nice",
 		"TOOLS_CREATE+=true",
 		"_TOOLS_VARNAME.nice=NICE")
+	t.CreateFileLines("category/pkgbase/DESCR",
+		"Description")
 
 	t.CreateFileLines("category/pkgbase/Makefile",
 		MkCvsID,
@@ -141,7 +143,7 @@ func (s *Suite) Test_Package__using_common_Makefile_overriding_DISTINFO_FILE(c *
 	t.CreateFileLines("security/pinentry-fltk/distinfo",
 		CvsID,
 		"",
-		"SHA1 (patch-aa) = ebbf34b0641bcb508f17d5a27f2bf2a536d810ac")
+		"SHA1 (patch-aa) = 9a93207561abfef7e7550598c5a08f2c3226995b")
 	t.FinishSetUp()
 
 	G.Check(t.File("security/pinentry"))
@@ -247,6 +249,8 @@ func (s *Suite) Test_Package__redundant_master_sites(c *check.C) {
 		"",
 		".include \"../../math/R/Makefile.extension\"",
 		".include \"../../mk/bsd.pkg.mk\"")
+	t.CreateFileLines("math/R-date/DESCR",
+		"Description")
 	t.FinishSetUp()
 
 	// See Package.checkfilePackageMakefile
@@ -279,6 +283,7 @@ func (s *Suite) Test_Package__distinfo_from_other_package(c *check.C) {
 		MkCvsID,
 		".include \"../../multimedia/gst-base/Makefile.common\"",
 		".include \"../../mk/bsd.pkg.mk\"")
+	t.CreateFileDummyPatch("x11/gst-x11/patches/patch-aa")
 	t.CreateFileLines("multimedia/gst-base/Makefile.common",
 		MkCvsID,
 		".include \"plugins.mk\"")
@@ -297,7 +302,10 @@ func (s *Suite) Test_Package__distinfo_from_other_package(c *check.C) {
 		"WARN: x11/gst-x11/Makefile: This package should have a PLIST file.",
 		"ERROR: x11/gst-x11/Makefile: Each package must define its LICENSE.",
 		"WARN: x11/gst-x11/Makefile: Each package should define a COMMENT.",
-		"WARN: x11/gst-x11/../../multimedia/gst-base/distinfo:3: Patch file \"patch-aa\" does not exist in directory \"../../x11/gst-x11/patches\".")
+		"ERROR: x11/gst-x11/../../multimedia/gst-base/distinfo:3: "+
+			"SHA1 hash of ../../x11/gst-x11/patches/patch-aa differs "+
+			"(distinfo has 1234, patch file has 9a93207561abfef7e7550598c5a08f2c3226995b).",
+		"ERROR: x11/gst-x11/Makefile: Each package must have a DESCR file.")
 }
 
 func (s *Suite) Test_Package__case_insensitive(c *check.C) {
@@ -318,6 +326,46 @@ func (s *Suite) Test_Package__case_insensitive(c *check.C) {
 
 	// TODO: On a case-sensitive filesystem, p5-net-dns would not be found.
 	t.CheckOutputEmpty()
+}
+
+// This package has several identifiers that all differ:
+//  - it lives in the directory "package"
+//  - the package name is "pkgname"
+//  - it downloads "distname-1.0.tar.gz"
+//    (in some places the distname is used as the package name)
+//  - in options.mk its name is "optid"
+//  - in buildlink3.mk its name is "bl3id"
+// All these identifiers should ideally be the same.
+// For historic reasons, the package directory and the package name
+// may differ.
+func (s *Suite) Test_Package__different_package_identifiers(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"DISTNAME=\tdistname-1.0",
+		"PKGNAME=\tpkgname-1.0")
+	t.CreateFileLines("mk/bsd.options.mk")
+	t.CreateFileLines("category/package/options.mk",
+		MkCvsID,
+		"",
+		"PKG_OPTIONS_VAR=\tPKG_OPTIONS.optid",
+		"PKG_SUPPORTED_OPTIONS=\t# none",
+		"",
+		".include \"../../mk/bsd.options.mk\"",
+		"",
+		"# Nothing to do here")
+	t.CreateFileBuildlink3Id("category/package/buildlink3.mk", "bl3id")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.checkdirPackage(".")
+
+	t.CheckOutputLines(
+		"ERROR: buildlink3.mk:3: Package name mismatch "+
+			"between \"bl3id\" in this file and \"pkgname\" from Makefile:4.",
+		"WARN: options.mk:3: The buildlink3 identifier \"bl3id\" "+
+			"should be the same as the options identifier \"optid\".")
+
 }
 
 func (s *Suite) Test_NewPackage(c *check.C) {
@@ -476,12 +524,41 @@ func (s *Suite) Test_Package_load__extra_files(c *check.C) {
 		"WARN: patches/readme.mk: Patch files should be named \"patch-\", followed by letters, '-', '_', '.', and digits only.")
 }
 
+func (s *Suite) Test_Package_loadBuildlink3Pkgbase(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		".include \"../../category/lib/buildlink3.mk\"")
+	t.CreateFileBuildlink3("category/package/buildlink3.mk",
+		"pkgbase := package",
+		".include \"../../mk/pkg-build-options.mk\"",
+		".include \"../../category/lib/buildlink3.mk\"")
+	t.SetUpPackage("category/lib")
+	t.CreateFileBuildlink3("category/lib/buildlink3.mk",
+		"pkgbase := lib",
+		".include \"../../mk/pkg-build-options.mk\"")
+	t.CreateFileLines("mk/pkg-build-options.mk")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+	pkg := NewPackage(".")
+
+	pkg.Check()
+
+	t.CheckOutputEmpty()
+	seenPkgbase := pkg.seenPkgbase
+	t.Check(seenPkgbase.seen, check.HasLen, 2)
+	t.CheckEquals(seenPkgbase.Seen("lib"), true)
+	t.CheckEquals(seenPkgbase.Seen("package"), true)
+}
+
 func (s *Suite) Test_Package_loadPackageMakefile__dump(c *check.C) {
 	t := s.Init(c)
 
 	t.SetUpCommandLine("--dumpmakefile")
 	t.SetUpPkgsrc()
 	t.CreateFileLines("category/Makefile")
+	t.CreateFileLines("category/package/DESCR",
+		"Description")
 	t.CreateFileLines("category/package/PLIST",
 		PlistCvsID,
 		"bin/program")
@@ -495,6 +572,7 @@ func (s *Suite) Test_Package_loadPackageMakefile__dump(c *check.C) {
 	t.CreateFileLines("category/package/Makefile",
 		MkCvsID,
 		"",
+		"DISTNAME=\tpackage-1.0",
 		"CATEGORIES=\tcategory",
 		"",
 		"COMMENT=\tComment",
@@ -509,10 +587,11 @@ func (s *Suite) Test_Package_loadPackageMakefile__dump(c *check.C) {
 		"Whole Makefile (with all included files) follows:",
 		"~/category/package/Makefile:1: "+MkCvsID,
 		"~/category/package/Makefile:2: ",
-		"~/category/package/Makefile:3: CATEGORIES=\tcategory",
-		"~/category/package/Makefile:4: ",
-		"~/category/package/Makefile:5: COMMENT=\tComment",
-		"~/category/package/Makefile:6: LICENSE=\t2-clause-bsd")
+		"~/category/package/Makefile:3: DISTNAME=\tpackage-1.0",
+		"~/category/package/Makefile:4: CATEGORIES=\tcategory",
+		"~/category/package/Makefile:5: ",
+		"~/category/package/Makefile:6: COMMENT=\tComment",
+		"~/category/package/Makefile:7: LICENSE=\t2-clause-bsd")
 }
 
 func (s *Suite) Test_Package_loadPackageMakefile(c *check.C) {
@@ -1255,6 +1334,232 @@ func (s *Suite) Test_Package_check__patches_Makefile(c *check.C) {
 		"1 warning found.")
 }
 
+func (s *Suite) Test_Package_checkDescr__DESCR_SRC(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("other/package")
+	t.SetUpPackage("category/package",
+		"DESCR_SRC=\t../../other/package/DESCR")
+	t.Remove("category/package/DESCR")
+	t.FinishSetUp()
+
+	G.Check(t.File("category/package"))
+
+	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_Package_checkDescr__no_package(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPkgsrc()
+	t.CreateFileLines("category/package/module.mk")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"ERROR: Makefile: Cannot be read.")
+}
+
+// All files that can possibly be added to DISTFILES need a corresponding
+// entry in the distinfo file.
+//
+// https://mail-index.netbsd.org/pkgsrc-changes/2020/02/05/msg206172.html
+// https://mail-index.netbsd.org/pkgsrc-changes/2020/03/25/msg209445.html
+func (s *Suite) Test_Package_checkDistfilesInDistinfo__indirect_conditional_DISTFILES(c *check.C) {
+	G.Experimental = true
+
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		".include \"../../mk/bsd.prefs.mk\"",
+		"",
+		"DISTFILES.i386=\t\tdistfile-i386.tar.gz",
+		"DISTFILES.x86=\t\tdistfile-x86.tar.gz",
+		"DISTFILES.other=\tdistfile-other.tar.gz",
+		"",
+		".if ${MACHINE_ARCH} == i386",
+		"DISTFILES+=\t${DISTFILES.i386} ${DISTFILES.x86}",
+		".else",
+		"DISTFILES+=\t${DISTFILES.other}",
+		".endif",
+		"",
+		"DISTFILES+=\tok-3.tar.gz")
+	t.CreateFileLines("category/package/distinfo",
+		CvsID,
+		"",
+		"SHA1 (ok-3.tar.gz) = 1234",
+		"RMD160 (ok-3.tar.gz) = 1234",
+		"SHA512 (ok-3.tar.gz) = 1234",
+		"Size (ok-3.tar.gz) = 1234",
+		"SHA1 (package-1.0.tar.gz) = 1234",
+		"RMD160 (package-1.0.tar.gz) = 1234",
+		"SHA512 (package-1.0.tar.gz) = 1234",
+		"Size (package-1.0.tar.gz) = 1234")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"WARN: Makefile:27: Distfile \"distfile-i386.tar.gz\" is not mentioned in distinfo.",
+		"WARN: Makefile:27: Distfile \"distfile-x86.tar.gz\" is not mentioned in distinfo.",
+		"WARN: Makefile:29: Distfile \"distfile-other.tar.gz\" is not mentioned in distinfo.")
+}
+
+func (s *Suite) Test_Package_checkDistfilesInDistinfo__unresolvable(c *check.C) {
+	G.Experimental = true
+
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		".include \"../../mk/bsd.prefs.mk\"",
+		"",
+		".if ${MACHINE_ARCH} == i386",
+		"DISTFILES+=\t${UNKNOWN}",
+		".endif",
+		"",
+		"DISTFILES+=\tok-3.tar.gz")
+	t.CreateFileLines("category/package/distinfo",
+		CvsID,
+		"",
+		"SHA1 (ok-3.tar.gz) = 1234",
+		"RMD160 (ok-3.tar.gz) = 1234",
+		"SHA512 (ok-3.tar.gz) = 1234",
+		"Size (ok-3.tar.gz) = 1234",
+		"SHA1 (package-1.0.tar.gz) = 1234",
+		"RMD160 (package-1.0.tar.gz) = 1234",
+		"SHA512 (package-1.0.tar.gz) = 1234",
+		"Size (package-1.0.tar.gz) = 1234")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"WARN: Makefile:23: UNKNOWN is used but not defined.")
+}
+
+func (s *Suite) Test_Package_checkDistfilesInDistinfo__indirect_DIST_SUBDIR(c *check.C) {
+	G.Experimental = true
+
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		".include \"../../mk/bsd.prefs.mk\"",
+		"",
+		// As of 2020-03-26, pkglint doesn't know how to resolve PKGNAME_NOREV.
+		"DIST_SUBDIR=\t${PKGNAME_NOREV}",
+		// Strictly speaking, this is redundant, but as of 2020-03-26,
+		// pkglint doesn't infer the default DISTFILES, so it needs a bit of help here.
+		"DISTFILES+=\tdistfile-1.0.tar.gz",
+		"DISTFILES+=\tdistfile-other.tar.gz")
+	t.CreateFileLines("distinfo",
+		CvsID,
+		"",
+		"SHA1 (package-1.0/distfile-other.tar.gz) = 1234",
+		"RMD160 (package-1.0/distfile-other.tar.gz) = 1234",
+		"SHA512 (package-1.0/distfile-other.tar.gz) = 1234",
+		"Size (package-1.0/distfile-other.tar.gz) = 1234",
+		"SHA1 (package-1.0/package-1.0.tar.gz) = 1234",
+		"RMD160 (package-1.0/package-1.0.tar.gz) = 1234",
+		"SHA512 (package-1.0/package-1.0.tar.gz) = 1234",
+		"Size (package-1.0/package-1.0.tar.gz) = 1234")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"WARN: Makefile:24: Distfile \"distfile-other.tar.gz\" is not mentioned in distinfo.")
+}
+
+func (s *Suite) Test_Package_checkDistfilesInDistinfo__depending_on_package_settable(c *check.C) {
+	G.Experimental = true
+
+	t := s.Init(c)
+
+	t.SetUpPackage("print/tex-varisize",
+		"DISTNAME=\tvarisize",
+		"PKGNAME=\ttex-${DISTNAME}-2014",
+		"TEXLIVE_REV=\t15878",
+		"",
+		"TEXLIVE_UNVERSIONED=\tyes",
+		"",
+		".include \"../../print/texlive/package.mk\"")
+	t.CreateFileLines("print/tex-varisize/distinfo",
+		CvsID,
+		"",
+		"SHA1 (tex-varisize-15878/varisize.tar.xz) = 1234",
+		"RMD160 (tex-varisize-15878/varisize.tar.xz) = 1234",
+		"SHA512 (tex-varisize-15878/varisize.tar.xz) = 1234",
+		"Size (tex-varisize-15878/varisize.tar.xz) = 3176 bytes")
+	t.CreateFileLines("print/texlive/package.mk",
+		MkCvsID,
+		"",
+		".if empty(TEXLIVE_UNVERSIONED)",
+		"DISTFILES?=\t${DISTNAME}.r${TEXLIVE_REV}${EXTRACT_SUFX}",
+		".endif")
+	t.Chdir("print/tex-varisize")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	// The package-settable TEXLIVE_UNVERSIONED is definitely not empty,
+	// therefore the line in package.mk doesn't apply.
+	// FIXME: This warning is wrong because the line in package.mk is unreachable.
+	//  See MkLines.IsUnreachable.
+	t.CheckOutputLines(
+		"WARN: ../../print/texlive/package.mk:4: Distfile \"varisize.r15878.tar.gz\" " +
+			"is not mentioned in ../../print/tex-varisize/distinfo.")
+}
+
+func (s *Suite) Test_Package_checkDistfilesInDistinfo__empty_distfiles(c *check.C) {
+	G.Experimental = true
+
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"DISTFILES=\t# none")
+	t.CreateFileLines("category/package/distinfo",
+		CvsID)
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	// For completely empty distinfo files, the check is skipped.
+	t.CheckOutputLines(
+		"WARN: distinfo: This file should not exist.",
+		"NOTE: distinfo:1: Empty line expected below this line.")
+}
+
+func (s *Suite) Test_Package_checkDistfilesInDistinfo__no_distfiles(c *check.C) {
+	G.Experimental = true
+
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"#DISTNAME=\t# undefined",
+		"#DISTFILES=\t# undefined")
+	t.CreateFileLines("category/package/distinfo",
+		CvsID,
+		"",
+		"SHA1 (distfile-1.0.tar.gz) = 1234",
+		"RMD160 (distfile-1.0.tar.gz) = 1234",
+		"SHA512 (distfile-1.0.tar.gz) = 1234",
+		"Size (distfile-1.0.tar.gz) = 1234 bytes")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	// For completely empty distinfo files, the check is skipped.
+	t.CheckOutputLines(
+		"WARN: distinfo: This file should not exist.")
+}
+
 func (s *Suite) Test_Package_checkfilePackageMakefile__GNU_CONFIGURE(c *check.C) {
 	t := s.Init(c)
 
@@ -1310,8 +1615,7 @@ func (s *Suite) Test_Package_checkfilePackageMakefile__META_PACKAGE_with_distinf
 
 	t.CheckOutputLines(
 		"WARN: ~/category/package/Makefile:20: This package should not have a PLIST file.",
-		"WARN: ~/category/package/distinfo: "+
-			"This file should not exist since NO_CHECKSUM or META_PACKAGE is set.")
+		"WARN: ~/category/package/distinfo: This file should not exist.")
 }
 
 func (s *Suite) Test_Package_checkfilePackageMakefile__META_PACKAGE_with_patch(c *check.C) {
@@ -1324,15 +1628,18 @@ func (s *Suite) Test_Package_checkfilePackageMakefile__META_PACKAGE_with_patch(c
 	t.CreateFileLines("category/package/distinfo",
 		CvsID,
 		"",
-		"SHA1 (patch-aa) = ebbf34b0641bcb508f17d5a27f2bf2a536d810ac")
+		"SHA1 (patch-aa) = 9a93207561abfef7e7550598c5a08f2c3226995b")
 
 	t.FinishSetUp()
 
 	G.Check(pkg)
 
 	// At first it may sound strange to have a META_PACKAGE with patches.
-	// As of June 2019, there are 21 meta packages having a patches
-	// directory, being referred to by PATCHDIR.
+	// As of June 2019, there are 21 meta packages that have a patches
+	// directory.
+	// These patches are not used by the meta package itself.
+	// They are just stored there in the "most obvious location",
+	// to be used by the related packages.
 	t.CheckOutputEmpty()
 }
 
@@ -1420,8 +1727,7 @@ func (s *Suite) Test_Package_checkfilePackageMakefile__no_distfiles(c *check.C) 
 	G.Check(t.File("category/package"))
 
 	t.CheckOutputLines(
-		"WARN: ~/category/package/distinfo: " +
-			"This file should not exist since NO_CHECKSUM or META_PACKAGE is set.")
+		"WARN: ~/category/package/distinfo: This file should not exist.")
 }
 
 func (s *Suite) Test_Package_checkfilePackageMakefile__distfiles(c *check.C) {
@@ -1437,6 +1743,21 @@ func (s *Suite) Test_Package_checkfilePackageMakefile__distfiles(c *check.C) {
 	t.CheckOutputLines(
 		"WARN: ~/category/package/distinfo: " +
 			"A package that downloads files should have a distinfo file.")
+}
+
+func (s *Suite) Test_Package_checkfilePackageMakefile__no_distname(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"#DISTNAME=\t#undefined",
+		"PKGNAME=\tpackage-1.0")
+	t.Remove("category/package/distinfo")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputEmpty()
 }
 
 // The fonts/t1lib package has split the options handling between the
@@ -1590,8 +1911,7 @@ func (s *Suite) Test_Package_checkPlist__META_PACKAGE(c *check.C) {
 
 	t.CheckOutputLines(
 		"WARN: ~/category/package/Makefile:20: This package should not have a PLIST file.",
-		"WARN: ~/category/package/distinfo: This file should not exist "+
-			"since NO_CHECKSUM or META_PACKAGE is set.")
+		"WARN: ~/category/package/distinfo: This file should not exist.")
 }
 
 func (s *Suite) Test_Package_checkPlist__Perl5_packlist(c *check.C) {
@@ -1630,6 +1950,25 @@ func (s *Suite) Test_Package_checkPlist__PERL5_USE_PACKLIST_yes(c *check.C) {
 
 	t.CheckOutputLines(
 		"WARN: ~/category/p5-Packlist/Makefile:20: This package should not have a PLIST file.")
+}
+
+func (s *Suite) Test_Package_checkPlist__unused_PLIST_variable(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"PLIST_VARS+=\tused unused",
+		"PLIST.used=\tyes",
+		"PLIST.unused=\tyes")
+	t.CreateFileLines("category/package/PLIST",
+		PlistCvsID,
+		"${PLIST.used}bin/a")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"WARN: Makefile:20: PLIST identifier \"unused\" is not used in any PLIST file.")
 }
 
 func (s *Suite) Test_Package_CheckVarorder__only_required_variables(c *check.C) {
@@ -1856,6 +2195,7 @@ func (s *Suite) Test_Package_CheckVarorder__license(c *check.C) {
 
 	t.CreateFileLines("mk/bsd.pkg.mk", "# dummy")
 	t.CreateFileLines("x11/Makefile", MkCvsID)
+	t.CreateFileLines("x11/9term/DESCR", "Terminal")
 	t.CreateFileLines("x11/9term/PLIST", PlistCvsID, "bin/9term")
 	t.CreateFileLines("x11/9term/Makefile",
 		MkCvsID,
@@ -2072,74 +2412,6 @@ func (s *Suite) Test_Package_CheckVarorder__DEPENDS(c *check.C) {
 	t.CheckOutputLines(
 		"WARN: Makefile:3: The canonical order of the variables is " +
 			"CATEGORIES, empty line, MAINTAINER, COMMENT, LICENSE, empty line, DEPENDS.")
-}
-
-func (s *Suite) Test_Package_checkCategories__redundant(c *check.C) {
-	t := s.Init(c)
-
-	t.SetUpPackage("category/package",
-		"CATEGORIES=\tcategory perl5",
-		".include \"included.mk\"")
-	t.CreateFileLines("category/package/included.mk",
-		MkCvsID,
-		"CATEGORIES+=\tperl5 python",
-		"CATEGORIES+=\tpython",
-		"CATEGORIES?=\tcategory japanese")
-	t.Chdir("category/package")
-	t.FinishSetUp()
-
-	G.Check(".")
-
-	t.CheckOutputLines(
-		// TODO: Warn in the including file, not in the included file, just as in RedundantScope.
-		"NOTE: included.mk:2: Category \"perl5\" is already added in Makefile:5.",
-		"NOTE: included.mk:3: Category \"python\" is already added in line 2.")
-}
-
-func (s *Suite) Test_Package_checkCategories__redundant_but_not_constant(c *check.C) {
-	t := s.Init(c)
-
-	t.SetUpPackage("category/package",
-		"CATEGORIES=\tcategory",
-		".include \"included.mk\"")
-	t.CreateFileLines("category/package/included.mk",
-		MkCvsID,
-		"CATEGORIES+=\tperl5 python",
-		"CATEGORIES+=\tpython",
-		"CATEGORIES?=\tcategory japanese",
-		"",
-		".if 1",
-		"CATEGORIES+=\tchinese",
-		".endif")
-	t.Chdir("category/package")
-	t.FinishSetUp()
-
-	G.Check(".")
-
-	// No diagnostics at all, because CATEGORIES is not constant,
-	// as "chinese" may or may not be added.
-	t.CheckOutputEmpty()
-}
-
-// The := assignment operator is equivalent to the simple = operator
-// if its right-hand side does not contain references to any variables.
-func (s *Suite) Test_Package_checkCategories__eval_assignment(c *check.C) {
-	t := s.Init(c)
-
-	t.SetUpPackage("category/package",
-		"CATEGORIES:=\tcategory",
-		".include \"included.mk\"")
-	t.CreateFileLines("category/package/included.mk",
-		MkCvsID,
-		"CATEGORIES+=\tcategory")
-	t.Chdir("category/package")
-	t.FinishSetUp()
-
-	G.Check(".")
-
-	t.CheckOutputLines(
-		"NOTE: included.mk:2: " +
-			"Category \"category\" is already added in Makefile:5.")
 }
 
 func (s *Suite) Test_Package_checkGnuConfigureUseLanguages__no_C(c *check.C) {
@@ -2469,6 +2741,43 @@ func (s *Suite) Test_Package_determineEffectivePkgVars__ineffective_C_modifier(c
 	pkg.check(files, mklines, allLines)
 
 	t.CheckEquals(pkg.EffectivePkgname, "distname-1.0")
+	t.CheckOutputLines(
+		"NOTE: ~/category/package/Makefile:4: " +
+			"The modifier :C:does_not_match:replacement: does not have an effect.")
+}
+
+func (s *Suite) Test_Package_determineEffectivePkgVars__ineffective_S_modifier_with_variable(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"VERSION=\t1.008",
+		"DISTNAME=\tdistname-v${VERSION}",
+		"PKGNAME=\t${DISTNAME:S/v1/1/}")
+	t.FinishSetUp()
+	pkg := NewPackage(t.File("category/package"))
+	files, mklines, allLines := pkg.load()
+
+	pkg.check(files, mklines, allLines)
+
+	// TODO: Expand ${VERSION}, that's pretty simple.
+	t.CheckEquals(pkg.EffectivePkgname, "") // Because of the unexpanded VERSION.
+	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_Package_determineEffectivePkgVars__effective_S_modifier_with_variable(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"MINOR_VERSION=\t1.008",
+		"DISTNAME=\tdistname-v1.${MINOR_VERSION}",
+		"PKGNAME=\t${DISTNAME:S/v1/1/}")
+	t.FinishSetUp()
+	pkg := NewPackage(t.File("category/package"))
+	files, mklines, allLines := pkg.load()
+
+	pkg.check(files, mklines, allLines)
+
+	t.CheckEquals(pkg.EffectivePkgname, "") // because of MINOR_VERSION
 	t.CheckOutputEmpty()
 }
 
@@ -2538,6 +2847,46 @@ func (s *Suite) Test_Package_determineEffectivePkgVars__Python_prefix_late(c *ch
 		"1 warning found.")
 }
 
+// The infrastructure file mk/haskell.mk sets a default for PKGNAME
+// that differs from the plain DISTNAME. This makes the assignment
+// PKGNAME=${DISTNAME} non-redundant.
+func (s *Suite) Test_Package_determineEffectivePkgVars__Haskell(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"PKGNAME=\t${DISTNAME}",
+		".include \"../../mk/haskell.mk\"")
+	t.CreateFileLines("mk/haskell.mk",
+		MkCvsID,
+		"PKGNAME?=\ths-${DISTNAME}")
+	t.FinishSetUp()
+
+	G.Check(t.File("category/package"))
+
+	// Up to 2020-06-28, pkglint wrongly produced a note about
+	// PKGNAME being "probably redundant".
+	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_Package_determineEffectivePkgVars__bsd_pkg_mk(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		"PKGNAME=\t${DISTNAME}")
+	t.CreateFileLines("mk/bsd.pkg.mk",
+		MkCvsID,
+		"PKGNAME?=\t${DISTNAME}")
+	t.FinishSetUp()
+
+	G.Check(t.File("category/package"))
+
+	// Contrary to the one from mk/haskell.mk, the default assignment in
+	// mk/bsd.pkg.mk is not included in the RedundantScope.
+	t.CheckOutputLines(
+		"NOTE: ~/category/package/Makefile:4: This assignment is probably " +
+			"redundant since PKGNAME is ${DISTNAME} by default.")
+}
+
 func (s *Suite) Test_Package_nbPart(c *check.C) {
 	t := s.Init(c)
 
@@ -2565,7 +2914,10 @@ func (s *Suite) Test_Package_pkgnameFromDistname(c *check.C) {
 		}
 
 		pkg := NewPackage(t.File("category/package"))
-		pkg.loadPackageMakefile()
+		_, allLines := pkg.loadPackageMakefile()
+		pkg.redundant = NewRedundantScope() // See Package.checkfilePackageMakefile.
+		pkg.redundant.IsRelevant = func(mkline *MkLine) bool { return false }
+		pkg.redundant.Check(allLines)
 		pkg.determineEffectivePkgVars()
 		t.CheckEquals(pkg.EffectivePkgname, expectedPkgname)
 		t.CheckOutput(diagnostics)
@@ -2584,9 +2936,11 @@ func (s *Suite) Test_Package_pkgnameFromDistname(c *check.C) {
 	// the package version. Therefore it is discarded completely.
 	test("${DISTNAME:S|^lib||}", "libncurses", "")
 
-	// The substitution succeeds, but the substituted value is missing
-	// the package version. Therefore it is discarded completely.
-	test("${DISTNAME:S|^lib||}", "mylib", "")
+	// The substitution does not have an effect.
+	// The substituted value is missing the package version.
+	// Therefore it is discarded completely.
+	test("${DISTNAME:S|^lib||}", "mylib", "",
+		"NOTE: ~/category/package/Makefile:4: The modifier :S|^lib|| does not have an effect.")
 
 	test("${DISTNAME:tl:S/-/./g:S/he/-/1}", "SaxonHE9-5-0-1J", "saxon-9.5.0.1j")
 
@@ -2926,7 +3280,7 @@ func (s *Suite) Test_Package_checkOwnerMaintainer__directory(c *check.C) {
 	t.CreateFileLines("category/package/distinfo",
 		CvsID,
 		"",
-		"SHA1 (patch-aa) = ebbf34b0641bcb508f17d5a27f2bf2a536d810ac")
+		"SHA1 (patch-aa) = 9a93207561abfef7e7550598c5a08f2c3226995b")
 	t.FinishSetUp()
 
 	G.Check(pkg)
@@ -3127,12 +3481,10 @@ func (s *Suite) Test_Package_checkLinesBuildlink3Inclusion__ocaml(c *check.C) {
 	G.Check("mk/ocaml.mk")
 	G.checkdirPackage("x11/ocaml-graphics")
 
-	t.CheckOutputLines(
-		// This error is only reported if the file is checked on its own.
-		// If it is checked as part of a package, both bmake and pkglint
-		// use the package path as the fallback search path.
-		"ERROR: mk/ocaml.mk:2: Relative path " +
-			"\"../../lang/ocaml/buildlink3.mk\" does not exist.")
+	// Up to 2020-02-15, pkglint reported a missing relative path in
+	// mk/ocaml.mk:2 since resolving relative paths had not used the
+	// correct base directory.
+	t.CheckOutputEmpty()
 }
 
 // Just for code coverage.
@@ -3527,9 +3879,9 @@ func (s *Suite) Test_Package_Includes(c *check.C) {
 
 	pkg.load()
 
-	t.CheckEquals(pkg.Includes("unconditionally.mk"), true)
-	t.CheckEquals(pkg.Includes("conditionally.mk"), true)
-	t.CheckEquals(pkg.Includes("other.mk"), false)
+	t.CheckEquals(pkg.Includes("unconditionally.mk") != nil, true)
+	t.CheckEquals(pkg.Includes("conditionally.mk") != nil, true)
+	t.CheckEquals(pkg.Includes("other.mk") != nil, false)
 
 	// The file never.mk is in conditionalIncludes since pkglint only
 	// analyzes on the syntactical level. It doesn't evaluate the
@@ -3538,5 +3890,5 @@ func (s *Suite) Test_Package_Includes(c *check.C) {
 	// See Package.collectConditionalIncludes and Indentation.IsConditional.
 	t.CheckEquals(
 		pkg.conditionalIncludes["never.mk"].Location,
-		NewLocation(t.File("category/package/Makefile"), 22, 22))
+		NewLocation(t.File("category/package/Makefile"), 22))
 }

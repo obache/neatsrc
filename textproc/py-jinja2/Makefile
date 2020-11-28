@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.26 2019/10/07 05:34:29 adam Exp $
+# $NetBSD: Makefile,v 1.29 2020/04/14 12:10:03 adam Exp $
 
-DISTNAME=	Jinja2-2.10.3
+DISTNAME=	Jinja2-2.11.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
 CATEGORIES=	textproc python
 MASTER_SITES=	${MASTER_SITE_PYPI:=J/Jinja2/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://jinja.pocoo.org/
+HOMEPAGE=	https://jinja.palletsprojects.com/
 COMMENT=	Small but fast and easy to use stand-alone template engine
 LICENSE=	modified-bsd
 
@@ -14,13 +14,7 @@ DEPENDS+=	${PYPKGPREFIX}-babel>=0.8:../../devel/py-babel
 DEPENDS+=	${PYPKGPREFIX}-markupsafe>=0.23:../../textproc/py-markupsafe
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
 
-USE_LANGUAGES=		# none
-
-SUBST_CLASSES+=		unicode
-SUBST_FILES.unicode=	jinja2/*.py
-SUBST_STAGE.unicode=	pre-install
-SUBST_SED.unicode+=	-e "s,u',',g"
-SUBST_SED.unicode+=	-e 's,u",",g'
+USE_LANGUAGES=	# none
 
 .include "../../lang/python/pyversion.mk"
 

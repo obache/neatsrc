@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2018/10/29 14:42:08 abs Exp $
+# $NetBSD: Makefile,v 1.15 2020/10/16 11:46:39 rin Exp $
 #
 
 DISTNAME=	acpica-unix2-20160930
@@ -8,7 +8,7 @@ CATEGORIES=	sysutils devel
 MASTER_SITES=	https://acpica.org/sites/acpica/files/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.acpica.org/
+HOMEPAGE=	https://www.acpica.org/
 COMMENT=	Intel ACPI CA Unix utilities
 LICENSE=	modified-bsd OR gnu-gpl-v2
 
@@ -18,9 +18,6 @@ DISTFILES+=	${TESTS_DISTNAME}${EXTRACT_SUFX}
 
 USE_TOOLS+=	bison flex gm4 gmake bash
 
-REPLACE_BASH+=	tests/aapits/bin/aapitsrun
-REPLACE_BASH+=	tests/aapits/bin/cadir
-REPLACE_BASH+=	tests/aapits/bin/run1
 REPLACE_BASH+=	tests/aslts.sh
 REPLACE_BASH+=	tests/aslts/bin/Do
 REPLACE_BASH+=	tests/aslts/bin/asltsdiffres
@@ -54,8 +51,13 @@ do-test:
 
 .include "../../mk/compiler.mk"
 
+# XXX
 .if !empty(CC_VERSION:Mgcc-[89]*)
 CFLAGS+=	-Wno-error=format-truncation
+.endif
+.if !empty(CC_VERSION:Mgcc-9*)
+CFLAGS+=	-Wno-error=format-overflow \
+		-Wno-error=stringop-truncation
 .endif
 
 .include "../../mk/bsd.pkg.mk"

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.60 2019/07/21 22:26:00 wiz Exp $
+# $NetBSD: Makefile,v 1.65 2020/08/17 20:20:28 leot Exp $
 #
 
 DISTNAME=	libgnomekbd-3.6.0
-PKGREVISION=	3
+PKGREVISION=	7
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libgnomekbd/3.6/}
 EXTRACT_SUFX=	.tar.xz
@@ -15,6 +15,8 @@ LICENSE=	gnu-gpl-v2
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config intltool gmake msgfmt
+
+GNU_CONFIGURE_GCONF_SCHEMAS=	no
 
 PKGCONFIG_OVERRIDE+=	libgnomekbd.pc.in
 PKGCONFIG_OVERRIDE+=	libgnomekbdui.pc.in

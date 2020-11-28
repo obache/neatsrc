@@ -1,18 +1,26 @@
-# $NetBSD: Makefile,v 1.12 2018/06/02 20:01:21 he Exp $
+# $NetBSD: Makefile,v 1.15 2020/07/02 10:16:59 nia Exp $
 #
 
 DISTNAME=	LuaJIT-2.0.5
 PKGNAME=	${DISTNAME:S/LuaJIT/LuaJIT2/}
 PKGREVISION=	1
-CATEGORIES=	lang
+CATEGORIES=	lang lua
 MASTER_SITES=	http://luajit.org/download/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://luajit.org/
+HOMEPAGE=	https://luajit.org/
 COMMENT=	Just-In-Time Compiler for the Lua programming language
 LICENSE=	mit
 
 USE_TOOLS+=	gmake
+
+# LuaJIT 2.1.0 will support mips64 and aarch64.
+ONLY_FOR_PLATFORM+=	*-*-*arm*
+ONLY_FOR_PLATFORM+=	*-*-i386
+ONLY_FOR_PLATFORM+=	*-*-mipseb
+ONLY_FOR_PLATFORM+=	*-*-mipsel
+ONLY_FOR_PLATFORM+=	*-*-powerpc
+ONLY_FOR_PLATFORM+=	*-*-x86_64
 
 NOT_PAX_MPROTECT_SAFE+=	bin/luajit
 

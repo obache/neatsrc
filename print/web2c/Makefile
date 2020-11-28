@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.91 2020/01/11 00:31:05 ryoon Exp $
+# $NetBSD: Makefile,v 1.101 2020/10/29 19:47:13 markd Exp $
 
-PKGREVISION= 3
 .include "../../print/texlive/Makefile.common"
 
-PKGNAME=	web2c-2019
+PKGNAME=	web2c-2020
+PKGREVISION=	3
 CATEGORIES=	print
 
-HOMEPAGE=	http://www.tug.org/web2c/
+HOMEPAGE=	https://www.tug.org/web2c/
 COMMENT=	TeX implementation translating WEB to C
 
 DEPENDS+=	kpathsea>=6.2.1:../../print/kpathsea
@@ -24,9 +24,13 @@ WRKSRC=			${WRKDIR}/${DISTNAME}/texk/web2c
 
 #CXXFLAGS+=		-fpermissive
 
+CONFIGURE_ENV+=		enable_texlive_build=yes
+CONFIGURE_ARGS+=	--with-banner-add="/pkgsrc"
 CONFIGURE_ARGS+=	--disable-luatex
+CONFIGURE_ARGS+=	--disable-luahbtex
 CONFIGURE_ARGS+=	--disable-luatex53
 CONFIGURE_ARGS+=	--disable-luajittex
+CONFIGURE_ARGS+=	--disable-luajithbtex
 CONFIGURE_ARGS+=	--disable-mflua
 CONFIGURE_ARGS+=	--disable-mfluajit
 CONFIGURE_ARGS+=	--disable-xetex
@@ -55,8 +59,8 @@ CONFIGURE_DIRS=		${WRKDIR}/${DISTNAME}/texk/web2c
 INSTALL_DIRS=		${WRKDIR}/${DISTNAME}/texk/web2c
 
 pre-configure:
-	${CP} ${WRKSRC}/pdftexdir/pdftoepdf-poppler0.75.0.cc ${WRKSRC}/pdftexdir/pdftoepdf.cc
-	${CP} ${WRKSRC}/pdftexdir/pdftosrc-newpoppler.cc  ${WRKSRC}/pdftexdir/pdftosrc.cc
+	${CP} ${WRKSRC}/pdftexdir/pdftoepdf-poppler0.86.0.cc ${WRKSRC}/pdftexdir/pdftoepdf.cc
+	${CP} ${WRKSRC}/pdftexdir/pdftosrc-poppler0.83.0.cc  ${WRKSRC}/pdftexdir/pdftosrc.cc
 
 .include "../../archivers/zziplib/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

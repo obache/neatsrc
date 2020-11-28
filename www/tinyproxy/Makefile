@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.40 2019/05/23 19:23:21 rillig Exp $
+# $NetBSD: Makefile,v 1.43 2020/05/31 17:35:39 rillig Exp $
 
 DISTNAME=	tinyproxy-1.10.0
+PKGREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=tinyproxy/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -15,10 +16,8 @@ BUILD_DEPENDS+=		asciidoc-[0-9]*:../../textproc/asciidoc
 BUILD_DEFS+=		VARBASE
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-config=${PKG_SYSCONFDIR}/tinyproxy.conf
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
-CONFIGURE_ARGS+=	--enable-transparent-proxy
 
 RCD_SCRIPTS=		tinyproxy
 

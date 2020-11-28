@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.24 2017/11/23 15:41:32 wiz Exp $
+# $NetBSD: Makefile,v 1.27 2020/03/20 11:57:58 nia Exp $
 
 DISTNAME=	gmime-2.4.33
 PKGNAME=	${DISTNAME:S/gmime/gmime24/}
+PKGREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gmime/2.4/}
 EXTRACT_SUFX=	.tar.xz

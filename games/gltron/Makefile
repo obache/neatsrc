@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.35 2019/11/03 19:28:48 rillig Exp $
+# $NetBSD: Makefile,v 1.37 2020/03/20 11:57:41 nia Exp $
 #
 
 DISTNAME=	gltron-0.70-source

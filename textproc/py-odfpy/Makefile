@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.3 2018/12/04 13:25:59 adam Exp $
+# $NetBSD: Makefile,v 1.5 2020/08/18 01:01:56 joerg Exp $
 
-DISTNAME=	odfpy-1.4.0
+DISTNAME=	odfpy-1.4.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	${MASTER_SITE_PYPI:=o/odfpy/}
 
@@ -11,13 +12,25 @@ COMMENT=	Python API and tools to manipulate OpenDocument files
 LICENSE=	gnu-gpl-v2
 
 DEPENDS+=	${PYPKGPREFIX}-defusedxml-[0-9]*:../../textproc/py-defusedxml
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
 
 USE_LANGUAGES=	# none
+
+PYSETUPTESTTARGET=	pytest
+
+SUBST_CLASSES+=		man
+SUBST_STAGE.man=	pre-configure
+SUBST_FILES.man=	setup.py
+SUBST_VARS.man=		PKGMANDIR
+
 
 post-install:
 .for bin in csv2ods mailodf odf2mht odf2xhtml odf2xml odfimgimport \
 	odflint odfmeta odfoutline odfuserfield xml2odf
-	cd ${DESTDIR}${PREFIX}/bin && ${MV} ${bin} ${bin}-${PYVERSSUFFIX} || ${TRUE}
+	${MV} ${DESTDIR}${PREFIX}/bin/${bin} \
+	      ${DESTDIR}${PREFIX}/bin/${bin}-${PYVERSSUFFIX}
+	${MV} ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/${bin}.1 \
+	      ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/${bin}-${PYVERSSUFFIX}.1
 .endfor
 
 .include "../../lang/python/egg.mk"

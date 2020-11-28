@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.6 2015/11/04 00:35:27 agc Exp $
+$NetBSD: distinfo,v 1.8 2020/08/16 23:00:10 tnn Exp $
 
 SHA1 (pear/Net_URL-1.0.15.tgz) = 919b9e9d26cbef67ce8255c5a93299e8df838c8d
 RMD160 (pear/Net_URL-1.0.15.tgz) = 90ef60cef417655a5e40081ef5c04317f00aae58

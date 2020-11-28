@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.13 2019/12/06 20:21:32 markd Exp $
+# $NetBSD: Makefile,v 1.15 2020/05/01 02:30:51 markd Exp $
 
 DISTNAME=	graphics.doc
-PKGNAME=	tex-${DISTNAME:S/./-/}-1.2c.47350
-TEXLIVE_REV=	47350
+PKGNAME=	tex-${DISTNAME:S/./-/}-1.4a
+TEXLIVE_REV=	53640
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/latex-graphics
+HOMEPAGE=	https://ctan.org/pkg/latex-graphics
 COMMENT=	Documentation for tex-graphics
 LICENSE=	lppl-1.3c
 
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 .include "../../mk/bsd.pkg.mk"

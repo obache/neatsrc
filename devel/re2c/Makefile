@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.22 2019/07/03 20:48:26 sevan Exp $
+# $NetBSD: Makefile,v 1.24 2020/09/20 08:32:30 wiz Exp $
 
-DISTNAME=	re2c-1.1.1
+DISTNAME=	re2c-2.0.3
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=skvadrik/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://re2c.org/
+HOMEPAGE=	https://re2c.org/
 COMMENT=	Deterministic Finite State Automaton generator
 LICENSE=	public-domain
 

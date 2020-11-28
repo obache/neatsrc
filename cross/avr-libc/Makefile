@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.51 2019/09/26 14:33:52 mef Exp $
+# $NetBSD: Makefile,v 1.55 2020/10/06 02:06:05 mef Exp $
 
 DISTNAME=		avr-libc-2.0.0
-PKGREVISION=		2
+PKGREVISION=		4
 CATEGORIES=		cross
 MASTER_SITES=		http://savannah.nongnu.org/download/avr-libc/
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		makoto@ki.nu
-HOMEPAGE=		http://savannah.nongnu.org/projects/avr-libc
+HOMEPAGE=		https://savannah.nongnu.org/projects/avr-libc
 COMMENT=		C and math library for Atmel AVR 8-bit microcontrollers
 LICENSE=		modified-bsd
 
@@ -21,11 +21,12 @@ CONFIGURE_ARGS+=	--disable-versioned-doc
 CONFIGURE_ARGS+=	CC=${PREFIX}/bin/avr-gcc
 CONFIGURE_ARGS+=	CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/avr/include"
 
-BUILD_DEPENDS+=		doxygen>=1.8.12:../../devel/doxygen
+BUILD_DEPENDS+=		doxygen>=1.8.20:../../devel/doxygen
 BUILD_DEPENDS+=		tex-hanging-[0-9]*:../../print/tex-hanging
 BUILD_DEPENDS+=		tex-stackengine-[0-9]*:../../print/tex-stackengine
 BUILD_DEPENDS+=		tex-newunicodechar-[0-9]*:../../print/tex-newunicodechar
 BUILD_DEPENDS+=		tex-etoc-[0-9]*:../../print/tex-etoc
+BUILD_DEPENDS+=		tex-epstopdf-pkg-[0-9]*:../../print/tex-epstopdf-pkg
 
 #   In doc/examples/demo directory, we have sample Makefile both for
 #   generating *.hex file at pkg installation time, and for installing

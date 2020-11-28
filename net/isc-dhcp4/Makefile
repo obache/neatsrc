@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2014/10/14 13:53:00 taca Exp $
+# $NetBSD: Makefile,v 1.17 2020/01/23 08:11:27 taca Exp $
 
 PKGNAME=	isc-dhcp-${DHVER}
 COMMENT=	ISC Dynamic Host Configuration Protocol (DHCP) Base

@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.16 2018/05/16 08:14:40 triaxx Exp $
+# $NetBSD: options.mk,v 1.17 2020/06/07 22:07:04 taca Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.roundcube
 

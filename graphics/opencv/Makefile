@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.87 2019/12/29 10:00:08 markd Exp $
+# $NetBSD: Makefile,v 1.95 2020/10/12 21:52:00 bacon Exp $
 
 .include "Makefile.common"
 
 DISTNAME=	opencv-${OPENCV_VERSION}
-PKGREVISION=	1
+PKGREVISION=	6
 
 MAINTAINER=	anthony.mallet@laas.fr
 COMMENT=	Library for computer vision problems
@@ -23,7 +23,8 @@ CHECK_WRKREF_SKIP=	${PREFIX}/lib/libopencv_core.*
 
 .include "options.mk"
 
-TEST_TARGET=		test
+TEST_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/build/lib
+TEST_TARGET=	test
 
 post-install:
 	${RM} -r ${DESTDIR}${PREFIX}/share/licenses
@@ -44,8 +45,5 @@ CMAKE_ARGS+=	-DPYTHON3_EXECUTABLE:FILEPATH=${PYTHONBIN}
 CMAKE_ARGS+=	-DPYTHON2_EXECUTABLE:FILEPATH=${PYTHONBIN}
 .endif
 .include "../../math/py-numpy/buildlink3.mk"
-.if ${OPSYS} != "Darwin"
-.include "../../x11/gtk3/buildlink3.mk"
-.endif
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

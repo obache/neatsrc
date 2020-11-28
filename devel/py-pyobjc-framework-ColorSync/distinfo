@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.6 2019/11/18 17:03:10 adam Exp $
+$NetBSD: distinfo,v 1.9 2020/07/09 08:36:35 adam Exp $
 
-SHA1 (pyobjc-framework-ColorSync-6.1.tar.gz) = a36ddafa5c20fe6dad99dce3483b08a52635cd1f
-RMD160 (pyobjc-framework-ColorSync-6.1.tar.gz) = c6da8537731a81e1f6b2bafe09c0e7c567aa1ccb
-SHA512 (pyobjc-framework-ColorSync-6.1.tar.gz) = b14f86a7d06297df079973be32e2f353d1e1e33dae44ff769d2b6fd50086abdcaa4fa2ac48d8f3fcf8f53d44bf753342bc0c63de3b9c6b678f6f5352d009b1d7
-Size (pyobjc-framework-ColorSync-6.1.tar.gz) = 16187 bytes
+SHA1 (pyobjc-framework-ColorSync-6.2.2.tar.gz) = a1a710f4452ccc9c5b4da2d6d7f7e2dd9750be06
+RMD160 (pyobjc-framework-ColorSync-6.2.2.tar.gz) = 3f7127609537614ad6979019c55546df0c01e597
+SHA512 (pyobjc-framework-ColorSync-6.2.2.tar.gz) = 5e4fe28e20e550f8f4e3114c50e161e20bad8a4a865362ddae9ae1243c59ac26e7475e931d3c6e7648205dff6407152b9396eea0913fa7b12b12b21ffd33434a
+Size (pyobjc-framework-ColorSync-6.2.2.tar.gz) = 16221 bytes

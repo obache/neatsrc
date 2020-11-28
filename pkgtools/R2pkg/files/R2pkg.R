@@ -1,4 +1,4 @@
-# $NetBSD: R2pkg.R,v 1.27 2019/10/25 19:00:16 rillig Exp $
+# $NetBSD: R2pkg.R,v 1.30 2020/03/11 16:13:35 brook Exp $
 #
 # Copyright (c) 2014,2015,2016,2017,2018,2019
 #	Brook Milligan.  All rights reserved.
@@ -42,6 +42,7 @@ arg.dependency_list      <- Sys.getenv('DEPENDENCY_LIST')
 arg.maintainer_email     <- Sys.getenv('MAINTAINER_EMAIL')
 arg.rpkg_description_url <- Sys.getenv('RPKG_DESCRIPTION_URL')
 arg.quiet_curl           <- as.logical(Sys.getenv('QUIET_CURL'))
+arg.make                 <- Sys.getenv('MAKE')
 
 mkcvsid <- paste0('# $', 'NetBSD$')
 
@@ -349,8 +350,9 @@ new.depends.pkg <- function(dependency)
   Sys.glob(paste0('../../wip/R-', depends(dependency)))
 
 depends.pkg.fullname <- function(dependency, index=1) {
-  result <- system(paste('cd', depends.pkg(dependency)[index], '&& bmake show-var VARNAME=PKGNAME'), intern = TRUE)
-  result
+  cmd <- sprintf('cd %s && %s show-var VARNAME=PKGNAME',
+    depends.pkg(dependency)[index], arg.make)
+  system(cmd, intern = TRUE)
 }
 
 depends.pkg.vers <- function(dependency, index=1) {
@@ -710,6 +712,8 @@ make.df.depends <- function(df, DEPENDS) {
     df.depends$key <- NULL
     df.depends <- df.depends[!duplicated(df.depends),]
     df.depends$order <- find.order(df, 'depends', 'order')
+    fields <- c('new_line', 'order', 'category', 'depends', 'buildlink3.mk')
+    df.depends <- df.depends[,fields]
   }
   # message('===> df.depends:')
   # str(df.depends)

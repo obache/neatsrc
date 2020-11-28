@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.1 2019/07/31 01:26:54 brook Exp $
+$NetBSD: distinfo,v 1.3 2020/10/03 13:53:44 mef Exp $
 
-SHA1 (R/withr_2.1.2.tar.gz) = f4b5b9914effc5789535e30fb6e63f92b3d8f033
-RMD160 (R/withr_2.1.2.tar.gz) = 410067839460a2579fad7a9ff4a3a9ea8766b9ce
-SHA512 (R/withr_2.1.2.tar.gz) = 23c521e2bfb241ebc6cdb0c6300f7531e28ab2ef2609aeef33459a7572b37dace8bf31370ab87cffe99bff54d51d37de453073e163a60e557097f7c5e5ce9560
-Size (R/withr_2.1.2.tar.gz) = 53578 bytes
+SHA1 (R/withr_2.3.0.tar.gz) = 43018e8cab0aa230f91c453cffaf29d25745aef4
+RMD160 (R/withr_2.3.0.tar.gz) = 54cfc9a0b2d13af8a6b50a475567f25a7ebe31bd
+SHA512 (R/withr_2.3.0.tar.gz) = 4a6012e57444a19065561ab44f309130a1f54e02a59af79b9efc637475571ad119507a058eb44fec6159e158be739fba6e8f5d401eebe2916c2d9399d1a7b76e
+Size (R/withr_2.3.0.tar.gz) = 91443 bytes

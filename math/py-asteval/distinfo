@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.4 2019/10/19 14:21:25 adam Exp $
+$NetBSD: distinfo,v 1.6 2020/10/05 21:05:09 adam Exp $
 
-SHA1 (asteval-0.9.15.tar.gz) = c68de086f62750e1443398ce7bb9ac25719ddbef
-RMD160 (asteval-0.9.15.tar.gz) = 6948f9abd26664384ef96887312847e8b3e8560c
-SHA512 (asteval-0.9.15.tar.gz) = 6716fe0b24cb6ea81ab7ac43056ace89c8b8b7eae355e6a081caad8037c94490cedf667df99ad6c8e3fe60b8b0715d7493421a5336fb1d6033a9f0c6ee5d820a
-Size (asteval-0.9.15.tar.gz) = 52999 bytes
+SHA1 (asteval-0.9.19.tar.gz) = b5c66f16b0b8ffb4304753bf9d4caed1dfa081ed
+RMD160 (asteval-0.9.19.tar.gz) = d7f806e0e96538de8804af8106910a54f3534fb2
+SHA512 (asteval-0.9.19.tar.gz) = cc3fd03b053f3ee523fc2d190969c1d2ca3a72169b12843203a8b1a5a9c5a9da4bcff0063ceb19b6753f7fad29097bc8d1f412317cfd65b1964ff78980e94401
+Size (asteval-0.9.19.tar.gz) = 207316 bytes

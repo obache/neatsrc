@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.6 2019/05/15 11:35:23 markd Exp $
+# $NetBSD: Makefile,v 1.8 2020/04/26 12:29:35 markd Exp $
 
 DISTNAME=	collection-fontsrecommended
-PKGNAME=	texlive-${DISTNAME}-2019
+PKGNAME=	texlive-${DISTNAME}-2020
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	35830
+TEXLIVE_REV=	54074
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Recommended fonts for TeX
 
 DEPENDS+=	texlive-collection-basic>=2010:../../meta-pkgs/texlive-collection-basic
@@ -18,7 +18,6 @@ DEPENDS+=	tex-charter-[0-9]*:../../fonts/tex-charter
 DEPENDS+=	tex-cm-super-[0-9]*:../../fonts/tex-cm-super
 DEPENDS+=	tex-cmextra-[0-9]*:../../fonts/tex-cmextra
 DEPENDS+=	tex-courier-[0-9]*:../../fonts/tex-courier
-DEPENDS+=	tex-ec-[0-9]*:../../fonts/tex-ec
 DEPENDS+=	tex-euro-[0-9]*:../../finance/tex-euro
 DEPENDS+=	tex-euro-ce-[0-9]*:../../fonts/tex-euro-ce
 DEPENDS+=	tex-eurosym-[0-9]*:../../fonts/tex-eurosym
@@ -42,7 +41,7 @@ DEPENDS+=	tex-tipa-[0-9]*:../../fonts/tex-tipa
 DEPENDS+=	tex-txfonts-[0-9]*:../../fonts/tex-txfonts
 DEPENDS+=	tex-utopia-[0-9]*:../../fonts/tex-utopia
 DEPENDS+=	tex-wasy-[0-9]*:../../fonts/tex-wasy
-DEPENDS+=	tex-wasy2-ps-[0-9]*:../../fonts/tex-wasy2-ps
+DEPENDS+=	tex-wasy-type1-[0-9]*:../../fonts/tex-wasy-type1
 DEPENDS+=	tex-wasysym-[0-9]*:../../fonts/tex-wasysym
 DEPENDS+=	tex-zapfchan-[0-9]*:../../fonts/tex-zapfchan
 DEPENDS+=	tex-zapfding-[0-9]*:../../fonts/tex-zapfding

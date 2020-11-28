@@ -1,22 +1,17 @@
-# $NetBSD: Makefile,v 1.15 2019/03/24 11:29:19 rillig Exp $
+# $NetBSD: Makefile,v 1.17 2020/05/02 08:03:17 rillig Exp $
 #
 
-DISTNAME=	# not applicable
-PKGNAME=	regress-tools-1.2
-CATEGORIES=	regress
-MASTER_SITES=	# none
+PKGNAME=	regress-tools-2020.05.02
+CATEGORIES=	pkgtools
 DISTFILES=	# none
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-COMMENT=	Test whether the TOOLS do what I expect
+COMMENT=	Ensure that the tools wrapper works as expected
 LICENSE=	2-clause-bsd
 
 WRKSRC=		${WRKDIR}
-NO_CHECKSUM=	yes
 PLIST_SRC=	# none
 REGRESS_TESTS+=	logging shquote
-REGRESS_TESTS+=	awk sed sh sort tar tr
-USE_TOOLS+=	awk sed sh sort tar tr
 
 TOOLS_CREATE+=	script-dquot
 TOOLS_SCRIPT.script-dquot= \

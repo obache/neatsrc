@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.89 2019/11/07 12:38:08 wiz Exp $
+# $NetBSD: Makefile,v 1.99 2020/08/31 18:11:02 wiz Exp $
 
-PKGREVISION= 4
+PKGREVISION= 2
 .include "../../print/texlive/Makefile.common"
 
-PKGNAME=	luatex-1.10.0
+PKGNAME=	luatex-1.12.0
 CATEGORIES=	print
 
-HOMEPAGE=	http://www.tug.org/web2c/
+HOMEPAGE=	https://www.tug.org/web2c/
 COMMENT=	Extended version of pdfTeX using Lua
 LICENSE=	gnu-gpl-v2
 
@@ -24,6 +24,7 @@ CONFIGURE_ARGS+=	--disable-euptex
 CONFIGURE_ARGS+=	--disable-mf
 CONFIGURE_ARGS+=	--disable-mf-nowin
 CONFIGURE_ARGS+=	--disable-luajittex
+CONFIGURE_ARGS+=	--disable-luajithbtex
 CONFIGURE_ARGS+=	--disable-mfluajit
 CONFIGURE_ARGS+=	--disable-mp
 CONFIGURE_ARGS+=	--disable-pdftex
@@ -43,6 +44,8 @@ CONFIGURE_ARGS+=	--with-system-zlib
 CONFIGURE_ARGS+=	--with-zlib-includes=${BUILDLINK_PREFIX.zlib}/include
 CONFIGURE_ARGS+=	--with-zlib-libdir=${BUILDLINK_PREFIX.zlib}/lib
 CONFIGURE_ARGS+=	--with-system-cairo
+CONFIGURE_ARGS+=	--with-system-graphite2
+CONFIGURE_ARGS+=	--with-system-harfbuzz
 CONFIGURE_ARGS+=	--with-system-pixman
 CONFIGURE_ARGS+=	--with-system-libpng
 CONFIGURE_ARGS+=	--with-system-freetype2
@@ -56,6 +59,7 @@ CONFIGURE_ARGS+=	--with-gmp-libdir=${BUILDLINK_PREFIX.gmp}/lib
 CONFIGURE_ARGS+=	--without-x
 
 CONFIGURE_DIRS=		libs/lua53
+CONFIGURE_DIRS+=	libs/luajit
 CONFIGURE_DIRS+=	texk/web2c
 
 INSTALLATION_DIRS+=	bin lib
@@ -65,24 +69,26 @@ SUBST_STAGE.prefix=	post-configure
 SUBST_FILES.prefix=	libs/lua53/lua53-src/src/luaconf.h
 SUBST_VARS.prefix=	PREFIX
 
-CPPFLAGS.SunOS+=	-D_XOPEN_SOURCE_EXTENDED=0
+# patched in Makefile.in
+CHECK_PORTABILITY_SKIP+=	libs/luajit/Makefile.am
 
-pre-configure:
-	# Ensure we generate our patched version
-	${RM} -f libs/luajit/lj_vm_asm.S
+CPPFLAGS.SunOS+=	-D_XOPEN_SOURCE_EXTENDED=0
 
 do-install:
 	${LIBTOOL} --mode=install ${INSTALL_LIB} ${WRKSRC}/libs/lua53/libtexlua53.la ${DESTDIR}${PREFIX}/lib
 	${LIBTOOL} --mode=install ${INSTALL_PROGRAM} ${WRKSRC}/texk/web2c/luatex ${DESTDIR}${PREFIX}/bin
 	${LN} -f -s luatex ${DESTDIR}${PREFIX}/bin/texlua
 	${LN} -f -s luatex ${DESTDIR}${PREFIX}/bin/texluac
+	${LIBTOOL} --mode=install ${INSTALL_PROGRAM} ${WRKSRC}/texk/web2c/luahbtex ${DESTDIR}${PREFIX}/bin
+	${LIBTOOL} --mode=install ${INSTALL_PROGRAM} ${WRKSRC}/texk/web2c/mflua ${DESTDIR}${PREFIX}/bin
 
 .include "../../archivers/zziplib/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../fonts/harfbuzz/buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../math/mpfr/buildlink3.mk"
-BUILDLINK_API_DEPENDS.kpathsea+= kpathsea>=6.2.1
+BUILDLINK_API_DEPENDS.kpathsea+= kpathsea>=6.3.2
 .include "../../print/kpathsea/buildlink3.mk"
 .include "../../print/poppler/buildlink3.mk"
 .include "../../print/poppler-includes/buildlink3.mk"

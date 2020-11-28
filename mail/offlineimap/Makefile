@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.33 2019/04/25 07:33:04 maya Exp $
+# $NetBSD: Makefile,v 1.35 2020/05/22 21:35:03 rillig Exp $
 
 
 DISTNAME=	offlineimap-7.2.3
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_GITHUB:=OfflineIMAP/}
 
@@ -13,6 +13,8 @@ LICENSE=	gnu-gpl-v2 # or later
 
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
+PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported
+
 DEPENDS+=	${PYPKGPREFIX}-curses-[0-9]*:../../devel/py-curses
 DEPENDS+=	${PYPKGPREFIX}-cursespanel-[0-9]*:../../devel/py-cursespanel
 DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
@@ -21,7 +23,6 @@ DEPENDS+=	${PYPKGPREFIX}-six-[0-9]*:../../lang/py-six
 INSTALLATION_DIRS=	share/examples/offlineimap
 
 EGG_NAME=	${PKGNAME_NOREV}
-REPLACE_PYTHON=	offlineimap/imaplib2.py
 
 post-install:
 .for f in offlineimap.conf offlineimap.conf.minimal

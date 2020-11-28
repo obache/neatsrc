@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.44 2019/11/03 19:04:00 rillig Exp $
+# $NetBSD: Makefile,v 1.47 2020/08/31 18:09:49 wiz Exp $
 
 DISTNAME=		gforth-0.7.3
-PKGREVISION=		5
+PKGREVISION=		7
 CATEGORIES=		lang
 MASTER_SITES=		${MASTER_SITE_GNU:=gforth/}
 MASTER_SITES+=		http://www.complang.tuwien.ac.at/forth/gforth/
 
 MAINTAINER=		simonb@NetBSD.org
-HOMEPAGE=		http://www.complang.tuwien.ac.at/forth/gforth/
+HOMEPAGE=		https://www.complang.tuwien.ac.at/forth/gforth/
 COMMENT=		Fast interpreter for the Forth language
 LICENSE=		gnu-gpl-v3
 

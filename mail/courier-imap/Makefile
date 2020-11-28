@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.84 2019/08/11 13:21:25 wiz Exp $
+# $NetBSD: Makefile,v 1.89 2020/08/31 18:09:54 wiz Exp $
 
 DISTNAME=	courier-imap-4.10.0
-PKGREVISION=	8
+PKGREVISION=	9
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=courier/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	IMAP server for access to maildir-style mailboxes
-HOMEPAGE=	http://www.courier-mta.org/imap/
+HOMEPAGE=	https://www.courier-mta.org/imap/
 
 DEPENDS+=	courier-maildir>=0.65.0:../../mail/courier-maildir
 DEPENDS+=	couriertcpd>=0.65.0:../../net/couriertcpd
@@ -55,14 +55,16 @@ RCD_SCRIPTS=		courierimap courierimaps courierpop courierpops
 SMF_METHODS=		courier-imap
 
 SUBST_CLASSES+=		courier
-SUBST_FILES.courier=	imap/imapd-ssl.dist.in imap/imapd.8.in		\
-			imap/imapd.cnf.openssl.in imap/imapd.dist.in	\
-			imap/mkimapdcert.8.in imap/mkimapdcert.html.in	\
-			imap/mkimapdcert.in imapd-ssl.rc.in imapd.rc.in
-SUBST_FILES.courier+=	imap/courierpop3d.8.in imap/mkpop3dcert.8.in	\
-			imap/mkpop3dcert.html.in imap/mkpop3dcert.in	\
-			imap/pop3d-ssl.dist.in imap/pop3d.cnf.openssl.in \
-			imap/pop3d.dist.in pop3d-ssl.rc.in pop3d.rc.in
+SUBST_FILES.courier=	imap/imapd-ssl.dist.in
+SUBST_FILES.courier+=	imap/imapd.8.in
+SUBST_FILES.courier+=	imap/imapd.dist.in
+SUBST_FILES.courier+=	imap/mkpop3dcert.html.in
+SUBST_FILES.courier+=	imap/pop3d-ssl.dist.in
+SUBST_FILES.courier+=	imap/pop3d.dist.in
+SUBST_FILES.courier+=	imapd-ssl.rc.in
+SUBST_FILES.courier+=	imapd.rc.in
+SUBST_FILES.courier+=	pop3d-ssl.rc.in
+SUBST_FILES.courier+=	pop3d.rc.in
 SUBST_SED.courier=	-e "s|^IMAPDSTART=.*|IMAPDSTART=YES|g"
 SUBST_SED.courier+=	-e "s|^IMAPDSSLSTART=.*|IMAPDSSLSTART=YES|g"
 SUBST_SED.courier+=	-e "s|^POP3DSTART=.*|POP3DSTART=YES|g"
@@ -77,6 +79,9 @@ SUBST_SED.courier+=	-e "s|@sbindir@/imaplogin|@libexecdir@/imaplogin|g"
 SUBST_SED.courier+=	-e "s|@sbindir@/pop3login|@libexecdir@/courierpop3login|g"
 SUBST_SED.courier+=	-e "s|@bindir@/pop3d|@libexecdir@/courierpop3d|g"
 SUBST_STAGE.courier=	pre-configure
+
+# configure: Cannot obtain information for user courier: Undefined error: 0
+NOT_FOR_UNPRIVILEGED=	yes
 
 .include "../../security/courier-authlib/buildlink3.mk"
 

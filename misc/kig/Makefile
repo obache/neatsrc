@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.43 2019/11/21 06:17:29 markd Exp $
+# $NetBSD: Makefile,v 1.52 2020/08/18 17:58:06 leot Exp $
 
 DISTNAME=	kig-${KAPPSVER}
+PKGREVISION=	2
 CATEGORIES=	misc
 
 HOMEPAGE=	https://kde.org/applications/education/kig/
@@ -9,7 +10,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/applications.mk"
 
-BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
 

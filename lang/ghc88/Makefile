@@ -1,17 +1,20 @@
-# $NetBSD: Makefile,v 1.1 2020/01/09 12:32:24 pho Exp $
+# $NetBSD: Makefile,v 1.15 2020/08/31 18:09:50 wiz Exp $
 # -----------------------------------------------------------------------------
 # Package metadata
 #
-DISTNAME=	ghc-8.8.1-src
+DISTNAME=	ghc-8.8.4-src
 PKGNAME=	${DISTNAME:S/-src$//}
+PKGREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	https://downloads.haskell.org/~ghc/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pho@cielonegro.org
 HOMEPAGE=	https://www.haskell.org/ghc/
-COMMENT=	Compiler for the functional language Haskell - 8.0 Release Series
+COMMENT=	Compiler for the functional language Haskell - 8.8 Release Series
 LICENSE=	modified-bsd
+
+UNLIMIT_RESOURCES=	datasize virtualsize
 
 # TODO: We should be using the alternatives framework.
 CONFLICTS+=	ghc-[0-9]*
@@ -21,10 +24,11 @@ CONFLICTS+=	ghc-[0-9]*
 # you want to build them yourself, follow instructions in
 # BOOTSTRAP.txt and ./bootstrap.mk
 #BROKEN_EXCEPT_ON_PLATFORM+=	Darwin-*-powerpc # Not available yet
-#BROKEN_EXCEPT_ON_PLATFORM+=	FreeBSD-*-i386   # Not available yet
+BROKEN_EXCEPT_ON_PLATFORM+=	Darwin-*-x86_64
+BROKEN_EXCEPT_ON_PLATFORM+=	FreeBSD-*-i386
+BROKEN_EXCEPT_ON_PLATFORM+=	FreeBSD-*-x86_64
 BROKEN_EXCEPT_ON_PLATFORM+=	NetBSD-*-x86_64
-#BROKEN_EXCEPT_ON_PLATFORM+=	SunOS-*-i386     # Not available yet
-#BROKEN_EXCEPT_ON_PLATFORM+=	SunOS-*-x86_64   # Not available yet
+BROKEN_EXCEPT_ON_PLATFORM+=	SunOS-*-x86_64
 
 
 # -----------------------------------------------------------------------------
@@ -47,6 +51,16 @@ GNU_CONFIGURE=			yes
 USE_GNU_CONFIGURE_HOST=		no
 USE_LIBTOOL=			yes
 
+# TODO: Disable the splitter entirely so that we can drop the runtime
+# dependency on perl. The purpose of the splitter is to perform a dead
+# code elimination by breaking .o files into many pieces. This only
+# makes sense when linking executables statically, which is rarely
+# done these days.
+
+
+# -----------------------------------------------------------------------------
+# Configuration
+#
 CONFIGURE_ARGS.common= \
 	--with-curses-libraries=${BUILDLINK_PREFIX.curses}/${BUILDLINK_LIBDIRS.curses:Q} \
 	--with-gmp-includes=${BUILDLINK_PREFIX.gmp}/${BUILDLINK_INCDIRS.gmp:Q} \
@@ -86,18 +100,34 @@ CONFIGURE_ENV+= \
 # the buildlink.
 .endfor
 
+
+# -----------------------------------------------------------------------------
+# Security
+#
 # The runtime system of GHC (rts) tends to conflict with PaX MPROTECT
 # because it needs to generate various kinds of code at run time. The
 # RTS linker, whose job is to load *static* objects at run time,
-# doesn't play nice with ASLR either. This means most executables
-# produced by GHC need them to be disabled. Perhaps we should patch
-# rts/sm/Storage.c so that it uses ffi_closure_alloc(3) on every
-# platform, not just Linux, and also drop support for static library
-# loading and switch to dynamic libraries entirely.
+# doesn't play nice with ASLR either because it relies on
+# mmap(MAP_FIXED). This means most executables produced by GHC need
+# them to be disabled. Perhaps we should patch rts/sm/Storage.c so
+# that it uses ffi_closure_alloc(3) on every platform, not just Linux,
+# and also drop support for static library loading and switch to
+# dynamic libraries entirely.  (Partially done:
+# https://gitlab.haskell.org/ghc/ghc/merge_requests/2498)
 .for f in ghc ghc-iserv ghc-iserv-dyn ghc-iserv-prof ghc-pkg haddock hpc hsc2hs runghc
 NOT_PAX_MPROTECT_SAFE+=	lib/${PKGNAME_NOREV}/bin/${f}
 NOT_PAX_ASLR_SAFE+=	lib/${PKGNAME_NOREV}/bin/${f}
 .endfor
+# Additional note: Now that DYNAMIC_GHC_PROGRAMS is enabled by
+# default, we no longer need to disable PaX ASLR because the RTS
+# linker is not used... except for ghc-iserv. The program is launched
+# when ghci is started with -fexternal-interpreter without
+# -dynamic. Its purpose is to run non-PIC code from a dynamically
+# linked ghci, and therefore still uses RTS linker. Also note that RTS
+# linker requires PaX mprotect to be disabled too. This means that
+# once the merge request mentioned above is merged to the upstream, we
+# can at least enable PaX mprotect and PaX ASLR for all the
+# executables except ghc-iserv and ghc-iserv-prof.
 
 
 # -----------------------------------------------------------------------------
@@ -137,6 +167,10 @@ post-configure:
 # Don't even think of PDF.
 	${RUN} ${ECHO} "BUILD_SPHINX_PDF  = NO" >> ${WRKSRC}/mk/build.mk
 
+# https://gitlab.haskell.org/ghc/ghc/issues/13542
+.if ${OPSYS} == "SunOS"
+	${RUN} ${ECHO} "SplitSections  = YES" >> ${WRKSRC}/mk/build.mk
+.endif
 
 # -----------------------------------------------------------------------------
 # Installation/removal hooks
@@ -172,6 +206,11 @@ CHECK_PORTABILITY_SKIP+=	distrib/prep-bin-dist-mingw
 # dependent Haskell libraries, but the problem is that they are
 # specified with $ORIGIN, which isn't currently supported by
 # ../../mk/check/check-shlibs-elf.awk.
+#
+# Note that arguments like "-Wl,-rpath,$ORIGIN/.." are usually dropped
+# by the "cleanup" phase of wrappers. This is not the case in GHC
+# because GHC uses @file syntax while linking objects, and our
+# wrappers does nothing about it.
 CHECK_SHLIBS_SKIP+=		*/libHS*-ghc${PKGVERSION_NOREV}.*
 .for f in ghc ghc-iserv-dyn ghc-pkg haddock hpc hsc2hs runghc
 CHECK_SHLIBS_SKIP+=		lib/${PKGNAME_NOREV}/bin/${f}
@@ -201,7 +240,7 @@ BUILD_DEPENDS+=	compat80-[0-9]*:../../emulators/compat80
 # In a sandboxed build environment, we have to reach over to the
 # installed libraries themselves, since the symlinks compat80 adds
 # to the /usr tree can't be applied.
-MAKE_ENV+=	LD_LIBRARY_PATH=${PREFIX}/emul/netbsd/usr/lib
+ALL_ENV+=	LD_LIBRARY_PATH=${PREFIX}/emul/netbsd/usr/lib:${FILESDIR}
 .endif
 
 .include "../../converters/libiconv/buildlink3.mk"

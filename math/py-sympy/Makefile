@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.21 2019/12/16 23:54:47 minskim Exp $
+# $NetBSD: Makefile,v 1.27 2020/10/29 23:19:59 gutteridge Exp $
 
-DISTNAME=	sympy-1.3
+DISTNAME=	sympy-1.6.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=s/sympy/}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.sympy.org/
+MAINTAINER=	minskim@NetBSD.org
+HOMEPAGE=	https://www.sympy.org/
 COMMENT=	Python library for symbolic mathematics
 LICENSE=	modified-bsd
 
@@ -15,6 +15,8 @@ DEPENDS+=	${PYPKGPREFIX}-mpmath>=0.19:../../math/py-mpmath
 USE_LANGUAGES=	# none
 
 REPLACE_PYTHON+=	sympy/utilities/tests/diagnose_imports.py
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 SUBST_CLASSES+=		manpath
 SUBST_SED.manpath=	-e 's,share/man,${PKGMANDIR},'

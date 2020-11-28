@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2019/02/24 15:26:50 nia Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/31 17:49:49 nia Exp $
 
 NP2KAI_REV=	18
 DISTNAME=	libretro-np2kai-0.86.${NP2KAI_REV}
@@ -12,14 +12,12 @@ HOMEPAGE=	https://docs.libretro.com/library/neko_project_ii_kai/
 COMMENT=	Libretro core based on the Neko Project II PC-9801 emulator
 LICENSE=	mit
 
-EXTRACT_USING=	bsdtar
 BUILD_DIRS=	sdl2
 MAKE_FILE=	Makefile.libretro
 
-USE_TOOLS+=	gmake
-USE_LANGUAGES=	c c++
+LIBRETRO_CORE=	np2kai
 
-MAKE_FLAGS+=	GIT_VERSION="-pkgsrc"
+USE_LANGUAGES=	c c++
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -28,11 +26,5 @@ MAKE_FLAGS+=	GIT_VERSION="-pkgsrc"
 MAKE_FLAGS=	SUPPORT_NET=0
 .endif
 
-INSTALLATION_DIRS+=	${PREFIX}/lib/libretro
-
-do-install:
-	${INSTALL_LIB} ${WRKSRC}/sdl2/np2kai_libretro.so \
-	    ${DESTDIR}${PREFIX}/lib/libretro/np2kai_libretro.so
-
-.include "../../mk/pthread.buildlink3.mk"
+.include "../../emulators/retroarch/core.mk"
 .include "../../mk/bsd.pkg.mk"

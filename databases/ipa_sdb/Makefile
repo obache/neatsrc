@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2012/10/02 21:25:19 asau Exp $
+# $NetBSD: Makefile,v 1.9 2020/01/26 05:26:20 rillig Exp $
 
 DISTNAME=	ipa_sdb-1.1.1
 CATEGORIES=	databases

@@ -1,4 +1,4 @@
-# $NetBSD: clang.mk,v 1.21 2019/07/15 16:06:19 ryoon Exp $
+# $NetBSD: clang.mk,v 1.26 2020/09/21 13:09:21 schmonz Exp $
 #
 # This is the compiler definition for the clang compiler.
 #
@@ -84,16 +84,27 @@ _LANGUAGES.clang=	# empty
 _LANGUAGES.clang+=	${LANGUAGES.clang:M${_lang_}}
 .endfor
 
-PKGSRC_FORTRAN?=g95
+PKGSRC_FORTRAN?=gfortran
 
 .if !empty(PKGSRC_FORTRAN) && (!empty(USE_LANGUAGES:Mfortran) || !empty(USE_LANGUAGES:Mfortran77))
 .  include "../../mk/compiler/${PKGSRC_FORTRAN}.mk"
 .endif
 
-_WRAP_EXTRA_ARGS.CC+=	-Qunused-arguments
+_WRAP_EXTRA_ARGS.CC+=	-Qunused-arguments -fcommon
 CWRAPPERS_APPEND.cc+=	-Qunused-arguments
+CWRAPPERS_PREPEND.cc+=	-Qunused-arguments -fcommon
 _WRAP_EXTRA_ARGS.CXX+=	-Qunused-arguments
 CWRAPPERS_APPEND.cxx+=	-Qunused-arguments
+
+# Xcode 12 has a zealous new default. Turn it off until we're ready,
+# while allowing callers (or users, via CFLAGS/CPPFLAGS) to override.
+.if ${OPSYS} == "Darwin"
+_NOERROR_IMPLICIT_cmd=	${CCPATH} -\#\#\# -E -x c /dev/null 2>&1 \
+			| ${GREP} -q Werror=implicit-function-declaration \
+			&& ${ECHO} -Wno-error=implicit-function-declaration \
+			|| ${TRUE}
+CWRAPPERS_PREPEND.cc+=	${_NOERROR_IMPLICIT_cmd:sh}
+.endif
 
 .for _version_ in ${_CXX_STD_VERSIONS}
 _CXX_STD_FLAG.${_version_}?=	-std=${_version_}

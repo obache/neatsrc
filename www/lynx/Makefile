@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.134 2019/11/04 22:09:57 rillig Exp $
+# $NetBSD: Makefile,v 1.137 2020/05/22 10:56:45 adam Exp $
 
 DISTNAME=	lynx2.8.9rel.1
 PKGNAME=	${DISTNAME:S/lynx/lynx-/:S/rel//}
+PKGREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	https://invisible-mirror.net/archives/lynx/tarballs/
 MASTER_SITES+=	ftp://ftp.cyf-kr.edu.pl/pub/unix/lynx/${SUBDIR:Q}/
@@ -10,7 +11,7 @@ EXTRACT_SUFX=	.tar.bz2
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://lynx.invisible-island.net/
 COMMENT=	Alphanumeric display oriented World-Wide Web Client
-LICENSE=	gnu-gpl-v2
+LICENSE=	gnu-gpl-v2 # OpenSSL exception
 
 # problem with WWW/Library/Implementation
 MAKE_JOBS_SAFE=		no
@@ -39,10 +40,6 @@ CHECK_INTERPRETER_SKIP+=	share/lynx/lynx_doc/samples/mailto-form.pl
 CONFIGURE_ARGS+=	--enable-nls
 CONFIGURE_ARGS+=	--with-nls-datadir=${PREFIX}/${PKGLOCALEDIR}
 CONFIGURE_ARGS+=	--without-included-gettext
-
-# With SSL, lynx can get https:// and snews:// URL's.
-CONFIGURE_ARGS+=	--with-ssl
-CPPFLAGS+=		-I${BUILDLINK_PREFIX.openssl}/include/openssl
 
 # Note: --enable-{default-colors,scrollbar} are simply ignored
 # for certain settings of --with-screen.
@@ -76,5 +73,4 @@ CONFIGURE_ENV.SunOS+=	cf_cv_xopen_source=no
 .include "../../devel/gettext-tools/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

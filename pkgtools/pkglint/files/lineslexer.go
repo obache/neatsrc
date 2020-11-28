@@ -94,25 +94,25 @@ func (llex *LinesLexer) SkipEmptyOrNote() bool {
 
 	if llex.index < llex.lines.Len() || llex.lines.Len() == 0 {
 		fix := llex.CurrentLine().Autofix()
-		fix.Notef("Empty line expected before this line.")
+		fix.Notef("Empty line expected above this line.")
 		if !llex.EOF() {
-			fix.InsertBefore("")
+			fix.InsertAbove("")
 		}
 		fix.Apply()
 	} else {
 		fix := llex.PreviousLine().Autofix()
-		fix.Notef("Empty line expected after this line.")
-		fix.InsertAfter("")
+		fix.Notef("Empty line expected below this line.")
+		fix.InsertBelow("")
 		fix.Apply()
 	}
 
 	return false
 }
 
-func (llex *LinesLexer) SkipContainsOrWarn(text string) bool {
+func (llex *LinesLexer) SkipTextOrWarn(text string) bool {
 	result := llex.SkipText(text)
 	if !result {
-		llex.CurrentLine().Warnf("This line should contain the following text: %s", text)
+		llex.CurrentLine().Warnf("This line should consist of the following text: %s", text)
 	}
 	return result
 }

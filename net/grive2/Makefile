@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.17 2019/11/03 11:45:36 rillig Exp $
+# $NetBSD: Makefile,v 1.23 2020/05/22 10:56:27 adam Exp $
 
 DISTNAME=	grive2-0.4.1
-PKGREVISION=	13
+PKGREVISION=	18
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=vitalif/}
 
@@ -19,7 +19,7 @@ USE_LANGUAGES=	c c++
 SUBST_CLASSES+=		manpath
 SUBST_MESSAGE.manpath=	Fix manpath
 SUBST_STAGE.manpath=	pre-configure
-SUBST_FILES.manpath=	bgrive/CMakeLists.txt grive/CMakeLists.txt
+SUBST_FILES.manpath=	grive/CMakeLists.txt
 SUBST_SED.manpath=	-e 's,DESTINATION share/man,DESTINATION ${PKGMANDIR},g'
 
 .include "../../security/libgcrypt/buildlink3.mk"

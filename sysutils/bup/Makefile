@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.41 2019/11/23 21:25:12 gdt Exp $
+# $NetBSD: Makefile,v 1.49 2020/09/20 22:28:00 gdt Exp $
 
-DISTNAME=	bup-0.30
+DISTNAME=	bup-0.31
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=bup/}
 # bup has two problems that make packaging difficult.  One is that
@@ -14,17 +15,16 @@ MASTER_SITES=	${MASTER_SITE_GITHUB:=bup/}
 #   https://github.com/bup/bup/archive/0.30.tar.gz
 #   https://github.com/bup/bup/archive/28876cde4a3dac518e773860aa7969c106f5390d.tar.gz
 
-# EXTRACT_SUFX is set too late, so using it in SITES.* fails.
-EXTRACT_SUFX=  .tar.gz
-MAN_TAG=	28876cde4a3dac518e773860aa7969c106f5390d
-MAN_UNPACK=	bup-${MAN_TAG}
-MAN_DISTFILE=	bup-man-${MAN_TAG}${EXTRACT_SUFX}
-SITES.${MAN_DISTFILE}= -${MASTER_SITE_GITHUB:=bup/bup/archive/}${MAN_TAG}${EXTRACT_SUFX}
-
-DISTFILES=     ${DEFAULT_DISTFILES} ${MAN_DISTFILE}
-
+# Upstream should have a tag, but doesn't.
+# EXTRACT_SUFX default value is set too late, so using it in SITES.* fails.
+EXTRACT_SUFX=		.tar.gz
+MAN_TAG=		3ba5796ca63d291c8389ffae8db9e69c65787b36
+MAN_UNPACK=		bup-${MAN_TAG}
+MAN_DISTFILE=		bup-man-${MAN_TAG}${EXTRACT_SUFX}
+SITES.${MAN_DISTFILE}=	-${MASTER_SITE_GITHUB:=bup/bup/archive/}${MAN_TAG}${EXTRACT_SUFX}
 # Upstream provides html, but we choose not to include it in the package.
-#HTML_TARBALL=	66eccb7eb49575d006d193276018d9551ac5b4d4
+#HTML_TAG=		66eccb7eb49575d006d193276018d9551ac5b4d4
+DISTFILES=		${DEFAULT_DISTFILES} ${MAN_DISTFILE}
 
 MAINTAINER=	gdt@NetBSD.org
 HOMEPAGE=	https://github.com/bup/bup
@@ -32,7 +32,6 @@ COMMENT=	Highly efficient file backup system based on the git packfile format
 LICENSE=	gnu-gpl-v2
 
 DEPENDS+=	par2-[0-9]*:../../archivers/par2
-DEPENDS+=	${PYPKGPREFIX}-readline-[0-9]*:../../devel/py-readline
 DEPENDS+=	${PYPKGPREFIX}-tornado-[0-9]*:../../www/py-tornado
 DEPENDS+=	git-base-[0-9]*:../../devel/git-base
 
@@ -50,6 +49,9 @@ TEST_TARGET=	test
 MAKE_FLAGS+=	PREFIX=${PREFIX}
 MAKE_FLAGS+=	PYTHON=${PYTHONBIN}
 MAKE_FLAGS+=	MANDIR=${DESTDIR}${PREFIX}/${PKGMANDIR}
+
+# Even if converters/pandoc is installed, pretend as if it weren't.
+MAKE_FLAGS+=	PANDOC=
 
 USE_TOOLS+=		bash gmake perl:run
 REPLACE_PERL+=		wvtest
@@ -79,5 +81,7 @@ post-install:
 
 .include "options.mk"
 
+# \todo Investigate "bup ftp" crash with NetBSD editline and resolve.
+.include "../../devel/readline/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"

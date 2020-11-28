@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.91 2019/11/03 12:04:13 rillig Exp $
+# $NetBSD: Makefile,v 1.94 2020/10/04 13:40:48 gdt Exp $
 
 DISTNAME=	cku302
 PKGNAME=	kermit-9.0.302
-PKGREVISION=	10
+PKGREVISION=	12
 CATEGORIES=	comms
 MASTER_SITES=	ftp://ftp.kermitproject.org/kermit/archives/
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	gdt@NetBSD.org
 HOMEPAGE=	http://www.kermitproject.org/
 COMMENT=	Network and serial communication, file transfer, and scripting utility
 

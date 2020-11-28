@@ -1,18 +1,15 @@
-# $NetBSD: Makefile,v 1.78 2019/11/03 10:39:06 rillig Exp $
+# $NetBSD: Makefile,v 1.83 2020/05/13 03:32:38 rillig Exp $
 
-DISTNAME=	binutils-2.26.1
-PKGREVISION=	1
+DISTNAME=	binutils-2.34
+PKGREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU:=binutils/}
+EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.gnu.org/software/binutils/
 COMMENT=	GNU binary utilities
 LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND gnu-lgpl-v3
-EXTRACT_SUFX=	.tar.bz2
-
-# bfd.h used without depending on it
-MAKE_JOBS_SAFE=	no
 
 CONFLICTS=	avr-binutils<2.13.2.1nb1
 
@@ -31,7 +28,9 @@ USE_TOOLS+=		ksh
 CONFIG_SHELL=		ksh
 .endif
 
+TOOLS_BROKEN+=		perl
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_STRICT=	no
 # Standard lib dirs on RHEL are named *lib64
 LIB_PATH=		/lib:/usr/lib
 .if exists(/usr/lib64)
@@ -53,22 +52,25 @@ INSTALLATION_DIRS=	${PKGGNUDIR}bin ${PKGGNUDIR}${PKGMANDIR}/man1
 
 # gprof (XXX: and others?) cannot be built on all platforms
 #
-PLIST_VARS+=	gprof ld gold SunOS
+PLIST_VARS+=	gprof ld gold SunOS CTF
 
 .include "../../mk/bsd.prefs.mk"
 
 .if ${OPSYS} != "IRIX" && ${OPSYS} != "AIX"
 PLIST.gprof=	yes
-EXTRA_FILES+=	gprof
 .endif
 
 .if ${OPSYS} != SunOS
 PLIST.ld=	yes
-EXTRA_FILES+=	ld
 .endif
 
 .if ${OPSYS} == SunOS
 PLIST.SunOS=	yes
+.endif
+
+# Temporary: libctf should be mature on Linux in the near future
+.if ${OPSYS} != Linux
+PLIST.CTF=	yes
 .endif
 
 .if ${OPSYS} == DragonFly \
@@ -78,7 +80,6 @@ PLIST.SunOS=	yes
 BUILD_GOLD=		yes
 PLIST.gold=		yes
 USE_TOOLS+=		bison
-EXTRA_FILES+=		dwp ld.gold
 CONFIGURE_ARGS+=	--enable-gold --enable-plugins
 .endif
 
@@ -97,17 +98,7 @@ CFLAGS+=	-Wno-unused-value -Wno-format-security \
 CONFIGURE_ARGS+=	--disable-werror
 .endif
 
-# Prevent the need to run texi2pod.pl and pod2man which would
-# require perl as a build dependency.
-post-configure:
-.for f in ld/ldver.texi ld/ld.1 gas/doc/gasver.texi gas/doc/as.1
-	set -e; \
-	if [ -f ${WRKSRC}/${f} ]; then					\
-		${TOUCH} ${WRKSRC}/${f};				\
-	fi
-.endfor
-
-SYMLINK_FILES =	addr2line ar as c++filt dlltool elfedit ld.bfd		\
+SYMLINK_FILES=	addr2line ar as c++filt dlltool elfedit ld.bfd		\
 		nlmconv nm objcopy objdump ranlib readelf size strings	\
 		strip windmc windres
 .if defined(PLIST.gprof)

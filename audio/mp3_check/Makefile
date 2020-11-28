@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2013/04/06 03:45:07 rodent Exp $
+# $NetBSD: Makefile,v 1.16 2020/03/20 11:57:22 nia Exp $
 #
 
 DISTNAME=	mp3_check-1.98

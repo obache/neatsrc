@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2019/02/25 09:04:55 adam Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/13 05:02:51 adam Exp $
 
-DISTNAME=	jmespath-0.9.4
+DISTNAME=	jmespath-0.10.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	textproc python
 MASTER_SITES=	${MASTER_SITE_PYPI:=j/jmespath/}

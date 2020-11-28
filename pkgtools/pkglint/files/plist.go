@@ -72,6 +72,7 @@ func (ck *PlistChecker) Check(plainLines *Lines) {
 		ck.checkLine(pline)
 		pline.CheckTrailingWhitespace()
 	}
+	ck.checkOmf(plines)
 	CheckLinesTrailingEmptyLines(plainLines)
 
 	sorter := NewPlistLineSorter(plines)
@@ -126,7 +127,7 @@ func (ck *PlistChecker) collectPath(rel RelPath, pline *PlistLine) {
 	if prev := ck.allFiles[rel]; prev == nil || stringSliceLess(pline.conditions, prev.conditions) {
 		ck.allFiles[rel] = pline
 	}
-	for dir := rel.DirNoClean(); dir != "."; dir = dir.DirNoClean() {
+	for dir := rel.Dir(); dir != "."; dir = dir.Dir() {
 		ck.allDirs[dir] = pline
 	}
 }
@@ -136,7 +137,7 @@ func (ck *PlistChecker) collectDirective(pline *PlistLine) {
 	if !m || NewPath(dirname).IsAbs() {
 		return
 	}
-	for dir := NewRelPathString(dirname); dir != "."; dir = dir.DirNoClean() {
+	for dir := NewRelPathString(dirname); dir != "."; dir = dir.Dir() {
 		ck.allDirs[dir] = pline
 	}
 }
@@ -155,7 +156,7 @@ func (ck *PlistChecker) checkLine(pline *PlistLine) {
 
 	} else if m, cmd, arg := match2(text, `^@([a-z-]+)[\t ]*(.*)`); m {
 		pline.CheckDirective(cmd, arg)
-		if cmd == "comment" && pline.firstLine > 1 {
+		if cmd == "comment" && pline.Line.Location.lineno > 1 {
 			ck.nonAsciiAllowed = true
 		}
 
@@ -169,7 +170,7 @@ func (ck *PlistChecker) checkPath(pline *PlistLine, rel RelPath) {
 	ck.checkSorted(pline)
 	ck.checkDuplicate(pline)
 
-	if contains(rel.Base(), "${IMAKE_MANNEWSUFFIX}") {
+	if rel.Base().ContainsText("${IMAKE_MANNEWSUFFIX}") {
 		pline.warnImakeMannewsuffix()
 	}
 
@@ -341,7 +342,7 @@ func (ck *PlistChecker) checkPathLib(pline *PlistLine, rel RelPath) {
 	}
 
 	basename := rel.Base()
-	if contains(basename, ".a") || contains(basename, ".so") {
+	if basename.ContainsText(".a") || basename.ContainsText(".so") {
 		la := replaceAll(pline.text, `(\.a|\.so[0-9.]*)$`, ".la")
 		if la != pline.text {
 			laLine := ck.allFiles[NewRelPathString(la)]
@@ -361,7 +362,7 @@ func (ck *PlistChecker) checkPathLib(pline *PlistLine, rel RelPath) {
 		pline.Errorf("Only the libiconv package may install lib/charset.alias.")
 	}
 
-	if hasSuffix(basename, ".la") && !pkg.vars.IsDefined("USE_LIBTOOL") {
+	if basename.HasSuffixText(".la") && !pkg.vars.IsDefined("USE_LIBTOOL") {
 		if ck.once.FirstTime("USE_LIBTOOL") {
 			pline.Warnf("Packages that install libtool libraries should define USE_LIBTOOL.")
 		}
@@ -369,7 +370,12 @@ func (ck *PlistChecker) checkPathLib(pline *PlistLine, rel RelPath) {
 }
 
 func (ck *PlistChecker) checkPathMan(pline *PlistLine) {
-	m, catOrMan, section, manpage, ext, gz := match5(pline.text, `^man/(cat|man)(\w+)/(.*?)\.(\w+)(\.gz)?$`)
+	m, catOrMan, section, base := match3(pline.text, `^man/(cat|man)(\w+)/(.*)$`)
+	if !m {
+		// maybe: line.Warnf("Invalid filename %q for manual page.", text)
+		return
+	}
+	m, manpage, ext, gz := match3(base, `^(.*?)\.(\w+)(\.gz)?$`)
 	if !m {
 		// maybe: line.Warnf("Invalid filename %q for manual page.", text)
 		return
@@ -401,7 +407,7 @@ func (ck *PlistChecker) checkPathMan(pline *PlistLine) {
 			"configured by the pkgsrc user.",
 			"Compression and decompression takes place automatically,",
 			"no matter if the .gz extension is mentioned in the PLIST or not.")
-		fix.ReplaceAt(0, len(pline.Text)-len(".gz"), ".gz", "")
+		fix.ReplaceAt(0, len(pline.Line.Text)-len(".gz"), ".gz", "")
 		fix.Apply()
 	}
 }
@@ -498,19 +504,65 @@ func (ck *PlistChecker) checkCond(pline *PlistLine, cond string) {
 		cond)
 }
 
+func (ck *PlistChecker) checkOmf(plines []*PlistLine) {
+	if ck.pkg == nil {
+		return
+	}
+	mkline := ck.pkg.Includes("../../mk/omf-scrollkeeper.mk")
+	if mkline == nil {
+		return
+	}
+
+	for _, pline := range plines {
+		if hasSuffix(pline.text, ".omf") {
+			return
+		}
+	}
+
+	fix := mkline.Autofix()
+	fix.Errorf("Only packages that have .omf files in their PLIST may include omf-scrollkeeper.mk.")
+	if !mkline.HasRationale() {
+		fix.Delete()
+	}
+	fix.Apply()
+}
+
 type PlistLine struct {
-	*Line
+	Line *Line
+	// XXX: Why "PLIST.docs" and not simply "docs"?
 	conditions []string // e.g. PLIST.docs
 	text       string   // Line.Text without any conditions of the form ${PLIST.cond}
 }
 
-func (pline *PlistLine) Path() RelPath { return NewRelPathString(pline.text) }
+func (pline *PlistLine) Autofix() *Autofix { return pline.Line.Autofix() }
+
+func (pline *PlistLine) Errorf(format string, args ...interface{}) {
+	pline.Line.Errorf(format, args...)
+}
+func (pline *PlistLine) Warnf(format string, args ...interface{}) {
+	pline.Line.Warnf(format, args...)
+}
+func (pline *PlistLine) Explain(explanation ...string) {
+	pline.Line.Explain(explanation...)
+}
+func (pline *PlistLine) RelLine(other *Line) string {
+	return pline.Line.RelLine(other)
+}
+
+func (pline *PlistLine) HasPath() bool {
+	return pline.text != "" && plistLineStart.Contains(pline.text[0])
+}
 
 func (pline *PlistLine) HasPlainPath() bool {
 	text := pline.text
 	return text != "" &&
 		plistLineStart.Contains(text[0]) &&
 		!containsVarUse(text)
+}
+
+func (pline *PlistLine) Path() RelPath {
+	assert(pline.HasPath())
+	return NewRelPathString(pline.text)
 }
 
 func (pline *PlistLine) CheckTrailingWhitespace() {
@@ -647,7 +699,7 @@ func (s *plistLineSorter) Sort() {
 
 	fix := firstLine.Autofix()
 	fix.Notef(SilentAutofixFormat)
-	fix.Describef(int(firstLine.firstLine), "Sorting the whole file.")
+	fix.Describef(0, "Sorting the whole file.")
 	fix.Apply()
 
 	var lines []*Line
@@ -661,5 +713,110 @@ func (s *plistLineSorter) Sort() {
 		lines = append(lines, pline.Line)
 	}
 
-	s.autofixed = SaveAutofixChanges(NewLines(lines[0].Filename, lines))
+	s.autofixed = SaveAutofixChanges(NewLines(lines[0].Filename(), lines))
+}
+
+type PlistRank struct {
+	Rank  int
+	Opsys string
+	Arch  string
+	Rest  string
+}
+
+var defaultPlistRank = &PlistRank{0, "", "", ""}
+
+func NewPlistRank(basename RelPath) *PlistRank {
+	isOpsys := func(s string) bool {
+		return G.Pkgsrc.VariableType(nil, "OPSYS").basicType.HasEnum(s)
+	}
+	isArch := func(s string) bool {
+		return G.Pkgsrc.VariableType(nil, "MACHINE_ARCH").basicType.HasEnum(s)
+	}
+	isEmulOpsys := func(s string) bool {
+		return G.Pkgsrc.VariableType(nil, "EMUL_OPSYS").basicType.HasEnum(s)
+	}
+	isEmulArch := func(s string) bool {
+		return G.Pkgsrc.VariableType(nil, "EMUL_ARCH").basicType.HasEnum(s)
+	}
+
+	switch basename {
+	case "PLIST":
+		return defaultPlistRank
+	case "PLIST.common":
+		return &PlistRank{1, "", "", ""}
+	case "PLIST.common_end":
+		return &PlistRank{2, "", "", ""}
+	}
+
+	parts := strings.Split(basename.String()[6:], "-")
+	rank := PlistRank{3, "", "", ""}
+	if isOpsys(parts[0]) {
+		rank.Opsys = parts[0]
+		parts = parts[1:]
+	}
+	if len(parts) > 0 && isArch(parts[0]) {
+		rank.Arch = parts[0]
+		parts = parts[1:]
+	}
+	if len(parts) >= 2 && isEmulOpsys(parts[0]) && isEmulArch(parts[1]) {
+		rank.Opsys = parts[0]
+		rank.Arch = parts[1]
+		parts = parts[2:]
+	}
+	rank.Rest = strings.Join(parts, "-")
+	return &rank
+}
+
+// The ranks among the files are:
+//  PLIST
+//  -> PLIST.common
+//  -> PLIST.common_end
+//  -> { PLIST.OPSYS, PLIST.ARCH }
+//  -> { PLIST.OPSYS.ARCH, PLIST.EMUL_PLATFORM }
+// Files are a later level must not mention files that are already
+// mentioned at an earlier level.
+func (r *PlistRank) MoreGeneric(other *PlistRank) bool {
+	if r.Rank != 3 && other.Rank != 3 {
+		return r.Rank < other.Rank
+	}
+	if r.Opsys != "" && r.Opsys != other.Opsys {
+		return false
+	}
+	if r.Arch != "" && r.Arch != other.Arch {
+		return false
+	}
+	if r.Rest != "" && r.Rest != other.Rest {
+		return false
+	}
+	return *r != *other
+}
+
+type PlistLines struct {
+	all map[RelPath][]*plistLineData
+}
+
+func NewPlistLines() *PlistLines {
+	return &PlistLines{make(map[RelPath][]*plistLineData)}
+}
+
+type plistLineData struct {
+	line *PlistLine
+	rank *PlistRank
+}
+
+func (pl *PlistLines) Add(line *PlistLine, rank *PlistRank) {
+	path := line.Path()
+	for _, existing := range pl.all[path] {
+		switch {
+		case existing.rank == rank:
+			break
+		case existing.rank.MoreGeneric(rank):
+			line.Errorf("Path %s is already listed in %s.",
+				path, line.RelLine(existing.line.Line))
+		case rank.MoreGeneric(existing.rank):
+			existing.line.Errorf("Path %s is already listed in %s.",
+				path, existing.line.RelLine(line.Line))
+		}
+	}
+	pl.all[path] = append(pl.all[path], &plistLineData{line, rank})
 }

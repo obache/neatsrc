@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.28 2012/10/25 06:55:47 asau Exp $
+# $NetBSD: Makefile,v 1.30 2020/03/20 11:58:25 nia Exp $
 #
 
 DISTNAME=	docbook-website-2.6.0

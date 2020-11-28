@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.18 2019/12/30 23:50:20 gutteridge Exp $
+# $NetBSD: Makefile,v 1.23 2020/08/24 04:41:40 gutteridge Exp $
 
+PKGREVISION= 2
 .include "../../meta-pkgs/mate/Makefile.common"
 
-DISTNAME=	mate-user-share-${VERSION:R}.1
+DISTNAME=	mate-user-share-${VERSION:R}.0
 CATEGORIES=	net
 
 COMMENT=	MATE user-level file sharing

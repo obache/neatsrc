@@ -1,48 +1,14 @@
-# $NetBSD: Makefile,v 1.5 2019/12/21 23:41:47 joerg Exp $
+# $NetBSD: Makefile,v 1.8 2020/05/25 12:24:37 nia Exp $
 
-DISTNAME=	FreeImage3170
-PKGNAME=	freeimageplus-3.17.0
+.include "../../graphics/freeimage/Makefile.common"
+
+PKGNAME=	freeimageplus-3.18.0
 PKGREVISION=	1
-CATEGORIES=	devel graphics
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=freeimage/}
-EXTRACT_SUFX=	.zip
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://freeimage.sf.net/
-COMMENT=	Library for supporting PNG, BMP, JPEG, and TIFF - C++ Wrapper
-LICENSE=	gnu-gpl-v2 OR gnu-gpl-v3 OR mpl-1.0
+COMMENT=	Library for supporting PNG, BMP, JPEG, and TIFF (C++ wrapper)
 
-USE_LANGUAGES+=	c c++03
-USE_TOOLS+=	gmake
 MAKE_FILE=	Makefile.fip
 
-DEPENDS+=	freeimage>=3.17.0:../../graphics/freeimage
-
-PATCHDIR=	${.CURDIR}/../../graphics/freeimage/patches
-DISTINFO_FILE=	${.CURDIR}/../../graphics/freeimage/distinfo
-
-WRKSRC=		${WRKDIR}/FreeImage
-
-INSTALLATION_DIRS+=	include lib share/doc/${PKGBASE}
-
-post-install:
-	${INSTALL_DATA} ${WRKSRC}/Source/LibJXR/LICENCE \
-		${DESTDIR}${PREFIX}/share/doc/${PKGBASE}/LICENSE.LibJXR
-	${INSTALL_DATA} ${WRKSRC}/Source/LibOpenJPEG/LICENSE \
-		${DESTDIR}${PREFIX}/share/doc/${PKGBASE}/LICENSE.OpenJPEG
-	${HEAD} -n 31 ${WRKSRC}/Source/LibRawLite/internal/libraw_x3f.cpp \
-		> ${WRKDIR}/LICENSE.x3f
-	${HEAD} -n 33 ${WRKSRC}/Source/LibRawLite/internal/dcb_demosaicing.c \
-		> ${WRKDIR}/LICENSE.dcb
-	${HEAD} -n 25 ${WRKSRC}/Source/LibTIFF4/tif_open.c \
-		> ${WRKDIR}/LICENSE.LibTIFF4
-	${INSTALL_DATA} ${WRKDIR}/LICENSE.* \
-		${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
-	${INSTALL_DATA} ${WRKSRC}/Source/LibWebP/COPYING \
-		${DESTDIR}${PREFIX}/share/doc/${PKGBASE}/LICENSE.LibWebP
-	${INSTALL_DATA} ${WRKSRC}/Source/OpenEXR/Copyrights/openexr/LICENSE \
-		${DESTDIR}${PREFIX}/share/doc/${PKGBASE}/LICENSE.OpenEXR
-
-NOT_FOR_PLATFORM=	Darwin-*-*
-
+.include "../../graphics/freeimage/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.46 2019/11/03 11:45:44 rillig Exp $
+# $NetBSD: Makefile,v 1.48 2020/08/31 18:10:37 wiz Exp $
 
 DISTNAME=		netdisco-1.3.3_with_mibs
 PKGNAME=		${DISTNAME:S/_with_mibs//}
-PKGREVISION=		4
+PKGREVISION=		5
 CATEGORIES=		net
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=netdisco/}
 SITES.oui.txt=		http://standards.ieee.org/regauth/oui/
@@ -70,7 +70,6 @@ SUBST_FILES.installdir+=	doc/README.pod
 SUBST_FILES.installdir+=	doc/UPGRADE.pod
 SUBST_FILES.installdir+=	INSTALL README UPGRADE
 SUBST_FILES.installdir+=	html/admin_reconfig.html
-SUBST_FILES.installdir+=	netdisco.crontab
 SUBST_FILES.installdir+=	mibs/snmp.conf
 SUBST_SED.installdir=		-e "s|/usr/local/netdisco|${PREFIX}/netdisco|g"
 SUBST_MESSAGE.installdir=	Fixing hardcoded install directory path.

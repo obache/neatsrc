@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.15 2019/10/29 15:46:54 nia Exp $
+# $NetBSD: Makefile,v 1.28 2020/10/29 10:57:55 ryoon Exp $
 
 DISTNAME=	keepassxc-${GITHUB_RELEASE}-src
 PKGNAME=	${DISTNAME:S/-src//}
-PKGREVISION=	1
-CATEGORIES=	security x11
+CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GITHUB:=keepassxreboot/}
-GITHUB_RELEASE=	2.4.3
+GITHUB_RELEASE=	2.6.2
 GITHUB_PROJECT=	keepassxc
 EXTRACT_SUFX=	.tar.xz
 
@@ -19,14 +18,11 @@ SUPERSEDES+=	keepassx0-[0-9]*
 
 WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}
 
-.if exists(/usr/lib/libjemalloc.so)
-LDFLAGS.NetBSD+=	-ljemalloc # for malloc_usable_size()
-.endif
-
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 CMAKE_ARG_PATH=	..
 CMAKE_ARGS+=	-DKEEPASSXC_BUILD_TYPE=Release
+CMAKE_ARGS+=	-DWITH_XC_DOCS=False
 CONFIGURE_DIRS=	build
 
 NOT_PAX_MPROTECT_SAFE+=	bin/keepassxc
@@ -51,4 +47,5 @@ pre-configure:
 .include "../../x11/qt5-qtsvg/buildlink3.mk"
 .include "../../x11/qt5-qttools/buildlink3.mk"
 .include "../../x11/qt5-qtx11extras/buildlink3.mk"
+.include "../../mk/readline.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.11 2017/05/09 15:07:17 jperkin Exp $
+$NetBSD: distinfo,v 1.13 2020/04/16 14:03:29 manu Exp $
 
 SHA1 (squirrelmail-imap_proxy-1.2.7.tar.gz) = b2e324383ae8a2cdb3b5bd0340a2e2174941bd65
 RMD160 (squirrelmail-imap_proxy-1.2.7.tar.gz) = 87f3b9ab367e9da2a3f532e6de867004abbe75cf
@@ -10,5 +10,5 @@ SHA1 (patch-bb) = 348768062f5f9e314223fb7d385f749646ed04be
 SHA1 (patch-bc) = c3daf40715af721a0c4ff1b1071a892c94b59ce5
 SHA1 (patch-include_imapproxy.h) = 9e2326ece220e48c3baa2949b13d21448405e741
 SHA1 (patch-src_config.c) = 84ac9bde7cf64add665adb0f4d658ef856a91ae0
-SHA1 (patch-src_imapcommon.c) = 250b9d6edb9e0b475f673af8ca9bef235ddab796
-SHA1 (patch-src_main.c) = ab3acd0a77f1848a3aa5cdf9dc0ab7389d94903c
+SHA1 (patch-src_imapcommon.c) = a8d95e87cd6f3857e69abe17dc71a683f196d98d
+SHA1 (patch-src_main.c) = e0795df7e7312cfb285cc65bbabdecd3553c7e65

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2019/09/18 14:17:17 ryoon Exp $
+# $NetBSD: Makefile,v 1.16 2020/08/18 17:58:13 leot Exp $
 
 DISTNAME=	i3status-2.13
-PKGREVISION=	1
+PKGREVISION=	6
 CATEGORIES=	sysutils
 MASTER_SITES=	https://i3wm.org/i3status/
 EXTRACT_SUFX=	.tar.bz2
@@ -26,7 +26,7 @@ BUILD_DEFS+=	VARBASE
 SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		pre-configure
 SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
-SUBST_FILES.fix-paths=		i3status.conf
+SUBST_FILES.fix-paths=		man/i3status.*
 SUBST_SED.fix-paths+=		-e 's,/var,${VARBASE},g'
 
 post-install:
@@ -35,7 +35,8 @@ post-install:
 .include "../../devel/confuse/buildlink3.mk"
 .include "../../devel/yajl/buildlink3.mk"
 .include "../../mk/bsd.prefs.mk"
-.if ${OPSYS} != "OpenBSD" && ${OPSYS} != "DragonFly"
-.include "../../audio/pulseaudio/buildlink3.mk"
+.if ${OPSYS} == "Linux"
+.  include "../../audio/alsa-lib/buildlink3.mk"
+.  include "../../audio/pulseaudio/buildlink3.mk"
 .endif
 .include "../../mk/bsd.pkg.mk"

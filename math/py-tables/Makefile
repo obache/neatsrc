@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.4 2019/11/13 20:56:08 adam Exp $
+# $NetBSD: Makefile,v 1.7 2020/10/12 21:52:04 bacon Exp $
 
 DISTNAME=	tables-3.6.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=t/tables/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.pytables.org/
+HOMEPAGE=	https://www.pytables.org/
 COMMENT=	Database package for large amounts of data
 LICENSE=	modified-bsd
 
@@ -21,6 +22,8 @@ DEPENDS+=	${PYPKGPREFIX}-mock>=2.0:../../devel/py-mock
 DEPENDS+=	${PYPKGPREFIX}-six>=1.9.0:../../lang/py-six
 
 USE_LANGUAGES=	c c++
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && \

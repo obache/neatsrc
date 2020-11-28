@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.9 2019/11/04 21:43:45 rillig Exp $
+# $NetBSD: Makefile,v 1.11 2020/03/20 11:58:28 nia Exp $
 
 DISTNAME=	PyX-0.12.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/Py//}

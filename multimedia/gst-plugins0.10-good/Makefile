@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.31 2013/05/11 19:17:49 riastradh Exp $
+# $NetBSD: Makefile,v 1.33 2020/06/02 08:22:50 adam Exp $
 #
 
 .include "Makefile.common"
-PKGREVISION=		4
+PKGREVISION=		6
 
 COMMENT+=		Good plugins
 

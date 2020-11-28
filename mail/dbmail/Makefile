@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.62 2019/04/03 00:32:51 ryoon Exp $
+# $NetBSD: Makefile,v 1.70 2020/08/15 10:52:50 tnn Exp $
 
-DISTNAME=	dbmail-3.2.3
-PKGREVISION=	14
+DISTNAME=	dbmail-3.2.5
 CATEGORIES=	mail
-MASTER_SITES=	${MASTER_SITE_GITHUB:=pjstevns/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=dbmail/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.dbmail.org/
+HOMEPAGE=	https://www.dbmail.org/
 COMMENT=	Store and retrieve mail messages in a database
 LICENSE=	gnu-gpl-v2
 
@@ -16,7 +15,6 @@ USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-logdir=${VARBASE}/log
-CONFIGURE_ARGS+=	--with-pkglibdir=${PREFIX}/lib/dbmail
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}/run
 CONFIGURE_ARGS+=	--with-zdb=${BUILDLINK_PREFIX.libzdb}
@@ -33,10 +31,7 @@ MESSAGE_SUBST+=		DATADIR=${DATADIR}
 
 SUBST_CLASSES+=		sysconf
 SUBST_STAGE.sysconf=	do-configure
-SUBST_FILES.sysconf=	man/dbmail-imapd.8 man/dbmail-lmtpd.8 man/dbmail-pop3d.8
-SUBST_FILES.sysconf+=	man/dbmail-smtp.1 man/dbmail-users.8 man/dbmail-util.8
-SUBST_FILES.sysconf+=	man/dbmail.1 man/dbmail.conf.5 man/dbmail-export.8
-SUBST_FILES.sysconf+=	man/dbmail-sievecmd.8 mail/dbmail-timsieved.8
+SUBST_FILES.sysconf=	man/commonopts.txt
 SUBST_SED.sysconf=	-e 's|/etc/dbmail\.conf|${PKG_SYSCONFDIR}/dbmail.conf|g'
 SUBST_MESSAGE.sysconf=	Fixing sysconf paths.
 

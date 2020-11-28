@@ -1,12 +1,14 @@
-# $NetBSD: Makefile,v 1.21 2019/11/03 19:32:07 rillig Exp $
+# $NetBSD: Makefile,v 1.28 2020/08/30 21:52:43 tnn Exp $
 
-DISTNAME=		gr-osmosdr-0.1.4
-PKGREVISION=		15
+DISTNAME=		gr-osmosdr-0.2.2
 CATEGORIES=		ham
-MASTER_SITES+=		http://git.osmocom.org/gr-osmosdr/snapshot/
+# main git repo doesn't allow snapshots to be downloaded
+#MASTER_SITES=		https://git.osmocom.org/gr-osmosdr/snapshot/
+MASTER_SITES=		${MASTER_SITE_GITHUB:=osmocom/}
+GITHUB_TAG=		v${PKGVERSION_NOREV}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://git.osmocom.org/gr-osmosdr
+HOMEPAGE=		https://git.osmocom.org/gr-osmosdr
 COMMENT=		SDR Hardware support for OsmoSDR and so many more
 LICENSE=		gnu-gpl-v2
 
@@ -19,11 +21,12 @@ CMAKE_ARGS+=	-Wno-dev
 # --   * Ettus USRP Devices
 CMAKE_ARGS+=	-DGNURADIO_UHD_INCLUDE_DIRS=${PREFIX}/include/uhd
 CMAKE_ARGS+=	-DGNURADIO_BLOCKS_INCLUDE_DIRS=${PREFIX}/include
+# TODO: make it PKG_OPTION
+CMAKE_ARGS+=	-DENABLE_DOXYGEN=OFF
 
 PLIST_SUBST+=	PYSITELIB=${PYSITELIB}
 
-# Python 36 and 37 result in build errors; 27 builds ok.
-PYTHON_VERSIONS_ACCEPTED=	27
+PYTHON_VERSIONS_ACCEPTED=	37
 REPLACE_PYTHON+=		apps/osmocom_siggen_base.py
 
 .include	"../../devel/boost-headers/buildlink3.mk"
@@ -35,18 +38,12 @@ REPLACE_PYTHON+=		apps/osmocom_siggen_base.py
 
 .include	"../../ham/uhd/buildlink3.mk"
 .include	"../../lang/python/application.mk"
-.include	"../../lang/python/extension.mk"
 
 .include	"../../ham/rtl-sdr/buildlink3.mk"
-.include	"../../ham/libmirisdr/buildlink3.mk"
-.include	"../../ham/osmo-sdr/buildlink3.mk"
-# \todo Re-enable gr-fcdproplus when it works, or optionize it.
-# gr-fcdproplus does not build at the moment
-#.include	"../../ham/gr-fcdproplus/buildlink3.mk"
 .include	"../../ham/hackrf/buildlink3.mk"
+.include	"../../ham/soapy-sdr/buildlink3.mk"
 
 .include	"../../ham/gnuradio-core/buildlink3.mk"
-.include	"../../ham/gnuradio-fcd/buildlink3.mk"
 .include	"../../ham/gnuradio-uhd/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

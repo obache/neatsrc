@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.54 2019/08/11 13:25:18 wiz Exp $
+# $NetBSD: Makefile,v 1.60 2020/08/31 18:13:26 wiz Exp $
 
 PKGREVISION= 2
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-DISTNAME=	xfce4-clipman-plugin-1.4.3
+VERSION=	1.6.1
+DISTNAME=	xfce4-clipman-plugin-${VERSION}
 CATEGORIES=	sysutils
-MASTER_SITES=	http://archive.xfce.org/src/panel-plugins/xfce4-clipman-plugin/1.4/
+MASTER_SITES=	https://archive.xfce.org/src/panel-plugins/xfce4-clipman-plugin/${VERSION:R}/
 
 HOMEPAGE=	https://goodies.xfce.org/projects/panel-plugins/xfce4-clipman-plugin
 COMMENT=	Xfce clipboard plugin

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.25 2019/11/23 17:55:01 hauke Exp $
+# $NetBSD: Makefile,v 1.35 2020/08/31 18:10:37 wiz Exp $
 
 DISTNAME=	netatalk-2.2.6
 PKGNAME=	${DISTNAME:C/-/22-/}
-PKGREVISION=	14
+PKGREVISION=	21
 CATEGORIES=	net print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=netatalk/}
 EXTRACT_SUFX=	.tar.bz2
@@ -17,7 +17,6 @@ LICENSE=	gnu-gpl-v2
 
 BDB_ACCEPTED=		db4 db5
 USE_LIBTOOL=		yes
-USE_OLD_DES_API=	yes
 USE_TOOLS+=		gmake pkg-config perl:run
 GNU_CONFIGURE=		yes
 
@@ -54,8 +53,8 @@ MAKE_DIRS+=		${PKG_SYSCONFDIR}/msg
 SUBST_CLASSES+=		paths
 SUBST_MESSAGE.paths=	Fixing hardcoded paths.
 SUBST_STAGE.paths=	pre-configure
-SUBST_FILES.paths=	etc/psf/etc2ps.sh distrib/initscripts/Makefile.in
-SUBST_SED.paths=	-e "s,^\\(DVIPS=\\)\\(/usr/local/tex\\)\\(/bin\\),\\1${PREFIX}\\3,"
+SUBST_FILES.paths=	etc/psf/etc2ps.sh
+SUBST_SED.paths=	-e 's,^\(DVIPS="*\)/usr\(/bin\),\1${PREFIX}\2,'
 
 PLIST_VARS+=		rcd
 .if ${OPSYS} == "NetBSD"

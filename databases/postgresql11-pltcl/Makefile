@@ -1,12 +1,14 @@
-# $NetBSD: Makefile,v 1.1 2018/10/23 16:02:52 adam Exp $
+# $NetBSD: Makefile,v 1.7 2020/08/31 18:07:11 wiz Exp $
 
-PKGNAME=	${DISTNAME:C/-/11-pltcl-/}
+PKGNAME=	${DISTNAME:S/-/11-pltcl-/}
+PKGREVISION=	1
 COMMENT=	PL/Tcl procedural language for the PostgreSQL backend
 
 DEPENDS+=	postgresql11-server>=${PKGVERSION_NOREV}:../../databases/postgresql11-server
 
 .include "../../databases/postgresql11/Makefile.common"
 
+USE_TOOLS+=		perl
 CONFIGURE_ARGS+=	--with-tcl
 CONFIGURE_ARGS+=	--with-tclconfig="${BUILDLINK_PREFIX.tcl}/lib"
 CONFIGURE_ENV+=		TCLSH="${TCLSH}"

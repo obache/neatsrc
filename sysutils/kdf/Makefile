@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.65 2019/11/17 04:36:31 markd Exp $
+# $NetBSD: Makefile,v 1.74 2020/08/18 17:58:14 leot Exp $
 
 DISTNAME=	kdf-${KAPPSVER}
+PKGREVISION=	2
 CATEGORIES=	sysutils
 
 HOMEPAGE=	https://kde.org/applications/system/kdiskfree/

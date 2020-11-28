@@ -1,18 +1,18 @@
-# $NetBSD: Makefile,v 1.1 2017/05/04 19:21:35 adam Exp $
+# $NetBSD: Makefile,v 1.3 2020/09/09 08:44:46 wiz Exp $
 
-DISTNAME=	libspiro-dist-0.5.20150702
-PKGNAME=	${DISTNAME:S/-dist-/-/}
+DISTNAME=	libspiro-dist-20200505
+PKGNAME=	libspiro-1.1.0.20200505
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=fontforge/}
+GITHUB_PROJECT=	libspiro
+GITHUB_RELEASE=	20200505
 
 MAINTAINER=	adam@NetBSD.org
-HOMEPAGE=	http://fontforge.github.io/
+HOMEPAGE=	https://fontforge.github.io/
 COMMENT=	Simplifies the drawing of beautiful curves
 LICENSE=	gnu-gpl-v3
 
-GITHUB_PROJECT=	libspiro
-GITHUB_RELEASE=	${PKGVERSION_NOREV}
-WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
+WRKSRC=		${WRKDIR}/${DISTNAME:S/-dist//}
 
 USE_LANGUAGES=		c
 USE_LIBTOOL=		yes

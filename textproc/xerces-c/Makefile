@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.51 2018/12/01 16:36:55 wiz Exp $
+# $NetBSD: Makefile,v 1.53 2020/04/12 21:24:54 wiz Exp $
 
-DISTNAME=	xerces-c-3.2.2
+DISTNAME=	xerces-c-3.2.3
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_APACHE:=xerces/c/3/sources/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://xerces.apache.org/
+HOMEPAGE=	https://xerces.apache.org/
 COMMENT=	Validating C++ XML parser with DOM and SAX support
 LICENSE=	apache-2.0
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2018/09/17 16:14:07 adam Exp $
+# $NetBSD: Makefile,v 1.9 2020/05/23 07:38:01 adam Exp $
 
 .include "../../databases/sqlite3/Makefile.common"
 
@@ -17,14 +17,14 @@ CATEGORIES=	devel
 EXTRACT_SUFX=	.zip
 
 MAINTAINER=	airhead@users.sf.net
-HOMEPAGE=	http://www.hwaci.com/sw/lemon/
+HOMEPAGE=	https://www.hwaci.com/sw/lemon/
 COMMENT=	Simple LALR(1) parser generator
 
 CHECK_PORTABILITY_SKIP=	configure
 INSTALLATION_DIRS=	bin share/lemon share/doc/lemon
 
 SUBST_CLASSES+=		paths
-SUBST_FILES.paths=	lemon.c
+SUBST_FILES.paths=	tool/lemon.c
 SUBST_SED.paths+=	-e 's,"lempar.c","${PREFIX}/share/lemon/lempar.c",g'
 SUBST_STAGE.paths=	pre-configure
 

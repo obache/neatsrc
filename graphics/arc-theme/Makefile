@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.14 2019/07/21 22:24:54 wiz Exp $
+# $NetBSD: Makefile,v 1.17 2020/08/17 20:18:54 leot Exp $
 
 DISTNAME=	arc-theme
 PKGNAME=	arc-theme-20170302
-PKGREVISION=	4
+PKGREVISION=	7
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=horst3180/}
 

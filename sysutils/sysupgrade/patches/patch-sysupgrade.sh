@@ -1,4 +1,4 @@
-$NetBSD: patch-sysupgrade.sh,v 1.3 2019/06/06 16:30:13 triaxx Exp $
+$NetBSD: patch-sysupgrade.sh,v 1.6 2020/10/21 21:34:21 kamil Exp $
 
 * Don't reject https in sysupgrade_fetch()
 * Add ARCHIVE_EXTENSION variable (Fix PR pkg/53697)
@@ -19,7 +19,7 @@ $NetBSD: patch-sysupgrade.sh,v 1.3 2019/06/06 16:30:13 triaxx Exp $
      shtk_config_set ETCUPDATE "yes"
      shtk_config_set KERNEL "AUTO"
      shtk_config_set SETS "AUTO"
-+    shtk_config_set ARCHIVE_EXTENSION "tgz"
++    shtk_config_set ARCHIVE_EXTENSION "tar.xz"
  }
  
  
@@ -133,3 +133,17 @@ $NetBSD: patch-sysupgrade.sh,v 1.3 2019/06/06 16:30:13 triaxx Exp $
      done
  
      shtk_cli_info "Performing postinstall checks"
+@@ -409,10 +426,13 @@ sysupgrade_postinstall() {
+ 
+ # Cleans up the cache directory.
+ sysupgrade_clean() {
++    local arch_ext="$(shtk_config_get ARCHIVE_EXTENSION)"
++
+     [ ${#} -eq 0 ] || shtk_cli_usage_error "clean does not take any arguments"
+ 
+     shtk_cli_info "Cleaning downloaded files"
+     rm -f "$(shtk_config_get CACHEDIR)"/*.*gz*
++    rm -f "$(shtk_config_get CACHEDIR)"/*.${arch_ext}*
+ }
+ 
+ 

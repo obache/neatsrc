@@ -1,18 +1,32 @@
-# $NetBSD: bsd.extract-vars.mk,v 1.18 2019/08/02 11:48:17 nia Exp $
+# $NetBSD: bsd.extract-vars.mk,v 1.20 2020/03/20 17:16:34 rillig Exp $
+#
+# This file configures how a package extracts its distfiles after
+# downloading them.
 #
 # This Makefile fragment is included separately by bsd.pkg.mk and
 # defines some variables which must be defined earlier than where
-# bsd.extract.mk is included.
+# bsd.extract.mk is included, which defines the other variables.
 #
-# The following variables may be set by the package Makefile and
-# specify how extraction happens:
+# Package-settable variables:
 #
-#    EXTRACT_ONLY is a list of distfiles relative to ${_DISTDIR} to
-#	extract and defaults to ${DISTFILES}.
+# EXTRACT_SUFX
+#	The suffix for the default distfile to be extracted.
+#	Defaults to ".tar.gz".
 #
-#    EXTRACT_SUFX is the suffix for the default distfile to be
-#       extracted.  The default suffix is ".tar.gz".
+# EXTRACT_ONLY
+#	The list of distfiles relative to ${_DISTDIR} that are
+#	extracted.  Defaults to ${DISTFILES}.
 #
+#	Only few packages need this variable. To extract some of the
+#	distfiles into separate directories, see EXTRACT_DIR.
+#
+# EXTRACT_USING
+#	The tool used to extract tar/ustar-format archives when using
+#	EXTRACT_CMD_DEFAULT. The possible values are "bsdtar", "gtar",
+#	"nbtar", and "pax". Defaults to "nbtar", which means the value
+#	of ${TOOL_PLATFORM.tar}, which is typically an arbitrary
+#	implementation already found on the platform.
+#    \todo: Decide if this is package-settable or user-settable or both.
 
 _VARGROUPS+=		extract
 _PKG_VARS.extract=	EXTRACT_DIR EXTRACT_ONLY EXTRACT_SUFX EXTRACT_CMD \
@@ -22,6 +36,8 @@ _LISTED_VARS.extract=	EXTRACT_CMD EXTRACT_CMD_DEFAULT
 
 EXTRACT_ONLY?=		${DISTFILES}
 EXTRACT_SUFX?=		.tar.gz
+
+EXTRACT_USING?=		nbtar
 
 ###
 ### Discover which tools we need based on the file extensions of the

@@ -1,50 +1,37 @@
-# $NetBSD: Makefile,v 1.26 2018/10/13 10:54:04 mlelstv Exp $
+# $NetBSD: Makefile,v 1.32 2020/06/20 19:08:19 adam Exp $
 
-OPENSC_PKG_VERSION=	0.19.0
-DISTNAME=		opensc-${OPENSC_PKG_VERSION}
-CATEGORIES=		security
-MASTER_SITES=		${MASTER_SITE_GITHUB:=opensc/}
+DISTNAME=	opensc-0.20.0
+PKGREVISION=	2
+CATEGORIES=	security
+MASTER_SITES=	${MASTER_SITE_GITHUB:=OpenSC/}
 
-MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		https://github.com/OpenSC/OpenSC/wiki
-COMMENT=		Smart Card drivers and middleware
-LICENSE=		gnu-lgpl-v2.1
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://github.com/OpenSC/OpenSC/wiki
+COMMENT=	Smart Card drivers and middleware
+LICENSE=	gnu-lgpl-v2.1
+
+WRKSRC=		${WRKDIR}/OpenSC-${PKGVERSION_NOREV}
 
 BUILD_DEPENDS+=		docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 
-GNU_CONFIGURE=		YES
-USE_LIBTOOL=		YES
-USE_OLD_DES_API=	YES
-USE_TOOLS+=		gmake pkg-config
-WRKSRC=			${WRKDIR}/OpenSC-${OPENSC_PKG_VERSION}
-
-USE_TOOLS+=		autoreconf autoconf automake
-AUTOCONF_REQD=		2.60
-AUTOMAKE_REQD=		1.15
-pre-configure:
-	cd ${WRKSRC:Q} && \
-	./bootstrap \
-		-s ${OPENSC_VERSION_SUFFIX:Q} \
-		-r ${OPENSC_VERSION_REVISION:Q}
-
-.include "options.mk"
-
-# Previous versions needed these, but 0.12.2 configure does not
-# recognize them.
-#CONFIGURE_ARGS+=	--with-openssl=${SSLBASE:Q}
-#CONFIGURE_ARGS+=	--disable-sensitive-logging
-
-# Is this necessary (and non-default)?
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
-
+USE_LIBTOOL=		yes
+USE_TOOLS+=		autoreconf autoconf automake gmake pkg-config
+GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--disable-autostart-items
+CONFIGURE_ARGS+=	--disable-strict  # avoid -Werror
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
+# The stylesheets are not found without this.
+CONFIGURE_ARGS+=	--with-xsl-stylesheetsdir=${PREFIX}/share/xsl/docbook
 # This is perhaps an upstream bug.
 CONFIGURE_ENV+=		PCSC_CFLAGS=-I${PREFIX}/include/PCSC
 
-# The stylesheets are not found without this.
-CONFIGURE_ARGS+=	--with-xsl-stylesheetsdir=${PREFIX}/share/xsl/docbook
+.include "options.mk"
 
 EGDIR=			${PREFIX}/share/examples/opensc
 CONF_FILES+=		${EGDIR}/opensc.conf ${PKG_SYSCONFDIR}/opensc.conf
+
+pre-configure:
+	cd ${WRKSRC} && autoreconf -fi
 
 INSTALLATION_DIRS=	${EGDIR}
 post-install:
@@ -58,6 +45,5 @@ DLOPEN_REQUIRE_PTHREADS=	no
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/readline.buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-BUILDLINK_API_DEPENDS.openssl+=	openssl>=0.9.7
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

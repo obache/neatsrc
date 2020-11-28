@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.22 2019/12/15 09:48:37 adam Exp $
+# $NetBSD: Makefile,v 1.28 2020/10/18 18:45:03 adam Exp $
 
 .include "../../security/py-certbot/Makefile.common"
 
@@ -7,13 +7,12 @@ MASTER_SITES=	${MASTER_SITE_PYPI:=c/certbot/}
 
 COMMENT=	Client for the Let's Encrypt CA
 
-DEPENDS+=	${PYPKGPREFIX}-acme>=0.40.0:../../security/py-acme
+DEPENDS+=	${PYPKGPREFIX}-acme>=1.8.0:../../security/py-acme
 DEPENDS+=	${PYPKGPREFIX}-configargparse>=0.9.3:../../devel/py-configargparse
 DEPENDS+=	${PYPKGPREFIX}-configobj-[0-9]*:../../devel/py-configobj
 DEPENDS+=	${PYPKGPREFIX}-cryptography>=1.2.3:../../security/py-cryptography
 DEPENDS+=	${PYPKGPREFIX}-distro>=1.0.1:../../devel/py-distro
 DEPENDS+=	${PYPKGPREFIX}-josepy>=1.1.0:../../security/py-josepy
-DEPENDS+=	${PYPKGPREFIX}-mock-[0-9]*:../../devel/py-mock
 DEPENDS+=	${PYPKGPREFIX}-parsedatetime>=1.3:../../time/py-parsedatetime
 DEPENDS+=	${PYPKGPREFIX}-pytz-[0-9]*:../../time/py-pytz
 DEPENDS+=	${PYPKGPREFIX}-rfc3339-[0-9]*:../../time/py-rfc3339
@@ -22,6 +21,7 @@ DEPENDS+=	${PYPKGPREFIX}-ZopeComponent-[0-9]*:../../devel/py-ZopeComponent
 DEPENDS+=	${PYPKGPREFIX}-ZopeInterface-[0-9]*:../../devel/py-ZopeInterface
 # Needed for the test target
 # https://github.com/certbot/certbot/issues/2956
+TEST_DEPENDS+=	${PYPKGPREFIX}-mock-[0-9]*:../../devel/py-mock
 TEST_DEPENDS+=	${PYPKGPREFIX}-readline-[0-9]*:../../devel/py-readline
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-cov-[0-9]*:../../devel/py-test-cov
@@ -34,11 +34,9 @@ PKG_SYSCONFSUBDIR=	letsencrypt
 SUBST_CLASSES+=		path
 SUBST_STAGE.path=	pre-build
 SUBST_MESSAGE.path=	Fixing default paths
-SUBST_FILES.path+=	certbot/cert_manager.py
-SUBST_FILES.path+=	certbot/cli.py
-SUBST_FILES.path+=	certbot/compat/misc.py
-SUBST_FILES.path+=	certbot/tests/cli_test.py
-SUBST_SED.path+=	-e 's,/etc/letsencrypt,${PKG_SYSCONFDIR},g'
+SUBST_FILES.path=	certbot/compat/misc.py
+SUBST_FILES.path+=	tests/cli_test.py
+SUBST_SED.path=		-e 's,/etc/letsencrypt,${PKG_SYSCONFDIR},g'
 SUBST_SED.path+=	-e 's,/var/lib/letsencrypt,${VARBASE}/letsencrypt,g'
 SUBST_SED.path+=	-e 's,/var/log/letsencrypt,${VARBASE}/letsencrypt/log,g'
 

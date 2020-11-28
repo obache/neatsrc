@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.2 2020/01/04 11:45:21 nia Exp $
+$NetBSD: distinfo,v 1.5 2020/06/19 13:24:41 wiz Exp $
 
-SHA1 (libmysofa-0.9.1.tar.gz) = 9361917171cbf77a80ec7f9fd20dcaa99130c13f
-RMD160 (libmysofa-0.9.1.tar.gz) = c41d0a92840aefe8853662dd807e02925518b243
-SHA512 (libmysofa-0.9.1.tar.gz) = 4be7a7278f29fbb40f341bbaad56384b499a7a89ac5f99528bf9c7be2c3a044bed43ccd773aa4fd2b31bb77b0619164cbb3ba1d15afc86ea5ccfd350d107ff12
-Size (libmysofa-0.9.1.tar.gz) = 80594534 bytes
-SHA1 (patch-CMakeLists.txt) = 03e047b3f28541e8e1e19fc5e0df2715bed5a202
+SHA1 (libmysofa-1.1.tar.gz) = 6dcad3417576c59eb77a88ac6362799e0247bf9a
+RMD160 (libmysofa-1.1.tar.gz) = 2467dd23b458b487782cea19aaa476523a22b706
+SHA512 (libmysofa-1.1.tar.gz) = 8feafbf447f21f3ef5a283f5f494a647dd5db47cc43af4cc26efeae9f8684c93f5aa1131d8c5570d1d7811c3e3b08763fabdfad2beff0858eeb3cb78dda22332
+Size (libmysofa-1.1.tar.gz) = 199816311 bytes
+SHA1 (patch-CMakeLists.txt) = b0c00c006b5965a200c43a87bf9105aedeaf110a

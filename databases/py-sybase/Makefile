@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.40 2019/09/02 13:19:47 adam Exp $
+# $NetBSD: Makefile,v 1.44 2020/05/22 10:56:01 adam Exp $
 
 DISTNAME=	sybase-0.36
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	14
+PKGREVISION=	17
 CATEGORIES=	databases python
 MASTER_SITES=	http://object-craft.com.au/projects/sybase/download/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.object-craft.com.au/projects/sybase/
+HOMEPAGE=	https://www.object-craft.com.au/projects/sybase/
 COMMENT=	Sybase interface for Python using FreeTDS
 
 PYSETUPBUILDARGS=	build_ext -D HAVE_FREETDS=61 -U WANT_BULKCOPY

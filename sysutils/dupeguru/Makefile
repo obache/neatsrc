@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.7 2019/11/04 21:28:44 rillig Exp $
+# $NetBSD: Makefile,v 1.9 2020/04/03 21:59:48 wiz Exp $
 
-DISTNAME=	dupeguru-src-4.0.3
-PKGNAME=	${DISTNAME:S/-src//}
-PKGREVISION=	3
+DISTNAME=	dupeguru-src-4.0.4_RC
+PKGNAME=	${DISTNAME:S/-src//:S/_RC/rc1/}
 CATEGORIES=	sysutils
-MASTER_SITES=	https://download.hardcoded.net/
+MASTER_SITES=	https://github.com/arsenetar/dupeguru/releases/download/4.0.4/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://www.hardcoded.net/dupeguru/
+HOMEPAGE=	https://dupeguru.voltaicideas.net/
 COMMENT=	Find duplicate files
 LICENSE=	gnu-gpl-v3
 
@@ -16,23 +15,21 @@ BUILD_DEPENDS+=	${PYPKGPREFIX}-sphinx>=1.3.4nb1:../../textproc/py-sphinx
 DEPENDS+=	${PYPKGPREFIX}-qt5-[0-9]*:../../x11/py-qt5
 DEPENDS+=	${PYPKGPREFIX}-hsaudiotag3k-[0-9]*:../../audio/py-hsaudiotag3k
 DEPENDS+=	${PYPKGPREFIX}-Send2Trash-[0-9]*:../../sysutils/py-Send2Trash
-#DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
-#DEPENDS+=	${PYPKGPREFIX}-cElementTree-[0-9]*:../../textproc/py-cElementTree
-
-EXTRACT_USING=	bsdtar
 
 WRKSRC=			${WRKDIR}
 USE_LANGUAGES=		c
 USE_TOOLS=		gmake pax
-#MAKE_JOBS_SAFE=	no
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
-REPLACE_PYTHON+=		qt/run_template.py
+REPLACE_PYTHON+=		run.py
+
+MAKE_ENV+=	PYRCC5=pyrcc5-${PYVERSSUFFIX}
+MAKE_ENV+=	PYVERSSUFFIX=${PYVERSSUFFIX}
 
 INSTALLATION_DIRS=	bin share/applications share/dupeguru
 
 do-build:
-	cd ${WRKSRC} && ${PYTHONBIN} build.py
+	cd ${WRKSRC} && ${PKGSRC_SETENV} ${MAKE_ENV} ${PYTHONBIN} build.py
 	${CHMOD} +x ${WRKSRC}/run.py
 
 do-install:

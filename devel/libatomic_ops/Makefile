@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.20 2019/03/02 14:51:53 adam Exp $
+# $NetBSD: Makefile,v 1.22 2020/05/10 05:06:21 rillig Exp $
 
 DISTNAME=	libatomic_ops-7.6.10
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ivmai/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
@@ -18,6 +19,8 @@ PKGCONFIG_OVERRIDE=	pkgconfig/atomic_ops.pc.in
 TEST_TARGET=		check
 
 INSTALL_MAKE_FLAGS=	pkgdatadir=${PREFIX}/share/doc/libatomic_ops
+
+.include "../../mk/bsd.prefs.mk"
 
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-sparc)
 CPPFLAGS+=	-DAO_NO_SPARC_V9=1

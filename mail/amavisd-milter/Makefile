@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2019/11/02 16:25:18 rillig Exp $
+# $NetBSD: Makefile,v 1.5 2020/05/21 07:08:07 rillig Exp $
 #
 
 DISTNAME=	amavisd-milter-1.6.1
@@ -14,8 +14,6 @@ LICENSE=	modified-bsd
 .include "options.mk"
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-milterinc=${BUILDLINK_PREFIX.libmilter}/include
-CONFIGURE_ARGS+=	--with-milterlib=${BUILDLINK_PREFIX.libmilter}/lib
 
 RCD_SCRIPTS=	amavisd-milter
 

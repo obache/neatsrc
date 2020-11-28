@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.5 2019/08/11 13:23:04 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2020/10/24 22:39:45 wiz Exp $
 
 COLLECTD_PACKAGE=	amqp
 
 COMMENT=		Statistics collection daemon - amqp plugin
-PKGREVISION=		2
+
+.include "../../net/rabbitmq-c/buildlink3.mk"
+COLLECTD_LIB.rabbitmq=	${BUILDLINK_PREFIX.rabbitmq-c}
 
 .include "../../sysutils/collectd/Makefile.common"
 
-CONFIGURE_ARGS+=	--with-librabbitmq=${BUILDLINK_PREFIX.rabbitmq-c}
-
-.include "../../net/rabbitmq-c/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

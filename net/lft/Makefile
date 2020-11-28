@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.12 2017/07/11 13:32:38 adam Exp $
+# $NetBSD: Makefile,v 1.14 2020/03/24 14:40:56 nia Exp $
 
-DISTNAME=	lft-3.79
+DISTNAME=	lft-3.8
+PKGNAME=	lft-3.80
 CATEGORIES=	net
 MASTER_SITES=	http://pwhois.org/dl/index.who?file=
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://pwhois.org/lft/
+HOMEPAGE=	https://pwhois.org/lft/
 COMMENT=	Layer four traceroute capable of tracing protocol paths
 LICENSE=	lft-license
 

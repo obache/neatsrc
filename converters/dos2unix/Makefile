@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.31 2019/10/06 09:59:33 ryoon Exp $
+# $NetBSD: Makefile,v 1.33 2020/08/31 18:06:46 wiz Exp $
 
 DISTNAME=	dos2unix-7.4.1
+PKGREVISION=	1
 CATEGORIES=	converters
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=dos2unix/}
 
 MAINTAINER=	ryoon@NetBSD.org
-HOMEPAGE=	http://waterlan.home.xs4all.nl/dos2unix.html
+HOMEPAGE=	https://waterlan.home.xs4all.nl/dos2unix.html
 COMMENT=	DOS/Mac to Unix and vice versa text file format converter
 LICENSE=	2-clause-bsd
 

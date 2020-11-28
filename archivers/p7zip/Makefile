@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.67 2019/07/18 10:03:26 nia Exp $
+# $NetBSD: Makefile,v 1.69 2020/01/26 05:26:08 rillig Exp $
 
 DISTNAME=	p7zip_16.02_src_all
 PKGNAME=	${DISTNAME:S/_src_all//S/_/-/}

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2018/07/29 23:46:21 schmonz Exp $
+# $NetBSD: Makefile,v 1.18 2020/06/25 05:42:36 schmonz Exp $
 #
 
 DISTNAME=		publicfile-0.52
@@ -7,7 +7,7 @@ CATEGORIES=		net
 MASTER_SITES=		http://cr.yp.to/publicfile/
 
 MAINTAINER=		schmonz@NetBSD.org
-HOMEPAGE=		http://cr.yp.to/publicfile.html
+HOMEPAGE=		https://cr.yp.to/publicfile.html
 COMMENT=		Secure read-only HTTP and FTP servers
 
 DEPENDS+=		daemontools-[0-9]*:../../sysutils/daemontools
@@ -15,7 +15,9 @@ DEPENDS+=		daemontools-[0-9]*:../../sysutils/daemontools
 DJB_RESTRICTED=		YES
 DJB_CONFIG_PREFIX=	${PREFIX}/publicfile
 
-SUBST_FILES.djbware+=	leapsecs_read.c
+SUBST_CLASSES+=		djberrno
+
+.include "options.mk"
 
 .include "../../mk/djbware.mk"
 .include "../../mk/bsd.pkg.mk"

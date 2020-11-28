@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.86 2019/12/30 13:58:35 adam Exp $
+# $NetBSD: Makefile,v 1.110 2020/10/30 07:17:16 taca Exp $
 
-DISTNAME=	samba-4.11.4
+DISTNAME=	samba-4.12.9
 CATEGORIES=	net
 MASTER_SITES=	https://download.samba.org/pub/samba/stable/
 
@@ -16,7 +16,7 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 GCC_REQD+=	4.4
 BUILD_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 BUILD_DEPENDS+=	docbook-xml-[0-9]*:../../textproc/docbook-xml
-BUILD_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
+BUILD_DEPENDS+=	docbook-xsl>=1.79.2:../../textproc/docbook-xsl
 DEPENDS+=	p5-Parse-Yapp>=1.05:../../devel/p5-Parse-Yapp
 DEPENDS+=	${PYPKGPREFIX}-dns-[0-9]*:../../net/py-dns
 DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
@@ -33,8 +33,8 @@ SMB_SHAREDSTATE?=	${PREFIX}/com
 SMB_LOCALSTATE?=	${VARBASE}
 SMB_INFO?=		${PREFIX}/info
 SMB_MAN?=		${PREFIX}/${PKGMANDIR}
-SMB_STATE?=		${VARBASE}/run
-SMB_PRIVATE?=		${PKG_SYSCONFDIR}/private
+SMB_STATE?=		${VARBASE}/db/samba4
+SMB_PRIVATE?=		${SMB_STATE}/private
 SMB_PID?=		${VARBASE}/run
 SMB_CACHE?=		${VARBASE}/run
 SMB_LOCK?=		${VARBASE}/run
@@ -56,8 +56,10 @@ FILES_SUBST+=		SMB_PID=${SMB_PID}
 # a full dependency since it's not actually needed by samba.
 USE_TOOLS+=		gmake mktemp perl:run pkg-config
 
+.if ${OPSYS} == "NetBSD"
 USE_GNU_ICONV=		yes	# FIXME: something doesn't work on NetBSD
 BROKEN_GETTEXT_DETECTION= yes
+.endif
 
 # Debugging
 #CONFIGURE_ARGS+=	-vvv
@@ -191,7 +193,6 @@ REPLACE_PERL+=		librpc/tables.pl
 REPLACE_PERL+=		pidl/pidl
 REPLACE_PERL+=		pidl/tests/*.pl
 REPLACE_PERL+=		script/*.pl
-REPLACE_PERL+=		script/findsmb.in
 REPLACE_PERL+=		source3/script/*.pl
 REPLACE_PERL+=		source4/build/pasn1/pasn1.pl
 REPLACE_PERL+=		source4/script/*.pl
@@ -205,19 +206,19 @@ REPLACE_PYTHON+=	source4/scripting/bin/*
 .endif
 .include "../../archivers/libarchive/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
+BUILDLINK_API_DEPENDS.ldb+=	ldb>=2.0.8
 .include "../../databases/ldb/buildlink3.mk"
 .include "../../databases/lmdb/buildlink3.mk"
 .include "../../devel/cmocka/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/popt/buildlink3.mk"
 .include "../../devel/readline/buildlink3.mk"
-BUILDLINK_API_DEPENDS.talloc+=	talloc>=2.1.9
+BUILDLINK_API_DEPENDS.talloc+=	talloc>=2.2.0
 .include "../../devel/talloc/buildlink3.mk"
 .include "../../devel/tevent/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
-.include "../../net/avahi/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
 .include "../../textproc/jansson/buildlink3.mk"

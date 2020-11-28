@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.6 2019/08/11 13:20:19 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2020/08/31 18:08:50 wiz Exp $
 
-DISTNAME=	Shell-Config-Generate-0.33
+DISTNAME=	Shell-Config-Generate-0.34
 PKGNAME=	p5-${DISTNAME}
 PKGREVISION=	1
 CATEGORIES=	devel perl5
@@ -12,7 +12,8 @@ COMMENT=	Portably generate config for any shell
 LICENSE=	${PERL5_LICENSE}
 
 DEPENDS+=	p5-Shell-Guess-[0-9]*:../../devel/p5-Shell-Guess
-BUILD_DEPENDS+=	p5-Test2-Suite-[0-9]*:../../devel/p5-Test2-Suite
+TEST_DEPENDS+=	p5-Test2-Suite-[0-9]*:../../devel/p5-Test2-Suite
+TEST_DEPENDS+=	tcsh-[0-9]*:../../shells/tcsh
 
 PERL5_PACKLIST=	auto/Shell/Config/Generate/.packlist
 

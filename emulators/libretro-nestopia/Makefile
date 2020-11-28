@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2020/01/04 12:29:45 nia Exp $
+# $NetBSD: Makefile,v 1.9 2020/06/25 12:38:52 nia Exp $
 
 .include "../../emulators/nestopia/Makefile.common"
 
@@ -10,17 +10,10 @@ COMMENT=	Libretro core based on the Nestopia UE emulator
 
 BUILD_DIRS=	libretro
 
-USE_TOOLS+=	gmake
-
-MAKE_FLAGS+=	GIT_VERSION="-pkgsrc"
+LIBRETRO_CORE=	nestopia
 
 BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,-version-script=link.T
 BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,-no-undefined
 
-INSTALLATION_DIRS+=	lib/libretro
-
-do-install:
-	${INSTALL_LIB} ${WRKSRC}/libretro/nestopia_libretro.so \
-	    ${DESTDIR}${PREFIX}/lib/libretro/nestopia_libretro.so
-
+.include "../../emulators/retroarch/core.mk"
 .include "../../mk/bsd.pkg.mk"

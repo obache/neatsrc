@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2015/01/18 22:50:42 wiedi Exp $
+# $NetBSD: Makefile,v 1.7 2020/03/20 11:58:21 nia Exp $
 
 DISTNAME=	foremost-1.4
 PKGREVISION=	1

@@ -1,7 +1,7 @@
-@comment $NetBSD: PLIST,v 1.19 2019/11/06 12:28:47 wiz Exp $
+@comment $NetBSD: PLIST,v 1.21 2020/06/22 06:08:35 wiz Exp $
 bin/neomutt
 libexec/neomutt/pgpewrap
-libexec/neomutt/smime_keys
+${PLIST.smime}libexec/neomutt/smime_keys
 man/man1/neomutt.1
 man/man1/pgpewrap_neomutt.1
 man/man1/smime_keys_neomutt.1
@@ -9,7 +9,6 @@ man/man5/mbox_neomutt.5
 man/man5/mmdf_neomutt.5
 man/man5/neomuttrc.5
 share/doc/neomutt/CODE_OF_CONDUCT.md
-share/doc/neomutt/COPYRIGHT.md
 share/doc/neomutt/ChangeLog.md
 share/doc/neomutt/INSTALL.md
 share/doc/neomutt/LICENSE.md

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.4 2019/06/16 16:12:12 tsutsui Exp $
+# $NetBSD: Makefile,v 1.6 2020/09/14 16:57:38 taca Exp $
 
-DISTNAME=	pluggaloid-1.2.0
+DISTNAME=	pluggaloid-1.5.0
 CATEGORIES=	net
 
 MAINTAINER=	tsutsui@NetBSD.org
@@ -10,6 +10,8 @@ LICENSE=	mit
 
 DEPENDS+=	${RUBY_PKGPREFIX}-delayer>=1.0.0<2.0:../../devel/ruby-delayer
 DEPENDS+=	${RUBY_PKGPREFIX}-instance_storage>=1.0.0<2.0.0:../../devel/ruby-instance_storage
+
+USE_LANGUAGES=	# none
 
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

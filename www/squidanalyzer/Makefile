@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.14 2019/08/11 13:25:08 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2020/08/31 18:13:17 wiz Exp $
 
 DISTNAME=	squidanalyzer-6.6
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=squid-report/}
 
 MAINTAINER=	adam@NetBSD.org
-HOMEPAGE=	http://squidanalyzer.darold.net/
+HOMEPAGE=	https://squidanalyzer.darold.net/
 COMMENT=	Squid proxy native log analyser and reports generator
 LICENSE=	gnu-gpl-v3
 

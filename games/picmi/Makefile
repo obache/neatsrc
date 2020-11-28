@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.31 2019/11/18 10:50:16 markd Exp $
+# $NetBSD: Makefile,v 1.40 2020/08/18 17:57:57 leot Exp $
 
 DISTNAME=	picmi-${KAPPSVER}
+PKGREVISION=	2
 CATEGORIES=	games
 
 HOMEPAGE=	https://kde.org/applications/games/picmi/
@@ -9,7 +10,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/applications.mk"
 
-BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
 

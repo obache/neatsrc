@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.4 2019/08/01 09:52:52 nia Exp $
+@comment $NetBSD: PLIST,v 1.6 2020/10/19 17:48:41 nia Exp $
 bin/elixir
 bin/elixirc
 bin/iex
@@ -111,6 +111,7 @@ lib/elixir/lib/elixir/ebin/Elixir.Inspect.HashDict.beam
 lib/elixir/lib/elixir/ebin/Elixir.Inspect.HashSet.beam
 lib/elixir/lib/elixir/ebin/Elixir.Inspect.Integer.beam
 lib/elixir/lib/elixir/ebin/Elixir.Inspect.List.beam
+lib/elixir/lib/elixir/ebin/Elixir.Inspect.Macro.Env.beam
 lib/elixir/lib/elixir/ebin/Elixir.Inspect.Map.beam
 lib/elixir/lib/elixir/ebin/Elixir.Inspect.MapSet.beam
 lib/elixir/lib/elixir/ebin/Elixir.Inspect.NaiveDateTime.beam
@@ -151,6 +152,14 @@ lib/elixir/lib/elixir/ebin/Elixir.Map.beam
 lib/elixir/lib/elixir/ebin/Elixir.MapSet.beam
 lib/elixir/lib/elixir/ebin/Elixir.MatchError.beam
 lib/elixir/lib/elixir/ebin/Elixir.Module.LocalsTracker.beam
+lib/elixir/lib/elixir/ebin/Elixir.Module.ParallelChecker.beam
+lib/elixir/lib/elixir/ebin/Elixir.Module.Types.Error.beam
+lib/elixir/lib/elixir/ebin/Elixir.Module.Types.Expr.beam
+lib/elixir/lib/elixir/ebin/Elixir.Module.Types.Helpers.beam
+lib/elixir/lib/elixir/ebin/Elixir.Module.Types.Of.beam
+lib/elixir/lib/elixir/ebin/Elixir.Module.Types.Pattern.beam
+lib/elixir/lib/elixir/ebin/Elixir.Module.Types.Unify.beam
+lib/elixir/lib/elixir/ebin/Elixir.Module.Types.beam
 lib/elixir/lib/elixir/ebin/Elixir.Module.beam
 lib/elixir/lib/elixir/ebin/Elixir.NaiveDateTime.beam
 lib/elixir/lib/elixir/ebin/Elixir.Node.beam
@@ -313,15 +322,17 @@ lib/elixir/lib/logger/ebin/Elixir.Logger.App.beam
 lib/elixir/lib/logger/ebin/Elixir.Logger.BackendSupervisor.beam
 lib/elixir/lib/logger/ebin/Elixir.Logger.Backends.Console.beam
 lib/elixir/lib/logger/ebin/Elixir.Logger.Config.beam
-lib/elixir/lib/logger/ebin/Elixir.Logger.ErlangHandler.beam
-lib/elixir/lib/logger/ebin/Elixir.Logger.ErrorHandler.beam
+lib/elixir/lib/logger/ebin/Elixir.Logger.Counter.beam
+lib/elixir/lib/logger/ebin/Elixir.Logger.Filter.beam
 lib/elixir/lib/logger/ebin/Elixir.Logger.Formatter.beam
+lib/elixir/lib/logger/ebin/Elixir.Logger.Handler.beam
 lib/elixir/lib/logger/ebin/Elixir.Logger.Translator.beam
 lib/elixir/lib/logger/ebin/Elixir.Logger.Utils.beam
 lib/elixir/lib/logger/ebin/Elixir.Logger.Watcher.beam
 lib/elixir/lib/logger/ebin/Elixir.Logger.beam
 lib/elixir/lib/logger/ebin/logger.app
 lib/elixir/lib/mix/ebin/Elixir.Mix.CLI.beam
+lib/elixir/lib/mix/ebin/Elixir.Mix.Compilers.ApplicationTracer.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Compilers.Elixir.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Compilers.Erlang.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Compilers.Test.beam
@@ -359,6 +370,7 @@ lib/elixir/lib/mix/ebin/Elixir.Mix.State.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Task.Compiler.Diagnostic.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Task.Compiler.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Task.beam
+lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.App.Config.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.App.Start.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.App.Tree.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Archive.Build.beam
@@ -374,7 +386,6 @@ lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Compile.Elixir.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Compile.Erlang.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Compile.Leex.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Compile.Protocols.beam
-lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Compile.Xref.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Compile.Yecc.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Compile.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Deps.Clean.beam
@@ -407,7 +418,7 @@ lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Profile.Fprof.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Release.Init.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Release.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Run.beam
-lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Test.Cover.beam
+lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Test.Coverage.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Test.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.WillRecompile.beam
 lib/elixir/lib/mix/ebin/Elixir.Mix.Tasks.Xref.beam

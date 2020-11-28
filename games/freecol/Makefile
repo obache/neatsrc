@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2015/12/14 15:32:13 wiz Exp $
+# $NetBSD: Makefile,v 1.3 2020/03/20 11:57:41 nia Exp $
 
 DISTNAME=	freecol-0.11.6
 CATEGORIES=	games

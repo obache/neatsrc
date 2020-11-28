@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.85 2019/07/08 20:34:54 sevan Exp $
+# $NetBSD: Makefile,v 1.87 2020/05/24 21:51:54 nia Exp $
 #
 # NOTE: If you update this package, it is *mandatory* that you update
 # 	pkgsrc/pkgtools/libnbcompat/files/README to reflect the actual
 #	list of tested and supported platforms.
 #
 
-PKGNAME=		libnbcompat-20190708
+PKGNAME=		libnbcompat-20200524
 CATEGORIES=		pkgtools devel
 
 MAINTAINER=		joerg@NetBSD.org
-HOMEPAGE=		http://www.NetBSD.org/
+HOMEPAGE=		https://www.NetBSD.org/
 COMMENT=		Portable NetBSD compatibility library
 
 GNU_CONFIGURE=		yes

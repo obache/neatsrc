@@ -1,7 +1,8 @@
-$NetBSD: distinfo,v 1.6 2020/01/04 12:14:40 nia Exp $
+$NetBSD: distinfo,v 1.9 2020/10/19 17:07:22 nia Exp $
 
-SHA1 (devilutionx-1.0.0.tar.gz) = 308bc35e2e8e72cf3d1cb98f35117fc8801a66e7
-RMD160 (devilutionx-1.0.0.tar.gz) = 8900b580917a08beae3adbab2b4a01e05f568d85
-SHA512 (devilutionx-1.0.0.tar.gz) = 65eed32e03051880e2e859984911a76c6aae1853cb57491a04090026d6df9cdadf839a0dbb5433691ed1c83cfa7403c72fede38890d494ffd4eff6bef9030c37
-Size (devilutionx-1.0.0.tar.gz) = 1798349 bytes
-SHA1 (patch-3rdParty_StormLib_src_StormPort.h) = a59ea9c29a86067b908aab7e8d3e344711407e0a
+SHA1 (devilutionx-1.1.0.tar.gz) = 41329a1af38c8c30996f9730255a4172028dc80e
+RMD160 (devilutionx-1.1.0.tar.gz) = 1fd4f89b57b3d4b576e75068918803378dee8a9c
+SHA512 (devilutionx-1.1.0.tar.gz) = 341e7f2e74e7af4a7b42054b58b6518c2f286f2fdcb21c5553a15912c044ea08f6c7b07a2079e7e795a5146e7a301789fe32b6fda5ff9fbec0654d886d423b38
+Size (devilutionx-1.1.0.tar.gz) = 2271614 bytes
+SHA1 (patch-3rdParty_asio_include_asio_detail_impl_kqueue__reactor.ipp) = 1fdf31e70f72d4c4cadb76f64d06c3974e6f61d9
+SHA1 (patch-CMakeLists.txt) = 99963356afd54ca93493bd498cbd37e14a37c67a

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2012/10/31 11:17:17 asau Exp $
+# $NetBSD: Makefile,v 1.9 2020/03/20 11:57:27 nia Exp $
 
 DISTNAME=	Judy-1.0.5
 PKGNAME=	${DISTNAME:S/Judy/libjudy/}

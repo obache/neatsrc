@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.15 2019/08/11 13:23:13 wiz Exp $
+# $NetBSD: Makefile,v 1.17 2020/10/08 21:43:00 mcf Exp $
 
-DISTNAME=	Linux-Inotify2-1.22
-PKGNAME=	p5-${DISTNAME:S/22/2.2/}
-PKGREVISION=	8
+DISTNAME=	Linux-Inotify2-2.2
+PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	sysutils perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Linux/}
 

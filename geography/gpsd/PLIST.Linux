@@ -1,0 +1,2 @@
+@comment $NetBSD: PLIST.Linux,v 1.2 2020/08/18 17:37:48 gdt Exp $
+bin/ppscheck

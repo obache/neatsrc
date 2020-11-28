@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.15 2019/11/05 19:54:41 yhardy Exp $
+# $NetBSD: Makefile,v 1.17 2020/08/17 20:17:44 leot Exp $
 #
 
 DISTNAME=		WordNet-3.0
-PKGREVISION=		8
+PKGREVISION=		9
 CATEGORIES=		textproc
 MASTER_SITES=		https://wordnetcode.princeton.edu/3.0/
 
@@ -11,7 +11,7 @@ PATCH_SITES=		http://www.ocert.org/analysis/2008-014/
 PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://wordnet.princeton.edu/
+HOMEPAGE=		https://wordnet.princeton.edu/
 COMMENT=		Lexical reference system
 
 USE_PKGLOCALEDIR=	yes

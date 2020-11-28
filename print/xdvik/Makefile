@@ -1,15 +1,14 @@
-# $NetBSD: Makefile,v 1.27 2019/05/09 09:47:36 adam Exp $
+# $NetBSD: Makefile,v 1.31 2020/05/12 03:26:16 markd Exp $
 
 .include "../../print/texlive/Makefile.common"
 
-PKGNAME=	xdvik-22.87.03
-PKGREVISION=	3
+PKGNAME=	xdvik-22.87.04
 CATEGORIES=	print
 
 HOMEPAGE=	http://xdvi.sourceforge.net/
 COMMENT=	Previewer for DVI files
 
-BUILD_DEPENDS+=	tex-tetex-[0-9]*:../../print/tex-tetex
+BUILD_DEPENDS+=	tex-texlive-scripts-[0-9]*:../../print/tex-texlive-scripts
 BUILD_DEPENDS+=	tex-xdvi-[0-9]*:../../print/tex-xdvi
 DEPENDS+=	dvipsk-[0-9]*:../../print/dvipsk
 DEPENDS+=	kpathsea>=6.2.1:../../print/kpathsea
@@ -52,12 +51,15 @@ XDVI_PAPERSIZE=	a4
 .endif
 
 post-build:
+	# delete local XDvi
 	${RM} ${WRKSRC}/texmf/XDvi
 	${MKDIR} ${WRKSRC}/texmf/xdvi
+	# cp XDvi from tex-xdvi
 	${CP} ${PREFIX}/share/texmf-dist/xdvi/XDvi ${WRKSRC}/texmf/xdvi
-	${SETENV} TEXMFCONFIG=${PREFIX}/share/texmf \
-		TFC_TEXMFCONFIG=${WRKSRC}/texmf \
-		${PREFIX}/bin/texconfig xdvi paper ${XDVI_PAPERSIZE}
+	# set the pagesize
+#	${SETENV} TEXMFCONFIG=${PREFIX}/share/texmf \
+#		TFC_TEXMFCONFIG=${WRKSRC}/texmf \
+#		${PREFIX}/bin/texconfig xdvi paper ${XDVI_PAPERSIZE}
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/texmf/xdvi/XDvi \

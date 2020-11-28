@@ -1,17 +1,14 @@
-# $NetBSD: Makefile,v 1.30 2019/11/04 21:12:52 rillig Exp $
+# $NetBSD: Makefile,v 1.33 2020/08/31 18:11:06 wiz Exp $
 #
 
-DISTNAME=	ccid-1.4.27
+DISTNAME=	ccid-1.4.33
+PKGREVISION=	1
 CATEGORIES=	security
-# Note that the MASTER_SITES URL is not stable with version changes,
-# and one can end up with an old version if DISTNAME is changed but
-# not the magic number in MASTER_SITES.
-# https://alioth.debian.org/frs/?group_id=30105#title_ccid
-MASTER_SITES=	https://alioth-archive.debian.org/releases/pcsclite/ccid/1.4.27/
+MASTER_SITES=	https://ccid.apdu.fr/files/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	gdt@NetBSD.org
-HOMEPAGE=	http://pcsclite.alioth.debian.org/ccid.html
+HOMEPAGE=	https://ccid.apdu.fr/
 COMMENT=	Middleware to access a smart card using SCard API (PC/SC)
 LICENSE=	gnu-lgpl-v2.1
 
@@ -42,7 +39,7 @@ pre-configure:
 	cd ${WRKSRC} && ${SH} bootstrap
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/README ${DESTDIR}${PREFIX}/share/doc/ccid/README
+	${INSTALL_DATA} ${WRKSRC}/README.md ${DESTDIR}${PREFIX}/share/doc/ccid/README.md
 	${INSTALL_DATA} ${WRKSRC}/contrib/RSA_SecurID/RSA_SecurID_getpasswd \
 	${DESTDIR}${PREFIX}/bin/RSA_SecurID_getpasswd
 	${INSTALL_DATA} ${WRKSRC}/contrib/RSA_SecurID/RSA_SecurID_getpasswd.1 \

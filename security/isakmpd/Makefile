@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.53 2017/05/21 06:49:09 jlam Exp $
+# $NetBSD: Makefile,v 1.55 2020/05/09 12:34:16 rillig Exp $
 
 DISTNAME=		isakmpd-20030903
-PKGREVISION=		10
+PKGREVISION=		11
 CATEGORIES=		security net
 MASTER_SITES=		${MASTER_SITE_LOCAL}
 
@@ -36,7 +36,7 @@ SUBST_VARS.ssl=		BUILDLINK_PREFIX.openssl
 SUBST_CLASSES+=		cfg
 SUBST_STAGE.cfg=	pre-configure
 SUBST_MESSAGE.cfg=	Fixing references to configuration directory
-SUBST_FILES.cfg=	conf.h policy.h ike_auth.h
+SUBST_FILES.cfg=	conf.h
 SUBST_SED.cfg=		-e "s+/etc/isakmpd+${PKG_SYSCONFDIR}+g"
 
 SUBST_CLASSES+=		man

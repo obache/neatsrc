@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2017/03/04 06:26:42 taca Exp $
+# $NetBSD: Makefile,v 1.7 2020/04/26 09:33:26 taca Exp $
 #
 
 COMMENT=		Postfix SMTP server LDAP backend module

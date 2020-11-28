@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.7 2019/04/03 00:33:05 ryoon Exp $
+# $NetBSD: Makefile,v 1.14 2020/08/17 20:17:42 leot Exp $
 
 DISTNAME=	gpgme-1.11.1
 PKGNAME=	qgpgme-1.11.1
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG:=gpgme/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnupg.org/related_software/gpgme/
+HOMEPAGE=	https://www.gnupg.org/related_software/gpgme/
 COMMENT=	Qt bindings for GPGme
 LICENSE=	gnu-lgpl-v2.1
 

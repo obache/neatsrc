@@ -1,15 +1,15 @@
-# $NetBSD: Makefile.common,v 1.1 2019/09/18 15:38:40 ryoon Exp $
+# $NetBSD: Makefile.common,v 1.3 2020/10/02 16:49:37 ryoon Exp $
 #
 # used by cross/mingw-w64-i686-gcc-winpthreads/Makefile
 # used by cross/mingw-w64-x86_64-gcc-winpthreads/Makefile
 
-DISTNAME=		gcc-9.2.0
+DISTNAME=		gcc-10.2.0
 CATEGORIES=		cross
 MASTER_SITES=		${MASTER_SITE_GNU:=gcc/gcc-${PKGVERSION_NOREV}/}
 EXTRACT_SUFX=		.tar.xz
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		https://mingw-w64.org/
+HOMEPAGE=		http://mingw-w64.org/
 
 PATCHDIR=		${.CURDIR}/../../cross/mingw-w64-x86_64-gcc/patches
 DISTINFO_FILE=		${.CURDIR}/../../cross/mingw-w64-x86_64-gcc/distinfo

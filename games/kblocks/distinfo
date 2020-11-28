@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.7 2019/11/18 09:36:25 markd Exp $
+$NetBSD: distinfo,v 1.9 2020/06/09 11:56:07 markd Exp $
 
-SHA1 (kblocks-19.08.3.tar.xz) = 4cba2040d2498c75201fbeffa4692be6851e416f
-RMD160 (kblocks-19.08.3.tar.xz) = 398fa33c3ddfbe3d81248aafc038d1a989f1bb5e
-SHA512 (kblocks-19.08.3.tar.xz) = e7ea3a5bf2f9b2220db2c6df0df7bf9736cd7a3be10dfbe6cb8189f14f3c21ebe8652568d342611e1d6f2754acc1e6ef3593a33acb7655d9836bfc7240a63a53
-Size (kblocks-19.08.3.tar.xz) = 1906952 bytes
+SHA1 (kblocks-20.04.1.tar.xz) = 3e7a73121b98f54a8a25ac37c23a258d5566a9cd
+RMD160 (kblocks-20.04.1.tar.xz) = 82bb4f016403a6c458859ebecf661328d69beb01
+SHA512 (kblocks-20.04.1.tar.xz) = e16b90b2035df17392b6ce7a444e7c996778aab78d80015cd3594b88d7d19603d6f7b97cdc8819858338448c8ae8434d74181bf94e3e329d700ec7f39c8e4b41
+Size (kblocks-20.04.1.tar.xz) = 1907076 bytes

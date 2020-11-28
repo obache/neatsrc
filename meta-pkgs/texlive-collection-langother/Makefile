@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.11 2019/08/11 10:50:28 markd Exp $
+# $NetBSD: Makefile,v 1.13 2020/05/10 04:13:26 markd Exp $
 
 DISTNAME=	collection-langother
-PKGNAME=	texlive-${DISTNAME}-2019pre1
+PKGNAME=	texlive-${DISTNAME}-2020pre1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	51669
+TEXLIVE_REV=	54191
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Other languages TeX packages
 
 DEPENDS+=	texlive-collection-basic-[0-9]*:../../meta-pkgs/texlive-collection-basic
@@ -48,6 +48,7 @@ DEPENDS+=	tex-hyphen-thai-[0-9]*:../../print/tex-hyphen-thai
 DEPENDS+=	tex-hyphen-turkmen-[0-9]*:../../print/tex-hyphen-turkmen
 # depend latex-mr
 # depend latexbangla
+# depend latino-sine-flexione
 # lshort-thai is documentation only
 # lshort-vietnamese is documentation only
 # ntheorem-vn is documentation only

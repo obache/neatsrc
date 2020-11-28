@@ -1,29 +1,43 @@
-# $NetBSD: Makefile.common,v 1.9 2018/08/12 15:02:04 maya Exp $
+# $NetBSD: Makefile.common,v 1.12 2020/10/12 21:51:57 bacon Exp $
 # used by math/blas/Makefile
+# used by math/cblas/Makefile
+# used by math/lapacke/Makefile
 # used by math/lapack/Makefile
 
-DISTNAME=	lapack-3.7.1
-PKGREVISION=	1
-CATEGORIES=	math
-MASTER_SITES=	${MASTER_SITE_NETLIB:=lapack/}
-EXTRACT_SUFX=	.tgz
+# Common Makefile for packages derived from the Netlib BLAS/LAPACK sources.
+# Package Makefile sets LAPACK_COMPONENT and LAPACK_COMPONENT_CMAKE_ARGS to
+# choose the library to install.
+# LAPACK_COMPONENT can be "lapack", "lapacke", or "cblas"
 
-MAINTAINER=	adam@NetBSD.org
-HOMEPAGE=	http://www.netlib.org/lapack/
+DISTNAME=	lapack-${NETLIB_BLAS_VERSION}
+PKGNAME=	${LAPACK_COMPONENT}-${NETLIB_BLAS_VERSION}
+CATEGORIES=	math
+MASTER_SITES=	${MASTER_SITE_GITHUB:=Reference-LAPACK/}
+GITHUB_PROJECT=	lapack
+GITHUB_TAG=	v${NETLIB_BLAS_VERSION}
+
+HOMEPAGE=	https://www.netlib.org/lapack/
 LICENSE=	modified-bsd
 
-USE_LANGUAGES=		c fortran
-USE_LIBTOOL=		yes
-USE_TOOLS+=		gmake
-
-MAKE_ENV+=	BUILD_DEPRECATED=yes
-DISTINFO_FILE=	${.CURDIR}/../../math/lapack/distinfo
+# All parts are in the same section
 PATCHDIR=	${.CURDIR}/../../math/lapack/patches
+DISTINFO_FILE=	${.CURDIR}/../../math/lapack/distinfo
 
-INSTALLATION_DIRS=	lib
+USE_LANGUAGES=	c fortran
+USE_CMAKE=	yes
 
-# blas fails using the gold linker with:
-# fatal error: --sysroot=: must take a non-empty argument
-# Work around it on DragonFly by specifying the classic gnu linker
+WRKSRC=		${WRKDIR}/${DISTNAME}
+CONFIGURE_DIRS=	build
+CMAKE_ARG_PATH=	${WRKSRC}
 
-MAKE_ENV.DragonFly+=	LDVER=ld.bfd
+# Note: We patch the build to install both static and
+# shared libraries.
+CMAKE_ARGS=	-DBUILD_DEPRECATED=ON \
+		-DBUILD_SHARED_LIBS=ON \
+		-DBUILD_STATIC_LIBS=ON \
+		${LAPACK_COMPONENT_CMAKE_ARGS}
+
+.include "../../math/lapack/version.mk"
+
+post-extract:
+	${RUN} ${MKDIR} ${WRKSRC}/build

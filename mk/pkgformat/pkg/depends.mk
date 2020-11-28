@@ -1,4 +1,4 @@
-# $NetBSD: depends.mk,v 1.9 2019/04/03 18:38:16 rillig Exp $
+# $NetBSD: depends.mk,v 1.11 2020/01/14 22:22:34 rillig Exp $
 
 # This command prints out the dependency patterns for all full (run-time)
 # dependencies of the package.
@@ -11,7 +11,7 @@
 #
 #	<depends_type>	<pattern>	<directory>
 #
-# Valid dependency types are "bootstrap", "build", "test" and "full".
+# Valid dependency types are "bootstrap", "tool", "build", "test" and "full".
 #
 # ${_RDEPENDS_FILE} contains the resolved dependency information
 # for the package.  For each line in ${_DEPENDS_FILE}
@@ -98,7 +98,7 @@ _RESOLVE_DEPENDS_CMD=	\
 #	@param $dir The pkgsrc directory from which the package can be
 #		built.
 #	@param $type The dependency type. Can be one of bootstrap, tool,
-#		build, full.
+#		build, test, full.
 #
 _DEPENDS_INSTALL_CMD=							\
 	case $$type in							\

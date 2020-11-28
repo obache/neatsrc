@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.64 2018/11/12 14:40:20 jperkin Exp $
+# $NetBSD: Makefile,v 1.68 2020/08/18 17:57:39 leot Exp $
 
 DISTNAME=	sox-14.4.2
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=sox/}
 
@@ -15,7 +15,6 @@ USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--disable-gomp
 CONFIGURE_ARGS+=	--without-libltdl
 CONFIGURE_ENV+=		ac_cv_func_fmemopen=no
 

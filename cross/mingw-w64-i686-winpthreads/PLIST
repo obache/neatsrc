@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2019/09/18 15:32:47 ryoon Exp $
+@comment $NetBSD: PLIST,v 1.3 2020/10/02 16:49:36 ryoon Exp $
 cross/i686-w64-mingw32-winpthreads/mingw/bin/libwinpthread-1.dll
 cross/i686-w64-mingw32-winpthreads/mingw/include/GL/gl.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/GL/glaux.h
@@ -6,7 +6,9 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/GL/glcorearb.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/GL/glext.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/GL/glu.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/GL/glxext.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/GL/wgl.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/GL/wglext.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/KHR/khrplatform.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/_bsd_types.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/_cygwin.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/_dbdao.h
@@ -14,8 +16,6 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/_mingw.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/_mingw_dxhelper.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/_mingw_mac.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/_mingw_off_t.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/_mingw_print_pop.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/_mingw_print_push.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/_mingw_secapi.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/_mingw_stat64.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/_mingw_stdarg.h
@@ -66,9 +66,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/alg.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/alink.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/amaudio.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/amstream.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/amstream.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/amvideo.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/amvideo.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/apdevpkey.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/apiset.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/apisetcconv.h
@@ -87,7 +85,6 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/audioengineendpoint.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/audiopolicy.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/audiosessiontypes.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/austream.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/austream.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/authif.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/authz.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/aux_ulib.h
@@ -186,11 +183,15 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/compressapi.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/compstui.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/comsvcs.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/comutil.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/concurrencysal.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/confpriv.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/conio.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/control.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/cor.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/corecrt.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/corecrt_startup.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/corecrt_stdio_config.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/corecrt_wstdlib.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/corerror.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/corhdr.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/correg.h
@@ -218,28 +219,21 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/d2dbasetypes.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d2derr.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d10.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/d3d10.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d10_1.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/d3d10_1.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d10_1shader.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d10effect.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d10misc.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d10sdklayers.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/d3d10sdklayers.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d10shader.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d11.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/d3d11.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d11_1.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/d3d11_1.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d11_2.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/d3d11_2.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d11_3.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/d3d11_3.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d11_4.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/d3d11_4.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d11sdklayers.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/d3d11sdklayers.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d11shader.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/d3d12.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/d3d12shader.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d8.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d8caps.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d8types.h
@@ -248,7 +242,6 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/d3d9caps.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3d9types.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3dcaps.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3dcommon.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/d3dcommon.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3dcompiler.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3dhal.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/d3drm.h
@@ -328,6 +321,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/ntddpcm.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/ntddsnd.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/ntifs.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/ntimage.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/ntintsafe.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/ntnls.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/ntpoapi.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/ntstrsafe.h
@@ -361,6 +355,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/video.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/videoagp.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/wdm.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/wdmguid.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/wdmsec.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/wmidata.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/wmilib.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddk/ws2san.h
@@ -369,7 +364,6 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/ddraw.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddrawgdi.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddrawi.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ddstream.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/ddstream.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/debugapi.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/delayimp.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/devguid.h
@@ -387,11 +381,13 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/dhtmliid.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/digitalv.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dimm.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dinput.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/dinputd.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dir.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/direct.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dirent.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/diskguid.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dispatch.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/dispatcherqueue.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dispdib.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dispex.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dlcapi.h
@@ -404,7 +400,6 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/dmerror.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dmksctrl.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dmo.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dmodshow.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/dmodshow.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/dmoreg.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dmort.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dmplugin.h
@@ -443,6 +438,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/dssec.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dtchelp.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dvbsiparser.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dvdevcod.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/dvdif.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dvdmedia.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dvec.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dvobj.h
@@ -456,23 +452,15 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/dxerr8.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxerr9.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxfile.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxgi.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/dxgi.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxgi1_2.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/dxgi1_2.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxgi1_3.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/dxgi1_3.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxgi1_4.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/dxgi1_4.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxgi1_5.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/dxgi1_5.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxgi1_6.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/dxgi1_6.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxgicommon.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/dxgicommon.idl
+cross/i686-w64-mingw32-winpthreads/mingw/include/dxgidebug.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxgiformat.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/dxgiformat.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxgitype.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/dxgitype.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxtmpl.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxva.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/dxva2api.h
@@ -513,6 +501,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/exchform.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/excpt.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/exdisp.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/exdispid.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/expandedresources.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/fci.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/fcntl.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/fdi.h
@@ -606,6 +595,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/http.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/httpext.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/httpfilt.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/httprequestid.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/hvsocket.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/i_cryptasn1tls.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ia64reg.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/iaccess.h
@@ -693,6 +683,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/kxia64.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/l2cmn.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/libgen.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/libloaderapi.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/libloaderapi2.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/limits.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/lm.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/lmaccess.h
@@ -756,9 +747,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/mdhcp.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/mdmsg.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/mediaerr.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/mediaobj.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/mediaobj.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/medparam.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/medparam.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/mem.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/memory.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/memoryapi.h
@@ -785,7 +774,6 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/mmcobj.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/mmdeviceapi.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/mmreg.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/mmstream.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/mmstream.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/mmsystem.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/mobsync.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/moniker.h
@@ -836,6 +824,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/msinkaut.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/msinkaut_i.c
 cross/i686-w64-mingw32-winpthreads/mingw/include/msiquery.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/msoav.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/msoledbsql.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/msopc.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/msp.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/mspab.h
@@ -899,6 +888,8 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/ndhelper.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ndkinfo.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ndr64types.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ndrtypes.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/netcfgn.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/netcfgx.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/netcon.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/neterr.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/netevent.h
@@ -915,6 +906,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/nldef.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/nmsupp.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/npapi.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/nsemail.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/nserror.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/nspapi.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ntdd1394.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/ntdd8042.h
@@ -1013,6 +1005,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/powrprof.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/prnasnot.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/prnsetup.dlg
 cross/i686-w64-mingw32-winpthreads/mingw/include/prntfont.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/prntvpt.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/process.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/processenv.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/processthreadsapi.h
@@ -1053,10 +1046,8 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/pthread_signal.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/pthread_time.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/pthread_unistd.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/qedit.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/qedit.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/qmgr.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/qnetwork.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/qnetwork.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/qos.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/qos2.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/qosname.h
@@ -1130,7 +1121,6 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/scrptids.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/sddl.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/sdkddkver.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/sdks/_mingw_ddk.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/sdks/_mingw_directx.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/sdoias.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/sdpblb.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/sdperr.h
@@ -1167,6 +1157,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/share.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/shdeprecated.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/shdispid.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/shellapi.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/shellscalingapi.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/sherrors.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/shfolder.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/shldisp.h
@@ -1189,6 +1180,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/smtpguid.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/smx.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/snmp.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/softpub.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/spatialaudioclient.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/specstrings.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/sperror.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/sphelper.h
@@ -1269,6 +1261,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/textserv.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/textstor.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/threadpoolapiset.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/threadpoollegacyapiset.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/thumbcache.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/time.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/timeprov.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/timezoneapi.h
@@ -1342,12 +1335,12 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/vfw.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/vfwmsgs.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/virtdisk.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/vmr9.h
-cross/i686-w64-mingw32-winpthreads/mingw/include/vmr9.idl
 cross/i686-w64-mingw32-winpthreads/mingw/include/vsadmin.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/vsbackup.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/vsmgmt.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/vsprov.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/vss.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/vsserror.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/vsstyle.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/vssym32.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/vswriter.h
@@ -1389,6 +1382,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/winapifamily.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/winbase.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/winber.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wincodec.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/wincodecsdk.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wincon.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wincred.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wincrypt.h
@@ -1402,6 +1396,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/windows.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/windows.security.cryptography.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/windows.storage.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/windows.storage.streams.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/windows.system.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/windows.system.threading.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/windowsx.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/windowsx.h16
@@ -1410,6 +1405,9 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/winerror.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/winevt.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wingdi.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/winhttp.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/winhvemulation.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/winhvplatform.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/winhvplatformdefs.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wininet.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/winineti.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/winioctl.h
@@ -1421,6 +1419,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/winnt.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/winnt.rh
 cross/i686-w64-mingw32-winpthreads/mingw/include/winperf.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/winreg.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/winres.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/winresrc.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/winsafer.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/winsatcominterfacei.h
@@ -1494,6 +1493,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/wsdxmldom.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wshisotp.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wsipv6ok.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wsipx.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/wslapi.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wsman.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wsmandisp.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wsnetbs.h
@@ -1505,6 +1505,10 @@ cross/i686-w64-mingw32-winpthreads/mingw/include/wtsapi32.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wtypes.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/wtypesbase.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/xa.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/xapo.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/xapofx.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/xaudio2.h
+cross/i686-w64-mingw32-winpthreads/mingw/include/xaudio2fx.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/xcmc.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/xcmcext.h
 cross/i686-w64-mingw32-winpthreads/mingw/include/xcmcmsx2.h
@@ -1553,6 +1557,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/libavicap32.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libavifil32.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libavrt.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libbcrypt.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libbluetoothapis.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libbootvid.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libbrowcli.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libbthprops.a
@@ -1575,7 +1580,9 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/libcryptxml.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libcscapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libctl3d32.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libd2d1.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libd3d10.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libd3d11.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libd3d12.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libd3d8.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libd3d9.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libd3dcompiler.a
@@ -1640,6 +1647,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/libdavclnt.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libdavhlpr.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libdbgeng.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libdbghelp.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libdcomp.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libddraw.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libdelayimp.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libdevmgr.a
@@ -1651,6 +1659,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/libdhcpcsvc6.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libdhcpsapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libdinput.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libdinput8.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libdismapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libdlcapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libdmoguids.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libdnsapi.a
@@ -1697,6 +1706,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/libhal.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libhid.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libhidclass.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libhidparse.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libhtmlhelp.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libhttpapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libicmui.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libigmpagnt.a
@@ -1706,6 +1716,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/libiphlpapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libiscsidsc.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libkernel32.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libks.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libksecdd.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libksguid.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libksproxy.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libksuser.a
@@ -1720,12 +1731,14 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/libmcd.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmf.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmfcuia32.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmfplat.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libmfreadwrite.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmfuuid.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmgmtapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmincore.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmingw32.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmingwex.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmingwthrd.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libmmdevapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmoldname.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmpr.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmprapi.a
@@ -1740,6 +1753,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/libmshtml.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmshtmled.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmsi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmsimg32.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libmsoledbsql.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmstask.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmsvcp120_app.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libmsvcp60.a
@@ -1760,11 +1774,13 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/libnddeapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libndfapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libndis.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libnetapi32.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libnetio.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libnetjoin.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libnetutils.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libnewdev.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libnormaliz.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libntdll.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libntdllcrt.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libntdsapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libntmsapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libntoskrnl.a
@@ -1789,6 +1805,8 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/libpenwin32.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libpkpd32.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libportabledeviceguids.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libpowrprof.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libprntvpt.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libpropsys.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libpsapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libpthread.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libpthread.dll.a
@@ -1804,7 +1822,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/librpcdiag.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/librpchttp.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/librpcns4.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/librpcrt4.a
-cross/i686-w64-mingw32-winpthreads/mingw/lib/librstrmgr.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/librstrtmgr.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/librtm.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/librtutils.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libruntimeobject.a
@@ -1819,6 +1837,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/libsecur32.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libsecurity.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libsensorsapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libsetupapi.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libshcore.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libshell32.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libshfolder.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libshlwapi.a
@@ -1841,6 +1860,7 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/libtdh.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libtdi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libtxfw32.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libucrt.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libucrtapp.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libucrtbase.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/liburl.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/liburlmon.a
@@ -1870,11 +1890,13 @@ cross/i686-w64-mingw32-winpthreads/mingw/lib/libwdsimage.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libwdstptc.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libwdsupgcompl.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libwdsutil.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libwebsocket.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libwecapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libwer.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libwevtapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libwevtfwd.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libwiadss.a
+cross/i686-w64-mingw32-winpthreads/mingw/lib/libwimgapi.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libwin32k.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libwin32spl.a
 cross/i686-w64-mingw32-winpthreads/mingw/lib/libwindowsapp.a

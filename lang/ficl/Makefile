@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2015/03/17 14:08:48 jperkin Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/20 11:57:55 nia Exp $
 
 DISTNAME=	ficl-4.1.0
 CATEGORIES=	lang

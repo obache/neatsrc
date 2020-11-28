@@ -1,12 +1,14 @@
-# $NetBSD: Makefile,v 1.10 2016/03/05 11:29:20 jperkin Exp $
+# $NetBSD: Makefile,v 1.13 2020/04/24 11:41:37 nia Exp $
 #
 
 VERSION=		0.1.8
 DISTNAME=		engine_pkcs11-${VERSION}
 PKGNAME=		${DISTNAME:S/_/-/}
-PKGREVISION=		5
+PKGREVISION=		6
 CATEGORIES=		security
 MASTER_SITES=		https://github.com/OpenSC/engine_pkcs11/archive/
+
+BROKEN=			"Fails to build with OpenSSL 1.1"
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		https://github.com/OpenSC/OpenSC/wiki/OpenSSL-engine-for-PKCS%2311-modules
@@ -14,8 +16,6 @@ COMMENT=		PKCS\#11 engine for OpenSSL
 LICENSE=		original-bsd
 
 WRKSRC=			${WRKDIR}/engine_pkcs11-engine_pkcs11-${VERSION}
-
-BUILDLINK_API_DEPENDS.openssl+=	openssl>=0.9.7
 
 USE_TOOLS+=		autoconf automake gmake pkg-config
 GNU_CONFIGURE=		yes

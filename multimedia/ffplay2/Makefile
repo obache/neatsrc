@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.20 2018/03/12 11:17:11 wiz Exp $
+# $NetBSD: Makefile,v 1.24 2020/08/17 20:19:37 leot Exp $
 
 PKGNAME=	${DISTNAME:S/ffmpeg/ffplay2/}
-PKGREVISION=	2
+PKGREVISION=	1
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ffmpeg.mplayerhq.hu/
+HOMEPAGE=	https://ffmpeg.org/
 COMMENT=	Simple SDL frontend for FFmpeg
 
 DISTINFO_FILE=		${.CURDIR}/../ffmpeg2/distinfo

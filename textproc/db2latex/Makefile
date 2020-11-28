@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.19 2014/10/09 14:07:01 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2020/03/20 11:58:25 nia Exp $
 
 DISTNAME=	db2latex-xsl-0.8pre1
 PKGNAME=	${DISTNAME:S/xsl-//}

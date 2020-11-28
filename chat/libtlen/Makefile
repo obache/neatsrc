@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2018/03/06 15:17:03 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2020/01/26 05:26:16 rillig Exp $
 
 DISTNAME=	libtlen-20041113
 PKGREVISION=	2

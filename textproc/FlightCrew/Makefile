@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.52 2019/08/22 12:23:49 ryoon Exp $
+# $NetBSD: Makefile,v 1.58 2020/08/17 20:20:12 leot Exp $
 
 DISTNAME=	FlightCrew-0.7.2-Code
 PKGNAME=	${DISTNAME:S/-Code//}
-PKGREVISION=	39
+PKGREVISION=	44
 CATEGORIES=	textproc
 MASTER_SITES=	http://flightcrew.googlecode.com/files/
 EXTRACT_SUFX=	.zip
@@ -27,15 +27,6 @@ SUBST_MESSAGE.fix-damaged=	fixing
 SUBST_FILES.fix-damaged=	src/FlightCrew/tests/misc_tests/ConvertUtf8PathToBoostPath_test.cpp
 SUBST_SED.fix-damaged+=		-e "2,2s/^/\//" # commented-out
 SUBST_SED.fix-damaged+=		-e "1,1d" # deleted
-
-SUBST_CLASSES+=		d2u
-SUBST_STAGE.d2u=	post-extract
-SUBST_MESSAGE.d2u=	Removing CR end-of-line markers.
-SUBST_FILES.d2u=	CMakeLists.txt
-SUBST_FILES.d2u+=	src/FlightCrew/CMakeLists.txt
-SUBST_FILES.d2u+=	src/FlightCrew/tests/CMakeLists.txt
-SUBST_FILES.d2u+=	src/FlightCrew/Validators/Opf/ReachabilityAnalysis.cpp
-SUBST_FILTER_CMD.d2u=	${TR} -d '\r'
 
 post-extract:
 	${RM} -rf ${WRKDIR}/src/BoostParts ${WRKDIR}/src/Xerces ${WRKDIR}/src/zlib ${WRKDIR}/src/googlemock

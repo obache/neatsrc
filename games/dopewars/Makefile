@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.72 2019/07/21 22:24:49 wiz Exp $
+# $NetBSD: Makefile,v 1.77 2020/08/17 20:18:43 leot Exp $
 
 DISTNAME=	dopewars-1.5.12
-PKGREVISION=	31
+PKGREVISION=	34
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=dopewars/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://dopewars.sourceforge.net/
+HOMEPAGE=	https://dopewars.sourceforge.io/
 COMMENT=	Make a fortune dealing drugs on the streets of New York
 
 USE_LIBTOOL=		yes

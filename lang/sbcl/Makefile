@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.84 2019/11/10 16:58:31 he Exp $
+# $NetBSD: Makefile,v 1.89 2020/08/13 07:24:41 wiz Exp $
 
 DISTNAME=		${PKGNAME_NOREV}-source
-PKGNAME=		sbcl-1.5.7
-PKGREVISION=		2
+PKGNAME=		sbcl-2.0.7
 CATEGORIES=		lang
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=sbcl/}
 EXTRACT_SUFX=		.tar.bz2
@@ -10,6 +9,7 @@ EXTRACT_SUFX=		.tar.bz2
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.sbcl.org/
 COMMENT=		SBCL, a Common Lisp implementation
+LICENSE=		mit
 
 # SBCL creates a new release with minor updates and fixes every
 # month.  The maintainer of this package does not have the time
@@ -28,7 +28,7 @@ WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
 # Bootstrap section.
 #
 # SBCL needs an existing Common Lisp system to build it...
-# Currently allowed systems are CLISP, CMUCL, OpenMCL, and SBCL itself.
+# Currently allowed systems are CLISP, CMUCL, OpenMCL, ABCL and SBCL itself.
 #
 #  If SBCL is installed in an unusual place when trying to build this
 #  package, you may need to set the full path in SBCL_BOOT_SYSTEM and
@@ -38,6 +38,7 @@ WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
 #SBCL_BOOT_SYSTEM=	"lisp -batch"		# CMUCL
 #SBCL_BOOT_SYSTEM=	"openmcl --batch"	# OpenMCL
 #SBCL_BOOT_SYSTEM=	sbcl			# SBCL
+#SBCL_BOOT_SYSTEM=	abcl			# ABCL
 
 .if !defined(SBCL_BOOT_SYSTEM)
 # Use "clisp -ansi -on-error abort" to make the build more reproducible,
@@ -45,33 +46,28 @@ WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
 SBCL_BOOT_SYSTEM=	clisp -norc -ansi -on-error abort
 BUILD_DEPENDS+=		clisp-[0-9]*:../../lang/clisp
 UNLIMIT_RESOURCES=	datasize
-.elif ${SBCL_BOOT_SYSTEM} == clisp
-BUILD_DEPENDS+=		clisp-[0-9]*:../../lang/clisp
-UNLIMIT_RESOURCES=	datasize
-.elif ${SBCL_BOOT_SYSTEM} == sbcl
-# Get bootstrap version:
-BUILD_DEPENDS+=		sbcl-[0-9]*:../../lang/sbcl
+.elif ${SBCL_BOOT_SYSTEM} == abcl
+BUILD_DEPENDS+=		abcl-[0-9]*:../../lang/abcl
 .endif
 
 SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		pre-configure
 SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
-SUBST_FILES.fix-paths=		install.sh src/runtime/runtime.c doc/sbcl.1
+SUBST_FILES.fix-paths=		doc/sbcl.1
 SUBST_VARS.fix-paths=		PREFIX
 SUBST_SED.fix-paths+=		-e 's,/var/log,${VARBASE}/log,g'
-
-SUBST_CLASSES+=			fix-gtar
-SUBST_STAGE.fix-gtar=		pre-configure
-SUBST_MESSAGE.fix-gtar=		Fixing GNU tar references.
-SUBST_FILES.fix-gtar=		contrib/asdf-install/installer.lisp
-SUBST_VARS.fix-gtar=		GTAR
 
 SUBST_CLASSES+=			fix-bins
 SUBST_STAGE.fix-bins=		pre-configure
 SUBST_FILES.fix-bins=		src/runtime/Config.x86-64-sunos
 SUBST_FILES.fix-bins+=		src/runtime/Config.x86-sunos
+SUBST_FILES.fix-bins+=		contrib/asdf-module.mk
 SUBST_SED.fix-bins=		-e 's,nm ,/usr/bin/nm ,'
 SUBST_SED.fix-bins+=		-e 's,ggrep,grep,'
+SUBST_SED.fix-bins+=		-e 's,=199506L,=200112L,'
+SUBST_SED.fix-bins+=		-e 's,=500,=600,'
+
+BUILD_DEFS+=			VARBASE
 
 .if defined(TOOLS_PLATFORM.paxctl)
 SBCL_PAXCTL=	${PAXCTL} +m
@@ -80,7 +76,7 @@ MAKE_ENV+=	SBCL_PAXCTL=${SBCL_PAXCTL:Q}
 
 INSTALL_ENV+=	BUILD_ROOT=${DESTDIR:Q}
 INSTALL_ENV+=	INSTALL_ROOT=${PREFIX:Q}
-INSTALL_ENV+=	MAN_DIR=${PREFIX:Q}/${PKGMANDIR} 
+INSTALL_ENV+=	MAN_DIR=${PREFIX:Q}/${PKGMANDIR}
 
 NOT_PAX_MPROTECT_SAFE+=	bin/sbcl
 

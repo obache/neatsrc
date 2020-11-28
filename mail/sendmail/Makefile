@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.134 2019/12/03 18:51:02 bouyer Exp $
+# $NetBSD: Makefile,v 1.138 2020/05/16 15:36:24 rillig Exp $
 
 PKGNAME=	sendmail-${DIST_VERS}
-PKGREVISION=	6
+PKGREVISION=	9
 COMMENT=	The well known Mail Transport Agent
 
 CONFLICTS+=	courier-mta-[0-9]* fastforward>=0.51nb2 postfix-[0-9]*
@@ -76,6 +76,7 @@ SUBST_SED.cf-paths+=	-e "s|/var/run|${VARBASE}/run|g"
 SUBST_SED.cf-paths+=	-e "s|/usr/libexec|${PREFIX}/libexec/sendmail|g"
 SUBST_SED.cf-paths+=	-e "s|/usr/lib|${PREFIX}/libexec/sendmail|g"
 SUBST_SED.cf-paths+=	-e "s|/system/volatile|${VARBASE}/run|g"
+SUBST_NOOP_OK.cf-paths=	yes # some files contain only /var
 
 REPLACE_PERL=		contrib/socketmapClient.pl contrib/socketmapServer.pl
 

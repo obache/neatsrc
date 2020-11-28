@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2019/11/24 09:02:56 ryoon Exp $
+# $NetBSD: Makefile,v 1.27 2020/01/26 05:26:22 rillig Exp $
 #
 
 DISTNAME=	check-0.13.0

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2019/08/20 21:50:56 nils Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/22 05:47:52 rillig Exp $
 
 DISTNAME=	dehydrated-0.6.5
 CATEGORIES=	security

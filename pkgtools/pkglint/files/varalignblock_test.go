@@ -218,7 +218,7 @@ func (vt *VaralignTester) checkTestName() {
 	}
 
 	vt.tester.CheckDeepEquals(descriptorsString(actual), descriptorsString(expected))
-	vt.tester.CheckDeepEquals(actual, expected)
+	vt.tester.CheckDeepEquals(expected, actual)
 }
 
 func (s *Suite) Test_VaralignBlock__var_none_value(c *check.C) {
@@ -2063,6 +2063,53 @@ func (s *Suite) Test_VaralignBlock__var_tab_value63_space_cont_tab8_value71_spac
 	vt.Run()
 }
 
+func (s *Suite) Test_VaralignBlock__var8_tabs80_cont_tab_value_tabs72_cont_tab_value_tabs72_cont_tab_value9(c *check.C) {
+	vt := NewVaralignTester(s, c)
+	vt.Input(
+		"VAR...7=\t\t\t\t\t\t\t\t\t\\",
+		"\t.\t\t\t\t\t\t\t\t\\",
+		"\t.\t\t\t\t\t\t\t\t\\",
+		"\t.")
+	vt.InputDetab(
+		"VAR...7=                                                                        \\",
+		"        .                                                               \\",
+		"        .                                                               \\",
+		"        .")
+	vt.Diagnostics(
+		"NOTE: Makefile:1: The continuation backslash should be in column 73, not 81.")
+	vt.Autofixes(
+		"AUTOFIX: Makefile:1: Replacing \"\\t\\t\\t\\t\\t\\t\\t\\t\\t\" with \"\\t\\t\\t\\t\\t\\t\\t\\t\".")
+	vt.Fixed(
+		"VAR...7=                                                                \\",
+		"        .                                                               \\",
+		"        .                                                               \\",
+		"        .")
+	vt.Run()
+}
+
+// Up to 2020-01-27, pkglint removed all spaces before the backslash,
+// which was against the rule of having at least one space.
+func (s *Suite) Test_VaralignBlock__right_margin(c *check.C) {
+	vt := NewVaralignTester(s, c)
+	vt.Input(
+		"CONFIGURE_ARGS+=\t\\",
+		"\t.....................................................................79\t\\",
+		"\t............................................................70 \t\t\\",
+		"\t........................................................66")
+	vt.Diagnostics(
+		"NOTE: Makefile:2: The continuation backslash should be preceded by a single space.",
+		"NOTE: Makefile:3: The continuation backslash should be in column 73, not 81.")
+	vt.Autofixes(
+		"AUTOFIX: Makefile:2: Replacing \"\\t\" with \" \".",
+		"AUTOFIX: Makefile:3: Replacing \" \\t\\t\" with \"\\t\".")
+	vt.Fixed(
+		"CONFIGURE_ARGS+=        \\",
+		"        .....................................................................79 \\",
+		"        ............................................................70  \\",
+		"        ........................................................66")
+	vt.Run()
+}
+
 // Up to 2018-01-27, it could happen that some source code was logged
 // without a corresponding diagnostic. This was unintended and confusing.
 func (s *Suite) Test_VaralignBlock__fix_without_diagnostic(c *check.C) {
@@ -3111,11 +3158,28 @@ func (s *Suite) Test_VaralignBlock_Finish__continuation_beyond_right_margin(c *c
 }
 
 func (s *Suite) Test_varalignLine_realignDetails(c *check.C) {
-	t := s.Init(c)
+	vt := NewVaralignTester(s, c)
 
-	// FIXME
-
-	t.CheckOutputEmpty()
+	// Just a random example to exercise some of the code paths,
+	// with no particular intention.
+	vt.Input(
+		"VAR=\t\tvalue",
+		"VAR= \\",
+		"\t\t    ..24 \\",
+		"\t..12")
+	vt.Diagnostics(
+		"NOTE: Makefile:2: This variable value should be aligned "+
+			"with tabs, not spaces, to column 17 instead of 6.",
+		"NOTE: Makefile:3: This continuation line should be indented with \"\\t\\t\".")
+	vt.Autofixes(
+		"AUTOFIX: Makefile:2: Replacing \" \" with \"\\t\\t\".",
+		"AUTOFIX: Makefile:3: Replacing \"\\t\\t    \" with \"\\t\\t\".")
+	vt.Fixed(
+		"VAR=            value",
+		"VAR=            \\",
+		"                ..24 \\",
+		"        ..12")
+	vt.Run()
 }
 
 func (s *Suite) Test_VaralignSplitter_split(c *check.C) {
@@ -3285,7 +3349,7 @@ func (s *Suite) Test_VaralignSplitter_split(c *check.C) {
 	// as usual.
 	//
 	// 2. It is a continuation of the value, and therefore the value ends
-	// here; everything after this line is part of the trailing comment.
+	// here; everything below this line is part of the trailing comment.
 	//
 	// The character that follows the comment character decides which
 	// interpretation is used. A space makes the comment a trailing
@@ -3543,13 +3607,9 @@ func (s *Suite) Test_varalignLine_alignValueSingle(c *check.C) {
 			info.alignValueSingle(column)
 
 			t.CheckEqualsf(
-				mkline.raw[0].Text(), after,
+				mkline.RawText(0), after,
 				"Line.raw.text, autofix=%v", autofix)
-
-			// As of 2019-12-11, the info fields are not updated
-			// accordingly, but they should.
-			// FIXME: update info accordingly
-			t.CheckEqualsf(info.String(), before,
+			t.CheckEqualsf(info.String(), after,
 				"info.String, autofix=%v", autofix)
 		}
 
@@ -3701,14 +3761,14 @@ func (s *Suite) Test_varalignLine_alignValueInitial(c *check.C) {
 			assert(len(mklines.mklines) == 1)
 			mkline := mklines.mklines[0]
 
-			text := mkline.raw[0].Text()
+			text := mkline.RawText(0)
 			parts := NewVaralignSplitter().split(text, true)
 			info := &varalignLine{mkline, 0, false, parts}
 
 			info.alignValueInitial(column)
 
 			t.CheckEqualsf(
-				mkline.raw[0].Text(), after,
+				mkline.RawText(0), after,
 				"Line.raw.text, autofix=%v", autofix)
 
 			t.CheckEqualsf(info.String(), after,
@@ -3808,7 +3868,7 @@ func (s *Suite) Test_varalignLine_alignValueMultiFollow(c *check.C) {
 
 	// newLine creates a line consisting of either 2 or 3 physical lines.
 	// The given text ends up in the raw line with index 1.
-	newLine := func(text string, column, indentDiff int) (*varalignLine, *RawLine) {
+	newLine := func(text string, column, indentDiff int) (*varalignLine, *MkLine) {
 		t.CheckDotColumns("", text)
 
 		leading := alignWith("VAR=", indent(column)) + "value \\"
@@ -3822,18 +3882,18 @@ func (s *Suite) Test_varalignLine_alignValueMultiFollow(c *check.C) {
 		mkline := mklines.mklines[0]
 
 		parts := NewVaralignSplitter().split(text, false)
-		return &varalignLine{mkline, 1, false, parts}, mkline.raw[1]
+		return &varalignLine{mkline, 1, false, parts}, mkline
 	}
 
 	test := func(before string, column, indentDiff int, after string, diagnostics ...string) {
 
 		doTest := func(autofix bool) {
-			info, raw := newLine(before, column, indentDiff)
+			info, mkline := newLine(before, column, indentDiff)
 			width := imax(column, info.valueColumn()+indentDiff)
 
 			info.alignValueMultiFollow(width)
 
-			t.CheckEquals(raw.Text(), after)
+			t.CheckEquals(mkline.RawText(1), after)
 		}
 
 		t.ExpectDiagnosticsAutofix(
@@ -4087,14 +4147,14 @@ func (s *Suite) Test_varalignLine_alignValue(c *check.C) {
 			assert(len(mklines.mklines) == 1)
 			mkline := mklines.mklines[0]
 
-			text := mkline.raw[0].Text()
+			text := mkline.RawText(0)
 			parts := NewVaralignSplitter().split(text, true)
 			info := &varalignLine{mkline, 0, false, parts}
 
 			info.alignValue(column)
 
 			t.CheckEqualsf(
-				mkline.raw[0].Text(), after,
+				mkline.RawText(0), after,
 				"Line.raw.text, autofix=%v", autofix)
 
 			t.CheckEqualsf(info.String(), after,
@@ -4114,7 +4174,7 @@ func (s *Suite) Test_varalignLine_alignValue(c *check.C) {
 			assert(len(mklines.mklines) == 1)
 			mkline := mklines.mklines[0]
 
-			text := mkline.raw[0].Text()
+			text := mkline.RawText(0)
 			parts := NewVaralignSplitter().split(text, true)
 			info := &varalignLine{mkline, 0, false, parts}
 
@@ -4122,7 +4182,7 @@ func (s *Suite) Test_varalignLine_alignValue(c *check.C) {
 				func() { info.alignValue(column) })
 
 			t.CheckEqualsf(
-				mkline.raw[0].Text(), before,
+				mkline.RawText(0), before,
 				"Line.raw.text, autofix=%v", autofix)
 
 			t.CheckEqualsf(info.String(), before,
@@ -4201,14 +4261,14 @@ func (s *Suite) Test_varalignLine_alignContinuation(c *check.C) {
 			assert(len(mklines.mklines) == 1)
 			mkline := mklines.mklines[0]
 
-			text := mkline.raw[rawIndex].Text()
+			text := mkline.RawText(rawIndex)
 			parts := NewVaralignSplitter().split(text, rawIndex == 0)
 			info := &varalignLine{mkline, rawIndex, false, parts}
 
 			info.alignContinuation(valueColumn, rightMarginColumn)
 
 			t.CheckEqualsf(
-				mkline.raw[rawIndex].Text(), after,
+				mkline.RawText(rawIndex), after,
 				"Line.raw.text, autofix=%v", autofix)
 
 			t.CheckEqualsf(info.String(), after,
@@ -4368,15 +4428,42 @@ func (s *Suite) Test_varalignLine_alignContinuation(c *check.C) {
 func (s *Suite) Test_varalignLine_replaceSpaceBeforeValue(c *check.C) {
 	t := s.Init(c)
 
-	// FIXME
+	t.SetUpCommandLine("--autofix", "--show-autofix")
+	mklines := t.NewMkLines("filename.mk",
+		"VAR=  \t  value")
+	line := mklines.lines.Lines[0]
+	parts := NewVaralignSplitter().split(line.RawText(0), true)
+	info := varalignLine{line, 0, false, parts}
+	fix := line.Autofix()
+	fix.Warnf("Warning.")
 
-	t.CheckOutputEmpty()
+	info.replaceSpaceBeforeValue(fix, "\t\t")
+	fix.Apply()
+
+	t.CheckOutputLines(
+		"WARN: filename.mk:1: Warning.",
+		"AUTOFIX: filename.mk:1: Replacing \"  \\t  \" with \"\\t\\t\".")
 }
 
 func (s *Suite) Test_varalignLine_replaceSpaceBeforeContinuationSilently(c *check.C) {
 	t := s.Init(c)
 
-	// FIXME
+	t.SetUpCommandLine("--autofix", "--show-autofix")
+	mklines := t.NewMkLines("filename.mk",
+		"VAR=  \t  value   \\",
+		"\\tend")
+	line := mklines.lines.Lines[0]
+	parts := NewVaralignSplitter().split(line.RawText(0), true)
+	info := varalignLine{line, 0, false, parts}
+	fix := line.Autofix()
+	fix.Warnf("Warning.")
+
+	info.replaceSpaceBeforeContinuationSilently(fix, 32)
+	fix.Apply()
+
+	t.CheckOutputLines(
+		"WARN: filename.mk:1: Warning.",
+		"AUTOFIX: filename.mk:1: Replacing \"   \\\\\" with \"\\t\\t\\t\\\\\".")
 
 	t.CheckOutputEmpty()
 }

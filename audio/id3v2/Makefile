@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.26 2014/10/09 14:05:56 wiz Exp $
+# $NetBSD: Makefile,v 1.28 2020/01/26 05:26:10 rillig Exp $
 
 DISTNAME=	id3v2-0.1.12
 CATEGORIES=	audio

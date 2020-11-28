@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.24 2019/11/03 17:04:27 rillig Exp $
+# $NetBSD: Makefile,v 1.26 2020/03/20 11:58:02 nia Exp $
 #
 
 DISTNAME=		routeplanner_0.11

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2016/04/20 12:10:28 nros Exp $
+# $NetBSD: Makefile,v 1.10 2020/01/26 05:26:11 rillig Exp $
 #
 
 DISTNAME=	sidplay-libs-2.1.1

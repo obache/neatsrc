@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.1 2019/11/18 17:03:14 adam Exp $
+$NetBSD: distinfo,v 1.4 2020/07/09 08:36:39 adam Exp $
 
-SHA1 (pyobjc-framework-MetalKit-6.1.tar.gz) = 1658f6fd0ddc276cdb0e3d0e955743a37957d923
-RMD160 (pyobjc-framework-MetalKit-6.1.tar.gz) = 9af0fb620099eb6c18e68a7566c9e2a6aee74a2d
-SHA512 (pyobjc-framework-MetalKit-6.1.tar.gz) = 2dbc8d22dfbeac71ba71ed30281c469156f9a0a350971a7a0d63f68ed3b3751a56185c246845ddfa4495c73443b93b05367dbe184c08c294cfc4343141a3391c
-Size (pyobjc-framework-MetalKit-6.1.tar.gz) = 20596 bytes
+SHA1 (pyobjc-framework-MetalKit-6.2.2.tar.gz) = 58d639f6ad98b29a69814a388b1c444cf610f7f5
+RMD160 (pyobjc-framework-MetalKit-6.2.2.tar.gz) = 4a1ff401c3982cbbda7974ea6d47bbedb3413b60
+SHA512 (pyobjc-framework-MetalKit-6.2.2.tar.gz) = 6b115cf9a3ba22ae7973012804e8a1d09f2d293702888526b68dfeeb855150686309a774daaae875a5a132a75b5ed1d4a0d70d05506b2011102ea5756735b61a
+Size (pyobjc-framework-MetalKit-6.2.2.tar.gz) = 20777 bytes

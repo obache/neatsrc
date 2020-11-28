@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.12 2019/07/21 22:26:00 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2020/08/17 20:20:29 leot Exp $
 
 DISTNAME=	lxappearance-0.6.3
-PKGREVISION=	3
+PKGREVISION=	6
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=lxde/}
 EXTRACT_SUFX=	.tar.xz
@@ -14,7 +14,6 @@ LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	XSLTPROC=${PREFIX}/bin/xsltproc
-CONFIGURE_ARGS+=	--disable-static
 CONFIGURE_ARGS+=	--enable-dbus
 USE_LIBTOOL=		yes
 USE_TOOLS+=		intltool pkg-config msgfmt

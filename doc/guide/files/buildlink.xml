@@ -1,4 +1,5 @@
-<!-- $NetBSD: buildlink.xml,v 1.41 2017/06/29 14:22:49 leot Exp $ -->
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $NetBSD: buildlink.xml,v 1.44 2020/08/20 13:31:58 bacon Exp $ -->
 
 <chapter id="buildlink">
   <title>Buildlink methodology</title>
@@ -232,11 +233,11 @@ BUILDLINK_TREE+=        -tiff
       <itemizedlist>
 	<listitem>
 	  <para><varname>BUILDLINK_API_DEPENDS.<replaceable>pkg</replaceable></varname>
-	  is the actual dependency recorded in the installed
+	  is the dependency version recorded in the installed
 	  package; this should always be set using
 	  <command>+=</command> to ensure that
 	  we're appending to any pre-existing list of values.  This
-	  variable should be set to the first version of the
+	  variable should be set to the last version of the
 	  package that had an backwards-incompatible API change.
 	  </para>
 	</listitem>
@@ -379,43 +380,58 @@ BUILDLINK_TREE+=        -tiff
       <varname>BUILDLINK_ABI_DEPENDS.<replaceable>pkg</replaceable></varname>
       in <filename>buildlink3.mk</filename> files</title>
 
-      <para>These two variables differ in that one describes source
+      <para>Both variables set lower bounds for a version of this package.
+      The two variables differ in that one describes source
       compatibility (API) and the other binary compatibility (ABI).
       The difference is that a change in the API breaks compilation of
       programs while changes in the ABI stop compiled programs from
       running.</para>
 
-      <para>Changes to the
+      <para>The
       <varname>BUILDLINK_API_DEPENDS.<replaceable>pkg</replaceable></varname>
-      variable in a <filename>buildlink3.mk</filename> file happen
-      very rarely. One possible reason is that all packages depending
-      on this already need a newer version. In case it is bumped see
-      the description below.</para>
+      variable in a <filename>buildlink3.mk</filename> should be
+      changed very rarely.  (One possible scenario: If all packages
+      using this package need a higher version than defined in the
+      <filename>buildlink3.mk</filename>,
+      <varname>BUILDLINK_API_DEPENDS.<replaceable>pkg</replaceable></varname>
+      could be updated to that higher version.)</para>
 
-      <para>The most common example of an ABI change is that the major
-      version of a shared library is increased. In this case,
+      <para>On the other hand, changes to
       <varname>BUILDLINK_ABI_DEPENDS.<replaceable>pkg</replaceable></varname>
-      should be adjusted to require at least the new package version.
-      Then the packages that depend on this package need their
-      <varname>PKGREVISION</varname>s increased and, if they have
-      <filename>buildlink3.mk</filename> files, their
-      <varname>BUILDLINK_ABI_DEPENDS.<replaceable>pkg</replaceable></varname>
-      adjusted, too. This is needed so pkgsrc will require the correct
-      package dependency and not settle for an older one when building
-      the source.</para>
+      are more common.  The variable will need to be updated every
+      time the major version of one of its shared libraries is changed,
+      or any other change where a binary built against the previous
+      version of the package will not run against the new version any
+      longer.</para>
 
-      <para>See <xref linkend="dependencies"/> for
-      more information about dependencies on other packages,
-      including the <varname>BUILDLINK_ABI_DEPENDS</varname> and
-      <varname>ABI_DEPENDS</varname> definitions.</para>
+      <para>In such a case, the package's
+      <varname>BUILDLINK_ABI_DEPENDS.<replaceable>pkg</replaceable></varname>
+      must be increased to require the new package version.  Then the
+      <varname>PKGREVISION</varname> of all packages
+      <replaceable>foo</replaceable> that depend on this package need
+      to be increased, and if they have
+      <filename>buildlink3.mk</filename> files,
+      <varname>BUILDLINK_ABI_DEPENDS.<replaceable>foo</replaceable></varname>
+      in their <filename>buildlink3.mk</filename> files must be
+      increased to the new version as well. This is required so that a
+      package will pull in the versions of the packages that use the
+      new ABI and that the packages' <varname>PKGREVISION</varname>s
+      uniquely identify the packages built against the new ABI. The
+      <filename role="pkg">pkgtools/revbump</filename> package can
+      help with these updates.</para>
+
+      <para>See <xref linkend="dependencies"/> for more information
+      about dependencies on other packages, including the
+      <varname>BUILDLINK_API_DEPENDS</varname> definitions.</para>
 
       <para>Please take careful consideration before adjusting
       <varname>BUILDLINK_API_DEPENDS.<replaceable>pkg</replaceable></varname>
       or
       <varname>BUILDLINK_ABI_DEPENDS.<replaceable>pkg</replaceable></varname>
-      as we don't want to cause unneeded package deletions and
-      rebuilds.  In many cases, new versions of packages work just
-      fine with older dependencies.</para>
+      in a <filename>buildlink3.mk</filename> file as we don't want to
+      cause unneeded package deletions and rebuilds.  In many cases,
+      new versions of packages work just fine with older
+      dependencies.</para>
 
       <para>Also it is not needed to set
       <varname>BUILDLINK_ABI_DEPENDS.<replaceable>pkg</replaceable></varname>
@@ -586,16 +602,39 @@ PREFER_NATIVE=  getopt skey tcp_wrappers
       file to be listed in <varname>PREFER_NATIVE</varname>,
       otherwise it is simply ignored in that list.</para>
 
-      <para>Setting <varname>PREFER_NATIVE</varname> should be performed
-      straight after bootstrap and <varname>PREFER_PKGSRC</varname> during
-      bootstrap.
+      <para><varname>PREFER_PKGSRC</varname> and
+      <varname>PREFER_NATIVE</varname> should be set during bootstrap
+      to ensure that the bootstrap process does not use inapropriate
+      native tools as dependencies for core packages.
+
+<screen>
+&rprompt; <userinput>./bootstrap --prefer-pkgsrc yes --prefer-native openssl</userinput>
+</screen>
+
       Switching between settings globally at a later date can introduce
       complications with dependency resolution. This is caused by packages
-      built with the opposite preference being installed alongside each other.</para>
-      
-<screen>
-&rprompt; <userinput>./bootstrap --prefer-pkgsrc yes</userinput>
-</screen>
+      built with the opposite preference being installed alongside each
+      other.  Hence, any changes to these variables after bootstrap will
+      necessitate rebuilding all packages depending on one whose preference
+      has been changed.  This is not trivial and should be avoided.</para>
+
+      <para>When using pkgsrc on Linux systems, there is high risk of
+      "leakage", where programs installed by pkgsrc may inadvertently use a
+      command or library not installed by pkgsrc, e.g. those installed by
+      yum or apt.  Such foreign dependencies may be installed, removed, or
+      upgraded to a version incompatible with the pkgsrc package at any
+      time, causing pkgsrc packages to subsequently malfunction.  Pkgsrc
+      cannot prevent this, as it has no control over other package managers.
+      Another potential problem is that under Redhat Enterprise and related
+      Linux systems, yum packages are only patched and never upgraded, so
+      eventually they may become too outdated for use by pkgsrc.  Even
+      intentionally using foreign dependencies, not considered leakage, can
+      lead to these problems, so it is generally discouraged.  In order to
+      minimize such problems, PREFER_PKGSRC defaults to "yes" on Linux systems.
+      This ensures that pkgsrc is aware of any changes to dependency packages
+      and can rebuild or upgrade the entire dependency tree as needed.  This
+      default can be overridden by setting --prefer-pkgsrc to "no" or a list of
+      packages, or by setting --prefer-native to "yes".</para>
     </sect2>
   </sect1>
 </chapter>

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.24 2019/12/06 20:21:31 markd Exp $
+# $NetBSD: Makefile,v 1.27 2020/08/31 18:11:04 wiz Exp $
 
 DISTNAME=	glossaries
-PKGNAME=	tex-${DISTNAME}-4.42
+PKGNAME=	tex-${DISTNAME}-4.46
 PKGREVISION=	1
-TEXLIVE_REV=	49618
+TEXLIVE_REV=	54402
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/glossaries
+HOMEPAGE=	https://ctan.org/pkg/glossaries
 COMMENT=	Create glossaries and lists of acronyms
 LICENSE=	lppl-1.3c
 
@@ -28,7 +28,6 @@ INSTALLATION_DIRS+=	bin
 
 TEX_TEXMF_DIRS=	${PREFIX}/share/texmf-dist
 
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 
 post-extract:

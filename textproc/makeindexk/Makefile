@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.15 2019/05/09 09:47:37 adam Exp $
+# $NetBSD: Makefile,v 1.17 2020/05/10 03:56:40 markd Exp $
 
 .include "../../print/texlive/Makefile.common"
 
 PKGNAME=	makeindexk-2.15
-PKGREVISION=	11
+PKGREVISION=	12
 CATEGORIES=	print
 
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	General purpose hierarchical index generator
 
 EXTRACT_ELEMENTS+=	${DISTNAME}/texk/makeindexk

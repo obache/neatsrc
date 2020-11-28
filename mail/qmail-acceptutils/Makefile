@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2019/07/01 15:31:51 schmonz Exp $
+# $NetBSD: Makefile,v 1.13 2020/06/25 05:42:39 schmonz Exp $
 
 DISTNAME=		netqmail-1.06
 PKGNAME=		qmail-acceptutils-${ACPATCHVERSION}

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.24 2019/08/11 13:23:23 wiz Exp $
+# $NetBSD: Makefile,v 1.27 2020/08/31 18:11:41 wiz Exp $
 #
 
 DISTNAME=	dtdparse-2.0beta6
-PKGREVISION=	16
+PKGREVISION=	17
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=dtdparse/}
 

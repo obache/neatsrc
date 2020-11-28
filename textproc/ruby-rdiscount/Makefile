@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.1 2017/08/21 11:56:15 nils Exp $
+# $NetBSD: Makefile,v 1.3 2020/09/14 15:05:28 taca Exp $
 
-DISTNAME=		rdiscount-2.2.0.1
+DISTNAME=		rdiscount-2.2.0.2
 PKGNAME=		${RUBY_PKGPREFIX}-${DISTNAME}
 CATEGORIES=		textproc
 
 MAINTAINER=		nils@NetBSD.org
-HOMEPAGE=		http://dafoster.net/projects/rdiscount/
+HOMEPAGE=		https://dafoster.net/projects/rdiscount/
 COMMENT=		Converts documents in Markdown syntax to HTML
 LICENSE=		modified-bsd
 

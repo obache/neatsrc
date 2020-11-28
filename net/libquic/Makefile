@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.9 2019/08/11 13:22:10 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2020/08/31 18:10:35 wiz Exp $
 
 DISTNAME=	libquic-0.0.3
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=devsisters/}
 GITHUB_TAG=	v0.0.3-6e3a05d
@@ -21,6 +21,8 @@ SUBST_SED.link=		-e 's|@PREFIX@|'${PREFIX}'|'
 SUBST_STAGE.go=		pre-configure
 SUBST_FILES.go=		boringssl/CMakeLists.txt
 SUBST_SED.go=		-e '/find_program.GO_EXECUTABLE/s,go,${GO},'
+
+BUILDLINK_TRANSFORM+=	rm:-Werror
 
 USE_LANGUAGES+=	c c++
 USE_TOOLS+=	cmake gmake perl

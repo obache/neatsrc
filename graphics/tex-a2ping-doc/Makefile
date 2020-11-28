@@ -1,16 +1,13 @@
-# $NetBSD: Makefile,v 1.7 2019/12/06 20:04:17 markd Exp $
+# $NetBSD: Makefile,v 1.9 2020/04/27 02:08:12 markd Exp $
 
 DISTNAME=	a2ping.doc
-PKGNAME=	tex-${DISTNAME:S/./-/}-2.83p
-TEXLIVE_REV=	46893
+PKGNAME=	tex-${DISTNAME:S/./-/}-2.84p
+TEXLIVE_REV=	52964
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/a2ping
+HOMEPAGE=	https://ctan.org/pkg/a2ping
 COMMENT=	Documentation for tex-a2ping
 LICENSE=	gnu-gpl-v2
 
-TEX_TEXMF_DIRS=	# none
-
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 .include "../../mk/bsd.pkg.mk"

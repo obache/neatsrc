@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.30 2019/11/04 22:10:01 rillig Exp $
+# $NetBSD: Makefile,v 1.32 2020/09/07 20:40:01 wiz Exp $
 
-DISTNAME=	Catalyst-Manual-5.9010
+DISTNAME=	Catalyst-Manual-5.9011
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Catalyst/}

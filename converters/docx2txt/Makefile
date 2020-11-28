@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.8 2019/11/03 17:14:24 rillig Exp $
+# $NetBSD: Makefile,v 1.12 2020/08/31 18:06:46 wiz Exp $
 #
 
 DISTNAME=	docx2txt-1.2
-PKGREVISION=	7
+PKGREVISION=	8
 CATEGORIES=	converters
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=docx2txt/}
 EXTRACT_SUFX=	.tgz
@@ -32,6 +32,7 @@ SUBST_STAGE.unzip=	pre-configure
 SUBST_MESSAGE.unzip=	Hardcoding unzip path
 SUBST_FILES.unzip=	*.pl *.config
 SUBST_SED.unzip=	-e 's,/usr/bin/unzip,${TOOLS_PATH.unzip},'
+SUBST_NOOP_OK.unzip=	yes # TOOLS_PATH.unzip may actually be /usr/bin/unzip
 
 SUBST_CLASSES+=		suffix
 SUBST_STAGE.suffix=	pre-configure

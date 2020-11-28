@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.16 2019/08/11 13:23:12 wiz Exp $
+# $NetBSD: Makefile,v 1.18 2020/09/08 13:09:59 wiz Exp $
 
 DISTNAME=	File-chmod-0.42
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	perl5 sysutils
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=File/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://cpan.metacpan.org/authors/id/P/PI/PINYAN/
+HOMEPAGE=	https://metacpan.org/pod/File::chmod
 COMMENT=	Perl API-Implements symbolic and ls chmod modes
 LICENSE=	${PERL5_LICENSE}
 

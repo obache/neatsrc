@@ -1,20 +1,20 @@
-# $NetBSD: Makefile,v 1.25 2019/10/12 19:37:47 rillig Exp $
+# $NetBSD: Makefile,v 1.28 2020/08/31 18:07:24 wiz Exp $
 #
 
 DISTNAME=	netbeans-8.2-201609300101
 PKGNAME=	netbeans-ide-8.2
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	devel editors
 MASTER_SITES=	http://download.netbeans.org/netbeans/${PKGVERSION_NOREV}/final/zip/
 EXTRACT_SUFX=	.zip
 
-MAINTAINER=	drue@users.sourceforge.net
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.netbeans.org/
 COMMENT=	NetBeans Java IDE
 
 USE_TOOLS+=		pax
 USE_JAVA=		run
-PKG_JVMS_ACCEPTED=	sun-jdk7 openjdk7 oracle-jdk8 openjdk8
+PKG_JVMS_ACCEPTED=	sun-jdk7 oracle-jdk8 openjdk8
 NO_BUILD=		yes
 WRKSRC=			${WRKDIR}/netbeans
 

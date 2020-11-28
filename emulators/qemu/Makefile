@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.224 2020/01/10 20:27:03 adam Exp $
+# $NetBSD: Makefile,v 1.255 2020/10/25 08:21:35 gson Exp $
 
-DISTNAME=	qemu-4.2.0
-PKGREVISION=	1
+DISTNAME=	qemu-5.1.0
+PKGREVISION=	8
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 EXTRACT_SUFX=	.tar.xz
@@ -22,16 +22,10 @@ GMAKE_REQD=		4.1 # needed for docs
 
 PYTHON_VERSIONED_DEPENDENCIES=	sphinx:tool
 
-SUBST_CLASSES+=			prefix
-SUBST_STAGE.prefix=		pre-configure
-SUBST_MESSAGE.prefix=		Setting PREFIX
-SUBST_FILES.prefix+=		configure
-SUBST_VARS.prefix+=		PREFIX
-
 SUBST_CLASSES+=			sphinx-build
 SUBST_STAGE.sphinx-build=	pre-configure
 SUBST_MESSAGE.sphinx-build=	Fix hardcoded sphinx-build
-SUBST_FILES.sphinx-build+=	Makefile configure
+SUBST_FILES.sphinx-build+=	configure
 SUBST_FILES.sphinx-build+=	roms/skiboot/doc/Makefile
 SUBST_FILES.sphinx-build+=	roms/u-boot/Documentation/Makefile
 SUBST_SED.sphinx-build+=	-e 's/sphinx-build/sphinx-build-${PYVERSSUFFIX}/g'
@@ -39,6 +33,10 @@ SUBST_SED.sphinx-build+=	-e 's/sphinx-build/sphinx-build-${PYVERSSUFFIX}/g'
 .include "options.mk"
 
 .include "../../mk/bsd.prefs.mk"
+
+DISTFILES=		${DEFAULT_DISTFILES}
+DISTFILES+=		palcode-clipper
+SITES.palcode-clipper=	http://ftp.netbsd.org/pub/NetBSD/arch/alpha/qemu/
 
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--interp-prefix=${PREFIX}/share/qemu
@@ -49,7 +47,6 @@ CONFIGURE_ARGS+=	--mandir=${PREFIX}/${PKGMANDIR}
 CONFIGURE_ARGS+=	--enable-curses
 CONFIGURE_ARGS+=	--enable-docs
 CONFIGURE_ARGS+=	--enable-jemalloc
-CONFIGURE_ARGS+=	--disable-opengl
 CONFIGURE_ENV+=		mansuffix=/${PKGMANDIR}
 
 .if defined(PKGSRC_USE_SSP)
@@ -110,8 +107,12 @@ UE_ARCHS+=		tilegx
 UE_ARCHS+=		x86_64 xtensa xtensaeb
 
 .if ${OPSYS} == "NetBSD"
-USER_EMUL=			i386 x86_64 sparc sparc64
 PLIST.nbd=			yes
+.  if !exists(/usr/include/machine/trap.h)
+CONFIGURE_ARGS+=		--disable-bsd-user
+.  else
+USER_EMUL=			i386 x86_64 sparc sparc64
+.  endif
 .elif !empty(OPSYS:M*BSD) || ${OPSYS} == "DragonFly"
 USER_EMUL=			i386 x86_64 sparc sparc64
 PLIST.nbd=			yes
@@ -125,14 +126,13 @@ PLIST.bridge-helper=		yes
 PLIST.nbd=			yes
 PLIST.ivshmem=			yes
 PLIST.pr-helper=		yes
-PLIST.virtfs-proxy-helper=	yes
 .elif !empty(MACHINE_PLATFORM:MSunOS-5.11-*)
 PLIST.ivshmem=			yes
 PLIST.nbd=			yes
 CONFIGURE_ARGS+=		--disable-coroutine-pool
 .endif
 
-PLIST_VARS+=		${UE_ARCHS} bridge-helper ivshmem keymap nbd pr-helper virtfs-proxy-helper
+PLIST_VARS+=		${UE_ARCHS} bridge-helper ivshmem keymap nbd pr-helper
 .for pvar in ${USER_EMUL}
 PLIST.${pvar}=		yes
 .endfor
@@ -141,6 +141,9 @@ PLIST.${pvar}=		yes
 PLIST_SRC=	PLIST ${WRKDIR}/PLIST.STATIC
 
 TEST_TARGET=		check
+
+post-extract:
+	cp ${WRKDIR}/palcode-clipper ${WRKSRC}/pc-bios/palcode-clipper
 
 # Some dependencies aren't correct and this tries to be re-made on install,
 # failing due to configure bugs.

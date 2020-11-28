@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2019/08/11 13:21:38 wiz Exp $
+# $NetBSD: Makefile,v 1.4 2020/08/31 18:10:05 wiz Exp $
 
-DISTNAME=	Mail-Transport-3.003
+DISTNAME=	Mail-Transport-3.005
 PKGNAME=	p5-${DISTNAME}
 PKGREVISION=	1
 CATEGORIES=	mail perl5

@@ -1,4 +1,4 @@
-# $NetBSD: bsd.pkg.barrier.mk,v 1.19 2013/05/23 13:18:56 obache Exp $
+# $NetBSD: bsd.pkg.barrier.mk,v 1.21 2020/03/23 00:33:48 riastradh Exp $
 
 _COOKIE.barrier=	${WRKDIR}/.barrier_cookie
 
@@ -18,9 +18,9 @@ _BARRIER_POST_TARGETS=	tools
 _BARRIER_POST_TARGETS+=	wrapper
 _BARRIER_POST_TARGETS+=	extract
 _BARRIER_POST_TARGETS+=	patch
-_BARRIER_POST_TARGETS+=	configure
+_BARRIER_POST_TARGETS+=	configure configure-env
 _BARRIER_POST_TARGETS+=	build build-env
-_BARRIER_POST_TARGETS+=	test
+_BARRIER_POST_TARGETS+=	test test-env
 _BARRIER_POST_TARGETS+=	all
 _BARRIER_POST_TARGETS+=	stage-install
 _BARRIER_POST_TARGETS+=	stage-package-create

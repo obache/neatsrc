@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.16 2019/11/04 22:09:57 rillig Exp $
+# $NetBSD: Makefile.common,v 1.19 2020/09/03 09:48:07 jperkin Exp $
 # used by www/nginx/Makefile
 # used by www/nginx-devel/Makefile
 
@@ -10,7 +10,7 @@ CATEGORIES=	www
 MASTER_SITES=	http://nginx.org/download/
 DISTFILES=	${DEFAULT_DISTFILES}
 
-HOMEPAGE=	http://nginx.org/
+HOMEPAGE=	https://nginx.org/
 COMMENT=	Lightweight HTTP server and mail proxy server
 LICENSE=	2-clause-bsd
 
@@ -74,11 +74,6 @@ OWN_DIRS=		${NGINX_LOGDIR}
 OWN_DIRS_PERMS+=	${NGINX_DATADIR} ${NGINX_USER} ${NGINX_GROUP} 0700
 
 BUILD_TARGET=		build
-
-SUBST_CLASSES+=		prefix
-SUBST_STAGE.prefix=	pre-configure
-SUBST_FILES.prefix=	auto/lib/pcre/conf
-SUBST_VARS.prefix=	PREFIX
 
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	pre-configure

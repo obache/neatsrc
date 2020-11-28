@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.28 2020/01/09 23:37:45 nia Exp $
+# $NetBSD: Makefile,v 1.37 2020/10/08 11:16:29 ryoon Exp $
 
-DISTNAME=	babl-0.1.72
+DISTNAME=	babl-0.1.82
 CATEGORIES=	graphics
 MASTER_SITES=	https://download.gimp.org/pub/babl/0.1/
 EXTRACT_SUFX=	.tar.xz
@@ -11,6 +11,7 @@ COMMENT=	Dynamic pixel conversion library
 LICENSE=	gnu-gpl-v3
 
 USE_TOOLS+=	pkg-config
+USE_LANGUAGES=	c99
 
 MESON_ARGS+=	-Dwith-docs=false
 MESON_ARGS+=	-Denable-gir=false
@@ -19,7 +20,20 @@ PKGCONFIG_OVERRIDE+=	babl.pc.in
 
 PYTHON_FOR_BUILD_ONLY=	tool
 
+.include "../../mk/bsd.prefs.mk"
+
+PLIST_VARS+=		Darwin not_Darwin
+.if ${OPSYS} == "Darwin"
+PLIST.Darwin=		yes
+PLIST_SUBST+=  		SOEXT="dylib"
+.else
+PLIST.not_Darwin=	yes
+PLIST_SUBST+=  		SOEXT="so"
+.endif
+
 # Apply removals to post-wrapper transformed arguments.
+BUILDLINK_TRANSFORM.Darwin+=	rm:-Wl,--version-script
+BUILDLINK_TRANSFORM.Darwin+=	rm:-Wl,babl.map
 BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--version-script
 BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,babl.map
 

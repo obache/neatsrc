@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.4 2020/01/08 21:34:38 adam Exp $
+# $NetBSD: Makefile,v 1.14 2020/09/29 14:12:12 adam Exp $
 
-DISTNAME=	xmlschema-1.0.18
+DISTNAME=	xmlschema-1.2.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	textproc python
 MASTER_SITES=	${MASTER_SITE_PYPI:=x/xmlschema/}
@@ -10,15 +10,22 @@ HOMEPAGE=	https://github.com/brunato/xmlschema
 COMMENT=	XML Schema validator and decoder
 LICENSE=	mit
 
-DEPENDS+=	${PYPKGPREFIX}-elementpath>=1.3.0:../../textproc/py-elementpath
+DEPENDS+=	${PYPKGPREFIX}-elementpath>=1.4.0:../../textproc/py-elementpath
+TEST_DEPENDS+=	${PYPKGPREFIX}-cElementTree-[0-9]*:../../textproc/py-cElementTree
+TOOL_DEPENDS+=	${PYPKGPREFIX}-pip-[0-9]*:../../devel/py-pip
 
 USE_LANGUAGES=	# none
 
-REPLACE_PYTHON+=	xmlschema/tests/check_etree_import.py
-REPLACE_PYTHON+=	xmlschema/tests/check_memory.py
-
 PYTHON_VERSIONS_INCOMPATIBLE=	27	# py-elementpath
 
-.include "../../lang/python/application.mk"
+post-install:
+.for bin in xmlschema-json2xml xmlschema-validate xmlschema-xml2json
+	cd ${DESTDIR}${PREFIX}/bin && \
+	${MV} ${bin} ${bin}-${PYVERSSUFFIX} || ${TRUE}
+.endfor
+
+do-test:
+	cd ${WRKSRC} && ${PYTHONBIN} -m unittest discover -v
+
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

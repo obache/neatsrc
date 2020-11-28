@@ -1,4 +1,4 @@
-# $NetBSD: versioned_dependencies.mk,v 1.35 2019/11/15 14:05:54 wiz Exp $
+# $NetBSD: versioned_dependencies.mk,v 1.46 2020/10/15 12:42:10 schmonz Exp $
 #
 # This file determines which separate distribution of a Python
 # package is used as dependency, depending on the Python version
@@ -9,23 +9,33 @@
 # PYTHON_VERSIONED_DEPENDENCIES
 #       The Python package which should be added as a dependency.
 #
-#       Possible values: Pmw X cherrypy dialog ipython jsonlib python-digest sphinx
+#       Possible values: Pmw X cairo cherrypy dialog eliot html2text hypothesis ipython jsonlib more-itertools python-digest rsa setuptools sphinx test zipp
 #       Default: (nothing)
 #
 
 .include "../../lang/python/pyversion.mk"
 
-# format: short name for PYTHON_VERSIONED_DEPENDENCIES<space>python-2.x path<space>python-3.x path
+# format: short name for PYTHON_VERSIONED_DEPENDENCIES<space>Python-2.x path<space>Python-3.x path
 _SUPPORTED_PACKAGES=	# empty
 _SUPPORTED_PACKAGES+=	Pmw x11/py-Pmw x11/py-Pmw2
 _SUPPORTED_PACKAGES+=	X textproc/py-X2 textproc/py-X
+_SUPPORTED_PACKAGES+=	cairo graphics/py-cairo118 graphics/py-cairo
 _SUPPORTED_PACKAGES+=	cherrypy www/py-cherrypy17 www/py-cherrypy
 _SUPPORTED_PACKAGES+=	dialog devel/py-dialog2 devel/py-dialog
+_SUPPORTED_PACKAGES+=	eliot sysutils/py-eliot17 sysutils/py-eliot
+# XXX feedparser 6.x is not only py27-incompatible, but also 5.x-API-incompatible
+#_SUPPORTED_PACKAGES+=	feedparser textproc/py-feedparser5 textproc/py-feedparser
+_SUPPORTED_PACKAGES+=	html2text textproc/py-html2text-2019.8.11 textproc/py-html2text
+_SUPPORTED_PACKAGES+=	hypothesis devel/py-hypothesis4 devel/py-hypothesis
 _SUPPORTED_PACKAGES+=	ipython devel/py-ipython5 devel/py-ipython
 _SUPPORTED_PACKAGES+=	jsonlib textproc/py-jsonlib textproc/py-jsonlib3
-_SUPPORTED_PACKAGES+=	python-digest www/py-python-digest www/py-python3-digest
-_SUPPORTED_PACKAGES+=	sphinx textproc/py-sphinx1 textproc/py-sphinx
 _SUPPORTED_PACKAGES+=	more-itertools devel/py-more-itertools2 devel/py-more-itertools
+_SUPPORTED_PACKAGES+=	python-digest www/py-python-digest www/py-python3-digest
+_SUPPORTED_PACKAGES+=	rsa security/py-rsa40 security/py-rsa
+_SUPPORTED_PACKAGES+=	setuptools devel/py-setuptools44 devel/py-setuptools
+_SUPPORTED_PACKAGES+=	sphinx textproc/py-sphinx1 textproc/py-sphinx
+_SUPPORTED_PACKAGES+=	test devel/py-test4 devel/py-test
+_SUPPORTED_PACKAGES+=	zipp archivers/py-zipp1 archivers/py-zipp
 
 .for pattern in ${PYTHON_VERSIONED_DEPENDENCIES}
 _PKG_MATCHED=	no
@@ -34,7 +44,7 @@ type:=	${pattern:C/[^:]*//}
 .  for name py2dir py3dir in ${_SUPPORTED_PACKAGES}
 .    if "${pkg}" == "${name}"
 _PKG_MATCHED=	yes
-.      if ${PYPKGPREFIX} == "py27"
+.      if ${_PYTHON_VERSION} == 27
 dir:=	${py2dir}
 .      else
 dir:=	${py3dir}

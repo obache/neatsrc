@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.11 2019/08/11 13:22:44 wiz Exp $
+# $NetBSD: Makefile,v 1.14 2020/08/31 18:11:05 wiz Exp $
 
-PKGREVISION= 1
+PKGREVISION= 3
 .include "../../print/texlive/Makefile.common"
 
 PKGNAME=	tex4ht-20180225
 CATEGORIES=	print
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Converter from *TeX to HTML, XML, and similar formats
 LICENSE=	lppl-1.3c
 

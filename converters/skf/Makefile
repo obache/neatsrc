@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.58 2019/11/03 17:14:27 rillig Exp $
+# $NetBSD: Makefile,v 1.59 2020/08/31 18:06:51 wiz Exp $
 
 DISTNAME=	skf_${VERSION}.12
 VERSION=	2.10

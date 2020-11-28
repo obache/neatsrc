@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.32 2020/01/07 13:13:02 otis Exp $
+# $NetBSD: Makefile,v 1.34 2020/08/31 18:10:35 wiz Exp $
 #
 # todo: set location of [md-]whois.conf and fix in man page too
 # todo: build and install the po/ files and add to PLIST
@@ -8,11 +8,12 @@
 GITHUB_PROJECT=	whois
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 DISTNAME=	md-whois-${VERSION}
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=rfc1036/}
 
 MAINTAINER=	reed@reedmedia.net
-HOMEPAGE=	http://www.linux.it/~md/software/
+HOMEPAGE=	https://www.linux.it/~md/software/
 COMMENT=	Improved whois client
 LICENSE=	gnu-gpl-v2
 

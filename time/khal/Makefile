@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.29 2019/10/21 22:15:10 adam Exp $
+# $NetBSD: Makefile,v 1.31 2020/08/24 08:07:45 wiz Exp $
 
-DISTNAME=		khal-0.10.1
-PKGREVISION=		1
+DISTNAME=		khal-0.10.2
 CATEGORIES=		time net
 MASTER_SITES=		${MASTER_SITE_PYPI:=k/khal/}
 
@@ -21,7 +20,7 @@ BUILD_DEPENDS+=		${PYPKGPREFIX}-setuptools_scm-[0-9]*:../../devel/py-setuptools_
 DEPENDS+=		${PYPKGPREFIX}-pytz-[0-9]*:../../time/py-pytz
 DEPENDS+=		${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
 DEPENDS+=		${PYPKGPREFIX}-tzlocal-[0-9]*:../../time/py-tzlocal
-DEPENDS+=		${PYPKGPREFIX}-urwid>=1.1.0:../../devel/py-urwid
+DEPENDS+=		${PYPKGPREFIX}-urwid>=1.3.0:../../devel/py-urwid
 DEPENDS+=		${PYPKGPREFIX}-vdirsyncer>=0.5.2:../../time/py-vdirsyncer
 DEPENDS+=		${PYPKGPREFIX}-xdg>=0.17:../../devel/py-xdg
 # not needed, but recommended, so let's just depend on it
@@ -31,9 +30,8 @@ USE_TOOLS+=		gmake
 BUILD_DEPENDS+=		${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 BUILD_DEPENDS+=		${PYPKGPREFIX}-sphinxcontrib-newsfeed-[0-9]*:../../textproc/py-sphinxcontrib-newsfeed
 # 0.9.10: one test failure https://github.com/pimutils/khal/issues/825
-# TEST_DEPENDS
-BUILD_DEPENDS+=		${PYPKGPREFIX}-freezegun-[0-9]*:../../devel/py-freezegun
-BUILD_DEPENDS+=		${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
+TEST_DEPENDS+=		${PYPKGPREFIX}-freezegun-[0-9]*:../../devel/py-freezegun
+TEST_DEPENDS+=		${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27 # not supported as of 0.8.0
 
@@ -49,7 +47,7 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/build/man/khal.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 
 do-test:
-	cd ${WRKSRC} && py.test-${PYVERSSUFFIX} tests
+	cd ${WRKSRC} && pytest-${PYVERSSUFFIX} tests
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"

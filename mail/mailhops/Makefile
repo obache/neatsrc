@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.16 2019/11/02 16:25:22 rillig Exp $
+# $NetBSD: Makefile,v 1.18 2020/08/31 18:09:57 wiz Exp $
 #
 
 DISTNAME=	mailhops-1.4
-PKGREVISION=	7
+PKGREVISION=	8
 CATEGORIES=	mail
 MASTER_SITES=	http://www.spinnaker.de/mutt/
 EXTRACT_SUFX=
@@ -10,7 +10,7 @@ EXTRACT_SUFX=
 LICENSE=	gnu-gpl-v2
 
 MAINTAINER=	is@NetBSD.org
-HOMEPAGE=	http://www.spinnaker.de/mutt/
+HOMEPAGE=	https://www.spinnaker.de/mutt/
 COMMENT=	Shows the route of an Internet mail message
 
 WRKSRC=		${WRKDIR}
@@ -29,9 +29,9 @@ do-build:
 do-configure:
 
 do-install:
-			${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/bin
-			${INSTALL_SCRIPT} ${WRKSRC}/mailhops \
-				${DESTDIR}${PREFIX}/bin
+	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/mailhops \
+		${DESTDIR}${PREFIX}/bin
 
 
 .include "../../mk/bsd.pkg.mk"

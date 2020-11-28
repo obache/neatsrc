@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.41 2019/10/10 07:53:06 adam Exp $
+# $NetBSD: Makefile,v 1.46 2020/10/27 22:52:05 adam Exp $
 
-DISTNAME=	aiohttp-3.6.2
+DISTNAME=	aiohttp-3.7.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=a/aiohttp/}
@@ -11,10 +11,11 @@ COMMENT=	Async http client/server framework
 LICENSE=	apache-2.0
 
 DEPENDS+=	${PYPKGPREFIX}-async-timeout>=3.0:../../devel/py-async-timeout
-DEPENDS+=	${PYPKGPREFIX}-attrs>=17.4.0:../../devel/py-attrs
-DEPENDS+=	${PYPKGPREFIX}-chardet>=2.0:../../converters/py-chardet
-DEPENDS+=	${PYPKGPREFIX}-multidict>=4.5:../../databases/py-multidict
-DEPENDS+=	${PYPKGPREFIX}-yarl>=1.0:../../www/py-yarl
+DEPENDS+=	${PYPKGPREFIX}-attrs>=17.3.0:../../devel/py-attrs
+DEPENDS+=	${PYPKGPREFIX}-chardet>=2.0<4.0:../../converters/py-chardet
+DEPENDS+=	${PYPKGPREFIX}-multidict>=4.5<7.0:../../databases/py-multidict
+DEPENDS+=	${PYPKGPREFIX}-yarl>=1.0<2.0:../../www/py-yarl
+DEPENDS+=	${PYPKGPREFIX}-typing-extensions>=3.6.5:../../devel/py-typing-extensions
 TEST_DEPENDS+=	${PYPKGPREFIX}-async_generator-[0-9]*:../../devel/py-async_generator
 TEST_DEPENDS+=	${PYPKGPREFIX}-gunicorn-[0-9]*:../../www/py-gunicorn
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
@@ -27,7 +28,6 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 .include "../../lang/python/pyversion.mk"
 .if ${_PYTHON_VERSION} == 36
 DEPENDS+=	${PYPKGPREFIX}-idna-ssl>=1.0:../../www/py-idna_ssl
-DEPENDS+=	${PYPKGPREFIX}-typing-extensions>=3.6.5:../../devel/py-typing-extensions
 .endif
 
 .include "../../devel/py-cython/buildlink3.mk"

@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.8 2019/12/02 13:42:00 nia Exp $
+# $NetBSD: Makefile,v 1.10 2020/08/17 20:19:39 leot Exp $
 
 DISTNAME=	harvid-0.8.3
+PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=x42/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://x42.github.com/harvid/
+HOMEPAGE=	https://x42.github.com/harvid/
 COMMENT=	HTTP Ardour Video Daemon
 LICENSE=	gnu-gpl-v2
 

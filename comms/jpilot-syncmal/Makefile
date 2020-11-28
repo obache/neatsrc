@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.72 2019/07/21 22:24:33 wiz Exp $
+# $NetBSD: Makefile,v 1.76 2020/08/17 20:18:19 leot Exp $
 
 DISTNAME=		jpilot-syncmal-0.80
-PKGREVISION=		30
+PKGREVISION=		33
 CATEGORIES=		comms
 MASTER_SITES=		http://www.jlogday.com/code/syncmal/archive/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.jlogday.com/code/syncmal/index.html
+HOMEPAGE=		https://www.jlogday.com/code/syncmal/index.html
 COMMENT=		MAL synchronization plugin for J-Pilot
 
 BUILDLINK_DEPMETHOD.jpilot=	full

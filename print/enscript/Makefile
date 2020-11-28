@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.57 2019/11/04 19:57:58 rillig Exp $
+# $NetBSD: Makefile,v 1.59 2020/08/31 18:11:00 wiz Exp $
 #
 
 DISTNAME=		enscript-1.6.6
-PKGREVISION=		5
+PKGREVISION=		6
 CATEGORIES=		print
 MASTER_SITES=		${MASTER_SITE_GNU:=enscript/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.gnu.org/software/enscript/
+HOMEPAGE=		https://www.gnu.org/software/enscript/
 COMMENT=		ASCII-to-PostScript filter
 LICENSE=		gnu-gpl-v3
 

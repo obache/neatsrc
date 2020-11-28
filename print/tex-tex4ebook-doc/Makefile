@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.5 2019/12/06 20:23:26 markd Exp $
+# $NetBSD: Makefile,v 1.7 2020/05/05 12:01:03 markd Exp $
 
 DISTNAME=	tex4ebook.doc
-PKGNAME=	tex-${DISTNAME:S/./-/}-0.2c
-TEXLIVE_REV=	50512
+PKGNAME=	tex-${DISTNAME:S/./-/}-0.3a
+TEXLIVE_REV=	52616
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/tex4ebook
+HOMEPAGE=	https://ctan.org/pkg/tex4ebook
 COMMENT=	Documentation for tex-tex4ebook
 LICENSE=	lppl-1.3c
 
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 .include "../../mk/bsd.pkg.mk"

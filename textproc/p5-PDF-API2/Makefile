@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.46 2019/09/18 14:25:01 wen Exp $
+# $NetBSD: Makefile,v 1.48 2020/09/07 14:44:55 wiz Exp $
 
-DISTNAME=	PDF-API2-2.036
+DISTNAME=	PDF-API2-2.038
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	textproc perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/S/SS/SSIMMS/}
@@ -10,11 +10,10 @@ HOMEPAGE=	https://metacpan.org/release/PDF-API2
 COMMENT=	Perl5 module for next generation api for pdf
 LICENSE=	gnu-lgpl-v2.1
 
-#DEPENDS+=	{perl>=5.9.3,p5-IO-Compress>=2.017}:../../devel/p5-IO-Compress	# Compress::Zlib>=1.0
+DEPENDS+=	p5-Font-TTF-[0-9]*:../../fonts/p5-Font-TTF
 
-BUILD_DEPENDS+=	p5-Test-Memory-Cycle>=0:../../devel/p5-Test-Memory-Cycle
-
-DEPENDS+=	p5-Font-TTF>=0:../../fonts/p5-Font-TTF
+TEST_DEPENDS+=	p5-Test-Memory-Cycle-[0-9]*:../../devel/p5-Test-Memory-Cycle
+TEST_DEPENDS+=	p5-Test-Exception-[0-9]*:../../devel/p5-Test-Exception
 
 PERL5_PACKLIST=	auto/PDF/API2/.packlist
 

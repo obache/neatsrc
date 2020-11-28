@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.56 2019/12/02 07:13:49 markd Exp $
+# $NetBSD: Makefile,v 1.71 2020/08/18 17:58:05 leot Exp $
 
 DISTNAME=	cantor-${KAPPSVER}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	math
 
 HOMEPAGE=	https://kde.org/applications/education/cantor/
@@ -10,7 +10,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/applications.mk"
 
-BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge pkg-config
 
@@ -44,8 +44,8 @@ CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_maxima.knsrc \
 		${PKG_SYSCONFDIR}/xdg/cantor_maxima.knsrc
 CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_octave.knsrc \
 		${PKG_SYSCONFDIR}/xdg/cantor_octave.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_python3.knsrc \
-		${PKG_SYSCONFDIR}/xdg/cantor_python3.knsrc
+CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_python.knsrc \
+		${PKG_SYSCONFDIR}/xdg/cantor_python.knsrc
 CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_qalculate.knsrc \
 		${PKG_SYSCONFDIR}/xdg/cantor_qalculate.knsrc
 CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_sage.knsrc \
@@ -53,14 +53,23 @@ CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_sage.knsrc \
 CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_scilab.knsrc \
 		${PKG_SYSCONFDIR}/xdg/cantor_scilab.knsrc
 
+SUBST_CLASSES+=		fix-moc
+SUBST_STAGE.fix-moc=	post-configure
+SUBST_MESSAGE.fix-moc=	Cleaning up MOC includes
+SUBST_FILES.fix-moc=	_KDE_build/src/*/*/CMakeFiles/cantor_*_autogen.dir/AutogenInfo.json
+SUBST_NOOP_OK.fix-moc=	yes
+SUBST_SED.fix-moc=	-e 's;"${PREFIX}/include",;;g'
+
 .include "../../devel/kpty/buildlink3.mk"
 .include "../../devel/ktexteditor/buildlink3.mk"
+.include "../../devel/libidn/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../math/analitza/buildlink3.mk"
 .include "../../math/qalculate/buildlink3.mk"
 .include "../../net/knewstuff/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../print/libspectre/buildlink3.mk"
+.include "../../print/poppler-qt5/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../textproc/discount/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"

@@ -1,17 +1,17 @@
-# $NetBSD: Makefile,v 1.38 2019/11/03 10:18:29 rillig Exp $
+# $NetBSD: Makefile,v 1.44 2020/08/17 20:18:29 leot Exp $
 TRYTON_MODULE_NAME=	tryton
-PKGREVISION= 7
+PKGREVISION= 11
 .include "../../devel/py-trytond/Makefile.common"
 CATEGORIES=	devel python
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tryton.org/
+HOMEPAGE=	https://www.tryton.org/
 COMMENT=	Three-tiers high-level general purpose application platform
 LICENSE=	gnu-gpl-v3
 
 USE_LANGUAGES=		# none
 
-PYTHON_VERSIONS_ACCEPTED=	27
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2
 
 .include "options.mk"
 

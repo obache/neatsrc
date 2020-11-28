@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.26 2018/11/23 08:06:28 ryoon Exp $
+# $NetBSD: Makefile,v 1.29 2020/08/17 20:18:05 leot Exp $
 
-DISTNAME=	chromaprint-1.4.3
-PKGREVISION=	3
+DISTNAME=	chromaprint-1.5.0
+PKGREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=acoustid/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -14,12 +14,25 @@ LICENSE=	mit
 USE_LANGUAGES=	c c++
 USE_CMAKE=	yes
 # build and install "fpcalc"
-CMAKE_ARGS+=	-DBUILD_TOOLS:BOOL=ON
-# tell it where to find ffmpeg
-CMAKE_ARGS+=	-DFFMPEG_ROOT:PATH=${BUILDLINK_PREFIX.ffmpeg3}
+CMAKE_ARGS+=	-DBUILD_TOOLS=ON
+CMAKE_ARGS+=	-DFFT_LIB=fftw3
+
+.include "../../mk/bsd.prefs.mk"
+
+.if ${OPSYS} == "Darwin"
+SOEXT=	dylib
+.else
+SOEXT=	so
+.endif
+
+.for lib in AVCODEC AVFORMAT AVUTIL SWRESAMPLE
+CMAKE_ARGS+=	-DFFMPEG_LIB${lib}_INCLUDE_DIRS=${BUILDLINK_PREFIX.ffmpeg4}/include/ffmpeg4
+CMAKE_ARGS+=	-DFFMPEG_LIB${lib}_LIBRARIES=${BUILDLINK_PREFIX.ffmpeg4}/lib/ffmpeg4/lib${lib:tl}.${SOEXT}
+.endfor
 
 PKGCONFIG_OVERRIDE=	libchromaprint.pc.cmake
 
+.include "../../math/fftw/buildlink3.mk"
 # On Darwin, chromaprint uses Accelerate.framework, but fpcalc still needs FFmpeg
-.include "../../multimedia/ffmpeg3/buildlink3.mk"
+.include "../../multimedia/ffmpeg4/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

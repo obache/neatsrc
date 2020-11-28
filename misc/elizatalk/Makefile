@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2012/10/08 09:57:20 asau Exp $
+# $NetBSD: Makefile,v 1.12 2020/03/20 11:58:01 nia Exp $
 
 DISTNAME=	elizatalk-0.4
 PKGREVISION=	1

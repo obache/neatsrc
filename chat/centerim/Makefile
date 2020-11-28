@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.50 2019/08/22 12:22:52 ryoon Exp $
+# $NetBSD: Makefile,v 1.57 2020/08/31 18:06:41 wiz Exp $
 #
 
 DISTNAME=	centerim-4.22.10
-PKGREVISION=	20
+PKGREVISION=	26
 CATEGORIES=	chat
 MASTER_SITES=	http://www.centerim.org/download/releases/
 MASTER_SITES+=	http://transacid.de/centerim/releases/
@@ -36,6 +36,9 @@ CPPFLAGS+=		-DAUDIO_PLAYER="\"/usr/bin/audioplay\""
 DEPENDS+=		sox>=12.17.4:../../audio/sox
 CPPFLAGS+=		-DAUDIO_PLAYER="\"${LOCALBASE}/bin/play\""
 .endif
+
+# 1 safe instance in xmltok.c:1494
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
 
 .if !empty(MACHINE_ARCH:Msparc64)
 GCC_REQD+=		3.0	# see PR 29185

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.42 2018/03/12 11:15:55 wiz Exp $
+# $NetBSD: Makefile,v 1.46 2020/08/17 20:17:57 leot Exp $
 
-PKGREVISION= 2
+PKGREVISION= 5
 .include "../../x11/qt4-libs/Makefile.common"
 
 PKGNAME=	qt4-qdbus-${QTVERSION}
@@ -10,6 +10,7 @@ CONFIGURE_ARGS+=	-I${QTDIR}/include -L${QTDIR}/lib
 CONFIGURE_ARGS+=	-qdbus
 
 USE_TOOLS+=		pkg-config
+TOOLS_BROKEN+=		perl
 
 BUILD_QT4=		yes
 

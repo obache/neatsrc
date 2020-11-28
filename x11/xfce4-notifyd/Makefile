@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.22 2019/08/11 13:25:19 wiz Exp $
-#
+# $NetBSD: Makefile,v 1.29 2020/09/10 00:34:44 gutteridge Exp $
 
-PKGREVISION= 2
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-DISTNAME=	xfce4-notifyd-0.4.4
+VERSION=	0.6.2
+DISTNAME=	xfce4-notifyd-${VERSION}
 CATEGORIES=	x11
-MASTER_SITES=	http://archive.xfce.org/src/apps/xfce4-notifyd/0.4/
+MASTER_SITES=	https://archive.xfce.org/src/apps/xfce4-notifyd/${VERSION:R}/
 
 HOMEPAGE=	https://goodies.xfce.org/projects/applications/xfce4-notifyd
 COMMENT=	XFCE Notify daemon

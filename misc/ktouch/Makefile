@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.42 2019/11/21 06:29:03 markd Exp $
+# $NetBSD: Makefile,v 1.51 2020/08/18 17:58:07 leot Exp $
 
 DISTNAME=	ktouch-${KAPPSVER}
+PKGREVISION=	2
 CATEGORIES=	misc
 
 HOMEPAGE=	https://kde.org/applications/education/ktouch/
@@ -9,7 +10,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/applications.mk"
 
-BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 DEPENDS+=	kqtquickcharts-[0-9]*:../../graphics/kqtquickcharts
 
 USE_TOOLS+=	msgmerge pkg-config

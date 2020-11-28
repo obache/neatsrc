@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2019/11/03 17:04:26 rillig Exp $
+# $NetBSD: Makefile,v 1.13 2020/03/20 11:58:02 nia Exp $
 #
 
 DISTNAME=	ppower-0.1.5

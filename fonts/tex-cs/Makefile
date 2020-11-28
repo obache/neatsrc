@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.4 2019/12/06 19:29:48 markd Exp $
+# $NetBSD: Makefile,v 1.6 2020/05/10 04:31:42 markd Exp $
 
 DISTNAME=	cs
 PKGNAME=	tex-${DISTNAME}-2016.41553
+PKGREVISION=	1
 TEXLIVE_REV=	41553
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/csfonts
+HOMEPAGE=	https://ctan.org/pkg/csfonts
 COMMENT=	Czech/Slovak-tuned Computer Modern fonts
 LICENSE=	gnu-gpl-v2
 

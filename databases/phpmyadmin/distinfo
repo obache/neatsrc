@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.111 2019/12/03 12:42:28 tm Exp $
+$NetBSD: distinfo,v 1.113 2020/04/01 08:36:16 tm Exp $
 
-SHA1 (phpMyAdmin-4.9.2-all-languages.tar.xz) = 958126237700284067fbff3eb1afd59d38515918
-RMD160 (phpMyAdmin-4.9.2-all-languages.tar.xz) = 246031909a28c7dc780e3d3afab1600cb12fdfc4
-SHA512 (phpMyAdmin-4.9.2-all-languages.tar.xz) = 426689c31f963a9cbe34b2116888aa0264801aa5ef18fb0e4b89811b032d4018c770538e823bccb684fb066ed27fcf6dc6e0fb4198d1e082e7eea15595b67727
-Size (phpMyAdmin-4.9.2-all-languages.tar.xz) = 6118472 bytes
+SHA1 (phpMyAdmin-4.9.5-all-languages.tar.xz) = 25b733a5917d2f40df69a39d3719fb8b7204054f
+RMD160 (phpMyAdmin-4.9.5-all-languages.tar.xz) = 7e8eedaa60babe520905298f778f887693b7b971
+SHA512 (phpMyAdmin-4.9.5-all-languages.tar.xz) = 555f07f087d8bcddd114df0b86fa21872f14f45c31e0f63eea499e76fdebdfd8abebcc88662887418e80ddebfea73d6aaac17856cf433d1855423b5145865d1a
+Size (phpMyAdmin-4.9.5-all-languages.tar.xz) = 6138948 bytes
 SHA1 (patch-libraries_vendor__config.php) = b758f5550dd7226d88293fa6614b2283cbd8e3ea

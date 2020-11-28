@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.16 2019/08/11 13:21:30 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2020/08/31 18:09:59 wiz Exp $
 
 DISTNAME=	opendmarc-1.3.1
-PKGREVISION=	5
+PKGREVISION=	9
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=opendmarc/}
 
@@ -14,6 +14,7 @@ DEPENDS+=	p5-DBI-[0-9]*:../../databases/p5-DBI
 DEPENDS+=	p5-DBD-mysql-[0-9]*:../../databases/p5-DBD-mysql
 #DEPENDS+=	{perl>=5.6.1,p5-File-Temp-[0-9]*}:../../devel/p5-File-Temp
 DEPENDS+=	p5-Switch-[0-9]*:../../lang/p5-Switch
+DEPENDS+=	p5-HTTP-Message-[0-9]*:../../www/p5-HTTP-Message
 
 RCD_SCRIPTS=	opendmarc
 
@@ -37,9 +38,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/opendmarc/opendmarc.conf.sample \
 		${DESTDIR}${EGDIR}/
 
-BUILDLINK_API_DEPENDS.openssl+=		openssl>=0.9.8
 .include "../../security/openssl/buildlink3.mk"
-BUILDLINK_API_DEPENDS.libmilter+=	libmilter>=8.13.0
 .include "../../mail/libmilter/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.79 2019/11/03 09:14:15 rillig Exp $
+# $NetBSD: Makefile,v 1.85 2020/08/31 18:13:22 wiz Exp $
 
 VERSION=	2.8.12.0
 DISTNAME=	wxPython-src-${VERSION}
 PKGNAME=	${PYPKGPREFIX}-wxWidgets-${VERSION}
-PKGREVISION=	13
+PKGREVISION=	17
 CATEGORIES=	x11 python
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=wxpython/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://wxpython.org/
+HOMEPAGE=	https://wxpython.org/
 COMMENT=	Python bindings for wxWidgets
 
 WRKSRC=		${WRKDIR}/wxPython-src-${VERSION}/wxPython
@@ -36,7 +36,6 @@ SUBST_FILES.fix-python+=	wx/lib/floatcanvas/Utilities/*.py
 SUBST_FILES.fix-python+=	wx/tools/Editra/*.py
 SUBST_FILES.fix-python+=	wx/tools/Editra/src/*.py
 SUBST_FILES.fix-python+=	wx/tools/Editra/src/extern/*.py
-SUBST_FILES.fix-python+=	wx/tools/Editra/tests/syntax/python.python
 SUBST_FILES.fix-python+=	wx/tools/Editra/Editra*
 SUBST_SED.fix-python+=		-e 's,/usr/bin/env python,${PYTHONBIN},'
 

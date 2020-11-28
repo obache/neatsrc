@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.61 2018/07/04 13:40:09 jperkin Exp $
+# $NetBSD: Makefile,v 1.65 2020/08/17 20:17:17 leot Exp $
 #
 
 DISTNAME=	WSoundServer-0.4.0
 PKGNAME=	wsoundserver-0.4.0
-PKGREVISION=	26
+PKGREVISION=	28
 CATEGORIES=	audio wm windowmaker
 MASTER_SITES=	# ftp://shadowmere.student.utwente.nl/pub/WindowMaker/
 
@@ -15,6 +15,10 @@ LICENSE=	modified-bsd
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
 USE_TOOLS+=		pkg-config
+
+.include "../../mk/oss.buildlink3.mk"
+
+LIBS+=			${LIBOSSAUDIO}
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}	# not really needed
 CONFIGURE_ENV+=		ac_cv_path_AUDIOFILE_CONFIG="pkg-config audiofile"
@@ -44,15 +48,6 @@ post-patch:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC:Q}/WMSound ${DESTDIR}${EGDIR}
-
-.include "../../mk/bsd.prefs.mk"
-
-.if ${OPSYS} == "Interix"
-.  include "../../audio/esound/buildlink3.mk"
-CONFIGURE_ARGS+=	--enable-esound
-.else
-.  include "../../mk/oss.buildlink3.mk"
-.endif
 
 BUILDLINK_DEPMETHOD.libXt?=	build
 

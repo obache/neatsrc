@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.31 2019/11/03 11:06:55 adam Exp $
+# $NetBSD: Makefile,v 1.35 2020/05/22 12:43:52 adam Exp $
 
-DISTNAME=	libdvdread-6.0.2
+DISTNAME=	libdvdread-6.1.1
+PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://download.videolan.org/pub/videolan/libdvdread/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.bz2
@@ -10,8 +11,10 @@ HOMEPAGE=	http://dvdnav.mplayerhq.hu/
 COMMENT=	DVD access library
 LICENSE=	gnu-gpl-v2
 
-USE_LIBTOOL=		yes
-GNU_CONFIGURE=		yes
+USE_LANGUAGES=	c99
+USE_LIBTOOL=	yes
+GNU_CONFIGURE=	yes
+
 PKGCONFIG_OVERRIDE=	misc/dvdread.pc.in
 
 MESSAGE_SUBST+=		PKGBASE=${PKGBASE}

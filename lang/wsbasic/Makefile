@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2013/04/13 07:55:03 ghen Exp $
+# $NetBSD: Makefile,v 1.10 2020/03/20 11:57:56 nia Exp $
 
 DISTNAME=		wsbasic-1_2_7
 PKGNAME=		${DISTNAME:S/_/./g}

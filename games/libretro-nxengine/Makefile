@@ -1,33 +1,26 @@
-# $NetBSD: Makefile,v 1.3 2019/09/07 21:18:50 nia Exp $
+# $NetBSD: Makefile,v 1.6 2020/05/31 16:22:35 nia Exp $
 
-DISTNAME=	libretro-nxengine-20181126
+DISTNAME=	libretro-nxengine-20200109
 CATEGORIES=	games
-MASTER_SITES=	${MASTER_SITE_GITHUB:=libretro/}
 GITHUB_PROJECT=	nxengine-libretro
-GITHUB_TAG=	0fd3d36eeb6339eb3c1cc185b0b6bd589331b1a9
+GITHUB_TAG=	f39250e54f20c616dd4403cb8d4cab14032530b5
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://docs.libretro.com/library/nxengine/
 COMMENT=	Libretro core based on the NXEngine game engine for Cave Story
 LICENSE=	gnu-gpl-v3
 
-EXTRACT_USING=	bsdtar
-USE_TOOLS+=	gmake
 USE_LANGUAGES=	c c++
+LIBRETRO_CORE=	nxengine
 
-.include "../../mk/endian.mk"
+.include "../../mk/bsd.prefs.mk"
 
-.if ${MACHINE_ENDIAN} == "big"
-CFLAGS+=	-DMSB_FIRST
+.if ${MACHINE_ARCH} != "x86_64"
+MAKE_FLAGS+=	SINGLE_PRECISION_FLOATS=1
+MAKE_FLAGS+=	MIN_AUDIO_PROCESSING_PER_FRAME=1
 .endif
 
 BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--version-script=nxengine/libretro/link.T
-BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,-no-undefined
 
-INSTALLATION_DIRS+=	${PREFIX}/lib/libretro
-
-do-install:
-	${INSTALL_LIB} ${WRKSRC}/nxengine_libretro.so \
-	    ${DESTDIR}${PREFIX}/lib/libretro/nxengine_libretro.so
-
+.include "../../emulators/retroarch/core.mk"
 .include "../../mk/bsd.pkg.mk"

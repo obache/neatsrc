@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2015/07/12 05:14:20 dholland Exp $
+# $NetBSD: Makefile,v 1.10 2020/03/20 11:58:05 nia Exp $
 
 DISTNAME=	vblade-14
 PKGNAME=	aoe-vblade-14

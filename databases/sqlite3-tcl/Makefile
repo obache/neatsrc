@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.99 2019/04/18 10:10:03 adam Exp $
+# $NetBSD: Makefile,v 1.103 2020/06/05 07:48:07 adam Exp $
 
 .include "../../databases/sqlite3/Makefile.common"
 

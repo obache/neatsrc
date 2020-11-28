@@ -46,10 +46,10 @@ func (s *RedundantScope) checkLine(mklines *MkLines, mkline *MkLine) {
 }
 
 func (s *RedundantScope) updateIncludePath(mkline *MkLine) {
-	if mkline.firstLine == 1 {
-		s.includePath.push(mkline.Location.Filename)
+	if mkline.Location.lineno == 1 {
+		s.includePath.push(mkline.Filename())
 	} else {
-		s.includePath.popUntil(mkline.Location.Filename)
+		s.includePath.popUntil(mkline.Filename())
 	}
 }
 
@@ -151,6 +151,68 @@ func (s *RedundantScope) handleVarassign(mkline *MkLine, ind *Indentation) {
 			if info.vari.IsConstant() && info.vari.ConstantValue() == mkline.Value() {
 				s.onRedundant(prevWrites[len(prevWrites)-1], mkline)
 			}
+		}
+
+	case opAssignAppend:
+		s.checkAppendUnique(mkline, info)
+
+	case opAssignShell:
+		if s.includePath.includedByOrEqualsAll(info.includePaths) {
+
+			// The situation is:
+			//
+			//   including.mk: VAR=  value
+			//   included.mk:  VAR!= value   <-- you are here
+			//
+			// A variable has been defined in an including file and
+			// has never been read.
+			// The current line has a shell command assignment,
+			// overwriting the previously assigned value.
+			if info.vari.IsConstant() {
+				s.onRedundant(prevWrites[len(prevWrites)-1], mkline)
+			}
+		}
+	}
+}
+
+// checkAppendUnique checks whether a redundant value is appended to a
+// variable that doesn't need repeated values, such as CATEGORIES.
+func (s *RedundantScope) checkAppendUnique(mkline *MkLine, info *redundantScopeVarinfo) {
+	if !info.vari.IsConstant() {
+		return
+	}
+
+	vartype := G.Pkgsrc.VariableType(nil, info.vari.Name)
+	if !(vartype != nil && vartype.IsUnique()) {
+		return
+	}
+
+	checkRedundantAppend := func(redundant *MkLine, because *MkLine) {
+		reds := redundant.ValueFieldsLiteral()
+		becs := because.ValueFieldsLiteral()
+		for _, red := range reds {
+			for _, bec := range becs {
+				if red != bec {
+					continue
+				}
+				if redundant == mkline {
+					redundant.Notef("Appending %q to %s is redundant because it is already added in %s.",
+						red, info.vari.Name, redundant.RelMkLine(because))
+				} else {
+					redundant.Notef("Adding %q to %s is redundant because it will later be appended in %s.",
+						red, info.vari.Name, redundant.RelMkLine(because))
+				}
+			}
+		}
+	}
+
+	if s.includePath.includesOrEqualsAll(info.includePaths) {
+		for _, prev := range info.vari.WriteLocations() {
+			checkRedundantAppend(mkline, prev)
+		}
+	} else if s.includePath.includedByOrEqualsAll(info.includePaths) {
+		for _, prev := range info.vari.WriteLocations() {
+			checkRedundantAppend(prev, mkline)
 		}
 	}
 }

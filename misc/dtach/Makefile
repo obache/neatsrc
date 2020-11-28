@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2019/02/19 20:36:06 leot Exp $
+# $NetBSD: Makefile,v 1.10 2020/03/20 11:58:01 nia Exp $
 
 DISTNAME=	dtach-0.9
 CATEGORIES=	misc

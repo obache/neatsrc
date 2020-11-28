@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2019/11/13 21:50:15 wiz Exp $
+@comment $NetBSD: PLIST,v 1.7 2020/10/01 13:40:33 prlw1 Exp $
 include/gtksourceview-4/gtksourceview/completion-providers/words/gtksourcecompletionwords.h
 include/gtksourceview-4/gtksourceview/gtksource-enumtypes.h
 include/gtksourceview-4/gtksourceview/gtksource.h
@@ -41,12 +41,12 @@ include/gtksourceview-4/gtksourceview/gtksourceundomanager.h
 include/gtksourceview-4/gtksourceview/gtksourceutils.h
 include/gtksourceview-4/gtksourceview/gtksourceversion.h
 include/gtksourceview-4/gtksourceview/gtksourceview.h
-lib/girepository-1.0/GtkSource-4.typelib
+${PLIST.introspection}lib/girepository-1.0/GtkSource-4.typelib
 lib/libgtksourceview-4.so
 lib/libgtksourceview-4.so.0
 lib/libgtksourceview-4.so.0.0.0
 lib/pkgconfig/gtksourceview-4.pc
-share/gir-1.0/GtkSource-4.gir
+${PLIST.introspection}share/gir-1.0/GtkSource-4.gir
 share/gtksourceview-4/language-specs/R.lang
 share/gtksourceview-4/language-specs/abnf.lang
 share/gtksourceview-4/language-specs/actionscript.lang
@@ -66,6 +66,7 @@ share/gtksourceview-4/language-specs/changelog.lang
 share/gtksourceview-4/language-specs/chdr.lang
 share/gtksourceview-4/language-specs/cmake.lang
 share/gtksourceview-4/language-specs/cobol.lang
+share/gtksourceview-4/language-specs/commonlisp.lang
 share/gtksourceview-4/language-specs/cpp.lang
 share/gtksourceview-4/language-specs/cpphdr.lang
 share/gtksourceview-4/language-specs/csharp.lang
@@ -85,12 +86,16 @@ share/gtksourceview-4/language-specs/dpatch.lang
 share/gtksourceview-4/language-specs/dtd.lang
 share/gtksourceview-4/language-specs/dtl.lang
 share/gtksourceview-4/language-specs/eiffel.lang
+share/gtksourceview-4/language-specs/erb-html.lang
+share/gtksourceview-4/language-specs/erb-js.lang
+share/gtksourceview-4/language-specs/erb.lang
 share/gtksourceview-4/language-specs/erlang.lang
 share/gtksourceview-4/language-specs/fcl.lang
 share/gtksourceview-4/language-specs/fish.lang
 share/gtksourceview-4/language-specs/forth.lang
 share/gtksourceview-4/language-specs/fortran.lang
 share/gtksourceview-4/language-specs/fsharp.lang
+share/gtksourceview-4/language-specs/ftl.lang
 share/gtksourceview-4/language-specs/gap.lang
 share/gtksourceview-4/language-specs/gdb-log.lang
 share/gtksourceview-4/language-specs/gdscript.lang
@@ -113,8 +118,16 @@ share/gtksourceview-4/language-specs/ini.lang
 share/gtksourceview-4/language-specs/j.lang
 share/gtksourceview-4/language-specs/jade.lang
 share/gtksourceview-4/language-specs/java.lang
+share/gtksourceview-4/language-specs/javascript-expressions.lang
+share/gtksourceview-4/language-specs/javascript-functions-classes.lang
+share/gtksourceview-4/language-specs/javascript-literals.lang
+share/gtksourceview-4/language-specs/javascript-modules.lang
+share/gtksourceview-4/language-specs/javascript-statements.lang
+share/gtksourceview-4/language-specs/javascript-values.lang
 share/gtksourceview-4/language-specs/javascript.lang
+share/gtksourceview-4/language-specs/jsdoc.lang
 share/gtksourceview-4/language-specs/json.lang
+share/gtksourceview-4/language-specs/jsx.lang
 share/gtksourceview-4/language-specs/julia.lang
 share/gtksourceview-4/language-specs/kotlin.lang
 share/gtksourceview-4/language-specs/language.dtd
@@ -183,6 +196,16 @@ share/gtksourceview-4/language-specs/tera.lang
 share/gtksourceview-4/language-specs/texinfo.lang
 share/gtksourceview-4/language-specs/thrift.lang
 share/gtksourceview-4/language-specs/toml.lang
+share/gtksourceview-4/language-specs/typescript-js-expressions.lang
+share/gtksourceview-4/language-specs/typescript-js-functions-classes.lang
+share/gtksourceview-4/language-specs/typescript-js-literals.lang
+share/gtksourceview-4/language-specs/typescript-js-modules.lang
+share/gtksourceview-4/language-specs/typescript-js-statements.lang
+share/gtksourceview-4/language-specs/typescript-jsx.lang
+share/gtksourceview-4/language-specs/typescript-type-expressions.lang
+share/gtksourceview-4/language-specs/typescript-type-generics.lang
+share/gtksourceview-4/language-specs/typescript-type-literals.lang
+share/gtksourceview-4/language-specs/typescript.lang
 share/gtksourceview-4/language-specs/vala.lang
 share/gtksourceview-4/language-specs/vbnet.lang
 share/gtksourceview-4/language-specs/verilog.lang
@@ -191,6 +214,7 @@ share/gtksourceview-4/language-specs/xml.lang
 share/gtksourceview-4/language-specs/xslt.lang
 share/gtksourceview-4/language-specs/yacc.lang
 share/gtksourceview-4/language-specs/yaml.lang
+share/gtksourceview-4/language-specs/yara.lang
 share/gtksourceview-4/styles/classic.xml
 share/gtksourceview-4/styles/cobalt.xml
 share/gtksourceview-4/styles/kate.xml

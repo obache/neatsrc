@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.55 2019/08/23 14:31:15 gutteridge Exp $
+# $NetBSD: Makefile,v 1.62 2020/08/31 18:13:27 wiz Exp $
 
+PKGREVISION= 3
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-VERSION=	4.14.1
+VERSION=	4.14.3
 DISTNAME=	xfce4-settings-${VERSION}
 CATEGORIES=	x11
-MASTER_SITES=	http://archive.xfce.org/src/xfce/xfce4-settings/${VERSION:R}/
+MASTER_SITES=	https://archive.xfce.org/src/xfce/xfce4-settings/${VERSION:R}/
 
 HOMEPAGE=	https://docs.xfce.org/xfce/xfce4-settings/start
 COMMENT=	Xfce settings manager

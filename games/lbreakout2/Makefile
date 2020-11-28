@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.43 2019/09/04 17:43:15 nia Exp $
+# $NetBSD: Makefile,v 1.47 2020/05/31 15:22:21 rillig Exp $
 
 DISTNAME=	lbreakout2-2.6.5
 CATEGORIES=	games
@@ -11,10 +11,11 @@ LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}/games
-CONFIGURE_ARGS+=	--with-highscore-path=${PREFIX}/share/games/
 CONFIGURE_ARGS+=	--with-docdir=${PREFIX}/share/doc
 
 LDFLAGS.SunOS+=	-lsocket -lnsl
+
+CHECK_PORTABILITY_SKIP+=	configure.in
 
 .include "../../mk/compiler.mk"
 .if !empty(PKGSRC_COMPILER:Msunpro)

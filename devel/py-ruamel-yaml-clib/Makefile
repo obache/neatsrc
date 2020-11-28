@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.1 2019/12/17 10:05:23 leot Exp $
+# $NetBSD: Makefile,v 1.3 2020/09/05 07:05:19 wiz Exp $
 
-DISTNAME=	ruamel.yaml.clib-0.2.0
+DISTNAME=	ruamel.yaml.clib-0.2.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/./-/1:S/./-/1}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=r/ruamel.yaml.clib/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://bitbucket.org/ruamel/yaml
+HOMEPAGE=	https://yaml.readthedocs.io/en/latest/
 COMMENT=	C version of reader, parser and emitter for ruamel.yaml
 LICENSE=	mit
 

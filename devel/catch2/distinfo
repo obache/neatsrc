@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.7 2020/10/14 16:20:06 wiz Exp $
+
+SHA1 (Catch2-2.13.2.tar.gz) = 16621762ee1f8d7d07d29e42322d08ebd071b1fa
+RMD160 (Catch2-2.13.2.tar.gz) = 9bf18e333da67f70a40bc428501204ed0f847895
+SHA512 (Catch2-2.13.2.tar.gz) = 90d94d89be231aa23b6d2fd780587addd73fbd96b2d803346e9b0537d27d868e79ff6f6430da6af3df3e4eceb4643a2914a1dd71a15f4173eddb3899d2f6a205
+Size (Catch2-2.13.2.tar.gz) = 653400 bytes

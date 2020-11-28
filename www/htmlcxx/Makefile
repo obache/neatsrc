@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2017/05/12 11:35:49 jperkin Exp $
+# $NetBSD: Makefile,v 1.4 2020/03/20 11:58:34 nia Exp $
 
 DISTNAME=	htmlcxx-0.85
 CATEGORIES=	www

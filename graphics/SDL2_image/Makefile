@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.12 2019/07/07 05:46:51 nia Exp $
+# $NetBSD: Makefile,v 1.15 2020/08/18 17:57:28 leot Exp $
 
 DISTNAME=	SDL2_image-2.0.5
+PKGREVISION=	2
 CATEGORIES=	graphics devel
 MASTER_SITES=	http://www.libsdl.org/projects/SDL_image/release/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.libsdl.org/projects/SDL_image/
+HOMEPAGE=	https://www.libsdl.org/projects/SDL_image/
 COMMENT=	Load images as SDL surfaces
 LICENSE=	zlib
 

@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.152 2019/11/23 23:47:14 nia Exp $
+# $NetBSD: Makefile,v 1.168 2020/10/12 21:52:00 bacon Exp $
 
-DISTNAME=	blender-2.81
+DISTNAME=	blender-2.90.0
+PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	https://download.blender.org/source/
 EXTRACT_SUFX=	.tar.xz
@@ -10,9 +11,8 @@ HOMEPAGE=	https://www.blender.org/
 COMMENT=	Fully integrated 3D graphics creation suite
 LICENSE=	gnu-gpl-v2
 
-USE_TOOLS+=	gmake sed
 USE_CMAKE=	yes
-USE_LANGUAGES=	c c++11
+USE_LANGUAGES=	c gnu++11
 
 # C++11
 GCC_REQD+=	4.7
@@ -34,8 +34,9 @@ CMAKE_ARGS+=	-DWITH_SDL_DYNLOAD=OFF
 CMAKE_ARGS+=	-DWITH_CODEC_FFMPEG=ON
 CMAKE_ARGS+=	-DWITH_CODEC_SNDFILE=ON
 CMAKE_ARGS+=	-DWITH_SYSTEM_GLEW=ON
-CMAKE_ARGS+=	-DWITH_TBB=OFF
+CMAKE_ARGS+=	-DWITH_CYCLES_EMBREE=OFF
 
+CMAKE_ARGS+=	-DPYTHON_VERSION=${PYVERSSUFFIX}
 CMAKE_ARGS+=	-DWITH_PYTHON_INSTALL_NUMPY=OFF
 CMAKE_ARGS+=	-DWITH_PYTHON_INSTALL_REQUESTS=OFF
 
@@ -52,7 +53,7 @@ INSTALLATION_DIRS=	bin share/blender
 
 CHECK_PORTABILITY_SKIP+=	doc/python_api/sphinx_doc_gen.sh
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27
+PYTHON_VERSIONS_INCOMPATIBLE=	27 36
 
 pre-configure:
 	${MKDIR} ${WRKSRC}/build
@@ -78,6 +79,7 @@ pre-configure:
 .include "../../math/fftw/buildlink3.mk"
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../multimedia/ffmpeg4/buildlink3.mk"
+.include "../../parallel/threadingbuildingblocks/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../lang/python/application.mk"

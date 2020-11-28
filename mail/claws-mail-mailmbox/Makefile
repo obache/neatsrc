@@ -1,13 +1,15 @@
-# $NetBSD: Makefile,v 1.68 2019/11/26 19:13:26 nia Exp $
+# $NetBSD: Makefile,v 1.77 2020/08/17 20:19:22 leot Exp $
 #
 
 PLUGIN_NAME=    mailmbox
 
+PKGREVISION= 3
 .include "../../mail/claws-mail/plugins.mk"
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Handles mailboxes in mbox format
 
+TOOLS_BROKEN+=		perl
 CONFIGURE_ARGS+=	--enable-${PLUGIN_NAME}-plugin
 
 DEPENDS+=	claws-mail-${CLAWS_VERSION}{,nb[0-9]*}:../../mail/claws-mail

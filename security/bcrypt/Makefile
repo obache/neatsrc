@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2014/10/09 14:06:51 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2020/03/20 11:58:16 nia Exp $
 #
 
 DISTNAME=	bcrypt-1.1

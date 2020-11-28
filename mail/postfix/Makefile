@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.314 2019/09/23 20:00:07 triaxx Exp $
+# $NetBSD: Makefile,v 1.323 2020/10/26 17:04:57 nia Exp $
 
+PKGREVISION= 1
 .include "../../mail/postfix/Makefile.common"
 
 COMMENT=	Fast, easy to administer, and secure mail transfer agent
@@ -7,7 +8,7 @@ COMMENT=	Fast, easy to administer, and secure mail transfer agent
 CONFLICTS+=	courier-mta-[0-9]* fastforward>=0.51nb2 sendmail-[0-9]*
 CONFLICTS+=	esmtp>=1.2 nullmailer-[0-9]*
 
-USE_TOOLS+=	perl pkg-config
+USE_TOOLS+=	perl pkg-config m4
 
 SPECIAL_PERMS+=	sbin/postdrop ${POSTFIX_USER} ${MAILDROP_GROUP} 2555
 SPECIAL_PERMS+=	sbin/postqueue ${POSTFIX_USER} ${MAILDROP_GROUP} 2555
@@ -75,5 +76,8 @@ do-install:
 		${DESTDIR}${PREFIX}/sbin/qshape
 	${INSTALL_MAN} ${WRKSRC}/man/man1/qshape.1 \
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
+.for dir in ${POSTFIX_QUEUE_SUBDIR}
+	${RMDIR} ${DESTDIR}${POSTFIX_QUEUE_DIR}/${dir}
+.endfor
 
 .include "../../mk/bsd.pkg.mk"

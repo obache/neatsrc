@@ -1,12 +1,25 @@
-$NetBSD: patch-configure,v 1.3 2018/11/06 19:31:09 adam Exp $
+$NetBSD: patch-configure,v 1.6 2020/06/26 21:02:27 nia Exp $
 
-Enable PIC on NetBSD, even on i386 to avoid text relocations.
+Sun audio support.
+
+Enable PIC and section_data_rel_ro on NetBSD, even on i386,
+to avoid text relocations.
+
 Do not use 'rsync'.
+
 Portability fixes.
 
---- configure.orig	2018-11-05 23:22:33.000000000 +0000
+--- configure.orig	2020-06-15 18:54:23.000000000 +0000
 +++ configure
-@@ -2203,7 +2203,6 @@ TOOLCHAIN_FEATURES="
+@@ -2131,6 +2131,7 @@ HEADERS_LIST="
+     sys_resource_h
+     sys_select_h
+     sys_soundcard_h
++    sys_audioio_h
+     sys_time_h
+     sys_un_h
+     sys_videoio_h
+@@ -2272,7 +2273,6 @@ TOOLCHAIN_FEATURES="
      inline_asm_labels
      inline_asm_nonlocal_labels
      pragma_deprecated
@@ -14,7 +27,16 @@ Portability fixes.
      symver_asm_label
      symver_gnu_asm
      vfp_args
-@@ -4844,9 +4843,9 @@ elif enabled mips; then
+@@ -3394,6 +3394,8 @@ opengl_outdev_deps="opengl"
+ opengl_outdev_suggest="sdl2"
+ oss_indev_deps_any="sys_soundcard_h"
+ oss_outdev_deps_any="sys_soundcard_h"
++sunau_indev_deps_any="sys_audioio_h"
++sunau_outdev_deps_any="sys_audioio_h"
+ pulse_indev_deps="libpulse"
+ pulse_outdev_deps="libpulse"
+ sdl2_outdev_deps="sdl2"
+@@ -5033,9 +5035,9 @@ elif enabled mips; then
                  disable mipsdsp
                  disable mipsdspr2
                  # When gcc version less than 5.3.0, add -fno-expensive-optimizations flag.
@@ -26,15 +48,16 @@ Portability fixes.
                          expensive_optimization_flag=""
                      else
                          expensive_optimization_flag="-fno-expensive-optimizations"
-@@ -5140,6 +5139,7 @@ case $target_os in
+@@ -5330,6 +5332,8 @@ case $target_os in
          ;;
      netbsd)
          disable symver
++        enable section_data_rel_ro
 +        enable pic
          oss_indev_extralibs="-lossaudio"
          oss_outdev_extralibs="-lossaudio"
          enabled gcc || check_ldflags -Wl,-zmuldefs
-@@ -5526,10 +5526,13 @@ done
+@@ -5728,10 +5732,13 @@ done
  check_cc pragma_deprecated "" '_Pragma("GCC diagnostic ignored \"-Wdeprecated-declarations\"")'
  
  # The global variable ensures the bits appear unchanged in the object file.
@@ -51,11 +74,19 @@ Portability fixes.
  
  check_cc const_nan math.h "struct { double d; } static const bar[] = { { NAN } }"
  
-@@ -6299,7 +6302,6 @@ enabled makeinfo \
+@@ -6114,6 +6121,7 @@ check_headers malloc.h
+ check_headers mftransform.h
+ check_headers net/udplite.h
+ check_headers poll.h
++check_headers sys/audioio.h
+ check_headers sys/param.h
+ check_headers sys/resource.h
+ check_headers sys/select.h
+@@ -6537,7 +6545,6 @@ enabled makeinfo \
  disabled makeinfo_html && texi2html --help 2> /dev/null | grep -q 'init-file' && enable texi2html || disable texi2html
  perl -v            > /dev/null 2>&1 && enable perl      || disable perl
  pod2man --help     > /dev/null 2>&1 && enable pod2man   || disable pod2man
 -rsync --help 2> /dev/null | grep -q 'contimeout' && enable rsync_contimeout || disable rsync_contimeout
  
  # check V4L2 codecs available in the API
- check_headers linux/fb.h
+ if enabled v4l2_m2m; then

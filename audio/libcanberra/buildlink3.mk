@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.36 2019/07/21 22:23:57 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.39 2020/08/17 20:17:16 leot Exp $
 
 BUILDLINK_TREE+=	libcanberra
 
@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	libcanberra
 LIBCANBERRA_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.libcanberra+=	libcanberra>=0.10
-BUILDLINK_ABI_DEPENDS.libcanberra+=	libcanberra>=0.30nb1
+BUILDLINK_ABI_DEPENDS.libcanberra+=	libcanberra>=0.30nb4
 BUILDLINK_PKGSRCDIR.libcanberra?=	../../audio/libcanberra
 
 pkgbase := libcanberra

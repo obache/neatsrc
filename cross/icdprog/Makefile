@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2012/10/03 00:10:30 asau Exp $
+# $NetBSD: Makefile,v 1.12 2020/01/26 05:26:19 rillig Exp $
 
 DISTNAME=	icdprog-0.3
 PKGREVISION=	1

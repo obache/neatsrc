@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST.vax,v 1.1 2019/10/15 12:01:22 he Exp $
+@comment $NetBSD: PLIST.vax,v 1.3 2020/08/13 17:05:38 maya Exp $
 ${EMULSUBDIRSLASH}lib/libcrypto.so.12
 ${EMULSUBDIRSLASH}lib/libcrypto.so.12.0
 ${EMULSUBDIRSLASH}lib/libpcap.so.6

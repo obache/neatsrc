@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.19 2018/07/03 03:48:38 adam Exp $
+$NetBSD: distinfo,v 1.23 2020/10/18 14:33:58 wiz Exp $
 
-SHA1 (asciidoc-8.6.10.tar.gz) = 53b9c916bb4e29d2a4b850446be070ef81dcd792
-RMD160 (asciidoc-8.6.10.tar.gz) = 42346e7f17f136c0e7c5abb61216ef570aaa2dd9
-SHA512 (asciidoc-8.6.10.tar.gz) = 6ecc86977baaf1c756691e3f661e43ef2bb24e606898f6075bfa6f174d1fdc5e77d00853ffe014847e295364349d6ad34f3b8209cb97870e0233012fc38a281a
-Size (asciidoc-8.6.10.tar.gz) = 577208 bytes
+SHA1 (asciidoc-py3-9.0.3.tar.gz) = a5207b7736ae35b7ee052801a11251981b092572
+RMD160 (asciidoc-py3-9.0.3.tar.gz) = 8e9943b1d1af21134fbdf665d83f43ef5829a953
+SHA512 (asciidoc-py3-9.0.3.tar.gz) = a6006b853eb5b04044769c3d6d686f37b4931b49a8a0e42344f20d6854c127602c69914836e2c8f9efa9c011ccde5104bbf01713f19e6e205866f3fa689934b8
+Size (asciidoc-py3-9.0.3.tar.gz) = 1110610 bytes

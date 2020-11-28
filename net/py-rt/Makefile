@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.4 2020/01/02 15:46:11 leot Exp $
+# $NetBSD: Makefile,v 1.7 2020/10/09 15:43:07 leot Exp $
 
-DISTNAME=	rt-1.0.12
+DISTNAME=	rt-2.0.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	net python
 MASTER_SITES=	${MASTER_SITE_PYPI:=r/rt/}
@@ -16,6 +16,9 @@ DEPENDS+=	${PYPKGPREFIX}-requests-[0-9]*:../../devel/py-requests
 DEPENDS+=	${PYPKGPREFIX}-six-[0-9]*:../../lang/py-six
 
 USE_LANGUAGES=	# none
+
+# Only for Python 3
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

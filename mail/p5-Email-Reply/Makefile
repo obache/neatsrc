@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.19 2019/08/11 13:21:33 wiz Exp $
-#
+# $NetBSD: Makefile,v 1.22 2020/09/08 13:16:41 wiz Exp $
 
 DISTNAME=	Email-Reply-1.204
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	mail
-MASTER_SITES=	https://cpan.metacpan.org/authors/id/R/RJ/RJBS/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/R/RJ/RJBS/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://cpan.metacpan.org/authors/id/R/RJ/RJBS/
+HOMEPAGE=	https://metacpan.org/pod/Email::Reply
 COMMENT=	Reply to a Message
 LICENSE=	${PERL5_LICENSE}
 

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.13 2019/10/20 16:29:42 triaxx Exp $
+@comment $NetBSD: PLIST,v 1.15 2020/06/12 23:50:16 sevan Exp $
 bin/gmake
 gnu/bin/make
 gnu/man/man1/make.1

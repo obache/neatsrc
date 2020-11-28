@@ -1,6 +1,0 @@
-$NetBSD: distinfo,v 1.24 2019/10/17 14:04:44 mef Exp $
-
-SHA1 (ExtUtils-CBuilder-0.280231.tar.gz) = 6c5957ef7c22dbba2dd4eebb256d514736d249ea
-RMD160 (ExtUtils-CBuilder-0.280231.tar.gz) = 042cdb9c553103067130dd0c23f6c8d3437b4157
-SHA512 (ExtUtils-CBuilder-0.280231.tar.gz) = 3977cf150da88aaec2c04bf5d25a8e57e7218392828a32044f70d2eb06472b37d3057a1489be044a75211fd6b805758179bcfa758915cb02e99d23e03b1656b9
-Size (ExtUtils-CBuilder-0.280231.tar.gz) = 40422 bytes

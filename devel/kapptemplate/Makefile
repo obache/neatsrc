@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.25 2019/11/25 10:03:20 markd Exp $
+# $NetBSD: Makefile,v 1.34 2020/08/18 17:57:43 leot Exp $
 
 DISTNAME=	kapptemplate-${KAPPSVER}
+PKGREVISION=	2
 CATEGORIES=	devel
 
 HOMEPAGE=	https://kde.org/applications/development/kapptemplate/
@@ -9,7 +10,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
 .include "../../meta-pkgs/kde/applications.mk"
 
-BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.56 2019/11/05 14:58:45 adam Exp $
+# $NetBSD: Makefile,v 1.70 2020/09/14 20:08:28 adam Exp $
 
 DISTNAME=	qtmultimedia-everywhere-src-${QTVERSION}
 PKGNAME=	qt5-qtmultimedia-${QTVERSION}
@@ -11,9 +11,8 @@ INSTALLATION_DIRS+=	lib/pkgconfig
 
 .include "../../x11/qt5-qtbase/Makefile.common"
 
-.if ${OPSYS} != "Darwin"
-MAKE_ENV+=		LFLAGS=${COMPILER_RPATH_FLAG}${PREFIX}/lib/pulseaudio
-.endif
+# Needs gnu+11 for alloca.
+BUILDLINK_TRANSFORM+=	rm:-std=c++1z
 
 post-install:
 .for i in Qt5Multimedia.pc Qt5MultimediaWidgets.pc
@@ -21,16 +20,6 @@ post-install:
 	${LN} -f -s ${QTPREFIX}/lib/pkgconfig/${i} ${i}
 .endfor
 
-PLIST_VARS+=		alsa
-.if ${OPSYS} == "Linux"
-.include "../../audio/alsa-lib/buildlink3.mk"
-PLIST.alsa=		yes
-.endif
-
-.if ${OPSYS} != "Darwin"
-.include "../../audio/openal-soft/buildlink3.mk"
-.include "../../audio/pulseaudio/buildlink3.mk"
-.include "../../multimedia/gst-plugins1-base/buildlink3.mk"
-.endif
+.include "options.mk"
 .include "../../x11/qt5-qtdeclarative/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

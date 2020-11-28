@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2019/11/02 16:25:26 rillig Exp $
+# $NetBSD: Makefile,v 1.18 2020/03/20 11:57:59 nia Exp $
 
 DISTNAME=	libgmail-0.1.11
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}

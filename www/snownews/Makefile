@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.56 2019/09/20 09:22:06 nia Exp $
+# $NetBSD: Makefile,v 1.58 2020/08/31 18:13:16 wiz Exp $
 
 DISTNAME=	snownews-1.6.10
+PKGREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=kouya/}
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2015/07/04 16:18:38 joerg Exp $
+# $NetBSD: Makefile,v 1.22 2020/03/20 11:58:01 nia Exp $
 #
 
 DISTNAME=	bbappconf-0.0.2

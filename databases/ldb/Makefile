@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.9 2019/12/30 09:43:54 adam Exp $
+# $NetBSD: Makefile,v 1.17 2020/07/06 14:29:42 adam Exp $
 
 # Before updating, make sure net/samba4 supports the newer version.
-DISTNAME=	ldb-2.0.8
+DISTNAME=	ldb-2.1.4
 CATEGORIES=	databases
 MASTER_SITES=	http://www.samba.org/ftp/ldb/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ldb.samba.org/
+HOMEPAGE=	https://ldb.samba.org/
 COMMENT=	LDAP-like embedded database
 LICENSE=	gnu-gpl-v3
 
@@ -61,8 +61,9 @@ PLIST.64bit=		yes
 CONFIGURE_ARGS+=	--without-ldb-lmdb
 .endif
 
+.include "options.mk"
+
 .include "../../converters/libiconv/buildlink3.mk"
-.include "../../databases/openldap-client/buildlink3.mk"
 .include "../../databases/tdb/buildlink3.mk"
 .include "../../devel/cmocka/buildlink3.mk"
 .include "../../devel/popt/buildlink3.mk"

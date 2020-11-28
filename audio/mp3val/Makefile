@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2013/04/06 03:45:07 rodent Exp $
+# $NetBSD: Makefile,v 1.6 2020/01/26 05:26:12 rillig Exp $
 #
 
 DISTNAME=	mp3val-0.1.8-src

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2019/07/21 22:25:52 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2020/08/17 20:20:18 leot Exp $
 
-PKGREVISION=	9
-DISTNAME=	trayer-1.1.6
+DISTNAME=	trayer-1.1.8
+PKGREVISION=	1
 CATEGORIES=	wm x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=sargon/}
 GITHUB_PROJECT=	trayer-srg
@@ -12,18 +12,17 @@ HOMEPAGE=	https://github.com/sargon/trayer-srg
 COMMENT=	Lightweight GTK2-based systray for UNIX desktop
 LICENSE=	mit
 
-USE_TOOLS+=	gmake pkg-config
+USE_TOOLS+=	gmake pkg-config bash
 
-BUILD_MAKE_FLAGS=	CFLAGS=${CFLAGS:Q}
-INSTALL_MAKE_FLAGS=	PREFIX=${DESTDIR}${PREFIX}
+HAS_CONFIGURE=	yes
 
-SUBST_CLASSES+=		paths
-SUBST_SED.paths=	-e 's,/usr,${PREFIX},'
-SUBST_FILES.paths=	config.h Makefile.config
-SUBST_STAGE.paths=	pre-build
-SUBST_MESSAGE.paths=	Fixing path to ${PREFIX}.
+MAKE_FLAGS=	CFLAGS=${CFLAGS:Q}
 
-AUTO_MKDIRS=		yes
+AUTO_MKDIRS=	yes
+
+CONFIG_SHELL=	bash
+
+CONFIGURE_ARGS+=	--prefix=${PREFIX}
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/README ${DESTDIR}${PREFIX}/share/doc/trayer/

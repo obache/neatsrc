@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.4 2019/04/25 07:33:12 maya Exp $
+# $NetBSD: Makefile,v 1.7 2020/09/14 13:43:10 taca Exp $
 
-DISTNAME=	recog-2.1.23
-PKGREVISION=	1
+DISTNAME=	recog-2.3.14
 CATEGORIES=	net
 
 MAINTAINER=	minskim@NetBSD.org
@@ -12,9 +11,10 @@ LICENSE=	2-clause-bsd
 DEPENDS+=	${RUBY_PKGPREFIX}-nokogiri-[0-9]*:../../textproc/ruby-nokogiri
 DEPENDS+=	${PYPKGPREFIX}-yaml-[0-9]*:../../textproc/py-yaml
 
-RUBYGEM_OPTIONS+=	--format-executable
+USE_LANGUAGES=	# none
 
-REPLACE_PYTHON=	update_cpes.py
+RUBYGEM_OPTIONS+=	--format-executable
+REPLACE_PYTHON=		update_cpes.py
 
 .include "../../lang/ruby/gem.mk"
 .include "../../lang/python/application.mk"

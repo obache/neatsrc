@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.2 2012/10/31 11:16:40 asau Exp $
+# $NetBSD: Makefile,v 1.4 2020/06/14 10:07:48 nia Exp $
 
 DISTNAME=	blame-1.3.1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=blame/}
 
 MAINTAINER=	asau@inbox.ru
-HOMEPAGE=	http://blame.sf.net/
+HOMEPAGE=	https://invisible-island.net/rcs-blame/	
 COMMENT=	Annotate RCS-controlled text line by line
 
 GNU_CONFIGURE=		yes

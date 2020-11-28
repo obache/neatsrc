@@ -1,4 +1,4 @@
-$NetBSD: patch-unix_xserver117.patch,v 1.5 2017/09/13 08:33:03 wiz Exp $
+$NetBSD: patch-unix_xserver117.patch,v 1.7 2020/04/17 11:37:24 wiz Exp $
 
 --- unix/xserver117.patch.orig	2015-07-11 13:00:36.000000000 +0000
 +++ unix/xserver117.patch

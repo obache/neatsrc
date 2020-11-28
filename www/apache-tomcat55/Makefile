@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2012/10/28 06:30:09 asau Exp $
+# $NetBSD: Makefile,v 1.23 2020/04/29 19:44:49 maya Exp $
 
 DISTNAME=	apache-tomcat-${TOMCAT_VERSION}
 CATEGORIES=	www java
@@ -6,7 +6,7 @@ CATEGORIES=	www java
 # The getsite.sh script parses the HTML and extracts the urls.
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://tomcat.apache.org/
+HOMEPAGE=	https://tomcat.apache.org/
 COMMENT=	The Apache Project's Java Servlet 2.4 and JSP 2.0 server
 
 LICENSE=	apache-2.0
@@ -26,11 +26,6 @@ EGDIR=		${TOMCAT_LIB}/share/examples/apache-tomcat
 EGDIR2=		${EGDIR}/${CATALINA_DIR}
 
 .include "../../mk/bsd.prefs.mk"
-
-# Work around a bug in NetBSD 2.0's pax-as-tar (bin/27228)
-.if !empty(MACHINE_PLATFORM:MNetBSD-2.0*)
-EXTRACT_USING=	bsdtar
-.endif
 
 PKG_SYSCONFDIR.apache-tomcat=	${TOMCAT_LIB}/conf
 MAKE_DIRS=	${PKG_SYSCONFDIR.apache-tomcat}/${CATALINA_DIR}

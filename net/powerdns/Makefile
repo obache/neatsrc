@@ -1,6 +1,5 @@
-# $NetBSD: Makefile,v 1.46 2019/08/22 12:23:41 ryoon Exp $
+# $NetBSD: Makefile,v 1.55 2020/06/07 18:55:12 otis Exp $
 
-PKGREVISION= 2
 .include "Makefile.common"
 
 PKGNAME=	${DISTNAME:S/pdns/powerdns/}
@@ -17,11 +16,6 @@ SMF_NAME=		pdns
 EGDIR=			${PREFIX}/share/examples/pdns
 
 CONF_FILES+=		${EGDIR}/pdns.conf-dist ${PKG_SYSCONFDIR}/pdns.conf
-
-SUBST_CLASSES+=		conf
-SUBST_STAGE.conf=	pre-install
-SUBST_FILES.conf=	pdns/pdns.conf-dist
-SUBST_VARS.conf+=	PREFIX PKG_SYSCONFDIR
 
 LDFLAGS.SunOS+=		-lsocket -lnsl
 

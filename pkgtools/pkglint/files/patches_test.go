@@ -15,8 +15,8 @@ func (s *Suite) Test_CheckLinesPatch__with_comment(c *check.C) {
 		"* either why it is specific to pkgsrc",
 		"* or where it has been reported upstream",
 		"",
-		"--- file.orig",
-		"+++ file",
+		"--- WithComment.orig",
+		"+++ WithComment",
 		"@@ -5,3 +5,3 @@",
 		" context before",
 		"-old line",
@@ -56,8 +56,8 @@ func (s *Suite) Test_CheckLinesPatch__without_empty_line__autofix(c *check.C) {
 	CheckLinesPatch(patchLines, pkg)
 
 	t.CheckOutputLines(
-		"AUTOFIX: patch-WithoutEmptyLines:2: Inserting a line \"\" before this line.",
-		"AUTOFIX: patch-WithoutEmptyLines:3: Inserting a line \"\" before this line.",
+		"AUTOFIX: patch-WithoutEmptyLines:2: Inserting a line \"\" above this line.",
+		"AUTOFIX: patch-WithoutEmptyLines:3: Inserting a line \"\" above this line.",
 		"AUTOFIX: distinfo:3: Replacing \"49abd735b7e706ea9ed6671628bb54e91f7f5ffb\" "+
 			"with \"4938fc8c0b483dc2e33e741b0da883d199e78164\".")
 
@@ -84,8 +84,8 @@ func (s *Suite) Test_CheckLinesPatch__no_comment_and_no_empty_lines(c *check.C) 
 
 	patchLines := t.SetUpFileLines("patch-WithoutEmptyLines",
 		CvsID,
-		"--- file.orig",
-		"+++ file",
+		"--- WithoutEmptyLines.orig",
+		"+++ WithoutEmptyLines",
 		"@@ -1,1 +1,1 @@",
 		"-old line",
 		"+new line")
@@ -98,7 +98,7 @@ func (s *Suite) Test_CheckLinesPatch__no_comment_and_no_empty_lines(c *check.C) 
 	// the same. Outside of the testing environment, this duplicate
 	// diagnostic is suppressed; see LogVerbose.
 	t.CheckOutputLines(
-		"NOTE: ~/patch-WithoutEmptyLines:2: Empty line expected before this line.",
+		"NOTE: ~/patch-WithoutEmptyLines:2: Empty line expected above this line.",
 		"ERROR: ~/patch-WithoutEmptyLines:2: Each patch must be documented.",
 		"NOTE: ~/patch-WithoutEmptyLines:2: Empty line expected.")
 }
@@ -109,8 +109,8 @@ func (s *Suite) Test_CheckLinesPatch__without_comment(c *check.C) {
 	lines := t.NewLines("patch-WithoutComment",
 		CvsID,
 		"",
-		"--- file.orig",
-		"+++ file",
+		"--- WithoutComment.orig",
+		"+++ WithoutComment",
 		"@@ -5,3 +5,3 @@",
 		" context before",
 		"-old line",
@@ -134,8 +134,8 @@ func (s *Suite) Test_CheckLinesPatch__error_code(c *check.C) {
 		"",
 		"*** Error code 1", // Looks like a context diff but isn't.
 		"",
-		"--- file.orig",
-		"+++ file",
+		"--- ErrorCode.orig",
+		"+++ ErrorCode",
 		"@@ -5,3 +5,3 @@",
 		" context before",
 		"-old line",
@@ -156,8 +156,8 @@ func (s *Suite) Test_CheckLinesPatch__wrong_header_order(c *check.C) {
 		"Text",
 		"Text",
 		"",
-		"+++ file",      // Wrong order
-		"--- file.orig", // Wrong order
+		"+++ WrongOrder",      // Wrong order
+		"--- WrongOrder.orig", // Wrong order
 		"@@ -5,3 +5,3 @@",
 		" context before",
 		"-old line",
@@ -282,13 +282,13 @@ func (s *Suite) Test_CheckLinesPatch__only_unified_header_but_no_content(c *chec
 		"",
 		"Documentation for the patch",
 		"",
-		"--- file.orig",
-		"+++ file")
+		"--- unified.orig",
+		"+++ unified")
 
 	CheckLinesPatch(lines, nil)
 
 	t.CheckOutputLines(
-		"ERROR: patch-unified:EOF: No patch hunks for \"file\".")
+		"ERROR: patch-unified:EOF: No patch hunks for \"unified\".")
 }
 
 func (s *Suite) Test_CheckLinesPatch__only_context_header_but_no_content(c *check.C) {
@@ -534,7 +534,7 @@ func (s *Suite) Test_PatchChecker_Check__missing_CVS_Id(c *check.C) {
 
 	t.CheckOutputLines(
 		sprintf("ERROR: ~/patch-aa:1: Expected %q.", CvsID),
-		"NOTE: ~/patch-aa:1: Empty line expected before this line.",
+		"NOTE: ~/patch-aa:1: Empty line expected above this line.",
 		"ERROR: ~/patch-aa: Contains no patch.")
 }
 
@@ -596,10 +596,30 @@ func (s *Suite) Test_PatchChecker_Check__absolute_path(c *check.C) {
 	t.CheckOutputEmpty()
 }
 
-func (s *Suite) Test_PatchChecker_checkUnifiedDiff__lines_at_end(c *check.C) {
+func (s *Suite) Test_PatchChecker_Check__add_hardcoded_usr_pkg(c *check.C) {
 	t := s.Init(c)
 
 	lines := t.SetUpFileLines("patch-aa",
+		CvsID,
+		"",
+		"This patch wrongly contains the hard-coded PREFIX.",
+		"",
+		"--- Makefile",
+		"+++ Makefile",
+		"@@ -1,1 +1,1 @@",
+		"- prefix := @prefix@",
+		"+ prefix := /usr/pkg")
+
+	CheckLinesPatch(lines, nil)
+
+	t.CheckOutputLines(
+		"ERROR: ~/patch-aa:9: Patches must not hard-code the pkgsrc PREFIX.")
+}
+
+func (s *Suite) Test_PatchChecker_checkUnifiedDiff__lines_at_end(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("patch-aa",
 		CvsID,
 		"",
 		"Documentation",
@@ -616,6 +636,30 @@ func (s *Suite) Test_PatchChecker_checkUnifiedDiff__lines_at_end(c *check.C) {
 	CheckLinesPatch(lines, nil)
 
 	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_PatchChecker_checkUnifiedDiff__line_number_mismatch(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("patch-aa",
+		CvsID,
+		"",
+		"Documentation",
+		"",
+		"--- old",
+		"+++ new",
+		"@@ -2,1 +1,1 @@",
+		"- old",
+		"+ new",
+		"@@ -5,1 +7,1 @@",
+		"- old",
+		"+ new")
+
+	CheckLinesPatch(lines, nil)
+
+	t.CheckOutputLines(
+		"NOTE: patch-aa:7: The difference between the line numbers 2 and 1 should be 0, not -1.",
+		"NOTE: patch-aa:10: The difference between the line numbers 5 and 7 should be 0, not 2.")
 }
 
 func (s *Suite) Test_PatchChecker_checkBeginDiff__multiple_patches_without_documentation(c *check.C) {
@@ -734,6 +778,271 @@ func (s *Suite) Test_PatchChecker_checkConfigure__configure_ac(c *check.C) {
 		"ERROR: ~/patch-aa:9: This code must not be included in patches.")
 }
 
+func (s *Suite) Test_PatchChecker_checkAddedLine__interpreter(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("patch-aa",
+		CvsID,
+		"",
+		"Documentation.",
+		"",
+		"--- a/aa",
+		"+++ b/aa",
+		"@@ -1,1 +1,1 @@",
+		"-old",
+		"+#! /home/my/pkgsrc/pkg/bin/bash")
+
+	CheckLinesPatch(lines, nil)
+
+	t.CheckOutputLines(
+		"ERROR: patch-aa:9: Patches must not add a hard-coded interpreter " +
+			"(/home/my/pkgsrc/pkg/bin/bash).")
+}
+
+func (s *Suite) Test_PatchChecker_checkAddedLine__interpreter_in_line_2(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("patch-aa",
+		CvsID,
+		"",
+		"Documentation.",
+		"",
+		"--- a/aa",
+		"+++ b/aa",
+		"@@ -1,1 +1,2 @@",
+		"-old",
+		"+new",
+		"+#! /home/my/pkgsrc/pkg/bin/bash")
+
+	CheckLinesPatch(lines, nil)
+
+	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_PatchChecker_checkAddedLine__interpreter_placeholder(c *check.C) {
+	t := s.Init(c)
+
+	lines := t.NewLines("patch-aa",
+		CvsID,
+		"",
+		"Documentation.",
+		"",
+		"--- a/aa",
+		"+++ b/aa",
+		"@@ -1,1 +1,1 @@",
+		"-old",
+		"+#! @PREFIX@/bin/bash")
+
+	CheckLinesPatch(lines, nil)
+
+	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_PatchChecker_checkAddedAbsPath(c *check.C) {
+	t := s.Init(c)
+
+	test := func(addedLine string, diagnostics ...string) {
+		lines := t.NewLines("patch-file",
+			CvsID,
+			"",
+			"Demonstrates absolute paths.",
+			"",
+			"--- file.orig",
+			"+++ file",
+			"@@ -1,0 +1,1 @@",
+			"+"+addedLine)
+
+		CheckLinesPatch(lines, nil)
+
+		t.CheckOutput(diagnostics)
+	}
+
+	test(
+		"/usr/pkg",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc PREFIX.")
+
+	test(
+		"/usr/pkgsrc",
+		nil...)
+
+	test(
+		"/usr/pkg/bin",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc PREFIX.")
+
+	test(
+		"/usr/local:/usr/pkg:/opt",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc PREFIX.")
+
+	test(
+		"/var",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc VARBASE.")
+
+	test(
+		"/var/db",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc VARBASE.")
+
+	test(
+		"/var/run",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc VARBASE.")
+
+	// A well-known path that is not specific to pkgsrc.
+	test(
+		"/var/shm",
+		nil...)
+
+	// A well-known path that is not specific to pkgsrc.
+	test(
+		"/var/tmp",
+		nil...)
+
+	test(
+		"/etc",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc PKG_SYSCONFDIR.")
+
+	// BSD-style Makefile
+	test(
+		"${PREFIX}/etc",
+		nil...)
+
+	// GNU automake-style Makefile
+	test(
+		"$(prefix)/etc",
+		nil...)
+
+	// C source code.
+	// Instead of PREFIX/etc, this should rather be PKG_SYSCONFDIR.
+	// This is a relative path because of the PREFIX.
+	test(
+		"const char *conf_dir = PREFIX \"/etc\"",
+		nil...)
+
+	// CMakeLists.txt
+	test(
+		"set(ETC_DIR \"/etc\")",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc PKG_SYSCONFDIR.")
+
+	test(
+		"/etc/mk.conf",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc PKG_SYSCONFDIR.")
+
+	test(
+		"/etc/rc.d/daemon",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc PKG_SYSCONFDIR.")
+
+	test(
+		"/usr/pkg and /var and /etc",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc PREFIX.",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc VARBASE.",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc PKG_SYSCONFDIR.")
+
+	// From the --help text of a GNU configure script.
+	test(
+		"[PREFIX/etc]",
+		nil...)
+
+	// Shell program, default value for a variable.
+	test(
+		"DIR=${DIR-/var/bytebench}",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc VARBASE.")
+
+	// Shell program or Makefile.
+	// The placeholder will make this a relative path.
+	test(
+		"dir=@prefix@/etc",
+		nil...)
+
+	// Makefile with flags for the C compiler.
+	test(
+		"CFLAGS+= -I/usr/pkg/include",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc PREFIX.")
+
+	// Makefile with flags for the linker.
+	test(
+		"LDFLAGS+= -L/usr/pkg/lib",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc PREFIX.")
+
+	// Makefile with flags for the linker.
+	// There should be an additional warning for using COMPILER_RPATH_FLAG.
+	test(
+		"LDFLAGS+= -rpath/usr/pkg/lib",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc PREFIX.")
+
+	// Makefile with flags for the linker.
+	// There should be an additional warning for using COMPILER_RPATH_FLAG.
+	test(
+		"LDFLAGS+= -Wl,-R/usr/pkg/lib",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc PREFIX.")
+
+	// The dot before the "/etc" makes it a relative pathname.
+	test(
+		"cp ./etc/hostname /tmp",
+		nil...)
+
+	// +>	+#	from /etc/inittab (SYSV systems)
+	// +ERROR: devel/tet3/patches/patch-ac:51: Patches must not hard-code the pkgsrc PKG_SYSCONFDIR.
+
+	test(
+		"# SysV /etc/install, /usr/sbin/install",
+		nil...)
+
+	// C or C++ program, macro definition.
+	// This is an absolute path since the PID_FILE is the macro name,
+	// and not part of the macro body containing the path.
+	test(
+		"#define PID_FILE \"/var/run/daemon.pid\"",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc VARBASE.")
+
+	// This is a relative path because of the PREFIX before it.
+	test(
+		"#define PID_FILE PREFIX \"/etc/conf\"",
+		nil...)
+
+	// In C-style block comments, absolute pathnames are ok,
+	// even though they could still be confusing.
+	test(
+		"#define L 150 /* Length of a line in /etc/some/file */",
+		nil...)
+
+	// In multiline C-style block comment, absolute pathnames are ok,
+	// even though they could still be confusing.
+	test(
+		" * Length of a line in /etc/some/file",
+		nil...)
+
+	// In C-style end-of-line comments, absolute pathnames are ok,
+	//	// even though they could still be confusing.
+	test(
+		"#define L 150 // Length of a line in /etc/some/file",
+		nil...)
+
+	// Allow /etc/passwd, /etc/shadow, /etc/hosts and their variants.
+	// These belong to the base system, not to pkgsrc.
+	test(
+		"#define PATH_SHADOW \"/etc/master.passwd\"",
+		nil...)
+
+	test(
+		"#define PID_FILE \"/var/run/daemon.pid\" /* comment */",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc VARBASE.")
+
+	// This is a rather theoretical case.
+	// Don't worry if pkglint doesn't complain about the absolute path here.
+	test(
+		"#define PID_FILE /* */ \"/var/run/daemon.pid\" /* */",
+		nil...)
+
+	// The absolute path occurs in a comment that is only opened but not closed.
+	// It's an edge case, and it may or may not be justified to complain here.
+	test(
+		"/* See /var/run/daemon.pid for details.",
+		"ERROR: patch-file:8: Patches must not hard-code the pkgsrc VARBASE.")
+
+	// Absolute paths in shell comments are not that dangerous.
+	test(
+		"# See /var/run/daemon.pid for details.",
+		nil...)
+}
+
 func (s *Suite) Test_PatchChecker_checktextCvsID(c *check.C) {
 	t := s.Init(c)
 
@@ -756,6 +1065,90 @@ func (s *Suite) Test_PatchChecker_checktextCvsID(c *check.C) {
 		"WARN: ~/patch-aa:7: Found CVS tag \"$"+"Id$\". Please remove it.",
 		"WARN: ~/patch-aa:8: Found CVS tag \"$"+"Id$\". Please remove it by reducing the number of context lines using pkgdiff or \"diff -U[210]\".",
 		"WARN: ~/patch-aa:11: Found CVS tag \"$"+"Author$\". Please remove it by reducing the number of context lines using pkgdiff or \"diff -U[210]\".")
+}
+
+func (s *Suite) Test_PatchChecker_checkCanonicalPatchName(c *check.C) {
+	t := s.Init(c)
+
+	test := func(patchName CurrPath, patchedFile Path, diagnostics ...string) {
+		ck := PatchChecker{lines: t.NewLines(patchName)}
+
+		ck.checkCanonicalPatchName(patchedFile)
+
+		t.CheckOutput(diagnostics)
+	}
+
+	test(
+		"patch-aa",
+		"any-file.c",
+		nil...)
+
+	test(
+		"patch-src_main.c",
+		"src/main.c",
+		nil...)
+
+	// By converting the ".c" to "_c", file managers that only inspect
+	// the file extension don't get confused.
+	test(
+		"patch-src_main_c",
+		"src/main.c",
+		nil...)
+
+	// CVE patches may patch anything.
+	// They may even patch more than one file.
+	// Having the source clearly named in the patch file is more important
+	// than having a patch name that corresponds to the patched file.
+	test(
+		"patch-CVE-2020-0001",
+		"src/anything.c",
+		nil...)
+
+	// Same for Xen Security Advisories.
+	test(
+		"patch-XSA-0001",
+		"src/anything.c",
+		nil...)
+
+	test(
+		"patch-file_underscore.py",
+		"file_underscore.py",
+		nil...)
+
+	test(
+		"patch-one.py",
+		"two.py",
+		"WARN: patch-one.py: The patch file should be named \"patch-two.py\" "+
+			"to match the patched file \"two.py\".")
+
+	// Don't suggest patch-._file as the patch name since that is unusual.
+	test(
+		"patch-file",
+		"./file",
+		nil...)
+
+	// This is usually ok, assuming that the same file does not occur
+	// in other directories as well.
+	test(
+		"patch-file",
+		"./src/subdir/file",
+		nil...)
+
+	// It's not enough if the patch name is an arbitrary suffix of the
+	// patched file. The only allowed abbreviation is the basename.
+	test(
+		"patch-c",
+		"./src/subdir/file.c",
+		"WARN: patch-c: The patch file should be named \"patch-src_subdir_file.c\" "+
+			"to match the patched file \"./src/subdir/file.c\".")
+
+	// Allow existing patches to differ in case.
+	// Most packages won't have files that could conflict on a
+	// case-insensitive filesystem anyway.
+	test(
+		"patch-upper",
+		"./src/UPPER",
+		nil...)
 }
 
 // Autogenerated "comments" from Git or other tools don't count as real

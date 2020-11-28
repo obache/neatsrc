@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.52 2019/11/03 09:14:15 rillig Exp $
+# $NetBSD: Makefile,v 1.57 2020/08/17 20:20:33 leot Exp $
 
 DISTNAME=	kiwi-1.9.29
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	23
+PKGREVISION=	27
 CATEGORIES=	x11 python
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/kiwi/1.9/}
 EXTRACT_SUFX=	.tar.bz2
@@ -17,11 +17,12 @@ USE_PKGLOCALEDIR=		yes
 USE_TOOLS+=			msgfmt
 PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2
 
-SUBST_CLASSES+=		localedir
-SUBST_STAGE.localedir=	pre-configure
-SUBST_FILES.localedir=	setup.py kiwi/dist.py
-SUBST_SED.localedir=	-e 's|share/locale|${PKGLOCALEDIR}/locale|'
-SUBST_VARS.localedir=	PKGLOCALEDIR
+SUBST_CLASSES+=			localedir
+SUBST_STAGE.localedir=		pre-configure
+SUBST_FILES.localedir=		setup.py kiwi/dist.py
+SUBST_SED.localedir=		-e 's|share/locale|${PKGLOCALEDIR}/locale|'
+SUBST_VARS.localedir=		PKGLOCALEDIR
+SUBST_NOOP_OK.localedir=	yes
 
 # tarball contains neither api nor howto.
 post-install:

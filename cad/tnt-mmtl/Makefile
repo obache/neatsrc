@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.30 2019/12/28 12:35:45 wiz Exp $
+# $NetBSD: Makefile,v 1.34 2020/09/27 14:11:09 mef Exp $
 
 DISTNAME=	tnt-1.2.2
 PKGNAME=	${DISTNAME:S/tnt/tnt-mmtl/}
-PKGREVISION=	13
+PKGREVISION=	14
 CATEGORIES=	cad
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=mmtl/}
 
@@ -17,6 +17,7 @@ BUILD_DEPENDS+=	tex-graphics-[0-9]*:../../print/tex-graphics
 BUILD_DEPENDS+=	tex-hyperref-[0-9]*:../../print/tex-hyperref
 BUILD_DEPENDS+=	tex-latex-[0-9]*:../../print/tex-latex
 BUILD_DEPENDS+=	tex-latex-bin-[0-9]*:../../print/tex-latex-bin
+BUILD_DEPENDS+=	tex-epstopdf-pkg-[0-9]*:../../print/tex-epstopdf-pkg
 
 GNU_CONFIGURE=	YES
 USE_TOOLS+=	aclocal autoconf automake gmake

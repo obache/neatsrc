@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.25 2019/12/30 13:58:35 adam Exp $
+@comment $NetBSD: PLIST,v 1.33 2020/08/18 07:39:31 adam Exp $
 bin/cifsdd
 bin/dbwrap_tool
 bin/dumpmscat
@@ -6,6 +6,7 @@ bin/findsmb
 bin/gentest
 bin/locktest
 bin/masktest
+bin/mdfind
 bin/mvxattr
 bin/ndrdump
 bin/net
@@ -47,6 +48,7 @@ include/core/werror_gen.h
 include/credentials.h
 include/dcerpc.h
 include/dcerpc_server.h
+include/dcesrv_core.h
 include/domain_credentials.h
 include/gen_ndr/atsvc.h
 include/gen_ndr/auth.h
@@ -125,6 +127,9 @@ lib/libdcerpc-binding.so.0.0.1
 lib/libdcerpc-samr.so
 lib/libdcerpc-samr.so.0
 lib/libdcerpc-samr.so.0.0.1
+lib/libdcerpc-server-core.so
+lib/libdcerpc-server-core.so.0
+lib/libdcerpc-server-core.so.0.0.1
 lib/libdcerpc-server.so
 lib/libdcerpc-server.so.0
 lib/libdcerpc-server.so.0.0.1
@@ -141,8 +146,8 @@ lib/libndr-standard.so
 lib/libndr-standard.so.0
 lib/libndr-standard.so.0.0.1
 lib/libndr.so
-lib/libndr.so.0
-lib/libndr.so.0.2.0
+lib/libndr.so.1
+lib/libndr.so.1.0.0
 lib/libnetapi.so
 lib/libnetapi.so.0
 lib/libnss_winbind.so
@@ -168,7 +173,7 @@ lib/libsamdb.so.0
 lib/libsamdb.so.0.0.1
 lib/libsmbclient.so
 lib/libsmbclient.so.0
-lib/libsmbclient.so.0.5.0
+lib/libsmbclient.so.0.6.0
 lib/libsmbconf.so
 lib/libsmbconf.so.0
 ${PLIST.ldap}lib/libsmbldap.so
@@ -198,6 +203,7 @@ ${PYSITELIB}/samba/__init__.py
 ${PYSITELIB}/samba/_glue.so
 ${PYSITELIB}/samba/_ldb.so
 ${PYSITELIB}/samba/auth.so
+${PYSITELIB}/samba/auth_util.py
 ${PYSITELIB}/samba/colour.py
 ${PYSITELIB}/samba/common.py
 ${PYSITELIB}/samba/compat.py
@@ -222,6 +228,7 @@ ${PYSITELIB}/samba/dcerpc/initshutdown.so
 ${PYSITELIB}/samba/dcerpc/irpc.so
 ${PYSITELIB}/samba/dcerpc/krb5pac.so
 ${PYSITELIB}/samba/dcerpc/lsa.so
+${PYSITELIB}/samba/dcerpc/mdssvc.so
 ${PYSITELIB}/samba/dcerpc/messaging.so
 ${PYSITELIB}/samba/dcerpc/mgmt.so
 ${PYSITELIB}/samba/dcerpc/misc.so
@@ -331,6 +338,7 @@ ${PYSITELIB}/samba/registry.so
 ${PYSITELIB}/samba/remove_dc.py
 ${PYSITELIB}/samba/samba3/__init__.py
 ${PYSITELIB}/samba/samba3/libsmb_samba_internal.so
+${PYSITELIB}/samba/samba3/mdscli.so
 ${PYSITELIB}/samba/samba3/param.so
 ${PYSITELIB}/samba/samba3/passdb.so
 ${PYSITELIB}/samba/samba3/smbd.so
@@ -360,6 +368,7 @@ ${PYSITELIB}/samba/tests/blackbox/__init__.py
 ${PYSITELIB}/samba/tests/blackbox/bug13653.py
 ${PYSITELIB}/samba/tests/blackbox/check_output.py
 ${PYSITELIB}/samba/tests/blackbox/downgradedatabase.py
+${PYSITELIB}/samba/tests/blackbox/mdfind.py
 ${PYSITELIB}/samba/tests/blackbox/ndrdump.py
 ${PYSITELIB}/samba/tests/blackbox/netads_json.py
 ${PYSITELIB}/samba/tests/blackbox/samba_dnsupdate.py
@@ -377,6 +386,7 @@ ${PYSITELIB}/samba/tests/dcerpc/array.py
 ${PYSITELIB}/samba/tests/dcerpc/bare.py
 ${PYSITELIB}/samba/tests/dcerpc/dnsserver.py
 ${PYSITELIB}/samba/tests/dcerpc/integer.py
+${PYSITELIB}/samba/tests/dcerpc/mdssvc.py
 ${PYSITELIB}/samba/tests/dcerpc/misc.py
 ${PYSITELIB}/samba/tests/dcerpc/raw_protocol.py
 ${PYSITELIB}/samba/tests/dcerpc/raw_testcase.py
@@ -394,6 +404,7 @@ ${PYSITELIB}/samba/tests/dns_base.py
 ${PYSITELIB}/samba/tests/dns_forwarder.py
 ${PYSITELIB}/samba/tests/dns_forwarder_helpers/server.py
 ${PYSITELIB}/samba/tests/dns_invalid.py
+${PYSITELIB}/samba/tests/dns_packet.py
 ${PYSITELIB}/samba/tests/dns_tkey.py
 ${PYSITELIB}/samba/tests/dns_wildcard.py
 ${PYSITELIB}/samba/tests/docs.py
@@ -421,6 +432,7 @@ ${PYSITELIB}/samba/tests/kcc/graph_utils.py
 ${PYSITELIB}/samba/tests/kcc/kcc_utils.py
 ${PYSITELIB}/samba/tests/kcc/ldif_import_export.py
 ${PYSITELIB}/samba/tests/krb5_credentials.py
+${PYSITELIB}/samba/tests/ldap_raw.py
 ${PYSITELIB}/samba/tests/ldap_referrals.py
 ${PYSITELIB}/samba/tests/libsmb.py
 ${PYSITELIB}/samba/tests/loadparm.py
@@ -491,9 +503,13 @@ ${PYSITELIB}/samba/tests/samba_tool/timecmd.py
 ${PYSITELIB}/samba/tests/samba_tool/user.py
 ${PYSITELIB}/samba/tests/samba_tool/user_check_password_script.py
 ${PYSITELIB}/samba/tests/samba_tool/user_virtualCryptSHA.py
+${PYSITELIB}/samba/tests/samba_tool/user_virtualCryptSHA_base.py
+${PYSITELIB}/samba/tests/samba_tool/user_virtualCryptSHA_gpg.py
+${PYSITELIB}/samba/tests/samba_tool/user_virtualCryptSHA_userPassword.py
 ${PYSITELIB}/samba/tests/samba_tool/user_wdigest.py
 ${PYSITELIB}/samba/tests/samba_tool/visualize.py
 ${PYSITELIB}/samba/tests/samba_tool/visualize_drs.py
+${PYSITELIB}/samba/tests/samba_upgradedns_lmdb.py
 ${PYSITELIB}/samba/tests/samdb.py
 ${PYSITELIB}/samba/tests/samdb_api.py
 ${PYSITELIB}/samba/tests/security.py
@@ -518,7 +534,6 @@ ${PYSITELIB}/samba/werror.so
 ${PYSITELIB}/samba/xattr.py
 ${PYSITELIB}/samba/xattr_native.so
 ${PYSITELIB}/samba/xattr_tdb.so
-lib/samba/auth/script.${SOEXT}
 lib/samba/bind9/dlz_bind9.${SOEXT}
 lib/samba/bind9/dlz_bind9_10.${SOEXT}
 lib/samba/bind9/dlz_bind9_11.${SOEXT}
@@ -552,7 +567,6 @@ lib/samba/ldb/instancetype.${SOEXT}
 lib/samba/ldb/lazy_commit.${SOEXT}
 lib/samba/ldb/ldbsamba_extensions.${SOEXT}
 lib/samba/ldb/linked_attributes.${SOEXT}
-lib/samba/ldb/local_password.${SOEXT}
 lib/samba/ldb/new_partition.${SOEXT}
 lib/samba/ldb/objectclass.${SOEXT}
 lib/samba/ldb/objectclass_attrs.${SOEXT}
@@ -574,8 +588,6 @@ lib/samba/ldb/schema_data.${SOEXT}
 lib/samba/ldb/schema_load.${SOEXT}
 lib/samba/ldb/secrets_tdb_sync.${SOEXT}
 lib/samba/ldb/show_deleted.${SOEXT}
-lib/samba/ldb/simple_dn.${SOEXT}
-lib/samba/ldb/simple_ldap_map.${SOEXT}
 lib/samba/ldb/subtree_delete.${SOEXT}
 lib/samba/ldb/subtree_rename.${SOEXT}
 lib/samba/ldb/tombstone_reanimate.${SOEXT}
@@ -702,6 +714,7 @@ ${PLIST.ldap}lib/samba/private/libsmbldaphelper-samba4.so
 lib/samba/private/libsmbpasswdparser-samba4.so
 lib/samba/private/libsocket-blocking-samba4.so
 lib/samba/private/libsys-rw-samba4.so
+lib/samba/private/libtalloc-report-printf-samba4.so
 lib/samba/private/libtalloc-report-samba4.so
 lib/samba/private/libtdb-wrap-samba4.so
 lib/samba/private/libtime-basic-samba4.so
@@ -749,7 +762,6 @@ lib/samba/vfs/fruit.${SOEXT}
 lib/samba/vfs/full_audit.${SOEXT}
 lib/samba/vfs/linux_xfs_sgid.${SOEXT}
 lib/samba/vfs/media_harmony.${SOEXT}
-lib/samba/vfs/netatalk.${SOEXT}
 lib/samba/vfs/offline.${SOEXT}
 lib/samba/vfs/posix_eadb.${SOEXT}
 lib/samba/vfs/preopen.${SOEXT}
@@ -759,7 +771,7 @@ lib/samba/vfs/recycle.${SOEXT}
 lib/samba/vfs/shadow_copy.${SOEXT}
 lib/samba/vfs/shadow_copy2.${SOEXT}
 lib/samba/vfs/shell_snap.${SOEXT}
-lib/samba/vfs/snapper.${SOEXT}
+${PLIST.dbus}lib/samba/vfs/snapper.${SOEXT}
 lib/samba/vfs/streams_depot.${SOEXT}
 lib/samba/vfs/streams_xattr.${SOEXT}
 lib/samba/vfs/syncops.${SOEXT}
@@ -774,6 +786,7 @@ man/man1/gentest.1
 man/man1/locktest.1
 man/man1/log2pcap.1
 man/man1/masktest.1
+man/man1/mdfind.1
 man/man1/mvxattr.1
 man/man1/ndrdump.1
 man/man1/nmblookup.1
@@ -800,6 +813,7 @@ man/man1/vfstest.1
 man/man1/wbinfo.1
 man/man5/lmhosts.5
 man/man5/pam_winbind.conf.5
+man/man5/smb.conf.5
 man/man5/smbgetrc.5
 man/man5/smbpasswd.5
 man/man7/libsmbclient.7
@@ -848,7 +862,6 @@ man/man8/vfs_fruit.8
 man/man8/vfs_full_audit.8
 man/man8/vfs_linux_xfs_sgid.8
 man/man8/vfs_media_harmony.8
-man/man8/vfs_netatalk.8
 man/man8/vfs_offline.8
 man/man8/vfs_preopen.8
 man/man8/vfs_readahead.8
@@ -857,7 +870,7 @@ man/man8/vfs_recycle.8
 man/man8/vfs_shadow_copy.8
 man/man8/vfs_shadow_copy2.8
 man/man8/vfs_shell_snap.8
-man/man8/vfs_snapper.8
+${PLIST.dbus}man/man8/vfs_snapper.8
 man/man8/vfs_streams_depot.8
 man/man8/vfs_streams_xattr.8
 man/man8/vfs_syncops.8
@@ -928,17 +941,11 @@ share/samba/setup/display-specifiers/DisplaySpecifiers-Win2k8.txt
 share/samba/setup/display-specifiers/DisplaySpecifiers-Win2k8R2.txt
 share/samba/setup/dns_update_list
 share/samba/setup/extended-rights.ldif
-share/samba/setup/fedora-ds-init.ldif
-share/samba/setup/fedorads-dna.ldif
 share/samba/setup/fedorads-index.ldif
 share/samba/setup/fedorads-linked-attributes.ldif
 share/samba/setup/fedorads-pam.ldif
-share/samba/setup/fedorads-partitions.ldif
-share/samba/setup/fedorads-refint-add.ldif
-share/samba/setup/fedorads-refint-delete.ldif
 share/samba/setup/fedorads-samba.ldif
 share/samba/setup/fedorads-sasl.ldif
-share/samba/setup/fedorads.inf
 share/samba/setup/idmap_init.ldif
 share/samba/setup/krb5.conf
 share/samba/setup/memberof.conf
@@ -1000,6 +1007,6 @@ share/samba/setup/secrets_init.ldif
 share/samba/setup/secrets_sasl_ldap.ldif
 share/samba/setup/secrets_simple_ldap.ldif
 share/samba/setup/share.ldif
-share/samba/setup/slapd.conf
 share/samba/setup/spn_update_list
 share/samba/setup/ypServ30.ldif
+@pkgdir var/db/samba4

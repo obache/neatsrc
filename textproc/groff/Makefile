@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.92 2019/11/04 21:45:55 rillig Exp $
+# $NetBSD: Makefile,v 1.95 2020/08/31 18:11:42 wiz Exp $
 
 DISTNAME=	groff-1.22.4
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GNU:=groff/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/groff/groff.html
+HOMEPAGE=	https://www.gnu.org/software/groff/groff.html
 COMMENT=	GNU roff text processing suite
 LICENSE=	gnu-gpl-v3
 
@@ -22,7 +22,7 @@ USE_LANGUAGES=		c c++
 GNU_CONFIGURE=		YES
 CONFIGURE_ENV+=		PERLPATH=${PERL5:Q}
 TEXINFO_REQD+=		4.8
-USE_TOOLS+=		perl sed:run awk:run gmake makeinfo
+USE_TOOLS+=		perl sed:run awk:run gmake makeinfo yacc
 EXTRACT_USING=		bsdtar
 USE_FEATURES=		getopt_long
 CONFIGURE_ARGS+=	--with-urw-fonts-dir=${PREFIX}/share/fonts/urw

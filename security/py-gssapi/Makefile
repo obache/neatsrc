@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.12 2019/08/11 12:06:15 adam Exp $
+# $NetBSD: Makefile,v 1.17 2020/07/09 13:22:39 adam Exp $
 
-DISTNAME=	gssapi-1.6.1
+DISTNAME=	gssapi-1.6.9
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	security python
 MASTER_SITES=	${MASTER_SITE_PYPI:=g/gssapi/}
@@ -13,10 +13,7 @@ LICENSE=	modified-bsd
 DEPENDS+=	${PYPKGPREFIX}-decorator-[0-9]*:../../devel/py-decorator
 DEPENDS+=	${PYPKGPREFIX}-six>=1.4.0:../../lang/py-six
 
-.include "../../lang/python/pyversion.mk"
-.if ${_PYTHON_VERSION} == 27
-DEPENDS+=	${PYPKGPREFIX}-enum34-[0-9]*:../../devel/py-enum34
-.endif
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../mk/bsd.prefs.mk"
 

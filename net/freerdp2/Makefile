@@ -1,15 +1,12 @@
-# $NetBSD: Makefile,v 1.4 2019/09/30 08:28:40 nia Exp $
+# $NetBSD: Makefile,v 1.14 2020/11/01 00:20:05 markd Exp $
 
-DISTNAME=	freerdp-2.0.0rc4
+DISTNAME=	freerdp-2.1.2
 PKGNAME=	${DISTNAME:S/freerdp-/freerdp2-/1}
-PKGREVISION=	1
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_GITHUB:=FreeRDP/}
-GITHUB_PROJECT=	FreeRDP
-GITHUB_TAG=	2.0.0-rc4
+MASTER_SITES=	https://pub.freerdp.com/releases/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.freerdp.com/
+HOMEPAGE=	https://www.freerdp.com/
 COMMENT=	Free implementation of the Remote Desktop Protocol (major version 2)
 LICENSE=	apache-2.0
 
@@ -59,6 +56,7 @@ post-install:
 		${DESTDIR}${PREFIX}/bin/xfreerdp2 || ${TRUE}
 
 .include "options.mk"
+.include "../../devel/libusb1/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../multimedia/ffmpeg4/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"

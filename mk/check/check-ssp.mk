@@ -1,6 +1,7 @@
-# $NetBSD: check-ssp.mk,v 1.1 2017/10/03 09:43:06 jperkin Exp $
+# $NetBSD: check-ssp.mk,v 1.3 2020/03/23 09:25:58 jperkin Exp $
 #
-# This file verifies that SSP was applied accordingly at build-time.
+# This file verifies that stack-smashing protection, commonly known as SSP,
+# was applied correctly at build-time.
 #
 # User-settable variables:
 #
@@ -46,11 +47,8 @@ _CHECK_SSP_FILELIST_CMD?=	${SED} -e '/^@/d' ${PLIST} |		\
 	done)
 
 .if !empty(CHECK_SSP:M[Yy][Ee][Ss]) && \
-    !empty(CHECK_SSP_SUPPORTED:M[Yy][Ee][Ss])
-privileged-install-hook: _check-ssp
-.endif
-
-.if ${_USE_CHECK_SSP_NATIVE} == "yes"
+    !empty(CHECK_SSP_SUPPORTED:M[Yy][Ee][Ss]) && \
+    ${_USE_CHECK_SSP_NATIVE} == "yes"
 CHECK_SSP_NATIVE_ENV=
 .  if ${OBJECT_FMT} == "ELF"
 USE_TOOLS+=		readelf
@@ -67,6 +65,7 @@ CHECK_SSP_NATIVE_ENV+=	WRKDIR=${WRKDIR:Q}
 CHECK_SSP_NATIVE_ENV+=	CHECK_WRKREF_EXTRA_DIRS=${CHECK_WRKREF_EXTRA_DIRS:Q}
 .  endif
 
+privileged-install-hook: _check-ssp
 _check-ssp: error-check .PHONY
 	@${STEP_MSG} "Checking for SSP in ${PKGNAME}"
 	${RUN} rm -f ${ERROR_DIR}/${.TARGET}
@@ -82,8 +81,4 @@ _check-ssp: error-check .PHONY
 		${ECHO} $$file;					\
 	done |							\
 	${PKGSRC_SETENV} ${CHECK_SSP_NATIVE_ENV} ${AWK} -f ${CHECK_SSP_NATIVE} > ${ERROR_DIR}/${.TARGET}
-
-.else
-_check-ssp: error-check .PHONY
-	@${WARNING_MSG} "Skipping check for SSP."
 .endif

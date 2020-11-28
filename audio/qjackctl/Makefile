@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.57 2019/11/02 21:09:16 rillig Exp $
+# $NetBSD: Makefile,v 1.66 2020/08/18 17:57:39 leot Exp $
 #
 
 DISTNAME=	qjackctl-0.4.2
-PKGREVISION=	21
+PKGREVISION=	28
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=qjackctl/}
 EXTRACT_USING=	bsdtar
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://qjackctl.sourceforge.net/
+HOMEPAGE=	https://qjackctl.sourceforge.io/
 COMMENT=	JACK Audio Connection Kit Qt GUI
 LICENSE=	gnu-gpl-v2
 

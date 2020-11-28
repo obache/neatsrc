@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2014/06/03 07:11:52 obache Exp $
+# $NetBSD: Makefile,v 1.14 2020/03/20 11:58:07 nia Exp $
 
 DISTNAME=	netcat-0.7.1
 PKGNAME=	gnetcat-0.7.1

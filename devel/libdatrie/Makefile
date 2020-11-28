@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.19 2018/07/11 18:08:43 adam Exp $
+# $NetBSD: Makefile,v 1.20 2020/07/30 01:56:16 scole Exp $
 
 DISTNAME=	libdatrie-0.2.12
 CATEGORIES=	devel

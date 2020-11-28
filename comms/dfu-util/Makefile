@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2019/11/03 12:04:12 rillig Exp $
+# $NetBSD: Makefile,v 1.5 2020/01/26 05:26:17 rillig Exp $
 #
 
 DISTNAME=		dfu-util-0.9

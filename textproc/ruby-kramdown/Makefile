@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.22 2019/10/05 04:34:02 ryoon Exp $
+# $NetBSD: Makefile,v 1.26 2020/08/14 04:48:28 ryoon Exp $
 
-DISTNAME=	kramdown-2.1.0
+DISTNAME=	kramdown-2.3.0
 CATEGORIES=	textproc
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -9,6 +9,8 @@ COMMENT=	Pure-Ruby Markdown-superset parser and converter
 LICENSE=	mit
 
 RUBYGEM_OPTIONS+=	--format-executable
+
+USE_LANGUAGES=	# none
 
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

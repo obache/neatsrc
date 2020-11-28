@@ -1,4 +1,4 @@
-# $NetBSD: metadata.mk,v 1.17 2019/10/01 13:01:02 jperkin Exp $
+# $NetBSD: metadata.mk,v 1.31 2020/10/09 20:18:30 jperkin Exp $
 
 ######################################################################
 ### The targets below are all PRIVATE.
@@ -23,6 +23,15 @@ _BUILD_INFO_FILE=	${PKG_DB_TMPDIR}/+BUILD_INFO
 _BUILD_DATE_cmd=	${DATE} "+%Y-%m-%d %H:%M:%S %z"
 _BUILD_HOST_cmd=	${UNAME} -a
 _METADATA_TARGETS+=	${_BUILD_INFO_FILE}
+
+#
+# Skip system libraries on Darwin releases where they do not exist.
+#
+.if defined(DARWIN_NO_SYSTEM_LIBS)
+DARWIN_REQUIRES_FILTER=	${EGREP} -v '\t(/System/Library|/usr/lib)'
+.else
+DARWIN_REQUIRES_FILTER=	${CAT}
+.endif
 
 ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 	${RUN}${MKDIR} ${.TARGET:H}
@@ -62,6 +71,7 @@ ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 	*)	ldd=${LDD:Q} ;;						\
 	esac;								\
 	bins=`${AWK} '/(^|\/)(bin|sbin|libexec)\// { print "${DESTDIR}${PREFIX}/" $$0 } END { exit 0 }' ${_PLIST_NOKEYWORDS}`; \
+	requires="";							\
 	case ${OBJECT_FMT:Q}"" in					\
 	ELF)								\
 		libs=`${AWK} '/\/lib.*\.so(\.[0-9]+)*$$/ { print "${DESTDIR}${PREFIX}/" $$0 } END { exit 0 }' ${_PLIST_NOKEYWORDS}`; \
@@ -84,7 +94,7 @@ ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 	Mach-O)								\
 		libs=`${AWK} '/\/lib.*\.dylib/ { print "${DESTDIR}${PREFIX}/" $$0 } END { exit 0 }' ${_PLIST_NOKEYWORDS}`; \
 		if ${TEST} "$$bins" != "" -o "$$libs" != ""; then	\
-			requires=`($$ldd $$bins $$libs 2>/dev/null || ${TRUE}) | ${AWK} '/compatibility version/ { print $$1 }' | ${SORT} -u`; \
+			requires=`($$ldd $$bins $$libs 2>/dev/null || ${TRUE}) | ${DARWIN_REQUIRES_FILTER} | ${AWK} '/compatibility version/ { print $$1 }' | ${SORT} -u`; \
 		fi;							\
 		;;							\
 	PE)								\
@@ -105,13 +115,11 @@ ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 	requires=`{ for i in $$requires $$requires; do echo $$i; done; \
 		${AWK} '{ print "${PREFIX}/" $$0 }' ${_PLIST_NOKEYWORDS}; } | \
 		${SORT} | uniq -c | awk '$$1 == 2 {print $$2}'`; \
-	for i in "" $$bins $$libs; do					\
-		${TEST} "$$i" != "" || continue;			\
-		${ECHO} "PROVIDES=$${i}";				\
+	for i in $$bins $$libs; do					\
+		${ECHO} "PROVIDES=$$i";					\
 	done | ${SED} -e 's,^PROVIDES=${DESTDIR},PROVIDES=,'		\
 		>> ${.TARGET}.tmp;					\
-	for req in "" $$requires; do					\
-		${TEST} "$$req" != "" || continue;			\
+	for req in $$requires; do					\
 		${ECHO} "REQUIRES=$$req" >> ${.TARGET}.tmp;		\
 	done
 .else
@@ -144,10 +152,12 @@ ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 _BUILD_VERSION_FILE=	${PKG_DB_TMPDIR}/+BUILD_VERSION
 _METADATA_TARGETS+=	${_BUILD_VERSION_FILE}
 
-_BUILD_VERSION_FILE_cmd=	\
-	${RUN}								\
+_BUILD_VERSION_FILES_cmd=	\
 	(								\
-	for f in ${.CURDIR}/Makefile ${FILESDIR}/* ${PKGDIR}/*; do	\
+	${FIND} ${FILESDIR} -type f 2> /dev/null | while read f; do	\
+		${TEST} ! -f "$$f" || ${ECHO} "$$f";			\
+	done;								\
+	for f in ${.CURDIR}/Makefile ${PKGDIR}/*; do			\
 		${TEST} ! -f "$$f" || ${ECHO} "$$f";			\
 	done;								\
 	${TEST} -f ${DISTINFO_FILE:Q} || exit 0;			\
@@ -158,19 +168,34 @@ _BUILD_VERSION_FILE_cmd=	\
 		${TEST} ! -f "${PATCHDIR}/$$file" ||			\
 			${ECHO} "${PATCHDIR}/$$file";			\
 	done								\
-	) |								\
-	while read file; do						\
-		${GREP} '\$$NetBSD' $$file 2>/dev/null |		\
-		${SED} -e "s|^|$$file:|;q";				\
-	done |								\
-	${AWK} '{ sub("^${PKGSRCDIR}/", "");				\
-		  sub("^${PKGPATH}/../../", "");			\
-		  sub("^../../", "");					\
-		  sub(":.*[$$]NetBSD", ":	$$NetBSD");		\
-		  sub("[$$][^$$]*$$", "$$");				\
-		  print; }' |						\
-	${SORT} -u
+	)
 
+.if !empty(USE_PKG_ADMIN_DIGEST:M[Yy][Ee][Ss])
+_BUILD_VERSION_VALUE_cmd=	\
+	${AWK} '{ t=$$0; sub("^${PKGSRCDIR}/", "");			\
+		   printf "%s %s\n", t, $$0 }' |			\
+	while read file relfile; do					\
+		printf "%s: " "$$relfile";				\
+		${PKG_ADMIN} digest "$$file";				\
+	done
+.else
+_BUILD_VERSION_VALUE_cmd=	\
+	${AWK} '{ t=$$0; sub("^${PKGSRCDIR}/", "");			\
+		   printf "%s %s\n", t, $$0 }' | \
+	while read file relfile; do					\
+		${GREP}							\
+			-e '\$$NetBSD[:][^$$]*[$$]'			\
+			-e '\$$NetBSD\$$'				\
+			$$file 2>/dev/null |				\
+		${SED} -e "s|^|$$relfile:|;q";				\
+	done |								\
+	${AWK} '{ sub(":.*[$$]NetBSD", ":	$$NetBSD");		\
+		  sub("[$$][^$$]*$$", "$$");				\
+		  print; }'
+.endif
+_BUILD_VERSION_FILE_cmd=	\
+	${RUN}${_BUILD_VERSION_FILES_cmd} |				\
+		${_BUILD_VERSION_VALUE_cmd} | ${SORT} -u
 
 ${_BUILD_VERSION_FILE}:
 	${RUN}${MKDIR} ${.TARGET:H}

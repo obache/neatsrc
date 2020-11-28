@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.3 2019/11/03 10:39:17 rillig Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/08 16:47:37 wiz Exp $
 
 DISTNAME=	libgee-0.6.8
 PKGNAME=	${DISTNAME:S/libgee/libgee0.6/}
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libgee/0.6/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://live.gnome.org/Libgee
+HOMEPAGE=	https://live.gnome.org/Libgee
 COMMENT=	Library providing GObject-based interfaces and classes (v0.6)
 LICENSE=	gnu-lgpl-v2.1
 

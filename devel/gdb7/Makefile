@@ -1,20 +1,21 @@
-# $NetBSD: Makefile,v 1.5 2019/11/03 10:39:11 rillig Exp $
+# $NetBSD: Makefile,v 1.10 2020/08/31 18:07:20 wiz Exp $
 
 DISTNAME=	gdb-7.11
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU:=gdb/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/gdb/gdb.html
+HOMEPAGE=	https://www.gnu.org/software/gdb/gdb.html
 COMMENT=	Symbolic debugger for multiple language frontends
 LICENSE=	gnu-gpl-v3
 
 BROKEN_GETTEXT_DETECTION=	yes
 GNU_CONFIGURE=			YES
+GNU_CONFIGURE_STRICT=		no # has sub-configures
 USE_PKGLOCALEDIR=		YES
 USE_LIBTOOL=			YES
-USE_TOOLS+=			gmake msgfmt makeinfo perl:build
+USE_TOOLS+=			gmake msgfmt makeinfo perl:build bash
 REPLACE_LOCALEDIR_PATTERNS+=	Make-in
 INSTALL_TARGET=			install install-info
 TEST_TARGET=			check
@@ -23,12 +24,14 @@ CONFIGURE_ENV+=			CONFIG_LDFLAGS=${LDFLAGS:M*:Q}
 
 # In gdb/configure, depcomp is parsed with sed.
 SUBST_CLASSES+=			fix-depcomp
-SUBST_STAGE.fix-depcomp+=	pre-configure
-SUBST_MESSAGE.fix-depcomp+=	Read depcomp directly
+SUBST_STAGE.fix-depcomp=	pre-configure
+SUBST_MESSAGE.fix-depcomp=	Read depcomp directly
 SUBST_FILES.fix-depcomp+=	gdb/configure
 SUBST_SED.fix-depcomp+=		-e 's,< ./depcomp,${_OVERRIDE_PATH.depcomp},'
 
 AUTO_MKDIRS=		yes
+
+REPLACE_BASH+=		sim/testsuite/sim/bfin/run-tests.sh
 
 .include "options.mk"
 

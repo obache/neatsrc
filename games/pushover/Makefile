@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.9 2016/07/05 17:33:00 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2020/03/20 11:57:43 nia Exp $
 
 DISTNAME=	pushover-0.0.5
 CATEGORIES=	games

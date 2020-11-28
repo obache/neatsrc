@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.1 2012/05/31 11:57:28 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.3 2020/05/25 06:47:40 plunky Exp $
 
 BUILDLINK_TREE+=	libusb1
 

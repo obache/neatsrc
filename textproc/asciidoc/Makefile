@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.47 2019/04/25 07:33:23 maya Exp $
+# $NetBSD: Makefile,v 1.53 2020/10/18 14:33:58 wiz Exp $
 
-DISTNAME=	asciidoc-8.6.10
-PKGREVISION=	1
+DISTNAME=	asciidoc-py3-9.0.3
+PKGNAME=	${DISTNAME:S/-py3//}
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=asciidoc/}
+GITHUB_PROJECT=	asciidoc-py3
 
 MAINTAINER=	gls@NetBSD.org
 HOMEPAGE=	http://www.asciidoc.org/
@@ -29,10 +30,9 @@ REPLACE_PYTHON+=	filters/latex/latex2img.py
 REPLACE_PYTHON+=	filters/music/music2png.py
 REPLACE_PYTHON+=	filters/graphviz/graphviz2png.py
 REPLACE_PYTHON+=	filters/unwraplatex.py
-REPLACE_PYTHON+=	tests/asciidocapi.py
 REPLACE_PYTHON+=	tests/testasciidoc.py
 
-PYTHON_VERSIONS_ACCEPTED=	27
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 INSTALLATION_DIRS=	bin share/asciidoc share/asciidoc/filters \
 			share/asciidoc/docbook-xsl share/asciidoc/stylesheets \

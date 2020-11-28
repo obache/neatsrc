@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.13 2019/05/15 11:42:54 markd Exp $
+# $NetBSD: Makefile,v 1.16 2020/05/10 12:52:42 markd Exp $
 
 DISTNAME=	collection-langjapanese
-PKGNAME=	texlive-${DISTNAME}-2019pre1
+PKGNAME=	texlive-${DISTNAME}-2020pre1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	49995
+TEXLIVE_REV=	54894
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Japanese TeX packages
 
 DEPENDS+=	texlive-collection-langcjk-[0-9]*:../../meta-pkgs/texlive-collection-langcjk
@@ -16,21 +16,26 @@ DEPENDS+=	texlive-collection-langcjk-[0-9]*:../../meta-pkgs/texlive-collection-l
 # depend babel-japanese
 # depend bxbase
 # depend bxcjkjatype
+# depend bxghost
 # depend bxjaholiday
 # depend bxjalipsum
 # depend bxjaprnind
+# depend bxjatoucs
 # depend bxjscls
 # depend bxorigcapt
 # depend bxwareki
 # depend convbkmk
 # depend endnotesj
 # depend gentombow
+DEPENDS+=	tex-haranoaji-[0-9]*:../../fonts/tex-haranoaji
+# depend haranoaji-extra
 # depend ifptex
 # depend ifxptex
 DEPENDS+=	tex-ipaex-[0-9]*:../../fonts/tex-ipaex
 DEPENDS+=	tex-japanese-otf-[0-9]*:../../fonts/tex-japanese-otf
 # depend japanese-otf-uptex
 # depend jlreq
+# depend jlreq-deluxe
 DEPENDS+=	tex-jsclasses-[0-9]*:../../print/tex-jsclasses
 # lshort-japanese is documentation only
 # depend luatexja
@@ -54,6 +59,7 @@ DEPENDS+=	tex-ptex-fonts-[0-9]*:../../fonts/tex-ptex-fonts
 # depend pxjodel
 # depend pxrubrica
 # depend pxufont
+# depend texlive-ja
 # depend uplatex
 # uptex is documentation only
 # depend uptex-base

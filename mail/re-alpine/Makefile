@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.18 2019/11/02 16:25:27 rillig Exp $
+# $NetBSD: Makefile,v 1.21 2020/04/29 20:28:46 maya Exp $
 #
 
 DISTNAME=	re-alpine-2.03
+PKGREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=re-alpine/}
 EXTRACT_SUFX=	.tar.bz2
@@ -12,6 +13,8 @@ COMMENT=	Console-based mail and news client
 LICENSE=	apache-2.0
 
 CONFLICTS=	alpine-[0-9]*
+
+BROKEN=		"Fails to build with OpenSSL 1.1"
 
 .include "options.mk"
 
@@ -30,10 +33,6 @@ MAKE_JOBS_SAFE=		no
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
 .include "../../mk/bsd.prefs.mk"
-
-.if ${OPSYS} == "NetBSD" && empty(OS_VERSION:M4.99.*) && empty(OS_VERSION:M[5-9]*)
-CONFIGURE_ARGS+=	--without-pthread
-.endif
 
 SUBST_CLASSES.MirBSD+=		mirbsd
 SUBST_STAGE.mirbsd=		pre-configure

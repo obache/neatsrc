@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.92 2019/10/17 20:56:39 maya Exp $
+# $NetBSD: Makefile,v 1.100 2020/07/17 06:10:34 wiz Exp $
 #
 
 COMMENT=	Cross-platform development utilities
@@ -9,6 +9,7 @@ SUBDIR+=	aarch64-none-elf-gcc
 SUBDIR+=	arm-none-eabi-binutils
 SUBDIR+=	arm-none-eabi-gcc
 SUBDIR+=	arm-none-eabi-gdb
+SUBDIR+=	asm6809
 SUBDIR+=	atasm
 SUBDIR+=	avr-binutils
 SUBDIR+=	avr-gcc
@@ -56,7 +57,8 @@ SUBDIR+=	mingw-w64-x86_64-gcc-bootstrap
 SUBDIR+=	mingw-w64-x86_64-gcc-winpthreads
 SUBDIR+=	mingw-w64-x86_64-headers
 SUBDIR+=	mingw-w64-x86_64-winpthreads
-#SUBDIR+=	nios2			# just contains makefile fragments
+SUBDIR+=	mipsel-none-elf-binutils
+SUBDIR+=	mipsel-none-elf-gcc
 SUBDIR+=	nios2-binutils
 SUBDIR+=	nios2-gcc
 SUBDIR+=	objconv
@@ -64,6 +66,11 @@ SUBDIR+=	or1k-none-elf-binutils
 SUBDIR+=	or1k-none-elf-gcc
 SUBDIR+=	pdp11-aout-binutils
 SUBDIR+=	pdp11-aout-gcc
+SUBDIR+=	powerpc-none-elf-binutils
+SUBDIR+=	powerpc-none-elf-gcc
+SUBDIR+=	ppc-morphos-binutils
+SUBDIR+=	ppc-morphos-gcc-9
+SUBDIR+=	ppc-morphos-sdk
 SUBDIR+=	stlink
 SUBDIR+=	uisp
 SUBDIR+=	xtensa-esp32-elf-binutils

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.17 2019/12/29 15:31:21 adam Exp $
+# $NetBSD: Makefile,v 1.19 2020/04/18 08:01:43 adam Exp $
 
 .include "../../lang/llvm/version.mk"
 
@@ -7,7 +7,7 @@ PKGNAME=	${DISTNAME:S/.src//}
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://polly.llvm.org/
+HOMEPAGE=	https://polly.llvm.org/
 COMMENT=	Polyhedral optimizations for LLVM
 LICENSE=	apache-2.0
 
@@ -16,7 +16,7 @@ DEPENDS+=	llvm-${PKGVERSION_NOREV}{,nb*}:../../lang/llvm
 CONFIGURE_DIRS=		${WRKDIR}/build
 CMAKE_ARG_PATH=		${WRKSRC}
 
-USE_LANGUAGES=		c c++11
+USE_LANGUAGES=		c c++14
 USE_CMAKE=		yes
 GCC_REQD+=		4.8
 

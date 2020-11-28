@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.38 2018/08/19 20:16:39 wiz Exp $
+# $NetBSD: Makefile,v 1.40 2020/03/20 11:57:43 nia Exp $
 
 DISTNAME=	prboom-2.5.0
 PKGREVISION=	2

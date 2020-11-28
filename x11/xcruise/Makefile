@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2012/10/29 05:07:00 asau Exp $
+# $NetBSD: Makefile,v 1.15 2020/01/26 05:26:28 rillig Exp $
 #
 
 DISTNAME=	xcruise-0.24

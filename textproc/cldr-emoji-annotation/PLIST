@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2019/09/14 03:46:58 tsutsui Exp $
+@comment $NetBSD: PLIST,v 1.6 2020/10/03 15:16:01 tsutsui Exp $
 share/pkgconfig/cldr-emoji-annotation.pc
 share/unicode/cldr/common/annotations/af.xml
 share/unicode/cldr/common/annotations/am.xml

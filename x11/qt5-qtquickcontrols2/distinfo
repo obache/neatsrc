@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.12 2019/11/05 14:58:45 adam Exp $
+$NetBSD: distinfo,v 1.17 2020/09/14 20:08:28 adam Exp $
 
-SHA1 (qtquickcontrols2-everywhere-src-5.13.2.tar.xz) = b23d9504429c713b8aee80a4ed9f01e6ce95721a
-RMD160 (qtquickcontrols2-everywhere-src-5.13.2.tar.xz) = 75863e6ec38e4e5319efc3a8c4fccfcceeabddf6
-SHA512 (qtquickcontrols2-everywhere-src-5.13.2.tar.xz) = f89b5126f0e6b96ccd206cef1229624949cb22f5f925b165af9a3c0ecb6517a0fd29f5c3958fd8ca008f1b000ffb352833ee90ba0ce0fc5f7983636732440a0f
-Size (qtquickcontrols2-everywhere-src-5.13.2.tar.xz) = 9252912 bytes
+SHA1 (qtquickcontrols2-everywhere-src-5.15.1.tar.xz) = 7c1010976e3cc399c5c41e12e9c4f866b6a2882a
+RMD160 (qtquickcontrols2-everywhere-src-5.15.1.tar.xz) = 094922e9ffe32586d6e027c67fb1dfd8ebf85f15
+SHA512 (qtquickcontrols2-everywhere-src-5.15.1.tar.xz) = ecb75619e80b737e3ae214f65a5175d933f8dc7832eb4eccd469fc1cb1eb85ef5c47f81563165da2d75abf15d7c47b868e68ab758d95183371b4ef64e7c52a39
+Size (qtquickcontrols2-everywhere-src-5.15.1.tar.xz) = 8282444 bytes

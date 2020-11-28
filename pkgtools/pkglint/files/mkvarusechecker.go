@@ -1,6 +1,9 @@
 package pkglint
 
-import "strings"
+import (
+	"netbsd.org/pkglint/textproc"
+	"strings"
+)
 
 type MkVarUseChecker struct {
 	use     *MkVarUse
@@ -27,10 +30,13 @@ func (ck *MkVarUseChecker) Check(vuc *VarUseContext) {
 
 	ck.checkVarname(vuc.time)
 	ck.checkModifiers()
+	ck.checkAssignable(vuc)
 	ck.checkQuoting(vuc)
 
+	ck.checkToolsPlatform()
 	ck.checkBuildDefs()
 	ck.checkDeprecated()
+	ck.checkPkgBuildOptions()
 
 	NewMkLineChecker(ck.MkLines, ck.MkLine).
 		checkTextVarUse(ck.use.varname, ck.vartype, vuc.time)
@@ -42,7 +48,7 @@ func (ck *MkVarUseChecker) checkUndefined() {
 	varname := varuse.varname
 
 	switch {
-	case !G.Opts.WarnExtra,
+	case !G.WarnExtra,
 		// Well-known variables are probably defined by the infrastructure.
 		vartype != nil && !vartype.IsGuessed(),
 		// TODO: At load time, check ck.MkLines.loadVars instead of allVars.
@@ -69,9 +75,9 @@ func (ck *MkVarUseChecker) checkModifiers() {
 	ck.checkModifiersSuffix()
 	ck.checkModifiersRange()
 
-	// TODO: Add checks for a single modifier, among them:
-	// TODO: Suggest to replace ${VAR:@l@-l${l}@} with the simpler ${VAR:S,^,-l,}.
-	// TODO: Suggest to replace ${VAR:@l@${l}suffix@} with the simpler ${VAR:=suffix}.
+	for _, mod := range ck.use.modifiers {
+		ck.checkModifierLoop(mod)
+	}
 	// TODO: Investigate why :Q is not checked at this exact place.
 }
 
@@ -130,6 +136,55 @@ func (ck *MkVarUseChecker) checkModifiersRange() {
 	fix.Apply()
 }
 
+func (ck *MkVarUseChecker) checkModifierLoop(mod MkVarUseModifier) {
+	str := mod.String()
+	if !hasSuffix(str, "@") {
+		return
+	}
+	lex := textproc.NewLexer(str[:len(str)-1])
+	if !lex.SkipByte('@') {
+		return
+	}
+	varname := lex.NextBytesSet(textproc.Alnum)
+	if varname == "" || !lex.SkipByte('@') {
+		return
+	}
+	body := lex.Rest()
+	// TODO: Are MkVarUse interpreted the same in the before/after modifiers?
+	if !matches(body, `^[-A-Za-z0-9 $();_{}]+$`) {
+		return
+	}
+	varnameUse := "${" + varname + "}"
+
+	n := 0
+	ck.MkLine.ForEachUsedText(str, VucRunTime, func(varUse *MkVarUse, time VucTime) {
+		if varUse.varname == varname {
+			n++
+		}
+	})
+	if n != 1 {
+		return
+	}
+
+	if rest := strings.TrimSuffix(body, varnameUse); len(rest) < len(body) {
+		simpler := "S,^," + rest + ","
+		fix := ck.MkLine.Autofix()
+		fix.Notef("The modifier %q can be replaced with the simpler %q.",
+			str, simpler)
+		fix.Replace(str, simpler)
+		fix.Apply()
+	}
+
+	if rest := strings.TrimPrefix(body, varnameUse); len(rest) < len(body) {
+		simpler := "=" + rest
+		fix := ck.MkLine.Autofix()
+		fix.Notef("The modifier %q can be replaced with the simpler %q.",
+			str, simpler)
+		fix.Replace(str, simpler)
+		fix.Apply()
+	}
+}
+
 func (ck *MkVarUseChecker) checkVarname(time VucTime) {
 	varname := ck.use.varname
 	if varname == "@" {
@@ -145,15 +200,63 @@ func (ck *MkVarUseChecker) checkVarname(time VucTime) {
 		fix.ReplaceAfter("${", "LOCALBASE", "PREFIX")
 		fix.Apply()
 	}
+
+	ck.checkVarnameBuildlink(varname)
+}
+
+func (ck *MkVarUseChecker) checkVarnameBuildlink(varname string) {
+	pkg := ck.MkLines.pkg
+	if pkg == nil {
+		return
+	}
+
+	if !hasPrefix(varname, "BUILDLINK_PREFIX.") {
+		return
+	}
+
+	varparam := varnameParam(varname)
+	id := Buildlink3ID(varparam)
+	if pkg.bl3Data[id] != nil || containsVarUse(varparam) {
+		return
+	}
+
+	// lang/lua/buildlink3.mk defines BUILDLINK_PREFIX.lua but
+	// doesn't add it to BUILDLINK_TREE. Only the versioned
+	// buildlink identifier (lua53) is added to BUILDLINK_TREE.
+	// This is unusual.
+	if pkg.vars.IsDefined(varname) {
+		return
+	}
+
+	// Several packages contain Makefile fragments that are more related
+	// to the buildlink3.mk file than to the package Makefile.
+	// These may use the buildlink identifier from the package itself.
+	basename := ck.MkLine.Basename
+	if basename != "Makefile" && basename != "options.mk" {
+		bl3 := LoadMk(pkg.File("buildlink3.mk"), pkg, 0)
+		if bl3 != nil {
+			bl3Data := LoadBuildlink3Data(bl3)
+			if bl3Data != nil && bl3Data.id == id {
+				return
+			}
+		}
+	}
+
+	if id == "mysql-client" && pkg.Includes("../../mk/mysql.buildlink3.mk") != nil {
+		return
+	}
+
+	ck.MkLine.Warnf("Buildlink identifier %q is not known in this package.",
+		varparam)
 }
 
 // checkPermissions checks the permissions when a variable is used,
 // be it in a variable assignment, in a shell command, a conditional, or
 // somewhere else.
 //
-// See checkVarassignLeftPermissions.
+// See MkAssignChecker.checkLeftPermissions.
 func (ck *MkVarUseChecker) checkPermissions(vuc *VarUseContext) {
-	if !G.Opts.WarnPerm {
+	if !G.WarnPerm {
 		return
 	}
 	if G.Infrastructure {
@@ -445,10 +548,39 @@ func (ck *MkVarUseChecker) warnToolLoadTime(varname string, tool *Tool) {
 		"except in the package Makefile itself.")
 }
 
+func (ck *MkVarUseChecker) checkAssignable(vuc *VarUseContext) {
+	leftType := vuc.vartype
+	if leftType == nil || leftType.basicType != BtPathname {
+		return
+	}
+	rightType := G.Pkgsrc.VariableType(ck.MkLines, ck.use.varname)
+	if rightType == nil || rightType.basicType != BtShellCommand {
+		return
+	}
+
+	mkline := ck.MkLine
+	if mkline.Varcanon() == "PKG_SHELL.*" {
+		switch ck.use.varname {
+		case "SH", "BASH", "TOOLS_PLATFORM.sh":
+			return
+		}
+	}
+
+	mkline.Warnf(
+		"Incompatible types: %s (type %q) cannot be assigned to type %q.",
+		ck.use.varname, rightType.basicType.name, leftType.basicType.name)
+	mkline.Explain(
+		"Shell commands often start with a pathname.",
+		"They could also start with a list of environment variable",
+		"definitions, since that is accepted by the shell.",
+		"They can also contain addition command line arguments",
+		"that are not filenames at all.")
+}
+
 // checkVarUseWords checks whether a variable use of the form ${VAR}
 // or ${VAR:modifiers} is allowed in a certain context.
 func (ck *MkVarUseChecker) checkQuoting(vuc *VarUseContext) {
-	if !G.Opts.WarnQuoting || vuc.quoting == VucQuotUnknown {
+	if !G.WarnQuoting || vuc.quoting == VucQuotUnknown {
 		return
 	}
 
@@ -638,6 +770,40 @@ func (ck *MkVarUseChecker) warnRedundantModifierQ(mod string) {
 	fix.Apply()
 }
 
+func (ck *MkVarUseChecker) checkToolsPlatform() {
+	if ck.MkLine.IsDirective() {
+		return
+	}
+
+	varname := ck.use.varname
+	if varnameCanon(varname) != "TOOLS_PLATFORM.*" {
+		return
+	}
+
+	indentation := ck.MkLines.indentation
+	switch {
+	case indentation.DependsOn("OPSYS"),
+		indentation.DependsOn("MACHINE_PLATFORM"),
+		indentation.DependsOn(varname):
+		// TODO: Only return if the conditional is on the correct OPSYS.
+		return
+	}
+
+	toolName := varnameParam(varname)
+	tool := G.Pkgsrc.Tools.ByName(toolName)
+	if tool == nil {
+		return
+	}
+
+	if len(tool.undefinedOn) > 0 {
+		ck.MkLine.Warnf("%s is undefined on %s.",
+			varname, joinCambridge("and", tool.undefinedOn...))
+	} else if len(tool.conditionalOn) > 0 {
+		ck.MkLine.Warnf("%s may be undefined on %s.",
+			varname, joinCambridge("and", tool.conditionalOn...))
+	}
+}
+
 func (ck *MkVarUseChecker) checkBuildDefs() {
 	varname := ck.use.varname
 
@@ -672,4 +838,27 @@ func (ck *MkVarUseChecker) checkDeprecated() {
 	}
 
 	ck.MkLine.Warnf("Use of %q is deprecated. %s", varname, instead)
+}
+
+func (ck *MkVarUseChecker) checkPkgBuildOptions() {
+	pkg := ck.MkLines.pkg
+	if pkg == nil {
+		return
+	}
+	varname := ck.use.varname
+	if !hasPrefix(varname, "PKG_BUILD_OPTIONS.") {
+		return
+	}
+	param := varnameParam(varname)
+	if pkg.seenPkgbase.Seen(param) {
+		return
+	}
+
+	ck.MkLine.Warnf("The PKG_BUILD_OPTIONS for %q are not available to this package.",
+		param)
+	ck.MkLine.Explain(
+		"The variable parameter for PKG_BUILD_OPTIONS must correspond",
+		"to the value of \"pkgbase\" above.",
+		"",
+		"For more information, see mk/pkg-build-options.mk.")
 }

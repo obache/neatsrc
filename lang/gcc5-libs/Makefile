@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2019/11/03 19:03:59 rillig Exp $
+# $NetBSD: Makefile,v 1.17 2020/10/23 00:39:37 gutteridge Exp $
 
 GCC_PKGNAME=	gcc5
 .include	"../../lang/${GCC_PKGNAME}/version.mk"
@@ -9,14 +9,14 @@ PKGNAME=	${GCC_PKGNAME}-libs-${GCC5_DIST_VERSION}
 ## The PKGREVISION of this package needs to be at least 1 more than the
 ## PKGREVISION of the lang/gcc5 package so that with the dependence pattern
 ## '{gcc5,gcc5-libs}>=5.1.*' pkg_add will choose gcc5-libs over gcc5.
-PKGREVISION=	5
+PKGREVISION=	7
 
 CATEGORIES=	lang
 MASTER_SITES=	# empty
 DISTFILES=	# empty
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://gcc.gnu.org/
+HOMEPAGE=	https://gcc.gnu.org/
 COMMENT=	The GNU Compiler Collection (GCC) support shared libraries
 LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND gnu-lgpl-v3
 

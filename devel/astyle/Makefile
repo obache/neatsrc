@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2018/03/17 17:16:59 schmonz Exp $
+# $NetBSD: Makefile,v 1.23 2020/01/26 05:26:22 rillig Exp $
 
 DISTNAME=	astyle_3.1_linux
 PKGNAME=	${DISTNAME:S/_linux//:S/_/-/}

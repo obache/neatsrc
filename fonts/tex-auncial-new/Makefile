@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:29:34 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:38 markd Exp $
 
 DISTNAME=	auncial-new
 PKGNAME=	tex-${DISTNAME}-2.0
+PKGREVISION=	1
 TEXLIVE_REV=	15878
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/auncial-new
+HOMEPAGE=	https://ctan.org/pkg/auncial-new
 COMMENT=	Artificial Uncial font and LaTeX support macros
 LICENSE=	lppl-1.3c
 

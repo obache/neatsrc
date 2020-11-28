@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.24 2019/11/03 11:45:44 rillig Exp $
+# $NetBSD: Makefile,v 1.35 2020/08/31 18:10:37 wiz Exp $
 
 DISTNAME=	netatalk-3.1.12
 PKGNAME=	${DISTNAME:C/-/3-/}
-PKGREVISION=	5
+PKGREVISION=	12
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=netatalk/}
 EXTRACT_SUFX=	.tar.bz2
@@ -13,7 +13,6 @@ COMMENT=	Netatalk AFP file services
 LICENSE=	gnu-gpl-v2
 
 USE_LIBTOOL=		yes
-USE_OLD_DES_API=	yes
 USE_TOOLS+=		gmake perl:run
 GNU_CONFIGURE=		yes
 PKG_CONFIG=		yes
@@ -60,12 +59,6 @@ MAKE_DIRS+=		${PKG_SYSCONFDIR}/msg
 
 REPLACE_PYTHON+=	contrib/shell_utils/afpstats
 REPLACE_PYTHON+=	libevent/event_rpcgen.py
-
-SUBST_CLASSES+=		paths
-SUBST_MESSAGE.paths=	Fixing hardcoded paths.
-SUBST_STAGE.paths=	pre-configure
-SUBST_FILES.paths=	distrib/initscripts/Makefile.in
-SUBST_SED.paths=	-e "s,^\\(DVIPS=\\)\\(/usr/local/tex\\)\\(/bin\\),\\1${PREFIX}\\3,"
 
 PLIST_VARS+=		ea
 .if ${OPSYS} == "SunOS" || ${OPSYS} == "DragonFly" || ${OPSYS} == "Linux" || \

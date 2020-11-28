@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.9 2019/01/22 14:08:47 he Exp $
+# $NetBSD: Makefile,v 1.11 2020/03/20 11:57:33 nia Exp $
 #
 
 DISTNAME=	tclreadline-2.1.0

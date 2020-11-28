@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.18 2019/09/14 19:58:30 gutteridge Exp $
+# $NetBSD: Makefile,v 1.21 2020/09/20 07:09:17 wiz Exp $
 
-DISTNAME=	DBD-Mock-1.49
+DISTNAME=	DBD-Mock-1.57
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	databases perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=DBD/}
@@ -12,6 +12,7 @@ LICENSE=	${PERL5_LICENSE}
 
 DEPENDS+=	p5-DBI>=1.3:../../databases/p5-DBI
 TOOL_DEPENDS+=	p5-Module-Build-Tiny-[0-9]*:../../devel/p5-Module-Build-Tiny
+TEST_DEPENDS+=	p5-Test-Exception-[0-9]*:../../devel/p5-Test-Exception
 
 PERL5_PACKLIST=		auto/DBD/Mock/.packlist
 PERL5_MODULE_TYPE=	Module::Build

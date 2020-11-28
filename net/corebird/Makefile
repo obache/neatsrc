@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.52 2019/11/06 14:34:31 wiz Exp $
+# $NetBSD: Makefile,v 1.60 2020/10/06 19:51:17 wiz Exp $
 
 DISTNAME=	corebird-1.7.4
-PKGREVISION	10
+PKGREVISION=	12
 CATEGORIES=	net
 MASTER_SITES=	https://github.com/baedert/${PKGBASE}/releases/download/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.xz
@@ -14,7 +14,7 @@ LICENSE=	gnu-gpl-v3
 USE_LIBTOOL=	yes
 USE_LANGUAGES=	c
 GNU_CONFIGURE=	yes
-USE_TOOLS+=	pkg-config gmake msgfmt xmllint
+USE_TOOLS+=	gettext pkg-config gmake msgfmt xmllint
 
 GETTEXT_TOOLS_REQD=	0.19.7
 

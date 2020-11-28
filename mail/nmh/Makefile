@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.104 2019/08/22 12:23:28 ryoon Exp $
+# $NetBSD: Makefile,v 1.110 2020/05/22 10:56:20 adam Exp $
 
 DISTNAME=		nmh-1.7.1
-PKGREVISION=		7
+PKGREVISION=		12
 CATEGORIES=		mail
 MASTER_SITES=		https://download.savannah.nongnu.org/releases/nmh/
 
 MAINTAINER=		leot@NetBSD.org
-HOMEPAGE=		http://www.nongnu.org/nmh/
+HOMEPAGE=		https://www.nongnu.org/nmh/
 COMMENT=		Cleaned up MH mailer suite
 LICENSE=		modified-bsd
 

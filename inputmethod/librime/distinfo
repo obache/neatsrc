@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.5 2018/03/07 09:34:09 wiz Exp $
+$NetBSD: distinfo,v 1.6 2020/05/22 13:45:28 joerg Exp $
 
 SHA1 (librime-1.6.1.tar.gz) = 1ca53c2382207957ba66605460290de0dd7edab5
 RMD160 (librime-1.6.1.tar.gz) = 28951978a766c8e095219084eb71a6b5d76bf2d1

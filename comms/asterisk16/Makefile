@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.52 2020/01/11 08:36:13 ryoon Exp $
+# $NetBSD: Makefile,v 1.69 2020/08/31 18:06:44 wiz Exp $
 #
 # NOTE: when updating this package, there are two places that sound
 #       tarballs need to be checked; look in ${WRKSRC}/sounds/Makefile
 #       to find out the current sound file versions
 
-DISTNAME=	asterisk-16.7.0
+DISTNAME=	asterisk-16.12.0
+PKGREVISION=	2
 CATEGORIES=	comms net audio
 MASTER_SITES=	http://downloads.asterisk.org/pub/telephony/asterisk/
 MASTER_SITES+=	http://downloads.asterisk.org/pub/telephony/asterisk/old-releases/
@@ -17,7 +18,7 @@ LICENSE=	gnu-gpl-v2
 
 EXTRACT_ONLY=	${DISTNAME}.tar.gz
 MAINTAINER=	ryoon@NetBSD.org
-HOMEPAGE=	http://www.asterisk.org/
+HOMEPAGE=	https://www.asterisk.org/
 
 MAKE_JOBS_SAFE=	NO
 
@@ -134,8 +135,13 @@ PLIST.mgcp=	yes
 .  endif
 .endfor
 
-.if ${OPSYS} == "SunOS"
+.if ${OPSYS} == "SunOS" || ${OPSYS} == "Linux"
 PLIST.mgcp=	yes
+.endif
+
+PLIST_VARS+=	timerfd
+.if ${OPSYS} == "Linux"
+PLIST.timerfd=	yes
 .endif
 
 PLIST_VARS+=		unbound
@@ -152,7 +158,7 @@ CONFIGURE_ARGS+=	--without-unbound
 DISTFILES+=	asterisk-extra-sounds-en-gsm-1.5.2.tar.gz
 
 # pjproject
-PJPROJ_VERSION=	2.9
+PJPROJ_VERSION=	2.10
 SITES.pjproject-${PJPROJ_VERSION}.tar.bz2= \
 	-https://raw.githubusercontent.com/asterisk/third-party/master/pjproject/${PJPROJ_VERSION}/pjproject-${PJPROJ_VERSION}.tar.bz2
 SITES.pjproject-${PJPROJ_VERSION}.md5= \
@@ -286,12 +292,13 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/IAX2-security.txt ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 	${INSTALL_DATA} ${WRKSRC}/doc/README.txt ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 
-.if ${OPSYS} != "Darwin" && ${PKGSRC_COMPILER} == "clang"
+.if ${OPSYS} != "Darwin" && ${PKGSRC_COMPILER:Mclang}
 .include "../../lang/libBlocksRuntime/buildlink3.mk"
 LDFLAGS+= -L${PREFIX}/lib
 .endif
 
 .include "../../databases/sqlite3/buildlink3.mk"
+.include "../../devel/editline/buildlink3.mk"
 .include "../../devel/libuuid/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/application.mk"

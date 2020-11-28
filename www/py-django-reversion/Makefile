@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.21 2018/02/02 08:08:10 adam Exp $
+# $NetBSD: Makefile,v 1.25 2020/10/02 19:23:35 adam Exp $
 
-DISTNAME=	django-reversion-2.0.13
+DISTNAME=	django-reversion-3.0.8
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=d/django-reversion/}
@@ -10,9 +10,11 @@ HOMEPAGE=	https://github.com/etianen/django-reversion/
 COMMENT=	Version control facilities for Django
 LICENSE=	modified-bsd
 
-DEPENDS+=	${PYPKGPREFIX}-django>=1.8:../../www/py-django
+DEPENDS+=	${PYPKGPREFIX}-django>=1.11:../../www/py-django
 
 USE_LANGUAGES=	# none
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

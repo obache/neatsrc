@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.5 2019/11/09 20:01:14 jperkin Exp $
+# $NetBSD: mozilla-common.mk,v 1.8 2020/06/04 13:47:19 nia Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -93,12 +93,7 @@ CONFIG_SUB_OVERRIDE+=		${MOZILLA_DIR}nsprpub/build/autoconf/config.sub
 CONFIG_SUB_OVERRIDE+=		${MOZILLA_DIR}/js/ctypes/libffi/config.sub
 
 CONFIGURE_ENV+=		CPP=${CPP}
-
-SUBST_CLASSES+=		python
-SUBST_STAGE.python=	pre-configure
-SUBST_MESSAGE.python=	Fixing path to python.
-SUBST_FILES.python+=	media/webrtc/trunk/build/common.gypi
-SUBST_SED.python+=	-e 's,<!(python,<!(${PYTHONBIN},'
+ALL_ENV+=		SHELL=${CONFIG_SHELL:Q}
 
 # Build outside ${WRKSRC}
 # Try to avoid conflict with config/makefiles/xpidl/Makefile.in
@@ -195,7 +190,7 @@ BUILDLINK_API_DEPENDS.libvpx+=	libvpx>=1.3.0
 .include "../../multimedia/libvpx/buildlink3.mk"
 .include "../../net/libIDL/buildlink3.mk"
 .include "../../textproc/hunspell/buildlink3.mk"
-.include "../../multimedia/ffmpeg3/buildlink3.mk"
+.include "../../multimedia/ffmpeg4/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
 BUILDLINK_API_DEPENDS.pixman+= pixman>=0.25.2
 .include "../../x11/pixman/buildlink3.mk"

@@ -1,16 +1,12 @@
-# $NetBSD: Makefile,v 1.13 2019/11/03 10:00:24 rillig Exp $
+# $NetBSD: Makefile,v 1.16 2020/09/13 16:04:28 taca Exp $
 
-DISTNAME=	posix-spawn-0.3.13
+DISTNAME=	posix-spawn-0.3.15
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/rtomayko/posix-spawn/
 COMMENT=	Ruby wrapper for the posix_spawn() system call
 LICENSE=	mit
-
-# These platforms don't have posix_spawn().
-# (doubtless there are more than just older netbsd...)
-NOT_FOR_PLATFORM=	NetBSD-[0-5]*-*
 
 RUBYGEM_OPTIONS+=	--format-executable
 

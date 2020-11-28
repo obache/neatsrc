@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.24 2019/11/06 12:51:55 wiz Exp $
+# $NetBSD: Makefile,v 1.26 2020/09/13 09:25:37 wiz Exp $
 
-DISTNAME=	libxkbcommon-0.9.1
+DISTNAME=	libxkbcommon-1.0.1
 CATEGORIES=	x11
 MASTER_SITES=	https://xkbcommon.org/download/
 EXTRACT_SUFX=	.tar.xz
@@ -16,7 +16,7 @@ MESON_ARGS+=	-Denable-wayland=false
 
 PKGCONFIG_OVERRIDE+=		output/meson-private/xkbcommon.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/xkbcommon-x11.pc
-PKGCONFIG_OVERRIDE_STAGE=       post-configure
+PKGCONFIG_OVERRIDE_STAGE=	post-configure
 
 .include "options.mk"
 
@@ -29,5 +29,6 @@ BUILDLINK_TRANSFORM+=	rm:-Wl,--version-script=./xkbcommon-x11.map
 BUILDLINK_API_DEPENDS.libxcb+=	libxcb>=1.10
 .include "../../x11/libxcb/buildlink3.mk"
 .include "../../x11/xkeyboard-config/buildlink3.mk"
+.include "../../textproc/libxml2/buildlink3.mk"
 .include "../../devel/meson/build.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.40 2019/12/16 21:26:43 schmonz Exp $
+# $NetBSD: Makefile,v 1.50 2020/09/22 09:59:05 schmonz Exp $
 #
 
-DISTNAME=		ucspi-ssl-0.11.1
+DISTNAME=		ucspi-ssl-0.11.6a
 PKGNAME=		${DISTNAME:S/-0./-0.999./}
 CATEGORIES=		net
 MASTER_SITES=		https://www.fehcom.de/ipnet/ucspi-ssl/
-DIST_SUBDIR=		${PKGNAME_NOREV}
 EXTRACT_SUFX=		.tgz
 
 MAINTAINER=		schmonz@NetBSD.org
@@ -39,12 +38,15 @@ DJB_CONFIG_CMDS=							\
 	${ECHO} > conf-ssl;						\
 	${ECHO} ${SSLDIR}/certs > conf-cadir;				\
 	${ECHO} ${PKG_SYSCONFDIR}/dh1024.pem > conf-dhfile;		\
-	${ECHO} ${DEFAULT_MEDIUM_CIPHERS} > conf-ciphers;
+	${ECHO} ${DEFAULT_MEDIUM_CIPHERS} > conf-ciphers;		\
+	${ECHO} it-base > src/it=d;
 
 # from `postconf -d | grep tls_medium_cipherlist`
-DEFAULT_MEDIUM_CIPHERS=	aNULL:-aNULL:ALL:!EXPORT:!LOW:+RC4:@STRENGTH
+DEFAULT_MEDIUM_CIPHERS=	aNULL:-aNULL:HIGH:MEDIUM:+RC4:@STRENGTH
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1 ${PKGMANDIR}/man2 share/doc/${PKGBASE} ${EGDIR}
+
+.include "options.mk"
 
 do-test:
 	cd ${WRKSRC}; \

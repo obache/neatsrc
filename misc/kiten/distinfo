@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.10 2019/11/21 06:19:47 markd Exp $
+$NetBSD: distinfo,v 1.12 2020/06/09 11:56:15 markd Exp $
 
-SHA1 (kiten-19.08.3.tar.xz) = 183a1ef875d28f74a5b37ad3140ab06756ca75ba
-RMD160 (kiten-19.08.3.tar.xz) = 91b2920285521edc27dfd4241dd5360c2c74399b
-SHA512 (kiten-19.08.3.tar.xz) = 330544abf9fbf6723588f4fc476275500da90a03f61f55569779cffbb31d6fd83fb752d3bfa6393a4298bac34ed43b52581c4df3555d9ccbd80be4b401147dfd
-Size (kiten-19.08.3.tar.xz) = 11279532 bytes
+SHA1 (kiten-20.04.1.tar.xz) = c795d31631552ff346ab8fc709c7ce00dec51252
+RMD160 (kiten-20.04.1.tar.xz) = a50a2fb1e947609c02948abb4a575f51b82a806b
+SHA512 (kiten-20.04.1.tar.xz) = e78697baeb88fcee9abe3c0b27336786cf28ede45c39c943817c41d51d7c8e66137834429fafafa8a9523cb63b0cfe754f9ceedcfea924287b479cd1a366c14c
+Size (kiten-20.04.1.tar.xz) = 11282712 bytes

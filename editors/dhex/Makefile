@@ -1,18 +1,22 @@
-# $NetBSD: Makefile,v 1.4 2017/01/03 17:19:11 roy Exp $
+# $NetBSD: Makefile,v 1.8 2020/03/26 12:18:17 nia Exp $
 
-DISTNAME=	dhex_0.68
+DISTNAME=	dhex_0.69
 PKGNAME=	${DISTNAME:S/_/-/}
-PKGREVISION=	3
 CATEGORIES=	editors
-MASTER_SITES=	http://dettus.net/dhex/
+MASTER_SITES=	https://dettus.net/dhex/
 
 MAINTAINER=	amoibos@gmail.com
-HOMEPAGE=	http://www.dettus.net/dhex/
-COMMENT=	The curses-based hex-editor with diff mode
+HOMEPAGE=	https://www.dettus.net/dhex/
+COMMENT=	Curses-based hex-editor with diff mode
 LICENSE=	gnu-gpl-v2
 
 USE_LANGUAGES=	c
 FAKE_NCURSES=	yes
+
+MAKE_FLAGS+=	CC=${CC:Q}
+MAKE_FLAGS+=	CFLAGS=${CFLAGS:Q}
+MAKE_FLAGS+=	LDFLAGS=${LDFLAGS:Q}
+MAKE_FLAGS+=	LIBS=${BUILDLINK_LDADD.curses:Q}
 
 MAN1=		dhex.1
 MAN5=		dhexrc.5 dhex_markers.5 dhex_searchlog.5

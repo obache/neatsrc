@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2014/10/09 14:06:51 wiz Exp $
+# $NetBSD: Makefile,v 1.27 2020/03/20 11:58:14 nia Exp $
 #
 
 DISTNAME=	latex-mk-2.1

@@ -1,13 +1,15 @@
-# $NetBSD: Makefile,v 1.12 2019/12/13 13:44:21 bouyer Exp $
+# $NetBSD: Makefile,v 1.23 2020/08/31 18:11:37 wiz Exp $
 #
-VERSION=	4.11.3
-VERSION_IPXE=	356f6c1b64d7a97746d1816cef8ca22bdd8d0b5d
+# VERSION is set in version.mk as it is shared with other packages
+PKGREVISION=	1
+.include	"version.mk"
+
 DIST_IPXE=	ipxe-git-${VERSION_IPXE}.tar.gz
 
 DIST_SUBDIR=		xen411
 DISTNAME=		xen-${VERSION}
 PKGNAME=		xentools411-${VERSION}
-#PKGREVISION=		0
+#PKGREVISION=		5
 CATEGORIES=		sysutils
 MASTER_SITES=		https://downloads.xenproject.org/release/xen/${VERSION}/
 
@@ -50,6 +52,7 @@ USE_TOOLS+=		pod2man gmake pkg-config makeinfo perl bash cmake
 USE_LANGUAGES=		c
 
 GNU_CONFIGURE=		YES
+GNU_CONFIGURE_STRICT=	no # seabios is for one of the sub-configures
 #CONFIGURE_ARGS+=	--enable-xenapi
 CONFIGURE_ARGS+=	--disable-seabios
 
@@ -62,6 +65,8 @@ MAKE_ENV+=		MV=${MV:Q} PYTHON=${PYTHONBIN:Q} SED=${SED:Q}
 MAKE_ENV+=		V=YES
 MAKE_ENV+=		NO_WERROR=1
 
+BUILDLINK_TRANSFORM+=	rm:-Werror
+
 PYTHON_VERSIONS_ACCEPTED=	27
 
 PY_PATCHPLIST=		yes
@@ -72,43 +77,18 @@ REPLACE_PYTHON+=	tools/python/scripts/convert-legacy-stream
 REPLACE_PYTHON+=	tools/python/scripts/verify-stream-v2
 REPLACE_PYTHON+=	tools/xenmon/xenmon.py tools/misc/xencov_split
 
-SUBST_CLASSES+=		perlpath
-SUBST_STAGE.perlpath=	pre-configure
-SUBST_FILES.perlpath=	tools/misc/xencov_split
-SUBST_FILES.perlpath+=	tools/firmware/rombios/makesym.perl
-SUBST_FILES.perlpath+=	tools/qemu-xen-traditional/texi2pod.pl
-SUBST_FILES.perlpath+=	tools/examples/xeninfo.pl
-SUBST_FILES.perlpath+=	tools/include/xen-external/bsd-sys-queue-h-seddery
-SUBST_FILES.perlpath+=	tools/qemu-xen/scripts/texi2pod.pl
-SUBST_FILES.perlpath+=	tools/qemu-xen/scripts/get_maintainer.pl
-SUBST_FILES.perlpath+=	tools/qemu-xen/scripts/checkpatch.pl
-SUBST_FILES.perlpath+=	tools/libxl/libxl_save_msgs_gen.pl
-SUBST_FILES.perlpath+=	tools/libxl/check-libxl-api-rules
-SUBST_FILES.perlpath+=	../ipxe/src/drivers/infiniband/qib_genbits.pl
-SUBST_FILES.perlpath+=	../ipxe/src/util/catrom.pl
-SUBST_FILES.perlpath+=	../ipxe/src/util/diffsize.pl
-SUBST_FILES.perlpath+=	../ipxe/src/util/disrom.pl
-SUBST_FILES.perlpath+=	../ipxe/src/util/get-pci-ids
-SUBST_FILES.perlpath+=	../ipxe/src/util/licence.pl
-SUBST_FILES.perlpath+=	../ipxe/src/util/mergerom.pl
-SUBST_FILES.perlpath+=	../ipxe/src/util/modrom.pl
-SUBST_FILES.perlpath+=	../ipxe/src/util/padimg.pl
-SUBST_FILES.perlpath+=	../ipxe/src/util/parserom.pl
-SUBST_FILES.perlpath+=	../ipxe/src/util/sortobjdump.pl
-SUBST_FILES.perlpath+=	../ipxe/src/util/swapdevids.pl
-SUBST_FILES.perlpath+=	../ipxe/src/util/symcheck.pl
-SUBST_SED.perlpath=	-e "s|/usr/bin/perl|${PREFIX}/bin/perl|g"
-
-SUBST_CLASSES+=		pathsvar
-SUBST_STAGE.pathsvar=	pre-configure
-SUBST_FILES.pathsvar=	tools/Makefile \
-			tools/hotplug/Linux/init.d/sysconfig.xendomains
-SUBST_SED.pathsvar=	-e "s|/var/lib|${VARBASE}/run|g"
+REPLACE_PERL+=		../ipxe/src/util/*.pl
+REPLACE_PERL+=		../ipxe/src/drivers/infiniband/qib_genbits.pl
+REPLACE_PERL+=		../ipxe/src/util/get-pci-ids
+REPLACE_PERL+=		tools/examples/xeninfo.pl
+REPLACE_PERL+=		tools/firmware/rombios/makesym.perl
+REPLACE_PERL+=		tools/include/xen-external/bsd-sys-queue-h-seddery
+REPLACE_PERL+=		tools/libxl/check-libxl-api-rules
+REPLACE_PERL+=		tools/libxl/libxl_save_msgs_gen.pl
+REPLACE_PERL+=		tools/qemu-xen-traditional/*.pl
 
 SUBST_CLASSES+=		conf
 SUBST_STAGE.conf=	pre-configure
-SUBST_FILES.conf+=	tools/ocaml/xenstored/define.ml
-SUBST_FILES.conf+=	tools/libxl/xl_cmdtable.c
 SUBST_FILES.conf+=	docs/misc/block-scripts.txt
 SUBST_SED.conf=		-e "s,@XENDCONFDIR@,${PKG_SYSCONFDIR},g"
 
@@ -116,7 +96,7 @@ XEND_SCRIPTS=		block vif-bridge vif-ip qemu-ifup hotplugpath.sh locking.sh
 
 SUBST_CLASSES.NetBSD+=	proc
 SUBST_STAGE.proc=	pre-configure
-SUBST_FILES.proc+=	tools/ocaml/xenstored/define.ml
+SUBST_FILES.proc+=	tools/ocaml/xenstored/select.ml
 SUBST_SED.proc=		-e "s|/proc|/kern|g"
 
 SUBST_CLASSES+=		getopt
@@ -130,15 +110,6 @@ PROCPATH.NetBSD=	/kern
 PROCPATH.*=		/proc
 
 .include "../../mk/bsd.prefs.mk"
-
-SUBST_CLASSES+=		procdev
-SUBST_STAGE.procdev=	pre-configure
-SUBST_FILES.procdev=	tools/ocaml/xenstored/define.ml
-.if ${OPSYS} == "NetBSD"
-SUBST_SED.procdev=	-e "s|@PROCDEV@|/dev|g"
-.else
-SUBST_SED.procdev=	-e "s|@PROCDEV@|/proc/xen|g"
-.endif
 
 .if ${OPSYS} == "NetBSD"
 MESSAGE_SRC=		${.CURDIR}/MESSAGE ${.CURDIR}/MESSAGE.NetBSD
@@ -219,6 +190,7 @@ post-install:
 	${INSTALL_MAN} ${WRKDIR}/xl.conf.5 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man5
 	${INSTALL_MAN} ${WRKDIR}/xl.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 	${INSTALL_MAN} ${WRKDIR}/xlcpupool.cfg.5 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man5
+	${INSTALL_MAN} ${WRKDIR}/xl-disk-configuration.5 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man5
 .for f in \
     gamd-ucode-container.txt       gqemu-backends.txt \
     gblock-scripts.txt             gqemu-deprivilege.txt \

@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.71 2019/11/04 12:52:13 adam Exp $
+# $NetBSD: Makefile,v 1.77 2020/05/22 10:56:30 adam Exp $
 
 DISTNAME=	${OPENVPN_DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${OPENVPN_MASTER_SITES}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://openvpn.net/
+HOMEPAGE=	https://openvpn.net/
 COMMENT=	Easy-to-use SSL VPN daemon
 LICENSE=	gnu-gpl-v2
 
@@ -17,7 +18,6 @@ CONFIGURE_ARGS+=	--disable-debug
 CONFIGURE_ARGS+=	--disable-dependency-tracking
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 
-USE_OLD_DES_API=	yes
 TEST_TARGET=		check
 
 PKG_SYSCONFSUBDIR=	openvpn

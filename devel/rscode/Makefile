@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2013/01/10 23:52:36 joerg Exp $
+# $NetBSD: Makefile,v 1.7 2020/03/20 11:57:31 nia Exp $
 #
 
 DISTNAME=	rscode-1.0

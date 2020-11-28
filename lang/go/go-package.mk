@@ -1,4 +1,4 @@
-# $NetBSD: go-package.mk,v 1.23 2019/09/10 20:19:54 rillig Exp $
+# $NetBSD: go-package.mk,v 1.25 2020/03/30 19:33:13 joerg Exp $
 #
 # This file implements common logic for compiling Go programs in pkgsrc.
 #
@@ -68,6 +68,7 @@ PRINT_PLIST_AWK+=	/^@pkgdir gopkg$$/ { next; }
 
 MAKE_ENV+=	GOPATH=${WRKDIR}:${BUILDLINK_DIR}/gopkg
 MAKE_ENV+=	GOCACHE=${WRKDIR}/.cache/go-build
+MAKE_ENV+=	GO111MODULE=off
 
 .if !target(post-extract)
 post-extract:
@@ -78,12 +79,12 @@ post-extract:
 
 .if !target(do-build)
 do-build:
-	${RUN} ${PKGSRC_SETENV} ${MAKE_ENV} ${GO} install -v ${GO_BUILD_PATTERN}
+	${RUN} ${_ULIMIT_CMD} ${PKGSRC_SETENV} ${MAKE_ENV} ${GO} install -v ${GO_BUILD_PATTERN}
 .endif
 
 .if !target(do-test)
 do-test:
-	${RUN} ${PKGSRC_SETENV} ${TEST_ENV} ${MAKE_ENV} ${GO} test -v ${GO_BUILD_PATTERN}
+	${RUN} ${_ULIMIT_CMD} ${PKGSRC_SETENV} ${TEST_ENV} ${MAKE_ENV} ${GO} test -v ${GO_BUILD_PATTERN}
 .endif
 
 .if !target(do-install)

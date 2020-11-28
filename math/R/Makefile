@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.205 2019/10/20 03:29:10 markd Exp $
+# $NetBSD: Makefile,v 1.219 2020/10/12 21:51:58 bacon Exp $
 
-DISTNAME=	R-3.6.1
+DISTNAME=	R-4.0.3
 PKGREVISION=	1
 CATEGORIES=	math
-MASTER_SITES=	${MASTER_SITE_R_CRAN:=base/R-3/}
+MASTER_SITES=	${MASTER_SITE_R_CRAN:=base/R-4/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.R-project.org/
+HOMEPAGE=	https://www.R-project.org/
 COMMENT=	Statistical language for data analysis and graphics
 LICENSE=	gnu-gpl-v2
 
@@ -25,6 +25,7 @@ INFO_FILES=		yes
 PTHREAD_AUTO_VARS=	yes
 
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_ICONV=	no
 CONFIGURE_ARGS+=	--enable-R-shlib
 CONFIGURE_ARGS+=	--with-readline
 CONFIGURE_ARGS+=	--with-lapack
@@ -119,8 +120,7 @@ INSTALL_SCRIPT=		${INSTALL} ${COPY} -m ${BINMODE}
 #BUILD_DEPENDS+=		tex-fontname-[0-9]*:../../fonts/tex-fontname
 #BUILD_DEPENDS+=		tex-graphics-[0-9]*:../../print/tex-graphics
 #BUILD_DEPENDS+=		tex-hyperref-[0-9]*:../../print/tex-hyperref
-#BUILD_DEPENDS+=		tex-ifluatex-[0-9]*:../../print/tex-ifluatex
-#BUILD_DEPENDS+=		tex-ifxetex-[0-9]*:../../print/tex-ifxetex
+#BUILD_DEPENDS+=		tex-iftex>=1.0d:../../print/tex-iftex
 #BUILD_DEPENDS+=		tex-latex-[0-9]*:../../print/tex-latex
 #BUILD_DEPENDS+=		tex-latexconfig-[0-9]*:../../print/tex-latexconfig
 #BUILD_DEPENDS+=		tex-mptopdf-[0-9]*:../../graphics/tex-mptopdf
@@ -160,7 +160,7 @@ fix-darwin-install-name:
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/pango/buildlink3.mk"
-.include "../../devel/pcre/buildlink3.mk"
+.include "../../devel/pcre2/buildlink3.mk"
 # uses callback interface
 .include "../../devel/readline/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
@@ -169,8 +169,7 @@ fix-darwin-install-name:
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
 .if !exists(/System/Library/Frameworks/Accelerate.framework)
-.include "../../math/blas/buildlink3.mk"
-.include "../../math/lapack/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .endif
 .include "../../www/curl/buildlink3.mk"
 .include "../../x11/tk/buildlink3.mk"

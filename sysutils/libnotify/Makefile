@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.59 2019/12/12 10:40:57 jperkin Exp $
+# $NetBSD: Makefile,v 1.64 2020/08/17 20:20:07 leot Exp $
 
-DISTNAME=	libnotify-0.7.8
-PKGREVISION=	1
+DISTNAME=	libnotify-0.7.9
+PKGREVISION=	3
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libnotify/0.7/}
 EXTRACT_SUFX=	.tar.xz
@@ -10,6 +10,9 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://developer.gnome.org/libnotify/
 COMMENT=	Desktop notification framework
 LICENSE=	gnu-lgpl-v2.1
+
+TOOL_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
+TOOL_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 
 CONFLICTS+=	libnotify07-[0-9]*
 SUPERSEDES+=	libnotify07-[0-9]*

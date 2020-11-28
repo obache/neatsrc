@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.30 2019/06/08 11:04:28 rillig Exp $
+# $NetBSD: Makefile,v 1.32 2020/05/20 06:09:03 rillig Exp $
 #
 
 DISTNAME=	fasthenry-3.0-12Nov96
@@ -8,7 +8,7 @@ MASTER_SITES=	http://www.rle.mit.edu/cpg/codes/
 EXTRACT_SUFX=	.tar.Z
 
 MAINTAINER=	dmcmahill@NetBSD.org
-HOMEPAGE=	http://www.rle.mit.edu/cpg/research_codes.htm
+HOMEPAGE=	https://www.rle.mit.edu/cpg/research_codes.htm
 COMMENT=	Three-dimensional inductance extraction program
 
 DIST_SUBDIR=	${PKGNAME_NOREV}
@@ -35,6 +35,13 @@ MAKE_ENV+=	LIBS=${LIBS:M*:Q}
 .if ${MACHINE_ARCH} == "arm" || ${MACHINE_ARCH} == "arm32"
 GCC_REQD+=		2.95.3
 .endif
+
+# contact.c: In function 'walk_along_edge':
+# contact.c:1334:40: error: array subscript has type 'char' [-Werror=char-subscripts]
+#    equiv_nodes_on_edge(cell->bndry.nodes[start_node], travel_dir,
+#                                         ^
+# Maybe fix this later.
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
 
 INSTALLATION_DIRS=	bin
 

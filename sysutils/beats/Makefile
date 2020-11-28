@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.48 2020/01/10 13:32:18 bsiegert Exp $
+# $NetBSD: Makefile,v 1.58 2020/10/15 13:08:29 bsiegert Exp $
 
-DISTNAME=		beats-6.6.2
-PKGREVISION=		8
+DISTNAME=		beats-6.8.8
+PKGREVISION=		5
 CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_GITHUB:=elastic/}
 GITHUB_PROJECT=		beats
 GITHUB_TAG=		v${PKGVERSION_NOREV}
 
-MAINTAINER=		fhajny@NetBSD.org
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		https://www.elastic.co/products/beats
 COMMENT=		Data Shippers for Elasticsearch
 LICENSE=		apache-2.0
@@ -25,6 +25,7 @@ PLIST_VARS+=		audit
 
 # Components to build/install
 BEATS=			filebeat heartbeat metricbeat packetbeat
+CHECK_PORTABILITY_SKIP+= libbeat/scripts/Makefile # uses [[
 
 # No SunOS compatible event reading supported
 .if ${OPSYS} != "SunOS"
@@ -34,9 +35,11 @@ PLIST.audit=		yes
 
 .for beat in ${BEATS}
 CHECK_RELRO_SKIP+=	bin/${beat}
-CONF_FILES+=		share/examples/beats/${beat}.yml			\
-				${PKG_SYSCONFDIR}/${beat}.yml
+CONF_FILES+=		share/examples/beats/${beat}.yml \
+			${PKG_SYSCONFDIR}/${beat}.yml
 .endfor
+
+BUILD_DEFS+=		VARBASE
 
 BEATS_DIR?=		${VARBASE}/db/beats
 BEATS_LOGDIR?=		${VARBASE}/log/beats

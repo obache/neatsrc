@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2016/03/10 18:42:25 jperkin Exp $
+# $NetBSD: Makefile,v 1.8 2020/01/26 05:26:08 rillig Exp $
 #
 
 DISTNAME=	lzmalib-0.0.1

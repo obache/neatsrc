@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2015/08/26 21:29:42 shattered Exp $
+# $NetBSD: Makefile,v 1.4 2020/04/12 23:59:42 joerg Exp $
 #
 
 DISTNAME=	libdsk-1.3.8
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.seasip.info/Unix/LibDsk/
 
-MAINTAINER=	shattered@NetBSD.org
-HOMEPAGE=	http://www.seasip.info/Unix/LibDsk/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://www.seasip.info/Unix/LibDsk/
 COMMENT=	Library for accessing floppy discs and disc image files
 LICENSE=	gnu-gpl-v2
 

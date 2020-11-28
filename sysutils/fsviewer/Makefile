@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.50 2019/11/04 21:28:45 rillig Exp $
+# $NetBSD: Makefile,v 1.53 2020/08/17 20:20:04 leot Exp $
 
 DISTNAME=	FSViewer.app-0.2.5
 PKGNAME=	FSViewer-0.2.5
-PKGREVISION=	19
+PKGREVISION=	21
 CATEGORIES=	sysutils x11 windowmaker
 #MASTER_SITES=	#http://www.bayernline.de/~gscholz/linux/fsviewer/
 
@@ -14,7 +14,7 @@ MAINTAINER=	johnam@mail.kemper.org
 #HOMEPAGE=	http://www.bayernline.de/~gscholz/linux/fsviewer/
 COMMENT=	NextStep-like Filemanager for WindowMaker
 
-USE_TOOLS+=		gmake
+USE_TOOLS+=		gmake pkg-config
 USE_PKGLOCALEDIR=	yes
 GNU_CONFIGURE=		yes
 

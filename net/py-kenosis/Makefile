@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.23 2019/09/02 13:19:51 adam Exp $
+# $NetBSD: Makefile,v 1.25 2020/03/20 11:58:10 nia Exp $
 
 DISTNAME=		kenosis-0.96
 PKGNAME=		${PYPKGPREFIX}-${DISTNAME}

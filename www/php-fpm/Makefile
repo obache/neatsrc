@@ -1,23 +1,21 @@
-# $NetBSD: Makefile,v 1.28 2018/12/15 21:12:24 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2020/06/02 08:24:58 adam Exp $
 
 PKGNAME=	${PHP_PKG_PREFIX}-fpm-${PHP_VERSION}
-PKGREVISION=	2
-CATEGORIES=	www
+PKGREVISION=	4
 
 HOMEPAGE=	https://php-fpm.org/
-MAINTAINER=	fhajny@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	FPM interface for ${PKG_PHP}
 LICENSE=	2-clause-bsd
 
 USE_TOOLS+=	pkg-config
 
-USE_PHP_EXT_PATCHES=	yes
 LIBTOOL_OVERRIDE=	# empty
 
 .include "../../mk/bsd.prefs.mk"
 
-FPM_USER?=		${APACHE_USER}
-FPM_GROUP?=		${APACHE_GROUP}
+FPM_USER?=		fpm
+FPM_GROUP?=		www
 
 BUILD_DEFS+=		VARBASE FPM_USER FPM_GROUP
 

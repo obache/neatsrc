@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2013/02/26 10:21:46 joerg Exp $
+# $NetBSD: Makefile,v 1.23 2020/01/26 05:26:10 rillig Exp $
 
 DISTNAME=	gqmpeg-skins-20030712
 PKGREVISION=	6

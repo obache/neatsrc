@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.98 2019/11/02 16:25:23 rillig Exp $
+# $NetBSD: Makefile,v 1.100 2020/05/16 14:54:09 rillig Exp $
 
 DISTNAME=	mew-6.8
 PKGNAME=	${EMACS_PKGNAME_PREFIX}${DISTNAME}
@@ -6,7 +6,7 @@ CATEGORIES=	mail
 MASTER_SITES=	http://www.mew.org/Release/
 
 MAINTAINER=	uebayasi@NetBSD.org
-HOMEPAGE=	http://www.mew.org/
+HOMEPAGE=	https://www.mew.org/
 COMMENT=	Messaging in the Emacs World
 LICENSE=	modified-bsd
 
@@ -37,7 +37,7 @@ CONFIGURE_ARGS+=	--with-etcdir=${EMACS_ETCPREFIX}/mew
 
 SUBST_CLASSES+=		local
 SUBST_STAGE.local=	post-configure
-SUBST_FILES.local=	Makefile bin/configure info/Makefile
+SUBST_FILES.local=	bin/configure info/Makefile
 SUBST_SED.local=	-e 's|/usr/local|${PREFIX}|g'
 
 REPLACE_RUBY=		bin/cmew bin/smew

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.30 2019/11/02 22:37:55 rillig Exp $
+# $NetBSD: Makefile.common,v 1.32 2020/05/16 11:38:44 rillig Exp $
 #
 # used by graphics/dia-python/Makefile
 
@@ -24,14 +24,13 @@ USE_LANGUAGES=		c c++
 
 CHECK_PORTABILITY_SKIP+=	installer/macosx/dia
 
-CONFIGURE_ARGS+=	--disable-emf
 CONFIGURE_ARGS+=	--without-python
 
 SUBST_CLASSES+=		intl
 SUBST_MESSAGE.intl=	Fixing path to installed files.
 SUBST_STAGE.intl=	pre-configure
 SUBST_FILES.intl=	lib/intl.c
-SUBST_SED.intl=		-e 's,%%PREFIX%%,${PREFIX},g'
+SUBST_VARS.intl=	PREFIX
 
 SUBST_CLASSES+=		for
 SUBST_MESSAGE.for=	Fixing empty "for" loops.

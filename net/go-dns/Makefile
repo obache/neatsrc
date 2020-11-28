@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.23 2020/01/10 13:32:09 bsiegert Exp $
+# $NetBSD: Makefile,v 1.32 2020/10/15 13:08:26 bsiegert Exp $
 
 DISTNAME=	go-dns-1.1.3
-PKGREVISION=	10
+PKGREVISION=	19
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=miekg/}
 GITHUB_PROJECT=	dns
@@ -18,10 +18,11 @@ GO_SRCPATH=	github.com/miekg/dns
 
 PFX=		vendor/golang.org
 
-REPLACE_SH+=	${PFX}/x/sys/plan9/mkall.sh
-REPLACE_SH+=	${PFX}/x/sys/plan9/mkerrors.sh
-REPLACE_SH+=	${PFX}/x/sys/unix/mkall.sh
-REPLACE_SH+=	${PFX}/x/sys/unix/mkerrors.sh
+USE_TOOLS+=	bash:run # golang.org/x/sys already switched to bash
+REPLACE_BASH+=	${PFX}/x/sys/plan9/mkall.sh
+REPLACE_BASH+=	${PFX}/x/sys/plan9/mkerrors.sh
+REPLACE_BASH+=	${PFX}/x/sys/unix/mkall.sh
+REPLACE_BASH+=	${PFX}/x/sys/unix/mkerrors.sh
 
 REPLACE_PERL+=	${PFX}/x/sys/plan9/mksyscall.pl
 REPLACE_PERL+=	${PFX}/x/sys/unix/linux/mksysnum.pl

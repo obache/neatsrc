@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.37 2019/10/26 06:29:25 mef Exp $
+# $NetBSD: Makefile,v 1.40 2020/09/04 11:32:24 wiz Exp $
 
-DISTNAME=	App-perlbrew-0.87
+DISTNAME=	App-perlbrew-0.88
 PKGNAME=	p5-${DISTNAME}
+PKGREVISION=	2
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=App/}
 
@@ -12,7 +13,6 @@ LICENSE=	mit
 
 DEPENDS+=	p5-File-Path-Tiny>=0.1:../../devel/p5-File-Path-Tiny
 DEPENDS+=	p5-File-Which-[0-9]*:../../devel/p5-File-Which
-DEPENDS+=	p5-File-Temp>=0.23.04:../../devel/p5-File-Temp
 DEPENDS+=	p5-Devel-PatchPerl>=1.52:../../devel/p5-Devel-PatchPerl
 DEPENDS+=	p5-local-lib>=2.000014:../../devel/p5-local-lib
 DEPENDS+=	p5-Capture-Tiny>=0.36:../../devel/p5-Capture-Tiny

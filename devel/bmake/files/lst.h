@@ -1,4 +1,4 @@
-/*	$NetBSD: lst.h,v 1.4 2015/05/19 22:01:19 joerg Exp $	*/
+/*	$NetBSD: lst.h,v 1.6 2020/05/24 21:10:17 nia Exp $	*/
 
 /*
  * Copyright (c) 1988, 1989, 1990 The Regents of the University of California.

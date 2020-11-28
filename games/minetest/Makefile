@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2019/10/28 12:54:25 nia Exp $
+# $NetBSD: Makefile,v 1.15 2020/09/30 07:30:23 nia Exp $
 
-PKGNAME=	minetest-5.1.0
+PKGNAME=	minetest-5.1.1
+PKGREVISION=	4
 CATEGORIES=	games
 DIST_SUBDIR=	minetest-${PKGVERSION_NOREV}
 DISTFILES+=	minetest.tar.gz
@@ -10,7 +11,7 @@ SITES.minetest.tar.gz=\
 SITES.minetest-game.tar.gz=\
 	-https://github.com/minetest/minetest_game/archive/${PKGVERSION_NOREV}.tar.gz
 
-MAINTAINER=	nia@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.minetest.net/
 COMMENT=	Infinite-world block sandbox with survival and crafting
 LICENSE=	gnu-lgpl-v2.1 AND cc-by-sa-v3.0 AND apache-2.0

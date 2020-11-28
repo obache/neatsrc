@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2012/10/23 17:18:36 asau Exp $
+# $NetBSD: Makefile,v 1.27 2020/03/20 11:58:08 nia Exp $
 #
 
 DISTNAME=	lopster-1.2.2

@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.19 2019/11/03 11:45:38 rillig Exp $
+# $NetBSD: Makefile,v 1.21 2020/04/27 04:43:47 rillig Exp $
 #
 
 DISTNAME=		istgt-20150713
+PKGREVISION=		1
 CATEGORIES=		net
 MASTER_SITES=		http://www.peach.ne.jp/archives/istgt/
 
@@ -15,12 +16,6 @@ GNU_CONFIGURE=		yes
 PKG_SYSCONFSUBDIR=	istgt
 
 CONFIGURE_ARGS+=	--with-configdir=${PKG_SYSCONFDIR}
-
-SUBST_CLASSES+=		paths
-SUBST_MESSAGE.paths=	Fixing hardcoded paths.
-SUBST_STAGE.paths=	pre-configure
-SUBST_FILES.paths=	doc/istgt.1.in src/istgt.h src/istgtcontrol.c
-SUBST_SED.paths=	-e "s,/usr/local,${PREFIX},"
 
 EG_DIR=		${PREFIX}/share/examples/istgt
 CONF_FILES=	${EG_DIR}/auth.conf ${PKG_SYSCONFDIR}/auth.conf \

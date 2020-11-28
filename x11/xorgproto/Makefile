@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.11 2019/11/25 10:07:43 wiz Exp $
+# $NetBSD: Makefile,v 1.13 2020/04/14 19:30:46 wiz Exp $
 
-DISTNAME=		xorgproto-2019.2
-PKGREVISION=		3
+DISTNAME=		xorgproto-2020.1
 CATEGORIES=		x11 devel
 MASTER_SITES=		${MASTER_SITE_XORG:=proto/}
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		joerg@NetBSD.org
-HOMEPAGE=		http://xorg.freedesktop.org/
+HOMEPAGE=		https://xorg.freedesktop.org/
 COMMENT=		Various X headers from Xorg X11
 LICENSE=		mit
 

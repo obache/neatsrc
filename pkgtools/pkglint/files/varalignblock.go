@@ -156,7 +156,7 @@ func (va *VaralignBlock) Process(mkline *MkLine) {
 	case mkline.IsComment(), mkline.IsDirective():
 
 	default:
-		trace.Stepf("Skipping varalign block because of line %s", &mkline.Location)
+		trace.Stepf("Skipping varalign block because of line %s", mkline.String())
 		va.skip = true
 	}
 }
@@ -184,9 +184,9 @@ func (va *VaralignBlock) processVarassign(mkline *MkLine) {
 	}
 
 	var infos []*varalignLine
-	for i, raw := range mkline.raw {
-		parts := NewVaralignSplitter().split(raw.Text(), i == 0)
-		info := varalignLine{mkline, i, false, parts}
+	for rawIndex := range mkline.raw {
+		parts := NewVaralignSplitter().split(mkline.RawText(rawIndex), rawIndex == 0)
+		info := varalignLine{mkline, rawIndex, false, parts}
 		infos = append(infos, &info)
 	}
 	va.mkinfos = append(va.mkinfos, &varalignMkLine{infos})
@@ -562,6 +562,7 @@ func (info *varalignLine) alignValueSingle(newWidth int) {
 	}
 	fix.ReplaceAt(info.rawIndex, info.spaceBeforeValueIndex(), oldSpace, newSpace)
 	fix.Apply()
+	info.spaceBeforeValue = newSpace
 }
 
 func (info *varalignLine) alignValueInitial(newWidth int) {
@@ -820,7 +821,7 @@ func (p *varalignParts) uptoValueWidth() int {
 	if p.value != "" {
 		return p.spaceAfterValueColumn()
 	} else {
-		return p.varnameOpColumn()
+		return p.spaceBeforeValueColumn()
 	}
 }
 
@@ -852,7 +853,7 @@ func (p *varalignParts) isCanonicalFollow() bool {
 }
 
 func (p *varalignParts) isTooLongFor(valueColumn int) bool {
-	column := tabWidthAppend(valueColumn, p.value)
+	column := tabWidthAppend(imax(valueColumn, 8), p.value)
 	if p.isContinuation() {
 		column += 2
 	}

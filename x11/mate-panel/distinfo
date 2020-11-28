@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.8 2019/12/30 22:26:46 gutteridge Exp $
+$NetBSD: distinfo,v 1.10 2020/10/05 17:35:55 gutteridge Exp $
 
-SHA1 (mate-panel-1.22.2.tar.xz) = 8df10e31e682c3321e37a33fa2b20afea575a3ab
-RMD160 (mate-panel-1.22.2.tar.xz) = cf0ea29db7715be5e5090b1dc592dc86a13cfcd6
-SHA512 (mate-panel-1.22.2.tar.xz) = ccfd9e44116e66688d4de53c86e1a7d0754fd221b8083d7bee729f2a02a777a54b98ff70332b979aa075c157bc36c6ed6651f9190fa4a7e37b8a029a1f2a623f
-Size (mate-panel-1.22.2.tar.xz) = 2216064 bytes
+SHA1 (mate-panel-1.24.1.tar.xz) = 38f191735bf9206baacf0c4ffe9a7c95b123fdcd
+RMD160 (mate-panel-1.24.1.tar.xz) = 70d0d295af6fbff9c24b0e8177fb50e6444fe2ed
+SHA512 (mate-panel-1.24.1.tar.xz) = 1a1e62207d58472daa00d409ef2b04944929af7f9fe05592076adcc069e2d70012424b3386d30f8b9adccf05c328b8ab1662b8726e507465881a4ae26c26829f
+Size (mate-panel-1.24.1.tar.xz) = 3265000 bytes

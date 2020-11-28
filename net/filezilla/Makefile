@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.120 2019/12/31 08:57:26 wiz Exp $
+# $NetBSD: Makefile,v 1.131 2020/09/18 11:04:20 wiz Exp $
 
-VERSION=	3.46.3
+VERSION=	3.50.0
 DISTNAME=	FileZilla_${VERSION}_src
 PKGNAME=	filezilla-${VERSION}
 CATEGORIES=	net x11
@@ -21,6 +21,8 @@ CONFIGURE_ARGS+=	--disable-autoupdatecheck
 # avoid xdg-utils dependency
 CONFIGURE_ENV+=		ac_cv_path_xdgopen=firefox
 
+GNU_CONFIGURE_WX_VERSION=	no
+
 # For C++17.
 GCC_REQD+=		7
 
@@ -34,7 +36,7 @@ CXXFLAGS+=	-march=i586
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/libidn/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-BUILDLINK_API_DEPENDS.libfilezilla+=	libfilezilla>=0.19.3
+BUILDLINK_API_DEPENDS.libfilezilla+=	libfilezilla>=0.24
 .include "../../net/libfilezilla/buildlink3.mk"
 BUILDLINK_API_DEPENDS.gnutls+=	gnutls>=3.4.0
 .include "../../security/gnutls/buildlink3.mk"

@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.7 2019/10/23 16:12:04 taca Exp $
+$NetBSD: distinfo,v 1.10 2020/09/13 15:07:37 taca Exp $
 
-SHA1 (moneta-1.2.0.gem) = 09693dcb1895af5bc13f8f20884d3895c190e4f4
-RMD160 (moneta-1.2.0.gem) = 2deecb0e9a07a7da3609df54f5ffa6096e77be56
-SHA512 (moneta-1.2.0.gem) = eada072d7c9b33d87475aeae3d9dd1a21eec21b82094114332ebb2f4028162164332e7957143c6057933d02a00c26667a5e0fc3443eb861e6be526b070d84bdc
-Size (moneta-1.2.0.gem) = 128512 bytes
+SHA1 (moneta-1.4.0.gem) = a242b94fad0a0a83f513ef79bd8da4cd5c21179d
+RMD160 (moneta-1.4.0.gem) = 3f4c8b16a62bfa7a5a123720b462d2ba3705006b
+SHA512 (moneta-1.4.0.gem) = 8d157e7623ff8fe393f06ab6324b72821bdcfcebc0f4749b39890ff084043d720daa93821d9cec6cea5db96720febd516d8dd4883b340d6df103e6b9166989f9
+Size (moneta-1.4.0.gem) = 131584 bytes

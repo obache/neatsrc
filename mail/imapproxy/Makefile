@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.22 2019/11/02 16:25:22 rillig Exp $
+# $NetBSD: Makefile,v 1.25 2020/04/16 14:03:29 manu Exp $
 #
 
 DISTNAME=	squirrelmail-imap_proxy-1.2.7

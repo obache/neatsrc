@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.19 2019/12/14 02:57:02 nia Exp $
+$NetBSD: distinfo,v 1.23 2020/10/19 17:53:40 nia Exp $
 
-SHA1 (libgit2-0.28.4.tar.gz) = bf92f95425703b93db969df32c64c4c331425308
-RMD160 (libgit2-0.28.4.tar.gz) = f50ffce9d910de64e270102f84d28e7c3ae5bfd4
-SHA512 (libgit2-0.28.4.tar.gz) = b81160608003b25d9b922d259ebbbbf941b6bd5100fa1875497c8cd29de320e292fff568c757a7a85b2b3044ddc1cb92c74dbcb13d630d62ecf9a8559b619d15
-Size (libgit2-0.28.4.tar.gz) = 4991720 bytes
+SHA1 (libgit2-1.1.0.tar.gz) = c699cf5cc50590b64db1b9b2ebef40273ccc0f7a
+RMD160 (libgit2-1.1.0.tar.gz) = e55f79b4da11d6eb0aca3e7b95ef2cf0afa8d7cd
+SHA512 (libgit2-1.1.0.tar.gz) = a5226fbb11648168611a6daab978df59b68a3b5d809410d3e5dac6c04de5d962cdbabfbec7b0b6528bed94fe321d94c546748b7a180949f2ab30bb7c3487c9bc
+Size (libgit2-1.1.0.tar.gz) = 5425697 bytes

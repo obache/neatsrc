@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.38 2019/01/02 17:25:05 tnn Exp $
+# $NetBSD: Makefile,v 1.40 2020/01/18 23:35:45 rillig Exp $
 
 DISTNAME=	serf-1.3.9
+PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://www.apache.org/dist/serf/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://serf.apache.org/
+HOMEPAGE=	https://serf.apache.org/
 COMMENT=	High-performance asynchronous HTTP client library
 LICENSE=	apache-2.0
 

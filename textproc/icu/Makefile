@@ -1,26 +1,29 @@
-# $NetBSD: Makefile,v 1.128 2019/12/28 17:23:52 wiz Exp $
+# $NetBSD: Makefile,v 1.134 2020/10/21 19:39:53 nia Exp $
 
-DISTNAME=	icu4c-64_2-src
+DISTNAME=	icu4c-67_1-src
 PKGNAME=	${DISTNAME:S/4c//:S/-src//:S/_/./g}
-PKGREVISION=	2
 CATEGORIES=	textproc
-MASTER_SITES=	http://download.icu-project.org/files/icu4c/${PKGVERSION_NOREV}/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=unicode-org/}
 EXTRACT_SUFX=	.tgz
+GITHUB_PROJECT=	icu
+GITHUB_RELEASE=	release-67-1
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.icu-project.org/
+HOMEPAGE=	http://site.icu-project.org/
 COMMENT=	Robust and full-featured Unicode services
 LICENSE=	mit
 
 WRKSRC=			${WRKDIR}/icu/source
 USE_LANGUAGES=		c99 c++
-USE_TOOLS+=		gmake
-GCC_REQD+=		4.8
+USE_TOOLS+=		gmake pkg-config
 TEST_TARGET=		check
 UNLIMIT_RESOURCES+=	datasize
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-static
 CONFIGURE_ENV+=		U_MAKE=${TOOLS_GMAKE}
+
+# error: 'max_align_t' in namespace 'std' does not name a type
+GCC_REQD+=		4.9
 
 CHECK_SSP_SKIP=		lib/libicudata.so*
 

@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.8 2018/12/17 15:02:23 taca Exp $
+$NetBSD: distinfo,v 1.10 2020/04/27 15:00:27 taca Exp $
 
-SHA1 (pry-0.12.2.gem) = d29de193a24dd7cc34db52bca6bc99e6c229204b
-RMD160 (pry-0.12.2.gem) = 5322d589ea29bf7f040536a26daae6597dc939f5
-SHA512 (pry-0.12.2.gem) = 3411a2c8eb5ca1f2cec1dd20c5c90c02ce68cf2ca6a38318e28a40e1fcc1d68d9a8c19611714862feb67f6e47ca10ed357de34b66463af26195306545e80bdee
-Size (pry-0.12.2.gem) = 156160 bytes
+SHA1 (pry-0.13.1.gem) = c062c2b4cdb93d3b9bbebd2bab2e1c5bc32ddf88
+RMD160 (pry-0.13.1.gem) = be133f37c724cdb4adeeabaeb13d0c65350e1052
+SHA512 (pry-0.13.1.gem) = cc7aaf88126fbb514df1cef796c9b5b1d3b8d4f965d64348780aaa20de4670fb254238c2ee191063256e5d5922523b8b366e7b67152c296fba107f1bf91ee221
+Size (pry-0.13.1.gem) = 155136 bytes

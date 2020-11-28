@@ -1,5 +1,5 @@
 #!/bin/sh
-# $NetBSD: R2pkg.sh,v 1.13 2019/10/19 18:47:59 rillig Exp $
+# $NetBSD: R2pkg.sh,v 1.16 2020/03/05 17:15:31 brook Exp $
 #
 # Copyright (c) 2014,2015,2016,2017,2018,2019
 #	Brook Milligan.  All rights reserved.
@@ -63,18 +63,18 @@ while getopts cDehqruVvE:M:L:P: arg
 do
     case $arg in
 	# options without arguments
-	c) args="$args $arg"; update=false;;
-	D) args="$args $arg"; keep_description=yes;;
-	e) args="$args $arg"; use_editor=no;;
+	c) args="$args -$arg"; update=false;;
+	D) args="$args -$arg"; keep_description=yes;;
+	e) args="$args -$arg"; use_editor=no;;
 	h) echo "$usage"; exit 0;;
-	q) args="$args $arg"; quiet=true;;
-	r) args="$args $arg"; recursive=true;;
-	u) args="$args $arg"; update=true;;
+	q) args="$args -$arg"; quiet=true;;
+	r) args="$args -$arg"; recursive=true;;
+	u) args="$args -$arg"; update=true;;
 	V) echo "$name v$vers"; exit 0;;
-	v) args="$args $arg"; verbose=$((verbose + 1));;
+	v) args="$args -$arg"; verbose=$((verbose + 1));;
 	# options taking arguments
-	E) args="$args $arg $OPTARG"; PKGEDITOR=$OPTARG;;
-	M) args="$args $arg $OPTARG"; maintainer_email=$OPTARG;;
+	E) args="$args -$arg $OPTARG"; PKGEDITOR=$OPTARG;;
+	M) args="$args -$arg $OPTARG"; maintainer_email=$OPTARG;;
 	# options for recursion; only for internal use
 	L) level=$((OPTARG + 0));;
 	P) pid=$((OPTARG + 0));;
@@ -153,13 +153,14 @@ preserve_original_content ()
 
 make_package ()
 {
-    env LEVEL="$level" rpkg="$rpkg" PACKAGES_LIST="$packages_list" \
+    env LEVEL="$level" RPKG="$rpkg" PACKAGES_LIST="$packages_list" \
 	R2PKG="$r2pkg" ARGS="$args" RECURSIVE="$recursive" \
 	UPDATE="$update" DEPENDENCY_LIST="$dependency_list" \
 	MAINTAINER_EMAIL="$maintainer_email" \
 	RPKG_DESCRIPTION_URL="$rpkg_description_url" \
 	QUIET_CURL="$quiet_curl" \
 	LC_ALL="C" \
+	MAKE="$make" \
 	Rscript --no-save -e "source('@LIBDIR@/R2pkg.R'); main()"
     retval=${?}
     if [ $retval -ne 0 ]; then

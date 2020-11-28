@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.46 2019/08/22 12:23:40 ryoon Exp $
+# $NetBSD: Makefile,v 1.55 2020/08/17 20:19:47 leot Exp $
 
 DISTNAME=	kopete-16.12.0
-PKGREVISION=	17
+PKGREVISION=	26
 CATEGORIES=	net
 COMMENT=	Multi-protocol instant messenger client
 MASTER_SITES=	${MASTER_SITE_KDE:=applications/16.12.0/src/}

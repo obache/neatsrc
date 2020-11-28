@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.26 2019/05/23 19:23:05 rillig Exp $
+# $NetBSD: Makefile,v 1.29 2020/06/26 16:37:22 schmonz Exp $
 #
 
 DISTNAME=		fastforward-0.51
@@ -7,7 +7,7 @@ CATEGORIES=		mail
 MASTER_SITES=		http://cr.yp.to/software/
 
 MAINTAINER=		schmonz@NetBSD.org
-HOMEPAGE=		http://cr.yp.to/fastforward.html
+HOMEPAGE=		https://cr.yp.to/fastforward.html
 COMMENT=		Sendmail-style /etc/aliases support for qmail
 LICENSE=		public-domain
 
@@ -19,7 +19,8 @@ DJB_BUILD_TARGETS=	install instcheck
 
 DJB_RESTRICTED=		no
 
-SUBST_FILES.djbware+=	cdb_seek.c
+SUBST_CLASSES+=		djberrno
+SUBST_FILES.djberrno=	cdb_seek.c error.h
 
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	do-configure

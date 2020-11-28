@@ -1,32 +1,19 @@
-# $NetBSD: Makefile,v 1.28 2019/08/11 13:17:49 wiz Exp $
+# $NetBSD: Makefile,v 1.31 2020/10/13 12:11:07 bacon Exp $
 
-DISTNAME=		superlu_3.0
-PKGNAME=		superlu-3.0.1
-PKGREVISION=		7
+DISTNAME=		superlu-5.2.1
+PKGREVISION=		2
 CATEGORIES=		math
-MASTER_SITES=		http://crd.lbl.gov/~xiaoye/SuperLU/
+MASTER_SITES=		${MASTER_SITE_GITHUB:=xiaoyeli/}
+GITHUB_TAG=		v${PKGVERSION_NOREV}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://crd.lbl.gov/~xiaoye/SuperLU/
-COMMENT=		ANSI C routine library for the solution of sparse linear systems
+HOMEPAGE=		https://portal.nersc.gov/project/sparse/superlu/
+COMMENT=		Library for solving large, sparse, nonsymmetric systems of linear equations
 
-# /usr/bin/ar: ../libsuperlu.a: Error reading dlamch.o: File truncated
-MAKE_JOBS_SAFE=		no
+USE_CMAKE=		yes
+USE_LANGUAGES=		c fortran
+TEST_TARGET=		test
 
-DEPENDS+=		blas-[0-9]*:../../math/blas
 
-DIST_SUBDIR=		${PKGNAME_NOREV}
-WRKSRC=			${WRKDIR}/SuperLU_3.0
-BUILD_TARGET=		superlulib
-TEST_DIRS=		TESTING/MATGEN TESTING
-TEST_TARGET=		all
-INSTALLATION_DIRS=	lib
-
-do-install:
-	${INSTALL_DATA} ${WRKSRC}/libsuperlu.a ${DESTDIR}${PREFIX}/lib
-	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/include/superlu
-	${INSTALL_DATA} ${WRKSRC}/SRC/*.h ${DESTDIR}${PREFIX}/include/superlu
-	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/doc/superlu
-	${INSTALL_DATA} ${WRKSRC}/INSTALL/ug.ps ${DESTDIR}${PREFIX}/share/doc/superlu
-
+.include "../../mk/blas.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

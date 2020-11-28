@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2019/12/09 14:20:56 taca Exp $
+# $NetBSD: Makefile,v 1.23 2020/03/20 11:58:34 nia Exp $
 #
 
 DISTNAME=	ganglia-web-3.7.2

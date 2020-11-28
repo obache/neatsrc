@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.13 2019/08/11 13:23:37 wiz Exp $
+# $NetBSD: Makefile,v 1.15 2020/09/02 12:55:02 mef Exp $
 
 DISTNAME=	Snowball-Norwegian-1.2
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	10
+PKGREVISION=	11
 CATEGORIES=	textproc perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/A/AS/ASKSH/}
 
@@ -11,8 +11,9 @@ HOMEPAGE=	https://metacpan.org/release/Snowball-Norwegian
 COMMENT=	Porters stemming algorithm for Norwegian
 LICENSE=	${PERL5_LICENSE}
 
+REPLACE_PERL=	bin/stemmer-no.pl
+
 PERL5_PACKLIST=		auto/Lingua/Stem/Snowball/No/.packlist
-PERL5_MODULE_TYPE=	Module::Build
 
 .include "../../lang/perl5/module.mk"
 .include "../../mk/bsd.pkg.mk"

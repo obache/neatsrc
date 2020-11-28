@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2019/11/04 21:12:57 rillig Exp $
+# $NetBSD: Makefile,v 1.12 2020/03/20 11:58:18 nia Exp $
 #
 
 DISTNAME=	pam_tacplus-1.3.6

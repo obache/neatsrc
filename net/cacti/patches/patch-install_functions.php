@@ -1,14 +1,14 @@
-$NetBSD: patch-install_functions.php,v 1.1 2019/04/29 16:09:05 hauke Exp $
+$NetBSD: patch-install_functions.php,v 1.3 2020/04/21 13:55:22 mef Exp $
 
 Find utilites in PREFIX first.
 Make log directory configurable by package variable
 
---- install/functions.php.orig	2019-03-30 23:40:23.000000000 +0000
-+++ install/functions.php
-@@ -298,8 +298,8 @@ function find_best_path($binary_name) {
- 		);
- 	} else {
- 		$search_paths = array(
+--- install/functions.php.orig	2020-04-06 11:14:20.000000000 +0900
++++ install/functions.php	2020-04-21 22:46:24.419734842 +0900
+@@ -374,8 +374,8 @@ function find_search_paths($os = 'unix')
+ 		$search_suffix = ':';
+ 		$search_slash  = '';
+ 		$search_paths  = array(
 -			'/bin',
 -			'/sbin',
 +			'@PREFIX@/bin',
@@ -74,16 +74,15 @@ Make log directory configurable by package variable
  			'win32' => 'c:/spine/bin/spine.exe'
  		));
  
-@@ -533,7 +533,7 @@ function install_file_paths() {
- 	if (!config_value_exists('path_cactilog')) {
- 		$input['path_cactilog'] = $settings['path']['path_cactilog'];
- 		if (empty($input['path_cactilog']['default'])) {
--			$input['path_cactilog']['default'] = $config['base_path'] . '/log/cacti.log';
-+			$input['path_cactilog']['default'] = '@CACTI_LOGDIR@' . '/cacti.log';
- 		}
- 	} else {
- 		$input['path_cactilog'] = $settings['path']['path_cactilog'];
-@@ -544,7 +544,7 @@ function install_file_paths() {
+@@ -538,14 +538,14 @@ function install_file_paths() {
+ 	}
+ 
+ 	if (empty($input['path_cactilog']['default'])) {
+-		$input['path_cactilog']['default'] = $config['base_path'] . '/log/cacti.log';
++		$input['path_cactilog']['default'] = '@CACTI_LOGDIR@' . '/log/cacti.log';
+ 	}
+ 
+ 	/* stderr log file path */
  	if (!config_value_exists('path_cactilog')) {
  		$input['path_stderrlog'] = $settings['path']['path_stderrlog'];
  		if (empty($input['path_stderrlog']['default'])) {
@@ -102,3 +101,4 @@ Make log directory configurable by package variable
 +		file_put_contents('@CACTI_LOGDIR@' . '/install-complete.log', sprintf($format_log2, $day, $time, $sectionname, $levelname, $data, PHP_EOL), $flags);
  	}
  }
+ 

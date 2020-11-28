@@ -1,0 +1,16 @@
+@comment $NetBSD: PLIST,v 1.2 2020/05/25 13:34:53 taca Exp $
+${GEM_HOME}/cache/${GEM_NAME}.gem
+${GEM_LIBDIR}/CHANGELOG.md
+${GEM_LIBDIR}/LICENSE.txt
+${GEM_LIBDIR}/README.md
+${GEM_LIBDIR}/lib/pastel.rb
+${GEM_LIBDIR}/lib/pastel/alias_importer.rb
+${GEM_LIBDIR}/lib/pastel/ansi.rb
+${GEM_LIBDIR}/lib/pastel/color.rb
+${GEM_LIBDIR}/lib/pastel/color_parser.rb
+${GEM_LIBDIR}/lib/pastel/color_resolver.rb
+${GEM_LIBDIR}/lib/pastel/decorator_chain.rb
+${GEM_LIBDIR}/lib/pastel/delegator.rb
+${GEM_LIBDIR}/lib/pastel/detached.rb
+${GEM_LIBDIR}/lib/pastel/version.rb
+${GEM_HOME}/specifications/${GEM_NAME}.gemspec

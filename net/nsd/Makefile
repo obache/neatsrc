@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.106 2019/11/03 11:45:45 rillig Exp $
+# $NetBSD: Makefile,v 1.114 2020/10/25 11:07:48 ryoon Exp $
 
-DISTNAME=	nsd-4.2.2
+DISTNAME=	nsd-4.3.3
 CATEGORIES=	net
 MASTER_SITES=	http://www.nlnetlabs.nl/downloads/nsd/
 
@@ -12,8 +12,6 @@ LICENSE=	modified-bsd
 BUILD_DEFS+=	VARBASE NSD_USER NSD_GROUP
 FILES_SUBST+=	NSD_USER=${NSD_USER} NSD_GROUP=${NSD_GROUP}
 
-BUILDLINK_API_DEPENDS.openssl+=	openssl>=0.9.7
-
 PKG_OPTIONS_VAR=	PKG_OPTIONS.nsd
 PKG_SUPPORTED_OPTIONS=	inet6 rrl
 PKG_SUGGESTED_OPTIONS=	inet6
@@ -24,8 +22,8 @@ USE_LANGUAGES=	c
 USE_LIBTOOL=	yes
 
 .if ${OPSYS} == "NetBSD"
-# For reallocarray(3) on NetBSD 9
-CPPFLAGS+=	-D_OPENBSD_SOURCE
+# Some _NETBSD_SOURCE definitions are required to build.
+CPPFLAGS+=	-D_NETBSD_SOURCE
 .endif
 
 GNU_CONFIGURE=	yes

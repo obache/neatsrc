@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.9 2019/03/11 14:00:08 adam Exp $
+$NetBSD: distinfo,v 1.11 2020/08/10 06:55:46 adam Exp $
 
-SHA1 (python-stdnum-1.11.tar.gz) = d1c77914fc2147b0737d2031bdd293c9b0b21244
-RMD160 (python-stdnum-1.11.tar.gz) = 727f2c141b8eb0e2964b8c2136d59d2ba7958682
-SHA512 (python-stdnum-1.11.tar.gz) = 1369c38c93575aefdf727f831f68f7858390d9d29d5f1c1caba0de12afd994a5c6e9b89f76cff30a694ae056b19816c813e9c42f8a7a882f5b9257c374dcbad1
-Size (python-stdnum-1.11.tar.gz) = 835905 bytes
+SHA1 (python-stdnum-1.14.tar.gz) = ebac4bf88d874a6032c3a00933dc938af0ef4178
+RMD160 (python-stdnum-1.14.tar.gz) = 1c2607878a76382f4460d0b1e70fb3a5f7e8fa5f
+SHA512 (python-stdnum-1.14.tar.gz) = d17643a2e4d8efc5f554c9c114399802e6dae0ff60b6ab0e32ebf6ece7c87a96287dd1c2e68e4fcd97f8ab475a267de5dad41d726470690255a2a0aeddedbb8e
+Size (python-stdnum-1.14.tar.gz) = 953637 bytes

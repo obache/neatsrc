@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2018/12/09 21:05:34 adam Exp $
+# $NetBSD: Makefile,v 1.13 2020/05/23 12:21:48 rillig Exp $
 
 PKGNAME=	${DISTNAME:S/cyrus-sasl/cy2-anonymous/}
 COMMENT=	Cyrus SASL ANONYMOUS authentication plugin

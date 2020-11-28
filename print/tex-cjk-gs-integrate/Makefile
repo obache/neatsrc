@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.10 2019/12/06 20:19:09 markd Exp $
+# $NetBSD: Makefile,v 1.13 2020/08/31 18:11:04 wiz Exp $
 
 DISTNAME=	cjk-gs-integrate
-PKGNAME=	tex-${DISTNAME}-20190303.0
+PKGNAME=	tex-${DISTNAME}-20200307.0
 PKGREVISION=	1
-TEXLIVE_REV=	50214
+TEXLIVE_REV=	54155
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/cjk-gs-integrate
+HOMEPAGE=	https://ctan.org/pkg/cjk-gs-integrate
 COMMENT=	Tools to integrate CJK fonts into Ghostscript
 LICENSE=	gnu-gpl-v3
 
@@ -15,7 +15,6 @@ REPLACE_PERL=	bin/cjk-gs-integrate
 
 INSTALLATION_DIRS+=	bin
 
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 
 post-extract:

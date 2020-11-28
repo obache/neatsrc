@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.15 2019/10/17 10:59:40 micha Exp $
+# $NetBSD: Makefile,v 1.17 2020/08/17 20:19:54 leot Exp $
 
 DISTNAME=	flpsed-0.7.3
+PKGREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	http://flpsed.org/
 
@@ -20,4 +21,5 @@ post-install:
 
 # FLTK version 1.4 is supported too
 .include "../../x11/fltk13/buildlink3.mk"
+.include "../../x11/libXcursor/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

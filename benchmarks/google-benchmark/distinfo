@@ -1,7 +1,6 @@
-$NetBSD: distinfo,v 1.5 2019/05/21 09:55:15 adam Exp $
+$NetBSD: distinfo,v 1.8 2020/10/07 20:49:56 wiz Exp $
 
-SHA1 (benchmark-1.5.tar.gz) = a35b0a2ae52be99162c24c470bcda4b102b2d7e3
-RMD160 (benchmark-1.5.tar.gz) = 4d2f355d89a8aa0e3c3657c096e1a1a90f4b3574
-SHA512 (benchmark-1.5.tar.gz) = a57122340c4f9a8e434ec70098916aef7c49d5d8312a30e4753f54bacc1099b146698b66c12f9ef116f7cadc93c604809a905c0e259aecf63aa2553390a1b609
-Size (benchmark-1.5.tar.gz) = 150159 bytes
-SHA1 (patch-CMakeLists.txt) = 858906c819358522d27d294025b9dfde6c053324
+SHA1 (benchmark-1.5.2.tar.gz) = 517e588194b063ea9260c148af1897bb7d192312
+RMD160 (benchmark-1.5.2.tar.gz) = 2478418703cb34f61893016a0cfe246526292774
+SHA512 (benchmark-1.5.2.tar.gz) = a071613f3af669296aa613e0e64726bdcf27cc3db331d8003f49164581cd6935a86641ec435118ea590a9d722a926d3fef740e938e1a5f6eba8e2a5a615da1b0
+Size (benchmark-1.5.2.tar.gz) = 160235 bytes

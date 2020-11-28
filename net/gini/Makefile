@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2012/10/23 17:18:23 asau Exp $
+# $NetBSD: Makefile,v 1.17 2020/03/20 11:58:06 nia Exp $
 #
 
 DISTNAME=		gini-0.5.1

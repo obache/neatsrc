@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.41 2019/10/27 14:46:09 kamil Exp $
+# $NetBSD: buildlink3.mk,v 1.46 2020/09/29 10:56:56 prlw1 Exp $
 
 BUILDLINK_TREE+=	avahi
 
@@ -6,33 +6,29 @@ BUILDLINK_TREE+=	avahi
 AVAHI_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.avahi+=	avahi>=0.6.23
-BUILDLINK_ABI_DEPENDS.avahi+=	avahi>=0.6.32nb19
+BUILDLINK_ABI_DEPENDS.avahi+=	avahi>=0.6.32nb25
 BUILDLINK_PKGSRCDIR.avahi?=	../../net/avahi
 
 pkgbase := avahi
 .include "../../mk/pkg-build-options.mk"
 
-.if !empty(PKG_BUILD_OPTIONS.avahi:Mgdbm)
+.if ${PKG_BUILD_OPTIONS.avahi:Mgdbm}
 .  include "../../databases/gdbm/buildlink3.mk"
 .endif
 
-.if !empty(PKG_BUILD_OPTIONS.avahi:Mgtk2)
-.include "../../x11/gtk2/buildlink3.mk"
-.endif
-
-.if !empty(PKG_BUILD_OPTIONS.avahi:Mgtk3)
+.if ${PKG_BUILD_OPTIONS.avahi:Mgtk3}
 .include "../../x11/gtk3/buildlink3.mk"
 .endif
 
-.if !empty(PKG_BUILD_OPTIONS.avahi:Mintrospection)
+.if ${PKG_BUILD_OPTIONS.avahi:Mintrospection}
 .include "../../devel/gobject-introspection/buildlink3.mk"
 .endif
 
-.if !empty(PKG_BUILD_OPTIONS.avahi:Mmono)
+.if ${PKG_BUILD_OPTIONS.avahi:Mmono}
 .include "../../x11/gtk-sharp/buildlink3.mk"
 .endif
 
-.if !empty(PKG_BUILD_OPTIONS.avahi:Mpython)
+.if ${PKG_BUILD_OPTIONS.avahi:Mpython}
 .include "../../lang/python/application.mk"
 .endif
 

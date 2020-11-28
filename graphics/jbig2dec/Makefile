@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.14 2019/12/10 10:35:59 leot Exp $
+# $NetBSD: Makefile,v 1.16 2020/09/13 11:12:45 leot Exp $
 
-DISTNAME=	jbig2dec-0.17
+DISTNAME=	jbig2dec-0.19
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ArtifexSoftware/}
-GITHUB_TAG=	${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://jbig2dec.com/

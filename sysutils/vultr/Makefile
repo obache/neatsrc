@@ -1,16 +1,21 @@
-# $NetBSD: Makefile,v 1.13 2020/01/10 13:32:18 bsiegert Exp $
+# $NetBSD: Makefile,v 1.23 2020/10/15 13:08:29 bsiegert Exp $
 
-DISTNAME=		vultr-1.15.0
-PKGREVISION=		12
+DISTNAME=		v${VERSION}
+PKGNAME=		${GITHUB_PROJECT}-${DISTNAME:S,^v,,}
+PKGREVISION=		6
+VERSION=		2.0.1
+GITHUB_PROJECT=		vultr
+GITHUB_TAG=		${DISTNAME}
 CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_GITHUB:=JamesClonk/}
+DIST_SUBDIR=		${GITHUB_PROJECT}
 
-MAINTAINER=		schmonz@NetBSD.org
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		https://jamesclonk.github.io/vultr/
 COMMENT=		CLI and API client library for Vultr
 LICENSE=		mit
 
-GO_DIST_BASE=		${DISTNAME}
+GO_DIST_BASE=		${PKGNAME_NOREV}
 GO_SRCPATH=		github.com/JamesClonk/vultr
 
 INSTALLATION_DIRS+=	bin

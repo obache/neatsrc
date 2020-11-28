@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.24 2019/09/07 23:30:45 nia Exp $
+# $NetBSD: Makefile,v 1.28 2020/09/21 03:03:55 khorben Exp $
 
-DISTNAME=	pkg-1.9.99.4
-PKGREVISION=	1
+DISTNAME=	pkg-1.10.99.7
 CATEGORIES=	pkgtools
 MASTER_SITES=	http://files.etoilebsd.net/pkg/
 EXTRACT_SUFX=	.tar.xz
@@ -126,7 +125,6 @@ post-patch:
 .endif
 
 post-install:
-	${RM} ${DESTDIR}${PREFIX}/sbin/pkg2ng
 	${RM} -rf ${DESTDIR}${EGDIR}/periodic
 	${MV} ${DESTDIR}${PREFIX}/etc/bash_completion.d \
 		${DESTDIR}${EGDIR}/

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2013/12/05 23:31:35 wiz Exp $
+# $NetBSD: Makefile,v 1.10 2020/03/20 11:58:08 nia Exp $
 
 DISTNAME=	libquvi-scripts-0.4.21
 CATEGORIES=	net

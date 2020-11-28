@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.4 2019/08/11 13:20:59 wiz Exp $
+# $NetBSD: Makefile,v 1.9 2020/08/31 18:09:29 wiz Exp $
 
 GITHUB_PROJECT=	ltfs
 DISTNAME=	v2.4.2.0-pre0
 PKGNAME=	${GITHUB_PROJECT}-${DISTNAME:S/v//:S/-pre0/.0/}
-PKGREVISION=	2
+PKGREVISION=	6
 CATEGORIES=	filesystems
 MASTER_SITES=	${MASTER_SITE_GITHUB:=LinearTapeFileSystem/}/${GITHUB_PROJECT}/archive/
 DIST_SUBDIR=	${GITHUB_PROJECT}
@@ -13,6 +13,9 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/LinearTapeFileSystem/ltfs/
 COMMENT=	Linear FileSystem for LTO and DAT tapes
 LICENSE=	modified-bsd
+
+# messages handling is inherently racy and a huge mess
+MAKE_JOBS_SAFE=	no
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes

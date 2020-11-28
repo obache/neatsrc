@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2016/02/25 16:20:51 jperkin Exp $
+# $NetBSD: Makefile,v 1.22 2020/03/20 11:58:07 nia Exp $
 #
 
 DISTNAME=	isic-0.07

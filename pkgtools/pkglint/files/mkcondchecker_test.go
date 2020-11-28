@@ -90,6 +90,7 @@ func (s *Suite) Test_MkCondChecker_Check(c *check.C) {
 	// Doesn't occur in practice since it is surprising that the ! applies
 	// to the comparison operator, and not to one of its arguments.
 	test(".if !${VAR} == value",
+		"WARN: filename.mk:4: The ! should use parentheses or be merged into the comparison operator.",
 		"WARN: filename.mk:4: VAR is used but not defined.")
 
 	// Doesn't occur in practice since this string can never be empty.
@@ -213,6 +214,169 @@ func (s *Suite) Test_MkCondChecker_Check__comparing_PKGSRC_COMPILER_with_eqeq(c 
 	t.CheckOutputLines(
 		"ERROR: Makefile:5: Use ${PKGSRC_COMPILER:Mclang} instead of the == operator.",
 		"ERROR: Makefile:6: Use ${PKGSRC_COMPILER:Ngcc} instead of the != operator.")
+}
+
+func (s *Suite) Test_MkCondChecker_Check__contradicting_conditions(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPkgsrc()
+	t.FinishSetUp()
+
+	lines := func(lines ...string) []string { return lines }
+	test := func(lines []string, diagnostics ...string) {
+		allLines := []string{
+			MkCvsID,
+			"",
+			".include \"../../mk/bsd.prefs.mk\"",
+			""}
+		mklines := t.NewMkLines("filename.mk",
+			append(allLines, lines...)...)
+
+		mklines.Check()
+
+		t.CheckOutput(diagnostics)
+	}
+
+	// Seen in lang/rust/Makefile on 2020-06-12.
+	// TODO: The MACHINE_PLATFORM conditions make the OPSYS condition redundant.
+	test(
+		lines(
+			".if ${OPSYS} == \"NetBSD\" && "+
+				"!empty(MACHINE_PLATFORM:MNetBSD-9.99.*) && "+
+				"!empty(MACHINE_PLATFORM:MNetBSD-[1-9][0-9].*)",
+			".endif"),
+		"ERROR: filename.mk:5: The patterns \"NetBSD-9.99.*\" "+
+			"and \"NetBSD-[1-9][0-9].*\" cannot match at the same time.")
+
+	// A syntactical variation of the above condition.
+	// TODO: The MACHINE_PLATFORM conditions make the OPSYS condition redundant.
+	test(
+		lines(
+			".if ${OPSYS} == NetBSD && ${MACHINE_PLATFORM:MNetBSD-9.99.*} && ${MACHINE_PLATFORM:MNetBSD-[1-9][0-9].*}",
+			".endif"),
+		"ERROR: filename.mk:5: The patterns \"NetBSD-9.99.*\" "+
+			"and \"NetBSD-[1-9][0-9].*\" cannot match at the same time.")
+
+	// Another variation on the same theme.
+	// TODO: The MACHINE_PLATFORM conditions make the OPSYS condition redundant.
+	test(
+		lines(
+			".if ${OPSYS} == NetBSD",
+			".  if ${MACHINE_PLATFORM:MNetBSD-9.99.*}",
+			".    if ${MACHINE_PLATFORM:MNetBSD-[1-9][0-9].*}",
+			".    endif",
+			".  endif",
+			".endif"),
+		"ERROR: filename.mk:7: The patterns \"NetBSD-9.99.*\" from line 6 "+
+			"and \"NetBSD-[1-9][0-9].*\" cannot match at the same time.")
+
+	// TODO: Since MACHINE_PLATFORM always starts with OPSYS, these
+	//  conditions contradict each other as well.
+	test(
+		lines(
+			".if ${OPSYS} == NetBSD",
+			".  if ${MACHINE_PLATFORM:MSunOS-5.*}",
+			".  endif",
+			".endif"),
+		nil...)
+
+	// Since PKG_OPTIONS is a list and contains several words,
+	// each of them can match one of the patterns.
+	t.SetUpOption("one", "")
+	t.SetUpOption("two", "")
+	test(
+		lines(
+			".if ${PKG_OPTIONS:Mone} && ${PKG_OPTIONS:Mtwo}",
+			".endif"),
+		nil...)
+
+	// For variables that are declared individually by a package,
+	// pkglint does not have any type information and thus must
+	// not issue an error here.
+	test(
+		lines(
+			"CUSTOM_VAR=\tone two",
+			".if ${CUSTOM_VAR:Mone} && ${CUSTOM_VAR:Mtwo}",
+			".endif"),
+		nil...)
+
+	// In this case, pkglint may infer that CUSTOM_VAR has a
+	// constant value and thus cannot match the second pattern.
+	// As of June 2020, it doesn't do this though.
+	test(
+		lines(
+			"CUSTOM_VAR=\tone",
+			".if ${CUSTOM_VAR:Mone} && ${CUSTOM_VAR:Mtwo}",
+			".endif"),
+		nil...)
+
+	// If the variable type is guessed based on the variable name (see
+	// guessVariableType) and is not a list, the error message is correct.
+	test(
+		lines(
+			"CUSTOM_FILE=\tone",
+			".if ${CUSTOM_FILE:Mone} && ${CUSTOM_FILE:Mtwo}",
+			".endif"),
+		"NOTE: filename.mk:6: CUSTOM_FILE can be compared using the simpler "+
+			"\"${CUSTOM_FILE} == one\" instead of matching against \":Mone\".",
+		"NOTE: filename.mk:6: CUSTOM_FILE can be compared using the simpler "+
+			"\"${CUSTOM_FILE} == two\" instead of matching against \":Mtwo\".",
+		"ERROR: filename.mk:6: The patterns \"one\" and \"two\" "+
+			"cannot match at the same time.")
+
+	// The conditions from an .if and an .elif don't contradict each other.
+	test(
+		lines(
+			".if ${OPSYS:MNet*}",
+			".elif ${OPSYS:MFree*}",
+			".endif"),
+		nil...)
+
+	// And finally, two conditions that can both match at the same time,
+	// just for the code coverage.
+	// It's strange that the above tests did not include that case.
+	test(
+		lines(
+			".if ${OPSYS:MNet*} && ${OPSYS:MNetB*}",
+			".endif"),
+		nil...)
+
+	test(
+		lines(
+			".if ${OPSYS:M[1} && ${OPSYS:M[2}",
+			".endif"),
+		"WARN: filename.mk:5: Invalid match pattern \"[1\".",
+		"WARN: filename.mk:5: Invalid match pattern \"[2\".")
+}
+
+func (s *Suite) Test_MkCondChecker_checkNotEmpty(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpVartypes()
+
+	test := func(cond string, diagnostics ...string) {
+		mklines := t.NewMkLines("filename.mk",
+			".if "+cond)
+		mkline := mklines.mklines[0]
+		ck := NewMkCondChecker(mkline, mklines)
+
+		ck.checkNotEmpty(mkline.Cond().Not)
+
+		t.CheckOutput(diagnostics)
+	}
+
+	test("!empty(VAR)",
+
+		// Only a few variables are suggested to use the simpler form,
+		// because of the side-effect when the variable is undefined.
+		// VAR is not one of these variables.
+		nil...)
+
+	test(
+		"!empty(PKG_BUILD_OPTIONS.package:Moption)",
+
+		"NOTE: filename.mk:1: !empty(PKG_BUILD_OPTIONS.package:Moption) "+
+			"can be replaced with ${PKG_BUILD_OPTIONS.package:Moption}.")
 }
 
 func (s *Suite) Test_MkCondChecker_checkEmpty(c *check.C) {
@@ -373,13 +537,14 @@ func (s *Suite) Test_MkCondChecker_simplify(c *check.C) {
 	t.Chdir("category/package")
 
 	// The Anything type suppresses the warnings from type checking.
-	// BtUnknown would not work, see Pkgsrc.VariableType.
+	// BtUnknown would not work here, see Pkgsrc.VariableType.
 	btAnything := &BasicType{"Anything", func(cv *VartypeCheck) {}}
 
 	// For simplifying the expressions, it is necessary to know whether
 	// a variable can be undefined. Undefined variables need the
-	// :U modifier, otherwise bmake will complain about "malformed
-	// conditions", which is not entirely precise since the expression
+	// :U modifier or must be enclosed in double quotes, otherwise
+	// bmake will complain about a "Malformed conditional". That error
+	// message is not entirely precise since the expression
 	// is syntactically valid, it's just the evaluation that fails.
 	//
 	// Some variables such as MACHINE_ARCH are in scope from the very
@@ -452,6 +617,7 @@ func (s *Suite) Test_MkCondChecker_simplify(c *check.C) {
 		doTest(true, before, after, diagnostics...)
 	}
 	testBeforeAndAfterPrefs := func(before, after string, diagnostics ...string) {
+		doTest(false, before, after, diagnostics...)
 		doTest(true, before, after, diagnostics...)
 	}
 
@@ -897,13 +1063,24 @@ func (s *Suite) Test_MkCondChecker_simplify(c *check.C) {
 	// replaced automatically, see mkCondLiteralChars.
 	// TODO: Add tests for all characters that are special in string literals or patterns.
 	// TODO: Then, extend the set of characters for which the expressions are simplified.
-	testBeforeAndAfterPrefs(
+	testBeforePrefs(
+		".if ${PREFS_DEFINED:M&&}",
+		".if ${PREFS_DEFINED:M&&}",
+
+		"WARN: filename.mk:3: To use PREFS_DEFINED at load time, .include \"../../mk/bsd.prefs.mk\" first.")
+	testAfterPrefs(
 		".if ${PREFS_DEFINED:M&&}",
 		".if ${PREFS_DEFINED:M&&}",
 
 		nil...)
 
-	testBeforeAndAfterPrefs(
+	testBeforePrefs(
+		".if ${PREFS:M&&}",
+		".if ${PREFS:M&&}",
+
+		// TODO: Warn that the :U is missing.
+		"WARN: filename.mk:3: To use PREFS at load time, .include \"../../mk/bsd.prefs.mk\" first.")
+	testAfterPrefs(
 		".if ${PREFS:M&&}",
 		".if ${PREFS:M&&}",
 
@@ -925,7 +1102,19 @@ func (s *Suite) Test_MkCondChecker_simplify(c *check.C) {
 
 	// The characters <=> may be used unescaped in :M and :N patterns
 	// but not in .if conditions. There they must be enclosed in quotes.
-	testBeforeAndAfterPrefs(
+	testBeforePrefs(
+		".if ${PREFS_DEFINED:M<=>}",
+		".if ${PREFS_DEFINED:U} == \"<=>\"",
+
+		"NOTE: filename.mk:3: PREFS_DEFINED can be "+
+			"compared using the simpler \"${PREFS_DEFINED:U} == \"<=>\"\" "+
+			"instead of matching against \":M<=>\".",
+		"WARN: filename.mk:3: To use PREFS_DEFINED at load time, "+
+			".include \"../../mk/bsd.prefs.mk\" first.",
+		"AUTOFIX: filename.mk:3: "+
+			"Replacing \"${PREFS_DEFINED:M<=>}\" "+
+			"with \"${PREFS_DEFINED:U} == \\\"<=>\\\"\".")
+	testAfterPrefs(
 		".if ${PREFS_DEFINED:M<=>}",
 		".if ${PREFS_DEFINED} == \"<=>\"",
 
@@ -1091,6 +1280,27 @@ func (s *Suite) Test_MkCondChecker_checkCompareVarStr__no_tracing(c *check.C) {
 	t.CheckOutputEmpty()
 }
 
+func (s *Suite) Test_MkCondChecker_checkCompareVarNum(c *check.C) {
+	t := s.Init(c)
+
+	mklines := t.NewMkLines("filename.mk",
+		MkCvsID,
+		"",
+		"OS_VERSION=\t9.0",
+		"",
+		".if ${OS_VERSION} > 6.5",
+		".endif",
+		"",
+		".if ${OS_VERSION} == 6.5",
+		".endif")
+
+	mklines.Check()
+
+	t.CheckOutputLines(
+		"WARN: filename.mk:5: Numeric comparison > 6.5.",
+		"WARN: filename.mk:8: Numeric comparison == 6.5.")
+}
+
 func (s *Suite) Test_MkCondChecker_checkCompareVarStrCompiler(c *check.C) {
 	t := s.Init(c)
 
@@ -1149,4 +1359,92 @@ func (s *Suite) Test_MkCondChecker_checkCompareVarStrCompiler(c *check.C) {
 		"${PKGSRC_COMPILER} == \"distcc gcc\"",
 
 		nil...)
+}
+
+func (s *Suite) Test_MkCondChecker_checkNotCompare(c *check.C) {
+	t := s.Init(c)
+
+	test := func(cond string, diagnostics ...string) {
+		mklines := t.NewMkLines("filename.mk",
+			".if "+cond)
+		mkline := mklines.mklines[0]
+		ck := NewMkCondChecker(mkline, mklines)
+
+		ck.checkNotCompare(mkline.Cond().Not)
+
+		t.CheckOutput(diagnostics)
+	}
+
+	test("!${VAR} == value",
+		"WARN: filename.mk:1: The ! should use parentheses "+
+			"or be merged into the comparison operator.")
+
+	test("!${VAR} != value",
+		"WARN: filename.mk:1: The ! should use parentheses "+
+			"or be merged into the comparison operator.")
+
+	test("!(${VAR} == value)",
+		nil...)
+
+	test("!${VAR}",
+		nil...)
+}
+
+func (s *Suite) Test_MkCondChecker_checkContradictions(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpVartypes()
+
+	test := func(cond string, diagnostics ...string) {
+		mklines := t.NewMkLines("filename.mk",
+			".if "+cond)
+		mkline := mklines.mklines[0]
+		ck := NewMkCondChecker(mkline, mklines)
+
+		mklines.ForEach(func(mkline *MkLine) { ck.checkContradictions() })
+
+		t.CheckOutput(diagnostics)
+	}
+
+	test("!empty(MACHINE_PLATFORM:Mone) && !empty(MACHINE_PLATFORM:Mtwo)",
+		"ERROR: filename.mk:1: The patterns \"one\" and \"two\" "+
+			"cannot match at the same time.")
+}
+
+func (s *Suite) Test_MkCondChecker_collectFacts(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpVartypes()
+
+	mklines := t.NewMkLines("filename.mk",
+		".if !empty(OPSYS:Mone) && ${OPSYS:Mtwo}",
+		".  if ${OS_VERSION:Mthree}",
+		".    if ((((${OPSYS:Mfour}))))",
+		".      if (${OPSYS:Mor1} || ${OPSYS:Mor2})", // these are ignored
+		".        if ${OPSYS:Mfive} && (${OPSYS:Msix} && ${OPSYS:Mseven})",
+		".      endif",
+		".    endif",
+		".  endif",
+		".endif")
+	var facts []VarFact
+
+	mklines.ForEach(func(mkline *MkLine) {
+		ck := NewMkCondChecker(mkline, mklines)
+		if mkline.NeedsCond() {
+			facts = append(facts, ck.collectFacts(mkline)...)
+		}
+	})
+
+	for i, _ := range facts {
+		facts[i].Matches = nil // these would just complicate the comparison
+	}
+	t.CheckDeepEquals(facts, []VarFact{
+		{mklines.mklines[0], "OPSYS", "one", nil},
+		{mklines.mklines[0], "OPSYS", "two", nil},
+		{mklines.mklines[1], "OS_VERSION", "three", nil},
+		{mklines.mklines[2], "OPSYS", "four", nil},
+		{mklines.mklines[4], "OPSYS", "five", nil},
+		{mklines.mklines[4], "OPSYS", "six", nil},
+		{mklines.mklines[4], "OPSYS", "seven", nil},
+	})
 }

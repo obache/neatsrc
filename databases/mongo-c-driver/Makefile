@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.39 2019/04/03 00:32:30 ryoon Exp $
+# $NetBSD: Makefile,v 1.46 2020/06/25 12:48:00 nia Exp $
 
-DISTNAME=	mongo-c-driver-1.14.0
-PKGREVISION=	1
+DISTNAME=	mongo-c-driver-1.16.2
+PKGREVISION=	2
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mongodb/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
 
-MAINTAINER=	fhajny@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/mongodb/mongo-c-driver
 COMMENT=	MongoDB client library written in C
 LICENSE=	apache-2.0
@@ -16,6 +16,7 @@ NOT_FOR_PLATFORM+=	OpenBSD-*-*
 
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
+TEST_TARGET=	check
 
 CMAKE_ARGS+=	-DENABLE_ICU=ON
 #CMAKE_ARGS+=	-DENABLE_MAN_PAGES=ON
@@ -30,6 +31,8 @@ PKGCONFIG_OVERRIDE+=	src/libmongoc/src/libmongoc-ssl-1.0.pc.in
 PKGCONFIG_OVERRIDE+=	src/libmongoc/src/libmongoc-static-1.0.pc.in
 
 INSTALLATION_DIRS+=	${PKGMANDIR}/man3
+
+LDFLAGS.SunOS+=	-lsocket
 
 PLIST_VARS+=	unix
 

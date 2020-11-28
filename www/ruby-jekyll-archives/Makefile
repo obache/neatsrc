@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.8 2019/04/15 06:11:32 wiz Exp $
+# $NetBSD: Makefile,v 1.10 2020/06/07 15:31:47 taca Exp $
 
-DISTNAME=	jekyll-archives-2.1.1
-PKGREVISION=	1
+DISTNAME=	jekyll-archives-2.2.1
 CATEGORIES=	www
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -11,7 +10,7 @@ LICENSE=	mit
 
 DEPENDS+=	${RUBY_PKGPREFIX}-jekyll>=2.4:../../www/ruby-jekyll
 
-RUBY_VERSIONS_ACCEPTED=	24 25 26
+USE_LANGUAGES=	# none
 
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

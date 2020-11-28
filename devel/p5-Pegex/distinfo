@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.12 2020/01/06 06:39:34 schmonz Exp $
+$NetBSD: distinfo,v 1.14 2020/02/14 05:58:54 schmonz Exp $
 
-SHA1 (Pegex-0.72.tar.gz) = c6aa9f80ea4be5e23392fad64e4548a72ffeddc4
-RMD160 (Pegex-0.72.tar.gz) = 2624e61cb5fd0a2980d235573ae0a2c18767f652
-SHA512 (Pegex-0.72.tar.gz) = f3d574f03c5a0ee0a594b7c78e033677d56a3b471bd759961a11aa80c73586bd389a4ad8b8e71b3f73ba69b2641037ac2e6ffe64eafea79bdc693b18e73ed671
-Size (Pegex-0.72.tar.gz) = 148205 bytes
+SHA1 (Pegex-0.75.tar.gz) = eb56f1d90be2ddb5ca7b2ba79fd59ddc855e4f7c
+RMD160 (Pegex-0.75.tar.gz) = e2609ba058c5575982c96fb4bfbb47eb40c54bde
+SHA512 (Pegex-0.75.tar.gz) = ff204b21085bc3ce5cf6dac70636443f206272ae9741055e8972eadb720d52a46e542dee5b6559cc308d9fb597d545bb4d148b02499e2f75fa08a6dc689dc30d
+Size (Pegex-0.75.tar.gz) = 148676 bytes

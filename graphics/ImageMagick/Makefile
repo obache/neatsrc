@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.263 2019/11/02 22:37:53 rillig Exp $
+# $NetBSD: Makefile,v 1.280 2020/10/22 11:22:56 jperkin Exp $
 
 .include "Makefile.common"
 
@@ -82,8 +82,8 @@ SUBST_FILES.fix-pc+=	MagickWand/MagickWand-config.in
 SUBST_SED.fix-pc=	-e 's,@PKG_CONFIG@,pkg-config,g'
 
 # failed to convert strong functions and variables: Invalid type identifier
-CTF_FILES_SKIP+=	lib/libMagickCore-7.Q16HDRI.so.4.0.0
-CTF_FILES_SKIP+=	lib/libMagickWand-7.Q16HDRI.so.4.0.0
+CTF_FILES_SKIP+=	lib/libMagickCore-7.Q16HDRI.so.*
+CTF_FILES_SKIP+=	lib/libMagickWand-7.Q16HDRI.so.*
 
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../archivers/xz/buildlink3.mk"

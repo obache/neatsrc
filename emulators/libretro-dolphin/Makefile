@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.10 2019/08/22 12:23:05 ryoon Exp $
+# $NetBSD: Makefile,v 1.17 2020/05/31 18:36:29 nia Exp $
 
 DISTNAME=	libretro-dolphin-20180827
-PKGREVISION=	5
+PKGREVISION=	10
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libretro/}
 GITHUB_PROJECT=	dolphin
@@ -12,11 +12,15 @@ HOMEPAGE=	https://docs.libretro.com/library/dolphin/
 COMMENT=	Libretro core based on the Dolphin GameCube/Wii emulator
 LICENSE=	gnu-gpl-v2
 
-EXTRACT_USING=	bsdtar
 USE_TOOLS+=	pkg-config
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++14
 GCC_REQD+=	6
+
+OPSYSVARS+=	SOEXT
+SOEXT.Darwin=	dylib
+SOEXT.*=	so
+PLIST_SUBST+=	SOEXT=${SOEXT}
 
 CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
 CMAKE_ARGS+=	-DTRY_X11=OFF
@@ -46,8 +50,8 @@ LDFLAGS.NetBSD+=	-lrt
 INSTALLATION_DIRS+=	${PREFIX}/lib/libretro
 
 do-install:
-	${INSTALL_LIB} ${WRKSRC}/dolphin_libretro.so \
-	    ${DESTDIR}${PREFIX}/lib/libretro/dolphin_libretro.so
+	${INSTALL_LIB} ${WRKSRC}/dolphin_libretro.${SOEXT} \
+	    ${DESTDIR}${PREFIX}/lib/libretro/dolphin_libretro.${SOEXT}
 
 .if ${OPSYS} != "Darwin"
 .include "../../archivers/lzo/buildlink3.mk"

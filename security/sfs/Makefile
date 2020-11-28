@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.53 2019/08/11 13:23:00 wiz Exp $
+# $NetBSD: Makefile,v 1.55 2020/08/31 18:11:21 wiz Exp $
 #
 
 DISTNAME=	sfs-0.7.2
-PKGREVISION=	22
+PKGREVISION=	24
 CATEGORIES=	net security
 MASTER_SITES=	${MASTER_SITE_GENTOO:=distfiles/}
 

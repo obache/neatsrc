@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.157 2019/11/11 10:12:35 nia Exp $
+# $NetBSD: Makefile,v 1.164 2020/08/17 20:19:19 leot Exp $
 
 .include "../../inputmethod/uim/Makefile.common"
 

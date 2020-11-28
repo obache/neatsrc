@@ -222,6 +222,28 @@ func (s *Suite) Test_MkLines_Check__PKG_SKIP_REASON_depending_on_OPSYS(c *check.
 		"NOTE: Makefile:7: Consider setting NOT_FOR_PLATFORM instead of PKG_SKIP_REASON depending on ${OPSYS}.")
 }
 
+func (s *Suite) Test_MkLines_Check__PKG_SKIP_REASON_depending_on_OPSYS_and_others(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPkgsrc()
+	t.Chdir("category/package")
+	t.FinishSetUp()
+	mklines := t.NewMkLines("Makefile",
+		MkCvsID,
+		"",
+		".include \"../../mk/bsd.prefs.mk\"",
+		"",
+		"PKG_SKIP_REASON+=\t\"Fails everywhere\"",
+		".if ${OPSYS} == \"Cygwin\" && ${MACHINE_ARCH} == i386",
+		"PKG_SKIP_REASON+=\t\"Fails on Cygwin i386\"",
+		".endif")
+
+	mklines.Check()
+
+	t.CheckOutputLines(
+		"NOTE: Makefile:7: Consider setting NOT_FOR_PLATFORM instead of PKG_SKIP_REASON depending on ${OPSYS}.")
+}
+
 func (s *Suite) Test_MkLines_Check__use_list_variable_as_part_of_word(c *check.C) {
 	t := s.Init(c)
 
@@ -494,7 +516,8 @@ func (s *Suite) Test_MkLines_collectUsedVariables__simple(c *check.C) {
 
 	mklines.collectUsedVariables()
 
-	t.CheckDeepEquals(mklines.allVars.used, map[string]*MkLine{"VAR": mkline})
+	t.Check(mklines.allVars.vs, check.HasLen, 1)
+	t.CheckEquals(mklines.allVars.create("VAR").used, mkline)
 	t.CheckEquals(mklines.allVars.FirstUse("VAR"), mkline)
 }
 
@@ -513,7 +536,7 @@ func (s *Suite) Test_MkLines_collectUsedVariables__nested(c *check.C) {
 
 	mklines.collectUsedVariables()
 
-	t.CheckEquals(len(mklines.allVars.used), 5)
+	t.CheckEquals(len(mklines.allVars.vs), 5)
 	t.CheckEquals(mklines.allVars.FirstUse("lparam"), assignMkline)
 	t.CheckEquals(mklines.allVars.FirstUse("rparam"), assignMkline)
 	t.CheckEquals(mklines.allVars.FirstUse("inner"), shellMkline)
@@ -570,9 +593,11 @@ func (s *Suite) Test_MkLines_collectDocumentedVariables(c *check.C) {
 	mklines.collectDocumentedVariables()
 
 	var varnames []string
-	for varname, mkline := range mklines.allVars.used {
-		varnames = append(varnames, sprintf("%s (line %s)", varname, mkline.Linenos()))
-	}
+	mklines.allVars.forEach(func(varname string, data *scopeVar) {
+		if data.used != nil {
+			varnames = append(varnames, sprintf("%s (line %s)", varname, data.used.Linenos()))
+		}
+	})
 	sort.Strings(varnames)
 
 	expected := []string{
@@ -694,7 +719,7 @@ func (s *Suite) Test_MkLines_collectVariables__find_files_and_headers(c *check.C
 	mklines.Check()
 
 	t.CheckDeepEquals(
-		keys(mklines.allVars.firstDef),
+		keys(mklines.allVars.vs),
 		[]string{
 			"BUILTIN_FIND_FILES_VAR",
 			"BUILTIN_FIND_HEADERS_VAR",
@@ -836,7 +861,7 @@ func (s *Suite) Test_MkLines_checkAll__wip_category_Makefile(c *check.C) {
 		"")
 }
 
-func (s *Suite) Test_MkLines_checkAll__unknown_options(c *check.C) {
+func (s *Suite) Test_MkLines_checkAll__undocumented_options(c *check.C) {
 	t := s.Init(c)
 
 	t.SetUpVartypes()
@@ -851,7 +876,7 @@ func (s *Suite) Test_MkLines_checkAll__unknown_options(c *check.C) {
 	mklines.Check()
 
 	t.CheckOutputLines(
-		"WARN: options.mk:4: Unknown option \"unknown\".")
+		"WARN: options.mk:4: Undocumented option \"unknown\".")
 }
 
 func (s *Suite) Test_MkLines_checkAll__PLIST_VARS(c *check.C) {
@@ -1222,7 +1247,7 @@ func (s *Suite) Test_MkLines_CheckUsedBy__show_autofix(c *check.C) {
 			"VARNAME=\tvalue"),
 		diagnostics(
 			"WARN: Makefile.common:1: Please add a line \"# used by category/package\" here.",
-			"AUTOFIX: Makefile.common:1: Inserting a line \"# used by category/package\" after this line."))
+			"AUTOFIX: Makefile.common:1: Inserting a line \"# used by category/package\" below this line."))
 
 	// The "used by" comments may either start in line 2 or in line 3.
 	test(
@@ -1233,7 +1258,7 @@ func (s *Suite) Test_MkLines_CheckUsedBy__show_autofix(c *check.C) {
 			"#"),
 		diagnostics(
 			"WARN: Makefile.common:1: Please add a line \"# used by category/package\" here.",
-			"AUTOFIX: Makefile.common:1: Inserting a line \"# used by category/package\" after this line."))
+			"AUTOFIX: Makefile.common:1: Inserting a line \"# used by category/package\" below this line."))
 
 	// TODO: What if there is an introductory comment first? That should stay at the top of the file.
 	// TODO: What if the "used by" comments appear in the second paragraph, preceded by only comments and empty lines?
@@ -1248,9 +1273,9 @@ func (s *Suite) Test_MkLines_CheckUsedBy__show_autofix(c *check.C) {
 			"# that spans",
 			"# several lines"),
 		diagnostics(
-			"AUTOFIX: Makefile.common:4: Inserting a line \"\" after this line.",
+			"AUTOFIX: Makefile.common:4: Inserting a line \"\" below this line.",
 			"WARN: Makefile.common:4: Please add a line \"# used by category/package\" here.",
-			"AUTOFIX: Makefile.common:4: Inserting a line \"# used by category/package\" after this line."))
+			"AUTOFIX: Makefile.common:4: Inserting a line \"# used by category/package\" below this line."))
 
 	t.CheckEquals(G.Logger.autofixAvailable, true)
 }

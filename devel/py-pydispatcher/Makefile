@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2017/02/13 21:18:15 adam Exp $
+# $NetBSD: Makefile,v 1.3 2020/03/20 11:57:31 nia Exp $
 
 DISTNAME=	PyDispatcher-2.0.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}

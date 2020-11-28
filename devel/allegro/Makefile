@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.41 2019/06/18 17:38:18 nia Exp $
+# $NetBSD: Makefile,v 1.44 2020/08/18 17:57:42 leot Exp $
 
 DISTNAME=	allegro-4.4.3.1
+PKGREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=liballeg/}
 GITHUB_PROJECT=	allegro5
@@ -8,7 +9,7 @@ GITHUB_RELEASE=	${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://liballeg.org/
-COMMENT=	Allegro game programming library
+COMMENT=	Cross-platform library aimed at video game programming (4.x branch)
 #LICENSE=	# TODO: (see mk/license.mk)
 
 USE_CMAKE=	yes
@@ -18,9 +19,11 @@ USE_LANGUAGES=	c c++
 INFO_FILES=	yes
 CMAKE_ARGS+=	-DINFODIR=${PKGINFODIR:Q}
 
+PLIST_SUBST+=	ALLEG_VER=${PKGVERSION_NOREV:R}
+
 SUBST_CLASSES.NetBSD+=	ossmidi
 SUBST_STAGE.ossmidi=	pre-configure
-SUBST_MESSAGE.ossmidi=	NetBSD's OSS midi emulation is non-existent.
+SUBST_MESSAGE.ossmidi=	NetBSD OSS midi emulation is non-existent.
 SUBST_FILES.ossmidi=	CMakeLists.txt
 SUBST_SED.ossmidi=	-e 's/ALLEGRO_WITH_OSSMIDI 1/ALLEGRO_WITH_OSSMIDI 0/'
 
@@ -35,6 +38,7 @@ INSTALLATION_DIRS=	share/aclocal
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/misc/allegro.m4 ${DESTDIR}${PREFIX}/share/aclocal
 
+.include "options.mk"
 .include "../../audio/libvorbis/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/glu/buildlink3.mk"
@@ -50,5 +54,4 @@ post-install:
 .include "../../x11/libXpm/buildlink3.mk"
 .include "../../x11/libXxf86dga/buildlink3.mk"
 .include "../../x11/libXxf86vm/buildlink3.mk"
-
 .include "../../mk/bsd.pkg.mk"

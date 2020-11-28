@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.20 2019/08/22 12:23:47 ryoon Exp $
+# $NetBSD: Makefile,v 1.26 2020/05/22 10:56:40 adam Exp $
 #
 
 BUILDLINK_DEPMETHOD.libestr=	full
 BUILDLINK_DEPMETHOD.libuuid=	full
 
-PKGREVISION= 5
+PKGREVISION= 10
 .include "../../sysutils/rsyslog/Makefile.common"
 
 COMMENT=		The enhanced syslogd for Unix
@@ -47,10 +47,11 @@ OWN_DIRS+=		${RSYSLOG_PIDDIR} ${RSYSLOG_WRKDIR}
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	pre-configure
 SUBST_FILES.paths=	platform/redhat/rsyslog.conf tools/rsyslog.conf.5
-SUBST_FILES.paths+=	tools/rsyslogd.8 tools/rsyslogd.c tools/syslogd.c
+SUBST_FILES.paths+=	tools/rsyslogd.8 tools/rsyslogd.c
 SUBST_VARS.paths=	RSYSLOG_PIDDIR RSYSLOG_SYSMOD
 SUBST_SED.paths=	-e "s|/etc|${PKG_SYSCONFDIR}|g"
 SUBST_MESSAGE.paths=	Setting default paths and options.
+# FIXME: This also replaces /etc/timezone, which is probably unintended.
 
 SUBST_CLASSES.Darwin+=	ldargs
 SUBST_STAGE.ldargs=	pre-configure

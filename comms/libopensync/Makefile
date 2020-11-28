@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.34 2019/04/03 00:32:28 ryoon Exp $
+# $NetBSD: Makefile,v 1.37 2020/06/02 08:22:32 adam Exp $
 #
 
 DISTNAME=	libopensync-0.22
-PKGREVISION=	24
+PKGREVISION=	27
 CATEGORIES=	comms
 ##MASTER_SITES=	http://www.opensync.org/download/releases/0.22/
 EXTRACT_SUFX=	.tar.bz2

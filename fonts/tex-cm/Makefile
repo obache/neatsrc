@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.12 2019/12/06 19:29:43 markd Exp $
+# $NetBSD: Makefile,v 1.14 2020/05/10 04:31:41 markd Exp $
 
 DISTNAME=	cm
 PKGNAME=	tex-${DISTNAME}-2018.49028
+PKGREVISION=	1
 CATEGORIES=	fonts
 TEXLIVE_REV=	49028
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/cm
+HOMEPAGE=	https://ctan.org/pkg/cm
 COMMENT=	Computer Modern fonts
 #LICENSE=	knuth
 

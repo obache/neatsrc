@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.31 2019/08/11 13:22:12 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2020/08/31 18:10:37 wiz Exp $
 
 DISTNAME=	ncftp-3.2.6-src
 PKGNAME=	${DISTNAME:S/ncftp/ncftp3/:S/-src//}
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	net
 MASTER_SITES=	ftp://ftp.ncftp.com/ncftp/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.ncftp.com/
+HOMEPAGE=	https://www.ncftp.com/
 COMMENT=	FTP replacement with advanced user interface
 LICENSE=	artistic
 

@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.23 2019/07/21 22:24:04 wiz Exp $
+# $NetBSD: Makefile,v 1.27 2020/08/17 20:18:56 leot Exp $
 
 DISTNAME=	cogl-1.22.0
-PKGREVISION=	8
+PKGREVISION=	11
 CATEGORIES=	graphics gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/cogl/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://cogl3d.org/
+HOMEPAGE=	https://cogl3d.org/
 COMMENT=	Modern 3D graphics API
 LICENSE=	mit AND sgi-free-software-b-v2.0 AND modified-bsd
 # if --standalone

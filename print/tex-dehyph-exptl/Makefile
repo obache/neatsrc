@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.12 2019/12/06 20:19:24 markd Exp $
+# $NetBSD: Makefile,v 1.15 2020/05/10 04:31:57 markd Exp $
 
 DISTNAME=	dehyph-exptl
-PKGNAME=	tex-${DISTNAME}-0.6
-TEXLIVE_REV=	50772
+PKGNAME=	tex-${DISTNAME}-0.6.54512
+PKGREVISION=	1
+TEXLIVE_REV=	54512
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/dehyph-exptl
+HOMEPAGE=	https://ctan.org/pkg/dehyph-exptl
 COMMENT=	Experimental hyphenation patterns for the German language
 LICENSE=	mit AND lppl-1.3c
 
@@ -23,7 +24,7 @@ TEX_HYPHEN_LUA+=	['german-x-2019-04-04']={ \
 			  righthyphenmin=2, \
 			  synonyms={'german-x-latest',}, \
 			  patterns='hyph-de-1901.pat.txt', \
-			  hyphenation='hyph-de-1901.hyp.txt', \
+			  hyphenation='', \
 			},
 TEX_HYPHEN_LUA+=	['ngerman-x-2019-04-04']={ \
 			  loader='dehyphn-x-2019-04-04.tex', \
@@ -31,9 +32,8 @@ TEX_HYPHEN_LUA+=	['ngerman-x-2019-04-04']={ \
 			  righthyphenmin=2, \
 			  synonyms={'ngerman-x-latest',}, \
 			  patterns='hyph-de-1996.pat.txt', \
-			  hyphenation='hyph-de-1996.hyp.txt', \
+			  hyphenation='', \
 			},
 
-TEXLIVE_UNVERSIONED=	yes
 .include "../../print/texlive/package.mk"
 .include "../../mk/bsd.pkg.mk"

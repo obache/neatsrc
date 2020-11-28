@@ -1,21 +1,23 @@
-# $NetBSD: Makefile,v 1.26 2019/11/03 10:39:05 rillig Exp $
+# $NetBSD: Makefile,v 1.31 2020/10/01 11:48:22 prlw1 Exp $
 
-DISTNAME=	at-spi2-atk-2.33.2
+DISTNAME=	at-spi2-atk-2.38.0
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/at-spi2-atk/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	prlw1@cam.ac.uk
-HOMEPAGE=	http://www.linuxfoundation.org/collaborate/workgroups/accessibility/atk/at-spi/at-spi_on_d-bus
+HOMEPAGE=	https://www.linuxfoundation.org/collaborate/workgroups/accessibility/atk/at-spi/at-spi_on_d-bus
 COMMENT=	Assistive Technology Service Provider Interface A11y Toolkit
-LICENSE=	gnu-lgpl-v2
+LICENSE=	gnu-lgpl-v2.1
 
 USE_TOOLS+=	pkg-config
 
 PKGCONFIG_OVERRIDE=		output/meson-private/atk-bridge-2.0.pc
 PKGCONFIG_OVERRIDE_STAGE=	pre-install
 
-BUILDLINK_API_DEPENDS.atk+=	atk>=2.33.3
+MESON_ARGS+=	-Dtests=false
+
+BUILDLINK_API_DEPENDS.atk+=	atk>=2.36.0
 .include "../../devel/atk/buildlink3.mk"
 BUILDLINK_API_DEPENDS.at-spi2-core+=	at-spi2-core>=2.33.2
 .include "../../devel/at-spi2-core/buildlink3.mk"

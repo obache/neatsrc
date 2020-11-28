@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.57 2019/08/11 13:19:06 wiz Exp $
+# $NetBSD: Makefile,v 1.59 2020/08/31 18:07:43 wiz Exp $
 
-DISTNAME=	Config-IniFiles-3.000002
+DISTNAME=	Config-IniFiles-3.000003
 PKGNAME=	p5-${DISTNAME}
 PKGREVISION=	1
 CATEGORIES=	devel perl5

@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.95 2019/08/11 13:25:14 wiz Exp $
+# $NetBSD: Makefile,v 1.98 2020/09/07 20:58:27 wiz Exp $
 
-DISTNAME=	Tk-804.034
+DISTNAME=	Tk-804.035
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	2
 CATEGORIES=	x11 tk perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Tk/}
 
@@ -14,7 +13,6 @@ MAKE_JOBS_SAFE=	no
 
 BUILD_DEPENDS+=	p5-HTML-Parser>=3.19:../../www/p5-HTML-Parser
 
-USE_LANGUAGES=		c
 USE_TOOLS+=		pkg-config
 PERL5_PACKLIST=		auto/Tk/.packlist
 
@@ -24,11 +22,6 @@ REPLACE_PERL+=		TextList/reindex.pl
 REPLACE_PERL+=		pTk/Tcl-pTk
 REPLACE_PERL+=		pTk/mkVFunc
 REPLACE_PERL+=		demos/widget
-
-SUBST_CLASSES+=		prefix
-SUBST_STAGE.prefix=	pre-configure
-SUBST_FILES.prefix=	PNG/Makefile.PL
-SUBST_SED.prefix=	-e 's,%%LOCALBASE%%,${LOCALBASE},g'
 
 pre-configure:
 	${FIND} ${WRKSRC} -name "*.orig" -type f | ${XARGS} ${RM} -f

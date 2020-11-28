@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.15 2019/11/02 16:16:21 rillig Exp $
+# $NetBSD: Makefile,v 1.17 2020/08/31 18:10:18 wiz Exp $
 
 DISTNAME=	ppl-1.2
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	math
 MASTER_SITES=	ftp://ftp.cs.unipr.it/pub/ppl/releases/1.2/
 

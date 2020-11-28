@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.2 2019/10/15 12:40:46 he Exp $
+$NetBSD: distinfo,v 1.4 2020/08/13 17:05:38 maya Exp $
 
 SHA1 (20191014/compat80-alpha-8.0.tar.bz2) = a2a4e1121befbbc73c9abfad06e727a1438bbbe8
 RMD160 (20191014/compat80-alpha-8.0.tar.bz2) = a7a95b62f3870906cee8d7ab7793a7d75adf59ec

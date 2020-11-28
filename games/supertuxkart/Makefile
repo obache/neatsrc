@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.30 2020/01/10 11:25:32 nia Exp $
+# $NetBSD: Makefile,v 1.37 2020/05/22 10:56:10 adam Exp $
 
-VERSION=	1.0
-DISTNAME=	supertuxkart-${VERSION}-src
+DISTNAME=	supertuxkart-1.1-src
 PKGNAME=	${DISTNAME:S/-src//}
 PKGREVISION=	2
 CATEGORIES=	games
@@ -13,7 +12,6 @@ HOMEPAGE=	https://supertuxkart.net/Main_Page
 COMMENT=	Free 3D kart racing game
 LICENSE=	gnu-gpl-v3
 
-WRKSRC=		${WRKDIR}/supertuxkart-${VERSION}
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	cmake pkg-config
@@ -31,10 +29,18 @@ CMAKE_ARGS+=	-DENABLE_WAYLAND_DEVICE=OFF
 CXXFLAGS+=	-march=i586
 .endif
 
+# lib/mcpp/eval.c: In function 'eval_if':
+# lib/mcpp/eval.c:361:44: error: array subscript has type 'char' [-Werror=char-subscripts]
+#                  , opname[ op], prec, opname[ opp->op], opp->prec, opp->skip);
+#                                             ^
+# Maybe fix this later.
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
+
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../audio/libvorbis/buildlink3.mk"
 .include "../../audio/openal-soft/buildlink3.mk"
 .include "../../converters/fribidi/buildlink3.mk"
+.include "../../fonts/harfbuzz/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/glew/buildlink3.mk"
 .include "../../graphics/glu/buildlink3.mk"

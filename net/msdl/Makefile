@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2015/03/15 18:31:53 hiramatsu Exp $
+# $NetBSD: Makefile,v 1.15 2020/03/20 11:58:08 nia Exp $
 #
 
 DISTNAME=	msdl-1.2.7-r2

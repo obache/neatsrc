@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2019/11/03 19:04:00 rillig Exp $
+# $NetBSD: Makefile,v 1.7 2020/05/03 17:42:20 rillig Exp $
 
 PKGNAME=	gcc6-aux-${SNAPSHOT}
 PKGREVISION=	${MAIN_PR}
@@ -20,6 +20,8 @@ APPLY_DIFFS=	core ada cxx
 .include "../../mk/bsd.prefs.mk"
 .include "options.mk"
 
+CHECK_PORTABILITY_SKIP+=	contrib/* # not needed
+
 # Requires bootstrap compiler, which is only available for on selected systems
 
 # Tasking is broken on NetBSD.  The reason for this is unknown
@@ -29,8 +31,8 @@ ONLY_FOR_PLATFORM=	DragonFly-*-x86_64   \
 			FreeBSD-*-x86_64     \
 			SunOS-5.1[1-9]*-i386 \
 			SunOS-5.1[1-9]*-x86_64 \
-			NetBSD-[5-9]*-i386   \
-			NetBSD-[5-9]*-x86_64
+			NetBSD-*-i386   \
+			NetBSD-*-x86_64
 
 GARCH=			${MACHINE_ARCH:S/amd64/x86_64/}
 BLD_TARGET=		${GARCH}-aux-${LOWER_OPSYS}${OS_VERSION}

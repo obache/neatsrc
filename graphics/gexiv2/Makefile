@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.8 2019/11/06 14:34:31 wiz Exp $
+# $NetBSD: Makefile,v 1.12 2020/10/06 19:51:17 wiz Exp $
 
 DISTNAME=	gexiv2-0.12.0
-PKGREVISION=	1
+PKGREVISION=	5
 CATEGORIES=	graphics devel
 MASTER_SITES=	https://ftp.acc.umu.se/pub/gnome/sources/gexiv2/0.12/
 EXTRACT_SUFX=	.tar.xz

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.28 2019/07/02 13:46:29 nia Exp $
+# $NetBSD: Makefile,v 1.30 2020/03/20 11:57:42 nia Exp $
 
 DISTNAME=	lincity-1.12.1
 PKGREVISION=	3

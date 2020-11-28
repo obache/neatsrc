@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.5 2019/11/03 10:39:22 rillig Exp $
+# $NetBSD: Makefile,v 1.8 2020/01/17 10:42:42 jaapb Exp $
 
 GITHUB_PROJECT=	dune
-#GITHUB_TAG=	${PKGVERSION_NOREV:S/_/+/}
-DISTNAME=	${GITHUB_PROJECT}-1.11.4
+DISTNAME=	${GITHUB_PROJECT}-2.1.3
 PKGNAME=	ocaml-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ocaml/}
 
@@ -24,8 +24,23 @@ MAKE_ENV+=		MAKE_JOBS=${MAKE_JOBS:U1}
 INSTALLATION_DIRS+=	bin ${PKGMANDIR}/man1 ${OCAML_SITELIBDIR}/dune
 
 OCAML_USE_FINDLIB=	yes
-OCAML_FINDLIB_DIRS=	dune stublibs
+OCAML_FINDLIB_DIRS=	dune \
+			dune-action-plugin \
+			dune-build-info \
+			dune-configurator \
+			dune-glob \
+			dune-private-libs \
+			stublibs
 OCAML_USE_OPAM=		yes
+OPAM_INSTALL_FILES=	dune-glob \
+			dune-action-plugin \
+			dune-build-info \
+			dune \
+			dune-private-libs \
+			dune-configurator
+
+post-build:
+	${RUN} cd ${WRKSRC} && ./dune.exe build -p dune,dune-action-plugin,dune-build-info,dune-configurator,dune-glob,dune-private-libs @install
 
 .include "../../mk/ocaml.mk"
 

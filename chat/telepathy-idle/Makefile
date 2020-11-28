@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.39 2019/09/02 13:19:52 adam Exp $
+# $NetBSD: Makefile,v 1.43 2020/06/02 08:23:21 adam Exp $
 
 DISTNAME=	telepathy-idle-0.1.8
-PKGREVISION=	11
+PKGREVISION=	14
 CATEGORIES=	chat
 MASTER_SITES=	http://telepathy.freedesktop.org/releases/telepathy-idle/
 
@@ -31,7 +31,6 @@ CONFIGURE_ENV+=		ac_cv_prog_PYTHON=${PYTHONBIN}
 .include "../../chat/telepathy-glib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../lang/python/application.mk"
-BUILDLINK_API_DEPENDS.openssl+=	openssl>=0.9.7
 .include "../../security/openssl/buildlink3.mk"
 .include "../../sysutils/dbus-glib/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.28 2018/03/12 11:15:25 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.30 2020/08/17 20:17:17 leot Exp $
 
 BUILDLINK_TREE+=	wsoundserver
 
@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	wsoundserver
 WSOUNDSERVER_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.wsoundserver+=	wsoundserver>=0.4.0nb4
-BUILDLINK_ABI_DEPENDS.wsoundserver+=	wsoundserver>=0.4.0nb26
+BUILDLINK_ABI_DEPENDS.wsoundserver+=	wsoundserver>=0.4.0nb28
 BUILDLINK_PKGSRCDIR.wsoundserver?=	../../audio/wsoundserver
 
 .include "../../audio/libaudiofile/buildlink3.mk"

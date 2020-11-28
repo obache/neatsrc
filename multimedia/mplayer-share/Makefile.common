@@ -1,7 +1,10 @@
-# $NetBSD: Makefile.common,v 1.63 2020/01/09 15:57:58 ryoon Exp $
+# $NetBSD: Makefile.common,v 1.65 2020/06/05 12:17:10 jperkin Exp $
 # used by multimedia/gmplayer/Makefile
 # used by multimedia/mencoder/Makefile
 # used by multimedia/mplayer/Makefile
+#
+# sysutils/mencvcd uses one file from the tarball, please update
+# it when updating this package.
 
 MPLAYER_VERSION=	1.4
 
@@ -33,9 +36,6 @@ USE_TOOLS+=		gmake
 HAS_CONFIGURE=		YES
 
 PTHREAD_OPTS+=		require
-
-# For GifQuantizeBuffer of graphics/giflib
-BUILDLINK_TRANSFORM+=		l:gif:gif:gifutil
 
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--disable-smb

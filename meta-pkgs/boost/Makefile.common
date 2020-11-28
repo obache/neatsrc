@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.83 2019/08/22 12:17:52 ryoon Exp $
+# $NetBSD: Makefile.common,v 1.88 2020/10/02 08:08:25 mcf Exp $
 #
 # used by devel/boost-build/Makefile
 # used by devel/boost-docs/Makefile
@@ -10,7 +10,7 @@
 
 BOOST_PACKAGE?=		undefined
 BOOST_COMMENT?=		undefined
-BOOST_VERSION=		1.71.0
+BOOST_VERSION=		1.73.0
 BOOST_SHORT_VERSION=	${BOOST_VERSION:S/./_/:C/\..*$//}
 
 # Update mysql57-client/patches/patch-cmake_boost.cmake when updating version
@@ -36,10 +36,10 @@ CONFLICTS+=		boost<1.36.0
 DISTINFO_FILE=		${.CURDIR}/../../meta-pkgs/boost/distinfo
 PATCHDIR=		${.CURDIR}/../../meta-pkgs/boost/patches
 
-.include "../../mk/bsd.prefs.mk"
-
 USE_TOOLS+=		pax
 USE_LANGUAGES=		c c++
+
+.include "../../mk/bsd.prefs.mk"
 
 # IMPORTANT: sync this with devel/boost-libs/buildlink3.mk
 # GCC 4.5 or later is required to build, and GCC 4.5 is not provided for OpenBSD
@@ -54,12 +54,6 @@ GCC_REQD+=		4.5
 .  endif
 
 PLIST_SUBST+=		BOOST_VERSION="${BOOST_VERSION}"
-
-SUBST_CLASSES+=		prefix
-SUBST_STAGE.prefix=	pre-configure
-SUBST_MESSAGE.prefix=	Fixing prefix.
-SUBST_FILES.prefix=	boostcpp.jam
-SUBST_VARS.prefix=	PREFIX
 
 SUBST_CLASSES+=		darwin
 SUBST_STAGE.darwin=	pre-configure
@@ -89,7 +83,7 @@ post-wrapper:
 # We can't do this at post-extract because the extract cookie will get a future
 # timestamp than the sources.  If this happens, print-PLIST does not work.
 pre-configure:
-	${FIND} ${WRKSRC} -type f -print0 | ${XARGS} -0 ${TOUCH}
+	${FIND} ${WRKSRC} -type f -exec ${TOUCH} {} +
 
 # According to https://github.com/boostorg/config/issues/240
 # the user.hpp generation is intended only for porting to new platforms

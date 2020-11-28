@@ -161,7 +161,7 @@ func (s *Suite) Test_MkLineChecker_checkText__WRKSRC(c *check.C) {
 		"",
 		"\tExample:",
 		"",
-		"\t\tWRKSRC=\t${WRKDIR}",
+		"\t\tWRKSRC=\t\t${WRKDIR}",
 		"\t\tCONFIGURE_DIRS=\t${WRKSRC}/lib ${WRKSRC}/src",
 		"\t\tBUILD_DIRS=\t${WRKSRC}/lib ${WRKSRC}/src ${WRKSRC}/cmd",
 		"",
@@ -170,6 +170,25 @@ func (s *Suite) Test_MkLineChecker_checkText__WRKSRC(c *check.C) {
 		"\thttps://www.NetBSD.org/docs/pkgsrc/pkgsrc.html#build.builddirs",
 		"",
 		"WARN: ~/module.mk:3: WRKSRC is used but not defined.")
+}
+
+// In general, -Wl,-R should not appear in package Makefiles.
+// BUILDLINK_TRANSFORM is an exception to this since this command line option
+// is removed here from the compiler invocations.
+func (s *Suite) Test_MkLineChecker_checkTextRpath(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpVartypes()
+	mklines := t.NewMkLines("filename.mk",
+		MkCvsID,
+		"BUILDLINK_TRANSFORM+=\trm:-Wl,-R/usr/lib",
+		"BUILDLINK_TRANSFORM+=\trm:-Wl,-rpath,/usr/lib",
+		"BUILDLINK_TRANSFORM+=\topt:-Wl,-rpath,/usr/lib")
+
+	mklines.Check()
+
+	t.CheckOutputLines(
+		"WARN: filename.mk:4: Please use ${COMPILER_RPATH_FLAG} instead of \"-Wl,-rpath,\".")
 }
 
 func (s *Suite) Test_MkLineChecker_checkVartype__simple_type(c *check.C) {
@@ -355,17 +374,22 @@ func (s *Suite) Test_MkLineChecker_checkInclude(c *check.C) {
 	t.CreateFileLines("graphics/jpeg/buildlink3.mk")
 	t.CreateFileLines("devel/intltool/buildlink3.mk")
 	t.CreateFileLines("devel/intltool/builtin.mk")
+	t.CreateFileLines("mk/bsd.pkg.mk")
 	mklines := t.SetUpFileMkLines("category/package/filename.mk",
 		MkCvsID,
 		"",
 		".include \"../../pkgtools/x11-links/buildlink3.mk\"",
 		".include \"../../graphics/jpeg/buildlink3.mk\"",
 		".include \"../../devel/intltool/buildlink3.mk\"",
-		".include \"../../devel/intltool/builtin.mk\"")
+		".include \"../../devel/intltool/builtin.mk\"",
+		".include \"/absolute\"",
+		".include \"../../mk/bsd.pkg.mk\"")
 
 	mklines.Check()
 
 	t.CheckOutputLines(
+		"ERROR: ~/category/package/filename.mk:7: "+
+			"Unknown Makefile line format: \".include \\\"/absolute\\\"\".",
 		"ERROR: ~/category/package/filename.mk:3: "+
 			"\"../../pkgtools/x11-links/buildlink3.mk\" must not be included directly. "+
 			"Include \"../../mk/x11.buildlink3.mk\" instead.",
@@ -376,7 +400,10 @@ func (s *Suite) Test_MkLineChecker_checkInclude(c *check.C) {
 			"Please write \"USE_TOOLS+= intltool\" instead of this line.",
 		"ERROR: ~/category/package/filename.mk:6: "+
 			"\"../../devel/intltool/builtin.mk\" must not be included directly. "+
-			"Include \"../../devel/intltool/buildlink3.mk\" instead.")
+			"Include \"../../devel/intltool/buildlink3.mk\" instead.",
+		"ERROR: ~/category/package/filename.mk:8: "+
+			"The file bsd.pkg.mk must only be included by package Makefiles, "+
+			"not by other Makefile fragments.")
 }
 
 func (s *Suite) Test_MkLineChecker_checkInclude__Makefile(c *check.C) {
@@ -433,25 +460,8 @@ func (s *Suite) Test_MkLineChecker_checkInclude__hacks(c *check.C) {
 			"Relative path \"../../category/package/nonexistent.mk\" does not exist.")
 }
 
-func (s *Suite) Test_MkLineChecker_checkInclude__builtin_mk(c *check.C) {
-	t := s.Init(c)
-
-	t.SetUpPackage("category/package",
-		".include \"../../category/package/builtin.mk\"",
-		".include \"../../category/package/builtin.mk\" # ok")
-	t.CreateFileLines("category/package/builtin.mk",
-		MkCvsID)
-	t.FinishSetUp()
-
-	G.checkdirPackage(t.File("category/package"))
-
-	t.CheckOutputLines(
-		"ERROR: ~/category/package/Makefile:20: " +
-			"\"../../category/package/builtin.mk\" must not be included directly. " +
-			"Include \"../../category/package/buildlink3.mk\" instead.")
-}
-
-func (s *Suite) Test_MkLineChecker_checkInclude__buildlink3_mk_includes_builtin_mk(c *check.C) {
+// A buildlink3.mk file may include its corresponding builtin.mk file directly.
+func (s *Suite) Test_MkLineChecker_checkIncludeBuiltin__buildlink3_mk(c *check.C) {
 	t := s.Init(c)
 
 	t.SetUpPkgsrc()
@@ -467,14 +477,15 @@ func (s *Suite) Test_MkLineChecker_checkInclude__buildlink3_mk_includes_builtin_
 	t.CheckOutputEmpty()
 }
 
-func (s *Suite) Test_MkLineChecker_checkInclude__builtin_mk_rationale(c *check.C) {
+func (s *Suite) Test_MkLineChecker_checkIncludeBuiltin__rationale(c *check.C) {
 	t := s.Init(c)
 
 	t.SetUpPackage("category/package",
 		"# I have good reasons for including this file directly.",
 		".include \"../../category/package/builtin.mk\"",
 		"",
-		".include \"../../category/package/builtin.mk\"")
+		".include \"../../category/package/builtin.mk\"",
+		".include \"../../category/package/builtin.mk\" # intentionally included directly")
 	t.CreateFileLines("category/package/builtin.mk",
 		MkCvsID)
 	t.FinishSetUp()
@@ -703,13 +714,14 @@ func (s *Suite) Test_MkLineChecker_CheckRelativePkgdir(c *check.C) {
 
 	t.CreateFileLines("other/package/Makefile")
 
-	test := func(relativePkgdir RelPath, diagnostics ...string) {
+	test := func(relativePkgdir PackagePath, diagnostics ...string) {
 		// Must be in the filesystem because of directory references.
 		mklines := t.SetUpFileMkLines("category/package/Makefile",
 			"# dummy")
 
 		checkRelativePkgdir := func(mkline *MkLine) {
-			MkLineChecker{mklines, mkline}.CheckRelativePkgdir(relativePkgdir)
+			ck := MkLineChecker{mklines, mkline}
+			ck.CheckRelativePkgdir(relativePkgdir.AsRelPath(), relativePkgdir)
 		}
 
 		mklines.ForEach(checkRelativePkgdir)
@@ -850,7 +862,7 @@ func (s *Suite) Test_MkLineChecker_checkDirectiveEnd__ending_comments(c *check.C
 		"WARN: opsys.mk:9: Comment \"MACHINE_ARCH\" does not match condition \"${OS_VERSION:M8.*}\" in line 8.",
 		"WARN: opsys.mk:10: Comment \"OS_VERSION\" does not match condition \"${MACHINE_ARCH} == x86_64\" in line 7.",
 		"WARN: opsys.mk:12: Comment \"j\" does not match loop \"i in 1 2 3 4 5\" in line 5.",
-		"WARN: opsys.mk:14: Unknown option \"option\".",
+		"WARN: opsys.mk:14: Undocumented option \"option\".",
 		"WARN: opsys.mk:22: Comment \"NetBSD\" does not match condition \"${OPSYS} == FreeBSD\" in line 21.",
 		"WARN: opsys.mk:26: Comment \"ii\" does not match loop \"jj in 1 2\" in line 25.")
 }

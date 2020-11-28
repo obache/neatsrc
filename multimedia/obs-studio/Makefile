@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.7 2019/12/29 06:44:27 ryoon Exp $
+# $NetBSD: Makefile,v 1.25 2020/10/01 19:54:32 nia Exp $
 
-DISTNAME=	obs-studio-24.0.5
+DISTNAME=	obs-studio-26.0.0
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=obsproject/}
 
-MAINTAINER=	nia@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://obsproject.com/
 COMMENT=	Video recording and live streaming software
 LICENSE=	gnu-gpl-v2
@@ -14,7 +14,6 @@ USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c gnu++11
 
 CMAKE_ARGS+=	-DDISABLE_LIBFDK=BOOL:ON
-CMAKE_ARGS+=	-DDISABLE_VLC=BOOL:ON
 
 TOOL_DEPENDS+=	swig3>=3.0:../../devel/swig3
 
@@ -37,9 +36,17 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 .  include "../../graphics/libv4l/buildlink3.mk"
 .endif
 .include "../../graphics/MesaLib/buildlink3.mk"
-.include "../../lang/LuaJIT2/buildlink3.mk"
+.include "../../lang/LuaJIT2/platform.mk"
+PLIST_VARS+=	lua
+.if !empty(PLATFORM_SUPPORTS_LUAJIT:M[Yy][Ee][Ss])
+PLIST.lua=	yes
+.  include "../../lang/LuaJIT2/buildlink3.mk"
+.else
+CMAKE_ARGS+=	-DDISABLE_LUA=ON
+.endif
 .include "../../lang/python/pyversion.mk"
 .include "../../multimedia/ffmpeg4/buildlink3.mk"
+.include "../../multimedia/vlc/buildlink3.mk"
 .include "../../multimedia/x264-devel/buildlink3.mk"
 .include "../../security/mbedtls/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"

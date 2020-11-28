@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2017/10/17 08:53:41 wiz Exp $
+# $NetBSD: Makefile,v 1.18 2020/03/20 11:58:35 nia Exp $
 
 DISTNAME=	cgi.tcl
 PKGNAME=	tcl-cgi-1.3.0

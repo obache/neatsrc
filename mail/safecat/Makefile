@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2017/09/04 18:00:57 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2020/06/25 05:42:37 schmonz Exp $
 #
 
 DISTNAME=		safecat-1.13

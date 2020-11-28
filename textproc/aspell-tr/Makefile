@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2017/09/16 19:27:16 wiz Exp $
+# $NetBSD: Makefile,v 1.4 2020/03/20 11:58:24 nia Exp $
 #
 
 DISTNAME=	aspell-tr-0.50-0

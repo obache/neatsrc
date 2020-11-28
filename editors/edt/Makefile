@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2019/06/08 10:40:53 rillig Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/20 11:57:34 nia Exp $
 
 DISTNAME=	edt_1.9
 PKGNAME=	${DISTNAME:C:_:-:}

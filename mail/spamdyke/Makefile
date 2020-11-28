@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.38 2019/05/23 19:23:08 rillig Exp $
+# $NetBSD: Makefile,v 1.40 2020/01/26 17:31:36 rillig Exp $
 #
 
 DISTNAME=		spamdyke-5.0.1
-PKGREVISION=		2
+PKGREVISION=		3
 CATEGORIES=		mail
 MASTER_SITES=		${HOMEPAGE}releases/
 EXTRACT_SUFX=		.tgz
 
 MAINTAINER=		schmonz@NetBSD.org
-HOMEPAGE=		http://www.spamdyke.org/
+HOMEPAGE=		https://www.spamdyke.org/
 COMMENT=		Filters incoming SMTP connections to qmail
 LICENSE=		gnu-gpl-v2
 

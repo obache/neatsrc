@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.13 2019/08/11 13:18:50 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2020/09/08 13:16:34 wiz Exp $
 
-DISTNAME=	AnyEvent-RabbitMQ-1.19
+DISTNAME=	AnyEvent-RabbitMQ-1.22
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	2
 CATEGORIES=	devel
-MASTER_SITES=	http://search.cpan.org/CPAN/authors/id/D/DL/DLAMBLEY/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/D/DL/DLAMBLEY/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://metacpan.org/release/AnyEvent-RabbitMQ
@@ -14,11 +13,13 @@ LICENSE=	${PERL5_LICENSE}
 DEPENDS+=	p5-AnyEvent-[0-9]*:../../devel/p5-AnyEvent
 DEPENDS+=	p5-Devel-GlobalDestruction-[0-9]*:../../devel/p5-Devel-GlobalDestruction
 DEPENDS+=	p5-File-ShareDir-[0-9]*:../../devel/p5-File-ShareDir
+DEPENDS+=	p5-File-ShareDir-Install-[0-9]*:../../devel/p5-File-ShareDir-Install
 DEPENDS+=	p5-List-MoreUtils-[0-9]*:../../devel/p5-List-MoreUtils
 DEPENDS+=	p5-Net-AMQP>=0.06:../../net/p5-Net-AMQP
 DEPENDS+=	p5-Readonly-[0-9]*:../../devel/p5-Readonly
 DEPENDS+=	p5-XML-LibXML>=2:../../textproc/p5-XML-LibXML
 DEPENDS+=	p5-namespace-clean-[0-9]*:../../devel/p5-namespace-clean
+TEST_DEPENDS+=	p5-Test-Exception-[0-9]*:../../devel/p5-Test-Exception
 
 EXTRACT_USING=	bsdtar
 MAKE_ENV+=	PERL_USE_UNSAFE_INC=1

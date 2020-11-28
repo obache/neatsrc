@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.5 2017/11/26 10:50:00 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2020/05/22 10:56:45 adam Exp $
 
 DISTNAME=	litmus-0.13
-PKGREVISION=	2
+PKGREVISION=	5
 CATEGORIES=	www
 #MASTER_SITES=	http://www.webdav.org/neon/litmus/
 
@@ -13,9 +13,8 @@ LICENSE=	gnu-gpl-v2
 USE_LIBTOOL=		yes
 USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-ssl=openssl
+CONFIGURE_ARGS+=	--without-ssl
 
-.include "../../security/openssl/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../www/neon/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.14 2019/12/14 02:56:26 nia Exp $
+$NetBSD: distinfo,v 1.16 2020/07/07 09:45:03 nia Exp $
 
-SHA1 (fribidi-1.0.8.tar.bz2) = 0489f1f9b6e19fd3060ee4da36e7e5f7b8ad21c9
-RMD160 (fribidi-1.0.8.tar.bz2) = 5b561745a5070afc2450f4d257de1e12bfd9f296
-SHA512 (fribidi-1.0.8.tar.bz2) = d66b1524b26d227fd6a628f438efb875c023ae3be708acaaad11f1f62d0902de0a5f57124458291ef2b0fcd89356c52ab8ae5559b0b5a93fa435b92f1d098ba2
-Size (fribidi-1.0.8.tar.bz2) = 2077095 bytes
+SHA1 (fribidi-1.0.10.tar.xz) = e22d6cf070966d2735b8e1a6d961a87f1e828a99
+RMD160 (fribidi-1.0.10.tar.xz) = 9ef85285d802bc197d31a0b73519cb02e602cade
+SHA512 (fribidi-1.0.10.tar.xz) = cb51920012c3c7507c17e2beb1dbbcfb8d7c6404e4cb54b260a332754a0d5b103d8834d77e8795651b3f38069c9bd2e9914c21b001411a72f9ffe1ec1ef2f360
+Size (fribidi-1.0.10.tar.xz) = 1147588 bytes

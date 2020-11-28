@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.9 2019/08/11 13:22:16 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2020/09/08 13:16:42 wiz Exp $
 
 DISTNAME=	Net-AMQP-0.06
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	net
-MASTER_SITES=	http://search.cpan.org/CPAN/authors/id/C/CH/CHIPS/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/C/CH/CHIPS/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://metacpan.org/release/Net-AMQP

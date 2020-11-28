@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.35 2018/11/12 16:10:29 jaapb Exp $
+# $NetBSD: Makefile,v 1.37 2020/03/20 11:58:35 nia Exp $
 
 DISTNAME=		swiftsurf-1.2.5
 PKGREVISION=		19

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.23 2018/01/26 13:40:17 jperkin Exp $
+# $NetBSD: Makefile,v 1.25 2020/02/08 17:21:14 fcambus Exp $
 
 DISTNAME=	postal-0.70
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://www.coker.com.au/postal/
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	david@silicium.ath.cx
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.coker.com.au/postal/
 COMMENT=	Tool for benchmarking SMTP/POP servers
 LICENSE=	gnu-gpl-v3

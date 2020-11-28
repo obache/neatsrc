@@ -1,4 +1,4 @@
-# $NetBSD: NetBSD.mk,v 1.58 2019/01/09 13:19:03 wiz Exp $
+# $NetBSD: NetBSD.mk,v 1.60 2020/03/22 21:17:30 joerg Exp $
 #
 # Variable definitions for the NetBSD operating system.
 
@@ -12,6 +12,9 @@ PKGLOCALEDIR?=	share
 PS?=		/bin/ps
 SU?=		/usr/bin/su
 TYPE?=		type				# Shell builtin
+
+# pax-as-tar, found on <=8, and optionally later, fails on many archives.
+EXTRACT_USING?=	bsdtar
 
 USERADD?=	/usr/sbin/useradd
 GROUPADD?=	/usr/sbin/groupadd
@@ -33,10 +36,11 @@ PKG_TOOLS_BIN?=		${PKG_TOOLS_BIN_cmd:sh}
 ROOT_CMD?=		${SU} - root -c
 ROOT_USER?=		root
 ROOT_GROUP?=	wheel
-ULIMIT_CMD_datasize?=	ulimit -d `ulimit -H -d`
-ULIMIT_CMD_stacksize?=	ulimit -s `ulimit -H -s`
-ULIMIT_CMD_memorysize?=	ulimit -m `ulimit -H -m`
-ULIMIT_CMD_cputime?=	ulimit -t `ulimit -H -t`
+ULIMIT_CMD_virtualsize?=	ulimit -v `ulimit -H -v`
+ULIMIT_CMD_datasize?=		ulimit -d `ulimit -H -d`
+ULIMIT_CMD_stacksize?=		ulimit -s `ulimit -H -s`
+ULIMIT_CMD_memorysize?=		ulimit -m `ulimit -H -m`
+ULIMIT_CMD_cputime?=		ulimit -t `ulimit -H -t`
 
 # Native X11 is only supported on NetBSD-5 and later.
 # On NetBSD-5, native X11 has enough issues that we default

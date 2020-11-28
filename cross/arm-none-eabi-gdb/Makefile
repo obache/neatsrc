@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2019/06/08 10:53:26 rillig Exp $
+# $NetBSD: Makefile,v 1.5 2020/05/28 15:31:43 rillig Exp $
 
 DISTNAME=	gdb-7.10
 PKGNAME=	cross-arm-none-eabi-${DISTNAME}
@@ -14,6 +14,7 @@ LICENSE=	gnu-gpl-v3
 ARMELF_PREFIX=	${PREFIX}/cross-arm-none-eabi
 
 USE_TOOLS+=	gmake makeinfo
+TOOLS_BROKEN+=	perl # used in do-install for texi2pod
 GNU_CONFIGURE=	yes
 
 OBJDIR=			../build
@@ -24,6 +25,10 @@ GNU_CONFIGURE_PREFIX=	${ARMELF_PREFIX}
 CONFIGURE_ARGS+=	--disable-werror --target=arm-none-eabi
 CONFIGURE_ARGS+=	--disable-nls
 INFO_FILES=		yes
+
+# Uses all kinds of bashisms but is only needed for testing.
+# If ever necessary, this should be fixed using REPLACE_BASH.
+CHECK_PORTABILITY_SKIP+=	sim/testsuite/sim/bfin/run-tests.sh
 
 .include "../../mk/bsd.prefs.mk"
 

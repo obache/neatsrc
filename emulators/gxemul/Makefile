@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.67 2019/08/23 13:13:49 ryoon Exp $
+# $NetBSD: Makefile,v 1.69 2020/10/07 13:25:20 ryoon Exp $
 
 DISTNAME=	gxemul-0.6.2
+PKGREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=gxemul/}
 
@@ -25,6 +26,7 @@ do-install:
 .for f in README HISTORY LICENSE
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 .endfor
+	${RM} ${WRKSRC}/doc/networking.html.orig
 	cd ${WRKSRC}/doc && pax -rwppm . ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.gxemul

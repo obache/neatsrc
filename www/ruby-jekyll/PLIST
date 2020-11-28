@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.14 2019/10/05 05:10:12 ryoon Exp $
+@comment $NetBSD: PLIST,v 1.16 2020/08/14 04:49:21 ryoon Exp $
 bin/jekyll${RUBY_SUFFIX}
 ${GEM_HOME}/cache/${GEM_NAME}.gem
 ${GEM_LIBDIR}/.rubocop.yml
@@ -55,6 +55,7 @@ ${GEM_LIBDIR}/lib/jekyll/filters/url_filters.rb
 ${GEM_LIBDIR}/lib/jekyll/frontmatter_defaults.rb
 ${GEM_LIBDIR}/lib/jekyll/generator.rb
 ${GEM_LIBDIR}/lib/jekyll/hooks.rb
+${GEM_LIBDIR}/lib/jekyll/inclusion.rb
 ${GEM_LIBDIR}/lib/jekyll/layout.rb
 ${GEM_LIBDIR}/lib/jekyll/liquid_extensions.rb
 ${GEM_LIBDIR}/lib/jekyll/liquid_renderer.rb
@@ -63,10 +64,12 @@ ${GEM_LIBDIR}/lib/jekyll/liquid_renderer/table.rb
 ${GEM_LIBDIR}/lib/jekyll/log_adapter.rb
 ${GEM_LIBDIR}/lib/jekyll/mime.types
 ${GEM_LIBDIR}/lib/jekyll/page.rb
+${GEM_LIBDIR}/lib/jekyll/page_excerpt.rb
 ${GEM_LIBDIR}/lib/jekyll/page_without_a_file.rb
 ${GEM_LIBDIR}/lib/jekyll/path_manager.rb
 ${GEM_LIBDIR}/lib/jekyll/plugin.rb
 ${GEM_LIBDIR}/lib/jekyll/plugin_manager.rb
+${GEM_LIBDIR}/lib/jekyll/profiler.rb
 ${GEM_LIBDIR}/lib/jekyll/publisher.rb
 ${GEM_LIBDIR}/lib/jekyll/reader.rb
 ${GEM_LIBDIR}/lib/jekyll/readers/collection_reader.rb

@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.9 2018/09/23 16:05:28 taca Exp $
+$NetBSD: distinfo,v 1.11 2020/09/14 14:02:14 taca Exp $
 
-SHA1 (bcrypt-3.1.12.gem) = 1df8f30b414c3d53dc3b052b5bdee6ec320649be
-RMD160 (bcrypt-3.1.12.gem) = 989ca6032648a4387c1342b13ff0787cfa24418c
-SHA512 (bcrypt-3.1.12.gem) = 1cb465bc00e40c82c7b9789cf5ba96273a455f4c1c993f411a9b80d39aa9c938e4909a094ca92af786ad3cd836eebac2aefcbe1bb29c6238947e55fcdc110d35
-Size (bcrypt-3.1.12.gem) = 44544 bytes
+SHA1 (bcrypt-3.1.16.gem) = 8b827c4f22fb84a0a2c8a1a64dd60ad4fa7314bf
+RMD160 (bcrypt-3.1.16.gem) = d556e0368e3288b50a2a882b27bf2edd2a0e67f3
+SHA512 (bcrypt-3.1.16.gem) = 655483d73347c20f3b04a24d625cde05fd8e1da6f022363fbb2df828aea0623cb5b4981d97791301dcd83edc2719a2238d8d377af1558ca2ce4b3c8ade9bd343
+Size (bcrypt-3.1.16.gem) = 54272 bytes

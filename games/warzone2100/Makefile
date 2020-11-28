@@ -1,50 +1,71 @@
-# $NetBSD: Makefile,v 1.29 2019/11/03 19:28:48 rillig Exp $
-#
+# $NetBSD: Makefile,v 1.41 2020/08/18 17:57:59 leot Exp $
 
-DISTNAME=	warzone2100-3.2.3
-PKGREVISION=	3
+DISTNAME=	warzone2100_src
+PKGNAME=	warzone2100-3.4.1
+PKGREVISION=	2
 CATEGORIES=	games
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=warzone2100/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=Warzone2100/}
+GITHUB_RELEASE=	${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://wz2100.net/
+HOMEPAGE=	https://wz2100.net/
 COMMENT=	Real-time strategy and real-time tactics hybrid computer game
 LICENSE=	gnu-gpl-v2
 
-BUILD_DEPENDS+=	asciidoc-[0-9]*:../../textproc/asciidoc
-DEPENDS+=	dejavu-ttf-[0-9]*:../../fonts/dejavu-ttf
-
-GNU_CONFIGURE=	yes
+USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
-USE_TOOLS+=	pkg-config bison msgfmt intltool gmake gawk flex unzip zip
-FLEX_REQD=	2.5.35
+USE_TOOLS+=	pkg-config zip
+USE_TOOLS+=	msgfmt msgmerge xgettext
+
+.include "../../lang/ruby/rubyversion.mk"
+BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-asciidoctor>=1.5.3:../../textproc/ruby-asciidoctor
+
+# Could NOT find Gettext: Found unsuitable version "0.16.1", but
+# required is at least "0.18"
+_TOOLS_USE_PKGSRC.msgfmt=	yes
+_TOOLS_USE_PKGSRC.msgmerge=	yes
+_TOOLS_USE_PKGSRC.xgettext=	yes
 
 .include "../../games/warzone2100/options.mk"
 
-CONFIGURE_ARGS+=	--with-distributor=pkgsrc
+WRKSRC=		${WRKDIR}/warzone2100
+CONFIGURE_DIRS=	build
+CMAKE_ARG_PATH=	${WRKSRC}
 
+CMAKE_ARGS+=		-DCMAKE_MAKE_PROGRAM=${MAKE_PROGRAM} -DWZ_DISTRIBUTOR=pkgsrc
+
+CFLAGS.NetBSD+=		-D_NETBSD_SOURCE
 LDFLAGS.DragonFly=	-lX11 -lintl
 
-post-build:
-	cd ${WRKSRC}/po && ${SETENV} ${MAKE_ENV} ${MAKE} update-gmo
+BUILDLINK_TRANSFORM+=	rm:-Werror
+
+pre-configure:
+	${RUN}${MKDIR} ${WRKSRC}/build
 
 .include "../../audio/openal-soft/buildlink3.mk"
 .include "../../audio/libvorbis/buildlink3.mk"
 .include "../../converters/fribidi/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
+BUILDLINK_API_DEPENDS.gettext+=		gettext>=0.18
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/physfs/buildlink3.mk"
 .include "../../devel/popt/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"
 .include "../../fonts/harfbuzz/buildlink3.mk"
+BUILDLINK_API_DEPENDS.freetype2+=	freetype2>=2.10.2
 .include "../../graphics/freetype2/buildlink3.mk"
+BUILDLINK_API_DEPENDS.glew+=		glew>=1.5.2
 .include "../../graphics/glew/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/quesoglc/buildlink3.mk"
 .include "../../multimedia/libtheora/buildlink3.mk"
+.include "../../net/miniupnpc/buildlink3.mk"
+BUILDLINK_API_DEPENDS.libsodium+=	libsodium>=1.0.13
+.include "../../security/libsodium/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
+.include "../../www/curl/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtscript/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

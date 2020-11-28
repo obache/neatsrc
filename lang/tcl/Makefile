@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.107 2019/12/05 11:23:44 jperkin Exp $
+# $NetBSD: Makefile,v 1.112 2020/06/02 08:24:13 adam Exp $
 
 DISTNAME=	tcl${TCL_VERSION}-src
 PKGNAME=	tcl-${TCL_VERSION}
@@ -7,7 +7,7 @@ CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=tcl/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tcl.tk/
+HOMEPAGE=	https://www.tcl.tk/
 COMMENT=	Tool Command Language, a dynamic language
 LICENSE=	2-clause-bsd
 
@@ -76,6 +76,9 @@ post-build:
 	install_name_tool -id ${PREFIX}/lib/${lib} ${WRKSRC}/unix/pkgs/${lib}
 .  endfor
 .endif
+
+post-install:
+	cd ${DESTDIR}${PREFIX}/${PKGMANDIR}/man3 && mv Thread.3 Tcl_Thread.3
 
 BUILDLINK_API_DEPENDS.sqlite3+= sqlite3>=${SQLITE3_VERSION}
 .include "../../databases/sqlite3/buildlink3.mk"

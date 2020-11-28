@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.48 2019/06/08 10:40:59 rillig Exp $
+# $NetBSD: Makefile,v 1.51 2020/08/17 20:18:36 leot Exp $
 #
 
 DISTNAME=	vigor-0.016
-PKGREVISION=	14
+PKGREVISION=	15
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=vigor/}
 

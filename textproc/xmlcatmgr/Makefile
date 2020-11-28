@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.35 2014/10/09 14:07:07 wiz Exp $
+# $NetBSD: Makefile,v 1.37 2020/03/20 11:58:30 nia Exp $
 #
 
 DISTNAME=	xmlcatmgr-2.2

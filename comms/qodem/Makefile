@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2019/08/22 20:22:32 fcambus Exp $
+# $NetBSD: Makefile,v 1.3 2020/01/26 05:26:18 rillig Exp $
 
 DISTNAME=	qodem-1.0.0
 CATEGORIES=	comms

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.71 2019/10/07 09:28:11 prlw1 Exp $
+# $NetBSD: Makefile,v 1.77 2020/08/18 17:57:47 leot Exp $
 
-PKGREVISION= 3
+PKGREVISION= 8
 .include "../../emulators/snes9x/Makefile.common"
 
 PKGNAME=	snes9x-gtk-${SNES9X_VERSION}
@@ -14,9 +14,6 @@ USE_TOOLS+=	gawk
 
 CONFIGURE_DIRS=	gtk
 
-MESON_ARGS+=	-Dsystem-zip=false
-MESON_ARGS+=	-Dportaudio=false
-
 BUILD_DEPENDS+=	gettext-m4-[0-9]*:../../devel/gettext-m4
 
 .include "../../mk/oss.buildlink3.mk"
@@ -27,12 +24,17 @@ SUBST_STAGE.oss=	pre-configure
 SUBST_MESSAGE.oss=	Correct path to OSS device.
 SUBST_FILES.oss+=	gtk/src/gtk_sound_driver_oss.cpp
 SUBST_SED.oss=		-e "s,/dev/dsp,${DEVOSSAUDIO},g"
+LDFLAGS+=		${LIBOSSAUDIO}
+MESON_ARGS+=		-Doss=true
+.else
+MESON_ARGS+=		-Doss=false
 .endif
 
 LDFLAGS.SunOS+=		-lsocket -lnsl
 
 .include "options.mk"
 .include "../../devel/meson/build.mk"
+.include "../../archivers/minizip/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/SDL2/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"

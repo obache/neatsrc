@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.30 2019/09/18 14:17:18 ryoon Exp $
+# $NetBSD: Makefile,v 1.39 2020/08/18 17:58:16 leot Exp $
 
 DISTNAME=	otter-browser-1.0.01
-PKGREVISION=	1
+PKGREVISION=	9
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=OtterBrowser/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://otter-browser.org/
+HOMEPAGE=	https://otter-browser.org/
 COMMENT=	Project aiming to recreate classic Opera (12.x) UI using Qt5
 LICENSE=	gnu-gpl-v3
 

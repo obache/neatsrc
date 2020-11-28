@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.3 2015/11/02 23:57:23 agc Exp $
+$NetBSD: distinfo,v 1.5 2020/08/30 21:35:53 tnn Exp $
 
-SHA1 (gr-osmosdr-0.1.4.tar.gz) = 672041a6ffa767d39ffad2432e2a13c11e3ec984
-RMD160 (gr-osmosdr-0.1.4.tar.gz) = 30f97d10655e5a88fdf2bf43a323ea9d9aba0479
-SHA512 (gr-osmosdr-0.1.4.tar.gz) = b364f95c140ba61ab1fc51c49fd01cf4d0db4ce3c3a7680f34ea13bc646820d9b2b860bc0438df83df942249fa959cb90f83c5d117737cd0818db35c27253e65
-Size (gr-osmosdr-0.1.4.tar.gz) = 222961 bytes
+SHA1 (gr-osmosdr-0.2.2.tar.gz) = c0efb6d33735d2a2b4c71cb2575d97d0c6343365
+RMD160 (gr-osmosdr-0.2.2.tar.gz) = 7adbc7ac56eb013bde8236599e0ae2ee797837e7
+SHA512 (gr-osmosdr-0.2.2.tar.gz) = 42aef6efd35fd9184a371202398455de7cac3a88374e761359ab837a329495b653a95f5641f0a9533daeaa08c0d7fd5649b1b33359009dd4e8a3b9b24aedd2af
+Size (gr-osmosdr-0.2.2.tar.gz) = 251425 bytes

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.28 2018/07/18 00:06:11 joerg Exp $
+# $NetBSD: Makefile,v 1.30 2020/01/26 05:26:14 rillig Exp $
 #
 
 DISTNAME=		splay-0.8.2

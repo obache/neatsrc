@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2015/06/04 21:56:48 youri Exp $
+# $NetBSD: Makefile,v 1.4 2020/03/20 11:58:01 nia Exp $
 
 DISTNAME=	cw-1.0.16
 CATEGORIES=	misc

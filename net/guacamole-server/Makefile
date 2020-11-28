@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.21 2019/10/07 11:12:32 jperkin Exp $
+# $NetBSD: Makefile,v 1.29 2020/08/31 18:10:34 wiz Exp $
 
 DISTNAME=	guacamole-server-1.0.0
-PKGREVISION=	2
+PKGREVISION=	9
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_APACHE:=guacamole/${PKGVERSION_NOREV}/source/}
 
 MAINTAINER=	jperkin@joyent.com
-HOMEPAGE=	http://guacamole.incubator.apache.org/
+HOMEPAGE=	https://guacamole.incubator.apache.org/
 COMMENT=	Clientless remote desktop gateway
 LICENSE=	apache-2.0
 

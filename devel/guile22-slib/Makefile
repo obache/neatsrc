@@ -1,7 +1,9 @@
-# $NetBSD: Makefile,v 1.1 2018/01/16 13:33:32 wiz Exp $
+# $NetBSD: Makefile,v 1.4 2020/03/08 16:49:13 wiz Exp $
 
-DISTNAME=	guile-slib-3.2.5
+SLIBVERSION=	3.2.6
+DISTNAME=	guile-slib-${SLIBVERSION}
 PKGNAME=	${DISTNAME:S/guile/guile22/}
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -10,7 +12,7 @@ MAINTAINER=	gdt@NetBSD.org
 HOMEPAGE=	http://swissnet.ai.mit.edu/~jaffer/SLIB.html
 COMMENT=	SLIB glue files for guile
 
-DEPENDS+=	slib>=3.2.5nb1:../../devel/slib
+DEPENDS+=	slib>=${SLIBVERSION}:../../devel/slib
 
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}

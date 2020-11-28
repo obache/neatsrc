@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2018/01/18 08:43:40 adam Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/29 08:56:54 adam Exp $
 
-DISTNAME=	email_validator-1.0.2
+DISTNAME=	email_validator-1.1.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	mail python
 MASTER_SITES=	${MASTER_SITE_PYPI:=e/email_validator/}
@@ -17,7 +17,7 @@ USE_LANGUAGES=	# none
 
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && \
-	${MV} email_validator email_validator${PYVERSSUFFIX} || ${TRUE}
+	${MV} email_validator email_validator-${PYVERSSUFFIX} || ${TRUE}
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

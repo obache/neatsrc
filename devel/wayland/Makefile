@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2020/01/05 22:05:29 nia Exp $
+# $NetBSD: Makefile,v 1.9 2020/06/02 08:23:42 adam Exp $
 
-DISTNAME=	wayland-1.17.0
-PKGREVISION=	4
+DISTNAME=	wayland-1.18.0
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://wayland.freedesktop.org/releases/
 EXTRACT_SUFX=	.tar.xz
@@ -21,8 +21,14 @@ USE_LANGUAGES=	c c++
 
 CONFIGURE_ARGS+=	--disable-documentation
 
+# No support in the kernel yet, always fails.
+# Make sure wayland falls back to ftruncate.
+CONFIGURE_ENV.NetBSD+=	ac_cv_func_posix_fallocate=no
+
+PKGCONFIG_OVERRIDE+=	cursor/wayland-cursor.pc.in
+PKGCONFIG_OVERRIDE+=	egl/wayland-egl-backend.pc.in
+PKGCONFIG_OVERRIDE+=	egl/wayland-egl.pc.in
 PKGCONFIG_OVERRIDE+=	src/wayland-client.pc.in
-PKGCONFIG_OVERRIDE+=	src/wayland-cursor.pc.in
 PKGCONFIG_OVERRIDE+=	src/wayland-scanner.pc.in
 PKGCONFIG_OVERRIDE+=	src/wayland-server.pc.in
 

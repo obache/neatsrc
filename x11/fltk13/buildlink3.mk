@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.13 2019/11/03 09:14:08 rillig Exp $
+# $NetBSD: buildlink3.mk,v 1.16 2020/08/17 20:17:49 leot Exp $
 
 BUILDLINK_TREE+=	fltk
 
@@ -6,16 +6,15 @@ BUILDLINK_TREE+=	fltk
 FLTK_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.fltk+=	fltk>=1.3.0
-BUILDLINK_ABI_DEPENDS.fltk?=	fltk>=1.3.3nb4
+BUILDLINK_ABI_DEPENDS.fltk?=	fltk>=1.3.5nb1
 BUILDLINK_PKGSRCDIR.fltk?=	../../x11/fltk13
 BUILDLINK_FILES.fltk+=		include/Fl/*
 
 pkgbase := fltk
-.include "../../mk/bsd.fast.prefs.mk"
 .include "../../mk/pkg-build-options.mk"
 
 # For "opengl" option
-.if !empty(PKG_BUILD_OPTIONS.fltk:Mopengl)
+.if ${PKG_BUILD_OPTIONS.fltk:Mopengl}
 .  if ${OPSYS} != "Darwin"
 .    include "../../graphics/MesaLib/buildlink3.mk"
 .    include "../../graphics/glu/buildlink3.mk"
@@ -23,6 +22,7 @@ pkgbase := fltk
 .endif
 
 .if ${OPSYS} != "Darwin"
+.  include "../../x11/libXcursor/buildlink3.mk"
 .  include "../../x11/libXext/buildlink3.mk"
 .  include "../../x11/libXft/buildlink3.mk"
 .  include "../../x11/libXinerama/buildlink3.mk"

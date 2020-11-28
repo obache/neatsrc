@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:32:17 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:51 markd Exp $
 
 DISTNAME=	ocr-b-outline
 PKGNAME=	tex-${DISTNAME}-2014
+PKGREVISION=	1
 TEXLIVE_REV=	20969
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/ocr-b-outline
+HOMEPAGE=	https://ctan.org/pkg/ocr-b-outline
 COMMENT=	OCR-B fonts in Type 1 and OpenType
 #LICENSE=	other-free
 

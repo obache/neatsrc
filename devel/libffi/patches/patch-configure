@@ -1,0 +1,15 @@
+$NetBSD: patch-configure,v 1.2 2020/04/24 10:19:32 dsainty Exp $
+
+Add NetBSD support.
+
+--- configure.orig	2019-11-23 13:59:04.000000000 +0000
++++ configure
+@@ -18483,7 +18483,7 @@ case "$target" in
+ $as_echo "#define FFI_EXEC_TRAMPOLINE_TABLE 1" >>confdefs.h
+ 
+      ;;
+-     *-apple-* | *-*-freebsd* | *-*-kfreebsd* | *-*-openbsd* | *-pc-solaris* | *-linux-android*)
++     *-apple-* | *-*-freebsd* | *-*-kfreebsd* | *-*-netbsd* |  *-*-openbsd* | *-pc-solaris* | *-linux-android*)
+ 
+ $as_echo "#define FFI_MMAP_EXEC_WRIT 1" >>confdefs.h
+ 

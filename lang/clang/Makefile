@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.54 2019/12/29 15:31:22 adam Exp $
+# $NetBSD: Makefile,v 1.60 2020/08/31 18:09:47 wiz Exp $
 
+PKGREVISION= 1
 .include "Makefile.common"
 
 PKGNAME=	${DISTNAME:S/.src//}
 
-CMAKE_ARGS+=	-DCLANG_ENABLE_STATIC_ANALYZER=OFF
-
 PYTHON_FOR_BUILD_ONLY=	yes
+
+USE_TOOLS+=	perl:run
 
 # There are some contrib utilities written in python here.
 # We don't want to add a python runtime dependency for that.

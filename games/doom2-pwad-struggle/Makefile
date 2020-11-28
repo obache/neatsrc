@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2019/08/26 16:44:05 micha Exp $
+# $NetBSD: Makefile,v 1.3 2020/09/28 11:05:32 micha Exp $
 
 DISTNAME=		strg
 # Use release date from STRG.txt as package version
@@ -7,9 +7,10 @@ PKGREVISION=		1
 CATEGORIES=		games
 MASTER_SITES=		ftp://ftp.fu-berlin.de/pc/games/idgames/levels/doom2/Ports/megawads/
 MASTER_SITES+=		ftp://mirrors.syringanetworks.net/idgames/levels/doom2/Ports/megawads/
+DIST_SUBDIR=		${PKGNAME_NOREV}
 EXTRACT_SUFX=		.zip
 
-MAINTAINER=		micha@NetBSD.org
+MAINTAINER=		pkgsrc-users@NetBSD.org
 COMMENT=		Doom II mod
 LICENSE=		cc-by-nc-v4.0-license
 

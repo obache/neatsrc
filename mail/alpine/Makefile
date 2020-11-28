@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.43 2019/11/02 16:25:17 rillig Exp $
+# $NetBSD: Makefile,v 1.46 2020/05/15 17:25:11 bsiegert Exp $
 
-DISTNAME=	alpine-2.21
+DISTNAME=	alpine-2.22
 CATEGORIES=	mail
 MASTER_SITES=	http://alpine.x10host.com/alpine/release/src/
 EXTRACT_SUFX=	.tar.xz
@@ -27,10 +27,6 @@ MAKE_JOBS_SAFE=		no
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
 .include "../../mk/bsd.prefs.mk"
-
-.if ${OPSYS} == "NetBSD" && empty(OS_VERSION:M4.99.*) && empty(OS_VERSION:M[5-9]*)
-CONFIGURE_ARGS+=	--without-pthread
-.endif
 
 # mach/mach.h defines panic, differently.
 SUBST_CLASSES.Darwin+=	panic

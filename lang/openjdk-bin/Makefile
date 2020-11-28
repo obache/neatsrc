@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.3 2019/05/01 05:39:30 ryoon Exp $
+# $NetBSD: Makefile,v 1.6 2020/09/15 20:09:00 ryoon Exp $
 
-DISTNAME=	openjdk-12.0.1_linux-x64_bin
+DISTNAME=	openjdk-15_linux-x64_bin
 PKGNAME=	${DISTNAME:S/_linux-x64_bin//:S/openjdk-/openjdk-bin-/}
 CATEGORIES=	lang
-MASTER_SITES=	https://download.oracle.com/java/GA/jdk12.0.1/69cfe15208a647278a19ef0990eea691/12/GPL/
+MASTER_SITES=	https://download.java.net/java/GA/jdk15/779bf45e88a44cbd9ea6621d33e33db1/36/GPL/
 
 MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	https://jdk.java.net/
@@ -29,7 +29,7 @@ JAVA_NAME=		openjdk-bin
 JAVA_HOME=		${PREFIX}/java/${JAVA_NAME}
 INSTALLATION_DIRS+=	${JAVA_HOME}
 
-JAVA_WRAPPERS=	jar java javac javadoc javah javap jcmd jhat jps jstack \
+JAVA_WRAPPERS=	jar java javac javadoc javah javap jcmd jhat jmap jps jstack \
 		keytool orbd policytool rmid rmiregistry servertool tnameserv
 
 do-install:

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2019/11/04 21:13:00 rillig Exp $
+# $NetBSD: Makefile,v 1.22 2020/03/20 11:58:19 nia Exp $
 
 VER=		2.6
 DISTNAME=	DenyHosts-${VER}

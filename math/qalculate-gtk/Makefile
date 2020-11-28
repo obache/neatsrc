@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.78 2019/11/20 22:21:02 markd Exp $
+# $NetBSD: Makefile,v 1.88 2020/08/17 20:19:27 leot Exp $
 
 DISTNAME=	qalculate-gtk-3.5.0
+PKGREVISION=	9
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Qalculate/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://qalculate.github.io/
+HOMEPAGE=	https://qalculate.github.io/
 COMMENT=	Modern multi-purpose desktop calculator (GTK version)
 LICENSE=	gnu-gpl-v2
 

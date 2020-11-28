@@ -1,4 +1,4 @@
-<!-- $NetBSD: build.xml,v 1.79 2019/05/05 18:36:05 rillig Exp $ -->
+<!-- $NetBSD: build.xml,v 1.85 2020/06/20 15:25:01 rillig Exp $ -->
 
 <chapter id="build">
   <title>The build process</title>
@@ -210,8 +210,8 @@ DISTFILES=      ${DEFAULT_DISTFILES} additional-files.tar.gz
 DISTFILES=      ${DISTNAME}${EXTRACT_SUFX}
 DISTFILES+=     foo-file.tar.gz
 SITES.foo-file.tar.gz= \
-http://www.somewhere.com/somehow/ \
-http://www.somewhereelse.com/mirror/somehow/
+https://www.somewhere.com/somehow/ \
+https://www.somewhereelse.com/mirror/somehow/
 </programlisting>
 
       <para>When actually fetching the distfiles, each item from
@@ -225,7 +225,7 @@ http://www.somewhereelse.com/mirror/somehow/
       case, the definition would look like:</para>
 
 <programlisting>
-MASTER_SITES=   http://www.example.com/download.cgi?file=
+MASTER_SITES=   https://www.example.com/download.cgi?file=
 </programlisting>
 
       <para> The exception to this rule are URLs starting with a dash.
@@ -241,7 +241,7 @@ MASTER_SITES=   http://www.example.com/download.cgi?file=
 
 <programlisting>
 DISTNAME=       foo-1.0.0
-MASTER_SITES=   -http://www.example.com/archive/v1.0.0.tar.gz
+MASTER_SITES=   -https://www.example.com/archive/v1.0.0.tar.gz
 </programlisting>
 
       <para>There are some predefined values for
@@ -394,12 +394,10 @@ ${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${site}${file} ${FETCH_AFTER_ARGS}
     <varname>PATCH_DIST_ARGS</varname>.  See <xref
     linkend="components.patches"/> for more details.</para>
 
-    <para>By default &man.patch.1; is given special args to make
-    it fail if the patches apply with some lines of fuzz. Please
-    fix (regen) the patches so that they apply cleanly. The
-    rationale behind this is that patches that don't apply cleanly
-    may end up being applied in the wrong place, and cause severe
-    harm there.</para>
+    <para>By default &man.patch.1; is given special arguments to make it
+    fail if the expected text from the patch context is not found in the
+    patched file. If that happens, fix the patch file by comparing it
+    with the actual text in the file to be patched.</para>
 
   </sect1>
 
@@ -451,19 +449,6 @@ ${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${site}${file} ${FETCH_AFTER_ARGS}
       before <literal>-l<replaceable>lib2</replaceable></literal>.
       </para></listitem></varlistentry>
 
-      <varlistentry><term><varname>WRAPPER_TRANSFORM_CMDS</varname></term>
-      <listitem><para>A list of transformation commands. [TODO:
-      investigate further]</para></listitem></varlistentry>
-
-      <!-- These should probably be internal variables
-	   <varlistentry><term><varname>WRAPPEES</varname></term>
-	   <listitem><para></para></listitem></varlistentry>
-	   <varlistentry><term><varname>UNWRAP_PATTERNS</varname></term>
-	   <listitem><para></para></listitem></varlistentry>
-	   <varlistentry><term><varname>UNWRAP_FILES</varname></term>
-	   <listitem><para></para></listitem></varlistentry>
-      -->
-
     </variablelist>
   </sect1>
 
@@ -482,14 +467,19 @@ ${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${site}${file} ${FETCH_AFTER_ARGS}
     invoked by setting <varname>HAS_CONFIGURE</varname> to
     <quote>yes</quote>. If the configure script is a GNU autoconf
     script, you should set <varname>GNU_CONFIGURE</varname> to
-    <quote>yes</quote> instead. What happens in the
-    <emphasis>configure</emphasis> phase is roughly:</para>
+    <quote>yes</quote> instead.</para>
+
+    <para>In the <literal>do-configure</literal> stage, a rough
+    equivalent of the following command is run. See
+    <filename>mk/configure/configure.mk</filename>, target
+    <literal>do-configure-script</literal> for the exact
+    definition.</para>
 
 <programlisting>
-.for d in ${CONFIGURE_DIRS}
-        cd ${WRKSRC} \
-        &amp;&amp; cd ${d} \
-        &amp;&amp; env ${CONFIGURE_ENV} ${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}
+.for dir in ${CONFIGURE_DIRS}
+        cd ${WRKSRC} &amp;&amp; cd ${dir} \
+        &amp;&amp; env ${CONFIGURE_ENV} \
+            ${CONFIG_SHELL} ${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}
 .endfor
 </programlisting>
 
@@ -536,15 +526,15 @@ ${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${site}${file} ${FETCH_AFTER_ARGS}
   <sect1 id="build.build">
     <title>The <emphasis>build</emphasis> phase</title>
 
-    <para>For building a package, a rough equivalent of the
-    following code is executed.</para>
+    <para>For building a package, a rough equivalent of the following
+    code is executed; see <filename>mk/build/build.mk</filename>, target
+    <literal>do-build</literal> for the exact definition.</para>
 
 <programlisting>
-.for d in ${BUILD_DIRS}
-        cd ${WRKSRC} \
-        &amp;&amp; cd ${d} \
+.for dir in ${BUILD_DIRS}
+        cd ${WRKSRC} &amp;&amp; cd ${dir} \
         &amp;&amp; env ${MAKE_ENV} \
-            ${MAKE_PROGRAM} ${BUILD_MAKE_FLAGS} \
+            ${MAKE_PROGRAM} ${MAKE_FLAGS} ${BUILD_MAKE_FLAGS} \
                 -f ${MAKE_FILE} \
                 ${BUILD_TARGET}
 .endfor
@@ -587,19 +577,20 @@ ${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${site}${file} ${FETCH_AFTER_ARGS}
     install the software in public directories, so users can
     access the programs and files.</para>
 
-    <para>In the <emphasis>install</emphasis> phase, a rough
-    equivalent of the following code is executed. Additionally,
-    before and after this code, much magic is performed to do
-    consistency checks, registering the package, and so on.</para>
+    <para>In the <emphasis>install</emphasis> phase, a rough equivalent
+    of the following code is executed; see
+    <filename>mk/install/install.mk</filename>, target
+    <literal>do-install</literal> for the exact definition. Additionally,
+    before and after this code, several consistency checks are run
+    against the files-to-be-installed, see
+    <filename>mk/check/*.mk</filename> for details.</para>
 
 <programlisting>
-.for d in ${INSTALL_DIRS}
-        cd ${WRKSRC} \
-        &amp;&amp; cd ${d} \
-        &amp;&amp; env ${MAKE_ENV} \
-            ${MAKE_PROGRAM} ${INSTALL_MAKE_FLAGS} \
-                -f ${MAKE_FILE} \
-                ${INSTALL_TARGET}
+.for dir in ${INSTALL_DIRS}
+        cd ${WRKSRC} &amp;&amp; cd ${dir} \
+        &amp;&amp; env ${INSTALL_ENV} ${MAKE_ENV} \
+            ${MAKE_PROGRAM} ${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS} \
+                -f ${MAKE_FILE} ${INSTALL_TARGET}
 .endfor
 </programlisting>
 
@@ -732,8 +723,9 @@ ${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${site}${file} ${FETCH_AFTER_ARGS}
 	<term>pre/post-*</term>
 
 	<listitem>
-	  <para>For any of the main targets described in the
-	  previous section, two auxiliary targets exist with
+	  <para>For any of the main targets described in the previous
+	  section (configure, build, install, etc.), two auxiliary
+	  targets exist with
 	  <quote>pre-</quote> and <quote>post-</quote> used as a
 	  prefix for the main target's name.  These targets are
 	  invoked before and after the main target is called,
@@ -741,6 +733,11 @@ ${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${site}${file} ${FETCH_AFTER_ARGS}
 	  performed from a package's Makefile, for example, which
 	  a program's configure script or install target
 	  omitted.</para>
+
+	  <para>About 5% of the pkgsrc packages define their custom
+	  post-extract target, another 5% define pre-configure, and 10%
+	  define post-install. The other pre/post-* targets are defined
+	  even less often.</para>
 	</listitem>
       </varlistentry>
 
@@ -753,8 +750,11 @@ ${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${site}${file} ${FETCH_AFTER_ARGS}
 	  redefine it with the do-* target.  (Note that redefining
 	  the target itself instead of the do-* target is a bad
 	  idea, as the pre-* and post-* targets won't be called
-	  anymore, etc.) You will not usually need to do
-	  this.</para>
+	  anymore, etc.)</para>
+
+	  <para>About 15% of the pkgsrc packages override the default
+	  do-install, the other do-* targets are overridden even less
+	  often.</para>
 	</listitem>
       </varlistentry>
 
@@ -1230,57 +1230,6 @@ ${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${site}${file} ${FETCH_AFTER_ARGS}
 
 	  <para>See <xref linkend="print-PLIST"/> for more
 	  information on this target.</para>
-	</listitem>
-      </varlistentry>
-
-      <varlistentry>
-	<!-- TODO: old bulk build? --> 
-	<term>bulk-package</term>
-
-	<listitem>
-	  <para>Used to do bulk builds. If an appropriate binary
-	  package already exists, no action is taken. If not, this
-	  target will compile, install and package it (and its
-	  depends, if <varname>PKG_DEPENDS</varname> is set
-	  properly. See <xref linkend="bulk"/>).
-	  After creating the binary package, the sources, the
-	  just-installed package and its required packages are
-	  removed, preserving free disk space.</para>
-
-	  <para><emphasis>Beware that this target may deinstall
-	  all packages installed on a system!</emphasis></para>
-	</listitem>
-      </varlistentry>
-
-      <varlistentry>
-	<term>bulk-install</term>
-
-	<listitem>
-	  <para>Used during bulk-installs to install required
-	  packages. If an up-to-date binary package is available,
-	  it will be installed via &man.pkg.add.1;. If not,
-	  <command>make bulk-package</command> will be executed,
-	  but the installed binary won't be removed.</para>
-
-	  <para>A binary package is considered
-	  <quote>up-to-date</quote> to be installed via
-	  &man.pkg.add.1; if:</para>
-
-	  <itemizedlist>
-	    <listitem>
-	      <para>None of the package's files
-	      (<filename>Makefile</filename>, ...) were modified
-	      since it was built.</para>
-	    </listitem>
-
-	    <listitem>
-	      <para>None of the package's required (binary)
-	      packages were modified since it was built.</para>
-	    </listitem>
-	  </itemizedlist>
-
-	  <para><emphasis>Beware that this target may deinstall
-	  all packages installed on a system!</emphasis></para>
 	</listitem>
       </varlistentry>
     </variablelist>

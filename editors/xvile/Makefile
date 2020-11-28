@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.75 2019/08/11 13:20:57 wiz Exp $
+# $NetBSD: Makefile,v 1.77 2020/08/31 18:09:27 wiz Exp $
 
-DISTNAME=		vile-9.8t
+DISTNAME=		vile-9.8u
 PKGNAME=		x${DISTNAME}
 PKGREVISION=		1
 CATEGORIES=		editors
@@ -46,6 +46,7 @@ CONFIGURE_ARGS+=	--with-xpm
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/perl/vileget 			\
 		${DESTDIR}${PREFIX}/bin/xvileget
+	${RM} -f ${DESTDIR}${PREFIX}/bin/vileget
 	${INSTALL_DATA_DIR} ${DESTDIR}${EGDIR}
 	set -e;								\
 	for f in filters/spell.rc filters/filters.rc			\

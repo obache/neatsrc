@@ -1,23 +1,23 @@
-# $NetBSD: Makefile,v 1.29 2018/12/15 21:12:19 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2020/05/27 19:37:37 wiz Exp $
 #
 
-DISTNAME=		prosody-0.10.0
+DISTNAME=		prosody-0.11.4
+PKGREVISION=		1
 CATEGORIES=		chat
-MASTER_SITES=		http://prosody.im/downloads/source/
+MASTER_SITES=		https://prosody.im/downloads/source/
 
-MAINTAINER=		fhajny@NetBSD.org
-HOMEPAGE=		http://prosody.im/
+MAINTAINER=		pkgsrc-users@NetBSD.org
+HOMEPAGE=		https://prosody.im/
 COMMENT=		Flexible communications server for Jabber/XMPP written in Lua
 LICENSE=		mit
 
 DEPENDS+=		${LUA_PKGPREFIX}-expat>=1.2:../../textproc/lua-expat
-DEPENDS+=		${LUA_PKGPREFIX}-filesystem>=1.0:../../devel/lua-filesystem
+DEPENDS+=		${LUA_PKGPREFIX}-filesystem>=1.6.2:../../devel/lua-filesystem
 DEPENDS+=		${LUA_PKGPREFIX}-sec>=0.3.3:../../security/lua-sec
 DEPENDS+=		${LUA_PKGPREFIX}-socket>=2.0:../../net/lua-socket
 
 HAS_CONFIGURE=		yes
-USE_LANGUAGES+=		c c99
-USE_TOOLS+=		gmake
+USE_LANGUAGES=		c99
 BUILD_DEFS+=		VARBASE
 
 LUA_VERSIONS_ACCEPTED=	52 51
@@ -53,7 +53,7 @@ REPLACE_LUA+=		prosody prosodyctl
 SUBST_CLASSES+=		path
 SUBST_MESSAGE.path=	Fixing default paths
 SUBST_STAGE.path=	pre-configure
-SUBST_FILES.path=	Makefile man/prosodyctl.man prosody.cfg.lua.dist
+SUBST_FILES.path=	makefile man/prosodyctl.man prosody.cfg.lua.dist
 SUBST_SED.path=		-e 's,/etc/prosody,${PKG_SYSCONFDIR},g'
 SUBST_VARS.path=	EGDIR PROSODY_DATA PROSODY_LOG PROSODY_RUN
 
@@ -67,6 +67,7 @@ CONFIGURE_ARGS+=	--with-lua-include=${PREFIX}/${LUA_INCDIR}
 
 CFLAGS+=		-fPIC -Wall -DLUA_COMPAT_MODULE
 MAKE_ENV.SunOS+=	SOCKET_LIB=-lsocket
+MAKE_FILE=		makefile
 
 RCD_SCRIPTS=		prosody
 

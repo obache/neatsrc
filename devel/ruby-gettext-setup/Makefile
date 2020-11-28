@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2019/10/30 14:10:46 taca Exp $
+# $NetBSD: Makefile,v 1.7 2020/05/21 16:05:56 taca Exp $
 
 DISTNAME=	gettext-setup-0.31
 CATEGORIES=	devel

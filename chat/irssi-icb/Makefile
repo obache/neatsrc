@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.44 2019/11/02 22:18:23 rillig Exp $
+# $NetBSD: Makefile,v 1.46 2020/05/31 15:10:11 rillig Exp $
 #
 
 DISTNAME=	irssi-icb-0.15
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	chat
 MASTER_SITES=	https://github.com/downloads/jperkin/irssi-icb/
 DISTFILES=	${DISTNAME}.tar.gz ${IRSSI_DISTFILE}
@@ -26,8 +26,6 @@ USE_TOOLS+=		pkg-config
 SHLIBTOOL_OVERRIDE=	# empty
 
 CONFIGURE_ARGS+=	--with-irssi=${WRKDIR}/${IRSSI_DISTNAME}
-CONFIGURE_ARGS+=	--with-glib-prefix=${BUILDLINK_PREFIX.glib2}
-CONFIGURE_ARGS+=	--disable-glibtest
 
 INSTALLATION_DIRS+=	share/doc/irssi
 

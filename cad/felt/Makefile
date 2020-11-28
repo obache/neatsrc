@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.40 2015/12/29 04:54:37 dholland Exp $
+# $NetBSD: Makefile,v 1.42 2020/01/26 05:26:16 rillig Exp $
 
 DISTNAME=		felt-3.05.src
 PKGNAME=		felt-3.05

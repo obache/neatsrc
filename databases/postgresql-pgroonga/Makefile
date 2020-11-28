@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.3 2019/05/21 05:52:31 adam Exp $
+# $NetBSD: Makefile,v 1.5 2020/05/23 15:30:27 nia Exp $
 
 DISTNAME=	pgroonga-1.2.3
 PKGNAME=	postgresql${PGSQL_VERSION}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	https://packages.groonga.org/source/pgroonga/
 
@@ -12,7 +13,7 @@ LICENSE=	postgresql-license
 
 DEPENDS+=	postgresql${PGSQL_VERSION}-server>=0:../../databases/postgresql${PGSQL_VERSION}-server
 
-PGSQL_VERSIONS_ACCEPTED=	96 95 94
+PGSQL_VERSIONS_ACCEPTED=	96 95
 
 USE_GCC_RUNTIME=	yes
 USE_LANGUAGES=		c c++ c99

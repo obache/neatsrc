@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.68 2019/11/06 14:34:31 wiz Exp $
+# $NetBSD: Makefile,v 1.75 2020/10/06 19:51:17 wiz Exp $
 
 .include "Makefile.common"
 
 COMMENT=	Intelligent Input Bus
 
 DEPENDS+=	${PYPKGPREFIX}-gobject3-[0-9]*:../../devel/py-gobject3
-BUILD_DEPENDS+=	cldr-emoji-annotation>=37.0.13:../../textproc/cldr-emoji-annotation
+BUILD_DEPENDS+=	cldr-emoji-annotation>=37.0.13.0.0.2:../../textproc/cldr-emoji-annotation
 BUILD_DEPENDS+=	unicode-character-database>=13.0.0:../../textproc/unicode-character-database
-BUILD_DEPENDS+=	unicode-emoji>=13.0:../../textproc/unicode-emoji
+BUILD_DEPENDS+=	unicode-emoji>=13.1:../../textproc/unicode-emoji
 
 GNU_CONFIGURE=			yes
 USE_LIBTOOL=			yes
@@ -63,7 +63,7 @@ BUILDLINK_API_DEPENDS.gobject-introspection+=	gobject-introspection>=0.9.6
 BUILDLINK_DEPMETHOD.gobject-introspection+=	build
 .include "../../devel/gobject-introspection/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
-BUILDLINK_API_DEPENDS.glib2+=		glib2>=2.26.0
+BUILDLINK_API_DEPENDS.glib2+=		glib2>=2.46.0
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 BUILDLINK_DEPMETHOD.vala+=	build
@@ -76,6 +76,7 @@ GTK2_IMMODULES=	yes
 .include "../../x11/gtk2/modules.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 GTK3_IMMODULES=	yes
+BUILDLINK_API_DEPENDS.gtk3+=		gtk3+>=3.12.0
 .include "../../x11/gtk3/modules.mk"
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"

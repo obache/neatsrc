@@ -305,6 +305,7 @@ func (s *Suite) Test_CheckLinesBuildlink3Mk__name_mismatch_abi_api(c *check.C) {
 	CheckLinesBuildlink3Mk(mklines)
 
 	t.CheckOutputLines(
+		"ERROR: buildlink3.mk:10: Packages must only require API versions, not ABI versions of dependencies.",
 		"WARN: buildlink3.mk:9: Package name mismatch between ABI \"hs-X12\" and API \"hs-X11\" (from line 8).",
 		"WARN: buildlink3.mk:10: Only buildlink variables for \"hs-X11\", not \"hs-X12\" may be set in this file.")
 }
@@ -376,7 +377,7 @@ func (s *Suite) Test_CheckLinesBuildlink3Mk__missing_BUILDLINK_TREE_at_end(c *ch
 	CheckLinesBuildlink3Mk(mklines)
 
 	t.CheckOutputLines(
-		"WARN: buildlink3.mk:13: This line should contain the following text: BUILDLINK_TREE+=\t-hs-X11")
+		"WARN: buildlink3.mk:13: This line should consist of the following text: BUILDLINK_TREE+=\t-hs-X11")
 }
 
 func (s *Suite) Test_CheckLinesBuildlink3Mk__DEPMETHOD_placement(c *check.C) {
@@ -424,7 +425,7 @@ func (s *Suite) Test_CheckLinesBuildlink3Mk__multiple_inclusion_wrong(c *check.C
 	t.CheckOutputLines(
 		"WARN: buildlink3.mk:5: HS_X11_BUILDLINK3_MK is used but not defined.",
 		"WARN: buildlink3.mk:6: UNRELATED_BUILDLINK3_MK is defined but not used.",
-		"WARN: buildlink3.mk:6: This line should contain the following text: HS_X11_BUILDLINK3_MK:=")
+		"WARN: buildlink3.mk:6: This line should consist of the following text: HS_X11_BUILDLINK3_MK:=")
 }
 
 func (s *Suite) Test_CheckLinesBuildlink3Mk__missing_endif(c *check.C) {
@@ -443,7 +444,7 @@ func (s *Suite) Test_CheckLinesBuildlink3Mk__missing_endif(c *check.C) {
 
 	t.CheckOutputLines(
 		"ERROR: buildlink3.mk:EOF: .if from line 5 must be closed.",
-		"NOTE: buildlink3.mk:6: Empty line expected after this line.")
+		"NOTE: buildlink3.mk:6: Empty line expected below this line.")
 }
 
 func (s *Suite) Test_CheckLinesBuildlink3Mk__invalid_dependency_patterns(c *check.C) {
@@ -473,6 +474,25 @@ func (s *Suite) Test_CheckLinesBuildlink3Mk__invalid_dependency_patterns(c *chec
 		"WARN: buildlink3.mk:10: Invalid dependency pattern \"hs-X11!=1.6.1.2nb2\".")
 }
 
+func (s *Suite) Test_CheckLinesBuildlink3Mk__PKG_OPTIONS(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpOption("option", "")
+	t.SetUpPkgsrc()
+	t.SetUpPackage("category/package")
+	t.CreateFileBuildlink3("category/package/buildlink3.mk",
+		".include \"../../mk/bsd.fast.prefs.mk\"",
+		".if ${PKG_OPTIONS:Moption}",
+		".endif")
+	t.FinishSetUp()
+
+	G.Check(t.File("category/package/buildlink3.mk"))
+
+	t.CheckOutputLines(
+		"ERROR: ~/category/package/buildlink3.mk:13: " +
+			"PKG_OPTIONS is not available in buildlink3.mk files.")
+}
+
 // Just for branch coverage.
 func (s *Suite) Test_Buildlink3Checker_Check__no_tracing(c *check.C) {
 	t := s.Init(c)
@@ -484,6 +504,35 @@ func (s *Suite) Test_Buildlink3Checker_Check__no_tracing(c *check.C) {
 
 	G.Check(t.File("category/package/buildlink3.mk"))
 
+	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_Buildlink3Checker_checkFirstParagraph__comment_before_tree(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPkgsrc()
+	t.SetUpPackage("category/package")
+	t.CreateFileLines("category/package/buildlink3.mk",
+		MkCvsID,
+		"",
+		"# comment",
+		"BUILDLINK_TREE+=\tpackage",
+		"",
+		".if !defined(PACKAGE_BUILDLINK3_MK)",
+		"PACKAGE_BUILDLINK3_MK:=",
+		"",
+		"BUILDLINK_API_DEPENDS.package+=\tpackage>=0",
+		"BUILDLINK_PKGSRCDIR.package?=\t../../category/package",
+		"BUILDLINK_DEPMETHOD.package?=\tbuild",
+		"",
+		".endif # PACKAGE_BUILDLINK3_MK",
+		"",
+		"BUILDLINK_TREE+=\t-package")
+	t.FinishSetUp()
+
+	G.Check(t.File("category/package/buildlink3.mk"))
+
+	// No warning in line 3. Comments are ok there.
 	t.CheckOutputEmpty()
 }
 
@@ -583,6 +632,21 @@ func (s *Suite) Test_Buildlink3Checker_checkSecondParagraph__missing_mkbase(c *c
 		"WARN: ~/category/package/Makefile:4: \"\" is not a valid package name.")
 }
 
+func (s *Suite) Test_Buildlink3Checker_checkPkgbaseMismatch(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package")
+	t.CreateFileBuildlink3Id("category/package/buildlink3.mk", "unrelated")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"ERROR: buildlink3.mk:3: Package name mismatch between \"unrelated\" " +
+			"in this file and \"package\" from Makefile:3.")
+}
+
 func (s *Suite) Test_Buildlink3Checker_checkMainPart__if_else_endif(c *check.C) {
 	t := s.Init(c)
 
@@ -661,10 +725,43 @@ func (s *Suite) Test_Buildlink3Checker_checkMainPart__comment_at_end_of_file(c *
 		"WARN: ~/category/package/buildlink3.mk:14: The file should end here.")
 }
 
+func (s *Suite) Test_Buildlink3Checker_checkVarUse__PKG_BUILD_OPTIONS(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpOption("option", "")
+	t.SetUpPkgsrc()
+	t.CreateFileLines("mk/pkg-build-options.mk")
+	t.SetUpPackage("category/package")
+	t.CreateFileBuildlink3("category/package/buildlink3.mk",
+		"pkgbase := unrelated",
+		".include \"../../mk/pkg-build-options.mk\"",
+		"",
+		".if ${PKG_BUILD_OPTIONS:Moption}", // missing variable parameter
+		".endif",
+		"",
+		".if ${PKG_BUILD_OPTIONS.package:Moption}", // wrong variable parameter
+		".endif",
+		"",
+		".if ${PKG_BUILD_OPTIONS.unrelated:Moption}", // corresponds to pkgbase above
+		".endif")
+	t.FinishSetUp()
+
+	G.Check(t.File("category/package/buildlink3.mk"))
+
+	t.CheckOutputLines(
+		"WARN: ~/category/package/buildlink3.mk:15: "+
+			"PKG_BUILD_OPTIONS is used but not defined.",
+		"ERROR: ~/category/package/buildlink3.mk:12: "+
+			"A buildlink3.mk file must only query its own PKG_BUILD_OPTIONS.package, "+
+			"not PKG_BUILD_OPTIONS.unrelated.",
+		"WARN: ~/category/package/buildlink3.mk:21: "+
+			"Wrong PKG_BUILD_OPTIONS, expected \"package\" instead of \"unrelated\".")
+}
+
 // As of October 2018, pkglint parses package dependencies a little
 // different than the pkg_* tools.
 // In all but two cases this works, this is one of the exceptions.
-// The "{totem,totem-xine}" cannot be parsed, therefore the check skipped.
+// The "{totem,totem-xine}" cannot be parsed, therefore the check is skipped.
 func (s *Suite) Test_Buildlink3Checker_checkVarassign__abi_api_versions_brace(c *check.C) {
 	t := s.Init(c)
 
@@ -1011,4 +1108,45 @@ func (s *Suite) Test_Buildlink3Checker_checkVaruseInPkgbase__PKGBASE_with_unknow
 		"WARN: buildlink3.mk:13: The variable LICENSE should be quoted as part of a shell word.",
 		"WARN: buildlink3.mk:3: Please replace \"${LICENSE}\" with a simple string "+
 			"(also in other variables in this file).")
+}
+
+func (s *Suite) Test_LoadBuildlink3Data(c *check.C) {
+	t := s.Init(c)
+
+	t.CreateFileBuildlink3("category/package/buildlink3.mk",
+		"BUILDLINK_ABI_DEPENDS.package+=\tpackage>=0.1",
+		"",
+		"BUILDLINK_API_DEPENDS.other+=\tother>=0.1",
+		"BUILDLINK_ABI_DEPENDS.other+=\tother>=0.1.3",
+		"BUILDLINK_API_DEPENDS.package+=\tinvalid",
+		"BUILDLINK_API_DEPENDS.package+=\tpackage>=0.1:extra",
+		"BUILDLINK_ABI_DEPENDS.package+=\tinvalid",
+		"BUILDLINK_ABI_DEPENDS.package+=\tpackage>=0.1:extra",
+
+		"BUILDLINK_PREFIX.package=\t${PREFIX}",
+		"BUILDLINK_PREFIX.other=\t${PREFIX}",
+
+		"BUILDLINK_PKGSRCDIR.other=\tcategory/package")
+	t.Chdir("category/package")
+	mklines := LoadMk("buildlink3.mk", nil, MustSucceed)
+
+	data := LoadBuildlink3Data(mklines)
+
+	t.CheckDeepEquals(data, &Buildlink3Data{
+		id:        "package",
+		prefix:    "${PREFIX}",
+		pkgsrcdir: "../../category/package",
+		apiDepends: &DependencyPattern{
+			Pkgbase: "package",
+			LowerOp: ">=",
+			Lower:   "0",
+		},
+		apiDependsLine: mklines.mklines[7],
+		abiDepends: &DependencyPattern{
+			Pkgbase: "package",
+			LowerOp: ">=",
+			Lower:   "0.1",
+		},
+		abiDependsLine: mklines.mklines[11],
+	})
 }

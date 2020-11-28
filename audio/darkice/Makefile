@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.22 2014/02/22 14:51:03 wiedi Exp $
+# $NetBSD: Makefile,v 1.24 2020/08/18 17:57:35 leot Exp $
 #
 
 DISTNAME=	darkice-1.2
+PKGREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	https://darkice.googlecode.com/files/
 
@@ -13,6 +14,8 @@ LICENSE=	gnu-gpl-v3
 GNU_CONFIGURE=		yes
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		gmake
+
+CHECK_PORTABILITY_SKIP+=	configure.in
 
 CONFIGURE_ARGS+=	--with-vorbis-prefix=${BUILDLINK_PREFIX.libvorbis}
 CONFIGURE_ARGS+=	--with-lame-prefix=${BUILDLINK_PREFIX.lame}

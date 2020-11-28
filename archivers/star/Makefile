@@ -1,27 +1,26 @@
-# $NetBSD: Makefile,v 1.43 2020/01/10 12:24:56 micha Exp $
+# $NetBSD: Makefile,v 1.55 2020/10/23 16:23:40 micha Exp $
 
-DISTNAME=	schily-2019-12-05
+DISTNAME=	schily-2020-10-09
 PKGNAME=	star-1.6.1
-PKGREVISION=	4
+PKGREVISION=	11
 CATEGORIES=	archivers
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=schilytools/}
 EXTRACT_SUFX=	.tar.bz2
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://s-tar.sf.net/
+MAINTAINER=	micha@NetBSD.org
+HOMEPAGE=	https://sourceforge.net/projects/schilytools/
 COMMENT=	Unique standard tape archiver
 LICENSE=	cddl-1.0
 
 MAKE_JOBS_SAFE=	no
 
-USE_TOOLS+=	tbl
-TOOL_DEPENDS+=	smake-[0-9]*:../../devel/smake
+.include "../../mk/bsd.prefs.mk"
+
+TOOL_DEPENDS+=	smake>=1.3nb11:../../devel/smake
 SMAKE=		MAKEFLAGS= smake
 MAKE_FLAGS+=	DESTDIR=${DESTDIR} INS_BASE=${PREFIX} DEFMANBASE=. MANDIR=${PKGMANDIR}
 # Honor CPPFLAGS, CFLAGS and LDFLAGS
 MAKE_FLAGS+=	CPPOPTX=${CPPFLAGS:Q} COPTX=${CFLAGS:Q} LDOPTX=${LDFLAGS:Q}
-
-.include "../../mk/bsd.prefs.mk"
 
 # The default location is /etc/default/star
 # We patch the documentation appropriately. Additionally, we also install
@@ -29,6 +28,7 @@ MAKE_FLAGS+=	CPPOPTX=${CPPFLAGS:Q} COPTX=${CFLAGS:Q} LDOPTX=${LDFLAGS:Q}
 STAR_CONF?=	${PKG_SYSCONFDIR}/star
 
 CONF_FILES=	${PREFIX}/share/examples/star/star ${STAR_CONF}
+SPECIAL_PERMS+=	${PREFIX}/share/examples/star/star ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0644
 AUTO_MKDIRS=	yes
 
 # Configure config file location
@@ -64,6 +64,7 @@ do-build:
 	cd ${WRKSRC}/star && ${SMAKE} ${MAKE_FLAGS}
 
 # Process tables in manpage
+.if !empty(USE_TOOLS:Mtbl)
 post-build:
 	cd ${WRKSRC} && if ${TEST} -f star/pkgsrc_tbl.done; then :;	\
 	else								\
@@ -73,6 +74,7 @@ post-build:
 		${MV} -f star/star.4.tmp star/star.4 &&			\
 		${TOUCH} star/pkgsrc_tbl.done;				\
 	fi
+.endif
 
 do-test:
 	cd ${WRKSRC}/star && cd tests ; ${SMAKE} ${MAKE_FLAGS} tests

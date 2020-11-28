@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2018/11/11 00:17:04 mrg Exp $
+# $NetBSD: Makefile,v 1.7 2020/01/26 05:26:11 rillig Exp $
 
 DISTNAME=	libsbsms-2.0.2
 CATEGORIES=	audio

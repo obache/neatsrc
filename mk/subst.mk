@@ -1,4 +1,4 @@
-# $NetBSD: subst.mk,v 1.62 2019/11/22 18:04:49 minskim Exp $
+# $NetBSD: subst.mk,v 1.103 2020/10/06 17:48:02 rillig Exp $
 #
 # The subst framework replaces text in one or more files in the WRKSRC
 # directory. Packages can define several ``classes'' of replacements.
@@ -15,15 +15,22 @@
 #	SUBST_FILES.prefix=	./configure doc/*.html
 #	SUBST_SED.prefix=	-e 's,/usr/local,${PREFIX},g'
 #
+# User-settable variables:
+#
+# SUBST_SHOW_DIFF
+#	Whether to log each changed file as a unified diff, for all
+#	SUBST classes. Defaults to "no".
+#
 # Package-settable variables:
 #
 # SUBST_CLASSES
 #	A list of class names.  When adding new classes to this list, be
 #	sure to append them (+=) instead of overriding them (=).
+#	The order in which the classes are applied is unspecified.
 #
 # SUBST_STAGE.<class>
 #	"stage" at which we do the text replacement. Should be one of
-#	{pre,do,post}-{extract,patch,configure,build,install}.
+#	{pre,do,post}-{extract,configure,build,install}.
 #
 # SUBST_MESSAGE.<class>
 #	The message to display before doing the substitution.
@@ -31,6 +38,14 @@
 # SUBST_FILES.<class>
 #	A list of file patterns on which to run the substitution;
 #	the filenames are either absolute or relative to ${WRKSRC}.
+#
+#	Starting with 2020Q1, it is an error if any of these patterns
+#	has no effect at all, to catch typos and outdated definitions.
+#	To prevent this, see SUBST_NOOP_OK.<class> below.
+#
+#	In most cases the filename patterns are given directly.
+#	If that is not flexible enough, use the :sh variable modifier.
+#	See mk/configure/replace-localedir.mk for an example.
 #
 # SUBST_SED.<class>
 #	List of sed(1) arguments to run on the specified files.
@@ -44,7 +59,7 @@
 #		-e 's,@VARNAME@,${VARNAME},g'
 #
 #	that even works when ${VARNAME} contains arbitrary characters.
-#	Both SUBST_SED and SUBST_VARS can be used in a single class.
+#	SUBST_SED and SUBST_VARS can be combined freely.
 #
 # SUBST_FILTER_CMD.<class>
 #	Filter used to perform the actual substitution on the specified
@@ -59,17 +74,43 @@
 #	During development of a package, this can be set to "yes" to see
 #	the actual changes as a unified diff.
 #
+# SUBST_NOOP_OK.<class>
+#	Whether to allow filename patterns in SUBST_FILES that don't
+#	contain any of the patterns from SUBST_SED.
+#
+#	Defaults to no, which means that each filename pattern in
+#	SUBST_FILES must contain any of the patterns from SUBST_SED.
+#
+#	Identity substitutions like s|man|man| do not count as no-ops
+#	since their replacement part usually comes from a variable, such
+#	as PKGMANDIR.
+#
+#	This setting only detects redundant filename patterns.  It does
+#	not detect redundant patterns in SUBST_SED.
+#
+#	Typical reasons to change this to yes are:
+#
+#	1.  SUBST_FILES is generated dynamically (e.g., via find) and
+#	    may include unaffected files.
+#
+#	2.  There are multiple SUBST_SED patterns, and some of these
+#	    do not count as identity substitution since they contain
+#	    ".*" or similar parts.
+#
 # See also:
 #	PLIST_SUBST
 #
 # Keywords: subst
 #
 
+SUBST_SHOW_DIFF?=	no
+
 _VARGROUPS+=		subst
+_USER_VARS.subst=	SUBST_SHOW_DIFF
 _PKG_VARS.subst=	SUBST_CLASSES
 .for c in ${SUBST_CLASSES}
 .  for pv in SUBST_STAGE SUBST_MESSAGE SUBST_FILES SUBST_SED SUBST_VARS	\
-	SUBST_FILTER_CMD SUBST_SKIP_TEXT_CHECK
+	SUBST_FILTER_CMD SUBST_SKIP_TEXT_CHECK SUBST_NOOP_OK
 _PKG_VARS.subst+=	${pv}.${c}
 .  endfor
 .endfor
@@ -81,88 +122,124 @@ _LISTED_VARS.subst=	SUBST_SED.* SUBST_FILTER_CMD.*
 
 ECHO_SUBST_MSG?=	${STEP_MSG}
 
-# _SUBST_IS_TEXT_FILE_CMD returns 0 if $$file is a text file.
-_SUBST_IS_TEXT_FILE_CMD?= \
-	[ -z "`LC_ALL=C ${TR} -cd '\\0' < "$$file" | ${TR} '\\0' 'x'`" ]
+# _SUBST_IS_TEXT_FILE_CMD exits successfully if $$file is a text file.
+_SUBST_IS_TEXT_FILE_CMD= \
+	[ -z "`LC_ALL=C ${TR} -cd '\\0' < \"$$file\" | ${TR} '\\0' 'x'`" ]
 
-.for _class_ in ${SUBST_CLASSES}
-_SUBST_COOKIE.${_class_}=	${WRKDIR}/.subst_${_class_}_done
-
-SUBST_FILTER_CMD.${_class_}?=	LC_ALL=C ${SED} ${SUBST_SED.${_class_}}
-SUBST_VARS.${_class_}?=		# none
-SUBST_MESSAGE.${_class_}?=	Substituting "${_class_}" in ${SUBST_FILES.${_class_}}
-.  for v in ${SUBST_VARS.${_class_}}
-SUBST_FILTER_CMD.${_class_}+=	-e s,@${v:C|[^A-Za-z0-9_]|\\\\&|gW:Q}@,${${v}:S|\\|\\\\|gW:S|,|\\,|gW:S|&|\\\&|gW:S|${.newline}|\\${.newline}|gW:Q},g
-.  endfor
-.  if !empty(SUBST_SHOW_DIFF.${_class_}:Uno:M[Yy][Ee][Ss])
-_SUBST_KEEP.${_class_}?=	${DIFF} -u "$$file" "$$tmpfile" || true
-.  endif
-_SUBST_KEEP.${_class_}?=	${DO_NADA}
-SUBST_SKIP_TEXT_CHECK.${_class_}?=	no
-
-.if !empty(SUBST_SKIP_TEXT_CHECK.${_class_}:M[Yy][Ee][Ss])
-_SUBST_IS_TEXT_FILE_CMD.${_class_}=	${TRUE}
-.else
-_SUBST_IS_TEXT_FILE_CMD.${_class_}=	${_SUBST_IS_TEXT_FILE_CMD}
+.if ${SUBST_CLASSES:U:O} != ${SUBST_CLASSES:U:O:u}
+PKG_FAIL_REASON+=	"[subst.mk] duplicate SUBST class in: ${SUBST_CLASSES:O}"
 .endif
 
-.  if defined(SUBST_STAGE.${_class_})
-.    if !target(${SUBST_STAGE.${_class_}})
-${SUBST_STAGE.${_class_}}:	.PHONY
-.      if !empty(SUBST_STAGE.${_class_}:Mdo-*) && !empty(_ALL_PHASES:M${SUBST_STAGE.${_class_}:S/do-//})
-${SUBST_STAGE.${_class_}:S/do-//}:	${SUBST_STAGE.${_class}}
-.      elif !empty(SUBST_STAGE.${_class_}:Mpre-*) && !empty(_ALL_PHASES:M${SUBST_STAGE.${_class_}:S/pre-//})
-${SUBST_STAGE.${_class_}:S/pre-//}:	${SUBST_STAGE.${_class_}}
+.for class in ${SUBST_CLASSES:O:u}
+_SUBST_COOKIE.${class}=		${WRKDIR}/.subst_${class}_done
+
+.if defined(SUBST_FILTER_CMD.${class}) && (defined(SUBST_SED.${class}) || defined(SUBST_VARS.${class}))
+PKG_FAIL_REASON+=		"[subst.mk:${class}] SUBST_FILTER_CMD and SUBST_SED/SUBST_VARS cannot be combined."
+.endif
+
+SUBST_FILTER_CMD.${class}?=	LC_ALL=C ${SED} ${SUBST_SED.${class}}
+SUBST_MESSAGE.${class}?=	Substituting "${class}" in ${SUBST_FILES.${class}}
+.  for v in ${SUBST_VARS.${class}}
+SUBST_FILTER_CMD.${class}+=	-e s,@${v:C|[.[\\*^]|\\\\&|gW:Q}@,${${v}:S|\\|\\\\|gW:S|,|\\,|gW:S|&|\\\&|gW:S|${.newline}|\\${.newline}|gW:Q},g
+.  endfor
+.  if ${SUBST_SHOW_DIFF.${class}:U${SUBST_SHOW_DIFF}:tl} == yes
+_SUBST_KEEP.${class}?=		LC_ALL=C ${DIFF} -u "$$file" "$$tmpfile" || true
+.  endif
+_SUBST_KEEP.${class}?=		${DO_NADA}
+SUBST_SKIP_TEXT_CHECK.${class}?= \
+				no
+SUBST_NOOP_OK.${class}?=	no
+_SUBST_WARN.${class}=		${${SUBST_NOOP_OK.${class}:tl} == yes:?${INFO_MSG}:${WARNING_MSG}} "[subst.mk:${class}]"
+
+.  if !empty(SUBST_SKIP_TEXT_CHECK.${class}:M[Yy][Ee][Ss])
+_SUBST_IS_TEXT_FILE_CMD.${class}=	${TRUE}
+.  else
+_SUBST_IS_TEXT_FILE_CMD.${class}=	${_SUBST_IS_TEXT_FILE_CMD}
+.  endif
+
+.  if defined(SUBST_STAGE.${class})
+.    if !target(${SUBST_STAGE.${class}})
+${SUBST_STAGE.${class}}:	.PHONY
+.      if !empty(SUBST_STAGE.${class}:Mdo-*) && !empty(_ALL_PHASES:M${SUBST_STAGE.${class}:S/do-//})
+${SUBST_STAGE.${class}:S/do-//}:	${SUBST_STAGE.${class}}
+.      elif !empty(SUBST_STAGE.${class}:Mpre-*) && !empty(_ALL_PHASES:M${SUBST_STAGE.${class}:S/pre-//})
+${SUBST_STAGE.${class}:S/pre-//}:	${SUBST_STAGE.${class}}
 .        if target(${SUBST_STAGE.${_class_}:S/pre-/do-/})
-${SUBST_STAGE.${_class_}:S/pre-/do-/}:	${SUBST_STAGE.${_class_}}
+${SUBST_STAGE.${class}:S/pre-/do-/}:	${SUBST_STAGE.${class}}
 .        endif
 .      elif !empty(SUBST_STAGE.${_class_}:Mpost-*) && !empty(_ALL_PHASES:M${SUBST_STAGE.${_class_}:S/post-//})
-${SUBST_STAGE.${_class_}:S/post-//}:	${SUBST_STAGE.${_class_}}
-.        if target(${SUBST_STAGE.${_class_}:S/post-/do-/})
-${SUBST_STAGE.${_class_}}:		${SUBST_STAGE.${_class_}:S/post-/do-/}
+${SUBST_STAGE.${class}:S/post-//}:	${SUBST_STAGE.${class}}
+.        if target(${SUBST_STAGE.${class}:S/post-/do-/})
+${SUBST_STAGE.${class}}:		${SUBST_STAGE.${class}:S/post-/do-/}
 .        endif
 .      else
-PKG_FAIL_REASON+=	"${SUBST_STAGE.${_class_}} target for SUBST_STAGE.${_class_} is not defined."
+PKG_FAIL_REASON+=	"${SUBST_STAGE.${class}} target for SUBST_STAGE.${class} is not defined."
 .      endif
 .    endif
-${SUBST_STAGE.${_class_}}: subst-${_class_}
+${SUBST_STAGE.${class}}: subst-${class}
 .  else
-PKG_FAIL_REASON+=	"SUBST_STAGE missing for ${_class_}."
+PKG_FAIL_REASON+=	"SUBST_STAGE missing for ${class}."
 .  endif
 
-.PHONY: subst-${_class_}
-subst-${_class_}: ${_SUBST_COOKIE.${_class_}}
+.PHONY: subst-${class}
+subst-${class}: ${_SUBST_COOKIE.${class}}
 
-${_SUBST_COOKIE.${_class_}}:
-.  if !empty(SUBST_MESSAGE.${_class_})
-	${RUN} ${ECHO_SUBST_MSG} ${SUBST_MESSAGE.${_class_}:Q}
-.  endif
-	${RUN} cd ${WRKSRC:Q};						\
-	files=${SUBST_FILES.${_class_}:Q};				\
-	for file in $$files; do						\
-		case $$file in /*) ;; *) file="./$$file";; esac;	\
-		tmpfile="$$file.subst.sav";				\
-		if [ ! -f "$$file" ]; then				\
-			${ERROR_MSG} "[subst.mk:${_class_}] non-existent file \"$$file\"."; \
-			${FALSE};					\
-		elif ${_SUBST_IS_TEXT_FILE_CMD.${_class_}}; then	\
-			${SUBST_FILTER_CMD.${_class_}}			\
-			< "$$file"					\
-			> "$$tmpfile";					\
-			if ${TEST} -x "$$file"; then			\
-				${CHMOD} +x "$$tmpfile";		\
-			fi;						\
-			if ${CMP} -s "$$tmpfile" "$$file"; then 	\
-				${INFO_MSG} "[subst.mk:${_class_}] Nothing changed in $$file."; \
+${_SUBST_COOKIE.${class}}:
+	${RUN} set -u;							\
+	message=${SUBST_MESSAGE.${class}:Q};				\
+	[ "$$message" ] && ${ECHO_SUBST_MSG} "$$message";		\
+	\
+	cd ${WRKSRC};							\
+	patterns=${SUBST_FILES.${class}:Q};				\
+	set -f;								\
+	noop_count='';							\
+	noop_patterns='';						\
+	noop_sep='';							\
+	for pattern in $$patterns; do					\
+		set +f;							\
+		found_any=no;						\
+		for file in $$pattern; do				\
+			case $$file in ([!A-Za-z0-9/]*) file="./$$file";; esac; \
+			tmpfile="$$file.subst.sav";			\
+			[ -d "$$file" ] && continue;			\
+			[ -f "$$file" ] || {				\
+				${ERROR_MSG} "[subst.mk:${class}] non-existent file \"$$file\"."; \
+				${FALSE};				\
+				continue;				\
+			};						\
+			${_SUBST_IS_TEXT_FILE_CMD.${class}} || {	\
+				${_SUBST_WARN.${class}} "Ignoring non-text file \"$$file\"."; \
+				continue;				\
+			};						\
+			${SUBST_FILTER_CMD.${class}} < "$$file" > "$$tmpfile"; \
+			${CMP} -s "$$tmpfile" "$$file" && {		\
+				${AWK} -f ${PKGSRCDIR}/mk/scripts/subst-identity.awk -- ${SUBST_SED.${class}} \
+				&& found_text=$$(LC_ALL=C ${SED} -n ${SUBST_SED.${class}:C,^['"]?s.*,&p,} "$$file") \
+				&& [ -n "$$found_text" ]		\
+				&& found_any=yes			\
+				|| ${_SUBST_WARN.${class}} "Nothing changed in \"$$file\"."; \
 				${RM} -f "$$tmpfile";			\
-			else						\
-				${_SUBST_KEEP.${_class_}};		\
-				${MV} -f "$$tmpfile" "$$file"; 		\
-				${ECHO} "$$file" >> ${.TARGET};		\
-			fi;						\
-		else							\
-			${WARNING_MSG} "[subst.mk:${_class_}] Ignoring non-text file \"$$file\"."; \
-		fi;							\
-	done
-	${RUN} ${TOUCH} ${TOUCH_FLAGS} ${.TARGET:Q}
+				continue;				\
+			};						\
+			[ -x "$$file" ] && ${CHMOD} +x "$$tmpfile";	\
+			found_any=yes;					\
+			${_SUBST_KEEP.${class}};			\
+			${MV} -f "$$tmpfile" "$$file"; 			\
+			${ECHO} "$$file" >> ${.TARGET}.tmp;		\
+		done;							\
+									\
+		[ "$$found_any,${SUBST_NOOP_OK.${class}:tl}" = no,no ] && { \
+			noop_count="$$noop_count+";			\
+			noop_patterns="$$noop_patterns$$noop_sep$$pattern"; \
+			noop_sep=" ";					\
+		} || ${TRUE};						\
+	done;								\
+	\
+	case $$noop_count in						\
+	('')	;;							\
+	(+)	${FAIL_MSG} "[subst.mk:${class}] The filename pattern \"$$noop_patterns\" has no effect.";; \
+	(*)	${FAIL_MSG} "[subst.mk:${class}] The filename patterns \"$$noop_patterns\" have no effect.";; \
+	esac;								\
+	${TOUCH} ${TOUCH_FLAGS} ${.TARGET}.tmp;				\
+	${MV} ${.TARGET}.tmp ${.TARGET}
 .endfor

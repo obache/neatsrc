@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.20 2019/11/26 12:39:45 wiz Exp $
+# $NetBSD: Makefile,v 1.22 2020/06/09 06:18:17 wiz Exp $
 
-DISTNAME=	libntlm-1.5
-CATEGORIES=	security
+DISTNAME=	libntlm-1.6
+CATEGORIES=	devel security
 MASTER_SITES=	http://www.nongnu.org/libntlm/releases/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.nongnu.org/libntlm/
+HOMEPAGE=	https://www.nongnu.org/libntlm/
 COMMENT=	Library that implement Microsoft's NTLM authentication
 LICENSE=	gnu-lgpl-v2.1
 

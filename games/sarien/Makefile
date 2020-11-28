@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2015/04/25 14:23:03 tnn Exp $
+# $NetBSD: Makefile,v 1.23 2020/03/20 11:57:44 nia Exp $
 #
 
 DISTNAME=	sarien-0.7.0

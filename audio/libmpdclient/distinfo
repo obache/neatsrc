@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.13 2019/12/05 22:46:49 nia Exp $
+$NetBSD: distinfo,v 1.15 2020/07/07 12:55:33 nia Exp $
 
-SHA1 (libmpdclient-2.17.tar.xz) = 5f9f17139e2d845284e396f4eafab2976389e5bc
-RMD160 (libmpdclient-2.17.tar.xz) = aec9318619eee16ac5e625bcb4af2c1c269c899f
-SHA512 (libmpdclient-2.17.tar.xz) = 8d3f2064dec97f3b93900a2f9e2b555701800ef0eba4dec65e9871b313513f7a829b27596c4ffc2b8832a7eee875f3d1416a2044f635dddc0a7266364b854ec7
-Size (libmpdclient-2.17.tar.xz) = 64880 bytes
+SHA1 (libmpdclient-2.19.tar.xz) = 37c769a25d24b7c0172aa1256c520b1b7191351d
+RMD160 (libmpdclient-2.19.tar.xz) = ca7b40df99406510f4b79a6bc286686de00a956b
+SHA512 (libmpdclient-2.19.tar.xz) = 5d67b95d4b615bc750641f6d5a0240122e8f59c66108838a96bd4bc5cdda8b15288ad03d0e35d92d6e562e67c600f68aad643ca541092121074952a1bc5b3590
+Size (libmpdclient-2.19.tar.xz) = 69144 bytes

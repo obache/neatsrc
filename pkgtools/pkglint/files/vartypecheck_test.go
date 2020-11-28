@@ -1,8 +1,6 @@
 package pkglint
 
-import (
-	"gopkg.in/check.v1"
-)
+import "gopkg.in/check.v1"
 
 func (s *Suite) Test_VartypeCheck_Errorf(c *check.C) {
 	t := s.Init(c)
@@ -144,7 +142,7 @@ func (s *Suite) Test_VartypeCheck_AwkCommand(c *check.C) {
 	vt.Output(
 		"WARN: filename.mk:1: $0 is ambiguous. "+
 			"Use ${0} if you mean a Make variable or $$0 if you mean a shell variable.",
-		"WARN: filename.mk:3: $0 is ambiguous. "+
+		"WARN: filename.mk:11: $0 is ambiguous. "+
 			"Use ${0} if you mean a Make variable or $$0 if you mean a shell variable.")
 }
 
@@ -243,6 +241,7 @@ func (s *Suite) Test_VartypeCheck_Category(c *check.C) {
 		"korean",
 		"linux",
 		"local",
+		"lua",
 		"plan9",
 		"R",
 		"ruby",
@@ -360,11 +359,25 @@ func (s *Suite) Test_VartypeCheck_ConfFiles(c *check.C) {
 		"WARN: filename.mk:1: Values for CONF_FILES should always be pairs of paths.",
 		"WARN: filename.mk:3: Values for CONF_FILES should always be pairs of paths.",
 		"WARN: filename.mk:5: The destination file \"/etc/bootrc\" should start with a variable reference.")
+
+	// See pkgsrc/regress/conf-files-spaces.
+	vt.Values(
+		"back\\ slash.conf ${PKG_SYSCONFDIR}/back\\ slash.conf",
+		"\"d quot.conf\" \"${PKG_SYSCONFDIR}/d quot.conf\"",
+		"'s quot.conf' '${PKG_SYSCONFDIR}/''s quot.conf'")
+	vt.OutputEmpty()
+
+	vt.Values(
+		"\\*.conf ${PKG_SYSCONFDIR}/\\*.conf")
+	vt.Output(
+		"WARN: filename.mk:21: The pathname \"\\\\*.conf\" contains the invalid character \"*\".",
+		"WARN: filename.mk:21: The pathname \"${PKG_SYSCONFDIR}/\\\\*.conf\" contains the invalid character \"*\".")
+
 }
 
-// See Test_MkParser_Dependency.
-func (s *Suite) Test_VartypeCheck_Dependency(c *check.C) {
-	vt := NewVartypeCheckTester(s.Init(c), BtDependency)
+// See Test_MkParser_DependencyPattern.
+func (s *Suite) Test_VartypeCheck_DependencyPattern(c *check.C) {
+	vt := NewVartypeCheckTester(s.Init(c), BtDependencyPattern)
 
 	vt.Varname("CONFLICTS")
 	vt.Op(opAssignAppend)
@@ -472,6 +485,165 @@ func (s *Suite) Test_VartypeCheck_Dependency(c *check.C) {
 		"WARN: filename.mk:67: Invalid dependency pattern \"${RUBY_PKGPREFIX}-theme-[a-z0-9]*\".")
 }
 
+func (s *Suite) Test_VartypeCheck_DependencyPattern__smaller_version(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		".include \"../../category/lib/buildlink3.mk\"",
+		"BUILDLINK_API_DEPENDS.lib+=\tlib>=1.0pkg",
+		"BUILDLINK_ABI_DEPENDS.lib+=\tlib>=1.1pkg")
+	t.SetUpPackage("category/lib")
+	t.CreateFileBuildlink3("category/lib/buildlink3.mk",
+		"BUILDLINK_API_DEPENDS.lib+=\tlib>=1.3api",
+		"BUILDLINK_ABI_DEPENDS.lib+=\tlib>=1.4abi")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.checkdirPackage(".")
+
+	t.CheckOutputLines(
+		"NOTE: Makefile:21: The requirement >=1.0pkg is already guaranteed "+
+			"by the >=1.3api from ../../category/lib/buildlink3.mk:12.",
+		"ERROR: Makefile:22: Packages must only require API versions, "+
+			"not ABI versions of dependencies.",
+		"NOTE: Makefile:22: The requirement >=1.1pkg is already guaranteed "+
+			"by the >=1.4abi from ../../category/lib/buildlink3.mk:13.")
+}
+
+func (s *Suite) Test_VartypeCheck_DependencyPattern__different_operators(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		".include \"../../category/lib/buildlink3.mk\"",
+		"BUILDLINK_API_DEPENDS.lib+=\tlib>=1.0pkg",
+		"BUILDLINK_ABI_DEPENDS.lib+=\tlib>=1.1pkg")
+	t.SetUpPackage("category/lib")
+	t.CreateFileBuildlink3("category/lib/buildlink3.mk",
+		"BUILDLINK_API_DEPENDS.lib+=\tlib>1.3api",
+		"BUILDLINK_ABI_DEPENDS.lib+=\tlib>1.4abi")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.checkdirPackage(".")
+
+	t.CheckOutputLines(
+		"NOTE: Makefile:21: The requirement >=1.0pkg is already guaranteed "+
+			"by the >1.3api from ../../category/lib/buildlink3.mk:12.",
+		"ERROR: Makefile:22: Packages must only require API versions, "+
+			"not ABI versions of dependencies.",
+		"NOTE: Makefile:22: The requirement >=1.1pkg is already guaranteed "+
+			"by the >1.4abi from ../../category/lib/buildlink3.mk:13.")
+}
+
+func (s *Suite) Test_VartypeCheck_DependencyPattern__additional_greater(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		".include \"../../category/lib/buildlink3.mk\"",
+		"BUILDLINK_API_DEPENDS.lib+=\tlib>1.0pkg",
+		"BUILDLINK_ABI_DEPENDS.lib+=\tlib>1.1pkg")
+	t.SetUpPackage("category/lib")
+	t.CreateFileBuildlink3("category/lib/buildlink3.mk",
+		"BUILDLINK_API_DEPENDS.lib+=\tlib>=1.3api",
+		"BUILDLINK_ABI_DEPENDS.lib+=\tlib>=1.4abi")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.checkdirPackage(".")
+
+	t.CheckOutputLines(
+		"NOTE: Makefile:21: The requirement >1.0pkg is already guaranteed "+
+			"by the >=1.3api from ../../category/lib/buildlink3.mk:12.",
+		"ERROR: Makefile:22: Packages must only require API versions, "+
+			"not ABI versions of dependencies.",
+		"NOTE: Makefile:22: The requirement >1.1pkg is already guaranteed "+
+			"by the >=1.4abi from ../../category/lib/buildlink3.mk:13.")
+}
+
+func (s *Suite) Test_VartypeCheck_DependencyPattern__upper_limit(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		".include \"../../category/lib/buildlink3.mk\"",
+		"BUILDLINK_API_DEPENDS.lib+=\tlib<2.0",
+		"BUILDLINK_ABI_DEPENDS.lib+=\tlib<2.1")
+	t.SetUpPackage("category/lib")
+	t.CreateFileBuildlink3("category/lib/buildlink3.mk",
+		"BUILDLINK_API_DEPENDS.lib+=\tlib>1.3api",
+		"BUILDLINK_ABI_DEPENDS.lib+=\tlib>1.4abi")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.checkdirPackage(".")
+
+	// If the additional constraint doesn't have a lower bound,
+	// there are no version numbers to compare and warn about.
+	t.CheckOutputLines(
+		"ERROR: Makefile:22: Packages must only require API versions, " +
+			"not ABI versions of dependencies.")
+}
+
+// Having an upper bound for a library dependency is unusual.
+// A combined lower and upper bound makes sense though.
+func (s *Suite) Test_VartypeCheck_DependencyPattern__upper_limit_in_buildlink3(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		".include \"../../category/lib/buildlink3.mk\"",
+		"BUILDLINK_API_DEPENDS.lib+=\tlib>=16",
+		"BUILDLINK_ABI_DEPENDS.lib+=\tlib>=16.1")
+	t.SetUpPackage("category/lib")
+	t.CreateFileBuildlink3("category/lib/buildlink3.mk",
+		"BUILDLINK_API_DEPENDS.lib+=\tlib<7",
+		"BUILDLINK_ABI_DEPENDS.lib+=\tlib<6")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.checkdirPackage(".")
+
+	// If the additional constraint doesn't have a lower bound,
+	// there are no version numbers to compare and warn about.
+	t.CheckOutputLines(
+		"ERROR: Makefile:22: Packages must only require API versions, " +
+			"not ABI versions of dependencies.")
+}
+
+func (s *Suite) Test_VartypeCheck_DependencyPattern__API_ABI(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		".include \"../../category/lib/buildlink3.mk\"",
+		"BUILDLINK_API_DEPENDS.lib+=\tlib>=1.0pkg")
+	t.SetUpPackage("category/lib")
+	t.CreateFileBuildlink3("category/lib/buildlink3.mk",
+		"BUILDLINK_ABI_DEPENDS.lib+=\tlib>=1.4abi")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.checkdirPackage(".")
+
+	t.CheckOutputEmpty()
+}
+
+func (s *Suite) Test_VartypeCheck_DependencyPattern__ABI_API(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		".include \"../../category/lib/buildlink3.mk\"",
+		"BUILDLINK_ABI_DEPENDS.lib+=\tlib>=1.1pkg")
+	t.SetUpPackage("category/lib")
+	t.CreateFileBuildlink3("category/lib/buildlink3.mk",
+		"BUILDLINK_API_DEPENDS.lib+=\tlib>=1.3api")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.checkdirPackage(".")
+
+	t.CheckOutputLines(
+		"ERROR: Makefile:21: Packages must only require API versions, " +
+			"not ABI versions of dependencies.")
+}
+
 func (s *Suite) Test_VartypeCheck_DependencyWithPath(c *check.C) {
 	t := s.Init(c)
 
@@ -547,9 +719,55 @@ func (s *Suite) Test_VartypeCheck_DependencyWithPath(c *check.C) {
 		"gettext-[0-9]*:files/../../../databases/py-sqlite3")
 
 	vt.Output(
-		"WARN: ~/category/package/filename.mk:31: " +
-			"\"files/../../../databases/py-sqlite3\" is " +
+		"ERROR: ~/category/package/filename.mk:31: "+
+			"Relative package directories like "+
+			"\"files/../../../databases/py-sqlite3\" must be canonical.",
+		"WARN: ~/category/package/filename.mk:31: "+
+			"\"files/../../../databases/py-sqlite3\" is "+
 			"not a valid relative package directory.")
+
+	// The path has a trailing slash.
+	// https://mail-index.netbsd.org/pkgsrc-changes/2020/03/26/msg209490.html
+	vt.Values(
+		"py-sqlite3-[0-9]*:../../databases/py-sqlite3/",
+		"py-sqlite3-[0-9]*:../../././databases/py-sqlite3")
+
+	vt.Output(
+		"ERROR: ~/category/package/filename.mk:41: "+
+			"Relative package directories like "+
+			"\"../../databases/py-sqlite3/\" must not end with a slash.",
+		"ERROR: ~/category/package/filename.mk:42: "+
+			"Relative package directories like "+
+			"\"../../././databases/py-sqlite3\" must be canonical.")
+
+	vt.Values("py-sqlite3>=0:/usr/pkg")
+
+	vt.Output(
+		"ERROR: ~/category/package/filename.mk:51: " +
+			"Dependency paths like \"/usr/pkg\" must be relative.")
+
+	vt.Values(
+		"py-sqlite3>=0:../package/../../category/package")
+
+	// These warnings are quite redundant. It's an edge case anyway.
+	vt.Output(
+		"WARN: ~/category/package/filename.mk:61: "+
+			"Dependency paths should have the form \"../../category/package\".",
+		"WARN: ~/category/package/filename.mk:61: "+
+			"References to other packages should look like \"../../category/package\", not \"../package\".",
+		"ERROR: ~/category/package/filename.mk:61: "+
+			"Relative package directories like "+
+			"\"../package/../../category/package\" must be canonical.",
+		"WARN: ~/category/package/filename.mk:61: "+
+			"\"../package/../../category/package\" is not a valid relative package directory.")
+
+	// The "empty" field after the colon is not even counted as a field.
+	vt.Values(
+		"py-sqlite3>=0:")
+
+	vt.Output(
+		"WARN: ~/category/package/filename.mk:71: " +
+			"Invalid dependency pattern with path \"py-sqlite3>=0:\".")
 }
 
 func (s *Suite) Test_VartypeCheck_DistSuffix(c *check.C) {
@@ -598,7 +816,7 @@ func (s *Suite) Test_VartypeCheck_EmulPlatform(c *check.C) {
 
 func (s *Suite) Test_VartypeCheck_Enum(c *check.C) {
 	basicType := enum("jdk1 jdk2 jdk4")
-	G.Pkgsrc.vartypes.Define("JDK", basicType, UserSettable)
+	G.Pkgsrc.vartypes.Define("JDK", basicType, UserSettable, []ACLEntry{})
 	vt := NewVartypeCheckTester(s.Init(c), basicType)
 
 	vt.Varname("JDK")
@@ -921,55 +1139,7 @@ func (s *Suite) Test_VartypeCheck_Homepage(c *check.C) {
 	vt.Output(
 		"WARN: filename.mk:3: HOMEPAGE should not be defined in terms of MASTER_SITEs.")
 
-	pkg := NewPackage(t.File("category/package"))
-	vt.Package(pkg)
-
-	vt.Values(
-		"${MASTER_SITES}")
-
-	// When this assignment occurs while checking a package, but the package
-	// doesn't define MASTER_SITES, that variable cannot be expanded, which means
-	// the warning cannot refer to its value.
-	vt.Output(
-		"WARN: filename.mk:11: HOMEPAGE should not be defined in terms of MASTER_SITEs.")
-
-	delete(pkg.vars.firstDef, "MASTER_SITES")
-	delete(pkg.vars.lastDef, "MASTER_SITES")
-	pkg.vars.Define("MASTER_SITES", t.NewMkLine(pkg.File("Makefile"), 5,
-		"MASTER_SITES=\thttps://cdn.NetBSD.org/pub/pkgsrc/distfiles/"))
-
-	vt.Values(
-		"${MASTER_SITES}")
-
-	vt.Output(
-		"WARN: filename.mk:21: HOMEPAGE should not be defined in terms of MASTER_SITEs. " +
-			"Use https://cdn.NetBSD.org/pub/pkgsrc/distfiles/ directly.")
-
-	delete(pkg.vars.firstDef, "MASTER_SITES")
-	delete(pkg.vars.lastDef, "MASTER_SITES")
-	pkg.vars.Define("MASTER_SITES", t.NewMkLine(pkg.File("Makefile"), 5,
-		"MASTER_SITES=\t${MASTER_SITE_GITHUB}"))
-
-	vt.Values(
-		"${MASTER_SITES}")
-
-	// When MASTER_SITES itself makes use of another variable, pkglint doesn't
-	// resolve that variable and just outputs the simple variant of this warning.
-	vt.Output(
-		"WARN: filename.mk:31: HOMEPAGE should not be defined in terms of MASTER_SITEs.")
-
-	delete(pkg.vars.firstDef, "MASTER_SITES")
-	delete(pkg.vars.lastDef, "MASTER_SITES")
-	pkg.vars.Define("MASTER_SITES", t.NewMkLine(pkg.File("Makefile"), 5,
-		"MASTER_SITES=\t# none"))
-
-	vt.Values(
-		"${MASTER_SITES}")
-
-	// When MASTER_SITES is empty, pkglint cannot extract the first of the URLs
-	// for using it in the HOMEPAGE.
-	vt.Output(
-		"WARN: filename.mk:41: HOMEPAGE should not be defined in terms of MASTER_SITEs.")
+	// For more tests, see HomepageChecker.
 }
 
 func (s *Suite) Test_VartypeCheck_IdentifierDirect(c *check.C) {
@@ -1296,18 +1466,21 @@ func (s *Suite) Test_VartypeCheck_Option(c *check.C) {
 	G.Pkgsrc.PkgOptions["documented"] = "Option description"
 	G.Pkgsrc.PkgOptions["undocumented"] = ""
 
-	vt.Varname("PKG_OPTIONS.pkgbase")
+	vt.Varname("PKG_SUPPORTED_OPTIONS")
 	vt.Values(
 		"documented",
 		"undocumented",
 		"unknown",
 		"underscore_is_deprecated",
-		"UPPER")
+		"UPPER",
+		"-invalid")
 
 	vt.Output(
-		"WARN: filename.mk:3: Unknown option \"unknown\".",
+		"WARN: filename.mk:3: Undocumented option \"unknown\".",
 		"WARN: filename.mk:4: Use of the underscore character in option names is deprecated.",
 		"ERROR: filename.mk:5: Invalid option name \"UPPER\". "+
+			"Option names must start with a lowercase letter and be all-lowercase.",
+		"ERROR: filename.mk:6: Invalid option name \"-invalid\". "+
 			"Option names must start with a lowercase letter and be all-lowercase.")
 }
 
@@ -1352,13 +1525,54 @@ func (s *Suite) Test_VartypeCheck_Pathname(c *check.C) {
 		"${PREFIX}/*",
 		"${PREFIX}/share/locale",
 		"share/locale",
-		"/bin")
+		"/bin",
+		"/path with spaces")
+	vt.Output(
+		"WARN: filename.mk:1: The pathname \"${PREFIX}/*\" "+
+			"contains the invalid character \"*\".",
+		"WARN: filename.mk:5: The pathname \"/path with spaces\" "+
+			"contains the invalid characters \"  \".")
+
 	vt.Op(opUseMatch)
 	vt.Values(
-		"anything")
-
+		"anything",
+		"/path with *spaces")
 	vt.Output(
-		"WARN: filename.mk:1: The pathname \"${PREFIX}/*\" contains the invalid character \"*\".")
+		"WARN: filename.mk:12: The pathname pattern \"/path with *spaces\" " +
+			"contains the invalid characters \"  \".")
+}
+
+func (s *Suite) Test_VartypeCheck_PathnameSpace(c *check.C) {
+	t := s.Init(c)
+	// Invent a variable name since this data type is only used as part
+	// of CONF_FILES.
+	t.SetUpType("CONFIG_FILE", BtPathnameSpace,
+		NoVartypeOptions, "*.mk: set, use")
+	vt := NewVartypeCheckTester(t, BtPathnameSpace)
+
+	vt.Varname("CONFIG_FILE")
+	vt.Values(
+		"${PREFIX}/*",
+		"${PREFIX}/share/locale",
+		"share/locale",
+		"/bin",
+		"/path with spaces")
+	vt.Output(
+		"WARN: filename.mk:1: The pathname \"${PREFIX}/*\" " +
+			"contains the invalid character \"*\".")
+
+	vt.Op(opUseMatch)
+	vt.Values(
+		"anything",
+		"/path with *spaces&",
+		"/path with spaces and ;several, other &characters.",
+	)
+	vt.Output(
+		"WARN: filename.mk:12: The pathname pattern \"/path with *spaces&\" "+
+			"contains the invalid character \"&\".",
+		"WARN: filename.mk:13: The pathname pattern "+
+			"\"/path with spaces and ;several, other &characters.\" "+
+			"contains the invalid characters \";&\".")
 }
 
 func (s *Suite) Test_VartypeCheck_Perl5Packlist(c *check.C) {
@@ -1546,6 +1760,16 @@ func (s *Suite) Test_VartypeCheck_PrefixPathname(c *check.C) {
 			"Please use \"${PKGMANDIR}/man1\" instead of \"man/man1\".",
 		"ERROR: filename.mk:3: The pathname \"/absolute\" in PKGMANDIR "+
 			"must be relative to ${PREFIX}.")
+
+	vt.Varname("INSTALLATION_DIRS")
+	vt.Values(
+		"bin ${PKG_SYSCONFDIR} ${VARBASE}")
+
+	vt.Output(
+		"ERROR: filename.mk:11: PKG_SYSCONFDIR must not be used in INSTALLATION_DIRS "+
+			"since it is not relative to PREFIX.",
+		"ERROR: filename.mk:11: VARBASE must not be used in INSTALLATION_DIRS "+
+			"since it is not relative to PREFIX.")
 }
 
 func (s *Suite) Test_VartypeCheck_PythonDependency(c *check.C) {
@@ -1651,6 +1875,18 @@ func (s *Suite) Test_VartypeCheck_RelativePkgPath(c *check.C) {
 		"ERROR: filename.mk:4: Relative path \"invalid\" does not exist.",
 		"ERROR: filename.mk:5: Relative path \"../../invalid/relative\" does not exist.",
 		"ERROR: filename.mk:6: The path \"/absolute\" must be relative.")
+
+	vt.File("../../mk/infra.mk")
+	vt.Values(
+		"../package",
+		"../../category/other-package",
+		"../../missing/package",
+		"../../category/missing")
+
+	vt.Output(
+		"ERROR: ../../mk/infra.mk:1: Relative path \"../package\" does not exist.",
+		"ERROR: ../../mk/infra.mk:3: Relative path \"../../missing/package\" does not exist.",
+		"ERROR: ../../mk/infra.mk:4: Relative path \"../../category/missing\" does not exist.")
 }
 
 func (s *Suite) Test_VartypeCheck_Restricted(c *check.C) {
@@ -1801,9 +2037,9 @@ func (s *Suite) Test_VartypeCheck_Stage(c *check.C) {
 			"Use one of {pre,do,post}-{extract,patch,configure,build,test,install}.")
 }
 
-func (s *Suite) Test_VartypeCheck_Tool(c *check.C) {
+func (s *Suite) Test_VartypeCheck_ToolDependency(c *check.C) {
 	t := s.Init(c)
-	vt := NewVartypeCheckTester(t, BtTool)
+	vt := NewVartypeCheckTester(t, BtToolDependency)
 
 	t.SetUpTool("tool1", "", AtRunTime)
 	t.SetUpTool("tool2", "", AtRunTime)
@@ -1834,19 +2070,6 @@ func (s *Suite) Test_VartypeCheck_Tool(c *check.C) {
 		"ERROR: filename.mk:12: Invalid tool dependency \"unknown\". " +
 			"Use one of \"bootstrap\", \"build\", \"pkgsrc\", \"run\" or \"test\".")
 
-	vt.Varname("TOOLS_NOOP")
-	vt.Op(opAssignAppend)
-	vt.Values(
-		"gmake:run")
-
-	vt.Varname("TOOLS_NOOP")
-	vt.Op(opAssign) // TODO: In a Makefile, this should be equivalent to opAssignAppend.
-	vt.Values(
-		"gmake:run")
-
-	vt.Output(
-		"ERROR: filename.mk:31: Unknown tool \"gmake\".")
-
 	vt.Varname("USE_TOOLS")
 	vt.Op(opUseMatch)
 	vt.Values(
@@ -1866,6 +2089,43 @@ func (s *Suite) Test_VartypeCheck_Tool(c *check.C) {
 		"tool1:test")
 
 	vt.OutputEmpty()
+}
+
+func (s *Suite) Test_VartypeCheck_ToolName(c *check.C) {
+	t := s.Init(c)
+	vt := NewVartypeCheckTester(t, BtToolName)
+
+	t.SetUpTool("tool1", "", AtRunTime)
+	t.SetUpTool("tool2", "", AtRunTime)
+	t.SetUpTool("tool3", "", AtRunTime)
+
+	vt.Varname("TOOLS_BROKEN")
+	vt.Op(opAssignAppend)
+	vt.Values(
+		"tool1",
+		"tool3:anything",
+		"${t}",
+		"mal:formed:tool",
+		"unknown",
+		"c++")
+
+	vt.Output(
+		"ERROR: filename.mk:2: TOOLS_BROKEN accepts only plain tool names, "+
+			"without any colon.",
+		"ERROR: filename.mk:4: TOOLS_BROKEN accepts only plain tool names, "+
+			"without any colon.",
+		"ERROR: filename.mk:6: Invalid tool name \"c++\".")
+
+	vt.Varname("TOOLS_NOOP")
+	vt.Op(opUseMatch)
+	vt.Values(
+		"tool1",
+		"tool1\\:build",
+		"${t}\\:build")
+
+	vt.Output(
+		"ERROR: filename.mk:12: TOOLS_NOOP accepts only plain tool names, without any colon.",
+		"ERROR: filename.mk:13: TOOLS_NOOP accepts only plain tool names, without any colon.")
 }
 
 func (s *Suite) Test_VartypeCheck_Unknown(c *check.C) {
@@ -2088,6 +2348,30 @@ func (s *Suite) Test_VartypeCheck_WrkdirSubdirectory(c *check.C) {
 	vt.Output(
 		"WARN: filename.mk:8: The pathname \"two words\" " +
 			"contains the invalid character \" \".")
+}
+
+func (s *Suite) Test_VartypeCheck_WrksrcPathPattern(c *check.C) {
+	t := s.Init(c)
+	vt := NewVartypeCheckTester(t, BtWrksrcPathPattern)
+
+	vt.Varname("SUBST_FILES.class")
+	vt.Op(opAssign)
+	vt.Values(
+		"relative/*.sh",
+		"${WRKSRC}/relative/*.sh")
+
+	vt.Output(
+		"NOTE: filename.mk:2: The pathname patterns in SUBST_FILES.class " +
+			"don't need to mention ${WRKSRC}.")
+
+	t.SetUpCommandLine("--autofix")
+
+	vt.Values(
+		"relative/*.sh",
+		"${WRKSRC}/relative/*.sh")
+
+	vt.Output(
+		"AUTOFIX: filename.mk:12: Replacing \"${WRKSRC}/\" with \"\".")
 }
 
 func (s *Suite) Test_VartypeCheck_WrksrcSubdirectory(c *check.C) {
@@ -2322,10 +2606,13 @@ func (vt *VartypeCheckTester) Values(values ...string) {
 
 		line := vt.tester.NewLine(vt.filename, vt.lineno, text)
 		mklines := NewMkLines(NewLines(vt.filename, []*Line{line}), vt.pkg, nil)
+		mklines.collectRationale()
 		vt.lineno++
 
 		mklines.ForEach(func(mkline *MkLine) { test(mklines, mkline, value) })
 	}
+
+	vt.nextSection()
 }
 
 // Output checks that the output from all previous steps is

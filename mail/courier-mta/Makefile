@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.54 2019/08/11 13:21:25 wiz Exp $
+# $NetBSD: Makefile,v 1.59 2020/08/31 18:09:54 wiz Exp $
 
 DISTNAME=	courier-${COURIER_VERSION}
 PKGNAME=	${DISTNAME:S/-/-mta-/}
-PKGREVISION=	13
+PKGREVISION=	15
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=courier/}
 EXTRACT_SUFX=	.tar.bz2
@@ -11,7 +11,7 @@ CONFLICTS+=	esmtp>=1.2 postfix-[0-9]* qmail-[0-9]* sendmail-[0-9]*
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Courier mail transport agent
-HOMEPAGE=	http://www.courier-mta.org/
+HOMEPAGE=	https://www.courier-mta.org/
 
 DEPENDS+=	courier-maildir>=${COURIER_VERSION}:../../mail/courier-maildir
 DEPENDS+=	couriertcpd>=${COURIER_VERSION}:../../net/couriertcpd
@@ -55,7 +55,7 @@ INSTALL_AM_MAKEFLAGS+=	htmldocdir=${DOCDIR:Q}
 INSTALL_MAKE_FLAGS=	${MAKE_FLAGS} AM_MAKEFLAGS=${INSTALL_AM_MAKEFLAGS:Q}
 
 SUBST_CLASSES+=		courier
-SUBST_FILES.courier=	courier/doc/mkesmtpdcert.8.in			\
+SUBST_FILES.courier=	\
 			courier/doc/mkesmtpdcert.html.in		\
 			courier/filters/courierfilter.8.in		\
 			courier/filters/courierfilter.html.in		\
@@ -95,6 +95,9 @@ SPECIAL_PERMS+=	${PREFIX}/sbin/courierfilter  ${COURIER_USER} \
 
 post-extract:
 	${CP} ${FILESDIR}/mailer.conf ${WRKDIR}/mailer.conf
+
+pre-build:
+	${RM} -f ${WRKSRC}/version
 
 post-build:
 	${TOUCH} ${WRKDIR}/locallowercase

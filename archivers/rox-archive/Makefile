@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2019/11/02 22:54:27 rillig Exp $
+# $NetBSD: Makefile,v 1.16 2020/01/26 05:26:08 rillig Exp $
 #
 
 DISTNAME=	archive-2.0

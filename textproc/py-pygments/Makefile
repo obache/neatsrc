@@ -1,27 +1,29 @@
-# $NetBSD: Makefile,v 1.29 2019/08/03 12:28:49 adam Exp $
+# $NetBSD: Makefile,v 1.32 2020/05/17 21:38:46 adam Exp $
 
-DISTNAME=	Pygments-2.4.2
+DISTNAME=	Pygments-2.5.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
 CATEGORIES=	textproc python
 MASTER_SITES=	${MASTER_SITE_PYPI:=P/Pygments/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://pygments.org/
+HOMEPAGE=	https://pygments.org/
 COMMENT=	Python syntax highlighter
 LICENSE=	2-clause-bsd
 
-TEST_DEPENDS+=	${PYPKGPREFIX}-nose-[0-9]*:../../devel/py-nose
 # circular dependency
 #TEST_DEPENDS+=	${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 
-USE_LANGUAGES=		# none
+PYTHON_VERSIONED_DEPENDENCIES=	test:test
+
+USE_LANGUAGES=	# none
 
 post-install:
-	${MV} ${DESTDIR}${PREFIX}/bin/pygmentize \
-		${DESTDIR}${PREFIX}/bin/pygmentize-${PYVERSSUFFIX} || ${TRUE}
+	cd ${DESTDIR}${PREFIX}/bin && \
+	${MV} pygmentize pygmentize-${PYVERSSUFFIX} || ${TRUE}
 
 do-test:
-	cd ${WRKSRC} && ${PYTHONBIN} tests/run.py
+	cd ${WRKSRC} && pytest-${PYVERSSUFFIX} tests
 
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

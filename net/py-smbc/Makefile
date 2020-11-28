@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.6 2019/11/23 08:45:45 mef Exp $
+# $NetBSD: Makefile,v 1.11 2020/05/22 10:56:30 adam Exp $
 
-DISTNAME=	pysmbc-1.0.18
+DISTNAME=	pysmbc-1.0.22
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
 PKGREVISION=	1
 CATEGORIES=	net python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pysmbc/}
-EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/hamano/pysmbc

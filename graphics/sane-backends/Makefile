@@ -1,22 +1,22 @@
-# $NetBSD: Makefile,v 1.70 2019/08/07 15:52:13 maya Exp $
+# $NetBSD: Makefile,v 1.74 2020/06/25 12:44:10 nia Exp $
 
 .include "Makefile.common"
+MASTER_SITES=	https://gitlab.com/sane-project/backends/uploads/c3dd60c9e054b5dee1e7b01a7edc98b0/
 COMMENT=	API for access to scanners, digital cameras, frame grabbers, etc
 
 DISTNAME=	sane-backends-${SANE_VERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
-# lib/Makefile.in builds .o files and then .a, but rules for shlibs,
-# while apparently independent, cause libtool to create .o again,
-# making it possible for the ar step of the .a build to fail to find
-# the .o
-MAKE_JOBS_SAFE=		NO
-
 USE_TOOLS+=		msgfmt msgmerge pkg-config
 USE_PKGLOCALEDIR=	YES
 
+# c++11 is needed for genesys backend
+USE_LANGUAGES=		c c++11
+
+# C++11
+GCC_REQD+=		4.8
+
 CONFIGURE_ARGS+=	--with-gphoto2=no
-CONFIGURE_ARGS+=	--with-docdir=${PREFIX}/share/doc/sane-${SANE_VERSION}
 CONFIGURE_ARGS+=	--without-snmp
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 
@@ -37,6 +37,8 @@ PLIST.kvs40xx=		yes
 PLIST.pint=		yes
 PLIST.sm3600=		yes
 .endif
+
+LIBS.SunOS+=	-lresolv -lnsl -lsocket
 
 OWN_DIRS+=	${PKG_SYSCONFDIR}/sane.d
 EGDIR=		${PREFIX}/share/examples/sane
@@ -68,7 +70,6 @@ CONF_FILES+=	${EGDIR}/${f} ${PKG_SYSCONFDIR}/sane.d/${f}
 
 .include "options.mk"
 .include "../../devel/libusb1/buildlink3.mk"
-CONFIGURE_ARGS+=	--enable-libusb_1_0
 .if (${OPSYS} == "Linux")
 .include "../../graphics/libv4l/buildlink3.mk"
 .endif

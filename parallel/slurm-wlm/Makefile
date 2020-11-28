@@ -1,23 +1,19 @@
-# $NetBSD: Makefile,v 1.12 2019/08/22 12:23:43 ryoon Exp $
+# $NetBSD: Makefile,v 1.22 2020/08/31 18:10:57 wiz Exp $
 
-DISTNAME=	slurm-17.11.5
-PKGNAME=	slurm-wlm-17.11.5
-PKGREVISION=	9
+DISTNAME=	slurm-19.05.5
+PKGNAME=	${DISTNAME:S/-/-wlm-/}
+PKGREVISION=	6
 CATEGORIES=	parallel
-MASTER_SITES=	http://www.schedmd.com/download/archive/
+MASTER_SITES=	http://download.schedmd.com/slurm/
 MASTER_SITES+=	http://www.schedmd.com/download/latest/
-MASTER_SITES+=	http://www.schedmd.com/download/development/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	bacon@NetBSD.org
-HOMEPAGE=	http://www.schedmd.com/
+HOMEPAGE=	https://www.schedmd.com/
 COMMENT=	Simple Linux Utility for Resource Management
 
 LICENSE=	gnu-gpl-v2
 
-SUPERSEDES+=	slurm-2.6.4*
-
-BUILD_DEPENDS+=	libtool-base-[0-9]*:../../devel/libtool-base
 BUILD_DEPENDS+=	man2html-[0-9]*:../../textproc/man2html
 
 GNU_CONFIGURE=	yes
@@ -32,8 +28,8 @@ CONFIGURE_ARGS+=	--with-munge=${BUILDLINK_PREFIX.munge}
 CONFIGURE_ARGS+=	--with-hwloc=${PREFIX}
 CONFIGURE_ARGS+=	--with-json=${PREFIX}
 CONFIGURE_ARGS+=	--with-libssh2=${PREFIX}
-
-LDFLAGS+=		-llz4
+# Future: Enable task affinity code is fully patched for NetBSD
+# CONFIGURE_ARGS.NetBSD+=	ac_cv_func_sched_setaffinity=yes
 
 REPLACE_PYTHON=		doc/html/shtml2html.py
 REPLACE_PYTHON+=	doc/man/man2html.py
@@ -59,11 +55,17 @@ SUBST_SED.linuxinit+=	-e 's|@sbindir@|$${exec_prefix}/sbin|'
 SUBST_SED.linuxinit+=	-e 's|@libdir@|$${exec_prefix}/lib|'
 SUBST_SED.linuxinit+=	-e 's|@sysconfdir@|$${prefix}/etc|'
 
-# Configure flag to disable gtk does not work, so set an impossible requirement
+# Config flag for disabling gtk does not work, so set an impossible requirement
 SUBST_CLASSES+=		gtk
 SUBST_STAGE.gtk=	pre-configure
 SUBST_SED.gtk=		-e 's|min_gtk_version=.*|min_gtk_version=2000.0.0|'
 SUBST_FILES.gtk=	configure
+
+SUBST_CLASSES+=		prefix
+SUBST_STAGE.prefix=	pre-configure
+SUBST_SED.prefix=	-e 's|/usr/local|${PREFIX}|g'
+SUBST_SED.prefix+=	-e 's|/opt/local /sw||g'
+SUBST_FILES.prefix=	configure
 
 SUBST_CLASSES+=		make-ex
 SUBST_STAGE.make-ex=	post-install
@@ -73,8 +75,8 @@ SUBST_SED.make-ex=	-e 's|${WRKDIR}|<build-prefix>|g'
 INSTALLATION_DIRS+=	share/examples/slurm
 
 post-install:
-	${RM} -f ${WRKSRC}/etc/init.d.slurm.in.orig
 	${INSTALL_DATA} ${WRKSRC}/etc/* ${DESTDIR}${PREFIX}/share/examples/slurm
+	${RM} -f ${DESTDIR}${PREFIX}/share/examples/slurm/init.d.slurm.in.orig
 
 .include "../../www/curl/buildlink3.mk"
 .include "../../lang/python/tool.mk"

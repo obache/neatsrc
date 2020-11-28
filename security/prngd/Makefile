@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2017/09/16 19:27:06 wiz Exp $
+# $NetBSD: Makefile,v 1.18 2020/03/20 11:58:18 nia Exp $
 
 DISTNAME=		prngd-0.9.29
 CATEGORIES=		security

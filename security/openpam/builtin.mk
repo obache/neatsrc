@@ -1,4 +1,4 @@
-# $NetBSD: builtin.mk,v 1.11 2019/11/04 21:12:56 rillig Exp $
+# $NetBSD: builtin.mk,v 1.13 2020/10/23 09:16:05 tnn Exp $
 
 BUILTIN_PKG:=	openpam
 
@@ -59,3 +59,8 @@ USE_BUILTIN.openpam!=							\
 .  endif  # PREFER.openpam
 .endif
 MAKEVARS+=		USE_BUILTIN.openpam
+
+.if !empty(USE_BUILTIN.openpam:M[yY][eE][sS])
+CPPFLAGS.NetBSD+=	-DNO_STATIC_MODULES
+CFLAGS.NetBSD+=		-DNO_STATIC_MODULES
+.endif

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2019/05/23 19:23:17 rillig Exp $
+# $NetBSD: Makefile,v 1.16 2020/08/20 11:31:04 bouyer Exp $
 #
 
 # Values from XenServer 7.0 = 7, 0, 0, 125243
@@ -15,6 +15,7 @@ VERSION=	${XENMAJOR}.${XENMINOR}.${XENTEENY}
 DISTNAME=	xe-guest-utilities_5.6.0-595
 CATEGORIES=	sysutils
 PKGNAME=	xe-guest-utilities-${VERSION}
+PKGREVISION=	1
 MASTER_SITES=	http://updates.vmd.citrix.com/XenServer/5.6.0/debian/pool/main/x/xe-guest-utilities/
 
 MAINTAINER=	sborrill@NetBSD.org

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2019/08/11 16:47:52 fox Exp $
+# $NetBSD: Makefile,v 1.3 2020/03/20 11:58:17 nia Exp $
 
 DISTNAME=	libdecaf-1.0.0
 CATEGORIES=	security

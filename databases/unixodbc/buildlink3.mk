@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.10 2018/01/07 13:04:00 rillig Exp $
+# $NetBSD: buildlink3.mk,v 1.11 2020/03/17 18:17:06 adam Exp $
 
 BUILDLINK_TREE+=	unixodbc
 

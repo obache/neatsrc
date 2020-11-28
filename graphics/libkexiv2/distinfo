@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.21 2019/11/17 02:36:54 markd Exp $
+$NetBSD: distinfo,v 1.23 2020/06/09 11:56:12 markd Exp $
 
-SHA1 (libkexiv2-19.08.3.tar.xz) = b93562ab85c93a75c5afb6d9b585bd22c2e91398
-RMD160 (libkexiv2-19.08.3.tar.xz) = ec869f639e43d2efdbc630fc91a8822f4f749f16
-SHA512 (libkexiv2-19.08.3.tar.xz) = 4cdd654de9e658fd145b6004e94c8cbdb39de3787466ef02500cac3f858cf5eda2c0ebee9ad2f4fe129273fecbb61b3c0bf49cddc98209cbe555a63fe8c05549
-Size (libkexiv2-19.08.3.tar.xz) = 64520 bytes
+SHA1 (libkexiv2-20.04.1.tar.xz) = 2597bec47879b3598433de2b1e1ecedaea442d61
+RMD160 (libkexiv2-20.04.1.tar.xz) = 67e6c1211311b14a5bae0c89b0ca6cfb1841d460
+SHA512 (libkexiv2-20.04.1.tar.xz) = 22485c4e27922cded0162a4a58c2e55c4d096554bcb02601364a51ea491c41424b2a9bda171ac5cde30940d06a6c1e472948655fe06f35fd9748d66ddf1e35ac
+Size (libkexiv2-20.04.1.tar.xz) = 64544 bytes

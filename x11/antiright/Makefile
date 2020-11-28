@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.41 2019/07/21 22:25:55 wiz Exp $
+# $NetBSD: Makefile,v 1.46 2020/08/17 20:20:23 leot Exp $
 #
 
 DISTNAME=	antiright-3.4
-PKGREVISION=	34
+PKGREVISION=	37
 CATEGORIES=	x11
 MASTER_SITES=	http://download.savannah.nongnu.org/releases/antiright/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	antiright@gmail.com
-HOMEPAGE=	http://www.nongnu.org/antiright/
+HOMEPAGE=	https://www.nongnu.org/antiright/
 COMMENT=	The gtkshell GUI creator, gshterm, and ACE desktop implementation
 
 MAKE_JOBS_SAFE=		no
@@ -32,6 +32,7 @@ SUBST_MESSAGE.hpath=	Fixing hardcoded paths.
 SUBST_FILES.hpath=	configure
 SUBST_SED.hpath=	-e 's|^\(INSTALL[	 :]*=\).*|\1${INSTALL}|'
 SUBST_SED.hpath+=	-e 's|/usr/pkg|${PREFIX}|'
+SUBST_NOOP_OK.hpath=	yes
 
 TOOLS_DEPENDS.pkg-config=	pkg-config>=0.20:../../devel/pkg-config
 BUILDLINK_API_DEPENDS.gtk2+=	gtk2+>=2.6.0

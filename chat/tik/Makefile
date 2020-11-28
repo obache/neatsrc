@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.17 2012/10/03 00:02:45 asau Exp $
+# $NetBSD: Makefile,v 1.19 2020/01/26 05:26:17 rillig Exp $
 #
 
 DISTNAME=		tik-0.90

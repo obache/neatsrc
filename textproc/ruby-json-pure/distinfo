@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.26 2017/06/12 16:34:13 taca Exp $
+$NetBSD: distinfo,v 1.29 2020/09/14 16:09:28 taca Exp $
 
-SHA1 (json_pure-2.1.0.gem) = 76335531acc823813ef02754fec2af856fc46996
-RMD160 (json_pure-2.1.0.gem) = 0edd6180f1f7ac0fdb30318264f9745b6ff11391
-SHA512 (json_pure-2.1.0.gem) = 30d28f75faee32562fa7fbb3c61f0da16b4ad796943d4c29a3c5fce2bf06e304ae802ca0d4796c0cb06f07f802764600d5bae6da2187948d1b8d123b07d14b45
-Size (json_pure-2.1.0.gem) = 140800 bytes
+SHA1 (json_pure-2.3.1.gem) = 4c430a262f59edb0cd081145999ec3d5894b0ea9
+RMD160 (json_pure-2.3.1.gem) = 1b293d0e1034d8644c285af829b5d46f1ea52c10
+SHA512 (json_pure-2.3.1.gem) = e57ebe40f7cf5bb10ea24e3e59f56638e2ec6f8445de0fa2e273b41828ff07f1c0abb0de20e96cb847962fa6d20c2fd4fe0bee58734453c9eb24bfb6da43615a
+Size (json_pure-2.3.1.gem) = 119808 bytes
 SHA1 (patch-aa) = b0c387b14521d6ffe8c1b34bc3cb7b445a175434

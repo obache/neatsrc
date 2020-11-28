@@ -1,19 +1,24 @@
-# $NetBSD: Makefile,v 1.172 2019/12/09 18:46:00 adam Exp $
+# $NetBSD: Makefile,v 1.182 2020/08/31 18:09:55 wiz Exp $
 
-DISTNAME=	exim-4.93
+DISTNAME=	exim-4.94
+PKGREVISION=	3
 CATEGORIES=	mail net
 MASTER_SITES=	ftp://ftp.exim.org/pub/exim/exim4/
 MASTER_SITES+=	https://ftp.exim.org/pub/exim/exim4/
+MASTER_SITES+=	ftp://ftp.exim.org/pub/exim/exim4/fixes/
+MASTER_SITES+=	https://ftp.exim.org/pub/exim/exim4/fixes/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	abs@NetBSD.org
-HOMEPAGE=	http://www.exim.org/
+HOMEPAGE=	https://www.exim.org/
 COMMENT=	The Exim mail transfer agent, a replacement for sendmail
 LICENSE=	gnu-gpl-v2
 
 CONFLICTS+=	exim-exiscan-[0-9]*
 
 USE_TOOLS+=	perl:run
+USE_LANGUAGES=	c99
+
 BUILD_DEFS+=	VARBASE
 
 MAKE_ENV+=	SSLBASE=${SSLBASE:Q}

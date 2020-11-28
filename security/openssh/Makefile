@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.261 2019/08/11 13:22:48 wiz Exp $
+# $NetBSD: Makefile,v 1.268 2020/09/29 15:17:42 ryoon Exp $
 
-DISTNAME=		openssh-8.0p1
+DISTNAME=		openssh-8.4p1
 PKGNAME=		${DISTNAME:S/p1/.1/}
-PKGREVISION=		3
 CATEGORIES=		security
 MASTER_SITES=		${MASTER_SITE_OPENBSD:=OpenSSH/portable/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.openssh.com/
+HOMEPAGE=		https://www.openssh.com/
 COMMENT=		Open Source Secure shell client and server (remote login program)
 LICENSE=		modified-bsd
 
@@ -72,9 +71,6 @@ CONFIGURE_ENV+=		LD=${CC:Q}
 # Enable S/Key support on NetBSD, Darwin, and Solaris.
 .if (${OPSYS} == "NetBSD") || (${OPSYS} == "Darwin") || (${OPSYS} == "SunOS")
 .  include "../../security/skey/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-skey=${BUILDLINK_PREFIX.skey}
-.else
-CONFIGURE_ARGS+=	--without-skey
 .endif
 
 .if (${OPSYS} == "NetBSD")
@@ -143,7 +139,7 @@ FILES_SUBST+=		SSH_PID_DIR=${SSH_PID_DIR}
 
 SUBST_CLASSES+=		patch
 SUBST_STAGE.patch=	pre-configure
-SUBST_FILES.patch=	session.c sandbox-darwin.c
+SUBST_FILES.patch=	sandbox-darwin.c
 SUBST_SED.patch=	-e '/channel_input_port_forward_request/s/0/ROOTUID/'
 SUBST_VARS.patch=	PKG_SYSCONFDIR
 

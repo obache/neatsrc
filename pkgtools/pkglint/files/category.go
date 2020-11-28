@@ -43,8 +43,14 @@ func CheckdirCategory(dir CurrPath) {
 	// the (hopefully) sorted list of SUBDIRs. The first step is to
 	// collect the SUBDIRs in the Makefile and in the file system.
 
-	fSubdirs := getSubdirs(dir)
+	var fSubdirs []RelPath
 	var mSubdirs []subdir
+
+	for _, subdir := range getSubdirs(dir) {
+		if dir.JoinNoClean(subdir).JoinNoClean("Makefile").IsFile() {
+			fSubdirs = append(fSubdirs, subdir)
+		}
+	}
 
 	seen := make(map[RelPath]*MkLine)
 	for !mlex.EOF() {
@@ -114,8 +120,8 @@ func CheckdirCategory(dir CurrPath) {
 				}
 
 				fix := line.Autofix()
-				fix.Errorf("%q exists in the file system but not in the Makefile.", fCurrent)
-				fix.InsertBefore("SUBDIR+=\t" + fCurrent.String())
+				fix.Errorf("Package %q must be listed here.", fCurrent)
+				fix.InsertAbove("SUBDIR+=\t" + fCurrent.String())
 				fix.Apply()
 			}
 			fRest = fRest[1:]
@@ -123,7 +129,7 @@ func CheckdirCategory(dir CurrPath) {
 		} else if len(fRest) == 0 || mRest[0].name < fRest[0] {
 			if !fCheck[mRest[0].name] {
 				fix := mRest[0].line.Autofix()
-				fix.Errorf("%q exists in the Makefile but not in the file system.", mRest[0].name)
+				fix.Errorf("%q does not contain a package.", mRest[0].name)
 				fix.Delete()
 				fix.Apply()
 			}
@@ -139,7 +145,7 @@ func CheckdirCategory(dir CurrPath) {
 	// generating indexes and READMEs. Just skip them.
 	if !G.Wip {
 		mlex.SkipEmptyOrNote()
-		mlex.SkipContainsOrWarn(".include \"../mk/misc/category.mk\"")
+		mlex.SkipTextOrWarn(".include \"../mk/misc/category.mk\"")
 		if !mlex.EOF() {
 			mlex.CurrentLine().Errorf("The file must end here.")
 		}
@@ -147,7 +153,7 @@ func CheckdirCategory(dir CurrPath) {
 
 	mklines.SaveAutofixChanges()
 
-	if G.Opts.Recursive {
+	if G.Recursive {
 		var recurseInto []CurrPath
 		for _, msub := range mSubdirs {
 			if !msub.line.IsCommentedVarassign() {

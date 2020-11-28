@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.25 2019/12/29 15:31:21 adam Exp $
+# $NetBSD: Makefile,v 1.30 2020/09/23 06:58:46 adam Exp $
 
 .include "../../lang/llvm/version.mk"
 
 DISTNAME=	lldb-${LLVM_VERSION}.src
 PKGNAME=	${DISTNAME:S/.src//}
-CATEGORIES=	lang devel
+PKGREVISION=	1
+CATEGORIES=	devel lang
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://lldb.org/
@@ -20,7 +21,7 @@ CONFIGURE_DIRS=		${WRKDIR}/build
 CMAKE_ARG_PATH=		${WRKSRC}
 
 USE_CMAKE=		yes
-USE_LANGUAGES=		c c++11
+USE_LANGUAGES=		c c++14
 GCC_REQD+=		4.8
 PY_PATCHPLIST=		yes
 
@@ -33,6 +34,8 @@ CMAKE_ARGS+=	-DLLDB_CODESIGN_IDENTITY=""
 CMAKE_ARGS+=	-DLLDB_USE_SYSTEM_SIX:BOOL=TRUE
 
 CHECK_PORTABILITY_SKIP=	utils/buildit/build_llvm
+
+LUA_VERSIONS_ACCEPTED=	53
 
 REPLACE_PERL+=		*.pl
 REPLACE_PERL+=		*/*.pl
@@ -81,6 +84,7 @@ post-extract:
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/clang/buildlink3.mk"
 .include "../../lang/llvm/buildlink3.mk"
+.include "../../lang/lua/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
 .include "../../lang/python/tool.mk"

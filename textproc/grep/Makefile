@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.57 2019/12/15 22:09:30 wiz Exp $
+# $NetBSD: Makefile,v 1.60 2020/09/30 19:22:08 ryoon Exp $
 
-DISTNAME=	grep-3.3
+DISTNAME=	grep-3.5
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GNU:=grep/}
 EXTRACT_SUFX=	.tar.xz
@@ -11,11 +11,12 @@ COMMENT=	GNU grep
 LICENSE=	gnu-gpl-v3 # or later
 
 USE_PKGLOCALEDIR=	yes
-USE_TOOLS+=		makeinfo msgfmt
+USE_TOOLS+=		bash makeinfo msgfmt
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-perl-regexp
 CONFIGURE_ARGS+=	--program-prefix=g
 CONFIGURE_ENV+=		MKDIR_P=${INSTALL_DATA_DIR:Q}
+CONFIGURE_ENV+=		PERL= # none
 INFO_FILES=		yes
 TEXINFO_REQD=		4.0
 

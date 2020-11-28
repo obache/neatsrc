@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.94 2019/07/21 22:23:59 wiz Exp $
+# $NetBSD: Makefile,v 1.99 2020/08/17 20:17:18 leot Exp $
 
-DISTNAME=		glade-3.22.1
+DISTNAME=		glade-3.36.0
 PKGREVISION=		1
 CATEGORIES=		devel
-MASTER_SITES=		${MASTER_SITE_GNOME:=sources/glade/3.22/}
+MASTER_SITES=		${MASTER_SITE_GNOME:=sources/glade/3.36/}
 EXTRACT_SUFX=		.tar.xz
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
@@ -18,6 +18,9 @@ BUILD_DEPENDS+=		docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
 USE_TOOLS+=		pkg-config intltool gmake msgfmt
+
+# Requires --xml in msgfmt.
+_TOOLS_USE_PKGSRC.msgfmt=	yes
 
 PKGCONFIG_OVERRIDE+=	data/gladeui-2.0.pc.in
 

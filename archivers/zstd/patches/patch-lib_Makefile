@@ -1,20 +1,23 @@
-$NetBSD: patch-lib_Makefile,v 1.8 2018/10/22 15:28:03 adam Exp $
+$NetBSD: patch-lib_Makefile,v 1.10 2020/10/01 07:25:06 mcf Exp $
 
 Detect and use third-party libraries (taken from programs/Makefile).
 -fvisibility=hidden makes error when linking.
 Enable the "install" target on all OS.
 Fix pkgconfig installation path.
 
---- lib/Makefile.orig	2018-10-17 03:58:52.000000000 +0000
+--- lib/Makefile.orig	2020-05-22 05:04:00.000000000 +0000
 +++ lib/Makefile
-@@ -82,6 +82,17 @@ CPPFLAGS  += -DZSTD_LEGACY_SUPPORT=$(ZST
+@@ -165,6 +165,20 @@ CPPFLAGS  += -DZSTD_LEGACY_SUPPORT=$(ZST
  
  ZSTD_OBJ   := $(patsubst %.c,%.o,$(ZSTD_FILES))
  
 +VOID = /dev/null
 +
++# Make 4.3 doesn't support '\#' anymore (https://lwn.net/Articles/810071/)
++NUM_SYMBOL := \#
++
 +# thread detection
-+HAVE_PTHREAD := $(shell printf '\#include <pthread.h>\nint main(void) { return 0; }' | $(CC) $(FLAGS) -o have_pthread$(EXT) -x c - -pthread 2> $(VOID) && rm have_pthread$(EXT) && echo 1 || echo 0)
++HAVE_PTHREAD := $(shell printf '$(NUM_SYMBOL)include <pthread.h>\nint main(void) { return 0; }' | $(CC) $(FLAGS) -o have_pthread$(EXT) -x c - -pthread 2> $(VOID) && rm have_pthread$(EXT) && echo 1 || echo 0)
 +HAVE_THREAD := $(shell [ "$(HAVE_PTHREAD)" -eq "1" -o -n "$(filter Windows%,$(OS))" ] && echo 1 || echo 0)
 +ifeq ($(HAVE_THREAD), 1)
 +THREAD_MSG := ==> building with threading support
@@ -25,7 +28,7 @@ Fix pkgconfig installation path.
  # macOS linker doesn't support -soname, and use different extension
  # see : https://developer.apple.com/library/mac/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/DynamicLibraryDesignGuidelines.html
  ifeq ($(shell uname), Darwin)
-@@ -122,7 +133,8 @@ $(LIBZSTD): $(ZSTD_FILES)
+@@ -204,7 +218,8 @@ $(LIBZSTD): $(ZSTD_FILES)
  else
  
  LIBZSTD = libzstd.$(SHARED_EXT_VER)
@@ -34,17 +37,17 @@ Fix pkgconfig installation path.
 +$(LIBZSTD): LDFLAGS += -shared -fPIC $(THREAD_LD)
  $(LIBZSTD): $(ZSTD_FILES)
  	@echo compiling dynamic library $(LIBVER)
- 	@$(CC) $(FLAGS) $^ $(LDFLAGS) $(SONAME_FLAGS) -o $@
-@@ -166,7 +178,6 @@ clean:
+ 	$(Q)$(CC) $(FLAGS) $^ $(LDFLAGS) $(SONAME_FLAGS) -o $@
+@@ -251,7 +266,6 @@ clean:
  #-----------------------------------------------------------------------------
- # make install is validated only for Linux, macOS, BSD, Hurd and Solaris targets
+ # make install is validated only for below listed environments
  #-----------------------------------------------------------------------------
 -ifneq (,$(filter $(shell uname),Linux Darwin GNU/kFreeBSD GNU OpenBSD FreeBSD NetBSD DragonFly SunOS Haiku))
  
- DESTDIR     ?=
- # directory variables : GNU conventions prefer lowercase
-@@ -244,4 +255,3 @@ uninstall:
- 	@$(RM) $(DESTDIR)$(INCLUDEDIR)/zdict.h
+ all: libzstd.pc
+ 
+@@ -351,4 +365,3 @@ uninstall:
+ 	$(Q)$(RM) $(DESTDIR)$(INCLUDEDIR)/zdict.h
  	@echo zstd libraries successfully uninstalled
  
 -endif

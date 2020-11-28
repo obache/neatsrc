@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.131 2019/11/24 09:23:13 adam Exp $
+# $NetBSD: Makefile,v 1.135 2020/04/11 08:25:20 jperkin Exp $
 
 .include "Makefile.common"
 
-PKGREVISION=		2
+#CONFIGURE_ENV+=		disable_x11=yes
 
 BUILD_TARGET=		world
 MAKE_JOBS_SAFE=		no
@@ -12,6 +12,13 @@ USE_TOOLS+=		bash
 USE_LANGUAGES+=		c
 USE_LIBTOOL=		yes
 USE_GNU_CONFIGURE_HOST=	no
+
+# This actually works fine, but requires some patches that the maintainer
+# insists on removing every time the package is updated, so we unfortunately
+# have to mark it broken to stop wasting people's valuable time investigating.
+BROKEN_ON_PLATFORM=	SunOS-*-*
+
+#USE_GCC_RUNTIME=	yes
 
 PLIST_VARS+=	ocaml-stub ocaml-prof ocaml-opt ocaml-nat ocaml-spacetime \
 		instrumented_runtime
@@ -38,7 +45,7 @@ PLIST.ocaml-stub=	yes
 BUILD_TARGET+=		opt opt.opt
 PLIST.ocaml-opt=	yes
 .  if empty(MACHINE_PLATFORM:MDarwin-*-powerpc) && \
-      empty(MACHINE_PLATFORM:MSunOS-*-*) && \
+      empty(MACHINE_PLATFORM:MSunOS-*-i386) && \
       (${MACHINE_ARCH} != "aarch64")
 PLIST.ocaml-prof=	yes
 .  endif
@@ -102,12 +109,19 @@ do-test:
 post-install: fix-darwin-install-name
 fix-darwin-install-name:
 	for f in ${DESTDIR}${PREFIX}/lib/ocaml/*.so \
-		${DESTDIR}${PREFIX}/lib/ocaml/stublibs/*.so; do \
-		install_name_tool -id `${ECHO} $$f | ${SED} -e 's,${DESTDIR},,g'` $$f; \
+	       ${DESTDIR}${PREFIX}/lib/ocaml/stublibs/*.so; do \
+	       install_name_tool -id `${ECHO} $$f | ${SED} -e 's,${DESTDIR},,g'` $$f; \
 	done
 .endif
 
 CHECK_FILES_SKIP+=	${PREFIX}/lib/ocaml/ld.conf
+
+#post-install:
+#	set -e ; cd ${DESTDIR}${PREFIX}/lib/ocaml/${PKGMANDIR}/man1;	\
+#	for m in *; do							\
+#	  ln -sf ${PREFIX}/lib/ocaml/${PKGMANDIR}/man1/$$m		\
+#		${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/$$m;		\
+#	done
 
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/termcap.buildlink3.mk"

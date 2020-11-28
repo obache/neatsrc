@@ -2,6 +2,7 @@ package pkglint
 
 import (
 	"gopkg.in/check.v1"
+	"netbsd.org/pkglint/regex"
 	"os"
 	"runtime"
 	"strings"
@@ -19,8 +20,8 @@ func (s *Suite) Test_Autofix__default_also_updates_line(c *check.C) {
 	fix := line.Autofix()
 	fix.Warnf("Row should be replaced with line.")
 	fix.Replace("row", "line")
-	fix.InsertBefore("above")
-	fix.InsertAfter("below")
+	fix.InsertAbove("above")
+	fix.InsertBelow("below")
 	fix.Delete()
 	fix.Apply()
 
@@ -46,8 +47,8 @@ func (s *Suite) Test_Autofix__show_autofix_modifies_line(c *check.C) {
 	fix := line.Autofix()
 	fix.Warnf("Row should be replaced with line.")
 	fix.ReplaceAfter("", "# row", "# line")
-	fix.InsertBefore("above")
-	fix.InsertAfter("below")
+	fix.InsertAbove("above")
+	fix.InsertBelow("below")
 	fix.Delete()
 	fix.Apply()
 
@@ -57,8 +58,8 @@ func (s *Suite) Test_Autofix__show_autofix_modifies_line(c *check.C) {
 	t.CheckOutputLines(
 		"WARN: ~/Makefile:1--2: Row should be replaced with line.",
 		"AUTOFIX: ~/Makefile:1: Replacing \"# row\" with \"# line\".",
-		"AUTOFIX: ~/Makefile:1: Inserting a line \"above\" before this line.",
-		"AUTOFIX: ~/Makefile:2: Inserting a line \"below\" after this line.",
+		"AUTOFIX: ~/Makefile:1: Inserting a line \"above\" above this line.",
+		"AUTOFIX: ~/Makefile:2: Inserting a line \"below\" below this line.",
 		"AUTOFIX: ~/Makefile:1: Deleting this line.",
 		"AUTOFIX: ~/Makefile:2: Deleting this line.",
 		"+\tabove",
@@ -71,12 +72,20 @@ func (s *Suite) Test_Autofix__show_autofix_modifies_line(c *check.C) {
 func (s *Suite) Test_Autofix__multiple_fixes(c *check.C) {
 	t := s.Init(c)
 
+	newRawLines := func(texts ...string) []*RawLine {
+		var rawLines []*RawLine
+		for _, text := range texts {
+			rawLines = append(rawLines, &RawLine{text})
+		}
+		return rawLines
+	}
+
 	t.SetUpCommandLine("--show-autofix", "--explain")
 
 	line := t.NewLine("filename", 1, "original")
 
-	c.Check(line.autofix, check.IsNil)
-	t.CheckDeepEquals(line.raw, t.NewRawLines(1, "original\n"))
+	c.Check(line.fix, check.IsNil)
+	t.CheckDeepEquals(line.raw, newRawLines("original\n"))
 
 	{
 		fix := line.Autofix()
@@ -85,8 +94,9 @@ func (s *Suite) Test_Autofix__multiple_fixes(c *check.C) {
 		fix.Apply()
 	}
 
-	c.Check(line.autofix, check.NotNil)
-	t.CheckDeepEquals(line.raw, t.NewRawLines(1, "original\n", "lriginao\n"))
+	c.Check(line.fix, check.NotNil)
+	t.CheckDeepEquals(line.raw, newRawLines("original\n"))
+	t.CheckDeepEquals(line.fix.texts, []string{"lriginao\n"})
 	t.CheckOutputLines(
 		"AUTOFIX: filename:1: Replacing \"original\" with \"lriginao\".")
 
@@ -97,9 +107,10 @@ func (s *Suite) Test_Autofix__multiple_fixes(c *check.C) {
 		fix.Apply()
 	}
 
-	c.Check(line.autofix, check.NotNil)
-	t.CheckDeepEquals(line.raw, t.NewRawLines(1, "original\n", "lruginao\n"))
-	t.CheckEquals(line.raw[0].textnl, "lruginao\n")
+	c.Check(line.fix, check.NotNil)
+	t.CheckDeepEquals(line.raw, newRawLines("original\n"))
+	t.CheckDeepEquals(line.fix.texts, []string{"lruginao\n"})
+	t.CheckEquals(line.RawText(0), "lruginao")
 	t.CheckOutputLines(
 		"AUTOFIX: filename:1: Replacing \"ig\" with \"ug\".")
 
@@ -110,13 +121,13 @@ func (s *Suite) Test_Autofix__multiple_fixes(c *check.C) {
 		fix.Apply()
 	}
 
-	c.Check(line.autofix, check.NotNil)
-	t.CheckDeepEquals(line.raw, t.NewRawLines(1, "original\n", "middle\n"))
-	t.CheckEquals(line.raw[0].textnl, "middle\n")
+	c.Check(line.fix, check.NotNil)
+	t.CheckDeepEquals(line.raw, newRawLines("original\n"))
+	t.CheckDeepEquals(line.fix.texts, []string{"middle\n"})
 	t.CheckOutputLines(
 		"AUTOFIX: filename:1: Replacing \"lruginao\" with \"middle\".")
 
-	t.CheckEquals(line.raw[0].textnl, "middle\n")
+	t.CheckDeepEquals(line.fix.texts, []string{"middle\n"})
 	t.CheckOutputEmpty()
 
 	{
@@ -485,14 +496,14 @@ func (s *Suite) Test_Autofix_Explain__silent_with_diagnostic(c *check.C) {
 
 	fix := line.Autofix()
 	fix.Warnf(SilentAutofixFormat)
-	fix.InsertBefore("before")
+	fix.InsertAbove("above")
 	fix.Apply()
 
 	fix.Notef("This diagnostic is necessary for the following explanation.")
 	fix.Explain(
 		"When inserting multiple lines, Apply must be called in-between.",
 		"Otherwise the changes are not described to the human reader.")
-	fix.InsertAfter("after")
+	fix.InsertBelow("below")
 	fix.Apply()
 
 	t.CheckOutputLines(
@@ -501,7 +512,7 @@ func (s *Suite) Test_Autofix_Explain__silent_with_diagnostic(c *check.C) {
 		"\tWhen inserting multiple lines, Apply must be called in-between.",
 		"\tOtherwise the changes are not described to the human reader.",
 		"")
-	t.CheckEquals(fix.RawText(), "before\nText\nafter\n")
+	t.CheckEquals(fix.RawText(), "above\nText\nbelow\n")
 }
 
 func (s *Suite) Test_Autofix_Replace(c *check.C) {
@@ -589,8 +600,8 @@ func (s *Suite) Test_Autofix_ReplaceAfter__after_inserting_a_line(c *check.C) {
 
 	fix := line.Autofix()
 	fix.Notef("Inserting a line.")
-	fix.InsertBefore("line before")
-	fix.InsertAfter("line after")
+	fix.InsertAbove("line above")
+	fix.InsertBelow("line below")
 	fix.Apply()
 
 	fix.Notef("Replacing text.")
@@ -600,8 +611,8 @@ func (s *Suite) Test_Autofix_ReplaceAfter__after_inserting_a_line(c *check.C) {
 
 	t.CheckOutputLines(
 		"NOTE: filename:5: Inserting a line.",
-		"AUTOFIX: filename:5: Inserting a line \"line before\" before this line.",
-		"AUTOFIX: filename:5: Inserting a line \"line after\" after this line.",
+		"AUTOFIX: filename:5: Inserting a line \"line above\" above this line.",
+		"AUTOFIX: filename:5: Inserting a line \"line below\" below this line.",
 		"NOTE: filename:5: Replacing text.",
 		"AUTOFIX: filename:5: Replacing \"l\" with \"L\".",
 		"AUTOFIX: filename:5: Replacing \"i\" with \"I\".")
@@ -692,7 +703,7 @@ func (s *Suite) Test_Autofix_ReplaceAt(c *check.C) {
 		t.ExpectDiagnosticsAutofix(doTest, nil...)
 	}
 
-	testPanicMatches := func(texts []string, rawIndex int, column int, from, to, panicMessage string) {
+	testPanicMatches := func(texts []string, rawIndex int, column int, from, to string, panicMessage regex.Pattern) {
 		doTest := func(bool) {
 			t.ExpectPanicMatches(
 				func() { mainPart(texts, rawIndex, column, from, to) },
@@ -746,7 +757,37 @@ func (s *Suite) Test_Autofix_ReplaceAt(c *check.C) {
 		0, 20, "?", "+=")
 }
 
-func (s *Suite) Test_Autofix_InsertBefore(c *check.C) {
+func (s *Suite) Test_Autofix_ReplaceAt__only(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCommandLine("--only", "specific", "--autofix")
+	mklines := t.SetUpFileMkLines("filename.mk",
+		"# comment")
+
+	mklines.ForEach(func(mkline *MkLine) {
+		// The modifications from this replacement are not saved to the file.
+		// They are only applied to the in-memory copy.
+		fix := mkline.Autofix()
+		fix.Warnf("Warning.")
+		fix.ReplaceAt(0, 0, "# ", "COMMENT=\t")
+		fix.Apply()
+
+		// This autofix marks the file's lines as changed.
+		// Without it, SaveAutofixChanges would not have any effect.
+		fix = mkline.Autofix()
+		fix.Warnf("A specific warning.")
+		fix.Replace("comment", "remark")
+		fix.Apply()
+	})
+	mklines.SaveAutofixChanges()
+
+	t.CheckOutputLines(
+		"AUTOFIX: ~/filename.mk:1: Replacing \"comment\" with \"remark\".")
+	t.CheckFileLines("filename.mk",
+		"# remark")
+}
+
+func (s *Suite) Test_Autofix_InsertAbove(c *check.C) {
 	t := s.Init(c)
 
 	t.SetUpCommandLine("--show-autofix", "--source")
@@ -754,17 +795,17 @@ func (s *Suite) Test_Autofix_InsertBefore(c *check.C) {
 
 	fix := line.Autofix()
 	fix.Warnf("Dummy.")
-	fix.InsertBefore("inserted")
+	fix.InsertAbove("inserted")
 	fix.Apply()
 
 	t.CheckOutputLines(
 		"WARN: Makefile:30: Dummy.",
-		"AUTOFIX: Makefile:30: Inserting a line \"inserted\" before this line.",
+		"AUTOFIX: Makefile:30: Inserting a line \"inserted\" above this line.",
 		"+\tinserted",
 		">\toriginal")
 }
 
-func (s *Suite) Test_Autofix_InsertAfter(c *check.C) {
+func (s *Suite) Test_Autofix_InsertBelow(c *check.C) {
 	t := s.Init(c)
 
 	doTest := func(bool) {
@@ -772,14 +813,14 @@ func (s *Suite) Test_Autofix_InsertAfter(c *check.C) {
 
 		fix := line.Autofix()
 		fix.Errorf("Error.")
-		fix.InsertAfter("after")
+		fix.InsertBelow("below")
 		fix.Apply()
 	}
 
 	t.ExpectDiagnosticsAutofix(
 		doTest,
 		"ERROR: DESCR:1: Error.",
-		"AUTOFIX: DESCR:1: Inserting a line \"after\" after this line.")
+		"AUTOFIX: DESCR:1: Inserting a line \"below\" below this line.")
 }
 
 func (s *Suite) Test_Autofix_Delete(c *check.C) {
@@ -832,15 +873,15 @@ func (s *Suite) Test_Autofix_Delete__combined_with_insert(c *check.C) {
 	fix := line.Autofix()
 	fix.Warnf("This line should be replaced completely.")
 	fix.Delete()
-	fix.InsertAfter("below")
-	fix.InsertBefore("above")
+	fix.InsertBelow("below")
+	fix.InsertAbove("above")
 	fix.Apply()
 
 	t.CheckOutputLines(
 		"WARN: Makefile:30: This line should be replaced completely.",
 		"AUTOFIX: Makefile:30: Deleting this line.",
-		"AUTOFIX: Makefile:30: Inserting a line \"below\" after this line.",
-		"AUTOFIX: Makefile:30: Inserting a line \"above\" before this line.",
+		"AUTOFIX: Makefile:30: Inserting a line \"below\" below this line.",
+		"AUTOFIX: Makefile:30: Inserting a line \"above\" above this line.",
 		"+\tabove",
 		"-\tto be deleted",
 		"+\tbelow")
@@ -864,7 +905,7 @@ func (s *Suite) Test_Autofix_Custom__in_memory(c *check.C) {
 		fix := line.Autofix()
 		fix.Warnf("Please write in ALL-UPPERCASE.")
 		fix.Custom(func(showAutofix, autofix bool) {
-			fix.Describef(int(line.firstLine), "Converting to uppercase")
+			fix.Describef(0, "Converting to uppercase")
 			if showAutofix || autofix {
 				line.Text = strings.ToUpper(line.Text)
 			}
@@ -899,17 +940,16 @@ func (s *Suite) Test_Autofix_Describef(c *check.C) {
 	t := s.Init(c)
 
 	doTest := func(bool) {
-		line := t.NewLine("DESCR", 1, "Description of the package")
+		line := t.NewLine("DESCR", 123, "Description of the package")
 
 		fix := line.Autofix()
 		fix.Errorf("Error.")
 		fix.Custom(func(showAutofix, autofix bool) {
-			fix.Describef(123, "Masking.")
-			raw := line.raw[0]
-			raw.textnl = replaceAll(raw.Text(), `\p{L}`, "*") + "\n"
+			fix.Describef(0, "Masking.")
+			fix.texts[0] = replaceAll(fix.texts[0], `\p{L}`, "*")
 		})
 		fix.Apply()
-		t.CheckEquals(line.raw[0].Text(), "*********** ** *** *******")
+		t.CheckEquals(line.RawText(0), "*********** ** *** *******")
 	}
 
 	t.ExpectDiagnosticsAutofix(
@@ -1162,7 +1202,7 @@ func (s *Suite) Test_Autofix_Apply__text_after_replacing(c *check.C) {
 	t.CheckOutputLines(
 		"AUTOFIX: filename.mk:123: Replacing \"value\" with \"new value\".")
 
-	t.CheckEquals(mkline.raw[0].textnl, "VAR=\tnew value\n")
+	t.CheckEquals(mkline.fix.texts[0], "VAR=\tnew value\n")
 	t.CheckEquals(mkline.raw[0].orignl, "VAR=\tvalue\n")
 	t.CheckEquals(mkline.Text, "VAR=\tnew value")
 	// TODO: should be updated as well.
@@ -1261,8 +1301,8 @@ func (s *Suite) Test_Autofix_skip(c *check.C) {
 	fix.Replace("111", "___")
 	fix.ReplaceAfter(" ", "222", "___")
 	fix.ReplaceAt(0, 0, "VAR", "NEW")
-	fix.InsertBefore("before")
-	fix.InsertAfter("after")
+	fix.InsertAbove("above")
+	fix.InsertBelow("below")
 	fix.Delete()
 	fix.Custom(func(showAutofix, autofix bool) {})
 
@@ -1275,7 +1315,7 @@ func (s *Suite) Test_Autofix_skip(c *check.C) {
 		"VAR=\t111 222 333 444 555 \\",
 		"666")
 	t.CheckEquals(fix.RawText(), ""+
-		"NEW=\t111 222 333 444 555 \\\n"+
+		"VAR=\t111 222 333 444 555 \\\n"+
 		"666\n")
 }
 
@@ -1416,14 +1456,14 @@ func (s *Suite) Test_SaveAutofixChanges__no_changes_necessary(c *check.C) {
 // or --autofix options are enabled.
 func (fix *Autofix) RawText() string {
 	var text strings.Builder
-	for _, lineBefore := range fix.linesBefore {
-		text.WriteString(lineBefore)
+	for _, above := range fix.above {
+		text.WriteString(above)
 	}
-	for _, raw := range fix.line.raw {
-		text.WriteString(raw.textnl)
+	for _, modified := range fix.texts {
+		text.WriteString(modified)
 	}
-	for _, lineAfter := range fix.linesAfter {
-		text.WriteString(lineAfter)
+	for _, below := range fix.below {
+		text.WriteString(below)
 	}
 	return text.String()
 }

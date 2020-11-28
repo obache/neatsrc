@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.30 2018/03/12 11:17:09 wiz Exp $
+# $NetBSD: Makefile,v 1.34 2020/08/17 20:19:34 leot Exp $
 
 DISTNAME=	qbrew-0.4.1
-PKGREVISION=	4
+PKGREVISION=	7
 CATEGORIES=	misc
 MASTER_SITES=	http://www.usermode.org/code/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.usermode.org/code.html
+HOMEPAGE=	https://www.usermode.org/code.html
 COMMENT=	Homebrewer's recipe calculator
 
 USE_LANGUAGES=	c c++

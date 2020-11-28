@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.9 2019/07/21 22:24:18 wiz Exp $
+# $NetBSD: Makefile,v 1.12 2020/08/17 20:17:52 leot Exp $
 
-PKGREVISION= 8
+PKGREVISION= 11
 .include "Makefile.common"
 
 CATEGORIES=	x11

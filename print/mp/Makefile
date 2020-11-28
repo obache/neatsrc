@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.20 2020/01/07 11:55:39 kim Exp $
+# $NetBSD: Makefile,v 1.22 2020/03/20 11:58:14 nia Exp $
 #
 
 DISTNAME=	mpdist-3.7.1

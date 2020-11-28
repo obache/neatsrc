@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.3 2020/01/11 17:31:50 nia Exp $
+# $NetBSD: Makefile,v 1.6 2020/08/17 20:17:47 leot Exp $
 
-DISTNAME=	velox-0.0.3.20200111
+DISTNAME=	velox-0.0.3.20200119
+PKGREVISION=	2
 CATEGORIES=	wm
 MASTER_SITES=	${MASTER_SITE_GITHUB:=niacat/}
 GITHUB_PROJECT=	velox
-GITHUB_TAG=	816aa339c749d722899dd1d33a4079694e6ca0b1
+GITHUB_TAG=	5cfdcbafb130128d4537ade4dffe8ac12712607d
 
 MAINTAINER=	nia@NetBSD.org
 HOMEPAGE=	https://github.com/niacat/velox

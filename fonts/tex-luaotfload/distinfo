@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.9 2019/08/11 05:40:19 markd Exp $
+$NetBSD: distinfo,v 1.11 2020/05/11 11:02:06 markd Exp $
 
-SHA1 (tex-luaotfload-51639/luaotfload.tar.xz) = 32811a8bf32e107adf21f70af937105a560b3ee5
-RMD160 (tex-luaotfload-51639/luaotfload.tar.xz) = d25f1217ef987593d62b01248344f9b7bae1e26a
-SHA512 (tex-luaotfload-51639/luaotfload.tar.xz) = e7e4c08ba2123c738548c033d5da17c89cbd04d8326dadb866af14913d96031238413f7ad19268675da682e2215141b4e74e2a49bd0547b6c6e58a5768573873
-Size (tex-luaotfload-51639/luaotfload.tar.xz) = 558112 bytes
+SHA1 (luaotfload.r55064.tar.xz) = 5b64d66a7d894fa9e152e9f5afd9c4efea193f82
+RMD160 (luaotfload.r55064.tar.xz) = f678d34f13b47d0676e19d20658960bda6b91f24
+SHA512 (luaotfload.r55064.tar.xz) = f9c5b70ee442d167e2264eec44d2aa1ee6ee897731c42d5d8b1dd17c0e6c307ee05b05af06188ea60e48c5cc1a9b9b5edb7a1ecaf571c7ecba66c6a1b11dd2cf
+Size (luaotfload.r55064.tar.xz) = 585496 bytes

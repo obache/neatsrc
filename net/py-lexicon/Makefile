@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.41 2020/01/11 16:17:39 adam Exp $
+# $NetBSD: Makefile,v 1.52 2020/10/28 19:33:05 adam Exp $
 
-DISTNAME=	dns-lexicon-3.3.16
+DISTNAME=	dns-lexicon-3.4.4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/dns-//}
 CATEGORIES=	net python
 MASTER_SITES=	${MASTER_SITE_PYPI:=d/dns-lexicon/}
@@ -10,14 +10,16 @@ HOMEPAGE=	https://github.com/AnalogJ/lexicon
 COMMENT=	Manipulate DNS records on various DNS providers
 LICENSE=	mit
 
-DEPENDS+=	${PYPKGPREFIX}-cryptography-[0-9]*:../../security/py-cryptography
-DEPENDS+=	${PYPKGPREFIX}-future-[0-9]*:../../devel/py-future
-DEPENDS+=	${PYPKGPREFIX}-requests-[0-9]*:../../devel/py-requests
-DEPENDS+=	${PYPKGPREFIX}-tldextract-[0-9]*:../../net/py-tldextract
-DEPENDS+=	${PYPKGPREFIX}-yaml-[0-9]*:../../textproc/py-yaml
+DEPENDS+=	${PYPKGPREFIX}-beautifulsoup4>=4:../../www/py-beautifulsoup4
+DEPENDS+=	${PYPKGPREFIX}-cryptography>=2:../../security/py-cryptography
+DEPENDS+=	${PYPKGPREFIX}-future>=0:../../devel/py-future
+DEPENDS+=	${PYPKGPREFIX}-requests>=2:../../devel/py-requests
+DEPENDS+=	${PYPKGPREFIX}-tldextract>=2:../../net/py-tldextract
+DEPENDS+=	${PYPKGPREFIX}-yaml>=5:../../textproc/py-yaml
 TEST_DEPENDS+=	${PYPKGPREFIX}-mock>=2.0.0:../../devel/py-mock
-TEST_DEPENDS+=	${PYPKGPREFIX}-test>=4.1.1:../../devel/py-test
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-xdist>=1.26.1:../../devel/py-test-xdist
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 MESSAGE_SUBST+=	PYPKGPREFIX=${PYPKGPREFIX}
 

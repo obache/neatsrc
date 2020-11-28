@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.26 2019/08/11 13:21:24 wiz Exp $
+# $NetBSD: Makefile,v 1.29 2020/08/31 18:09:53 wiz Exp $
 
 DISTNAME=	amavisd-new-${VERSION}${PATCHLEVEL}
 PKGNAME=	amavisd-new-${VERSION}${PATCHLEVEL:S/-//}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	mail security
 MASTER_SITES=	https://www.ijs.si/software/amavisd/
 MASTER_SITES+=	http://mirrors.catpipe.net/amavisd-new/
@@ -78,11 +78,10 @@ SMF_NAME=	amavisd
 CONF_FILES=	${EGDIR}/amavisd.conf-minimal ${PKG_SYSCONFDIR}/amavisd.conf
 
 USE_LANGUAGES=		# none, not even C
-
-do-build:	replace-interpreter
+NO_BUILD=	yes
 
 SUBST_CLASSES+=		amavisd
-SUBST_STAGE.amavisd=	pre-build
+SUBST_STAGE.amavisd=	pre-configure
 SUBST_FILES.amavisd=	amavisd amavisd.conf
 SUBST_SED.amavisd=	-e "s|/etc/amavisd.conf|${PKG_SYSCONFDIR}/amavisd.conf|"
 SUBST_VARS.amavisd=	AMAVIS_DIR

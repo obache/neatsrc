@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2018/05/06 17:45:30 gavan Exp $
+# $NetBSD: Makefile,v 1.5 2020/03/20 11:58:19 nia Exp $
 #
 
 DISTNAME=	sshpass-1.06

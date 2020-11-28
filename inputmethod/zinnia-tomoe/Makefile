@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2015/11/25 12:50:58 jperkin Exp $
+# $NetBSD: Makefile,v 1.6 2020/03/20 11:57:54 nia Exp $
 #
 
 DISTNAME=	zinnia-tomoe-0.6.0-20080911

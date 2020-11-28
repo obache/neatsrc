@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.18 2017/08/29 12:54:47 fhajny Exp $
+# $NetBSD: options.mk,v 1.19 2020/05/31 14:43:14 rillig Exp $
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.groonga
@@ -37,7 +37,6 @@ CONFIGURE_ARGS+=	--without-libstemmer
 .endif
 
 .if !empty(PKG_OPTIONS:Mtests)
-CONFIGURE_ARGS+=	--with-cutter
 CONFIGURE_ARGS+=	--with-ruby=${RUBY}
 TEST_TARGET=		check
 BUILDLINK_API_DEPENDS.cutter+=		cutter>=1.1.6
@@ -50,8 +49,6 @@ BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-bundler-[0-9]*:../../misc/ruby-bundler
 BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-ffi-[0-9]*:../../devel/ruby-ffi
 BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-ffi-yajl-[0-9]*:../../devel/ruby-ffi-yajl
 BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-msgpack-[0-9]*:../../devel/ruby-msgpack
-.else
-CONFIGURE_ARGS+=	--without-cutter
 .endif
 
 .if !empty(PKG_OPTIONS:Mzlib)

@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.3 2019/10/18 09:29:16 ng0 Exp $
+# $NetBSD: Makefile,v 1.7 2020/10/02 08:35:31 adam Exp $
 
-DISTNAME=	markovify-0.7.2
+DISTNAME=	markovify-0.8.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	textproc python
 MASTER_SITES=	${MASTER_SITE_PYPI:=m/markovify/}
 
-MAINTAINER=	ng0@NetBSD.org
+MAINTAINER=	nikita@NetBSD.org
 HOMEPAGE=	https://github.com/jsvine/markovify
 COMMENT=	Simple and extensible Markov chain generator
 LICENSE=	mit

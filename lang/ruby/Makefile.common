@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.42 2019/10/02 13:25:54 taca Exp $
+# $NetBSD: Makefile.common,v 1.44 2020/05/02 10:07:53 rillig Exp $
 #
 # Ruby base distribution common definition
 #
@@ -16,6 +16,8 @@
 # used by lang/ruby25-base/Makefile
 # used by lang/ruby26/Makefile
 # used by lang/ruby26-base/Makefile
+# used by lang/ruby27/Makefile
+# used by lang/ruby27-base/Makefile
 # used by x11/ruby-tk/Makefile
 #
 # RUBY_EXTNAME
@@ -78,6 +80,7 @@ do-patch:
 CONFIGURE_ARGS+=	--disable-pthread
 .else
 CONFIGURE_ARGS+=	--enable-pthread
+GNU_CONFIGURE_STRICT=	no # at least ruby25-base doesn't know --enable-pthread
 
 PTHREAD_OPTS+=		native
 PTHREAD_AUTO_VARS=	yes

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.26 2018/07/18 00:06:16 joerg Exp $
+# $NetBSD: Makefile,v 1.28 2020/03/20 11:57:40 nia Exp $
 
 DISTNAME=	exult-1.4.9rc1
 PKGREVISION=	2

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2018/12/06 14:40:58 taca Exp $
+# $NetBSD: Makefile,v 1.3 2020/05/02 13:53:47 taca Exp $
 
-DISTNAME=	puppet-resource_api-1.6.2
+DISTNAME=	puppet-resource_api-1.8.13
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

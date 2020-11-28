@@ -1,15 +1,13 @@
-# $NetBSD: Makefile,v 1.25 2019/11/04 19:57:59 rillig Exp $
-#
+# $NetBSD: Makefile,v 1.27 2020/03/24 18:12:08 nia Exp $
 
-DISTNAME=	mpage-2.5.6
+DISTNAME=	mpage-2.5.7
 CATEGORIES=	print
-MASTER_SITES=	ftp://ftp.mesa.nl/pub/mpage/
-MASTER_SITES+=	http://www.mesa.nl/pub/mpage/
+MASTER_SITES+=	https://www.mesa.nl/pub/mpage/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Print multiple pages per sheet of paper
-HOMEPAGE=	http://www.mesa.nl/download.html
+HOMEPAGE=	https://www.mesa.nl/download.html
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
 BUILD_TARGET=		default

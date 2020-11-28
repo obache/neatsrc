@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.83 2019/07/21 22:25:46 wiz Exp $
+# $NetBSD: Makefile,v 1.89 2020/09/19 21:02:57 rhialto Exp $
 
 DISTNAME=	xcdroast-1.18
-PKGREVISION=	4
+PKGREVISION=	8
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=xcdroast/}
 
@@ -16,7 +16,6 @@ USE_TOOLS+=		gmake msgfmt pkg-config
 USE_PKGLOCALEDIR=	YES
 GNU_CONFIGURE=		YES
 
-CONFIGURE_ARGS+=	--enable-gtk2
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 
 .include "../../mk/bsd.prefs.mk"
@@ -33,7 +32,7 @@ CONF_FILES=	/dev/null ${PKG_SYSCONFDIR}/xcdroast.conf
 SUBST_CLASSES+=			devossaudio
 SUBST_STAGE.devossaudio=	pre-build
 SUBST_MESSAGE.devossaudio=	Fixing path to audio device.
-SUBST_FILES.devossaudio=	io.c wavplay.c
+SUBST_FILES.devossaudio=	src/wavplay.c
 SUBST_VARS.devossaudio=		DEVOSSAUDIO
 
 INSTALLATION_DIRS=	${DOCDIR}

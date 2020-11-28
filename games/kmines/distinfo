@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.7 2019/11/18 10:11:43 markd Exp $
+$NetBSD: distinfo,v 1.9 2020/06/09 11:56:09 markd Exp $
 
-SHA1 (kmines-19.08.3.tar.xz) = df8544dfc7db0aa021bae9d4ab258b15057fa10b
-RMD160 (kmines-19.08.3.tar.xz) = d1b23d62566f3add8e3543a65e5c10fafd7aa452
-SHA512 (kmines-19.08.3.tar.xz) = 6af27ac194f798809aa2002909e9c54b17948b50e94c2846c8ad57f29c8210a1d407d7ba44d3f25b823b6d0a5fae0ad86f5325d9af7657dd394eb899e43856a6
-Size (kmines-19.08.3.tar.xz) = 898548 bytes
+SHA1 (kmines-20.04.1.tar.xz) = b02f26e88a64c7b3a49e9d7fe81802acf22dfed4
+RMD160 (kmines-20.04.1.tar.xz) = b0f44dbe50f2b064706be514e93153fa0e92405a
+SHA512 (kmines-20.04.1.tar.xz) = 00756285fb2810bd02e1f3ab41a122a537e1c7de10641af5265149460be61f87375efeed3f623382368e343e61abbbdb20b6769ba755fb2eb6780531815e7084
+Size (kmines-20.04.1.tar.xz) = 899972 bytes

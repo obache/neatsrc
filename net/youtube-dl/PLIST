@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.97 2019/12/26 22:12:27 leot Exp $
+@comment $NetBSD: PLIST,v 1.99 2020/02/16 19:28:47 leot Exp $
 bin/youtube-dl
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
@@ -908,9 +908,6 @@ ${PYSITELIB}/youtube_dl/extractor/joj.pyo
 ${PYSITELIB}/youtube_dl/extractor/jove.py
 ${PYSITELIB}/youtube_dl/extractor/jove.pyc
 ${PYSITELIB}/youtube_dl/extractor/jove.pyo
-${PYSITELIB}/youtube_dl/extractor/jpopsukitv.py
-${PYSITELIB}/youtube_dl/extractor/jpopsukitv.pyc
-${PYSITELIB}/youtube_dl/extractor/jpopsukitv.pyo
 ${PYSITELIB}/youtube_dl/extractor/jwplatform.py
 ${PYSITELIB}/youtube_dl/extractor/jwplatform.pyc
 ${PYSITELIB}/youtube_dl/extractor/jwplatform.pyo
@@ -1358,9 +1355,6 @@ ${PYSITELIB}/youtube_dl/extractor/outsidetv.pyo
 ${PYSITELIB}/youtube_dl/extractor/packtpub.py
 ${PYSITELIB}/youtube_dl/extractor/packtpub.pyc
 ${PYSITELIB}/youtube_dl/extractor/packtpub.pyo
-${PYSITELIB}/youtube_dl/extractor/pandatv.py
-${PYSITELIB}/youtube_dl/extractor/pandatv.pyc
-${PYSITELIB}/youtube_dl/extractor/pandatv.pyo
 ${PYSITELIB}/youtube_dl/extractor/pandoratv.py
 ${PYSITELIB}/youtube_dl/extractor/pandoratv.pyc
 ${PYSITELIB}/youtube_dl/extractor/pandoratv.pyo
@@ -1442,6 +1436,9 @@ ${PYSITELIB}/youtube_dl/extractor/pokemon.pyo
 ${PYSITELIB}/youtube_dl/extractor/polskieradio.py
 ${PYSITELIB}/youtube_dl/extractor/polskieradio.pyc
 ${PYSITELIB}/youtube_dl/extractor/polskieradio.pyo
+${PYSITELIB}/youtube_dl/extractor/popcorntimes.py
+${PYSITELIB}/youtube_dl/extractor/popcorntimes.pyc
+${PYSITELIB}/youtube_dl/extractor/popcorntimes.pyo
 ${PYSITELIB}/youtube_dl/extractor/popcorntv.py
 ${PYSITELIB}/youtube_dl/extractor/popcorntv.pyc
 ${PYSITELIB}/youtube_dl/extractor/popcorntv.pyo

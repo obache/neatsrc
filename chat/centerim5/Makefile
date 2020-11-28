@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2020/01/05 10:39:33 nia Exp $
+# $NetBSD: Makefile,v 1.9 2020/06/02 08:23:17 adam Exp $
 
 DISTNAME=	centerim5-5.0.1
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	chat
 MASTER_SITES=	http://www.centerim.org/download/cim5/
 
@@ -27,6 +27,9 @@ SUBST_STAGE.equals=	pre-configure
 SUBST_MESSAGE.equals=	Use portable = instead of ==.
 SUBST_FILES.equals+=	configure.ac
 SUBST_SED.equals=	-e 's,== True,= True,g'
+
+post-extract:
+	rm ${WRKSRC}/version
 
 pre-configure:
 	cd ${WRKSRC} && ./bootstrap

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.24 2019/11/02 15:38:10 rillig Exp $
+# $NetBSD: Makefile,v 1.26 2020/01/26 05:26:20 rillig Exp $
 
 DISTNAME=	pytable-0.8.3a
 PKGNAME=	${PYPKGPREFIX}-table-0.8.3a

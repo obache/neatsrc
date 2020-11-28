@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.22 2019/11/03 10:39:29 rillig Exp $
+# $NetBSD: Makefile,v 1.27 2020/08/31 18:09:20 wiz Exp $
 
 DISTNAME=	radare2-3.6.0
-PKGREVISION=	1
+PKGREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	http://radare.mikelloc.com/get/${PKGVERSION_NOREV}/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.radare.org/
+HOMEPAGE=	https://www.radare.org/
 COMMENT=	Reverse engineering framework
 LICENSE=	gnu-gpl-v3
 

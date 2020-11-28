@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.40 2019/07/30 08:08:22 nia Exp $
+# $NetBSD: Makefile,v 1.47 2020/08/17 20:18:37 leot Exp $
 
 DISTNAME=	BasiliskII-20190405
+PKGREVISION=	3
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=cebix/}
 GITHUB_PROJECT=	macemu
@@ -15,10 +16,13 @@ WRKSRC=		${WRKDIR}/${GITHUB_PROJECT}-${GITHUB_TAG}/BasiliskII
 CONFIGURE_DIRS=	src/Unix
 BUILD_DIRS=	src/Unix
 
-USE_LANGUAGES=	c c++03
+USE_LANGUAGES=	c c++
 USE_TOOLS+=	aclocal autoheader autoconf automake
 USE_TOOLS+=	msgfmt msgmerge xgettext
 USE_TOOLS+=	pkg-config gmake
+
+# Reported upstream in https://github.com/cebix/macemu/pull/198
+CHECK_PORTABILITY_SKIP+=	src/Unix/Darwin/testlmem.sh
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-fbdev-dga
@@ -27,12 +31,16 @@ CONFIGURE_ARGS+=	--disable-xf86-vidmode
 
 CONFIGURE_ARGS+=	--enable-addressing=banks
 CONFIGURE_ARGS+=	--without-mon
+CONFIGURE_ARGS+=	--without-esd
 
 .include "../../mk/bsd.prefs.mk"
 
 .if ${OPSYS} == "Darwin"
 CONFIGURE_ARGS+=	--enable-macosx-gui
 CONFIGURE_ARGS+=	--enable-macosx-sound
+.else
+post-extract:
+	${RM} ${WRKSRC}/src/Unix/semaphore.h
 .endif
 
 .include "options.mk"
@@ -41,6 +49,7 @@ INSTALLATION_DIRS=	share/doc/BasiliskII
 
 pre-configure:
 	cd ${WRKSRC}/src/Unix && NO_CONFIGURE=x ./autogen.sh
+	${MKDIR} ${WRKSRC}/src/Unix/obj
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/README ${DESTDIR}${PREFIX}/share/doc/BasiliskII/

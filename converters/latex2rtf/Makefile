@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.30 2017/01/19 18:52:04 agc Exp $
+# $NetBSD: Makefile,v 1.32 2020/01/26 05:26:18 rillig Exp $
 
 DISTNAME=	latex2rtf-2.3.10
 PKGREVISION=	1

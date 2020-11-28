@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2012/10/31 11:16:53 asau Exp $
+# $NetBSD: Makefile,v 1.17 2020/03/20 11:57:26 nia Exp $
 #
 
 DISTNAME=	dlcompat-20030629

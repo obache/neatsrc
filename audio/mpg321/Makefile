@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2018/07/08 13:42:13 leot Exp $
+# $NetBSD: Makefile,v 1.23 2020/01/26 05:26:12 rillig Exp $
 
 DISTNAME=	mpg321_0.3.2.orig
 PKGNAME=	${DISTNAME:S/_/-/:S/.orig//}

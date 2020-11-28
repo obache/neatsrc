@@ -153,9 +153,25 @@ func (s *Suite) Test_CheckLinesPlist__sorting(c *check.C) {
 func (s *Suite) Test_CheckLinesPlist__sort_common(c *check.C) {
 	t := s.Init(c)
 
-	// TODO: Examine what happens if there is a PLIST.common to be sorted.
+	t.SetUpPackage("category/package")
+	t.Chdir("category/package")
+	t.CreateFileLines("PLIST.common",
+		PlistCvsID,
+		"bin/common2",
+		"bin/common1")
+	t.CreateFileLines("PLIST.common_end",
+		PlistCvsID,
+		"bin/common_end2",
+		"bin/common_end1")
+	t.FinishSetUp()
 
-	t.CheckOutputEmpty()
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"WARN: PLIST.common:3: \"bin/common1\" "+
+			"should be sorted before \"bin/common2\".",
+		"WARN: PLIST.common_end:3: \"bin/common_end1\" "+
+			"should be sorted before \"bin/common_end2\".")
 }
 
 func (s *Suite) Test_PlistChecker__autofix(c *check.C) {
@@ -442,10 +458,10 @@ func (s *Suite) Test_PlistChecker_Load__common_end(c *check.C) {
 	// the package being checked, for cross-validation.
 	t.Check(ck.allFiles["bin/plist"], check.IsNil)
 	t.CheckEquals(
-		ck.allFiles["bin/plist_common"].String(),
+		ck.allFiles["bin/plist_common"].Line.String(),
 		"PLIST.common:2: bin/plist_common")
 	t.CheckEquals(
-		ck.allFiles["bin/plist_common_end"].String(),
+		ck.allFiles["bin/plist_common_end"].Line.String(),
 		"PLIST.common_end:2: bin/plist_common_end")
 }
 
@@ -731,6 +747,77 @@ func (s *Suite) Test_PlistChecker_checkDuplicate(c *check.C) {
 			"already appeared in line 2.")
 }
 
+func (s *Suite) Test_PlistChecker_checkDuplicate__OPSYS(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package")
+	t.Chdir("category/package")
+	t.CreateFileLines("PLIST",
+		PlistCvsID,
+		"bin/common",
+		"bin/common_end",
+		"${PLIST.cond}bin/conditional",
+		"bin/plist")
+	t.CreateFileLines("PLIST.Linux",
+		PlistCvsID,
+		"bin/common",
+		"bin/common_end",
+		"${PLIST.cond}bin/conditional",
+		"bin/os-specific",
+		"bin/plist")
+	t.CreateFileLines("PLIST.NetBSD",
+		PlistCvsID,
+		"bin/common",
+		"bin/common_end",
+		"${PLIST.cond}bin/conditional",
+		"bin/os-specific",
+		"bin/plist")
+	t.CreateFileLines("PLIST.common",
+		PlistCvsID,
+		"bin/common",
+		"${PLIST.cond}bin/conditional")
+	t.CreateFileLines("PLIST.common_end",
+		PlistCvsID,
+		"bin/common_end",
+		"${PLIST.cond}bin/conditional")
+	t.FinishSetUp()
+
+	// TODO: Use the same order as in PLIST_SRC_DFLT, see mk/plist/plist.mk.
+	// PLIST.common
+	// PLIST.${OPSYS}
+	// PLIST.${MACHINE_ARCH:C/i[3-6]86/i386/g}
+	// PLIST.${OPSYS}-${MACHINE_ARCH:C/i[3-6]86/i386/g}
+	// ${defined(EMUL_PLATFORM):?PLIST.${EMUL_PLATFORM}:}
+	// PLIST
+	// PLIST.common_end
+	//
+	G.Check(".")
+
+	// For example, bin/program is duplicate, but not bin/os-specific.
+	t.CheckOutputLines(
+		"ERROR: PLIST.Linux:2: Path bin/common is already listed in PLIST:2.",
+		"ERROR: PLIST.Linux:3: Path bin/common_end is already listed in PLIST:3.",
+		"ERROR: PLIST.Linux:4: Path bin/conditional is already listed in PLIST:4.",
+		"ERROR: PLIST.Linux:6: Path bin/plist is already listed in PLIST:5.",
+		"ERROR: PLIST.NetBSD:2: Path bin/common is already listed in PLIST:2.",
+		"ERROR: PLIST.NetBSD:3: Path bin/common_end is already listed in PLIST:3.",
+		"ERROR: PLIST.NetBSD:4: Path bin/conditional is already listed in PLIST:4.",
+		"ERROR: PLIST.NetBSD:6: Path bin/plist is already listed in PLIST:5.",
+		"ERROR: PLIST.common:2: Path bin/common is already listed in PLIST:2.",
+		"ERROR: PLIST.Linux:2: Path bin/common is already listed in PLIST.common:2.",
+		"ERROR: PLIST.NetBSD:2: Path bin/common is already listed in PLIST.common:2.",
+		"ERROR: PLIST.common:3: Path bin/conditional is already listed in PLIST:4.",
+		"ERROR: PLIST.Linux:4: Path bin/conditional is already listed in PLIST.common:3.",
+		"ERROR: PLIST.NetBSD:4: Path bin/conditional is already listed in PLIST.common:3.",
+		"ERROR: PLIST.common_end:2: Path bin/common_end is already listed in PLIST:3.",
+		"ERROR: PLIST.Linux:3: Path bin/common_end is already listed in PLIST.common_end:2.",
+		"ERROR: PLIST.NetBSD:3: Path bin/common_end is already listed in PLIST.common_end:2.",
+		"ERROR: PLIST.common_end:3: Path bin/conditional is already listed in PLIST:4.",
+		"ERROR: PLIST.Linux:4: Path bin/conditional is already listed in PLIST.common_end:3.",
+		"ERROR: PLIST.NetBSD:4: Path bin/conditional is already listed in PLIST.common_end:3.",
+		"ERROR: PLIST.common_end:3: Path bin/conditional is already listed in PLIST.common:3.")
+}
+
 func (s *Suite) Test_PlistChecker_checkPathBin(c *check.C) {
 	t := s.Init(c)
 
@@ -865,7 +952,8 @@ func (s *Suite) Test_PlistChecker_checkPathMan(c *check.C) {
 		"man/cat1/formatted.0",
 		"man/man1/formatted.1",
 		"man/man1/program.8",
-		"man/manx/program.x")
+		"man/manx/program.x",
+		"man/not-valid")
 
 	CheckLinesPlist(nil, lines)
 
@@ -1013,22 +1101,27 @@ func (s *Suite) Test_PlistChecker_checkPathShareIcons__hicolor_ok(c *check.C) {
 func (s *Suite) Test_PlistChecker_checkPathCond(c *check.C) {
 	t := s.Init(c)
 
-	pkg := t.SetUpPackage("category/package",
+	t.SetUpPackage("category/package",
 		"PLIST_VARS+=\tmk-undefined mk-yes both",
 		"PLIST.mk-yes=\tyes",
 		"PLIST.both=\tyes")
-	t.CreateFileLines("category/package/PLIST",
+	t.Chdir("category/package")
+	t.CreateFileLines("PLIST",
 		PlistCvsID,
 		"${PLIST.both}${PLIST.plist}bin/program")
 	t.FinishSetUp()
 
-	G.Check(pkg)
+	G.Check(".")
 
 	t.CheckOutputLines(
-		"WARN: ~/category/package/Makefile:20: "+
+		"WARN: Makefile:20: "+
+			"PLIST identifier \"mk-undefined\" is not used in any PLIST file.",
+		"WARN: Makefile:20: "+
+			"PLIST identifier \"mk-yes\" is not used in any PLIST file.",
+		"WARN: Makefile:20: "+
 			"\"mk-undefined\" is added to PLIST_VARS, "+
 			"but PLIST.mk-undefined is not defined in this file.",
-		"WARN: ~/category/package/PLIST:2: "+
+		"WARN: PLIST:2: "+
 			"Condition \"plist\" should be added to PLIST_VARS "+
 			"in the package Makefile.")
 }
@@ -1049,14 +1142,17 @@ func (s *Suite) Test_PlistChecker_checkCond(c *check.C) {
 	G.Check(pkg)
 
 	t.CheckOutputLines(
-		"WARN: ~/category/package/PLIST:2: " +
-			"Condition \"plist\" should be added to PLIST_VARS " +
+		"WARN: ~/category/package/Makefile:20: "+
+			"PLIST identifier \"mk-yes\" is not used in any PLIST file.",
+		"WARN: ~/category/package/PLIST:2: "+
+			"Condition \"plist\" should be added to PLIST_VARS "+
 			"in the package Makefile.")
 }
 
 // Because of the unresolvable variable in the package Makefile,
 // pkglint cannot be absolutely sure about the possible PLIST
-// conditions. Therefore all such warnings are suppressed.
+// conditions. Even though ${PLIST.plist} is missing the corresponding
+// PLIST_VARS+=plist in the Makefile, there is no warning about this.
 //
 // As of January 2020, this case typically occurs when PLIST_VARS
 // is defined based on PKG_SUPPORTED_OPTIONS. Expanding that variable
@@ -1066,27 +1162,28 @@ func (s *Suite) Test_PlistChecker_checkCond(c *check.C) {
 func (s *Suite) Test_PlistChecker_checkCond__unresolvable_variable(c *check.C) {
 	t := s.Init(c)
 
-	pkg := t.SetUpPackage("category/package",
+	t.SetUpPackage("category/package",
 		"PLIST_VARS+=\tmk-only ${UNRESOLVABLE}",
 		"PLIST.mk-only=\tyes")
-	t.CreateFileLines("category/package/PLIST",
+	t.Chdir("category/package")
+	t.CreateFileLines("PLIST",
 		PlistCvsID,
 		"${PLIST.plist}bin/program")
 	t.FinishSetUp()
 
-	G.Check(pkg)
+	G.Check(".")
 
 	t.CheckOutputLines(
-		"WARN: ~/category/package/Makefile:20: " +
+		"WARN: Makefile:20: "+
+			"PLIST identifier \"mk-only\" is not used in any PLIST file.",
+		"WARN: Makefile:20: "+
 			"UNRESOLVABLE is used but not defined.")
 }
 
 func (s *Suite) Test_PlistChecker_checkCond__hacks_mk(c *check.C) {
 	t := s.Init(c)
 
-	t.SetUpPackage("category/package",
-		"PLIST_VARS+=\tmk", // To get past the mkline == nil condition.
-		"PLIST.mk=\tyes")
+	t.SetUpPackage("category/package")
 	t.Chdir("category/package")
 	t.CreateFileLines("hacks.mk",
 		MkCvsID,
@@ -1106,15 +1203,148 @@ func (s *Suite) Test_PlistChecker_checkCond__hacks_mk(c *check.C) {
 			"in the package Makefile.")
 }
 
-func (s *Suite) Test_PlistLine_Path(c *check.C) {
+func (s *Suite) Test_PlistChecker_checkOmf__autofix(c *check.C) {
 	t := s.Init(c)
 
-	t.CheckEquals(
-		(&PlistLine{text: "relative"}).Path(),
-		NewRelPathString("relative"))
+	t.CreateFileLines("mk/omf-scrollkeeper.mk",
+		MkCvsID)
+	t.SetUpPackage("category/package",
+		".include \"../../mk/omf-scrollkeeper.mk\"")
+	t.Chdir("category/package")
+	t.FinishSetUp()
 
-	t.ExpectAssert(
-		func() { (&PlistLine{text: "/absolute"}).Path() })
+	t.ExpectDiagnosticsAutofix(
+		func(bool) { G.checkdirPackage(".") },
+		"ERROR: Makefile:20: Only packages that have .omf files in "+
+			"their PLIST may include omf-scrollkeeper.mk.",
+		"AUTOFIX: Makefile:20: Deleting this line.")
+}
+
+func (s *Suite) Test_PlistChecker_checkOmf__rationale(c *check.C) {
+	t := s.Init(c)
+
+	t.CreateFileLines("mk/omf-scrollkeeper.mk",
+		MkCvsID)
+	t.SetUpPackage("category/package",
+		".include \"../../mk/omf-scrollkeeper.mk\" # needs to stay")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	t.ExpectDiagnosticsAutofix(
+		func(bool) { G.checkdirPackage(".") },
+		"ERROR: Makefile:20: Only packages that have .omf files in "+
+			"their PLIST may include omf-scrollkeeper.mk.")
+}
+
+func (s *Suite) Test_PlistChecker_checkOmf__ok(c *check.C) {
+	t := s.Init(c)
+
+	t.CreateFileLines("mk/omf-scrollkeeper.mk",
+		MkCvsID)
+	t.SetUpPackage("category/package",
+		".include \"../../mk/omf-scrollkeeper.mk\" # needs to stay")
+	t.Chdir("category/package")
+	t.CreateFileLines("PLIST",
+		PlistCvsID,
+		"bin/program",
+		"share/omf/documentation.omf")
+	t.FinishSetUp()
+
+	t.ExpectDiagnosticsAutofix(
+		func(bool) { G.checkdirPackage(".") },
+		nil...)
+}
+
+func (s *Suite) Test_PlistLine_Autofix(c *check.C) {
+	t := s.Init(c)
+
+	line := t.NewLine("PLIST", 2, "bin/program")
+	pline := PlistLine{line, nil, line.Text}
+
+	fix := pline.Autofix()
+	fix.Warnf("Warning %s.", "message")
+	fix.Replace("program", "new-name")
+	fix.Apply()
+
+	t.CheckOutputLines(
+		"WARN: PLIST:2: Warning message.")
+}
+
+func (s *Suite) Test_PlistLine_Errorf(c *check.C) {
+	t := s.Init(c)
+
+	line := t.NewLine("PLIST", 2, "bin/program")
+	pline := PlistLine{line, nil, line.Text}
+
+	pline.Errorf("Error %s.", "message")
+
+	t.CheckOutputLines(
+		"ERROR: PLIST:2: Error message.")
+}
+
+func (s *Suite) Test_PlistLine_Warnf(c *check.C) {
+	t := s.Init(c)
+
+	line := t.NewLine("PLIST", 2, "bin/program")
+	pline := PlistLine{line, nil, line.Text}
+
+	pline.Warnf("Warning %s.", "message")
+
+	t.CheckOutputLines(
+		"WARN: PLIST:2: Warning message.")
+}
+
+func (s *Suite) Test_PlistLine_Explain(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCommandLine("--explain")
+	line := t.NewLine("PLIST", 2, "bin/program")
+	pline := PlistLine{line, nil, line.Text}
+
+	pline.Warnf("Warning %s.", "message")
+	pline.Explain(
+		"Line 1.",
+		"Line 2.")
+
+	t.CheckOutputLines(
+		"WARN: PLIST:2: Warning message.",
+		"",
+		"\tLine 1. Line 2.",
+		"")
+}
+
+func (s *Suite) Test_PlistLine_RelLine(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCommandLine("--explain")
+	line := t.NewLine("PLIST", 2, "bin/program")
+	pline := PlistLine{line, nil, line.Text}
+
+	pline.Warnf("Warning, see %s.", line.RelLine(line))
+
+	t.CheckOutputLines(
+		"WARN: PLIST:2: Warning, see line 2.")
+}
+
+func (s *Suite) Test_PlistLine_HasPath(c *check.C) {
+	t := s.Init(c)
+
+	test := func(text string, hasPath bool) {
+		t.CheckEquals((&PlistLine{text: text}).HasPath(), hasPath)
+	}
+
+	test("abc", true)
+	test("9plan", true)
+	test("bin/program", true)
+
+	test("", false)
+	test("@", false)
+	test(":", false)
+	test("/absolute", false)
+	test("-rf", false)
+	test("\\", false)
+	test("bin/$<", true)
+	test("bin/${VAR}", true)
 }
 
 func (s *Suite) Test_PlistLine_HasPlainPath(c *check.C) {
@@ -1136,6 +1366,17 @@ func (s *Suite) Test_PlistLine_HasPlainPath(c *check.C) {
 	test("\\", false)
 	test("bin/$<", false)
 	test("bin/${VAR}", false)
+}
+
+func (s *Suite) Test_PlistLine_Path(c *check.C) {
+	t := s.Init(c)
+
+	t.CheckEquals(
+		(&PlistLine{text: "relative"}).Path(),
+		NewRelPathString("relative"))
+
+	t.ExpectAssert(
+		func() { (&PlistLine{text: "/absolute"}).Path() })
 }
 
 func (s *Suite) Test_PlistLine_CheckTrailingWhitespace(c *check.C) {
@@ -1275,4 +1516,95 @@ func (s *Suite) Test_plistLineSorter_Sort(c *check.C) {
 		"man/man1/program.1",
 		"sbin/program",
 		"@exec echo \"after lib/after.la\"") // The footer starts here
+}
+
+func (s *Suite) Test_NewPlistRank(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpVartypes()
+
+	t.CheckDeepEquals(NewPlistRank("PLIST"), &PlistRank{0, "", "", ""})
+	t.CheckDeepEquals(NewPlistRank("PLIST.common"), &PlistRank{1, "", "", ""})
+	t.CheckDeepEquals(NewPlistRank("PLIST.common_end"), &PlistRank{2, "", "", ""})
+	t.CheckDeepEquals(NewPlistRank("PLIST.NetBSD"), &PlistRank{3, "NetBSD", "", ""})
+	t.CheckDeepEquals(NewPlistRank("PLIST.NetBSD-opt"), &PlistRank{3, "NetBSD", "", "opt"})
+	t.CheckDeepEquals(NewPlistRank("PLIST.x86_64"), &PlistRank{3, "", "x86_64", ""})
+	t.CheckDeepEquals(NewPlistRank("PLIST.NetBSD-x86_64"), &PlistRank{3, "NetBSD", "x86_64", ""})
+	t.CheckDeepEquals(NewPlistRank("PLIST.linux-x86_64"), &PlistRank{3, "linux", "x86_64", ""})
+	t.CheckDeepEquals(NewPlistRank("PLIST.solaris-sparc"), &PlistRank{3, "solaris", "sparc", ""})
+	t.CheckDeepEquals(NewPlistRank("PLIST.solaris-specific"), &PlistRank{3, "", "", "solaris-specific"})
+	t.CheckDeepEquals(NewPlistRank("PLIST.arch-x86_64"), &PlistRank{3, "", "", "arch-x86_64"})
+	t.CheckDeepEquals(NewPlistRank("PLIST.other"), &PlistRank{3, "", "", "other"})
+
+	// To list all current PLIST filenames:
+	//  cd $pkgsrcdir && find . -name 'PLIST*' -printf '%f\n' | sort | uniq -c | sort -nr
+}
+
+func (s *Suite) Test_PlistRank_MoreGeneric(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpVartypes()
+	plain := NewPlistRank("PLIST")
+	common := NewPlistRank("PLIST.common")
+	commonEnd := NewPlistRank("PLIST.common_end")
+	netbsd := NewPlistRank("PLIST.NetBSD")
+	netbsdRest := NewPlistRank("PLIST.NetBSD-rest")
+	x86 := NewPlistRank("PLIST.x86_64")
+	netbsdX86 := NewPlistRank("PLIST.NetBSD-x86_64")
+	linuxX86 := NewPlistRank("PLIST.Linux-x86_64")
+	emulLinuxX86 := NewPlistRank("PLIST.linux-x86_64")
+
+	var rel relation
+	rel.add(plain, common)
+	rel.add(common, commonEnd)
+	rel.add(commonEnd, netbsd)
+	rel.add(commonEnd, x86)
+	rel.add(commonEnd, linuxX86)
+	rel.add(netbsd, netbsdX86)
+	rel.add(netbsd, netbsdRest)
+	rel.add(x86, netbsdX86)
+	rel.add(x86, linuxX86)
+	rel.add(x86, emulLinuxX86)
+	rel.reflexive = false
+	rel.transitive = true
+	rel.antisymmetric = true
+	rel.onError = func(s string) { c.Error(s) }
+
+	rel.check(func(a, b interface{}) bool { return a.(*PlistRank).MoreGeneric(b.(*PlistRank)) })
+}
+
+func (s *Suite) Test_NewPlistLines(c *check.C) {
+	lines := NewPlistLines()
+
+	c.Check(lines.all, check.NotNil)
+}
+
+func (s *Suite) Test_PlistLines_Add(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpFileLines("PLIST",
+		PlistCvsID,
+		"bin/program")
+	t.SetUpFileLines("PLIST.common",
+		PlistCvsID,
+		"bin/program")
+	plistLines := NewPlistChecker(nil).Load(Load(t.File("PLIST"), MustSucceed))
+	plistCommonLines := NewPlistChecker(nil).Load(Load(t.File("PLIST.common"), MustSucceed))
+	lines := NewPlistLines()
+
+	for _, line := range plistLines {
+		if line.HasPath() {
+			lines.Add(line, NewPlistRank(line.Line.Basename))
+		}
+	}
+	for _, line := range plistCommonLines {
+		if line.HasPath() {
+			lines.Add(line, NewPlistRank(line.Line.Basename))
+		}
+	}
+
+	t.CheckOutputLines(
+		// TODO: Wrong order. The diagnostics should be in the same order
+		//  as in mk/plist/plist.mk.
+		"ERROR: ~/PLIST.common:2: Path bin/program is already listed in PLIST:2.")
 }

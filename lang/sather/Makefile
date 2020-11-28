@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.68 2019/11/03 19:04:07 rillig Exp $
+# $NetBSD: Makefile,v 1.72 2020/08/31 18:09:52 wiz Exp $
 
 DISTNAME=		sather-1.2.3
-PKGREVISION=		15
+PKGREVISION=		17
 CATEGORIES=		lang
 MASTER_SITES=		${MASTER_SITE_GNU:=sather/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.gnu.org/software/sather/
+HOMEPAGE=		https://www.gnu.org/software/sather/
 COMMENT=		Compiler for the Sather object oriented programming language
 #LICENSE=		gnu-gpl-v3 gnu-lgpl-v3
 
@@ -49,6 +49,7 @@ SUBST_SED.sather-configure+=	-e s:@TCL_PREFIX@:${BUILDLINK_PREFIX.tcl}:g
 SUBST_SED.sather-configure+=	-e s:@TK_PREFIX@:${BUILDLINK_PREFIX.tk}:g
 SUBST_VARS.sather-configure+=	LINKER_RPATH_FLAG
 SUBST_VARS.sather-configure+=	COMPILER_RPATH_FLAG
+SUBST_NOOP_OK.sather-configure=	yes # because of ${LOWER_OPSYS}
 
 INSTALLATION_DIRS=	bin ${PKGINFODIR} ${PKGMANDIR}/man1 share/doc/sather \
 			lib/sather lib/sather/Bin share/emacs/site-lisp

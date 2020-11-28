@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.12 2018/03/12 11:16:52 wiz Exp $
+# $NetBSD: Makefile,v 1.14 2020/08/17 20:19:12 leot Exp $
 #
 
 DISTNAME=		fl_logbook-2.5
-PKGREVISION=		4
+PKGREVISION=		5
 CATEGORIES=		ham
 MASTER_SITES=		http://www.w1hkj.com/LinuxApps/
 
@@ -22,4 +22,5 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/fl_logbook ${DESTDIR}${PREFIX}/bin
 
 .include "../../x11/fltk13/buildlink3.mk"
+.include "../../x11/libXcursor/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

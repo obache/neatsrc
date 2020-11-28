@@ -1,8 +1,8 @@
-# $NetBSD: options.mk,v 1.10 2016/10/03 11:55:11 wiz Exp $
+# $NetBSD: options.mk,v 1.12 2020/01/20 17:42:53 jperkin Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.openssl
 PKG_SUPPORTED_OPTIONS=	idea md2 mdc2 rc5 zlib threads
-PKG_SUGGESTED_OPTIONS=	idea md2 mdc2 threads
+PKG_SUGGESTED_OPTIONS=	idea md2 mdc2 rc5 threads
 
 .include "../../mk/bsd.options.mk"
 
@@ -19,12 +19,11 @@ PLIST.${alg}=		yes
 CONFIGURE_ARGS+=	no-${alg}
 .  endif
 .endfor
-
-# A license file is needed.
-# US Patent: 5724428, 5835600, 6269163
-.if !empty(PKG_OPTIONS:Mrc5)
-LICENSE+=	AND rc5-nonlicense
-.endif
+#
+# Only supported in certain Linux configurations, needs proper handling if
+# it is to be supported as an option.
+#
+CONFIGURE_ARGS+=	no-afalgeng
 
 .if !empty(PKG_OPTIONS:Mzlib)
 CONFIGURE_ARGS+=	zlib

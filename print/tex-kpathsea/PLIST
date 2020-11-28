@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2013/11/17 17:12:19 minskim Exp $
+@comment $NetBSD: PLIST,v 1.7 2020/05/10 23:45:16 markd Exp $
 share/texmf-dist/web2c/amiga-pl.tcx
 share/texmf-dist/web2c/cp1250cs.tcx
 share/texmf-dist/web2c/cp1250pl.tcx
@@ -19,6 +19,12 @@ share/texmf-dist/web2c/macce-pl.tcx
 share/texmf-dist/web2c/macce-t1.tcx
 share/texmf-dist/web2c/maz-pl.tcx
 share/texmf-dist/web2c/mktex.cnf
+share/texmf-dist/web2c/mktex.opt
+share/texmf-dist/web2c/mktexdir
+share/texmf-dist/web2c/mktexdir.opt
+share/texmf-dist/web2c/mktexnam
+share/texmf-dist/web2c/mktexnam.opt
+share/texmf-dist/web2c/mktexupd
 share/texmf-dist/web2c/natural.tcx
 share/texmf-dist/web2c/tcvn-t5.tcx
 share/texmf-dist/web2c/viscii-t5.tcx

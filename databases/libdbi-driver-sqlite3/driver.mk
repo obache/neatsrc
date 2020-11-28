@@ -1,4 +1,4 @@
-# $NetBSD: driver.mk,v 1.1 2019/03/16 14:06:22 rillig Exp $
+# $NetBSD: driver.mk,v 1.3 2020/01/26 05:26:20 rillig Exp $
 #
 # Common definitions for the individual DBI drivers (not only SQLite3).
 

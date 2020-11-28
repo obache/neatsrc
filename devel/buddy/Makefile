@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2012/10/31 11:16:43 asau Exp $
+# $NetBSD: Makefile,v 1.8 2020/01/26 05:26:22 rillig Exp $
 #
 
 DISTNAME=	buddy-2.4

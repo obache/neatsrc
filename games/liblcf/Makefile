@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.5 2019/08/29 16:46:32 nia Exp $
+# $NetBSD: Makefile,v 1.9 2020/06/02 08:22:41 adam Exp $
 
-DISTNAME=	liblcf-0.6.1
+DISTNAME=	liblcf-0.6.2
+PKGREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	https://easyrpg.org/downloads/player/${PKGVERSION_NOREV}/
 
@@ -13,6 +14,10 @@ GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config gmake
 USE_LANGUAGES+=	c c++
 USE_LIBTOOL=	yes
+
+# "We require now the C++ language standard C++14.
+# The lowest GCC compiler supporting this fully is GCC5"
+GCC_REQD+=	5
 
 # Expat in pkgsrc is new enough, however, the version checking fails.
 # Remove the version requirement.

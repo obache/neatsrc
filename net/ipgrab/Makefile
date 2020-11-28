@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2014/10/09 14:06:45 wiz Exp $
+# $NetBSD: Makefile,v 1.13 2020/03/20 11:58:07 nia Exp $
 
 DISTNAME=	ipgrab-0.9.9
 PKGREVISION=	1

@@ -1,18 +1,18 @@
-# $NetBSD: Makefile,v 1.128 2020/01/03 13:26:08 leot Exp $
+# $NetBSD: Makefile,v 1.143 2020/10/16 15:17:08 prlw1 Exp $
 
-DISTNAME=	cups-filters-1.26.1
+DISTNAME=	cups-filters-1.28.5
 CATEGORIES=	print
 MASTER_SITES=	http://openprinting.org/download/cups-filters/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.linuxfoundation.org/collaborate/workgroups/openprinting/cups-filters
+HOMEPAGE=	https://www.linuxfoundation.org/collaborate/workgroups/openprinting/cups-filters
 COMMENT=	Backends, filters, and other software for cups
 LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND mit
 
 TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
+DEPENDS+=	dejavu-ttf-[0-9]*:../../fonts/dejavu-ttf
 DEPENDS+=	poppler-utils-[0-9]*:../../print/poppler-utils
-TEST_DEPENDS+=	dejavu-ttf-[0-9]*:../../fonts/dejavu-ttf
 
 USE_LANGUAGES=		c c++11
 USE_LIBTOOL=		yes
@@ -22,7 +22,6 @@ CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--disable-braille
 CONFIGURE_ARGS+=	--disable-ldap
 CONFIGURE_ARGS+=	--disable-mutool
-CONFIGURE_ARGS+=	--enable-ijs
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=	--with-apple-raster-filter=rastertopdf
 CONFIGURE_ARGS+=	--with-gs-path=${PREFIX}/bin/gs
@@ -39,6 +38,7 @@ REPLACE_BASH+=	filter/braille/drivers/generic/brftoembosser.in
 REPLACE_BASH+=	filter/braille/drivers/index/imageubrltoindexv3.in
 REPLACE_BASH+=	filter/braille/drivers/index/imageubrltoindexv4.in
 REPLACE_BASH+=	filter/braille/drivers/index/textbrftoindexv3.in
+REPLACE_BASH+=	filter/braille/filters/brftopagedbrf.in
 REPLACE_BASH+=	filter/braille/filters/imagetobrf.in
 REPLACE_BASH+=	filter/braille/filters/texttobrf.in
 

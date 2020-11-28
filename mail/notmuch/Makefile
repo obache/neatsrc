@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.55 2019/11/27 13:30:53 ryoon Exp $
+# $NetBSD: Makefile,v 1.59 2020/09/06 03:11:31 ryoon Exp $
 
-DISTNAME=	notmuch-0.29.3
+DISTNAME=	notmuch-0.31
 CATEGORIES=	mail
 MASTER_SITES=	https://notmuchmail.org/releases/
 EXTRACT_SUFX=	.tar.xz
@@ -37,17 +37,11 @@ SUBST_FILES.sphinx+=	bindings/python/docs/Makefile configure doc/Makefile.local
 SUBST_STAGE.sphinx=	pre-configure
 SUBST_MESSAGE.sphinx=	Fix sphinx command names.
 
-.if !empty(PKG_BUILD_OPTIONS.gpgme:Mgnupg2)
-GPG=	gpg2
-.else
-GPG=	gpg
-.endif
-
 SUBST_CLASSES+=		gpg
 SUBST_STAGE.gpg=	pre-configure
 SUBST_MESSAGE.gpg=	Select GnuPG command
 SUBST_FILES.gpg+=	configure
-SUBST_VARS.gpg=		GPG
+SUBST_VARS.gpg=		GPGME_GPG
 
 LDFLAGS.SunOS+=	-lnsl
 

@@ -88,7 +88,7 @@ func (s *Suite) Test_CheckLinesOptionsMk__literal(c *check.C) {
 	t.Chdir("category/package")
 	t.FinishSetUp()
 
-	CheckLinesOptionsMk(mklines)
+	CheckLinesOptionsMk(mklines, "")
 
 	t.CheckOutputLines(
 		"WARN: ~/category/package/options.mk:4: "+
@@ -124,7 +124,7 @@ func (s *Suite) Test_CheckLinesOptionsMk__literal_in_for_loop(c *check.C) {
 	t.Chdir("category/package")
 	t.FinishSetUp()
 
-	CheckLinesOptionsMk(mklines)
+	CheckLinesOptionsMk(mklines, "")
 
 	t.CheckOutputLines(
 		"WARN: ~/category/package/options.mk:5: "+
@@ -158,7 +158,7 @@ func (s *Suite) Test_CheckLinesOptionsMk__prefs(c *check.C) {
 	t.Chdir("category/package")
 	t.FinishSetUp()
 
-	CheckLinesOptionsMk(mklines)
+	CheckLinesOptionsMk(mklines, "")
 
 	t.CheckOutputEmpty()
 }
@@ -184,7 +184,7 @@ func (s *Suite) Test_CheckLinesOptionsMk__variable_order(c *check.C) {
 	t.Chdir("category/package")
 	t.FinishSetUp()
 
-	CheckLinesOptionsMk(mklines)
+	CheckLinesOptionsMk(mklines, "")
 
 	t.CheckOutputLines(
 		"WARN: ~/category/package/options.mk:3: " +
@@ -201,7 +201,7 @@ func (s *Suite) Test_CheckLinesOptionsMk__empty(c *check.C) {
 	t.Chdir("category/package")
 	t.FinishSetUp()
 
-	CheckLinesOptionsMk(mklines)
+	CheckLinesOptionsMk(mklines, "")
 
 	t.CheckOutputLines(
 		"ERROR: ~/category/package/options.mk: "+
@@ -240,11 +240,11 @@ func (s *Suite) Test_CheckLinesOptionsMk__conditionals(c *check.C) {
 		".endif")
 	t.FinishSetUp()
 
-	CheckLinesOptionsMk(mklines)
+	CheckLinesOptionsMk(mklines, "")
 
 	t.CheckOutputLines(
 		// This warning comes from VarTypeCheck.PkgOption
-		"WARN: options.mk:11: Unknown option \"negative\".",
+		"WARN: options.mk:11: Undocumented option \"negative\".",
 		"WARN: options.mk:4: "+
 			"Option \"option\" should be handled below in an .if block.")
 }
@@ -300,11 +300,11 @@ func (s *Suite) Test_CheckLinesOptionsMk(c *check.C) {
 		".elif !empty(PKG_OPTIONS:Msqlite)",
 		".endif")
 
-	CheckLinesOptionsMk(mklines)
+	CheckLinesOptionsMk(mklines, "")
 
 	t.CheckOutputLines(
 		"WARN: ~/category/package/options.mk:6: l is used but not defined.",
-		"WARN: ~/category/package/options.mk:18: Unknown option \"undeclared\".",
+		"WARN: ~/category/package/options.mk:18: Undocumented option \"undeclared\".",
 		"WARN: ~/category/package/options.mk:21: "+
 			"The positive branch of the .if/.else should be the one where the option is set.",
 		// TODO: The diagnostics should appear in the correct order.
@@ -335,7 +335,7 @@ func (s *Suite) Test_CheckLinesOptionsMk__unexpected_line(c *check.C) {
 		"pre-configure:",
 		"\techo \"In the pre-configure stage.\"")
 
-	CheckLinesOptionsMk(mklines)
+	CheckLinesOptionsMk(mklines, "")
 
 	t.CheckOutputLines(
 		"WARN: ~/category/package/options.mk:6: "+
@@ -375,7 +375,7 @@ func (s *Suite) Test_CheckLinesOptionsMk__malformed_condition(c *check.C) {
 		".if ${OPSYS} == 'Darwin'",
 		".endif")
 
-	CheckLinesOptionsMk(mklines)
+	CheckLinesOptionsMk(mklines, "")
 
 	t.CheckOutputLines(
 		"WARN: category/package/options.mk:15: Invalid condition, unrecognized part: \"${OPSYS} == 'Darwin'\".")
@@ -524,6 +524,10 @@ func (s *Suite) Test_CheckLinesOptionsMk__options_in_for_loop(c *check.C) {
 		"WARN: options.mk:4: Option \"other\" should be handled below in an .if block.")
 }
 
+// In this scenario, the evaluation of the PKG_OPTIONS takes place in a
+// loop over the PLIST_VARS, which is quite indirect, compared to a
+// direct ${PKG_OPTIONS:Mnetbsd}. In most practical cases, the identifiers
+// in PLIST_VARS are literals, which still allows that they are analyzed.
 func (s *Suite) Test_CheckLinesOptionsMk__indirect(c *check.C) {
 	t := s.Init(c)
 
@@ -533,7 +537,8 @@ func (s *Suite) Test_CheckLinesOptionsMk__indirect(c *check.C) {
 	t.CreateFileLines("mk/bsd.options.mk")
 	t.SetUpPackage("category/package",
 		".include \"options.mk\"")
-	t.CreateFileLines("category/package/options.mk",
+	t.Chdir("category/package")
+	t.CreateFileLines("options.mk",
 		MkCvsID,
 		"",
 		"PKG_OPTIONS_VAR=\tPKG_OPTIONS.package",
@@ -556,8 +561,12 @@ func (s *Suite) Test_CheckLinesOptionsMk__indirect(c *check.C) {
 		"PLIST.${option}=\tyes",
 		".  endif",
 		".endfor")
+	t.CreateFileLines("PLIST",
+		PlistCvsID,
+		"${PLIST.generic}bin/generic",
+		"${PLIST.netbsd}bin/netbsd",
+		"${PLIST.os}bin/os")
 	t.FinishSetUp()
-	t.Chdir("category/package")
 
 	G.Check(".")
 
@@ -618,7 +627,7 @@ func (s *Suite) Test_CheckLinesOptionsMk__indirect_supported_options_parentheses
 		".  endif",
 		".endfor")
 
-	CheckLinesOptionsMk(mklines)
+	CheckLinesOptionsMk(mklines, "")
 
 	t.CheckOutputLines(
 		"WARN: ~/category/package/options.mk:5: "+
@@ -645,7 +654,7 @@ func (s *Suite) Test_CheckLinesOptionsMk__handled_but_not_supported(c *check.C) 
 		".if ${PKG_OPTIONS:Moption}",
 		".endif")
 
-	CheckLinesOptionsMk(mklines)
+	CheckLinesOptionsMk(mklines, "")
 
 	t.CheckOutputLines(
 		"WARN: ~/category/package/options.mk:8: " +
@@ -670,7 +679,7 @@ func (s *Suite) Test_CheckLinesOptionsMk__supported_but_not_checked(c *check.C) 
 		".if ${PKG_OPTIONS:Mopt${:Uion}}",
 		".endif")
 
-	CheckLinesOptionsMk(mklines)
+	CheckLinesOptionsMk(mklines, "")
 
 	// Pkglint does not expand the ${:Uion}, therefore it doesn't know that
 	// the option is indeed handled. Because of this uncertainty, pkglint

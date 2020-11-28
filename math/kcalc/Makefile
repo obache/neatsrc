@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.42 2019/11/17 04:28:49 markd Exp $
+# $NetBSD: Makefile,v 1.52 2020/08/18 17:58:05 leot Exp $
 
 DISTNAME=	kcalc-${KAPPSVER}
+PKGREVISION=	2
 CATEGORIES=	math
 
-HOMEPAGE=	http://kde.org/applications/utilities/kcalc/
+HOMEPAGE=	https://kde.org/applications/utilities/kcalc/
 COMMENT=	KDE scientific calculator
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 

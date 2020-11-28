@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.3 2019/09/14 03:43:44 tsutsui Exp $
+$NetBSD: distinfo,v 1.4 2020/10/03 15:42:44 tsutsui Exp $
 
 SHA1 (unicode-emoji-13.1/ReadMe.txt) = bea43e86ded6ffe278b437e1a30644c848e40b29
 RMD160 (unicode-emoji-13.1/ReadMe.txt) = fb4faa25d6f1dc4b42ad7bddbe95d79d97426f21

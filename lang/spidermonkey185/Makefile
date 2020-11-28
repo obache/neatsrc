@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.9 2019/08/11 13:21:24 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2020/08/31 18:09:53 wiz Exp $
 #
 
 DISTNAME=	js185-1.0.0
 PKGNAME=	spidermonkey185-1.8.5
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_MOZILLA:=js/}
 
@@ -33,6 +33,8 @@ SUBST_SED.incdir=		-e 's,/js,/js-1.8.5,g'
 
 # XXX: workaround for js-config command and mozjs185.pc
 CONFIGURE_ENV+=		MOZILLA_VERSION=4.0
+
+CHECK_PORTABILITY_SKIP+=	configure.in
 
 PKGCONFIG_OVERRIDE+=	ctypes/libffi/libffi.pc.in
 PKGCONFIG_OVERRIDE+=	mozjs185.pc.in

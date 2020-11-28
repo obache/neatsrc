@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.8 2019/01/10 09:26:32 adam Exp $
+$NetBSD: distinfo,v 1.12 2020/10/06 05:41:16 adam Exp $
 
-SHA1 (django-import-export-1.2.0.tar.gz) = 668e7922c19744ed365bc6ab2de74468b645cd8f
-RMD160 (django-import-export-1.2.0.tar.gz) = e8576d050141c3bf79dba35ec44ff2f6c14ee5bd
-SHA512 (django-import-export-1.2.0.tar.gz) = 7ec01ed045b6064cc29a3ef17edd74b12e64cac9340618f5f2347f14b0f3a1250b6f1110a6c789bcaa17bd680d832c43a8e6ba230f929b9ad29406111ca81f07
-Size (django-import-export-1.2.0.tar.gz) = 41850 bytes
+SHA1 (django-import-export-2.4.0.tar.gz) = 68f44173e26ff9d1eac20640da1625fdc7336c82
+RMD160 (django-import-export-2.4.0.tar.gz) = 24f10249e025d6d8639cfc24ebc75f14f0ad9e5c
+SHA512 (django-import-export-2.4.0.tar.gz) = 6f8540ce6a32f411d463eca3738ff4f1eb8a0a0c3092ba6477ac679382b6c7256d223ff6008afe60b61ed89610bc8b52ee2f91e71f91e77fc17a172c8d327aaa
+Size (django-import-export-2.4.0.tar.gz) = 47981 bytes

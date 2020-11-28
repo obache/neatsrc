@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.13 2018/07/04 13:40:36 jperkin Exp $
+# $NetBSD: Makefile,v 1.15 2020/04/26 11:47:53 plunky Exp $
 
-DISTNAME=		bcmfw-2.2
+DISTNAME=		bcmfw-2.3
+PKGREVISION=		1
 CATEGORIES=		sysutils
-MASTER_SITES=		http://github.com/plunky/bcmfw/archive/
+MASTER_SITES=		https://github.com/plunky/bcmfw/archive/
 DIST_SUBDIR=		${PKGNAME_NOREV}
 DISTFILES=		v${PKGVERSION_NOREV}.tar.gz
 DISTFILES+=		bluez-firmware-1.2.tar.gz
@@ -20,7 +21,8 @@ RESTRICTED=		No clear permission to redistribute firmware
 NO_BIN_ON_CDROM=	${RESTRICTED}
 NO_BIN_ON_FTP=		${RESTRICTED}
 
-ONLY_FOR_PLATFORM=	NetBSD-[4-9].*-*
+# this only works on NetBSD
+ONLY_FOR_PLATFORM=	NetBSD-*
 
 RCD_SCRIPTS+=		bcmfw
 
@@ -32,7 +34,7 @@ PLIST_SUBST+=		FIRMWARE_DIR=${FIRMWARE_DIR}
 
 SUBST_CLASSES+=		dir
 SUBST_FILES.dir=	bcmfw.8
-SUBST_SED.dir=		-e 's,/libdata/bcmfw,${PREFIX}/${FIRMWARE_DIR}&,'
+SUBST_SED.dir=		-e 's,/libdata/bcmfw,${PREFIX}/${FIRMWARE_DIR},'
 SUBST_STAGE.dir=	pre-configure
 SUBST_MESSAGE.dir=	Fixing path to firmware directory.
 

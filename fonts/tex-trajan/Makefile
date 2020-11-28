@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2019/12/06 19:32:29 markd Exp $
+# $NetBSD: Makefile,v 1.4 2020/05/10 04:31:55 markd Exp $
 
 DISTNAME=	trajan
 PKGNAME=	tex-${DISTNAME}-1.1
+PKGREVISION=	1
 TEXLIVE_REV=	15878
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/trajan
+HOMEPAGE=	https://ctan.org/pkg/trajan
 COMMENT=	Fonts from the Trajan column in Rome
 LICENSE=	lppl-1.3c
 

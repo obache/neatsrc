@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2019/11/12 15:24:44 taca Exp $
+# $NetBSD: Makefile,v 1.3 2020/03/15 17:09:41 taca Exp $
 
-DISTNAME=	necromancer-0.5.0
+DISTNAME=	necromancer-0.6.0
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.1 2018/09/30 19:10:10 maya Exp $
+# $NetBSD: Makefile,v 1.6 2020/07/02 10:16:02 nia Exp $
 
 DISTNAME=	love-0.7.2-linux-src
 PKGNAME=	${DISTNAME:S/-linux-src//:S/love/love07/}
-CATEGORIES=	games
+PKGREVISION=	2
+CATEGORIES=	games lua
 MASTER_SITES=	https://bitbucket.org/rude/love/downloads/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://love2d.org/
-COMMENT=	Framework for making 2D games in Lua
+COMMENT=	Framework for making 2D games in Lua (version 0.7)
 LICENSE=	zlib
 
 WRKSRC=		${WRKDIR}/love-HEAD
@@ -17,7 +18,11 @@ USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config
 USE_LIBTOOL=	yes
 
-LUA_VERSIONS_INCOMPATIBLE=	52 53
+# Avoid detecting unversioned lua in NetBSD.
+SUBST_CLASSES+=		lua
+SUBST_STAGE.lua=	pre-configure
+SUBST_FILES.lua=	configure
+SUBST_SED.lua=		-e 's,lua lua5.1,lua5.1,g'
 
 GNU_CONFIGURE_PREFIX=		${PREFIX}/love0.7
 
@@ -27,8 +32,7 @@ GNU_CONFIGURE_PREFIX=		${PREFIX}/love0.7
 BUILDLINK_API_DEPENDS.physfs+=	physfs>=2.0
 .include "../../devel/physfs/buildlink3.mk"
 .include "../../audio/openal-soft/buildlink3.mk"
-.include "../../lang/lua/buildlink3.mk"
-.include "../../lang/LuaJIT2/buildlink3.mk"
+.include "../../lang/lua51/buildlink3.mk"
 .include "../../devel/devIL/buildlink3.mk"
 .include "../../devel/libltdl/buildlink3.mk"
 .include "../../audio/libmodplug/buildlink3.mk"

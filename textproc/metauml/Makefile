@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2012/10/25 06:56:08 asau Exp $
+# $NetBSD: Makefile,v 1.6 2020/03/20 11:58:28 nia Exp $
 #
 
 DISTNAME=	metauml_lib_0.2.5

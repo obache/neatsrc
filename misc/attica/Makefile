@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.32 2018/11/06 09:41:30 markd Exp $
+# $NetBSD: Makefile,v 1.36 2020/08/17 20:17:35 leot Exp $
 
 DISTNAME=	attica-0.4.2
-PKGREVISION=	4
+PKGREVISION=	7
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_KDE:=attica/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	markd@NetBSD.org
-HOMEPAGE=	http://projects.kde.org/projects/kdesupport/attica
+HOMEPAGE=	https://projects.kde.org/projects/kdesupport/attica
 COMMENT=	Qt library that implements the Open Collaboration Services API
 LICENSE=	gnu-lgpl-v2.1
 

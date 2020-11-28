@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.34 2016/02/25 13:19:47 jperkin Exp $
+# $NetBSD: Makefile,v 1.36 2020/03/20 11:57:44 nia Exp $
 #
 
 DISTNAME=		stratagus-2.1-src

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.69 2019/08/22 12:23:22 ryoon Exp $
+# $NetBSD: Makefile,v 1.75 2020/08/31 18:09:46 wiz Exp $
 
 PKGNAME=	gnuradio-core-${VERSION}
-PKGREVISION=	3
+PKGREVISION=	1
 COMMENT=	Core part of GNU Radio, all others need this
 
 PLIST_MINUS=	# empty
@@ -19,7 +19,7 @@ PLIST_SRC=	${PKGDIR}/PLIST ${PKGDIR}/PLIST.oss
 .endif
 
 # set default as minimum
-CMAKE_ARGS+=	-DENABLE_DEFAULT=False
+CMAKE_ARGS+=	-DENABLE_DEFAULT=OFF
 
 # Take care CONF_FILES stuff (The same code in Nocore.mk)
 #post-install:

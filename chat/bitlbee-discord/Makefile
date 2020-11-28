@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2019/07/28 15:16:36 nia Exp $
+# $NetBSD: Makefile,v 1.3 2020/04/22 04:39:48 nia Exp $
 
-DISTNAME=	bitlbee-discord-0.4.2
+DISTNAME=	bitlbee-discord-0.4.3
 CATEGORIES=	chat
 MASTER_SITES=	${MASTER_SITE_GITHUB:=sm00th/}
 

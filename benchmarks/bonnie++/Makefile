@@ -1,24 +1,29 @@
-# $NetBSD: Makefile,v 1.36 2019/08/11 13:17:58 wiz Exp $
+# $NetBSD: Makefile,v 1.40 2020/08/31 18:06:37 wiz Exp $
 #
 
 DISTNAME=	bonnie++-1.97.3
 CATEGORIES=	benchmarks
-PKGREVISION=	3
+PKGREVISION=	5
 MASTER_SITES=	http://www.coker.com.au/bonnie++/experimental/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.coker.com.au/bonnie++/
+HOMEPAGE=	https://www.coker.com.au/bonnie++/
 COMMENT=	Enhanced performance Test of Filesystem I/O
 
 USE_LANGUAGES=		c c++
 GNU_CONFIGURE=		YES
 USE_TOOLS+=		gmake perl:run tee
-REPLACE_PERL+=		bon_csv2txt.in bon_csv2html.in
+REPLACE_PERL+=		bon_csv2txt.in
 
 INSTALLATION_DIRS=	bin share/doc/bonnie++ ${PKGMANDIR}/man1 ${PKGMANDIR}/man8
 
 CFLAGS.NetBSD+=		-D_LARGEFILE64_SOURCE=1
+
+SUBST_CLASSES+=		paths
+SUBST_STAGE.paths=	pre-configure
+SUBST_FILES.paths=	bonnie++.8
+SUBST_SED.paths=	-e 's,/usr/share/doc/,${PREFIX}/share/doc/,'
 
 # todo: patch bonnie++.8 to point to correct path to readme.html
 post-install:

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.54 2015/12/29 21:21:20 wiz Exp $
+# $NetBSD: Makefile,v 1.56 2020/05/16 06:28:52 rillig Exp $
 
-PKGNAME=	createbuildlink-3.17
+PKGNAME=	createbuildlink-3.18
 CATEGORIES=	pkgtools sysutils
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -17,12 +17,13 @@ REPLACE_SH+=	${SCRIPTS}
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man8
 
+SUBST_CLASSES+=		vars
+SUBST_STAGE.vars=	pre-configure
+SUBST_FILES.vars=	${SCRIPT}
+SUBST_VARS.vars=	PKGVERSION MAKE
+
 do-extract:
-.for scr in ${SCRIPTS}
-	${SED}	-e 's|@PKGVERSION@|${PKGVERSION}|'		\
-		-e 's|@MAKE@|${MAKE}|'				\
-		< ${FILESDIR:Q}/${scr:Q} > ${WRKSRC:Q}/${scr:Q}
-.endfor
+	cd ${FILESDIR} && ${CP} ${SCRIPTS} ${WRKSRC}
 
 do-install:
 .for scr in ${SCRIPTS}

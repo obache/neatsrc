@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.11 2019/05/15 11:35:23 markd Exp $
+# $NetBSD: Makefile,v 1.13 2020/05/10 04:13:25 markd Exp $
 
 DISTNAME=	collection-langczechslovak
-PKGNAME=	texlive-${DISTNAME}-2019
+PKGNAME=	texlive-${DISTNAME}-2020
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	32550
+TEXLIVE_REV=	54074
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.tug.org/texlive/
+HOMEPAGE=	https://www.tug.org/texlive/
 COMMENT=	Czech/Slovak TeX packages
 
 DEPENDS+=	texlive-collection-basic-[0-9]*:../../meta-pkgs/texlive-collection-basic

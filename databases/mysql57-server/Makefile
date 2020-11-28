@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.28 2019/11/02 15:38:02 rillig Exp $
+# $NetBSD: Makefile,v 1.35 2020/10/21 13:34:50 adam Exp $
 
 PKGNAME=	${DISTNAME:S/-/-server-/}
 COMMENT=	MySQL 5, a free SQL database (server)
@@ -10,22 +10,21 @@ CONFLICTS=	mysql3-server-[0-9]*
 # "c++11" from protobuf + "gnu" from alloca() usage
 USE_LANGUAGES+=	gnu++11
 
+PLIST_VARS+=	embedded auth_socket
+
 .if !empty(PKG_OPTIONS:Membedded-server)
-CMAKE_ARGS+=			-DWITH_EMBEDDED_SERVER=ON
-PLIST.embedded=			yes
+CMAKE_ARGS+=	-DWITH_EMBEDDED_SERVER=ON
+PLIST.embedded=	yes
 .else
-CMAKE_ARGS+=			-DWITH_EMBEDDED_SERVER=OFF
+CMAKE_ARGS+=	-DWITH_EMBEDDED_SERVER=OFF
 # We only need readline to placate the configure script if we don't build
 # the embedded server as it is the only binary linked against "readline".
 BUILDLINK_DEPMETHOD.editline=	build
-BUILDLINK_DEPMETHOD.readline=	build
 .endif
 CMAKE_ARGS+=		-DWITH_LIBEVENT=system
 CMAKE_ARGS+=		-DLIBEVENT_INCLUDE_PATH:PATH=${BUILDLINK_PREFIX.libevent}/include:
 CMAKE_ARGS+=		-DLIBEVENT_LIB_PATHS:PATH=${BUILDLINK_PREFIX.libevent}/lib
 CMAKE_ARGS+=		-DWITH_PROTOBUF=system
-
-PLIST_VARS+=		embedded ndb auth_socket
 
 .if ${OPSYS} == "Linux"
 PLIST.auth_socket=	yes

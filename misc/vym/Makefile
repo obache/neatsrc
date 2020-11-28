@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.42 2019/12/19 22:21:24 joerg Exp $
+# $NetBSD: Makefile,v 1.52 2020/08/31 18:10:26 wiz Exp $
 #
 
 DISTNAME=		vym-2.7.1
+PKGREVISION=		8
 CATEGORIES=		misc
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=vym/}
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.insilmaril.de/vym/
+HOMEPAGE=		https://www.insilmaril.de/vym/
 COMMENT=		Generate and manipulate maps which show your thoughts
 LICENSE=		gnu-gpl-v2
 
@@ -18,9 +19,6 @@ DEPENDS+=		xdg-utils-[0-9]*:../../misc/xdg-utils
 USE_LANGUAGES=		c++
 USE_TOOLS+=		perl:run bash:run
 
-REPLACE_PERL+=		scripts/exportvym scripts/niceXML
-
-REPLACE_BASH+=		scripts/release-mac scripts/update-bookmarks
 REPLACE_BASH+=		scripts/makedist-vym scripts/vivym
 REPLACE_BASH+=		scripts/getbinaries scripts/screencast
 
@@ -48,7 +46,7 @@ do-configure:
 		DATADIR=${PREFIX}/share \
 		DOCDIR=${PREFIX}/doc/vym vym.pro
 
-.include "../../lang/ruby/buildlink3.mk"                                                                                                          
+.include "../../lang/ruby/buildlink3.mk"
 .include "../../lang/ruby/replace.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtscript/buildlink3.mk"

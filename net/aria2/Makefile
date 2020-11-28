@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.80 2020/01/01 16:21:02 leot Exp $
+# $NetBSD: Makefile,v 1.86 2020/06/02 08:24:29 adam Exp $
 
 DISTNAME=	aria2-1.35.0
+PKGREVISION=	5
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=aria2/}
 GITHUB_RELEASE=	release-${PKGVERSION_NOREV}
@@ -19,9 +20,9 @@ USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		bison msgfmt msgmerge xgettext
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_STRICT=	no # has sub-configures
 CONFIGURE_ARGS+=	--enable-bittorrent
 CONFIGURE_ARGS+=	--enable-metalink
-CONFIGURE_ARGS+=	--with-included-gettext=no
 CONFIGURE_ARGS+=	--with-libexpat
 CONFIGURE_ARGS+=	--without-libxml2
 CONFIGURE_ARGS.SunOS+=	--disable-epoll
@@ -36,8 +37,6 @@ USE_FEATURES=		getopt_long snprintf
 BUILDLINK_DEPMETHOD.cppunit=	build
 BUILDLINK_API_DEPENDS.cppunit+=	cppunit>=1.10.2
 .  include "../../devel/cppunit/buildlink3.mk"
-.else
-CONFIGURE_ARGS+=	--disable-xmltest
 .endif
 
 .include "options.mk"

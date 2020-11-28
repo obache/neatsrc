@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.10 2017/06/29 20:11:17 jperkin Exp $
+# $NetBSD: Makefile.common,v 1.12 2020/03/20 11:57:56 nia Exp $
 
 DISTNAME=	expect${EXPECT_FNAME}
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=expect/}

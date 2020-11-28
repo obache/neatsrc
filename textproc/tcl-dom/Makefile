@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2012/10/25 06:57:02 asau Exp $
+# $NetBSD: Makefile,v 1.12 2020/03/20 11:58:29 nia Exp $
 #
 
 DISTNAME=	TclDOM-1.6

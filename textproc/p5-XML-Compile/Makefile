@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.10 2019/08/11 13:23:51 wiz Exp $
+# $NetBSD: Makefile,v 1.12 2020/08/31 18:12:08 wiz Exp $
 
-DISTNAME=	XML-Compile-1.61
+DISTNAME=	XML-Compile-1.63
 PKGNAME=	p5-${DISTNAME}
 PKGREVISION=	1
 CATEGORIES=	textproc

@@ -1,20 +1,20 @@
-# $NetBSD: Makefile,v 1.4 2018/07/24 16:27:22 jperkin Exp $
+# $NetBSD: Makefile,v 1.7 2020/10/29 09:31:41 otis Exp $
 #
 
-DISTNAME=	apache-ivy-2.4.0-bin
-PKGREVISION=	1
+DISTNAME=	apache-ivy-2.5.0-bin
+#PKGREVISION=	1
 PKGNAME=	${DISTNAME:S/-bin//}
 CATEGORIES=	devel java
 MASTER_SITES=	${MASTER_SITE_APACHE:=ant/ivy/${PKGNAME:S/apache-ivy-//}/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ant.apache.org/ivy/
+HOMEPAGE=	https://ant.apache.org/ivy/
 COMMENT=	"Apache Project's Java-Based agile dependency manager"
 LICENSE=	apache-2.0
 
 .include "../../mk/java-vm.mk"
 
-.if ${PKG_JVM} == "openjdk7" || ${PKG_JVM} == "sun-jdk7"
+.if ${PKG_JVM} == "sun-jdk7"
 DEPENDS+=	apache-ant>=1.9<1.10:../../devel/apache-ant19
 .else
 DEPENDS+=	apache-ant>=1.10:../../devel/apache-ant

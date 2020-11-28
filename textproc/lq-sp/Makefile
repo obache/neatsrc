@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2018/07/18 00:06:24 joerg Exp $
+# $NetBSD: Makefile,v 1.18 2020/05/20 06:09:06 rillig Exp $
 #
 
 DISTNAME=	lq-sp-1.3.4.12
@@ -6,7 +6,7 @@ CATEGORIES=	www
 MASTER_SITES=	http://www.htmlhelp.com/tools/validator/offline/
 
 MAINTAINER=	norm@sandbox.org.uk
-HOMEPAGE=	http://www.htmlhelp.com/tools/validator/offline/
+HOMEPAGE=	https://www.htmlhelp.com/tools/validator/offline/
 COMMENT=	Modified SP package
 
 USE_LANGUAGES=	c c++03
@@ -18,6 +18,13 @@ SUBST_FILES.paths=	Makefile
 SUBST_SED.paths=	-e 's,/usr/local,${PREFIX},g'
 
 INSTALLATION_DIRS+=	bin
+
+# CmdLineApp.cxx: In member function 'StringC CmdLineApp::usageString()':
+# CmdLineApp.cxx:115:35: error: array subscript has type 'char' [-Werror=char-subscripts]
+#      else if (!hadOption[optstr_[i]]) {
+#                                   ^
+# Maybe fix this later.
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/nsgmls/lq-nsgmls ${DESTDIR}${PREFIX}/bin

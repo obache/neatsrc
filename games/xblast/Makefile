@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.31 2012/10/06 11:54:59 asau Exp $
+# $NetBSD: Makefile,v 1.33 2020/03/20 11:57:45 nia Exp $
 #
 
 DISTNAME=		xblast-2.10.4

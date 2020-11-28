@@ -1,0 +1,24 @@
+$NetBSD: patch-doc_man6_cap32.6,v 1.2 2020/04/22 08:13:40 nia Exp $
+
+Fix path.
+
+--- doc/man6/cap32.6.orig	2020-03-14 14:36:08.000000000 +0000
++++ doc/man6/cap32.6
+@@ -34,7 +34,7 @@ When launched, Caprice32 will look for a
+ .br
+   - \fB$HOME/.cap32.cfg\fR for compatibility. 
+ .br
+-  - \fB/etc/cap32.cfg\fR.
++  - \fB@PKG_SYSCONFDIR@/cap32.cfg\fR.
+ .br
+ Caprice32 will use the first valid file it finds. If no configuration file is found, a default configuration will be used.
+ .PP
+@@ -148,7 +148,7 @@ The screen capture code uses driedfruit 
+ .SH FILES
+ $HOME/.cap32.cfg
+ .br
+-/etc/cap32.cfg
++@PKG_SYSCONFDIR@/cap32.cfg
+ 
+ .SH SEE ALSO
+ https://github.com/ColinPitrat/caprice32

@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.20 2019/09/18 14:17:06 ryoon Exp $
+# $NetBSD: Makefile,v 1.30 2020/10/30 15:35:10 mef Exp $
 
-DISTNAME=	klayout-0.25.6
-PKGREVISION=	4
+DISTNAME=	klayout-0.26.8
 CATEGORIES=	cad
 MASTER_SITES=	http://www.klayout.org/downloads/source/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.klayout.de/
+HOMEPAGE=	https://www.klayout.de/
 COMMENT=	Simple GDS and OASIS file viewer and Editor
 LICENSE=	gnu-gpl-v2
 

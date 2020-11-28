@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.60 2019/06/08 10:40:54 rillig Exp $
+# $NetBSD: Makefile,v 1.62 2020/05/20 06:09:03 rillig Exp $
 
 DISTNAME=	emacs-20.7
 PKGNAME=	${DISTNAME:S/emacs/emacs20/}
@@ -21,13 +21,13 @@ PATCHFILES+=		emacs20-xim-20000713.diff
 
 # dholland's jumbo patch
 PATCHFILES+=		emacs20-jumbo-patch-20170723.gz
-SITES.emacs20-jumbo-patch-20170723.gz=\
+SITES.emacs20-jumbo-patch-20170723.gz= \
 			http://www.NetBSD.org/~dholland/patchkits/emacs20/
 
 PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	dholland@NetBSD.org
-HOMEPAGE=	http://www.gnu.org/software/emacs/emacs.html
+HOMEPAGE=	https://www.gnu.org/software/emacs/emacs.html
 COMMENT=	GNU editing macros (editor)
 
 BROKEN_ON_PLATFORM=	Darwin-*-* DragonFly-*-*
@@ -83,6 +83,13 @@ MAKEFILECPP=	${PREFIX}/bin/tradcpp
 MAKEFILECPP=	${CPP} -traditional-cpp
 .endif
 ALL_ENV+=	MAKEFILECPP=${MAKEFILECPP:Q}
+
+# emacs-20.7/lib-src/etags.c: In function 'init':
+# emacs-20.7/lib-src/etags.c:1208:35: error: array subscript has type 'char' [-Werror=char-subscripts]
+#    for (sp = white; *sp; sp++) _wht[*sp] = TRUE;    _wht[0] = _wht['\n'];
+#                                    ^
+# Maybe fix this later.
+BUILDLINK_TRANSFORM+=	rm:-Werror=char-subscripts
 
 INFO_FILES=	yes
 

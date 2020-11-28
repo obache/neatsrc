@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.10 2019/08/11 13:23:25 wiz Exp $
+# $NetBSD: Makefile,v 1.12 2020/08/31 18:11:43 wiz Exp $
 #
 
 DISTNAME=	igerman98-20160407
 PKGNAME=	${DISTNAME:S/german98/spell-de/1}
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	textproc
 MASTER_SITES=	http://j3e.de/ispell/igerman98/dict/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://j3e.de/ispell/igerman98/
+HOMEPAGE=	https://j3e.de/ispell/igerman98/
 COMMENT=	German dictionary for interactive spelling checker
 LICENSE=	gnu-gpl-v3 OR gnu-gpl-v2
 

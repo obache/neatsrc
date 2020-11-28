@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.21 2019/04/03 00:33:00 ryoon Exp $
+# $NetBSD: Makefile,v 1.28 2020/08/17 20:19:50 leot Exp $
 
 DISTNAME=	owncloudclient-2.2.3
-PKGREVISION=	9
+PKGREVISION=	15
 CATEGORIES=	net
 MASTER_SITES=	https://download.owncloud.com/desktop/stable/
 EXTRACT_SUFX=	.tar.xz
@@ -10,6 +10,8 @@ MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	https://owncloud.com/
 COMMENT=	Synchronization program for ownCloud
 LICENSE=	gnu-gpl-v2
+
+BROKEN=		"Fails to build with OpenSSL 1.1"
 
 # Do not use libocsync.so from net/ocsync.
 CONFLICTS=	ocsync-[0-9]*

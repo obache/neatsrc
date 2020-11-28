@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.11 2019/12/18 01:34:33 schmonz Exp $
+@comment $NetBSD: PLIST,v 1.14 2020/09/17 21:06:20 schmonz Exp $
 lib/libhighlight.la
 share/doc/highlight/AUTHORS
 share/doc/highlight/COPYING
@@ -149,6 +149,7 @@ share/highlight/langDefs/gdb.lang
 share/highlight/langDefs/gdscript.lang
 share/highlight/langDefs/go.lang
 share/highlight/langDefs/graphviz.lang
+share/highlight/langDefs/haml.lang
 share/highlight/langDefs/haskell.lang
 share/highlight/langDefs/haxe.lang
 share/highlight/langDefs/hcl.lang
@@ -254,6 +255,7 @@ share/highlight/langDefs/rpl.lang
 share/highlight/langDefs/rs.lang
 share/highlight/langDefs/ruby.lang
 share/highlight/langDefs/s.lang
+share/highlight/langDefs/sam.lang
 share/highlight/langDefs/sas.lang
 share/highlight/langDefs/scad.lang
 share/highlight/langDefs/scala.lang
@@ -292,7 +294,9 @@ share/highlight/langDefs/verilog.lang
 share/highlight/langDefs/vhd.lang
 share/highlight/langDefs/vimscript.lang
 share/highlight/langDefs/vue.lang
+share/highlight/langDefs/wat.lang
 share/highlight/langDefs/whiley.lang
+share/highlight/langDefs/wren.lang
 share/highlight/langDefs/xml.lang
 share/highlight/langDefs/xpp.lang
 share/highlight/langDefs/yaiff.lang
@@ -335,6 +339,7 @@ share/highlight/plugins/outhtml_tooltips.lua
 share/highlight/plugins/perl_ref_perl_org.lua
 share/highlight/plugins/python_ref_python_org.lua
 share/highlight/plugins/reduce_filesize.lua
+share/highlight/plugins/sam_seq.lua
 share/highlight/plugins/scala_ref_scala_lang_org.lua
 share/highlight/plugins/terminal_add_info.lua
 share/highlight/plugins/theme_invert.lua
@@ -516,6 +521,7 @@ share/highlight/themes/navy.theme
 share/highlight/themes/neon.theme
 share/highlight/themes/night.theme
 share/highlight/themes/nightshimmer.theme
+share/highlight/themes/nord.theme
 share/highlight/themes/nuvola.theme
 share/highlight/themes/olive.theme
 share/highlight/themes/orion.theme

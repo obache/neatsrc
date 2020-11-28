@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.16 2019/05/23 19:23:11 rillig Exp $
+# $NetBSD: Makefile,v 1.18 2020/03/20 11:58:12 nia Exp $
 #
 
 DISTNAME=	xnap-2.0

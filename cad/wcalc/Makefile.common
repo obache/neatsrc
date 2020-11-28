@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.10 2019/06/08 11:04:30 rillig Exp $
+# $NetBSD: Makefile.common,v 1.12 2020/01/26 05:26:16 rillig Exp $
 #
 # used by cad/wcalc/Makefile
 # used by cad/wcalc-docs/Makefile

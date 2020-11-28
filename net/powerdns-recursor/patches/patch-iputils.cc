@@ -1,15 +1,28 @@
-$NetBSD: patch-iputils.cc,v 1.1 2019/02/20 12:19:44 adam Exp $
+$NetBSD: patch-iputils.cc,v 1.3 2020/09/30 11:53:07 otis Exp $
 
-Fix buildling.
+Silence the warning about defined but not used variable on
+apropriate platforms.
 
---- iputils.cc.orig	2019-02-20 10:50:10.609217278 +0000
+--- iputils.cc.orig	2020-09-04 17:20:52.000000000 +0000
 +++ iputils.cc
-@@ -146,7 +146,7 @@ bool HarvestTimestamp(struct msghdr* msg
- bool HarvestDestinationAddress(const struct msghdr* msgh, ComboAddress* destination)
- {
-   destination->reset();
--  const struct cmsghdr* cmsg;
-+  struct cmsghdr* cmsg;
-   for (cmsg = CMSG_FIRSTHDR(msgh); cmsg != NULL; cmsg = CMSG_NXTHDR(const_cast<struct msghdr*>(msgh), const_cast<struct cmsghdr*>(cmsg))) {
- #if defined(IP_PKTINFO)
-      if ((cmsg->cmsg_level == IPPROTO_IP) && (cmsg->cmsg_type == IP_PKTINFO)) {
+@@ -322,7 +322,9 @@ size_t sendMsgWithOptions(int fd, const
+   msgh.msg_flags = 0;
+ 
+   size_t sent = 0;
++#ifdef MSG_FASTOPEN
+   bool firstTry = true;
++#endif
+ 
+   do {
+ 
+@@ -342,8 +344,10 @@ size_t sendMsgWithOptions(int fd, const
+         return sent;
+       }
+ 
++#ifdef MSG_FASTOPEN
+       /* partial write */
+       firstTry = false;
++#endif
+       iov.iov_len -= written;
+       iov.iov_base = reinterpret_cast<void*>(reinterpret_cast<char*>(iov.iov_base) + written);
+       written = 0;

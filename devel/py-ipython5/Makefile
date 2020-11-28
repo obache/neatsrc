@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2018/08/04 09:29:59 adam Exp $
+# $NetBSD: Makefile,v 1.7 2020/08/31 23:07:01 wiz Exp $
 
 DISTNAME=	ipython-5.8.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
@@ -6,7 +6,7 @@ CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=i/ipython/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://ipython.org/
+HOMEPAGE=	https://ipython.org/
 COMMENT=	Interactive computing environment for Python
 LICENSE=	modified-bsd
 
@@ -23,10 +23,11 @@ DEPENDS+=	${PYPKGPREFIX}-pexpect-[0-9]*:../../devel/py-pexpect
 DEPENDS+=	${PYPKGPREFIX}-pickleshare-[0-9]*:../../databases/py-pickleshare
 DEPENDS+=	${PYPKGPREFIX}-prompt_toolkit>=1.0.4:../../devel/py-prompt_toolkit
 DEPENDS+=	${PYPKGPREFIX}-pygments-[0-9]*:../../textproc/py-pygments
-DEPENDS+=	${PYPKGPREFIX}-setuptools>=18.5:../../devel/py-setuptools
 DEPENDS+=	${PYPKGPREFIX}-simplegeneric>0.8:../../devel/py-simplegeneric
 DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
 DEPENDS+=	${PYPKGPREFIX}-traitlets>=4.2:../../devel/py-traitlets
+
+PYTHON_VERSIONED_DEPENDENCIES+=	setuptools
 
 USE_LANGUAGES=	# none
 
@@ -36,4 +37,5 @@ post-install:
 	${MV} bin/ipython bin/ipython${PYVERSSUFFIX} && \
 	${MV} ${PKGMANDIR}/man1/ipython.1 ${PKGMANDIR}/man1/ipython${PYVERSSUFFIX}.1 || ${TRUE}
 
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

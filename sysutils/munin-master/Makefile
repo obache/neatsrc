@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2019/09/09 12:21:44 tm Exp $
-#
+# $NetBSD: Makefile,v 1.4 2020/09/01 08:01:26 wiz Exp $
 
 PKGNAME=	${DISTNAME:S/munin/munin-master/}
+PKGREVISION=	2
 COMMENT=	System monitoring tool, master version
 
 .include "../../sysutils/munin-common/Makefile.common"
@@ -14,7 +14,7 @@ DEPENDS+=	p5-HTML-Template>=0:../../www/p5-HTML-Template
 DEPENDS+=	p5-IO-Socket-INET6>=2.69:../../net/p5-IO-Socket-INET6
 DEPENDS+=	p5-Log-Log4perl>=1.18:../../devel/p5-Log-Log4perl
 DEPENDS+=	p5-Net-SSLeay>=0:../../security/p5-Net-SSLeay
-DEPENDS+=	p5-Time-HiRes>=0:../../time/p5-Time-HiRes
+#DEPENDS+=	p5-Time-HiRes>=0:../../time/p5-Time-HiRes
 DEPENDS+=	p5-URI>=1.60:../../www/p5-URI
 DEPENDS+=	rrdtool>=1.2:../../databases/rrdtool
 
@@ -61,6 +61,7 @@ CONF_FILES+=	${STATIC_EGDIR}/${f} ${PKG_SYSCONFDIR}/static/${f}
 INSTALLATION_DIRS+=	${EGDIR}
 
 CHECK_PORTABILITY_SKIP+=	node/node.d/*
+CHECK_PORTABILITY_SKIP+=	plugins/*
 
 BUILD_TARGET=		build
 INSTALL_TARGET=		install-master-prime

@@ -1,32 +1,37 @@
-# $NetBSD: Makefile,v 1.53 2019/11/03 17:12:01 rillig Exp $
+# $NetBSD: Makefile,v 1.66 2020/08/31 18:10:29 wiz Exp $
 #
 
-DISTNAME=	HandBrake-1.2.2-source
+DISTNAME=	HandBrake-1.3.1-source
 PKGNAME=	${DISTNAME:tl:S/-source//}
-PKGREVISION=	2
+PKGREVISION=	7
 CATEGORIES=	multimedia
 MASTER_SITES=	https://download.handbrake.fr/releases/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://handbrake.fr/
+HOMEPAGE=	https://handbrake.fr/
 COMMENT=	Multiplatform, multithreaded video transcoder
 LICENSE=	gnu-gpl-v2
 
 DIST_SUBDIR=	handbrake
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
-CDISTFILES=	ffmpeg-4.1.tar.bz2 \
-		libbluray-1.0.2.tar.bz2 \
-		libdvdnav-6.0.0.tar.bz2 \
-		libdvdread-6.0.0.tar.bz2 \
-		libvpx-1.7.0.tar.gz \
-		x265_2.9.tar.gz
+CDISTFILES=	ffmpeg-4.2.2.tar.bz2 \
+		libbluray-1.1.2.tar.bz2 \
+		libdvdnav-6.0.1.tar.bz2 \
+		libdvdread-6.0.2.tar.bz2 \
+		x265_3.2.1.tar.gz \
+		dav1d-0.5.1.tar.bz2
+
+MESON_DISTFILE=	meson-0.55.0.tar.gz
 DISTFILES+=	${CDISTFILES}
+DISTFILES+=	${MESON_DISTFILE}
 
 .for f in ${CDISTFILES}
 SITES.${f}=	https://download.handbrake.fr/contrib/
 .endfor
+
+SITES.${MESON_DISTFILE}=	${MASTER_SITE_PYPI:=m/meson/}
 
 RESTRICTED=		Unresolved patent issues
 NO_BIN_ON_CDROM=	${RESTRICTED}
@@ -42,6 +47,10 @@ USE_TOOLS+=	autoconf automake aclocal autoreconf m4
 USE_LIBTOOL=	yes
 USE_LANGUAGES=	c c++
 
+TOOL_DEPENDS+=			gettext-tools-[0-9]*:../../devel/gettext-tools
+_TOOLS_USE_PKGSRC.msgfmt=	yes
+USE_BUILTIN.gettext=		no
+
 BUILDLINK_TRANSFORM.NetBSD+=	rm:-ldl
 
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
@@ -52,17 +61,8 @@ BUILD_FLAGS+=		BUILDLINK_DIR=${BUILDLINK_DIR}
 
 BUILD_DEPENDS+=		cmake-[0-9]*:../../devel/cmake
 BUILD_DEPENDS+=		nasm>=2.05.01:../../devel/nasm
+BUILD_DEPENDS+=		meson-[0-9]*:../../devel/meson
 #BUILD_DEPENDS+=	gettext-m4-[0-9]*:../../devel/gettext-m4
-
-# harfbuzz, which is now separate from pango, installs a header file
-# called hb.h, and the include path plopped out by autocrap causes it
-# to be included instead of handbrake's own hb.h. Hack around it by
-# changing the include name to point specifically at the right hb.h.
-SUBST_CLASSES+=		inchack
-SUBST_STAGE.inchack=	pre-configure
-SUBST_FILES.inchack=	gtk/src/*.[ch]
-SUBST_SED.inchack=	-e "/^.include \"hb\.h\"/s,hb,../../libhb/hb,"
-SUBST_MESSAGE.inchack=	Working around harfbuzz header conflict.
 
 .include "../../mk/compiler.mk"
 
@@ -76,14 +76,19 @@ post-extract:
 	cp ${DISTDIR}/${DIST_SUBDIR}/${distfile} \
 		${WRKSRC}/download/
 .endfor
+	cp ${DISTDIR}/${DIST_SUBDIR}/${MESON_DISTFILE} ${WRKSRC}/download/
+	(cd ${WRKSRC}/contrib; tar zxf ${WRKSRC}/download/${MESON_DISTFILE})
 
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../audio/lame/buildlink3.mk"
 .include "../../audio/libopus/buildlink3.mk"
 .include "../../audio/libsamplerate/buildlink3.mk"
 .include "../../audio/speex/buildlink3.mk"
+.include "../../devel/gettext-lib/buildlink3.mk"
+.include "../../multimedia/gstreamer1/buildlink3.mk"
 .include "../../multimedia/libass/buildlink3.mk"
 .include "../../multimedia/libtheora/buildlink3.mk"
+.include "../../multimedia/libvpx/buildlink3.mk"
 .include "../../multimedia/x264-devel/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"

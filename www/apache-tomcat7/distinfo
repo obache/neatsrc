@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.33 2019/03/26 20:56:23 ryoon Exp $
+$NetBSD: distinfo,v 1.35 2020/10/15 16:27:21 otis Exp $
 
-SHA1 (apache-tomcat-7.0.93.tar.gz) = 5ed572783a3e06f4e9c5fa391004c4171935a4d4
-RMD160 (apache-tomcat-7.0.93.tar.gz) = 2fa8b4b193c3ca89dab5b604bb02c206fb8a40fc
-SHA512 (apache-tomcat-7.0.93.tar.gz) = 7ae5186f63df7821b7de4e4c92780a27ccc678119614ad074349c3d02bd2f764ac08fa72f776e880e98aad2617de01521eb3de6fe57e4a749c8c04f28e042f0a
-Size (apache-tomcat-7.0.93.tar.gz) = 9138957 bytes
+SHA1 (apache-tomcat-7.0.106.tar.gz) = 00461ec6db131f6cc730d785b329e37be1661514
+RMD160 (apache-tomcat-7.0.106.tar.gz) = 362abd8caccef9a861ac3fdf23b12761d5046325
+SHA512 (apache-tomcat-7.0.106.tar.gz) = f1fb2f3db9e66e66df120b058c216e72ec30df90abd80feda49773fa35c3c00cb56e4d264803696e1a71591d5cb60fcabf60f37e1774d549642ebe3eb902622d
+Size (apache-tomcat-7.0.106.tar.gz) = 9642456 bytes

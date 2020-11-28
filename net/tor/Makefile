@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.147 2019/12/10 13:06:23 ng0 Exp $
+# $NetBSD: Makefile,v 1.157 2020/09/19 18:22:01 leot Exp $
 
-DISTNAME=	tor-0.4.2.5
+DISTNAME=	tor-0.4.4.5
+PKGREVISION=	1
 CATEGORIES=	net security
 MASTER_SITES=	https://dist.torproject.org/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.torproject.org/
+HOMEPAGE=	https://www.torproject.org/
 COMMENT=	Anonymizing overlay network for TCP
 LICENSE=	modified-bsd
 
@@ -17,7 +18,7 @@ USE_TOOLS+=		perl:test pkg-config
 # Work around this by using gmake, which is tiny compared to the
 # existing perl dependency, and unlikely to be needed on any given
 # system just for tor.
-USE_TOOLS+=		gmake
+USE_TOOLS+=		gmake bash:test
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASEDIR}
@@ -56,6 +57,8 @@ INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples
 
 CHECK_PORTABILITY_SKIP+=	contrib/*
 
+REPLACE_PERL+=		scripts/maint/checkSpace.pl
+
 .include "options.mk"
 
 .include "../../mk/bsd.prefs.mk"
@@ -68,7 +71,6 @@ CFLAGS+=		-c99
 BUILDLINK_API_DEPENDS.libevent+= libevent>=2.0
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-BUILDLINK_API_DEPENDS.openssl+=	openssl>=1.0
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

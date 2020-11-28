@@ -57,28 +57,11 @@ func (s *Suite) Test_Path_IsEmpty(c *check.C) {
 	test("/", false)
 }
 
-func (s *Suite) Test_Path_DirClean(c *check.C) {
+func (s *Suite) Test_Path_Dir(c *check.C) {
 	t := s.Init(c)
 
 	test := func(p, dir Path) {
-		t.CheckEquals(p.DirClean(), dir)
-	}
-
-	test("", ".")
-	test("././././", ".")
-	test("/root", "/")
-	test("filename", ".")
-	test("dir/filename", "dir")
-	test("dir/filename\\with\\backslash", "dir")
-
-	test("././././dir/filename", "dir")
-}
-
-func (s *Suite) Test_Path_DirNoClean(c *check.C) {
-	t := s.Init(c)
-
-	test := func(p, dir Path) {
-		t.CheckEquals(p.DirNoClean(), dir)
+		t.CheckEquals(p.Dir(), dir)
 	}
 
 	test("", ".")
@@ -94,7 +77,7 @@ func (s *Suite) Test_Path_DirNoClean(c *check.C) {
 func (s *Suite) Test_Path_Base(c *check.C) {
 	t := s.Init(c)
 
-	test := func(p Path, base string) {
+	test := func(p Path, base RelPath) {
 		t.CheckEquals(p.Base(), base)
 	}
 
@@ -504,8 +487,10 @@ func (s *Suite) Test_Path_IsAbs(c *check.C) {
 	test(".", false)
 	test("a/b", false)
 	test("/a", true)
-	test("C:/", runtime.GOOS == "windows")
-	test("c:/", runtime.GOOS == "windows")
+	test("C:/", true)
+	test("c:/", true)
+	test("c::", false)
+	test("c:relative", false)
 }
 
 func (s *Suite) Test_Path_Rel(c *check.C) {
@@ -617,21 +602,11 @@ func (s *Suite) Test_CurrPath_IsEmpty(c *check.C) {
 	test("/", false)
 }
 
-func (s *Suite) Test_CurrPath_DirClean(c *check.C) {
+func (s *Suite) Test_CurrPath_Dir(c *check.C) {
 	t := s.Init(c)
 
 	test := func(curr, dir CurrPath) {
-		t.CheckEquals(curr.DirClean(), dir)
-	}
-
-	test("./dir/../dir///./file", "dir")
-}
-
-func (s *Suite) Test_CurrPath_DirNoClean(c *check.C) {
-	t := s.Init(c)
-
-	test := func(curr, dir CurrPath) {
-		t.CheckEquals(curr.DirNoClean(), dir)
+		t.CheckEquals(curr.Dir(), dir)
 	}
 
 	test("./dir/../dir///./file", "./dir/../dir")
@@ -640,7 +615,7 @@ func (s *Suite) Test_CurrPath_DirNoClean(c *check.C) {
 func (s *Suite) Test_CurrPath_Base(c *check.C) {
 	t := s.Init(c)
 
-	test := func(curr CurrPath, base string) {
+	test := func(curr CurrPath, base RelPath) {
 		t.CheckEquals(curr.Base(), base)
 	}
 
@@ -678,7 +653,7 @@ func (s *Suite) Test_CurrPath_IsAbs(c *check.C) {
 
 	test("/", true)
 	test("./", false)
-	test("C:/", runtime.GOOS == "windows")
+	test("C:/", true)
 }
 
 func (s *Suite) Test_CurrPath_HasPrefixPath(c *check.C) {
@@ -1116,21 +1091,11 @@ func (s *Suite) Test_PkgsrcPath_AsRelPath(c *check.C) {
 	t.CheckEquals(rel.String(), "./category/package/Makefile")
 }
 
-func (s *Suite) Test_PkgsrcPath_DirClean(c *check.C) {
+func (s *Suite) Test_PkgsrcPath_Dir(c *check.C) {
 	t := s.Init(c)
 
 	test := func(pp, cleaned PkgsrcPath) {
-		t.CheckEquals(pp.DirClean(), cleaned)
-	}
-
-	test("./dir/../dir/base///.", "dir/base")
-}
-
-func (s *Suite) Test_PkgsrcPath_DirNoClean(c *check.C) {
-	t := s.Init(c)
-
-	test := func(pp, cleaned PkgsrcPath) {
-		t.CheckEquals(pp.DirNoClean(), cleaned)
+		t.CheckEquals(pp.Dir(), cleaned)
 	}
 
 	test("./dir/../dir/base///.", "./dir/../dir/base")
@@ -1139,7 +1104,7 @@ func (s *Suite) Test_PkgsrcPath_DirNoClean(c *check.C) {
 func (s *Suite) Test_PkgsrcPath_Base(c *check.C) {
 	t := s.Init(c)
 
-	test := func(pp PkgsrcPath, base string) {
+	test := func(pp PkgsrcPath, base RelPath) {
 		t.CheckEquals(pp.Base(), base)
 	}
 
@@ -1234,6 +1199,16 @@ func (s *Suite) Test_PackagePath_JoinNoClean(c *check.C) {
 		"../../category/package/patches/patch-aa")
 }
 
+func (s *Suite) Test_PackagePath_CleanPath(c *check.C) {
+	t := s.Init(c)
+
+	test := func(p PackagePath, cleaned PackagePath) {
+		t.CheckEquals(p.CleanPath(), cleaned)
+	}
+
+	test("a/b/../../c/d/../.././e/../f", "a/b/../../e/../f")
+}
+
 func (s *Suite) Test_PackagePath_IsEmpty(c *check.C) {
 	t := s.Init(c)
 
@@ -1243,6 +1218,55 @@ func (s *Suite) Test_PackagePath_IsEmpty(c *check.C) {
 
 	test("", true)
 	test(".", false)
+}
+
+func (s *Suite) Test_PackagePath_HasPrefixPath(c *check.C) {
+	t := s.Init(c)
+
+	test := func(p PackagePath, sub Path, hasPrefix bool) {
+		t.CheckEquals(p.HasPrefixPath(sub), hasPrefix)
+	}
+
+	test("/root/subdir", "subdir", false)
+	test("/root/subdir", "/root", true)
+	test("/root/subdir", "/r", false)
+}
+
+func (s *Suite) Test_PackagePath_ContainsPath(c *check.C) {
+	t := s.Init(c)
+
+	test := func(p PackagePath, sub Path, hasPrefix bool) {
+		t.CheckEquals(p.ContainsPath(sub), hasPrefix)
+	}
+
+	test("/root/subdir", "subdir", true)
+	test("/root/subdir", "/root", true)
+	test("/root/subdir", "/r", false)
+}
+
+func (s *Suite) Test_PackagePath_ContainsText(c *check.C) {
+	t := s.Init(c)
+
+	test := func(p PackagePath, sub string, hasPrefix bool) {
+		t.CheckEquals(p.ContainsText(sub), hasPrefix)
+	}
+
+	test("/root/subdir", "subdir", true)
+	test("/root/subdir", "/root", true)
+	test("/root/subdir", "/r", true)
+	test("/root/subdir", "t//sub", false)
+}
+
+func (s *Suite) Test_PackagePath_Replace(c *check.C) {
+	t := s.Init(c)
+
+	test := func(p PackagePath, from, to string, result PackagePath) {
+		t.CheckEquals(p.Replace(from, to), result)
+	}
+
+	test("dir/file", "dir", "other", "other/file")
+	test("dir/file", "r", "sk", "disk/file")
+	test("aaa/file", "a", "sub/", "sub/sub/sub//file")
 }
 
 func (s *Suite) Test_NewRelPath(c *check.C) {
@@ -1310,21 +1334,11 @@ func (s *Suite) Test_RelPath_Split(c *check.C) {
 
 }
 
-func (s *Suite) Test_RelPath_DirClean(c *check.C) {
+func (s *Suite) Test_RelPath_Dir(c *check.C) {
 	t := s.Init(c)
 
 	test := func(rel RelPath, dir RelPath) {
-		t.CheckEquals(rel.DirClean(), dir)
-	}
-
-	test("./dir/../dir///./file", "dir")
-}
-
-func (s *Suite) Test_RelPath_DirNoClean(c *check.C) {
-	t := s.Init(c)
-
-	test := func(rel RelPath, dir RelPath) {
-		t.CheckEquals(rel.DirNoClean(), dir)
+		t.CheckEquals(rel.Dir(), dir)
 	}
 
 	test("./dir/../dir///./file", "./dir/../dir")
@@ -1333,7 +1347,7 @@ func (s *Suite) Test_RelPath_DirNoClean(c *check.C) {
 func (s *Suite) Test_RelPath_Base(c *check.C) {
 	t := s.Init(c)
 
-	test := func(rel RelPath, base string) {
+	test := func(rel RelPath, base RelPath) {
 		t.CheckEquals(rel.Base(), base)
 	}
 

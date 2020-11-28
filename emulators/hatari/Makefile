@@ -1,21 +1,20 @@
-# $NetBSD: Makefile,v 1.53 2019/10/20 11:10:48 nia Exp $
+# $NetBSD: Makefile,v 1.57 2020/08/18 17:57:46 leot Exp $
 
-DISTNAME=	hatari-2.0.0
+DISTNAME=	hatari-2.2.1
 PKGREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	http://download.tuxfamily.org/hatari/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://hatari.tuxfamily.org/
+HOMEPAGE=	https://hatari.tuxfamily.org/
 COMMENT=	Atari ST emulator
 LICENSE=	gnu-gpl-v2
 
 USE_CMAKE=		yes
-USE_LANGUAGES=		c
-CMAKE_ARGS+=		-DENABLE_OSX_BUNDLE:BOOL=0
-
-PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 1.7.0
+USE_LANGUAGES=		c99
+CMAKE_ARGS+=		-DENABLE_OSX_BUNDLE=OFF
+CMAKE_ARGS+=		-DMANDIR=${PKGMANDIR}/man1
 
 REPLACE_PYTHON+=	python-ui/config.py
 REPLACE_PYTHON+=	python-ui/debugui.py
@@ -23,17 +22,17 @@ REPLACE_PYTHON+=	python-ui/dialogs.py
 REPLACE_PYTHON+=	python-ui/gentypes.py
 REPLACE_PYTHON+=	python-ui/hatari.py
 REPLACE_PYTHON+=	python-ui/hatariui.py
-REPLACE_PYTHON+=	python-ui/tests/pygtk-hello-world.py
 REPLACE_PYTHON+=	python-ui/uihelpers.py
 REPLACE_PYTHON+=	tests/tosboot/tos_tester.py
 REPLACE_PYTHON+=	tools/atari-convert-dir.py
-REPLACE_PYTHON+=	tools/atari-hd-image.sh
 REPLACE_PYTHON+=	tools/debugger/hatari_profile.py
 REPLACE_PYTHON+=	tools/debugger/hatari_spinloop.py
 REPLACE_PYTHON+=	tools/hconsole/example.py
 REPLACE_PYTHON+=	tools/hconsole/hconsole.py
 
 INSTALLATION_DIRS+=	share/doc/hatari
+
+.include "../../mk/bsd.prefs.mk"
 
 .include "../../audio/portaudio/buildlink3.mk"
 .include "../../devel/SDL2/buildlink3.mk"
@@ -42,6 +41,9 @@ INSTALLATION_DIRS+=	share/doc/hatari
 .include "../../graphics/png/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
+.if ${OPSYS} != "Darwin"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
+.endif
+.include "../../mk/readline.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

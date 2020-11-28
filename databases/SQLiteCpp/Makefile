@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.4 2019/04/03 00:32:29 ryoon Exp $
+# $NetBSD: Makefile,v 1.7 2020/06/02 08:22:33 adam Exp $
 
 DISTNAME=	SQLiteCpp-2.2.0
-PKGREVISION=	3
+PKGREVISION=	5
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GITHUB:=SRombauts/}
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://srombauts.github.io/SQLiteCpp/
+HOMEPAGE=	https://srombauts.github.io/SQLiteCpp/
 COMMENT=	C++ SQLite3 wrapper
 LICENSE=	mit
 

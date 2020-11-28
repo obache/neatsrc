@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.625 2020/01/11 15:48:28 rillig Exp $
+# $NetBSD: Makefile,v 1.673 2020/10/26 22:13:23 rillig Exp $
 
-PKGNAME=	pkglint-19.4.3
+PKGNAME=	pkglint-20.3.2
 CATEGORIES=	pkgtools
 DISTNAME=	tools
 MASTER_SITES=	${MASTER_SITE_GITHUB:=golang/}
@@ -72,11 +72,6 @@ do-install-man: .PHONY
 .if ${MANINSTALL:Mmaninstall}
 	${INSTALL_MAN} ${WRKSRC.pkglint}/pkglint.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 .endif
-
-# Require devel/go-check even when PKGSRC_RUN_TEST is disabled
-# because netbsd.org/pkglint/intqa depends on it.
-# This package is always installed.
-BUILDLINK_DEPMETHOD.go-check=	full
 
 .include "../../devel/go-check/buildlink3.mk"
 .include "../../security/go-crypto/buildlink3.mk"

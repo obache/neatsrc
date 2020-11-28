@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.35 2016/04/20 12:10:27 nros Exp $
+# $NetBSD: Makefile,v 1.37 2020/01/26 05:26:11 rillig Exp $
 
 DISTNAME=	libcdaudio-0.99.12
 PKGREVISION=	2

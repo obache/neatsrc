@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.8 2015/11/03 01:56:33 agc Exp $
+$NetBSD: distinfo,v 1.9 2020/09/13 15:11:07 taca Exp $
 
-SHA1 (ruby-ldap-0.9.17.gem) = 663605fe950498b93b75eea580293730fce43b88
-RMD160 (ruby-ldap-0.9.17.gem) = 8ccf1142753ff3cd9aad04872553e4c91d84897a
-SHA512 (ruby-ldap-0.9.17.gem) = b6400faa4ae19f3d783810a6b2f7af36e89cbf001aa48a343e1ff6e5f9e74639bb84db2dc58a1465f91130248eaf17767a6c125e1d416aaf7d45ff8c14c3b68e
-Size (ruby-ldap-0.9.17.gem) = 66560 bytes
+SHA1 (ruby-ldap-0.9.20.gem) = d26a21e6c2262e66a4b2e052d78bb3282dbdcbc2
+RMD160 (ruby-ldap-0.9.20.gem) = ab0d0e25a8f40efb1d3ae38ba23ceee73f71cf60
+SHA512 (ruby-ldap-0.9.20.gem) = 4f4902e7eaf4fe0cd421d58c73ce4e625d61ee20ef02363d3cf5754c66237e0f378ac433b234c2b86d5f5284ae03b7ae6c46d3575c512487bc1a931d021c9517
+Size (ruby-ldap-0.9.20.gem) = 67072 bytes

@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.8 2019/11/03 11:45:58 rillig Exp $
+# $NetBSD: Makefile,v 1.12 2020/05/10 14:20:43 rillig Exp $
 
 DISTNAME=	wide-dhcpv6-20080615
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=wide-dhcpv6/}
 
@@ -30,7 +31,7 @@ INSTALLATION_DIRS=	${PKGMANDIR}/man5 ${PKGMANDIR}/man8 sbin \
 SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		pre-configure
 SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
-SUBST_FILES.fix-paths=		${MAN5} ${MAN8}
+SUBST_FILES.fix-paths=		${MAN5} ${MAN8:Ndhcp6relay.8}
 SUBST_SED.fix-paths=		-e 's,/usr/local/etc,${PKG_SYSCONFDIR:Q},g'
 
 SUBST_CLASSES+=		dprintf

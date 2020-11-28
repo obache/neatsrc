@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.76 2020/01/05 23:02:25 gutteridge Exp $
+# $NetBSD: Makefile,v 1.89 2020/08/31 18:13:28 wiz Exp $
 
+PKGREVISION= 1
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-VERSION=	0.2.8
+VERSION=	0.3.0
 DISTNAME=	tumbler-${VERSION}
 PKGNAME=	xfce4-tumbler-${VERSION}
 CATEGORIES=	x11
-MASTER_SITES=	http://archive.xfce.org/src/xfce/tumbler/${VERSION:R}/
+MASTER_SITES=	https://archive.xfce.org/src/xfce/tumbler/${VERSION:R}/
 
 HOMEPAGE=	https://docs.xfce.org/xfce/thunar/tumbler
 COMMENT=	D-Bus thumbnailing service

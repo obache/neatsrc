@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.1 2019/11/21 05:58:34 markd Exp $
+$NetBSD: distinfo,v 1.3 2020/06/09 11:56:16 markd Exp $
 
-SHA1 (libkeduvocdocument-19.08.3.tar.xz) = 2f4d80fe8e9b0a9280a41feebfc5153453c231e3
-RMD160 (libkeduvocdocument-19.08.3.tar.xz) = 430bfb45ac5c4da0f4a2428fda995e9cd2324efa
-SHA512 (libkeduvocdocument-19.08.3.tar.xz) = a548dd294bd07fd9c14448bc0d69fb5f58ca7a15f513bf56e6402af3678727321fe2f2a6a6345c2dcd220fbf1f4668075d73065b1c00835298da9f8c186828de
-Size (libkeduvocdocument-19.08.3.tar.xz) = 211172 bytes
+SHA1 (libkeduvocdocument-20.04.1.tar.xz) = 7da81c45c0939d04e59aea838fb737fc98d855e6
+RMD160 (libkeduvocdocument-20.04.1.tar.xz) = 32396b0875e236960d42ee4589e33258adb9fc44
+SHA512 (libkeduvocdocument-20.04.1.tar.xz) = 22e76b1608567eb008e88ad99e823975f26cddd5b20a270db05c30658a554c53c56833ed3c5153dd6c85e649fa4d5f2a8f0741c9223165c19fd35b7515fe42ca
+Size (libkeduvocdocument-20.04.1.tar.xz) = 206776 bytes

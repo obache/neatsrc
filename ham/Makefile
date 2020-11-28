@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.40 2019/02/07 14:08:29 tnn Exp $
+# $NetBSD: Makefile,v 1.47 2020/08/30 08:40:33 tnn Exp $
 #
 
 COMMENT=	Wireless communication tools and applications
+
 SUBDIR+=	7plus
 SUBDIR+=	chirp
 SUBDIR+=	codec2
@@ -12,7 +13,6 @@ SUBDIR+=	fldigi
 SUBDIR+=	flxmlrpc
 SUBDIR+=	freedv
 SUBDIR+=	gmfsk
-SUBDIR+=	gnuradio-atsc
 SUBDIR+=	gnuradio-channels
 SUBDIR+=	gnuradio-companion
 SUBDIR+=	gnuradio-core
@@ -20,10 +20,7 @@ SUBDIR+=	gnuradio-ctrlport
 SUBDIR+=	gnuradio-digital
 SUBDIR+=	gnuradio-doxygen
 SUBDIR+=	gnuradio-dtv
-SUBDIR+=	gnuradio-fcd
 SUBDIR+=	gnuradio-fec
-SUBDIR+=	gnuradio-noaa
-SUBDIR+=	gnuradio-pager
 SUBDIR+=	gnuradio-qtgui
 SUBDIR+=	gnuradio-trellis
 SUBDIR+=	gnuradio-uhd
@@ -31,7 +28,6 @@ SUBDIR+=	gnuradio-utils
 SUBDIR+=	gnuradio-video-sdl
 SUBDIR+=	gnuradio-vocoder
 SUBDIR+=	gnuradio-wavelet
-SUBDIR+=	gnuradio-wxgui
 SUBDIR+=	gnuradio-zeromq
 SUBDIR+=	gpredict
 SUBDIR+=	gr-fcdproplus
@@ -46,7 +42,9 @@ SUBDIR+=	locator
 SUBDIR+=	nec2c
 SUBDIR+=	osmo-sdr
 SUBDIR+=	predict
+SUBDIR+=	py-soapy-sdr
 SUBDIR+=	rtl-sdr
+SUBDIR+=	soapy-sdr
 SUBDIR+=	tfkiss
 SUBDIR+=	tlf
 SUBDIR+=	tnt

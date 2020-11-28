@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2018/05/17 08:09:11 adam Exp $
+# $NetBSD: Makefile,v 1.3 2020/10/06 10:51:21 wiz Exp $
 
-DISTNAME=	python-subunit-1.3.0
+DISTNAME=	python-subunit-1.4.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/^python-//}
 CATEGORIES=	net python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/python-subunit/}
@@ -13,21 +13,23 @@ LICENSE=	apache-2.0 OR modified-bsd
 DEPENDS+=	${PYPKGPREFIX}-extras-[0-9]*:../../devel/py-extras
 DEPENDS+=	${PYPKGPREFIX}-testtools>=0.9.34:../../devel/py-testtools
 TEST_DEPENDS+=	${PYPKGPREFIX}-fixtures-[0-9]*:../../devel/py-fixtures
-TEST_DEPENDS+=	${PYPKGPREFIX}-hypothesis-[0-9]*:../../devel/py-hypothesis
 TEST_DEPENDS+=	${PYPKGPREFIX}-testscenarios-[0-9]*:../../devel/py-testscenarios
+
+PYTHON_VERSIONED_DEPENDENCIES=	hypothesis:test
 
 USE_LANGUAGES=	# none
 
 post-install:
-	cd ${DESTDIR}${PREFIX}/bin && \
-	for f in subunit-1to2 subunit-1to2 subunit-2to1 subunit-filter subunit-ls \
+.for f in subunit-1to2 subunit-1to2 subunit-2to1 subunit-filter subunit-ls \
 	subunit-notify subunit-output subunit-stats subunit-tags subunit2csv \
-	subunit2disk subunit2gtk subunit2junitxml subunit2pyunit tap2subunit; do \
-		${MV} $${f} $${f}-${PYVERSSUFFIX} || ${TRUE}; \
-	done
+	subunit2disk subunit2gtk subunit2junitxml subunit2pyunit tap2subunit
+	cd ${DESTDIR}${PREFIX}/bin && \
+	${MV} ${f} ${f}-${PYVERSSUFFIX} || ${TRUE}
+.endfor
 
 do-test:
 	cd ${WRKSRC}/python && ${PYTHONBIN} -m unittest discover -v
 
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

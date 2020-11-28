@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.150 2020/01/06 14:14:07 nia Exp $
+# $NetBSD: Makefile,v 1.164 2020/09/29 08:55:54 adam Exp $
 
-DISTNAME=	wesnoth-1.14.9
+DISTNAME=	wesnoth-1.14.14
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=wesnoth/}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.wesnoth.org/
+HOMEPAGE=	https://www.wesnoth.org/
 COMMENT=	Fantasy turn-based strategy game
 LICENSE=	gnu-gpl-v2
 

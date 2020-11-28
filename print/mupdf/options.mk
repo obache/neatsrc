@@ -1,7 +1,13 @@
-# $NetBSD: options.mk,v 1.9 2019/08/30 17:01:34 nia Exp $
+# $NetBSD: options.mk,v 1.11 2020/04/07 12:13:01 wiz Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.mupdf
 PKG_SUPPORTED_OPTIONS=	curl opengl
+
+.include "../../mk/bsd.fast.prefs.mk"
+
+.if ${OPSYS} != "Darwin"
+PKG_SUGGESTED_OPTIONS=	opengl
+.endif
 
 .include "../../mk/bsd.options.mk"
 
@@ -22,6 +28,7 @@ PLIST.curl=	yes
 PLIST.opengl=	yes
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../graphics/freeglut/buildlink3.mk"
+LDFLAGS.NetBSD+=	-lGL # for glCallList
 .else
 MAKE_ENV+=	HAVE_GLUT=no
 .endif

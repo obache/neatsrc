@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.13 2019/08/30 17:24:35 nia Exp $
+# $NetBSD: Makefile,v 1.15 2020/08/07 08:57:04 adam Exp $
 
-DISTNAME=	bullet-2.88
-PKGREVISION=	1
+DISTNAME=	bullet-2.89
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=bulletphysics/}
 GITHUB_PROJECT=	bullet3
@@ -28,6 +27,9 @@ CMAKE_ARGS+=	-DBUILD_UNIT_TESTS:BOOL=off
 
 PKGCONFIG_OVERRIDE+=	bullet.pc.in
 
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} != "Darwin"
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../graphics/glu/buildlink3.mk"
+.endif
 .include "../../mk/bsd.pkg.mk"

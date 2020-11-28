@@ -134,6 +134,12 @@ const (
 	//  X11_TYPE (user-settable)
 	NonemptyIfDefined
 
+	// Unique is true if it doesn't make sense to append the same
+	// value more than once to the variable.
+	//
+	// A typical example is CATEGORIES.
+	Unique
+
 	NoVartypeOptions = 0
 )
 
@@ -182,7 +188,7 @@ func (perms ACLPermissions) String() string {
 }
 
 func (perms ACLPermissions) HumanString() string {
-	return joinSkipEmptyOxford("or",
+	return joinOxford("or",
 		condStr(perms.Contains(aclpSet), "set", ""),
 		condStr(perms.Contains(aclpSetDefault), "given a default value", ""),
 		condStr(perms.Contains(aclpAppend), "appended to", ""),
@@ -201,10 +207,11 @@ func (vt *Vartype) IsOnePerLine() bool          { return vt.options&OnePerLine !
 func (vt *Vartype) IsAlwaysInScope() bool       { return vt.options&AlwaysInScope != 0 }
 func (vt *Vartype) IsDefinedIfInScope() bool    { return vt.options&DefinedIfInScope != 0 }
 func (vt *Vartype) IsNonemptyIfDefined() bool   { return vt.options&NonemptyIfDefined != 0 }
+func (vt *Vartype) IsUnique() bool              { return vt.options&Unique != 0 }
 
-func (vt *Vartype) EffectivePermissions(basename string) ACLPermissions {
+func (vt *Vartype) EffectivePermissions(basename RelPath) ACLPermissions {
 	for _, aclEntry := range vt.aclEntries {
-		if aclEntry.matcher.matches(basename) {
+		if aclEntry.matcher.matches(basename.String()) {
 			return aclEntry.permissions
 		}
 	}
@@ -265,12 +272,12 @@ func (vt *Vartype) AlternativeFiles(perms ACLPermissions) string {
 		neg = merge(neg)
 	}
 
-	positive := joinSkipEmptyCambridge("or", pos...)
+	positive := joinCambridge("or", pos...)
 	if positive == "" {
 		return ""
 	}
 
-	negative := joinSkipEmptyCambridge("or", neg...)
+	negative := joinCambridge("or", neg...)
 	if negative == "" {
 		return positive
 	}
@@ -371,7 +378,8 @@ func (bt *BasicType) NeedsQ() bool {
 		BtRelativePkgDir,
 		BtRelativePkgPath,
 		BtStage,
-		BtTool, // Sometimes contains a colon, but that should be ok.
+		BtToolDependency, // ok since the [ tool is usually not mentioned.
+		BtToolName,       // ok since the [ tool is usually not mentioned.
 		BtUserGroupName,
 		BtVersion,
 		BtWrkdirSubdirectory,
@@ -411,7 +419,7 @@ var (
 	BtCFlag                  = &BasicType{"CFlag", (*VartypeCheck).CFlag}
 	BtComment                = &BasicType{"Comment", (*VartypeCheck).Comment}
 	BtConfFiles              = &BasicType{"ConfFiles", (*VartypeCheck).ConfFiles}
-	BtDependency             = &BasicType{"Dependency", (*VartypeCheck).Dependency}
+	BtDependencyPattern      = &BasicType{"DependencyPattern", (*VartypeCheck).DependencyPattern}
 	BtDependencyWithPath     = &BasicType{"DependencyWithPath", (*VartypeCheck).DependencyWithPath}
 	BtDistSuffix             = &BasicType{"DistSuffix", (*VartypeCheck).DistSuffix}
 	BtEmulPlatform           = &BasicType{"EmulPlatform", (*VartypeCheck).EmulPlatform}
@@ -435,6 +443,7 @@ var (
 	BtPathlist               = &BasicType{"Pathlist", (*VartypeCheck).Pathlist}
 	BtPathPattern            = &BasicType{"PathPattern", (*VartypeCheck).PathPattern}
 	BtPathname               = &BasicType{"Pathname", (*VartypeCheck).Pathname}
+	BtPathnameSpace          = &BasicType{"PathnameSpace", (*VartypeCheck).PathnameSpace}
 	BtPerl5Packlist          = &BasicType{"Perl5Packlist", (*VartypeCheck).Perl5Packlist}
 	BtPerms                  = &BasicType{"Perms", (*VartypeCheck).Perms}
 	BtPkgname                = &BasicType{"Pkgname", (*VartypeCheck).Pkgname}
@@ -454,7 +463,8 @@ var (
 	BtShellCommands          = &BasicType{"ShellCommands", nil} // see func init below
 	BtShellWord              = &BasicType{"ShellWord", nil}     // see func init below
 	BtStage                  = &BasicType{"Stage", (*VartypeCheck).Stage}
-	BtTool                   = &BasicType{"Tool", (*VartypeCheck).Tool}
+	BtToolDependency         = &BasicType{"ToolDependency", (*VartypeCheck).ToolDependency}
+	BtToolName               = &BasicType{"ToolName", (*VartypeCheck).ToolName}
 	BtUnknown                = &BasicType{"Unknown", (*VartypeCheck).Unknown}
 	BtURL                    = &BasicType{"URL", (*VartypeCheck).URL}
 	BtUserGroupName          = &BasicType{"UserGroupName", (*VartypeCheck).UserGroupName}
@@ -464,6 +474,7 @@ var (
 	BtWrapperReorder         = &BasicType{"WrapperReorder", (*VartypeCheck).WrapperReorder}
 	BtWrapperTransform       = &BasicType{"WrapperTransform", (*VartypeCheck).WrapperTransform}
 	BtWrkdirSubdirectory     = &BasicType{"WrkdirSubdirectory", (*VartypeCheck).WrkdirSubdirectory}
+	BtWrksrcPathPattern      = &BasicType{"WrksrcPathPattern", (*VartypeCheck).WrksrcPathPattern}
 	BtWrksrcSubdirectory     = &BasicType{"WrksrcSubdirectory", (*VartypeCheck).WrksrcSubdirectory}
 	BtYes                    = &BasicType{"Yes", (*VartypeCheck).Yes}
 	BtYesNo                  = &BasicType{"YesNo", (*VartypeCheck).YesNo}

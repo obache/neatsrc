@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.12 2019/08/11 13:23:25 wiz Exp $
+# $NetBSD: Makefile,v 1.14 2020/08/31 18:11:44 wiz Exp $
 
 DISTNAME=	mandoc-1.14.5
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	textproc devel
 MASTER_SITES=	http://mandoc.bsd.lv/snapshots/
 
 MAINTAINER=	schwarze@usta.de
-HOMEPAGE=	http://mandoc.bsd.lv/
+HOMEPAGE=	https://mandoc.bsd.lv/
 COMMENT=	Convert man pages from mdoc, man, eqn and tbl to txt, html, ps, or pdf
 LICENSE=	2-clause-bsd # not exactly, but near enough
 

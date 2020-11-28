@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.18 2019/04/25 07:33:32 maya Exp $
+# $NetBSD: Makefile,v 1.21 2020/10/09 06:44:47 wiz Exp $
 
-DISTNAME=	xcb-proto-1.13
-PKGREVISION=	1
+DISTNAME=	xcb-proto-1.14.1
 CATEGORIES=	x11
-MASTER_SITES=	https://xcb.freedesktop.org/dist/
-EXTRACT_SUFX=	.tar.bz2
+MASTER_SITES=	https://xorg.freedesktop.org/archive/individual/proto/
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	reed@reedmedia.net
 HOMEPAGE=	https://xcb.freedesktop.org/
@@ -17,7 +16,7 @@ USE_LANGUAGES=	# none
 
 PKGCONFIG_OVERRIDE+=	xcb-proto.pc.in
 
-CONFIGURE_ENV+=		XMLLLINT=${BUILDLINK_PREFIX.libxml}/bin/xmllint
+CONFIGURE_ENV+=		XMLLLINT=${BUILDLINK_PREFIX.libxml2}/bin/xmllint
 
 # XXX just for the "configure" check
 PYTHON_FOR_BUILD_ONLY=	tool
