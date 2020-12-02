@@ -245,6 +245,7 @@ _SUBST_FILES_FIX_MM_SHEBANG_FILES=	${ECHO} &&	\
 	${_PERL5_PACKLIST}
 SUBST_FILES._fix_mm_shebang=	${_SUBST_FILES_FIX_MM_SHEBANG_FILES:sh}
 SUBST_SED._fix_mm_shebang=	-e '1s/${TOOLS_DIR:S/\//\\\//g}\/bin\/sh/${SH:S/\//\\\//g}/'
+SUBST_NOOP_OK._fix_mm_shebang=	yes
 
 install-clean: .PHONY eat-cookie._fix_mm_shebang
 
