@@ -4,7 +4,7 @@ DISTNAME=	presage-0.9.1
 CATEGORIES=	inputmethod textproc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=presage/}
 
-HOMEPAGE=	http://presage.sourceforge.net/
+HOMEPAGE=	https://presage.sourceforge.io/
 COMMENT=	Intelligent predicative text entry system
 LICENSE=	gnu-gpl-v2
 
