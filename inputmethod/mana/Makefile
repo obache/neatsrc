@@ -24,6 +24,18 @@ SUBST_STAGE.path=	pre-configure
 SUBST_FILES.path=	mana/config.ml
 SUBST_SED.path=		-e 's;/usr/local/src/misc/mana/trunk;${PREFIX}/share;'
 
+SUBST_CLASSES+=		camlp4
+SUBST_STAGE.camlp4=	pre-configure
+SUBST_FILES.camlp4=	configure.in
+SUBST_FILES.camlp4+=	configure
+SUBST_FILES.camlp4+=	schoca/OCaml.mk
+SUBST_FILES.camlp4+=	schoca/lib/Makefile
+SUBST_FILES.camlp4+=	schoca/lib/scmTypes.ml
+SUBST_FILES.camlp4+=	schoca/shell/Makefile
+SUBST_FILES.camlp4+=	schoca/examples/Makefile
+SUBST_FILES.camlp4+=	OCamlMakefile
+SUBST_SED.camlp4=	-e 's;camlp4;camlp5;g'
+
 INSTALLATION_DIRS+=	${PREFIX}/share/mana
 
 post-install:
@@ -36,8 +48,8 @@ MAKE_JOBS_SAFE=no
 .include "../../devel/gettext-lib/buildlink3.mk"
 BUILDLINK_DEPMETHOD.ocaml-findlib+=	build
 .include "../../devel/ocaml-findlib/buildlink3.mk"
-BUILDLINK_DEPMETHOD.camlp4+=	build
-.include "../../lang/camlp4/buildlink3.mk"
+BUILDLINK_DEPMETHOD.camlp5+=	build
+.include "../../lang/camlp5/buildlink3.mk"
 BUILDLINK_DEPMETHOD.ocaml+=	build
 .include "../../lang/ocaml/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
