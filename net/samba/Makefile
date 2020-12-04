@@ -9,7 +9,6 @@ PATCH_DIST_STRIP=	-p1
 DISTFILES_VARS+=	badlockpatch
 DISTFILES.badlockpatch=	samba-v3-6-security-2016-04-12.tar.xz
 SITES.badlockpatch=	${PATCH_SITES}
-DIST_PATCHFILES+=	${PATCHFILES}
 DIST_PATCHFILES+=	CVE-preparation-v3-6.patch
 DIST_PATCHFILES+=	CVE-2015-5370-v3-6.patch
 DIST_PATCHFILES+=	CVE-2016-2110-v3-6.patch
