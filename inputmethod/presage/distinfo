@@ -5,3 +5,4 @@ RMD160 (presage-0.9.1.tar.gz) = 440e45c2e6b0e53f84bebbf7d76e24ba737d3a0d
 SHA512 (presage-0.9.1.tar.gz) = 46d7151a80e376d9a8a018be985b2c88a070a6f6555bf3d9b1f50aa41ea8e861c8e26ed3c25a5833855ae01004ecbd36408711e40baf4f072599c240f6c721b1
 Size (presage-0.9.1.tar.gz) = 2687519 bytes
 SHA1 (patch-apps_dbus_presage__dbus__python__demo.in) = 3d611b8657426fb2db1be41de4d8ba6601386495
+SHA1 (patch-src_lib_core_charsets.h) = dcefd7a893911c03bd343bb4256dc267b7736434
