@@ -16,9 +16,9 @@ GUILE_SUBDIR=	guile/2.2
 #GUILE_SUBDIR=	# empty
 
 # guile does not like the --build and --host triplets on NetBSD
-HAS_CONFIGURE=		yes
+USE_GNU_CONFIGURE_HOST=	no
+GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-shared
-CONFIGURE_ARGS+=	SHELL=${CONFIG_SHELL}
 # Needed to work around broken configure check for accept4()
 LDFLAGS.SunOS+=		-lsocket -lnsl
 # Workaround for Xcode 11 clang bug
@@ -28,15 +28,8 @@ CFLAGS.Darwin+=		-fno-stack-check
 .if !empty(GUILE_SUBDIR)
 # Installation prefix is non-default.
 GUILE_PREFIX=			${PREFIX}/${GUILE_SUBDIR}
-CONFIGURE_ARGS+=		--prefix=${GUILE_PREFIX:Q}
-CONFIGURE_ARGS+=		--infodir=${GUILE_PREFIX:Q}/info
-CONFIGURE_ARGS+=		--mandir=${GUILE_PREFIX:Q}/man
-BUILDLINK_PASSTHRU_DIRS+=	${GUILE_PREFIX}
-LDFLAGS+=			${COMPILER_RPATH_FLAG}${GUILE_PREFIX}/lib
-.else
-CONFIGURE_ARGS+=		--prefix=${PREFIX}
-CONFIGURE_ARGS+=		--infodir=${PREFIX}/${PKGINFODIR}
-CONFIGURE_ARGS+=		--mandir=${PREFIX}/${PKGMANDIR}
+GNU_CONFIGURE_PREFIX=		${GUILE_PREFIX}
+BUILDLINK_PASSTHRU_DIRS+=	${GUILE_PREFIX}/lib
 .endif
 
 INFO_FILES=		yes
@@ -83,6 +76,7 @@ post-configure:
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/libltdl/buildlink3.mk"
 .include "../../textproc/libunistring/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-libunistring-prefix=${BUILDLINK_PREFIX.libunistring}
 # needs threaded boehm-gc
 BUILDLINK_API_DEPENDS.boehm-gc+=	boehm-gc>=8.0.4nb1
 .include "../../devel/boehm-gc/buildlink3.mk"
