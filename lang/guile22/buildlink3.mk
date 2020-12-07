@@ -9,12 +9,8 @@ BUILDLINK_API_DEPENDS.guile22+=	guile22>=2.2
 BUILDLINK_ABI_DEPENDS.guile22?=	guile22>=2.2.6nb3
 BUILDLINK_PKGSRCDIR.guile22?=	../../lang/guile22
 
-BUILDLINK_PASSTHRU_DIRS=		${PREFIX}/guile/2.2
-BUILDLINK_FILES.guile22+=		guile/2.2/bin/*
-BUILDLINK_FNAME_TRANSFORM.guile22+=	-e s,guile/2.2/bin,bin,
-BUILDLINK_FNAME_TRANSFORM.guile22+=	-e s,guile/2.2/lib/pkgconfig,lib/pkgconfig,
-
 GUILE22_SUBDIR=				guile/2.2
+BUILDLINK_PREFIX.guile22=		${PREFIX}/${GUILE22_SUBDIR}
 
 .include "../../devel/gmp/buildlink3.mk"
 .include "../../devel/libffi/buildlink3.mk"
