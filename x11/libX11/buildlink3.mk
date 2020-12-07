@@ -47,6 +47,7 @@ SUBST_MESSAGE.fx-libX11-h-guards=\
 	Add an "X11_" string to header guards to avoid possible collision
 SUBST_FILES.fx-libX11-h-guards=	${BUILDLINK_X11_DIR}/include/X11/Xlocale.h
 SUBST_SED.fx-libX11-h-guards=	-e 's/ _XLOCALE_H_/ _X11_XLOCALE_H_/g'
+SUBST_NOOP_OK.fx-libX11-h-guards=	yes
 
 .  endif # LIBX11_BUILDLINK3_MK
 
