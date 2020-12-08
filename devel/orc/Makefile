@@ -10,7 +10,7 @@ HOMEPAGE=	https://gstreamer.freedesktop.org/modules/orc.html
 COMMENT=	Compiler for vector operations
 LICENSE=	modified-bsd
 
-PKGCONFIG_OVERRIDE+=		output/orc-0.4.pc
+PKGCONFIG_OVERRIDE+=		output/meson-private/orc-0.4.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/orc-test-0.4.pc
 PKGCONFIG_OVERRIDE_STAGE=	post-configure
 
