@@ -20,6 +20,7 @@ UNLIMIT_RESOURCES=	datasize
 
 CPPFLAGS+=		-DENABLE_NLS
 CONFIGURE_ENV+=		ac_cv_path_CONVERT_PROG="${LOCALBASE}/bin/convert"
+CONFIGURE_ENV+=		ac_cv_path_GTK_CONFIG="${LOCALBASE}/bin/gtk-config"
 CONFIGURE_ENV+=		X_LDFLAGS=${X_LDFLAGS:Q}
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--disable-shm
@@ -34,11 +35,6 @@ CONF_FILES+=		${EGDIR}/im_palette-small.pal \
 			${PKG_SYSCONFDIR}/im_palette-small.pal
 CONF_FILES+=		${EGDIR}/im_palette-tiny.pal \
 			${PKG_SYSCONFDIR}/im_palette-tiny.pal
-
-SUBST_CLASSES+=			imlib-config
-SUBST_FILES.imlib-config=	imlib-config
-SUBST_SED.imlib-config=		-e 's,no --,${PREFIX}/bin/gtk-config --,'
-SUBST_STAGE.imlib-config=	post-configure
 
 # The following ensures that `imlib-config --libs' includes the correct
 # linker flags for linking the X11 libs.
