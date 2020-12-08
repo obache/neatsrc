@@ -5,6 +5,7 @@ RMD160 (meson-0.55.3.tar.gz) = b1e7f12184a7a61ae8bfa7ed210af8020d531009
 SHA512 (meson-0.55.3.tar.gz) = afb0bb25b367e681131d920995124df4b06f6d144ae1a95ebec27be13e06fefbd95840e0287cd1d84bdbb8d9c115b589a833d847c60926f55e0f15749cf66bae
 Size (meson-0.55.3.tar.gz) = 1740465 bytes
 SHA1 (patch-mesonbuild_backend_backends.py) = 4d4d15c563d0b1da603f1abd176dc5001494424a
+SHA1 (patch-mesonbuild_backend_ninjabackend.py) = cf32f853c5ac5c16e0281080aea9232428794ea2
 SHA1 (patch-mesonbuild_compilers_mixins_gnu.py) = 17f09e1b147f6baa434091f8a31b48f1941004f6
 SHA1 (patch-mesonbuild_dependencies_dev.py) = ce9b93369d771f7e24208923b58af769e51bcd98
 SHA1 (patch-mesonbuild_environment.py) = d0340ea4149c7ed89fd64d0f1631721f7b9f04aa
