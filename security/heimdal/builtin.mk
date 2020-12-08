@@ -132,7 +132,7 @@ SUBST_CLASSES+=	_fix-krb5-config-incdir
 SUBST_STAGE._fix-krb5-config-incdir=	post-wrapper
 SUBST_MESSAGE._fix-krb5-config-incdir=\
 	Fix potential wrong "includedir" setting in krb5-config
-SUBST_FILES._fix-krb5-config-incdir=	${BUILDLINK_DIR}/bin/krb5-config
+SUBST_FILES._fix-krb5-config-incdir=	${BUILDLINK_DIR.heimdal}/bin/krb5-config
 SUBST_SED._fix-krb5-config-incdir=	-e 's|^includedir=/usr/include$$|includedir=${BUILTIN_HEADER_FOUND_DIR.H_HEIMDAL}/krb5|'
 .      endif
 KRB5_CONFIG=	${BUILDLINK_BINDIR}/krb5-config
