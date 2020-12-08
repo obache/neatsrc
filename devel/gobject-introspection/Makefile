@@ -20,8 +20,10 @@ USE_TOOLS+=	pkg-config flex bison
 MESON_ARGS+=	-Dpython=${PYTHONBIN}
 MESON_ARGS+=	-Ddoctool=disabled
 
-PKGCONFIG_OVERRIDE+=	gobject-introspection-1.0.pc.in
-PKGCONFIG_OVERRIDE+=	gobject-introspection-no-export-1.0.pc.in
+PKGCONFIG_OVERRIDE+=	output/meson-private/gobject-introspection-1.0.pc
+PKGCONFIG_OVERRIDE+=	output/meson-private/gobject-introspection-no-export-1.0.pc
+
+PKGCONFIG_OVERRIDE_STAGE=	post-configure
 
 SUBST_CLASSES+=		timet
 SUBST_STAGE.timet=	pre-configure
