@@ -44,7 +44,7 @@ CMAKE_ARGS+=	-DREADLINE_INCLUDE_DIR:PATH=${BUILDLINK_PREFIX.editlinereadline}/in
 SUBST_CLASSES+=		readline
 SUBST_STAGE.readline=	pre-configure
 SUBST_MESSAGE.readline=	Adjust find_library name for readline
-SUBST_FILES.readline+=	cmake_admin/FindReadline.cmake
+SUBST_FILES.readline+=	cmake_admin/FindREADLINE.cmake
 SUBST_SED.readline+=	-e "s, NAMES readline , NAMES edit ,g"
 .endif
 .include "../../mk/pthread.buildlink3.mk"
