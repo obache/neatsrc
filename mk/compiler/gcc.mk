@@ -1138,7 +1138,11 @@ ${_GCC_${_var_}}:
 .endfor
 
 # On systems without a Fortran compiler, pull one in if needed.
-PKGSRC_FORTRAN?=gfortran
+.if !empty(MACHINE_ARCH:Maarch64*)
+PKGSRC_FORTRAN?=	gfortran
+.else
+PKGSRC_FORTRAN?=	g95
+.endif
 
 _GCC_NEEDS_A_FORTRAN=	no
 .if empty(_USE_PKGSRC_GCC:M[yY][eE][sS]) && !(defined(FCPATH) && exists(${FCPATH}))
