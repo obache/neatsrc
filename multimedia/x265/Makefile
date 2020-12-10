@@ -24,6 +24,7 @@ TOOL_DEPENDS+=	nasm>=2.13.0:../../devel/nasm
 .endif
 
 CMAKE_ARGS+=	-DENABLE_PIC=ON
+CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:PATH=${PREFIX}/lib
 
 USE_CMAKE=		yes
 USE_LANGUAGES=		c c++
