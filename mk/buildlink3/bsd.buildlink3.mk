@@ -431,11 +431,7 @@ BUILDLINK_PREFIX.${_pkg_}=	BUILDLINK_PREFIX.${_pkg_}_not_found
 MAKEVARS+=	BUILDLINK_PREFIX.${_pkg_}
 .  endif
 
-.  if !empty(USE_BUILTIN.${_pkg_}:M[yY][eE][sS])
-BUILDLINK_DIR.${_pkg_}=	${BUILDLINK_PREFIX.${_pkg_}}
-.  else
-BUILDLINK_DIR.${_pkg_}= ${BUILDLINK_DIR}
-.  endif
+BUILDLINK_DIR.${_pkg_}=	${BUILDLINK_BASEDIR}${BUILDLINK_PREFIX.${_pkg_}}
 
 BUILDLINK_AUTO_VARS.${_pkg_}?=	yes
 BUILDLINK_CPPFLAGS.${_pkg_}?=	# empty
@@ -526,8 +522,8 @@ BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${_dir_}
 . endif
 .  if !empty(BUILDLINK_PC_DIRS.${_pkg_})
 .    for _dir_ in ${BUILDLINK_PC_DIRS.${_pkg_}}
-.      if empty(BUILDLINK_PC_DIRS:M${BUILDLINK_DIR}/${_dir_}) && exists(${BUILDLINK_PREFIX.${_pkg_}}/${_dir_})
-BUILDLINK_PC_DIRS+=	${BUILDLINK_DIR}/${_dir_}
+.      if empty(BUILDLINK_PC_DIRS:M${BUILDLINK_DIR.${_pkg_}}/${_dir_}) && exists(${BUILDLINK_PREFIX.${_pkg_}}/${_dir_})
+BUILDLINK_PC_DIRS+=	${BUILDLINK_DIR.${_pkg_}}/${_dir_}
 .      endif
 .    endfor
 .  endif
@@ -712,11 +708,7 @@ ${_BLNK_COOKIE.${_pkg_}}:
 		exit 1;							\
 	}
 	${RUN}								\
-	case "${BUILDLINK_PREFIX.${_pkg_}}" in				\
-	${LOCALBASE})   buildlink_dir="${BUILDLINK_DIR}" ;;		\
-	${X11BASE})     buildlink_dir="${BUILDLINK_X11_DIR}" ;;		\
-	*)              buildlink_dir="${BUILDLINK_DIR}" ;;		\
-	esac;								\
+	buildlink_dir="${BUILDLINK_DIR.${_pkg_}}";			\
 	[ -z "${BUILDLINK_PREFIX.${_pkg_}:Q}" ] ||			\
 	cd ${BUILDLINK_PREFIX.${_pkg_}} &&				\
 	${_BLNK_FILES_CMD.${_pkg_}} |					\
