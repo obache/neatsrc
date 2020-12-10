@@ -13,6 +13,7 @@ SHA1 (patch-cmake_boost.cmake) = ecf03b396c57c69e0d251497e7217e47632613c2
 SHA1 (patch-cmake_build__configurations_mysql__release.cmake) = 7a1fb8c686f187db8fd9d8ad203c1f764d6e55a6
 SHA1 (patch-cmake_curl.cmake) = 08ff31eb8de6b94a46ff90edb6df66a61a94fd9d
 SHA1 (patch-cmake_ldap.cmake) = 9bdc3c311330852286838e6159295ecc5fbdc0ea
+SHA1 (patch-cmake_libevent.cmake) = 1e31d741608ddeccc212f8e0343eb081294d3bde
 SHA1 (patch-cmake_os_SunOS.cmake) = b71c3e1fafb48ebbba77c19bb1c31556ebe1ad2a
 SHA1 (patch-cmake_plugin.cmake) = 4480438969e297f67890b1974a86fb88a23d28ed
 SHA1 (patch-cmake_ssl.cmake) = 85ccd0f27fdd6950368ae10fe4b8a013d2e66dfa
