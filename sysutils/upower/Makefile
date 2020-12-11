@@ -12,27 +12,23 @@ LICENSE=	gnu-gpl-v2
 
 USE_LIBTOOL=	yes
 GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
-USE_TOOLS+=	gmake pkg-config intltool xgettext msgmerge msgfmt
-USE_PKGLOCALEDIR=	yes
+USE_TOOLS+=	gmake pkg-config xgettext msgmerge msgfmt
 
 TOOL_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
-CONFIGURE_ARGS+=	--enable-man-pages
+CONFIGURE_ARGS+=	--with-libintl-prefix=${BUILDLINK_PREFIX.gettext}
 
 INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples/${PKGBASE}
 CONF_FILES+=	${PREFIX}/share/examples/${PKGBASE}/UPower/UPower.conf \
 		${PKG_SYSCONFDIR}/UPower/UPower.conf
-CONF_FILES+=	${PREFIX}/share/examples/${PKGBASE}/dbus-1/system.d/org.freedesktop.UPower.conf \
-		${PKG_SYSCONFDIR}/dbus-1/system.d/org.freedesktop.UPower.conf
 
 OWN_DIRS+=	${VARBASE}/lib/upower
 OWN_DIRS+=	${PKG_SYSCONFDIR}/UPower
-MAKE_DIRS+=	${PKG_SYSCONFDIR}/dbus-1/system.d
 
 PKGCONFIG_OVERRIDE+=	upower-glib.pc.in
+USE_PKGLOCALEDIR=	yes
 
 BUILDLINK_TRANSFORM.SunOS+=	opt:-Wl,--no-as-needed:-Wl,-zrecord
 BUILDLINK_TRANSFORM.SunOS+=	opt:-Wl,--as-needed:-Wl,-zignore
@@ -46,6 +42,7 @@ XSLTPROC_PATH=	${PREFIX}/share/doc/dbus
 
 BUILD_DEFS+=	VARBASE
 
+.include "../../devel/gettext-lib/buildlink3.mk"
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.34.0
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_API_DEPENDS.dbus+=	dbus>=1.0
