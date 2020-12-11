@@ -10,7 +10,7 @@ COMMENT+=	(${TDE_LOCALE})
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
-USE_TOOLS+=	pkg-config msgfmt
+USE_TOOLS+=	pkg-config msgfmt msgmerge
 
 DISTINFO_FILE=	${.CURDIR}/../../x11/tde-i18n/distinfo
 DESCR_SRC=	${.CURDIR}/../../x11/tde-i18n/DESCR.locale
@@ -27,6 +27,8 @@ FILES_SUBST=	TDE_LOCALE=${TDE_LOCALE}
 .include "../../meta-pkgs/tde/Makefile.tde"
 
 CMAKE_ARGS+=	-DBUILD_ALL:BOOL=TRUE
+
+BUILD_DEPENDS+=	tdelibs>=${_TDE_RELEASE}:../../x11/tdelibs
 
 BUILDLINK_DEPMETHOD.tqtinterface=	build
 .include "../../x11/tqtinterface/buildlink3.mk"
