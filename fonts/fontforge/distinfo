@@ -4,4 +4,5 @@ SHA1 (fontforge-20200314.tar.xz) = 63c13a6f1773b04f87342a2553e28be844401498
 RMD160 (fontforge-20200314.tar.xz) = c7368a53f6a5b6649f7bc18a957368006870b67b
 SHA512 (fontforge-20200314.tar.xz) = 09f5dc93f87ca63668d72d108690604489d6b3cec7eedff1c07ad6d1ce5eae442ab60e79e71ae8b99e9808f3551011788025a86ffc3a9738518d99761d849975
 Size (fontforge-20200314.tar.xz) = 13850076 bytes
+SHA1 (patch-cmake_BuildUtils.cmake) = ddf69edd7b39f6f7f4b29b24852ea3f32bd32670
 SHA1 (patch-fontforge_splinefont.h) = be7739b6145b3c622913efa9f2d679860c35cccb
