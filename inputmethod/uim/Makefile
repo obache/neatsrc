@@ -13,7 +13,7 @@ USE_LIBTOOL=	YES
 USE_PKGLOCALEDIR=	YES
 
 # Do not segfault uim-module-manager during build
-BUILDLINK_TRANSFORM+=	rm:-fno-strict-aliasing
+BUILDLINK_TRANSFORM+=	opt:-fno-strict-aliasing:-fno-inline-small-functions
 
 USE_TOOLS+=	gmake pkg-config
 USE_TOOLS+=	intltool msgfmt msgmerge xgettext
