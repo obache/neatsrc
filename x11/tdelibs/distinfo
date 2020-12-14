@@ -10,6 +10,7 @@ SHA1 (patch-dcop_CMakeLists.txt) = dc7b7383eff6db1ed38dc1999f323406ecceeb01
 SHA1 (patch-dcop_dcopclient.cpp) = 9a9e32dc6a953bd74410246e213148ae3be5f41f
 SHA1 (patch-dcop_dcopserver__shutdown.c) = 6b2921ef3cba899b4169735d686b65b884383ba7
 SHA1 (patch-kded_khostname.cpp) = 1e56ec38633c21d0dcb87d75804226655a1f121d
+SHA1 (patch-kimgio_jp2.cpp) = c37566826020ffd3206cca154d2a1572e4c97910
 SHA1 (patch-tdecore_CMakeLists.txt) = 6d5ed38c2dc041a12ff02e81f63055a5e351e271
 SHA1 (patch-tdecore_kdebug.cpp) = 1a376f3f4937804ca3684ba19c33e08bae9100a7
 SHA1 (patch-tdecore_kpty.cpp) = df3cc3aba288716b95e6c5526f24a62e2d7a3f9b
