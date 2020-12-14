@@ -1,6 +1,6 @@
 # $NetBSD$
 
-PKG_OPTIONS_VAR=	PKG_OPTIONS.kdelibs
+PKG_OPTIONS_VAR=	PKG_OPTIONS.tdelibs
 PKG_SUPPORTED_OPTIONS=	arts alsa cups pcre ssl inotify xcomposite xrandr
 PKG_SUPPORTED_OPTIONS+=	svg idn lua tiff jasper openexr avahi gamin upower
 PKG_SUPPORTED_OPTIONS+=	consolekit lzma aspell
