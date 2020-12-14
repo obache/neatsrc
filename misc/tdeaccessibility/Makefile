@@ -18,6 +18,8 @@ EXTRACT_USING=	gtar
 
 CONFIGURE_ARGS+=	--with-extra-includes=${BUILDLINK_PREFIX.jpeg}/include
 
+.include "options.mk"
+
 .include "../../x11/libICE/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

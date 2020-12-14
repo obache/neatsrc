@@ -10,7 +10,7 @@ lib/libKTTSD_Lib.la
 lib/libkttsd.la
 lib/trinity/kbstate_panelapplet.la
 lib/trinity/kcm_kttsd.la
-lib/trinity/libkttsd_alsaplugin.la
+${PLIST.alsa}lib/trinity/libkttsd_alsaplugin.la
 lib/trinity/libkttsd_artsplugin.la
 lib/trinity/libkttsd_commandplugin.la
 lib/trinity/libkttsd_eposplugin.la
@@ -2852,7 +2852,7 @@ share/icons/mono/scalable/places/trashcan_full.svgz
 share/icons/mono/scalable/places/www.svgz
 share/icons/mono/scalable/places/zip_overlay.svgz
 share/services/kttsd.desktop
-share/services/kttsd_alsaplugin.desktop
+${PLIST.alsa}share/services/kttsd_alsaplugin.desktop
 share/services/kttsd_artsplugin.desktop
 share/services/kttsd_commandplugin.desktop
 share/services/kttsd_eposplugin.desktop
