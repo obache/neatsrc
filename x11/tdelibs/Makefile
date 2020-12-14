@@ -61,9 +61,9 @@ SUBST_FILES.sys-path+=	tdeprint/lpr/apshandler.cpp
 SUBST_FILES.sys-path+=	tdeprint/lpr/lpchelper.cpp
 SUBST_FILES.sys-path+=	tdeprint/cups/kmcupsmanager.cpp
 SUBST_SED.sys-path=	-e 's,/usr/share:,${LOCALBASE}/share:/usr/share:,g'
-SUBST_SED.sys-path=	-e 's,/usr/sbin:,${LOCALBASE}/sbin:/usr/sbin:,g'
-SUBST_SED.sys-path=	-e 's,/usr/lib:,${LOCALBASE}/lib:/usr/lib:,g'
-SUBST_SED.sys-path=	-e 's,/usr/libexec:,${LOCALBASE}/libexec:/usr/libexec:,g'
+SUBST_SED.sys-path+=	-e 's,/usr/sbin:,${LOCALBASE}/sbin:/usr/sbin:,g'
+SUBST_SED.sys-path+=	-e 's,/usr/lib:,${LOCALBASE}/lib:/usr/lib:,g'
+SUBST_SED.sys-path+=	-e 's,/usr/libexec:,${LOCALBASE}/libexec:/usr/libexec:,g'
 
 UNWRAP_CMAKE_FILES+=	../build/tdelibs.cmake
 
