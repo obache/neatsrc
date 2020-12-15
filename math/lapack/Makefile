@@ -11,6 +11,9 @@ LAPACK_COMPONENT_CMAKE_ARGS= \
 	-DUSE_OPTIMIZED_LAPACK=OFF \
 	-DCBLAS=OFF -DLAPACKE=OFF -DLAPACK=ON
 
+UNWRAP_CMAKE_FILES+=	build/CMakeFiles/Export/lib/cmake/lapack-${PKGVERSION_NOREV}/lapack-targets.cmake
+UNWRAP_CMAKE_FILES+=	build/CMakeFiles/lapack-config.cmake
+
 # This always uses Netlib BLAS. Other optimized BLAS packages bring
 # their own LAPACK, hence cblas and lapacke packages use
 # mk/blas.buildlink3.mk instead.
