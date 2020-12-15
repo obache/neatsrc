@@ -12,6 +12,8 @@ LICENSE=	gnu-lgpl-v2.1
 
 USE_TOOLS+=	pkg-config
 
+UNWRAP_CMAKE_FILES+=	_KDE_build/CMakeFiles/Export/lib/cmake/KF5WindowSystem/KF5WindowSystemTargets.cmake
+
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtx11extras/buildlink3.mk"
 BUILDLINK_DEPMETHOD.qt5-qttools= build
