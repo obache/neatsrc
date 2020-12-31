@@ -30,11 +30,16 @@ SUBST_FILES.paths=	rsync.1 rsyncd.conf.5
 SUBST_SED.paths=	-e 's|/etc/rsyncd|${PKG_SYSCONFDIR}/rsyncd|g'
 SUBST_SED.paths+=	-e 's|/usr/bin/rsync|${PREFIX}/bin/rsync|g'
 
+BUILDLINK_AUTO_DIRS.lz4=	yes
 .include "../../archivers/lz4/buildlink3.mk"
+BUILDLINK_AUTO_DIRS.zstd=	yes
 .include "../../archivers/zstd/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
+BUILDLINK_AUTO_DIRS.popt=	yes
 .include "../../devel/popt/buildlink3.mk"
+BUILDLINK_AUTO_DIRS.xxhash=	yes
 .include "../../devel/xxhash/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
+BUILDLINK_AUTO_DIRS.openssl=	yes
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
