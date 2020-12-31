@@ -14,6 +14,7 @@ LICENSE=	gnu-gpl-v3
 USE_TOOLS+=		bash:run
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-rsyncd-conf=${PKG_SYSCONFDIR}/rsyncd.conf
+CONFIGURE_ARGS+=	--with-included-zlib=no
 PKG_SYSCONFSUBDIR=	rsync
 TEST_TARGET=		test
 
@@ -39,6 +40,7 @@ BUILDLINK_AUTO_DIRS.popt=	yes
 .include "../../devel/popt/buildlink3.mk"
 BUILDLINK_AUTO_DIRS.xxhash=	yes
 .include "../../devel/xxhash/buildlink3.mk"
+BUILDLINK_AUTO_DIRS.zlib=	yes
 .include "../../devel/zlib/buildlink3.mk"
 BUILDLINK_AUTO_DIRS.openssl=	yes
 .include "../../security/openssl/buildlink3.mk"
