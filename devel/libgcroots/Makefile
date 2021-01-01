@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.7 2017/08/16 21:22:11 wiz Exp $
 #
 
-DISTNAME=	libgcroots-0.3.1
+DISTNAME=	libgcroots-0.3.2
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/uim/libgcroots/releases/download/${PKGVERSION_NOREV}/
 
