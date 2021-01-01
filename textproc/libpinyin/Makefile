@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.7 2020/03/08 16:48:15 wiz Exp $
 
-DISTNAME=	libpinyin-2.3.0
-PKGREVISION=	1
+DISTNAME=	libpinyin-2.6.0
 CATEGORIES=	textproc chinese
 MASTER_SITES=	https://github.com/libpinyin/libpinyin/releases/download/${PKGVERSION_NOREV}/ \
 		${MASTER_SITE_SOURCEFORGE:=libpinyin/}

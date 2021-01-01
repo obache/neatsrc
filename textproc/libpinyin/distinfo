@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.4 2015/11/04 01:59:38 agc Exp $
 
-SHA1 (libpinyin-2.3.0.tar.gz) = bdea4a8f8f0fd77a4150a1597c0b99abaf2fa836
-RMD160 (libpinyin-2.3.0.tar.gz) = 3d71d8531ad3654dfdb102f185ce64bdf1b26ad6
-SHA512 (libpinyin-2.3.0.tar.gz) = 269750b66d7a81ebc0c465cd3571f96112fe85e3a9284b5cad6554dd6c55a4178e4ccd8139148d05cd361e756c486ec575550444f1205562c46195b6fce51ec8
-Size (libpinyin-2.3.0.tar.gz) = 20465096 bytes
+SHA1 (libpinyin-2.6.0.tar.gz) = 19cd27bcb2ba6eb53fbf576f876a4be19fec8afe
+RMD160 (libpinyin-2.6.0.tar.gz) = e3bc9125ce127154b4e757d76930ad389b3f422c
+SHA512 (libpinyin-2.6.0.tar.gz) = da6245ca31ea1ecfe42cab6cb9251f924c2ecb54ca0e8d48768c5f4157e44a4eaa891401142f2100636f548e5731530c607beeacd9a81a1ac8bb54ad54e42bf3
+Size (libpinyin-2.6.0.tar.gz) = 20564001 bytes
