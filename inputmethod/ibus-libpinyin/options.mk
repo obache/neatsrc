@@ -2,7 +2,7 @@
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.ibus-libpinyin
-PKG_SUPPORTED_OPTIONS=	lua opencc
+PKG_SUPPORTED_OPTIONS=	lua opencc cloud-input
 PKG_SUGGESTED_OPTIONS=	lua
 
 .include "../../mk/bsd.options.mk"
@@ -28,4 +28,15 @@ CONFIGURE_ARGS+=	--disable-lua-extension
 CONFIGURE_ARGS+=	--enable-opencc
 .else
 CONFIGURE_ARGS+=	--disable-opencc
+.endif
+
+#
+# cloud input
+#
+.if !empty(PKG_OPTIONS:Mcloud-input)
+.include "../../net/libsoup/buildlink3.mk"
+.include "../../textproc/json-glib/buildlink3.mk"
+CONFIGURE_ARGS+=	--enable-cloud-input-mode
+.else
+CONFIGURE_ARGS+=	--disable-cloud-input-mode
 .endif

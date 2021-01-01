@@ -1,14 +1,13 @@
 # $NetBSD: Makefile,v 1.20 2020/06/02 08:24:09 adam Exp $
 
-DISTNAME=	ibus-libpinyin-1.11.1
-PKGREVISION=	17
+DISTNAME=	ibus-libpinyin-1.12.0
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libpinyin/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/libpinyin/ibus-libpinyin/
 COMMENT=	Intelligent Pinyin engine based on libpinyin for IBus
-LICENSE=	gnu-gpl-v2
+LICENSE=	gnu-gpl-v3
 
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	gmake msgfmt pkg-config
