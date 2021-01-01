@@ -112,6 +112,13 @@ post-extract:
 	${TOUCH} ${WRKSRC}/src/template/dragonfly
 	${CP} ${WRKSRC}/src/makefiles/Makefile.freebsd \
 		${WRKSRC}/src/makefiles/Makefile.dragonfly
+
+USE_TOOLS+=	pkg-config
+
+SUBST_CLASSES+=	libxml2-rpath
+SUBST_STAGE.libxml2-rpath=	pre-configure
+SUBST_SED.libxml2-rpath=	-e 's/-L\*/&|${COMPILER_RPATH_FLAG}*/'
+SUBST_FILES.libxml2-rpath=	configure
 .endif
 
 .include "../../databases/postgresql12/options.mk"
