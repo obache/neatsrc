@@ -17,7 +17,7 @@ USE_PKGLOCALEDIR=	YES
 USE_TOOLS+=		pkg-config gmake msgfmt xgettext
 
 # Requires --desktop in msgfmt.
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=	0.19
 
 CONFIGURE_ARGS+=	--disable-gtk
 

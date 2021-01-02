@@ -21,7 +21,7 @@ USE_TOOLS+=	autoreconf autoconf automake autopoint msgfmt
 USE_TOOLS+=	pkg-config
 
 # Requires --desktop in msgfmt.
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=	0.19
 
 pre-configure:
 	# tries to invoke git for something, probably fetching the ref

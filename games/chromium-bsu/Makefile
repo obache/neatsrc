@@ -18,7 +18,7 @@ USE_TOOLS+=		msgfmt msgmerge xgettext
 GNU_CONFIGURE=		yes
 
 # XXX needs gnu msgfmt for desktop file creation
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=	0.19
 
 LDFLAGS+=		${BUILDLINK_LDADD.gettext}
 LDFLAGS.DragonFly=	-lSDL2

@@ -21,7 +21,7 @@ PKGCONFIG_OVERRIDE_STAGE=	pre-install
 PKGCONFIG_OVERRIDE+=		output/data/gtkhex-3.pc
 
 # XXX msgfmt: unknown option -- xml
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=		0.19.7
 
 .include "../../devel/meson/build.mk"
 .include "../../devel/glib2/schemas.mk"

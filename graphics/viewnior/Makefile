@@ -18,7 +18,7 @@ USE_TOOLS+=	pkg-config msgfmt xgettext
 USE_LANGUAGES=	c c++
 
 # XXX: msgfmt: unknown option -- desktop
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=	0.19
 
 .include "../../devel/meson/build.mk"
 .include "../../databases/shared-mime-info/buildlink3.mk"

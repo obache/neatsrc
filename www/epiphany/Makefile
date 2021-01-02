@@ -23,7 +23,7 @@ LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib/epiphany
 PYTHON_FOR_BUILD_ONLY=	tool
 
 # XXX msgfmt: unknown option -- desktop
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=		0.19
 
 .include "../../devel/meson/build.mk"
 .include "../../devel/glib2/schemas.mk"

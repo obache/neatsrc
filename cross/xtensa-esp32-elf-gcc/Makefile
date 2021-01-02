@@ -40,8 +40,7 @@ USE_TOOLS+=		bash gmake makeinfo perl
 
 # for http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33549
 # use makeinfo from pkgsrc/devel/gtexinfo.
-TOOL_DEPENDS+=		gtexinfo>=5.1:../../devel/gtexinfo
-_TOOLS_USE_PKGSRC.makeinfo= yes
+TEXINFO_REQD=		5.1
 
 OBJDIR=			../build
 CONFIGURE_DIRS=		${OBJDIR}

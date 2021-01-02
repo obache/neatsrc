@@ -16,7 +16,7 @@ TOOL_DEPENDS+=		autoconf-archive-[0-9]*:../../devel/autoconf-archive
 BUILD_DEPENDS+=		vala-[0-9]*:../../lang/vala
 
 # Requires --desktop in msgfmt.
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=		0.19
 
 # Broken generated code uses g_return_if_fail when g_return_val_if_fail
 # is necessary

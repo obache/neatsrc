@@ -37,7 +37,7 @@ USE_TOOLS+=	msgfmt
 INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 
 # Needs --desktop
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=		0.19
 
 # Requires Python 3.5 or higher
 PYTHON_VERSIONS_INCOMPATIBLE=	27

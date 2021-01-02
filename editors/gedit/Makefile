@@ -14,7 +14,7 @@ LICENSE=	gnu-gpl-v2
 PREV_PKGPATH=	editors/gedit3
 
 USE_TOOLS+=			gmake gettext msgfmt perl pkg-config
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=		0.19
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 PY_PATCHPLIST=			yes

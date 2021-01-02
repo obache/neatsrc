@@ -23,9 +23,7 @@ BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-asciidoctor>=1.5.3:../../textproc/ruby-asciido
 
 # Could NOT find Gettext: Found unsuitable version "0.16.1", but
 # required is at least "0.18"
-_TOOLS_USE_PKGSRC.msgfmt=	yes
-_TOOLS_USE_PKGSRC.msgmerge=	yes
-_TOOLS_USE_PKGSRC.xgettext=	yes
+GETTEXT_TOOLS_REQD=	0.18
 
 .include "../../games/warzone2100/options.mk"
 

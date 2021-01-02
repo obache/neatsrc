@@ -46,7 +46,7 @@ CONF_FILES+=		${EGDIR}/${f} ${PKG_SYSCONFDIR}/${f}
 .endfor
 
 # checking for xgettext version (>= 0.19)... no
-_TOOLS_USE_PKGSRC.xgettext=	yes
+GETTEXT_TOOLS_REQD=		0.19
 
 # Ensure we export symbols in the linked shared object.
 LDFLAGS+=		${EXPORT_SYMBOLS_LDFLAGS}

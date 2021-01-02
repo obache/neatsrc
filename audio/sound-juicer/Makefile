@@ -21,7 +21,7 @@ USE_TOOLS+=	msgfmt msgmerge xgettext
 USE_TOOLS+=	gmake
 
 # XXX fails without GNU msgfmt
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=	0.19.6
 
 .include "../../audio/libcanberra/buildlink3.mk"
 .include "../../audio/libdiscid/buildlink3.mk"

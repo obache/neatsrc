@@ -18,8 +18,7 @@ EXTRACT_SUFX=		.tar.xz
 
 # for http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33549
 # use makeinfo from pkgsrc/devel/gtexinfo.
-TOOL_DEPENDS+=		gtexinfo>=5.1:../../devel/gtexinfo
-_TOOLS_USE_PKGSRC.makeinfo= yes
+TEXINFO_REQD=		5.1
 
 DEPENDS+=	cross-or1k-none-elf-binutils-[0-9]*:../../cross/or1k-none-elf-binutils
 

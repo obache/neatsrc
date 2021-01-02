@@ -20,7 +20,7 @@ USE_LIBTOOL=		yes
 USE_TOOLS+=		pkg-config intltool gmake msgfmt
 
 # Requires --xml in msgfmt.
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=	0.19.7
 
 PKGCONFIG_OVERRIDE+=	data/gladeui-2.0.pc.in
 

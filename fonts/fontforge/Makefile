@@ -32,7 +32,7 @@ pre-configure:
 	${MKDIR} ${WRKSRC}/build
 
 # XXX msgfmt: unknown option -- xml
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=		0.19.7
 
 .include "../../lang/python/application.mk"
 .include "../../converters/libiconv/buildlink3.mk"

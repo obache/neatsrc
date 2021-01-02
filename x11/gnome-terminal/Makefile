@@ -25,7 +25,7 @@ CONFIGURE_ARGS+=	--without-nautilus-extension
 
 # XXX msgfmt: unknown option -- desktop
 # XXX msgfmt: unknown option -- xml
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=		0.19.7
 
 post-install:
 	${RM} -f ${DESTDIR}${PREFIX}/lib/systemd/user/gnome-terminal-server.service

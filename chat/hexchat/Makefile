@@ -15,7 +15,7 @@ USE_TOOLS+=	pkg-config msgfmt xgettext
 USE_LANGUAGES=	c c++
 
 # XXX fails without GNU msgfmt
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=		0.19
 
 MESON_ARGS+=		-Dwith-text=true
 MESON_ARGS+=		-Dwith-appdata=false

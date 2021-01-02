@@ -22,7 +22,7 @@ USE_TOOLS+=		msgfmt pkg-config
 USE_TOOLS+=		intltool
 
 # Requires --desktop in msgfmt.
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=	0.19
 
 SUBST_CLASSES+=		python3
 SUBST_FILES.python3=	meson.build

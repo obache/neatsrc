@@ -23,7 +23,7 @@ MESON_ARGS+=	-Dman=false
 PYTHON_FOR_BUILD_ONLY=	tool
 
 # XXX msgfmt: unknown option -- desktop
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=		0.19
 
 PKGCONFIG_OVERRIDE_STAGE=	pre-install
 PKGCONFIG_OVERRIDE+=		output/meson-private/cheese.pc

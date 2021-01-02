@@ -18,7 +18,7 @@ USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake msgfmt pkg-config
 
 # Requires --desktop in msgfmt.
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=	0.19
 
 
 BUILD_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool

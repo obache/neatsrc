@@ -46,9 +46,7 @@ PKGCONFIG_OVERRIDE+=	src/libedataserver/libedataserver.pc.in
 PKGCONFIG_OVERRIDE+=	src/libedataserverui/libedataserverui.pc.in
 
 # "gettext version 0.18.3+ required, but version '0.16.1' found instead."
-_TOOLS_USE_PKGSRC.msgfmt=	yes
-_TOOLS_USE_PKGSRC.msgmerge=	yes
-_TOOLS_USE_PKGSRC.xgettext=	yes
+GETTEXT_TOOLS_REQD=	0.18.3
 
 .include "../../audio/libcanberra/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"

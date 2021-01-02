@@ -18,7 +18,7 @@ TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 PYTHON_FOR_BUILD_ONLY=	tool
 
 # XXX msgfmt: unknown option -- xml
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=		0.19.7
 
 PKGCONFIG_OVERRIDE_STAGE=	pre-install
 PKGCONFIG_OVERRIDE+=		output/meson-private/libdevhelp-3.0.pc

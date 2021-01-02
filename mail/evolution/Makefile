@@ -36,9 +36,7 @@ PKGCONFIG_OVERRIDE+=	evolution-shell.pc.in
 PKGCONFIG_OVERRIDE+=	src/libemail-engine/libemail-engine.pc.in
 
 # "gettext version 0.18.3+ required, but version '0.16.1' found instead."
-_TOOLS_USE_PKGSRC.msgfmt=	yes
-_TOOLS_USE_PKGSRC.msgmerge=	yes
-_TOOLS_USE_PKGSRC.xgettext=	yes
+GETTEXT_TOOLS_REQD=	0.18.3
 
 .include "../../audio/libcanberra/buildlink3.mk"
 .include "../../databases/openldap-client/buildlink3.mk"

@@ -25,7 +25,7 @@ USE_TOOLS+=	pkg-config gmake
 USE_TOOLS+=	msgfmt msgmerge xgettext
 
 # XXX msgfmt: unknown option -- desktop
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=		0.19
 
 # Python 3 only
 PYTHON_VERSIONS_INCOMPATIBLE=	27

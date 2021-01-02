@@ -19,8 +19,7 @@ PY_PATCHPLIST=		yes
 REPLACE_PYTHON=		plugins/ipython_view.py
 REPLACE_PYTHON+=	src/accerciser.in
 
-TOOL_DEPENDS+=		gettext-tools>=0.19.8:../../devel/gettext-tools
-_TOOLS_USE_PKGSRC.msgfmt= yes
+GETTEXT_TOOLS_REQD=	0.19.8
 BUILD_DEPENDS+=		yelp-tools-[0-9]*:../../textproc/yelp-tools
 
 DEPENDS+=	libwnck3-[0-9]*:../../devel/libwnck3

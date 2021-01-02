@@ -14,7 +14,7 @@ LICENSE=	gnu-lgpl-v2.1 AND gnu-gpl-v2
 NOT_FOR_PLATFORM=	DragonFly-*-*
 
 # Requires --desktop in msgfmt.
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=	0.19
 
 LIBTOOL_REQD=	2.4
 GCC_REQD+=	4.8

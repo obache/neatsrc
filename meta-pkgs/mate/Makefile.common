@@ -47,7 +47,7 @@ USE_LIBTOOL=	yes
 USE_TOOLS+=	gmake msgfmt pkg-config
 
 # Fails without GNU msgfmt
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=	0.19.7
 
 MAINTAINER=	youri@NetBSD.org
 LICENSE=	gnu-gpl-v3

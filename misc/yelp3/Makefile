@@ -19,7 +19,7 @@ GNU_CONFIGURE=		yes
 BUILD_DEPENDS+=		itstool-[0-9]*:../../textproc/itstool
 
 # Requires --desktop in msgfmt.
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=	0.19
 
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.38.0
 BUILDLINK_API_DEPENDS.gtk3+=	gtk3+>=3.13.3

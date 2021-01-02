@@ -18,7 +18,7 @@ PYTHON_FOR_BUILD_ONLY=	tool
 PKGCONFIG_OVERRIDE+=	gnome-video-effects.pc.in
 
 # XXX msgfmt: unknown option -- desktop
-_TOOLS_USE_PKGSRC.msgfmt=	yes
+GETTEXT_TOOLS_REQD=	0.19
 
 .include "../../devel/meson/build.mk"
 .include "../../multimedia/frei0r/buildlink3.mk"
