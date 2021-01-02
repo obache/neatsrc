@@ -20,8 +20,6 @@ MESON_ARGS+=		-Dvapi=false
 
 PKGCONFIG_OVERRIDE+=	gtksourceview.pc.in
 
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/gtksourceview
-
 .include "options.mk"
 
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.48

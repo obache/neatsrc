@@ -14,8 +14,6 @@ PKGCONFIG_OVERRIDE+=		output/meson-private/orc-0.4.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/orc-test-0.4.pc
 PKGCONFIG_OVERRIDE_STAGE=	post-configure
 
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/${PKGBASE}
-
 MESON_ARGS+=	-Dgtk_doc=disabled
 
 .include "../../devel/meson/build.mk"

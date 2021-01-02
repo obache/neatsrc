@@ -22,7 +22,6 @@ REPLACE_PYTHON+=	test/convert.py test/RegressTests.py test/convert.py
 REPLACE_PYTHON+=	tools/genuuid
 
 TEST_TARGET=	check
-TEST_ENV+=	LD_LIBRARY_PATH=${WRKSRC}
 
 .include "../../devel/boost-headers/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"

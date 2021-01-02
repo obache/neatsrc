@@ -43,7 +43,7 @@ post-install:
 	done
 
 do-test:
-	LD_LIBRARY_PATH=${WRKSRC}/library \
+	${RUN}cd ${WKRSRC}; \
 	    ${WRKSRC}/programs/test/selftest
 
 .include "options.mk"

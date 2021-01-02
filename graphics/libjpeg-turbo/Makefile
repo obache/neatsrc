@@ -21,7 +21,6 @@ BUILD_DEPENDS+=	nasm-[0-9]*:../../devel/nasm
 USE_CMAKE=		yes
 USE_LANGUAGES=		c c++
 PKGCONFIG_OVERRIDE=	release/libturbojpeg.pc.in release/libjpeg.pc.in
-TEST_ENV+=		LD_LIBRARY_PATH=${WRKSRC}
 TEST_TARGET=		test
 
 # Ask for compatibility with jpeg 8, to get the highest ABI that

@@ -15,10 +15,6 @@ USE_TOOLS+=	pkg-config msgfmt xgettext
 
 TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 
-# workaround for build failure
-# https://gitlab.gnome.org/GNOME/json-glib/issues/35
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/devhelp
-
 PYTHON_FOR_BUILD_ONLY=	tool
 
 # XXX msgfmt: unknown option -- xml

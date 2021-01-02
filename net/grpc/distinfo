@@ -4,7 +4,6 @@ SHA1 (grpc-1.33.2.tar.gz) = b040641c643079fe5d3e44452a66d4d7003be366
 RMD160 (grpc-1.33.2.tar.gz) = d190e47330aecc30767eac9ba138c4cb0c07592b
 SHA512 (grpc-1.33.2.tar.gz) = 9406cb17294aaa979ca2c06f4a9d07f5fa7557f13d33744658def94320688b8cbd0861d066fcbecc2f8a972a2dfd4ee7e501f9dde15483e63c238cca6f49c90a
 Size (grpc-1.33.2.tar.gz) = 7270924 bytes
-SHA1 (patch-CMakeLists.txt) = af17a03bdbb2b7905ced111b3c13c80b0cf3fec2
 SHA1 (patch-cmake_benchmark.cmake) = 6a7880c30019a723a35b56b0c5bd2d730b36550d
 SHA1 (patch-include_grpc_impl_codegen_port__platform.h) = b8d07e5bbf04694df00d0d19884844b791eb002c
 SHA1 (patch-src_core_ext_filters_client__channel_resolver_dns_c__ares_grpc__ares__ev__driver__posix.cc) = 3b250e94b20c64c80c1b3943da2c82031e084773

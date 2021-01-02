@@ -19,7 +19,6 @@ USE_TOOLS+=	pkg-config gmake intltool msgfmt
 PKGCONFIG_OVERRIDE+=		output/meson-private/libsoup-2.4.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/libsoup-gnome-2.4.pc
 PKGCONFIG_OVERRIDE_STAGE=	pre-install
-MAKE_ENV+=			LD_LIBRARY_PATH=${WRKSRC}/output/${PKGBASE}
 
 # disable vala detection
 MESON_ARGS+=		-Dvapi=disabled

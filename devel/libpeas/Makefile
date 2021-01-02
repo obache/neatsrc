@@ -18,8 +18,6 @@ PKGCONFIG_OVERRIDE+=	output/meson-private/libpeas-1.0.pc
 
 PKGCONFIG_OVERRIDE_STAGE=	post-configure
 
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/libpeas:${WRKSRC}/output/libpeas-gtk:${WRKSRC}/output/tests/libpeas/introspection
-
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.38.0
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_API_DEPENDS.gobject-introspection+=	gobject-introspection>=1.39.0

@@ -14,7 +14,6 @@ CMAKE_ARGS+=		-DLLVM_MAIN_SRC_DIR=${WRKDIR}/llvm-${PKGVERSION_NOREV}.src
 CMAKE_ARGS+=		-DLLVM_EXTERNAL_LIT=${WRKDIR}/llvm-${PKGVERSION_NOREV}.src/utils/lit/lit.py
 REPLACE_PYTHON+=	${WRKDIR}/llvm-${PKGVERSION_NOREV}.src/utils/lit/lit.py
 TEST_TARGET=		check-lld  # failing tests fixed in 8.0
-TEST_ENV+=		LD_LIBRARY_PATH=${WRKDIR}/build/lib
 .else
 CMAKE_ARGS+=		-DLLVM_INCLUDE_TESTS=OFF
 .endif

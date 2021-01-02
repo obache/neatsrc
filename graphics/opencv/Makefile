@@ -23,7 +23,6 @@ CHECK_WRKREF_SKIP=	${PREFIX}/lib/libopencv_core.*
 
 .include "options.mk"
 
-TEST_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/build/lib
 TEST_TARGET=	test
 
 post-install:

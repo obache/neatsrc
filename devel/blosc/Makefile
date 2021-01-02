@@ -15,7 +15,6 @@ USE_CMAKE=	yes
 # error: 'for' loop initial declarations are only allowed in C99 mode
 USE_LANGUAGES=	c99 c++
 USE_TOOLS+=	pkg-config
-TEST_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/blosc
 TEST_TARGET=	test
 
 CMAKE_ARGS+=	-DPREFER_EXTERNAL_LZ4=ON

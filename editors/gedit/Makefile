@@ -22,7 +22,6 @@ REPLACE_PYTHON+=		plugins/externaltools/data/send-to-fpaste.tool.in
 REPLACE_PYTHON+=		build-aux/meson/post_install.py
 
 MESON_ARGS+=	-Dvapi=false
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/gedit
 
 DEPENDS+=	adwaita-icon-theme-[0-9]*:../../graphics/adwaita-icon-theme
 DEPENDS+=	${PYPKGPREFIX}-gobject3-[0-9]*:../../devel/py-gobject3

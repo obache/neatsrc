@@ -21,9 +21,6 @@ CFLAGS.NetBSD+=	-D_NETBSD_SOURCE
 
 PYTHON_FOR_BUILD_ONLY=		tool
 
-# XXX: Avoid to pick up possibe installed libdecaf.so
-TEST_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/src
-
 TEST_TARGET=	test
 
 post-install:

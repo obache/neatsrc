@@ -20,10 +20,6 @@ SUBST_MESSAGE.py=	Setting the Python executable name.
 SUBST_FILES.py+=	meson.build
 SUBST_VARS.py+=		PYVERSSUFFIX
 
-# workaround for build failure
-# https://gitlab.gnome.org/GNOME/json-glib/issues/35
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output
-
 MESON_ARGS+=	-Ddisable_doc=true
 
 .include "../../devel/meson/build.mk"

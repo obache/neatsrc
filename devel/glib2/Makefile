@@ -14,8 +14,6 @@ MESON_ARGS+=	-Dlibmount=disabled
 MESON_ARGS+=	-Db_lundef=false
 .endif
 
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/gio:${WRKSRC}/output/glib:${WRKSRC}/output/gobject:${WRKSRC}/output/gmodule
-
 CPPFLAGS.SunOS+=	-D_XOPEN_SOURCE=600 -D__EXTENSIONS__
 LDFLAGS.SunOS+=		-liconv -lintl -lnsl -lsocket
 LDFLAGS.FreeBSD+=	-liconv

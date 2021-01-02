@@ -21,7 +21,6 @@ MESON_ARGS+=	-Dgtk-doc=false
 
 PKGCONFIG_OVERRIDE+=		output/meson-private/gssdp-1.2.pc
 PKGCONFIG_OVERRIDE_STAGE=	pre-install
-MAKE_ENV+=			LD_LIBRARY_PATH=${WRKSRC}/output/libgssdp
 
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.54.0
 .include "../../devel/glib2/buildlink3.mk"

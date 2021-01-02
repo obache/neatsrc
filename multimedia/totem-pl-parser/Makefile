@@ -14,10 +14,6 @@ USE_TOOLS+=	pkg-config xgettext
 
 MESON_ARGS+=	-Denable-quvi=no
 
-# workaround for build failure
-# https://gitlab.gnome.org/GNOME/json-glib/issues/35
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/plparse
-
 PYTHON_FOR_BUILD_ONLY=	tool
 
 PKGCONFIG_OVERRIDE+=	totem-plparser-mini.pc.in

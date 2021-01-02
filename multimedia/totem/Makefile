@@ -21,10 +21,6 @@ PYTHON_FOR_BUILD_ONLY=	tool
 
 PKGCONFIG_OVERRIDE+=	data/totem.pc.in
 
-# workaround for build failure
-# https://gitlab.gnome.org/GNOME/json-glib/issues/35
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/src
-
 # XXX msgfmt: unknown option -- desktop
 _TOOLS_USE_PKGSRC.msgfmt=	yes
 

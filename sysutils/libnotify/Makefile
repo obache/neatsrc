@@ -21,7 +21,6 @@ USE_TOOLS+=		gmake pkg-config
 
 PKGCONFIG_OVERRIDE=		output/meson-private/libnotify.pc
 PKGCONFIG_OVERRIDE_STAGE=	pre-install
-MAKE_ENV+=			LD_LIBRARY_PATH=${WRKSRC}/output/${PKGBASE}
 
 # Apply removals to post-wrapper transformed arguments.
 BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--version-script

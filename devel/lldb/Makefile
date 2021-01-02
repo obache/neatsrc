@@ -59,7 +59,6 @@ TEST_TARGET=		check-lldb
 #TEST_TARGET=		check-lldb-unit # doesn't work in standalone build
 #TEST_TARGET=		check-lldb-single # check-lldb -j1
 #TEST_TARGET=		check-lldb-expr # unknown
-TEST_ENV+=		LD_LIBRARY_PATH=${WRKDIR}/build/lib
 
 .include "../../mk/bsd.prefs.mk"
 

@@ -37,8 +37,6 @@ MESON_ARGS+=	-Degl=no
 
 .include "options.mk"
 
-TEST_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/src
-
 .include "../../devel/meson/build.mk"
 .include "../../devel/xorg-util-macros/buildlink3.mk"
 .include "../../lang/python/tool.mk"

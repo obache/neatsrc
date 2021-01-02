@@ -18,10 +18,6 @@ USE_TOOLS+=	flex pkg-config
 
 PY_PATCHPLIST=	yes
 
-# workaround for build failure
-# https://gitlab.gnome.org/GNOME/json-glib/issues/35
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/ges
-
 MESON_ARGS+=	-Dgtk_doc=disabled
 
 .include "../../devel/meson/build.mk"

@@ -22,10 +22,6 @@ MESON_ARGS+=	-Dman=false
 
 PYTHON_FOR_BUILD_ONLY=	tool
 
-# workaround for build failure
-# https://gitlab.gnome.org/GNOME/json-glib/issues/35
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/libcheese
-
 # XXX msgfmt: unknown option -- desktop
 _TOOLS_USE_PKGSRC.msgfmt=	yes
 

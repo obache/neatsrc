@@ -35,9 +35,6 @@ CMAKE_ARGS+=	-DENABLE_LIBCURL=OFF
 
 CFLAGS.FreeBSD+=	-DLLONG_MAX=__LLONG_MAX
 
-# The result binary of g-ir-scanner cannot find libpoppler-glib.so.
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/glib
-
 BUILDLINK_API_DEPENDS.poppler+=     poppler-${POPPLER_VERS}{,nb*}
 .include "../../print/poppler/buildlink3.mk"
 

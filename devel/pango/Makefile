@@ -16,11 +16,6 @@ USE_LANGUAGES=		c c++
 USE_TOOLS+=		gmake pkg-config
 INSTALLATION_DIRS=	${PKGMANDIR}/man1
 
-SUBST_CLASSES+=		wrksrc
-SUBST_STAGE.wrksrc=	pre-configure
-SUBST_FILES.wrksrc=	output/utils/pango-view.sh
-SUBST_VARS.wrksrc=	WRKSRC
-
 PKGCONFIG_OVERRIDE+=		output/meson-private/pango.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/pangocairo.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/pangofc.pc
@@ -28,16 +23,11 @@ PKGCONFIG_OVERRIDE+=		output/meson-private/pangoft2.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/pangoot.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/pangoxft.pc
 PKGCONFIG_OVERRIDE_STAGE=	pre-install
-MAKE_ENV+=			LD_LIBRARY_PATH=${WRKSRC}/output/${PKGBASE}
 
 CHECK_FILES_SKIP+=		${PREFIX}/libdata/pango/pango.modules
 CHECK_PORTABILITY_SKIP+=	docs/check.docs
 
 BUILDLINK_TRANSFORM+=	rm:-Werror=implicit-fallthrough # clang10svn
-
-post-extract:
-	${MKDIR} -p ${WRKSRC}/output/utils
-	${CP} ${FILESDIR}/pango-view.sh ${WRKSRC}/output/utils
 
 post-install:
 	${MV} ${DESTDIR}${PREFIX}/share/man/man1/pango-view.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/pango-view.1 || ${TRUE}
