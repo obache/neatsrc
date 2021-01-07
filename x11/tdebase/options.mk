@@ -40,17 +40,17 @@ CMAKE_ARGS+=	-DWITH_SAMBA:BOOL=OFF
 #option( WITH_OPENEXR "Enable openexr support" ${WITH_ALL_OPTIONS} )
 .if !empty(PKG_OPTIONS:Mopenexr)
 .include "../../graphics/openexr/buildlink3.mk"
-CMAKE_ARGS+=	-DWITH_OPENXER:BOOL=ON
+CMAKE_ARGS+=	-DWITH_OPENEXR:BOOL=ON
 .else
-CMAKE_ARGS+=	-DWITH_OPENXER:BOOL=OFF
+CMAKE_ARGS+=	-DWITH_OPENEXR:BOOL=OFF
 .endif
 
 #option( WITH_XCOMPOSITE "Enable xcomposite support" ${WITH_ALL_OPTIONS} )
 .if !empty(PKG_OPTIONS:Mxcomposite)
 .include "../../x11/libXcomposite/buildlink3.mk"
-CMAKE_ARGS+=	-DWITH_XCONPOSITE:BOOL=ON
+CMAKE_ARGS+=	-DWITH_XCOMPOSITE:BOOL=ON
 .else
-CMAKE_ARGS+=	-DWITH_XCONPOSITE:BOOL=OFF
+CMAKE_ARGS+=	-DWITH_XCOMPOSITE:BOOL=OFF
 .endif
 
 #option( WITH_XCURSOR "Enable xcursor support" ${WITH_ALL_OPTIONS} )
@@ -121,7 +121,8 @@ CMAKE_ARGS+=	-DWITH_OPENGL:BOOL=OFF
 .if !empty(PKG_OPTIONS:Mxscreensaver)
 .include "../../x11/libXScrnSaver/buildlink3.mk"
 CMAKE_ARGS+=	-DWITH_XSCREENSAVER:BOOL=ON
-CMAKE_ARGS+=	-DXSCREENSAVER_DIR:PATH=${LOCALBASE}/libexec/xscreensaver
+CMAKE_ARGS+=	-DXSCREENSAVER_DIR:PATH=${LOCALBASE}/libexec/xscreensaver/
+CMAKE_ARGS+=	-DXSCREENSAVER_CONFIG_DIR:PATH=${LOCALBASE}/libexec/xscreensaver/config/
 .else
 CMAKE_ARGS+=	-DWITH_XSCREENSAVER:BOOL=OFF
 .endif
@@ -187,7 +188,7 @@ CMAKE_ARGS+=	-DWITH_ARTS:BOOL=OFF
 CMAKE_ARGS+=	-DWITH_I8K:BOOL=OFF
 
 #option( WITH_SENSORS "Enable lm_sensors support (ksysguard)" ${WITH_ALL_OPTIONS} )
-CMAKE_ARGS+=	-DWITH_SENSOR:BOOL=OFF
+CMAKE_ARGS+=	-DWITH_SENSORS:BOOL=OFF
 
 #option( WITH_HAL "Enable HAL support" OFF )
 .if !empty(PKG_OPTIONS:Mhal)

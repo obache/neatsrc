@@ -1786,6 +1786,7 @@ share/locale/it/LC_MESSAGES/kateopenheader.mo
 share/locale/it/LC_MESSAGES/katepart.mo
 share/locale/it/LC_MESSAGES/katepybrowse.mo
 share/locale/it/LC_MESSAGES/katesnippets.mo
+share/locale/it/LC_MESSAGES/katesort.mo
 share/locale/it/LC_MESSAGES/katetabbarextension.mo
 share/locale/it/LC_MESSAGES/katetextfilter.mo
 share/locale/it/LC_MESSAGES/katexmlcheck.mo
@@ -1822,6 +1823,7 @@ share/locale/it/LC_MESSAGES/kcmcolors.mo
 share/locale/it/LC_MESSAGES/kcmcomponentchooser.mo
 share/locale/it/LC_MESSAGES/kcmcrypto.mo
 share/locale/it/LC_MESSAGES/kcmcss.mo
+share/locale/it/LC_MESSAGES/kcmdisplayconfig.mo
 share/locale/it/LC_MESSAGES/kcmenergy.mo
 share/locale/it/LC_MESSAGES/kcmfonts.mo
 share/locale/it/LC_MESSAGES/kcmhtmlsearch.mo

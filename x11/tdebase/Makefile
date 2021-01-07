@@ -10,7 +10,7 @@ BUILD_DEPENDS+=	tqt3-tools>=${TQT3_RELEASE}:../../x11/tqt3-tools
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
-USE_TOOLS+=	pkg-config perl perl:run bash
+USE_TOOLS+=	pkg-config perl perl:run bash intltool
 EXTRACT_USING=	gtar
 
 .include "../../meta-pkgs/tde/Makefile.tde"
@@ -85,19 +85,19 @@ SUBST_SED.kde-path=	-e 's,/usr/bin,${LOCALBASE}/bin,g'
 
 SUBST_CLASSES+=		sys-path
 SUBST_STAGE.sys-path=	post-configure
-SUBST_FILES.sys-path=	kxkb/x11helper.cpp
 SUBST_FILES.sys-path+=	tdeioslave/info/kde-info2html.conf
-SUBST_VARS.sys-path=	LOCALBASE X11BASE PKG_SYSCONFBASE
+SUBST_VARS.sys-path=	LOCALBASE
 
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"
 .include "../../sysutils/dbus-tqt/buildlink3.mk"
 .include "../../sysutils/dbus1-tqt/buildlink3.mk"
 .include "../../x11/libxkbfile/buildlink3.mk"
-USE_TOOLS+=	setxkbmap
+USE_TOOLS+=	setxkbmap:run
 DEPENDS+=	htdig-[0-9]*:../../www/htdig
 CMAKE_ARGS+=	-DHTDIG_SEARCH_BINARY:PATH=${LOCALBASE}/libexec/cgi-bin/htdig
 .include "../../x11/tqtinterface/buildlink3.mk"
 .include "../../x11/tdelibs/buildlink3.mk"
+.include "../../x11/xkeyboard-config/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

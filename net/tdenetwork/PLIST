@@ -480,6 +480,7 @@ share/apps/kppp/Provider/Portugal/.directory
 share/apps/kppp/Provider/Portugal/Clix
 share/apps/kppp/Provider/Portugal/Netc
 share/apps/kppp/Provider/Portugal/OniNet
+share/apps/kppp/Provider/Slovenia/.directory
 share/apps/kppp/Provider/Slovenia/AmisNet
 share/apps/kppp/Provider/Slovenia/Arnes
 share/apps/kppp/Provider/Slovenia/Kiss
@@ -509,6 +510,7 @@ share/apps/kppp/Provider/United_Kingdom/UK%032Free%032Software%032Network%032Mod
 share/apps/kppp/Provider/United_Kingdom/UKPOST%032ISDN
 share/apps/kppp/Provider/United_Kingdom/UKPOST%032Modem
 share/apps/kppp/Provider/United_Kingdom/UTV
+share/apps/kppp/Provider/Yugoslavia/.directory
 share/apps/kppp/Provider/Yugoslavia/041Net
 share/apps/kppp/Provider/Yugoslavia/BeoTelNet
 share/apps/kppp/Provider/Yugoslavia/CG.Bar.yu

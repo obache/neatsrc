@@ -12,7 +12,7 @@ LICENSE=		gnu-lgpl-v2
 
 USE_CMAKE=		YES
 USE_LANGUAGES=		c c++
-PKGCONFIG_OVERRIDE=	libart-2.0.pc.in
+PKGCONFIG_OVERRIDE=	src/libart-2.0.pc.cmake
 
 .include "../../meta-pkgs/tde/Makefile.tde"
 

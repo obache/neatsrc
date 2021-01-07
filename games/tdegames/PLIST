@@ -59,14 +59,14 @@ include/kchatbase.h
 include/kchatdialog.h
 include/kexthighscore.h
 include/kexthighscore_item.h
+include/kgame/dialogs/kgameconnectdialog.h
+include/kgame/dialogs/kgamedebugdialog.h
+include/kgame/dialogs/kgamedialog.h
+include/kgame/dialogs/kgamedialogconfig.h
+include/kgame/dialogs/kgameerrordialog.h
 include/kgame/kgame.h
 include/kgame/kgamechat.h
-include/kgame/kgameconnectdialog.h
-include/kgame/kgamedebugdialog.h
-include/kgame/kgamedialog.h
-include/kgame/kgamedialogconfig.h
 include/kgame/kgameerror.h
-include/kgame/kgameerrordialog.h
 include/kgame/kgameio.h
 include/kgame/kgamemessage.h
 include/kgame/kgamenetwork.h
@@ -104,6 +104,7 @@ lib/libatlantikui.la
 lib/libkolf.la
 lib/libtdegames.la
 lib/libtdeinit_kolf.la
+lib/pkgconfig/libtdegames.pc
 lib/trinity/kolf.la
 lib/trinity/tdeio_atlantik.la
 share/applications/tde/KGoldrunner.desktop

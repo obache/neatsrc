@@ -699,6 +699,7 @@ share/apps/korganizer/icons/crystalsvg/16x16/actions/playsound.png
 share/apps/korganizer/icons/crystalsvg/16x16/actions/runprog.png
 share/apps/korganizer/icons/crystalsvg/16x16/actions/smallcal.png
 share/apps/korganizer/icons/crystalsvg/16x16/actions/smallclock.png
+share/apps/korganizer/icons/crystalsvg/16x16/actions/timeline.png
 share/apps/korganizer/icons/crystalsvg/16x16/actions/upindicator.png
 share/apps/korganizer/icons/crystalsvg/16x16/actions/webexport.png
 share/apps/korganizer/icons/crystalsvg/16x16/actions/whatsnext.png
@@ -713,6 +714,7 @@ share/apps/korganizer/icons/crystalsvg/22x22/actions/list.png
 share/apps/korganizer/icons/crystalsvg/22x22/actions/month.png
 share/apps/korganizer/icons/crystalsvg/22x22/actions/search.png
 share/apps/korganizer/icons/crystalsvg/22x22/actions/send.png
+share/apps/korganizer/icons/crystalsvg/22x22/actions/timeline.png
 share/apps/korganizer/icons/crystalsvg/22x22/actions/webexport.png
 share/apps/korganizer/icons/crystalsvg/22x22/actions/whatsnext.png
 share/apps/korganizer/icons/crystalsvg/22x22/actions/xdays.png
@@ -721,6 +723,7 @@ share/apps/korganizer/icons/crystalsvg/32x32/actions/5days.png
 share/apps/korganizer/icons/crystalsvg/32x32/actions/7days.png
 share/apps/korganizer/icons/crystalsvg/32x32/actions/list.png
 share/apps/korganizer/icons/crystalsvg/32x32/actions/month.png
+share/apps/korganizer/icons/crystalsvg/32x32/actions/timeline.png
 share/apps/korganizer/icons/crystalsvg/32x32/actions/xdays.png
 share/apps/korganizer/korganizer_part.rc
 share/apps/korganizer/korganizerui.rc
@@ -1090,6 +1093,7 @@ share/doc/tde/HTML/en/korganizer/i_view_day.png
 share/doc/tde/HTML/en/korganizer/i_view_journal.png
 share/doc/tde/HTML/en/korganizer/i_view_list.png
 share/doc/tde/HTML/en/korganizer/i_view_month.png
+share/doc/tde/HTML/en/korganizer/i_view_timeline.png
 share/doc/tde/HTML/en/korganizer/i_view_todo_list.png
 share/doc/tde/HTML/en/korganizer/i_view_week.png
 share/doc/tde/HTML/en/korganizer/i_view_whatsnext.png

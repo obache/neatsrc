@@ -1,5 +1,6 @@
 @comment $NetBSD$
 bin/appletproxy
+bin/compton-tde
 bin/crashtest
 bin/drkonqi
 bin/extensionproxy
@@ -201,6 +202,7 @@ lib/trinity/clock_panelapplet.la
 lib/trinity/cursorthumbnail.la
 lib/trinity/djvuthumbnail.la
 lib/trinity/dockbar_panelextension.la
+lib/trinity/exrthumbnail.la
 lib/trinity/extensionproxy.la
 lib/trinity/fontthumbnail.la
 lib/trinity/htmlthumbnail.la
@@ -563,9 +565,11 @@ share/apps/kappfinder/apps/Development/ddd.desktop
 share/apps/kappfinder/apps/Development/designer.desktop
 share/apps/kappfinder/apps/Development/dlgedit.desktop
 share/apps/kappfinder/apps/Development/eclipse.desktop
+share/apps/kappfinder/apps/Development/fdesign.desktop
 share/apps/kappfinder/apps/Development/j2mewtk.desktop
 share/apps/kappfinder/apps/Development/linguist.desktop
 share/apps/kappfinder/apps/Development/pose.desktop
+share/apps/kappfinder/apps/Development/sced.desktop
 share/apps/kappfinder/apps/Games/Arcade/ClanBomber.desktop
 share/apps/kappfinder/apps/Games/Arcade/FrozenBubble.desktop
 share/apps/kappfinder/apps/Games/Arcade/Gnibbles.desktop
@@ -578,8 +582,11 @@ share/apps/kappfinder/apps/Games/Arcade/XKobo.desktop
 share/apps/kappfinder/apps/Games/Arcade/XSoldier.desktop
 share/apps/kappfinder/apps/Games/Arcade/alephone-nogl.desktop
 share/apps/kappfinder/apps/Games/Arcade/alephone.desktop
+share/apps/kappfinder/apps/Games/Arcade/battalion.desktop
+share/apps/kappfinder/apps/Games/Arcade/battleball.desktop
 share/apps/kappfinder/apps/Games/Arcade/cxhextris.desktop
 share/apps/kappfinder/apps/Games/Arcade/rocksndiamonds.desktop
+share/apps/kappfinder/apps/Games/Arcade/scavenger.desktop
 share/apps/kappfinder/apps/Games/Board/Gataxx.desktop
 share/apps/kappfinder/apps/Games/Board/Gchess.desktop
 share/apps/kappfinder/apps/Games/Board/Glines.desktop
@@ -597,6 +604,7 @@ share/apps/kappfinder/apps/Games/Card/FreeCell.desktop
 share/apps/kappfinder/apps/Games/Card/PySol.desktop
 share/apps/kappfinder/apps/Games/Card/XPat2.desktop
 share/apps/kappfinder/apps/Games/Clanbomber.desktop
+share/apps/kappfinder/apps/Games/Emulators/cmail.desktop
 share/apps/kappfinder/apps/Games/Emulators/qmamecat.desktop
 share/apps/kappfinder/apps/Games/GTali.desktop
 share/apps/kappfinder/apps/Games/Roguelikes/angband.desktop
@@ -2102,6 +2110,7 @@ share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.4.docbook
 share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.5.docbook
 share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.6.docbook
 share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.7.docbook
+share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.8.docbook
 share/doc/tde/HTML/en/khelpcenter/releasenotes/r${PKGVERSION}.docbook
 share/doc/tde/HTML/en/khelpcenter/shadow1.png
 share/doc/tde/HTML/en/khelpcenter/support.docbook
@@ -3913,8 +3922,15 @@ share/mimelnk/fonts/package.desktop
 share/mimelnk/fonts/system-folder.desktop
 share/mimelnk/inode/system_directory.desktop
 share/mimelnk/media/audiocd.desktop
+share/mimelnk/media/blankbluray.desktop
 share/mimelnk/media/blankcd.desktop
 share/mimelnk/media/blankdvd.desktop
+share/mimelnk/media/bluray_mounted.desktop
+share/mimelnk/media/bluray_mounted_decrypted.desktop
+share/mimelnk/media/bluray_unmounted.desktop
+share/mimelnk/media/bluray_unmounted_decrypted.desktop
+share/mimelnk/media/bluray_unmounted_encrypted.desktop
+share/mimelnk/media/blurayvideo.desktop
 share/mimelnk/media/camera_mounted.desktop
 share/mimelnk/media/camera_unmounted.desktop
 share/mimelnk/media/cd-r_mounted.desktop
@@ -3982,6 +3998,7 @@ share/services/bzip2.protocol
 share/services/cgi.protocol
 share/services/cursorthumbnail.desktop
 share/services/djvuthumbnail.desktop
+share/services/exrthumbnail.desktop
 share/services/finger.protocol
 share/services/fish.protocol
 share/services/floppy.protocol

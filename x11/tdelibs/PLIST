@@ -2681,16 +2681,6 @@ share/apps/tdeconf_update/useragent.pl
 share/apps/tdehtml/css/html4.css
 share/apps/tdehtml/css/quirks.css
 share/apps/tdehtml/domain_info
-share/apps/tdehtml/icons/crystalsvg/128x128/actions/bug.png
-share/apps/tdehtml/icons/crystalsvg/16x16/actions/bug.png
-share/apps/tdehtml/icons/crystalsvg/16x16/actions/images_display.png
-share/apps/tdehtml/icons/crystalsvg/16x16/actions/wallet_open.png
-share/apps/tdehtml/icons/crystalsvg/22x22/actions/bug.png
-share/apps/tdehtml/icons/crystalsvg/22x22/actions/images_display.png
-share/apps/tdehtml/icons/crystalsvg/32x32/actions/bug.png
-share/apps/tdehtml/icons/crystalsvg/32x32/actions/images_display.png
-share/apps/tdehtml/icons/crystalsvg/48x48/actions/bug.png
-share/apps/tdehtml/icons/crystalsvg/64x64/actions/bug.png
 share/apps/tdehtml/tdehtml.rc
 share/apps/tdehtml/tdehtml_browser.rc
 share/apps/tdehtml/tdehtml_popupmenu.rc
@@ -3046,6 +3036,7 @@ share/emoticons/Default/wilted_rose.png
 share/emoticons/Default/wink.png
 share/examples/tdelibs/xdg/menus/tde-applications.menu
 share/examples/tdelibs/xdg/menus/tde-applications.menu-no-kde
+share/icons/crystalsvg/128x128/actions/bug.png
 share/icons/crystalsvg/128x128/actions/document-open-recent.png
 share/icons/crystalsvg/128x128/actions/document-open.png
 share/icons/crystalsvg/128x128/actions/launch.png
@@ -3262,6 +3253,7 @@ share/icons/crystalsvg/16x16/actions/bookmark_add.png
 share/icons/crystalsvg/16x16/actions/bookmark_folder.png
 share/icons/crystalsvg/16x16/actions/bookmark_toolbar.png
 share/icons/crystalsvg/16x16/actions/bookmarks_list_add.png
+share/icons/crystalsvg/16x16/actions/bug.png
 share/icons/crystalsvg/16x16/actions/button_cancel.png
 share/icons/crystalsvg/16x16/actions/button_ok.png
 share/icons/crystalsvg/16x16/actions/cancel.png
@@ -3284,6 +3276,7 @@ share/icons/crystalsvg/16x16/actions/contents.png
 share/icons/crystalsvg/16x16/actions/contents2.png
 share/icons/crystalsvg/16x16/actions/contexthelp.png
 share/icons/crystalsvg/16x16/actions/crop.png
+share/icons/crystalsvg/16x16/actions/dbgwatchvar.png
 share/icons/crystalsvg/16x16/actions/decrypted.png
 share/icons/crystalsvg/16x16/actions/document-new.png
 share/icons/crystalsvg/16x16/actions/document-open-recent.png
@@ -3360,6 +3353,7 @@ share/icons/crystalsvg/16x16/actions/history.png
 share/icons/crystalsvg/16x16/actions/history_clear.png
 share/icons/crystalsvg/16x16/actions/idea.png
 share/icons/crystalsvg/16x16/actions/identity.png
+share/icons/crystalsvg/16x16/actions/images_display.png
 share/icons/crystalsvg/16x16/actions/info.png
 share/icons/crystalsvg/16x16/actions/inline_image.png
 share/icons/crystalsvg/16x16/actions/inline_table.png
@@ -3502,6 +3496,7 @@ share/icons/crystalsvg/16x16/actions/view_text.png
 share/icons/crystalsvg/16x16/actions/view_top_bottom.png
 share/icons/crystalsvg/16x16/actions/view_tree.png
 share/icons/crystalsvg/16x16/actions/viewmag.png
+share/icons/crystalsvg/16x16/actions/wallet_open.png
 share/icons/crystalsvg/16x16/actions/window-close.png
 share/icons/crystalsvg/16x16/actions/window-new.png
 share/icons/crystalsvg/16x16/actions/window_suppressed.png
@@ -3784,6 +3779,7 @@ share/icons/crystalsvg/22x22/actions/bookmark.png
 share/icons/crystalsvg/22x22/actions/bookmark_add.png
 share/icons/crystalsvg/22x22/actions/bookmark_folder.png
 share/icons/crystalsvg/22x22/actions/bookmarks_list_add.png
+share/icons/crystalsvg/22x22/actions/bug.png
 share/icons/crystalsvg/22x22/actions/button_cancel.png
 share/icons/crystalsvg/22x22/actions/button_ok.png
 share/icons/crystalsvg/22x22/actions/cd.png
@@ -3803,10 +3799,19 @@ share/icons/crystalsvg/22x22/actions/contents.png
 share/icons/crystalsvg/22x22/actions/contents2.png
 share/icons/crystalsvg/22x22/actions/contexthelp.png
 share/icons/crystalsvg/22x22/actions/crop.png
+share/icons/crystalsvg/22x22/actions/dbgjumpto.png
+share/icons/crystalsvg/22x22/actions/dbgmemview.png
 share/icons/crystalsvg/22x22/actions/dbgnext.png
+share/icons/crystalsvg/22x22/actions/dbgnextinst.png
+share/icons/crystalsvg/22x22/actions/dbgparam.png
+share/icons/crystalsvg/22x22/actions/dbgrestart.png
 share/icons/crystalsvg/22x22/actions/dbgrun.png
 share/icons/crystalsvg/22x22/actions/dbgrunto.png
 share/icons/crystalsvg/22x22/actions/dbgstep.png
+share/icons/crystalsvg/22x22/actions/dbgstepinst.png
+share/icons/crystalsvg/22x22/actions/dbgstepout.png
+share/icons/crystalsvg/22x22/actions/dbgvar.png
+share/icons/crystalsvg/22x22/actions/debugger.png
 share/icons/crystalsvg/22x22/actions/decrypted.png
 share/icons/crystalsvg/22x22/actions/document-new.png
 share/icons/crystalsvg/22x22/actions/document-open-recent.png
@@ -3883,6 +3888,7 @@ share/icons/crystalsvg/22x22/actions/help.png
 share/icons/crystalsvg/22x22/actions/history.png
 share/icons/crystalsvg/22x22/actions/idea.png
 share/icons/crystalsvg/22x22/actions/identity.png
+share/icons/crystalsvg/22x22/actions/images_display.png
 share/icons/crystalsvg/22x22/actions/inline_image.png
 share/icons/crystalsvg/22x22/actions/inline_table.png
 share/icons/crystalsvg/22x22/actions/key_enter.png
@@ -4278,6 +4284,7 @@ share/icons/crystalsvg/32x32/actions/bookmark_add.png
 share/icons/crystalsvg/32x32/actions/bookmark_folder.png
 share/icons/crystalsvg/32x32/actions/bookmark_toolbar.png
 share/icons/crystalsvg/32x32/actions/bookmarks_list_add.png
+share/icons/crystalsvg/32x32/actions/bug.png
 share/icons/crystalsvg/32x32/actions/button_cancel.png
 share/icons/crystalsvg/32x32/actions/button_ok.png
 share/icons/crystalsvg/32x32/actions/charset.png
@@ -4355,6 +4362,7 @@ share/icons/crystalsvg/32x32/actions/help-about.png
 share/icons/crystalsvg/32x32/actions/help-contents.png
 share/icons/crystalsvg/32x32/actions/help.png
 share/icons/crystalsvg/32x32/actions/identity.png
+share/icons/crystalsvg/32x32/actions/images_display.png
 share/icons/crystalsvg/32x32/actions/key_enter.png
 share/icons/crystalsvg/32x32/actions/knewstuff.png
 share/icons/crystalsvg/32x32/actions/launch.png
@@ -4734,6 +4742,7 @@ share/icons/crystalsvg/48x48/actions/application-exit.png
 share/icons/crystalsvg/48x48/actions/appointment-new.png
 share/icons/crystalsvg/48x48/actions/back.png
 share/icons/crystalsvg/48x48/actions/bookmark.png
+share/icons/crystalsvg/48x48/actions/bug.png
 share/icons/crystalsvg/48x48/actions/colorpicker.png
 share/icons/crystalsvg/48x48/actions/contents2.png
 share/icons/crystalsvg/48x48/actions/document-new.png
@@ -5032,6 +5041,7 @@ share/icons/crystalsvg/48x48/places/trashcan_full.png
 share/icons/crystalsvg/48x48/places/www.png
 share/icons/crystalsvg/48x48/places/zip_overlay.png
 share/icons/crystalsvg/64x64/actions/appointment-new.png
+share/icons/crystalsvg/64x64/actions/bug.png
 share/icons/crystalsvg/64x64/actions/document-open-recent.png
 share/icons/crystalsvg/64x64/actions/document-open.png
 share/icons/crystalsvg/64x64/actions/favorites.png

@@ -1270,6 +1270,7 @@ share/locale/pl/LC_MESSAGES/kcmcolors.mo
 share/locale/pl/LC_MESSAGES/kcmcomponentchooser.mo
 share/locale/pl/LC_MESSAGES/kcmcrypto.mo
 share/locale/pl/LC_MESSAGES/kcmcss.mo
+share/locale/pl/LC_MESSAGES/kcmdisplayconfig.mo
 share/locale/pl/LC_MESSAGES/kcmenergy.mo
 share/locale/pl/LC_MESSAGES/kcmfonts.mo
 share/locale/pl/LC_MESSAGES/kcmhtmlsearch.mo

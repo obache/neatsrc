@@ -79,10 +79,10 @@ share/applications/tde/ktimer.desktop
 share/applications/tde/kwikdisk.desktop
 share/applications/tde/laptop.desktop
 share/applications/tde/pcmcia.desktop
+share/applications/tde/superkaramba.desktop
 share/applications/tde/tdewalletconfig.desktop
 share/applications/tde/tdewalletmanager-tdewalletd.desktop
 share/applications/tde/tdewalletmanager.desktop
-share/applnk/Utilities/superkaramba.desktop
 share/apps/ark/ark_part.rc
 share/apps/ark/ark_part_readonly.rc
 share/apps/ark/arkui.rc

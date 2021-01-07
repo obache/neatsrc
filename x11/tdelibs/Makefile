@@ -10,7 +10,7 @@ BUILD_DEPENDS+=	tqt3-tools>=${TQT3_RELEASE}:../../x11/tqt3-tools
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
-USE_TOOLS+=	pkg-config perl perl:run iceauth:run
+USE_TOOLS+=	pkg-config perl perl:run iceauth:run intltool mktemp:run
 EXTRACT_USING=	gtar
 
 USE_X11_RGB_TXT=	yes
@@ -65,7 +65,11 @@ SUBST_SED.sys-path+=	-e 's,/usr/sbin:,${LOCALBASE}/sbin:/usr/sbin:,g'
 SUBST_SED.sys-path+=	-e 's,/usr/lib:,${LOCALBASE}/lib:/usr/lib:,g'
 SUBST_SED.sys-path+=	-e 's,/usr/libexec:,${LOCALBASE}/libexec:/usr/libexec:,g'
 
-UNWRAP_CMAKE_FILES+=	../build/tdelibs.cmake
+SUBST_CLASSES+=		prg-path
+SUBST_STAGE.prg-path=	post-configure
+SUBST_FILES.prg-path+=	dcop/dcopidlng/dcopidlng
+SUBST_SED.prg-path=	-e 's,perl,${PERL5},g'
+SUBST_SED.prg-path+=	-e 's,mktemp,${MKTEMP},g'
 
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"

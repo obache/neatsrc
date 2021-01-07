@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (tqca-tls-trinity-14.0.8.tar.xz) = fa9edf49d19fc71ce02ec43ae360cfdb3b6eed32
-RMD160 (tqca-tls-trinity-14.0.8.tar.xz) = 41d2e744ef476246440f8a2ba3e41b5263a54a24
-SHA512 (tqca-tls-trinity-14.0.8.tar.xz) = 316b516968e16011ce4ca410fec96aa4e334e6a62c1a519695d2d6a919d1f8820389fc1c226688cb2835753b560858baf70002d73751150e91feee00a31408ba
-Size (tqca-tls-trinity-14.0.8.tar.xz) = 23132 bytes
+SHA1 (tqca-tls-trinity-14.0.9.tar.xz) = 31926a7195f68d4633a23390f168152988971750
+RMD160 (tqca-tls-trinity-14.0.9.tar.xz) = 910e07e5b68c3857268f4fac27d0129deca18538
+SHA512 (tqca-tls-trinity-14.0.9.tar.xz) = de357f5e318183499b73522540899262b382ca70786ab94ac8c2c9a1a938398d465e632b6e4fc3e94b0b2990cca185d3e599486d8fac8496de710e986c6d0ea0
+Size (tqca-tls-trinity-14.0.9.tar.xz) = 47952 bytes

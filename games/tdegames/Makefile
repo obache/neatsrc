@@ -20,6 +20,8 @@ CMAKE_ARGS+=	-DBUILD_ALL:BOOL=ON
 .include "../../audio/arts/buildlink3.mk"
 CMAKE_ARGS+=	-DWITH_ARTS:BOOL=ON
 
+PKGCONFIG_OVERRIDE+=	libtdegames/libtdegames.pc.cmake
+
 .include "../../x11/tdelibs/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

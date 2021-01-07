@@ -292,9 +292,12 @@ share/locale/cs/LC_MESSAGES/kcmcolors.mo
 share/locale/cs/LC_MESSAGES/kcmcomponentchooser.mo
 share/locale/cs/LC_MESSAGES/kcmcrypto.mo
 share/locale/cs/LC_MESSAGES/kcmcss.mo
+share/locale/cs/LC_MESSAGES/kcmdisplayconfig.mo
 share/locale/cs/LC_MESSAGES/kcmenergy.mo
 share/locale/cs/LC_MESSAGES/kcmfonts.mo
 share/locale/cs/LC_MESSAGES/kcmhtmlsearch.mo
+share/locale/cs/LC_MESSAGES/kcmhwmanager.mo
+share/locale/cs/LC_MESSAGES/kcmiccconfig.mo
 share/locale/cs/LC_MESSAGES/kcmicons.mo
 share/locale/cs/LC_MESSAGES/kcminfo.mo
 share/locale/cs/LC_MESSAGES/kcminput.mo
@@ -381,6 +384,7 @@ share/locale/cs/LC_MESSAGES/khexedit.mo
 share/locale/cs/LC_MESSAGES/khexedit2part.mo
 share/locale/cs/LC_MESSAGES/khotkeys.mo
 share/locale/cs/LC_MESSAGES/kicker.mo
+share/locale/cs/LC_MESSAGES/kickermenu_kate.mo
 share/locale/cs/LC_MESSAGES/kig.mo
 share/locale/cs/LC_MESSAGES/kimagemapeditor.mo
 share/locale/cs/LC_MESSAGES/kinetd.mo
@@ -474,12 +478,16 @@ share/locale/cs/LC_MESSAGES/kregexpeditor.mo
 share/locale/cs/LC_MESSAGES/kres_birthday.mo
 share/locale/cs/LC_MESSAGES/kres_blogging.mo
 share/locale/cs/LC_MESSAGES/kres_bugzilla.mo
+share/locale/cs/LC_MESSAGES/kres_caldav.mo
+share/locale/cs/LC_MESSAGES/kres_carddav.mo
 share/locale/cs/LC_MESSAGES/kres_exchange.mo
 share/locale/cs/LC_MESSAGES/kres_featureplan.mo
+share/locale/cs/LC_MESSAGES/kres_groupdav.mo
 share/locale/cs/LC_MESSAGES/kres_groupware.mo
 share/locale/cs/LC_MESSAGES/kres_groupwise.mo
 share/locale/cs/LC_MESSAGES/kres_kolab.mo
 share/locale/cs/LC_MESSAGES/kres_remote.mo
+share/locale/cs/LC_MESSAGES/kres_scalix.mo
 share/locale/cs/LC_MESSAGES/kres_tvanytime.mo
 share/locale/cs/LC_MESSAGES/kres_xmlrpc.mo
 share/locale/cs/LC_MESSAGES/kreversi.mo
@@ -510,6 +518,7 @@ share/locale/cs/LC_MESSAGES/ksysguard.mo
 share/locale/cs/LC_MESSAGES/ksystemtrayapplet.mo
 share/locale/cs/LC_MESSAGES/ksystraycmd.mo
 share/locale/cs/LC_MESSAGES/ksysv.mo
+share/locale/cs/LC_MESSAGES/ktaskbarapplet.mo
 share/locale/cs/LC_MESSAGES/kteatime.mo
 share/locale/cs/LC_MESSAGES/kthememanager.mo
 share/locale/cs/LC_MESSAGES/ktimemon.mo
@@ -597,11 +606,13 @@ share/locale/cs/LC_MESSAGES/privacy.mo
 share/locale/cs/LC_MESSAGES/quanta.mo
 share/locale/cs/LC_MESSAGES/quicklauncher.mo
 share/locale/cs/LC_MESSAGES/rellinks.mo
+share/locale/cs/LC_MESSAGES/scalixadmin.mo
 share/locale/cs/LC_MESSAGES/searchbarplugin.mo
 share/locale/cs/LC_MESSAGES/secpolicy.mo
 share/locale/cs/LC_MESSAGES/spy.mo
 share/locale/cs/LC_MESSAGES/superkaramba.mo
 share/locale/cs/LC_MESSAGES/synaescope.mo
+share/locale/cs/LC_MESSAGES/taskbarextension.mo
 share/locale/cs/LC_MESSAGES/tdeabc2mutt.mo
 share/locale/cs/LC_MESSAGES/tdeabc_dir.mo
 share/locale/cs/LC_MESSAGES/tdeabc_file.mo
@@ -689,6 +700,7 @@ share/locale/cs/LC_MESSAGES/tdeio_nntp.mo
 share/locale/cs/LC_MESSAGES/tdeio_pop3.mo
 share/locale/cs/LC_MESSAGES/tdeio_print.mo
 share/locale/cs/LC_MESSAGES/tdeio_remote.mo
+share/locale/cs/LC_MESSAGES/tdeio_scalix.mo
 share/locale/cs/LC_MESSAGES/tdeio_settings.mo
 share/locale/cs/LC_MESSAGES/tdeio_sftp.mo
 share/locale/cs/LC_MESSAGES/tdeio_sieve.mo
