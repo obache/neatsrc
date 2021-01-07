@@ -1,7 +1,7 @@
 $NetBSD: distinfo,v 1.4 2015/11/03 00:08:45 agc Exp $
 
-SHA1 (shapelib-1.4.0.tar.gz) = 9f58e8194dbcdb87a4c785f9107ec3d35532b034
-RMD160 (shapelib-1.4.0.tar.gz) = 9fa4b01a3f71fc58a068b6b9df50a4366c3e6024
-SHA512 (shapelib-1.4.0.tar.gz) = 206b81fe859a837e821e449ab1b2dbd5a3aa7abd1871da4aec69e130b6fad6300697429884ce359c90e4b76bca90e2108f32b9fdbd3b92013fa5a39f3bedeeb1
-Size (shapelib-1.4.0.tar.gz) = 548990 bytes
+SHA1 (shapelib-1.5.0.tar.gz) = f5a9ad69faab0e8e0924fe9399ce32b9b7655d5c
+RMD160 (shapelib-1.5.0.tar.gz) = 822ab85994a1f51041c5ed2b7b5294ef5e02484b
+SHA512 (shapelib-1.5.0.tar.gz) = 6dbd5fc7929ca403e65017ef58211f351608d9ad08221bf68bde047ceecfd27013ce731f9ae4edcfd040bc3db7fe9054b5d96e46128d2968788bef19532b1721
+Size (shapelib-1.5.0.tar.gz) = 547686 bytes
 SHA1 (patch-tests_test1.sh) = 4ce0fa6a6e2d5dc17723963477679fea3c1c6672

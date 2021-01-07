@@ -5,7 +5,7 @@ BUILDLINK_TREE+=	shapelib
 .if !defined(SHAPELIB_BUILDLINK3_MK)
 SHAPELIB_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.shapelib+=	shapelib>=1.4.0
+BUILDLINK_API_DEPENDS.shapelib+=	shapelib>=1.5.0
 BUILDLINK_PKGSRCDIR.shapelib?=		../../geography/shapelib
 .endif # SHAPELIB_BUILDLINK3_MK
 
