@@ -436,6 +436,7 @@ SUBDIR+=	kcompletion
 SUBDIR+=	kpimtextedit
 SUBDIR+=	kytea
 SUBDIR+=	latex2html
+SUBDIR+=	libchardet
 SUBDIR+=	libclucene
 SUBDIR+=	libcroco
 SUBDIR+=	libcsv
