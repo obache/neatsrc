@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	cyrus-imapd-3.2.4
+DISTNAME=	cyrus-imapd-3.2.5
 CATEGORIES=	mail
 MASTER_SITES=	https://github.com/cyrusimap/cyrus-imapd/releases/download/${DISTNAME}/
 
@@ -44,7 +44,6 @@ CONFIGURE_ARGS+=	--with-libwrap=${BUILDLINK_PREFIX.tcp_wrappers}
 CONFIGURE_ENV+=		ac_cv_lib_wrap_request_init=yes
 
 CONFIGURE_ARGS+=	--enable-idled
-CONFIGURE_ARGS+=	--enable-http
 CONFIGURE_ARGS+=	--enable-murder
 CONFIGURE_ARGS+=	--enable-nntp
 CONFIGURE_ARGS+=	--enable-replication
@@ -129,8 +128,7 @@ post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/rehash ${DESTDIR}${PREFIX}/bin
 	${INSTALL_DATA_DIR} ${DESTDIR}${DOCDIR}
 	cd ${WRKSRC}/doc; \
-		pax -rwpp . ${DESTDIR}${DOCDIR};		\
-	done
+		pax -rwpp . ${DESTDIR}${DOCDIR}
 
 .include "../../devel/zlib/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib}

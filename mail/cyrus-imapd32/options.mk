@@ -2,7 +2,7 @@
 #
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.cyrus-imapd
-PKG_SUPPORTED_OPTIONS=	clamav gssapi http kerberos kerberos4 ldap pcre snmp zephyr
+PKG_SUPPORTED_OPTIONS=	clamav gssapi http jmap kerberos kerberos4 ldap pcre snmp zephyr
 PKG_SUPPORTED_OPTIONS+=	mysql pgsql sqlite
 PKG_SUPPORTED_OPTIONS+=	xapian
 PKG_SUGGESTED_OPTIONS=	http ldap pcre
@@ -131,6 +131,13 @@ PLIST.http=		yes
 CONFIGURE_ARGS+=	--disable-http
 .endif
 
+.if !empty(PKG_OPTIONS:Mjmap)
+.include "../../textproc/libchardet/buildlink3.mk"
+CONFIGURE_ARGS+=	--enable-jmap
+.else
+CONFIGURE_ARGS+=	--disable-jmap
+.endif
+
 .if !empty(PKG_OPTIONS:Mzephyr)
 .  include "../../chat/zephyr/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-zephyr=${BUILDLINK_PREFIX.zephyr}
@@ -138,7 +145,7 @@ CONFIGURE_ARGS+=	--with-zephyr=${BUILDLINK_PREFIX.zephyr}
 CONFIGURE_ARGS+=	--without-zephyr
 .endif
 
-.if !empty(PKG_OPTIONS:Mxapian)
+.if !empty(PKG_OPTIONS:Mxapian) || !empty(PKG_OPTIONS:Mjmap)
 .  include "../../textproc/xapian/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-xapian
 .else
