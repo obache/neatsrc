@@ -53,30 +53,16 @@ CONFIGURE_ARGS+=	-cups
 CONFIGURE_ARGS+=	-no-cups
 .endif
 
-pre-configure:
-	${SED} \
-		-e 's:@LOCALBASE@:${LOCALBASE}:g' \
-		-e 's:@X11BASE@:${X11BASE}:g' \
-		-e 's:@CC@:${CC}:g' \
-		-e 's:@CXX@:${CXX}:g' \
-		-e 's:@LDFLAGS@:${LDFLAGS:S/:/\\:/g}:g' \
-		-e 's:@CFLAGS@:${CFLAGS}:g' \
-		-e 's:@CXXFLAGS@:${CXXFLAGS}:g' \
-		-e 's:@SYS_LIBS@:${SYS_LIBS}:g' \
-		-e 's:@LEX@:${LEX}:g' \
-		-e 's:@YACC@:${TOOLS_CMDLINE_YACC}:g' \
-		-e 's:@AR@:${AR}:g' \
-		-e 's:@MKDIR@:${MKDIR}:g' \
-		-e 's:@PTHREAD_CFLAGS@:${PTHREAD_CFLAGS}:g' \
-		-e 's:@PTHREAD_LDFLAGS@:${PTHREAD_LDFLAGS}:g' \
-		-e 's:@PTHREAD_LIBS@:${PTHREAD_LIBS}:g' \
-		-e 's:@COMPILER_RPATH_FLAG@:${COMPILER_RPATH_FLAG}:g' \
-		-e 's:@QMAKE_RANLIB@:${RANLIB}:g' \
-		${FILESDIR}/qmake.conf > ${WRKSRC}/qmake.conf
-	for dir in ${WRKSRC}/mkspecs/*; do \
-		${CP} ${WRKSRC}/qmake.conf $${dir}; \
-		${RM} -f $${dir}/*.orig; \
-	done
+SUBST_CLASSES+=		qcpath
+SUBST_STAGE.qcpath=	pre-configure
+SUBST_FILES.qcpath=	mkspecs/*/qmake.conf
+SUBST_SED.qcpath+=	-e 's,\(^QMAKE_INCDIR[ 	]*=\).*\(\\*\)$$,\1 ${LOCALBASE}/include\2,'
+SUBST_SED.qcpath+=	-e 's,\(^QMAKE_LIBDIR[ 	]*=\).*\(\\*\)$$,\1 ${LOCALBASE}/lib\2,'
+SUBST_SED.qcpath+=	-e 's,\(^QMAKE_INCDIR_X11[ 	]*=\).*\(\\*\)$$,\1 ${X11BASE}/include\2,'
+SUBST_SED.qcpath+=	-e 's,\(^QMAKE_LIBDIR_X11[ 	]*=\).*\(\\*\)$$,\1 ${X11BASE}/lib\2,'
+SUBST_SED.qcpath+=	-e 's,\(^QMAKE_INCDIR_OPENGL[ 	]*=\).*\(\\*\)$$,\1 ${X11BASE}/include\2,'
+SUBST_SED.qcpath+=	-e 's,\(^QMAKE_LIBDIR_OPENGL[ 	]*=\).*\(\\*\)$$,\1 ${X11BASE}/lib\2,'
+
 .endif
 
 .if !empty(BUILD_TQT3)
