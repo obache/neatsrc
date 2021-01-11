@@ -13,7 +13,8 @@ LICENSE=	modified-bsd AND mit
 USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	# none
 
-PKGCONFIG_OVERRIDE+=	spice-protocol.pc.in
+PKGCONFIG_OVERRIDE+=	output/meson-private/spice-protocol.pc
+PKGCONFIG_OVERRIDE_STAGE=	post-build
 
 .include "../../devel/meson/build.mk"
 .include "../../mk/bsd.pkg.mk"
