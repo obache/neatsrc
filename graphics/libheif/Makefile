@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.6 2020/10/11 23:47:31 joerg Exp $
+# $NetBSD: Makefile,v 1.8 2021/01/04 11:06:21 wiz Exp $
 
-DISTNAME=	libheif-1.9.1
-PKGREVISION=	1
+DISTNAME=	libheif-1.10.0
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=strukturag/}
 GITHUB_PROJECT=	libheif
@@ -18,6 +17,8 @@ USE_TOOLS+=	pkg-config gmake
 USE_LANGUAGES=	c c++
 
 CONFIGURE_ARGS+=	--disable-go
+
+CXXFLAGS.NetBSD+=	-Wno-error=maybe-uninitialized
 
 PKGCONFIG_OVERRIDE+=	libheif.pc.in
 

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.241 2020/10/24 16:51:49 tnn Exp $
+# $NetBSD: Makefile,v 1.250 2021/01/01 13:17:44 ryoon Exp $
 
-VERREL=		7.0.2
+VERREL=		7.0.4
 VERRC=		2
 VER=		${VERREL}.${VERRC}
 DISTNAME=	libreoffice-${VER}
@@ -114,9 +114,9 @@ MORE_DISTFILES= \
 	lxml-4.1.1.tgz \
 	Amiri-0.111.zip \
 	ReemKufi-0.7.zip \
-	pdfium-4137.tar.bz2 \
+	pdfium-4306.tar.bz2 \
 	dtoa-20180411.tgz \
-	skia-m84-c1baf6e1c2a5454148adb516f0f833483b5a0353.tar.xz
+	skia-m85-e684c6daef6bfb774a325a069eda1f76ca6ac26c.tar.xz
 
 .for md in ${MORE_DISTFILES}
 DISTFILES+=		${md}
@@ -261,11 +261,6 @@ BUILD_MAKE_FLAGS+=	VERBOSE=true
 BUILDLINK_TRANSFORM+=	rm:-ldl
 .endif
 
-.if ${MACHINE_ARCH} == "i386"
-# For 64 bit atomic ops (PR/54826)
-CXXFLAGS+=		-march=i586
-.endif
-
 INSTALLATION_DIRS=	bin share/applications
 
 .PHONY: debugrun
@@ -332,9 +327,6 @@ BUILDLINK_API_DEPENDS.libetonyek+=	libetonyek>=0.1.2
 .include "../../converters/orcus/buildlink3.mk"
 .include "../../databases/db4/buildlink3.mk"
 .include "../../databases/mysql57-client/buildlink3.mk"
-.if !empty(PKG_OPTIONS:Mldap)
-.include "../../databases/openldap-client/buildlink3.mk"
-.endif
 .include "../../databases/shared-mime-info/buildlink3.mk"
 .include "../../databases/unixodbc/buildlink3.mk"
 .include "../../devel/apr-util/buildlink3.mk"
@@ -352,6 +344,7 @@ BUILDLINK_API_DEPENDS.libetonyek+=	libetonyek>=0.1.2
 .if ${LIBRSVG_TYPE} == "rust"
 #BUILDLINK_API_DEPENDS.harfbuzz+=	harfbuzz>=1.4.2
 .include "../../fonts/harfbuzz/buildlink3.mk"
+.include "../../fonts/harfbuzz-icu/buildlink3.mk"
 .include "../../graphics/graphite2/buildlink3.mk"
 .endif
 # Requires JCS_EXT_BGRA
@@ -382,18 +375,11 @@ BUILDLINK_API_DEPENDS.libnumbertext+=	libnumbertext>=1.0.6
 .include "../../multimedia/gst-plugins1-base/buildlink3.mk"
 .include "../../net/libcmis/buildlink3.mk"
 .include "../../net/mDNSResponder/buildlink3.mk"
-.if !empty(PKG_OPTIONS:Mcups)
-.include "../../print/cups-base/buildlink3.mk"
-.endif
 # Use PDFium instead of poppler for PDF import since 6.3.2.2nb1
 #.include "../../print/poppler-cpp/buildlink3.mk"
 #.include "../../print/poppler-includes/buildlink3.mk"
 .include "../../security/gpgme/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
-.if !empty(PKG_OPTIONS:Mdbus)
-.include "../../sysutils/dbus/buildlink3.mk"
-.include "../../sysutils/dbus-glib/buildlink3.mk"
-.endif
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../textproc/hunspell/buildlink3.mk"
@@ -427,5 +413,5 @@ BUILDLINK_API_DEPENDS.libodfgen+=       libodfgen>=0.1.4
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../graphics/gnome-icon-theme/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

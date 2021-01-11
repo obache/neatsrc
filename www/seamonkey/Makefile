@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.224 2020/10/15 07:15:40 nia Exp $
+# $NetBSD: Makefile,v 1.227 2021/01/01 09:52:43 ryoon Exp $
 
 DISTNAME=	seamonkey-${SM_VER}.source
 PKGNAME=	seamonkey-${SM_VER:S/b/beta/}
+PKGREVISION=	2
 SM_VER=		2.53.4
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_MOZILLA:=seamonkey/releases/${SM_VER}/source/}
@@ -75,7 +76,6 @@ INSTALLATION_DIRS+=	share/applications
 INSTALLATION_DIRS+=	share/icons/hicolor/32x32/apps
 
 post-extract:
-	mv ${WRKSRC}/mozilla/gfx/ycbcr/yuv_row_arm.s ${WRKSRC}/mozilla/gfx/ycbcr/yuv_row_arm.S
 	${CP} ${FILESDIR}/cubeb_sun.c ${WRKSRC}/mozilla/media/libcubeb/src
 
 pre-configure:

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2020/05/31 16:03:04 nia Exp $
+# $NetBSD: Makefile,v 1.3 2020/12/31 20:04:11 nia Exp $
 
 DISTNAME=	libretro-parallel-n64-20200528
 CATEGORIES=	emulators
@@ -40,4 +40,5 @@ BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--version-script=./libretro/link.T
 
 .include "options.mk"
 .include "../../emulators/retroarch/core.mk"
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

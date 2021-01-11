@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.46 2020/06/25 12:48:00 nia Exp $
+# $NetBSD: Makefile,v 1.48 2020/12/03 11:34:39 adam Exp $
 
-DISTNAME=	mongo-c-driver-1.16.2
-PKGREVISION=	2
+DISTNAME=	mongo-c-driver-1.17.3
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mongodb/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}

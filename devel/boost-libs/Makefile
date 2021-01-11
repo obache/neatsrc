@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.82 2020/06/02 08:23:34 adam Exp $
+# $NetBSD: Makefile,v 1.84 2021/01/01 08:19:02 ryoon Exp $
 
 BOOST_PACKAGE=		libs
 BOOST_COMMENT=		(binary libraries)
 BOOST_CONFIG=		installed
 BOOST_INSTALL_LIBS=	yes
 
-PKGREVISION= 1
 .include "../../meta-pkgs/boost/Makefile.common"
 
 INSTALLATION_DIRS+=	lib
@@ -44,7 +43,7 @@ PLIST.log=		yes
 
 # FIXME: other systems might also not support 'long double'
 # see patch-boost_math_tools_config.hpp
-.if ${OPSYS} != "FreeBSD"
+.if ${OPSYS} != "FreeBSD" && ${OPSYS} != "NetBSD"
 PLIST.longdbl=		yes
 .endif
 

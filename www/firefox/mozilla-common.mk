@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.182 2020/10/20 20:15:29 maya Exp $
+# $NetBSD: mozilla-common.mk,v 1.193 2021/01/06 11:21:40 triaxx Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -6,52 +6,27 @@
 
 .include "../../mk/bsd.prefs.mk"
 
-# Python 2.7 and Python 3.6 or later are required simultaneously.
-PYTHON_VERSIONS_ACCEPTED=	27
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 PYTHON_FOR_BUILD_ONLY=		tool
-.if !empty(PYTHON_VERSION_DEFAULT:M3[6789])
-TOOL_DEPENDS+=			python${PYTHON_VERSION_DEFAULT}-[0-9]*:../../lang/python${PYTHON_VERSION_DEFAULT}
-ALL_ENV+=			PYTHON3=${LOCALBASE}/bin/python${PYTHON_VERSION_DEFAULT:S/3/3./}
-.else
-TOOL_DEPENDS+=			python37-[0-9]*:../../lang/python37
-ALL_ENV+=			PYTHON3=${LOCALBASE}/bin/python3.7
-.endif
+ALL_ENV+=			PYTHON3=${PYTHONBIN}
 
 HAS_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 USE_TOOLS+=		pkg-config perl gmake autoconf213 gm4 unzip zip
 UNLIMIT_RESOURCES+=	datasize virtualsize
 
-# firefox needs a compiler that supports gnu++14 and gnu++17.
-# However, passing --std=gnu++17 (from wrappers, as a result of
-# USE_LANGUAGES), results in problems for some Rust modules (as of
-# 74.0).  Therefore, do not declare the languages that are actually
-# needed.
-# \todo In pkgsrc infrastructure, separate the concept of needing a
-# compiler that can implement a standard, and the concept of forcibly
-# adding a --std flag.  (The build system of a package should be
-# setting the --std flag that is needed, rather than relying on the
-# defaults of a particular compiler version.)
-# NB: Even when building firefox with PKGSRC_COMPILER=gcc, the package
-# will depend on and use clang, doing so outside the normal compiler
-# selection framework.
-USE_LANGUAGES+=		c99 c++
+USE_LANGUAGES+=		c c++
 
-TOOL_DEPENDS+=		cbindgen>=0.14.3:../../devel/cbindgen
+TOOL_DEPENDS+=		cbindgen>=0.15.0:../../devel/cbindgen
 .if ${MACHINE_ARCH} == "sparc64"
 CONFIGURE_ARGS+=	--disable-nodejs
 .else
 TOOL_DEPENDS+=		nodejs-[0-9]*:../../lang/nodejs
 .endif
 
-# Depend on Python3 sqlite3 module.
-.if !empty(PYTHON_VERSION_DEFAULT:M3[6789])
-BUILD_DEPENDS+=		py${PYTHON_VERSION_DEFAULT}-sqlite3-[0-9]*:../../databases/py-sqlite3
-BUILD_DEPENDS+=		py${PYTHON_VERSION_DEFAULT}-expat-[0-9]*:../../textproc/py-expat
-.else
-BUILD_DEPENDS+=		py37-sqlite3-[0-9]*:../../databases/py-sqlite3
-BUILD_DEPENDS+=		py37-expat-[0-9]*:../../textproc/py-expat
-.endif
+TOOL_DEPENDS+=		${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
+TOOL_DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
+
 .if ${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64"
 TOOL_DEPENDS+=		nasm>=2.14:../../devel/nasm
 TOOL_DEPENDS+=		yasm>=1.1:../../devel/yasm
@@ -73,9 +48,8 @@ test:
 TOOLS_PLATFORM.tar=	${TOOLS_PATH.bsdtar}
 USE_TOOLS+=		bsdtar
 .endif
+
 .if ${MACHINE_ARCH} == "i386"
-# Fix for PR pkg/48152.
-CXXFLAGS+=		-march=i586
 # This is required for SSE2 code under i386.
 CXXFLAGS+=		-mstackrealign
 .endif
@@ -141,12 +115,7 @@ OBJDIR=			../build
 CONFIGURE_DIRS=		${OBJDIR}
 CONFIGURE_SCRIPT=	${WRKSRC}/configure
 
-PLIST_VARS+=	sps vorbis tremor glskia throwwrapper mozglue ffvpx
-
-.include "../../mk/endian.mk"
-.if ${MACHINE_ENDIAN} == "little"
-PLIST.glskia=	yes
-.endif
+PLIST_VARS+=	ffvpx
 
 .if ${MACHINE_ARCH} == "aarch64" || \
     !empty(MACHINE_ARCH:M*arm*) || \
@@ -155,40 +124,9 @@ PLIST.glskia=	yes
 PLIST.ffvpx=	yes	# see media/ffvpx/ffvpxcommon.mozbuild
 .endif
 
-.if ${MACHINE_ARCH} != "sparc64"
-# For some reasons the configure test for GCC bug 26905 still triggers on
-# sparc64, which makes mozilla skip the installation of a few wrapper headers.
-# Other archs end up with one additional file in the SDK headers
-PLIST.throwwrapper=	yes
-.endif
-
-.if !empty(MACHINE_PLATFORM:S/i386/x86/:MLinux-*-x86*)
-PLIST.sps=	yes
-.endif
-
-.if !empty(MACHINE_PLATFORM:MLinux-*-arm*)
-PLIST.tremor=	yes
-.else
-PLIST.vorbis=	yes
-.endif
-
-# See ${WRKSRC}/mozglue/build/moz.build: libmozglue is built and
-# installed as a shared library on these platforms.
-.if ${OPSYS} == "Cygwin" || ${OPSYS} == "Darwin" # or Android
-PLIST.mozglue=	yes
-.endif
-
 # See ${WRKSRC}/security/sandbox/mac/Sandbox.mm: On Darwin, sandboxing
 # support is only available when the toolkit is cairo-cocoa.
 CONFIGURE_ARGS.Darwin+=	--disable-sandbox
-
-# See ${WRKSRC}/configure.in: It tries to use MacOS X 10.6 SDK by
-# default, which is not always possible.
-.if !empty(MACHINE_PLATFORM:MDarwin-8.*-*)
-CONFIGURE_ARGS+=	--enable-macos-target=10.4
-.elif !empty(MACHINE_PLATFORM:MDarwin-9.*-*)
-CONFIGURE_ARGS+=	--enable-macos-target=10.5
-.endif
 
 # Makefiles sometimes call "rm -f" without more arguments. Kludge around ...
 .PHONY: create-rm-wrapper
@@ -198,32 +136,32 @@ create-rm-wrapper:
 	  ${WRAPPER_DIR}/bin/rm
 	chmod +x ${WRAPPER_DIR}/bin/rm
 
+.PHONY: fix-clang-wrapper
+pre-configure: fix-clang-wrapper
+fix-clang-wrapper:
+.if empty(PKGSRC_COMPILER:M*clang*)
+# Firefox requires Clang during the build, even when building with GCC.
+# XXX: When using GCC, pkgsrc provides 'clang' wrappers that are actually gcc.
+# This breaks the build.
+	${LN} -sf ${PREFIX}/bin/clang ${WRKDIR}/.cwrapper/bin/clang
+	${LN} -sf ${PREFIX}/bin/clang++ ${WRKDIR}/.cwrapper/bin/clang++
+	${LN} -sf ${PREFIX}/bin/clang-cpp ${WRKDIR}/.cwrapper/bin/clang-cpp
+.endif
+
 # The configure test for __thread succeeds, but later we end up with:
 # dist/bin/libxul.so: undefined reference to `__tls_get_addr'
 CONFIGURE_ENV.NetBSD+=	ac_cv_thread_keyword=no
 # In unspecified case, clock_gettime(CLOCK_MONOTONIC, ...) fails.
 CONFIGURE_ENV.NetBSD+=	ac_cv_clock_monotonic=
 
-.if ${OPSYS} == "OpenBSD"
-PLIST_SUBST+=	DLL_SUFFIX=".so.1.0"
-.elif ${OPSYS} == "Darwin"
-PLIST_SUBST+=	DLL_SUFFIX=".dylib"
-.else
-PLIST_SUBST+=	DLL_SUFFIX=".so"
-.endif
-
-# PR pkg/55456
-.if ${OPSYS} == "NetBSD" && ${MACHINE_ARCH} == "i386"
-.include "../../devel/libatomic/buildlink3.mk"
-CONFIGURE_ENV.NetBSD+=	ac_cv_needs_atomic=yes
-.endif
+.include "../../mk/atomic64.mk"
 BUILDLINK_API_DEPENDS.libevent+=	libevent>=1.1
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../devel/libffi/buildlink3.mk"
 BUILDLINK_API_DEPENDS.nspr+=	nspr>=4.26
 .include "../../devel/nspr/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
-BUILDLINK_API_DEPENDS.nss+=	nss>=3.56
+BUILDLINK_API_DEPENDS.nss+=	nss>=3.59.1
 .include "../../devel/nss/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 #.include "../../mk/jpeg.buildlink3.mk"
@@ -232,17 +170,6 @@ BUILDLINK_API_DEPENDS.nss+=	nss>=3.56
 #.include "../../graphics/cairo/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libwebp+=	libwebp>=1.0.2
 .include "../../graphics/libwebp/buildlink3.mk"
-# Force the use of clang from pkgsrc, regardless of the setting of
-# PKGSRC_COMPILER.
-# When being compiled with GCC, Firefox will still need Clang for
-# some purposes (why?)
-# \todo pkgsrc cwrappers creates symlinks which make GCC pretend to be clang.
-# this conflicts with Firefox's clang dependency, so currently GCC
-# cannot be used to build Firefox.
-# http://mail-index.netbsd.org/tech-pkg/2020/09/09/msg023783.html
-# \todo This breaks the use of ccache, which should be fixed
-PKG_CC=		${PREFIX}/bin/clang
-PKG_CXX=	${PREFIX}/bin/clang++
 BUILDLINK_DEPMETHOD.clang=	build
 .include "../../lang/clang/buildlink3.mk"
 .if !empty(MACHINE_PLATFORM:MNetBSD-8.*-*)

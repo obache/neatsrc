@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.1492 2020/10/08 22:36:54 leot Exp $
+# $NetBSD: Makefile,v 1.1499 2021/01/03 11:00:01 adam Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
 
 SUBDIR+=	R-RCurl
 SUBDIR+=	R-curl
+SUBDIR+=	R-diffviewer
 SUBDIR+=	R-gh
 SUBDIR+=	R-htmlwidgets
 SUBDIR+=	R-httpuv
@@ -190,6 +191,7 @@ SUBDIR+=	libproxy
 SUBDIR+=	libpsl
 SUBDIR+=	librest07
 SUBDIR+=	libsass
+SUBDIR+=	libwebsockets
 SUBDIR+=	libwww
 SUBDIR+=	liferea
 SUBDIR+=	lighttpd
@@ -605,6 +607,7 @@ SUBDIR+=	php-ja-wordpress
 SUBDIR+=	php-nextcloud
 SUBDIR+=	php-owncloud
 SUBDIR+=	php-phalcon
+SUBDIR+=	php-phalcon4
 SUBDIR+=	php-phrasea2
 SUBDIR+=	php-piwigo
 SUBDIR+=	php-propro
@@ -799,6 +802,7 @@ SUBDIR+=	py-python3-digest
 SUBDIR+=	py-pywebdav
 SUBDIR+=	py-raven
 SUBDIR+=	py-recaptcha
+SUBDIR+=	py-respx
 SUBDIR+=	py-rfc3986
 SUBDIR+=	py-robobrowser
 SUBDIR+=	py-rss2gen
@@ -998,6 +1002,7 @@ SUBDIR+=	trac
 SUBDIR+=	trac-plugins-AccountManager
 SUBDIR+=	trafficserver
 SUBDIR+=	tscrape
+SUBDIR+=	tuir
 SUBDIR+=	typo3_62
 SUBDIR+=	uhttpmock
 SUBDIR+=	urlget

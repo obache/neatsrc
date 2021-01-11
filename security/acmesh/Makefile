@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.7 2020/05/16 18:59:35 nia Exp $
+# $NetBSD: Makefile,v 1.9 2020/12/03 13:50:49 nia Exp $
 
-DISTNAME=	acme.sh-2.8.6
+DISTNAME=	acme.sh-2.8.8
 PKGNAME=	${DISTNAME:S/acme.sh/acmesh/}
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GITHUB:=acmesh-official/}
@@ -15,7 +15,6 @@ LICENSE=	gnu-gpl-v3
 USE_LANGUAGES=	# none
 
 DEPENDS+=	socat-[0-9]*:../../net/socat
-DEPENDS+=	mozilla-rootcerts-[0-9]*:../../security/mozilla-rootcerts
 DEPENDS+=	curl-[0-9]*:../../www/curl
 
 #NO_CONFIGURE=	yes

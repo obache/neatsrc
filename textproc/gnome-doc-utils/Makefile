@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.73 2020/06/02 08:24:50 adam Exp $
+# $NetBSD: Makefile,v 1.75 2020/12/04 20:45:44 nia Exp $
 
 DISTNAME=	gnome-doc-utils-0.20.10
-PKGREVISION=	5
+PKGREVISION=	7
 CATEGORIES=	textproc gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gnome-doc-utils/0.20/}
 EXTRACT_SUFX=	.tar.xz

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.php,v 1.4 2020/02/09 22:01:10 rillig Exp $
+# $NetBSD: Makefile.php,v 1.7 2021/01/02 10:04:10 taca Exp $
 # used by lang/php73/Makefile
 # used by www/ap-php/Makefile
 # used by www/php-fpm/Makefile
@@ -53,71 +53,7 @@ CONFIGURE_ARGS+=	--with-libxml-dir=${PREFIX}
 CONFIGURE_ARGS+=	--with-pcre-regex=${BUILDLINK_PREFIX.pcre2}
 GNU_CONFIGURE_STRICT=	no
 
-PKG_OPTIONS_VAR=	PKG_OPTIONS.${PHP_PKG_PREFIX}
-PKG_SUPPORTED_OPTIONS+=	inet6 ssl maintainer-zts readline argon2
-PKG_SUPPORTED_OPTIONS+=	disable-filter-url
-PKG_SUGGESTED_OPTIONS+=	inet6 ssl readline
-
-.if ${OPSYS} == "SunOS" || ${OPSYS} == "Darwin" || ${OPSYS} == "FreeBSD"
-PKG_SUPPORTED_OPTIONS+=	dtrace
-.endif
-
-.include "../../mk/bsd.options.mk"
-
-.if !empty(PKG_OPTIONS:Minet6)
-CONFIGURE_ARGS+=	--enable-ipv6
-.else
-CONFIGURE_ARGS+=	--disable-ipv6
-.endif
-
-.if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
-.  if ${OPSYS} == "SunOS"
-CONFIGURE_ARGS+=	--with-openssl=yes
-LIBS.SunOS+=		-lcrypto
-.  else
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
-.  endif
-.else
-CONFIGURE_ARGS+=	--without-openssl
-.endif
-
-.if !empty(PKG_OPTIONS:Mmaintainer-zts)
-CONFIGURE_ARGS+=	--enable-maintainer-zts
-.endif
-
-.if !empty(PKG_OPTIONS:Mreadline)
-USE_GNU_READLINE=	yes
-.include "../../mk/readline.buildlink3.mk"
-CONFIGURE_ARGS.readline+=	--with-readline=${BUILDLINK_PREFIX.readline}
-CONFIGURE_ARGS.readlinke+=	--without-libedit
-CONFIGURE_ENV.readline+=	READLINE_DIR=${BUILDLINK_DIR}
-CONFIGURE_ARGS.editline+=	--with-libedit=${BUILDLINK_PREFIX.editline}
-CONFIGURE_ARGS.editline+=	--without-readline
-CONFIGURE_ENV.editline+=	LIBEDIT_DIR=${BUILDLINK_DIR}
-CONFIGURE_ARGS+=	${CONFIGURE_ARGS.${READLINE_TYPE}}
-CONFIGURE_ENV+=		${CONFIGURE_ENV.${READLINE_TYPE}}
-.else
-CONFIGURE_ARGS+=	--without-readline
-CONFIGURE_ARGS+=	--without-libedit
-.endif
-
-.if !empty(PKG_OPTIONS:Mdtrace)
-PLIST.dtrace=		yes
-CONFIGURE_ARGS+=	--enable-dtrace
-
-# See https://bugs.php.net/bug.php?id=61268
-INSTALL_MAKE_FLAGS+=	-r
-.endif
-
-.if !empty(PKG_OPTIONS:Margon2)
-CONFIGURE_ARGS+=	--with-password-argon2=${BUILDLINK_PREFIX.argon2}
-.include "../../security/argon2/buildlink3.mk"
-.endif
-
-.if !empty(PKG_OPTIONS:Mdisable-filter-url)
-CFLAGS+=		-DDISABLE_FILTER_URL
-.endif
+.include "options.mk"
 
 DL_AUTO_VARS=		yes
 .include "../../mk/dlopen.buildlink3.mk"

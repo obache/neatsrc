@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.26 2020/08/31 18:11:21 wiz Exp $
+# $NetBSD: Makefile,v 1.30 2020/12/04 04:56:13 riastradh Exp $
 
-DISTNAME=	polkit-0.116
-PKGREVISION=	4
+DISTNAME=	polkit-0.118
+PKGREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/
 
@@ -73,7 +73,7 @@ SUBST_FILES.paths+=	src/examples/org.freedesktop.policykit.examples.pkexec.polic
 SUBST_SED.paths+=	-e 's,/usr/bin/,${PREFIX}/bin/,g'
 
 
-.include "../../lang/mozjs60/buildlink3.mk"
+.include "../../lang/mozjs78/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"

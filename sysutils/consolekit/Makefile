@@ -1,23 +1,21 @@
-# $NetBSD: Makefile,v 1.45 2020/08/31 18:11:26 wiz Exp $
+# $NetBSD: Makefile,v 1.48 2021/01/02 15:48:39 wiz Exp $
 
-CONSOLEKIT_VER=	1.2.1
-PKGREVISION=	5
+CONSOLEKIT_VER=	1.2.2
 DISTNAME=	ConsoleKit2-${CONSOLEKIT_VER}
 PKGNAME=	consolekit-${CONSOLEKIT_VER}
 CATEGORIES=	sysutils
-GITHUB_RELEASE=	${CONSOLEKIT_VER}
+GITHUB_TAG=	${CONSOLEKIT_VER}
 GITHUB_PROJECT=	ConsoleKit2
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ConsoleKit2/}
-EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	youri@NetBSD.org
-HOMEPAGE=	https://github.com/ConsoleKit2/ConsoleKit2/
+HOMEPAGE=	https://github.com/ConsoleKit2/ConsoleKit2
 COMMENT=	Framework for defining and tracking users, login sessions, and seats
 LICENSE=	gnu-gpl-v2
 
 MESSAGE_SUBST+=	PREFIX=${PREFIX}
 
-BUILD_DEFS+=	VARBASE 	\
+BUILD_DEFS+=	VARBASE \
 		PKG_SYSCONFBASE
 
 EGDIR=			${PREFIX}/share/examples/consolekit
@@ -42,17 +40,18 @@ CONF_FILES+=	${EGDIR}/ConsoleKit/seats.d/00-primary.seat		\
 		${PKG_SYSCONFBASE}/X11/xinit/xinitrc.d/90-consolekit
 
 GNU_CONFIGURE=	YES
-USE_TOOLS+=	gmake intltool msgfmt perl pkg-config automake
+USE_TOOLS+=	gmake intltool msgfmt perl pkg-config
+USE_TOOLS+=	autoconf automake autoreconf autopoint
 USE_LIBTOOL=	YES
 
 PKGCONFIG_OVERRIDE+=	libconsolekit/libconsolekit.pc.in
 PKGCONFIG_OVERRIDE+=	libck-connector/ck-connector.pc.in
 
-CONFIGURE_ARGS+=--sysconfdir=${PKG_SYSCONFBASE}			\
-		--localstatedir=${VARBASE}			\
-		--disable-pam-module
-		#--enable-pam-module				\
-		#--with-pam-module-dir=${PREFIX}/lib/security	\
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE}			\
+			--localstatedir=${VARBASE}			\
+			--disable-pam-module
+		#--enable-pam-module
+		#--with-pam-module-dir=${PREFIX}/lib/security
 
 CONFIGURE_ARGS.SunOS+=	--enable-rbac-shutdown=solaris.system.shutdown
 
@@ -66,6 +65,9 @@ post-install:
 	${DESTDIR}${RULESDIR}/50-shutdown.rules
 
 TOOL_DEPENDS+=		gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
+
+pre-configure:
+	cd ${WRKSRC} && NOCONFIGURE=1 ${SH} autogen.sh
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/polkit/buildlink3.mk"

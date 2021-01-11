@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.21 2020/08/17 20:17:17 leot Exp $
+# $NetBSD: buildlink3.mk,v 1.23 2021/01/01 08:24:35 ryoon Exp $
 
 BUILDLINK_TREE+=	ktp-common-internals
 
@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	ktp-common-internals
 KTP_COMMON_INTERNALS_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.ktp-common-internals+=	ktp-common-internals>=0.9.0
-BUILDLINK_ABI_DEPENDS.ktp-common-internals?=	ktp-common-internals>=0.9.0nb21
+BUILDLINK_ABI_DEPENDS.ktp-common-internals?=	ktp-common-internals>=0.9.0nb23
 BUILDLINK_PKGSRCDIR.ktp-common-internals?=	../../chat/ktp-common-internals
 
 .include "../../chat/telepathy-qt/buildlink3.mk"

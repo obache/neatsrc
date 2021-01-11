@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2020/07/10 10:11:02 plunky Exp $
+# $NetBSD: Makefile,v 1.9 2021/01/03 15:26:12 taca Exp $
 #
 
 MODNAME=		phalcon
@@ -25,6 +25,8 @@ DEPENDS+=		${PHP_PKG_PREFIX}-json>=5.6.0:../../textproc/php-json
 DEPENDS+=		${PHP_PKG_PREFIX}-mbstring>=5.6.0:../../converters/php-mbstring
 DEPENDS+=		${PHP_PKG_PREFIX}-pdo>=5.6.0:../../databases/php-pdo
 DEPENDS+=		${PHP_PKG_PREFIX}-pdo_mysql>=5.6.0:../../databases/php-pdo_mysql
+
+PHP_VERSIONS_ACCEPTED=	56
 
 .include "../../lang/php/phpversion.mk"
 

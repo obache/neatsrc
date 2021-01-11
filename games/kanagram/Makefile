@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.50 2020/08/18 17:57:51 leot Exp $
+# $NetBSD: Makefile,v 1.53 2021/01/01 09:52:24 ryoon Exp $
 
 DISTNAME=	kanagram-${KAPPSVER}
-PKGREVISION=	2
+PKGREVISION=	5
 CATEGORIES=	games
 
 HOMEPAGE=	https://kde.org/applications/education/kanagram/

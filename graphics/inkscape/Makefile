@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.218 2020/09/08 13:25:14 ryoon Exp $
+# $NetBSD: Makefile,v 1.224 2021/01/01 08:24:45 ryoon Exp $
 
 DISTNAME=	inkscape-1.0.1
+PKGREVISION=	4
 CATEGORIES=	graphics
 MASTER_SITES=	https://media.inkscape.org/dl/resources/file/
 EXTRACT_SUFX=	.tar.xz
@@ -111,4 +112,5 @@ BUILDLINK_API_DEPENDS.boehm-gc+=	boehm-gc>=7.4
 
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../lang/python/application.mk"
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

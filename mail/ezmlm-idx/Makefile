@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.56 2020/06/25 05:42:38 schmonz Exp $
+# $NetBSD: Makefile,v 1.58 2020/11/19 09:35:41 schmonz Exp $
 #
 
 DISTNAME=		ezmlm-idx-${IDXVERSION}
-PKGREVISION=		12
+PKGREVISION=		13
 CATEGORIES=		mail
 IDXVERSION=		7.2.2
 MASTER_SITES=		http://untroubled.org/ezmlm/archive/${IDXVERSION}/
@@ -19,7 +19,6 @@ DEPENDS+=		qmail>=1.03:../../mail/qmail
 PLIST_SRC=		${PKGDIR}/../../mail/ezmlm/PLIST ${PKGDIR}/PLIST
 PLIST_SRC+=		${WRKDIR}/PLIST.idxcf
 
-DJB_RESTRICTED=		no
 DJB_CONFIG_CMDS+=	${ECHO} ${DESTDIR:Q} > conf-destdir;		\
 			${ECHO} ${PREFIX:Q}/libexec/cgi-bin > conf-cgibin; \
 			${ECHO} ${EGDIR:Q} > conf-egdir;		\

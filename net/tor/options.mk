@@ -1,7 +1,7 @@
-# $NetBSD: options.mk,v 1.12 2020/06/14 15:33:28 nia Exp $
+# $NetBSD: options.mk,v 1.14 2020/11/16 08:25:40 wiz Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.tor
-PKG_SUPPORTED_OPTIONS=	doc rust
+PKG_SUPPORTED_OPTIONS=	doc # rust
 PKG_SUGGESTED_OPTIONS+=	doc
 
 .include "../../mk/bsd.options.mk"
@@ -23,6 +23,9 @@ CONFIGURE_ARGS+=	--disable-asciidoc
 
 ### This enables building tor with rust as per
 ### https://trac.torproject.org/projects/tor/wiki/RustInTor
+### XXX:
+### As of 0.4.4.6 I am not sure how this is supposed to work.
+### https://gitlab.torproject.org/tpo/core/tor/-/issues/40191
 .if !empty(PKG_OPTIONS:Mrust)
 CONFIGURE_ENV+=		TOR_RUST_DEPENDENCIES=${WRKDIR}/vendor
 CONFIGURE_ARGS+=	--enable-rust

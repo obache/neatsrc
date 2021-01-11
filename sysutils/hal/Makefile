@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.91 2020/08/31 18:11:27 wiz Exp $
+# $NetBSD: Makefile,v 1.95 2021/01/08 12:37:09 mef Exp $
 
 DISTNAME=		hal-0.5.14
-PKGREVISION=		24
+PKGREVISION=		25
 CATEGORIES=		sysutils
 MASTER_SITES=		http://hal.freedesktop.org/releases/
 EXTRACT_SUFX=		.tar.bz2
@@ -125,6 +125,8 @@ post-extract:
 pre-configure:
 	cd ${WRKSRC} && autoreconf -vi ${AUTORECONF_ARGS}
 
+.include "../../textproc/gtk-doc/buildlink3.mk"
+.include "../../devel/libblkid/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../misc/usbids/buildlink3.mk"
 .include "../../security/policykit/buildlink3.mk"

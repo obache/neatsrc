@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.132 2020/08/31 18:10:37 wiz Exp $
+# $NetBSD: Makefile,v 1.135 2020/11/06 08:52:40 wiz Exp $
 
-PKGREVISION= 1
+PKGREVISION= 2
 .include "Makefile.common"
 CATEGORIES=	net
 
@@ -106,6 +106,7 @@ CFLAGS.Darwin+=		-framework IOKit
 REQD_DIRS=	${PREFIX}/share/snmp
 RCD_SCRIPTS=	snmpd snmptrapd
 SMF_NAME=	snmp
+SMF_INSTANCES=	default snmptrapd
 
 USE_TOOLS+=		sh:run
 REPLACE_SH+=		local/mib2c-update
@@ -138,6 +139,7 @@ post-install:
 		${DESTDIR}${PREFIX}/share/snmp/
 
 .include "../../mk/curses.buildlink3.mk"
+.include "../../devel/pcre/buildlink3.mk"
 .include "../../net/libpcap/buildlink3.mk"
 .include "../../security/tcp_wrappers/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

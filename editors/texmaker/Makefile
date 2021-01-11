@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.115 2020/08/18 17:57:44 leot Exp $
+# $NetBSD: Makefile,v 1.118 2021/01/01 09:52:22 ryoon Exp $
 
-DISTNAME=	texmaker-5.0.3
-PKGREVISION=	9
+DISTNAME=	texmaker-5.0.4
+PKGREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	http://www.xm1math.net/texmaker/
 EXTRACT_SUFX=	.tar.bz2
@@ -33,11 +33,10 @@ pre-configure:
 	${CP} ${FILESDIR}/fgas_stdfontmgr_x11fonts.inc \
 		${WRKSRC}/pdfium/xfa/fgas/font
 
-.include "options.mk"
-
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../textproc/hunspell/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
+.include "../../x11/qt5-qtscript/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

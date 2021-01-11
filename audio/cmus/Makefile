@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.87 2020/08/18 17:57:34 leot Exp $
+# $NetBSD: Makefile,v 1.92 2021/01/01 09:52:15 ryoon Exp $
 
 DISTNAME=		cmus-2.8.0
-PKGREVISION=		6
+PKGREVISION=		9
 CATEGORIES=		audio
 MASTER_SITES=		${MASTER_SITE_GITHUB:=cmus/}
 GITHUB_TAG=		v${PKGVERSION_NOREV}
@@ -47,15 +47,8 @@ CONFIGURE_ARGS+=	CONFIG_SUN=n
 PLIST.coreaudio=	yes
 .endif
 
-.if ${MACHINE_ARCH} == "i386"
-# 64 bit atomic ops are required
-CFLAGS+=	-march=i586
-.endif
-
-NOT_PAX_MPROTECT_SAFE+=	bin/cmus
-
 .include "options.mk"
-
+.include "../../mk/atomic64.mk"
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/ncursesw/buildlink3.mk"

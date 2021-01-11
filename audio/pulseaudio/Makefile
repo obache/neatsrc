@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.148 2020/08/31 18:06:36 wiz Exp $
+# $NetBSD: Makefile,v 1.153 2021/01/04 22:34:54 wiz Exp $
 
-DISTNAME=	pulseaudio-13.0
-PKGREVISION=	7
+DISTNAME=	pulseaudio-14.0
 CATEGORIES=	audio
 MASTER_SITES=	https://freedesktop.org/software/pulseaudio/releases/
 EXTRACT_SUFX=	.tar.xz
@@ -70,7 +69,7 @@ CONFIGURE_ARGS+=	--disable-neon-opt
 .include "../../devel/libatomic_ops/buildlink3.mk"
 .endif
 
-PLIST_SUBST+=		PULSELIBVER=13.0
+PLIST_SUBST+=		PULSELIBVER=14.0
 PLIST_VARS+=		alsa bonjour coreaudio evdev oss sun
 
 # Build module-mmkbd-evdev.so under Linux

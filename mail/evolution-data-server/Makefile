@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.193 2020/08/31 18:09:55 wiz Exp $
+# $NetBSD: Makefile,v 1.197 2020/11/08 00:56:53 mef Exp $
 
 DISTNAME=	evolution-data-server-3.35.1
-PKGREVISION=	10
+PKGREVISION=	12
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/evolution-data-server/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -21,9 +21,10 @@ GCC_REQD+=	5
 
 TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 
-CMAKE_ARGS+=	-DENABLE_GOA=OFF
 CMAKE_ARGS+=	-DWITH_LIBDB=OFF
+CMAKE_ARGS+=	-DENABLE_GOA=OFF
 CMAKE_ARGS+=	-DENABLE_WEATHER=OFF
+CMAKE_ARGS+=	-DENABLE_OAUTH2=OFF
 
 CFLAGS.NetBSD+=	-D_NETBSD_SOURCE
 
@@ -52,15 +53,15 @@ GETTEXT_TOOLS_REQD=	0.18.3
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/nspr/buildlink3.mk"
 .include "../../devel/nss/buildlink3.mk"
+.include "../../devel/gperf/buildlink3.mk"
 .include "../../net/libgdata/buildlink3.mk"
 .include "../../net/libsoup/buildlink3.mk"
 .include "../../security/gcr/buildlink3.mk"
 .include "../../sysutils/gsettings-desktop-schemas/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
-.include "../../textproc/json-glib/buildlink3.mk"
+.include "../../security/libsecret/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../time/libical/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
-.include "../../www/webkit-gtk/buildlink3.mk"
 .include "../../mk/krb5.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

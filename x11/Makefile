@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.909 2020/10/30 14:22:28 nia Exp $
+# $NetBSD: Makefile,v 1.914 2020/12/11 17:43:18 wiz Exp $
 #
 
 COMMENT=	Packages to support the X window system
@@ -68,6 +68,8 @@ SUBDIR+=	gdm
 SUBDIR+=	ggiterm
 SUBDIR+=	gnome-desktop
 SUBDIR+=	gnome-desktop3
+SUBDIR+=	gnome-session
+SUBDIR+=	gnome-shell
 SUBDIR+=	gnome-terminal
 SUBDIR+=	gnome-themes
 SUBDIR+=	gnome-themes-extras
@@ -195,6 +197,7 @@ SUBDIR+=	kwidgetsaddons
 SUBDIR+=	kwindowsystem
 SUBDIR+=	kxmlgui
 SUBDIR+=	labltk
+SUBDIR+=	lemonbar
 SUBDIR+=	lesstif
 SUBDIR+=	libFS
 SUBDIR+=	libICE
@@ -342,7 +345,6 @@ SUBDIR+=	py-wxWidgets
 SUBDIR+=	py-xcbgen
 SUBDIR+=	qqc2-desktop-style
 SUBDIR+=	qt4
-SUBDIR+=	qt4-creator
 SUBDIR+=	qt4-docs
 SUBDIR+=	qt4-libs
 SUBDIR+=	qt4-mng
@@ -436,6 +438,7 @@ SUBDIR+=	tktable
 SUBDIR+=	transset
 SUBDIR+=	tzosdclock
 SUBDIR+=	unclutter
+SUBDIR+=	unibar
 SUBDIR+=	unicode-screensaver
 SUBDIR+=	viewres
 SUBDIR+=	vte

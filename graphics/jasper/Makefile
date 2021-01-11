@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.57 2020/09/29 16:50:15 adam Exp $
+# $NetBSD: Makefile,v 1.60 2021/01/06 12:22:52 adam Exp $
 
-DISTNAME=	jasper-2.0.21
+DISTNAME=	jasper-2.0.24
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=jasper-software/}
 GITHUB_TAG=	version-${PKGVERSION_NOREV}
 
 MAINTAINER=	adam@NetBSD.org
-HOMEPAGE=	http://www.ece.uvic.ca/~mdadams/jasper/
+HOMEPAGE=	https://jasper-software.github.io/jasper/
 COMMENT=	Software-based reference implementation of the JPEG-2000 codec
 LICENSE=	modified-bsd
 

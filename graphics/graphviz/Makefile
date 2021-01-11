@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.222 2020/09/02 03:23:10 gutteridge Exp $
+# $NetBSD: Makefile,v 1.226 2020/12/04 04:55:57 riastradh Exp $
 
 DISTNAME=	graphviz-2.44.1
-PKGREVISION=	3
+PKGREVISION=	6
 CATEGORIES=	graphics
 MASTER_SITES=	https://www2.graphviz.org/Packages/stable/portable_source/
 
@@ -37,6 +37,7 @@ CONFIGURE_ARGS+=	--without-qt
 CONFIGURE_ENV+=		ac_cv_prog_PHP=
 CONFIGURE_ENV+=		ac_cv_prog_RUBY=
 CPPFLAGS+=		-DNO_POSTSCRIPT_ALIAS=1
+
 PKGCONFIG_OVERRIDE+=	lib/cdt/libcdt.pc.in
 PKGCONFIG_OVERRIDE+=	lib/cgraph/libcgraph.pc.in
 PKGCONFIG_OVERRIDE+=	lib/edgepaint/liblab_gamut.pc.in
@@ -62,9 +63,20 @@ REPLACE_FILES.tclsh=	tclpkg/gv/demo/modgraph.tcl
 REPLACE_PERL+=		tclpkg/gv/demo/modgraph.pl contrib/dotmcl.pl \
 			contrib/dirgraph/dirgraph.pl
 
+.include "../../mk/bsd.prefs.mk"
+
 .include "../../mk/compiler.mk"
 .if !empty(CC_VERSION:Mgcc-2*)
 BUILDLINK_TRANSFORM+=	rm:-Wno-unused-parameter
+.endif
+
+.if ${OPSYS} == "FreeBSD"
+SUBST_CLASSES+=		sfflags
+SUBST_STAGE.sfflags=	pre-configure
+SUBST_MESSAGE.sfflags=	Fixing SF_FLAGS identifier for FreeBSD.
+SUBST_FILES.sfflags=	lib/sfio/sfclrlock.c lib/sfio/sfio_t.h lib/sfio/sfio.h
+SUBST_FILES.sfflags+=	lib/sfio/sfnew.c lib/sfio/sfopen.c lib/sfio/sfset.c
+SUBST_SED.sfflags=	-e 's|SF_FLAGS|SFIO_FLAGS|g'
 .endif
 
 # Prevent another config.status run.

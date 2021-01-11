@@ -67,6 +67,7 @@ bind-xml-statistics-server	Enable building in the statistics server with XML out
 bittorrent		Enable bittorrent support.
 blacklist		Enable blacklist support.
 blender-exppython	Enable the Experimental Python support.
+blocklist		Enable blocklist support.
 bluray			Enable libbluray support.
 boehm-gc		Use Boehm's garbage collector for memory allocation.
 bozohttpd-do-htpasswd	Enable .htpasswd file processing in bozohttpd.
@@ -164,6 +165,7 @@ dvdcss			Enable CSS support for DVDs.
 dvdnav			Enable libdvdnav support to navigate DVDs.
 dvdread			Enable reproduction of DVDs.
 dvi			Enable device independent file format (mostly TeX) support.
+dynamic-arch		Auto-detect CPU features at runtime
 eaccelerator-disassembler	Include disassembler.
 eaccelerator-doc-comment-inclusion	Retain doc-comments in internal php structures.
 eai			Enable EAI (Email Address Internationalization) support.
@@ -219,8 +221,8 @@ ffmpeg			Enable ffmpeg support.
 ffmpegthumbnailer	Enable ffmpeg thumbnailing support.
 fftw			Use the fftw library for Discrete Fourier Transforms.
 fftw-fortran		Enable Fortran support.
-filter-design		Adding filter_design capability.
 fido			Enable U2F/FIDO/FIDO2/WebAuthn support.
+filter-design		Adding filter_design capability.
 finger			Enable finger support.
 flac			Enable FLAC support.
 flambda			Enable Flambda optimisation passes
@@ -557,6 +559,7 @@ mozilla-single-profile	Enable single profiles on mozilla browsers.
 mp3tunes		Enable support for mp3tunes.com.
 mp4v2			Enable MP4 support using mp4v2.
 mpcdec			Enable Musepack decoder library support.
+mpcenc			Enable Musepack encoder library support.
 mpeg3			Enable libmpeg3 MPEG decoding library support.
 mpg123			Enable MP3 support using mpg123.
 mpg123-altivec		Enable altivec optimized dithering code.
@@ -631,6 +634,8 @@ opengrok-build		Enable building of OpenGrok from source.
 openldap		Enable OpenLDAP support.
 openmpi-vampirtrace	Build VampirTrace as part of OpenMPI.
 openssl			Enable OpenSSL support.
+opentracker-ipv6-only	Enable IPv6 mode for opentracker (disables IPv4).
+opentracker-restrictions	Enable support for whitelisting and restrict statistics in opentracker.
 opus			Enable opus support.
 oracle			Enable Oracle support.
 osmesa			Enable off-screen rendering.
@@ -712,6 +717,7 @@ rtree			Enable R-tree support.
 ruby			Enable Ruby support.
 ruby-build-ri-db	Build and install database for Ruby's ri utility.
 rust			Enable Rust support.
+rust-cargo-static	Build cargo semi-statically with built-in curl+openssl
 rust-llvm		Use Rust internal LLVM in builds.
 samba			Enable Samba file and print services support.
 samplerate		Enable libsamplerate support.
@@ -875,6 +881,7 @@ via-padlock		Enable support for the VIA PadLock Security Engine.
 vice-cpuhistory		Enable the 65xx cpu history feature.
 vice-ethernet		Enable Ethernet cartridge support.
 vice-fullscreen		Enable full-screen support.
+vice-headless		Choose the headless (no GUI) build.
 vice-hwscaling		Enable hardware-assisted screen scaling.
 vice-x64		Enable building of the old x64 emulator.
 vidix			Enable VIDIX (Video Interface for *niX support).

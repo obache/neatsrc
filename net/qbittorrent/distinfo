@@ -1,9 +1,10 @@
-$NetBSD: distinfo,v 1.6 2020/04/27 08:17:11 adam Exp $
+$NetBSD: distinfo,v 1.9 2021/01/06 14:27:45 adam Exp $
 
-SHA1 (qbittorrent-4.2.5.tar.gz) = 18b0c2b9a6ff990de2df9435b9dc86bb2ebe9190
-RMD160 (qbittorrent-4.2.5.tar.gz) = 70d965db06a41f50b719b33e5bfc89aab8da29a3
-SHA512 (qbittorrent-4.2.5.tar.gz) = 8808029bdb3a1638fcf792e92c36bd39889dbc2ceb26c8d45ff17b086bd076f0b3a8ed78dd6a1e3debd32e5b0ce212eea194ec601210ae29093cfb567eb4ca0f
-Size (qbittorrent-4.2.5.tar.gz) = 7961612 bytes
-SHA1 (patch-dist_CMakeLists.txt) = 5233c8c8bcbe522e07cbed1c969283810b048be4
-SHA1 (patch-src_app_CMakeLists.txt) = 2266baa28b9f0397fe5f634e0404f252ced6b4f2
+SHA1 (qbittorrent-4.3.2.tar.gz) = 4eb631029c20bf691f3d4c51a55c7b68d35c3c33
+RMD160 (qbittorrent-4.3.2.tar.gz) = 79ad47db478662ca2d682c613bca8b9569f1a198
+SHA512 (qbittorrent-4.3.2.tar.gz) = 568cd961d97b4b3e2b654c121b6f696c4e1f222d61c0c622fef86eda4973ece7907745ff49ce78f65ff9a9e1ac29b3dd24fd2427e840e38315f0d36e312cd56c
+Size (qbittorrent-4.3.2.tar.gz) = 7867572 bytes
+SHA1 (patch-dist_CMakeLists.txt) = 2c426222aa168c24a2e39a665f3152eca848e4a8
+SHA1 (patch-src_CMakeLists.txt) = 534447977b76939816a2549201e0fb9dd606b77d
+SHA1 (patch-src_app_CMakeLists.txt) = 3e9266cb05f635889c50ce75efc31b8365ccb41d
 SHA1 (patch-src_base_utils_fs.cpp) = 88355e2698f5298c597f2240e853238831eb7994

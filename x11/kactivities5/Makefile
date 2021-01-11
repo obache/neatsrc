@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.46 2020/08/18 17:57:32 leot Exp $
+# $NetBSD: Makefile,v 1.50 2021/01/01 09:52:13 ryoon Exp $
 
 DISTNAME=	kactivities-${KF5VER}
 PKGNAME=	kactivities5-${KF5VER}
-PKGREVISION=	2
+PKGREVISION=	6
 CATEGORIES=	x11
 
 HOMEPAGE=	https://community.kde.org/Frameworks

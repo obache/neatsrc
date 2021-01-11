@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.13 2020/10/31 12:20:45 mef Exp $
+$NetBSD: distinfo,v 1.15 2021/01/09 06:46:17 mef Exp $
 
-SHA1 (MoarVM-2020.10.tar.gz) = 7b2d26697f79970653c34a08dcb49d484a0fbfa0
-RMD160 (MoarVM-2020.10.tar.gz) = beaed2096cafa8e1953d4c0dafeb45d92a961db3
-SHA512 (MoarVM-2020.10.tar.gz) = 5251d564909313ca7a660d462370e899d415cbd0b493da189abde952d80992c3e04525b2d8ae5066c9c4ea2c99860e38f9a8beaee4ea0d53d9b32973104fa7d3
-Size (MoarVM-2020.10.tar.gz) = 5362845 bytes
+SHA1 (MoarVM-2020.12.tar.gz) = d0b09571ef66091a29dc6cc28177fb7ccdb326f7
+RMD160 (MoarVM-2020.12.tar.gz) = c7929d8953c02b2913f746b9f95436084a808ffe
+SHA512 (MoarVM-2020.12.tar.gz) = 2e95a3336f0b5687f525a5117daf6cd62da6c59fd6d96d508637a30ca5a0bc7a86a35bb21f09f29068e2ec940b859944838eec4c4a2412a3f3bf8320c3d9cfd5
+Size (MoarVM-2020.12.tar.gz) = 5429137 bytes
 SHA1 (patch-build_setup.pm) = fd53d47bd3126b2c89d4e8d82c6bc0b6db5f4fdf

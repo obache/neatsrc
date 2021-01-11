@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.579 2020/10/10 20:19:47 adam Exp $
+# $NetBSD: Makefile,v 1.587 2021/01/03 15:17:40 taca Exp $
 #
 
 COMMENT=	Programming languages
 
 SUBDIR+=	Cg-compiler
 SUBDIR+=	LuaJIT2
+SUBDIR+=	R-cpp11
 SUBDIR+=	R-sourcetools
 SUBDIR+=	STk
 SUBDIR+=	a60
@@ -51,6 +52,7 @@ SUBDIR+=	erlang
 SUBDIR+=	erlang-doc
 SUBDIR+=	erlang-luerl
 SUBDIR+=	erlang-man
+SUBDIR+=	execline
 SUBDIR+=	f2c
 SUBDIR+=	ficl
 SUBDIR+=	focal
@@ -103,6 +105,7 @@ SUBDIR+=	go-hcl
 SUBDIR+=	go110
 SUBDIR+=	go114
 SUBDIR+=	go115
+SUBDIR+=	go116
 SUBDIR+=	go14
 SUBDIR+=	go19
 SUBDIR+=	gpc
@@ -160,8 +163,7 @@ SUBDIR+=	mono
 SUBDIR+=	mono-basic
 SUBDIR+=	mono6
 SUBDIR+=	moscow_ml
-SUBDIR+=	mozjs60
-SUBDIR+=	mozjs68
+SUBDIR+=	mozjs78
 SUBDIR+=	mpd
 SUBDIR+=	nawk
 SUBDIR+=	neko
@@ -200,7 +202,6 @@ SUBDIR+=	perl5
 SUBDIR+=	pfe
 SUBDIR+=	pforth
 SUBDIR+=	php56
-SUBDIR+=	php72
 SUBDIR+=	php73
 SUBDIR+=	php74
 SUBDIR+=	picoc
@@ -282,7 +283,6 @@ SUBDIR+=	smlnj11072
 SUBDIR+=	snobol
 SUBDIR+=	spidermonkey
 SUBDIR+=	spidermonkey185
-SUBDIR+=	spidermonkey52
 SUBDIR+=	spl
 SUBDIR+=	squeak
 SUBDIR+=	squeak-vm

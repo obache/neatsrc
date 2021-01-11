@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.21 2020/09/30 15:51:32 tsutsui Exp $
+$NetBSD: distinfo,v 1.23 2021/01/09 17:43:10 tsutsui Exp $
 
-SHA1 (PC6001VX_3.5.3_src.tar.gz) = c13efa08d8728f0a8066ea19ebe5710528072d92
-RMD160 (PC6001VX_3.5.3_src.tar.gz) = 6be709e64459d4ef4b5ca1e7989b79623f08e548
-SHA512 (PC6001VX_3.5.3_src.tar.gz) = df2bf05b7472904bf22c5b81d500b4306b1c3498366fa81e9b1eac2c23fefe58e16466eb83be2935325f51aaf2c5f7d4b68c6dad855c1bc8a52fda35a9ce747a
-Size (PC6001VX_3.5.3_src.tar.gz) = 3848461 bytes
+SHA1 (PC6001VX_3.6.1_src.tar.gz) = 71343bff634234bb3c31c771cddb92ecea18d1c0
+RMD160 (PC6001VX_3.6.1_src.tar.gz) = 510e66659b440b09d255a04f512e319de76a74c6
+SHA512 (PC6001VX_3.6.1_src.tar.gz) = 92015dd3a61a2b8f97a94fdf2bc1270ffa63e63238f6db325d55cdd8aeb024ef4acdbb7bd66e865f9d7abd30f321de26d06d0074ecf1b0d318bbc56c18ba78b0
+Size (PC6001VX_3.6.1_src.tar.gz) = 3822838 bytes
 SHA1 (patch-src_p6el.cpp) = 0c93418283df1a81d39e66fac4e1a492846448ab

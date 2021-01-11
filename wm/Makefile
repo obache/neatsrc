@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.153 2020/10/11 08:56:37 nia Exp $
+# $NetBSD: Makefile,v 1.158 2021/01/04 14:52:58 nia Exp $
 #
 
 COMMENT=	X11 window managers, configuration tools, and themes
@@ -15,6 +15,7 @@ SUBDIR+=	bbkeys09
 SUBDIR+=	bbpager
 SUBDIR+=	bbpager04
 SUBDIR+=	bbrun
+SUBDIR+=	berry
 SUBDIR+=	blackbox
 SUBDIR+=	blackbox70
 SUBDIR+=	bmpanel2
@@ -58,8 +59,10 @@ SUBDIR+=	lwm
 SUBDIR+=	marco
 SUBDIR+=	matchbox-wm
 SUBDIR+=	mate-netbook
+SUBDIR+=	mcwm
 SUBDIR+=	mlvwm
 SUBDIR+=	musca
+SUBDIR+=	mutter
 SUBDIR+=	notion
 SUBDIR+=	novawm
 SUBDIR+=	obconf
@@ -82,6 +85,7 @@ SUBDIR+=	skippy
 SUBDIR+=	sowm
 SUBDIR+=	spectrwm
 SUBDIR+=	swc
+SUBDIR+=	tinywm
 SUBDIR+=	trayer
 SUBDIR+=	tvtwm
 SUBDIR+=	twm

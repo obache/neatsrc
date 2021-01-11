@@ -1,6 +1,9 @@
-# $NetBSD: Makefile,v 1.34 2020/10/20 09:56:52 adam Exp $
+# $NetBSD: Makefile,v 1.43 2021/01/04 09:57:18 adam Exp $
 
-DISTNAME=	prometheus-2.22.0
+# Important: UI has to be manually built. See instructions below.
+
+DISTNAME=	prometheus-2.23.0
+PKGREVISION=	2
 MASTER_SITES=	${MASTER_SITE_GITHUB:=prometheus/}
 CATEGORIES=	databases
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -9,6 +12,19 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://prometheus.io/
 COMMENT=	The Prometheus monitoring system and time series database
 LICENSE=	apache-2.0
+
+# To generate UI distfile, install devel/yarn, and:
+# tar zxf ${DISTNAME}${EXTRACT_SUFX}
+# cd web/ui/react-app
+# yarn --frozen-lockfile
+# env PUBLIC_URL=. yarn build
+# chmod -x build/favicon.ico build/manifest.json
+# mv build ../static/react
+# cd ../../../..
+# tar zcf ${DISTNAME}-react-ui.tar.gz ${DISTNAME}/web/ui/static/react
+REACT_UI_DIST=		${DISTNAME}-react-ui.tar.gz
+SITES.${REACT_UI_DIST}=	${MASTER_SITE_LOCAL}
+DISTFILES=		${DEFAULT_DISTFILES} ${REACT_UI_DIST}
 
 GO_DIST_BASE=	${DISTNAME}
 GO_SRCPATH=	github.com/prometheus/prometheus
@@ -38,7 +54,7 @@ EXAMPLE_FILES+=	consoles/index.html.example consoles/node-cpu.html \
 EXAMPLE_FILES+=	console_libraries/menu.lib console_libraries/prom.lib
 WEBUI_DIR=	${PREFIX}/share/prometheus
 
-INSTALLATION_DIRS+=	${PREFIX}/${EXAMPLE_DIR} ${WEBUI_DIR}
+INSTALLATION_DIRS+=	bin ${EXAMPLE_DIR} ${WEBUI_DIR}
 
 .for f in ${EXAMPLE_FILES}
 CONF_FILES+=	${EXAMPLE_DIR}/${f} ${PKG_SYSCONFDIR}/${f}
@@ -47,7 +63,9 @@ CONF_FILES+=	${EXAMPLE_DIR}/${f} ${PKG_SYSCONFDIR}/${f}
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/documentation/examples/prometheus.yml \
 		${DESTDIR}${PREFIX}/${EXAMPLE_DIR}
-	cd ${WRKDIR} && ${PAX} -rw bin ${DESTDIR}${PREFIX}
+.for f in prometheus promtool
+	${INSTALL_PROGRAM} ${WRKDIR}/bin/${f} ${DESTDIR}${PREFIX}/bin
+.endfor
 .for f in consoles console_libraries
 	cd ${WRKSRC} && ${PAX} -rw ${f} ${DESTDIR}${PREFIX}/${EXAMPLE_DIR}
 .endfor

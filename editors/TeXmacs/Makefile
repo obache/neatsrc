@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.140 2020/08/31 18:09:22 wiz Exp $
+# $NetBSD: Makefile,v 1.143 2020/12/04 20:45:14 nia Exp $
 #
 # changelog at http://www.texmacs.org/tmweb/about/changes.en.html
 
 DISTNAME=		TeXmacs-1.99.13-src
 PKGNAME=		${DISTNAME:S/-src//}
-PKGREVISION=		2
+PKGREVISION=		5
 CATEGORIES=		editors
 MASTER_SITES=		ftp://ftp.texmacs.org/pub/TeXmacs/tmftp/source/
 MASTER_SITES+=		http://www.texmacs.org/Download/ftp/tmftp/source/

@@ -1,7 +1,6 @@
-$NetBSD: distinfo,v 1.1 2020/09/29 12:22:35 nia Exp $
+$NetBSD: distinfo,v 1.3 2021/01/06 18:57:17 nia Exp $
 
-SHA1 (fvwm3-1.0.0.tar.gz) = 9de6c5fa5fa6abb2de479e4a1ecadd2afcc1e951
-RMD160 (fvwm3-1.0.0.tar.gz) = cbb0e4e937de294eb7b8bd4362b3eb96d3ed758d
-SHA512 (fvwm3-1.0.0.tar.gz) = 240f59c2c73b24fecd8a9fe342da196b691c3c041cd112d85a04ddb6869b09477465018e4f3957789cf6f7fead44800bd88e66d9d366e988d8e547b33dfac967
-Size (fvwm3-1.0.0.tar.gz) = 3799948 bytes
-SHA1 (patch-libs_safemalloc.h) = 505cb5a7fa4690cd1b9a12c7bac4ba0e244dc4e1
+SHA1 (fvwm3-1.0.2.tar.gz) = 3e98bce4718d9d3c1b292c211ec42896692a7399
+RMD160 (fvwm3-1.0.2.tar.gz) = 4a1e45dfe3664fd84714c29c8ad35ce1bd3de7a4
+SHA512 (fvwm3-1.0.2.tar.gz) = da495deb2a0833c790fbb1bed2eedf5b399134cae33f7494ee7124cf931ba138941c5cb0b595fd4ddf4a948e4d1e1da61e75b11ba58436dcc7fff37b0e6a070e
+Size (fvwm3-1.0.2.tar.gz) = 5449378 bytes

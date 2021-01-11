@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.134 2020/10/21 19:39:53 nia Exp $
+# $NetBSD: Makefile,v 1.136 2021/01/01 09:03:05 ryoon Exp $
 
-DISTNAME=	icu4c-67_1-src
+DISTNAME=	icu4c-68_2-src
 PKGNAME=	${DISTNAME:S/4c//:S/-src//:S/_/./g}
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=unicode-org/}
 EXTRACT_SUFX=	.tgz
 GITHUB_PROJECT=	icu
-GITHUB_RELEASE=	release-67-1
+GITHUB_RELEASE=	release-68-2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://site.icu-project.org/

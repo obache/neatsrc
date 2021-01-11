@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.22 2020/10/09 07:40:44 nia Exp $
+# $NetBSD: Makefile,v 1.27 2021/01/05 11:01:49 nia Exp $
 
-DISTNAME=	dosbox-x-0.83.6
+DISTNAME=	dosbox-x-0.83.8
+PKGREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=joncampbell123/}
 GITHUB_TAG=	dosbox-x-v${PKGVERSION_NOREV}
@@ -26,11 +27,19 @@ CONFIGURE_ARGS+=	--disable-sdltest
 CONFIGURE_ARGS+=	--disable-sdl
 CONFIGURE_ARGS+=	--enable-sdl2
 
-.if ${MACHINE_ARCH} != "i386" && ${MACHINE_ARCH} != "x86_64"
-CONFIGURE_ARGS+=	--disable-dynrec
-CONFIGURE_ARGS+=	--disable-unaligned-memory
-.else
+.include "../../mk/bsd.prefs.mk"
+
+.if ${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64"
 TOOL_DEPENDS+=		nasm>=2.14:../../devel/nasm
+.endif
+
+.if ${MACHINE_ARCH} != "i386" && \
+    ${MACHINE_ARCH} != "x86_64" && \
+    ${MACHINE_ARCH} != "aarch64" && \
+    ${MACHINE_ARCH} != "earmv6hf" && \
+    ${MACHINE_ARCH} != "earmv7hf"
+CONFIGURE_ARGS+=	--disable-dynamic-core
+.else
 # LOG: Setting execute permission on the code cache has failed
 NOT_PAX_MPROTECT_SAFE+=	bin/dosbox-x
 .endif
@@ -47,6 +56,10 @@ INSTALLATION_DIRS+=	share/pixmaps
 
 CHECK_PORTABILITY_SKIP+=	vs2015/sdl2/build-scripts/androidbuildlibs.sh
 CHECK_PORTABILITY_SKIP+=	vs2015/sdl2/build-scripts/iosbuild.sh
+CHECK_PORTABILITY_SKIP+=	make-flatpak-sdl2.sh
+CHECK_PORTABILITY_SKIP+=	make-flatpak.sh
+# [[ is used in an developer target that isn't useful for us
+CHECK_PORTABILITY_SKIP+=	Makefile.in Makefile.am
 
 BUILDLINK_TRANSFORM+=	rm:-Wno-int-to-void-pointer-cast
 BUILDLINK_TRANSFORM+=	rm:-Wno-address-of-packed-member
@@ -60,7 +73,7 @@ do-install:
 	    ${DESTDIR}${PREFIX}/share/dosbox-x
 	${INSTALL_DATA} ${WRKSRC}/contrib/icons/dosbox-x.png \
 	    ${DESTDIR}${PREFIX}/share/pixmaps/dosbox-x.png
-	${INSTALL_DATA} ${WRKSRC}/contrib/linux/dosbox-x.desktop \
+	${INSTALL_DATA} ${WRKSRC}/contrib/linux/com.dosbox_x.DOSBox-X.desktop \
 	    ${DESTDIR}${PREFIX}/share/applications
 	${INSTALL_DATA} ${WRKSRC}/CHANGELOG \
 	    ${DESTDIR}${PREFIX}/share/dosbox-x
@@ -70,6 +83,7 @@ do-install:
 .include "options.mk"
 .include "../../audio/fluidsynth/buildlink3.mk"
 .include "../../devel/SDL2/buildlink3.mk"
+.include "../../net/SDL2_net/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../net/libpcap/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"

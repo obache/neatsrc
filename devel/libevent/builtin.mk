@@ -1,4 +1,4 @@
-# $NetBSD: builtin.mk,v 1.20 2020/02/19 15:21:34 triaxx Exp $
+# $NetBSD: builtin.mk,v 1.21 2020/11/06 15:48:15 ryoon Exp $
 
 BUILTIN_PKG:=	libevent
 

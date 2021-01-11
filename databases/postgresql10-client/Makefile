@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2020/08/31 18:07:09 wiz Exp $
+# $NetBSD: Makefile,v 1.14 2020/12/04 04:55:42 riastradh Exp $
 
 PKGNAME=	${DISTNAME:S/-/10-client-/}
 PKGREVISION=	1
@@ -6,7 +6,7 @@ COMMENT=	PostgreSQL database client programs
 
 .include "../../databases/postgresql10/Makefile.common"
 
-USE_TOOLS+=		gzip tar
+USE_TOOLS+=		gzip msgfmt tar
 TOOLS_BROKEN+=		perl
 CONFIGURE_ARGS+=	--with-openssl
 CONFIGURE_ARGS+=	--with-zlib

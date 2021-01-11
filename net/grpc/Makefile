@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.33 2020/10/30 12:58:31 adam Exp $
+# $NetBSD: Makefile,v 1.35 2020/12/31 20:04:13 nia Exp $
 
-DISTNAME=	grpc-1.33.2
+DISTNAME=	grpc-1.34.0
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=grpc/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -25,14 +25,7 @@ CMAKE_ARGS+=	-DgRPC_RE2_PROVIDER=package
 CMAKE_ARGS+=	-DgRPC_SSL_PROVIDER=package
 CMAKE_ARGS+=	-DgRPC_ZLIB_PROVIDER=package
 
-.include "../../mk/bsd.prefs.mk"
-
-# 64 bit atomic ops are required
-.if ${MACHINE_ARCH} == "i386"
-CFLAGS+=		-march=i586
-CXXFLAGS+=		-march=i586
-.endif
-
+.include "../../mk/atomic64.mk"
 .include "../../benchmarks/google-benchmark/buildlink3.mk"
 .include "../../devel/abseil/buildlink3.mk"
 .include "../../devel/gflags/buildlink3.mk"

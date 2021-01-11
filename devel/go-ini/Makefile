@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.30 2020/10/15 13:08:19 bsiegert Exp $
+# $NetBSD: Makefile,v 1.32 2020/11/13 19:26:09 bsiegert Exp $
 
 GITHUB_TAG=	v1.19.1
 DISTNAME=	go-ini-${GITHUB_TAG:S/v//}
-PKGREVISION=	28
+PKGREVISION=	30
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=go-ini/}
 GITHUB_PROJECT=	ini

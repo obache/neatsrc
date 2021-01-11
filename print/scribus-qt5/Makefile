@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.3 2020/08/18 17:58:13 leot Exp $
+# $NetBSD: Makefile,v 1.10 2021/01/01 09:52:39 ryoon Exp $
 
 DISTNAME=	scribus-1.5.6pre20200611
-PKGREVISION=	2
+PKGREVISION=	8
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_GITHUB:=scribusproject/}
 GITHUB_PROJECT=	scribus
@@ -32,6 +32,7 @@ BUILDLINK_TRANSFORM.NetBSD+=	rm:-ldl
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"
 .include "../../fonts/harfbuzz/buildlink3.mk"
+.include "../../fonts/harfbuzz-icu/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.6 2020/02/26 15:59:05 nia Exp $
+# $NetBSD: Makefile,v 1.9 2020/12/31 20:04:11 nia Exp $
 #
 
-DISTNAME=	kyotocabinet-1.2.77
+DISTNAME=	kyotocabinet-1.2.78
 CATEGORIES=	databases
-MASTER_SITES=	https://fallabs.com/kyotocabinet/pkg/
+MASTER_SITES=	https://dbmx.net/kyotocabinet/pkg/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://fallabs.com/kyotocabinet/
+HOMEPAGE=	https://dbmx.net/kyotocabinet/
 COMMENT=	Straightforward implementation of DBM
 LICENSE=	gnu-gpl-v3
 
@@ -23,13 +23,5 @@ TEST_TARGET=	check
 
 PTHREAD_AUTO_VARS=	yes
 .include "../../mk/pthread.buildlink3.mk"
-
-.include "../../mk/bsd.prefs.mk"
-.include "../../mk/compiler.mk"
-# using GCC atomic functions only available with i586 in kcthread.cc
-.if !empty(CC_VERSION:Mgcc-*) && !empty(MACHINE_ARCH:Mi[34]86)
-GNU_ARCH.i386=		i586
-CFLAGS+=		-march=i586
-.endif
-
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

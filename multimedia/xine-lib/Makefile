@@ -1,6 +1,4 @@
-# $NetBSD: Makefile,v 1.165 2020/08/31 18:10:30 wiz Exp $
-
-PKGREVISION=	6
+# $NetBSD: Makefile,v 1.168 2020/12/18 23:33:06 nia Exp $
 
 .include "Makefile.common"
 
@@ -15,7 +13,17 @@ CONFIGURE_ARGS+=	--disable-real-codecs
 CONFIGURE_ARGS+=	--disable-mlib
 CONFIGURE_ARGS+=	--disable-vaapi
 CONFIGURE_ARGS+=	--disable-vidix
+CONFIGURE_ARGS+=	--disable-w32dll
 CONFIGURE_ARGS+=	--disable-xvmc
+
+.include "../../multimedia/libvdpau/available.mk"
+
+PLIST_VARS+=		vdpau
+.if ${VDPAU_AVAILABLE} == "yes"
+PLIST.vdpau=		yes
+CONFIGURE_ARGS+=	--enable-vdpau
+.  include "../../multimedia/libvdpau/buildlink3.mk"
+.endif
 
 CONFIGURE_ARGS+=	--without-dav1d
 CONFIGURE_ARGS+=	--without-esound
@@ -28,20 +36,6 @@ SUBST_SED.oss=		-e "s,/dev/dsp,${DEVOSSAUDIO},g"
 SUBST_SED.oss+=		-e "s,\"dsp\",\"audio\",g"
 .endif
 SUBST_MESSAGE.oss=	Fixing hardcoded audio device.
-
-SUBST_CLASSES+=		w32path
-SUBST_STAGE.w32path=	pre-configure
-SUBST_FILES.w32path=	src/libw32dll/common.c
-SUBST_SED.w32path=	-e "s,@W32PATH@,${PREFIX}/lib/win32,"
-SUBST_MESSAGE.w32path=	Fixing win32 dll path.
-
-# Needed to fix build problems under, at least, NetBSD/amd64.
-BUILDLINK_API_DEPENDS.libcdio+=	libcdio>=0.75
-
-PLIST_VARS+=	qtw32
-.if empty(MACHINE_PLATFORM:MDarwin-*-i386)
-PLIST.qtw32=	yes
-.endif
 
 .if ${OPSYS} == "SunOS"
 PLIST_VARS+=	oss

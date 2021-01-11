@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.4 2020/03/30 13:11:01 adam Exp $
+# $NetBSD: Makefile,v 1.6 2020/12/09 09:30:56 nia Exp $
 
-DISTNAME=	ujson-2.0.3
+DISTNAME=	ujson-4.0.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	textproc python
 MASTER_SITES=	${MASTER_SITE_PYPI:=u/ujson/}
@@ -13,6 +13,8 @@ LICENSE=	modified-bsd
 BUILD_DEPENDS+=	${PYPKGPREFIX}-setuptools_scm-[0-9]*:../../devel/py-setuptools_scm
 
 USE_LANGUAGES=	c c++
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

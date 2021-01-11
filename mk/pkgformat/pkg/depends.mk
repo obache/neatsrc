@@ -1,4 +1,4 @@
-# $NetBSD: depends.mk,v 1.11 2020/01/14 22:22:34 rillig Exp $
+# $NetBSD: depends.mk,v 1.12 2020/12/02 10:22:39 wiz Exp $
 
 # This command prints out the dependency patterns for all full (run-time)
 # dependencies of the package.
@@ -51,7 +51,6 @@ _REDUCE_RESOLVED_DEPENDS_CMD=${PKGSRC_SETENV} CAT=${CAT:Q}		\
 
 _pkgformat-show-depends: .PHONY
 	@case ${VARNAME:Q}"" in						\
-	ALL_DEPENDS)	${_REDUCE_DEPENDS_CMD} ${_ALL_DEPENDS:Q} ;;	\
 	BUILD_DEPENDS)	${_REDUCE_DEPENDS_CMD} ${BUILD_DEPENDS:Q} ;;	\
 	TEST_DEPENDS)	${_HOST_REDUCE_DEPENDS_CMD} ${TEST_DEPENDS:Q} ;;\
 	TOOL_DEPENDS)	${_HOST_REDUCE_DEPENDS_CMD} ${TOOL_DEPENDS:Q} ;;\
@@ -189,8 +188,12 @@ ${_RRDEPENDS_FILE}: ${_RDEPENDS_FILE}
 # _pkgformat-install-dependencies:
 #	Installs any missing dependencies.
 #
+# The ${TEST} at the beginning is for the default change for the
+# database directory from /var/db/pkg to ${PREFIX}/pkgdb in December 2020.
+#
 _pkgformat-install-dependencies: .PHONY ${_DEPENDS_FILE}
 	${RUN}								\
+	${TEST} -n "${PKG_DBDIR_ERROR}" && ${ERROR_MSG} ${PKG_DBDIR_ERROR:Q} && exit 1; \
 	exec 3<&0;							\
 	${CAT} ${_DEPENDS_FILE} | 					\
 	while read type pattern dir; do					\

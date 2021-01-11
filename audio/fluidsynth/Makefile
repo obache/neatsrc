@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.42 2020/10/03 10:26:06 nia Exp $
+# $NetBSD: Makefile,v 1.44 2021/01/01 09:52:15 ryoon Exp $
 
 DISTNAME=	fluidsynth-2.1.5
+PKGREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=FluidSynth/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -33,6 +34,9 @@ SUBST_FILES.oss+=	src/drivers/fluid_oss.c
 SUBST_SED.oss+=		-e "s,/dev/dsp,${DEVOSSAUDIO},g"
 SUBST_SED.oss+=		-e "s,/dev/midi,${DEVOSSMIDI},g"
 .endif
+
+# mlock on SunOS has a caddr_t argument rather than void *
+BUILDLINK_TRANSFORM+=	rm:-Werror=incompatible-pointer-types
 
 .include "options.mk"
 .include "../../audio/libsndfile/buildlink3.mk"

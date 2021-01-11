@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.66 2020/08/29 09:17:48 nia Exp $
+@comment $NetBSD: PLIST,v 1.68 2020/12/31 09:59:34 nia Exp $
 @pkgdir share/vlc/http/dialogs
 @pkgdir share/vlc/http/images
 @pkgdir share/vlc/http/js
@@ -196,6 +196,9 @@ lib/vlc/plugins/access_output/libaccess_output_http_plugin.la
 lib/vlc/plugins/access_output/libaccess_output_livehttp_plugin.la
 ${PLIST.qt5}lib/vlc/plugins/access_output/libaccess_output_shout_plugin.la
 lib/vlc/plugins/access_output/libaccess_output_udp_plugin.la
+${PLIST.neon}lib/vlc/plugins/arm_neon/libchroma_yuv_neon_plugin.la
+${PLIST.neon}lib/vlc/plugins/arm_neon/libvolume_neon_plugin.la
+${PLIST.neon}lib/vlc/plugins/arm_neon/libyuv_rgb_neon_plugin.la
 lib/vlc/plugins/audio_filter/libaudio_format_plugin.la
 lib/vlc/plugins/audio_filter/libaudiobargraph_a_plugin.la
 lib/vlc/plugins/audio_filter/libchorus_flanger_plugin.la
@@ -430,6 +433,7 @@ lib/vlc/plugins/video_chroma/libi420_nv12_plugin.la
 ${PLIST.x86simd}lib/vlc/plugins/video_chroma/libi420_rgb_mmx_plugin.la
 lib/vlc/plugins/video_chroma/libi420_rgb_plugin.la
 ${PLIST.x86simd}lib/vlc/plugins/video_chroma/libi420_rgb_sse2_plugin.la
+${PLIST.altivec}lib/vlc/plugins/video_chroma/libi420_yuy2_altivec_plugin.la
 ${PLIST.x86simd}lib/vlc/plugins/video_chroma/libi420_yuy2_mmx_plugin.la
 lib/vlc/plugins/video_chroma/libi420_yuy2_plugin.la
 ${PLIST.x86simd}lib/vlc/plugins/video_chroma/libi420_yuy2_sse2_plugin.la

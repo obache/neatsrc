@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.3 2020/08/17 20:19:55 leot Exp $
+# $NetBSD: Makefile,v 1.5 2020/11/21 09:34:57 wiz Exp $
 
 DISTNAME=	lumina-pdf-1.6.0
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_GITHUB:=lumina-desktop/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}

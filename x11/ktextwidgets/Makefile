@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.31 2020/08/18 17:57:32 leot Exp $
+# $NetBSD: Makefile,v 1.34 2021/01/01 09:52:13 ryoon Exp $
 
 DISTNAME=	ktextwidgets-${KF5VER}
-PKGREVISION=	2
+PKGREVISION=	5
 CATEGORIES=	x11
 
 HOMEPAGE=	https://community.kde.org/Frameworks

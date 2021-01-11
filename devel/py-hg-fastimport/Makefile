@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.11 2019/11/03 10:18:28 rillig Exp $
+# $NetBSD: Makefile,v 1.13 2021/01/09 15:30:03 roy Exp $
 
 DISTNAME=	danielj7-hg-fastimport-d41a42894dfa
 PKGNAME=	${PYPKGPREFIX}-hg-fastimport-20170211
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	-https://bitbucket.org/danielj7/hg-fastimport/get/v20170211.tar.bz2
 EXTRACT_SUFX=	.tar.bz2
@@ -19,7 +19,7 @@ USE_LANGUAGES=	# none
 
 INSTALLATION_DIRS+=	${PYSITELIB}/hgfastimport share/doc/py-hg-fastimport
 
-PYTHON_VERSIONS_ACCEPTED=	27 # py-mercurial
+PYTHON_VERSIONS_ACCEPTED=	27
 PY_PATCHPLIST=			yes
 
 do-build:

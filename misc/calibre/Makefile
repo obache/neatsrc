@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.242 2020/10/13 12:16:38 schmonz Exp $
+# $NetBSD: Makefile,v 1.246 2020/12/04 20:45:29 nia Exp $
 
 DISTNAME=	calibre-3.40.1
-PKGREVISION=	19
+PKGREVISION=	23
 CATEGORIES=	misc
 #MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=calibre/}
 MASTER_SITES=	http://download.calibre-ebook.com/${PKGVERSION_NOREV}/
@@ -42,7 +42,7 @@ EXTRACT_USING=	bsdtar
 
 PYTHON_VERSIONS_ACCEPTED=	27 # as of 3.16.0
 
-USE_LANGUAGES=			c c++
+USE_LANGUAGES=			c99 c++
 USE_LIBTOOL=			yes
 USE_TOOLS+=			pkg-config pax
 PYSETUPOPTARGS=			# empty
@@ -128,7 +128,6 @@ _PYSETUPTOOLSINSTALLARGS=	# empty
 # Get rid of --root=${DESTDIR}, use our own version from above instead.
 # because the setup.py is not the standard one and behaves differently.
 _PYSETUPINSTALLARGS=	${PYSETUPINSTALLARGS} ${PYSETUPOPTARGS} ${_PYSETUPTOOLSINSTALLARGS}
-BUILDLINK_API_DEPENDS.podofo+=	podofo>=0.8.2
 .include "../../print/podofo/buildlink3.mk"
 BUILDLINK_API_DEPENDS.poppler+=	poppler>=0.20.2
 .include "../../print/poppler-includes/buildlink3.mk"

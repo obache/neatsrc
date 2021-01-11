@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.16 2020/08/18 17:58:12 leot Exp $
+# $NetBSD: Makefile,v 1.23 2021/01/06 14:27:45 adam Exp $
 
-DISTNAME=	qbittorrent-4.2.5
-PKGREVISION=	4
+DISTNAME=	qbittorrent-4.3.2
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=qbittorrent/}
 GITHUB_PROJECT=	qBittorrent
@@ -15,7 +14,7 @@ LICENSE=	gnu-gpl-v2
 USE_CMAKE=	yes
 # c++14 mode is required; also for libtorrent
 # https://github.com/qbittorrent/qBittorrent/issues/11425
-USE_LANGUAGES=	c c++14
+USE_LANGUAGES=	c gnu++14
 USE_TOOLS+=	pkg-config
 CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE="Release"
 

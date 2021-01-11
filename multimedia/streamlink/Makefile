@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.19 2020/05/02 17:52:18 maya Exp $
+# $NetBSD: Makefile,v 1.21 2020/12/04 20:45:32 nia Exp $
 
 DISTNAME=	streamlink-1.4.1
+PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=streamlink/}
 GITHUB_TAG=	${PKGVERSION_NOREV}
 
-MAINTAINER=	maya@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://streamlink.github.io/
 COMMENT=	Tool that pipes video streams into a video player
 LICENSE=	2-clause-bsd

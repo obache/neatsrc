@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.107 2020/07/17 06:10:34 wiz Exp $
+# $NetBSD: Makefile,v 1.109 2021/01/03 15:15:48 taca Exp $
 #
 
 COMMENT=	Collections of other packages
@@ -12,6 +12,7 @@ SUBDIR+=	courier
 SUBDIR+=	deforaos-desktop
 SUBDIR+=	fxtv-capture
 SUBDIR+=	gimp-docs
+SUBDIR+=	gnome3
 SUBDIR+=	gnuradio
 SUBDIR+=	gnustep
 SUBDIR+=	gstreamer0.10-plugins
@@ -35,7 +36,6 @@ SUBDIR+=	netbsd-doc
 SUBDIR+=	netbsd-doc-print
 SUBDIR+=	netbsd-www
 SUBDIR+=	php56-extensions
-SUBDIR+=	php72-extensions
 SUBDIR+=	php73-extensions
 SUBDIR+=	php74-extensions
 SUBDIR+=	pkg_developer

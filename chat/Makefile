@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.256 2020/10/08 02:54:54 jnemeth Exp $
+# $NetBSD: Makefile,v 1.261 2021/01/02 20:30:23 js Exp $
 #
 
 COMMENT=	Communication programs
@@ -24,6 +24,7 @@ SUBDIR+=	dino
 SUBDIR+=	eggdrop
 SUBDIR+=	ejabberd
 SUBDIR+=	ekg
+SUBDIR+=	element-web
 SUBDIR+=	emacs-jabber
 SUBDIR+=	emech
 SUBDIR+=	epic4
@@ -78,6 +79,7 @@ SUBDIR+=	matrix-synapse
 SUBDIR+=	matterircd
 SUBDIR+=	maubot
 SUBDIR+=	mautrix-hangouts
+SUBDIR+=	mautrix-telegram
 SUBDIR+=	mcabber
 SUBDIR+=	meanwhile
 SUBDIR+=	miniircd
@@ -108,6 +110,8 @@ SUBDIR+=	py-hangups
 SUBDIR+=	py-mastodon
 SUBDIR+=	py-mautrix
 SUBDIR+=	py-nbxmpp
+SUBDIR+=	py-telethon
+SUBDIR+=	py-telethon-session-sqlalchemy
 SUBDIR+=	py-xmpppy
 SUBDIR+=	quassel
 SUBDIR+=	quirc
@@ -130,7 +134,6 @@ SUBDIR+=	telepathy-glib
 SUBDIR+=	telepathy-haze
 SUBDIR+=	telepathy-idle
 SUBDIR+=	telepathy-logger
-SUBDIR+=	telepathy-mission-control
 SUBDIR+=	telepathy-mission-control5
 SUBDIR+=	telepathy-qt
 SUBDIR+=	telepathy-qt5

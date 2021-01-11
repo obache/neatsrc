@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2020/10/12 21:52:02 bacon Exp $
+# $NetBSD: Makefile,v 1.4 2020/11/30 13:23:55 nia Exp $
 
 DISTNAME=	arpack-ng-3.7.0
 PKGREVISION=	1
@@ -12,6 +12,12 @@ LICENSE=	original-bsd
 
 USE_LANGUAGES=	c fortran
 USE_CMAKE=	yes
+
+# Required to build with gfortran 10. Fixed upstream in
+# https://github.com/opencollab/arpack-ng/commit/9418632214
+.if !empty(POSSIBLE_GFORTRAN_VERSION:M1*)
+FFLAGS+=	-fallow-argument-mismatch
+.endif
 
 OBJDIR=		obj
 

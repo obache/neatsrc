@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.20 2020/08/30 21:12:55 tnn Exp $
+# $NetBSD: Makefile,v 1.23 2021/01/01 08:24:48 ryoon Exp $
 
 PKGNAME=	gnuradio-vocoder-${VERSION}
+PKGREVISION=	3
 COMMENT=	All available vocoders in GNU Radio
 
 .include	"../../ham/gnuradio-core/Makefile.common"
@@ -13,5 +14,6 @@ CMAKE_ARGS+=	-DENABLE_GRC=ON
 PLIST_MINUS+=	companion
 
 .include	"../../devel/libusb1/buildlink3.mk"
+.include	"../../ham/codec2/buildlink3.mk"
 
 .include	"../../mk/bsd.pkg.mk"

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.31 2020/08/17 20:18:24 leot Exp $
+# $NetBSD: Makefile,v 1.33 2021/01/01 08:24:39 ryoon Exp $
 
 DISTNAME=	dolphin-plugins-${_KDE_VERSION}
-PKGREVISION=	22
+PKGREVISION=	24
 CATEGORIES=	devel
 COMMENT=	Extra Dolphin plugins
 

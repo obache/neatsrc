@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2020/06/02 19:12:55 adam Exp $
+# $NetBSD: Makefile,v 1.6 2020/11/26 13:51:51 adam Exp $
 
 .include "../../www/nghttp2/Makefile.common"
 

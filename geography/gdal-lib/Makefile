@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.129 2020/06/05 12:48:59 jperkin Exp $
+# $NetBSD: Makefile,v 1.132 2021/01/03 01:30:33 gdt Exp $
 
-PKGREVISION= 4
+PKGREVISION= 6
 .include "../../geography/gdal-lib/Makefile.common"
 PKGNAME=	${DISTNAME:S/gdal/gdal-lib/}
 
@@ -30,6 +30,9 @@ INSTALLATION_DIRS=	bin include lib ${PKGMANDIR}/man1 share/gdal
 
 # jasper uses SIZE_MAX and friends in its headers.
 CPPFLAGS+=	-D__STDC_LIMIT_MACROS
+
+# \todo: Support geopdf by including poppler, PoDoFo, or PDFium.
+# https://gdal.org/drivers/raster/pdf.html
 
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/netcdf/buildlink3.mk"

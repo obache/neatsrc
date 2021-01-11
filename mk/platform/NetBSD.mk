@@ -1,4 +1,4 @@
-# $NetBSD: NetBSD.mk,v 1.60 2020/03/22 21:17:30 joerg Exp $
+# $NetBSD: NetBSD.mk,v 1.64 2020/12/20 20:22:17 maya Exp $
 #
 # Variable definitions for the NetBSD operating system.
 
@@ -18,8 +18,6 @@ EXTRACT_USING?=	bsdtar
 
 USERADD?=	/usr/sbin/useradd
 GROUPADD?=	/usr/sbin/groupadd
-_PKG_UID_RANGE?=	500..999
-_PKG_GID_RANGE?=	500..999
 
 CPP_PRECOMP_FLAGS?=	# unset
 DEF_UMASK?=		0022
@@ -48,13 +46,6 @@ ULIMIT_CMD_cputime?=		ulimit -t `ulimit -H -t`
 .if empty(MACHINE_PLATFORM:MNetBSD-[0-5].*)
 X11_TYPE?=		native
 .endif
-
-# Builtin defaults which make sense for this platform.
-_OPSYS_PREFER.curses?=		native
-_OPSYS_PREFER.gettext-lib?=	native
-_OPSYS_PREFER.libiconv?=	native
-_OPSYS_PREFER.termcap?=		native
-_OPSYS_PREFER.terminfo?=	native
 
 _OPSYS_EMULDIR.aout=		/emul/aout
 _OPSYS_EMULDIR.darwin=		/emul/darwin
@@ -145,13 +136,15 @@ _OPSYS_SUPPORTS_FORTIFY=yes
 
 # Register support for PIE on supported architectures (with GCC)
 .if (${MACHINE_ARCH} == "i386") || \
-    (${MACHINE_ARCH} == "x86_64")
+    (${MACHINE_ARCH} == "x86_64") || \
+    (${MACHINE_ARCH} == "aarch64")
 _OPSYS_SUPPORTS_MKPIE=	yes
 .endif
 
 # Register support for RELRO on supported architectures
 .if (${MACHINE_ARCH} == "i386") || \
-    (${MACHINE_ARCH} == "x86_64")
+    (${MACHINE_ARCH} == "x86_64") || \
+    (${MACHINE_ARCH} == "aarch64")
 _OPSYS_SUPPORTS_RELRO=	yes
 .endif
 
@@ -170,6 +163,12 @@ _OPSYS_SUPPORTS_SSP=	yes
 .if (${MACHINE_ARCH} == "i386") || \
     (${MACHINE_ARCH} == "x86_64")
 _OPSYS_SUPPORTS_STACK_CHECK=	yes
+.endif
+
+.if !defined(PKG_DBDIR) && exists(/var/db/pkg)
+PKG_DBDIR_ERROR=	Compatibility pkgdb location exists, but PKG_DBDIR not specified. \
+			This may cause unexpected issues. To avoid problems, add \
+			PKG_DBDIR=/var/db/pkg to /etc/mk.conf.
 .endif
 
 _OPSYS_SUPPORTS_CWRAPPERS=	yes

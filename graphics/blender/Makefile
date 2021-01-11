@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.168 2020/10/12 21:52:00 bacon Exp $
+# $NetBSD: Makefile,v 1.171 2021/01/01 08:24:44 ryoon Exp $
 
 DISTNAME=	blender-2.90.0
-PKGREVISION=	1
+PKGREVISION=	4
 CATEGORIES=	graphics
 MASTER_SITES=	https://download.blender.org/source/
 EXTRACT_SUFX=	.tar.xz

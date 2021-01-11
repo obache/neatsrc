@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.19 2020/06/02 08:24:28 adam Exp $
+# $NetBSD: Makefile,v 1.21 2021/01/09 02:24:40 mef Exp $
 
 DISTNAME=	tvtime-1.0.2
-PKGREVISION=	10
+PKGREVISION=	11
 CATEGORIES=	multimedia x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=tvtime/}
 
@@ -11,7 +11,7 @@ COMMENT=	High quality television application
 LICENSE=	gnu-gpl-v2 AND mit AND gnu-lgpl-v2
 
 GNU_CONFIGURE=		yes
-USE_LANGUAGES=		c c++03
+USE_LANGUAGES=		c c++03 gnu++11
 USE_LIBTOOL=		yes
 USE_TOOLS+=		msgfmt aclocal automake autoconf
 
@@ -20,7 +20,7 @@ INSTALLATION_DIRS=	share/examples/tvtime
 CONF_FILES=	share/examples/tvtime/tvtime.xml ${PKG_SYSCONFDIR}/tvtime.xml
 
 pre-configure:
-	(cd ${WRKSRC} && autoreconf -vif)
+	(cd ${WRKSRC} && autoreconf -vif) || echo Ignore the warnings from autoreconf
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"

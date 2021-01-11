@@ -1,28 +1,32 @@
-$NetBSD: patch-server_red-stream.c,v 1.1 2020/02/06 21:57:42 kamil Exp $
+$NetBSD: patch-server_red-stream.c,v 1.3 2021/01/05 15:14:39 jperkin Exp $
 
-Add NetBSD support.
+Fix build on SunOS.
+No TCP_CORK on netbsd. Disable (like win32)
 
---- server/red-stream.c.orig	2019-04-30 08:51:11.000000000 +0000
+--- server/red-stream.c.orig	2020-02-27 11:26:12.000000000 +0000
 +++ server/red-stream.c
-@@ -27,6 +27,9 @@
- #include <sys/socket.h>
- #include <netinet/tcp.h>
- #endif
-+#ifdef __NetBSD__
-+#include <netinet/in.h>
+@@ -17,6 +17,15 @@
+ */
+ #include <config.h>
+ 
++#if defined(__sun)
++#define MSG_NOSIGNAL	0
++#  if __STDC_VERSION__ - 0 < 199901L
++#define _XOPEN_SOURCE	500
++#  else
++#define _XOPEN_SOURCE	600
++#  endif
 +#endif
++
+ #include <errno.h>
+ #include <unistd.h>
+ #include <fcntl.h>
+@@ -105,7 +114,7 @@ struct RedStreamPrivate {
+     SpiceCoreInterfaceInternal *core;
+ };
  
- #include <glib.h>
- 
-@@ -109,7 +112,11 @@ struct RedStreamPrivate {
- static int socket_set_cork(int socket, int enabled)
- {
-     SPICE_VERIFY(sizeof(enabled) == sizeof(int));
-+#if defined(__NetBSD__)
-+    return 1; /* Not supported */
-+#else
-     return setsockopt(socket, IPPROTO_TCP, TCP_CORK, &enabled, sizeof(enabled));
-+#endif
- }
- 
- static ssize_t stream_write_cb(RedStream *s, const void *buf, size_t size)
+-#ifndef _WIN32
++#if !defined(_WIN32) && !defined(__NetBSD__)
+ /**
+  * Set TCP_CORK on socket
+  */

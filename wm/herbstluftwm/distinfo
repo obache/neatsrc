@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.4 2020/06/09 10:59:31 nia Exp $
+$NetBSD: distinfo,v 1.6 2021/01/02 15:25:04 nia Exp $
 
-SHA1 (herbstluftwm-0.8.3.tar.gz) = 0b284d3ce68a558029435789294e5875e051d1d6
-RMD160 (herbstluftwm-0.8.3.tar.gz) = 15421fde20106a147c46af464ec6e7004fcb6402
-SHA512 (herbstluftwm-0.8.3.tar.gz) = ff6acb64a6609030abfe315452567f7011088b39e123f3fd988448183c4bf1c65aa0ba49ba1b0ab18b959448e12638a8198093db25bcfba828791e3305966ef1
-Size (herbstluftwm-0.8.3.tar.gz) = 379052 bytes
+SHA1 (herbstluftwm-0.9.1.tar.gz) = 34a8d2cbe6da6c9932afd559f0530f4be15801ec
+RMD160 (herbstluftwm-0.9.1.tar.gz) = c65089c871cb137da6d1837a1a1ef9d552ef1bbb
+SHA512 (herbstluftwm-0.9.1.tar.gz) = c69cc5a77e98e2e0a1c84938394fe97cd985bfedb8bb1e2dceddb0268f30597cdf9b30048aa3618c20ec549f2113b7a6bbbb94f2fbcc578b8f0117bdd8cac85d
+Size (herbstluftwm-0.9.1.tar.gz) = 432926 bytes
 SHA1 (patch-CMakeLists.txt) = d373394ad059eb455e2e5abc1feea0e21f1b53e6

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.71 2020/08/18 17:57:41 leot Exp $
+# $NetBSD: Makefile,v 1.75 2021/01/01 09:52:19 ryoon Exp $
 
 VERSION=	2019.05
 DISTNAME=	openscad-${VERSION}
-PKGREVISION=	12
+PKGREVISION=	16
 CATEGORIES=	cad
 MASTER_SITES=	${MASTER_SITE_GITHUB:=openscad/}
 GITHUB_TAG=	openscad-${VERSION}

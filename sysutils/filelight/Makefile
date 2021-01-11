@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.77 2020/08/18 17:58:13 leot Exp $
+# $NetBSD: Makefile,v 1.80 2021/01/01 09:52:40 ryoon Exp $
 
 DISTNAME=	filelight-${KAPPSVER}
-PKGREVISION=	2
+PKGREVISION=	5
 CATEGORIES=	sysutils
 
 HOMEPAGE=	https://kde.org/applications/utilities/org.kde.filelight/

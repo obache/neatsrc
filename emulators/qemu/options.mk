@@ -1,8 +1,8 @@
-# $NetBSD: options.mk,v 1.12 2020/09/27 21:27:27 jakllsch Exp $
+# $NetBSD: options.mk,v 1.15 2021/01/03 22:47:23 adam Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.qemu
 PKG_SUPPORTED_OPTIONS=	debug-info gtk3 iscsi sdl spice
-PKG_SUGGESTED_OPTIONS+=	iscsi
+PKG_SUGGESTED_OPTIONS+=	iscsi spice
 
 .include "../../mk/bsd.fast.prefs.mk"
 
@@ -53,6 +53,17 @@ CONFIGURE_ARGS+=	--enable-sdl
 .include "../../devel/SDL2/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-sdl
+.endif
+
+# On Darwin, qemu uses Cocoa
+.if ${OPSYS} != "Darwin"
+.if !empty(PKG_OPTIONS:Mgtk3) || \
+    !empty(PKG_OPTIONS:Mopengl) || !empty(PKG_OPTIONS:Msdl)
+PLIST.keymap=		yes
+.include "../../x11/libxkbcommon/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=	--disable-xkbcommon
+.endif
 .endif
 
 # NB to successfully build virtfs-proxy-helper, the upstream Linux

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.9 2020/09/04 12:43:24 js Exp $
+# $NetBSD: Makefile,v 1.12 2020/12/04 04:55:44 riastradh Exp $
 
 PKGNAME=	${DISTNAME:S/-/12-client-/}
 PKGREVISION=	1
@@ -14,8 +14,6 @@ CONFIGURE_ARGS+=	--with-zlib
 # Override INSTALL script to avoid unprivileged user/group
 # leaking into the binary package
 CONFIGURE_ARGS+=	INSTALL=${INSTALL:Q}\ -c
-
-MAKE_JOBS_SAFE=		no
 
 .include "../../mk/bsd.prefs.mk"
 

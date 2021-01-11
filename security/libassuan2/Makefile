@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.20 2020/01/26 17:32:04 rillig Exp $
+# $NetBSD: Makefile,v 1.21 2020/12/03 12:06:40 adam Exp $
 
-DISTNAME=	libassuan-2.5.3
+DISTNAME=	libassuan-2.5.4
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG:=libassuan/}
 EXTRACT_SUFX=	.tar.bz2

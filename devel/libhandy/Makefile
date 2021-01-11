@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2020/10/06 19:51:16 wiz Exp $
+# $NetBSD: Makefile,v 1.10 2020/11/10 17:39:05 nia Exp $
 
 DISTNAME=	libhandy-v0.0.13
 PKGNAME=	${DISTNAME:S/-v/-/1}

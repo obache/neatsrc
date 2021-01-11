@@ -1,59 +1,19 @@
-# $NetBSD: Makefile,v 1.96 2020/09/29 10:56:56 prlw1 Exp $
+# $NetBSD: Makefile,v 1.100 2021/01/08 23:47:54 nia Exp $
 
-DISTNAME=		avahi-0.8
-CATEGORIES=		net
-MASTER_SITES=		${MASTER_SITE_GITHUB:=lathiat/avahi/releases/download/v${PKGVERSION_NOREV}/}
+.include "Makefile.common"
+
+PKGREVISION=		4
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		https://avahi.org/
 COMMENT=		Facilitate service discovery on a local network
-LICENSE=		gnu-lgpl-v2.1
 
-EXTRACT_USING=		bsdtar
-
-GNU_CONFIGURE=		YES
-USE_LIBTOOL=		YES
-USE_PKGLOCALEDIR=	YES
-USE_TOOLS+=		pkg-config gmake msgfmt xgettext
-
-# Requires --desktop in msgfmt.
-GETTEXT_TOOLS_REQD=	0.19
-
-CONFIGURE_ARGS+=	--disable-gtk
-
-PKGCONFIG_OVERRIDE+=	avahi-client.pc.in
-PKGCONFIG_OVERRIDE+=	avahi-compat-howl.pc.in
-PKGCONFIG_OVERRIDE+=	avahi-compat-libdns_sd.pc.in
-PKGCONFIG_OVERRIDE+=	avahi-core.pc.in
-PKGCONFIG_OVERRIDE+=	avahi-glib.pc.in
-PKGCONFIG_OVERRIDE+=	avahi-gobject.pc.in
-PKGCONFIG_OVERRIDE+=	avahi-libevent.pc.in
-PKGCONFIG_OVERRIDE+=	avahi-qt3.pc.in
-PKGCONFIG_OVERRIDE+=	avahi-qt4.pc.in
-PKGCONFIG_OVERRIDE+=	avahi-qt5.pc.in
-PKGCONFIG_OVERRIDE+=	avahi-sharp.pc.in
-PKGCONFIG_OVERRIDE+=	avahi-ui-gtk3.pc.in
-PKGCONFIG_OVERRIDE+=	avahi-ui-sharp.pc.in
-PKGCONFIG_OVERRIDE+=	avahi-ui.pc.in
-
-AVAHI_USER=		avahi
-AVAHI_GROUP=		avahi
-RCD_SCRIPTS=		avahidaemon
-BUILD_DEFS+=		VARBASE PKG_SYSCONFBASE
-PLIST_SRC=		${PKGDIR}/PLIST
-PKG_SYSCONFSUBDIR=	avahi
-USE_LANGUAGES=		c99 c++
+CONFIGURE_ARGS+=	--disable-gtk3
 
 PKG_USERS=		${AVAHI_USER}:${AVAHI_GROUP}
 PKG_GROUPS=		${AVAHI_GROUP}
 PKG_GECOS.${AVAHI_USER}=	Avahi user
 
-.include "options.mk"
-
-CFLAGS.NetBSD+=		-D_NETBSD_SOURCE
-CPPFLAGS.SunOS+=	-D_XOPEN_SOURCE=600
-# Not yet reported upstream.
-CPPFLAGS.Darwin+=	-D__APPLE_USE_RFC_3542
+RCD_SCRIPTS=		avahidaemon
 
 PLIST_SRC+=		${PKGDIR}/PLIST.shared
 
@@ -70,27 +30,6 @@ CONF_FILES+=		${PREFIX}/share/examples/avahi/services/ssh.service \
 CONF_FILES+=		${PREFIX}/share/examples/avahi/avahi-dbus.conf \
 			${PKG_SYSCONFBASE}/dbus-1/system.d/avahi-dbus.conf
 
-CONFIGURE_ARGS+=	--with-avahi-user=${AVAHI_USER}
-CONFIGURE_ARGS+=	--with-avahi-group=${AVAHI_GROUP}
-CONFIGURE_ARGS+=	--with-avahi_priv_access_group=${REAL_ROOT_GROUP}
-CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
-CONFIGURE_ARGS+=	--with-dbus-system-socket=${VARBASE}/run/dbus/system_bus_socket
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE}
-CONFIGURE_ARGS+=	--disable-doxygen-doc
-CONFIGURE_ARGS+=	--disable-doxygen-dot
-CONFIGURE_ARGS+=	--disable-doxygen-html --disable-doxygen-xml
-CONFIGURE_ARGS+=	--disable-xmltoman
-CONFIGURE_ARGS+=	--disable-autoipd
-CONFIGURE_ARGS+=	--disable-libevent
-CONFIGURE_ARGS+=	--disable-qt3
-CONFIGURE_ARGS+=	--disable-qt4
-CONFIGURE_ARGS+=	--disable-qt5
-CONFIGURE_ARGS+=	--disable-pygobject
-CONFIGURE_ARGS+=	--with-distro=none
-
-INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples
-INSTALL_MAKE_FLAGS+=	dbusservicedir=${PREFIX}/share/examples/avahi
-
 INSTALLATION_DIRS+=	share/doc/avahi
 
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/services
@@ -102,11 +41,4 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/docs/README ${DESTDIR}${PREFIX}/share/doc/avahi
 	${INSTALL_DATA} ${WRKSRC}/docs/TODO ${DESTDIR}${PREFIX}/share/doc/avahi
 
-.include "../../devel/gettext-lib/buildlink3.mk"
-.include "../../devel/glib2/buildlink3.mk"
-BUILDLINK_API_DEPENDS.libdaemon+=	libdaemon>=0.14
-.include "../../devel/libdaemon/buildlink3.mk"
-.include "../../sysutils/dbus/buildlink3.mk"
-.include "../../textproc/expat/buildlink3.mk"
-.include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.33 2020/08/31 18:11:42 wiz Exp $
+# $NetBSD: Makefile,v 1.35 2021/01/05 07:40:13 wiz Exp $
 
 DISTNAME=	hunspell-1.7.0
 PKGREVISION=	3
@@ -13,7 +13,7 @@ LICENSE=	mpl-1.1 OR gnu-lgpl-v2.1 OR gnu-gpl-v2
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
-USE_TOOLS+=		pkg-config perl:run autoreconf autoconf automake
+USE_TOOLS+=		pkg-config perl:run autoreconf autoconf automake autopoint
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++03
 
@@ -35,7 +35,7 @@ PLIST_SUBST+=		DISTNAME=${DISTNAME}
 REPLACE_PERL=	src/tools/ispellaff2myspell
 
 post-patch:
-	cd ${WRKSRC} && ${TOOLS_PATH.autoreconf} -v -i
+	cd ${WRKSRC} && ${TOOLS_PATH.autoreconf} -v -i --force
 	
 
 .include "options.mk"

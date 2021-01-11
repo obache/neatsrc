@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.304 2020/09/19 14:15:22 schmonz Exp $
+# $NetBSD: Makefile,v 1.307 2021/01/02 07:36:43 pin Exp $
 #
 
 COMMENT=	Multimedia utilities
@@ -6,6 +6,7 @@ COMMENT=	Multimedia utilities
 SUBDIR+=	acidrip
 SUBDIR+=	adobe-flash-player
 SUBDIR+=	alevt
+SUBDIR+=	assimp
 SUBDIR+=	audiocd-kio
 SUBDIR+=	avidemux
 SUBDIR+=	bitstream
@@ -41,7 +42,6 @@ SUBDIR+=	flvstreamer
 SUBDIR+=	frei0r
 SUBDIR+=	fxtv
 SUBDIR+=	ggrab
-SUBDIR+=	gmediaserver
 SUBDIR+=	gmencoder
 SUBDIR+=	gmp-api
 SUBDIR+=	gmplayer
@@ -126,7 +126,6 @@ SUBDIR+=	libkcompactdisc
 SUBDIR+=	libmatroska
 SUBDIR+=	libmediaart
 SUBDIR+=	libmediainfo
-SUBDIR+=	libmp4v2
 SUBDIR+=	libmpeg2
 SUBDIR+=	libmpeg3
 SUBDIR+=	libnms

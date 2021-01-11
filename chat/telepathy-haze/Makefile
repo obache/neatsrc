@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.13 2020/06/02 08:23:21 adam Exp $
+# $NetBSD: Makefile,v 1.15 2020/12/31 00:36:35 mef Exp $
 
 DISTNAME=	telepathy-haze-0.8.0
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	chat
 MASTER_SITES=	http://telepathy.freedesktop.org/releases/telepathy-haze/
 
@@ -14,6 +14,7 @@ GNU_CONFIGURE=	yes
 USE_TOOLS=	gmake pkg-config
 PYTHON_VERSIONS_ACCEPTED= 27 # as of 0.8.0
 
+.include "../../lang/python/application.mk"
 .include "../../chat/libpurple/buildlink3.mk"
 .include "../../chat/telepathy-glib/buildlink3.mk"
 .include "../../devel/libidn/buildlink3.mk"

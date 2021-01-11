@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.116 2020/09/09 10:32:08 wiz Exp $
+# $NetBSD: Makefile,v 1.121 2020/12/04 20:45:18 nia Exp $
 
-DISTNAME=	fontforge-20200314
+DISTNAME=	fontforge-20201107
+PKGREVISION=	1
 CATEGORIES=	fonts editors
 MASTER_SITES=	${MASTER_SITE_GITHUB:=fontforge/}
 GITHUB_PROJECT=	fontforge
@@ -21,6 +22,7 @@ GCC_REQD+=	4.8
 
 CONFIGURE_DIRS+=	build
 CMAKE_ARGS+=		..
+CMAKE_ARGS+=		-DENABLE_DOCS=NO
 
 PY_PATCHPLIST=		yes
 

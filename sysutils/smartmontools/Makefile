@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.41 2020/08/15 08:28:48 tnn Exp $
+# $NetBSD: Makefile,v 1.43 2020/11/03 20:54:11 otis Exp $
 
 DISTNAME=		smartmontools-7.1
 CATEGORIES=		sysutils

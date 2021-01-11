@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.28 2020/08/30 21:52:43 tnn Exp $
+# $NetBSD: Makefile,v 1.31 2021/01/01 08:24:48 ryoon Exp $
 
 DISTNAME=		gr-osmosdr-0.2.2
+PKGREVISION=		1
 CATEGORIES=		ham
 # main git repo doesn't allow snapshots to be downloaded
 #MASTER_SITES=		https://git.osmocom.org/gr-osmosdr/snapshot/
@@ -26,7 +27,7 @@ CMAKE_ARGS+=	-DENABLE_DOXYGEN=OFF
 
 PLIST_SUBST+=	PYSITELIB=${PYSITELIB}
 
-PYTHON_VERSIONS_ACCEPTED=	37
+PYTHON_VERSIONS_INCOMPATIBLE=	27 36
 REPLACE_PYTHON+=		apps/osmocom_siggen_base.py
 
 .include	"../../devel/boost-headers/buildlink3.mk"

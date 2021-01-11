@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.45 2020/08/17 20:19:37 leot Exp $
+# $NetBSD: Makefile,v 1.47 2021/01/01 08:24:52 ryoon Exp $
 
 DISTNAME=	ffmpegthumbs-${_KDE_VERSION}
-PKGREVISION=	27
+PKGREVISION=	29
 CATEGORIES=	multimedia
 COMMENT=	FFmpeg-based thumbnail creator for video files
 

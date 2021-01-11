@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.5 2020/08/17 20:18:02 leot Exp $
+# $NetBSD: Makefile,v 1.7 2020/12/07 11:59:16 pin Exp $
 
-DISTNAME=	lxqt-archiver-0.2.0
-PKGREVISION=	2
+DISTNAME=	lxqt-archiver-0.3.0
 CATEGORIES=	archivers
 MASTER_SITES=	${MASTER_SITE_GITHUB:=lxqt/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -24,7 +23,7 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_PREFIX=${PREFIX}
 pre-configure:
 	${MKDIR} -p ${WRKSRC}/build
 
-TOOL_DEPENDS+=	lxqt-build-tools-[0-9]*:../../devel/lxqt-build-tools
+TOOL_DEPENDS+=	lxqt-build-tools>=0.8:../../devel/lxqt-build-tools
 TOOL_DEPENDS+=	qt5-qttools-[0-9]*:../../x11/qt5-qttools
 
 .include "../../x11/qt5-qtbase/buildlink3.mk"

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.17 2012/05/30 06:52:58 adam Exp $
+@comment $NetBSD: PLIST,v 1.19 2021/01/07 22:09:52 wiz Exp $
 bin/gsasl
 include/gsasl-compat.h
 include/gsasl-mech.h
@@ -59,6 +59,9 @@ man/man3/gsasl_encode.3
 man/man3/gsasl_encode_inline.3
 man/man3/gsasl_finish.3
 man/man3/gsasl_free.3
+man/man3/gsasl_hash_length.3
+man/man3/gsasl_hex_from.3
+man/man3/gsasl_hex_to.3
 man/man3/gsasl_hmac_md5.3
 man/man3/gsasl_hmac_sha1.3
 man/man3/gsasl_init.3
@@ -74,6 +77,8 @@ man/man3/gsasl_random.3
 man/man3/gsasl_randomize.3
 man/man3/gsasl_register.3
 man/man3/gsasl_saslprep.3
+man/man3/gsasl_scram_secrets_from_password.3
+man/man3/gsasl_scram_secrets_from_salted_password.3
 man/man3/gsasl_server_application_data_get.3
 man/man3/gsasl_server_application_data_set.3
 man/man3/gsasl_server_callback_anonymous_get.3
@@ -122,13 +127,18 @@ man/man3/gsasl_strerror_name.3
 man/man3/gsasl_stringprep_nfkc.3
 man/man3/gsasl_stringprep_saslprep.3
 man/man3/gsasl_stringprep_trace.3
+share/locale/da/LC_MESSAGES/gsasl.mo
+share/locale/da/LC_MESSAGES/libgsasl.mo
 share/locale/de/LC_MESSAGES/gsasl.mo
+share/locale/de/LC_MESSAGES/libgsasl.mo
 share/locale/en@boldquot/LC_MESSAGES/gsasl.mo
 share/locale/en@boldquot/LC_MESSAGES/libgsasl.mo
 share/locale/en@quot/LC_MESSAGES/gsasl.mo
 share/locale/en@quot/LC_MESSAGES/libgsasl.mo
 share/locale/eo/LC_MESSAGES/gsasl.mo
 share/locale/eo/LC_MESSAGES/libgsasl.mo
+share/locale/es/LC_MESSAGES/gsasl.mo
+share/locale/es/LC_MESSAGES/libgsasl.mo
 share/locale/eu/LC_MESSAGES/gsasl.mo
 share/locale/fi/LC_MESSAGES/gsasl.mo
 share/locale/fi/LC_MESSAGES/libgsasl.mo
@@ -136,6 +146,9 @@ share/locale/fr/LC_MESSAGES/gsasl.mo
 share/locale/fr/LC_MESSAGES/libgsasl.mo
 share/locale/ga/LC_MESSAGES/gsasl.mo
 share/locale/ga/LC_MESSAGES/libgsasl.mo
+share/locale/hr/LC_MESSAGES/gsasl.mo
+share/locale/hu/LC_MESSAGES/gsasl.mo
+share/locale/hu/LC_MESSAGES/libgsasl.mo
 share/locale/id/LC_MESSAGES/gsasl.mo
 share/locale/id/LC_MESSAGES/libgsasl.mo
 share/locale/it/LC_MESSAGES/gsasl.mo
@@ -144,6 +157,8 @@ share/locale/nl/LC_MESSAGES/gsasl.mo
 share/locale/nl/LC_MESSAGES/libgsasl.mo
 share/locale/pl/LC_MESSAGES/gsasl.mo
 share/locale/pl/LC_MESSAGES/libgsasl.mo
+share/locale/pt_BR/LC_MESSAGES/gsasl.mo
+share/locale/pt_BR/LC_MESSAGES/libgsasl.mo
 share/locale/ro/LC_MESSAGES/gsasl.mo
 share/locale/ro/LC_MESSAGES/libgsasl.mo
 share/locale/sk/LC_MESSAGES/gsasl.mo

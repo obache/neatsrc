@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.10 2020/06/02 08:23:21 adam Exp $
+# $NetBSD: Makefile,v 1.12 2020/12/09 09:42:14 nia Exp $
 
 DISTNAME=	telegram-purple_1.3.1.orig
 PKGNAME=	telegram-purple-1.3.1
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	chat
 MASTER_SITES=	${MASTER_SITE_GITHUB:=majn/}
 GITHUB_PROJECT=	telegram-purple
@@ -30,6 +30,8 @@ SUBST_STAGE.tglpub=	pre-configure
 SUBST_MESSAGE.tglpub=	Adjust path to server.tglpub
 SUBST_FILES.tglpub=	telegram-purple.c
 SUBST_SED.tglpub=	-e "s|/etc/|${PKG_SYSCONFDIR}/|g"
+
+BUILDLINK_TRANSFORM+=	rm:-Werror
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/tg-server.tglpub ${DESTDIR}${EGDIR}/server.tglpub

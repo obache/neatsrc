@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.85 2020/10/01 03:36:40 wen Exp $
+# $NetBSD: Makefile,v 1.88 2021/01/05 12:49:44 taca Exp $
 
-DISTNAME=	moodle-3.9.2
+DISTNAME=	moodle-3.10
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=moodle/}
 EXTRACT_SUFX=	.tgz
@@ -32,7 +32,7 @@ INSTALLATION_DIRS=	${EGDIR} share/moodle
 .include "../../mk/bsd.prefs.mk"
 .include "options.mk"
 
-PHP_VERSIONS_ACCEPTED=		72 73
+PHP_VERSIONS_ACCEPTED=		73 74
 
 PKG_GROUPS_VARS=	APACHE_GROUP
 PKG_USERS_VARS=		APACHE_USER

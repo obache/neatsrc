@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.14 2020/08/24 07:37:48 pin Exp $
+# $NetBSD: Makefile,v 1.17 2021/01/06 19:22:04 pin Exp $
 
-VERSION=	0.15.0
+VERSION=	0.17.1
 DISTNAME=	FeatherPad-V${VERSION}
 PKGNAME=	featherpad-${VERSION}
 CATEGORIES=	editors

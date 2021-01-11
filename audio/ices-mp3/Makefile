@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.37 2020/08/31 18:06:33 wiz Exp $
+# $NetBSD: Makefile,v 1.39 2020/12/04 20:44:58 nia Exp $
 #
 
 DISTNAME=		ices-${ICES_VERSION}
 PKGNAME=		ices-mp3-${ICES_VERSION}
-PKGREVISION=		19
+PKGREVISION=		21
 ICES_VERSION=		0.4
 CATEGORIES=		audio
 MASTER_SITES=		http://svn.xiph.org/releases/ices/

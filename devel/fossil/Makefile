@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.61 2020/08/20 22:26:58 js Exp $
+# $NetBSD: Makefile,v 1.63 2020/11/06 00:51:25 js Exp $
 
-DISTNAME=	fossil-src-2.12.1
+DISTNAME=	fossil-src-2.13
 PKGNAME=	${DISTNAME:S/-src//}
 WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
 CATEGORIES=	devel scm

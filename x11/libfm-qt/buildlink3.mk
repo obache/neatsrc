@@ -1,12 +1,11 @@
-# $NetBSD: buildlink3.mk,v 1.8 2020/08/17 20:17:54 leot Exp $
+# $NetBSD: buildlink3.mk,v 1.10 2020/12/07 11:34:52 pin Exp $
 
 BUILDLINK_TREE+=	libfm-qt
 
 .if !defined(LIBFM_QT_BUILDLINK3_MK)
 LIBFM_QT_BUILDLINK3_MK:=
 
-BUILDLINK_API_DEPENDS.libfm-qt+=	libfm-qt>=0.15.0
-BUILDLINK_ABI_DEPENDS.libfm-qt?=	libfm-qt>=0.15.1nb2
+BUILDLINK_API_DEPENDS.libfm-qt+=	libfm-qt>=0.16.0
 BUILDLINK_PKGSRCDIR.libfm-qt?=		../../x11/libfm-qt
 
 .include "../../x11/qt5-qtbase/buildlink3.mk"

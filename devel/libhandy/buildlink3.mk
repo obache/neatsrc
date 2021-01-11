@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.5 2020/08/17 20:17:23 leot Exp $
+# $NetBSD: buildlink3.mk,v 1.7 2020/11/11 14:39:44 nia Exp $
 
 BUILDLINK_TREE+=	libhandy
 

@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.131 2020/09/18 11:04:20 wiz Exp $
+# $NetBSD: Makefile,v 1.133 2020/12/31 20:04:13 nia Exp $
 
 VERSION=	3.50.0
 DISTNAME=	FileZilla_${VERSION}_src
 PKGNAME=	filezilla-${VERSION}
+PKGREVISION=	1
 CATEGORIES=	net x11
 MASTER_SITES=	https://download.filezilla-project.org/client/
 EXTRACT_SUFX=	.tar.bz2
@@ -27,12 +28,6 @@ GNU_CONFIGURE_WX_VERSION=	no
 GCC_REQD+=		7
 
 .include "options.mk"
-
-# As of 3.41, 64-bit atomic ops are required
-.if ${MACHINE_ARCH} == "i386"
-CXXFLAGS+=	-march=i586
-.endif
-
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/libidn/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
@@ -45,4 +40,5 @@ BUILDLINK_API_DEPENDS.tinyxml+=	tinyxml>=2.6.2nb1
 .include "../../textproc/pugixml/buildlink3.mk"
 BUILDLINK_API_DEPENDS.wxGTK30+=	wxGTK30>=3.0.4
 .include "../../x11/wxGTK30/buildlink3.mk"
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

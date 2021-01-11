@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2020/08/18 17:57:45 leot Exp $
+# $NetBSD: Makefile,v 1.5 2020/12/15 09:12:07 nia Exp $
 
 DISTNAME=	8aeac7bd9fa7
 PKGNAME=	blastem-0.6.2
@@ -32,12 +32,20 @@ INSTALLATION_DIRS+=	share/icons/hicolor/72x72/apps
 INSTALLATION_DIRS+=	share/icons/hicolor/96x96/apps
 INSTALLATION_DIRS+=	share/icons/hicolor/144x144/apps
 
-# wants to use a JIT
+# mmap(next, *size, PROT_EXEC | PROT_READ | PROT_WRITE ...
 NOT_PAX_MPROTECT_SAFE+=	bin/blastem
 
 # only supports writing 64-bit and 32-bit x86 asm
 # may support ARM in future
 ONLY_FOR_PLATFORM=	*-*-x86_64 *-*-i386
+
+.include "../../mk/bsd.prefs.mk"
+
+.if ${MACHINE_ARCH} == "i386"
+MAKE_FLAGS+=	CPU=i686
+.elif ${MACHINE_ARCH} == "x86_64"
+MAKE_FLAGS+=	CPU=x86_64
+.endif
 
 pre-configure:
 	${CP} ${FILESDIR}/blastem.desktop ${WRKDIR}/blastem.desktop

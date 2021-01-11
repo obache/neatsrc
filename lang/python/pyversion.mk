@@ -1,4 +1,4 @@
-# $NetBSD: pyversion.mk,v 1.132 2020/10/10 20:19:47 adam Exp $
+# $NetBSD: pyversion.mk,v 1.134 2020/12/19 13:12:00 nia Exp $
 
 # This file determines which Python version is used as a dependency for
 # a package.
@@ -11,7 +11,7 @@
 #	later ones.
 #
 #	Possible values: 27 36 37 38 39
-#	Default: 37 38 39 36 27
+#	Default: 38 39 37 36 27
 #
 # PYTHON_VERSION_DEFAULT
 #	The default Python version to use.
@@ -93,7 +93,7 @@ BUILD_DEFS+=		PYTHON_VERSION_DEFAULT
 BUILD_DEFS+=		PYTHON_VERSIONS_PREFERRED
 BUILD_DEFS_EFFECTS+=	PYPACKAGE
 
-PYTHON_VERSIONS_PREFERRED?=		37 38 39 36 27
+PYTHON_VERSIONS_PREFERRED?=		38 39 37 36 27
 PYTHON_VERSION_DEFAULT?=		${PYTHON_VERSIONS_PREFERRED:[1]}
 PYTHON_VERSIONS_ACCEPTED?=		39 38 37 36 27
 PYTHON_VERSIONS_INCOMPATIBLE?=		# empty by default
@@ -154,7 +154,9 @@ PKG_FAIL_REASON+=	"No valid Python version"
 # Additional CONFLICTS
 .if ${PYTHON_SELF_CONFLICT:U:tl} == "yes"
 .  for i in ${PYTHON_VERSIONS_ACCEPTED:N${_PYTHON_VERSION}}
+.    if empty(PYTHON_VERSIONS_INCOMPATIBLE:M${i})
 CONFLICTS+=	${PKGNAME:S/py${_PYTHON_VERSION}/py${i}/:C/-[0-9].*$/-[0-9]*/}
+.    endif
 .  endfor
 .endif # PYCONFLICTS
 

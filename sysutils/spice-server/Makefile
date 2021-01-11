@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.3 2020/03/08 16:48:13 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2021/01/05 15:14:38 jperkin Exp $
 
-DISTNAME=	spice-0.14.2
+DISTNAME=	spice-0.14.3
 PKGNAME=	${DISTNAME:S/spice/spice-server/}
-PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://www.spice-space.org/download/releases/
 EXTRACT_SUFX=	.tar.bz2
@@ -17,6 +16,8 @@ USE_LIBTOOL=	yes
 USE_TOOLS+=	gmake pkg-config
 
 PKGCONFIG_OVERRIDE+=	spice-server.pc.in
+
+LDFLAGS.SunOS+=	-lnsl -lsocket
 
 .include "../../audio/libopus/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"

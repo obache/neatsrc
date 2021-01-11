@@ -1,0 +1,10 @@
+$NetBSD: distinfo,v 1.2 2020/12/03 14:19:28 otis Exp $
+
+SHA1 (zabbix-5.0.6.tar.gz) = 835499c5e165d37af9c762a180229a217ec1aa5f
+RMD160 (zabbix-5.0.6.tar.gz) = c9235a05289ff275c8580fb70edcad1d5d300f3a
+SHA512 (zabbix-5.0.6.tar.gz) = c136536eab3c0e3527e8db8528656776de8849554e0a85a1644000e51c66b09044b176985de1c6d1dcc1d4ec03fc2456111c4df8d896ca276eeed2744cdd48be
+Size (zabbix-5.0.6.tar.gz) = 19359566 bytes
+SHA1 (patch-m4_ax__lib__mysql.m4) = 9786c6bff3d22334263921c201bf241a207a46bc
+SHA1 (patch-m4_libssh.m4) = 8b4ac3964caf94bb0e4939d265dcefc08a07a0df
+SHA1 (patch-src_libs_zbxsysinfo_netbsd_net.c) = 468f2112a3d65b0a73f371194ae15ce0df0ad71c
+SHA1 (patch-src_zabbix__proxy_Makefile.am) = 9d2c3d5ca06e676154653b70f0931ed2ea281cf5

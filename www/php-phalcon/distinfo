@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.4 2020/07/10 10:11:02 plunky Exp $
+$NetBSD: distinfo,v 1.6 2020/11/21 14:52:58 otis Exp $
 
 SHA1 (php-phalcon/phalcon-3.4.5.tar.gz) = 6ab8623a12b7a4c3b012ed8842c889a826f21a77
 RMD160 (php-phalcon/phalcon-3.4.5.tar.gz) = 8dc7fb1c7eea9218d280804ddb79e09e1b4f3023

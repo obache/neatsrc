@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.227 2020/10/18 14:43:59 wiz Exp $
+# $NetBSD: Makefile,v 1.234 2021/01/08 09:54:31 nia Exp $
 
-DISTNAME=	mpd-0.22.1
+DISTNAME=	mpd-0.22.3
 PKGNAME=	${DISTNAME:S/mpd/musicpd/}
+PKGREVISION=	5
 CATEGORIES=	audio
 MASTER_SITES=	https://www.musicpd.org/download/mpd/0.22/
 EXTRACT_SUFX=	.tar.xz
@@ -16,8 +17,14 @@ CONFLICTS=	mpd-[0-9]*
 USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c c++
 
-# c++17
-GCC_REQD+=	8
+# The upstream changelog recommends gcc8, but it compiles fine with 7.5.0
+# (NetBSD 9.1) using -std=c++17.
+#
+# Please be cautious of raising this requirement - mpd seems to adopt new C++
+# standards quickly. Notably, gcc8 from pkgsrc doesn't have support for
+# NetBSD/earmv7hf. gcc10 should, but fails for other reasons (TODO:
+# investigate).
+GCC_REQD+=	7
 
 MESON_ARGS+=	-Ddocumentation=enabled
 

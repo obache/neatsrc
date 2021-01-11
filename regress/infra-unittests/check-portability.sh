@@ -1,5 +1,5 @@
 #! /bin/sh
-# $NetBSD: check-portability.sh,v 1.5 2020/05/11 19:13:10 rillig Exp $
+# $NetBSD: check-portability.sh,v 1.7 2021/01/04 21:10:01 rillig Exp $
 #
 # Test cases for mk/check/check-portability.*.
 #
@@ -8,7 +8,7 @@ set -eu
 
 . "./test.subr"
 
-# Runs the shell program for the given file.
+# Runs the shell program for all files in the current directory.
 check_portability_sh() {
 	env	PATCHDIR='patches' \
 		PREFIX='/nonexistent' \
@@ -235,6 +235,31 @@ fi
 if test_case_begin 'no experimental by default'; then
 
 	create_file_lines 'configure.in' \
+		'test a == b'
+
+	check_portability_sh \
+		'CHECK_PORTABILITY_EXPERIMENTAL=no'
+
+	assert_that "$tmpdir/out" --file-is-empty
+	assert_that $exitcode --equals 0
+
+	test_case_end
+fi
+
+
+if test_case_begin 'always skip tilde files'; then
+
+
+	# Projects that use GNU autoconf 2.70 are reported to include
+	# backup files like 'configure~' in their distribution, for
+	# whatever reason.  Since these files are not used by pkgsrc,
+	# they should be ignored.
+	#
+	# Since the filename is not one of the well-known ones, the file
+	# must start with a '#!' line to be actually recognized as a shell
+	# program.
+	create_file_lines 'configure~' \
+		'#! /bin/sh' \
 		'test a == b'
 
 	check_portability_sh \

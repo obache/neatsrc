@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.34 2020/10/25 12:51:24 nia Exp $
+# $NetBSD: Makefile,v 1.36 2020/12/31 20:04:11 nia Exp $
 
-DISTNAME=	protobuf-cpp-3.13.0
+DISTNAME=	protobuf-cpp-3.14.0
 PKGNAME=	${DISTNAME:S/-cpp//}
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=protocolbuffers/}
@@ -29,11 +29,6 @@ CHECK_PORTABILITY_SKIP+=	src/google/protobuf/compiler/zip_output_unittest.sh
 
 SET_LIBDIR=	yes
 
-.if ${MACHINE_ARCH} == "i386"
-# 64 bit atomic ops are required
-CXXFLAGS+=	-march=i586
-.endif
-
 # configure: error: *** A compiler with support for C++11 language features is required.
 GCC_REQD+=	4.8
 
@@ -42,4 +37,5 @@ GCC_REQD+=	4.8
 BUILDLINK_API_DEPENDS.zlib+=	zlib>=1.2.0.4
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

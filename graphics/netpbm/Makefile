@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.226 2020/08/31 18:09:41 wiz Exp $
+# $NetBSD: Makefile,v 1.228 2020/11/28 01:20:03 gutteridge Exp $
 
 DISTNAME=	netpbm-10.79.04
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	graphics
 MASTER_SITES=	#
 # manually created from svn checkout of
@@ -118,7 +118,7 @@ post-install:
 	${MKDIR} share &&					\
 	${MV} misc share/netpbm && 				\
 	${CHOWN} -R ${BINOWN}:${BINGRP} . &&			\
-	pax -rwpppm . ${DESTDIR}${PREFIX}
+	pax -rwppm . ${DESTDIR}${PREFIX}
 	${RM} -fr ${STAGEDIR}
 	${INSTALL_DATA} ${WRKDIR}/netpbm-userguide/*.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 	${INSTALL_DATA} ${WRKDIR}/netpbm-userguide/*.3 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man3

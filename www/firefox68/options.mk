@@ -1,11 +1,11 @@
-# $NetBSD: options.mk,v 1.10 2020/07/16 19:51:48 riastradh Exp $
+# $NetBSD: options.mk,v 1.12 2020/11/18 22:38:22 riastradh Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.firefox
 
 PKG_SUPPORTED_OPTIONS=	official-mozilla-branding
 PKG_SUPPORTED_OPTIONS+=	debug debug-info mozilla-jemalloc webrtc
 PKG_SUPPORTED_OPTIONS+=	alsa pulseaudio dbus
-PLIST_VARS+=		jemalloc debug
+PLIST_VARS+=		debug
 
 .if ${OPSYS} == "Linux"
 PKG_SUGGESTED_OPTIONS+=	pulseaudio mozilla-jemalloc dbus webrtc
@@ -27,7 +27,6 @@ CONFIGURE_ARGS+=	--disable-alsa
 .endif
 
 .if !empty(PKG_OPTIONS:Mmozilla-jemalloc)
-PLIST.jemalloc=		yes
 CONFIGURE_ARGS+=	--enable-jemalloc
 CONFIGURE_ARGS+=	--enable-replace-malloc
 .else
@@ -45,7 +44,7 @@ O0TRACKING=-fvar-tracking-assignments -fvar-tracking
 .endif
 
 .if !empty(PKG_OPTIONS:Mdebug)
-CONFIGURE_ARGS+=	--enable-debug="-g -O0 ${O0TRACKING}"
+CONFIGURE_ARGS+=	--enable-debug="-g -Og ${O0TRACKING}"
 CONFIGURE_ARGS+=	--disable-optimize
 CONFIGURE_ARGS+=	--enable-debug-js-modules
 CONFIGURE_ARGS+=	--disable-install-strip
@@ -53,7 +52,7 @@ PLIST.debug=		yes
 .else
 .  if !empty(PKG_OPTIONS:Mdebug-info)
 CONFIGURE_ARGS+=	--enable-debug-symbols
-CONFIGURE_ARGS+=	--enable-optimize=-Og
+CONFIGURE_ARGS+=	--enable-optimize=-O2
 CONFIGURE_ARGS+=	--disable-install-strip
 .  else
 CONFIGURE_ARGS+=	--disable-debug-symbols

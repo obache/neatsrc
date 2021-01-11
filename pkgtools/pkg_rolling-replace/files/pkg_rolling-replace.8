@@ -1,4 +1,4 @@
-.\" $NetBSD: pkg_rolling-replace.8,v 1.20 2015/02/12 08:22:16 abs Exp $
+.\" $NetBSD: pkg_rolling-replace.8,v 1.21 2021/01/09 19:12:46 rhialto Exp $
 .Dd February 1, 2010
 .Dt PKG_ROLLING-REPLACE 8
 .Os
@@ -16,8 +16,8 @@
 .Nm
 runs
 .Dq make replace
-on packages that have been marked to have unsafe dependencies or have
-been marked to be rebuilt.
+on packages that have been marked to have unsafe dependencies,
+to be mismatched, or marked to be rebuilt.
 Optionally it can replace any outdated packages as well.
 .Pp
 Whenever
@@ -64,10 +64,16 @@ packages).
 (Usually this results in packages being upgraded to newer versions,
 assuming the pkgsrc tree is more recent than the currently installed
 packages.)
+The packages discovered this way will be marked as mismatched, so that
+in a re-run of
+.Nm
+you don't need to repeat the
+.Fl u
+flag.
 .Ss Options
 .Bl -tag -width xxxxxxxx
 .It Fl B
-Also mark any packages as outdated with any change in build version data.
+Also mark any packages with any change in build version data.
 .It Fl D Ar VARIABLE=VALUE
 Passes VARIABLE=VALUE to each make call.
 .Dq -D
@@ -113,9 +119,11 @@ tags.
 This will replace packages more aggressively and can be used to solve
 shared library problems.
 .It Fl u
-Check outdated packages, and replace those too.
+Check mismatched packages, mark them with 'mismatch=YES',
+and replace those too.
 .It Fl U
-Also mark any packages as outdated with os version mismatch.
+Also mark any packages with os version mismatch.
+Otherwise, consider packages marked 'mismatch=YES' to be mismatched.
 .It Fl v
 Verbose output.
 .It Fl X Ar pkgs
@@ -123,11 +131,8 @@ Exclude the comma-separated list of package base names
 from being rebuilt for any reason.
 .It Fl x Ar pkgs
 Exclude the comma-separated list of package base names
-from the check for outdated packages.
-This has no effect if the
-.Fl u
-flag is not given,
-and does not prevent packages from being rebuilt for any other reason
+from the check for mismatched packages.
+This does not prevent packages from being rebuilt for any other reason
 (such as being a dependency of another package that is also rebuilt,
 or having any of the
 .Xr pkg_admin 1

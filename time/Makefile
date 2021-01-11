@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.215 2020/09/04 13:57:15 wiz Exp $
+# $NetBSD: Makefile,v 1.218 2021/01/01 14:14:36 pin Exp $
 #
 
 COMMENT=	Clocks, calendars, daily planners and other time related applications
@@ -26,12 +26,14 @@ SUBDIR+=	gcal
 SUBDIR+=	gchore
 SUBDIR+=	glclock
 SUBDIR+=	globe
+SUBDIR+=	gnome-calendar
 SUBDIR+=	gnome-pomodoro
 SUBDIR+=	gnutime
 SUBDIR+=	gnyaclock
 SUBDIR+=	grdc
 SUBDIR+=	hebcal
 SUBDIR+=	heirloom-date
+SUBDIR+=	heliocron
 SUBDIR+=	hs-clock
 SUBDIR+=	hs-hourglass
 SUBDIR+=	hs-old-time
@@ -235,6 +237,7 @@ SUBDIR+=	tex-datetime2-welsh
 SUBDIR+=	titrax
 SUBDIR+=	today
 SUBDIR+=	todotxt
+SUBDIR+=	tty-clock
 SUBDIR+=	vixie-cron
 SUBDIR+=	wmCalClock
 SUBDIR+=	wmclockmon

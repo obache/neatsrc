@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.453 2020/10/28 15:34:41 maya Exp $
+# $NetBSD: Makefile,v 1.465 2021/01/08 09:56:55 ryoon Exp $
 
 FIREFOX_VER=		${MOZ_BRANCH}${MOZ_BRANCH_MINOR}
-MOZ_BRANCH=		82.0
+MOZ_BRANCH=		84.0
 MOZ_BRANCH_MINOR=	.2
 
 DISTNAME=	firefox-${FIREFOX_VER}.source
@@ -36,8 +36,7 @@ LDFLAGS.FreeBSD+=	-lplc4 -lnspr4
 LDFLAGS.Linux+=		-lnspr4
 LDFLAGS.SunOS+=		-lm
 
-NOT_PAX_MPROTECT_SAFE+=	lib/${PKGBASE}/${MOZILLA}
-NOT_PAX_MPROTECT_SAFE+=	lib/${PKGBASE}/${MOZILLA}-bin
+# XXX not sure how to test this! likely unnecessary
 NOT_PAX_MPROTECT_SAFE+=	lib/${PKGBASE}/plugin-container
 
 # Avoid ld "invalid section index" errors.
@@ -81,7 +80,7 @@ MOZILLA_NAME=	Browser
 
 #CKSUM_CRATES+=	third_party/rust/libc
 
-# patch-third__party_rust_libc_src_unix_bsd_netbsdlike_netbsd_mod.rs 
+# patch-third__party_rust_libc_src_unix_bsd_netbsdlike_netbsd_mod.rs
 #CKSUMS+=	a3540eab4dbc52e006e84e288bad17e1dae3865fea49020e0ed8b5a7724a9532
 #CKSUMS+=	5e58a2109f5eff0f497dfac150c161c1d517a2227b49e086da96c3d66522ac3a
 
@@ -99,9 +98,6 @@ MOZILLA_NAME=	Browser
 #.for from to in ${CKSUMS}
 #SUBST_SED.cksum+=	-e 's,${from},${to},g'
 #.endfor
-
-post-extract:
-	mv ${WRKSRC}/gfx/ycbcr/yuv_row_arm.s ${WRKSRC}/gfx/ycbcr/yuv_row_arm.S
 
 pre-configure:
 	cd ${WRKSRC} && autoconf

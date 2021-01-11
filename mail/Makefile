@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.561 2020/10/30 10:20:03 schmonz Exp $
+# $NetBSD: Makefile,v 1.563 2020/11/02 10:25:50 schmonz Exp $
 #
 
 COMMENT=	Electronic mail utilities
@@ -301,6 +301,7 @@ SUBDIR+=	py-aiosmtpd
 SUBDIR+=	py-authres
 SUBDIR+=	py-email_validator
 SUBDIR+=	py-flufl.bounce
+SUBDIR+=	py-imapclient
 SUBDIR+=	py-libgmail
 SUBDIR+=	py-policyd-spf
 SUBDIR+=	py-sendmail-admin
@@ -324,6 +325,7 @@ SUBDIR+=	qmail-spp-spf
 SUBDIR+=	qmailanalog
 SUBDIR+=	qmqtool
 SUBDIR+=	qpopper
+SUBDIR+=	qremote
 SUBDIR+=	qsmtp
 SUBDIR+=	qtools
 SUBDIR+=	queue-fix

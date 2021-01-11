@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.31 2020/10/25 13:15:43 nia Exp $
+# $NetBSD: Makefile,v 1.34 2020/11/17 12:05:01 nia Exp $
 
 DISTNAME=	vte-0.60.3
 PKGNAME=	${DISTNAME:S/vte/vte3/}
-PKGREVISION=	3
+PKGREVISION=	6
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/vte/0.60/}
 EXTRACT_SUFX=	.tar.xz
@@ -16,7 +16,7 @@ PKGCONFIG_OVERRIDE_STAGE=	post-configure
 PKGCONFIG_OVERRIDE+=		output/meson-private/vte-2.91.pc
 
 GNU_CONFIGURE=		yes
-USE_TOOLS+=		gmake intltool msgfmt pkg-config bash
+USE_TOOLS+=		msgfmt pkg-config bash
 USE_LANGUAGES=		c c++17
 # for c++17
 GCC_REQD+=		7
@@ -25,6 +25,13 @@ GCC_REQD+=		7
 # have libsystemd.
 MESON_ARGS+=		-D_systemd=false
 
+CONF_FILES+=		${PREFIX}/share/examples/profile.d/vte.sh \
+			${PKG_SYSCONFDIR}/profile.d/vte.sh
+
+CONF_FILES+=		${PREFIX}/share/examples/profile.d/vte.csh \
+			${PKG_SYSCONFDIR}/profile.d/vte.csh
+
+.include "options.mk"
 .include "../../devel/meson/build.mk"
 .include "../../converters/fribidi/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
@@ -34,7 +41,6 @@ MESON_ARGS+=		-D_systemd=false
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/vala/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
-.include "../../textproc/icu/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/termcap.buildlink3.mk"
