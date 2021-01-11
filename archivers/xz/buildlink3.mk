@@ -8,6 +8,7 @@ XZ_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.xz+=	xz>=5.0.0
 BUILDLINK_PKGSRCDIR.xz?=	../../archivers/xz
 
+.include "../../mk/pthread.buildlink3.mk"
 .endif	# XZ_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-xz

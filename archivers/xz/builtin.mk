@@ -6,6 +6,8 @@ BUILTIN_FIND_HEADERS_VAR:=		H_LZMA H_LZMA_VERSION
 BUILTIN_FIND_HEADERS.H_LZMA=		lzma.h
 BUILTIN_FIND_HEADERS.H_LZMA_VERSION=	lzma/version.h
 BUILTIN_FIND_GREP.H_LZMA=		LZMA_
+BUILTIN_FIND_LIBS:=			lzma
+BUILTIN_FIND_PKGCONFIGS:=		liblzma
 
 .include "../../mk/buildlink3/bsd.builtin.mk"
 
@@ -27,6 +29,9 @@ MAKEVARS+=	IS_BUILTIN.xz
 ###
 .if !defined(BUILTIN_PKG.xz) && \
     !empty(IS_BUILTIN.xz:M[yY][eE][sS])
+.  if ${BUILTIN_PKGCONFIG_FOUND.liblzma} == "yes"
+BUILTIN_VERSION.xz=	BUILTIN_PKGCONFIG_VERSION.liblzma
+.  else
 BUILTIN_VERSION.xz!=							\
 	${AWK} 'BEGIN { M = "0" }					\
 		/\#define[ 	]+LZMA_VERSION_MAJOR/ { M = $$3 }	\
@@ -40,6 +45,7 @@ BUILTIN_VERSION.xz!=							\
 		END { printf "%s%s%s%s\n", M, m, p, s}			\
 	' ${H_LZMA_VERSION:Q}
 
+.  endif
 BUILTIN_PKG.xz=	xz-${BUILTIN_VERSION.xz}
 .endif
 MAKEVARS+=	BUILTIN_PKG.xz
@@ -93,41 +99,20 @@ USE_BUILTIN.xz=	no
 
 CHECK_BUILTIN.xz?=	no
 .if !empty(CHECK_BUILTIN.xz:M[nN][oO])
-
 .  if !empty(USE_BUILTIN.xz:M[yY][eE][sS])
-BUILDLINK_FILES.xz+=	lib/pkgconfig/xz.pc
-.  endif
-
-# Fake pkg-config for builtin xz on NetBSD
-
-.  if !empty(USE_BUILTIN.xz:M[yY][eE][sS])
-.    if !empty(USE_TOOLS:C/:.*//:Mpkg-config)
-do-configure-pre-hook: override-liblzma-pkgconfig
-
-BLKDIR_PKGCFG=		${BUILDLINK_DIR}/lib/pkgconfig
-LIBLZMA_PKGCFGF=	liblzma.pc
-
-override-liblzma-pkgconfig: override-message-liblzma-pkgconfig
-override-message-liblzma-pkgconfig:
-	@${STEP_MSG} "Generating pkg-config files for builtin xz package."
-
-override-liblzma-pkgconfig:
-	${RUN}						\
-	${MKDIR} ${BLKDIR_PKGCFG};			\
-	{						\
-	${ECHO} "prefix=${LIBLZMA_PREFIX}";		\
-	${ECHO} "exec_prefix=\$${prefix}";		\
-	${ECHO} "libdir=\$${exec_prefix}/lib";		\
-	${ECHO} "includedir=\$${prefix}/include";	\
-	${ECHO} "";					\
-	${ECHO} "Name: liblzma";			\
-	${ECHO} "Description: Generic purpose data compression library";	\
-	${ECHO} "Version: ${BUILTIN_VERSION.xz}";	\
-	${ECHO} "Libs: ${COMPILER_RPATH_FLAG}\$${libdir} -L\$${libdir} -llzma";	\
-	${ECHO} "Libs.private: -pthread";	\
-	${ECHO} "Cflags: -I\$${includedir}";		\
-	} >> ${BLKDIR_PKGCFG}/${LIBLZMA_PKGCFGF};
+.    if ${BUILTIN_PKGCONFIG_FOUND.liblzma} == "yes"
+BUIDLINK_PREFIX.xz?=	${BUILTIN_PKGCONFIG_PREFIX.liblzma}
 .    endif
+BUILTIN_FAKE_PC_FILES.xz=	liblzma
+FAKE_PC_SRC.liblzma=		../../archivers/xz/files/liblzma.pc.in
+FAKE_PC_SUBST_SED.liblzma+=	-e s,@prefix@,${BUILDLINK_PREFIX.xz},g
+FAKE_PC_SUBST_SED.liblzma+=	-e s,@exec_prefix@,${BUILDLINK_PREFIX.xz},g
+FAKE_PC_SUBST_SED.liblzma+=	-e s,@includedir@,${BUILTIN_HEADER_FOUND_DIR.H_LZMA},g
+FAKE_PC_SUBST_SED.liblzma+=	-e s,@libdir@,${BUILTIN_LIB_FOUND_DIR.lzma},g
+FAKE_PC_SUBST_SED.liblzma+=	-e s,@PACKAGE_URL@,https://tukaani.org/xz/,g
+FAKE_PC_SUBST_SED.liblzma+=	-e s,@PACKAGE_VERSION@,${BUILTIN_VERSION.xz},g
+FAKE_PC_SUBST_SED.liblzma+=	-e s,@PTHREAD_CFLAGS@,${PTHREAD_LDFLAGS:Q},g
+FAKE_PC_SUBST_SED.liblzma+=	-e s,@LIBS@,${PTHREAD_LIBS:Q},g
 .  endif
 
 .endif	# CHECK_BUILTIN.xz
