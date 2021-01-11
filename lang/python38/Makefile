@@ -163,6 +163,11 @@ SUBST_STAGE.pkgversion=	pre-configure
 SUBST_FILES.pkgversion=	Lib/lib2to3/pgen2/driver.py
 SUBST_VARS.pkgversion=	PKGVERSION_NOREV
 
+SUBST_CLASSES+=		addrpath
+SUBST_STAGE.addrpath=	pre-configure
+SUBST_FILES.addrpath=	Misc/python-config.sh.in
+SUBST_SED.addrpath=	's|-L\$$libdir |${COMPILER_RPATH_FLAG}$$libdir &|g'
+
 .include "options.mk"
 
 CHECK_INTERPRETER_SKIP=		lib/python${PY_VER_SUFFIX}/venv/scripts/posix/pydoc

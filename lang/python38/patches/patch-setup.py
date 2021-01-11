@@ -8,7 +8,7 @@ $NetBSD: patch-setup.py,v 1.5 2020/11/19 16:29:42 bsiegert Exp $
  - Support for macOS 11 and Apple Silicon (ARM). Mostly backported from:
    https://github.com/python/cpython/pull/22855
 
---- setup.py.orig	2020-09-23 12:36:32.000000000 +0000
+--- setup.py.orig	2020-12-21 16:25:24.000000000 +0000
 +++ setup.py
 @@ -10,7 +10,7 @@ import sys
  import sysconfig
@@ -70,7 +70,16 @@ $NetBSD: patch-setup.py,v 1.5 2020/11/19 16:29:42 bsiegert Exp $
          self.add_multiarch_paths()
          self.add_ldflags_cppflags()
  
-@@ -701,6 +711,9 @@ class PyBuildExt(build_ext):
+@@ -667,6 +677,8 @@ class PyBuildExt(build_ext):
+             # the one that is currently installed (issue #7473)
+             add_dir_to_list(self.compiler.library_dirs,
+                             sysconfig.get_config_var("LIBDIR"))
++            add_dir_to_list(self.compiler.runtime_library_dirs,
++                            sysconfig.get_config_var("LIBDIR"))
+             add_dir_to_list(self.compiler.include_dirs,
+                             sysconfig.get_config_var("INCLUDEDIR"))
+ 
+@@ -701,6 +713,9 @@ class PyBuildExt(build_ext):
              self.lib_dirs += ['/usr/lib/hpux64', '/usr/lib/hpux32']
  
          if MACOS:
@@ -80,7 +89,7 @@ $NetBSD: patch-setup.py,v 1.5 2020/11/19 16:29:42 bsiegert Exp $
              # This should work on any unixy platform ;-)
              # If the user has bothered specifying additional -I and -L flags
              # in OPT and LDFLAGS we might as well use them here.
-@@ -912,8 +925,6 @@ class PyBuildExt(build_ext):
+@@ -912,8 +927,6 @@ class PyBuildExt(build_ext):
          # use the same library for the readline and curses modules.
          if 'curses' in readline_termcap_library:
              curses_library = readline_termcap_library
@@ -89,7 +98,7 @@ $NetBSD: patch-setup.py,v 1.5 2020/11/19 16:29:42 bsiegert Exp $
          # Issue 36210: OSS provided ncurses does not link on AIX
          # Use IBM supplied 'curses' for successful build of _curses
          elif AIX and self.compiler.find_library_file(self.lib_dirs, 'curses'):
-@@ -1015,8 +1026,7 @@ class PyBuildExt(build_ext):
+@@ -1015,8 +1028,7 @@ class PyBuildExt(build_ext):
          # If the curses module is enabled, check for the panel module
          # _curses_panel needs some form of ncurses
          skip_curses_panel = True if AIX else False
@@ -99,7 +108,7 @@ $NetBSD: patch-setup.py,v 1.5 2020/11/19 16:29:42 bsiegert Exp $
              self.add(Extension('_curses_panel', ['_curses_panel.c'],
                                 include_dirs=curses_includes,
                                 define_macros=curses_defines,
-@@ -1263,6 +1273,31 @@ class PyBuildExt(build_ext):
+@@ -1263,6 +1275,31 @@ class PyBuildExt(build_ext):
          dbm_order = ['gdbm']
          # The standard Unix dbm module:
          if not CYGWIN:
@@ -131,7 +140,7 @@ $NetBSD: patch-setup.py,v 1.5 2020/11/19 16:29:42 bsiegert Exp $
              config_args = [arg.strip("'")
                             for arg in sysconfig.get_config_var("CONFIG_ARGS").split()]
              dbm_args = [arg for arg in config_args
-@@ -1274,7 +1309,7 @@ class PyBuildExt(build_ext):
+@@ -1274,7 +1311,7 @@ class PyBuildExt(build_ext):
              dbmext = None
              for cand in dbm_order:
                  if cand == "ndbm":
@@ -140,7 +149,7 @@ $NetBSD: patch-setup.py,v 1.5 2020/11/19 16:29:42 bsiegert Exp $
                          # Some systems have -lndbm, others have -lgdbm_compat,
                          # others don't have either
                          if self.compiler.find_library_file(self.lib_dirs,
-@@ -1674,6 +1709,8 @@ class PyBuildExt(build_ext):
+@@ -1674,6 +1711,8 @@ class PyBuildExt(build_ext):
      def detect_uuid(self):
          # Build the _uuid module if possible
          uuid_incs = find_file("uuid.h", self.inc_dirs, ["/usr/include/uuid"])
@@ -149,7 +158,7 @@ $NetBSD: patch-setup.py,v 1.5 2020/11/19 16:29:42 bsiegert Exp $
          if uuid_incs is not None:
              if self.compiler.find_library_file(self.lib_dirs, 'uuid'):
                  uuid_libs = ['uuid']
-@@ -1956,43 +1993,17 @@ class PyBuildExt(build_ext):
+@@ -1956,43 +1995,17 @@ class PyBuildExt(build_ext):
                             library_dirs=added_lib_dirs))
          return True
  
@@ -199,7 +208,7 @@ $NetBSD: patch-setup.py,v 1.5 2020/11/19 16:29:42 bsiegert Exp $
          include_dirs = []
          extra_compile_args = []
          extra_link_args = []
-@@ -2005,11 +2016,9 @@ class PyBuildExt(build_ext):
+@@ -2005,11 +2018,9 @@ class PyBuildExt(build_ext):
  
          if MACOS:
              sources.append('_ctypes/malloc_closure.c')
@@ -212,7 +221,7 @@ $NetBSD: patch-setup.py,v 1.5 2020/11/19 16:29:42 bsiegert Exp $
  
          elif HOST_PLATFORM == 'sunos5':
              # XXX This shouldn't be necessary; it appears that some
-@@ -2039,31 +2048,48 @@ class PyBuildExt(build_ext):
+@@ -2039,31 +2050,48 @@ class PyBuildExt(build_ext):
                                 sources=['_ctypes/_ctypes_test.c'],
                                 libraries=['m']))
  
@@ -275,7 +284,7 @@ $NetBSD: patch-setup.py,v 1.5 2020/11/19 16:29:42 bsiegert Exp $
              ext.libraries.append(ffi_lib)
              self.use_system_libffi = True
  
-@@ -2081,10 +2107,7 @@ class PyBuildExt(build_ext):
+@@ -2081,10 +2109,7 @@ class PyBuildExt(build_ext):
              sources = ['_decimal/_decimal.c']
              depends = ['_decimal/docstrings.h']
          else:
@@ -287,7 +296,15 @@ $NetBSD: patch-setup.py,v 1.5 2020/11/19 16:29:42 bsiegert Exp $
              libraries = ['m']
              sources = [
                '_decimal/_decimal.c',
-@@ -2424,7 +2447,7 @@ def main():
+@@ -2232,6 +2257,7 @@ class PyBuildExt(build_ext):
+                 include_dirs=openssl_includes,
+                 library_dirs=openssl_libdirs,
+                 libraries=openssl_libs,
++                runtime_library_dirs=openssl_libdirs,
+                 depends=['socketmodule.h', '_ssl/debughelpers.c'])
+             )
+         else:
+@@ -2424,7 +2450,7 @@ def main():
            # If you change the scripts installed here, you also need to
            # check the PyBuildScripts command above, and change the links
            # created by the bininstall target in Makefile.pre.in

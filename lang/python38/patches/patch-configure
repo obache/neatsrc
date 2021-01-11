@@ -24,6 +24,15 @@ $NetBSD: patch-configure,v 1.6 2021/01/02 09:51:49 adam Exp $
    --with-framework-name=FRAMEWORK
                            specify an alternate name of the framework built
                            with --enable-framework
+@@ -5911,7 +5913,7 @@ $as_echo "#define Py_ENABLE_SHARED 1" >>
+           ;;
+     Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*|OpenBSD*)
+ 	  LDLIBRARY='libpython$(LDVERSION).so'
+-	  BLDLIBRARY='-L. -lpython$(LDVERSION)'
++	  BLDLIBRARY='-Wl,-R$(LIBDIR) -L. -lpython$(LDVERSION)'
+ 	  RUNSHARED=LD_LIBRARY_PATH=`pwd`${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+ 	  INSTSONAME="$LDLIBRARY".$SOVERSION
+ 	  if test "$with_pydebug" != yes
 @@ -6924,7 +6926,7 @@ UNIVERSAL_ARCH_FLAGS=
  # tweak BASECFLAGS based on compiler and platform
  case $GCC in
