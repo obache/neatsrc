@@ -230,3 +230,4 @@ replace-destdir: .PHONY
 	${RUN}${PKG_ADMIN} unset unsafe_depends ${PKGNAME:Q}
 	${RUN}${PKG_ADMIN} unset unsafe_depends_strict ${PKGNAME:Q}
 	${RUN}${PKG_ADMIN} unset rebuild ${PKGNAME:Q}
+	${RUN}${PKG_ADMIN} unset mismatch ${PKGNAME:Q}
