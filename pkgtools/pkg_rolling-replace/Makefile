@@ -21,7 +21,7 @@ SUBST_CLASSES+=		tools
 SUBST_STAGE.tools=	pre-configure
 SUBST_MESSAGE.tools=	Substituting tool locations.
 SUBST_FILES.tools=	pkg_rolling-replace.sh
-SUBST_VARS.tools=	PREFIX PKG_INFO_CMD MAKE PKG_CHK AWK MKDIR SETENV
+SUBST_VARS.tools=	PREFIX PKG_ADMIN_CMD PKG_INFO_CMD MAKE AWK MKDIR SETENV	SU_CMD
 
 SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	pre-configure

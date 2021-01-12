@@ -148,6 +148,11 @@ OPI='RR>'
 OPC='rr>' # continuation
 
 
+mark_as_mismatched()
+{
+    @SU_CMD@ "@PKG_ADMIN_CMD@ set mismatch=YES $1"
+}
+
 # Echo the names of packages needing updates, versions stripped.
 check_packages_mismatched()
 {
@@ -159,6 +164,9 @@ check_packages_mismatched()
             if [ "$pkgname" != "$newpkgname" ]; then
                 echo "${OPC} $pkgdir - $pkgname < $newpkgname" 1>&2
                 echo "$pkg"
+                if [ -z "$opt_F" ]; then
+                    mark_as_mismatched $pkgname 1>&2
+                fi
             elif [ -n "$opt_B" ]; then
                 oldpkgversion=$(${PKG_INFO} -q -b "$pkgname" | grep .)
 		newpkgversion=$(cd $PKGSRCDIR/$pkgdir && @SETENV@ PKGNAME_REQD="$pkg-*" ${MAKE} show-build-version)
@@ -166,7 +174,7 @@ check_packages_mismatched()
                     echo "${OPC} $pkg - $pkgname build_version mismatch" 1>&2
                     echo "$pkg"
                     if [ -z "$opt_F" ]; then
-                        pkg_admin set mismatch=YES "$pkgname" 1>&2
+                        mark_as_mismatched $pkgname 1>&2
                     fi
                 fi
             elif [ -n "$opt_U" ]; then
@@ -178,7 +186,7 @@ check_packages_mismatched()
                     echo "${OPC} $pkgdir - $pkgname OS_VERSION mismatch $oldosver < $newosver" 1>&2
                     echo "$pkg"
                     if [ -z "$opt_F" ]; then
-                        pkg_admin set mismatch=YES "$pkgname" 1>&2
+                        mark_as_mismatched $pkgname 1>&2
                     fi
                 fi
             fi
