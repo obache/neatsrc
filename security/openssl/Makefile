@@ -21,6 +21,7 @@ CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib
 CONFIGURE_ARGS+=	--openssldir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	shared
+CONFIGURE_ARGS+=	'${COMPILER_RPATH_FLAG}$$(LIBRPATH)'
 
 .include "../../mk/bsd.prefs.mk"
 
