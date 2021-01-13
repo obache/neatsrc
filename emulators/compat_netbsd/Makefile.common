@@ -70,7 +70,6 @@ NETBSD_BASE=		# empty
 .endif
 
 BUILD_DIRS=		# empty
-MAKE_DIRS+=		${EMULDIR}
 ELF_SYMLINKS_DATA=	${WRKDIR}/.symlinks-data
 
 #
