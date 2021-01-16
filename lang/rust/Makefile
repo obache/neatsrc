@@ -225,8 +225,6 @@ DISTFILES:=		${DISTFILES} ${RUST_STAGE0} ${RUST_STD_STAGE0}
 # Setting this changes it for every distfile, which doesn't match what is
 # currently in distinfo.
 #DIST_SUBDIR=		${PKGNAME}
-# For atomic ops
-CFLAGS+=		-march=i586
 pre-build-fix:
 	${TOOLS_PLATFORM.paxctl} +am ${WRKDIR}/rust-bootstrap/bin/cargo
 	${TOOLS_PLATFORM.paxctl} +am ${WRKDIR}/rust-bootstrap/bin/rustc
@@ -583,12 +581,13 @@ DEPENDS+=	openssl>=1.1:../../security/openssl
 .endif
 
 # This is for when we build natively:
-.if ((${OPSYS} == "NetBSD") && \
-    ((${MACHINE_ARCH} == "powerpc") || (${MACHINE_ARCH} == "i386")))
+.if ${OPSYS} == "NetBSD"
 # LLVM needs libatomic for 64-bit atomics on powerpc and i386
-.include "../../devel/libatomic/buildlink3.mk"
+.include "../../mk/atomic64.mk"
 # Make those libraries available via a unique directory:
+.  if !empty(BUILDLINK_TREE:Mlibatomic)
 DEPENDS+=	libatomic-links>=0:../../devel/libatomic-links
+.  endif
 .endif
 
 .include "../../devel/zlib/buildlink3.mk"
