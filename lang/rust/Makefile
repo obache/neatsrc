@@ -563,7 +563,7 @@ stage0-bootstrap: install
 # on multiple systems.  Thus later versions need the compat80 package.
 # \todo Explain why this is limited to a small list of architectures,
 # and in particular why not x86_64.
-DEPENDS+=	compat80>=0:../../emulators/compat80
+BUILD_DEPENDS+=	compat80>=0:../../emulators/compat80
 .endif
 
 .if (${OPSYS} == "NetBSD") && \
