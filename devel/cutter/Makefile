@@ -1,13 +1,12 @@
 # $NetBSD: Makefile,v 1.72 2020/11/05 09:07:52 ryoon Exp $
 #
 
-DISTNAME=	cutter-1.2.6
-PKGREVISION=	15
+DISTNAME=	cutter-1.2.7
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=cutter/}
+MASTER_SITES=	${MASTER_SITE_OSDN:=cutter/71616/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://cutter.sourceforge.net/
+HOMEPAGE=	http://cutter.osdn.jp/
 COMMENT=	Unit Testing Framework for C and C++
 LICENSE=	gnu-lgpl-v3
 

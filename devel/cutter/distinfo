@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.11 2015/11/03 03:27:21 agc Exp $
 
-SHA1 (cutter-1.2.6.tar.gz) = e1217b32f09cbce214d71ad22cd28eaa8704c09e
-RMD160 (cutter-1.2.6.tar.gz) = b8ca7633c2786c4f81c9333b85b7a9ef9fb72521
-SHA512 (cutter-1.2.6.tar.gz) = 889b3015f3fc5f43adbfbd83727788d2f128ceee8f40e731fca7609e7ddc42373e0ea4c23ec30802aa1d8737d7bac2477336d6d96ee33d354aed49d251ce02b1
-Size (cutter-1.2.6.tar.gz) = 2465268 bytes
+SHA1 (cutter-1.2.7.tar.gz) = 619055bf241941a3bad0898edeba8068d5faded8
+RMD160 (cutter-1.2.7.tar.gz) = 304193b76314f3a695d716ed2ead8ff918438f06
+SHA512 (cutter-1.2.7.tar.gz) = fe8cff0d44ae65f80284f7e46dff9703730bacdabf46a65412d96201c0fc7b1c67bf2c6941ae09c370a4cbdd377610abdb2800e583a0d0a1850d19b9627fd1fd
+Size (cutter-1.2.7.tar.gz) = 2279331 bytes
