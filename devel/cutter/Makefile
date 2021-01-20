@@ -1,9 +1,9 @@
 # $NetBSD: Makefile,v 1.72 2020/11/05 09:07:52 ryoon Exp $
 #
 
-DISTNAME=	cutter-1.2.7
+DISTNAME=	cutter-1.2.8
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_OSDN:=cutter/71616/}
+MASTER_SITES=	${MASTER_SITE_OSDN:=cutter/73761/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://cutter.osdn.jp/
