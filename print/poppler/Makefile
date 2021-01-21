@@ -4,7 +4,6 @@
 
 COMMENT=	PDF rendering library
 
-PKGCONFIG_OVERRIDE+=	${WRKSRC}/poppler-cairo.pc.cmake
 PKGCONFIG_OVERRIDE+=	${WRKSRC}/poppler.pc.cmake
 
 INSTALLATION_DIRS+=	include/poppler share/doc/poppler
