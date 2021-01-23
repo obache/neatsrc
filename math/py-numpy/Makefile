@@ -47,7 +47,7 @@ LDFLAGS+=		${_COMPILER_ABI_FLAG.${ABI}}
 MAKE_ENV.DragonFly+=	LDVER=ld.bfd
 
 post-install:
-	cd ${DESTDIR}${PREFIX}/bin && ${RM} f2py || ${TRUE}
+	cd ${DESTDIR}${PREFIX}/bin && ${RM} f2py f2py2 f2py3 || ${TRUE}
 
 do-test:
 	${RUN}cd ${WRKSRC};${PYTHONBIN} runtests.py
