@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	ibus-libzhuyin-1.9.1
+DISTNAME=	ibus-libzhuyin-1.10.0
 CATEGORIES=	inputmethod chinese
 #MASTER_SITES=	https://github.com/libzhuyin/ibus-libzhuyin/releases/download/${PKGVERSION_NOREV}/
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libzhuyin/}
