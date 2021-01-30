@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.21 2021/01/01 21:49:39 scole Exp $
 
-DISTNAME=	libdatrie-0.2.12
-PKGREVISION=	2
+DISTNAME=	libdatrie-0.2.13
 CATEGORIES=	devel
 MASTER_SITES=	http://linux.thai.net/pub/thailinux/software/libthai/
 MASTER_SITES+=	ftp://linux.thai.net/pub/ThaiLinux/software/libthai/
