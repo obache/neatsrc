@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.21 2021/01/01 08:24:49 ryoon Exp $
 
-DISTNAME=	ibus-rime-1.4.0
-PKGREVISION=	17
+DISTNAME=	ibus-rime-1.5.0
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	-https://github.com/rime/ibus-rime/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
@@ -23,13 +22,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/rime.xml ${DESTDIR}${PREFIX}/share/ibus/component/
 	${INSTALL_DATA} ${WRKSRC}/icons/*.png ${DESTDIR}${PREFIX}/share/ibus-rime/icons/
 
-SUBST_CLASSES+=	dl
-SUBST_STAGE.dl=	pre-configure
-SUBST_FILES.dl=	CMakeLists.txt
-SUBST_SED.dl=	-e 's,"dl",${BUILDLINK_LDADD.dl:S/-l//g},'
-
 .include "../../inputmethod/librime/buildlink3.mk"
 .include "../../inputmethod/ibus/buildlink3.mk"
 .include "../../sysutils/libnotify/buildlink3.mk"
-.include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
