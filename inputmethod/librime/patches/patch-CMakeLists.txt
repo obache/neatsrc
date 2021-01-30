@@ -2,9 +2,9 @@ $NetBSD: patch-CMakeLists.txt,v 1.1 2014/11/29 09:31:49 obache Exp $
 
 * No reason to restrct only for some Unix variants
 
---- CMakeLists.txt.orig	2020-09-21 00:43:22.000000000 +0000
+--- CMakeLists.txt.orig	2021-01-17 03:57:29.000000000 +0000
 +++ CMakeLists.txt
-@@ -170,7 +170,7 @@ configure_file(
+@@ -180,7 +180,7 @@ configure_file(
  add_custom_target(uninstall
    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
  
@@ -12,4 +12,4 @@ $NetBSD: patch-CMakeLists.txt,v 1.1 2014/11/29 09:31:49 obache Exp $
 +if(UNIX)
    set(prefix "${CMAKE_INSTALL_PREFIX}")
    set(exec_prefix "${CMAKE_INSTALL_PREFIX}")
-   set(bindir "${exec_prefix}/${BIN_INSTALL_DIR}")
+   set(bindir "${CMAKE_INSTALL_FULL_BINDIR}")
