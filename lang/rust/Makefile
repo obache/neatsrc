@@ -16,7 +16,7 @@ CONFLICTS+=	rust-bin-[0-9]*
 GCC_REQD+=	5
 
 USE_GCC_RUNTIME=	yes
-USE_LANGUAGES=		c c++11
+USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 USE_TOOLS+=		bash ggrep gmake perl:build pkg-config
 
