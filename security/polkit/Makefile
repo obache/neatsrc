@@ -17,7 +17,7 @@ NOT_PAX_MPROTECT_SAFE=	lib/polkit-1/polkitd
 
 GNU_CONFIGURE=		yes
 GNU_CONFIGURE_STRICT=	no # has sub-configures
-USE_LANGUAGES=		c c++14
+USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		pkg-config intltool gmake msgfmt perl
