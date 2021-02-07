@@ -31,8 +31,6 @@ BUILD_DEPENDS+=	cmake-[0-9]*:../../devel/cmake
 .include "../../lang/llvm/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-llvm-link-shared
 CONFIGURE_ARGS+=	--llvm-root=${BUILDLINK_PREFIX.llvm}
-# XXX: fix for Rust 1.41.0 https://github.com/rust-lang/rust/issues/68714
-MAKE_ENV+=	LIBRARY_PATH=${BUILDLINK_PREFIX.llvm}/lib
 .endif
 
 #
