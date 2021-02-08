@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.23 2021/01/01 08:24:49 ryoon Exp $
 
-DISTNAME=	librime-1.7.1
+DISTNAME=	librime-1.7.2
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	-https://github.com/rime/librime/archive/${PKGVERSION_NOREV}${EXTRACT_SUFX}
 
