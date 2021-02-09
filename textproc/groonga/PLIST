@@ -216,6 +216,7 @@ share/doc/groonga/en/html/reference/commands/define_selector.html
 share/doc/groonga/en/html/reference/commands/defrag.html
 share/doc/groonga/en/html/reference/commands/delete.html
 share/doc/groonga/en/html/reference/commands/dump.html
+share/doc/groonga/en/html/reference/commands/index_column_diff.html
 share/doc/groonga/en/html/reference/commands/io_flush.html
 share/doc/groonga/en/html/reference/commands/load.html
 share/doc/groonga/en/html/reference/commands/lock_acquire.html
@@ -523,6 +524,7 @@ share/doc/groonga/ja/html/reference/commands/define_selector.html
 share/doc/groonga/ja/html/reference/commands/defrag.html
 share/doc/groonga/ja/html/reference/commands/delete.html
 share/doc/groonga/ja/html/reference/commands/dump.html
+share/doc/groonga/ja/html/reference/commands/index_column_diff.html
 share/doc/groonga/ja/html/reference/commands/io_flush.html
 share/doc/groonga/ja/html/reference/commands/load.html
 share/doc/groonga/ja/html/reference/commands/lock_acquire.html
