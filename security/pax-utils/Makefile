@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	pax-utils-1.2.4
+DISTNAME=	pax-utils-1.2.9
 CATEGORIES=	security sysutils devel
 MASTER_SITES=	${MASTER_SITE_GENTOO:=distfiles/}
 EXTRACT_SUFX=	.tar.xz
