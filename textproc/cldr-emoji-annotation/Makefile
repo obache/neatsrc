@@ -1,8 +1,8 @@
 # $NetBSD: Makefile,v 1.9 2020/11/06 15:50:32 ryoon Exp $
 
-CLDREMJVER=	37.0_13.0_0_2
+CLDREMJVER=	38-alpha1.0_13.0_0_1
 DISTNAME=	cldr-emoji-annotation-${CLDREMJVER}
-PKGNAME=	${DISTNAME:S/_/./g}
+PKGNAME=	${DISTNAME:S/_/./g:S/-alpha/alpha/}
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=fujiwarat/}
 GITHUB_PROJECT=	${DISTNAME:S/-${CLDREMJVER}//}
