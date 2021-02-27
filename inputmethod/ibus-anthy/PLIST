@@ -60,11 +60,15 @@ share/ibus/component/anthy.xml
 share/icons/hicolor/scalable/apps/ibus-anthy.svg
 share/locale/ca/LC_MESSAGES/ibus-anthy.mo
 share/locale/cs/LC_MESSAGES/ibus-anthy.mo
+share/locale/de/LC_MESSAGES/ibus-anthy.mo
 share/locale/el/LC_MESSAGES/ibus-anthy.mo
 share/locale/es/LC_MESSAGES/ibus-anthy.mo
 share/locale/fr/LC_MESSAGES/ibus-anthy.mo
+share/locale/hu/LC_MESSAGES/ibus-anthy.mo
 share/locale/ja/LC_MESSAGES/ibus-anthy.mo
 share/locale/pt_BR/LC_MESSAGES/ibus-anthy.mo
+share/locale/pt_PT/LC_MESSAGES/ibus-anthy.mo
+share/locale/tr/LC_MESSAGES/ibus-anthy.mo
 share/locale/uk/LC_MESSAGES/ibus-anthy.mo
 share/locale/zh_CN/LC_MESSAGES/ibus-anthy.mo
 share/metainfo/org.freedesktop.ibus.engine.anthy.metainfo.xml
