@@ -50,6 +50,7 @@ share/opencc/TWVariants.ocd2
 share/opencc/TWVariantsRev.ocd2
 share/opencc/TWVariantsRevPhrases.ocd2
 share/opencc/hk2s.json
+share/opencc/hk2t.json
 share/opencc/jp2t.json
 share/opencc/s2hk.json
 share/opencc/s2t.json
@@ -61,3 +62,4 @@ share/opencc/t2s.json
 share/opencc/t2tw.json
 share/opencc/tw2s.json
 share/opencc/tw2sp.json
+share/opencc/tw2t.json

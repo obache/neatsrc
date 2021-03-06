@@ -1,0 +1,16 @@
+$NetBSD$
+
+* use settings from pkg-config for maisa 
+
+--- src/CMakeLists.txt.orig	2021-03-01 15:08:08.000000000 +0000
++++ src/CMakeLists.txt
+@@ -104,7 +104,8 @@ endif()
+ add_library(libopencc ${LIBOPENCC_SOURCES} ${LIBOPENCC_HEADERS})
+ set_target_properties(libopencc PROPERTIES POSITION_INDEPENDENT_CODE ON)
+ source_group(libopencc FILES ${LIBOPENCC_SOURCES} ${LIBOPENCC_HEADERS})
+-target_link_libraries(libopencc marisa)
++target_link_libraries(libopencc ${LIBMARISA_LINK_LIBRARIES})
++target_include_directories(libopencc PUBLIC ${LIBMARISA_INCLUDE_DIRS})
+ 
+ GENERATE_EXPORT_HEADER(
+   libopencc
