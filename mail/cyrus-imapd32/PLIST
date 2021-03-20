@@ -397,6 +397,7 @@ share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.4/x/2.4.19.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.4/x/2.4.2.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.4/x/2.4.20.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.4/x/2.4.21.txt
+share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.4/x/2.4.22.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.4/x/2.4.3.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.4/x/2.4.4.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.4/x/2.4.5.txt
@@ -413,6 +414,7 @@ share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.5/x/2.5.12.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.5/x/2.5.13.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.5/x/2.5.15.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.5/x/2.5.16.txt
+share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.5/x/2.5.17.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.5/x/2.5.2.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.5/x/2.5.3.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/2.5/x/2.5.4.txt
@@ -439,6 +441,7 @@ share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.11.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.12.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.13.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.14.txt
+share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.15.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.2.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.3.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.4.txt
@@ -469,6 +472,7 @@ share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.2/x/3.2.1.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.2/x/3.2.2.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.2/x/3.2.3.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.2/x/3.2.4.txt
+share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.2/x/3.2.5.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.2/x/${PKGVERSION}.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/index.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/upgrade.txt
@@ -863,6 +867,7 @@ share/doc/cyrus-imapd/html/imap/download/release-notes/2.4/x/2.4.19.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/2.4/x/2.4.2.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/2.4/x/2.4.20.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/2.4/x/2.4.21.html
+share/doc/cyrus-imapd/html/imap/download/release-notes/2.4/x/2.4.22.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/2.4/x/2.4.3.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/2.4/x/2.4.4.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/2.4/x/2.4.5.html
@@ -879,6 +884,7 @@ share/doc/cyrus-imapd/html/imap/download/release-notes/2.5/x/2.5.12.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/2.5/x/2.5.13.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/2.5/x/2.5.15.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/2.5/x/2.5.16.html
+share/doc/cyrus-imapd/html/imap/download/release-notes/2.5/x/2.5.17.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/2.5/x/2.5.2.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/2.5/x/2.5.3.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/2.5/x/2.5.4.html
@@ -905,6 +911,7 @@ share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.11.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.12.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.13.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.14.html
+share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.15.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.2.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.3.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.4.html
@@ -935,6 +942,7 @@ share/doc/cyrus-imapd/html/imap/download/release-notes/3.2/x/3.2.1.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.2/x/3.2.2.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.2/x/3.2.3.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.2/x/3.2.4.html
+share/doc/cyrus-imapd/html/imap/download/release-notes/3.2/x/3.2.5.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.2/x/${PKGVERSION}.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/index.html
 share/doc/cyrus-imapd/html/imap/download/upgrade.html
@@ -1336,6 +1344,7 @@ share/doc/cyrus-imapd/text/imap/download/release-notes/2.4/x/2.4.19.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/2.4/x/2.4.2.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/2.4/x/2.4.20.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/2.4/x/2.4.21.txt
+share/doc/cyrus-imapd/text/imap/download/release-notes/2.4/x/2.4.22.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/2.4/x/2.4.3.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/2.4/x/2.4.4.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/2.4/x/2.4.5.txt
@@ -1352,6 +1361,7 @@ share/doc/cyrus-imapd/text/imap/download/release-notes/2.5/x/2.5.12.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/2.5/x/2.5.13.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/2.5/x/2.5.15.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/2.5/x/2.5.16.txt
+share/doc/cyrus-imapd/text/imap/download/release-notes/2.5/x/2.5.17.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/2.5/x/2.5.2.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/2.5/x/2.5.3.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/2.5/x/2.5.4.txt
@@ -1378,6 +1388,7 @@ share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.11.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.12.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.13.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.14.txt
+share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.15.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.2.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.3.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.4.txt
@@ -1408,6 +1419,7 @@ share/doc/cyrus-imapd/text/imap/download/release-notes/3.2/x/3.2.1.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.2/x/3.2.2.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.2/x/3.2.3.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.2/x/3.2.4.txt
+share/doc/cyrus-imapd/text/imap/download/release-notes/3.2/x/3.2.5.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.2/x/${PKGVERSION}.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/index.txt
 share/doc/cyrus-imapd/text/imap/download/upgrade.txt
