@@ -409,6 +409,7 @@ share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.10.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.11.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.12.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.13.txt
+share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.14.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/${PKGVERSION}.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.2.txt
 share/doc/cyrus-imapd/html/_sources/imap/download/release-notes/3.0/x/3.0.3.txt
@@ -639,7 +640,6 @@ share/doc/cyrus-imapd/html/_static/event_notifications/MessageTrash.json
 share/doc/cyrus-imapd/html/_static/event_notifications/QuotaChange.json
 share/doc/cyrus-imapd/html/_static/event_notifications/QuotaExceed.json
 share/doc/cyrus-imapd/html/_static/event_notifications/QuotaWithin.json
-share/doc/cyrus-imapd/html/_static/favicon.ico
 share/doc/cyrus-imapd/html/_static/file.png
 share/doc/cyrus-imapd/html/_static/fonts/Inconsolata-Bold.ttf
 share/doc/cyrus-imapd/html/_static/fonts/Inconsolata.ttf
@@ -655,7 +655,6 @@ share/doc/cyrus-imapd/html/_static/headimg.gif
 share/doc/cyrus-imapd/html/_static/jquery.js
 share/doc/cyrus-imapd/html/_static/js/modernizr.min.js
 share/doc/cyrus-imapd/html/_static/js/theme.js
-share/doc/cyrus-imapd/html/_static/logo.gif
 share/doc/cyrus-imapd/html/_static/minus.png
 share/doc/cyrus-imapd/html/_static/plus.png
 share/doc/cyrus-imapd/html/_static/pygments.css
@@ -831,6 +830,7 @@ share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.10.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.11.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.12.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.13.html
+share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.14.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/${PKGVERSION}.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.2.html
 share/doc/cyrus-imapd/html/imap/download/release-notes/3.0/x/3.0.3.html
@@ -1258,6 +1258,7 @@ share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.10.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.11.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.12.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.13.txt
+share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.14.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/${PKGVERSION}.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.2.txt
 share/doc/cyrus-imapd/text/imap/download/release-notes/3.0/x/3.0.3.txt

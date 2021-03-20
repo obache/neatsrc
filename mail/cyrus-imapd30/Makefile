@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	cyrus-imapd-3.0.14
+DISTNAME=	cyrus-imapd-3.0.15
 CATEGORIES=	mail
 MASTER_SITES=	https://github.com/cyrusimap/cyrus-imapd/releases/download/${DISTNAME}/
 
@@ -8,7 +8,7 @@ HOMEPAGE=	http://www.cyrusimap.org/
 COMMENT=	Cyrus IMAP server
 #LICENSE=	original-bsd # like license
 
-USE_TOOLS+=		gmake perl perl:run pkg-config
+USE_TOOLS+=		gmake perl pax perl:run pkg-config
 GNU_CONFIGURE=		yes
 PERL5_CONFIGURE=	no
 USE_LANGUAGES=		c c++
@@ -119,8 +119,7 @@ post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/rehash ${DESTDIR}${PREFIX}/bin
 	${INSTALL_DATA_DIR} ${DESTDIR}${DOCDIR}
 	cd ${WRKSRC}/doc; \
-		pax -rwpp . ${DESTDIR}${DOCDIR};		\
-	done
+		pax -rwpp . ${DESTDIR}${DOCDIR};
 
 .include "../../devel/zlib/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib}
