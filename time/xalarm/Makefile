@@ -16,14 +16,6 @@ FORTUNE=	"Sorry, xfortune is unavailable - no fortune!"
 YOW=		"Sorry, xyow is unavailable - no yow!"
 KILL=		/bin/kill # should this be in bsd.pkg.mk ?
 
-# does not directly support Xaw3d
-BUILDLINK_TRANSFORM+=	l:Xaw:Xaw3d
-.PHONY: buildlink-Xaw3d-inc-hack
-pre-configure: buildlink-Xaw3d-inc-hack
-
-buildlink-Xaw3d-inc-hack: buildlink-directories
-	cd ${BUILDLINK_DIR}/include/X11 && ln -s Xaw3d Xaw
-
 .include "../../mk/bsd.prefs.mk"
 
 .if defined(XALARM_USE_YOW)
@@ -61,5 +53,5 @@ pre-configure:
 	${RUN}${CP} ${FILESDIR}/XAlarm-color.ad ${WRKSRC}/
 
 .include "../../x11/libXpm/buildlink3.mk"
-.include "../../x11/libXaw3d/buildlink3.mk"
+.include "../../mk/xaw.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
