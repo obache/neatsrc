@@ -5,13 +5,11 @@ KDEBASE4_HACKS_MK=	# defined
 
 ### issue is specific to xproto IPv6 support
 .if empty(PKG_OPTIONS:Minet6)
-PKG_HACKS+=	X11_X_h
-post-wrapper-extra:
-	${SED} 's,^#define FamilyInternet6.*,/* undef FamilyInternet6 */,' \
-		${BUILDLINK_DIR}/include/X11/X.h >${BUILDLINK_DIR}/include/X11/X.h.new
-	${MV} -f ${BUILDLINK_DIR}/include/X11/X.h.new ${BUILDLINK_DIR}/include/X11/X.h
-.else
-post-wrapper-extra:
+SUBST_CLASSES+=			disable-ipv6-X-h
+SUBST_STAGE.disable-ipv6-X-h=	post-wrapper
+SUBST_FILES.disable-ipv6-X-h=	${BUILDLINK_X11_DIR}/include/X11/X.h
+SUBST_SED.disable-ipv6-X-h=	-e 's,^#define FamilyInternet6.*,/* undef FamilyInternet6 */,'
+SUBST_NOOP_OK.disable-ipv6-X-h=	yes
 .endif
 
 .endif
