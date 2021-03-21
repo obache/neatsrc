@@ -356,9 +356,6 @@ BUILDLINK_API_DEPENDS.libetonyek+=	libetonyek>=0.1.2
 #.include "../../graphics/sane-backends/buildlink3.mk"
 #.include "../../graphics/vigra/buildlink3.mk"
 .include "../../lang/python/application.mk"
-# workaround for dtoa.h conflict with python and dtoa:
-# Do not pass -I${PREFIX}/include/python?.? to CPPFLAGS/CFLAGS/CXXFLAGS always.
-BUILDLINK_INCDIRS.${PYPKGPREFIX:S/py/python/}=	# empty
 .include "../../lang/python/tool.mk"
 .include "../../math/coinmp/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libnumbertext+=	libnumbertext>=1.0.6
