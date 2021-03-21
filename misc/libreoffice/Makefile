@@ -276,13 +276,6 @@ post-extract:
 	mkdir ${WRKSRC}/tmp
 #	mkdir ${WRKSRC}/${OBJDIR}
 
-pre-configure: provide-python3
-
-.PHONY: provide-python3
-provide-python3:
-	# install phase uses python3 command
-	[ -h "${BUILDLINK_DIR}/bin/python3" ] || ${LN} -s ${PYTHONBIN} "${BUILDLINK_DIR}/bin/python3"
-
 do-install:
 	cd ${WRKSRC} && make DESTDIR="${DESTDIR}" PREFIXDIR="${PREFIX}" distro-pack-install
 # make install cleans ${DESTDIR}${PREFIX}/*, so bin etc. are removed.
