@@ -10,6 +10,7 @@ BUILDLINK_ABI_DEPENDS.libxml2+=	libxml2>=2.9.10nb3
 BUILDLINK_PKGSRCDIR.libxml2?=	../../textproc/libxml2
 
 BUILDLINK_FILES.libxml2+=	bin/xml2-config
+BUILDLINK_INCDIRS.libxml2+=	include/libxml2
 
 USE_FEATURES+=		glob
 
