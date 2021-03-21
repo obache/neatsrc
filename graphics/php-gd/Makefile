@@ -10,11 +10,12 @@ CONFLICTS=	php-gd-[0-9]*
 .include "../../lang/php/phpversion.mk"
 
 .if ${PKG_PHP_VERSION} < 74
-CONFIGURE_ARGS+=	--with-${MODNAME}=${BUILDLINK_DIR}
-CONFIGURE_ARGS+=	--with-jpeg-dir=${BUILDLINK_DIR}
-CONFIGURE_ARGS+=	--with-png-dir=${BUILDLINK_DIR}
-CONFIGURE_ARGS+=	--with-zlib-dir=${BUILDLINK_DIR}
-CONFIGURE_ARGS+=	--with-freetype-dir=${BUILDLINK_DIR}
+CONFIGURE_ARGS+=	--with-${MODNAME}=${BUILDLINK_DIR.gd}
+CONFIGURE_ARGS+=	--with-webp-dir=${BUILDLINK_DIR.libwebp}
+CONFIGURE_ARGS+=	--with-jpeg-dir=${BUILDLINK_DIR.jpeg}
+CONFIGURE_ARGS+=	--with-png-dir=${BUILDLINK_DIR.png}
+CONFIGURE_ARGS+=	--with-zlib-dir=${BUILDLINK_DIR.zlib}
+CONFIGURE_ARGS+=	--with-freetype-dir=${BUILDLINK_DIR.freetype2}
 CONFIGURE_ARGS+=	--enable-${MODNAME}-native-ttf
 CONFIGURE_ARGS+=	--enable-${MODNAME}-jis-conv
 CONFIGURE_ARGS+=	--without-t1lib
