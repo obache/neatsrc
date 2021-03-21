@@ -12,9 +12,8 @@ BUILDLINK_PKGSRCDIR.enchant2?=		../../textproc/enchant2
 GCC_REQD+=	4.8
 
 # Lots of older software looks for enchant.pc instead of enchant-2.pc.
-${BUILDLINK_DIR}/lib/pkgconfig/enchant.pc:
-	${MKDIR} ${BUILDLINK_DIR}/lib/pkgconfig
-	cd ${BUILDLINK_DIR}/lib/pkgconfig && ${LN} -sf enchant-2.pc enchant.pc
+BUILDLINK_FNAME_ALIASES.enchant2+= \
+	lib/pkgconfig/enchant-2.pc lib/pkgconfig/enchant.pc
 
 .PHONY: buildlink-enchant2-cookie
 buildlink-enchant2-cookie: ${BUILDLINK_DIR}/lib/pkgconfig/enchant.pc
