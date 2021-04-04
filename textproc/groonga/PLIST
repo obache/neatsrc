@@ -49,6 +49,7 @@ include/groonga/groonga/request_timer.h
 include/groonga/groonga/result_set.h
 include/groonga/groonga/scorer.h
 include/groonga/groonga/selector.h
+include/groonga/groonga/smart_obj.hpp
 include/groonga/groonga/string.h
 include/groonga/groonga/table.h
 include/groonga/groonga/table_module.h
@@ -108,7 +109,7 @@ share/doc/groonga/en/html/_static/navigation-bar.png
 share/doc/groonga/en/html/_static/plus.png
 share/doc/groonga/en/html/_static/pygments.css
 share/doc/groonga/en/html/_static/searchtools.js
-share/doc/groonga/en/html/_static/underscore-1.3.1.js
+share/doc/groonga/en/html/_static/underscore-1.12.0.js
 share/doc/groonga/en/html/_static/underscore.js
 share/doc/groonga/en/html/characteristic.html
 share/doc/groonga/en/html/client.html
@@ -293,6 +294,7 @@ share/doc/groonga/en/html/reference/functions/now.html
 share/doc/groonga/en/html/reference/functions/number_classify.html
 share/doc/groonga/en/html/reference/functions/prefix_rk_search.html
 share/doc/groonga/en/html/reference/functions/query.html
+share/doc/groonga/en/html/reference/functions/query_parallel_or.html
 share/doc/groonga/en/html/reference/functions/rand.html
 share/doc/groonga/en/html/reference/functions/snippet_html.html
 share/doc/groonga/en/html/reference/functions/string_length.html
@@ -416,7 +418,7 @@ share/doc/groonga/ja/html/_static/navigation-bar.png
 share/doc/groonga/ja/html/_static/plus.png
 share/doc/groonga/ja/html/_static/pygments.css
 share/doc/groonga/ja/html/_static/searchtools.js
-share/doc/groonga/ja/html/_static/underscore-1.3.1.js
+share/doc/groonga/ja/html/_static/underscore-1.12.0.js
 share/doc/groonga/ja/html/_static/underscore.js
 share/doc/groonga/ja/html/characteristic.html
 share/doc/groonga/ja/html/client.html
@@ -430,6 +432,7 @@ share/doc/groonga/ja/html/contribution/development/build/windows_cmake.html
 share/doc/groonga/ja/html/contribution/development/com.html
 share/doc/groonga/ja/html/contribution/development/cooperation.html
 share/doc/groonga/ja/html/contribution/development/query.html
+share/doc/groonga/ja/html/reference/functions/query_parallel_or.html
 share/doc/groonga/ja/html/contribution/development/release.html
 share/doc/groonga/ja/html/contribution/development/repository.html
 share/doc/groonga/ja/html/contribution/development/test.html
