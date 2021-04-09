@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.49 2020/11/05 09:08:30 ryoon Exp $
 #
 
-DISTNAME=	ibus-m17n-1.4.4
+DISTNAME=	ibus-m17n-1.4.5
 CATEGORIES=	inputmethod
 MASTER_SITES=	https://github.com/ibus/ibus-m17n/releases/download/${PKGVERSION_NOREV}/
 
