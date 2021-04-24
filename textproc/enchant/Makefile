@@ -11,7 +11,7 @@ HOMEPAGE=		https://www.abisource.com/projects/enchant/
 COMMENT=		Generic spell checking library
 LICENSE=		gnu-lgpl-v2.1
 
-USE_TOOLS+=		pkg-config autoconf
+USE_TOOLS+=		pkg-config
 USE_LANGUAGES=		c c++
 USE_PKGLOCALEDIR=	yes
 USE_LIBTOOL=		yes
