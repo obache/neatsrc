@@ -15,9 +15,6 @@ GCC_REQD+=	4.8
 BUILDLINK_FNAME_ALIASES.enchant2+= \
 	lib/pkgconfig/enchant-2.pc lib/pkgconfig/enchant.pc
 
-.PHONY: buildlink-enchant2-cookie
-buildlink-enchant2-cookie: ${BUILDLINK_DIR}/lib/pkgconfig/enchant.pc
-
 # spelling libraries are loaded dynamically and do not need
 # to be included here
 .include "../../devel/glib2/buildlink3.mk"
