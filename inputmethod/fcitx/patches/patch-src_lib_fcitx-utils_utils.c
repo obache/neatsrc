@@ -6,7 +6,7 @@ $NetBSD: patch-src_lib_fcitx-utils_utils.c,v 1.1 2018/08/18 01:11:16 ryoon Exp $
  #include <fcntl.h>
  #include <sys/param.h>
  #include <sys/sysctl.h>
-+#  if !defined(__NetBSD__)
++#  if defined(__FreeBSD__)
  #include <sys/user.h>
 +#  endif
  #endif
