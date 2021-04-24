@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.27 2020/11/05 09:08:30 ryoon Exp $
 #
 
-PKGNAME=		fcitx-4.2.9.7
-PKGREVISION=		11
+PKGNAME=		fcitx-4.2.9.8
 DISTNAME=		${PKGNAME_NOREV}_dict
 CATEGORIES=		inputmethod
 MASTER_SITES=		https://download.fcitx-im.org/fcitx/
