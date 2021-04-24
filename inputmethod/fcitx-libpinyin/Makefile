@@ -1,6 +1,6 @@
 # $NetBSD$
 
-PKGNAME=	fcitx-libpinyin-0.5.1
+PKGNAME=	fcitx-libpinyin-0.5.4
 DISTNAME=	${PKGNAME_NOREV}_dict
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	http://download.fcitx-im.org/fcitx-libpinyin/
