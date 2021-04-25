@@ -33,6 +33,7 @@ DEPENDS+=	modular-xorg-xephyr-[0-9]*:../../x11/modular-xorg-xephyr
 .endif
 DEPENDS+=	oclock-[0-9]*:../../time/oclock
 DEPENDS+=	setxkbmap-[0-9]*:../../x11/setxkbmap
+DEPENDS+=	smproxy-[0-9]*:../../x11/smproxy
 DEPENDS+=	transset-[0-9]*:../../x11/transset
 DEPENDS+=	viewres-[0-9]*:../../x11/viewres
 DEPENDS+=	x11perf-[0-9]*:../../x11/x11perf
