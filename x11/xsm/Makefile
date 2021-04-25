@@ -24,5 +24,9 @@ INSTALL_MAKE_FLAGS+=	SYSTEM_INIT_DIR=${PREFIX}/share/examples/xsm
 MAKE_DIRS+=		${PKG_SYSCONFDIR}/X11/xsm
 CONF_FILES+=		share/examples/xsm/system.xsm ${PKG_SYSCONFDIR}/X11/xsm/system.xsm
 
+.include "../../x11/libICE/buildlink3.mk"
+.include "../../x11/libSM/buildlink3.mk"
+.include "../../x11/libX11/buildlink3.mk"
+.include "../../x11/libXt/buildlink3.mk"
 .include "../../x11/libXaw/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
