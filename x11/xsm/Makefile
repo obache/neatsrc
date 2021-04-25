@@ -10,7 +10,7 @@ HOMEPAGE=		https://xorg.freedesktop.org/
 COMMENT=		X Session Manager
 
 GNU_CONFIGURE=		yes
-USE_TOOLS+=		pkg-config
+USE_TOOLS+=		pkg-config iceauth:run
 
 CONFIGURE_ENV+=		APP_MAN_SUFFIX=1
 
