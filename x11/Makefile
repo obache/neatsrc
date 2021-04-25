@@ -418,6 +418,7 @@ SUBDIR+=	setxkbmap
 SUBDIR+=	slim
 SUBDIR+=	slock
 SUBDIR+=	slop
+SUBDIR+=	smproxy
 SUBDIR+=	space_dapp
 SUBDIR+=	speyes
 SUBDIR+=	ssystem
