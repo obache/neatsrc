@@ -14,10 +14,8 @@ USE_TOOLS+=		pkg-config
 
 CONFIGURE_ENV+=		APP_MAN_SUFFIX=1
 
-# Most modern Linuxen don't come with rcmds by default,
-# so just pretend to have them to keep configure happy.
-.if !exists(/usr/bin/rsh)
-CONFIGURE_ENV+=		ac_cv_path_RSH=/usr/bin/rsh
+.if exists(/usr/bin/ssh)
+CONFIGURE_ARGS+=	--with-rsh=/usr/bin/ssh
 .endif
 
 MAKE_FLAGS+=		appdefaultdir=${PREFIX}/lib/X11/app-defaults
