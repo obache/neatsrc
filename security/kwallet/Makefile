@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.62 2021/01/01 09:52:12 ryoon Exp $
+# $NetBSD: Makefile,v 1.66 2021/04/21 11:40:37 adam Exp $
 
 DISTNAME=	kwallet-${KF5VER}
-PKGREVISION=	5
+PKGREVISION=	1
 CATEGORIES=	security
 
 HOMEPAGE=	https://community.kde.org/Frameworks
@@ -13,6 +13,8 @@ LICENSE=	gnu-lgpl-v2.1
 BUILD_DEPENDS+=	kdoctools>=${KF5VER}:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
+
+LDFLAGS.SunOS+=	-lsocket
 
 .include "../../lang/python/tool.mk"
 .include "../../devel/knotifications/buildlink3.mk"

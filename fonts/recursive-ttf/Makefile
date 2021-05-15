@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.2 2020/11/06 18:04:26 maya Exp $
+# $NetBSD: Makefile,v 1.4 2021/04/30 18:03:21 rhialto Exp $
 
 GITHUB_PROJECT=	recursive
-GITHUB_RELEASE=	1.030
-DISTNAME=	recursive-beta_1_030--statics
-PKGNAME=	recursive-ttf-1.030
+GITHUB_RELEASE=	v${PKGVERSION_NOREV}
+DISTNAME=	ArrowType-Recursive-${PKGVERSION_NOREV}
+PKGNAME=	recursive-ttf-1.078
 CATEGORIES=	fonts
 MASTER_SITES=	${MASTER_SITE_GITHUB:=arrowtype/}
 EXTRACT_SUFX=	.zip
@@ -14,10 +14,11 @@ COMMENT=	Variable font family for code & UI
 LICENSE=	ofl-v1.1
 
 # \todo: Build from source.
-# \todo: Build OTF (current static source choice only includes TTF)
+# \todo: Install more of the fonts?
 
 NO_CONFIGURE=	yes
 NO_BUILD=	yes
+WRKSRC=		${WRKDIR}/${DISTNAME}/Recursive_Desktop/separate_statics/OTF
 
 .include "../../mk/fonts.mk"
 .include "../../mk/bsd.pkg.mk"

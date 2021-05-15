@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.158 2020/11/12 22:56:00 wiz Exp $
+# $NetBSD: Makefile,v 1.165 2021/04/15 11:23:09 ryoon Exp $
 
-DISTNAME=	tor-0.4.4.6
+DISTNAME=	tor-0.4.5.7
+PKGREVISION=	2
 CATEGORIES=	net security
 MASTER_SITES=	https://dist.torproject.org/
 
@@ -66,7 +67,6 @@ REPLACE_PERL+=		scripts/maint/checkSpace.pl
 CFLAGS+=		-c99
 .endif
 
-.include "../../archivers/zstd/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libevent+= libevent>=2.0
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

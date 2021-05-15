@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2020/12/19 17:58:06 bsiegert Exp $
+# $NetBSD: Makefile,v 1.3 2021/03/30 15:08:57 jperkin Exp $
 
 .include "../../lang/go/version.mk"
 .include "../../lang/go/bootstrap.mk"
@@ -7,7 +7,7 @@ DISTNAME=	go${GO116_VERSION:S/.beta/beta/}.src
 PKGNAME=	go116-${GO116_VERSION}
 CATEGORIES=	lang
 MASTER_SITES=	https://storage.googleapis.com/golang/
-EXTRACT_USING=	gtar
+EXTRACT_USING=	bsdtar
 
 MAINTAINER=	bsiegert@NetBSD.org
 HOMEPAGE=	https://golang.org/
@@ -66,6 +66,11 @@ CHECK_INTERPRETER_SKIP+=	go${GOVERSSUFFIX}/src/all.rc
 CHECK_INTERPRETER_SKIP+=	go${GOVERSSUFFIX}/src/clean.rc
 CHECK_INTERPRETER_SKIP+=	go${GOVERSSUFFIX}/src/make.rc
 CHECK_INTERPRETER_SKIP+=	go${GOVERSSUFFIX}/src/run.rc
+
+SUBST_CLASSES+=		paths
+SUBST_STAGE.paths=	pre-configure
+SUBST_FILES.paths=	src/crypto/x509/root_solaris.go
+SUBST_VARS.paths=	PKG_SYSCONFDIR
 
 PLIST_SUBST+=	GOVERSSUFFIX=${GOVERSSUFFIX}
 

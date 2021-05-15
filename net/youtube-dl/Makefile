@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.226 2021/01/09 11:32:36 leot Exp $
+# $NetBSD: Makefile,v 1.241 2021/04/25 18:58:32 leot Exp $
 
 # XXX: VERSION_DATE can contains also an optional part that indicates
 # XXX: possible same day revisions. PKGNAME preserves that dotted part as is.
-VERSION_DATE=	2021.01.08
+VERSION_DATE=	2021.04.26
 DISTNAME=	youtube-dl-${VERSION_DATE}
 PKGNAME=	${DISTNAME:S/.//:S/.//}
 CATEGORIES=	net
@@ -21,6 +21,10 @@ SUBST_CLASSES+=		pkgmandir
 SUBST_STAGE.pkgmandir=	pre-configure
 SUBST_FILES.pkgmandir=	setup.py
 SUBST_VARS.pkgmandir=	PKGMANDIR
+
+post-install:
+	${MV} ${DESTDIR}${PREFIX}/share/bash-completion/completions/youtube-dl.bash-completion \
+		${DESTDIR}${PREFIX}/share/bash-completion/completions/youtube-dl
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

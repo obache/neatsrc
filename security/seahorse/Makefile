@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.163 2020/12/01 11:22:53 nia Exp $
+# $NetBSD: Makefile,v 1.165 2021/04/21 11:42:37 adam Exp $
 
 DISTNAME=	seahorse-3.38.0.1
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/${PKGBASE}/3.38/}
+PKGREVISION=	2
 CATEGORIES=	security gnome
 EXTRACT_SUFX=	.tar.xz
 
@@ -18,12 +19,8 @@ USE_TOOLS+=	pkg-config msgfmt xgettext
 # Why does it want specific point releases?
 MESON_ARGS+=	-Dcheck-compatible-gpg=false
 
-.include "../../mk/bsd.prefs.mk"
-
 # msgfmt: unknown option -- xml
-.if ${OPSYS} == "NetBSD"
-TOOLS_PLATFORM.msgfmt=
-.endif
+GETTEXT_TOOLS_REQD=	0.19.7
 
 PYTHON_FOR_BUILD_ONLY=	tool
 

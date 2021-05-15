@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.43 2021/01/04 09:57:18 adam Exp $
+# $NetBSD: Makefile,v 1.48 2021/04/03 18:41:31 tnn Exp $
 
 # Important: UI has to be manually built. See instructions below.
 
-DISTNAME=	prometheus-2.23.0
-PKGREVISION=	2
+DISTNAME=	prometheus-2.26.0
 MASTER_SITES=	${MASTER_SITE_GITHUB:=prometheus/}
 CATEGORIES=	databases
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -13,9 +12,11 @@ HOMEPAGE=	https://prometheus.io/
 COMMENT=	The Prometheus monitoring system and time series database
 LICENSE=	apache-2.0
 
+.include "go-modules.mk"
+
 # To generate UI distfile, install devel/yarn, and:
 # tar zxf ${DISTNAME}${EXTRACT_SUFX}
-# cd web/ui/react-app
+# cd ${DISTNAME}/web/ui/react-app
 # yarn --frozen-lockfile
 # env PUBLIC_URL=. yarn build
 # chmod -x build/favicon.ico build/manifest.json
@@ -28,6 +29,16 @@ DISTFILES=		${DEFAULT_DISTFILES} ${REACT_UI_DIST}
 
 GO_DIST_BASE=	${DISTNAME}
 GO_SRCPATH=	github.com/prometheus/prometheus
+
+GO_BUILD_DATE_cmd=	${DATE} "+%Y-%m-%d"
+GO_XFLAG_PREFIX=	-X github.com/prometheus/common/version
+
+GO_LDFLAGS=	-s
+GO_LDFLAGS+=	${GO_XFLAG_PREFIX}.Branch=release-${PKGVERSION_NOREV:R}
+GO_LDFLAGS+=	${GO_XFLAG_PREFIX}.BuildDate=${GO_BUILD_DATE_cmd:sh}
+GO_LDFLAGS+=	${GO_XFLAG_PREFIX}.BuildUser=pkgsrc
+GO_LDFLAGS+=	${GO_XFLAG_PREFIX}.Revision=${GITHUB_TAG}
+GO_LDFLAGS+=	${GO_XFLAG_PREFIX}.Version=${PKGVERSION_NOREV}
 
 PKG_SYSCONFSUBDIR=	prometheus
 
@@ -60,17 +71,24 @@ INSTALLATION_DIRS+=	bin ${EXAMPLE_DIR} ${WEBUI_DIR}
 CONF_FILES+=	${EXAMPLE_DIR}/${f} ${PKG_SYSCONFDIR}/${f}
 .endfor
 
+do-build:
+.for f in prometheus promtool
+	${RUN} cd ${WRKSRC} && ${_ULIMIT_CMD} ${PKGSRC_SETENV} ${MAKE_ENV} \
+		${GO} install -v -ldflags ${GO_LDFLAGS:Q} ./cmd/${f}/...
+.endfor
+
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/documentation/examples/prometheus.yml \
 		${DESTDIR}${PREFIX}/${EXAMPLE_DIR}
 .for f in prometheus promtool
-	${INSTALL_PROGRAM} ${WRKDIR}/bin/${f} ${DESTDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKDIR}/.gopath/bin/${f} ${DESTDIR}${PREFIX}/bin
 .endfor
 .for f in consoles console_libraries
 	cd ${WRKSRC} && ${PAX} -rw ${f} ${DESTDIR}${PREFIX}/${EXAMPLE_DIR}
 .endfor
 .for f in static templates
 	cd ${WRKSRC}/web/ui && ${PAX} -rw ${f} ${DESTDIR}${WEBUI_DIR}
+	${CHMOD} -R g-w ${DESTDIR}${WEBUI_DIR}/${f}
 .endfor
 
 post-install:
@@ -78,5 +96,5 @@ post-install:
 	${CHMOD} ${NONBINMODE} ${DESTDIR}${PREFIX}/${EXAMPLE_DIR}/${f}
 .endfor
 
-.include "../../lang/go/go-package.mk"
+.include "../../lang/go/go-module.mk"
 .include "../../mk/bsd.pkg.mk"

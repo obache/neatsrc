@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.46 2020/12/04 20:45:35 nia Exp $
+# $NetBSD: Makefile,v 1.52 2021/03/03 08:31:38 adam Exp $
 
-DISTNAME=	rabbitmq-server-3.8.2
+DISTNAME=	rabbitmq-server-3.8.14
 PKGNAME=	${DISTNAME:S/-server//}
-PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=rabbitmq/}
 EXTRACT_SUFX=	.tar.xz
@@ -74,6 +73,12 @@ SUBST_SED.paths+=	-e 's|/var/log|${VARBASE}/log|g'
 SUBST_SED.paths+=	-e 's|erl|${PREFIX}/bin/erl|g'
 SUBST_SED.paths+=	-e 's|@RABBITMQ_HOME@|${PREFIX}/${RABBITMQ_HOME}|g'
 
+SUBST_CLASSES+=		prefix
+SUBST_MESSAGE.prefix=	Setting prefix path
+SUBST_STAGE.prefix=	pre-build
+SUBST_FILES.prefix=	deps/rabbit_common/src/rabbit_env.erl
+SUBST_VARS.prefix=	PREFIX
+
 REPLACE_BASH+=		${SCRIPTS_DIR}/rabbitmqctl
 REPLACE_BASH+=		${SCRIPTS_DIR}/rabbitmq-defaults
 REPLACE_BASH+=		${SCRIPTS_DIR}/rabbitmq-env
@@ -81,6 +86,8 @@ REPLACE_BASH+=		${SCRIPTS_DIR}/rabbitmq-plugins
 REPLACE_BASH+=		${SCRIPTS_DIR}/rabbitmq-queues
 REPLACE_BASH+=		${SCRIPTS_DIR}/rabbitmq-server
 REPLACE_BASH+=		${SCRIPTS_DIR}/rabbitmq-upgrade
+
+CHECK_PORTABILITY_SKIP+=	scripts/rabbitmq-server-ha.ocf
 
 # Too much effort to replace the shebang on generated files
 CHECK_INTERPRETER_SKIP+=	${RABBITMQ_HOME}/escript/rabbitmq-diagnostics

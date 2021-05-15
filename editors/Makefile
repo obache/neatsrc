@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.215 2020/12/12 13:32:51 nia Exp $
+# $NetBSD: Makefile,v 1.218 2021/04/15 12:49:07 pin Exp $
 #
 
-COMMENT=	Editors
+COMMENT=	Text and binary editors
 
 SUBDIR+=	OmegaT
 SUBDIR+=	Sigil
@@ -15,12 +15,14 @@ SUBDIR+=	bvi
 SUBDIR+=	ce
 SUBDIR+=	ce-doc
 SUBDIR+=	ce-x11
+SUBDIR+=	cesium
 SUBDIR+=	codeblocks
 SUBDIR+=	codelite
 SUBDIR+=	cooledit
 SUBDIR+=	dasher
 SUBDIR+=	deforaos-editor
 SUBDIR+=	dhex
+SUBDIR+=	dit
 SUBDIR+=	dte
 SUBDIR+=	easyedit
 SUBDIR+=	ed

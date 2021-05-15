@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.166 2021/01/01 09:52:29 ryoon Exp $
+# $NetBSD: Makefile,v 1.171 2021/04/21 13:24:46 adam Exp $
 
 DISTNAME=	digikam-6.4.0
-PKGREVISION=	18
+PKGREVISION=	22
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_KDE:=digikam/6.4.0/}
 
@@ -15,6 +15,8 @@ DIST_SUBDIR=	digikam-6.4.0-03
 
 REPLACE_PERL=	core/data/scripts/digitaglinktree/digitaglinktree
 CMAKE_ARGS+=	-DBUILD_TESTING=OFF
+CMAKE_ARGS+=	-DCMAKE_DISABLE_FIND_PACKAGE_KF5AkonadiContact:BOOL=TRUE
+
 USE_TOOLS+=	flex bison msgmerge perl:run pkg-config
 
 CXXFLAGS.NetBSD+=	-D_KERNTYPES

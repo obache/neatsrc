@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.11 2020/12/07 08:01:04 adam Exp $
+$NetBSD: distinfo,v 1.17 2021/04/30 10:38:25 adam Exp $
 
-SHA1 (grpcio-testing-1.34.0.tar.gz) = 7326e4c0a878044c76ac6362942b1eac7bcee4de
-RMD160 (grpcio-testing-1.34.0.tar.gz) = 9599b4d1cb1e3dd82624301797fd53c86e51a9bb
-SHA512 (grpcio-testing-1.34.0.tar.gz) = 92a9181f035bb391e3782583877445d5193379e5f2b9194a598f9cd6d0b8b173e52a9cb21a96eac1a14743260898a3958addb562847d236002e3e62dec47c755
-Size (grpcio-testing-1.34.0.tar.gz) = 16604 bytes
+SHA1 (grpcio-testing-1.37.1.tar.gz) = b5d945911699f24def7152b9c107b5527de70925
+RMD160 (grpcio-testing-1.37.1.tar.gz) = 258747ba6f54273c7cda946e052ade554a703592
+SHA512 (grpcio-testing-1.37.1.tar.gz) = bb32067abd145dc2b45b29fe2f01ea9cd4c2a9fe76b94f4c5392c26557118aba2e3032b2566809575311e2773a0afd408a3ae656e31deb93e978fb35ad64c98a
+Size (grpcio-testing-1.37.1.tar.gz) = 16930 bytes

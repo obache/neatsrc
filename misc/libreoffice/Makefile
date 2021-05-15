@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.250 2021/01/01 13:17:44 ryoon Exp $
+# $NetBSD: Makefile,v 1.261 2021/04/21 13:25:02 adam Exp $
 
-VERREL=		7.0.4
+VERREL=		7.1.2
 VERRC=		2
 VER=		${VERREL}.${VERRC}
 DISTNAME=	libreoffice-${VER}
+PKGREVISION=	6
 CATEGORIES=	misc
 MASTER_SITES=	http://download.documentfoundation.org/libreoffice/src/${VERREL}/
 EXTRACT_SUFX=	.tar.xz
@@ -99,7 +100,7 @@ MORE_DISTFILES= \
 	368f114c078f94214a308a74c7e991bc-crosextrafonts-20130214.tar.gz \
 	language-subtag-registry-2018-04-23.tar.bz2 \
 	libeot-0.01.tar.bz2 \
-	postgresql-9.2.24.tar.bz2 \
+	postgresql-13.1.tar.bz2 \
 	graphite2-minimal-1.3.10.tgz \
 	1725634df4bb3dcb1b2c91a6175f8789-GentiumBasic_1102.zip \
 	EmojiOneColor-SVGinOT-1.3.tar.gz \
@@ -116,15 +117,15 @@ MORE_DISTFILES= \
 	ReemKufi-0.7.zip \
 	pdfium-4306.tar.bz2 \
 	dtoa-20180411.tgz \
-	skia-m85-e684c6daef6bfb774a325a069eda1f76ca6ac26c.tar.xz
+	skia-m88-59bafeeaa7de9eb753e3778c414e01dcf013dcd8.tar.xz
 
 .for md in ${MORE_DISTFILES}
 DISTFILES+=		${md}
 SITES.${md}=		https://dev-www.libreoffice.org/src/
 .endfor
 
-MORE_DISTFILES2+=		884ed41809687c3e168fc7c19b16585149ff058eca79acbf3ee784f6630704cc-opens___.ttf
-SITES.884ed41809687c3e168fc7c19b16585149ff058eca79acbf3ee784f6630704cc-opens___.ttf=	https://dev-www.libreoffice.org/extern/
+MORE_DISTFILES2+=	f543e6e2d7275557a839a164941c0a86e5f2c3f2a0042bfc434c88c6dde9e140-opens___.ttf
+SITES.f543e6e2d7275557a839a164941c0a86e5f2c3f2a0042bfc434c88c6dde9e140-opens___.ttf=	https://dev-www.libreoffice.org/extern/
 
 .include "../../graphics/librsvg/available.mk"
 .if ${LIBRSVG_TYPE} == "c" || make(distinfo) || make(mdi)
@@ -139,12 +140,13 @@ DISTFILES+=		${md2}
 .include "options.mk"
 
 # tar: Invalid header, starting valid header search.
-EXTRACT_USING=		gtar
+EXTRACT_USING=		bsdtar
 
 WRKSRC=		${WRKDIR}/${LO_BOOTSTRAP}
 
 BUILD_DEPENDS+=		p5-Archive-Zip-[0-9]*:../../archivers/p5-Archive-Zip
 DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
+DEPENDS+=		xdg-utils-[0-9]*:../../misc/xdg-utils
 
 # dmake scripts use relative path with -rpath-link ld arguments, which
 # is a no-go with normal pkgsrc wrappers.
@@ -208,7 +210,7 @@ CONFIGURE_ARGS+=	--with-boost-libdir=${BUILDLINK_PREFIX.boost-libs}/lib
 CONFIGURE_ARGS+=	--with-system-libs
 CONFIGURE_ARGS+=	--with-system-dicts
 CONFIGURE_ARGS+=	--with-vendor="pkgsrc"
-CONFIGURE_ARGS+=	--with-tls="nss"
+CONFIGURE_ARGS+=	--with-tls="openssl"
 CONFIGURE_ARGS+=	--without-doxygen
 CONFIGURE_ARGS+=	--without-junit
 CONFIGURE_ARGS+=	--without-krb5
@@ -338,6 +340,7 @@ BUILDLINK_API_DEPENDS.libetonyek+=	libetonyek>=0.1.2
 #BUILDLINK_API_DEPENDS.harfbuzz+=	harfbuzz>=1.4.2
 .include "../../fonts/harfbuzz/buildlink3.mk"
 .include "../../fonts/harfbuzz-icu/buildlink3.mk"
+.include "../../graphics/box2d/buildlink3.mk"
 .include "../../graphics/graphite2/buildlink3.mk"
 .endif
 # Requires JCS_EXT_BGRA

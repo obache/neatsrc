@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.8 2020/09/01 04:09:14 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2021/02/24 19:14:38 adam Exp $
 
-DISTNAME=	rsa-4.6
+DISTNAME=	rsa-4.7.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	security python
 MASTER_SITES=	${MASTER_SITE_PYPI:=r/rsa/}
@@ -12,19 +12,17 @@ LICENSE=	apache-2.0
 
 DEPENDS+=	${PYPKGPREFIX}-asn1>=0.1.3:../../security/py-asn1
 TEST_DEPENDS+=	${PYPKGPREFIX}-mock-[0-9]*:../../devel/py-mock
+TEST_DEPENDS+=	${PYPKGPREFIX}-mypy-[0-9]*:../../lang/py-mypy
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 USE_LANGUAGES=	# none
 
 post-install:
+.for bin in decrypt encrypt keygen priv2pub sign verify
 	cd ${DESTDIR}${PREFIX}/bin && \
-		${MV} pyrsa-decrypt pyrsa-decrypt-${PYVERSSUFFIX} && \
-		${MV} pyrsa-encrypt pyrsa-encrypt-${PYVERSSUFFIX} && \
-		${MV} pyrsa-keygen pyrsa-keygen-${PYVERSSUFFIX} && \
-		${MV} pyrsa-priv2pub pyrsa-priv2pub-${PYVERSSUFFIX} && \
-		${MV} pyrsa-sign pyrsa-sign-${PYVERSSUFFIX} && \
-		${MV} pyrsa-verify pyrsa-verify-${PYVERSSUFFIX} || ${TRUE}
+	${MV} pyrsa-${bin} pyrsa-${bin}-${PYVERSSUFFIX} || ${TRUE}
+.endfor
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.17 2020/12/09 12:31:35 adam Exp $
+$NetBSD: distinfo,v 1.21 2021/04/15 05:16:36 adam Exp $
 
-SHA1 (certbot-dns-dnsimple-1.10.1.tar.gz) = 1c8b8801332bd43caaa41b921a9c9dcf4ff4714a
-RMD160 (certbot-dns-dnsimple-1.10.1.tar.gz) = 5287b2b06a1c9f85f020d031a9e883f222749b09
-SHA512 (certbot-dns-dnsimple-1.10.1.tar.gz) = d4337b0186108d85d7471162d791a822d3797b3d9bec3fd97673c593b94e508a7d4eb7ac8adfbd93066a2869ef65de8313d0cc2a1578ce6b36231b4a2e07a936
-Size (certbot-dns-dnsimple-1.10.1.tar.gz) = 12776 bytes
+SHA1 (certbot-dns-dnsimple-1.14.0.tar.gz) = 152cac57f44928e97b736949bdbf063f941b5845
+RMD160 (certbot-dns-dnsimple-1.14.0.tar.gz) = 5fcd865b95b29522b5b2d7ea94bf8001cff19298
+SHA512 (certbot-dns-dnsimple-1.14.0.tar.gz) = 252079cc4f923af322fcaaad1dbec21509f34613d9633284a7c1f793378cc448214f8f3b22dc1f880ad900779d56fe5c3139953671515398442259b0905bcbcf
+Size (certbot-dns-dnsimple-1.14.0.tar.gz) = 12695 bytes

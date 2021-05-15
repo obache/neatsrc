@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.23 2021/01/01 08:24:49 ryoon Exp $
+# $NetBSD: Makefile,v 1.25 2021/04/21 13:24:53 adam Exp $
 
 DISTNAME=	librime-1.7.3
 CATEGORIES=	inputmethod chinese
@@ -25,7 +25,7 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=TRUE
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/capnproto/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../textproc/yaml-cpp/buildlink3.mk"
 .include "../../textproc/marisa/buildlink3.mk"
+.include "../../textproc/yaml-cpp/buildlink3.mk"
 .include "../../x11/xorgproto/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

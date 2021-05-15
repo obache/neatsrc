@@ -1,40 +1,15 @@
-$NetBSD: patch-CMakeLists.txt,v 1.1 2020/11/29 22:39:10 dbj Exp $
+$NetBSD: patch-CMakeLists.txt,v 1.3 2021/02/07 15:23:47 adam Exp $
 
-Fix build on case insensitive build dirs where a created
-cmake configuration directory conflicts with the output binary.
+Fix library name on Darwin.
 
---- CMakeLists.txt.orig	2019-06-29 00:19:28.000000000 +0000
+--- CMakeLists.txt.orig	2021-02-07 15:06:02.000000000 +0000
 +++ CMakeLists.txt
-@@ -626,18 +626,18 @@ install(TARGETS ${qhull_TARGETS_INSTALL}
- include(CMakePackageConfigHelpers)
- 
- write_basic_package_version_file(
--    "${CMAKE_CURRENT_BINARY_DIR}/Qhull/QhullConfigVersion.cmake"
-+    "${CMAKE_CURRENT_BINARY_DIR}/Qhull_cmake/QhullConfigVersion.cmake"
-     VERSION ${qhull_VERSION}
-     COMPATIBILITY AnyNewerVersion
- )
- 
- export(EXPORT QhullTargets
--  FILE "${CMAKE_CURRENT_BINARY_DIR}/Qhull/QhullTargets.cmake"
-+  FILE "${CMAKE_CURRENT_BINARY_DIR}/Qhull_cmake/QhullTargets.cmake"
-   NAMESPACE Qhull::
- )
- 
- configure_file(${PROJECT_SOURCE_DIR}/build/config.cmake.in
--  "${CMAKE_CURRENT_BINARY_DIR}/Qhull/QhullConfig.cmake"
-+  "${CMAKE_CURRENT_BINARY_DIR}/Qhull_cmake/QhullConfig.cmake"
-   @ONLY
- )
- 
-@@ -652,8 +652,8 @@ install(EXPORT QhullTargets
- )
- install(
-   FILES
--    "${CMAKE_CURRENT_BINARY_DIR}/Qhull/QhullConfig.cmake"
--    "${CMAKE_CURRENT_BINARY_DIR}/Qhull/QhullConfigVersion.cmake"
-+    "${CMAKE_CURRENT_BINARY_DIR}/Qhull_cmake/QhullConfig.cmake"
-+    "${CMAKE_CURRENT_BINARY_DIR}/Qhull_cmake/QhullConfigVersion.cmake"
-   DESTINATION
-     ${ConfigPackageLocation}
-   COMPONENT
+@@ -370,8 +370,6 @@ set_target_properties(${qhull_SHAREDR} P
+ if(UNIX)
+     target_link_libraries(${qhull_SHAREDR} m)
+     if(APPLE)
+-        set_target_properties(${qhull_SHAREDR} PROPERTIES 
+-            INSTALL_NAME_DIR "${LIB_INSTALL_DIR}")
+     else()
+         set_target_properties(${qhull_SHAREDR} PROPERTIES 
+             INSTALL_RPATH "${LIB_INSTALL_DIR}"

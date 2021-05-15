@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.38 2021/01/01 08:24:47 ryoon Exp $
+# $NetBSD: Makefile,v 1.42 2021/04/29 23:30:14 thor Exp $
 
 PKGNAME=	gnuradio-doxygen-${VERSION}
 PKGREVISION=	3
@@ -8,7 +8,6 @@ COMMENT=	Doxygen documentation of GNU Radio
 .include	"../../ham/gnuradio-core/Nocore.mk"
 
 BUILD_DEPENDS+=	doxygen>=1.8.20:../../devel/doxygen
-BUILD_DEPENDS+=	${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 BUILD_DEPENDS+=	graphviz-[0-9]*:../../graphics/graphviz
 
 DEPENDS+=	web2c-[0-9]*:../../print/web2c
@@ -18,8 +17,6 @@ DEPENDS+=	tex-newunicodechar-[0-9]*:../../print/tex-newunicodechar
 
 CMAKE_ARGS+=	-DENABLE_DEFAULT=OFF
 CMAKE_ARGS+=	-DENABLE_DOXYGEN=ON
-CMAKE_ARGS+=	-DENABLE_SPHINX=ON
-CMAKE_ARGS+=	-DSPHINX_EXECUTABLE=${PREFIX}/bin/sphinx-build-${PYVERSSUFFIX}
 
 MAKE_JOBS_SAFE=	no
 

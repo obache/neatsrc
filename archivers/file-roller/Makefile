@@ -20,9 +20,7 @@ MESON_ARGS+=	-Dnautilus-actions=false
 .include "../../mk/bsd.prefs.mk"
 
 # msgfmt: unknown option -- xml
-.if ${OPSYS} == "NetBSD"
-TOOLS_PLATFORM.msgfmt=
-.endif
+GETTEXT_TOOLS_REQD=	0.19.7
 
 PYTHON_FOR_BUILD_ONLY=	tool
 

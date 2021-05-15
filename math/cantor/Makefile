@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.76 2021/01/01 09:52:32 ryoon Exp $
+# $NetBSD: Makefile,v 1.83 2021/04/21 13:24:59 adam Exp $
 
 DISTNAME=	cantor-${KAPPSVER}
-PKGREVISION=	7
+PKGREVISION=	5
 CATEGORIES=	math
 
 HOMEPAGE=	https://kde.org/applications/education/cantor/
@@ -19,44 +19,13 @@ CMAKE_ARGS+=	-DCMAKE_DISABLE_FIND_PACKAGE_LuaJIT=TRUE
 
 #  only try to build python3 support
 PYTHON_VERSIONS_INCOMPATIBLE=	27
-CMAKE_ARGS+=	-DCMAKE_DISABLE_FIND_PACKAGE_PythonLibs=TRUE
-SUBST_CLASSES+=		py3
-SUBST_STAGE.py3=	pre-configure
-SUBST_FILES.py3=	cmake/FindPythonLibs3.cmake
-SUBST_SED.py3=		-e 's:python3):python-${PYVERSSUFFIX}):'
-SUBST_SED.py3+=		-e 's:python3.6m python3.7m:python3.6m python3.6 python3.7m python3.7:'
 
 REPLACE_SH+=	src/backends/sage/cantor-execsage
-
-SUBST_CLASSES+=		xdg
-SUBST_STAGE.xdg=	pre-configure
-SUBST_MESSAGE.xdg=	Install via examples dir.
-SUBST_FILES.xdg=	src/CMakeLists.txt
-SUBST_FILES.xdg+=	src/backends/*/CMakeLists.txt
-SUBST_SED.xdg=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_XDG_EX_DIR}:'
-
-MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor.knsrc \
-		${PKG_SYSCONFDIR}/xdg/cantor.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_kalgebra.knsrc \
-		${PKG_SYSCONFDIR}/xdg/cantor_kalgebra.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_maxima.knsrc \
-		${PKG_SYSCONFDIR}/xdg/cantor_maxima.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_octave.knsrc \
-		${PKG_SYSCONFDIR}/xdg/cantor_octave.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_python.knsrc \
-		${PKG_SYSCONFDIR}/xdg/cantor_python.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_qalculate.knsrc \
-		${PKG_SYSCONFDIR}/xdg/cantor_qalculate.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_sage.knsrc \
-		${PKG_SYSCONFDIR}/xdg/cantor_sage.knsrc
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/cantor_scilab.knsrc \
-		${PKG_SYSCONFDIR}/xdg/cantor_scilab.knsrc
 
 SUBST_CLASSES+=		fix-moc
 SUBST_STAGE.fix-moc=	post-configure
 SUBST_MESSAGE.fix-moc=	Cleaning up MOC includes
-SUBST_FILES.fix-moc=	_KDE_build/src/*/*/CMakeFiles/cantor_*_autogen.dir/AutogenInfo.json
+SUBST_FILES.fix-moc=	_KDE_build/src/*/*/CMakeFiles/*_autogen.dir/AutogenInfo.json
 SUBST_NOOP_OK.fix-moc=	yes
 SUBST_SED.fix-moc=	-e 's;"${PREFIX}/include",;;g'
 

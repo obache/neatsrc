@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.56 2020/11/25 15:40:16 micha Exp $
+# $NetBSD: Makefile,v 1.58 2021/03/12 09:57:24 micha Exp $
 
 DISTNAME=	schily-2020-11-25
 PKGNAME=	star-1.6.1
-PKGREVISION=	12
+PKGREVISION=	14
 CATEGORIES=	archivers
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=schilytools/}
 EXTRACT_SUFX=	.tar.bz2
@@ -85,5 +85,17 @@ do-install:
 		${DESTDIR}${PREFIX}/share/examples/star/star
 	${INSTALL_DATA} ${WRKDIR}/INSTALL.pkgsrc			\
 		${DESTDIR}${PREFIX}/share/doc/star/INSTALL.pkgsrc
+
+# Fix for pkg/56049:
+# Do not install symlinks to potentially incompatible variants
+post-install:
+	${RM} ${DESTDIR}${PREFIX}/bin/gnutar
+	${RM} -f ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/gnutar.1
+	${RM} ${DESTDIR}${PREFIX}/bin/suntar
+	${RM} -f ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/suntar.1
+	${RM} ${DESTDIR}${PREFIX}/bin/tar
+	${RM} -f ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/tar.1
+	${RM} ${DESTDIR}${PREFIX}/bin/ustar
+	${RM} -f ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/ustar.1
 
 .include "../../mk/bsd.pkg.mk"

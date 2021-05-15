@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.621 2021/01/06 00:54:37 js Exp $
+# $NetBSD: Makefile,v 1.626 2021/04/19 10:14:10 nia Exp $
 #
 
-COMMENT=	Audio tools
+COMMENT=	Audio tools, players, and libraries
 
 SUBDIR+=	SDL2_mixer
 SUBDIR+=	SDL_mixer
@@ -294,6 +294,7 @@ SUBDIR+=	mbrolavox-us2
 SUBDIR+=	mbrolavox-us3
 SUBDIR+=	mikmod
 SUBDIR+=	milkytracker
+SUBDIR+=	minimp3
 SUBDIR+=	mixer.app
 SUBDIR+=	mixxx
 SUBDIR+=	mkcdtoc
@@ -318,6 +319,7 @@ SUBDIR+=	mpc
 SUBDIR+=	mpdas
 SUBDIR+=	mpegaudio
 SUBDIR+=	mpg123
+SUBDIR+=	mpg123-jack
 SUBDIR+=	mpg123-nas
 SUBDIR+=	mpg123-oss
 SUBDIR+=	mpg123-pulse
@@ -411,6 +413,7 @@ SUBDIR+=	rhythmbox
 SUBDIR+=	rip
 SUBDIR+=	rosegarden
 SUBDIR+=	rsynth
+SUBDIR+=	rtunes
 SUBDIR+=	rubberband
 SUBDIR+=	ruby-mp3info
 SUBDIR+=	ruby-taglib

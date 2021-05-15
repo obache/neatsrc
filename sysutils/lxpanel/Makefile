@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.21 2020/08/31 18:11:29 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2021/03/18 00:12:23 gutteridge Exp $
 
-DISTNAME=	lxpanel-0.10.0
-PKGREVISION=	4
+DISTNAME=	lxpanel-0.10.1
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=lxde/}
 EXTRACT_SUFX=	.tar.xz
@@ -40,7 +40,6 @@ CONF_FILES=	${LXDE_CONF}/default/config				\
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/libwnck/buildlink3.mk"
 .include "../../sysutils/menu-cache/buildlink3.mk"
-.include "../../graphics/libexif/buildlink3.mk"
 .include "../../graphics/gdk-pixbuf2-xlib/buildlink3.mk"
 .include "../../sysutils/libfm/buildlink3.mk"
 .include "../../sysutils/libfm-extra/buildlink3.mk"

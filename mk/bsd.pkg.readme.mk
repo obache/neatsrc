@@ -1,4 +1,4 @@
-# $NetBSD: bsd.pkg.readme.mk,v 1.29 2020/11/04 16:38:59 khorben Exp $
+# $NetBSD: bsd.pkg.readme.mk,v 1.31 2021/04/09 20:15:16 nia Exp $
 #
 # This Makefile fragment is included by bsd.pkg.mk and encapsulates the
 # code to produce README.html files in each package directory.
@@ -196,7 +196,7 @@ readmes:	readme
 # This target is used to generate README.html files
 .PHONY: readme
 .if !target(readme)
-FTP_PKG_URL_HOST?=	ftp://ftp.NetBSD.org
+FTP_PKG_URL_HOST?=	http://cdn.NetBSD.org
 FTP_PKG_URL_DIR?=	/pub/pkgsrc/packages
 
 readme:
@@ -310,6 +310,7 @@ print-run-depends-list:
 print-summary-data:
 	@${ECHO} depends ${PKGPATH} ${DEPENDS:Q}
 	@${ECHO} build_depends ${PKGPATH} ${BUILD_DEPENDS:Q}
+	@${ECHO} tool_depends ${PKGPATH} ${TOOL_DEPENDS:Q}
 	@${ECHO} conflicts ${PKGPATH} ${CONFLICTS:Q}
 	@${ECHO} index ${PKGPATH} ${PKGNAME:Q}
 	@${ECHO} htmlname ${PKGPATH} ${_HTML_PKGLINK:Q}

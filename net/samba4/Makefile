@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.114 2020/12/17 12:15:43 adam Exp $
+# $NetBSD: Makefile,v 1.122 2021/04/29 15:21:16 taca Exp $
 
-DISTNAME=	samba-4.13.3
+DISTNAME=	samba-4.14.4
 CATEGORIES=	net
 MASTER_SITES=	https://download.samba.org/pub/samba/stable/
 
@@ -21,6 +21,7 @@ DEPENDS+=	p5-Parse-Yapp>=1.05:../../devel/p5-Parse-Yapp
 DEPENDS+=	${PYPKGPREFIX}-dns-[0-9]*:../../net/py-dns
 DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 DEPENDS+=	${PYPKGPREFIX}-iso8601-[0-9]*:../../time/py-iso8601
+DEPENDS+=	${PYPKGPREFIX}-markdown-[0-9]*:../../textproc/py-markdown
 
 BUILD_DEFS+=		VARBASE
 
@@ -54,7 +55,7 @@ FILES_SUBST+=		SMB_PID=${SMB_PID}
 
 # mktemp is useful for the replacement adduser script, but don't require
 # a full dependency since it's not actually needed by samba.
-USE_TOOLS+=		gmake mktemp perl:run pkg-config
+USE_TOOLS+=		gmake mktemp perl:run pkg-config flex
 
 .if ${OPSYS} == "NetBSD"
 USE_GNU_ICONV=		yes	# FIXME: something doesn't work on NetBSD
@@ -206,7 +207,7 @@ REPLACE_PYTHON+=	source4/scripting/bin/*
 .endif
 .include "../../archivers/libarchive/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
-BUILDLINK_API_DEPENDS.ldb+=	ldb>=2.2.0
+BUILDLINK_API_DEPENDS.ldb+=	ldb>=2.2.1
 .include "../../databases/ldb/buildlink3.mk"
 .include "../../databases/lmdb/buildlink3.mk"
 .include "../../devel/cmocka/buildlink3.mk"

@@ -1,12 +1,13 @@
-# $NetBSD$
+# $NetBSD: Makefile,v 1.1 2021/02/20 21:58:35 ryoon Exp $
 
 DISTNAME=	capnproto-c++-0.8.0
-PKGNAME=	${DISTNAME:S/-c++-/-/}
+PKGNAME=	${DISTNAME:S/capnproto-c++-/capnproto-/}
 CATEGORIES=	devel
 MASTER_SITES=	https://capnproto.org/
 
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://capnproto.org/
-COMMENT=	Insanely Fast Data Serialization Format
+COMMENT=	Cap'n Proto - Insanely Fast Data Serialization Format
 LICENSE=	mit
 
 GNU_CONFIGURE=	yes

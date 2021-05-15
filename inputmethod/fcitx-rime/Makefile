@@ -9,7 +9,7 @@ HOMEPAGE=	http://fcitx-im.org/
 COMMENT=	RIME support for Fcitx
 LICENSE=	gnu-gpl-v2
 
-DEPENDS+=	brise-[0-9]*:../../inputmethod/brise
+DEPENDS+=	rime-data-[0-9]*:../../meta-pkgs/rime-data
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++

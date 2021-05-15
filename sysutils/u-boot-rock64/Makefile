@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.7 2020/08/11 18:42:49 joerg Exp $
+# $NetBSD: Makefile,v 1.9 2021/04/26 00:35:03 mrg Exp $
 
-PKGREVISION=		6
+PKGREVISION=		7
 UBOOT_TARGET=		rock64
 UBOOT_CONFIG=		rock64-rk3328_defconfig
 UBOOT_BIN=		idbloader.img rksd_loader.img rkspi_loader.img u-boot.itb
@@ -25,6 +25,9 @@ DISTFILES+=		${DDR_BIN}
 
 REPLACE_PYTHON+=	tools/dtoc/dtoc.py
 PYTHON_FOR_BUILD_ONLY=	yes
+
+# SyntaxError: Missing parentheses in call to 'print'. Did you mean print(result)?
+PYTHON_VERSIONS_ACCEPTED=	27
 
 .include "../../lang/python/application.mk"
 .include "../../sysutils/u-boot/u-boot-arm64.mk"

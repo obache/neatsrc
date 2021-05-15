@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.22 2020/11/13 19:26:06 bsiegert Exp $
+# $NetBSD: Makefile,v 1.24 2021/03/19 17:36:56 bsiegert Exp $
 
 DISTNAME=	colour-0.0.0.20160524
 PKGNAME=	go-${DISTNAME}
-PKGREVISION=	21
+PKGREVISION=	23
 MASTER_SITES=	${MASTER_SITE_GITHUB:=alecthomas/}
 CATEGORIES=	devel
 GITHUB_PROJECT=	colour

@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.58 2020/09/04 11:19:08 wiz Exp $
+# $NetBSD: Makefile,v 1.60 2021/04/19 02:13:28 wen Exp $
 
-DISTNAME=	Dancer2-0.300004
+DISTNAME=	Dancer2-0.301002
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	2
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/C/CR/CROMEDOME/}
 
@@ -22,7 +21,7 @@ BUILD_DEPENDS+=	p5-Test-Fatal>=0:../../devel/p5-Test-Fatal
 BUILD_DEPENDS+=	p5-File-ShareDir-Install>=0.06:../../devel/p5-File-ShareDir-Install
 BUILD_DEPENDS+=	p5-LWP-Protocol-PSGI>=0.06:../../www/p5-LWP-Protocol-PSGI
 
-DEPENDS+=	p5-App-Cmd>=0:../../devel/p5-App-Cmd
+DEPENDS+=	p5-CLI-Osprey>=0:../../devel/p5-CLI-Osprey
 DEPENDS+=	p5-Capture-Tiny>=0.12:../../devel/p5-Capture-Tiny
 DEPENDS+=	p5-Crypt-URandom>=0:../../security/p5-Crypt-URandom
 DEPENDS+=	p5-Config-Any>=0:../../devel/p5-Config-Any

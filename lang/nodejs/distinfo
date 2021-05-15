@@ -1,9 +1,9 @@
-$NetBSD: distinfo,v 1.191 2021/01/05 08:31:04 adam Exp $
+$NetBSD: distinfo,v 1.196 2021/04/24 06:30:28 rin Exp $
 
-SHA1 (node-v14.15.4.tar.xz) = a63eca39a1323243b2fd4b0879870f3a40d08a8d
-RMD160 (node-v14.15.4.tar.xz) = 0ad20166cb8829e9bf79d84b54b9063ec00cd2fa
-SHA512 (node-v14.15.4.tar.xz) = 0d497a5d51de52412d09dd0fbcb936dbf0cba810f84d598be8f02c876d55f614e00c1ea0b25a00838e7b9f9c73a7882e3de0e9507d1c6ee45270a62d3438ab41
-Size (node-v14.15.4.tar.xz) = 33296076 bytes
+SHA1 (node-v14.16.1.tar.xz) = 3b8001e12cdae8b0e0fb2c1f7a8eb7f314d30cfc
+RMD160 (node-v14.16.1.tar.xz) = cf91d50c5833f8f20799bb2bbdfc9152207c50d0
+SHA512 (node-v14.16.1.tar.xz) = d4f5fbab69592ae555613b2186090b85a458d2211b6035989aee2617bfd0f6768ca767ec45ce12756a9c452d00af7237edee3b1ae526049e9fcd01f8f67680c0
+Size (node-v14.16.1.tar.xz) = 33297064 bytes
 SHA1 (patch-common.gypi) = f0bd2962bf7c8466db24b35a35154897ecad6316
 SHA1 (patch-deps_cares_cares.gyp) = 22b44f2ac59963f694dfe4f4585e08960b3dec32
 SHA1 (patch-deps_uv_common.gypi) = d38a9c8d9e3522f15812aec2f5b1e1e636d4bab3
@@ -11,11 +11,12 @@ SHA1 (patch-deps_uvwasi_include_wasi__serdes.h) = 32b85ef5824b96b35aba9280bbe7aa
 SHA1 (patch-deps_v8_src_base_atomicops.h) = 05b1f62850c3d4a9a8e94a5263be1c4267cf566d
 SHA1 (patch-deps_v8_src_base_platform_platform-freebsd.cc) = b47025f33d2991275bbcd15dbabb28900afab0e1
 SHA1 (patch-deps_v8_src_base_platform_platform-openbsd.cc) = 5e593879dbab095f99e82593272a0de91043f9a8
-SHA1 (patch-deps_v8_src_base_platform_platform-posix.cc) = 84300d917c172e6211a00b76bfb44ee25465ee00
+SHA1 (patch-deps_v8_src_base_platform_platform-posix.cc) = f99d9bee3ce452dda41c9b2943ee16cebcbd0af3
 SHA1 (patch-deps_v8_src_base_platform_semaphore.cc) = 802a95f1b1d131e0d85c1f99c659cc68b31ba2f6
 SHA1 (patch-deps_v8_src_codegen_arm_cpu-arm.cc) = 84c75d61bc99c2ff9adeac3152f5b11ebb0e582b
 SHA1 (patch-deps_v8_src_common_globals.h) = 86637724864389f2b24251904de41669a2f00fbc
 SHA1 (patch-deps_v8_src_compiler_types.h) = 2a212282ab9d71e98ae56827fdb1d9778a6047a5
+SHA1 (patch-deps_v8_src_objects_js-list-format.cc) = b1acf2f9890f04aba58f82012528f9a425751896
 SHA1 (patch-deps_v8_src_zone_zone.h) = 651b49d242dac8f713cccc101147ccf61f828ecb
 SHA1 (patch-deps_v8_tools_run-llprof.sh) = 39aa3faf77492ef8dd35b411b7b0e4605b469af3
 SHA1 (patch-node.gypi) = 4a104dba6c22702211009bc60a6be6f87554e2fa

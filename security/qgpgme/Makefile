@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.15 2020/11/05 09:07:07 ryoon Exp $
+# $NetBSD: Makefile,v 1.18 2021/04/21 11:40:37 adam Exp $
 
-DISTNAME=	gpgme-1.11.1
-PKGNAME=	qgpgme-1.11.1
-PKGREVISION=	5
+DISTNAME=	gpgme-1.15.1
+PKGNAME=	qgpgme-1.15.1
+PKGREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG:=gpgme/}
 EXTRACT_SUFX=	.tar.bz2
@@ -20,7 +20,6 @@ USE_LIBTOOL=	yes
 BUILD_DIRS=	lang/qt/src
 
 CONFIGURE_ARGS+=	--enable-languages="cpp qt"
-CONFIGURE_ENV+=	MOC=${QTDIR}/bin/moc
 
 .include "../../security/gpgme++/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"

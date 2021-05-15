@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.237 2020/12/09 09:05:39 adam Exp $
+# $NetBSD: Makefile,v 1.242 2021/04/21 13:24:18 adam Exp $
 
-DISTNAME=	curl-7.74.0
+DISTNAME=	curl-7.76.1
+PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://curl.haxx.se/download/
 EXTRACT_SUFX=	.tar.xz
@@ -19,7 +20,13 @@ USE_TOOLS+=		nroff perl
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
+# Some systems use bundles instead of directories; this needs configuring
+# because curl doesn't use default validation.
+.if !empty(SSLCERTBUNDLE)
+CONFIGURE_ARGS+=	--with-ca-bundle=${SSLCERTBUNDLE}
+.else
 CONFIGURE_ARGS+=	--with-ca-path=${SSLCERTS}
+.endif
 CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib}
 CONFIGURE_ARGS+=	--without-libpsl
 PKGCONFIG_OVERRIDE=	libcurl.pc.in

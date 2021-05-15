@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.31 2020/11/15 14:53:24 mef Exp $
+# $NetBSD: Makefile,v 1.33 2021/04/21 11:41:48 adam Exp $
 
 DISTNAME=	geoclue-2.5.6
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	geography
 MASTER_SITES=	https://gitlab.freedesktop.org/geoclue/geoclue/-/archive/${PKGVERSION_NOREV}/
 
@@ -35,11 +35,8 @@ CONF_FILES+=	share/examples/dbus-1/system.d/org.freedesktop.GeoClue2.conf \
 CONF_FILES+=	share/examples/geoclue/geoclue.conf \
 		${PKG_SYSCONFDIR}/geoclue.conf
 
-.include "../../mk/bsd.prefs.mk"
 # msgfmt: unknown option -- desktop
-.if ${OPSYS} == "NetBSD"
-TOOLS_PLATFORM.msgfmt=
-.endif
+GETTEXT_TOOLS_REQD=	0.19.0
 
 .include "../../devel/meson/build.mk"
 .include "../../devel/glib2/buildlink3.mk"

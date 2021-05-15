@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $NetBSD: pkg_rolling-replace.sh,v 1.41 2021/01/09 19:12:46 rhialto Exp $
+# $NetBSD: pkg_rolling-replace.sh,v 1.44 2021/04/22 08:54:18 pho Exp $
 #<license>
 # Copyright (c) 2006 BBN Technologies Corp.  All rights reserved.
 #
@@ -91,6 +91,7 @@ if [ -z "$PKGSRCDIR" ] ; then
     done
 fi
 test -z "$PKGSRCDIR" && echo >&2 "Please set PKGSRCDIR" && exit 1
+test -z "$PKG_ADMIN" && PKG_ADMIN="@PKG_ADMIN_CMD@"
 test -z "$PKG_INFO" && PKG_INFO="@PKG_INFO_CMD@"
 
 export PKGSRCDIR

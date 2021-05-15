@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.8 2020/08/18 17:57:58 leot Exp $
+# $NetBSD: Makefile,v 1.11 2021/04/25 07:47:27 nia Exp $
 
 DISTNAME=	taisei-v1.3.1
 PKGNAME=	${DISTNAME:S/-v/-/}
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=taisei-project/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
@@ -14,6 +14,9 @@ COMMENT=	Open source Touhou Project fan game
 LICENSE=	mit
 
 USE_TOOLS+=	pkg-config
+
+# C++14
+GCC_REQD+=	5
 
 MESON_ARGS+=	-Db_pch=false
 MESON_ARGS+=	-Db_lto=false
@@ -39,7 +42,8 @@ REPLACE_PYTHON+=	scripts/configure-file.py
 
 BUILDLINK_TRANSFORM+=	rm:-Werror=implicit-function-declaration
 
-PYTHON_FOR_BUILD_ONLY=	tool
+PYTHON_FOR_BUILD_ONLY=		tool
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../devel/meson/build.mk"
 .include "../../archivers/libzip/buildlink3.mk"
@@ -50,5 +54,6 @@ PYTHON_FOR_BUILD_ONLY=	tool
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/libwebp/buildlink3.mk"
+.include "../../lang/python/tool.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

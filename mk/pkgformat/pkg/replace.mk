@@ -1,4 +1,4 @@
-# $NetBSD: replace.mk,v 1.7 2021/01/09 19:10:05 rhialto Exp $
+# $NetBSD: replace.mk,v 1.8 2021/01/17 20:18:42 rhialto Exp $
 #
 
 # _pkgformat-destdir-replace:
@@ -166,15 +166,12 @@ replace-fixup-required-by: .PHONY
 
 # Removes unsafe_depends*, rebuild and mismatch tags from this package.
 #
-# XXX: pkg_admin should not complain on unset with no +INSTALLED_INFO.
-#
 replace-fixup-installed-info: .PHONY
 	@${STEP_MSG} "Removing unsafe_depends and rebuild tags."
 	${RUN} ${_REPLACE_NEWNAME_CMD};					\
 	[ ! -f ${_INSTALLED_INFO_FILE} ] ||			\
 	${MV} ${_INSTALLED_INFO_FILE} ${_PKG_DBDIR}/$$newname/+INSTALLED_INFO; \
 	for var in unsafe_depends unsafe_depends_strict rebuild mismatch; do  \
-		${TEST} ! -f ${_PKG_DBDIR}/$$newname/+INSTALLED_INFO || \
 		${PKG_ADMIN} unset $$var $$newname;			\
 	done
 
@@ -227,7 +224,6 @@ replace-destdir: .PHONY
 			fi; \
 		done;	\
 	done
-	${RUN}${PKG_ADMIN} unset unsafe_depends ${PKGNAME:Q}
-	${RUN}${PKG_ADMIN} unset unsafe_depends_strict ${PKGNAME:Q}
-	${RUN}${PKG_ADMIN} unset rebuild ${PKGNAME:Q}
-	${RUN}${PKG_ADMIN} unset mismatch ${PKGNAME:Q}
+	${RUN}for var in unsafe_depends unsafe_depends_strict rebuild mismatch; do  \
+		${PKG_ADMIN} unset $$var ${PKGNAME:Q}; \
+	done

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.16 2020/11/16 12:15:03 adam Exp $
+# $NetBSD: Makefile.common,v 1.19 2021/04/16 06:38:20 nia Exp $
 #
 # This Makefile fragment is included by all PostgreSQL packages built from
 # the main sources of the PostgreSQL distribution except jdbc-postgresql.
@@ -16,7 +16,7 @@
 # used by databases/postgresql11-pltcl/Makefile
 # used by databases/postgresql11-server/Makefile
 
-DISTNAME=	postgresql-11.10
+DISTNAME=	postgresql-11.11
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_PGSQL:=source/v${PKGVERSION_NOREV}/}
 EXTRACT_SUFX=	.tar.bz2
@@ -94,6 +94,18 @@ CONFIGURE_ARGS.OpenBSD+=	--disable-thread-safety
 BUILD_DEFS+=		PGSQL_BLCKSZ
 .if defined(PGSQL_BLCKSZ)
 CONFIGURE_ARGS+=	--with-blocksize=${PGSQL_BLCKSZ}
+.endif
+
+# UUID support for contrib/uuid-ossp
+# It has to be defined here, because it affects Makefile.global
+.if ${OPSYS:M*BSD}
+CONFIGURE_ARGS+=	--with-uuid=bsd
+.elif ${OPSYS} == "Darwin" || ${OPSYS} == "Linux"
+CONFIGURE_ARGS+=	--with-uuid=e2fs
+.include "../../devel/libuuid/buildlink3.mk"
+.elif ${OPSYS} == "SunOS"
+CONFIGURE_ARGS+=	--with-uuid=ossp
+.include "../../devel/ossp-uuid/buildlink3.mk"
 .endif
 
 # PostgreSQL explicitly forbids any use of -ffast-math

@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.32 2019/11/01 16:21:11 nia Exp $
+$NetBSD: distinfo,v 1.34 2021/04/03 05:13:07 ryoon Exp $
 
 SHA1 (uim-1.8.8.tar.bz2) = 369e0c10927d4ede8ed5434631b57ab42ca98406
 RMD160 (uim-1.8.8.tar.bz2) = 80eb077b2a53997f13f036da7cd565696441482e
@@ -12,7 +12,7 @@ SHA1 (patch-replace_os__dep.h) = 308ce5b48e9f462fdc34c8c70c7b3415fbb12cfe
 SHA1 (patch-scm_Makefile.am) = b4a23a7d507d8d7fe6122f3d2f50fed40589947f
 SHA1 (patch-scm_Makefile.in) = 8fb985f439ac0cbe6bd969de4f16c5ee16aee0c2
 SHA1 (patch-sigscheme_configure) = 652c93afa1c5b065101344af97d0e6856977712a
-SHA1 (patch-sigscheme_configure.ac) = 221077809cfaa80cee2e52e3eaebf39b13ae5799
+SHA1 (patch-sigscheme_configure.ac) = 836d034e2eb1a60619eaac70f22387a1805dda5c
 SHA1 (patch-uim.desktop.in.in) = 099f64f82acba6544d1d19edea676dd8dd7b349f
 SHA1 (patch-uim_Makefile.am) = e3a9e4dc99965c271fd6e783d42a6a136bf904b2
 SHA1 (patch-uim_Makefile.in) = 5cec0cc4f34866f3924dac44aff4fd2fad7b2adb

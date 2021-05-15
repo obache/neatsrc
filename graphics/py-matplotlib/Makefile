@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.60 2020/10/12 21:52:01 bacon Exp $
+# $NetBSD: Makefile,v 1.66 2021/02/07 15:31:44 adam Exp $
 
-DISTNAME=	matplotlib-3.2.2
+DISTNAME=	matplotlib-3.3.4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	graphics python
 MASTER_SITES=	${MASTER_SITE_PYPI:=m/matplotlib/}
 
@@ -11,12 +10,13 @@ HOMEPAGE=	https://matplotlib.org/
 COMMENT=	Matlab-style plotting package for Python
 # LICENSE=	see ${WRKSRC}/LICENSE/LICENSE
 
-DEPENDS+=	${PYPKGPREFIX}-Pillow>=3.4:../../graphics/py-Pillow
+DEPENDS+=	${PYPKGPREFIX}-Pillow>=6.2.0:../../graphics/py-Pillow
 DEPENDS+=	${PYPKGPREFIX}-cairo-[0-9]*:../../graphics/py-cairo
 DEPENDS+=	${PYPKGPREFIX}-cycler>=0.10:../../graphics/py-cycler
 DEPENDS+=	${PYPKGPREFIX}-dateutil>=2.1:../../time/py-dateutil
 DEPENDS+=	${PYPKGPREFIX}-kiwisolver>=1.0.1:../../math/py-kiwisolver
 DEPENDS+=	${PYPKGPREFIX}-pyparsing>=2.2.0:../../devel/py-pyparsing
+DEPENDS+=	${PYPKGPREFIX}-certifi-[0-9]*:../../security/py-certifi
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 
 USE_LANGUAGES=	c c++
@@ -31,4 +31,5 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 .include "../../graphics/png/buildlink3.mk"
 .include "../../lang/python/egg.mk"
 .include "../../math/py-numpy/buildlink3.mk"
+.include "../../math/qhull/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

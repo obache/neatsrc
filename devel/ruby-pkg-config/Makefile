@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.29 2020/09/19 13:30:36 taca Exp $
+# $NetBSD: Makefile,v 1.31 2021/02/05 14:56:01 taca Exp $
 
-DISTNAME=	pkg-config-1.4.3
+DISTNAME=	pkg-config-1.4.5
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.24 2020/09/19 13:30:36 taca Exp $
+$NetBSD: distinfo,v 1.26 2021/02/05 14:56:01 taca Exp $
 
-SHA1 (pkg-config-1.4.3.gem) = f8f2d0046874536475650ae3ea6bbfda9605e8b0
-RMD160 (pkg-config-1.4.3.gem) = 3d2ce4e68783c164b4e627f94a0639f81f0db09e
-SHA512 (pkg-config-1.4.3.gem) = 4952636442d585b555d048666937e568f237789329ed6110475efe149d607f4b1946ce1b616574a91de7e4c17ef9cc5cc3b4bb2867a7dc08344183a41303f42d
-Size (pkg-config-1.4.3.gem) = 22016 bytes
+SHA1 (pkg-config-1.4.5.gem) = 37bf638c5ec1552b6f473d7a491e054da86faf9b
+RMD160 (pkg-config-1.4.5.gem) = b63110be203292058f6a1a3863ef604130c6f35f
+SHA512 (pkg-config-1.4.5.gem) = 4c3f4dc8d414efc9a140f3438c6977c6b534b7944356ac0c4a95233924dbe372c47b15296ba0f8e35cd6520664f28381131cbaafb33f8d004bb34adfdcc5c236
+Size (pkg-config-1.4.5.gem) = 22016 bytes

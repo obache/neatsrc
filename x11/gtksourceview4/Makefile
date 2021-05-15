@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.18 2020/11/05 09:07:14 ryoon Exp $
+# $NetBSD: Makefile,v 1.20 2021/04/21 11:40:45 adam Exp $
 
 DISTNAME=	gtksourceview-4.8.0
 PKGNAME=	${DISTNAME:S/gtksourceview/gtksourceview4/}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtksourceview/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -20,6 +20,8 @@ USE_TOOLS+=		intltool msgfmt pkg-config
 MESON_ARGS+=		-Dvapi=false
 
 PKGCONFIG_OVERRIDE+=	gtksourceview.pc.in
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 .include "options.mk"
 

@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.106 2021/01/01 09:52:29 ryoon Exp $
+# $NetBSD: Makefile,v 1.114 2021/04/21 13:24:45 adam Exp $
 
-# This is intentionally 3.10 Long Term Release.  Please do not update
-# to 3.14, and instead discuss whether/how we want multiple versions.
-DISTNAME=	qgis-3.10.12
-PKGREVISION=	1
+# This is intentionally 3.16 Long Term Release.  Please do not update
+# to later branches, and instead discuss whether/how we want multiple
+# versions.
+DISTNAME=	qgis-3.16.5
+PKGREVISION=	2
 CATEGORIES=	geography
 MASTER_SITES=	https://qgis.org/downloads/
 EXTRACT_SUFX=	.tar.bz2
@@ -71,9 +72,11 @@ pre-configure:
 
 .include "../../archivers/libzip/buildlink3.mk"
 ##.include "../../devel/qjson/buildlink3.mk"
+.include "../../devel/protobuf/buildlink3.mk"
 .include "../../geography/gdal-lib/buildlink3.mk"
 .include "../../geography/proj/buildlink3.mk"
 .include "../../graphics/exiv2/buildlink3.mk"
+.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
 .include "../../math/gsl/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"

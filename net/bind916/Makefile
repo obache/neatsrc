@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2020/12/19 16:41:36 taca Exp $
+# $NetBSD: Makefile,v 1.13 2021/04/29 05:55:54 taca Exp $
 
 DISTNAME=	bind-${BIND_VERSION}
 PKGNAME=	${DISTNAME:S/-P/pl/}
@@ -15,7 +15,7 @@ CONFLICTS+=	host-[0-9]*
 
 MAKE_JOBS_SAFE=	no
 
-BIND_VERSION=	9.16.10
+BIND_VERSION=	9.16.15
 
 BUILD_DEFS+=	BIND_DIR VARBASE
 
@@ -38,7 +38,8 @@ CONFIGURE_ARGS+=		--with-openssl=${SSLBASE:Q}
 CONFIGURE_ARGS+=		--with-python=no
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-m68k) || \
     !empty(MACHINE_PLATFORM:MNetBSD-*-mipsel) || \
-    !empty(MACHINE_PLATFORM:MNetBSD-*-vax)
+    !empty(MACHINE_PLATFORM:MNetBSD-*-vax) || \
+    !empty(MACHINE_PLATFORM:MNetBSD-*-i386)
 CONFIGURE_ARGS+=		--disable-atomic
 .endif
 CONFIGURE_ARGS.DragonFly+=	--disable-kqueue
@@ -81,6 +82,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${PREFIX}/${DOCDIR}
 .endfor
 
+.include "../../mk/atomic64.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../devel/libuv/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

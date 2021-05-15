@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.10 2020/12/18 09:01:03 adam Exp $
+@comment $NetBSD: PLIST,v 1.13 2021/04/06 20:16:06 adam Exp $
 bin/tqdm-${PYVERSSUFFIX}
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
@@ -64,12 +64,18 @@ ${PYSITELIB}/tqdm/contrib/discord.pyo
 ${PYSITELIB}/tqdm/contrib/itertools.py
 ${PYSITELIB}/tqdm/contrib/itertools.pyc
 ${PYSITELIB}/tqdm/contrib/itertools.pyo
+${PYSITELIB}/tqdm/contrib/logging.py
+${PYSITELIB}/tqdm/contrib/logging.pyc
+${PYSITELIB}/tqdm/contrib/logging.pyo
 ${PYSITELIB}/tqdm/contrib/telegram.py
 ${PYSITELIB}/tqdm/contrib/telegram.pyc
 ${PYSITELIB}/tqdm/contrib/telegram.pyo
 ${PYSITELIB}/tqdm/contrib/utils_worker.py
 ${PYSITELIB}/tqdm/contrib/utils_worker.pyc
 ${PYSITELIB}/tqdm/contrib/utils_worker.pyo
+${PYSITELIB}/tqdm/dask.py
+${PYSITELIB}/tqdm/dask.pyc
+${PYSITELIB}/tqdm/dask.pyo
 ${PYSITELIB}/tqdm/gui.py
 ${PYSITELIB}/tqdm/gui.pyc
 ${PYSITELIB}/tqdm/gui.pyo
@@ -79,9 +85,15 @@ ${PYSITELIB}/tqdm/keras.pyo
 ${PYSITELIB}/tqdm/notebook.py
 ${PYSITELIB}/tqdm/notebook.pyc
 ${PYSITELIB}/tqdm/notebook.pyo
+${PYSITELIB}/tqdm/rich.py
+${PYSITELIB}/tqdm/rich.pyc
+${PYSITELIB}/tqdm/rich.pyo
 ${PYSITELIB}/tqdm/std.py
 ${PYSITELIB}/tqdm/std.pyc
 ${PYSITELIB}/tqdm/std.pyo
+${PYSITELIB}/tqdm/tk.py
+${PYSITELIB}/tqdm/tk.pyc
+${PYSITELIB}/tqdm/tk.pyo
 ${PYSITELIB}/tqdm/utils.py
 ${PYSITELIB}/tqdm/utils.pyc
 ${PYSITELIB}/tqdm/utils.pyo

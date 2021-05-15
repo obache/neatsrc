@@ -81,7 +81,6 @@ REPLACE_PYTHON+=	utils/llvm-compilers-check
 REPLACE_PYTHON+=	utils/llvm-lit/llvm-lit.in
 
 TEST_TARGET=		check
-TEST_ENV+=		LD_LIBRARY_PATH=${WRKDIR}/build/lib
 
 .include "../../mk/bsd.prefs.mk"
 

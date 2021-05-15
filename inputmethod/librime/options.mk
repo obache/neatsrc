@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.1 2014/11/29 09:31:49 obache Exp $
+# $NetBSD: options.mk,v 1.2 2021/02/20 20:53:01 ryoon Exp $
 #
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.librime

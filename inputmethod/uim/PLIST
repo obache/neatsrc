@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.25 2018/01/01 22:29:39 rillig Exp $
+@comment $NetBSD: PLIST,v 1.28 2021/03/30 17:01:49 ryoon Exp $
 ${PLIST.qt4}bin/uim-chardict-qt4
 ${PLIST.qt5}bin/uim-chardict-qt5
 ${PLIST.uim-dict-gtk}bin/uim-dict-gtk

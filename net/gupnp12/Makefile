@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.9 2020/12/04 20:45:34 nia Exp $
+# $NetBSD: Makefile,v 1.11 2021/04/21 11:40:34 adam Exp $
 
 DISTNAME=	gupnp-1.2.2
 PKGNAME=	${DISTNAME:S/gupnp/gupnp12/}
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gupnp/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -12,9 +12,7 @@ HOMEPAGE=	http://www.gupnp.org/
 COMMENT=	Framework for UPnP devices (1.2 branch)
 LICENSE=	gnu-lgpl-v2
 
-GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
-USE_TOOLS+=	gmake pkg-config
+USE_TOOLS+=	pkg-config
 
 REPLACE_PYTHON=	tools/gupnp-binding-tool-1.2
 

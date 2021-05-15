@@ -1,14 +1,12 @@
-# $NetBSD: Makefile,v 1.11 2020/03/24 18:30:19 taca Exp $
+# $NetBSD: Makefile,v 1.13 2021/01/26 15:33:05 taca Exp $
 
-DISTNAME=	thor-1.0.1
+DISTNAME=	thor-1.1.0
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://whatisthor.com/
 COMMENT=	Scripting framework that replaces rake, sake and rubigen
 LICENSE=	mit
-
-CONFLICTS+=	ruby[1-9][0-9]-thor-[0-9]*
 
 RUBYGEM_OPTIONS+=	--format-executable
 

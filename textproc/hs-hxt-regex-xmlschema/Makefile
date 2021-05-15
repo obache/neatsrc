@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2020/01/17 15:52:41 pho Exp $
+# $NetBSD: Makefile,v 1.4 2021/04/24 15:44:55 pho Exp $
 
-DISTNAME=	hxt-regex-xmlschema-9.2.0.3
+DISTNAME=	hxt-regex-xmlschema-9.2.0.7
 CATEGORIES=	textproc
 
 MAINTAINER=	pho@cielonegro.org

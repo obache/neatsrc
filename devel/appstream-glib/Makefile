@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.8 2020/11/05 22:59:43 wiz Exp $
+# $NetBSD: Makefile,v 1.10 2021/04/21 11:41:22 adam Exp $
 
 DISTNAME=	appstream-glib-0.7.18
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=hughsie/}
 GITHUB_TAG=	${DISTNAME:S/-/_/g:S/./_/g}
@@ -20,6 +20,8 @@ USE_LANGUAGES=		c c++
 MESON_ARGS+=		-Drpm=false
 
 PKGCONFIG_OVERRIDE+=	libappstream-glib/appstream-glib.pc.in
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 .include "../../archivers/libarchive/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"

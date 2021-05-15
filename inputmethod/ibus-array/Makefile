@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.38 2020/12/04 20:45:24 nia Exp $
+# $NetBSD: Makefile,v 1.39 2021/04/21 11:42:03 adam Exp $
 
 DISTNAME=	ibus-array-release-0.2.1
 PKGNAME=	${DISTNAME:S/-release-/-/}
-PKGREVISION=	18
+PKGREVISION=	19
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	-https://github.com/lexical/ibus-array/archive/release-${PKGVERSION_NOREV}${EXTRACT_SUFX}
 

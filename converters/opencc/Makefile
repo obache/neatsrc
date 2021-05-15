@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2015/03/15 20:03:24 hiramatsu Exp $
+# $NetBSD: Makefile,v 1.4 2021/02/20 13:56:07 ryoon Exp $
 
 DISTNAME=	OpenCC-ver.1.1.2
 PKGNAME=	${DISTNAME:S/-ver./-/:tl}
@@ -9,6 +9,8 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://opencc.byvoid.com/
 COMMENT=	Convertion between Traditional and Simplified Chinese
 LICENSE=	apache-2.0
+
+WRKSRC=		${WRKDIR}/${DISTNAME} # GitHub rule is not relevant for this.
 
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config

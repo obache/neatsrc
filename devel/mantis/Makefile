@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.55 2020/11/28 01:20:03 gutteridge Exp $
+# $NetBSD: Makefile,v 1.58 2021/03/07 13:21:57 taca Exp $
 
-DISTNAME=	mantisbt-2.4.1
-PKGNAME=	${DISTNAME:S/mantisbt/mantis/}
-PKGREVISION=	1
+DISTNAME=	mantisbt-2.24.5
+PKGNAME=	${PHP_PKG_PREFIX}-${DISTNAME:S/mantisbt/mantis/}
 CATEGORIES=	devel www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=mantisbt/}
 
@@ -10,10 +9,6 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.mantisbt.org/
 COMMENT=	PHP/MySQL/web based bugtracking system
 LICENSE=	gnu-gpl-v2
-
-#PHP_VERSIONS_ACCEPTED=	56
-
-DEPENDS+=	${PHP_PKG_PREFIX}-json-[0-9]*:../../textproc/php-json
 
 NO_BUILD=	YES
 
@@ -71,5 +66,5 @@ do-install:
 	cd ${DESTDIR}${MANTIS_HOME} && \
 		${FIND} . -type f | ${XARGS} ${CHMOD} ${SHAREMODE}
 
-.include "../../lang/php/phpversion.mk"
+.include "../../lang/php/json.mk"
 .include "../../mk/bsd.pkg.mk"

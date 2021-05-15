@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.24 2021/01/01 08:24:48 ryoon Exp $
+# $NetBSD: Makefile,v 1.28 2021/04/29 23:30:15 thor Exp $
 
 PKGNAME=	gnuradio-uhd-${VERSION}
-PKGREVISION=	2
+PKGREVISION=	3
 COMMENT=	Uhd-based encoding and decoding algorithms for GNU Radio
 
 .include	"../../ham/gnuradio-core/Makefile.common"

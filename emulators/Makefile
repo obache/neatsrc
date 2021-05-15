@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.337 2020/11/27 13:10:25 ryoon Exp $
+# $NetBSD: Makefile,v 1.341 2021/04/08 15:43:17 nia Exp $
 #
 
-COMMENT=	Emulators for other operating systems
+COMMENT=	Emulators for other machines and systems
 
 SUBDIR+=	8086tiny
 SUBDIR+=	BasiliskII
@@ -410,6 +410,5 @@ SUBDIR+=	xroar
 SUBDIR+=	xtrs
 SUBDIR+=	xyame
 SUBDIR+=	yabause
-SUBDIR+=	z26
 
 .include "../mk/misc/category.mk"

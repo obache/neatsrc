@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.61 2021/01/01 09:52:31 ryoon Exp $
+# $NetBSD: Makefile,v 1.70 2021/04/21 13:24:48 adam Exp $
 
-DISTNAME=		krita-4.4.1
-PKGREVISION=		4
-CATEGORIES=		graphics misc kde
+DISTNAME=		krita-4.4.3
+PKGREVISION=		5
+CATEGORIES=		graphics kde
 MASTER_SITES=		${MASTER_SITE_KDE:=krita/${PKGVERSION_NOREV}/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
@@ -12,8 +12,10 @@ LICENSE=		gnu-gpl-v2 AND gnu-lgpl-v2.1
 
 #BUILD_DEPENDS+=	automoc4>=0.9.87:../../devel/automoc4
 
-USE_TOOLS+=		msgfmt pkg-config perl gmake
-USE_LANGUAGES=		c c++14 # as of 4.3.0 boost 1.75 geometry requires c++14
+USE_TOOLS+=		msgfmt pkg-config perl
+# Uses targets with spaces in the names
+USE_TOOLS+=		gmake
+USE_LANGUAGES=		c c++
 USE_CMAKE=		yes
 CMAKE_ARG_PATH=		..
 CONFIGURE_DIRS=		_KDE_build
@@ -52,6 +54,7 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 BUILDLINK_API_DEPENDS.boost-header+=	boost-headers>=1.73.0nb1
 .include "../../devel/boost-headers/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
+.include "../../devel/libatomic/buildlink3.mk"
 .include "../../devel/ki18n/buildlink3.mk"
 .include "../../devel/kio/buildlink3.mk"
 .include "../../devel/kconfig/buildlink3.mk"

@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.13 2020/09/16 17:26:31 jperkin Exp $
+$NetBSD: distinfo,v 1.18 2021/05/01 03:00:06 pho Exp $
 
 SHA1 (ghc-8.4.4-boot-i386-unknown-freebsd.tar.xz) = 04981802730423aa12999e59679be198d540222a
 RMD160 (ghc-8.4.4-boot-i386-unknown-freebsd.tar.xz) = f617e67f2c2f07c7211cb391a4bc2e7b304045e2
@@ -24,9 +24,14 @@ SHA1 (ghc-8.8.4-src.tar.xz) = 94dfb44d8f6b812a7023309ec909e2288f0e7724
 RMD160 (ghc-8.8.4-src.tar.xz) = 2201ffb27231d9fce293b77830e6fae09f48f163
 SHA512 (ghc-8.8.4-src.tar.xz) = efd23bd819f7429486696a3a929a040471db7ea8a2d1f1d832e4cf0825b9e1e0c5e6ecad0ab8376f58b74e9c28c1d2f773bd126596d6d853c9e57d57e5ceb090
 Size (ghc-8.8.4-src.tar.xz) = 19395252 bytes
-SHA1 (patch-aclocal.m4) = 27209100d99fa8e2c4bc45d1423ead48de7626cb
+SHA1 (netbsd-9.0-amd64-libterminfo.tar.gz) = db6b385b8676efc135c08b06e3dd6fd11b926999
+RMD160 (netbsd-9.0-amd64-libterminfo.tar.gz) = 5a246633c90ee85f71efcc02d8280bd0c50ab5a7
+SHA512 (netbsd-9.0-amd64-libterminfo.tar.gz) = 79288d44b84df8848afc2cdfee628cc4fd1ec0334159403ef8ba994d617bc56a7114af3031198afb5f3b8f45c0463a848099431e32bc6725042908576b6f95b8
+Size (netbsd-9.0-amd64-libterminfo.tar.gz) = 27744 bytes
+SHA1 (patch-aclocal.m4) = 16ac8899a7d87cf93a6139edba9e5222eb4c5c66
 SHA1 (patch-compiler_main_DynFlags.hs) = 07bb2a5afdd087f4d2da5c035feecc13273aec70
 SHA1 (patch-configure.ac) = 6e5cec26e440ccd71343a1981b415459813f88be
+SHA1 (patch-ghc.mk) = 1a4de0f175b0b73dc6d09a26b8c55bb6e0be0e18
 SHA1 (patch-ghc_ghc.mk) = 9c639cc95cb79e4ffbd9b5fce311edba54939b5e
 SHA1 (patch-libraries_Cabal_Cabal_Distribution_Simple_GHC.hs) = a4c82b1282c0580a7945be8c3b9d38bc760db99f
 SHA1 (patch-libraries_base_GHC_Event_KQueue.hsc) = 8ee5da667a241a05fde3c580d3dc9bdc05aa5f00
@@ -41,3 +46,6 @@ SHA1 (patch-libraries_unix_System_Posix_Files_Common.hsc) = 6efef280832d376915a8
 SHA1 (patch-libraries_unix_System_Posix_Signals.hsc) = 49215dce493a6bbc440f91a3959e592f86fc779b
 SHA1 (patch-libraries_unix_include_execvpe.h) = 67dd9720a71a6a55bbe2b50e61621ca60187ef00
 SHA1 (patch-rts_StgCRun.c) = 121c7bd714725d5b14a3cbb03d81b1c769848824
+SHA1 (patch-rts_ghc.mk) = 6e3daf71fb7e656131aa2aeeb0346c651520216a
+SHA1 (patch-rules_build-package-way.mk) = ec73df0bbc85e962f76a9068683879a1a1ba1815
+SHA1 (patch-rules_distdir-way-opts.mk) = a058c6428faf02ef94aab3336d2d2874f2726f4e

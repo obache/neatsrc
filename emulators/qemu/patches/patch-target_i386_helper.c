@@ -1,10 +1,8 @@
-$NetBSD: patch-target_i386_helper.c,v 1.1 2020/02/06 16:46:17 kamil Exp $
+$NetBSD: patch-target_i386_helper.c,v 1.3 2021/03/06 11:19:34 reinoud Exp $
 
-Add NVMM support.
-
---- target/i386/helper.c.orig	2019-12-12 18:20:48.000000000 +0000
+--- target/i386/helper.c.orig	2020-12-08 16:59:44.000000000 +0000
 +++ target/i386/helper.c
-@@ -981,7 +981,7 @@ void cpu_report_tpr_access(CPUX86State *
+@@ -1008,7 +1008,7 @@ void cpu_report_tpr_access(CPUX86State *
      X86CPU *cpu = env_archcpu(env);
      CPUState *cs = env_cpu(env);
  

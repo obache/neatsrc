@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.39 2021/01/01 09:52:23 ryoon Exp $
+# $NetBSD: Makefile,v 1.42 2021/04/21 11:41:35 adam Exp $
 
-PKGREVISION= 6
+PKGREVISION= 1
 .include "version.mk"
 
 PKGNAME=	retroarch-${RETROARCH_VERSION}
@@ -13,7 +13,7 @@ DISTFILES+=	retroarch-assets.tar.gz
 # They are really inconsistent with publishing .tar.xz bundles...
 
 SITES.retroarch.tar.gz= \
-	-https://github.com/libretro/RetroArch/archive/v1.8.8.tar.gz
+	-https://github.com/libretro/RetroArch/archive/v${RETROARCH_VERSION}.tar.gz
 
 SITES.retroarch-assets.tar.gz= \
 	-https://github.com/libretro/retroarch-assets/archive/ea38cbc592233095cbe9a1357932eac1ceb2a3cc.tar.gz

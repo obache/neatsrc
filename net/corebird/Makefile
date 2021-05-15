@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.61 2020/11/05 09:08:50 ryoon Exp $
+# $NetBSD: Makefile,v 1.63 2021/04/21 11:42:23 adam Exp $
 
 DISTNAME=	corebird-1.7.4
-PKGREVISION=	13
+PKGREVISION=	14
 CATEGORIES=	net
 MASTER_SITES=	https://github.com/baedert/${PKGBASE}/releases/download/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.xz

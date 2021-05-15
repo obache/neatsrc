@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.24 2020/12/04 20:45:26 nia Exp $
+# $NetBSD: Makefile,v 1.26 2021/04/18 11:52:16 gson Exp $
 
 GCC_PKGNAME=		gcc8
-PKGREVISION=		3
 .include		"version.mk"
 
 DISTNAME=	gcc-${GCC8_DIST_VERSION}
 PKGNAME=	${GCC_PKGNAME}-${GCC8_DIST_VERSION}
+PKGREVISION=	4
 ## When bumping the PKGREVISION of this package the PKGREVISION of
 ## lang/gcc8-libs needs to be bumped to be at least 1 more than the
 ## PKGREVISION of this package!
@@ -21,7 +21,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND gnu-lgpl-v3
 DISTFILES=		${DEFAULT_DISTFILES}
 EXTRACT_ONLY=		${DEFAULT_DISTFILES}
 
-NOT_FOR_PLATFORM=	Interix-*-*
+NOT_FOR_PLATFORM=	Interix-*-* Darwin-*-aarch64
 
 USE_LANGUAGES=		c99 c++
 USE_TOOLS+=		gmake makeinfo sed:run tar:build

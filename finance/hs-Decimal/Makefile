@@ -1,15 +1,11 @@
-# $NetBSD: Makefile,v 1.1 2020/03/30 16:44:12 riastradh Exp $
+# $NetBSD: Makefile,v 1.4 2021/04/24 05:45:29 pho Exp $
 
-DISTNAME=	Decimal-0.5.1
-CATEGORIES=	finance
-MASTER_SITES=	${MASTER_SITE_HASKELL_HACKAGE:=Decimal-${PKGVERSION_NOREV}/}
+DISTNAME=	Decimal-0.5.2
+CATEGORIES=	finance math # XXX: This should be moved to the math category.
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://github.com/PaulJohnson/Haskell-Decimal
 COMMENT=	Decimal arithmetic for financial applications
 LICENSE=	modified-bsd
-
-USE_LANGUAGES=	# none
 
 .include "../../mk/haskell.mk"
 .include "../../mk/bsd.pkg.mk"

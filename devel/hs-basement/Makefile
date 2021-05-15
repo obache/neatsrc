@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2020/01/16 00:38:57 pho Exp $
+# $NetBSD: Makefile,v 1.4 2021/04/23 09:26:55 pho Exp $
 
 DISTNAME=	basement-0.0.11
 CATEGORIES=	devel

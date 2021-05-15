@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.26 2020/12/20 11:26:28 nia Exp $
+# $NetBSD: Makefile,v 1.30 2021/04/06 20:16:06 adam Exp $
 
-DISTNAME=	tqdm-4.54.1
+DISTNAME=	tqdm-4.60.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	misc python
 MASTER_SITES=	${MASTER_SITE_PYPI:=t/tqdm/}
@@ -10,16 +10,17 @@ HOMEPAGE=	https://github.com/tqdm/tqdm
 COMMENT=	Fast, extensible progress bar for Python
 LICENSE=	mit
 
+BUILD_DEPENDS+=	${PYPKGPREFIX}-setuptools_scm-[0-9]*:../../devel/py-setuptools_scm
 TEST_DEPENDS+=	${PYPKGPREFIX}-coverage-[0-9]*:../../devel/py-coverage
 TEST_DEPENDS+=	${PYPKGPREFIX}-flake8-[0-9]*:../../devel/py-flake8
 TEST_DEPENDS+=	${PYPKGPREFIX}-nose-[0-9]*:../../devel/py-nose
-
-BUILD_DEPENDS+=	${PYPKGPREFIX}-setuptools_scm-[0-9]*:../../devel/py-setuptools_scm
-
-# Uses async
-PYTHON_VERSIONS_INCOMPATIBLE=	27
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
 
 USE_LANGUAGES=	# none
+
+PYSETUPTESTTARGET=	pytest
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 

@@ -1,6 +1,10 @@
-$NetBSD: distinfo,v 1.1 2020/11/19 19:23:39 schmonz Exp $
+$NetBSD: distinfo,v 1.5 2021/04/26 15:02:52 schmonz Exp $
 
-SHA1 (execline-2.6.1.1.tar.gz) = 589f3b763a5841389c970275801cd7ff9a44cad4
-RMD160 (execline-2.6.1.1.tar.gz) = 420355eadf71d74604331d8bb3170abaf6f7b758
-SHA512 (execline-2.6.1.1.tar.gz) = 5826abb407742ad8a2cd48c09b966827d129dda420db07c893cd7a27e806441d7b117a0c61fdc0222e527aada976da26e4779a4896fc084cdf6efa8294ffac5b
-Size (execline-2.6.1.1.tar.gz) = 92495 bytes
+SHA1 (execline-2.8.0.1.tar.gz) = dbe0f79b76736c7f80d63febe41931d7371fad24
+RMD160 (execline-2.8.0.1.tar.gz) = a949f977f07b4b3474d3d1d81224cdd24f153afa
+SHA512 (execline-2.8.0.1.tar.gz) = 280c2524d510af0e7913961505cd5bd5eb65528918ad50c638592403b569939e5357d59cd05ddbabbf5e5c2c908fd9fb2218ded16413d62bea4c984582032c08
+Size (execline-2.8.0.1.tar.gz) = 94886 bytes
+SHA1 (v2.8.0.1.1.tar.gz) = c2b088da760eb701eb9a01d1cc06bb3c7c916fc2
+RMD160 (v2.8.0.1.1.tar.gz) = 3399935fe322f55e779f326194cc0e3deafa4d53
+SHA512 (v2.8.0.1.1.tar.gz) = 1d61e912738efa6b3696632bca07eaf856185e2eb08060a5da81eb2a490cc1fe83b7ae22de0b9e5c95e8ee60476a6511c9e134521e48759fcde393a8a55ba221
+Size (v2.8.0.1.1.tar.gz) = 34686 bytes

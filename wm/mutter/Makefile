@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2020/11/22 00:05:09 gutteridge Exp $
+# $NetBSD: Makefile,v 1.6 2021/04/12 13:05:09 nia Exp $
 
 DISTNAME=	mutter-3.38.1
 CATEGORIES=	wm gnome
@@ -35,8 +35,9 @@ MESON_ARGS+=		-Dverbose=true
 
 .if ${OPSYS} == "NetBSD"
 MESON_ARGS+=		-Dopengl_libname=libGL.so
-TOOLS_PLATFORM.msgfmt=
 .endif
+# XXX msgfmt: unknown option -- desktop
+GETTEXT_TOOLS_REQD=	0.19.0
 
 PKGCONFIG_OVERRIDE_STAGE=	pre-install
 PKGCONFIG_OVERRIDE+=		output/meson-private/mutter-cogl-7.pc
@@ -46,6 +47,8 @@ PKGCONFIG_OVERRIDE+=		output/meson-private/mutter-clutter-x11-7.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/libmutter-7.pc
 
 LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib/mutter-7
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 .include "../../devel/meson/build.mk"
 .include "../../devel/glib2/schemas.mk"

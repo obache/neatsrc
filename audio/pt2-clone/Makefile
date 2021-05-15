@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2021/01/06 01:19:20 js Exp $
+# $NetBSD: Makefile,v 1.4 2021/01/29 09:11:40 nia Exp $
 
 DISTNAME=	pt2-clone-1.28
 CATEGORIES=	audio
@@ -11,18 +11,15 @@ HOMEPAGE=	https://github.com/8bitbubsy/pt2-clone/
 COMMENT=	ProTracker 2 clone for Windows/macOS/Linux
 LICENSE=	modified-bsd
 
-INSTALLATION_DIRS+=	bin share/examples/pt2-clone
+USE_CMAKE=	yes
 
-do-build:
-	cd ${WRKSRC} && ${CC} -o pt2-clone \
-		-O2 -DNDEBUG \
-		$$(sdl2-config --cflags --libs) \
-		src/*.c src/gfx/*.c
+# error: 'for' loop initial declarations are only allowed in C99 mode
+USE_LANGUAGES=	c99 c++
 
-do-install:
-	cd ${WRKSRC} && ${INSTALL} -m 755 pt2-clone \
-		${DESTDIR}${PREFIX}/bin/pt2-clone
-	cd ${WRKSRC} && ${INSTALL} -m 644 release/other/protracker.ini \
+INSTALLATION_DIRS+=	share/examples/pt2-clone
+
+post-install:
+	cd ${WRKSRC} && ${INSTALL_DATA} release/other/protracker.ini \
 		${DESTDIR}${PREFIX}/share/examples/pt2-clone/protracker.ini
 
 .include "../../devel/SDL2/buildlink3.mk"

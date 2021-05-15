@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.32 2021/01/07 21:58:08 wiz Exp $
+# $NetBSD: Makefile,v 1.34 2021/03/29 07:38:52 nia Exp $
 
 DISTNAME=	PySolFC-2.6.4
 PKGNAME=	${DISTNAME:tl}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	games python
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pysolfc/}
 EXTRACT_SUFX=	.tar.xz
@@ -17,8 +17,9 @@ DISTFILES=	${DEFAULT_DISTFILES}
 DISTFILES+=	${CARDSETS_NAME}.tar.bz2
 
 DEPENDS+=	${PYPKGPREFIX}-Tk-[0-9]*:../../x11/py-Tk
-DEPENDS+=	${PYPKGPREFIX}-Pillow-[0-9]*:../../graphics/py-Pillow
 DEPENDS+=	${PYPKGPREFIX}-game-[0-9]*:../../devel/py-game
+
+PYTHON_VERSIONED_DEPENDENCIES=	Pillow
 
 USE_TOOLS+=	pax
 
@@ -35,6 +36,10 @@ PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX:Q}
 
 EGG_NAME=	${DISTNAME}
 
+# PR pkg/56069 
+# Depends on 'time.clock', which was removed in Python 3.8
+PYTHON_VERSIONS_ACCEPTED=	37
+
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/docs/pysol.6 \
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man6/pysol.py.6
@@ -46,4 +51,5 @@ post-install:
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

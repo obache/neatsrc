@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.18 2021/01/01 09:52:18 ryoon Exp $
+# $NetBSD: Makefile,v 1.24 2021/04/21 13:24:23 adam Exp $
 
-DISTNAME=	qmmp-1.4.2
-PKGREVISION=	1
+DISTNAME=	qmmp-1.4.4
+PKGREVISION=	4
 CATEGORIES=	audio
 MASTER_SITES=	http://qmmp.ylsoftware.com/files/
 EXTRACT_SUFX=	.tar.bz2
@@ -35,6 +35,7 @@ CMAKE_ARGS+=		-DUSE_OSS4=ON
 PLIST.oss=		yes
 CMAKE_ARGS+=		-DUSE_OSS=ON
 CMAKE_ARGS+=		-DUSE_OSS4=OFF
+LDFLAGS+=		${LIBOSSAUDIO}
 .  endif
 SUBST_CLASSES+=		oss
 SUBST_STAGE.oss=	pre-build

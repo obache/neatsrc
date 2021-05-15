@@ -1,8 +1,7 @@
-@comment $NetBSD: PLIST,v 1.14 2018/12/02 06:37:54 taca Exp $
+@comment $NetBSD: PLIST,v 1.16 2021/02/03 14:19:33 taca Exp $
 ${GEM_HOME}/cache/${GEM_NAME}.gem
+${GEM_LIBDIR}/BSDL
 ${GEM_LIBDIR}/COPYING
-${GEM_LIBDIR}/GPL
-${GEM_LIBDIR}/LGPL
 ${GEM_LIBDIR}/PSFL
 ${GEM_LIBDIR}/README.md
 ${GEM_LIBDIR}/Rakefile
@@ -58,6 +57,7 @@ ${GEM_LIBDIR}/lib/test/unit/util/observable.rb
 ${GEM_LIBDIR}/lib/test/unit/util/output.rb
 ${GEM_LIBDIR}/lib/test/unit/util/procwrapper.rb
 ${GEM_LIBDIR}/lib/test/unit/version.rb
+${GEM_LIBDIR}/lib/test/unit/warning.rb
 ${GEM_LIBDIR}/sample/adder.rb
 ${GEM_LIBDIR}/sample/subtracter.rb
 ${GEM_LIBDIR}/sample/test_adder.rb

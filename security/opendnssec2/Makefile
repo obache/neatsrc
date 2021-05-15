@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.8 2020/11/05 09:09:03 ryoon Exp $
+# $NetBSD: Makefile,v 1.12 2021/04/21 13:25:20 adam Exp $
 #
 
-DISTNAME=	opendnssec-2.1.7
+DISTNAME=	opendnssec-2.1.8
 PKGNAME=	${DISTNAME:S/opendnssec/opendnssec2/}
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	security net
 MASTER_SITES=	https://www.opendnssec.org/files/source/
 
@@ -55,14 +55,14 @@ MIGRATE_FILES+=		find_problematic_zones.sql mysql_convert.sql
 MIGRATE_FILES+=		sqlite_convert.sql
 
 SUBST_CLASSES+=		paths
-SUBST_FILES.paths=	${WRKSRC}/conf/Makefile.in
+SUBST_FILES.paths=	conf/Makefile.in
 SUBST_STAGE.paths=	pre-configure
 SUBST_VARS.paths=	EGDIR
 
 # Prepare files for installation
 SUBST_CLASSES+=		migrate
-SUBST_FILES.migrate+=	${WRKSRC}/${CONVERT_DIR}/convert_sqlite
-SUBST_FILES.migrate+=	${WRKSRC}/${CONVERT_DIR}/convert_mysql
+SUBST_FILES.migrate+=	${CONVERT_DIR}/convert_sqlite
+SUBST_FILES.migrate+=	${CONVERT_DIR}/convert_mysql
 SUBST_STAGE.migrate=	pre-configure
 SUBST_SED.migrate=	-e 's,SCHEMA=../../src/db/,SCHEMA=./,'
 

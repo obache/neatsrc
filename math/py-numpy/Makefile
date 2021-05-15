@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.74 2021/01/09 09:29:41 adam Exp $
+# $NetBSD: Makefile,v 1.78 2021/04/20 20:53:48 thor Exp $
 
 DISTNAME=	numpy-1.19.5
+PKGREVISION=	4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=n/numpy/}
@@ -18,7 +19,8 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 
 # error: 'for' loop initial declarations are only allowed in C99 mode
 USE_LANGUAGES=		c99 fortran
-MAKE_ENV+=		ATLAS=None
+
+.include "../../math/py-numpy/Makefile.make_env"
 
 REPLACE_PYTHON+=	*.py */*.py */*/*.py */*/*/*.py
 
@@ -54,9 +56,6 @@ do-test:
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
-# Consider allowing mk/blas.buildlink3.mk to handle Accelerate.framework
-.if ${OPSYS} != "Darwin"
-# blas and lapack are not needed; numpy will use Accelerate.framework
-.include "../../mk/blas.buildlink3.mk"
-.endif
+# BLAS with CBLAS is needed for proper acceleration.
+.include "../../math/cblas/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.6 2020/11/05 09:09:00 ryoon Exp $
+# $NetBSD: Makefile,v 1.8 2021/04/21 11:42:33 adam Exp $
 
-DISTNAME=	sile-0.10.12
+DISTNAME=	sile-0.10.15
 PKGREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_GITHUB:=sile-typesetter/}
@@ -30,17 +30,18 @@ DEPENDS+=	${LUA_PKGPREFIX}-socket-[0-9]*:../../net/lua-socket
 DEPENDS+=	${LUA_PKGPREFIX}-sec-[0-9]*:../../security/lua-sec
 DEPENDS+=	${LUA_PKGPREFIX}-expat-[0-9]*:../../textproc/lua-expat
 DEPENDS+=	${LUA_PKGPREFIX}-cosmo-[0-9]*:../../textproc/lua-cosmo
+DEPENDS+=	${LUA_PKGPREFIX}-utf8-[0-9]*:../../textproc/lua-utf8
 
 # Tests require additional font downloads
-#pre-test:
-#	${LN} -fs ${PREFIX}/bin/busted${_LUA_DOT_VERSION} ${TOOLS_DIR}/bin/busted
-#TEST_DEPENDS+=	${LUA_PKGPREFIX}-busted-[0-9]*:../../devel/lua-busted
-#USE_TOOLS+=	perl:test
-#TEST_TARGET=	test
+pre-test:
+	${LN} -fs ${PREFIX}/bin/busted${_LUA_DOT_VERSION} ${TOOLS_DIR}/bin/busted
+TEST_DEPENDS+=	${LUA_PKGPREFIX}-busted-[0-9]*:../../devel/lua-busted
+USE_TOOLS+=	perl:test
+TEST_TARGET=	test
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
-USE_TOOLS+=	pkg-config gmake bash
+USE_TOOLS+=	pkg-config gmake
 
 CONFIGURE_ARGS+=	LUA=${LUA_INTERPRETER}
 CONFIGURE_ARGS+=	--with-system-luarocks

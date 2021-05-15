@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.260 2021/01/03 21:42:29 roy Exp $
+# $NetBSD: Makefile,v 1.277 2021/04/21 13:24:37 adam Exp $
 
-DISTNAME=	qemu-5.1.0
-PKGREVISION=	11
+DISTNAME=	qemu-5.2.0
+PKGREVISION=	7
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 EXTRACT_SUFX=	.tar.xz
@@ -11,14 +11,13 @@ HOMEPAGE=	http://www.qemu-project.org/
 COMMENT=	CPU emulator using dynamic translation
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1 AND mit AND modified-bsd
 
+TOOL_DEPENDS+=	ninja-build-[0-9]*:../../devel/ninja-build
+
 USE_CURSES=		resize_term wide
 USE_LANGUAGES+=		c c++
-USE_TOOLS+=		bison flex gmake makeinfo perl:build pod2man pkg-config
-FAKE_NCURSES=		yes
+USE_TOOLS+=		bison flex makeinfo perl:build pod2man pkg-config
 UNLIMIT_RESOURCES=	datasize
 HAS_CONFIGURE=		yes
-
-GMAKE_REQD=		4.1 # needed for docs
 
 PYTHON_VERSIONED_DEPENDENCIES=	sphinx:tool
 
@@ -26,6 +25,7 @@ SUBST_CLASSES+=			sphinx-build
 SUBST_STAGE.sphinx-build=	pre-configure
 SUBST_MESSAGE.sphinx-build=	Fix hardcoded sphinx-build
 SUBST_FILES.sphinx-build+=	configure
+SUBST_FILES.sphinx-build+=	docs/meson.build
 SUBST_FILES.sphinx-build+=	roms/skiboot/doc/Makefile
 SUBST_FILES.sphinx-build+=	roms/u-boot/Documentation/Makefile
 SUBST_SED.sphinx-build+=	-e 's/sphinx-build/sphinx-build-${PYVERSSUFFIX}/g'
@@ -36,7 +36,7 @@ SUBST_SED.sphinx-build+=	-e 's/sphinx-build/sphinx-build-${PYVERSSUFFIX}/g'
 
 DISTFILES=		${DEFAULT_DISTFILES}
 DISTFILES+=		palcode-clipper
-SITES.palcode-clipper=	http://ftp.netbsd.org/pub/NetBSD/arch/alpha/qemu/
+SITES.palcode-clipper=	http://ftp.NetBSD.org/pub/NetBSD/arch/alpha/qemu/
 
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--interp-prefix=${PREFIX}/share/qemu
@@ -61,7 +61,6 @@ NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-arm
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-cris
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-hppa
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-i386
-NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-lm32
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-m68k
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-microblaze
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-microblazeel
@@ -82,16 +81,23 @@ NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-sh4eb
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-sparc
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-sparc64
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-tricore
-NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-unicore32
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-x86_64
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-xtensa
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-xtensaeb
 
 PKG_SYSCONFSUBDIR=	qemu
 
-REPLACE_PERL+=		scripts/texi2pod.pl
-
 INSTALLATION_DIRS=	${PKGMANDIR}/man1 share/doc/qemu
+
+.include "../../mk/oss.buildlink3.mk"
+
+.if ${OSS_TYPE} != "none"
+SUBST_CLASSES+=		oss
+SUBST_STAGE.oss=	pre-configure
+SUBST_MESSAGE.oss=	Correcting the path to the OSS device.
+SUBST_FILES.oss+=	audio/ossaudio.c
+SUBST_SED.oss+=		-e "s,/dev/dsp,${DEVOSSAUDIO},g"
+.endif
 
 UE_ARCHS+=		aarch64 aarch64_be
 UE_ARCHS+=		alpha arm armeb cris
@@ -100,10 +106,9 @@ UE_ARCHS+=		i386
 UE_ARCHS+=		m68k microblaze microblazeel
 UE_ARCHS+=		mips mips64 mips64el mipsel mipsn32 mipsn32el
 UE_ARCHS+=		nios2
-UE_ARCHS+=		or1k ppc ppc64 ppc64le ppc64abi32
+UE_ARCHS+=		or1k ppc ppc64 ppc64le
 UE_ARCHS+=		riscv32 riscv64
 UE_ARCHS+=		s390x sh4 sh4eb sparc sparc32plus sparc64
-UE_ARCHS+=		tilegx
 UE_ARCHS+=		x86_64 xtensa xtensaeb
 
 .if ${OPSYS} == "NetBSD"
@@ -124,15 +129,13 @@ PLIST.nbd=			yes
 USER_EMUL=			${UE_ARCHS}
 PLIST.bridge-helper=		yes
 PLIST.nbd=			yes
-PLIST.ivshmem=			yes
 PLIST.pr-helper=		yes
 .elif !empty(MACHINE_PLATFORM:MSunOS-5.11-*)
-PLIST.ivshmem=			yes
 PLIST.nbd=			yes
 CONFIGURE_ARGS+=		--disable-coroutine-pool
 .endif
 
-PLIST_VARS+=		${UE_ARCHS} bridge-helper ivshmem keymap nbd pr-helper
+PLIST_VARS+=		${UE_ARCHS} bridge-helper keymap nbd pr-helper
 .for pvar in ${USER_EMUL}
 PLIST.${pvar}=		yes
 .endfor
@@ -140,10 +143,23 @@ PLIST.${pvar}=		yes
 # different versions of Sphinx generate different static files
 PLIST_SRC=	PLIST ${WRKDIR}/PLIST.STATIC
 
+PRINT_PLIST_AWK+=	/\/_static\// { next; }
+
 TEST_TARGET=		check
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 post-extract:
 	cp ${WRKDIR}/palcode-clipper ${WRKSRC}/pc-bios/palcode-clipper
+	cp ${FILESDIR}/hw-mips-mipssim_virtio.c ${WRKSRC}/hw/mips/mipssim_virtio.c
+
+do-build:
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
+		ninja -j ${_MAKE_JOBS_N:U1} -C build
+
+do-install:
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${INSTALL_ENV} \
+		ninja -j ${_MAKE_JOBS_N:U1} -C build install
 
 # Some dependencies aren't correct and this tries to be re-made on install,
 # failing due to configure bugs.
@@ -159,10 +175,6 @@ post-install:
 	cd ${DESTDIR}${PREFIX} && \
 	${FIND} share/doc/qemu -path '*/_static/*' -type f -print > ${WRKDIR}/PLIST.STATIC
 
-# On Darwin, qemu uses CoreAudio
-.if ${OPSYS} != "Darwin"
-.include "../../mk/oss.buildlink3.mk"
-.endif
 .include "../../archivers/lzo/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/jemalloc/buildlink3.mk"
@@ -170,7 +182,7 @@ post-install:
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/tool.mk"
 .include "../../lang/python/versioned_dependencies.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"

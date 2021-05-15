@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.13 2020/12/10 09:19:35 fcambus Exp $
+# $NetBSD: Makefile,v 1.19 2021/04/07 07:24:34 fcambus Exp $
 
-DISTNAME=	lowdown-0.7.5
+DISTNAME=	lowdown-0.8.4
 CATEGORIES=	textproc
 MASTER_SITES=	https://kristaps.bsd.lv/lowdown/snapshots/
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	fcambus@NetBSD.org
 HOMEPAGE=	https://kristaps.bsd.lv/lowdown/
 COMMENT=	Simple Markdown translator
 LICENSE=	isc

@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.9 2021/01/01 09:52:42 ryoon Exp $
+# $NetBSD: Makefile,v 1.12 2021/04/28 23:12:11 gutteridge Exp $
 
-DISTNAME=	e16-1.0.22
+DISTNAME=	e16-1.0.23
 PKGNAME=	${DISTNAME:S/e/enlightenment/}
-PKGREVISION=	2
 CATEGORIES=	wm x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=enlightenment/}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	gutteridge@NetBSD.org
 HOMEPAGE=	https://enlightenment.org/
 COMMENT=	Highly themeable and configurable window manager
 LICENSE=	enlightenment16
@@ -36,8 +35,7 @@ REPLACE_PERL+=		scripts/e_gen_menu
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	pre-configure
 SUBST_FILES.paths=	scripts/e_gen_menu
-SUBST_VARS.paths=	LOCALBASE
-SUBST_VARS.paths+=	PREFIX
+SUBST_VARS.paths=	PREFIX
 SUBST_VARS.paths+=	X11BASE
 
 PLIST_VARS+=	libhack

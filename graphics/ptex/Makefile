@@ -17,7 +17,5 @@ BUILDLINK_TRANSFORM+=	opt:-std=c++98:-std=gnu++98 # alloca(3)
 
 TEST_TARGET=	test
 
-TEST_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/src/ptex/
-
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

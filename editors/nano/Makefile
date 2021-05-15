@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.91 2020/12/07 00:03:58 schwarz Exp $
+# $NetBSD: Makefile,v 1.98 2021/04/29 18:44:14 wiedi Exp $
 
-DISTNAME=	nano-5.4
+DISTNAME=	nano-5.7
 CATEGORIES=	editors
 MASTER_SITES=	https://www.nano-editor.org/dist/v${PKGVERSION_NOREV:C/\..*$//}/
 EXTRACT_SUFX=	.tar.xz
@@ -12,6 +12,7 @@ LICENSE=	gnu-gpl-v3
 
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		msgfmt msgmerge xgettext gmake
+USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-color
 CONFIGURE_ARGS+=	--enable-multibuffer
@@ -32,6 +33,12 @@ INFO_FILES=		yes
 
 INSTALLATION_DIRS+=	share/examples/nano
 CONF_FILES+=		share/examples/nano/nanorc ${PKG_SYSCONFDIR}/nanorc
+
+SUBST_CLASSES+=		man
+SUBST_STAGE.man=	pre-configure
+SUBST_MESSAGE.man=	Fixing paths in manpages.
+SUBST_FILES.man=	doc/nano.1 doc/nanorc.5
+SUBST_VARS.man=		PKG_SYSCONFDIR PREFIX
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/sample.nanorc ${DESTDIR}${PREFIX}/share/examples/nano/nanorc

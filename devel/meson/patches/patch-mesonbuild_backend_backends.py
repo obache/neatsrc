@@ -26,7 +26,7 @@ $NetBSD$
 @@ -524,6 +536,11 @@ class Backend:
              result.add('meson-out')
          result.update(self.rpaths_for_bundled_shared_libraries(target))
-         target.rpath_dirs_to_remove.update([d.encode('utf8') for d in result])
+         target.rpath_dirs_to_remove.update([d.encode('utf-8') for d in result])
 +        install_rpath = OrderedSet()
 +        if target.install_rpath:
 +            install_rpath.update(target.install_rpath.split(':'))

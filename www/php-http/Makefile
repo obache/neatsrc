@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.28 2020/05/27 19:37:44 wiz Exp $
+# $NetBSD: Makefile,v 1.30 2021/04/21 13:25:31 adam Exp $
 
 MODNAME=		http
 PECL_VERSION=		2.6.0
@@ -9,7 +9,7 @@ PECL_DISTNAME=		pecl_http-${PECL_VERSION}
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://pecl.php.net/package/pecl_http
 COMMENT=		PHP extension for extended HTTP support
-PKGREVISION=		14
+PKGREVISION=		15
 LICENSE=		2-clause-bsd AND isc
 
 CONFLICTS=		php-http-[0-9]*
@@ -43,5 +43,6 @@ post-extract:
 .include "../../sysutils/file/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../www/php-propro/buildlink3.mk"
+.include "../../converters/php-iconv/buildlink3.mk"
 .include "../../lang/php/ext.mk"
 .include "../../mk/bsd.pkg.mk"

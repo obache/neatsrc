@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.3 2020/03/08 16:48:15 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.4 2021/02/20 13:39:46 ryoon Exp $
 #
 
 BUILDLINK_TREE+=	libpinyin

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.3 2021/01/01 09:52:43 ryoon Exp $
+# $NetBSD: Makefile,v 1.8 2021/04/21 11:42:57 adam Exp $
 
 DISTNAME=	gnome-shell-3.38.1
-PKGREVISION=	2
+PKGREVISION=	6
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/${PKGBASE}/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -22,19 +22,15 @@ TOOL_DEPENDS+=	sassc>=3.6:../../www/sassc
 TOOL_DEPENDS+=	asciidoc-[0-9]*:../../textproc/asciidoc
 TOOL_DEPENDS+=	gdbus-codegen>=2.64:../../devel/gdbus-codegen
 
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/subprojects/gvc
+DEPENDS+=	libgdm>=40.0:../../x11/libgdm
 
 LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib/gnome-shell
 
 CONF_FILES+=	${PREFIX}/share/examples/xdg/autostart/gnome-shell-overrides-migration.desktop \
 		${PKG_SYSCONFDIR}/xdg/autostart/gnome-shell-overrides-migration.desktop
 
-.include "../../mk/bsd.prefs.mk"
-
 # msgfmt: unknown option -- desktop
-.if ${OPSYS} == "NetBSD"
-TOOLS_PLATFORM.msgfmt=
-.endif
+GETTEXT_TOOLS_REQD=	0.19.0
 
 PYTHON_FOR_BUILD_ONLY=	tool
 

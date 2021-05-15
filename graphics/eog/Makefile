@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.109 2020/11/19 19:28:49 nia Exp $
+# $NetBSD: Makefile,v 1.110 2021/04/21 11:41:51 adam Exp $
 
 DISTNAME=	eog-3.38.0
+PKGREVISION=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/eog/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -24,9 +25,7 @@ LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib/eog
 .include "../../mk/bsd.prefs.mk"
 
 # msgfmt: unknown option -- desktop
-.if ${OPSYS} == "NetBSD"
-TOOLS_PLATFORM.msgfmt=
-.endif
+GETTEXT_TOOLS_REQD=	0.19.0
 
 PYTHON_FOR_BUILD_ONLY=	tool
 

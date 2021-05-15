@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.37 2021/01/01 08:24:55 ryoon Exp $
+# $NetBSD: Makefile,v 1.40 2021/04/21 13:24:15 adam Exp $
 
-DISTNAME=	Botan-2.11.0
+DISTNAME=	Botan-2.17.3
 PKGNAME=	${DISTNAME:tl}
-PKGREVISION=	4
+PKGREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	https://botan.randombit.net/releases/
 EXTRACT_SUFX=	.tar.xz
@@ -51,6 +51,11 @@ USE_TOOLS+=	gmake
 PY_PATCHPLIST=	yes
 
 LDFLAGS.SunOS+=	-lnsl -lsocket
+
+TEST_TARGET=	tests
+
+post-test:
+	cd ${WRKSRC} && ./botan-test
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"

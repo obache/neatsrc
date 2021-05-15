@@ -1,19 +1,19 @@
-# $NetBSD: Makefile,v 1.25 2020/08/31 18:07:15 wiz Exp $
+# $NetBSD: Makefile,v 1.27 2021/04/21 13:24:31 adam Exp $
 
-PKGNAME=		${DISTNAME:S/sqlrelay/sqlrelay-pgsql/}
-PKGREVISION=		15
-COMMENT=		PostgreSQL support for SQL Relay
+PKGNAME=	${DISTNAME:S/sqlrelay/sqlrelay-pgsql/}
+PKGREVISION=	1
+COMMENT=	PostgreSQL support for SQL Relay
 
 .include "../../databases/sqlrelay/Makefile.common"
 
-LICENSE=		postgresql-license
+LICENSE=	postgresql-license
 
-CONFIGURE_ARGS+=	--with-postgresql-prefix=${PGSQL_PREFIX}
-CONFIGURE_ARGS+=	--disable-mysql
-CONFIGURE_ARGS+=	--disable-sqlite
 CONFIGURE_ARGS+=	--disable-freetds
+CONFIGURE_ARGS+=	--disable-mysql
 CONFIGURE_ARGS+=	--disable-odbc
 CONFIGURE_ARGS+=	--disable-perl
+CONFIGURE_ARGS+=	--disable-sqlite
+CONFIGURE_ARGS+=	--with-postgresql-prefix=${PGSQL_PREFIX}
 
 BUILD_DIRS=		src/connections
 

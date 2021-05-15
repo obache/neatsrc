@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.68 2020/09/01 14:11:39 taca Exp $
+# $NetBSD: Makefile,v 1.70 2021/03/08 23:44:53 wiz Exp $
 
-DISTNAME=	bulk-medium-20200901
+DISTNAME=	bulk-medium-20210309
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -76,9 +76,10 @@ BUILD_DEPENDS+=	netpbm-[0-9]*:../../graphics/netpbm
 BUILD_DEPENDS+=	${PYPKGPREFIX}-matplotlib-[0-9]*:../../graphics/py-matplotlib
 BUILD_DEPENDS+=	gawk-[0-9]*:../../lang/gawk
 BUILD_DEPENDS+=	php>=7.3<7.4:../../lang/php73
-BUILD_DEPENDS+=	ruby25-base-[0-9]*:../../lang/ruby25-base
+BUILD_DEPENDS+=	php>=7.4<7.5:../../lang/php74
 BUILD_DEPENDS+=	ruby26-base-[0-9]*:../../lang/ruby26-base
 BUILD_DEPENDS+=	ruby27-base-[0-9]*:../../lang/ruby27-base
+BUILD_DEPENDS+=	ruby30-base-[0-9]*:../../lang/ruby30-base
 BUILD_DEPENDS+=	openjdk8-[0-9]*:../../lang/openjdk8
 BUILD_DEPENDS+=	openjdk11-[0-9]*:../../lang/openjdk11
 BUILD_DEPENDS+=	python37-[0-9]*:../../lang/python37
@@ -88,7 +89,7 @@ BUILD_DEPENDS+=	imap-uw-[0-9]*:../../mail/imap-uw
 BUILD_DEPENDS+=	mailman-[0-9]*:../../mail/mailman
 BUILD_DEPENDS+=	mhonarc-[0-9]*:../../mail/mhonarc
 BUILD_DEPENDS+=	mutt-[0-9]*:../../mail/mutt
-BUILD_DEPENDS+=	re-alpine-[0-9]*:../../mail/re-alpine
+BUILD_DEPENDS+=	alpine-[0-9]*:../../mail/alpine
 BUILD_DEPENDS+=	spamassassin-[0-9]*:../../mail/spamassassin
 BUILD_DEPENDS+=	bind>=9.11<9.12:../../net/bind911
 BUILD_DEPENDS+=	bind>=9.16<9.17:../../net/bind916

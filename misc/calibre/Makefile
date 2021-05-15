@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.246 2020/12/04 20:45:29 nia Exp $
+# $NetBSD: Makefile,v 1.252 2021/04/21 11:42:12 adam Exp $
 
 DISTNAME=	calibre-3.40.1
-PKGREVISION=	23
+PKGREVISION=	27
 CATEGORIES=	misc
 #MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=calibre/}
 MASTER_SITES=	http://download.calibre-ebook.com/${PKGVERSION_NOREV}/
@@ -28,9 +28,9 @@ DEPENDS+=	${PYPKGPREFIX}-markdown-[0-9]*:../../textproc/py-markdown
 DEPENDS+=	${PYPKGPREFIX}-mechanize>=0.1.11nb1:../../www/py-mechanize
 DEPENDS+=	${PYPKGPREFIX}-msgpack-[0-9]*:../../devel/py-msgpack
 DEPENDS+=	${PYPKGPREFIX}-netifaces>=0.8:../../net/py-netifaces
-DEPENDS+=	${PYPKGPREFIX}-Pillow>=2.7.0:../../graphics/py-Pillow
+DEPENDS+=	${PYPKGPREFIX}-Pillow>=2.7.0:../../graphics/py-Pillow6
 DEPENDS+=	${PYPKGPREFIX}-psutil>=0.6.1:../../sysutils/py-psutil
-DEPENDS+=	${PYPKGPREFIX}-pygments-[0-9]*:../../textproc/py-pygments
+DEPENDS+=	${PYPKGPREFIX}-pygments-[0-9]*:../../textproc/py-pygments25
 DEPENDS+=	${PYPKGPREFIX}-regex-[0-9]*:../../textproc/py-regex
 DEPENDS+=	${PYPKGPREFIX}-six-[0-9]*:../../lang/py-six
 DEPENDS+=	${PYPKGPREFIX}-soupsieve-[0-9]*:../../www/py-soupsieve

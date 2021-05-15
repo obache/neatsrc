@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.5 2020/09/10 14:13:12 taca Exp $
+$NetBSD: distinfo,v 1.7 2021/04/11 13:20:09 taca Exp $
 
-SHA1 (activestorage-5.2.4.4.gem) = 0e5853ed36a588b017c7e72fcbcc90cff80b8d2d
-RMD160 (activestorage-5.2.4.4.gem) = 2353b9e08dd4d6384814fbf28cfa05071a3e21a1
-SHA512 (activestorage-5.2.4.4.gem) = 144c21e4a19a3be23c6b8f2f061eb8cb4a748f59197b59d0b56c6d3f41b3982aa03cb5cca64e4685fc58560e30b8d861949bdff9430584a2e304e1cc1fefc04f
-Size (activestorage-5.2.4.4.gem) = 44544 bytes
+SHA1 (activestorage-5.2.5.gem) = 029b38f7137dd63990956f3619bf511a5a61aff3
+RMD160 (activestorage-5.2.5.gem) = b1d429029710bbc4c8428f01d6f70259dbfe1af9
+SHA512 (activestorage-5.2.5.gem) = c41c6d076a8b9f8f29b231defcd6a6b4824f2d6d2068017529a6162f274885e1e8ee0beecab616aecc325032afdce21803c4b9058dad31aa9b17dd1412fd80cf
+Size (activestorage-5.2.5.gem) = 44544 bytes

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.544 2020/11/19 20:19:37 schmonz Exp $
+# $NetBSD: Makefile,v 1.548 2021/04/24 08:47:53 wiz Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -31,6 +31,7 @@ SUBDIR+=	buffer
 SUBDIR+=	byobu
 SUBDIR+=	cabal-install
 SUBDIR+=	calibre
+SUBDIR+=	catpoint
 SUBDIR+=	celestia
 SUBDIR+=	chipmunk
 SUBDIR+=	chord
@@ -166,7 +167,6 @@ SUBDIR+=	libcdio-paranoia
 SUBDIR+=	libcec
 SUBDIR+=	libkdeedu
 SUBDIR+=	libkeduvocdocument
-SUBDIR+=	libkgeomap
 SUBDIR+=	libkkc-data
 SUBDIR+=	libkvkontakte
 SUBDIR+=	libmateweather
@@ -195,7 +195,6 @@ SUBDIR+=	mime-types
 SUBDIR+=	mirmon
 SUBDIR+=	mkcue
 SUBDIR+=	mmv
-SUBDIR+=	molden
 SUBDIR+=	moreutils
 SUBDIR+=	most
 SUBDIR+=	mousetweaks
@@ -346,6 +345,7 @@ SUBDIR+=	sd-mux-ctrl
 SUBDIR+=	send-pr
 SUBDIR+=	siag
 SUBDIR+=	since
+SUBDIR+=	sleepto
 SUBDIR+=	splitvt
 SUBDIR+=	starplot
 SUBDIR+=	stellarium

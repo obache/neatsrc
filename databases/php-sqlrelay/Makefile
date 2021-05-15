@@ -1,18 +1,19 @@
-# $NetBSD: Makefile,v 1.28 2021/01/03 15:26:11 taca Exp $
+# $NetBSD: Makefile,v 1.30 2021/04/21 13:24:30 adam Exp $
 
-PKGNAME=		${PHP_PKG_PREFIX}-${DISTNAME}
-PKGREVISION=		14
-COMMENT=		PHP extension for SQL Relay
-EXTRACT_SUFX=		.tar.gz
+PKGNAME=	${PHP_PKG_PREFIX}-${DISTNAME}
+PKGREVISION=	1
+COMMENT=	PHP extension for SQL Relay
+EXTRACT_SUFX=	.tar.gz
 
 .include "../../databases/sqlrelay/Makefile.common"
 
-LICENSE=		gnu-gpl-v2 AND php
+LICENSE=	gnu-gpl-v2 AND php
 
-PHP_VERSIONS_ACCEPTED=	56 73
+PHP_VERSIONS_ACCEPTED=	56 73 74
 
 TOOLS_BROKEN+=		perl
 CONFIGURE_ARGS+=	--with-php-prefix=${BUILDLINK_PREFIX.php}
+MAKE_FLAGS+=		PHPCONFSTYLE="bogus"  # do not install .ini
 
 BUILD_DIRS=		src/api/php
 BUILD_DIRS+=		src/api/phppdo

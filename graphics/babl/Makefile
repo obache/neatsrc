@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.37 2020/10/08 11:16:29 ryoon Exp $
+# $NetBSD: Makefile,v 1.39 2021/04/03 05:26:50 ryoon Exp $
 
-DISTNAME=	babl-0.1.82
+DISTNAME=	babl-0.1.86
 CATEGORIES=	graphics
 MASTER_SITES=	https://download.gimp.org/pub/babl/0.1/
 EXTRACT_SUFX=	.tar.xz
@@ -25,10 +25,10 @@ PYTHON_FOR_BUILD_ONLY=	tool
 PLIST_VARS+=		Darwin not_Darwin
 .if ${OPSYS} == "Darwin"
 PLIST.Darwin=		yes
-PLIST_SUBST+=  		SOEXT="dylib"
+PLIST_SUBST+=		SOEXT="dylib"
 .else
 PLIST.not_Darwin=	yes
-PLIST_SUBST+=  		SOEXT="so"
+PLIST_SUBST+=		SOEXT="so"
 .endif
 
 # Apply removals to post-wrapper transformed arguments.

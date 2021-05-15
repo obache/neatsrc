@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.61 2020/11/05 09:09:11 ryoon Exp $
+# $NetBSD: Makefile,v 1.63 2021/04/21 11:42:45 adam Exp $
 
-PKGREVISION= 11
+PKGREVISION= 1
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-DISTNAME=	xfce4-xkb-plugin-0.8.1
+DISTNAME=	xfce4-xkb-plugin-0.8.2
 CATEGORIES=	sysutils
-MASTER_SITES=	http://archive.xfce.org/src/panel-plugins/xfce4-xkb-plugin/0.8/
+MASTER_SITES=	https://archive.xfce.org/src/panel-plugins/xfce4-xkb-plugin/0.8/
 
 HOMEPAGE=	https://goodies.xfce.org/projects/panel-plugins/xfce4-xkb-plugin
 COMMENT=	Xfce Keyboard plugin

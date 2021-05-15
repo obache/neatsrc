@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.106 2020/08/17 20:18:32 leot Exp $
+# $NetBSD: Makefile,v 1.107 2021/04/05 08:07:17 nia Exp $
 
 DISTNAME=	dasher-5.0.0.b20200225
 PKGREVISION=	1
@@ -20,7 +20,10 @@ USE_LANGUAGES=	c c++
 USE_TOOLS+=	autoreconf autoconf automake autopoint msgfmt
 USE_TOOLS+=	pkg-config
 
-# Requires --desktop in msgfmt.
+# Workaround for glib2-2.68.0 c++ fallout.
+CXXFLAGS+=	-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_66
+
+# msgfmt: unknown option -- desktop
 GETTEXT_TOOLS_REQD=	0.19
 
 pre-configure:

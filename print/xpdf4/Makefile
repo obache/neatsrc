@@ -1,14 +1,16 @@
-# $NetBSD: Makefile,v 1.10 2020/12/19 13:42:59 rhialto Exp $
+# $NetBSD: Makefile,v 1.15 2021/04/21 13:25:17 adam Exp $
 
-DISTNAME=	xpdf-4.02
-PKGREVISION=	9
+DISTNAME=	xpdf-4.03
 CATEGORIES=	print
-MASTER_SITES=	https://xpdfreader-dl.s3.amazonaws.com/
+MASTER_SITES=	https://dl.xpdfreader.com/
+PKGREVISION=	3
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.xpdfreader.com/
 COMMENT=	Display tool for PDF files (Qt version)
 LICENSE=	gnu-gpl-v2
+
+DEPENDS+=	urw-fonts-[0-9]*:../../fonts/urw-fonts
 
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config

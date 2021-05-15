@@ -1,11 +1,9 @@
-# $NetBSD: Makefile,v 1.13 2020/08/31 18:13:16 wiz Exp $
+# $NetBSD: Makefile,v 1.17 2021/04/25 06:13:05 wiz Exp $
 
-DISTNAME=	squid-4.13
+DISTNAME=	squid-4.14
 PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.squid-cache.org/Versions/v4/
-MASTER_SITES+=	ftp://ftp.squid-cache.org/pub/squid/
-MASTER_SITES+=	ftp://ftp.squid-cache.org/pub/archive/4/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -89,4 +87,5 @@ post-install:
 .endfor
 
 .include "../../devel/libltdl/buildlink3.mk"
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

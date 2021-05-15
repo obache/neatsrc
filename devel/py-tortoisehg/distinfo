@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.46 2020/11/07 16:32:13 wiz Exp $
+$NetBSD: distinfo,v 1.48 2021/02/24 09:04:58 wiz Exp $
 
-SHA1 (tortoisehg-5.6.tar.gz) = 23d595ec4927c70da34756961da650a1733157b0
-RMD160 (tortoisehg-5.6.tar.gz) = c4a887efcb6698469f098154b631ecd53db5a36d
-SHA512 (tortoisehg-5.6.tar.gz) = 30013a776ea7e8b1167280350b64a993ebccbf82486f93164a1eaa42e98587719503c3dd939f9ea682d4302532216575ad7a20e9e2122315f63af7d002d08b03
-Size (tortoisehg-5.6.tar.gz) = 8920111 bytes
+SHA1 (tortoisehg-5.7.tar.gz) = fa921e0b622687e7dade3bf039ad92e87739fae1
+RMD160 (tortoisehg-5.7.tar.gz) = 6ec080db3b58dcd649612dfc031d1d6c09d0c36a
+SHA512 (tortoisehg-5.7.tar.gz) = d143c9e83d3b0771ffd4a3bd9cd50e8bc169e5d29e33a0681c3234898a7566427f070ff3ad8668709b5e4d63be92fd700211dee03e98ff16c7c23fc0870c9e4c
+Size (tortoisehg-5.7.tar.gz) = 8910721 bytes

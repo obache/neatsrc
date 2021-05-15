@@ -134,6 +134,7 @@ debug-info		Enable debug info in generated binaries (e.g. for crash analysis), b
 deliver-suid		Install deliver executable setuid root.
 disable-compile-inits	Disable compile time implicit initialization.
 disable-filter-url	Disable php://filter URL feature.
+disable-ld		Disable building GNU ld in binutils.
 djbdns-cachestats	Patch to add stats for cache hits/misses.
 djbdns-ignoreip2	Patch to treat certain responses as NXDOMAIN.
 djbdns-listenmultiple	Patches to specify more than one listening IP.
@@ -190,6 +191,7 @@ epub			Enable epub support.
 erlang-hipe		Enable HiPE support.
 eucjp			Support EUC-JP, a character encoding for Japanese.
 evolution-data-server	Enable support for evolution-data-server.
+execline		Enable command execution with the execline language.
 exim-build-eximon	Also build the X based exim queue monitoring tool.
 exim-content-scan	Call virus and spam scanning direct from ACLs.
 exim-lookup-cdb		Support mail account lookup via a Constant Data Base.
@@ -326,6 +328,12 @@ http2			Add support for HTTP/2.
 hunspell		Add spell checking support using hunspell.
 i586-optimized		Optimize for i586 (only).
 ibus			Enable Intelligent Input Bus support.
+icinga2-checker		Build the checker module
+icinga2-compat		Build the compat module
+icinga2-livestatus	Build the Livestatus module
+icinga2-notification	Build the notification module
+icinga2-perfdata	Build the perfdata module
+icingadb		Build the IcingaDB module
 iconv			Use iconv for character encoding conversion.
 icu			Enable icu support.
 id3			Enable id3 tagging support.

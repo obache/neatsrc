@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.26 2020/11/25 13:26:21 wiz Exp $
+# $NetBSD: Makefile,v 1.30 2021/04/12 11:20:27 nia Exp $
 
-DISTNAME=	zziplib-0.13.71
+DISTNAME=	zziplib-0.13.72
+PKGREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	${MASTER_SITE_GITHUB:=gdraheim/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -10,14 +11,28 @@ HOMEPAGE=	https://github.com/gdraheim/zziplib
 COMMENT=	Library for ZIP archive handling
 LICENSE=	gnu-lgpl-v2 OR mpl-1.1
 
-USE_LIBTOOL=		yes
-GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib}
-CONFIGURE_ARGS+=	--disable-builddir
+BUILD_DEPENDS+=	zip-[0-9]*:../../archivers/zip
+BUILD_DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
-BUILD_DIRS=		zzip zzipwrap bins
+USE_CMAKE=	yes
+USE_TOOLS+=	bash:build
 
-TEST_TARGET=		check
+CMAKE_ARGS+=	-DZZIPTEST=NO
+
+CHECK_PORTABILITY_SKIP+=	old.configure
+
+.include "../../mk/bsd.prefs.mk"
+
+PLIST_VARS+=	dylib
+.if ${SHLIB_TYPE} == "dylib"
+PLIST.dylib=	yes
+PLIST_SUBST+=	SOEXT=dylib
+.else
+PLIST_SUBST+=	SOEXT=so
+.endif
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../lang/python/tool.mk"
 .include "../../mk/bsd.pkg.mk"

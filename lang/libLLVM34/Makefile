@@ -27,7 +27,6 @@ CONFIGURE_ARGS+=	--disable-timestamps
 CONFIGURE_ARGS+=	--enable-optimized
 CONFIGURE_ARGS+=	--enable-shared
 MAKE_ENV+=		ENABLE_PIC=1
-MAKE_ENV+=		LD_LIBRARY_PATH=${WRKSRC}/Release/lib
 
 CHECK_PORTABILITY_SKIP=	utils/buildit/build_llvm \
 			utils/lit/utils/check-sdist \

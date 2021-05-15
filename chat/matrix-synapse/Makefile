@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.14 2020/12/09 20:40:20 js Exp $
+# $NetBSD: Makefile,v 1.22 2021/04/28 23:44:56 js Exp $
 
-DISTNAME=	matrix-synapse-1.24.0
+DISTNAME=	matrix-synapse-1.32.2
+PKGREVISION=	1
 CATEGORIES=	chat
 MASTER_SITES=	${MASTER_SITE_GITHUB:=matrix-org/}
 EGG_NAME=	matrix_synapse-${PKGVERSION_NOREV}
@@ -29,7 +30,6 @@ DEPENDS+=	${PYPKGPREFIX}-asn1>=0.1.9:../../security/py-asn1
 DEPENDS+=	${PYPKGPREFIX}-asn1-modules>=0.0.7:../../security/py-asn1-modules
 DEPENDS+=	${PYPKGPREFIX}-daemonize>=2.3.1:../../devel/py-daemonize
 DEPENDS+=	${PYPKGPREFIX}-bcrypt>=3.1.0:../../security/py-bcrypt
-DEPENDS+=	${PYPKGPREFIX}-Pillow>=4.3.0:../../graphics/py-Pillow
 DEPENDS+=	${PYPKGPREFIX}-sortedcontainers>=1.4.4:../../devel/py-sortedcontainers
 DEPENDS+=	${PYPKGPREFIX}-macaroons>=0.13.0:../../devel/py-macaroons
 DEPENDS+=	${PYPKGPREFIX}-msgpack>=0.5.2:../../devel/py-msgpack
@@ -44,9 +44,13 @@ DEPENDS+=	${PYPKGPREFIX}-typing-extensions>=3.7.4:../../devel/py-typing-extensio
 DEPENDS+=	${PYPKGPREFIX}-psycopg2>=2.7:../../databases/py-psycopg2
 DEPENDS+=	${PYPKGPREFIX}-lxml>=3.5.0:../../textproc/py-lxml
 
+PYTHON_VERSIONED_DEPENDENCIES=	Pillow
+
 USE_LANGUAGES=	# none
 USE_TOOLS+=	perl:run
 REPLACE_PERL+=	scripts/sync_room_to_group.pl
+
+PKG_SYSCONFSUBDIR=	matrix-synapse
 
 SYNAPSE_USER?=	synapse
 SYNAPSE_GROUP?=	${SYNAPSE_USER}
@@ -67,8 +71,10 @@ RCD_SCRIPTS=	matrix-synapse
 
 FILES_SUBST+=	SYNAPSE_DATA=${SYNAPSE_DATA:Q}
 FILES_SUBST+=	SYNAPSE_USER=${SYNAPSE_USER:Q}
+FILES_SUBST+=	SYNAPSE_GROUP=${SYNAPSE_GROUP:Q}
 MESSAGE_SUBST+=	PYTHONBIN=${PYTHONBIN:Q}
 MESSAGE_SUBST+=	SYNAPSE_DATA=${SYNAPSE_DATA:Q}
 
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,10 +1,10 @@
-@comment $NetBSD: PLIST,v 1.3 2020/11/24 08:33:12 schmonz Exp $
+@comment $NetBSD: PLIST,v 1.6 2021/02/04 09:16:45 schmonz Exp $
 bin/minidentd
 bin/s6-clockadd
 bin/s6-clockview
 bin/s6-getservbyname
 bin/s6-ident-client
-bin/s6-pkgsrc-cadir
+${PLIST.tls}bin/s6-pkgsrc-cadir
 bin/s6-sntpclock
 bin/s6-taiclock
 bin/s6-taiclockd
@@ -18,9 +18,13 @@ bin/s6-tcpserver6
 bin/s6-tcpserver6-socketbinder
 bin/s6-tcpserver6d
 ${PLIST.tls}bin/s6-tlsc
+${PLIST.tls}bin/s6-tlsc-io
 ${PLIST.tls}bin/s6-tlsclient
 ${PLIST.tls}bin/s6-tlsd
+${PLIST.tls}bin/s6-tlsd-io
 ${PLIST.tls}bin/s6-tlsserver
+${PLIST.tls}bin/s6-ucspitlsc
+${PLIST.tls}bin/s6-ucspitlsd
 include/s6-networking/config.h
 include/s6-networking/ident.h
 include/s6-networking/s6net.h
@@ -28,3 +32,29 @@ include/s6-networking/sbearssl.h
 include/s6-networking/stls.h
 lib/s6-networking/libs6net.a
 ${PLIST.tls}lib/s6-networking/libsbearssl.a
+man/man1/minidentd.1
+man/man1/s6-clockadd.1
+man/man1/s6-clockview.1
+man/man1/s6-getservbyname.1
+man/man1/s6-ident-client.1
+man/man1/s6-sntpclock.1
+man/man1/s6-taiclock.1
+man/man1/s6-taiclockd.1
+man/man1/s6-tcpclient.1
+man/man1/s6-tcpserver-access.1
+man/man1/s6-tcpserver.1
+man/man1/s6-tcpserver4-socketbinder.1
+man/man1/s6-tcpserver4.1
+man/man1/s6-tcpserver4d.1
+man/man1/s6-tcpserver6-socketbinder.1
+man/man1/s6-tcpserver6.1
+man/man1/s6-tcpserver6d.1
+man/man1/s6-tlsc-io.1
+man/man1/s6-tlsc.1
+man/man1/s6-tlsclient.1
+man/man1/s6-tlsd-io.1
+man/man1/s6-tlsd.1
+man/man1/s6-tlsserver.1
+man/man1/s6-ucspitlsc.1
+man/man1/s6-ucspitlsd.1
+man/man7/s6-tls.7

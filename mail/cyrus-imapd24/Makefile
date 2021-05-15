@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.69 2020/11/05 09:08:35 ryoon Exp $
+# $NetBSD: Makefile,v 1.70 2021/04/21 11:42:08 adam Exp $
 
 DISTNAME=	cyrus-imapd-2.4.22
+PKGREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	https://github.com/cyrusimap/cyrus-imapd/releases/download/${DISTNAME}/
 

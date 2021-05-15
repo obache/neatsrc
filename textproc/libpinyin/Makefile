@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2020/03/08 16:48:15 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2021/02/20 13:39:46 ryoon Exp $
 
 DISTNAME=	libpinyin-2.6.0
 CATEGORIES=	textproc chinese
@@ -14,6 +14,8 @@ GNU_CONFIGURE=	yes
 USE_TOOLS+=	gmake pkg-config
 USE_LANGUAGES=	c99 c++11
 USE_LIBTOOL=	yes
+
+CONFIGURE_ARGS+=	--enable-libzhuyin
 
 PKGCONFIG_OVERRIDE+=	libpinyin.pc.in
 PKGCONFIG_OVERRIDE+=	libzhuyin.pc.in

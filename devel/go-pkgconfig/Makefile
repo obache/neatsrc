@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.8 2020/11/13 19:26:11 bsiegert Exp $
+# $NetBSD: Makefile,v 1.10 2021/03/19 17:36:58 bsiegert Exp $
 
 GITHUB_TAG=	cea12a0fd2454f031cbce19aec911c1e92af25da
 DISTNAME=	go-pkgconfig-0.0.0.20170226
-PKGREVISION=	7
+PKGREVISION=	9
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=xlab/}
 GITHUB_PROJECT=	pkgconfig

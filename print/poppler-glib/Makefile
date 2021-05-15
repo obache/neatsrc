@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.88 2020/11/20 19:08:06 wiz Exp $
+# $NetBSD: Makefile,v 1.92 2021/04/15 11:23:04 ryoon Exp $
 
+PKGREVISION= 3
 .include "../../print/poppler/Makefile.common"
 
 PKGNAME=	poppler-glib-${POPPLER_VERS}
@@ -8,7 +9,7 @@ COMMENT=	PDF rendering library (GLib wrapper)
 
 CONFLICTS+=	poppler<0.4.5nb1
 
-PKGCONFIG_OVERRIDE+=	${WRKSRC}/poppler-glib.pc.cmake
+PKGCONFIG_OVERRIDE+=	poppler-glib.pc.cmake
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -44,12 +45,11 @@ INSTALLATION_DIRS+=	lib/pkgconfig
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/poppler-glib.pc ${DESTDIR}${PREFIX}/lib/pkgconfig
 
-BUILDLINK_ABI_DEPENDS.glib2+=	glib2>=2.41.0
+BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.41.0
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_DEPMETHOD.gobject-introspection+=	build
 .include "../../devel/gobject-introspection/buildlink3.mk"
 .include "../../graphics/cairo-gobject/buildlink3.mk"
-#.include "../../textproc/gtk-doc/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

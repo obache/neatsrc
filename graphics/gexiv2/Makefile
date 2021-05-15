@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.12 2020/10/06 19:51:17 wiz Exp $
+# $NetBSD: Makefile,v 1.17 2021/04/14 07:28:19 wiz Exp $
 
-DISTNAME=	gexiv2-0.12.0
-PKGREVISION=	5
+DISTNAME=	gexiv2-0.12.2
+PKGREVISION=	2
 CATEGORIES=	graphics devel
-MASTER_SITES=	https://ftp.acc.umu.se/pub/gnome/sources/gexiv2/0.12/
+MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gexiv2/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -12,8 +12,11 @@ COMMENT=	GObject-based wrapper around the Exiv2 library
 LICENSE=	gnu-gpl-v2
 
 # uses std::auto_ptr, deprecated in c++11
-USE_LANGUAGES=	c c++03
+# "error: 'for' loop initial declarations are only allowed in C99 mode"
+USE_LANGUAGES=	c99 c++03
 USE_TOOLS+=	pkg-config
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 MESON_ARGS+=	-Dpython2_girdir=no
 MESON_ARGS+=	-Dpython3_girdir=no

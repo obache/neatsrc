@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.7 2020/11/05 09:08:23 ryoon Exp $
+# $NetBSD: Makefile,v 1.10 2021/04/21 11:41:54 adam Exp $
 
-DISTNAME=	imv-4.1.0
-PKGREVISION=	6
+DISTNAME=	imv-4.2.0
+PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=eXeC64/}
 GITHUB_PROJECT=	imv
@@ -14,20 +14,33 @@ LICENSE=	mit
 
 TOOL_DEPENDS+=	asciidoc-[0-9]*:../../textproc/asciidoc
 
-USE_TOOLS+=	gmake pkg-config
+USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c99
 
-MAKE_FLAGS+=	MANPREFIX=${PREFIX}/${PKGMANDIR}
+# alphasort
+CFLAGS.NetBSD+=	-D_NETBSD_SOURCE
 
-MAKE_FLAGS+=	BACKEND_LIBTIFF="yes"
-MAKE_FLAGS+=	BACKEND_LIBPNG="yes"
+MESON_ARGS+=	-Dlibtiff=enabled
+MESON_ARGS+=	-Dlibpng=enabled
+
+CONF_FILES+=	${PREFIX}/share/examples/imv/imv_config \
+		${PKG_SYSCONFDIR}/imv_config
+
+SUBST_CLASSES+=		paths
+SUBST_STAGE.paths=	pre-configure
+SUBST_FILES.paths=	src/imv.c
+SUBST_VARS.paths=	PKG_SYSCONFDIR
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 .include "options.mk"
+.include "../../devel/meson/build.mk"
 .include "../../devel/pango/buildlink3.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../graphics/freeimage/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
+.include "../../textproc/inih/buildlink3.mk"
 .include "../../x11/libxkbcommon/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,14 +1,18 @@
-# $NetBSD: Makefile,v 1.59 2020/12/18 22:30:28 pin Exp $
+# $NetBSD: Makefile,v 1.70 2021/03/24 18:23:33 bacon Exp $
 #
 
 COMMENT=	Software for the biological sciences
 
 SUBDIR+=	R-popbio
+SUBDIR+=	ad2vcf
 SUBDIR+=	arka
 SUBDIR+=	azara
 SUBDIR+=	bcftools
+SUBDIR+=	bedtools
+SUBDIR+=	biolibc
 SUBDIR+=	bioperl
 SUBDIR+=	bodr
+SUBDIR+=	bowtie2
 SUBDIR+=	bwa
 SUBDIR+=	canu
 SUBDIR+=	cdhit
@@ -19,8 +23,10 @@ SUBDIR+=	coalesce
 SUBDIR+=	coordgenlibs
 SUBDIR+=	fastDNAml
 SUBDIR+=	fastp
+SUBDIR+=	fastqc
 SUBDIR+=	fluctuate
 SUBDIR+=	gabedit
+SUBDIR+=	generand
 SUBDIR+=	genesplicer
 SUBDIR+=	glimmer
 SUBDIR+=	gnome-chemistry-utils
@@ -29,6 +35,7 @@ SUBDIR+=	gromacs
 SUBDIR+=	hisat2
 SUBDIR+=	hmmer
 SUBDIR+=	htslib
+SUBDIR+=	igv
 SUBDIR+=	kallisto
 SUBDIR+=	lucy
 SUBDIR+=	maeparser
@@ -48,6 +55,8 @@ SUBDIR+=	primer3
 SUBDIR+=	profit
 SUBDIR+=	puzzle
 SUBDIR+=	py-biopython
+SUBDIR+=	py-cutadapt
+SUBDIR+=	py-dnaio
 SUBDIR+=	py-mol
 SUBDIR+=	py-pydicom
 SUBDIR+=	rasmol
@@ -56,6 +65,8 @@ SUBDIR+=	sewer
 SUBDIR+=	stacks
 SUBDIR+=	stride
 SUBDIR+=	trimmomatic
+SUBDIR+=	vcf-split
+SUBDIR+=	vcf2hap
 SUBDIR+=	vsearch
 SUBDIR+=	xylem
 

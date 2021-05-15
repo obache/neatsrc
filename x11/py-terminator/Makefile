@@ -1,17 +1,16 @@
-# $NetBSD: Makefile,v 1.28 2020/11/05 09:09:27 ryoon Exp $
+# $NetBSD: Makefile,v 1.30 2021/03/06 09:22:44 nia Exp $
 
-DISTNAME=	terminator-0.98
+GITHUB_PROJECT=	terminator
+DISTNAME=	terminator-2.1.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	15
 CATEGORIES=	x11
-MASTER_SITES=	https://launchpad.net/terminator/trunk/${PKGVERSION_NOREV}/+download/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=gnome-terminator/}
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://launchpad.net/terminator
 COMMENT=	Terminator, multiple terminals in one window
 LICENSE=	gnu-gpl-v2
-
-PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 0.98
 
 REPLACE_PYTHON+=	*.py
 REPLACE_PYTHON+=	terminatorlib/*.py
@@ -28,16 +27,18 @@ SUBST_STAGE.manpath=	pre-configure
 SUBST_FILES.manpath=	setup.py
 SUBST_VARS.manpath=	PKGMANDIR
 
+BUILD_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
+
+DEPENDS+=	${PYPKGPREFIX}-cairo-[0-9]*:../../graphics/py-cairo
+DEPENDS+=	${PYPKGPREFIX}-configobj-[0-9]*:../../devel/py-configobj
+DEPENDS+=	${PYPKGPREFIX}-dbus-[0-9]*:../../sysutils/py-dbus
+DEPENDS+=	${PYPKGPREFIX}-gobject3-[0-9]*:../../devel/py-gobject3
 DEPENDS+=	${PYPKGPREFIX}-psutil>=5.6.3:../../sysutils/py-psutil
 
-.include "../../devel/glib2/buildlink3.mk"
-.include "../../devel/pango/buildlink3.mk"
+PYTHON_VERSIONS_INCOMPATIBLE=	27
+
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../sysutils/py-notify-python/buildlink3.mk"
-.include "../../x11/py-keybinder/buildlink3.mk"
-.include "../../x11/gtk2/buildlink3.mk"
-.include "../../x11/py-vte/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

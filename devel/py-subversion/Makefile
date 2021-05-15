@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.90 2020/11/05 09:07:58 ryoon Exp $
+# $NetBSD: Makefile,v 1.92 2021/04/21 11:41:30 adam Exp $
 
 PKGNAME=	${PYPKGPREFIX}-subversion-${SVNVER}
 PKGREVISION=	1

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.5 2020/11/21 09:34:58 wiz Exp $
+# $NetBSD: Makefile,v 1.10 2021/04/21 11:42:41 adam Exp $
 
 DISTNAME=	tracker-miners-3.0.1
 PKGNAME=	gnome-${DISTNAME}
-PKGREVISION=	2
+PKGREVISION=	6
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/tracker-miners/3.0/}
 EXTRACT_SUFX=	.tar.xz
@@ -45,6 +45,8 @@ SUBST_SED.asciidoc+=	-e "s,/etc/asciidoc,${PREFIX}/share/asciidoc,g"
 
 CONF_FILES+=	${PREFIX}/share/examples/xdg/autostart/tracker-miner-fs-3.desktop \
 		${PKG_SYSCONFDIR}/xdg/autostart/tracker-miner-fs-3.desktop
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 .include "../../devel/meson/build.mk"
 .include "../../devel/glib2/schemas.mk"

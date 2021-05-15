@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.36 2020/12/04 20:45:14 nia Exp $
+# $NetBSD: Makefile,v 1.39 2021/04/21 13:24:35 adam Exp $
 
-DISTNAME=	codelite-14.0
-PKGREVISION=	7
+DISTNAME=	codelite-15.0
+PKGREVISION=	2
 CATEGORIES=	editors x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=eranif/}
 
@@ -71,6 +71,7 @@ BUILDLINK_TRANSFORM+=	opt:-std=c++11:-std=gnu++11 # alloca
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../textproc/hunspell/buildlink3.mk"
+.include "../../textproc//uchardet/buildlink3.mk"
 .include "../../security/libssh/buildlink3.mk"
 .include "../../x11/wxGTK30/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

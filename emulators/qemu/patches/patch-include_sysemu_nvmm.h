@@ -1,10 +1,8 @@
-$NetBSD: patch-include_sysemu_nvmm.h,v 1.1 2020/02/06 16:46:17 kamil Exp $
+$NetBSD: patch-include_sysemu_nvmm.h,v 1.3 2021/03/06 11:19:34 reinoud Exp $
 
-Add NVMM support.
-
---- include/sysemu/nvmm.h.orig	2020-02-06 16:25:13.966985106 +0000
+--- include/sysemu/nvmm.h.orig	2021-03-05 22:29:22.991663471 +0000
 +++ include/sysemu/nvmm.h
-@@ -0,0 +1,35 @@
+@@ -0,0 +1,26 @@
 +/*
 + * Copyright (c) 2018-2019 Maxime Villard, All rights reserved.
 + *
@@ -19,15 +17,6 @@ Add NVMM support.
 +
 +#include "config-host.h"
 +#include "qemu-common.h"
-+
-+int nvmm_init_vcpu(CPUState *);
-+int nvmm_vcpu_exec(CPUState *);
-+void nvmm_destroy_vcpu(CPUState *);
-+
-+void nvmm_cpu_synchronize_state(CPUState *);
-+void nvmm_cpu_synchronize_post_reset(CPUState *);
-+void nvmm_cpu_synchronize_post_init(CPUState *);
-+void nvmm_cpu_synchronize_pre_loadvm(CPUState *);
 +
 +#ifdef CONFIG_NVMM
 +

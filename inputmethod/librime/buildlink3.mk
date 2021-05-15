@@ -1,5 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.15 2021/01/01 08:24:49 ryoon Exp $
-#
+# $NetBSD: buildlink3.mk,v 1.16 2021/02/20 20:53:01 ryoon Exp $
 
 BUILDLINK_TREE+=	librime
 

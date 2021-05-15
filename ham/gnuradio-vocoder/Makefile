@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.23 2021/01/01 08:24:48 ryoon Exp $
+# $NetBSD: Makefile,v 1.27 2021/04/29 23:30:15 thor Exp $
 
 PKGNAME=	gnuradio-vocoder-${VERSION}
 PKGREVISION=	3

@@ -1,4 +1,4 @@
-# $NetBSD: builtin.mk,v 1.46 2020/01/28 07:34:57 triaxx Exp $
+# $NetBSD: builtin.mk,v 1.47 2021/03/01 23:28:54 gdt Exp $
 
 BUILTIN_PKG:=	openssl
 
@@ -142,6 +142,14 @@ SSLDIR=	${PKG_SYSCONFDIR.openssl}
 .  elif !empty(USE_BUILTIN.openssl:M[yY][eE][sS])
 .    if ${OPSYS} == "NetBSD"
 SSLDIR=	/etc/openssl
+.    elif ${OPSYS} == "Linux"
+.      if exists(/etc/pki/tls)
+# Some distributions have moved to /etc/pki/tls, with incomplete
+# symlinks from /etc/ssl.  Prefer the new location if it exists
+SSLDIR=	/etc/pki/tls 
+.      else
+SSLDIR=	/etc/ssl 		# standard location
+.      endif
 .    elif ${OPSYS} == "Haiku"
 SSLDIR=	/boot/system/data/ssl
 .    else
@@ -152,9 +160,16 @@ SSLDIR=	${PKG_SYSCONFBASEDIR}/openssl
 .  endif
 
 SSLCERTS=	${SSLDIR}/certs
+# Some systems use CA bundles instead of files and hashed symlinks.
+# Continue to define SSLCERTS because it's unclear if that's the
+# directory that has one file per cert, or the directory that contains
+# trust anchor config in some fortm.
+.  if exists(${SSLDIR}/certs/ca-bundle.crt)
+SSLCERTBUNDLE=  ${SSLDIR}/certs/ca-bundle.crt
+.  endif
 SSLKEYS=	${SSLDIR}/private
 
-BUILD_DEFS+=	SSLDIR SSLCERTS SSLKEYS
+BUILD_DEFS+=	SSLDIR SSLCERTS SSLCERTBUNDLE SSLKEYS
 
 BUILTIN_FAKE_PC_FILES.openssl=	libcrypto libssl openssl
 .  for pc in ${BUILTIN_FAKE_PC_FILES.openssl}

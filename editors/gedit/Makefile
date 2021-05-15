@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.157 2020/12/04 20:45:15 nia Exp $
+# $NetBSD: Makefile,v 1.159 2021/04/21 11:41:33 adam Exp $
 
 DISTNAME=	gedit-3.36.2
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	editors gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gedit/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -13,7 +13,7 @@ LICENSE=	gnu-gpl-v2
 
 PREV_PKGPATH=	editors/gedit3
 
-USE_TOOLS+=			gmake gettext msgfmt perl pkg-config
+USE_TOOLS+=			gettext msgfmt perl pkg-config
 GETTEXT_TOOLS_REQD=		0.19
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27

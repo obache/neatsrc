@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.14 2020/03/24 16:20:05 taca Exp $
+# $NetBSD: Makefile,v 1.16 2021/02/03 15:07:00 taca Exp $
 
-DISTNAME=	sshkit-1.21.0
+DISTNAME=	sshkit-1.21.2
 CATEGORIES=	security
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

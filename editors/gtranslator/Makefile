@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.84 2020/12/04 20:45:15 nia Exp $
+# $NetBSD: Makefile,v 1.86 2021/04/21 11:41:33 adam Exp $
 
 DISTNAME=	gtranslator-3.32.1
-PKGREVISION=	7
+PKGREVISION=	8
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtranslator/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -14,9 +14,11 @@ LICENSE=	gnu-gpl-v3
 TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 TOOL_DEPENDS+=	gettext-tools-[0-9]*:../../devel/gettext-tools
 
-USE_TOOLS+=		gmake intltool pkg-config
+USE_TOOLS+=		pkg-config
 
 REPLACE_PYTHON+=	build-aux/meson/meson_post_install.py
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../databases/libgda/buildlink3.mk"

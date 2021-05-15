@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2020/09/14 13:43:10 taca Exp $
+@comment $NetBSD: PLIST,v 1.7 2021/02/05 14:58:26 taca Exp $
 bin/recog_cleanup${RUBY_SUFFIX}
 bin/recog_export${RUBY_SUFFIX}
 bin/recog_match${RUBY_SUFFIX}
@@ -9,10 +9,13 @@ ${GEM_LIBDIR}/.github/ISSUE_TEMPLATE/bug_report.md
 ${GEM_LIBDIR}/.github/ISSUE_TEMPLATE/feature_request.md
 ${GEM_LIBDIR}/.github/ISSUE_TEMPLATE/fingerprint_request.md
 ${GEM_LIBDIR}/.github/PULL_REQUEST_TEMPLATE
+${GEM_LIBDIR}/.github/SECURITY.md
+${GEM_LIBDIR}/.github/workflows/ci.yml
 ${GEM_LIBDIR}/.gitignore
 ${GEM_LIBDIR}/.rspec
 ${GEM_LIBDIR}/.ruby-gemset
 ${GEM_LIBDIR}/.ruby-version
+${GEM_LIBDIR}/.snyk
 ${GEM_LIBDIR}/.travis.yml
 ${GEM_LIBDIR}/.yardopts
 ${GEM_LIBDIR}/CONTRIBUTING.md
@@ -49,9 +52,6 @@ ${GEM_LIBDIR}/identifiers/os_family.txt
 ${GEM_LIBDIR}/identifiers/os_product.txt
 ${GEM_LIBDIR}/identifiers/service_family.txt
 ${GEM_LIBDIR}/identifiers/service_product.txt
-${GEM_LIBDIR}/identifiers/software_class.txt
-${GEM_LIBDIR}/identifiers/software_family.txt
-${GEM_LIBDIR}/identifiers/software_product.txt
 ${GEM_LIBDIR}/identifiers/vendor.txt
 ${GEM_LIBDIR}/lib/recog.rb
 ${GEM_LIBDIR}/lib/recog/db.rb
@@ -134,6 +134,7 @@ ${GEM_LIBDIR}/xml/snmp_sysdescr.xml
 ${GEM_LIBDIR}/xml/snmp_sysobjid.xml
 ${GEM_LIBDIR}/xml/ssh_banners.xml
 ${GEM_LIBDIR}/xml/telnet_banners.xml
+${GEM_LIBDIR}/xml/tls_jarm.xml
 ${GEM_LIBDIR}/xml/x11_banners.xml
 ${GEM_LIBDIR}/xml/x509_issuers.xml
 ${GEM_LIBDIR}/xml/x509_subjects.xml

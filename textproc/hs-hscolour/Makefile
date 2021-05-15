@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2020/01/02 14:25:33 pho Exp $
+# $NetBSD: Makefile,v 1.5 2021/04/24 17:00:46 pho Exp $
 
 DISTNAME=	hscolour-1.24.4
 CATEGORIES=	textproc

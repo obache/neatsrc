@@ -1,10 +1,8 @@
-# $NetBSD: Makefile,v 1.14 2020/11/13 19:26:19 bsiegert Exp $
+# $NetBSD: Makefile,v 1.19 2021/04/29 17:05:23 adam Exp $
 
-DISTNAME=	terraform-0.12.29
-PKGREVISION=	6
+DISTNAME=	terraform-0.12.31
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=hashicorp/}
-GITHUB_PROJECT=	${PKGBASE}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -13,7 +11,7 @@ COMMENT=	Infrastructure orchestration tool
 LICENSE=	mpl-2.0
 
 GO_DIST_BASE=	${DISTNAME}
-GO_SRCPATH=	github.com/hashicorp/${GITHUB_PROJECT}
+GO_SRCPATH=	github.com/hashicorp/terraform
 
 GO_BUILD_PATTERN=	${GO_SRCPATH}/.
 
@@ -23,8 +21,6 @@ REPLACE_BASH+=	command/e2etest/make-archive.sh
 REPLACE_BASH+=	scripts/debug-terraform
 REPLACE_BASH+=	scripts/*.sh
 REPLACE_BASH+=	scripts/*/*.sh
-
-CHECK_RELRO_SKIP+=	bin/terraform
 
 .include "../../lang/go/go-package.mk"
 .include "../../mk/bsd.pkg.mk"

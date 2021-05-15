@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.127 2021/01/01 15:18:27 wiz Exp $
+# $NetBSD: Makefile,v 1.132 2021/04/21 11:41:35 adam Exp $
 
-DISTNAME=	mame-0.227
+DISTNAME=	mame-0.230
+PKGREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mamedev/}
 GITHUB_TAG=	${DISTNAME:S/-//S/.//}
@@ -92,11 +93,7 @@ pre-build:
 	${RM} -f ${WRKDIR}/.buildlink/include/png*
 
 do-install:
-.if ${MACHINE_ARCH} == "x86_64"
-	${INSTALL_PROGRAM} ${WRKSRC}/mame64 ${DESTDIR}${PREFIX}/bin/mame
-.else
 	${INSTALL_PROGRAM} ${WRKSRC}/mame ${DESTDIR}${PREFIX}/bin/mame
-.endif
 	set -e; \
 	for prg in castool chdman floptool imgtool jedutil ldresample ldverify \
 		nltool nlwav pngcmp regrep romcmp split srcclean unidasm; do \

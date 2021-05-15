@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.132 2021/01/03 01:30:33 gdt Exp $
+# $NetBSD: Makefile,v 1.137 2021/04/23 20:15:14 thor Exp $
 
-PKGREVISION= 6
+#PKGREVISION=	0
+PKGREVISION=	3
 .include "../../geography/gdal-lib/Makefile.common"
 PKGNAME=	${DISTNAME:S/gdal/gdal-lib/}
 
-HOMEPAGE=	http://www.gdal.org/
 COMMENT=	Translator library for raster geospatial data formats
-LICENSE=	mit
 
 USE_LANGUAGES+=	c99 c++11
 
@@ -40,6 +39,8 @@ CPPFLAGS+=	-D__STDC_LIMIT_MACROS
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../geography/geos/buildlink3.mk"
 .include "../../geography/proj/buildlink3.mk"
+.include "../../geography/libgeotiff/buildlink3.mk"
+.include "../../math/qhull/buildlink3.mk"
 .include "../../graphics/giflib/buildlink3.mk"
 .include "../../graphics/libwebp/buildlink3.mk"
 .include "../../graphics/openjpeg/buildlink3.mk"

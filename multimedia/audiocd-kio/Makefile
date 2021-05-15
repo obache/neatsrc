@@ -1,20 +1,22 @@
-# $NetBSD: Makefile,v 1.48 2021/01/01 09:52:35 ryoon Exp $
+# $NetBSD: Makefile,v 1.54 2021/04/21 13:25:03 adam Exp $
 
-DISTNAME=	audiocd-kio-16.08.0
-PKGREVISION=	25
+DISTNAME=	audiocd-kio-${KAPPSVER}
+PKGREVISION=	2
 CATEGORIES=	multimedia
+
+HOMEPAGE=	https://kde.org/applications/multimedia/
 COMMENT=	Kioslave for accessing audio CDs
-MASTER_SITES=	${MASTER_SITE_KDE:=applications/16.08.0/src/}
+LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
-.include "../../meta-pkgs/kde4/Makefile.kde4"
+USE_TOOLS+=	msgmerge
 
-.include "../../meta-pkgs/kde4/kde4.mk"
+.include "../../meta-pkgs/kde/applications.mk"
 
 .include "../../audio/cdparanoia/buildlink3.mk"
 .include "../../audio/flac/buildlink3.mk"
 .include "../../audio/libvorbis/buildlink3.mk"
+.include "../../devel/kcmutils/buildlink3.mk"
 .include "../../multimedia/libkcddb/buildlink3.mk"
 .include "../../multimedia/libkcompactdisc/buildlink3.mk"
-.include "../../x11/kdelibs4/buildlink3.mk"
-
+.include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

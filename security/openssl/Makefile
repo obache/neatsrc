@@ -1,6 +1,9 @@
-# $NetBSD: Makefile,v 1.266 2020/12/08 18:54:17 wiz Exp $
+# $NetBSD: Makefile,v 1.270 2021/04/22 09:59:37 nia Exp $
 
-DISTNAME=	openssl-1.1.1i
+# Remember to upload-distfiles when updating OpenSSL -- otherwise it 
+# is not possible for users who have bootstrapped without OpenSSL
+# to install it and enable HTTPS fetching.
+DISTNAME=	openssl-1.1.1k
 CATEGORIES=	security
 MASTER_SITES=	https://www.openssl.org/source/
 
@@ -41,7 +44,8 @@ OPENSSL_HOST.SunOS-i386=	solaris-x86-gcc
 OPENSSL_HOST.SunOS-x86_64=	solaris64-x86_64-gcc
 OPENSSL_HOST.Darwin-aarch64=	darwin64-arm64-cc
 
-LDFLAGS.SunOS+=	-lrt
+LDFLAGS.SunOS+=		-lrt
+CPPFLAGS.OpenBSD+=	-D__STDC_NO_ATOMICS__
 
 .if defined(OPENSSL_HOST.${OPSYS}-${MACHINE_ARCH})
 CONFIG_SHELL=		${PERL5}

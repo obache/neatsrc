@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.66 2020/12/30 14:15:02 taca Exp $
+# $NetBSD: Makefile,v 1.69 2021/04/11 12:43:17 taca Exp $
 
 DISTNAME=	# empty
 PKGNAME=	ruby-${RUBY_VERSION}
-PKGREVISION=	1
 CATEGORIES=	lang ruby
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -20,12 +19,12 @@ NO_BUILD=	yes
 
 DEPENDS+=	${RUBY_BASE}>=${RUBY_VERSION}:${RUBY_SRCDIR}
 
-.if ${RUBY_VER} == "25"
-RUBY_COMMANDS=	erb gem irb rake rdoc ri ruby
-.elif ${RUBY_VER} == "26"
+.if ${RUBY_VER} == "26"
 RUBY_COMMANDS=	bundle bundler erb gem irb rake rdoc ri ruby
 .elif ${RUBY_VER} == "27"
 RUBY_COMMANDS=	bundle bundler erb gem irb racc rake racc2y rdoc ri ruby y2racc
+.elif ${RUBY_VER} == "30"
+RUBY_COMMANDS=	bundle bundler erb gem irb racc rake rbs rdoc ri ruby typeprof
 .endif
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1

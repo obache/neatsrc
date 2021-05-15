@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2020/08/31 08:45:44 wiz Exp $
+# $NetBSD: Makefile,v 1.9 2021/03/21 19:24:24 nros Exp $
 
 DISTNAME=	brotli-1.0.9
 CATEGORIES=	archivers
@@ -13,10 +13,9 @@ LICENSE=	mit
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 
-PKGCONFIG_OVERRIDE+=	libbrotlicommon.pc
-PKGCONFIG_OVERRIDE+=	libbrotlidec.pc
-PKGCONFIG_OVERRIDE+=	libbrotlienc.pc
-PKGCONFIG_OVERRIDE_STAGE=	post-build
+PKGCONFIG_OVERRIDE+=	scripts/libbrotlicommon.pc.in
+PKGCONFIG_OVERRIDE+=	scripts/libbrotlidec.pc.in
+PKGCONFIG_OVERRIDE+=	scripts/libbrotlienc.pc.in
 
 CMAKE_ARGS+=	-DCMAKE_SHARED_LINKER_FLAGS=${COMPILER_RPATH_FLAG}${PREFIX}/lib
 CMAKE_ARGS+=	-DCMAKE_EXE_LINKER_FLAGS=${COMPILER_RPATH_FLAG}${PREFIX}/lib

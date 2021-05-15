@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.109 2021/01/03 15:15:48 taca Exp $
+# $NetBSD: Makefile,v 1.112 2021/04/19 10:37:54 cirnatdan Exp $
 #
 
 COMMENT=	Collections of other packages
@@ -12,7 +12,7 @@ SUBDIR+=	courier
 SUBDIR+=	deforaos-desktop
 SUBDIR+=	fxtv-capture
 SUBDIR+=	gimp-docs
-SUBDIR+=	gnome3
+SUBDIR+=	gnome
 SUBDIR+=	gnuradio
 SUBDIR+=	gnustep
 SUBDIR+=	gstreamer0.10-plugins
@@ -38,11 +38,13 @@ SUBDIR+=	netbsd-www
 SUBDIR+=	php56-extensions
 SUBDIR+=	php73-extensions
 SUBDIR+=	php74-extensions
+SUBDIR+=	php80-extensions
 SUBDIR+=	pkg_developer
 SUBDIR+=	pkgsrc-guide-tools
 SUBDIR+=	pulseaudio-tools
 SUBDIR+=	py-tryton-platform
 SUBDIR+=	qmail-server
+SUBDIR+=	rime-data
 SUBDIR+=	ruby-gnome
 SUBDIR+=	ruby-redmine-plugins
 SUBDIR+=	ruby-redmine-themes

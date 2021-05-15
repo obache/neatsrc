@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.19 2020/11/05 09:09:03 ryoon Exp $
+# $NetBSD: Makefile,v 1.21 2021/04/21 11:42:36 adam Exp $
 
 DISTNAME=	oath-toolkit-2.4.1
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	security
 MASTER_SITES=	http://download.savannah.gnu.org/releases/oath-toolkit/
 
@@ -17,6 +17,7 @@ USE_LIBTOOL=	yes
 USE_TOOLS+=	autoconf automake m4 autoreconf
 
 BUILD_DEPENDS+=	automake>=1.14:../../devel/automake
+TOOL_DEPENDS+=	gtk-doc-[0-9]*:../../textproc/gtk-doc
 
 PKGCONFIG_OVERRIDE+=	liboath/liboath.pc.in
 

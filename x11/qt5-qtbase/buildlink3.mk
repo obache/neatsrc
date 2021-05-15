@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.41 2020/11/05 09:07:19 ryoon Exp $
+# $NetBSD: buildlink3.mk,v 1.43 2021/04/21 11:40:50 adam Exp $
 
 BUILDLINK_TREE+=	qt5-qtbase
 
@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	qt5-qtbase
 QT5_QTBASE_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.qt5-qtbase+=	qt5-qtbase>=5.9.1
-BUILDLINK_ABI_DEPENDS.qt5-qtbase+=	qt5-qtbase>=5.15.1nb1
+BUILDLINK_ABI_DEPENDS.qt5-qtbase+=	qt5-qtbase>=5.15.2nb3
 BUILDLINK_PKGSRCDIR.qt5-qtbase?=	../../x11/qt5-qtbase
 
 BUILDLINK_INCDIRS.qt5-qtbase=	qt5/include
@@ -21,6 +21,9 @@ CMAKE_PREFIX_PATH+=	${QTDIR}
 
 CONFIGURE_ENV+=	QTDIR=${QTDIR}
 MAKE_ENV+=	QTDIR=${QTDIR}
+
+CONFIGURE_ENV+=	MOC="${QTDIR}/bin/moc"
+MAKE_ENV+=	MOC="${QTDIR}/bin/moc"
 
 PTHREAD_OPTS+=	require
 

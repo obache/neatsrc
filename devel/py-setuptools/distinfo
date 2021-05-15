@@ -1,9 +1,8 @@
-$NetBSD: distinfo,v 1.160 2020/10/27 18:10:49 adam Exp $
+$NetBSD: distinfo,v 1.162 2021/04/03 07:32:26 adam Exp $
 
-SHA1 (setuptools-50.3.2.zip) = 2c9279e6b2d521f6799294200a432925113177dc
-RMD160 (setuptools-50.3.2.zip) = 097e5696f747661b22e9f5723b6efb4488a548cc
-SHA512 (setuptools-50.3.2.zip) = d036f6005825f4e93043e080b141c7155524d1f59c3276e8b10b5d6d1ec9aa8e8c342859edf0a85dbe0a31261e0383ea435e1c0d0189f7130b453f55d1e1e5b9
-Size (setuptools-50.3.2.zip) = 2059552 bytes
-SHA1 (patch-setup.py) = dd94c9a4e15b8b0dc428515f73369ed168b8c7b2
+SHA1 (setuptools-54.2.0.tar.gz) = 85a4e10d3551a7bce28a4e6ef05580242c160717
+RMD160 (setuptools-54.2.0.tar.gz) = ae5bb69994c6a1772959c764f061621d6c9fa2f4
+SHA512 (setuptools-54.2.0.tar.gz) = b18cd075cf59b8648611eef1874de41199ede6ffe6d7f5047586c6ac8783fe18b9a4f537783e590e7aec127033f612b93925e92f039bd6416a609fcfb262e354
+Size (setuptools-54.2.0.tar.gz) = 2054279 bytes
 SHA1 (patch-setuptools___distutils_sysconfig.py) = a7b51250f81fcdb1263874f13be9e05daa19d956
 SHA1 (patch-setuptools___distutils_unixccompiler.py) = 0458b62ffed862c506c9181ed851b6a13f53aa30

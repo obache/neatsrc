@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.16 2019/11/07 03:01:35 ryoon Exp $
+# $NetBSD: Makefile.common,v 1.17 2021/03/30 17:01:49 ryoon Exp $
 #
 # used by inputmethod/uim/Makefile
 # used by inputmethod/uim-elisp/Makefile

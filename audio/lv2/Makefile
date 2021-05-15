@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.24 2020/12/04 20:44:58 nia Exp $
+# $NetBSD: Makefile,v 1.26 2021/04/06 14:23:24 adam Exp $
 
-DISTNAME=	lv2-1.18.0
-PKGREVISION=	3
+DISTNAME=	lv2-1.18.2
 CATEGORIES=	audio
 MASTER_SITES=	https://lv2plug.in/spec/
 EXTRACT_SUFX=	.tar.bz2
@@ -12,7 +11,6 @@ COMMENT=	Open standard for audio plugins, used by hundreds of plugins
 LICENSE=	isc
 
 DEPENDS+=	${PYPKGPREFIX}-markdown-[0-9]*:../../textproc/py-markdown
-DEPENDS+=	${PYPKGPREFIX}-pygments-[0-9]*:../../textproc/py-pygments
 
 PLIST_SRC+=	${PLIST_SRC_DFLT}
 
@@ -22,6 +20,8 @@ PKGCONFIG_OVERRIDE+=	lv2/lv2plug.in/ns/lv2core/lv2core.pc.in
 PKGCONFIG_OVERRIDE+=	lv2.pc.in
 
 REPLACE_PYTHON+=	lv2specgen/lv2specgen.py
+
+PYTHON_VERSIONED_DEPENDENCIES=	pygments
 
 .include "options.mk"
 
@@ -36,4 +36,5 @@ BUILDLINK_API_DEPENDS.gtk2++=	gtk2+>=2.18.0
 BUILDLINK_API_DEPENDS.libsndfile+=	libsndfile>=1.0.0
 .include "../../audio/libsndfile/buildlink3.mk"
 .include "../../lang/python/application.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

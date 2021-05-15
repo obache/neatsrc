@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2020/01/19 00:58:38 pho Exp $
+# $NetBSD: Makefile,v 1.4 2021/04/23 00:21:47 pho Exp $
 
 DISTNAME=	tar-0.5.1.1
 CATEGORIES=	archivers

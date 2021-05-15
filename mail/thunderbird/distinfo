@@ -1,9 +1,9 @@
-$NetBSD: distinfo,v 1.239 2021/01/01 12:58:32 ryoon Exp $
+$NetBSD: distinfo,v 1.246 2021/04/26 14:30:03 ryoon Exp $
 
-SHA1 (thunderbird-78.6.0.source.tar.xz) = 12bb1be74b705104e42afc84bbf1cbf0f21539a8
-RMD160 (thunderbird-78.6.0.source.tar.xz) = a96708b07686ff03739a4a02e52b732dd1e2f156
-SHA512 (thunderbird-78.6.0.source.tar.xz) = 36194e8bf58117d8accbd6d8dc52a6241d8c572c023db1b271db3b73098652a608da28134865099792fbeb0a2f0d3705d98093447b64fa19eab7efb3e3bdd421
-Size (thunderbird-78.6.0.source.tar.xz) = 353496712 bytes
+SHA1 (thunderbird-78.10.0.source.tar.xz) = 4485a2f5eff0ff87b77adcf175c4a920a7cf54d2
+RMD160 (thunderbird-78.10.0.source.tar.xz) = 1f8ec17d205ebd19cd8b8549ee49afa5545ddf48
+SHA512 (thunderbird-78.10.0.source.tar.xz) = 89c8bc9f76335093f7a43c9980da3f4436c1fa0ed3ffd9c0a2d9648749ad7ab427e2aede2b20ee9143748c828bdd417b5b6cf06e73597dee3a745ef28143ee2d
+Size (thunderbird-78.10.0.source.tar.xz) = 351422752 bytes
 SHA1 (patch-browser_app_profile_firefox.js) = d53fae5544563888d030af7483f00283a712235c
 SHA1 (patch-build_moz.configure_rust.configure) = c9cd5e74aaeef4b42ef86db9e3814868a27847fd
 SHA1 (patch-comm_third__party_botan_configure.py) = 262f560c514d221d0df15a1906100b5e716bfdab
@@ -12,7 +12,6 @@ SHA1 (patch-config_makefiles_rust.mk) = 127f70d36b7784e5b3ba7637e3ccbca76ddd7894
 SHA1 (patch-configure.in) = 92f1603733320d96c424465ac62f9aa22543150e
 SHA1 (patch-dom_base_nsAttrName.h) = 4e2326542d4dbba1ac2af5b33505267ee177b094
 SHA1 (patch-dom_media_CubebUtils.cpp) = 7af2f852bba53dcb313ee6353cd111fb1b1ef735
-SHA1 (patch-dom_webgpu_ipc_WebGPUParent.cpp) = 236743c74610812bb7bdd577112092401dc1e587
 SHA1 (patch-gfx_angle_checkout_src_common_third__party_smhasher_src_PMurHash.cpp) = d08f170629dda585dc3e11706688527fe3dc0e78
 SHA1 (patch-gfx_angle_checkout_src_compiler_translator_InfoSink.h) = 434ba731268ad3e5a9f20ef3a44c9057b61aba74
 SHA1 (patch-gfx_cairo_cairo_src_cairo-type1-subset.c) = 92287c76edfecf2de6aebdd401d77c26f69b2e81
@@ -32,7 +31,7 @@ SHA1 (patch-media_libtheora_lib_info.c) = 96f3d3824459186476102a4598d07cf6f6a704
 SHA1 (patch-media_libvorbis_lib_vorbis__info.c) = 64c4e763835d1ab81e8854cae8a293e630e83250
 SHA1 (patch-media_webrtc_trunk_webrtc_modules_video__capture_linux_device__info__linux.cc) = 2c07cd2361752c307b2a50599a000e41d054aff6
 SHA1 (patch-nsprpub_pr_src_pthreads_ptsynch.c) = 20b208c5ab4bfea5d49d79c19fc610867da0c4c7
-SHA1 (patch-old-configure.in) = b3f79e87a6a9733528294418fc43ca266c2f32c2
+SHA1 (patch-old-configure.in) = 27d42da882af2325dd3a8d8f6c062e59ffdb4d78
 SHA1 (patch-security_nss_lib_freebl_mpi_mpi.c) = 0cbf185955c77c9438ced0c294fbc8e4824797bf
 SHA1 (patch-third__party_rust_authenticator_.cargo-checksum.json) = 4a181138f3080b0e2203be1f8277f4ab2a584250
 SHA1 (patch-third__party_rust_authenticator_src_lib.rs) = 7ae115c6fa9617d3c211207739e74d2eaee194e4

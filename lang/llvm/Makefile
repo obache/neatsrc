@@ -72,7 +72,6 @@ REPLACE_PYTHON+=	utils/llvm-compilers-check
 REPLACE_PYTHON+=	utils/llvm-lit/llvm-lit.in
 
 TEST_TARGET=		check
-TEST_ENV+=		LD_LIBRARY_PATH=${WRKDIR}/build/lib
 
 # It may be that the Solaris linker is more strict here and they can be removed on
 # all platforms.  Change this to a patch if verified.

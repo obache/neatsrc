@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.38 2020/11/13 19:26:26 bsiegert Exp $
+# $NetBSD: Makefile,v 1.45 2021/04/12 14:04:56 triaxx Exp $
 
-DISTNAME=	grafana-7.3.1
-PKGREVISION=	2
+DISTNAME=	grafana-7.5.3
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=grafana/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -19,9 +18,6 @@ FE_DISTNAME=			${DISTNAME}.linux-amd64.tar.gz
 DISTFILES+=			${FE_DISTNAME}
 SITES.${FE_DISTNAME}=		https://dl.grafana.com/oss/release/
 EXTRACT_DIR.${FE_DISTNAME}=	${WRKDIR}/linux
-
-GO_DIST_BASE=		${DISTNAME}
-GO_SRCPATH=		github.com/grafana/grafana
 
 CHECK_PORTABILITY_SKIP=		packaging/* devenv/*
 CHECK_PORTABILITY_SKIP+=	packages/grafana-toolkit/docker/*
@@ -45,6 +41,12 @@ SUBST_SED.fix-cfg+=	-e 's,^;\(logs = \).*,\1${LOGDIR},g'
 SUBST_SED.fix-cfg+=	-e 's,^;\(plugins = \).*,\1${PLUGINDIR},g'
 SUBST_SED.fix-cfg+=	-e 's,^;\(static_root_path = \).*,\1${PUBLICDIR},g'
 SUBST_VARS.fix-cfg=	DATADIR PKG_SYSCONFDIR PREFIX
+
+SUBST_CLASSES+=		build
+SUBST_STAGE.build=	pre-build
+SUBST_MESSAGE.build=	Fixing go path in build.go
+SUBST_FILES.build=	build.go
+SUBST_VARS.build=	GO
 
 BUILD_DEFS+=		GRAFANA_USER GRAFANA_GROUP VARBASE
 FILES_SUBST+=		GRAFANA_USER=${GRAFANA_USER:Q}

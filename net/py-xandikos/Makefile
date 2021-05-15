@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.10 2020/07/27 17:30:29 adam Exp $
+# $NetBSD: Makefile,v 1.12 2021/03/21 07:50:52 adam Exp $
 
-DISTNAME=	xandikos-0.2.3
+DISTNAME=	xandikos-0.2.6
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	net python
 MASTER_SITES=	${MASTER_SITE_PYPI:=x/xandikos/}
@@ -22,9 +22,17 @@ USE_LANGUAGES=	# none
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
+SUBST_CLASSES+=		mandir
+SUBST_STAGE.mandir=	pre-configure
+SUBST_MESSAGE.mandir=	Fix mandir.
+SUBST_FILES.mandir=	setup.py
+SUBST_SED.mandir=	-e 's,share/man,${PKGMANDIR},g'
+
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && \
 	${MV} xandikos xandikos-${PYVERSSUFFIX} || ${TRUE}
+	cd ${DESTDIR}${PREFIX}/${PKGMANDIR}/man8 && \
+	${MV} xandikos.8 xandikos-${PYVERSSUFFIX}.8 || ${TRUE}
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

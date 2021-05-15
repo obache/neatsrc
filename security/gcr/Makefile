@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.14 2020/11/20 11:35:35 nia Exp $
+# $NetBSD: Makefile,v 1.15 2021/04/14 07:28:20 wiz Exp $
 
 DISTNAME=		gcr-3.38.0
+PKGREVISION=		1
 CATEGORIES=		security
 MASTER_SITES=		${MASTER_SITE_GNOME:=sources/gcr/3.38/}
 EXTRACT_SUFX=		.tar.xz
@@ -21,12 +22,8 @@ USE_TOOLS+=		aclocal autoconf automake autopoint
 CONFIGURE_ARGS+=	--enable-vala
 CONFIGURE_ARGS+=	--enable-gtk-doc
 
-.include "../../mk/bsd.prefs.mk"
-
 # To avoid msgfmt: unknown option -- desktop
-.if ${OPSYS} == "NetBSD"
-TOOLS_PLATFORM.msgfmt=
-.endif
+GETTEXT_TOOLS_REQD=	0.19.0
 
 PKGCONFIG_OVERRIDE+=	gck-1.pc.in
 PKGCONFIG_OVERRIDE+=	gcr-base-3.pc.in

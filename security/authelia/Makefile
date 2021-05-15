@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.4 2020/11/13 19:26:20 bsiegert Exp $
+# $NetBSD: Makefile,v 1.7 2021/03/19 17:37:05 bsiegert Exp $
 
-DISTNAME=	authelia-4.22.0
-PKGREVISION=	2
+DISTNAME=	authelia-4.26.1
+PKGREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GITHUB:=authelia/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -10,18 +10,20 @@ DISTFILES=			${DEFAULT_DISTFILES}
 FE_DISTNAME=			${DISTNAME}.public_html.tar.gz
 DISTFILES+=			${FE_DISTNAME}
 SITES.${FE_DISTNAME}=		\
-	-${MASTER_SITE_GITHUB:=authelia/}/authelia/releases/download/${GITHUB_TAG}/authelia-public_html.tar.gz
+	-${MASTER_SITE_GITHUB:=authelia/}authelia/releases/download/${GITHUB_TAG}/authelia-public_html.tar.gz
 EXTRACT_DIR.${FE_DISTNAME}=	${WRKSRC}
 BR_DISTNAME=			broccoli-1.0.3.tar.gz
 DISTFILES+=			${BR_DISTNAME}
 SITES.${BR_DISTNAME}=		\
-	-${MASTER_SITE_GITHUB:=aletheia-icu/}broccoli/archive/v1.0.3.tar.gz
+	-${MASTER_SITE_GITHUB:=thealetheia/}broccoli/archive/v1.0.3.tar.gz
 EXTRACT_DIR.${BR_DISTNAME}=	${WRKDIR}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.authelia.com/
 COMMENT=	Single Sign-On Multi-Factor portal for web apps
 LICENSE=	apache-2.0
+
+CHECK_PORTABILITY_SKIP+=	entrypoint.sh
 
 .include "go-modules.mk"
 

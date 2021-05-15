@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2014/12/01 00:05:38 obache Exp $
+@comment $NetBSD: PLIST,v 1.2 2021/02/20 13:56:07 ryoon Exp $
 bin/opencc
 bin/opencc_dict
 bin/opencc_phrase_extract

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.11 2020/12/04 04:56:00 riastradh Exp $
+# $NetBSD: Makefile,v 1.16 2021/04/21 13:24:50 adam Exp $
 
-DISTNAME=	zbar-0.23.1
+DISTNAME=	zbar-0.23.90
 PKGREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	https://linuxtv.org/downloads/zbar/
@@ -10,6 +10,9 @@ MAINTAINER=	leot@NetBSD.org
 HOMEPAGE=	https://github.com/mchehab/zbar
 COMMENT=	Bar code reader
 LICENSE=	gnu-lgpl-v2.1
+
+# Needed for generating man pages
+TOOL_DEPENDS+=	xmlto-[0-9]*:../../textproc/xmlto
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.32 2021/01/01 08:24:55 ryoon Exp $
+# $NetBSD: Makefile,v 1.35 2021/04/21 13:25:13 adam Exp $
 
-DISTNAME=	tcpflow-1.5.0
-PKGREVISION=	14
+DISTNAME=	tcpflow-1.6.1
+PKGREVISION=	2
 CATEGORIES=	net security
 MASTER_SITES=	http://downloads.digitalcorpora.org/downloads/tcpflow/
 
@@ -10,7 +10,7 @@ HOMEPAGE=	https://github.com/simsong/tcpflow
 COMMENT=	Captures data transmitted as part of TCP connections
 LICENSE=	gnu-gpl-v3
 
-USE_LANGUAGES=		c c++
+USE_LANGUAGES=		c c++17
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--without-o3
 

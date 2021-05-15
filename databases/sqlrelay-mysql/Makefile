@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.24 2020/08/31 18:07:15 wiz Exp $
+# $NetBSD: Makefile,v 1.26 2021/04/21 13:24:31 adam Exp $
 
-PKGNAME=		${DISTNAME:S/sqlrelay/sqlrelay-mysql/}
-PKGREVISION=		15
-COMMENT=		MySQL support for SQL Relay
+PKGNAME=	${DISTNAME:S/sqlrelay/sqlrelay-mysql/}
+PKGREVISION=	1
+COMMENT=	MySQL support for SQL Relay
 
 .include "../../databases/sqlrelay/Makefile.common"
 
-LICENSE=		gnu-gpl-v2
+LICENSE=	gnu-gpl-v2
 
 CONFIGURE_ARGS+=	--with-mysql-prefix=${BUILDLINK_PREFIX.mysql-client}
 CONFIGURE_ARGS+=	--disable-postgresql

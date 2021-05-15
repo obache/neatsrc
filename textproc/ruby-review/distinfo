@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.3 2020/09/14 15:10:18 taca Exp $
+$NetBSD: distinfo,v 1.5 2021/03/07 13:35:10 taca Exp $
 
-SHA1 (review-4.2.0.gem) = b1964493ab924998ef15772a33e6f99b6bf7a3d2
-RMD160 (review-4.2.0.gem) = 94c3e3c7ea85bf1846d7baa8537b0d68beeea07c
-SHA512 (review-4.2.0.gem) = c941e55ee6657394b42beda8debd38cd997aad285088fa20752939eb1090e9f6509dd0f6d44b85a3515e1376b7f1252aadbc68df124be33b855d3b242133eb48
-Size (review-4.2.0.gem) = 7682048 bytes
+SHA1 (review-5.1.1.gem) = b12b67ed91ff636772a66d3ffca54c384e443835
+RMD160 (review-5.1.1.gem) = dc69a8df449b44762b1b5d4214e893c2a724621f
+SHA512 (review-5.1.1.gem) = 5e203652e06c5944240f15633b4fd2d9929c8c74509c5ac266ec52b59d11891d3314cf54cc4147c69cd14cb900b96688e0e22be7c5c8453f4133453a6be53f6e
+Size (review-5.1.1.gem) = 7603200 bytes

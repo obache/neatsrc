@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2020/12/04 04:55:44 riastradh Exp $
+# $NetBSD: Makefile,v 1.14 2021/04/21 11:41:16 adam Exp $
 
 PKGNAME=	${DISTNAME:S/-/12-contrib-/}
 PKGREVISION=	1
@@ -57,21 +57,9 @@ CONFIGURE_ARGS+=	--with-openssl
 TOOLS_BROKEN+=		perl
 
 PLIST_VARS+=		uuid
-.if ${OPSYS:M*BSD} || ${OPSYS} == "Linux" || ${OPSYS} == "SunOS"
+.if ${OPSYS:M*BSD} || ${OPSYS} == "Darwin" || ${OPSYS} == "Linux" || ${OPSYS} == "SunOS"
 PLIST.uuid=		yes
 BUILD_DIRS+=		contrib/uuid-ossp
-.  if ${OPSYS:M*BSD}
-BUILD_MAKE_FLAGS+=	PG_CPPFLAGS="-DHAVE_UUID_H -DHAVE_UUID_BSD -DSHA1_RESULTLEN=20"
-CONFIGURE_ARGS+=	--with-uuid=bsd
-.  elif ${OPSYS} == "Linux"
-BUILD_MAKE_FLAGS+=	PG_CPPFLAGS="-DHAVE_UUID_UUID_H -DHAVE_UUID_E2FS"
-CONFIGURE_ARGS+=	--with-uuid=e2fs
-.  elif ${OPSYS} == "SunOS"
-BUILD_MAKE_FLAGS+=	PG_CPPFLAGS="-DHAVE_UUID_H -DHAVE_UUID_OSSP"
-CONFIGURE_ARGS+=	--with-uuid=ossp
-BUILD_MAKE_FLAGS+=	UUID_LIBS=-lossp-uuid
-.  include "../../devel/ossp-uuid/buildlink3.mk"
-.  endif
 .endif
 
 PRINT_PLIST_AWK+=	{if ($$0 ~ /uuid-ossp/) {$$0 = "$${PLIST.uuid}" $$0;}}

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.16 2020/11/30 12:24:52 micha Exp $
+# $NetBSD: Makefile,v 1.21 2021/04/30 14:55:01 micha Exp $
 
-DISTNAME=	woof_3.0.0
+DISTNAME=	woof_5.0.0
 PKGNAME=	${DISTNAME:S/_/-/}
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=fabiangreffrath/}

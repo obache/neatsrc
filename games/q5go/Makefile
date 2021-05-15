@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.3 2021/01/01 09:52:29 ryoon Exp $
+# $NetBSD: Makefile,v 1.5 2021/04/21 11:41:46 adam Exp $
 
 DISTNAME=	q5go-1.1.1
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=bernds/}
 GITHUB_PROJECT=	q5Go

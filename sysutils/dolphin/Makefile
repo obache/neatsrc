@@ -1,0 +1,32 @@
+# $NetBSD: Makefile,v 1.4 2021/04/21 11:40:38 adam Exp $
+
+DISTNAME=	dolphin-${KAPPSVER}
+PKGREVISION=	1
+CATEGORIES=	sysutils
+
+HOMEPAGE=	https://kde.org/applications/system/dolphin/
+COMMENT=	KDE File Manager
+LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
+
+.include "../../meta-pkgs/kde/applications.mk"
+
+BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
+DEPENDS+=	kio-extras>=${KAPPSVER}:../../devel/kio-extras
+DEPENDS+=	kinit>=5.70.0nb6:../../x11/kinit
+
+REPLACE_RUBY+=	src/settings/services/servicemenuinstallation
+REPLACE_RUBY+=	src/settings/services/servicemenudeinstallation
+
+.include "../../lang/ruby/replace.mk"
+
+USE_TOOLS+=	msgmerge
+
+.include "../../devel/kcmutils/buildlink3.mk"
+.include "../../devel/kparts/buildlink3.mk"
+.include "../../lang/ruby/buildlink3.mk"
+.include "../../net/knewstuff/buildlink3.mk"
+.include "../../sysutils/desktop-file-utils/desktopdb.mk"
+.include "../../sysutils/baloo-widgets/buildlink3.mk"
+.include "../../x11/kactivities5/buildlink3.mk"
+.include "../../x11/qt5-qtbase/buildlink3.mk"
+.include "../../mk/bsd.pkg.mk"

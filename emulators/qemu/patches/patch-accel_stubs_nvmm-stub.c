@@ -1,4 +1,4 @@
-$NetBSD: patch-accel_stubs_nvmm-stub.c,v 1.1 2020/02/06 16:46:17 kamil Exp $
+$NetBSD: patch-accel_stubs_nvmm-stub.c,v 1.3 2021/03/06 11:19:34 reinoud Exp $
 
 Add NVMM support.
 

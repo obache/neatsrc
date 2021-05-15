@@ -529,7 +529,7 @@ pkgsrc provides the following key features:
 
 The following principles are basic to pkgsrc:
 
-  * "It should only work if it's right." ? That means, if a package contains
+  * "It should only work if it's right." -- That means, if a package contains
     bugs, it's better to find them and to complain about them rather than to
     just install the package and hope that it works. There are numerous checks
     in pkgsrc that try to find such bugs: static analysis tools (pkgtools/
@@ -537,7 +537,7 @@ The following principles are basic to pkgsrc:
     post-installation checks (installed files, references to shared libraries,
     script interpreters).
 
-  * "If it works, it should work everywhere" ? Like NetBSD has been ported to
+  * "If it works, it should work everywhere" -- Like NetBSD has been ported to
     many hardware architectures, pkgsrc has been ported to many operating
     systems. Care is taken that packages behave the same on all platforms.
 
@@ -857,7 +857,7 @@ Before you download any pkgsrc files, you should decide whether you want the
 current branch or the stable branch. The latter is forked on a quarterly basis
 from the current branch and only gets modified for security updates. The names
 of the stable branches are built from the year and the quarter, for example
-2020Q3.
+2021Q1.
 
 The second step is to decide how you want to download pkgsrc. You can get it as
 a tar file or via CVS. Both ways are described here.
@@ -881,12 +881,12 @@ published at pkgsrc.tar.bz2 and pkgsrc.tar.xz respectively.
 
 You can fetch the same files using FTP.
 
-The tar file for the stable branch 2020Q3 is in the directory pkgsrc-2020Q3 and
+The tar file for the stable branch 2021Q1 is in the directory pkgsrc-2021Q1 and
 is also called pkgsrc.tar.gz.
 
 To download the latest pkgsrc stable tarball, run:
 
-$ ftp ftp://ftp.NetBSD.org/pub/pkgsrc/pkgsrc-2020Q3/pkgsrc.tar.gz
+$ ftp ftp://ftp.NetBSD.org/pub/pkgsrc/pkgsrc-2021Q1/pkgsrc.tar.gz
 
 If you prefer, you can also fetch it using "wget", "curl", or your web browser.
 
@@ -905,7 +905,7 @@ $ ftp ftp://ftp.NetBSD.org/pub/pkgsrc/current/pkgsrc.tar.gz
 
 To fetch a specific pkgsrc stable branch, run:
 
-$ cd /usr && cvs -q -z2 -d anoncvs@anoncvs.NetBSD.org:/cvsroot checkout -r pkgsrc-2020Q3 -P pkgsrc
+$ cd /usr && cvs -q -z2 -d anoncvs@anoncvs.NetBSD.org:/cvsroot checkout -r pkgsrc-2021Q1 -P pkgsrc
 
 This will create the directory pkgsrc/ in your /usr/ directory and all the
 package source will be stored under /usr/pkgsrc/.
@@ -987,7 +987,7 @@ When updating pkgsrc, the CVS program keeps track of the branch you selected.
 But if you, for whatever reason, want to switch from the stable branch to the
 current one, you can do it by adding the option "-A" after the "update"
 keyword. To switch from the current branch back to the stable branch, add the "
--rpkgsrc-2020Q3" option.
+-rpkgsrc-2021Q1" option.
 
 3.2.2.2. What happens to my changes when updating?
 
@@ -1473,7 +1473,7 @@ mk.conf, together with some comments that describe each variable's intent.
     (see below). This is useful for building packages on several architectures,
     then ${PKGSRCDIR} can be NFS-mounted while ${WRKOBJDIR} is local to every
     architecture. (It should be noted that PKGSRCDIR should not be set by the
-    user ? it is an internal definition which refers to the root of the pkgsrc
+    user -- it is an internal definition which refers to the root of the pkgsrc
     tree. It is possible to have many pkgsrc tree instances.)
 
   * LOCALPATCHES: Directory for local patches that aren't part of pkgsrc. See
@@ -1485,7 +1485,7 @@ mk.conf, together with some comments that describe each variable's intent.
 
 6.3. Variables affecting the installation process
 
-  * PKGSRC_KEEP_BIN_PKGSRC: By default, binary packages of built packages are
+  * PKGSRC_KEEP_BIN_PKGS: By default, binary packages of built packages are
     preserved in ${PACKAGES}/All. Setting this variable to "no" prevents this.
 
 Packages have to support installation into a subdirectory of WRKDIR. This
@@ -3163,7 +3163,7 @@ The general rule to follow is: instead of checking for the operating system the
 application is being built on, check for the specific features you need. For
 example, instead of assuming that kqueue is available under NetBSD and using
 the __NetBSD__ macro to conditionalize kqueue support, add a check that detects
-kqueue itself ? yes, this generally involves patching the configure script.
+kqueue itself -- yes, this generally involves patching the configure script.
 There is absolutely nothing that prevents some OSes from adopting interfaces
 from other OSes (e.g. Linux implementing kqueue), something that the above
 checks cannot take into account.
@@ -3272,11 +3272,32 @@ DEINSTALL
 
 MESSAGE
 
-    This file is displayed after installation of the package. Useful for things
-    like legal notices on almost-free software and hints for updating config
-    files after installing modules for apache, PHP etc. Please note that you
-    can modify variables in it easily by using MESSAGE_SUBST in the package's
-    Makefile:
+    This file is displayed after installation of the package. While this was
+    used often in the past, it has two problems: the display will be missed if
+    many packages are intalled at once, and the person installing the package
+    and the one using or configuring it may be different. It should therefore
+    be used only in exceptional circumstances where lasting negative
+    consequences would result from someone not reading it.
+
+    MESSAGE should not be used for:
+
+      + exhortations to read the documentation
+
+      + reminders to install rc.d files and set variables
+
+      + anything that should be explained in the installation/configuration
+        documentation that should come with the package
+
+    If the documentation provided by upstream needs enhancing, create e.g.
+    files/README.pkgsrc and install it in the package's documentation
+    directory.
+
+    Note that MESSAGE is shown for all operating systems and all init systems.
+    If a MESSAGE is necessary, it should be narrowed to only those operating
+    systems and init systems to which it applies.
+
+    Note that you can modify variables in it easily by using MESSAGE_SUBST in
+    the package's Makefile:
 
     MESSAGE_SUBST+=  SOMEVAR="somevalue"
 
@@ -4070,12 +4091,12 @@ index
 
 readme
 
-    This target generates a README.html file, which can be viewed using a
+    This target generates a index.html file, which can be viewed using a
     browser such as www/firefox or www/links. The generated files contain
     references to any packages which are in the PACKAGES directory on the local
     host. The generated files can be made to refer to URLs based on
     FTP_PKG_URL_HOST and FTP_PKG_URL_DIR. For example, if I wanted to generate
-    README.html files which pointed to binary packages on the local machine, in
+    index.html files which pointed to binary packages on the local machine, in
     the directory /usr/packages, set FTP_PKG_URL_HOST=file://localhost and
     FTP_PKG_URL_DIR=/usr/packages. The ${PACKAGES} directory and its
     subdirectories will be searched for all the binary packages.
@@ -4089,13 +4110,13 @@ readme-all
     file README-all.html which contains a list of all packages currently
     available in the NetBSD Packages Collection, together with the category
     they belong to and a short description. This file is compiled from the
-    pkgsrc/*/README.html files, so be sure to run this after a make readme.
+    pkgsrc/*/index.html files, so be sure to run this after a make readme.
 
 cdrom-readme
 
     This is very much the same as the "readme" target (see above), but is to be
     used when generating a pkgsrc tree to be written to a CD-ROM. This target
-    also produces README.html files, and can be made to refer to URLs based on
+    also produces index.html files, and can be made to refer to URLs based on
     CDROM_PKG_URL_HOST and CDROM_PKG_URL_DIR.
 
 show-distfiles
@@ -7930,12 +7951,13 @@ out-of-the box on NetBSD. The less custom patches in pkgsrc, the easier further
 updates are. Those developers in charge of issuing major GNOME updates will be
 grateful if you do that.
 
-The most common places to report bugs are the GNOME's Bugzilla and the
-freedesktop.org's Bugzilla. Not all components use these to track bugs, but
-most of them do. Do not be short on your reports: always provide detailed
+The most common places to report bugs are the GNOME's GitLab and the
+freedesktop.org's GitLab. Not all components use these to track bugs, but most
+of them do. Do not be short on your reports: always provide detailed
 explanations of the current failure, how it can be improved to achieve maximum
-portability and, if at all possible, provide a patch against CVS head. The more
-verbose you are, the higher chances of your patch being accepted.
+portability and, if at all possible, provide a patch against the main Git
+branch. The more verbose you are, the higher chances of your patch being
+accepted.
 
 Also, please avoid using preprocessor magic to fix portability issues. While
 the FreeBSD GNOME people are doing a great job in porting GNOME to their
@@ -8294,9 +8316,9 @@ pkgsrc-users mailing list.
           about newer versions of installed packages that are available, but
           not yet updated in pkgsrc.
 
-        * Browse pkgsrc/doc/TODO ? it contains a list of suggested new packages
-          and a list of cleanups and enhancements for pkgsrc that would be nice
-          to have.
+        * Browse pkgsrc/doc/TODO -- it contains a list of suggested new
+          packages and a list of cleanups and enhancements for pkgsrc that
+          would be nice to have.
 
         * Review packages for which review was requested on the tech-pkg
           mailing list.
@@ -8470,8 +8492,8 @@ subtle bugs.
 25.5.1. Procedures with parameters
 
 In a traditional imperative programming language some of the .mk files could be
-described as procedures. They take some input parameters and?after
-inclusion?provide a result in output parameters. Since all variables in
+described as procedures. They take some input parameters and--after
+inclusion--provide a result in output parameters. Since all variables in
 Makefiles have global scope care must be taken not to use parameter names that
 have already another meaning. For example, PKGNAME is a bad choice for a
 parameter name.
@@ -9116,7 +9138,8 @@ AUTOMAKE_OVERRIDE                AUTOMAKE_REQD
 AUTO_MKDIRS                      BDB185_DEFAULT
 BDBBASE                          BDB_ACCEPTED
 BDB_DEFAULT                      BDB_LIBS
-BDB_TYPE                         BIND_DIR
+BDB_TYPE                         BINCIMAP_GROUP
+BINCIMAP_USER                    BIND_DIR
 BIND_GROUP                       BIND_USER
 BINOWN                           BINPKG_SITES
 BIN_INSTALL_FLAGS                BISON_PKGDATADIR
@@ -9258,9 +9281,10 @@ GEM_CLEANBUILD_EXTENSIONS        GEM_DOCDIR
 GEM_EXTSDIR                      GEM_HOME
 GEM_KEEPBUILD                    GEM_LIBDIR
 GEM_NAME                         GEM_PATH
-GEM_SPECFILE                     GENERATE_PLIST
-GHOSTSCRIPT_REQD                 GITHUB_PROJECT
-GITHUB_RELEASE                   GITHUB_TAG
+GEM_PLUGINSDIR                   GEM_SPECFILE
+GENERATE_PLIST                   GHOSTSCRIPT_REQD
+GITHUB_PROJECT                   GITHUB_RELEASE
+GITHUB_SUBMODULES                GITHUB_TAG
 GITHUB_TYPE                      GNU
 GNU_CONFIGURE                    GNU_CONFIGURE_INFODIR
 GNU_CONFIGURE_MANDIR             GNU_CONFIGURE_QUIET
@@ -9513,20 +9537,21 @@ RSSH_CVS_PATH                    RSSH_RDIST_PATH
 RSSH_RSYNC_PATH                  RSSH_SCP_PATH
 RSSH_SFTP_SERVER_PATH            RUBY
 RUBYGEM                          RUBYGEM_NAME
-RUBYGEM_OPTIONS                  RUBY_ABI_VERSION
-RUBY_ARCH                        RUBY_ARCHINC
-RUBY_ARCHLIB                     RUBY_BASE
-RUBY_BASERIDIR                   RUBY_BUILD_DOCUMENT
-RUBY_DLEXT                       RUBY_DOC
-RUBY_DYNAMIC_DIRS                RUBY_EG
-RUBY_ENCODING_ARG                RUBY_EXTCONF
-RUBY_EXTCONF_CHECK               RUBY_EXTCONF_DEBUG
-RUBY_EXTCONF_MAKEFILE            RUBY_GEM_BASE
-RUBY_INC                         RUBY_LIB
-RUBY_LIB_BASE                    RUBY_NAME
-RUBY_NOVERSION                   RUBY_PKGPREFIX
-RUBY_RAILS                       RUBY_RAILS52_VERSION
-RUBY_RAILS60_VERSION             RUBY_RAILS_ACCEPTED
+RUBYGEM_OPTIONS                  RUBYGEM_VERBOSE
+RUBY_ABI_VERSION                 RUBY_ARCH
+RUBY_ARCHINC                     RUBY_ARCHLIB
+RUBY_BASE                        RUBY_BASERIDIR
+RUBY_BUILD_DOCUMENT              RUBY_DLEXT
+RUBY_DOC                         RUBY_DYNAMIC_DIRS
+RUBY_EG                          RUBY_ENCODING_ARG
+RUBY_EXTCONF                     RUBY_EXTCONF_CHECK
+RUBY_EXTCONF_DEBUG               RUBY_EXTCONF_MAKEFILE
+RUBY_GEM_BASE                    RUBY_INC
+RUBY_LIB                         RUBY_LIB_BASE
+RUBY_NAME                        RUBY_NOVERSION
+RUBY_PKGPREFIX                   RUBY_RAILS
+RUBY_RAILS52_VERSION             RUBY_RAILS60_VERSION
+RUBY_RAILS61_VERSION             RUBY_RAILS_ACCEPTED
 RUBY_RAILS_DEFAULT               RUBY_RAILS_REQD
 RUBY_RAILS_STRICT_DEP            RUBY_RIDIR
 RUBY_SETUP                       RUBY_SHLIB

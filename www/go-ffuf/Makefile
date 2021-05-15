@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.9 2020/11/13 19:26:24 bsiegert Exp $
+# $NetBSD: Makefile,v 1.12 2021/03/19 17:37:08 bsiegert Exp $
 
-DISTNAME=		go-ffuf-1.1.0
-PKGREVISION=		3
+DISTNAME=		go-ffuf-1.2.1
+PKGREVISION=		1
 CATEGORIES=		www
 MASTER_SITES=		${MASTER_SITE_GITHUB:=ffuf/}
 GITHUB_PROJECT=		ffuf
@@ -12,14 +12,13 @@ HOMEPAGE=		https://github.com/ffuf/ffuf/
 COMMENT=		Fast web fuzzer
 LICENSE=		mit
 
-GO_SRCPATH=		github.com/ffuf/ffuf
-GO_DIST_BASE=		ffuf-${PKGVERSION_NOREV}
-
 INSTALLATION_DIRS+=	bin share/doc/go-ffuf
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKDIR}/bin/ffuf ${DESTDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKDIR}/.gopath/bin/ffuf ${DESTDIR}${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/README.md ${DESTDIR}${PREFIX}/share/doc/go-ffuf
 
-.include "../../lang/go/go-package.mk"
+.include "go-modules.mk"
+
+.include "../../lang/go/go-module.mk"
 .include "../../mk/bsd.pkg.mk"

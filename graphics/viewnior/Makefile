@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.33 2020/08/17 20:19:11 leot Exp $
+# $NetBSD: Makefile,v 1.34 2021/04/12 13:23:05 nia Exp $
 
 DISTNAME=	viewnior-1.7
 PKGREVISION=	1
@@ -17,8 +17,10 @@ WRKSRC=		${WRKDIR}/Viewnior-${DISTNAME}
 USE_TOOLS+=	pkg-config msgfmt xgettext
 USE_LANGUAGES=	c c++
 
-# XXX: msgfmt: unknown option -- desktop
+# msgfmt: unknown option -- desktop
 GETTEXT_TOOLS_REQD=	0.19
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 .include "../../devel/meson/build.mk"
 .include "../../databases/shared-mime-info/buildlink3.mk"

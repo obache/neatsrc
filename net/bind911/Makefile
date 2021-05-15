@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.35 2020/12/19 14:44:15 taca Exp $
+# $NetBSD: Makefile,v 1.42 2021/04/29 05:54:13 taca Exp $
 
 DISTNAME=	bind-${BIND_VERSION}
 PKGNAME=	${DISTNAME:S/-P/pl/}
 CATEGORIES=	net
-MASTER_SITES=	ftp://ftp.isc.org/isc/bind9/${BIND_VERSION}/
-DISTFILES+=	${DEFAULT_DISTFILES} bind-9.11.25-fixed-man-pages.tar.gz
+MASTER_SITES=	https://downloads.isc.org/isc/bind9/${BIND_VERSION}/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.isc.org/software/bind/
@@ -15,7 +14,7 @@ CONFLICTS+=	host-[0-9]*
 
 MAKE_JOBS_SAFE=	no
 
-BIND_VERSION=	9.11.26
+BIND_VERSION=	9.11.31
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -36,7 +35,8 @@ CONFIGURE_ARGS+=		--with-python=no
 CONFIGURE_ARGS+=		--with-lmdb=no
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-m68k) || \
     !empty(MACHINE_PLATFORM:MNetBSD-*-mipsel) || \
-    !empty(MACHINE_PLATFORM:MNetBSD-*-vax)
+    !empty(MACHINE_PLATFORM:MNetBSD-*-vax) || \
+    !empty(MACHINE_PLATFORM:MNetBSD-*-i386)
 CONFIGURE_ARGS+=		--disable-atomic
 .endif
 .if ${MACHINE_PLATFORM:MNetBSD-*-powerpc} != ""
@@ -71,16 +71,13 @@ CONF_FILES+=		share/examples/bind9/bind.keys \
 
 INSTALLATION_DIRS+=	${DOCDIR} ${DOCDIR}/arm
 
-post-extract:
-	cd ${WRKDIR} && \
-		${TAR} -xzf ${DISTDIR}/bind-9.11.25-fixed-man-pages.tar.gz
-
 post-install:
 .for f in ${DOCS}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${PREFIX}/${DOCDIR}
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${DESTDIR}${PREFIX}/${DOCDIR}/arm
 
+.include "../../mk/atomic64.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

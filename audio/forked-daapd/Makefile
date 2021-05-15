@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.3 2021/01/01 09:52:15 ryoon Exp $
+# $NetBSD: Makefile,v 1.8 2021/04/21 13:24:21 adam Exp $
 
-DISTNAME=	forked-daapd-27.2
-PKGREVISION=	3
+DISTNAME=	forked-daapd-27.4
+PKGREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ejurgensen/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -49,6 +49,10 @@ BUILDLINK_API_DEPENDS.libevent+=	libevent>=2
 .include "../../devel/zlib/buildlink3.mk"
 BUILDLINK_API_DEPENDS.sqlite3+=		sqlite3>=3.5.0
 .include "../../databases/sqlite3/buildlink3.mk"
+# what other operating systems have libdns_sd?
+.if ${OPSYS} != "NetBSD"
+.  include "../../net/avahi/buildlink3.mk"
+.endif
 .include "../../multimedia/ffmpeg4/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
 .include "../../security/libgcrypt/buildlink3.mk"

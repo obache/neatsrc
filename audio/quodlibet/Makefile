@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.10 2020/12/04 20:44:59 nia Exp $
+# $NetBSD: Makefile,v 1.12 2021/04/21 11:41:01 adam Exp $
 
-DISTNAME=	quodlibet-4.3.0
-PKGREVISION=	6
+DISTNAME=	quodlibet-4.4.0
+PKGREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=quodlibet/}
 GITHUB_PROJECT=	quodlibet
@@ -36,7 +36,7 @@ USE_TOOLS+=	msgfmt
 
 INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 
-# Needs --desktop
+# msgfmt: unknown option -- desktop
 GETTEXT_TOOLS_REQD=		0.19
 
 # Requires Python 3.5 or higher

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.563 2020/11/02 10:25:50 schmonz Exp $
+# $NetBSD: Makefile,v 1.569 2021/04/21 09:34:58 nia Exp $
 #
 
 COMMENT=	Electronic mail utilities
@@ -17,6 +17,7 @@ SUBDIR+=	autorespond
 SUBDIR+=	avenger
 SUBDIR+=	balsa
 SUBDIR+=	bbmail
+SUBDIR+=	bincimap
 SUBDIR+=	bmf
 SUBDIR+=	bogofilter
 SUBDIR+=	bulk_mailer
@@ -96,7 +97,6 @@ SUBDIR+=	fdm
 SUBDIR+=	feed2exec
 SUBDIR+=	fetchmail
 SUBDIR+=	fetchmailconf
-SUBDIR+=	fetchyahoo
 SUBDIR+=	fix-mime-charset
 SUBDIR+=	fml
 SUBDIR+=	fml4
@@ -188,7 +188,6 @@ SUBDIR+=	oe2mbx
 SUBDIR+=	offlineimap
 SUBDIR+=	opendkim
 SUBDIR+=	opendmarc
-SUBDIR+=	opensmtpd
 SUBDIR+=	p5-App-Siesh
 SUBDIR+=	p5-Catalyst-View-Email
 SUBDIR+=	p5-Email-Abstract
@@ -302,7 +301,6 @@ SUBDIR+=	py-authres
 SUBDIR+=	py-email_validator
 SUBDIR+=	py-flufl.bounce
 SUBDIR+=	py-imapclient
-SUBDIR+=	py-libgmail
 SUBDIR+=	py-policyd-spf
 SUBDIR+=	py-sendmail-admin
 SUBDIR+=	py-spf
@@ -332,7 +330,6 @@ SUBDIR+=	queue-fix
 SUBDIR+=	queue-repair
 SUBDIR+=	quickml
 SUBDIR+=	rblcheck
-SUBDIR+=	re-alpine
 SUBDIR+=	relay-ctrl
 SUBDIR+=	ripmime
 SUBDIR+=	rmail-mime
@@ -344,8 +341,10 @@ SUBDIR+=	roundcube-plugin-zipdownload
 SUBDIR+=	rspamd
 SUBDIR+=	rss2email
 SUBDIR+=	ruby-actionmailbox60
+SUBDIR+=	ruby-actionmailbox61
 SUBDIR+=	ruby-actionmailer52
 SUBDIR+=	ruby-actionmailer60
+SUBDIR+=	ruby-actionmailer61
 SUBDIR+=	ruby-mail
 SUBDIR+=	ruby-mailfactory
 SUBDIR+=	ruby-mime-types

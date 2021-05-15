@@ -1,7 +1,6 @@
-$NetBSD: distinfo,v 1.2 2019/12/13 11:22:51 adam Exp $
+$NetBSD: distinfo,v 1.4 2021/04/16 13:17:39 adam Exp $
 
-SHA1 (fs-2.4.11.tar.gz) = e5456119c108e60166ce00130883355b0f806fae
-RMD160 (fs-2.4.11.tar.gz) = 81c9354dbc5f8486a98849016038d13ca6c14054
-SHA512 (fs-2.4.11.tar.gz) = 8a4e25b47427d8467e697ac5eff645130f159f0479386c958ebcc87839e6b8d4b2d46c3bb078208eb067629078960fde551fa14842cf65ff29afb0238911b4f5
-Size (fs-2.4.11.tar.gz) = 128125 bytes
-SHA1 (patch-tests_conftest.py) = cb8f0cfc5358b1fc87555b31f7a077d96bc397bb
+SHA1 (fs-2.4.13.tar.gz) = 8a7331df88410b4e29665ea1a56b5f7784ebbee9
+RMD160 (fs-2.4.13.tar.gz) = 9b87b5271aea8268a55ce98ccf0ca9a4c88925f4
+SHA512 (fs-2.4.13.tar.gz) = fc3c3f5bbc437899ecc862db5354ba06cd1cf4042a46adeb84bec02ccc4d3a82600aa7f4819367eb1a2ed1fba8e2971a4ba6e03f0335cb77693159c7968f6833
+Size (fs-2.4.13.tar.gz) = 179654 bytes

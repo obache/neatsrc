@@ -1,15 +1,15 @@
-$NetBSD: patch-CMakeLists.txt,v 1.2 2020/03/18 12:20:41 fox Exp $
+$NetBSD: patch-CMakeLists.txt,v 1.4 2021/04/06 10:49:29 fox Exp $
 
 Only define __LINUX_ALSA__ on Linux.
 
---- CMakeLists.txt.orig	2020-03-18 10:34:59.000000000 +0000
+--- CMakeLists.txt.orig	2021-04-02 09:54:11.000000000 +0000
 +++ CMakeLists.txt
-@@ -23,7 +23,9 @@ endif()
+@@ -26,7 +26,9 @@ endif()
  
  target_link_libraries(ft2-clone
      PRIVATE m asound pthread ${SDL2_LIBRARIES})
 -target_compile_definitions(ft2-clone PRIVATE __LINUX_ALSA__)
-+if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")    
++if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 +    target_compile_definitions(ft2-clone PRIVATE __LINUX_ALSA__)
 +endif()
  

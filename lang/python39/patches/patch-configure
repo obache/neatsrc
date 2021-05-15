@@ -1,11 +1,11 @@
-$NetBSD: patch-configure,v 1.3 2020/12/08 14:30:40 adam Exp $
+$NetBSD: patch-configure,v 1.5 2021/04/03 06:23:13 adam Exp $
 
 Use gnu99 instead of c99 to avoid "alloca() undefined" problems.
 Fix linking on Darwin; don't use -stack_size.
 Changes for consistency across pkgsrc platforms.
 Simplify _sysconfigdata to include only platform name.
 
---- configure.orig	2020-12-07 14:02:38.000000000 +0000
+--- configure.orig	2021-04-02 09:51:53.000000000 +0000
 +++ configure
 @@ -6961,7 +6961,7 @@ UNIVERSAL_ARCH_FLAGS=
  # tweak BASECFLAGS based on compiler and platform
@@ -28,25 +28,25 @@ Simplify _sysconfigdata to include only platform name.
  if ac_fn_c_try_compile "$LINENO"; then :
  
  
--if $GREP noonsees conftest.$ac_objext >/dev/null ; then
+-if grep noonsees conftest.$ac_objext >/dev/null ; then
 +if strings -a conftest.$ac_objext | grep noonsees >/dev/null ; then
    ax_cv_c_float_words_bigendian=yes
  fi
--if $GREP seesnoon conftest.$ac_objext >/dev/null ; then
+-if grep seesnoon conftest.$ac_objext >/dev/null ; then
 +if strings -a conftest.$ac_objext | grep seesnoon >/dev/null ; then
    if test "$ax_cv_c_float_words_bigendian" = unknown; then
      ax_cv_c_float_words_bigendian=no
    else
-@@ -15384,8 +15383,6 @@ fi
+@@ -15383,7 +15382,7 @@ _ACEOF
+ fi
  
  
- case $ac_sys_system in
--    Linux*|GNU*|Darwin|VxWorks)
--	EXT_SUFFIX=.${SOABI}${SHLIB_SUFFIX};;
-     *)
- 	EXT_SUFFIX=${SHLIB_SUFFIX};;
- esac
-@@ -15441,11 +15438,7 @@ fi
+-EXT_SUFFIX=.${SOABI}${SHLIB_SUFFIX}
++EXT_SUFFIX=${SHLIB_SUFFIX}
+ 
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking LDVERSION" >&5
+ $as_echo_n "checking LDVERSION... " >&6; }
+@@ -15436,11 +15435,7 @@ fi
  
  
  

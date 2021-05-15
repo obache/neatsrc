@@ -1,4 +1,4 @@
-# $NetBSD: gcc.mk,v 1.217 2020/12/05 09:24:00 wiz Exp $
+# $NetBSD: gcc.mk,v 1.224 2021/04/06 12:07:57 nia Exp $
 #
 # This is the compiler definition for the GNU Compiler Collection.
 #
@@ -94,9 +94,9 @@ _DEF_VARS.gcc=	\
 	_IS_BUILTIN_GCC \
 	_LANGUAGES.gcc \
 	_LINKER_RPATH_FLAG \
-	_NEED_GCC2 _NEED_GCC3 _NEED_GCC34 _NEED_GCC44 \
-	_NEED_GCC48 _NEED_GCC49 _NEED_GCC5 _NEED_GCC6 \
-	_NEED_GCC7 _NEED_GCC8 _NEED_GCC9 _NEED_GCC10 \
+	_NEED_GCC2 _NEED_GCC3 _NEED_GCC34 \
+	_NEED_GCC6 _NEED_GCC7 _NEED_GCC8 _NEED_GCC9 \
+	_NEED_GCC10 \
 	_NEED_GCC_AUX _NEED_NEWER_GCC \
 	_PKGSRC_GCC_VERSION \
 	_USE_GCC_SHLIB _USE_PKGSRC_GCC \
@@ -126,10 +126,9 @@ _USE_VARS.gcc=	\
 	_PKGSRC_USE_FORTIFY _PKGSRC_USE_RELRO _PKGSRC_USE_STACK_CHECK \
 	_OPSYS_INCLUDE_DIRS _OPSYS_LIB_DIRS
 _IGN_VARS.gcc=	\
-	_GCC2_PATTERNS _GCC3_PATTERNS _GCC34_PATTERNS _GCC44_PATTERNS \
-	_GCC48_PATTERNS _GCC49_PATTERNS _GCC5_PATTERNS _GCC6_PATTERNS \
-	_GCC7_PATTERNS _GCC8_PATTERNS _GCC9_PATTERNS _GCC10_PATTERNS \
-	_GCC_AUX_PATTERNS
+	_GCC2_PATTERNS _GCC3_PATTERNS _GCC34_PATTERNS \
+	_GCC6_PATTERNS _GCC7_PATTERNS _GCC8_PATTERNS _GCC9_PATTERNS \
+	_GCC10_PATTERNS _GCC_AUX_PATTERNS
 _LISTED_VARS.gcc= \
 	MAKEFLAGS IMAKEOPTS LDFLAGS PREPEND_PATH
 .include "../../mk/bsd.prefs.mk"
@@ -150,10 +149,10 @@ GCC_REQD+=	3.0
 GCC_REQD+=	4.8
 .endif
 
-# Only one compiler defined here supports Ada: lang/gcc5-aux
-# If the Ada language is requested, force lang/gcc5-aux to be selected
+# Only one compiler defined here supports Ada: lang/gcc6-aux
+# If the Ada language is requested, force lang/gcc6-aux to be selected
 .if !empty(USE_LANGUAGES:Mada)
-GCC_REQD+=	20120614
+GCC_REQD+=	20160822
 .endif
 
 # _GCC_DIST_VERSION is the highest version of GCC installed by the pkgsrc
@@ -173,20 +172,8 @@ _GCC3_PATTERNS=	2.95.[4-9]* 2.95.[1-9][0-9]* 2.9[6-9] 2.9[6-9].*	\
 # _GCC34_PATTERNS matches N s.t. 3.4 <= N < 4.
 _GCC34_PATTERNS= 3.[4-9] 3.[4-9].* 3.[1-9][0-9]*
 
-# _GCC44_PATTERNS matches N s.t. 4.0 <= N < 4.5.
-_GCC44_PATTERNS= 4.[0-4] 4.[0-4].*
-
-# _GCC48_PATTERNS matches N s.t. 4.5 <= N < 4.9.
-_GCC48_PATTERNS= 4.[5-8] 4.[5-8].*
-
-# _GCC49_PATTERNS matches N s.t. 4.9 <= N < 4.10.
-_GCC49_PATTERNS= 4.9 4.9.*
-
-# _GCC5_PATTERNS matches N s.t. 5.0 <= N < 6.
-_GCC5_PATTERNS= 5 5.*
-
-# _GCC6_PATTERNS matches N s.t. 6.0 <= N < 7.
-_GCC6_PATTERNS= 6 6.*
+# _GCC6_PATTERNS matches N s.t. 4.5 <= N < 7.
+_GCC6_PATTERNS= 4.[0-9] 4.[0-9]* 5 5.* 6 6.*
 
 # _GCC7_PATTERNS matches N s.t. 7.0 <= N < 8.
 _GCC7_PATTERNS= 7 7.*
@@ -321,30 +308,6 @@ _NEED_GCC34?=	no
 _NEED_GCC34=	yes
 .  endif
 .endfor
-_NEED_GCC44?=	no
-.for _pattern_ in ${_GCC44_PATTERNS}
-.  if !empty(_GCC_REQD:M${_pattern_})
-_NEED_GCC44=	yes
-.  endif
-.endfor
-_NEED_GCC48?=	no
-.for _pattern_ in ${_GCC48_PATTERNS}
-.  if !empty(_GCC_REQD:M${_pattern_})
-_NEED_GCC48=	yes
-.  endif
-.endfor
-_NEED_GCC49?=	no
-.for _pattern_ in ${_GCC49_PATTERNS}
-.  if !empty(_GCC_REQD:M${_pattern_})
-_NEED_GCC49=	yes
-.  endif
-.endfor
-_NEED_GCC5?=	no
-.for _pattern_ in ${_GCC5_PATTERNS}
-.  if !empty(_GCC_REQD:M${_pattern_})
-_NEED_GCC5=	yes
-.  endif
-.endfor
 _NEED_GCC6?=	no
 .for _pattern_ in ${_GCC6_PATTERNS}
 .  if !empty(_GCC_REQD:M${_pattern_})
@@ -383,11 +346,10 @@ _NEED_NEWER_GCC=NO
 .  endif
 .endfor
 .if !empty(_NEED_GCC2:M[nN][oO]) && !empty(_NEED_GCC3:M[nN][oO]) && \
-    !empty(_NEED_GCC34:M[nN][oO]) && !empty(_NEED_GCC44:M[nN][oO]) && \
-    !empty(_NEED_GCC48:M[nN][oO]) && !empty(_NEED_GCC49:M[nN][oO]) && \
-    !empty(_NEED_GCC5:M[nN][oO]) && !empty(_NEED_GCC6:M[nN][oO]) && \
-    !empty(_NEED_GCC7:M[nN][oO]) && !empty(_NEED_GCC8:M[nN][oO]) && \
-    !empty(_NEED_GCC9:M[nN][oO]) && !empty(_NEED_GCC10:M[nN][oO]) && \
+    !empty(_NEED_GCC34:M[nN][oO]) && \
+    !empty(_NEED_GCC6:M[nN][oO]) && !empty(_NEED_GCC7:M[nN][oO]) && \
+    !empty(_NEED_GCC8:M[nN][oO]) && !empty(_NEED_GCC9:M[nN][oO]) && \
+    !empty(_NEED_GCC10:M[nN][oO]) && \
     !empty(_NEED_GCC_AUX:M[nN][oO])
 _NEED_GCC8=	yes
 .endif
@@ -400,14 +362,6 @@ LANGUAGES.gcc=	c c++ fortran77 objc
 LANGUAGES.gcc=	c c++ fortran77 java objc
 .elif !empty(_NEED_GCC34:M[yY][eE][sS])
 LANGUAGES.gcc=	c c++ fortran77 objc
-.elif !empty(_NEED_GCC44:M[yY][eE][sS])
-LANGUAGES.gcc=	c c++ fortran fortran77 java objc
-.elif !empty(_NEED_GCC48:M[yY][eE][sS])
-LANGUAGES.gcc=	c c++ fortran fortran77 go java objc obj-c++
-.elif !empty(_NEED_GCC49:M[yY][eE][sS])
-LANGUAGES.gcc=	c c++ fortran fortran77 go java objc obj-c++
-.elif !empty(_NEED_GCC5:M[yY][eE][sS])
-LANGUAGES.gcc=	c c++ fortran fortran77 go java objc obj-c++
 .elif !empty(_NEED_GCC6:M[yY][eE][sS])
 LANGUAGES.gcc=	c c++ fortran fortran77 go java objc obj-c++
 .elif !empty(_NEED_GCC7:M[yY][eE][sS])
@@ -550,88 +504,6 @@ _GCC_DEPENDENCY=	gcc34>=${_GCC_REQD}:../../lang/gcc34
 _USE_GCC_SHLIB?=	yes
 .    endif
 .  endif
-.elif !empty(_NEED_GCC44:M[yY][eE][sS])
-#
-# We require gcc-4.4.x in the lang/gcc44 directory.
-#
-_GCC_PKGBASE=		gcc44
-.  if ${PKGPATH} == lang/gcc44
-_IGNORE_GCC=		yes
-MAKEFLAGS+=		_IGNORE_GCC=yes
-.  endif
-.  if !defined(_IGNORE_GCC) && !empty(_LANGUAGES.gcc)
-_GCC_PKGSRCDIR=		../../lang/gcc44
-_GCC_DEPENDENCY=	gcc44>=${_GCC_REQD}:../../lang/gcc44
-.    if !empty(_LANGUAGES.gcc:Mc++) || \
-        !empty(_LANGUAGES.gcc:Mfortran) || \
-        !empty(_LANGUAGES.gcc:Mfortran77) || \
-        !empty(_LANGUAGES.gcc:Mobjc)
-_USE_GCC_SHLIB?=	yes
-.    endif
-.  endif
-.elif !empty(_NEED_GCC48:M[yY][eE][sS])
-#
-# We require gcc-4.8.x in the lang/gcc48 directory.
-#
-_GCC_PKGBASE=		gcc48
-.  if ${PKGPATH} == lang/gcc48
-_IGNORE_GCC=		yes
-MAKEFLAGS+=		_IGNORE_GCC=yes
-.  endif
-.  if !defined(_IGNORE_GCC) && !empty(_LANGUAGES.gcc)
-_GCC_PKGSRCDIR=		../../lang/gcc48
-_GCC_DEPENDENCY=	gcc48>=${_GCC_REQD}:../../lang/gcc48
-.    if !empty(_LANGUAGES.gcc:Mc++) || \
-        !empty(_LANGUAGES.gcc:Mfortran) || \
-        !empty(_LANGUAGES.gcc:Mfortran77) || \
-        !empty(_LANGUAGES.gcc:Mgo) || \
-        !empty(_LANGUAGES.gcc:Mobjc) || \
-        !empty(_LANGUAGES.gcc:Mobj-c++)
-_USE_GCC_SHLIB?=	yes
-.    endif
-.  endif
-.elif !empty(_NEED_GCC49:M[yY][eE][sS])
-#
-# We require gcc-4.9.x in the lang/gcc49-* directory.
-#
-_GCC_PKGBASE=		gcc49
-.  if ${PKGPATH} == lang/gcc49
-_IGNORE_GCC=		yes
-MAKEFLAGS+=		_IGNORE_GCC=yes
-.  endif
-.  if !defined(_IGNORE_GCC) && !empty(_LANGUAGES.gcc)
-_GCC_PKGSRCDIR=		../../lang/gcc49
-_GCC_DEPENDENCY=	gcc49>=${_GCC_REQD}:../../lang/gcc49
-.    if !empty(_LANGUAGES.gcc:Mc++) || \
-        !empty(_LANGUAGES.gcc:Mfortran) || \
-        !empty(_LANGUAGES.gcc:Mfortran77) || \
-        !empty(_LANGUAGES.gcc:Mgo) || \
-        !empty(_LANGUAGES.gcc:Mobjc) || \
-        !empty(_LANGUAGES.gcc:Mobj-c++)
-_USE_GCC_SHLIB?=	yes
-.    endif
-.  endif
-.elif !empty(_NEED_GCC5:M[yY][eE][sS])
-#
-# We require gcc-5.x in the lang/gcc5-* directory.
-#
-_GCC_PKGBASE=		gcc5
-.  if ${PKGPATH} == lang/gcc5
-_IGNORE_GCC=		yes
-MAKEFLAGS+=		_IGNORE_GCC=yes
-.  endif
-.  if !defined(_IGNORE_GCC) && !empty(_LANGUAGES.gcc)
-_GCC_PKGSRCDIR=		../../lang/gcc5
-_GCC_DEPENDENCY=	gcc5>=${_GCC_REQD}:../../lang/gcc5
-.    if !empty(_LANGUAGES.gcc:Mc++) || \
-        !empty(_LANGUAGES.gcc:Mfortran) || \
-        !empty(_LANGUAGES.gcc:Mfortran77) || \
-        !empty(_LANGUAGES.gcc:Mgo) || \
-        !empty(_LANGUAGES.gcc:Mobjc) || \
-        !empty(_LANGUAGES.gcc:Mobj-c++)
-_USE_GCC_SHLIB?=	yes
-.    endif
-.  endif
 .elif !empty(_NEED_GCC6:M[yY][eE][sS])
 #
 # We require gcc-6.x in the lang/gcc6-* directory.
@@ -739,16 +611,16 @@ _USE_GCC_SHLIB?=	yes
 .  endif
 .elif !empty(_NEED_GCC_AUX:M[yY][eE][sS])
 #
-# We require Ada-capable compiler in the lang/gcc5-aux directory.
+# We require Ada-capable compiler in the lang/gcc6-aux directory.
 #
-_GCC_PKGBASE=		gcc5-aux
-.  if ${PKGPATH} == lang/gcc5-aux
+_GCC_PKGBASE=		gcc6-aux
+.  if ${PKGPATH} == lang/gcc6-aux
 _IGNORE_GCC=		yes
 MAKEFLAGS+=		_IGNORE_GCC=yes
 .  endif
 .  if !defined(_IGNORE_GCC) && !empty(_LANGUAGES.gcc)
-_GCC_PKGSRCDIR=		../../lang/gcc5-aux
-_GCC_DEPENDENCY=	gcc5-aux>=${_GCC_REQD}:../../lang/gcc5-aux
+_GCC_PKGSRCDIR=		../../lang/gcc6-aux
+_GCC_DEPENDENCY=	gcc6-aux>=${_GCC_REQD}:../../lang/gcc6-aux
 .    if !empty(_LANGUAGES.gcc:Mc++) || \
         !empty(_LANGUAGES.gcc:Mfortran) || \
         !empty(_LANGUAGES.gcc:Mfortran77) || \
@@ -1091,13 +963,7 @@ PREPEND_PATH+=	${_GCC_DIR}/bin
 .  if ${PKGPATH} != devel/libtool-base && ${PKGPATH} != devel/binutils && \
       empty(PKGPATH:Mlang/gcc4?) && empty(PKGPATH:Mlang/gcc[5-9]) && \
       empty(PKGPATH:Mlang/gcc10)
-.    if !empty(_GCC_PKGBASE:Mgcc48)
-.      include "../../lang/gcc48-libs/buildlink3.mk"
-.    elif !empty(_GCC_PKGBASE:Mgcc49)
-.      include "../../lang/gcc49-libs/buildlink3.mk"
-.    elif !empty(_GCC_PKGBASE:Mgcc5)
-.      include "../../lang/gcc5-libs/buildlink3.mk"
-.    elif !empty(_GCC_PKGBASE:Mgcc6)
+.    if !empty(_GCC_PKGBASE:Mgcc6)
 .      include "../../lang/gcc6-libs/buildlink3.mk"
 .    elif !empty(_GCC_PKGBASE:Mgcc7)
 .      include "../../lang/gcc7-libs/buildlink3.mk"

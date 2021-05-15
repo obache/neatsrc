@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.157 2021/01/07 10:02:01 adam Exp $
+# $NetBSD: Makefile,v 1.163 2021/04/28 22:49:29 leot Exp $
 
-DISTNAME=	gtk+-3.24.24
+DISTNAME=	gtk+-3.24.29
 PKGNAME=	${DISTNAME:S/gtk/gtk3/}
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtk+/${PKGVERSION_NOREV:R}/}
@@ -11,6 +11,7 @@ HOMEPAGE=	https://www.gtk.org/
 COMMENT=	GIMP Toolkit v3 - libraries for building X11 user interfaces
 LICENSE=	gnu-lgpl-v2.1
 
+# "error: 'for' loop initial declarations are only allowed in C99 mode"
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
@@ -49,7 +50,8 @@ BUILD_DIRS=		. demos/gtk-demo
 CONFIGURE_ENV.DragonFly+=	ac_cv_func_isinf=yes
 CONFIGURE_ENV.DragonFly+=	ac_cv_func_isnan=yes
 
-CFLAGS.SunOS+=		-std=gnu99
+# "error: 'for' loop initial declarations are only allowed in C99 mode"
+CFLAGS+=		-std=gnu99
 
 CPPFLAGS+=		-DPREFIX="\"${PREFIX}\""
 

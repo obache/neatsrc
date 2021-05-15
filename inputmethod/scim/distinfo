@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.10 2015/11/03 22:13:38 agc Exp $
+$NetBSD: distinfo,v 1.11 2021/01/11 23:49:28 mef Exp $
 
 SHA1 (scim-1.4.18.tar.gz) = 6fee79db6888738d8719ee72944d5ff5c96a06df
 RMD160 (scim-1.4.18.tar.gz) = bee5e5470aaf78417ba1a38ae9166746b071d5ac

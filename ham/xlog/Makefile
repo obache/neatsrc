@@ -1,13 +1,16 @@
-# $NetBSD: Makefile,v 1.91 2020/08/17 20:19:14 leot Exp $
+# $NetBSD: Makefile,v 1.99 2021/03/19 20:29:36 gdt Exp $
 #
 
-DISTNAME=	xlog-2.0.19
-PKGREVISION=	1
+DISTNAME=	xlog-2.0.22
 CATEGORIES=	ham
 MASTER_SITES=	http://download.savannah.gnu.org/releases/xlog/
 LICENSE=	gnu-gpl-v3
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
+# Beware that the author is opposed to anyone else building from the
+# repo, instead of distfiles, and objects to bug reports.
+# Beware that the upstream homepage will lead you to the wrong repo.
+# https://savannah.nongnu.org/bugs/?60068
 HOMEPAGE=	https://www.nongnu.org/xlog/
 COMMENT=	Amateur Radio logging program
 
@@ -18,20 +21,27 @@ USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake pkg-config
 
 .include "../../mk/compiler.mk"
-.if !empty(PKGSRC_COMPILER:Mclang)
-BUILDLINK_TRANSFORM+=	rm:-Wno-unused-but-set-variable
-_WRAP_EXTRA_ARGS.CC+=	-Wno-error=parentheses-equality -Wno-error=tautological-compare -Wno-unknown-warning-option -Wno-deprecated-declarations
-CWRAPPERS_APPEND.cc+=	-Wno-error=parentheses-equality -Wno-error=tautological-compare -Wno-unknown-warning-option -Wno-deprecated-declarations
-.endif
 
-# Problematic with 5.5.0 on netbsd-8.
-.if !empty(PKGSRC_COMPILER:Mgcc)
+# Fails with gcc 5.5.0 (netbsd-8), and presumably earlier.
+# OK with gcc 7.4.0.
+# Fails with clang.
+.if !empty(CC_VERSION:Mgcc-[45].*) || !empty(PKGSRC_COMPILER:Mclang)
 BUILDLINK_TRANSFORM+=	rm:-Wno-stringop-truncation
 .endif
 
-# Work around https://savannah.nongnu.org/bugs/index.php?57920
-_WRAP_EXTRA_ARGS.CC+=	-Wno-deprecated-declarations
-CWRAPPERS_APPEND.cc+=	-Wno-deprecated-declarations
+.if !empty(PKGSRC_COMPILER:Mclang)
+BUILDLINK_TRANSFORM+=	rm:-Wno-unused-but-set-variable
+# xlog has things like: #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+# https://savannah.nongnu.org/bugs/index.php?60003
+_WRAP_EXTRA_ARGS.CC+=	-Wno-error=unknown-warning-option
+CWRAPPERS_APPEND.cc+=	-Wno-error=unknown-warning-option
+# xlog has code that triggers clang warnings
+# https://savannah.nongnu.org/bugs/index.php?60004
+_WRAP_EXTRA_ARGS.CC+=	-Wno-error=parentheses-equality
+CWRAPPERS_APPEND.cc+=	-Wno-error=parentheses-equality
+_WRAP_EXTRA_ARGS.CC+=	-Wno-error=uninitialized
+CWRAPPERS_APPEND.cc+=	-Wno-error=uninitialized
+.endif
 
 .include "../../databases/shared-mime-info/mimedb.mk"
 .include "../../graphics/gnome-icon-theme/buildlink3.mk"

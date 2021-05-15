@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2020/11/05 09:09:06 ryoon Exp $
+# $NetBSD: Makefile,v 1.23 2021/04/21 11:42:39 adam Exp $
 
 COLLECTD_PACKAGE=	rrdtool
 COLLECTD_PLUGINS=	rrdtool rrdcached

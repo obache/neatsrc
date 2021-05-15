@@ -1,4 +1,4 @@
-$NetBSD: patch-qemu-options.hx,v 1.2 2020/04/30 17:16:04 adam Exp $
+$NetBSD: patch-qemu-options.hx,v 1.4 2021/03/06 11:19:34 reinoud Exp $
 
 Add NVMM support.
 

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.3 2020/11/11 14:26:32 nia Exp $
+# $NetBSD: Makefile,v 1.6 2021/04/21 11:40:38 adam Exp $
 
 DISTNAME=	tracker-3.0.1
 PKGNAME=	gnome-${DISTNAME}
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/tracker/3.0/}
 EXTRACT_SUFX=	.tar.xz
@@ -18,10 +18,6 @@ TOOL_DEPENDS+=	gtk-doc-[0-9]*:../../textproc/gtk-doc
 USE_TOOLS+=	pkg-config xgettext
 
 MESON_ARGS+=	-Dsystemd_user_services=false
-
-# workaround for build failure
-# https://gitlab.gnome.org/GNOME/json-glib/issues/35
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/src:${WRKSRC}/output/src/libtracker-sparql/
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -43,7 +39,9 @@ PKGCONFIG_OVERRIDE+=		output/meson-private/tracker-testutils-3.0.pc
 
 .include "../../devel/meson/build.mk"
 .include "../../devel/glib2/buildlink3.mk"
+BUILDLINK_DEPMETHOD.gobject-introspection?=	build
 .include "../../devel/gobject-introspection/buildlink3.mk"
+BUILDLINK_DEPMETHOD.vala?=	build
 .include "../../lang/vala/buildlink3.mk"
 .include "../../net/libsoup/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"

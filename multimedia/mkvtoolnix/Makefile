@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.165 2021/01/05 13:27:50 adam Exp $
+# $NetBSD: Makefile,v 1.174 2021/04/21 13:25:05 adam Exp $
 
-DISTNAME=	mkvtoolnix-52.0.0
+DISTNAME=	mkvtoolnix-56.1.0
+PKGREVISION=	2
 CATEGORIES=	multimedia
 MASTER_SITES=	https://mkvtoolnix.download/sources/
 EXTRACT_SUFX=	.tar.xz
@@ -13,6 +14,13 @@ LICENSE=	gnu-gpl-v2
 BUILD_DEPENDS+=	docbook-xsl>=1.79.1nb5:../../textproc/docbook-xsl
 BUILD_DEPENDS+=	po4a-[0-9]*:../../textproc/po4a
 BUILD_DEPENDS+=	${RUBY_BASE}>=${RUBY_VERSION}:${RUBY_SRCDIR}
+
+
+# 'The following features of the C++17 standards are not supported by c++:
+#  * file system library (C++17)
+# If you are using the GNU C compiler collection (gcc), you need
+# at least v8; for clang v7 and newer should work.'
+GCC_REQD+=	8
 
 USE_LANGUAGES=		c c++17
 USE_PKGLOCALEDIR=	yes
@@ -51,11 +59,11 @@ do-install:
 .include "../../devel/boost-headers/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
-BUILDLINK_API_DEPENDS.libebml+= libebml>=1.4.1
+BUILDLINK_API_DEPENDS.libebml+= libebml>=1.4.2
 .include "../../devel/libebml/buildlink3.mk"
 .include "../../devel/pcre2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-BUILDLINK_API_DEPENDS.libmatroska+= libmatroska>=1.6.1
+BUILDLINK_API_DEPENDS.libmatroska+= libmatroska>=1.6.3
 .include "../../multimedia/libmatroska/buildlink3.mk"
 .include "../../multimedia/libogg/buildlink3.mk"
 .include "../../sysutils/file/buildlink3.mk"

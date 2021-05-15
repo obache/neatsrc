@@ -1,8 +1,14 @@
-@comment $NetBSD: PLIST,v 1.32 2020/12/06 09:58:49 wiz Exp $
+@comment $NetBSD: PLIST,v 1.34 2021/03/20 09:32:43 adam Exp $
 bin/fonttools-${PYVERSSUFFIX}
 bin/pyftmerge-${PYVERSSUFFIX}
 bin/pyftsubset-${PYVERSSUFFIX}
 bin/ttx-${PYVERSSUFFIX}
+${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
+${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
+${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
+${PYSITELIB}/${EGG_INFODIR}/entry_points.txt
+${PYSITELIB}/${EGG_INFODIR}/requires.txt
+${PYSITELIB}/${EGG_INFODIR}/top_level.txt
 ${PYSITELIB}/fontTools/__init__.py
 ${PYSITELIB}/fontTools/__init__.pyc
 ${PYSITELIB}/fontTools/__init__.pyo
@@ -33,6 +39,15 @@ ${PYSITELIB}/fontTools/colorLib/builder.pyo
 ${PYSITELIB}/fontTools/colorLib/errors.py
 ${PYSITELIB}/fontTools/colorLib/errors.pyc
 ${PYSITELIB}/fontTools/colorLib/errors.pyo
+${PYSITELIB}/fontTools/colorLib/geometry.py
+${PYSITELIB}/fontTools/colorLib/geometry.pyc
+${PYSITELIB}/fontTools/colorLib/geometry.pyo
+${PYSITELIB}/fontTools/colorLib/table_builder.py
+${PYSITELIB}/fontTools/colorLib/table_builder.pyc
+${PYSITELIB}/fontTools/colorLib/table_builder.pyo
+${PYSITELIB}/fontTools/colorLib/unbuilder.py
+${PYSITELIB}/fontTools/colorLib/unbuilder.pyc
+${PYSITELIB}/fontTools/colorLib/unbuilder.pyo
 ${PYSITELIB}/fontTools/cu2qu/__init__.py
 ${PYSITELIB}/fontTools/cu2qu/__init__.pyc
 ${PYSITELIB}/fontTools/cu2qu/__init__.pyo
@@ -249,6 +264,9 @@ ${PYSITELIB}/fontTools/pens/pointPen.pyo
 ${PYSITELIB}/fontTools/pens/qtPen.py
 ${PYSITELIB}/fontTools/pens/qtPen.pyc
 ${PYSITELIB}/fontTools/pens/qtPen.pyo
+${PYSITELIB}/fontTools/pens/quartzPen.py
+${PYSITELIB}/fontTools/pens/quartzPen.pyc
+${PYSITELIB}/fontTools/pens/quartzPen.pyo
 ${PYSITELIB}/fontTools/pens/recordingPen.py
 ${PYSITELIB}/fontTools/pens/recordingPen.pyc
 ${PYSITELIB}/fontTools/pens/recordingPen.pyo
@@ -694,9 +712,15 @@ ${PYSITELIB}/fontTools/varLib/errors.pyo
 ${PYSITELIB}/fontTools/varLib/featureVars.py
 ${PYSITELIB}/fontTools/varLib/featureVars.pyc
 ${PYSITELIB}/fontTools/varLib/featureVars.pyo
-${PYSITELIB}/fontTools/varLib/instancer.py
-${PYSITELIB}/fontTools/varLib/instancer.pyc
-${PYSITELIB}/fontTools/varLib/instancer.pyo
+${PYSITELIB}/fontTools/varLib/instancer/__init__.py
+${PYSITELIB}/fontTools/varLib/instancer/__init__.pyc
+${PYSITELIB}/fontTools/varLib/instancer/__init__.pyo
+${PYSITELIB}/fontTools/varLib/instancer/__main__.py
+${PYSITELIB}/fontTools/varLib/instancer/__main__.pyc
+${PYSITELIB}/fontTools/varLib/instancer/__main__.pyo
+${PYSITELIB}/fontTools/varLib/instancer/names.py
+${PYSITELIB}/fontTools/varLib/instancer/names.pyc
+${PYSITELIB}/fontTools/varLib/instancer/names.pyo
 ${PYSITELIB}/fontTools/varLib/interpolatable.py
 ${PYSITELIB}/fontTools/varLib/interpolatable.pyc
 ${PYSITELIB}/fontTools/varLib/interpolatable.pyo
@@ -739,10 +763,4 @@ ${PYSITELIB}/fontTools/voltLib/lexer.pyo
 ${PYSITELIB}/fontTools/voltLib/parser.py
 ${PYSITELIB}/fontTools/voltLib/parser.pyc
 ${PYSITELIB}/fontTools/voltLib/parser.pyo
-${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
-${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
-${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
-${PYSITELIB}/${EGG_INFODIR}/entry_points.txt
-${PYSITELIB}/${EGG_INFODIR}/requires.txt
-${PYSITELIB}/${EGG_INFODIR}/top_level.txt
 man/man1/ttx-${PYVERSSUFFIX}.1

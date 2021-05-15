@@ -1,4 +1,4 @@
-# $NetBSD: u-boot.mk,v 1.29 2020/06/21 10:06:53 wiz Exp $
+# $NetBSD: u-boot.mk,v 1.31 2021/03/09 16:49:12 martin Exp $
 
 .include "../../sysutils/u-boot/u-boot-version.mk"
 
@@ -7,7 +7,6 @@ DISTNAME?=	u-boot-${UBOOT_VERSION}
 DISTINFO_FILE?=	${.CURDIR}/../../sysutils/u-boot/distinfo
 CATEGORIES=	sysutils
 EXTRACT_SUFX?=	.tar.bz2
-PATCHDIR?=	${.CURDIR}/../../sysutils/u-boot/patches
 
 HOMEPAGE?=	https://www.denx.de/wiki/U-Boot
 MASTER_SITES?=	ftp://ftp.denx.de/pub/u-boot/
@@ -63,7 +62,7 @@ do-configure:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} ${UBOOT_CONFIG}
 
 do-build:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} ${_MAKE_JOBS}
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} ${_MAKE_JOBS} ${BUILD_TARGET}
 
 do-install:
 	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/u-boot/${UBOOT_TARGET}

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.335 2020/11/21 09:34:55 wiz Exp $
+# $NetBSD: Makefile,v 1.342 2021/04/21 11:40:24 adam Exp $
 
-DISTNAME=	gimp-2.10.22
-PKGREVISION=	2
+DISTNAME=	gimp-2.10.24
+PKGREVISION=	5
 CATEGORIES=	graphics
 MASTER_SITES=	https://download.gimp.org/pub/gimp/v${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.bz2
@@ -60,9 +60,9 @@ PLIST_SUBST+=	GIMP_DEBUG_TOOL_DIR="libexec"
 .endif
 
 pre-configure:
-	ln -s mypaint-brushes-2.0.pc	\
-	  ${BUILDLINK_DIR}/share/pkgconfig/mypaint-brushes-1.0.pc
-	
+	${LN} -s mypaint-brushes-2.0.pc \
+	${BUILDLINK_DIR}/share/pkgconfig/mypaint-brushes-1.0.pc
+
 .include "options.mk"
 .include "../../archivers/xz/buildlink3.mk"
 BUILDLINK_API_DEPENDS.freetype2+=	freetype2>=2.8.1
@@ -96,7 +96,7 @@ BUILDLINK_API_DEPENDS.gegl+=		gegl>=0.4.24
 .include "../../print/poppler-glib/buildlink3.mk"
 .include "../../textproc/iso-codes/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
-.if !empty(PKG_BUILD_OPTIONS.gtk2:Mx11)
+.if ${PKG_BUILD_OPTIONS.gtk2:Mx11}
 PLIST.remote=	yes
 .include "../../x11/libICE/buildlink3.mk"
 .include "../../x11/libSM/buildlink3.mk"
@@ -106,7 +106,7 @@ PLIST.remote=	yes
 CONFIGURE_ARGS+=	--without-xmc
 CONFIGURE_ARGS+=	--without-libxpm
 .endif
-.if !empty(PKG_BUILD_OPTIONS.gtk2:Mquartz)
+.if ${PKG_BUILD_OPTIONS.gtk2:Mquartz}
 .include "../../x11/gtk-mac-integration/buildlink3.mk"
 .endif
 .include "../../mk/pthread.buildlink3.mk"

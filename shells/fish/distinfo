@@ -1,13 +1,7 @@
-$NetBSD: distinfo,v 1.19 2020/06/14 22:52:10 js Exp $
+$NetBSD: distinfo,v 1.22 2021/04/08 10:46:52 nia Exp $
 
-SHA1 (fish-3.1.2.tar.gz) = a50886c71ddfe188b63322a557fcbeb5c768930d
-RMD160 (fish-3.1.2.tar.gz) = 57cf48d43a8627eb4c7a18e738dc7a68f5e9dd44
-SHA512 (fish-3.1.2.tar.gz) = b6ae2c928774a2eaccf35312d3a9446bfa3e1335182c8f2b2d6198161d0916904f4964fb20ed13a5bf850c1c819e003905d13db3bc8b1faa5b401a60b47dc563
-Size (fish-3.1.2.tar.gz) = 6816214 bytes
-SHA1 (patch-CMakeLists.txt) = 755c4c79a5a717323046816a7ed36d91ee2552d6
-SHA1 (patch-cmake_ConfigureChecks.cmake) = f673d726b42a60adff60b7e53783a1a2d0e76394
-SHA1 (patch-config__cmake.h.in) = 0d522168dceebb60a0e759df3e2b39595f64d156
-SHA1 (patch-src_common.cpp) = 130e632f41db5974aeec657f0830079b8d9c28ef
-SHA1 (patch-src_fallback.cpp) = 021d454b12e1b9ac45b5820236e5b0742f25e20d
-SHA1 (patch-src_proc.h) = e8ef91a36e3ee134d3220f2396deee292ff93a40
-SHA1 (patch-src_wutil.cpp) = f016ef23b3e3ad7937e944bf341cc6ce0a3f0257
+SHA1 (fish-3.2.2.tar.xz) = a30b2d21ebec63a00282181b8660224ce71edbad
+RMD160 (fish-3.2.2.tar.xz) = e24a3f7a3b073bc9295e897bd3103f7ae33702f4
+SHA512 (fish-3.2.2.tar.xz) = e82c5a390bd94f84c60843a94dc4f30bd46539828a54d2e96f208e0d54a0aa361a8c9d4a66cdf2fa636a5fab310a96bf1c165c58440c38d123f788fff3598f4a
+Size (fish-3.2.2.tar.xz) = 3411748 bytes
+SHA1 (patch-cmake_Install.cmake) = 6ae3f511597773dfd9bf2d22c2d8dd0b60d87ae2

@@ -12,12 +12,8 @@ LICENSE=	gnu-gpl-v2
 
 USE_TOOLS+=	pkg-config msgfmt xgettext
 
-.include "../../mk/bsd.prefs.mk"
-
 # msgfmt: unknown option -- desktop
-.if ${OPSYS} == "NetBSD"
-TOOLS_PLATFORM.msgfmt=
-.endif
+GETTEXT_TOOLS_REQD=	0.19.0
 
 PYTHON_FOR_BUILD_ONLY=	tool
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.218 2021/01/01 14:14:36 pin Exp $
+# $NetBSD: Makefile,v 1.220 2021/03/31 20:28:04 pin Exp $
 #
 
 COMMENT=	Clocks, calendars, daily planners and other time related applications
@@ -173,6 +173,7 @@ SUBDIR+=	py-trytond-timesheet-cost
 SUBDIR+=	py-tzdata
 SUBDIR+=	py-tzlocal
 SUBDIR+=	py-vdirsyncer
+SUBDIR+=	quest-tui
 SUBDIR+=	rclock
 SUBDIR+=	rem2ics
 SUBDIR+=	remind
@@ -188,6 +189,10 @@ SUBDIR+=	sunclock
 SUBDIR+=	swisswatch
 SUBDIR+=	taskwarrior
 SUBDIR+=	tdl
+SUBDIR+=	tex-bxjaholiday
+SUBDIR+=	tex-bxjaholiday-doc
+SUBDIR+=	tex-bxwareki
+SUBDIR+=	tex-bxwareki-doc
 SUBDIR+=	tex-datenumber
 SUBDIR+=	tex-datenumber-doc
 SUBDIR+=	tex-datetime2

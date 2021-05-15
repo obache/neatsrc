@@ -1,8 +1,8 @@
-$NetBSD: patch-CMakeLists.txt,v 1.1 2014/11/29 09:31:49 obache Exp $
+$NetBSD: patch-CMakeLists.txt,v 1.3 2021/02/20 20:53:01 ryoon Exp $
 
-* No reason to restrct only for some Unix variants
+* Install pkg-config pc file for more platforms.
 
---- CMakeLists.txt.orig	2021-01-17 03:57:29.000000000 +0000
+--- CMakeLists.txt.orig	2021-02-07 12:37:26.000000000 +0000
 +++ CMakeLists.txt
 @@ -180,7 +180,7 @@ configure_file(
  add_custom_target(uninstall

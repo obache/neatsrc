@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2020/01/11 11:21:14 pho Exp $
+# $NetBSD: Makefile,v 1.13 2021/04/24 17:07:42 pho Exp $
 
 DISTNAME=	polyparse-1.13
 CATEGORIES=	textproc

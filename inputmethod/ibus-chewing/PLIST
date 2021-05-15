@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2014/12/13 06:33:15 obache Exp $
+@comment $NetBSD: PLIST,v 1.6 2021/02/20 21:24:48 ryoon Exp $
 libexec/ibus-engine-chewing
 libexec/ibus-setup-chewing
 share/applications/ibus-setup-chewing.desktop

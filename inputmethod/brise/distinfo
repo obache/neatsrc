@@ -1,8 +1,0 @@
-$NetBSD: distinfo,v 1.3 2017/03/23 17:06:53 joerg Exp $
-
-SHA1 (brise-0.38.tar.gz) = 05c8cc7873387bddebfab94ccc5f5caf3569ad53
-RMD160 (brise-0.38.tar.gz) = f42bd11024bd753d939ef4e091c8f00b12de3ec8
-SHA512 (brise-0.38.tar.gz) = 2c538fd40b16a7782ef5ff56d7e6a02f49006c27b9d2f1ec3d0518f6095c6d9bc3d17c67f1dd8b86228fea8bd077ac51d7f53361f38ecbab62ace8a487540c13
-Size (brise-0.38.tar.gz) = 7110760 bytes
-SHA1 (patch-plum_Makefile) = 912dba2bd601c6ece22600c2ebdfef555219f359
-SHA1 (patch-plum_scripts_install-packages.sh) = f467135ebeb0dde55124619ee7efd08c6efb1529

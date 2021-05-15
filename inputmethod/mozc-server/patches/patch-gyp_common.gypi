@@ -1,10 +1,10 @@
-$NetBSD: patch-gyp_common.gypi,v 1.9 2017/12/17 14:15:43 tsutsui Exp $
+$NetBSD: patch-gyp_common.gypi,v 1.12 2021/02/27 19:13:26 ryoon Exp $
 
 * NetBSD support
 
---- gyp/common.gypi.orig	2017-11-02 13:32:47.000000000 +0000
+--- gyp/common.gypi.orig	2021-02-15 05:04:33.000000000 +0000
 +++ gyp/common.gypi
-@@ -88,6 +88,12 @@
+@@ -93,6 +93,14 @@
        '-fstack-protector',
        '--param=ssp-buffer-size=4',
      ],
@@ -12,12 +12,14 @@ $NetBSD: patch-gyp_common.gypi,v 1.9 2017/12/17 14:15:43 tsutsui Exp $
 +    'netbsd_cflags': [
 +      '<@(gcc_cflags)',
 +      '-fPIC',
++      '-D_NETBSD_SOURCE',
 +      '-fno-exceptions',
++      '<!(echo $CFLAGS)',
 +    ],
-     # nacl_cflags will be used for NaCl.
-     # -fno-omit-frame-pointer flag does not work correctly.
-     #   http://code.google.com/p/chromium/issues/detail?id=122623
-@@ -371,6 +383,24 @@
+     # mac_cflags will be used in Mac.
+     # Xcode 4.5 which we are currently using does not support ssp-buffer-size.
+     # TODO(horo): When we can use Xcode 4.6 which supports ssp-buffer-size,
+@@ -318,6 +332,24 @@
            }],
          ],
        }],
@@ -41,4 +43,4 @@ $NetBSD: patch-gyp_common.gypi,v 1.9 2017/12/17 14:15:43 tsutsui Exp $
 +      }],
        ['OS=="mac"', {
          'defines': [
-           'OS_MACOSX',
+           '__APPLE__',

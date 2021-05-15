@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.24 2020/11/13 19:26:08 bsiegert Exp $
+# $NetBSD: Makefile,v 1.26 2021/03/19 17:36:55 bsiegert Exp $
 
 DISTNAME=	godotenv-1.2.0
 PKGNAME=	go-${DISTNAME}
-PKGREVISION=	22
+PKGREVISION=	24
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=joho/}
 GITHUB_PROJECT=	${PKGBASE:S/^go-//}

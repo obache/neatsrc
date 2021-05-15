@@ -4,3 +4,4 @@ SHA1 (leveldb-1.22.tar.gz) = 8d310af5cfb53dc836bfb412ff4b3c8aea578627
 RMD160 (leveldb-1.22.tar.gz) = 8ecf3f0bbac39388964623094cefe33137be6ce9
 SHA512 (leveldb-1.22.tar.gz) = f9bbf5f466e7f707b94e19261762319ea9f65d41911690e84f59098551e2e69beccf756a414d705ade74ee96fd979bdb8b94c171c6f2cc83873cbd4a9380dbab
 Size (leveldb-1.22.tar.gz) = 239365 bytes
+SHA1 (patch-CMakeLists.txt) = f2802c39feed296ab7140cd503c9074596a2f130

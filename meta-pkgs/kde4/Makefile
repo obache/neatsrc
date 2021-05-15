@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.58 2020/08/31 18:10:19 wiz Exp $
+# $NetBSD: Makefile,v 1.60 2021/03/06 04:49:18 markd Exp $
 
 DISTNAME=	kde4-4.14.3
-PKGREVISION=	24
+PKGREVISION=	25
 CATEGORIES=	meta-pkgs x11 kde
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -17,7 +17,7 @@ DEPENDS+=	kde-runtime4-15.12.0{,nb[0-9]*}:../../x11/kde-runtime4
 DEPENDS+=	kde-workspace4-4.11.22{,nb[0-9]*}:../../x11/kde-workspace4
 DEPENDS+=	kde-wallpapers4-15.08.3{,nb[0-9]*}:../../misc/kde-wallpapers4
 DEPENDS+=	kde-baseapps4-15.12.0{,nb[0-9]*}:../../x11/kde-baseapps4
-DEPENDS+=	konsole-4.14.3{,nb[0-9]*}:../../x11/konsole
+DEPENDS+=	konsole>=4.14.3:../../x11/konsole
 DEPENDS+=	kaccessible-16.12.0{,nb[0-9]*}:../../misc/kaccessible
 DEPENDS+=	kmag>=16.12.0:../../misc/kmag
 DEPENDS+=	kmouth>=4.14.3:../../misc/kmouth
@@ -117,7 +117,7 @@ DEPENDS+=	kdeplasma-addons4-4.14.3{,nb[0-9]*}:../../misc/kdeplasma-addons4
 DEPENDS+=	cervisia>=16.04.0:../../devel/cervisia
 DEPENDS+=	kde-dev-scripts>=4.14.3:../../devel/kde-dev-scripts
 DEPENDS+=	kde-dev-utils>=16.12.0:../../devel/kde-dev-utils
-DEPENDS+=	dolphin-plugins-4.14.3{,nb[0-9]*}:../../devel/dolphin-plugins
+DEPENDS+=	dolphin-plugins>=4.14.3:../../devel/dolphin-plugins
 DEPENDS+=	kapptemplate>=4.14.3:../../devel/kapptemplate
 DEPENDS+=	kcachegrind>=16.12.0:../../devel/kcachegrind
 ###DEPENDS+=	kdesdk-kioslaves-4.14.3{,nb[0-9]*}:../../devel/kdesdk-kioslaves

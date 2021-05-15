@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2014/11/29 09:31:49 obache Exp $
+@comment $NetBSD: PLIST,v 1.2 2021/02/20 20:53:01 ryoon Exp $
 bin/rime_deployer
 bin/rime_dict_manager
 bin/rime_patch

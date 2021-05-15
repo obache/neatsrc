@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.9 2021/01/04 10:12:42 jperkin Exp $
+# $NetBSD: options.mk,v 1.14 2021/04/04 08:51:20 he Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.rust
 PKG_SUPPORTED_OPTIONS+=	rust-cargo-static
@@ -14,7 +14,9 @@ PKG_SUGGESTED_OPTIONS+=		rust-llvm
 .  endif
 .endif
 
-.if ${OPSYS} == "NetBSD"
+# Bundle OpenSSL and curl into the cargo binary when producing
+# bootstraps on NetBSD.
+.if ${OPSYS} == "NetBSD" && ${BUILD_TARGET} == "dist"
 PKG_SUGGESTED_OPTIONS+=	rust-cargo-static
 .endif
 

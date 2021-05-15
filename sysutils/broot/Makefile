@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.8 2021/01/08 07:56:23 pin Exp $
+# $NetBSD: Makefile,v 1.17 2021/04/28 11:18:16 pin Exp $
 
-DISTNAME=	broot-1.1.11
+DISTNAME=	broot-1.3.0
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Canop/}
-GITHUB_TAG=	v${PKGVERSION_NOREV}
+GITHUB_PROJECT=	broot
+GITHUB_TAG=	1a2014aa856e95176e4ad16497c81ad76ab2b71c
 
 MAINTAINER=	pin@NetBSD.org
 HOMEPAGE=	https://dystroy.org/broot/
@@ -12,8 +13,8 @@ LICENSE=	mit
 
 .include "cargo-depends.mk"
 
-USE_LANGUAGES+=			c	# rust, but needs a toolchain to link
-USE_TOOLS+=			pkg-config
+USE_LANGUAGES+=	c	# rust, but needs a toolchain to link
+USE_TOOLS+=	pkg-config
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 

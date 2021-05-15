@@ -1,14 +1,15 @@
-# $NetBSD: Makefile,v 1.20 2014/10/09 14:06:55 wiz Exp $
+# $NetBSD: Makefile,v 1.24 2021/04/11 07:10:06 kim Exp $
 #
 
 DISTNAME=	priv-1.0-beta2
 PKGNAME=	priv-1.0beta2
-PKGREVISION=	3
+PKGREVISION=	5
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.thistledown.com.au/pub/simonb/
 
 MAINTAINER=	simonb@NetBSD.org
 COMMENT=	Execute commands as a different user
+LICENSE=	original-bsd
 
 GNU_CONFIGURE=	YES
 
@@ -24,5 +25,17 @@ INSTALL_MAKE_FLAGS=	bindir=${DESTDIR}${PREFIX}/bin \
 SPECIAL_PERMS+=	bin/priv ${SETUID_ROOT_PERMS}
 
 OWN_DIRS=	${PKG_SYSCONFDIR}/priv
+
+# XXX: Regenerate patches/patch-configure and patches/patch-config.h.in
+#      if patches/patch-configure.in changes.
+#
+# Having these additional patch files instead of running autoreconf
+# makes priv available sooner when doing a fresh pkgsrc build, as there
+# will be no need to pull in other (possibly large) tools.
+#
+#USE_TOOLS=	autoconf automake autoreconf
+#
+#pre-configure:
+#	cd "${WRKSRC}" && autoreconf -fi
 
 .include "../../mk/bsd.pkg.mk"

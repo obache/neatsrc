@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.7 2020/10/13 17:32:16 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.9 2021/04/20 20:53:48 thor Exp $
 
 BUILDLINK_TREE+=	py-numpy
 
@@ -20,9 +20,9 @@ BUILDLINK_LIBDIRS.py-numpy=		${PYSITELIB}/numpy/core/lib
 
 .include "../../mk/bsd.fast.prefs.mk"
 
-.if ${OPSYS} != "Darwin"
-.include "../../mk/blas.buildlink3.mk"
-.endif
+.include "../../math/py-numpy/Makefile.make_env"
+.include "../../math/cblas/buildlink3.mk"
+
 .endif # PY_NUMPY_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-py-numpy

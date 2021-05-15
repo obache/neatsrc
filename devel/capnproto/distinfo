@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: distinfo,v 1.1 2021/02/20 21:58:35 ryoon Exp $
 
 SHA1 (capnproto-c++-0.8.0.tar.gz) = fbc1c65b32748029f1a09783d3ebe9d496d5fcc4
 RMD160 (capnproto-c++-0.8.0.tar.gz) = 4de4d4ef8745b793665485e35e2e24c5239fa725
