@@ -12,6 +12,8 @@ BUILDLINK_PKGSRCDIR.qt5-qtwayland?=	../../x11/qt5-qtwayland
 BUILDLINK_INCDIRS.qt5-qtwayland+=	qt5/include
 BUILDLINK_LIBDIRS.qt5-qtwayland+=	qt5/lib
 BUILDLINK_LIBDIRS.qt5-qtwayland+=	qt5/plugins
+BUILDLINK_CONTENTS_PATTERNS.qt5-qtwayland+=	^qt5/mkspecs/
+BUILDLINK_CONTENTS_PATTERNS.qt5-qtwayland+=	^qt5/plugins/
 
 .include "../../devel/wayland/buildlink3.mk"
 .include "../../devel/wayland-protocols/buildlink3.mk"
