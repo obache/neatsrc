@@ -20,8 +20,7 @@ USE_TOOLS+=		bash:test bison flex gmake pkg-config
 PKGCONFIG_OVERRIDE+=	libvala.pc.in
 PKGCONFIG_OVERRIDE+=	vapigen/vapigen.pc.in
 
-REPLACE_BASH+=		tests/testrunner.sh
-REPLACE_BASH+=		valadoc/tests/testrunner.sh
+REPLACE_BASH+=		build-aux/testrunner.sh
 
 # as of 0.50.1
 # 44 of 992 tests failed
