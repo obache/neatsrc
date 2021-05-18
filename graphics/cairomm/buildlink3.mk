@@ -8,6 +8,7 @@ CAIROMM_BUILDLINK3_MK:=
 BUILDLINK_API_DEPENDS.cairomm+=	cairomm>=1.2.2
 BUILDLINK_ABI_DEPENDS.cairomm+=	cairomm>=1.12.2nb5
 BUILDLINK_PKGSRCDIR.cairomm?=	../../graphics/cairomm
+BUILDLINK_INCDIRS.cairomm=	include/cairomm-1.0 lib/cairomm-1.0/include
 
 .include "../../devel/libsigc++/buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"
