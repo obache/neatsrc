@@ -249,7 +249,6 @@ share/doc/groonga/en/html/reference/commands/register.html
 share/doc/groonga/en/html/reference/commands/reindex.html
 share/doc/groonga/en/html/reference/commands/request_cancel.html
 share/doc/groonga/en/html/reference/commands/ruby_eval.html
-share/doc/groonga/en/html/reference/commands/ruby_load.html
 share/doc/groonga/en/html/reference/commands/schema.html
 share/doc/groonga/en/html/reference/commands/select.html
 share/doc/groonga/en/html/reference/commands/shutdown.html
@@ -559,7 +558,6 @@ share/doc/groonga/ja/html/reference/commands/register.html
 share/doc/groonga/ja/html/reference/commands/reindex.html
 share/doc/groonga/ja/html/reference/commands/request_cancel.html
 share/doc/groonga/ja/html/reference/commands/ruby_eval.html
-share/doc/groonga/ja/html/reference/commands/ruby_load.html
 share/doc/groonga/ja/html/reference/commands/schema.html
 share/doc/groonga/ja/html/reference/commands/select.html
 share/doc/groonga/ja/html/reference/commands/shutdown.html
