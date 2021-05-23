@@ -49,6 +49,12 @@ SUBST_VARS.conf=	PREFIX
 PKGCONFIG_OVERRIDE+=	js/src/build/js.pc.in
 PKGCONFIG_OVERRIDE+=	js/src/ctypes/libffi/libffi.pc.in
 
+OVERRIDE_GNU_CONFIG_SCRIPTS=	yes
+CONFIG_OVERRIDE_DIRS+=		${WRKSRC}/build/autoconf
+CONFIG_OVERRIDE_DIRS+=		${WRKSRC}/intl/icu/source
+CONFIG_OVERRIDE_DIRS+=		${WRKSRC}/js/src/ctypes/libffi
+CONFIG_OVERRIDE_DIRS+=		${WRKSRC}/nsprpub/build/autoconf
+
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 PYTHON_FOR_BUILD_ONLY=		tool
 TOOL_DEPENDS+=			${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
