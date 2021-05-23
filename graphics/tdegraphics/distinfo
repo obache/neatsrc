@@ -5,3 +5,4 @@ RMD160 (tdegraphics-trinity-14.0.9.tar.xz) = 975942246262484ce9aaa4659fa772185d4
 SHA512 (tdegraphics-trinity-14.0.9.tar.xz) = 963841b5dec412c680e61d7b5238a44e49fd42ddf57d73e29454b8f14e4b04d8b83608f2d2fffb9d98a621b4eb85e38636b202bd88d6e93f1aec85a018a892ba
 Size (tdegraphics-trinity-14.0.9.tar.xz) = 5826956 bytes
 SHA1 (patch-ksvg_impl_libs_libtext2path_src_CMakeLists.txt) = 94ca820f71b7a41f67694564d6f2516fb8538f98
+SHA1 (patch-tdefile-plugins_dependencies_poppler-tqt_poppler-private.h) = 6322b68c0b48cdfaf7b0751e747047ae0e3b1342
