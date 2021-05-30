@@ -15,7 +15,7 @@ BUILDLINK_LDADD.ncursesw=	${BUILDLINK_LIBNAME.ncursesw:S/^/-l/:S/^-l$//}
 CHECK_BUILTIN.ncursesw:=	yes
 .include "builtin.mk"
 CHECK_BUILTIN.ncursesw:=	no
-.if defined(IS_BUILTIN.ncursesw) && !empty(IS_BUILTIN.ncursesw:M[nN][oO])
+.if defined(USE_BUILTIN.ncursesw) && !empty(USE_BUILTIN.ncursesw:M[nN][oO])
 PKG_BUILD_DEPENDS.ncurses!=	\
 	echo "";		\
 	${PKG_INFO} -qn ncursesw 2> /dev/null \
