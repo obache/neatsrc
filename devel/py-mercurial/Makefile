@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.53 2021/04/11 23:07:03 wiz Exp $
+# $NetBSD: Makefile,v 1.55 2021/05/22 23:11:31 wiz Exp $
 #
 # Changelog sometimes at: https://www.mercurial-scm.org/wiki/WhatsNew
 
 DISTNAME=	mercurial-${VERSION}
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	devel scm
 MASTER_SITES=	https://www.mercurial-scm.org/release/
 
@@ -30,17 +31,12 @@ INSTALLATION_DIRS+=	share/doc/mercurial
 .include "version.mk"
 .include "options.mk"
 
-# Known test failures as of 5.7
-# https://bz.mercurial-scm.org/show_bug.cgi?id=6429
 USE_TOOLS+=		bash:test
-# Two tests use "python":
-# test-convert-cvs.t
-# test-merge-tools.t
-# https://bz.mercurial-scm.org/show_bug.cgi?id=6480
-# test-archive.t:
-# https://bz.mercurial-scm.org/show_bug.cgi?id=6499
+# Known test failures as of 5.8
+# test-persistent-nodemap.t
+# https://bz.mercurial-scm.org/show_bug.cgi?id=6523
 #
-# Ran 868 tests, 80 skipped, 1 failed.
+# Ran 878 tests, 81 skipped, 1 failed.
 
 TEST_TARGET=		tests
 TEST_MAKE_FLAGS+=	PYTHON=${PYTHONBIN} TESTFLAGS=${_MAKE_JOBS:Q}

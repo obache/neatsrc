@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2021/04/25 07:47:27 nia Exp $
+# $NetBSD: Makefile,v 1.13 2021/05/20 19:55:47 nia Exp $
 
-DISTNAME=	taisei-v1.3.1
+DISTNAME=	taisei-v1.3.2
 PKGNAME=	${DISTNAME:S/-v/-/}
-PKGREVISION=	5
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=taisei-project/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
@@ -50,6 +49,7 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 .include "../../audio/opusfile/buildlink3.mk"
 .include "../../audio/SDL2_mixer/buildlink3.mk"
 .include "../../devel/SDL2/buildlink3.mk"
+.include "../../graphics/cglm/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"

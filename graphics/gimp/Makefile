@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.342 2021/04/21 11:40:24 adam Exp $
+# $NetBSD: Makefile,v 1.345 2021/05/20 11:55:57 wiz Exp $
 
 DISTNAME=	gimp-2.10.24
-PKGREVISION=	5
+PKGREVISION=	7
 CATEGORIES=	graphics
 MASTER_SITES=	https://download.gimp.org/pub/gimp/v${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.bz2
@@ -11,7 +11,6 @@ HOMEPAGE=	https://www.gimp.org/
 COMMENT=	The GNU image manipulation program
 LICENSE=	gnu-lgpl-v3 AND gnu-gpl-v3
 
-BUILD_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 BUILD_DEPENDS+=	gettext-tools>=0.19:../../devel/gettext-tools
 DEPENDS+=	glib-networking>=2.36.2:../../net/glib-networking
 CONFLICTS+=	gimp<=1.2.3
@@ -22,13 +21,13 @@ USE_PKGLOCALEDIR=	yes
 
 USE_TOOLS+=		gmake pkg-config perl
 USE_TOOLS+=		intltool msgfmt msgmerge xgettext
+USE_TOOLS+=		gdbus-codegen
 
 GNU_CONFIGURE=		yes
 
 CONFIGURE_ARGS+=	--disable-alsatest
 CONFIGURE_ARGS+=	--disable-glibtest
 CONFIGURE_ARGS+=	--disable-gtktest
-CONFIGURE_ARGS+=	--disable-python
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--without-linux-input
 

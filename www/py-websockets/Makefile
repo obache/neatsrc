@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.9 2019/11/26 19:08:55 adam Exp $
+# $NetBSD: Makefile,v 1.11 2021/05/17 10:21:09 adam Exp $
 
-DISTNAME=	websockets-8.1
+DISTNAME=	websockets-9.0.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=w/websockets/}

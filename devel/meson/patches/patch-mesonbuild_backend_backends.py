@@ -2,10 +2,10 @@ $NetBSD$
 
 * append install dir for dependency shlibs to install_rpath
 
---- mesonbuild/backend/backends.py.orig	2020-09-10 16:39:18.000000000 +0000
+--- mesonbuild/backend/backends.py.orig	2021-04-27 06:50:21.000000000 +0000
 +++ mesonbuild/backend/backends.py
-@@ -487,6 +487,18 @@ class Backend:
-                         raise MesonException('Invalid arg for --just-symbols, {} is a directory.'.format(dir))
+@@ -600,6 +600,18 @@ class Backend:
+                         raise MesonException(f'Invalid arg for --just-symbols, {dir} is a directory.')
          return dirs
  
 +    def rpaths_for_internal_shared_libraries(self, target, exclude_system=True):
@@ -23,7 +23,7 @@ $NetBSD$
      def rpaths_for_bundled_shared_libraries(self, target, exclude_system=True):
          paths = []
          for dep in target.external_deps:
-@@ -524,6 +536,11 @@ class Backend:
+@@ -637,6 +649,11 @@ class Backend:
              result.add('meson-out')
          result.update(self.rpaths_for_bundled_shared_libraries(target))
          target.rpath_dirs_to_remove.update([d.encode('utf-8') for d in result])

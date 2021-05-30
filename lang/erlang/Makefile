@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.104 2021/02/25 15:32:16 triaxx Exp $
+# $NetBSD: Makefile,v 1.106 2021/05/20 13:54:55 triaxx Exp $
 
 DISTNAME=	erlang-${DIST_VERSION_MAJOR}.${DIST_VERSION_MINOR}${!empty(DIST_VERSION_PATCH):?.:}${DIST_VERSION_PATCH}
 PKGNAME=	${DISTNAME:S/OTP-/erlang-/}

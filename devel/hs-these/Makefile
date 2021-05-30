@@ -1,15 +1,12 @@
-# $NetBSD: Makefile,v 1.1 2021/04/23 08:18:25 pho Exp $
+# $NetBSD: Makefile,v 1.3 2021/05/03 19:01:04 pho Exp $
 
 DISTNAME=	these-1.1.1.1
+PKGREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	pho@cielonegro.org
 COMMENT=	Either-or-both data type
 LICENSE=	modified-bsd
-
-# Setup.hs is missing from the package.
-post-patch:
-	${CP} -f ${FILESDIR}/Setup.hs ${WRKSRC}/Setup.hs
 
 .include "../../mk/haskell.mk"
 .include "../../devel/hs-assoc/buildlink3.mk"

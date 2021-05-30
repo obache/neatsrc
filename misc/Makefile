@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.548 2021/04/24 08:47:53 wiz Exp $
+# $NetBSD: Makefile,v 1.550 2021/05/17 07:48:27 pin Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -47,6 +47,7 @@ SUBDIR+=	cstream
 SUBDIR+=	cuecat
 SUBDIR+=	cuetools
 SUBDIR+=	cw
+SUBDIR+=	deckster
 SUBDIR+=	dgpsip
 SUBDIR+=	dialog
 SUBDIR+=	dirdiff
@@ -84,8 +85,6 @@ SUBDIR+=	gkrellm-leds
 SUBDIR+=	gkrellm-moon
 SUBDIR+=	gkrellm-weather
 SUBDIR+=	gnuls
-SUBDIR+=	go-genproto
-SUBDIR+=	go-genproto-googleapis-rpc
 SUBDIR+=	goffice0.10
 SUBDIR+=	goffice0.8
 SUBDIR+=	gone

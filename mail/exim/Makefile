@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.184 2021/04/21 11:42:08 adam Exp $
+# $NetBSD: Makefile,v 1.186 2021/05/11 09:53:20 jperkin Exp $
 
-DISTNAME=	exim-4.94
-PKGREVISION=	5
+DISTNAME=	exim-4.94.2
 CATEGORIES=	mail net
-MASTER_SITES=	ftp://ftp.exim.org/pub/exim/exim4/
-MASTER_SITES+=	https://ftp.exim.org/pub/exim/exim4/
-MASTER_SITES+=	ftp://ftp.exim.org/pub/exim/exim4/fixes/
+MASTER_SITES=	https://ftp.exim.org/pub/exim/exim4/
 MASTER_SITES+=	https://ftp.exim.org/pub/exim/exim4/fixes/
+MASTER_SITES+=	ftp://ftp.exim.org/pub/exim/exim4/
+MASTER_SITES+=	ftp://ftp.exim.org/pub/exim/exim4/fixes/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	abs@NetBSD.org
@@ -68,9 +67,11 @@ SUBST_VARS.exim=	PKGSRC_EXIM_VERSION
 
 SUBST_CLASSES+=		cflags
 SUBST_STAGE.cflags=	pre-configure
-SUBST_MESSAGE.cflags=	Removing hard-coded CFLAGS
+SUBST_MESSAGE.cflags=	Fixing hard-coded CFLAGS
 SUBST_FILES.cflags=	OS/Makefile-*
-SUBST_SED.cflags=	-e 's,^CFLAGS=.*,,'
+SUBST_SED.cflags=	-e '/^CFLAGS=/d'
+SUBST_SED.cflags+=	-e 's/-D_XOPEN_SOURCE /-D_XOPEN_SOURCE=600 /'
+SUBST_SED.cflags+=	-e 's/-D_XOPEN_SOURCE_EXTENDED=1 //'
 
 INSTALL_ARG=		INSTALL_ARG=-no_chown
 INSTALL_ENV+=		${INSTALL_ARG:Q}

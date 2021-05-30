@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.41 2021/04/21 11:40:31 adam Exp $
+# $NetBSD: Makefile,v 1.43 2021/05/13 12:13:26 nia Exp $
 #
 
 .include "Makefile.common"
@@ -11,7 +11,10 @@ COMMENT+=		Base plugins
 # some plugins were moved from bad to base
 CONFLICTS+=		gst-plugins0.10-bad<0.10.10
 
-USE_TOOLS+=		perl:run
+USE_TOOLS+=		perl:run autoconf automake gmake
+USE_TOOLS+=		autoreconf autopoint
+TOOL_DEPENDS+=		gtk-doc-[0-9]*:../../textproc/gtk-doc
+
 MAKE_JOBS_SAFE=		no
 PKGCONFIG_OVERRIDE+=	pkgconfig/*.pc.in
 REPLACE_PERL+=		tools/gst-visualise-m.m
@@ -35,5 +38,14 @@ PLIST.introspection=	yes
 .else
 CONFIGURE_ARGS+=	--disable-introspection
 .endif
+
+pre-configure:
+	cd ${WRKSRC} && autoreconf -fiv
+
+# XXX: hack
+# autoreconf some breaks the file names of the .mo files
+# manually fix this here instead of debugging generated Makefiles
+post-install:
+	find ${DESTDIR}${PREFIX}/share/locale -name .mo -execdir mv .mo gst-plugins-base-0.10.mo \;
 
 .include "../../mk/bsd.pkg.mk"

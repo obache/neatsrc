@@ -1,4 +1,4 @@
-# $NetBSD: haskell.mk,v 1.29 2021/04/23 03:57:16 pho Exp $
+# $NetBSD: haskell.mk,v 1.35 2021/05/04 15:44:33 pho Exp $
 #
 # This Makefile fragment handles Haskell Cabal packages.
 # Package configuration, building, installation, registration and
@@ -109,7 +109,14 @@ HASKELL_ENABLE_SHARED_LIBRARY?=		yes
 HASKELL_ENABLE_LIBRARY_PROFILING?=	yes
 HASKELL_ENABLE_HADDOCK_DOCUMENTATION?=	yes
 
-.include "../../lang/ghc88/buildlink3.mk"
+.include "../../lang/ghc90/buildlink3.mk"
+
+# Some Cabal packages requires preprocessors to build, and we don't
+# want them to implicitly depend on such tools. Place dummy scripts by
+# default.
+.include "../../mk/haskell/tools/alex.mk"
+.include "../../mk/haskell/tools/cpphs.mk"
+.include "../../mk/haskell/tools/happy.mk"
 
 # Tools
 _HASKELL_BIN=		${BUILDLINK_PREFIX.ghc:U${PREFIX}}/bin/ghc
@@ -150,6 +157,21 @@ CONFIGURE_ARGS+=	--with-haddock=${BUILDLINK_PREFIX.ghc:Q}/bin/haddock
 .endif
 
 CONFIGURE_ARGS+=	-O${HASKELL_OPTIMIZATION_LEVEL}
+
+# Support RELRO. When PKGSRC_USE_RELRO isn't set to "no",
+# mk/compiler/{ghc,clang}.mk add "-Wl,-z,relro" and optionally
+# "-Wl,-z,now" to LDFLAGS. Since Cabal doesn't respect the environment
+# variable LDFLAGS, we need to be explicit about it. Note that -optl
+# is a GHC option which specifies options to be passed to CC, not LD,
+# while linking executables and shared libraries.
+CONFIGURE_ARGS+=	${LDFLAGS:S/^/--ghc-options=-optl\ /}
+# GHC heavily uses "ld -r" to combine multiple .o files but our ld
+# wrapper is going to inject the relro flags. In this case these flags
+# don't make sense so ld(1) emits warnings. Use the original,
+# non-wrapped ld(1) for merging objects as a dirty workaround.
+_HS_ORIG_LD_CMD=	${SETENV} PATH=${_PATH_ORIG} which ld
+CONFIGURE_ARGS+=	--ghc-options=-pgmlm\ ${_HS_ORIG_LD_CMD:sh}
+CONFIGURE_ARGS+=	--ghc-options=-optlm\ -r
 
 .if !exists(${PKGDIR}/PLIST)
 _HS_PLIST_STATUS=	missing
@@ -215,6 +237,22 @@ WARNINGS+=	"[haskell.mk] Set HS_UPDATE_PLIST=yes to update it automatically."
 # is much faster, we try it and then fall back to static linkage if
 # that didn't work.
 do-configure:
+# Cabal packages are expected to have either Setup.hs or Setup.lhs,
+# but its existence is not mandatory these days because the standard
+# way to build a cabal package is to use the cabal-install command,
+# which is not always available to us. As a result some packages
+# actually lack it. The problem is that its expected content depends
+# on the build-type field in *.cabal so we have to read it.
+	${RUN} if ! ${TEST} -f ${WRKSRC}/Setup.hs -o -f ${WRKSRC}/Setup.lhs; then \
+		buildType=`${AWK} -f ../../mk/haskell/build-type.awk ${WRKSRC}/*.cabal`; \
+		${SH} ../../mk/haskell/gen-setup.sh "$$buildType" > ${WRKDIR}/.setup.hs; \
+		ret=$$?; \
+		if ${TEST} $$ret -eq 0; then \
+			${MV} -f ${WRKDIR}/.setup.hs ${WRKSRC}/Setup.hs; \
+		else \
+			exit $$ret; \
+		fi; \
+	fi
 	${RUN} ${_ULIMIT_CMD} cd ${WRKSRC} && \
 		( ${_HASKELL_BIN:Q} ${_HASKELL_BUILD_SETUP_OPTS} --make Setup -dynamic || \
 			${_HASKELL_BIN:Q} ${_HASKELL_BUILD_SETUP_OPTS} --make Setup -static )

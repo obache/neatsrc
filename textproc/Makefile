@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1220 2021/04/29 23:42:47 joerg Exp $
+# $NetBSD: Makefile,v 1.1227 2021/05/13 09:50:27 wiz Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -11,6 +11,7 @@ SUBDIR+=	GutenMark-words
 SUBDIR+=	LDoc
 SUBDIR+=	Markdown
 SUBDIR+=	OdfConverter
+SUBDIR+=	PEGTL
 SUBDIR+=	R-DT
 SUBDIR+=	R-brew
 SUBDIR+=	R-cellranger
@@ -171,6 +172,7 @@ SUBDIR+=	convertlit
 SUBDIR+=	crimson
 SUBDIR+=	crush-tools
 SUBDIR+=	csharp-xapian
+SUBDIR+=	csview
 SUBDIR+=	csvkit
 SUBDIR+=	csvtomd
 SUBDIR+=	csvutils
@@ -950,6 +952,7 @@ SUBDIR+=	py-peg2
 SUBDIR+=	py-phonenumbers
 SUBDIR+=	py-poyo
 SUBDIR+=	py-precis-i18n
+SUBDIR+=	py-prettytable
 SUBDIR+=	py-ptable
 SUBDIR+=	py-pyaml
 SUBDIR+=	py-pybtex
@@ -1096,6 +1099,8 @@ SUBDIR+=	ruby-redcloth
 SUBDIR+=	ruby-review
 SUBDIR+=	ruby-rexml
 SUBDIR+=	ruby-rison
+SUBDIR+=	ruby-rqrcode
+SUBDIR+=	ruby-rqrcode_core
 SUBDIR+=	ruby-rttool
 SUBDIR+=	ruby-safe_yaml
 SUBDIR+=	ruby-sary
@@ -1195,6 +1200,7 @@ SUBDIR+=	untex
 SUBDIR+=	upmendex
 SUBDIR+=	uriparser
 SUBDIR+=	urlview
+SUBDIR+=	utf8-cpp
 SUBDIR+=	verify-synopsis
 SUBDIR+=	vis
 SUBDIR+=	wbxml2

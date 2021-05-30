@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.10 2021/04/21 11:42:41 adam Exp $
+# $NetBSD: Makefile,v 1.12 2021/05/20 11:56:00 wiz Exp $
 
 DISTNAME=	tracker-miners-3.0.1
 PKGNAME=	gnome-${DISTNAME}
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/tracker-miners/3.0/}
 EXTRACT_SUFX=	.tar.xz
@@ -13,9 +13,8 @@ COMMENT=	Desktop-neutral metadata-based search framework
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
 TOOL_DEPENDS+=	asciidoc-[0-9]*:../../textproc/asciidoc
-TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 
-USE_TOOLS+=	pkg-config xgettext
+USE_TOOLS+=	pkg-config xgettext gdbus-codegen
 
 LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib/tracker-miners-3.0
 

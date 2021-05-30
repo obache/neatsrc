@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.817 2021/04/27 10:43:45 wiz Exp $
+# $NetBSD: Makefile,v 1.822 2021/05/09 15:10:02 bsiegert Exp $
 #
 
 COMMENT=	Security and cryptography tools and libraries
@@ -107,9 +107,7 @@ SUBDIR+=	gnutls
 SUBDIR+=	go-asn1-ber
 SUBDIR+=	go-crypt
 SUBDIR+=	go-crypto
-SUBDIR+=	go-crypto-acme
 SUBDIR+=	go-mkcert
-SUBDIR+=	go-oauth2
 SUBDIR+=	go-sftp
 SUBDIR+=	go-xxhash
 SUBDIR+=	google-authenticator
@@ -135,6 +133,7 @@ SUBDIR+=	hs-ed25519
 SUBDIR+=	hs-hackage-security
 SUBDIR+=	hs-pem
 SUBDIR+=	hs-tls
+SUBDIR+=	hs-tls-session-manager
 SUBDIR+=	hs-x509
 SUBDIR+=	hs-x509-store
 SUBDIR+=	hs-x509-system
@@ -533,6 +532,7 @@ SUBDIR+=	rsaref
 SUBDIR+=	ruby-airbrussh
 SUBDIR+=	ruby-bcrypt
 SUBDIR+=	ruby-bcrypt_pbkdf
+SUBDIR+=	ruby-certified
 SUBDIR+=	ruby-chef-vault
 SUBDIR+=	ruby-ed25519
 SUBDIR+=	ruby-ezcrypto
@@ -577,6 +577,7 @@ SUBDIR+=	ruby-rex-sslscan
 SUBDIR+=	ruby-rex-struct2
 SUBDIR+=	ruby-rex-text
 SUBDIR+=	ruby-rex-zip
+SUBDIR+=	ruby-rotp
 SUBDIR+=	ruby-ruby-openid
 SUBDIR+=	ruby-rubyntlm
 SUBDIR+=	ruby-shadow

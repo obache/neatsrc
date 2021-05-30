@@ -518,16 +518,6 @@ TOOLS_PATH.install-info=	${LOCALBASE}/bin/pkg_install-info
 #
 TOOLS_SCRIPT.install-info=	exit 0
 
-.if !defined(TOOLS_IGNORE.itstool) && !empty(_USE_TOOLS:Mitstool)
-.  if !empty(PKGPATH:Mtextproc/itstool)
-MAKEFLAGS+=			TOOLS_IGNORE.itstool=
-.  elif !empty(_TOOLS_USE_PKGSRC.itstool:M[yY][eE][sS])
-TOOLS_DEPENDS.itstool?=		itstool-[0-9]*:../../textproc/itstool
-TOOLS_CREATE+=			itstool
-TOOLS_PATH.itstool=		${LOCALBASE}/bin/itstool
-.  endif
-.endif
-
 .if !defined(TOOLS_IGNORE.ksh) && !empty(_USE_TOOLS:Mksh)
 .  if !empty(PKGPATH:Mshells/pdksh)
 MAKEFLAGS+=			TOOLS_IGNORE.ksh=

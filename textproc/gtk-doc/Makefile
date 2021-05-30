@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.85 2021/04/21 11:42:46 adam Exp $
+# $NetBSD: Makefile,v 1.86 2021/05/02 10:24:52 nia Exp $
 
 DISTNAME=	gtk-doc-1.32
 PKGREVISION=	6
@@ -17,7 +17,6 @@ DEPENDS+=	${PYPKGPREFIX}-anytree-[0-9]*:../../devel/py-anytree
 DEPENDS+=	${PYPKGPREFIX}-lxml-[0-9]*:../../textproc/py-lxml
 DEPENDS+=	${PYPKGPREFIX}-pygments-[0-9]*:../../textproc/py-pygments
 DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
-BUILD_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 TEST_DEPENDS+=	${PYPKGPREFIX}-mock-[0-9]*:../../devel/py-mock
 TEST_DEPENDS+=	${PYPKGPREFIX}-parameterized-[0-9]*:../../devel/py-parameterized
 
@@ -26,6 +25,7 @@ PKGCONFIG_OVERRIDE=	gtk-doc.pc.in
 CONFIGURE_ARGS+=	--with-xml-catalog=${XML_DEFAULT_CATALOG:Q}
 CONFIGURE_ARGS+=	ac_cv_path_XSLTPROC=${LOCALBASE}/bin/xsltproc
 USE_TOOLS+=		gmake pkg-config:run msgfmt
+USE_TOOLS+=		itstool
 
 SUBST_CLASSES+=		fix-pc
 SUBST_STAGE.fix-pc=	pre-configure

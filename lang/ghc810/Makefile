@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.3 2021/04/27 13:55:25 pho Exp $
+# $NetBSD: Makefile,v 1.5 2021/05/22 23:10:26 wiz Exp $
 # -----------------------------------------------------------------------------
 # Package metadata
 #
 DISTNAME=	ghc-8.10.4-src
-PKGREVISION=	1
+PKGREVISION=	2
 PKGNAME=	${DISTNAME:S/-src$//}
 CATEGORIES=	lang
 MASTER_SITES=	https://downloads.haskell.org/~ghc/${PKGVERSION_NOREV}/
@@ -15,9 +15,6 @@ COMMENT=	Compiler for the functional language Haskell - 8.10 Release Series
 LICENSE=	modified-bsd
 
 UNLIMIT_RESOURCES=	datasize virtualsize
-
-# TODO: We should be using the alternatives framework.
-CONFLICTS+=	ghc-[0-9]*
 
 # GHC requires GHC to build itself. We have to prepare stripped-down
 # binaries sufficient to bootstrap compilers for each platforms. If
@@ -202,22 +199,6 @@ GENERATE_PLIST+= \
 # There is an unused script which don't pass the portability test.
 CHECK_PORTABILITY_SKIP+=	distrib/prep-bin-dist-mingw
 
-# Dynamically linked Haskell executables and libraries have rpaths to
-# dependent Haskell libraries, but the problem is that they are
-# specified with $ORIGIN, which isn't currently supported by
-# ../../mk/check/check-shlibs-elf.awk nor
-# mk/pkgformat/pkg/metadata.mk.
-#
-# This means we need to disable the entire CHECK_SHLIBS machinery
-# because otherwise the resulting binary package would contain
-# REQUIRES lines with $ORIGIN wrongly expanded by ldd(1).
-#
-# Note that arguments like "-Wl,-rpath,$ORIGIN/.." are usually dropped
-# by the "cleanup" phase of wrappers. This is not the case in GHC
-# because GHC uses @file syntax while linking objects, and our
-# wrappers does nothing about it.
-CHECK_SHLIBS_SUPPORTED=	no
-
 # ghc57207_0.s: failed to add inputs for merge: Resource temporarily unavailable
 CTF_FILES_SKIP+=		*/libHS*-ghc${PKGVERSION_NOREV}.*
 
@@ -242,7 +223,7 @@ BUILD_DEPENDS+=	compat80-[0-9]*:../../emulators/compat80
 # In a sandboxed build environment, we have to reach over to the
 # installed libraries themselves, since the symlinks compat80 adds
 # to the /usr tree can't be applied.
-ALL_ENV+=	LD_LIBRARY_PATH=${PREFIX}/emul/netbsd/usr/lib:${WRKDIR}/lib:${FILESDIR}
+ALL_ENV+=	LD_LIBRARY_PATH=${PREFIX}/emul/netbsd/usr/lib:${WRKDIR}/lib
 .endif
 
 .include "../../converters/libiconv/buildlink3.mk"

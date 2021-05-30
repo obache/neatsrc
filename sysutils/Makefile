@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.952 2021/04/25 04:15:19 pho Exp $
+# $NetBSD: Makefile,v 1.958 2021/05/15 10:27:16 nia Exp $
 #
 
 COMMENT=	System utilities
@@ -85,7 +85,6 @@ SUBDIR+=	cdirip
 SUBDIR+=	cdrdao
 SUBDIR+=	cdrkit
 SUBDIR+=	cdrtools
-SUBDIR+=	cfengine2
 SUBDIR+=	cfengine3
 SUBDIR+=	cfm
 SUBDIR+=	checkpassword
@@ -330,7 +329,11 @@ SUBDIR+=	heirloom-yes
 SUBDIR+=	hfsutils
 SUBDIR+=	hivex
 SUBDIR+=	hs-byteorder
+SUBDIR+=	hs-easy-file
+SUBDIR+=	hs-fast-logger
+SUBDIR+=	hs-filepattern
 SUBDIR+=	hs-hslua-module-path
+SUBDIR+=	hs-process-extras
 SUBDIR+=	hs-temporary
 SUBDIR+=	hs-typed-process
 SUBDIR+=	htop
@@ -541,6 +544,7 @@ SUBDIR+=	py-notify
 SUBDIR+=	py-notify-python
 SUBDIR+=	py-pathtools
 SUBDIR+=	py-pefile
+SUBDIR+=	py-pid
 SUBDIR+=	py-psutil
 SUBDIR+=	py-ptyprocess
 SUBDIR+=	py-pyinotify

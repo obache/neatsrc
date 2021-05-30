@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.67 2021/04/21 11:42:32 adam Exp $
+# $NetBSD: Makefile,v 1.69 2021/05/20 11:55:58 wiz Exp $
 
-PKGREVISION= 9
+PKGREVISION= 10
 .include "../../meta-pkgs/mate/Makefile.common"
 
 DISTNAME=	atril-${VERSION}
@@ -10,7 +10,7 @@ COMMENT=	Simple multi-page document viewer for the MATE environment
 
 USE_LANGUAGES=	c c++
 
-TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
+USE_TOOLS+=	gdbus-codegen
 
 PKGCONFIG_OVERRIDE+=	atril-document.pc.in
 PKGCONFIG_OVERRIDE+=	atril-view.pc.in
