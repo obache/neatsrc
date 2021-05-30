@@ -132,13 +132,16 @@ buildlink-ncursesw-fake-libs:
 BUILDLINK_TARGET+=	buildlink-ncursesw-fake-libs
 .  endif
 
+.  if !empty(USE_BUILTIN.ncursesw:M[nN][oO])
+USE_NCURSES=			yes
+.  endif
+
 # According to the ncurses(3) manual page, applications that want to use
 # the wide curses definitions need to define _XOPEN_SOURCE_EXTENDED.
 #
 .  if !empty(USE_BUILTIN.ncursesw:M[nN][oO]) || \
       (!empty(USE_BUILTIN.ncursesw:M[yY][eE][sS]) && \
        !empty(IS_BUILTIN.ncursesw:M[yY][eE][sS]))
-USE_NCURSES=			yes
 .    if ${OPSYS} != "SunOS"
 BUILDLINK_CPPFLAGS.ncursesw+=	-D_XOPEN_SOURCE_EXTENDED=1
 .    endif
