@@ -255,9 +255,6 @@ share/doc/tde/HTML/pt/kcalc/index.docbook
 share/doc/tde/HTML/pt/kcharselect/common
 share/doc/tde/HTML/pt/kcharselect/index.cache.bz2
 share/doc/tde/HTML/pt/kcharselect/index.docbook
-share/doc/tde/HTML/pt/kcmlirc/common
-share/doc/tde/HTML/pt/kcmlirc/index.cache.bz2
-share/doc/tde/HTML/pt/kcmlirc/index.docbook
 share/doc/tde/HTML/pt/kcoloredit/common
 share/doc/tde/HTML/pt/kcoloredit/index.cache.bz2
 share/doc/tde/HTML/pt/kcoloredit/index.docbook
@@ -340,6 +337,9 @@ share/doc/tde/HTML/pt/kcontrol/kcmktalkd/index.docbook
 share/doc/tde/HTML/pt/kcontrol/kcmlaunch/common
 share/doc/tde/HTML/pt/kcontrol/kcmlaunch/index.cache.bz2
 share/doc/tde/HTML/pt/kcontrol/kcmlaunch/index.docbook
+share/doc/tde/HTML/pt/kcontrol/kcmlirc/common
+share/doc/tde/HTML/pt/kcontrol/kcmlirc/index.cache.bz2
+share/doc/tde/HTML/pt/kcontrol/kcmlirc/index.docbook
 share/doc/tde/HTML/pt/kcontrol/kcmlowbatcrit/common
 share/doc/tde/HTML/pt/kcontrol/kcmlowbatcrit/index.cache.bz2
 share/doc/tde/HTML/pt/kcontrol/kcmlowbatcrit/index.docbook
@@ -1620,6 +1620,7 @@ share/locale/pt/LC_MESSAGES/kateopenheader.mo
 share/locale/pt/LC_MESSAGES/katepart.mo
 share/locale/pt/LC_MESSAGES/katepybrowse.mo
 share/locale/pt/LC_MESSAGES/katesnippets.mo
+share/locale/pt/LC_MESSAGES/katesort.mo
 share/locale/pt/LC_MESSAGES/katetabbarextension.mo
 share/locale/pt/LC_MESSAGES/katetextfilter.mo
 share/locale/pt/LC_MESSAGES/katexmlcheck.mo
@@ -1656,9 +1657,12 @@ share/locale/pt/LC_MESSAGES/kcmcolors.mo
 share/locale/pt/LC_MESSAGES/kcmcomponentchooser.mo
 share/locale/pt/LC_MESSAGES/kcmcrypto.mo
 share/locale/pt/LC_MESSAGES/kcmcss.mo
+share/locale/pt/LC_MESSAGES/kcmdisplayconfig.mo
 share/locale/pt/LC_MESSAGES/kcmenergy.mo
 share/locale/pt/LC_MESSAGES/kcmfonts.mo
 share/locale/pt/LC_MESSAGES/kcmhtmlsearch.mo
+share/locale/pt/LC_MESSAGES/kcmhwmanager.mo
+share/locale/pt/LC_MESSAGES/kcmiccconfig.mo
 share/locale/pt/LC_MESSAGES/kcmicons.mo
 share/locale/pt/LC_MESSAGES/kcminfo.mo
 share/locale/pt/LC_MESSAGES/kcminput.mo
@@ -1773,6 +1777,7 @@ share/locale/pt/LC_MESSAGES/kmathapplet.mo
 share/locale/pt/LC_MESSAGES/kmcop.mo
 share/locale/pt/LC_MESSAGES/kmenuapplet.mo
 share/locale/pt/LC_MESSAGES/kmenuedit.mo
+share/locale/pt/LC_MESSAGES/kmilo_asus.mo
 share/locale/pt/LC_MESSAGES/kmilo_delli8k.mo
 share/locale/pt/LC_MESSAGES/kmilo_generic.mo
 share/locale/pt/LC_MESSAGES/kmilo_kvaio.mo
@@ -1834,12 +1839,16 @@ share/locale/pt/LC_MESSAGES/kregexpeditor.mo
 share/locale/pt/LC_MESSAGES/kres_birthday.mo
 share/locale/pt/LC_MESSAGES/kres_blogging.mo
 share/locale/pt/LC_MESSAGES/kres_bugzilla.mo
+share/locale/pt/LC_MESSAGES/kres_caldav.mo
+share/locale/pt/LC_MESSAGES/kres_carddav.mo
 share/locale/pt/LC_MESSAGES/kres_exchange.mo
 share/locale/pt/LC_MESSAGES/kres_featureplan.mo
+share/locale/pt/LC_MESSAGES/kres_groupdav.mo
 share/locale/pt/LC_MESSAGES/kres_groupware.mo
 share/locale/pt/LC_MESSAGES/kres_groupwise.mo
 share/locale/pt/LC_MESSAGES/kres_kolab.mo
 share/locale/pt/LC_MESSAGES/kres_remote.mo
+share/locale/pt/LC_MESSAGES/kres_scalix.mo
 share/locale/pt/LC_MESSAGES/kres_tvanytime.mo
 share/locale/pt/LC_MESSAGES/kres_xmlrpc.mo
 share/locale/pt/LC_MESSAGES/kreversi.mo
@@ -1870,6 +1879,7 @@ share/locale/pt/LC_MESSAGES/ksysguard.mo
 share/locale/pt/LC_MESSAGES/ksystemtrayapplet.mo
 share/locale/pt/LC_MESSAGES/ksystraycmd.mo
 share/locale/pt/LC_MESSAGES/ksysv.mo
+share/locale/pt/LC_MESSAGES/ktaskbarapplet.mo
 share/locale/pt/LC_MESSAGES/kteatime.mo
 share/locale/pt/LC_MESSAGES/kthememanager.mo
 share/locale/pt/LC_MESSAGES/ktimemon.mo
@@ -1954,11 +1964,13 @@ share/locale/pt/LC_MESSAGES/privacy.mo
 share/locale/pt/LC_MESSAGES/quanta.mo
 share/locale/pt/LC_MESSAGES/quicklauncher.mo
 share/locale/pt/LC_MESSAGES/rellinks.mo
+share/locale/pt/LC_MESSAGES/scalixadmin.mo
 share/locale/pt/LC_MESSAGES/searchbarplugin.mo
 share/locale/pt/LC_MESSAGES/secpolicy.mo
 share/locale/pt/LC_MESSAGES/spy.mo
 share/locale/pt/LC_MESSAGES/superkaramba.mo
 share/locale/pt/LC_MESSAGES/synaescope.mo
+share/locale/pt/LC_MESSAGES/taskbarextension.mo
 share/locale/pt/LC_MESSAGES/tdeabc2mutt.mo
 share/locale/pt/LC_MESSAGES/tdeabc_dir.mo
 share/locale/pt/LC_MESSAGES/tdeabc_file.mo
@@ -1970,6 +1982,7 @@ share/locale/pt/LC_MESSAGES/tdeabcformat_binary.mo
 share/locale/pt/LC_MESSAGES/tdecachegrind.mo
 share/locale/pt/LC_MESSAGES/tdecmshell.mo
 share/locale/pt/LC_MESSAGES/tdedebugdialog.mo
+share/locale/pt/LC_MESSAGES/tdefifteen.mo
 share/locale/pt/LC_MESSAGES/tdefile_au.mo
 share/locale/pt/LC_MESSAGES/tdefile_avi.mo
 share/locale/pt/LC_MESSAGES/tdefile_bmp.mo
@@ -2004,6 +2017,7 @@ share/locale/pt/LC_MESSAGES/tdefile_png.mo
 share/locale/pt/LC_MESSAGES/tdefile_pnm.mo
 share/locale/pt/LC_MESSAGES/tdefile_po.mo
 share/locale/pt/LC_MESSAGES/tdefile_ps.mo
+share/locale/pt/LC_MESSAGES/tdefile_raw.mo
 share/locale/pt/LC_MESSAGES/tdefile_rfc822.mo
 share/locale/pt/LC_MESSAGES/tdefile_rgb.mo
 share/locale/pt/LC_MESSAGES/tdefile_rpm.mo
@@ -2046,6 +2060,7 @@ share/locale/pt/LC_MESSAGES/tdeio_nntp.mo
 share/locale/pt/LC_MESSAGES/tdeio_pop3.mo
 share/locale/pt/LC_MESSAGES/tdeio_print.mo
 share/locale/pt/LC_MESSAGES/tdeio_remote.mo
+share/locale/pt/LC_MESSAGES/tdeio_scalix.mo
 share/locale/pt/LC_MESSAGES/tdeio_settings.mo
 share/locale/pt/LC_MESSAGES/tdeio_sftp.mo
 share/locale/pt/LC_MESSAGES/tdeio_sieve.mo

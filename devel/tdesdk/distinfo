@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (tdesdk-trinity-14.0.9.tar.xz) = 1089e34a62fd4b9e667b4cab32ab7ed9cb0c0667
-RMD160 (tdesdk-trinity-14.0.9.tar.xz) = 60fcb037c4bd6ba5a7967b23e0b5763ba40fa0ab
-SHA512 (tdesdk-trinity-14.0.9.tar.xz) = 57261e471736f0df2caac9c7f00c3b6760e8515086f9cf082597f4f65354c882a35211943c41fbc667b13fa95edde81283437485757331704b9b2ef850e08fd0
-Size (tdesdk-trinity-14.0.9.tar.xz) = 3735328 bytes
+SHA1 (tdesdk-trinity-14.0.10.tar.xz) = bcdc354dfa700e40730c796f82aeccb5da298c2a
+RMD160 (tdesdk-trinity-14.0.10.tar.xz) = fd4ca88b32234db71e4b0cb0b13535d7c25785dd
+SHA512 (tdesdk-trinity-14.0.10.tar.xz) = bf2d590f6b245b9105a941d79def0c2508c322072cc36ba460e41ec1aa263f1189d6c293456bca442c29a51242e8f645093d730200717ae8afd5ebb730491247
+Size (tdesdk-trinity-14.0.10.tar.xz) = 3744996 bytes

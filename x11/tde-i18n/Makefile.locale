@@ -10,14 +10,16 @@ COMMENT+=	(${TDE_LOCALE})
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
-USE_TOOLS+=	pkg-config msgfmt msgmerge
+USE_TOOLS+=	pkg-config msgfmt perl
 
 DISTINFO_FILE=	${.CURDIR}/../../x11/tde-i18n/distinfo
 DESCR_SRC=	${.CURDIR}/../../x11/tde-i18n/DESCR.locale
 
 EXTRACT_USING=	bsdtar
 
-EXTRACT_ELEMENTS+=	${DISTNAME}/admin ${DISTNAME}/cmake
+EXTRACT_ELEMENTS+=	${DISTNAME}/cmake
+EXTRACT_ELEMENTS+=	${DISTNAME}/template
+EXTRACT_ELEMENTS+=	${DISTNAME}/translations
 EXTRACT_ELEMENTS+=	${DISTNAME}/${TDE_PKGNAME}-${TDE_LOCALE}
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/${TDE_PKGNAME}-${TDE_LOCALE}

@@ -1,0 +1,5 @@
+@comment $NetBSD$
+lib/libtqca.la
+lib/pkgconfig/tqca.pc
+tqt3/include/tqca.h
+tqt3/include/tqcaprovider.h

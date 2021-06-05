@@ -1,7 +1,7 @@
 $NetBSD$
 
---- kdesktop/init.cc.orig	2015-09-23 03:07:44.000000000 +0000
-+++ kdesktop/init.cc
+--- kdesktop/init.cpp.orig	2015-09-23 03:07:44.000000000 +0000
++++ kdesktop/init.cpp
 @@ -105,6 +105,9 @@ static void copyDirectoryFile(const TQSt
      cmd += " ";
      cmd += TDEProcess::quote(dir+"/.directory");

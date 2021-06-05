@@ -1,0 +1,5 @@
+@comment $NetBSD$
+share/locale/es_AR/LC_MESSAGES/konqueror.mo
+share/locale/es_AR/charset
+share/locale/es_AR/entry.desktop
+share/locale/es_AR/flag.png

@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (dbus-tqt-trinity-14.0.9.tar.xz) = b570a50fd5b69d81664b3ec79c5a83d8edd8be11
-RMD160 (dbus-tqt-trinity-14.0.9.tar.xz) = 614bc1653a3541ecdf72d6e0480e0b40bcd6cd3e
-SHA512 (dbus-tqt-trinity-14.0.9.tar.xz) = fccb0dd0aee27c6cfa2827164af4759e2025881794b2041cf1199dee8991b9d3361da1d23669cd90fa138743086253ecb4a3eb415fc8d8440a829eb17006280e
-Size (dbus-tqt-trinity-14.0.9.tar.xz) = 159500 bytes
+SHA1 (dbus-tqt-trinity-14.0.10.tar.xz) = 718063b53aaa74d7faf7afc8d2000d005c2471c1
+RMD160 (dbus-tqt-trinity-14.0.10.tar.xz) = d86d14fec4b16123055763ae7265d230bee3c66e
+SHA512 (dbus-tqt-trinity-14.0.10.tar.xz) = 370420e99f29c962b960a412be069a4acb49ef54e97dae855f06753feddd6ffb51c35e42ff616dabc9e78042d89e1c9bfaa742e10dd581f29bed5dd9a1a3ef68
+Size (dbus-tqt-trinity-14.0.10.tar.xz) = 168740 bytes

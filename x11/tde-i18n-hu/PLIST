@@ -340,6 +340,9 @@ share/doc/tde/HTML/hu/kxconfig/index.docbook
 share/doc/tde/HTML/hu/tdeiconedit/common
 share/doc/tde/HTML/hu/tdeiconedit/index.cache.bz2
 share/doc/tde/HTML/hu/tdeiconedit/index.docbook
+share/doc/tde/HTML/hu/tdeioslave/audiocd/common
+share/doc/tde/HTML/hu/tdeioslave/audiocd/index.cache.bz2
+share/doc/tde/HTML/hu/tdeioslave/audiocd/index.docbook
 share/doc/tde/HTML/hu/tdeioslave/bzip/common
 share/doc/tde/HTML/hu/tdeioslave/bzip/index.cache.bz2
 share/doc/tde/HTML/hu/tdeioslave/bzip/index.docbook

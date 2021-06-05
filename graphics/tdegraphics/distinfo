@@ -1,8 +1,7 @@
 $NetBSD$
 
-SHA1 (tdegraphics-trinity-14.0.9.tar.xz) = 4bf2938e74656e7cfd73126a7fb55fbc3defa5df
-RMD160 (tdegraphics-trinity-14.0.9.tar.xz) = 975942246262484ce9aaa4659fa772185d4bea22
-SHA512 (tdegraphics-trinity-14.0.9.tar.xz) = 963841b5dec412c680e61d7b5238a44e49fd42ddf57d73e29454b8f14e4b04d8b83608f2d2fffb9d98a621b4eb85e38636b202bd88d6e93f1aec85a018a892ba
-Size (tdegraphics-trinity-14.0.9.tar.xz) = 5826956 bytes
+SHA1 (tdegraphics-trinity-14.0.10.tar.xz) = 5c064c56b1c47c4fd679903fecb9e27494d77cd5
+RMD160 (tdegraphics-trinity-14.0.10.tar.xz) = 2bfcfb3b31df078c8a1e8509f83785d5db03b9b7
+SHA512 (tdegraphics-trinity-14.0.10.tar.xz) = 9b4640fa5b098a86d3df73fbced24169690acc06800c64784a4b5e5b660515d33b957ca12b1cefe6d1b84190cfadfc077b685ae4465302ce6447e7137816da92
+Size (tdegraphics-trinity-14.0.10.tar.xz) = 5835300 bytes
 SHA1 (patch-ksvg_impl_libs_libtext2path_src_CMakeLists.txt) = 94ca820f71b7a41f67694564d6f2516fb8538f98
-SHA1 (patch-tdefile-plugins_dependencies_poppler-tqt_poppler-private.h) = 6322b68c0b48cdfaf7b0751e747047ae0e3b1342

@@ -312,9 +312,6 @@ share/doc/tde/HTML/da/kcalc/index.docbook
 share/doc/tde/HTML/da/kcharselect/common
 share/doc/tde/HTML/da/kcharselect/index.cache.bz2
 share/doc/tde/HTML/da/kcharselect/index.docbook
-share/doc/tde/HTML/da/kcmlirc/common
-share/doc/tde/HTML/da/kcmlirc/index.cache.bz2
-share/doc/tde/HTML/da/kcmlirc/index.docbook
 share/doc/tde/HTML/da/kcoloredit/common
 share/doc/tde/HTML/da/kcoloredit/index.cache.bz2
 share/doc/tde/HTML/da/kcoloredit/index.docbook
@@ -396,6 +393,9 @@ share/doc/tde/HTML/da/kcontrol/kcmktalkd/index.docbook
 share/doc/tde/HTML/da/kcontrol/kcmlaunch/common
 share/doc/tde/HTML/da/kcontrol/kcmlaunch/index.cache.bz2
 share/doc/tde/HTML/da/kcontrol/kcmlaunch/index.docbook
+share/doc/tde/HTML/da/kcontrol/kcmlirc/common
+share/doc/tde/HTML/da/kcontrol/kcmlirc/index.cache.bz2
+share/doc/tde/HTML/da/kcontrol/kcmlirc/index.docbook
 share/doc/tde/HTML/da/kcontrol/kcmlowbatcrit/common
 share/doc/tde/HTML/da/kcontrol/kcmlowbatcrit/index.cache.bz2
 share/doc/tde/HTML/da/kcontrol/kcmlowbatcrit/index.docbook

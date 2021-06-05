@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.4 2015/11/03 21:34:07 agc Exp $
 
-SHA1 (libcaldav-trinity-14.0.9.tar.xz) = 1788af958223f07c6e2295d8bc7dfb972a16762e
-RMD160 (libcaldav-trinity-14.0.9.tar.xz) = f8006cdd163707f8b8583e6177d23a40b931f3c3
-SHA512 (libcaldav-trinity-14.0.9.tar.xz) = 8a192fd16ed75725952c48c559c638c89306ac5c228b913ee71cc1396a0cc600d7d258440cd8945460e3076cccfdb110f3b7a54a62d32013c15cc3ca0e19183a
-Size (libcaldav-trinity-14.0.9.tar.xz) = 211240 bytes
+SHA1 (libcaldav-trinity-14.0.10.tar.xz) = d8613ef1bf163356e93ca3eab7a058509f22a377
+RMD160 (libcaldav-trinity-14.0.10.tar.xz) = ba9d999cf56c47e9b94c68342d7fb266e54240ec
+SHA512 (libcaldav-trinity-14.0.10.tar.xz) = 2b79e7cbad547d8a991f43fa845eaea5d2a700d855aeded4020c5f169ef5f233fe2609d2250632bd97f741366364beb8553c52a36eddba1d32497cea50504e55
+Size (libcaldav-trinity-14.0.10.tar.xz) = 220560 bytes

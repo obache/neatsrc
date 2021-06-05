@@ -1,15 +1,14 @@
 $NetBSD$
 
-SHA1 (tdebase-trinity-14.0.9.tar.xz) = 4b216944f1ef2614ee54882b8c85673bf9952c9e
-RMD160 (tdebase-trinity-14.0.9.tar.xz) = 957969ccbad6b406ec5cb52115c3526b3658a69d
-SHA512 (tdebase-trinity-14.0.9.tar.xz) = 36f31048a7dcb1695bc34d935ffb86e1d49ba8ab21eca8cb9d139f7e798e0544a8609a90c9a1c93f3d36a3d097749be06c2d02f20ba0d284360f27d585e8808b
-Size (tdebase-trinity-14.0.9.tar.xz) = 30412112 bytes
+SHA1 (tdebase-trinity-14.0.10.tar.xz) = 9a2d8cf21db07638bd8c92501fda9fa73664ff5e
+RMD160 (tdebase-trinity-14.0.10.tar.xz) = 555bbbca43f26f54f217633d87a9f4ec645f25dc
+SHA512 (tdebase-trinity-14.0.10.tar.xz) = c770bdf053bfbab65a8d42731bbc9f2b1e5f534a489f7e0f258cc83f0a02bd7c750ae6aadd94f34f4ca889b36c09f396be843cc84531b88544e4f6248a49bea4
+Size (tdebase-trinity-14.0.10.tar.xz) = 30435504 bytes
 SHA1 (patch-kcheckpass_checkpass__pam.c) = e2fef01c66fb635e53d279663310b93e4e82acb6
-SHA1 (patch-kdesktop_init.cc) = 6d3a98627898554b681610553313535bc512f35e
+SHA1 (patch-kdesktop_init.cpp) = 0bb53f570ba01541c7216e94117aff0cc15e1809
 SHA1 (patch-khelpcenter_searchhandlers_khc__docbookdig.pl.in) = 10a10b88094d9c4cd99fa4d9a1ab09492b66a0e0
 SHA1 (patch-khelpcenter_searchhandlers_khc__htdig.pl.in) = bf74396dc54f3a16c989bf401310e3e1c4b62e45
 SHA1 (patch-khelpcenter_searchhandlers_khc__mansearch.pl) = 7c40bdbe1c0cb38a6ba0ee1deee9025e3eeb6fcd
-SHA1 (patch-kxkb_x11helper.cpp) = d6aaeec7d12884771ab0675cd861c4e9980ce308
 SHA1 (patch-mkpamserv) = 4a2c5e9dd858c53985ed13fa5ab730343a39aa77
 SHA1 (patch-tdeioslave_info_kde-info2html.conf) = 3247d50214f953c5726a53c8db0ceca839941e31
 SHA1 (patch-tdm_kfrontend_gentdmconf.c) = 04a0388d353f7336f0b0abe20a736b1f0306b63c

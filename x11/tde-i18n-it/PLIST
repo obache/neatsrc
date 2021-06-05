@@ -382,9 +382,6 @@ share/doc/tde/HTML/it/kcalc/index.docbook
 share/doc/tde/HTML/it/kcharselect/common
 share/doc/tde/HTML/it/kcharselect/index.cache.bz2
 share/doc/tde/HTML/it/kcharselect/index.docbook
-share/doc/tde/HTML/it/kcmlirc/common
-share/doc/tde/HTML/it/kcmlirc/index.cache.bz2
-share/doc/tde/HTML/it/kcmlirc/index.docbook
 share/doc/tde/HTML/it/kcoloredit/common
 share/doc/tde/HTML/it/kcoloredit/index.cache.bz2
 share/doc/tde/HTML/it/kcoloredit/index.docbook
@@ -467,6 +464,9 @@ share/doc/tde/HTML/it/kcontrol/kcmktalkd/index.docbook
 share/doc/tde/HTML/it/kcontrol/kcmlaunch/common
 share/doc/tde/HTML/it/kcontrol/kcmlaunch/index.cache.bz2
 share/doc/tde/HTML/it/kcontrol/kcmlaunch/index.docbook
+share/doc/tde/HTML/it/kcontrol/kcmlirc/common
+share/doc/tde/HTML/it/kcontrol/kcmlirc/index.cache.bz2
+share/doc/tde/HTML/it/kcontrol/kcmlirc/index.docbook
 share/doc/tde/HTML/it/kcontrol/kcmlowbatcrit/common
 share/doc/tde/HTML/it/kcontrol/kcmlowbatcrit/index.cache.bz2
 share/doc/tde/HTML/it/kcontrol/kcmlowbatcrit/index.docbook
@@ -2002,8 +2002,11 @@ share/locale/it/LC_MESSAGES/kregexpeditor.mo
 share/locale/it/LC_MESSAGES/kres_birthday.mo
 share/locale/it/LC_MESSAGES/kres_blogging.mo
 share/locale/it/LC_MESSAGES/kres_bugzilla.mo
+share/locale/it/LC_MESSAGES/kres_caldav.mo
+share/locale/it/LC_MESSAGES/kres_carddav.mo
 share/locale/it/LC_MESSAGES/kres_exchange.mo
 share/locale/it/LC_MESSAGES/kres_featureplan.mo
+share/locale/it/LC_MESSAGES/kres_groupdav.mo
 share/locale/it/LC_MESSAGES/kres_groupware.mo
 share/locale/it/LC_MESSAGES/kres_groupwise.mo
 share/locale/it/LC_MESSAGES/kres_kolab.mo
@@ -2140,6 +2143,7 @@ share/locale/it/LC_MESSAGES/tdeabcformat_binary.mo
 share/locale/it/LC_MESSAGES/tdecachegrind.mo
 share/locale/it/LC_MESSAGES/tdecmshell.mo
 share/locale/it/LC_MESSAGES/tdedebugdialog.mo
+share/locale/it/LC_MESSAGES/tdefifteen.mo
 share/locale/it/LC_MESSAGES/tdefile_au.mo
 share/locale/it/LC_MESSAGES/tdefile_avi.mo
 share/locale/it/LC_MESSAGES/tdefile_bmp.mo

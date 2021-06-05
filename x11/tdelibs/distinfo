@@ -1,7 +1,6 @@
 $NetBSD$
 
-SHA1 (tdelibs-trinity-14.0.9.tar.xz) = de935ffc013a9de9334f59493f17720e3dc54b98
-RMD160 (tdelibs-trinity-14.0.9.tar.xz) = 567e691215e017250b99a4223f8242cb0f470a78
-SHA512 (tdelibs-trinity-14.0.9.tar.xz) = 3fa546536014fcc88fdc62d2b2adc6500777ab75dd65cf66aa46fdf2fd7d92644a44a76e9f61a3c4187f3ae4e251f701f1a4f2608f3af064f37e2e4002c983c0
-Size (tdelibs-trinity-14.0.9.tar.xz) = 15410464 bytes
-SHA1 (patch-kimgio_jp2.cpp) = c37566826020ffd3206cca154d2a1572e4c97910
+SHA1 (tdelibs-trinity-14.0.10.tar.xz) = a5b802acc6f6abc873be0e05b6b4d054676feec9
+RMD160 (tdelibs-trinity-14.0.10.tar.xz) = 99dc995aeacd1e66678c5d107d5f243f99b7e20e
+SHA512 (tdelibs-trinity-14.0.10.tar.xz) = 6a2acb4f77b3c0e59b929d86b31bf5f885dbaf347f61fee7d137347d7f9170a5d9a8d6937864399ed9ef9b0c28e797c8b10bee153b2bc8d7087d832e3f6a067f
+Size (tdelibs-trinity-14.0.10.tar.xz) = 15436056 bytes

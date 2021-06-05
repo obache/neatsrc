@@ -3299,6 +3299,7 @@ share/icons/crystalsvg/16x16/actions/edit-redo.png
 share/icons/crystalsvg/16x16/actions/edit-select-all.png
 share/icons/crystalsvg/16x16/actions/edit-undo.png
 share/icons/crystalsvg/16x16/actions/edit.png
+share/icons/crystalsvg/16x16/actions/edit_rename.png
 share/icons/crystalsvg/16x16/actions/editshred.png
 share/icons/crystalsvg/16x16/actions/edittrash.png
 share/icons/crystalsvg/16x16/actions/emptytrash.png
@@ -3359,6 +3360,7 @@ share/icons/crystalsvg/16x16/actions/inline_image.png
 share/icons/crystalsvg/16x16/actions/inline_table.png
 share/icons/crystalsvg/16x16/actions/key_enter.png
 share/icons/crystalsvg/16x16/actions/knewstuff.png
+share/icons/crystalsvg/16x16/actions/konqui_intro.png
 share/icons/crystalsvg/16x16/actions/launch.png
 share/icons/crystalsvg/16x16/actions/list-add.png
 share/icons/crystalsvg/16x16/actions/list-remove.png
@@ -3499,6 +3501,7 @@ share/icons/crystalsvg/16x16/actions/viewmag.png
 share/icons/crystalsvg/16x16/actions/wallet_open.png
 share/icons/crystalsvg/16x16/actions/window-close.png
 share/icons/crystalsvg/16x16/actions/window-new.png
+share/icons/crystalsvg/16x16/actions/window_duplicate.png
 share/icons/crystalsvg/16x16/actions/window_suppressed.png
 share/icons/crystalsvg/16x16/actions/wizard.png
 share/icons/crystalsvg/16x16/actions/zoom-fit-best.png
@@ -3833,6 +3836,7 @@ share/icons/crystalsvg/22x22/actions/edit-redo.png
 share/icons/crystalsvg/22x22/actions/edit-select-all.png
 share/icons/crystalsvg/22x22/actions/edit-undo.png
 share/icons/crystalsvg/22x22/actions/edit.png
+share/icons/crystalsvg/22x22/actions/edit_rename.png
 share/icons/crystalsvg/22x22/actions/editshred.png
 share/icons/crystalsvg/22x22/actions/edittrash.png
 share/icons/crystalsvg/22x22/actions/emptytrash.png
@@ -3892,6 +3896,7 @@ share/icons/crystalsvg/22x22/actions/images_display.png
 share/icons/crystalsvg/22x22/actions/inline_image.png
 share/icons/crystalsvg/22x22/actions/inline_table.png
 share/icons/crystalsvg/22x22/actions/key_enter.png
+share/icons/crystalsvg/22x22/actions/konqui_intro.png
 share/icons/crystalsvg/22x22/actions/launch.png
 share/icons/crystalsvg/22x22/actions/list-add.png
 share/icons/crystalsvg/22x22/actions/list-remove.png
@@ -4014,6 +4019,7 @@ share/icons/crystalsvg/22x22/actions/view_tree.png
 share/icons/crystalsvg/22x22/actions/viewmag.png
 share/icons/crystalsvg/22x22/actions/window-close.png
 share/icons/crystalsvg/22x22/actions/window-new.png
+share/icons/crystalsvg/22x22/actions/window_duplicate.png
 share/icons/crystalsvg/22x22/actions/wizard.png
 share/icons/crystalsvg/22x22/actions/zoom-fit-best.png
 share/icons/crystalsvg/22x22/actions/zoom-in.png
@@ -4321,6 +4327,7 @@ share/icons/crystalsvg/32x32/actions/edit-redo.png
 share/icons/crystalsvg/32x32/actions/edit-select-all.png
 share/icons/crystalsvg/32x32/actions/edit-undo.png
 share/icons/crystalsvg/32x32/actions/edit.png
+share/icons/crystalsvg/32x32/actions/edit_rename.png
 share/icons/crystalsvg/32x32/actions/editshred.png
 share/icons/crystalsvg/32x32/actions/edittrash.png
 share/icons/crystalsvg/32x32/actions/emptytrash.png
@@ -4365,6 +4372,7 @@ share/icons/crystalsvg/32x32/actions/identity.png
 share/icons/crystalsvg/32x32/actions/images_display.png
 share/icons/crystalsvg/32x32/actions/key_enter.png
 share/icons/crystalsvg/32x32/actions/knewstuff.png
+share/icons/crystalsvg/32x32/actions/konqui_intro.png
 share/icons/crystalsvg/32x32/actions/launch.png
 share/icons/crystalsvg/32x32/actions/list-add.png
 share/icons/crystalsvg/32x32/actions/list-remove.png
@@ -4481,6 +4489,7 @@ share/icons/crystalsvg/32x32/actions/view_tree.png
 share/icons/crystalsvg/32x32/actions/viewmag.png
 share/icons/crystalsvg/32x32/actions/window-close.png
 share/icons/crystalsvg/32x32/actions/window-new.png
+share/icons/crystalsvg/32x32/actions/window_duplicate.png
 share/icons/crystalsvg/32x32/actions/wizard.png
 share/icons/crystalsvg/32x32/actions/zoom-fit-best.png
 share/icons/crystalsvg/32x32/actions/zoom-in.png
@@ -4751,6 +4760,7 @@ share/icons/crystalsvg/48x48/actions/document-open.png
 share/icons/crystalsvg/48x48/actions/document-print-preview.png
 share/icons/crystalsvg/48x48/actions/document-print.png
 share/icons/crystalsvg/48x48/actions/edit-select-all.png
+share/icons/crystalsvg/48x48/actions/edit_rename.png
 share/icons/crystalsvg/48x48/actions/eraser.png
 share/icons/crystalsvg/48x48/actions/favorites.png
 share/icons/crystalsvg/48x48/actions/format-indent-less.png
@@ -4764,6 +4774,7 @@ share/icons/crystalsvg/48x48/actions/go-next.png
 share/icons/crystalsvg/48x48/actions/go-previous.png
 share/icons/crystalsvg/48x48/actions/go-up.png
 share/icons/crystalsvg/48x48/actions/identity.png
+share/icons/crystalsvg/48x48/actions/konqui_intro.png
 share/icons/crystalsvg/48x48/actions/launch.png
 share/icons/crystalsvg/48x48/actions/list-add.png
 share/icons/crystalsvg/48x48/actions/list-remove.png
@@ -4793,6 +4804,7 @@ share/icons/crystalsvg/48x48/actions/system-shutdown.png
 share/icons/crystalsvg/48x48/actions/trinity.png
 share/icons/crystalsvg/48x48/actions/view-refresh.png
 share/icons/crystalsvg/48x48/actions/window-close.png
+share/icons/crystalsvg/48x48/actions/window_duplicate.png
 share/icons/crystalsvg/48x48/actions/wizard.png
 share/icons/crystalsvg/48x48/apps/accessories-calculator.png
 share/icons/crystalsvg/48x48/apps/accessories-character-map.png
@@ -5710,6 +5722,7 @@ share/mimelnk/application/x-pak.desktop
 share/mimelnk/application/x-perl-module.desktop
 share/mimelnk/application/x-perl.desktop
 share/mimelnk/application/x-php.desktop
+share/mimelnk/application/x-pie-executable.desktop
 share/mimelnk/application/x-pkcs12.desktop
 share/mimelnk/application/x-python-bytecode.desktop
 share/mimelnk/application/x-python.desktop

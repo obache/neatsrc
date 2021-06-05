@@ -410,9 +410,6 @@ share/doc/tde/HTML/sv/kcalc/index.docbook
 share/doc/tde/HTML/sv/kcharselect/common
 share/doc/tde/HTML/sv/kcharselect/index.cache.bz2
 share/doc/tde/HTML/sv/kcharselect/index.docbook
-share/doc/tde/HTML/sv/kcmlirc/common
-share/doc/tde/HTML/sv/kcmlirc/index.cache.bz2
-share/doc/tde/HTML/sv/kcmlirc/index.docbook
 share/doc/tde/HTML/sv/kcoloredit/common
 share/doc/tde/HTML/sv/kcoloredit/index.cache.bz2
 share/doc/tde/HTML/sv/kcoloredit/index.docbook
@@ -497,6 +494,9 @@ share/doc/tde/HTML/sv/kcontrol/kcmktalkd/index.docbook
 share/doc/tde/HTML/sv/kcontrol/kcmlaunch/common
 share/doc/tde/HTML/sv/kcontrol/kcmlaunch/index.cache.bz2
 share/doc/tde/HTML/sv/kcontrol/kcmlaunch/index.docbook
+share/doc/tde/HTML/sv/kcontrol/kcmlirc/common
+share/doc/tde/HTML/sv/kcontrol/kcmlirc/index.cache.bz2
+share/doc/tde/HTML/sv/kcontrol/kcmlirc/index.docbook
 share/doc/tde/HTML/sv/kcontrol/kcmlowbatcrit/common
 share/doc/tde/HTML/sv/kcontrol/kcmlowbatcrit/index.cache.bz2
 share/doc/tde/HTML/sv/kcontrol/kcmlowbatcrit/index.docbook
@@ -2258,7 +2258,6 @@ share/doc/tde/HTML/sv/tdevelop/tdevelop-scripting.docbook
 share/doc/tde/HTML/sv/tdevelop/tdevelop-survey.docbook
 share/doc/tde/HTML/sv/tdevelop/tdevelop-tabbed-mode.png
 share/doc/tde/HTML/sv/tdevelop/tdevelop-toplevel-mode.png
-share/doc/tde/HTML/sv/tdevelop/tip.database
 share/doc/tde/HTML/sv/tdevelop/tutorial-hello-new.png
 share/doc/tde/HTML/sv/tdevelop/tutorial-hello-options.png
 share/doc/tde/HTML/sv/tdevelop/tutorial-new-project.png

@@ -294,9 +294,6 @@ share/doc/tde/HTML/fr/kcalc/index.docbook
 share/doc/tde/HTML/fr/kcharselect/common
 share/doc/tde/HTML/fr/kcharselect/index.cache.bz2
 share/doc/tde/HTML/fr/kcharselect/index.docbook
-share/doc/tde/HTML/fr/kcmlirc/common
-share/doc/tde/HTML/fr/kcmlirc/index.cache.bz2
-share/doc/tde/HTML/fr/kcmlirc/index.docbook
 share/doc/tde/HTML/fr/kcoloredit/common
 share/doc/tde/HTML/fr/kcoloredit/index.cache.bz2
 share/doc/tde/HTML/fr/kcoloredit/index.docbook
@@ -381,6 +378,9 @@ share/doc/tde/HTML/fr/kcontrol/kcmktalkd/index.docbook
 share/doc/tde/HTML/fr/kcontrol/kcmlaunch/common
 share/doc/tde/HTML/fr/kcontrol/kcmlaunch/index.cache.bz2
 share/doc/tde/HTML/fr/kcontrol/kcmlaunch/index.docbook
+share/doc/tde/HTML/fr/kcontrol/kcmlirc/common
+share/doc/tde/HTML/fr/kcontrol/kcmlirc/index.cache.bz2
+share/doc/tde/HTML/fr/kcontrol/kcmlirc/index.docbook
 share/doc/tde/HTML/fr/kcontrol/kcmlowbatcrit/common
 share/doc/tde/HTML/fr/kcontrol/kcmlowbatcrit/index.cache.bz2
 share/doc/tde/HTML/fr/kcontrol/kcmlowbatcrit/index.docbook
@@ -1722,7 +1722,6 @@ share/doc/tde/HTML/fr/tdevelop/survey-manual.docbook
 share/doc/tde/HTML/fr/tdevelop/tdevelop-install.docbook
 share/doc/tde/HTML/fr/tdevelop/tdevelop-scripting.docbook
 share/doc/tde/HTML/fr/tdevelop/tdevelop-survey.docbook
-share/doc/tde/HTML/fr/tdevelop/tip.database
 share/doc/tde/HTML/fr/tdevelop/unixdev.docbook
 share/doc/tde/HTML/fr/tdewallet/common
 share/doc/tde/HTML/fr/tdewallet/index.cache.bz2

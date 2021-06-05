@@ -1,9 +1,9 @@
 $NetBSD$
 
-SHA1 (arts-trinity-14.0.9.tar.xz) = 0545e4c01ea86191564f17c7099acea7d100c1ad
-RMD160 (arts-trinity-14.0.9.tar.xz) = 89ff216e88c315f01e484fc4a0c6f0c95810f6d1
-SHA512 (arts-trinity-14.0.9.tar.xz) = b1f53b9413cebe1bc77456e76e9020bbcd34b70fedea4d4671733e52434a1e31a12c3e2fe5eec98ef4a3d82aea2b66a17414475e4d4bfcec93dc0253d5d89d80
-Size (arts-trinity-14.0.9.tar.xz) = 683320 bytes
+SHA1 (arts-trinity-14.0.10.tar.xz) = 4fa6a078e909a6f821f71e24f032b3adf5b7ba8b
+RMD160 (arts-trinity-14.0.10.tar.xz) = 3254d77a6836787c58aef0b63a0eb18c5bc39321
+SHA512 (arts-trinity-14.0.10.tar.xz) = d8c94b7b5bb35c84407f431e32e3ae2608242b02553b061e75a65f059784f2fd969d39c1b888dfc4edf589500c218694b46493f9eed80e0637c32c01eb48b83b
+Size (arts-trinity-14.0.10.tar.xz) = 692288 bytes
 SHA1 (patch-flow_CMakeLists.txt) = 83011dee02e57dc4917835ed1ed92439af528561
-SHA1 (patch-flow_audioioalsa9.cc) = aac1a0d8586e3edd0affb8e7770021219f13c8ea
-SHA1 (patch-flow_gsl_CMakeLists.txt) = d5e28b3f63593ec4fcbfa7f0e7c2d2382ee45584
+SHA1 (patch-flow_audioioalsa9.cpp) = 774da7f4fbab494d6456f76f5bb116e66b48f238
+SHA1 (patch-flow_gsl_CMakeLists.txt) = 55d15f00fbe759cdbac0ae8387722c72958b0a84

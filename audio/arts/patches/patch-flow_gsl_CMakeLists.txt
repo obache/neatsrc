@@ -3,10 +3,10 @@ $NetBSD$
 * ldflags are really required for link
 * change to install shared gsl
 
---- flow/gsl/CMakeLists.txt.orig	2011-11-29 07:37:07.000000000 +0000
+--- flow/gsl/CMakeLists.txt.orig	2021-02-28 00:33:47.000000000 +0000
 +++ flow/gsl/CMakeLists.txt
 @@ -147,9 +147,10 @@ set( ${target}_SRCS
-   gsloscillator.c gslfilehash.c gslartsthreads.cc
+   gsloscillator.c gslfilehash.c gslartsthreads.cpp
  )
  
 -tde_add_library( ${target} STATIC_PIC

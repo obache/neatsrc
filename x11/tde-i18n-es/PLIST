@@ -242,7 +242,6 @@ share/doc/tde/HTML/es/amor/worm.png
 share/doc/tde/HTML/es/api/Architecture.png
 share/doc/tde/HTML/es/api/Development.png
 share/doc/tde/HTML/es/api/Dox-pimlogo.png
-share/doc/tde/HTML/es/api/datetimewidgets.png
 share/doc/tde/HTML/es/api/kcarddialog.png
 share/doc/tde/HTML/es/api/kcharselect.png
 share/doc/tde/HTML/es/api/kcolorbutton.png
@@ -684,9 +683,6 @@ share/doc/tde/HTML/es/kcalc/index.docbook
 share/doc/tde/HTML/es/kcharselect/common
 share/doc/tde/HTML/es/kcharselect/index.cache.bz2
 share/doc/tde/HTML/es/kcharselect/index.docbook
-share/doc/tde/HTML/es/kcmlirc/common
-share/doc/tde/HTML/es/kcmlirc/index.cache.bz2
-share/doc/tde/HTML/es/kcmlirc/index.docbook
 share/doc/tde/HTML/es/kcoloredit/common
 share/doc/tde/HTML/es/kcoloredit/index.cache.bz2
 share/doc/tde/HTML/es/kcoloredit/index.docbook
@@ -768,6 +764,9 @@ share/doc/tde/HTML/es/kcontrol/kcmktalkd/index.docbook
 share/doc/tde/HTML/es/kcontrol/kcmlaunch/common
 share/doc/tde/HTML/es/kcontrol/kcmlaunch/index.cache.bz2
 share/doc/tde/HTML/es/kcontrol/kcmlaunch/index.docbook
+share/doc/tde/HTML/es/kcontrol/kcmlirc/common
+share/doc/tde/HTML/es/kcontrol/kcmlirc/index.cache.bz2
+share/doc/tde/HTML/es/kcontrol/kcmlirc/index.docbook
 share/doc/tde/HTML/es/kcontrol/kcmlowbatcrit/common
 share/doc/tde/HTML/es/kcontrol/kcmlowbatcrit/index.cache.bz2
 share/doc/tde/HTML/es/kcontrol/kcmlowbatcrit/index.docbook
@@ -1317,17 +1316,11 @@ share/doc/tde/HTML/es/kmousetool/man-kmousetool.1.docbook
 share/doc/tde/HTML/es/kmouth/common
 share/doc/tde/HTML/es/kmouth/index.cache.bz2
 share/doc/tde/HTML/es/kmouth/index.docbook
-share/doc/tde/HTML/es/kmouth/kmouthcpref.eps
 share/doc/tde/HTML/es/kmouth/kmouthcpref.png
-share/doc/tde/HTML/es/kmouth/kmouthctts.eps
 share/doc/tde/HTML/es/kmouth/kmouthctts.png
-share/doc/tde/HTML/es/kmouth/kmouthcwcp.eps
 share/doc/tde/HTML/es/kmouth/kmouthcwcp.png
-share/doc/tde/HTML/es/kmouth/kmouthedit.eps
 share/doc/tde/HTML/es/kmouth/kmouthedit.png
-share/doc/tde/HTML/es/kmouth/kmouthmain.eps
 share/doc/tde/HTML/es/kmouth/kmouthmain.png
-share/doc/tde/HTML/es/kmouth/kmouthwizard.eps
 share/doc/tde/HTML/es/kmouth/kmouthwizard.png
 share/doc/tde/HTML/es/kmouth/man-kmouth.1.docbook
 share/doc/tde/HTML/es/kmplot/commands.docbook
@@ -2768,7 +2761,6 @@ share/doc/tde/HTML/es/tdevelop/tdevelop-scripting.docbook
 share/doc/tde/HTML/es/tdevelop/tdevelop-survey.docbook
 share/doc/tde/HTML/es/tdevelop/tdevelop-tabbed-mode.png
 share/doc/tde/HTML/es/tdevelop/tdevelop-toplevel-mode.png
-share/doc/tde/HTML/es/tdevelop/tip.database
 share/doc/tde/HTML/es/tdevelop/unixdev.docbook
 share/doc/tde/HTML/es/tdewallet/common
 share/doc/tde/HTML/es/tdewallet/cr22-action-wallet_closed.png

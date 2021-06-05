@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.4 2015/11/03 21:34:07 agc Exp $
 
-SHA1 (libart-lgpl-trinity-14.0.9.tar.xz) = d87f4fe6f85d7a7f55743b7aa11bdcb8283506f4
-RMD160 (libart-lgpl-trinity-14.0.9.tar.xz) = b214c547b08f945b7e307928548c9826a7dd301e
-SHA512 (libart-lgpl-trinity-14.0.9.tar.xz) = 46ce4df5dc2497ce83b1b15d3f7f36577ca74eff6afd910823ea9b9e1520533add4f032ab5a889d8dcfdb4456b3d756979f68b3896e1f9b3da34d7ba7e20668a
-Size (libart-lgpl-trinity-14.0.9.tar.xz) = 117580 bytes
+SHA1 (libart-lgpl-trinity-14.0.10.tar.xz) = cf545416745e86975e0633d22ca2ba4ae4343d6c
+RMD160 (libart-lgpl-trinity-14.0.10.tar.xz) = 86357c6f6a911d20f83fe10b1ef38e3ff8f465a4
+SHA512 (libart-lgpl-trinity-14.0.10.tar.xz) = d6c2838a74be7484ee14fc972eef6a514e5f219c4ad054f1be4e1494d6534df0db024cff4561d6d2e47deeb75214970a83de6f34ca1632844f37ffda9078501a
+Size (libart-lgpl-trinity-14.0.10.tar.xz) = 126864 bytes

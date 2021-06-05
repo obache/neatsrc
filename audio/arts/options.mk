@@ -1,7 +1,7 @@
 # $NetBSD$
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.arts
-PKG_SUPPORTED_OPTIONS=		alsa audiofile esound mad jack vorbis sndio
+PKG_SUPPORTED_OPTIONS=		alsa audiofile mad jack vorbis sndio
 PKG_SUGGESTED_OPTIONS=		audiofile mad vorbis
 PKG_SUGGESTED_OPTIONS.Linux=	alsa
 PKG_SUGGESTED_OPTIONS.OpenBSD=	sndio
@@ -25,12 +25,12 @@ CMAKE_ARGS+=	-DWITH_AUDIOFILE:BOOL=OFF
 .endif
 
 # ESOUND support
-.if !empty(PKG_OPTIONS:Mesound)
-.include "../../audio/esound/buildlink3.mk"
-CMAKE_ARGS+=	-DWITH_ESOUND:BOOL=ON
-.else
+#.if !empty(PKG_OPTIONS:Mesound)
+#.include "../../audio/esound/buildlink3.mk"
+#CMAKE_ARGS+=	-DWITH_ESOUND:BOOL=ON
+#.else
 CMAKE_ARGS+=	-DWITH_ESOUND:BOOL=OFF
-.endif
+#.endif
 
 # JACK support
 .if !empty(PKG_OPTIONS:Mjack)

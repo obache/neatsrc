@@ -1,6 +1,6 @@
 $NetBSD: distinfo,v 1.4 2015/11/03 21:34:07 agc Exp $
 
-SHA1 (libcarddav-trinity-14.0.9.tar.xz) = dc112bf2e594aac577e82100c0fb222dd003294d
-RMD160 (libcarddav-trinity-14.0.9.tar.xz) = dc0d5a40f9a11cf5bc259d16778e6dbf4354642a
-SHA512 (libcarddav-trinity-14.0.9.tar.xz) = 97ea75e00e44170700936129a360e039525fbd26ba565778b0948e502d89ab84aeaa9214a1b4c66e1c9879de923b97bd8e40e7d74ad2fd3756cf5b930d4d2c09
-Size (libcarddav-trinity-14.0.9.tar.xz) = 355492 bytes
+SHA1 (libcarddav-trinity-14.0.10.tar.xz) = 1925deb34bc28e7368e4873ce9bb9a520c416687
+RMD160 (libcarddav-trinity-14.0.10.tar.xz) = b4b4cfb225ee6f222b86da294beead539369325c
+SHA512 (libcarddav-trinity-14.0.10.tar.xz) = 6a7e4290b453fcec0f672da6bd73905b1b91ea47551fddd0246b71afd47222715c08b6a7cd4c771e1d298f78effb00b513aeed59cb7acf7437f704bd3ec003b9
+Size (libcarddav-trinity-14.0.10.tar.xz) = 364564 bytes

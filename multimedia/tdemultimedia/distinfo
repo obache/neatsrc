@@ -1,7 +1,7 @@
 $NetBSD$
 
-SHA1 (tdemultimedia-trinity-14.0.9.tar.xz) = e0b0866e47e134cc93c0284e2f1178490fe3bdb2
-RMD160 (tdemultimedia-trinity-14.0.9.tar.xz) = e75a7c4ab15208b1d8ff470c9fef1e7d16fe8668
-SHA512 (tdemultimedia-trinity-14.0.9.tar.xz) = 56bc73a07ddd916adb20bed9d04d64e6ccb2944f6841c4f27668f20dbd37d7f09e1cf6bf46c06b2f341dbe1e216d10c30801ef3209894fb507219c2aaad207b3
-Size (tdemultimedia-trinity-14.0.9.tar.xz) = 4852340 bytes
+SHA1 (tdemultimedia-trinity-14.0.10.tar.xz) = 2fa61dfdfdbae05311ea9ef9e4501e178608563d
+RMD160 (tdemultimedia-trinity-14.0.10.tar.xz) = e3171505a36cdc05d3fc6129b6fd711fedbb0c70
+SHA512 (tdemultimedia-trinity-14.0.10.tar.xz) = 68c043f7e1b2b4c4f7182370bd3bd8fdd24cca1ff6d1cea2453602054e99517c28d059212077168697ce3679d053d12e8832caf7c0a29fd514a62190bd2694ce
+Size (tdemultimedia-trinity-14.0.10.tar.xz) = 4862288 bytes
 SHA1 (patch-kmix_CMakeLists.txt) = 26167254cb790815e22a9eefc27074a197c65dfe

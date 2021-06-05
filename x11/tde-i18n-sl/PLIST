@@ -167,7 +167,6 @@ share/doc/tde/HTML/sl/kfind/index.cache.bz2
 share/doc/tde/HTML/sl/kfind/index.docbook
 share/doc/tde/HTML/sl/khelpcenter/common
 share/doc/tde/HTML/sl/khelpcenter/contact.docbook
-share/doc/tde/HTML/sl/khelpcenter/exec.xpm
 share/doc/tde/HTML/sl/khelpcenter/faq/about.docbook
 share/doc/tde/HTML/sl/khelpcenter/faq/configtde.docbook
 share/doc/tde/HTML/sl/khelpcenter/faq/contrib.docbook
@@ -270,6 +269,9 @@ share/doc/tde/HTML/sl/kppp/kppp-faq.docbook
 share/doc/tde/HTML/sl/kppp/security.docbook
 share/doc/tde/HTML/sl/kppp/tricks.docbook
 share/doc/tde/HTML/sl/kppp/wizard.docbook
+share/doc/tde/HTML/sl/tdeioslave/audiocd/common
+share/doc/tde/HTML/sl/tdeioslave/audiocd/index.cache.bz2
+share/doc/tde/HTML/sl/tdeioslave/audiocd/index.docbook
 share/doc/tde/HTML/sl/tdeioslave/bzip/common
 share/doc/tde/HTML/sl/tdeioslave/bzip/index.cache.bz2
 share/doc/tde/HTML/sl/tdeioslave/bzip/index.docbook

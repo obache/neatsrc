@@ -74,6 +74,9 @@ share/doc/tde/HTML/tr/khelpcenter/links.docbook
 share/doc/tde/HTML/tr/khelpcenter/support.docbook
 share/doc/tde/HTML/tr/khelpcenter/welcome.docbook
 share/doc/tde/HTML/tr/khelpcenter/whatistde.docbook
+share/doc/tde/HTML/tr/tdeioslave/audiocd/common
+share/doc/tde/HTML/tr/tdeioslave/audiocd/index.cache.bz2
+share/doc/tde/HTML/tr/tdeioslave/audiocd/index.docbook
 share/doc/tde/HTML/tr/tdeioslave/bzip/common
 share/doc/tde/HTML/tr/tdeioslave/bzip/index.cache.bz2
 share/doc/tde/HTML/tr/tdeioslave/bzip/index.docbook

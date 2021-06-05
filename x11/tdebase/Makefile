@@ -10,7 +10,7 @@ BUILD_DEPENDS+=	tqt3-tools>=${TQT3_RELEASE}:../../x11/tqt3-tools
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
-USE_TOOLS+=	pkg-config perl perl:run bash intltool
+USE_TOOLS+=	pkg-config perl perl:run bash
 EXTRACT_USING=	gtar
 
 .include "../../meta-pkgs/tde/Makefile.tde"

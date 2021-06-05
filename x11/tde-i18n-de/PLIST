@@ -381,9 +381,6 @@ share/doc/tde/HTML/de/kcalc/index.docbook
 share/doc/tde/HTML/de/kcharselect/common
 share/doc/tde/HTML/de/kcharselect/index.cache.bz2
 share/doc/tde/HTML/de/kcharselect/index.docbook
-share/doc/tde/HTML/de/kcmlirc/common
-share/doc/tde/HTML/de/kcmlirc/index.cache.bz2
-share/doc/tde/HTML/de/kcmlirc/index.docbook
 share/doc/tde/HTML/de/kcoloredit/common
 share/doc/tde/HTML/de/kcoloredit/index.cache.bz2
 share/doc/tde/HTML/de/kcoloredit/index.docbook
@@ -463,6 +460,9 @@ share/doc/tde/HTML/de/kcontrol/kcmktalkd/index.docbook
 share/doc/tde/HTML/de/kcontrol/kcmlaunch/common
 share/doc/tde/HTML/de/kcontrol/kcmlaunch/index.cache.bz2
 share/doc/tde/HTML/de/kcontrol/kcmlaunch/index.docbook
+share/doc/tde/HTML/de/kcontrol/kcmlirc/common
+share/doc/tde/HTML/de/kcontrol/kcmlirc/index.cache.bz2
+share/doc/tde/HTML/de/kcontrol/kcmlirc/index.docbook
 share/doc/tde/HTML/de/kcontrol/kcmlowbatcrit/common
 share/doc/tde/HTML/de/kcontrol/kcmlowbatcrit/index.cache.bz2
 share/doc/tde/HTML/de/kcontrol/kcmlowbatcrit/index.docbook
@@ -1878,7 +1878,6 @@ share/doc/tde/HTML/de/twin4/index.docbook
 share/doc/tde/HTML/de/umbrello/activity-diagram.png
 share/doc/tde/HTML/de/umbrello/add-remove-languages.png
 share/doc/tde/HTML/de/umbrello/aggregation.png
-share/doc/tde/HTML/de/umbrello/asf.xmi
 share/doc/tde/HTML/de/umbrello/association.png
 share/doc/tde/HTML/de/umbrello/authors.docbook
 share/doc/tde/HTML/de/umbrello/class-diagram.png
@@ -1896,7 +1895,6 @@ share/doc/tde/HTML/de/umbrello/index.cache.bz2
 share/doc/tde/HTML/de/umbrello/index.docbook
 share/doc/tde/HTML/de/umbrello/introduction.docbook
 share/doc/tde/HTML/de/umbrello/other_features.docbook
-share/doc/tde/HTML/de/umbrello/screen-shots.xmi
 share/doc/tde/HTML/de/umbrello/sequence-diagram.png
 share/doc/tde/HTML/de/umbrello/state-diagram.png
 share/doc/tde/HTML/de/umbrello/umbrello-main-screen.png

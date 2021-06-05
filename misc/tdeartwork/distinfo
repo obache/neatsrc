@@ -1,7 +1,7 @@
 $NetBSD$
 
-SHA1 (tdeartwork-trinity-14.0.9.tar.xz) = 2fe70bdf8456a585820bf922f16f9b2fc8fc13b9
-RMD160 (tdeartwork-trinity-14.0.9.tar.xz) = b228871b72fc0e3dec080f6699e1e0916bbf24fe
-SHA512 (tdeartwork-trinity-14.0.9.tar.xz) = b5088e30b046e55880014f68094b53db7ac07d70c072e0483d1c96c1d83b57a2bcb62d86f644c9153b6144682b9b1e95442bb42ecf0442e5019a5bda697090f9
-Size (tdeartwork-trinity-14.0.9.tar.xz) = 32395916 bytes
+SHA1 (tdeartwork-trinity-14.0.10.tar.xz) = 8fa392901d95a2983a0076f8418468b643881dc3
+RMD160 (tdeartwork-trinity-14.0.10.tar.xz) = c084afaa0d5a34ac55ad78b40572765deed216ad
+SHA512 (tdeartwork-trinity-14.0.10.tar.xz) = 69465b7405e81731fc2525598d09728d627535f258b15f58c42c559d5c6ce4c9d69352cbe3c7c23840891d61d639fe9309282f949ac2a79bed34a093859da57b
+Size (tdeartwork-trinity-14.0.10.tar.xz) = 32418160 bytes
 SHA1 (patch-tdescreensaver_CMakeLists.txt) = 9ed82f7d7fce6460a91caf1b3c217234c38faa51

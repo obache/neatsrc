@@ -21,5 +21,6 @@ DEPENDS+=	tdepim-${_TDE_RELEASE}{,nb[0-9]*}:../../misc/tdepim
 DEPENDS+=	tdesdk-${_TDE_RELEASE}{,nb[0-9]*}:../../devel/tdesdk
 DEPENDS+=	tdevelop-${_TDE_RELEASE}{,nb[0-9]*}:../../devel/tdevelop
 DEPENDS+=	tdeaddons-${_TDE_RELEASE}{,nb[0-9]*}:../../misc/tdeaddons
+DEPENDS+=	tdewebdev-${_TDE_RELEASE}{,nb[0-9]*}:../../devel/tdewebdev
 
 .include "../../mk/bsd.pkg.mk"

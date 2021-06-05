@@ -441,6 +441,7 @@ share/applications/tde/kcmnotify.desktop
 share/applications/tde/kcmperformance.desktop
 share/applications/tde/kcmsmserver.desktop
 share/applications/tde/kcmtaskbar.desktop
+share/applications/tde/kdcop.desktop
 share/applications/tde/keyboard.desktop
 share/applications/tde/keyboard_layout.desktop
 share/applications/tde/keys.desktop
@@ -2102,15 +2103,16 @@ share/doc/tde/HTML/en/khelpcenter/quickstart/index.docbook
 share/doc/tde/HTML/en/khelpcenter/releasenotes/common
 share/doc/tde/HTML/en/khelpcenter/releasenotes/index.cache.bz2
 share/doc/tde/HTML/en/khelpcenter/releasenotes/index.docbook
-share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.0.docbook
-share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.1.docbook
-share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.2.docbook
-share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.3.docbook
-share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.4.docbook
-share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.5.docbook
-share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.6.docbook
-share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.7.docbook
-share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.8.docbook
+share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.00.docbook
+share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.01.docbook
+share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.02.docbook
+share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.03.docbook
+share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.04.docbook
+share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.05.docbook
+share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.06.docbook
+share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.07.docbook
+share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.08.docbook
+share/doc/tde/HTML/en/khelpcenter/releasenotes/r14.0.09.docbook
 share/doc/tde/HTML/en/khelpcenter/releasenotes/r${PKGVERSION}.docbook
 share/doc/tde/HTML/en/khelpcenter/shadow1.png
 share/doc/tde/HTML/en/khelpcenter/support.docbook
@@ -2778,7 +2780,6 @@ share/icons/crystalsvg/16x16/apps/twin.png
 share/icons/crystalsvg/16x16/apps/usb.png
 share/icons/crystalsvg/16x16/apps/vnc.png
 share/icons/crystalsvg/16x16/apps/wabi.png
-share/icons/crystalsvg/16x16/apps/window_list.png
 share/icons/crystalsvg/16x16/apps/wine.png
 share/icons/crystalsvg/16x16/apps/wp.png
 share/icons/crystalsvg/16x16/apps/xcalc.png
@@ -3007,7 +3008,6 @@ share/icons/crystalsvg/32x32/apps/twin.png
 share/icons/crystalsvg/32x32/apps/usb.png
 share/icons/crystalsvg/32x32/apps/vnc.png
 share/icons/crystalsvg/32x32/apps/wabi.png
-share/icons/crystalsvg/32x32/apps/window_list.png
 share/icons/crystalsvg/32x32/apps/wine.png
 share/icons/crystalsvg/32x32/apps/wp.png
 share/icons/crystalsvg/32x32/apps/x.png
@@ -3157,7 +3157,6 @@ share/icons/crystalsvg/48x48/apps/tux.png
 share/icons/crystalsvg/48x48/apps/twin.png
 share/icons/crystalsvg/48x48/apps/usb.png
 share/icons/crystalsvg/48x48/apps/vnc.png
-share/icons/crystalsvg/48x48/apps/window_list.png
 share/icons/crystalsvg/48x48/apps/wine.png
 share/icons/crystalsvg/48x48/apps/wmaker_apps.png
 share/icons/crystalsvg/48x48/apps/wp.png

@@ -700,6 +700,9 @@ share/doc/tde/HTML/sk/lskat/index.docbook
 share/doc/tde/HTML/sk/tdedebugdialog/common
 share/doc/tde/HTML/sk/tdedebugdialog/index.cache.bz2
 share/doc/tde/HTML/sk/tdedebugdialog/index.docbook
+share/doc/tde/HTML/sk/tdeioslave/audiocd/common
+share/doc/tde/HTML/sk/tdeioslave/audiocd/index.cache.bz2
+share/doc/tde/HTML/sk/tdeioslave/audiocd/index.docbook
 share/doc/tde/HTML/sk/tdeioslave/bzip/common
 share/doc/tde/HTML/sk/tdeioslave/bzip/index.cache.bz2
 share/doc/tde/HTML/sk/tdeioslave/bzip/index.docbook
@@ -840,7 +843,6 @@ share/doc/tde/HTML/sk/tdm/index.docbook
 share/doc/tde/HTML/sk/twin4/common
 share/doc/tde/HTML/sk/twin4/index.cache.bz2
 share/doc/tde/HTML/sk/twin4/index.docbook
-share/doc/tde/HTML/sk/umbrello/asf.xmi
 share/doc/tde/HTML/sk/umbrello/authors.docbook
 share/doc/tde/HTML/sk/umbrello/code_import_and_generation.docbook
 share/doc/tde/HTML/sk/umbrello/faq.docbook
@@ -866,7 +868,6 @@ share/doc/tde/HTML/sk/umbrello/pics/umbrello-main-screen.png
 share/doc/tde/HTML/sk/umbrello/pics/umbrello-ui-clean.png
 share/doc/tde/HTML/sk/umbrello/pics/umbrello-ui.png
 share/doc/tde/HTML/sk/umbrello/pics/use-case-diagram.png
-share/doc/tde/HTML/sk/umbrello/screen-shots.xmi
 share/doc/tde/HTML/sk/umbrello/uml_basics.docbook
 share/doc/tde/HTML/sk/umbrello/working_with_umbrello.docbook
 share/locale/sk/LC_MESSAGES/akregator.mo

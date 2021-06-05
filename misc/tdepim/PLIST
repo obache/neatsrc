@@ -239,7 +239,6 @@ include/tdeabc/kcal_resourcexmlrpc.h
 include/tdeabc/tdeabc_resourcexmlrpc.h
 include/tdepim/exchangeaccount.h
 include/tdepim/exchangeclient.h
-include/tdepimmacros.h
 lib/libakregatorprivate.la
 lib/libgpgme++.la
 lib/libgwsoap.la

@@ -1,9 +1,9 @@
 $NetBSD$
 
-SHA1 (tqt3-trinity-14.0.9.tar.xz) = 30fad1b6cc5787335e22f2508d87555316d5c10b
-RMD160 (tqt3-trinity-14.0.9.tar.xz) = 49cffa61cc2ecd065df12b601625b7768e7d39a2
-SHA512 (tqt3-trinity-14.0.9.tar.xz) = 158acab8b81b7d5a5d28127cd173f0b699f1871e234dad9e19d66a29ff4c266ebafaaa020ea75d0a4860bf08c41d748a4eb24186cc86075ef8512b00a3c8e412
-Size (tqt3-trinity-14.0.9.tar.xz) = 10961728 bytes
+SHA1 (tqt3-trinity-14.0.10.tar.xz) = 9d94d58dedb086e1141db6874c69a4e6cb651bfe
+RMD160 (tqt3-trinity-14.0.10.tar.xz) = 81da3cb0f8be876d5cb52ffcdcfa76f47044a9d7
+SHA512 (tqt3-trinity-14.0.10.tar.xz) = 57683150d93e4d8f9d3daff4fdb67a5ae8480e769e52ee56983379b2000ed9e35c9b2a73618273e982f8442ea9eb99f2151b8decc895bbd615f3321904b8cb60
+Size (tqt3-trinity-14.0.10.tar.xz) = 10964092 bytes
 SHA1 (patch-Makefile) = 993c2c73ec0f520a3b381d3fc599942fd900ae18
 SHA1 (patch-qmake_Makefile.unix) = d674baa74a3970ecbbcce36eabfdaca0499d9155
 SHA1 (patch-src_kernel_qlock.cpp) = e5cc880ce8c741a1674b3037971eb4ef0d04fc7b

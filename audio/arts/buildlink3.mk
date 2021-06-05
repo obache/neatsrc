@@ -24,9 +24,9 @@ pkgbase := arts
 .endif
 
 # ESOUND support
-.if !empty(PKG_BUILD_OPTIONS.arts:Mesound)
-.include "../../audio/esound/buildlink3.mk"
-.endif
+#.if !empty(PKG_BUILD_OPTIONS.arts:Mesound)
+#.include "../../audio/esound/buildlink3.mk"
+#.endif
 
 # JACK support
 .if !empty(PKG_BUILD_OPTIONS.arts:Mjack)

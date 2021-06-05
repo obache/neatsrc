@@ -1,8 +1,8 @@
 $NetBSD$
 
-SHA1 (tdepim-trinity-14.0.9.tar.xz) = c780a8e2d76203a00fb1c4941a7531d567355dba
-RMD160 (tdepim-trinity-14.0.9.tar.xz) = 69f28f198589671abffd4c7c99fea21d0529533a
-SHA512 (tdepim-trinity-14.0.9.tar.xz) = 8febb84af45be10b15b8106529e7561887d2c2f40a7e1613143a01d706316653bca91d67f68e3cec0db1c09fdf8997488a4f0132bb08b4603506cacaee625d32
-Size (tdepim-trinity-14.0.9.tar.xz) = 9406140 bytes
+SHA1 (tdepim-trinity-14.0.10.tar.xz) = 7e9fc16dbb9ea311929f80c825dbc8aaacb3774c
+RMD160 (tdepim-trinity-14.0.10.tar.xz) = ad18907b9e7b1efb7d95b6c187a213babad53a6e
+SHA512 (tdepim-trinity-14.0.10.tar.xz) = fd5fa6882487d6554839cc2fc98422ce77c1785d57ba4bb9398c76d32cb759809e1c2fc94f261fe5b40573d9ac720c498198419a7376c00bb61820a0940a8087
+Size (tdepim-trinity-14.0.10.tar.xz) = 9417440 bytes
 SHA1 (patch-ConfigureChecks.cmake) = fe5a5c369ae0be3eb8d291195beb7126c464c000
 SHA1 (patch-wizards_CMakeLists.txt) = df68f1456e3f45f3bd23590836bb9ae46ba75f27

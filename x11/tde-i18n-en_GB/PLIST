@@ -538,6 +538,9 @@ share/doc/tde/HTML/en_GB/tdecachegrind/index.docbook
 share/doc/tde/HTML/en_GB/tdedebugdialog/common
 share/doc/tde/HTML/en_GB/tdedebugdialog/index.cache.bz2
 share/doc/tde/HTML/en_GB/tdedebugdialog/index.docbook
+share/doc/tde/HTML/en_GB/tdeioslave/audiocd/common
+share/doc/tde/HTML/en_GB/tdeioslave/audiocd/index.cache.bz2
+share/doc/tde/HTML/en_GB/tdeioslave/audiocd/index.docbook
 share/doc/tde/HTML/en_GB/tdeioslave/bzip/common
 share/doc/tde/HTML/en_GB/tdeioslave/bzip/index.cache.bz2
 share/doc/tde/HTML/en_GB/tdeioslave/bzip/index.docbook

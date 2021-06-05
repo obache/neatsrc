@@ -10,6 +10,7 @@ lib/libKTTSD_Lib.la
 lib/libkttsd.la
 lib/trinity/kbstate_panelapplet.la
 lib/trinity/kcm_kttsd.la
+${PLIST.arts}lib/trinity/libFreeverb_plugin.la
 ${PLIST.alsa}lib/trinity/libkttsd_alsaplugin.la
 lib/trinity/libkttsd_artsplugin.la
 lib/trinity/libkttsd_commandplugin.la
@@ -24,6 +25,12 @@ lib/trinity/libkttsd_talkerchooserplugin.la
 lib/trinity/libkttsd_xmltransformerplugin.la
 lib/trinity/libkttsjobmgrpart.la
 lib/trinity/tdetexteditor_kttsd.la
+man/man1/kmag.1
+man/man1/kmousetool.1
+man/man1/kmouth.1
+man/man1/ksayit.1
+man/man1/kttsd.1
+man/man1/kttsmgr.1
 share/applications/tde/kcmkttsd.desktop
 share/applications/tde/kmag.desktop
 share/applications/tde/kmousetool.desktop
@@ -178,6 +185,11 @@ share/apps/kmouth/books/en/en-greetings.phrasebook
 share/apps/kmouth/books/en/en-howareyou.phrasebook
 share/apps/kmouth/books/en/en-personal.phrasebook
 share/apps/kmouth/books/en/en.desktop
+share/apps/kmouth/books/nl/nl-courteousness.phrasebook
+share/apps/kmouth/books/nl/nl-greetings.phrasebook
+share/apps/kmouth/books/nl/nl-howareyou.phrasebook
+share/apps/kmouth/books/nl/nl-personal.phrasebook
+share/apps/kmouth/books/nl/nl.desktop
 share/apps/kmouth/books/sv/sv-courteousness.phrasebook
 share/apps/kmouth/books/sv/sv-greetings.phrasebook
 share/apps/kmouth/books/sv/sv-howareyou.phrasebook
@@ -324,6 +336,15 @@ share/icons/locolor/32x32/actions/speak.png
 share/icons/locolor/32x32/apps/kmag.png
 share/icons/locolor/32x32/apps/kmouth.png
 share/icons/mono/index.theme
+share/icons/mono/png/128x128/actions/trinity.png
+share/icons/mono/png/16x16/actions/trinity.png
+share/icons/mono/png/192x192/actions/trinity.png
+share/icons/mono/png/22x22/actions/trinity.png
+share/icons/mono/png/256x256/actions/trinity.png
+share/icons/mono/png/32x32/actions/trinity.png
+share/icons/mono/png/48x48/actions/trinity.png
+share/icons/mono/png/64x64/actions/trinity.png
+share/icons/mono/png/96x96/actions/trinity.png
 share/icons/mono/scalable/actions/14_ellipse.svgz
 share/icons/mono/scalable/actions/14_flatten.svgz
 share/icons/mono/scalable/actions/14_gradient.svgz
@@ -2520,7 +2541,6 @@ share/icons/mono/scalable/apps/web-browser.svgz
 share/icons/mono/scalable/apps/wilber.svgz
 share/icons/mono/scalable/apps/win_apps.svgz
 share/icons/mono/scalable/apps/window-capplet.svgz
-share/icons/mono/scalable/apps/window_list.svgz
 share/icons/mono/scalable/apps/wine.svgz
 share/icons/mono/scalable/apps/wineconfig.svgz
 share/icons/mono/scalable/apps/winprops.svgz
@@ -2554,6 +2574,18 @@ share/icons/mono/scalable/apps/xv.svgz
 share/icons/mono/scalable/apps/yahoo_protocol.svgz
 share/icons/mono/scalable/apps/yakuake.svgz
 share/icons/mono/scalable/apps/zip.svgz
+share/icons/mono/scalable/categories/applications-development.svgz
+share/icons/mono/scalable/categories/applications-games.svgz
+share/icons/mono/scalable/categories/applications-graphics.svgz
+share/icons/mono/scalable/categories/applications-internet.svgz
+share/icons/mono/scalable/categories/applications-multimedia.svgz
+share/icons/mono/scalable/categories/applications-office.svgz
+share/icons/mono/scalable/categories/applications-science.svgz
+share/icons/mono/scalable/categories/applications-utilities.svgz
+share/icons/mono/scalable/categories/preferences-desktop-peripherals.svgz
+share/icons/mono/scalable/categories/preferences-desktop-personal.svgz
+share/icons/mono/scalable/categories/preferences-desktop.svgz
+share/icons/mono/scalable/categories/preferences-system.svgz
 share/icons/mono/scalable/devices/3floppy_mount.svgz
 share/icons/mono/scalable/devices/3floppy_unmount.svgz
 share/icons/mono/scalable/devices/5floppy_mount.svgz
@@ -2851,6 +2883,7 @@ share/icons/mono/scalable/places/trashcan_empty.svgz
 share/icons/mono/scalable/places/trashcan_full.svgz
 share/icons/mono/scalable/places/www.svgz
 share/icons/mono/scalable/places/zip_overlay.svgz
+${PLIST.arts}share/services/ksayit_libFreeverb.desktop
 share/services/kttsd.desktop
 ${PLIST.alsa}share/services/kttsd_alsaplugin.desktop
 share/services/kttsd_artsplugin.desktop
@@ -2866,7 +2899,7 @@ share/services/kttsd_talkerchooserplugin.desktop
 share/services/kttsd_xmltransformerplugin.desktop
 share/services/kttsjobmgr.desktop
 share/services/tdetexteditor_kttsd.desktop
+${PLIST.arts}share/servicetypes/ksayit_libFreeverb_service.desktop
 share/servicetypes/kttsd_audioplugin.desktop
 share/servicetypes/kttsd_filterplugin.desktop
 share/servicetypes/kttsd_synthplugin.desktop
-@pkgdir share/icons/mono/png

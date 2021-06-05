@@ -1,8 +1,8 @@
 $NetBSD$
 
-SHA1 (tdeaccessibility-trinity-14.0.9.tar.xz) = c18670b2e8b0487c78cdae1d71cd10a3c9bb36b2
-RMD160 (tdeaccessibility-trinity-14.0.9.tar.xz) = be70d43d39e52c52dd9f411592705f1cecfe94bd
-SHA512 (tdeaccessibility-trinity-14.0.9.tar.xz) = 64cb4d32a1f41cb45357f5efb65fe1275ac4cd22895463784474dcfcf1866eb27dff9cdbb2101e17e669ec3028b1d50eee0611a51daf022b6dad1a8b00465a50
-Size (tdeaccessibility-trinity-14.0.9.tar.xz) = 6267912 bytes
+SHA1 (tdeaccessibility-trinity-14.0.10.tar.xz) = 6351a73591de2ce8dd2740b11a574e1aa7f9d660
+RMD160 (tdeaccessibility-trinity-14.0.10.tar.xz) = d618978b96df00f0a5a62c3c5d1a89d4bcc27cdd
+SHA512 (tdeaccessibility-trinity-14.0.10.tar.xz) = 8c413fab617d636ff2221b8fd98367234e2f1b5580c57bade48e9eb3e0800d461d56235f45ffbfe45412a7e63efee3e621875ad86c5d05afdf2d5b0739acd1dc
+Size (tdeaccessibility-trinity-14.0.10.tar.xz) = 6212556 bytes
 SHA1 (patch-kttsd_players_alsaplayer_alsaplayer.cpp) = 6b79df402ef825a7f615e246e6b18158aad58422
-SHA1 (patch-kttsd_players_alsaplayer_formats.h) = ef151ea70accf4f95928d6c752fd63f5069fb891
+SHA1 (patch-kttsd_players_alsaplayer_formats.h) = 2b185533669e03cfade75bf96132cafb3c2155c6

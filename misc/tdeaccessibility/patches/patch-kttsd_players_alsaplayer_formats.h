@@ -4,17 +4,6 @@ $NetBSD$
 
 --- kttsd/players/alsaplayer/formats.h.orig	2011-11-29 07:38:36.000000000 +0000
 +++ kttsd/players/alsaplayer/formats.h
-@@ -1,8 +1,12 @@
- #ifndef FORMATS_H
- #define FORMATS_H		1
- 
-+#ifdef __NetBSD__
-+#include <sys/endian.h>
-+#else
- #include <endian.h>
- #include <byteswap.h>
-+#endif
- 
  /* Definitions for .VOC files */
  
 @@ -44,6 +48,19 @@ typedef struct voc_ext_block {

@@ -287,9 +287,9 @@ share/doc/tde/HTML/en/kcalc/index.docbook
 share/doc/tde/HTML/en/kcharselect/common
 share/doc/tde/HTML/en/kcharselect/index.cache.bz2
 share/doc/tde/HTML/en/kcharselect/index.docbook
-share/doc/tde/HTML/en/kcmlirc/common
-share/doc/tde/HTML/en/kcmlirc/index.cache.bz2
-share/doc/tde/HTML/en/kcmlirc/index.docbook
+share/doc/tde/HTML/en/kcontrol/kcmlirc/common
+share/doc/tde/HTML/en/kcontrol/kcmlirc/index.cache.bz2
+share/doc/tde/HTML/en/kcontrol/kcmlirc/index.docbook
 share/doc/tde/HTML/en/kcontrol/kcmlowbatcrit/common
 share/doc/tde/HTML/en/kcontrol/kcmlowbatcrit/index.cache.bz2
 share/doc/tde/HTML/en/kcontrol/kcmlowbatcrit/index.docbook

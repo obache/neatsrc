@@ -1,1 +1,2 @@
-TLS plugin for the TQt Cryptographic Architecture
+tqca-tls is a plugin to provide SSL/TLS capability to programs that
+use the TQt Cryptographic Architecture (TQCA).
