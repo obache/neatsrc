@@ -22,6 +22,11 @@ CMAKE_ARGS+=	-DBUILD_ALL:BOOL=TRUE
 # iwlib>=27
 CMAKE_ARGS+=	-DBUILD_WIFI:BOOL=FALSE
 
+CMAKE_ARGS+=	-DBUILD_KOPETE_PROTOCOL_ALL:BOOL=TRUE
+CMAKE_ARGS+=	-DBUILD_KOPETE_PLUGIN_ALL:BOOL=TRUE
+# v4l
+CMAKE_ARGS+=	-DBUILD_KOPETE_PLUGIN_MOTIONAUTOAWAY:BOOL=FALSE
+
 REPLACE_PERL+=	ksirc/dsirc
 REPLACE_BASH+=	krfb/krfb_httpd/krfb_httpd
 REPLACE_PERL+=	kopete/kopete/tdeconf_update/kopete-account-0.10.pl
@@ -45,6 +50,14 @@ CONF_FILES+=	${PKG_EXAMPLES_DIR}/$c ${PKG_SYSCONFDIR}/$c
 
 #krfb
 .include "../../x11/libXtst/buildlink3.mk"
+# BUILD_KOPETE_PROTOCOL_GROUPWISE OR BUILD_KOPETE_PROTOCOL_JABBER
+.include "../../security/tqca/buildlink3.mk"
+# BUILD_KOPETE_PROTOCOL_GADU
+.include "../../chat/libgadu/buildlink3.mk"
+# BUILD_KOPETE_PROTOCOL_MEANWHILE
+.include "../../chat/meanwhile/buildlink3.mk"
+# BUILD_KOPETE_PLUGIN_STATISTICS
+.include "../../databases/sqlite3/buildlink3.mk"
 
 .include "../../x11/tdelibs/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
