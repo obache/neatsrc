@@ -21,6 +21,8 @@ CONFIGURE_ARGS+=	--without-pthread
 PKGCONFIG_OVERRIDE+=	pkgconfig/libgadu.pc.in
 TEST_TARGET=		check
 
+CONFIGURE_ENV.NetBSD+=	ac_cv_func_gethostbyname_r=no
+
 .include "../../devel/protobuf-c/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
