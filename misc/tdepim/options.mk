@@ -30,8 +30,8 @@ CMAKE_ARGS+=	-DWITH_SASL:BOOL=OFF
 #option( WITH_NEWDISTRLISTS "Enable the new distribution lists" ON )
 
 #option( WITH_GNOKII "Enable gnokii support" ${WITH_ALL_OPTIONS} )
-.if !empty(PKG_OPTIONS:Msasl)
-PLIST.sasl=	yes
+.if !empty(PKG_OPTIONS:Mgnokii)
+PLIST.gnokii=	yes
 .include "../../comms/gnokii/buildlink3.mk"
 CMAKE_ARGS+=	-DWITH_GNOKII:BOOL=ON
 .else
