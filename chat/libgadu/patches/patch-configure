@@ -1,0 +1,15 @@
+$NetBSD$
+
+* regen
+
+--- configure.orig	2017-01-21 17:58:14.000000000 +0000
++++ configure
+@@ -14125,7 +14125,7 @@ if test "${enable_werror+set}" = set; th
+ fi
+ 
+ 
+-if test "x$enable_werror" == "xyes"; then
++if test "x$enable_werror" = "xyes"; then
+ 	CFLAGS="$CFLAGS -Werror"
+ fi
+ 
