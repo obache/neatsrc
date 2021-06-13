@@ -4,5 +4,6 @@ SHA1 (tdepim-trinity-14.0.10.tar.xz) = 7e9fc16dbb9ea311929f80c825dbc8aaacb3774c
 RMD160 (tdepim-trinity-14.0.10.tar.xz) = ad18907b9e7b1efb7d95b6c187a213babad53a6e
 SHA512 (tdepim-trinity-14.0.10.tar.xz) = fd5fa6882487d6554839cc2fc98422ce77c1785d57ba4bb9398c76d32cb759809e1c2fc94f261fe5b40573d9ac720c498198419a7376c00bb61820a0940a8087
 Size (tdepim-trinity-14.0.10.tar.xz) = 9417440 bytes
-SHA1 (patch-ConfigureChecks.cmake) = fe5a5c369ae0be3eb8d291195beb7126c464c000
+SHA1 (patch-ConfigureChecks.cmake) = 1932acd0121d35a93f3e118b439973cabaae91be
+SHA1 (patch-config.h.cmake) = 126f81983a5db8b33cf1c1771e24ff043176557c
 SHA1 (patch-wizards_CMakeLists.txt) = df68f1456e3f45f3bd23590836bb9ae46ba75f27
