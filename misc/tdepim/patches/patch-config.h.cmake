@@ -12,3 +12,26 @@ $NetBSD$
  #cmakedefine TDEPIM_NEW_DISTRLISTS 1
  
  // karm
+@@ -72,3 +73,22 @@ unsigned long strlcat(char*, const char*
+ }
+ #endif
+ #endif
++
++// tderesources/groupwise/soap
++#cmakedefine HAVE_STRRCHR
++#cmakedefine HAVE_STRTOD
++#cmakedefine HAVE_SSCANF
++#cmakedefine HAVE_STRTOL
++#cmakedefine HAVE_STRTOUL
++#cmakedefine HAVE_STRTOLL
++#cmakedefine HAVE_STRTOULL
++#cmakedefine HAVE_GETTIMEOFDAY
++#cmakedefine HAVE_SYS_TIMEB_H
++#cmakedefine HAVE_FTIME
++#cmakedefine HAVE_RAND_R
++#cmakedefine HAVE_GMTIME_R
++#cmakedefine HAVE_LOCALTIME_R
++#cmakedefine HAVE_TIMEGM
++#cmakedefine HAVE_WCTOMB
++#cmakedefine HAVE_MBTOWC
++#cmakedefine HAVE_ISNAN
