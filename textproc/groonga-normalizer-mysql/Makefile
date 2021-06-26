@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	groonga-normalizer-mysql-1.1.0
+DISTNAME=	groonga-normalizer-mysql-1.1.4
 CATEGORIES=	textproc databases
 MASTER_SITES=	http://packages.groonga.org/source/groonga-normalizer-mysql/
 
