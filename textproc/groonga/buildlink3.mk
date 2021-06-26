@@ -15,6 +15,10 @@ pkgbase := groonga
 .include "../../devel/msgpack/buildlink3.mk"
 .endif
 
+.if ${PKG_BUILD_OPTIONS.groonga:Mxxhash}
+.include "../../devel/xxhash/buildlink3.mk"
+.endif
+
 .if ${PKG_BUILD_OPTIONS.groonga:Mzlib}
 .include "../../devel/zlib/buildlink3.mk"
 .endif
