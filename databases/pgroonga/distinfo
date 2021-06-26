@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (pgroonga-2.2.8.tar.gz) = acd4abefaf736d444cf4cb1e7ccf449497ed52aa
-RMD160 (pgroonga-2.2.8.tar.gz) = f37c9bcb19936c09f3a1370da790e2c55cc5e751
-SHA512 (pgroonga-2.2.8.tar.gz) = d5eca4c9cfc7d2ca568cc9be95857dec1a77ca28e486947fb92bab297a32aab089d7e7823bb2682a116784ce55a8e44a738e2c6f26c52f33d374ef53271a12bf
-Size (pgroonga-2.2.8.tar.gz) = 405375 bytes
+SHA1 (pgroonga-2.3.0.tar.gz) = 3d3c12c32cabac8f6b392a201b064af9ed46cb33
+RMD160 (pgroonga-2.3.0.tar.gz) = 788c6560182eb2a74b9213a9010a39f7d984debf
+SHA512 (pgroonga-2.3.0.tar.gz) = 46c991ced429e3e1f5e284a8b46f66751b5a241f77d7e47e5e817aadcd2b4d427c73fc73401f1589de776f4d0e0c952e487a77e4bf49ce6528867f8b3352b950
+Size (pgroonga-2.3.0.tar.gz) = 424579 bytes
