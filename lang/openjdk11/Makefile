@@ -185,7 +185,6 @@ do-install:
 
 .if ${OPSYS} == "Linux" || ${OPSYS} == "NetBSD"
 .include "../../audio/alsa-lib/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-alsa=${BUILDLINK_PREFIX.alsa-lib}
 .endif
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
