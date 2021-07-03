@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.61 2021/04/08 21:15:47 adam Exp $
+# $NetBSD: Makefile,v 1.64 2021/07/02 09:01:51 adam Exp $
 
-DISTNAME=	pangomm-2.46.0
+DISTNAME=	pangomm-2.46.1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/pangomm/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	adam@NetBSD.org
 HOMEPAGE=	https://www.gtkmm.org/
-COMMENT=	C++ bindings for pango
+COMMENT=	C++ bindings for pango (1.4 API)
 LICENSE=	gnu-lgpl-v2.1
 
 CONFLICTS+=	gtkmm<=2.13.5

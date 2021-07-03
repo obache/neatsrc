@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.630 2021/05/13 15:25:20 jdolecek Exp $
+# $NetBSD: Makefile,v 1.635 2021/06/25 13:36:57 tnn Exp $
 
 COMMENT=	Databases
 
@@ -97,9 +97,10 @@ SUBDIR+=	lua-sql-postgres
 SUBDIR+=	lua-sql-sqlite3
 SUBDIR+=	lua-sqlite3
 SUBDIR+=	lua-tokyocabinet
-SUBDIR+=	mariadb-connector-c
 SUBDIR+=	mariadb104-client
 SUBDIR+=	mariadb104-server
+SUBDIR+=	mariadb105-client
+SUBDIR+=	mariadb105-server
 SUBDIR+=	metakit-lib
 SUBDIR+=	mongo-c-driver
 SUBDIR+=	mongo-tools
@@ -332,14 +333,6 @@ SUBDIR+=	postgresql13-plperl
 SUBDIR+=	postgresql13-plpython
 SUBDIR+=	postgresql13-pltcl
 SUBDIR+=	postgresql13-server
-SUBDIR+=	postgresql95
-SUBDIR+=	postgresql95-client
-SUBDIR+=	postgresql95-contrib
-SUBDIR+=	postgresql95-docs
-SUBDIR+=	postgresql95-plperl
-SUBDIR+=	postgresql95-plpython
-SUBDIR+=	postgresql95-pltcl
-SUBDIR+=	postgresql95-server
 SUBDIR+=	postgresql96
 SUBDIR+=	postgresql96-client
 SUBDIR+=	postgresql96-contrib
@@ -370,6 +363,7 @@ SUBDIR+=	py-datapkg
 SUBDIR+=	py-dbfread
 SUBDIR+=	py-elasticsearch
 SUBDIR+=	py-gdbm
+SUBDIR+=	py-kb
 SUBDIR+=	py-ldap
 SUBDIR+=	py-ldap3
 SUBDIR+=	py-lmdb
@@ -514,6 +508,7 @@ SUBDIR+=	squirrelsql
 SUBDIR+=	tcl-fbsql
 SUBDIR+=	tcl-gdbm
 SUBDIR+=	tdb
+SUBDIR+=	timescaledb-tune
 SUBDIR+=	tinycdb
 SUBDIR+=	tokyocabinet
 SUBDIR+=	tokyotyrant

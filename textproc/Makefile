@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1227 2021/05/13 09:50:27 wiz Exp $
+# $NetBSD: Makefile,v 1.1235 2021/07/02 22:00:55 pin Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -233,16 +233,12 @@ SUBDIR+=	git-delta
 SUBDIR+=	glimpse
 SUBDIR+=	gnome-dictionary
 SUBDIR+=	gnome-doc-utils
-SUBDIR+=	go-chroma
 SUBDIR+=	go-diff
 SUBDIR+=	go-glob
 SUBDIR+=	go-goldmark
-SUBDIR+=	go-inflect
 SUBDIR+=	go-kr-text
 SUBDIR+=	go-md2man
 SUBDIR+=	go-mmark
-SUBDIR+=	go-org
-SUBDIR+=	go-prose
 SUBDIR+=	go-regexp2
 SUBDIR+=	go-runewidth
 SUBDIR+=	go-sentences
@@ -476,6 +472,7 @@ SUBDIR+=	libxls
 SUBDIR+=	libxlsxwriter
 SUBDIR+=	libxml
 SUBDIR+=	libxml++
+SUBDIR+=	libxml++5.0
 SUBDIR+=	libxml2
 SUBDIR+=	libxslt
 SUBDIR+=	libyaml
@@ -519,6 +516,7 @@ SUBDIR+=	metauml
 SUBDIR+=	migemo
 SUBDIR+=	migemo-elisp
 SUBDIR+=	miller
+SUBDIR+=	molybdenum
 SUBDIR+=	multimarkdown
 SUBDIR+=	mxml
 SUBDIR+=	mythes
@@ -859,6 +857,7 @@ SUBDIR+=	py-anyjson
 SUBDIR+=	py-babelfish
 SUBDIR+=	py-biplist
 SUBDIR+=	py-black
+SUBDIR+=	py-bracex
 SUBDIR+=	py-cElementTree
 SUBDIR+=	py-cabocha
 SUBDIR+=	py-cmTemplate
@@ -1002,6 +1001,7 @@ SUBDIR+=	py-ujson
 SUBDIR+=	py-uritemplate
 SUBDIR+=	py-validators
 SUBDIR+=	py-vobject
+SUBDIR+=	py-wcmatch
 SUBDIR+=	py-webencodings
 SUBDIR+=	py-xapian
 SUBDIR+=	py-xlrd
@@ -1230,6 +1230,7 @@ SUBDIR+=	xmltooling
 SUBDIR+=	xp
 SUBDIR+=	xqilla
 SUBDIR+=	xslide
+SUBDIR+=	xsv
 SUBDIR+=	xt
 SUBDIR+=	xxdiff
 SUBDIR+=	xxdiff-scripts
@@ -1239,6 +1240,7 @@ SUBDIR+=	yelp-tools
 SUBDIR+=	yelp-xsl
 SUBDIR+=	yodl
 SUBDIR+=	yq
+SUBDIR+=	zet
 SUBDIR+=	zoem
 
 .include "../mk/misc/category.mk"

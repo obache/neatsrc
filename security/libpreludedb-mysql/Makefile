@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.25 2021/04/21 13:25:19 adam Exp $
+# $NetBSD: Makefile,v 1.27 2021/06/23 20:33:16 nia Exp $
 #
 
 PKGNAME=		libpreludedb-mysql-${VERSION}
-PKGREVISION=		22
+PKGREVISION=		24
 COMMENT=		MySQL plugin for LibPreludeDB
 
 .include "../../security/libpreludedb/Makefile.common"

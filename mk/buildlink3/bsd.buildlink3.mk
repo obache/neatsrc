@@ -1,4 +1,4 @@
-# $NetBSD: bsd.buildlink3.mk,v 1.246 2020/07/01 09:13:13 rillig Exp $
+# $NetBSD: bsd.buildlink3.mk,v 1.247 2021/06/08 10:10:02 bouyer Exp $
 #
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
 # All rights reserved.

@@ -1,4 +1,4 @@
-# $NetBSD: sites.mk,v 1.173 2021/04/28 09:54:24 wiz Exp $
+# $NetBSD: sites.mk,v 1.176 2021/06/21 17:22:18 nia Exp $
 #
 # This Makefile fragment defines read-only MASTER_SITE_* variables
 # representing some well-known master distribution sites for software.

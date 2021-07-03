@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.46 2021/04/21 13:24:43 adam Exp $
+# $NetBSD: Makefile,v 1.47 2021/06/18 13:47:58 nia Exp $
 
 DISTNAME=	warzone2100_src
 PKGNAME=	warzone2100-3.4.1
@@ -18,8 +18,7 @@ USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config zip
 USE_TOOLS+=	msgfmt msgmerge xgettext
 
-.include "../../lang/ruby/rubyversion.mk"
-BUILD_DEPENDS+=	${RUBY_PKGPREFIX}-asciidoctor>=1.5.3:../../textproc/ruby-asciidoctor
+TOOL_DEPENDS+=	asciidoc-[0-9]*:../../textproc/asciidoc
 
 # Could NOT find Gettext: Found unsuitable version "0.16.1", but
 # required is at least "0.18"

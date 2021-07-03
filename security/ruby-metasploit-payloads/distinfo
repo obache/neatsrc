@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.12 2021/03/21 13:05:56 taca Exp $
+$NetBSD: distinfo,v 1.14 2021/06/14 15:27:07 taca Exp $
 
-SHA1 (metasploit-payloads-2.0.39.gem) = 0e3c3ddd7eed52e48918dd43ff8a6fe940226f5c
-RMD160 (metasploit-payloads-2.0.39.gem) = f0b49f41da82ed3aa5ceaa4049ff5a5c74a3add7
-SHA512 (metasploit-payloads-2.0.39.gem) = 2b5436356c5f735b1cde98f062fd7a7bce7a4f5d3a0e4917b4cd13d1cf5c905112b53316dc597bd31044499a5718ee2335b33d68dfa8d19583f4c5a543e0c01b
-Size (metasploit-payloads-2.0.39.gem) = 12246528 bytes
+SHA1 (metasploit-payloads-2.0.47.gem) = 2e3fcecde27b96b6aab5f61610c54c25b492a553
+RMD160 (metasploit-payloads-2.0.47.gem) = 51173738369d154bff51833e11d81e9212895f0b
+SHA512 (metasploit-payloads-2.0.47.gem) = e3db44bd8a1c2204d00ac11540ef693bdd1cd632d9958f0e4a01cd9b9a694d6dd71a46f4e1a87ab75a210aa1ffbe71ec150b288bf754f09f7873f43cba7a83d2
+Size (metasploit-payloads-2.0.47.gem) = 12250112 bytes

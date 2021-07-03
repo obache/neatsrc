@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.18 2021/04/21 13:24:13 adam Exp $
+# $NetBSD: Makefile,v 1.20 2021/06/23 08:34:39 nia Exp $
 
-DISTNAME=	libtorrent-rasterbar-1.2.13
-PKGREVISION=	1
+DISTNAME=	libtorrent-rasterbar-1.2.14
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=arvidn/}
 GITHUB_PROJECT=	libtorrent
@@ -26,4 +25,5 @@ post-install:
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

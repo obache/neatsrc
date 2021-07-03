@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.479 2021/05/12 13:31:44 ryoon Exp $
+# $NetBSD: Makefile,v 1.484 2021/07/02 10:51:16 tnn Exp $
 
 FIREFOX_VER=		${MOZ_BRANCH}${MOZ_BRANCH_MINOR}
-MOZ_BRANCH=		88.0
-MOZ_BRANCH_MINOR=	.1
+MOZ_BRANCH=		89.0
+MOZ_BRANCH_MINOR=	.2
 
 DISTNAME=	firefox-${FIREFOX_VER}.source
 PKGNAME=	${DISTNAME:S/.source//:S/b/beta/:S/esr//}
@@ -10,8 +10,8 @@ CATEGORIES=	www
 MASTER_SITES+=	${MASTER_SITE_MOZILLA:=firefox/releases/${FIREFOX_VER}/source/}
 EXTRACT_SUFX=	.tar.xz
 
-DISTFILES=	${DEFAULT_DISTFILES} nodejs-output-88.0.1.tgz
-SITES.nodejs-output-88.0.1.tgz=	${MASTER_SITE_LOCAL}
+DISTFILES=	${DEFAULT_DISTFILES} nodejs-output-89.0.2.tgz
+SITES.nodejs-output-89.0.2.tgz=	${MASTER_SITE_LOCAL}
 
 MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	https://www.mozilla.org/en-US/firefox/
@@ -118,7 +118,7 @@ MOZILLA_NAME=	Browser
 #CKSUMS+=	0e52f6bde42d7bb05c297ce1c25b9879d61b28caba98f6226a152bff538db6c2
 #CKSUMS+=	394425b4ba03c21c494e64d993678f7014575b1e3d590b9ee452b5c2d83ec4ac
 
-#SUBST_CLASSES+=		cksum
+#SUBST_CLASSES+=	cksum
 #SUBST_STAGE.cksum=	pre-configure
 #.for crate in ${CKSUM_CRATES}
 #SUBST_FILES.cksum+=	${crate}/.cargo-checksum.json
@@ -132,7 +132,7 @@ pre-configure:
 	cd ${WRKSRC}/js/src && autoconf
 	cd ${WRKSRC} && mkdir ${OBJDIR}
 	cd ${WRKSRC}/${OBJDIR} && touch old-configure.vars
-	# Do not fetch Rust Cargo file via network during build
+#	Do not fetch Rust Cargo file via network during build
 .if !defined(FIREFOX_MAINTAINER)
 	mv ${WRKDIR}/dist ${WRKSRC}/${OBJDIR}
 .endif
@@ -146,9 +146,9 @@ build-list:
 	cd ${WRKSRC}/${OBJDIR}/dist/bin/browser/chrome && \
 		find . -type f | sort > ${OUT:Q}
 
-NODE_LIST="${WRKDIR}/node.list"
-NO_NODE_LIST="${WRKDIR}/no-node.list"
-NODE_FILES="${WRKDIR}/node.flist"
+NODE_LIST=	"${WRKDIR}/node.list"
+NO_NODE_LIST=	"${WRKDIR}/no-node.list"
+NODE_FILES=	"${WRKDIR}/node.flist"
 
 .PHONY: maintainer-files
 maintainer-files:
@@ -158,9 +158,9 @@ maintainer-files:
 	    > ${FILESDIR}/node-wrapper.sh && \
 	    chmod 0755 ${FILESDIR}/node-wrapper.sh
 	rm -f ${WRKDIR}/.build_done ${WRKDIR}/.configure_done
-	$(MAKE) MAINTAINER_INTERNAL=yes build
-	$(MAKE) MAINTAINER_INTERNAL=yes OUT="${NO_NODE_LIST}" build-list
-	$(MAKE) OUT="${NODE_LIST}" build-list
+	${MAKE} MAINTAINER_INTERNAL=yes build
+	${MAKE} MAINTAINER_INTERNAL=yes OUT="${NO_NODE_LIST}" build-list
+	${MAKE} OUT="${NODE_LIST}" build-list
 	${DIFF} -u "${NO_NODE_LIST}" "${NODE_LIST}" | \
 	    ${AWK} \
 	    '/^\+\.\//{ printf("dist/bin/browser/chrome/%s\n", gensub(/^\+\.\//, "", "")) }' \

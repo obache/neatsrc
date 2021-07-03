@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.58 2021/04/21 08:11:16 wiz Exp $
+# $NetBSD: Makefile,v 1.60 2021/06/23 20:33:12 nia Exp $
 
 DISTNAME=	exim-3.36
-PKGREVISION=	21
+PKGREVISION=	23
 CATEGORIES=	mail net
 MASTER_SITES+=	http://public.planetmirror.com.au/pub/exim/exim3/
 EXTRACT_SUFX=	.tar.bz2

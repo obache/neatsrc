@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.107 2021/04/25 07:51:27 mrg Exp $
+$NetBSD: distinfo,v 1.109 2021/06/24 18:43:08 tnn Exp $
 
 SHA1 (xorg-server-1.20.11.tar.bz2) = 86ae4add5719e6026a569f5559d51e8707171d5d
 RMD160 (xorg-server-1.20.11.tar.bz2) = 9b451d5523e9384df37e0e91f52d843090590d23

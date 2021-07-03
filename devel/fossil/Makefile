@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.66 2021/04/21 11:41:24 adam Exp $
+# $NetBSD: Makefile,v 1.69 2021/06/16 20:51:26 js Exp $
 
-DISTNAME=	fossil-src-2.15.1
+DISTNAME=	fossil-2.15.2
 PKGNAME=	${DISTNAME:S/-src//}
-PKGREVISION=	1
 WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
 CATEGORIES=	devel scm
-MASTER_SITES=	https://fossil-scm.org/home/uv/
+MASTER_SITES=	https://fossil-scm.org/home/tarball/version-${PKGVERSION_NOREV}/
 
 MAINTAINER=	js@pkgsrc.org
 HOMEPAGE=	https://www.fossil-scm.org/
@@ -17,6 +16,8 @@ CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl:Q}
 CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib:Q}
 
 INSTALLATION_DIRS+=	bin ${PKGMANDIR}/man1 share/doc/${PKGBASE}
+
+LDFLAGS.Darwin+=	-liconv
 
 .include "options.mk"
 
@@ -32,5 +33,8 @@ do-install:
 		${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 
 .include "../../security/openssl/buildlink3.mk"
+.if ${OPSYS} == "Darwin"
+.include "../../converters/libiconv/buildlink3.mk"
+.endif
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

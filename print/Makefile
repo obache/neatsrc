@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.808 2021/05/04 14:12:05 prlw1 Exp $
+# $NetBSD: Makefile,v 1.814 2021/06/07 01:12:38 markd Exp $
 #
 
 COMMENT=	Desktop publishing
@@ -135,6 +135,7 @@ SUBDIR+=	py-latexcodec
 SUBDIR+=	py-octoprint
 SUBDIR+=	py-octoprint-filecheck
 SUBDIR+=	py-octoprint-firmwarecheck
+SUBDIR+=	py-octoprint-pisupport
 SUBDIR+=	py-pisa
 SUBDIR+=	py-pslib
 SUBDIR+=	py-reportlab
@@ -272,6 +273,7 @@ SUBDIR+=	tex-babel-dutch
 SUBDIR+=	tex-babel-english
 SUBDIR+=	tex-babel-esperanto
 SUBDIR+=	tex-babel-estonian
+SUBDIR+=	tex-babel-finnish
 SUBDIR+=	tex-babel-french
 SUBDIR+=	tex-babel-friulan
 SUBDIR+=	tex-babel-galician
@@ -747,6 +749,8 @@ SUBDIR+=	tex-fwlw
 SUBDIR+=	tex-fwlw-doc
 SUBDIR+=	tex-g-brief
 SUBDIR+=	tex-g-brief-doc
+SUBDIR+=	tex-gckanbun
+SUBDIR+=	tex-gckanbun-doc
 SUBDIR+=	tex-gentle-doc
 SUBDIR+=	tex-gentombow
 SUBDIR+=	tex-gentombow-doc
@@ -964,6 +968,8 @@ SUBDIR+=	tex-latex-brochure-doc
 SUBDIR+=	tex-latex-course-doc
 SUBDIR+=	tex-latex-doc
 SUBDIR+=	tex-latex-doc-ptr-doc
+SUBDIR+=	tex-latex-firstaid-dev
+SUBDIR+=	tex-latex-firstaid-dev-doc
 SUBDIR+=	tex-latex-graphics-companion-doc
 SUBDIR+=	tex-latex-referenz-doc
 SUBDIR+=	tex-latex-tabellen-doc
@@ -1195,6 +1201,8 @@ SUBDIR+=	tex-pdfescape
 SUBDIR+=	tex-pdfescape-doc
 SUBDIR+=	tex-pdflscape
 SUBDIR+=	tex-pdflscape-doc
+SUBDIR+=	tex-pdfmanagement-testphase
+SUBDIR+=	tex-pdfmanagement-testphase-doc
 SUBDIR+=	tex-pdfpages
 SUBDIR+=	tex-pdfpages-doc
 SUBDIR+=	tex-pdftex
@@ -1458,7 +1466,6 @@ SUBDIR+=	tex-texdoctk
 SUBDIR+=	tex-texdoctk-doc
 SUBDIR+=	tex-texinfo
 SUBDIR+=	tex-texlive-common-doc
-SUBDIR+=	tex-texlive-docindex-doc
 SUBDIR+=	tex-texlive-en-doc
 SUBDIR+=	tex-texlive-scripts
 SUBDIR+=	tex-texlive-scripts-doc

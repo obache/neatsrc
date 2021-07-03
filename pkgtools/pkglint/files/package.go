@@ -7,10 +7,6 @@ import (
 	"strings"
 )
 
-// TODO: What about package names that refer to other variables?
-// TODO: Allow a hyphen in the middle of a version number.
-const rePkgname = `^([\w\-.+]+)-([0-9][.0-9A-Z_a-z]*)$`
-
 // Package is the pkgsrc package that is currently checked.
 //
 // Most of the information is loaded first, and after loading the actual checks take place.
@@ -19,6 +15,8 @@ const rePkgname = `^([\w\-.+]+)-([0-9][.0-9A-Z_a-z]*)$`
 type Package struct {
 	dir     CurrPath   // The directory of the package, for resolving files
 	Pkgpath PkgsrcPath // e.g. "category/pkgdir"
+
+	Makefile *MkLines
 
 	EffectivePkgname     string  // PKGNAME or DISTNAME from the package Makefile, including nb13, can be empty
 	EffectivePkgbase     string  // EffectivePkgname without the version
@@ -216,6 +214,7 @@ func (pkg *Package) loadPackageMakefile() (*MkLines, *MkLines) {
 	if mainLines == nil {
 		return nil, nil
 	}
+	pkg.Makefile = mainLines
 
 	G.checkRegCvsSubst(filename)
 	allLines := NewMkLines(NewLines("", nil), pkg, &pkg.vars)
@@ -1263,7 +1262,7 @@ func (pkg *Package) determineEffectivePkgVars() {
 
 	pkg.checkPkgnameRedundant(pkgnameLine, pkgname, distname)
 
-	if pkgname == "" && distnameLine != nil && !containsVarUse(distname) && !matches(distname, rePkgname) {
+	if pkgname == "" && distnameLine != nil && !containsVarUse(distname) && !matchesPkgname(distname) {
 		distnameLine.Warnf("As DISTNAME is not a valid package name, please define the PKGNAME explicitly.")
 	}
 
@@ -1272,7 +1271,7 @@ func (pkg *Package) determineEffectivePkgVars() {
 	}
 
 	if effname != "" && !containsVarUse(effname) {
-		if m, m1, m2 := match2(effname, rePkgname); m {
+		if m, m1, m2 := matchPkgname(effname); m {
 			pkg.EffectivePkgname = effname + pkg.nbPart()
 			pkg.EffectivePkgnameLine = pkgnameLine
 			pkg.EffectivePkgbase = m1
@@ -1281,7 +1280,7 @@ func (pkg *Package) determineEffectivePkgVars() {
 	}
 
 	if pkg.EffectivePkgnameLine == nil && distname != "" && !containsVarUse(distname) {
-		if m, m1, m2 := match2(distname, rePkgname); m {
+		if m, m1, m2 := matchPkgname(distname); m {
 			pkg.EffectivePkgname = distname + pkg.nbPart()
 			pkg.EffectivePkgnameLine = distnameLine
 			pkg.EffectivePkgbase = m1
@@ -1368,7 +1367,7 @@ func (pkg *Package) checkPossibleDowngrade() {
 		defer trace.Call0()()
 	}
 
-	m, _, pkgversion := match2(pkg.EffectivePkgname, rePkgname)
+	m, _, pkgversion := matchPkgname(pkg.EffectivePkgname)
 	if !m {
 		return
 	}
@@ -1729,6 +1728,49 @@ func (pkg *Package) Includes(filename PackagePath) *MkLine {
 	return mkline
 }
 
+// CanFixAddInclude tests whether the package Makefile follows the standard
+// form and thus allows to add additional '.include' directives.
+func (pkg *Package) CanFixAddInclude() bool {
+	mklines := pkg.Makefile
+	lastLine := mklines.mklines[len(mklines.mklines)-1]
+	return lastLine.Text == ".include \"../../mk/bsd.pkg.mk\""
+}
+
+// FixAddInclude adds an '.include' directive at the end of the package
+// Makefile.
+func (pkg *Package) FixAddInclude(includedFile PackagePath) {
+	mklines := pkg.Makefile
+
+	alreadyThere := false
+	mklines.ForEach(func(mkline *MkLine) {
+		if mkline.IsInclude() && mkline.IncludedFile() == includedFile.AsRelPath() {
+			alreadyThere = true
+		}
+
+		// XXX: This low-level code should not be necessary.
+		// Instead, the added '.include' line should be a MkLine of its own.
+		if mkline.fix != nil {
+			expected := ".include \"" + includedFile.String() + "\"\n"
+			for _, rawLine := range mkline.fix.above {
+				if rawLine == expected {
+					alreadyThere = true
+				}
+			}
+		}
+	})
+	if alreadyThere {
+		return
+	}
+
+	lastLine := mklines.mklines[len(mklines.mklines)-1]
+	fix := lastLine.Autofix()
+	fix.Silent()
+	fix.InsertAbove(".include \"" + includedFile.String() + "\"")
+	fix.Apply()
+
+	mklines.SaveAutofixChanges()
+}
+
 // PlistContent lists the directories and files that appear in the
 // package's PLIST files. It serves two purposes:
 //
@@ -1748,4 +1790,18 @@ func NewPlistContent() PlistContent {
 		make(map[RelPath]*PlistLine),
 		make(map[RelPath]*PlistLine),
 		make(map[string]bool)}
+}
+
+// matchPkgname tests whether the string has the form of a package name that
+// does not contain any variable expressions.
+func matchPkgname(s string) (m bool, base string, version string) {
+	// TODO: Allow a hyphen in the middle of a version number.
+	return match2(s, `^([\w\-.+]+)-([0-9][.0-9A-Z_a-z]*)$`)
+}
+
+// matchPkgname tests whether the string has the form of a package name that
+// does not contain any variable expressions.
+func matchesPkgname(s string) bool {
+	m, _, _ := matchPkgname(s)
+	return m
 }

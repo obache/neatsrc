@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.935 2021/05/21 16:38:58 nia Exp $
+# $NetBSD: Makefile,v 1.941 2021/06/08 01:43:55 mef Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -28,6 +28,7 @@ SUBDIR+=	R-ggplot2
 SUBDIR+=	R-ggtern
 SUBDIR+=	R-ggthemes
 SUBDIR+=	R-gridExtra
+SUBDIR+=	R-isoband
 SUBDIR+=	R-jpeg
 SUBDIR+=	R-labeling
 SUBDIR+=	R-latex2exp
@@ -37,6 +38,7 @@ SUBDIR+=	R-munsell
 SUBDIR+=	R-png
 SUBDIR+=	R-polyclip
 SUBDIR+=	R-scales
+SUBDIR+=	R-thematic
 SUBDIR+=	R-viridis
 SUBDIR+=	R-viridisLite
 SUBDIR+=	SDL2_gfx
@@ -66,6 +68,7 @@ SUBDIR+=	breeze-icons
 SUBDIR+=	cairo
 SUBDIR+=	cairo-gobject
 SUBDIR+=	cairomm
+SUBDIR+=	cairomm1.16
 SUBDIR+=	cal3d
 SUBDIR+=	cal3d-examples
 SUBDIR+=	cambevao
@@ -218,9 +221,6 @@ SUBDIR+=	gnome-themes-standard
 SUBDIR+=	gnuplot
 SUBDIR+=	go-gift
 SUBDIR+=	go-image
-SUBDIR+=	go-imaging
-SUBDIR+=	go-resize
-SUBDIR+=	go-smartcrop
 SUBDIR+=	gocr
 SUBDIR+=	goocanvas2
 SUBDIR+=	gource

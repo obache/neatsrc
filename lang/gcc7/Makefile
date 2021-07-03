@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.38 2021/04/18 11:52:16 gson Exp $
+# $NetBSD: Makefile,v 1.40 2021/06/26 17:42:23 tnn Exp $
 
 GCC_PKGNAME=		gcc7
 .include		"version.mk"
 
 DISTNAME=	gcc-${GCC7_DIST_VERSION}
 PKGNAME=	${GCC_PKGNAME}-${GCC7_DIST_VERSION}
-PKGREVISION=	4
+PKGREVISION=	5
 ## When bumping the PKGREVISION of this package the PKGREVISION of
 ## lang/gcc7-libs needs to be bumped to be at least 1 more than the
 ## PKGREVISION of this package!
@@ -120,6 +120,9 @@ MAKE_ENV.NetBSD+=	ac_cv_func_uselocale=no
 MAKE_ENV.SunOS+=	ac_cv_func_mkostemp=no
 
 CONFIGURE_ARGS.DragonFly+=	--disable-bootstrap
+.if !empty(PKGSRC_COMPILER:Mclang)
+CONFIGURE_ARGS+=		--disable-bootstrap
+.endif
 
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-i386) || !empty(MACHINE_PLATFORM:MLinux-*-i386)
 CONFIGURE_ARGS+=	--with-arch=i486 --with-tune=i486

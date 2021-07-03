@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.183 2021/04/16 16:20:47 ryoon Exp $
+# $NetBSD: Makefile,v 1.186 2021/06/25 13:41:48 micha Exp $
 #
 
 COMMENT=	Archivers and compression tools
@@ -29,7 +29,6 @@ SUBDIR+=	file-roller
 SUBDIR+=	freeze
 SUBDIR+=	gcpio
 SUBDIR+=	gnome-autoar
-SUBDIR+=	go-xz
 SUBDIR+=	gsharutils
 SUBDIR+=	gtar
 SUBDIR+=	gtar-base
@@ -131,6 +130,7 @@ SUBDIR+=	sarab
 SUBDIR+=	squsq
 SUBDIR+=	star
 SUBDIR+=	szip
+SUBDIR+=	tartest
 SUBDIR+=	torrentzip
 SUBDIR+=	unace
 SUBDIR+=	unace-bin
@@ -143,6 +143,7 @@ SUBDIR+=	unshield
 SUBDIR+=	unzip
 SUBDIR+=	unzoo
 SUBDIR+=	upx
+SUBDIR+=	xarchiver
 SUBDIR+=	xbin
 SUBDIR+=	xfce4-thunar-archive
 SUBDIR+=	xmill

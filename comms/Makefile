@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.121 2021/04/12 15:14:00 nia Exp $
+# $NetBSD: Makefile,v 1.125 2021/06/27 09:00:22 jnemeth Exp $
 #
 
 COMMENT=	Telephony and serial communication utilities
 
 SUBDIR+=	asterisk-sounds-de-x9media
 SUBDIR+=	asterisk13
-SUBDIR+=	asterisk15
 SUBDIR+=	asterisk16
+SUBDIR+=	asterisk18
 SUBDIR+=	binkd
 SUBDIR+=	birda
 SUBDIR+=	bthfp
@@ -65,9 +65,11 @@ SUBDIR+=	pilot-link-libs
 SUBDIR+=	pilotmgr
 SUBDIR+=	plp
 SUBDIR+=	py-colorama
+SUBDIR+=	py-enrich
 SUBDIR+=	py-esptool
 SUBDIR+=	py-gammu
 SUBDIR+=	py-nodemcu-uploader
+SUBDIR+=	py-rich
 SUBDIR+=	py-serial
 SUBDIR+=	py-termstyle
 SUBDIR+=	qodem

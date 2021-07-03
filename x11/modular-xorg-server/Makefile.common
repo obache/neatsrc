@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.39 2021/04/13 18:46:55 wiz Exp $
+# $NetBSD: Makefile.common,v 1.42 2021/06/24 18:43:08 tnn Exp $
 # used by x11/modular-xorg-server/Makefile
 # used by x11/modular-xorg-xephyr/Makefile
 # used by x11/modular-xorg-xwayland/Makefile

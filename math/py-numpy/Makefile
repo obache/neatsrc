@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.81 2021/05/12 08:12:10 adam Exp $
+# $NetBSD: Makefile,v 1.83 2021/06/29 08:41:59 nia Exp $
 
 DISTNAME=	numpy-1.20.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=n/numpy/}
 EXTRACT_SUFX=	.zip
@@ -23,7 +24,7 @@ USE_LANGUAGES=		c99 fortran
 
 REPLACE_PYTHON+=	*.py */*.py */*/*.py */*/*/*.py
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27 # 36
+PYTHON_VERSIONS_INCOMPATIBLE=	27 36
 
 # XXX Avoid picking up other compilers when installed
 .include "../../mk/compiler.mk"
@@ -40,6 +41,10 @@ PYSETUPBUILDARGS+=	--fcompiler=gnu
 # linking, so ensure that we pass through requisite options.
 LDFLAGS+=		${_COMPILER_ABI_FLAG.${ABI}}
 
+BLAS_ACCEPTED=		${_BLAS_TYPES} accelerate.framework
+BLAS_C_INTERFACE=	yes
+CPPFLAGS+=		${BLAS_INCLUDES}
+
 .include "../../mk/bsd.prefs.mk"
 
 # numpy fails using the gold linker with:
@@ -55,6 +60,5 @@ do-test:
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
-# BLAS with CBLAS is needed for proper acceleration.
-.include "../../math/cblas/buildlink3.mk"
+.include "../../mk/blas.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

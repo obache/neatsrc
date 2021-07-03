@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.22 2021/05/18 06:59:13 pin Exp $
+# $NetBSD: Makefile,v 1.26 2021/06/18 10:44:29 tnn Exp $
 
-DISTNAME=	macchina-0.8.1
+DISTNAME=	macchina-0.9.2
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Macchina-CLI/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -13,8 +13,17 @@ LICENSE=	mit
 .include "cargo-depends.mk"
 
 USE_LANGUAGES+=	c c++
+USE_TOOLS+=	pkg-config
 
 INSTALLATION_DIRS=	bin share/examples/macchina
+
+RUSTFLAGS+=	-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.libX11}/lib
+RUSTFLAGS+=	-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.libxcb}/lib
+RUSTFLAGS+=	-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.libXdmcp}/lib
+RUSTFLAGS+=	-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.libXau}/lib
+MAKE_ENV+=	RUSTFLAGS=${RUSTFLAGS:Q}
+
+BUILDLINK_TRANSFORM+=	opt:-pie:-fPIC
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/target/release/macchina ${DESTDIR}${PREFIX}/bin
@@ -23,4 +32,8 @@ do-install:
 DEPENDS+=	wmctrl-[0-9]*:../../wm/wmctrl
 
 .include "../../lang/rust/cargo.mk"
+.include "../../x11/libX11/buildlink3.mk"
+.include "../../x11/libxcb/buildlink3.mk"
+.include "../../x11/libXdmcp/buildlink3.mk"
+.include "../../x11/libXau/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

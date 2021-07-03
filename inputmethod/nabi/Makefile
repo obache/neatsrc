@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.63 2020/08/17 20:19:17 leot Exp $
+# $NetBSD: Makefile,v 1.64 2021/05/24 19:52:29 wiz Exp $
 #
 
 DISTNAME=		nabi-1.0.0
-PKGREVISION=		25
+PKGREVISION=		26
 CATEGORIES=		korean inputmethod
 MASTER_SITES=		https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/nabi/
 

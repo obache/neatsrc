@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.932 2021/04/27 17:09:59 wiz Exp $
+# $NetBSD: Makefile,v 1.934 2021/06/13 10:25:37 nia Exp $
 #
 
 COMMENT=	Packages to support the X Window System
@@ -99,6 +99,7 @@ SUBDIR+=	gtkglarea2
 SUBDIR+=	gtkmm
 SUBDIR+=	gtkmm-utils
 SUBDIR+=	gtkmm3
+SUBDIR+=	gtkmm4
 SUBDIR+=	gtksourceview2
 SUBDIR+=	gtksourceview3
 SUBDIR+=	gtksourceview4
@@ -660,6 +661,7 @@ SUBDIR+=	xpr
 SUBDIR+=	xprop
 SUBDIR+=	xrandr
 SUBDIR+=	xrdb
+SUBDIR+=	xrectsel
 SUBDIR+=	xrefresh
 SUBDIR+=	xrestop
 SUBDIR+=	xrootconsole

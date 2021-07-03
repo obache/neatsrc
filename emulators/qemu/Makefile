@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.277 2021/04/21 13:24:37 adam Exp $
+# $NetBSD: Makefile,v 1.282 2021/06/22 04:09:06 thorpej Exp $
 
-DISTNAME=	qemu-5.2.0
-PKGREVISION=	7
+DISTNAME=	qemu-6.0.0
+PKGREVISION=	2
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 EXTRACT_SUFX=	.tar.xz
@@ -34,9 +34,15 @@ SUBST_SED.sphinx-build+=	-e 's/sphinx-build/sphinx-build-${PYVERSSUFFIX}/g'
 
 .include "../../mk/bsd.prefs.mk"
 
+# When upgrading Qemu, you need to determine if this PALcode binary for
+# the Alpha emulator needs to be re-built.  If it does not, then you do
+# not need to bump the version of this PALcode binary blob (which is
+# supplied as a separate distfile).  Contact thorpej@ for details.
+PALCODE_CLIPPER=	palcode-clipper-qemu-5.2.0nb8
+
 DISTFILES=		${DEFAULT_DISTFILES}
-DISTFILES+=		palcode-clipper
-SITES.palcode-clipper=	http://ftp.NetBSD.org/pub/NetBSD/arch/alpha/qemu/
+DISTFILES+=		${PALCODE_CLIPPER}
+SITES.${PALCODE_CLIPPER}= http://ftp.NetBSD.org/pub/NetBSD/arch/alpha/qemu/
 
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--interp-prefix=${PREFIX}/share/qemu
@@ -101,7 +107,7 @@ SUBST_SED.oss+=		-e "s,/dev/dsp,${DEVOSSAUDIO},g"
 
 UE_ARCHS+=		aarch64 aarch64_be
 UE_ARCHS+=		alpha arm armeb cris
-UE_ARCHS+=		hppa
+UE_ARCHS+=		hexagon hppa
 UE_ARCHS+=		i386
 UE_ARCHS+=		m68k microblaze microblazeel
 UE_ARCHS+=		mips mips64 mips64el mipsel mipsn32 mipsn32el
@@ -150,7 +156,7 @@ TEST_TARGET=		check
 PYTHON_FOR_BUILD_ONLY=	tool
 
 post-extract:
-	cp ${WRKDIR}/palcode-clipper ${WRKSRC}/pc-bios/palcode-clipper
+	cp ${WRKDIR}/${PALCODE_CLIPPER} ${WRKSRC}/pc-bios/palcode-clipper
 	cp ${FILESDIR}/hw-mips-mipssim_virtio.c ${WRKSRC}/hw/mips/mipssim_virtio.c
 
 do-build:
@@ -176,6 +182,7 @@ post-install:
 	${FIND} share/doc/qemu -path '*/_static/*' -type f -print > ${WRKDIR}/PLIST.STATIC
 
 .include "../../archivers/lzo/buildlink3.mk"
+.include "../../archivers/zstd/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/jemalloc/buildlink3.mk"
 .include "../../devel/snappy/buildlink3.mk"

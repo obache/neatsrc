@@ -1,14 +1,13 @@
-# $NetBSD: Makefile,v 1.88 2021/04/13 09:10:02 wiz Exp $
+# $NetBSD: Makefile,v 1.91 2021/07/02 09:00:22 adam Exp $
 
-DISTNAME=	glibmm-2.66.0
-PKGREVISION=	1
+DISTNAME=	glibmm-2.66.1
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/glibmm/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	adam@NetBSD.org
 HOMEPAGE=	https://www.gtkmm.org/
-COMMENT=	C++ bindings for glib
+COMMENT=	C++ bindings for glib (2.4 API)
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
 USE_LANGUAGES=		c c++11

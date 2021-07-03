@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.11 2021/05/05 00:47:21 gutteridge Exp $
+$NetBSD: distinfo,v 1.13 2021/06/12 17:30:59 gutteridge Exp $
 
 SHA1 (pluma-1.24.2.tar.xz) = 92b7e2d8ac4f5ac25b1d91b5eb9ec7be2fc3f538
 RMD160 (pluma-1.24.2.tar.xz) = 5bf0fe427f525c614765b07b2c24e5f669dd5d1f

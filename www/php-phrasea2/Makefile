@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.15 2020/03/22 20:33:29 tnn Exp $
+# $NetBSD: Makefile,v 1.16 2021/06/23 20:33:18 nia Exp $
 #
 
 .include "../../www/phraseanet/Makefile.common"
 
 MODNAME=			phrasea2
-PKGREVISION=			2
+PKGREVISION=			3
 PECL_VERSION=			${VERS}
 EXTRACT_ELEMENTS=		${DISTNAME}/bin/src/php_phrasea2
 EXTRACT_SUFX=			.tar.gz
